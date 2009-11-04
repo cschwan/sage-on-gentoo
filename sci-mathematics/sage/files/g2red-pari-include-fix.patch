@@ -1,0 +1,23 @@
+--- spkg-install	2008-05-19 05:09:53.000000000 +0000
++++ spkg-install-pari-fix	2009-10-29 11:41:57.618999237 +0000
+@@ -6,16 +6,16 @@
+    exit 1
+ fi
+ 
+-if [ `uname` = "Darwin" -a "$SAGE64" = "yes" ]; then 
+-    echo "64 bit MacIntel" 
+-    CFLAGS="$CFLAGS -m64 "; export CFLAGS 
++if [ `uname` = "Darwin" -a "$SAGE64" = "yes" ]; then
++    echo "64 bit MacIntel"
++    CFLAGS="$CFLAGS -m64 "; export CFLAGS
+ fi
+ 
+ echo "Compiling genus2reduction.c"
+ 
+ cd src/
+ 
+-$CC $CFLAGS -O2 -I"$SAGE_LOCAL/include/pari" -L"$SAGE_LOCAL/lib" \
++$CC $CFLAGS -O2 -I"/usr/include/pari" -L"$SAGE_LOCAL/lib" \
+                 -o genus2reduction genus2reduction.c -lpari -lgmp -lm
+ 
+ if [ $? -ne 0 ]; then

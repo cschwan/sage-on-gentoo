@@ -1,0 +1,13 @@
+--- deps	2009-10-27 18:41:31.586711209 +0000
++++ deps-use-system-zlib	2009-10-27 17:21:00.760712331 +0000
+@@ -249,8 +249,8 @@
+ #$(INST)/$(GNUPLOT): $(BASE) $(INST)/$(TERMCAP) $(INST)/$(READLINE) $(INST)/$(LIBPNG)
+ #	$(SAGE_SPKG) $(GNUPLOT) 2>&1
+ 
+-$(INST)/$(ZLIB): $(BASE)
+-	$(SAGE_SPKG) $(ZLIB) 2>&1
++$(INST)/$(ZLIB):
++	@echo "not building $(ZLIB) - using system default"
+ 
+ #$(INST)/$(GNUPLOTPY): $(BASE) $(INST)/$(PYTHON) $(INST)/$(NUMPY)
+ #	$(SAGE_SPKG) $(GNUPLOTPY) 2>&1

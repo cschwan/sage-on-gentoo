@@ -1,0 +1,13 @@
+--- deps	2009-10-27 18:41:31.586711209 +0000
++++ deps-use-system-gdmodule	2009-10-28 13:39:49.549881500 +0000
+@@ -175,8 +175,8 @@
+ #$(INST)/$(DVIPNG): $(INST)/$(LIBPNG) $(INST)/$(FREETYPE)
+ #	$(SAGE_SPKG) $(DVIPNG) 2>&1
+ 
+-$(INST)/$(GDMODULE): $(INST)/$(PYTHON) $(INST)/$(GD)
+-	$(SAGE_SPKG) $(GDMODULE) 2>&1
++$(INST)/$(GDMODULE):
++	@echo "not building $(GDMODULE) - using system default"
+ 
+ $(INST)/$(TWISTED): $(INST)/$(PYTHON) $(INST)/$(PYTHON_GNUTLS)
+ 	$(SAGE_SPKG) $(TWISTED) 2>&1

@@ -1,0 +1,13 @@
+--- deps	2009-10-27 18:41:31.586711209 +0000
++++ deps-use-system-bzip2	2009-10-27 17:20:20.133710999 +0000
+@@ -42,8 +42,8 @@
+ $(INST)/$(PREREQ): $(INST)/$(DIR)
+ 	base/$(PREREQ)-install
+ 
+-$(INST)/$(SAGE_BZIP2): $(INST)/$(PREREQ) $(INST)/$(DIR)
+-	base/$(SAGE_BZIP2)-install 2>&1
++$(INST)/$(SAGE_BZIP2):
++	@echo "not building $(SAGE_BZIP2) - using system default"
+ 
+ ########################################
+ # Building normal packages

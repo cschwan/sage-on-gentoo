@@ -1,0 +1,13 @@
+--- deps	2009-10-27 18:41:31.586711209 +0000
++++ deps-use-system-python	2009-10-27 18:56:20.971759563 +0000
+@@ -79,8 +79,8 @@
+ $(INST)/$(GRAPHS): $(BASE)
+ 	$(SAGE_SPKG) $(GRAPHS) 2>&1
+ 
+-$(INST)/$(PYTHON): $(BASE) $(INST)/$(ZLIB) $(INST)/$(TERMCAP) $(INST)/$(READLINE) $(INST)/$(SQLITE) $(INST)/$(GNUTLS) $(INST)/$(LIBPNG)
+-	$(SAGE_SPKG) $(PYTHON) 2>&1
++$(INST)/$(PYTHON):
++	@echo "not build ing $(PYTHON) - using system default"
+ 
+ $(INST)/$(PYGMENTS): $(INST)/$(PYTHON)
+ 	$(SAGE_SPKG) $(PYGMENTS) 2>&1

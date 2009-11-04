@@ -1,0 +1,11 @@
+--- spkg-install	2009-09-22 05:14:33.000000000 +0000
++++ spkg-install-copy	2009-11-01 09:17:17.380483222 +0000
+@@ -105,7 +105,7 @@
+ echo " Using LINBOX_BLAS=$LINBOX_BLAS"
+ echo "*************************************************"
+ 
+-./configure --prefix="$SAGE_LOCAL" --with-givaro="$SAGE_LOCAL" --with-gmp="$SAGE_LOCAL" --with-ntl="$SAGE_LOCAL"  --with-blas="$LINBOX_BLAS" --enable-sage --enable-optimization --disable-static
++./configure --prefix="$SAGE_LOCAL" --with-givaro="$SAGE_LOCAL" --with-gmp="$SAGE_LOCAL" --with-ntl=yes  --with-blas=yes --enable-sage --enable-optimization --disable-static
+ 
+ if [ $? -ne 0 ]; then
+     echo "Error configuring linbox"

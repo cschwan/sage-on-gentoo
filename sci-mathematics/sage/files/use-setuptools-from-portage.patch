@@ -1,0 +1,13 @@
+--- deps	2009-10-27 18:41:31.586711209 +0000
++++ deps-use-system-setuptools	2009-10-27 18:30:27.534711934 +0000
+@@ -228,8 +228,8 @@
+ 	$(SAGE_SPKG) $(MERCURIAL) 2>&1
+ 	$(MAKEREL)
+ 
+-$(INST)/$(SETUPTOOLS): $(INST)/$(PYTHON)
+-	$(SAGE_SPKG) $(SETUPTOOLS) 2>&1
++$(INST)/$(SETUPTOOLS):
++	@echo "not building $(SETUPTOOLS) - using system default"
+ 
+ $(INST)/$(SINGULAR): $(BASE) $(INST)/$(MPIR) $(INST)/$(NTL) $(INST)/$(TERMCAP) $(INST)/$(READLINE) $(INST)/$(MPFR)
+ 	$(SAGE_SPKG) $(SINGULAR) 2>&1

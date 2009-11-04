@@ -1,0 +1,13 @@
+--- deps	2009-10-27 18:41:31.586711209 +0000
++++ deps-use-system-lapack	2009-10-28 12:30:55.922881680 +0000
+@@ -407,8 +407,8 @@
+ $(INST)/$(JINJA2): $(INST)/$(DOCUTILS) $(INST)/$(SETUPTOOLS)
+ 	$(SAGE_SPKG) $(JINJA2) 2>&1
+ 
+-$(INST)/$(LAPACK): $(INST)/$(FORTRAN)
+-	$(SAGE_SPKG) $(INST)/$(LAPACK) 2>&1
++$(INST)/$(LAPACK):
++	@echo "not building $(LAPACK) - using system default"
+ 
+ $(INST)/$(BLAS): $(INST)/$(FORTRAN)
+ 	$(SAGE_SPKG) $(INST)/$(BLAS) 2>&1

@@ -1,0 +1,42 @@
+sage-on-gentoo tries to provide a split ebuild(s) for the computer algebra
+system SAGE (www.sagemath.org).
+
+Since SAGE ships all of its dependencies (about 90 packages) this is a
+difficult task and actually the reason why there is no SAGE in portage. I chose
+to use GitHub so that everyone interested in can watch progress (RSS-Feed) and
+test the ebuilds. I should note that I am not a official gentoo developer.
+
+###############################################################################
+
+Quick Installation:
+
+1. Setup a Portage Overlay:
+   Create a overlay dir, e.g /usr/local/portage/sage-on-gentoo and add it to
+   the PORTDIR_OVERLAY variable in /etc/make.conf.
+
+2. Download repository:
+   Go to the overlay dir and type
+
+   git clone git://github.com/cschwan/sage-on-gentoo.git
+
+   (which means you will need dev-util/git). Additional documentation for git
+   can be found on github.com
+
+3. Test the ebuild:
+   Type
+
+   emerge -va sage
+
+   to install sage; note that sci-libs/blas-atlas will take its time (on my pc
+   about 4 hours). If you intend to test sage I _strongly recommend_ to use
+   ccache (FEATURES=ccache, dev-util/ccache) which speeds up compilation
+
+4. Update repository
+   To update simply type
+
+   git pull
+
+###############################################################################
+
+If you find errors or have suggestions report an issue on github.com or fork
+sage-on-gentoo!

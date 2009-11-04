@@ -1,0 +1,13 @@
+--- deps	2009-10-27 18:41:31.586711209 +0000
++++ deps-use-system-docutils	2009-10-27 17:47:47.769711181 +0000
+@@ -67,8 +67,8 @@
+ $(INST)/$(READLINE): $(BASE)
+ 	$(SAGE_SPKG) $(READLINE) 2>&1
+ 
+-$(INST)/$(DOCUTILS): $(INST)/$(PYTHON)
+-	$(SAGE_SPKG) $(DOCUTILS) 2>&1
++$(INST)/$(DOCUTILS):
++	@echo "not building $(DOCUTILS) - using system default"
+ 
+ $(INST)/$(ELLIPTIC_CURVES): $(BASE)
+ 	$(SAGE_SPKG) $(ELLIPTIC_CURVES) 2>&1

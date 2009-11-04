@@ -1,0 +1,13 @@
+--- deps	2009-10-27 18:41:31.586711209 +0000
++++ deps-use-system-pari	2009-10-28 12:33:25.262881579 +0000
+@@ -106,8 +106,8 @@
+ $(INST)/$(FPLLL): $(BASE) $(INST)/$(MPIR) $(INST)/$(MPFR)
+ 	$(SAGE_SPKG) $(FPLLL) 2 >&1
+ 
+-$(INST)/$(PARI): $(BASE) $(INST)/$(TERMCAP) $(INST)/$(READLINE) $(INST)/$(MPIR)
+-	$(SAGE_SPKG) $(PARI) 2>&1
++$(INST)/$(PARI):
++	@echo "not building $(PARI) - using system default"
+ 
+ $(INST)/$(POLYBORI): $(BASE) $(INST)/$(PYTHON) $(INST)/$(SCONS) $(INST)/$(BOOST_CROPPED)
+ 	$(SAGE_SPKG) $(POLYBORI) 2>&1

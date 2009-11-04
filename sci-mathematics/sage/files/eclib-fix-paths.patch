@@ -1,0 +1,11 @@
+--- src/Makefile	2008-09-24 14:17:14.000000000 +0000
++++ src/Makefile-copy	2009-10-29 16:25:59.522051013 +0000
+@@ -8,7 +8,7 @@
+ OPTFLAG  ?=  $(PICFLAG) -g -O2 -DNEW_OP_ORDER -DUSE_PARI_FACTORING
+ 
+ # default settings
+-PARI_PREFIX ?= /usr/local
++PARI_PREFIX ?= /usr
+ NTL_PREFIX ?= /usr/local
+ PARIINCDIR ?= ${PARI_PREFIX}/include
+ PARILIBDIR ?= ${PARI_PREFIX}/lib

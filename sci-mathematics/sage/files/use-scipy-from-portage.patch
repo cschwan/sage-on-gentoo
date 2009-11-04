@@ -1,0 +1,13 @@
+--- deps	2009-10-27 18:41:31.586711209 +0000
++++ deps-use-system-scipy	2009-10-27 17:27:27.046710656 +0000
+@@ -416,8 +416,8 @@
+ $(INST)/$(NUMPY): $(BASE) $(INST)/$(PYTHON) $(INST)/$(FORTRAN) $(INST)/$(F2C) $(INST)/$(LAPACK) $(INST)/$(BLAS) $(INST)/$(ATLAS)
+ 	$(SAGE_SPKG) $(NUMPY) 2>&1
+ 
+-$(INST)/$(SCIPY): $(INST)/$(FORTRAN) $(INST)/$(F2C) $(INST)/$(LAPACK) $(INST)/$(BLAS) $(INST)/$(NUMPY)
+-	$(SAGE_SPKG) $(SCIPY) 2>&1
++$(INST)/$(SCIPY):
++	@echo "not building $(SCIPY) - using system default"
+ 
+ $(INST)/$(SCIPY_SANDBOX): $(INST)/$(SCIPY)
+ 	$(SAGE_SPKG) $(SCIPY_SANDBOX) 2>&1

@@ -1,0 +1,14 @@
+--- deps	2009-10-27 18:41:31.586711209 +0000
++++ deps-use-system-matplotlib	2009-10-28 13:22:15.503881355 +0000
+@@ -264,9 +264,8 @@
+ $(INST)/$(LIBPNG): $(BASE)
+ 	$(SAGE_SPKG) $(LIBPNG) 2>&1
+ 
+-$(INST)/$(MATPLOTLIB): $(BASE) $(INST)/$(PYTHON) $(INST)/$(NUMPY) $(INST)/$(FREETYPE) $(INST)/$(LIBPNG) $(INST)/$(GDMODULE)
+-	$(SAGE_SPKG) $(MATPLOTLIB) 2>&1
+-
++$(INST)/$(MATPLOTLIB):
++	@echo @echo "not building $(MATPLOTLIB) - using system default"
+ 
+ ####
+ 

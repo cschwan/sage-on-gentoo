@@ -1,0 +1,13 @@
+--- deps	2009-10-27 18:41:31.586711209 +0000
++++ use-numpy-from-portage	2009-11-01 12:31:23.786449468 +0000
+@@ -413,8 +413,8 @@
+ $(INST)/$(BLAS): $(INST)/$(FORTRAN)
+ 	$(SAGE_SPKG) $(INST)/$(BLAS) 2>&1
+ 
+-$(INST)/$(NUMPY): $(BASE) $(INST)/$(PYTHON) $(INST)/$(FORTRAN) $(INST)/$(F2C) $(INST)/$(LAPACK) $(INST)/$(BLAS) $(INST)/$(ATLAS)
+-	$(SAGE_SPKG) $(NUMPY) 2>&1
++$(INST)/$(NUMPY):
++	@echo "using numpy from portage"
+ 
+ $(INST)/$(SCIPY): $(INST)/$(FORTRAN) $(INST)/$(F2C) $(INST)/$(LAPACK) $(INST)/$(BLAS) $(INST)/$(NUMPY)
+ 	$(SAGE_SPKG) $(SCIPY) 2>&1

@@ -1,0 +1,13 @@
+--- deps	2009-10-27 18:41:31.586711209 +0000
++++ deps-use-system-boem-gc	2009-10-27 17:20:47.094711570 +0000
+@@ -52,8 +52,8 @@
+ $(INST)/$(ATLAS): $(BASE) $(INST)/$(LAPACK) $(INST)/$(PYTHON)
+ 	$(SAGE_SPKG) $(ATLAS) 2>&1
+ 
+-$(INST)/$(BOEHM_GC): $(BASE)
+-	$(SAGE_SPKG) $(BOEHM_GC) 2>&1
++$(INST)/$(BOEHM_GC):
++	@echo "not building $(BOEHM_GC) - using system default"
+ 
+ $(INST)/$(BOOST_CROPPED): $(BASE)
+ 	$(SAGE_SPKG) $(BOOST_CROPPED) 2>&1

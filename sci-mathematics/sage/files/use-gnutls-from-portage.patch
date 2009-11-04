@@ -1,0 +1,13 @@
+--- deps	2009-10-27 18:41:31.586711209 +0000
++++ deps-use-system-gnutls	2009-10-27 17:35:13.637711114 +0000
+@@ -193,8 +193,8 @@
+ $(INST)/$(LIBGCRYPT):  $(INST)/$(LIBGPG_ERROR)
+ 	$(SAGE_SPKG) $(LIBGCRYPT) 2>&1
+ 
+-$(INST)/$(GNUTLS):  $(INST)/$(ZLIB) $(INST)/$(OPENCDK) $(INST)/$(LIBGCRYPT) $(INST)/$(LIBGPG_ERROR)
+-	$(SAGE_SPKG) $(GNUTLS) 2>&1
++$(INST)/$(GNUTLS):
++	@echo "not building $(GNUTLS) - using system default"
+ 
+ $(INST)/$(PYTHON_GNUTLS):  $(INST)/$(GNUTLS) $(INST)/$(PYTHON)
+ 	$(SAGE_SPKG) $(PYTHON_GNUTLS) 2>&1

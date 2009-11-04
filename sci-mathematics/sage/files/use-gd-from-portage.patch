@@ -1,0 +1,13 @@
+--- deps	2009-10-27 18:41:31.586711209 +0000
++++ deps-use-system-gd	2009-10-27 17:53:18.091711484 +0000
+@@ -169,8 +169,8 @@
+ $(INST)/$(PEXPECT): $(INST)/$(PYTHON)
+ 	$(SAGE_SPKG) $(PEXPECT) 2>&1
+ 
+-$(INST)/$(GD): $(INST)/$(LIBPNG) $(INST)/$(FREETYPE)
+-	$(SAGE_SPKG) $(GD) 2>&1
++$(INST)/$(GD):
++	@echo "not building $(GD) - using system default"
+ 
+ #$(INST)/$(DVIPNG): $(INST)/$(LIBPNG) $(INST)/$(FREETYPE)
+ #	$(SAGE_SPKG) $(DVIPNG) 2>&1

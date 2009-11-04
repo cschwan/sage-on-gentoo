@@ -1,0 +1,13 @@
+--- deps	2009-10-27 18:41:31.586711209 +0000
++++ deps-use-system-opencdk	2009-10-27 18:13:17.630711063 +0000
+@@ -184,8 +184,8 @@
+ $(INST)/$(TWISTEDWEB2): $(INST)/$(TWISTED)
+ 	$(SAGE_SPKG) $(TWISTEDWEB2) 2>&1
+ 
+-$(INST)/$(OPENCDK):  $(INST)/$(ZLIB)  $(INST)/$(LIBGCRYPT)
+-	$(SAGE_SPKG) $(OPENCDK) 2>&1
++$(INST)/$(OPENCDK):
++	@echo "not building $(OPENCDK) - using system default"
+ 
+ $(INST)/$(LIBGPG_ERROR):
+ 	$(SAGE_SPKG) $(LIBGPG_ERROR) 2>&1

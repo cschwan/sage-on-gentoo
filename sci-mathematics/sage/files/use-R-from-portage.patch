@@ -1,0 +1,14 @@
+--- deps	2009-10-27 18:41:31.586711209 +0000
++++ deps-use-system-R	2009-10-27 18:59:28.143711403 +0000
+@@ -299,9 +299,8 @@
+ 	$(SAGE_SPKG) $(ZODB) 2>&1
+ 	$(MAKEREL)
+ 
+-$(INST)/$(R): $(INST)/$(PYTHON) $(INST)/$(ATLAS)
+-	$(SAGE_SPKG) $(R) 2>&1
+-	$(MAKEREL)
++$(INST)/$(R):
++	@echo "not building $(R) - using system default"
+ 
+ $(INST)/$(SYMPY): $(INST)/$(PYTHON)
+ 	$(SAGE_SPKG) $(SYMPY) 2>&1

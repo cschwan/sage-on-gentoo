@@ -1,0 +1,13 @@
+--- deps	2009-10-27 18:41:31.586711209 +0000
++++ deps-use-system-mpmath	2009-10-27 18:11:42.978710950 +0000
+@@ -243,8 +243,8 @@
+ $(INST)/$(NETWORKX): $(BASE) $(INST)/$(PYTHON)
+ 	$(SAGE_SPKG) $(NETWORKX) 2>&1
+ 
+-$(INST)/$(MPMATH): $(BASE) $(INST)/$(PYTHON)
+-	$(SAGE_SPKG) $(MPMATH) 2>&1
++$(INST)/$(MPMATH):
++	@echo "not building $(MPMATH) - using system default"
+ 
+ #$(INST)/$(GNUPLOT): $(BASE) $(INST)/$(TERMCAP) $(INST)/$(READLINE) $(INST)/$(LIBPNG)
+ #	$(SAGE_SPKG) $(GNUPLOT) 2>&1

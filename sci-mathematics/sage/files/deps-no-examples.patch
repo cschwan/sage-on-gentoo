@@ -1,0 +1,12 @@
+--- deps	2009-10-27 13:32:57.147711933 +0000
++++ deps-no-examples	2009-10-27 14:49:11.380711876 +0000
+@@ -327,7 +327,8 @@
+ 	$(SAGE_SPKG) $(EXTCODE) 2>&1
+ 
+ $(INST)/$(EXAMPLES): $(BASE)
+-	$(SAGE_SPKG) $(EXAMPLES) 2>&1
++	@echo "not building $(EXAMPLES)"
++#	$(SAGE_SPKG) $(EXAMPLES) 2>&1
+ 
+ $(INST)/$(SAGE_SCRIPTS): $(BASE)
+ 	$(SAGE_SPKG) $(SAGE_SCRIPTS) 2>&1

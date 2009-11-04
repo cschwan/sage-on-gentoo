@@ -1,0 +1,13 @@
+--- deps	2009-10-27 18:41:31.586711209 +0000
++++ deps-use-system-pexpect	2009-10-27 18:20:38.686711957 +0000
+@@ -166,8 +166,8 @@
+ 	$(SAGE_SPKG) $(DSAGE) 2>&1
+ 	$(MAKEREL)
+ 
+-$(INST)/$(PEXPECT): $(INST)/$(PYTHON)
+-	$(SAGE_SPKG) $(PEXPECT) 2>&1
++$(INST)/$(PEXPECT):
++	@echo "not building $(PEXPECT) - using system default"
+ 
+ $(INST)/$(GD): $(INST)/$(LIBPNG) $(INST)/$(FREETYPE)
+ 	$(SAGE_SPKG) $(GD) 2>&1

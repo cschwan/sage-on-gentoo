@@ -1,0 +1,12 @@
+--- module_list.py	2009-10-23 09:20:29.000000000 +0000
++++ module_list.py-patched	2009-11-01 14:44:23.058437452 +0000
+@@ -65,7 +65,8 @@
+                          "/usr/include/singular/singular",
+                          "/usr/include/symmetrica",
+                          "/usr/include/zn_poly"]
+-    include_dirs = include_dirs + debian_include_dirs
++    # FIX: following variable does not exist
++    #include_dirs = include_dirs + debian_include_dirs
+ else:
+     debian_include_dirs=[]
+ 

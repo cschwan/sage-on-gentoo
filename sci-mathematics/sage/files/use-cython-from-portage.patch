@@ -1,0 +1,14 @@
+--- deps	2009-10-27 18:41:31.586711209 +0000
++++ deps-use-system-cython	2009-10-27 17:24:36.879710126 +0000
+@@ -312,9 +312,8 @@
+ 	$(SAGE_SPKG) $(SAGENB) 2>&1
+ 	$(MAKEREL)
+ 
+-$(INST)/$(CYTHON): $(INST)/$(PYTHON)
+-	$(SAGE_SPKG) $(CYTHON) 2>&1
+-	$(MAKEREL)
++$(INST)/$(CYTHON):
++	@echo "not building $(CYTHON) - using system default"
+ 
+ $(INST)/$(FLINTQS): $(INST)/$(MPIR)
+ 	$(SAGE_SPKG) $(FLINTQS) 2>&1
