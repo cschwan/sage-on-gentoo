@@ -1,0 +1,12 @@
+# ChangeLog for sci-mathematics/sage
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: $
+
+  05 Nov 2009; Christopher Schwan <cschwan@stamaonline.de> sage-4.2.ebuild:
+  Updated USE-flags, removed unneeded dependencies, temporarily falling
+  back to sage maxima because sage could not start maxima from portage
+
+  04 Nov 2009; Christopher Schwan <cschwan@stamaonline.de> ChangeLog:
+  Initial import - removed the following packages: atlas bzip2 gnutls gsl
+  libpng maxima mercurial mpfr ntl pari R readline scons sqlite zlib
+

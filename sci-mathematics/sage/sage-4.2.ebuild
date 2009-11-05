@@ -17,24 +17,17 @@ KEYWORDS="~x86"
 IUSE="doc examples"
 
 # TODO: check dependencies
-# TODO: use pari with USE=data ?
 
 # TODO: next packages to remove: singular ?, docutils, setuptools
 
-# gsl with USE=cblas ?
-
 CDEPEND=">=dev-lang/R-2.9.2[lapack,readline]
 		>=dev-libs/mpfr-2.4.1
-		>=dev-libs/ntl-5.4.2
-		>=dev-python/cython-0.11.2.1
-		>=dev-python/matplotlib-0.99.1
-		>=dev-python/numpy-1.3.0[lapack]
+		>=dev-libs/ntl-5.4.2[gmp]
 		>=net-libs/gnutls-2.2.1
 		>=sci-libs/gsl-1.10
 		>=sci-libs/lapack-atlas-3.8.3
-		>=sci-libs/scipy-0.7
 		>=sci-mathematics/maxima-5.19.1
-		>=sci-mathematics/pari-2.3.3[gmp]
+		>=sci-mathematics/pari-2.3.3[data,gmp]
 		>=sys-libs/zlib-1.2.3
 		>=app-arch/bzip2-1.0.5
 		>=dev-util/mercurial-1.3.1
@@ -97,9 +90,8 @@ pkg_setup() {
 src_prepare(){
 	cd "${S}/spkg/standard"
 
-	# fix sandbox violation error(s)
+	# fix sandbox violation error
 	spkg_patch "ecm-6.2.1.p0" "$FILESDIR/ecm-6.2.1.p0-fix-typo.patch"
-	# TODO: one violation error left - sage tries to write to /etc/ld.so.cache~
 
 	# do not generate documentation if not needed
 	if ! use doc ; then
@@ -119,7 +111,7 @@ src_prepare(){
 	fi
 
 	# remove dependencies which will be provided by portage
-	patch_deps_file atlas bzip2 gnutls gsl libpng maxima mercurial \
+	patch_deps_file atlas bzip2 gnutls gsl libpng mercurial \
 		mpfr ntl pari R readline scons sqlite zlib
 
 	# patch to set PYTHONPATH correctly for all python packages
