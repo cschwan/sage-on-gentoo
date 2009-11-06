@@ -1,0 +1,9 @@
+# ChangeLog for sci-libs/mpir
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: $
+
+*mpir-1.3.0 (06 Nov 2009)
+
+  06 Nov 2009; Christopher Schwan <gnuke@gentoo.org> +mpir-1.3.0.ebuild:
+  Initial import
+
