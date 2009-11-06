@@ -21,23 +21,26 @@ IUSE="doc examples"
 # TODO: next packages to remove: singular ?, docutils, setuptools
 
 CDEPEND=">=dev-lang/R-2.9.2[lapack,readline]
-		>=dev-libs/mpfr-2.4.1
-		>=dev-libs/ntl-5.4.2[gmp]
-		>=net-libs/gnutls-2.2.1
-		>=sci-libs/gsl-1.10
-		>=sci-libs/lapack-atlas-3.8.3
-		>=sci-mathematics/maxima-5.19.1
-		>=sci-mathematics/pari-2.3.3[data,gmp]
-		>=sys-libs/zlib-1.2.3
-		>=app-arch/bzip2-1.0.5
-		>=dev-util/mercurial-1.3.1
-		>=sys-libs/readline-6.0
-		>=media-libs/libpng-1.2.35
-		>=dev-db/sqlite-3.6.17
-		>=dev-util/scons-1.2.0"
+	>=dev-libs/mpfr-2.4.1
+	|| (
+	>=dev-libs/ntl-5.4.2[gmp]
+	>=dev-libs/ntl-5.5.2
+	)
+	>=net-libs/gnutls-2.2.1
+	>=sci-libs/gsl-1.10
+	>=sci-libs/lapack-atlas-3.8.3
+	>=sci-mathematics/maxima-5.19.1
+	>=sci-mathematics/pari-2.3.3[data,gmp]
+	>=sys-libs/zlib-1.2.3
+	>=app-arch/bzip2-1.0.5
+	>=dev-util/mercurial-1.3.1
+	>=sys-libs/readline-6.0
+	>=media-libs/libpng-1.2.35
+	>=dev-db/sqlite-3.6.17
+	>=dev-util/scons-1.2.0"
 DEPEND="${CDEPEND}"
 RDEPEND="${CDEPEND}
-		>=app-arch/tar-1.20"
+	>=app-arch/tar-1.20"
 
 spkg_unpack() {
 	# untar spkg and and remove it
