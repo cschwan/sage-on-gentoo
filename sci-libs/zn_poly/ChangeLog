@@ -1,0 +1,9 @@
+# ChangeLog for sci-libs/zn_poly
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: $
+
+*zn_poly-0.9 (06 Nov 2009)
+
+  06 Nov 2009; Christopher Schwan <cschwan@stamaonline.de> +zn_poly-0.9.ebuild:
+  Initial import
+
