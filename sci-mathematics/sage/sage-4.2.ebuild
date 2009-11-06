@@ -123,6 +123,8 @@ src_prepare(){
 	patch_deps_file atlas bzip2 gnutls gsl libpng mercurial \
 		mpfr ntl pari R readline scons sqlite zlib
 
+	# FIX: some tests fail because of pari from portage (data related)
+
 	# patches to use pari from portage
 	spkg_patch "genus2reduction-0.3.p5" \
 		"$FILESDIR/g2red-pari-include-fix.patch"
