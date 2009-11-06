@@ -1,0 +1,9 @@
+# ChangeLog for sci-libs/linbox
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: $
+
+*linbox-1.1.6 (06 Nov 2009)
+
+  06 Nov 2009; Christopher Schwan <gnuke@gentoo.org> +linbox-1.1.6.ebuild:
+  Initial import
+
