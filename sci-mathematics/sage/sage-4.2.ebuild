@@ -37,7 +37,9 @@ CDEPEND=">=dev-lang/R-2.9.2[lapack,readline]
 	>=sys-libs/readline-6.0
 	>=media-libs/libpng-1.2.35
 	>=dev-db/sqlite-3.6.17
-	>=dev-util/scons-1.2.0"
+	>=dev-util/scons-1.2.0
+	>=media-libs/gd-2.0.35
+	>=media-libs/freetype-2.3.5"
 DEPEND="${CDEPEND}"
 RDEPEND="${CDEPEND}
 	>=app-arch/tar-1.20"
@@ -120,7 +122,7 @@ src_prepare(){
 	fi
 
 	# remove dependencies which will be provided by portage
-	patch_deps_file atlas bzip2 gnutls gsl libpng mercurial \
+	patch_deps_file atlas bzip2 freetype gd gnutls gsl libpng mercurial \
 		mpfr ntl pari R readline scons sqlite zlib
 
 	# FIX: some tests fail because of pari from portage (data related)
