@@ -95,6 +95,8 @@ src_prepare(){
 
 	# fix sandbox violation error
 	spkg_patch "ecm-6.2.1.p0" "$FILESDIR/ecm-6.2.1.p0-fix-typo.patch"
+	# another violation error in zlib, but this wont be fixed since ebuild is
+	# using the portage version of it
 
 	# do not generate documentation if not needed
 	if ! use doc ; then
@@ -106,19 +108,20 @@ src_prepare(){
 		# package will unpack and overwrite the original "install" file (why ?)
 		spkg_sed "sage_scripts-4.2" -i \
 			"/\"\$SAGE_ROOT\"\/sage -docbuild all html/d" "install"
+
+		# TODO: remove documentation
 	fi
 
 	# do not make examples if not needed
 	if ! use examples ; then
 		epatch "$FILESDIR/deps-no-examples.patch"
+
+		# TODO: remove examples
 	fi
 
 	# remove dependencies which will be provided by portage
 	patch_deps_file atlas bzip2 gnutls gsl libpng mercurial \
 		mpfr ntl pari R readline scons sqlite zlib
-
-	# patch to set PYTHONPATH correctly for all python packages
-	# TODO: remove matplotlib, scipy
 
 	# patches to use pari from portage
 	spkg_patch "genus2reduction-0.3.p5" \
@@ -144,11 +147,6 @@ src_prepare(){
 	spkg_sed "mpfi-1.3.4-cvs20071125.p7" -i \
 		"s/--with-mpfr-dir=\"\$SAGE_LOCAL\"/--with-mpfr-dir=\/usr/g" \
 		spkg-install
-
-	# TODO: patch to use numpy and cython
-
-	# hopefully sets correct directories
-	#export SAGE_DEBIAN=yes
 }
 
 src_compile() {
