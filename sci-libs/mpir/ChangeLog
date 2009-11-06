@@ -4,6 +4,6 @@
 
 *mpir-1.3.0 (06 Nov 2009)
 
-  06 Nov 2009; Christopher Schwan <gnuke@gentoo.org> +mpir-1.3.0.ebuild:
+  06 Nov 2009; Christopher Schwan <cschwan@stamaonline.de> +mpir-1.3.0.ebuild:
   Initial import
 

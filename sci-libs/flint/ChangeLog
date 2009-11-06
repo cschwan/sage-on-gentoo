@@ -1,0 +1,9 @@
+# ChangeLog for sci-libs/flint
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: $
+
+*flint-1.5.0 (06 Nov 2009)
+
+  06 Nov 2009; Christopher Schwan <cschwan@stamaonline.de> +flint-1.5.0.ebuild:
+  Initial import
+

@@ -18,7 +18,7 @@ IUSE="doc examples"
 
 # TODO: check dependencies
 
-# TODO: next packages to remove: singular ?, docutils, setuptools
+# TODO: next packages to remove: gd, freetype , singular ?, docutils, setuptools
 
 CDEPEND=">=dev-lang/R-2.9.2[lapack,readline]
 	>=dev-libs/mpfr-2.4.1
