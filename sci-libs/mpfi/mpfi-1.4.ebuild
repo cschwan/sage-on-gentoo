@@ -6,7 +6,9 @@ EAPI=2
 
 inherit eutils
 
-DESCRIPTION="This is a sample skeleton ebuild file"
+# TODO: find a description
+
+DESCRIPTION=""
 HOMEPAGE="http://mpfi.gforge.inria.fr/"
 SRC_URI="http://gforge.inria.fr/frs/download.php/22256/mpfi-1.4.tar.gz"
 
