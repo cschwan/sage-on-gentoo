@@ -1,0 +1,9 @@
+# ChangeLog for sci-libs/iml
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: $
+
+*iml-1.0.3 (07 Nov 2009)
+
+  07 Nov 2009; Christopher Schwan <gnuke@gentoo.org> +iml-1.0.3.ebuild:
+  Initial import
+
