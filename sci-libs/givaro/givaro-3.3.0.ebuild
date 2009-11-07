@@ -2,6 +2,10 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
+EAPI=2
+
+inherit eutils
+
 DESCRIPTION="Givaro is a C++ library for arithmetic and algebraic computations"
 HOMEPAGE="http://ljk.imag.fr/CASYS/LOGICIELS/givaro/"
 SRC_URI="http://ljk.imag.fr/CASYS/LOGICIELS/givaro/Downloads/${P}.tar.gz"
@@ -17,6 +21,7 @@ DEPEND="${RDEPEND}"
 src_configure() {
 	econf \
 		--with-gmp=/usr \
+		--enable-shared \
 		|| die "econf failed"
 }
 

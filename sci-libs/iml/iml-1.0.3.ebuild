@@ -19,6 +19,12 @@ DEPEND=">=dev-libs/gmp-3.1.1
 	>=sci-libs/blas-atlas-3.0"
 RDEPEND="${DEPEND}"
 
+src_configure() {
+	econf \
+		--enable-shared \
+		|| die "econf failed"
+}
+
 src_install() {
 	emake DESTDIR="${D}" install || die "emake install failed"
 	dodoc ChangeLog README
