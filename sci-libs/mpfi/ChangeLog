@@ -1,0 +1,9 @@
+# ChangeLog for sci-libs/mpfi
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: $
+
+*mpfi-1.4 (07 Nov 2009)
+
+  07 Nov 2009; Christopher Schwan <cschwan@stamaonline.de> +mpfi-1.4.ebuild:
+  Initial import
+
