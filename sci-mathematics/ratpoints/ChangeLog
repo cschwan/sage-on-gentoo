@@ -1,0 +1,10 @@
+# ChangeLog for sci-mathematics/ratpoints
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: $
+
+*ratpoints-2.1.3 (07 Nov 2009)
+
+  07 Nov 2009; Christopher Schwan <cschwan@students.uni-mainz.de>
+  +ratpoints-2.1.3.ebuild:
+  Initial import
+
