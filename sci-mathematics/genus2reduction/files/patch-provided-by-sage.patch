@@ -1,0 +1,63 @@
+--- genus2reduction.c-copy	2009-11-07 20:29:30.670673733 +0000
++++ genus2reduction.c	2009-04-05 23:05:48.000000000 +0000
+@@ -1,13 +1,38 @@
+ /* genus2reduction 
+    by Qing Liu <liu@math.u-bordeaux.fr>
+    and Henri Cohen <cohen@math.u-bordeaux.fr>
+-   
++
+    An algorithm 'à la Tate' for curves of genus 2
++
++   Current maintainer: William Stein (wstein@ucsd.edu)
++   (as part of SAGE: Software for Algebra and Geometry Experimentation)
+ */
+ 
+-/* Last modified october 5th 1998 */ 
++/* Qing Liu: Last modified october 5th 1998 */ 
++
++/* 
++   William Stein: Modified 2006-03-05.
++
++*/
+ 
+-#include "genpari.h"
++#include "pari.h"
++
++#ifdef LONG_IS_64BIT
++#  define VERYBIGINT (9223372036854775807L) /* 2^63-1 */
++#  define EXP220 (1099511627776L)          /* 2^40   */
++#  define BIGINT (2147483647)              /* 2^31-1 */
++#else
++#  define VERYBIGINT (2147483647L) /* 2^31-1 */
++#  define EXP220 (1048576L)       /* 2^20   */
++#  define BIGINT (32767)          /* 2^15-1 */
++#endif
++
++GEN
++mppgcd(GEN a, GEN b)
++{
++  if (typ(a) != t_INT || typ(b) != t_INT) err(arither1);
++  return gcdii(a,b);
++}
+ 
+ GEN
+ caltheta(GEN pol, GEN p, long lambda);
+@@ -1657,7 +1682,8 @@
+ 	    printf("erreur, racine multiple\n");fflush(stdout);exit(1);
+ 	  } 
+       for(i=1;i<=nb;i++)
+-	(GEN)list[i]=gdiv((GEN)list[i],gpuigs(p,polval((GEN)list[i],p)));
++	/* (GEN)list[i] = gdiv((GEN)list[i],gpuigs(p,polval((GEN)list[i],p))); */
++	list[i] = (long) gdiv((GEN)list[i],gpuigs(p,polval((GEN)list[i],p))); 
+     }
+   return list;
+ }
+@@ -1904,7 +1930,7 @@
+   
+   p=stoi(3);
+   polf=cgetg(3,18);
+-  y=lisexpr("mod(y,y^2-3)");
++  y=lisexpr("Mod(y,y^2-3)");
+   unmodp=gmodulcp(gun,p);
+   if(polval(pol,p)) 
+     {printf("bug, le polynome n'est pas minimal\n");fflush(stdout);exit(1);}

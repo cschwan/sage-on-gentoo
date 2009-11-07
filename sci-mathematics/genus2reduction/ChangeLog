@@ -1,0 +1,10 @@
+# ChangeLog for sci-libs/genus2reduction
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: $
+
+*genus2reduction-0.3 (07 Nov 2009)
+
+  07 Nov 2009; Christopher Schwan <cschwan@students.uni-mainz.de>
+  +genus2reduction-0.3.ebuild:
+  Initial import
+
