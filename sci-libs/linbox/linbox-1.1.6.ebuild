@@ -13,9 +13,9 @@ SRC_URI="http://linalg.org/${P}.tar.gz"
 LICENSE=""
 SLOT="0"
 KEYWORDS="~x86"
-IUSE="doc givaro ntl"
+IUSE="doc ntl sage"
 
-CDEPEND="givaro? ( >=sci-libs/givaro-3.2.6 )
+CDEPEND="<sci-libs/givaro-3.3.0
 	ntl? ( dev-libs/ntl )"
 DEPEND="${CDEPEND}
 	doc? ( app-doc/doxygen )"
@@ -31,9 +31,10 @@ src_configure() {
 	econf \
 		--with-gmp=/usr \
 		--with-blas=/usr \
-		$(use givaro && use_with givaro) \
+		--with-givaro=/usr \
 		$(use ntl && use_with ntl) \
 		$(use doc && use_enable doc) \
+		$(use sage && use_enable sage) \
 		|| die "econf failed"
 
 	# TODO: It seems to me something isnt correct here
