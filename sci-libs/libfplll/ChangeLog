@@ -1,0 +1,15 @@
+# ChangeLog for sci-libs/libfplll
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: $
+
+  08 Nov 2009; Christopher Schwan <cschwan@students.uni-mainz.de>
+  +libfplll-3.0.12.ebuild:
+  Changed includedir to /usr/include/fplll to avoid conflicts with other
+  packages
+
+*libfplll-3.0.12 (08 Nov 2009)
+
+  08 Nov 2009; Christopher Schwan <cschwan@students.uni-mainz.de>
+  +libfplll-3.0.12.ebuild:
+  Initial import
+
