@@ -18,8 +18,6 @@ IUSE="doc examples"
 
 # TODO: check dependencies
 
-# TODO: next packages to remove: gd, freetype , singular ?, docutils, setuptools
-
 CDEPEND=">=dev-lang/R-2.9.2[lapack,readline]
 	>=dev-libs/mpfr-2.4.1
 	|| (
@@ -39,7 +37,12 @@ CDEPEND=">=dev-lang/R-2.9.2[lapack,readline]
 	>=dev-db/sqlite-3.6.17
 	>=dev-util/scons-1.2.0
 	>=media-libs/gd-2.0.35
-	>=media-libs/freetype-2.3.5"
+	>=media-libs/freetype-2.3.5
+	>=sci-libs/linbox-1.1.6[ntl,sage]
+	>=sci-libs/mpfi-1.3.4
+	>=sci-libs/givaro-3.2.13
+	>=sci-libs/iml-1.0.1
+	>=sci-libs/zn_poly-0.9"
 DEPEND="${CDEPEND}"
 RDEPEND="${CDEPEND}
 	>=app-arch/tar-1.20"
@@ -122,8 +125,9 @@ src_prepare(){
 	fi
 
 	# remove dependencies which will be provided by portage
-	patch_deps_file atlas bzip2 freetype gd gnutls gsl libpng mercurial \
-		mpfr ntl pari R readline scons sqlite zlib
+	patch_deps_file atlas boehmgc bzip2 freetype givaro gd gnutls iml gsl \
+		libpng linbox mercurial mpfi mpfr ntl pari R readline scons sqlite \
+		zlib znpoly
 
 	# FIX: some tests fail because of pari from portage (data related)
 
@@ -137,20 +141,11 @@ src_prepare(){
 	# patches are needed
 
 	# patches for sage on gentoo
-	#spkg_patch "sage-4.2" "$FILESDIR/module_list-fix.patch"
+	spkg_patch "sage-4.2" "${FILESDIR}/sage-fix-paths.patch"
 
 	# patch to use atlas from portage
 	spkg_sed "cvxopt-0.9.p8" -i "s/f77blas/blas/g" "patches/setup_f95.py"
 	# TODO: patch also setup_gfortran ?
-
-	# patch to use ntl and blas from portage
-	# TODO: patch to use gmp from portage
-	spkg_patch "linbox-1.1.6.p2" "$FILESDIR/linbox-fix-configure.patch"
-
-	# patch to use mpfr from portage
-	spkg_sed "mpfi-1.3.4-cvs20071125.p7" -i \
-		"s/--with-mpfr-dir=\"\$SAGE_LOCAL\"/--with-mpfr-dir=\/usr/g" \
-		spkg-install
 }
 
 src_compile() {

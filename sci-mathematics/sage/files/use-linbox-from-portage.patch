@@ -1,0 +1,13 @@
+--- deps	2009-10-27 18:41:31.586711209 +0000
++++ use-linbox-from-portage	2009-11-07 18:17:38.130673272 +0000
+@@ -127,8 +127,8 @@
+ $(INST)/$(GIVARO): $(BASE) $(INST)/$(MPIR)
+ 	$(SAGE_SPKG) $(GIVARO) 2>&1
+ 
+-$(INST)/$(LINBOX): $(BASE) $(INST)/$(MPIR) $(INST)/$(NTL) $(INST)/$(GIVARO) $(INST)/$(GSL) $(INST)/$(ATLAS)
+-	$(SAGE_SPKG) $(LINBOX) 2>&1
++$(INST)/$(LINBOX):
++	@echo "using linbox from portage"
+ 
+ $(INST)/$(IML): $(BASE) $(INST)/$(MPIR) $(INST)/$(GSL)
+ 	$(SAGE_SPKG) $(IML) 2>&1
