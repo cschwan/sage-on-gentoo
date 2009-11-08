@@ -19,6 +19,13 @@ DEPEND=">=dev-libs/gmp-3.1.1
 	>=sci-libs/blas-atlas-3.0"
 RDEPEND="${DEPEND}"
 
+src_prepare() {
+	cd src
+
+	# apply patch supplied by debian bugreport #494819
+	epatch "${FILESDIR}/fix-undefined-symbol.patch"
+}
+
 src_configure() {
 	econf \
 		--enable-shared \
