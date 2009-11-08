@@ -1,0 +1,8 @@
+--- linbox/util/commentator.C	2008-06-14 01:20:54.000000000 +0000
++++ linbox/util/commentator.C-copy	2009-11-08 13:54:17.800209613 +0000
+@@ -721,5 +721,4 @@
+ 	}
+ 
+ 	// Default global commentator
+-	Commentator commentator;
+ }

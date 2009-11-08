@@ -3,6 +3,12 @@
 # $Header: $
 
   08 Nov 2009; Christopher Schwan <cschwan@students.uni-mainz.de>
+  linbox-1.1.6.ebuild, -files/linbox-1.1.6-doc-install.patch,
+  +files/commentator-patch-from-sage.patch:
+  Added the commentator patch from sage which fixes a lot of tests in
+  sage
+
+  08 Nov 2009; Christopher Schwan <cschwan@students.uni-mainz.de>
   linbox-1.1.6.ebuild:
   Depend on <givaro-3.3.0 because linbox-1.1.6 does not compile sage
   interface with higher versions

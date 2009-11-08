@@ -6,7 +6,8 @@ EAPI=2
 
 inherit eutils
 
-DESCRIPTION="This is a sample skeleton ebuild file"
+DESCRIPTION="LinBox is a C++ template library for linear algebra computation
+over integers and over finite fields"
 HOMEPAGE="http://linalg.org/"
 SRC_URI="http://linalg.org/${P}.tar.gz"
 
@@ -15,16 +16,20 @@ SLOT="0"
 KEYWORDS="~x86"
 IUSE="doc ntl sage"
 
+# TODO: missing dependencies
+
 CDEPEND="<sci-libs/givaro-3.3.0
 	ntl? ( dev-libs/ntl )"
 DEPEND="${CDEPEND}
 	doc? ( app-doc/doxygen )"
 RDEPEND="${CDEPEND}"
 
+# disabling of commentator class breaks the tests
+RESTRICT="test"
+
 src_prepare() {
-	if use doc ; then
-		epatch "$FILESDIR/${P}-doc-install.patch"
-	fi
+	# disable commentator; this is needed for sage
+	epatch "${FILESDIR}/commentator-patch-from-sage.patch"
 }
 
 src_configure() {
