@@ -2,8 +2,14 @@
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  08 Nov 2009; Christopher Schwan <cschwan@students.uni-mainz.de>
+  linbox-1.1.6.ebuild:
+  Depend on <givaro-3.3.0 because linbox-1.1.6 does not compile sage
+  interface with higher versions
+
 *linbox-1.1.6 (06 Nov 2009)
 
-  06 Nov 2009; Christopher Schwan <gnuke@gentoo.org> +linbox-1.1.6.ebuild:
+  06 Nov 2009; Christopher Schwan <cschwan@students.uni-mainz.de>
+  +linbox-1.1.6.ebuild:
   Initial import
 
