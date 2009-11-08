@@ -1,0 +1,13 @@
+--- deps	2009-10-27 18:41:31.586711209 +0000
++++ use-iml-from-portage	2009-11-07 21:02:47.199681849 +0000
+@@ -130,8 +130,8 @@
+ $(INST)/$(LINBOX): $(BASE) $(INST)/$(MPIR) $(INST)/$(NTL) $(INST)/$(GIVARO) $(INST)/$(GSL) $(INST)/$(ATLAS)
+ 	$(SAGE_SPKG) $(LINBOX) 2>&1
+ 
+-$(INST)/$(IML): $(BASE) $(INST)/$(MPIR) $(INST)/$(GSL)
+-	$(SAGE_SPKG) $(IML) 2>&1
++$(INST)/$(IML):
++	@echo "using iml from portage"
+ 
+ $(INST)/$(ECLIB): $(BASE) $(INST)/$(MPIR) $(INST)/$(PARI) $(INST)/$(NTL)
+ 	$(SAGE_SPKG) $(ECLIB) 2>&1
