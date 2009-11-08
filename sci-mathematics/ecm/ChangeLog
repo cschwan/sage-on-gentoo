@@ -1,0 +1,10 @@
+# ChangeLog for sci-mathematics/ecm
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: $
+
+*ecm-6.2.3 (08 Nov 2009)
+
+  08 Nov 2009; Christopher Schwan <cschwan@students.uni-mainz.de>
+  +ecm-6.2.3.ebuild:
+  Initial import
+
