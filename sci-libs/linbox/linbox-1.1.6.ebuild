@@ -10,7 +10,7 @@ DESCRIPTION="This is a sample skeleton ebuild file"
 HOMEPAGE="http://linalg.org/"
 SRC_URI="http://linalg.org/${P}.tar.gz"
 
-LICENSE=""
+LICENSE="LGPL-2.1"
 SLOT="0"
 KEYWORDS="~x86"
 IUSE="doc ntl sage"
