@@ -4,6 +4,7 @@
 
 *zn_poly-0.9 (06 Nov 2009)
 
-  06 Nov 2009; Christopher Schwan <cschwan@stamaonline.de> +zn_poly-0.9.ebuild:
+  06 Nov 2009; Christopher Schwan <cschwan@students.uni-mainz.de>
+  +zn_poly-0.9.ebuild:
   Initial import
 
