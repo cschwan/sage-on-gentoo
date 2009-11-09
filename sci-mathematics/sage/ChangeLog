@@ -2,11 +2,23 @@
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
-  05 Nov 2009; Christopher Schwan <cschwan@stamaonline.de> sage-4.2.ebuild:
+  08 Nov 2009; Christopher Schwan <cschwan@students.uni-mainz.de>
+  sage-4.2.ebuild:
+  Removed mpfi, givaro, iml, zn_poly and linbox from sage's dependencies and
+  replaced by DEPENDs. Introduces no additional test failures.
+
+  07 Nov 2009; Christopher Schwan <cschwan@students.uni-mainz.de>
+  sage-4.2.ebuild:
+  Removed freetype and gd from sage's dependencies and replaced by DEPENDs.
+  This breaks none of the tests
+
+  05 Nov 2009; Christopher Schwan <cschwan@students.uni-mainz.de>
+  sage-4.2.ebuild:
   Updated USE-flags, removed unneeded dependencies, temporarily falling
   back to sage maxima because sage could not start maxima from portage
 
-  04 Nov 2009; Christopher Schwan <cschwan@stamaonline.de> ChangeLog:
+  04 Nov 2009; Christopher Schwan <cschwan@students.uni-mainz.de>
+  ChangeLog:
   Initial import - removed the following packages: atlas bzip2 gnutls gsl
   libpng maxima mercurial mpfr ntl pari R readline scons sqlite zlib
 
