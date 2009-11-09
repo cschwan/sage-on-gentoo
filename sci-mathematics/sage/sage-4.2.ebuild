@@ -47,6 +47,14 @@ DEPEND="${CDEPEND}"
 RDEPEND="${CDEPEND}
 	>=app-arch/tar-1.20"
 
+# if we are reintroducing maxima, add the following lines to DEPEND:
+# || (
+# >=sci-mathematics/maxima-5.19.1[clisp,-sbcl]
+# >=sci-mathematics/maxima-5.19.1[ecl,-sbcl]
+# )
+# this will make sure to build maxima without sbcl-lisp which is known to cause
+# problems
+
 spkg_unpack() {
 	# untar spkg and and remove it
 	tar -xf "$1.spkg"
@@ -89,6 +97,10 @@ patch_deps_file() {
 pkg_setup() {
 	FORTRAN="gfortran"
 	fortran_pkg_setup
+
+	# force sage to use our fortran compiler
+	SAGE_FORTRAN="${FORTRANC}"
+
 	einfo "Sage itself is released under the GPL-2 _or later_ license"
 	einfo "However sage is distributed with packages having different licenses."
 	einfo "This ebuild unfortunately does too, here is a list of licenses used:"
@@ -124,10 +136,12 @@ src_prepare(){
 		# TODO: remove examples
 	fi
 
+	# TODO: patch to set PYTHONPATH correctly for all python packages
+
 	# remove dependencies which will be provided by portage
 	patch_deps_file atlas boehmgc bzip2 freetype givaro gd gnutls iml gsl \
-		libpng linbox mercurial mpfi mpfr ntl pari R readline scons sqlite \
-		zlib znpoly
+		libpng linbox mercurial mpfi mpfr ntl pari readline scons sqlite zlib \
+		znpoly
 
 	# FIX: some tests fail because of pari from portage (data related)
 
