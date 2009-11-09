@@ -18,7 +18,7 @@ IUSE="doc ntl sage"
 
 # TODO: missing dependencies
 
-CDEPEND="<sci-libs/givaro-3.3.0
+CDEPEND=">=sci-libs/givaro-3.2.13
 	ntl? ( dev-libs/ntl )"
 DEPEND="${CDEPEND}
 	doc? ( app-doc/doxygen )"
