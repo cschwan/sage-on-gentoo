@@ -29,7 +29,7 @@ src_configure() {
 	# this command actually calls a python script
 	./configure \
 		--prefix=${D}/usr \
-		--cflags="${CFLAGS}" \
+		--cflags="${CFLAGS} -fPIC" \
 		--ldflags="${LDFLAGS}" \
 		--gmp-prefix=/usr \
 		|| die "configure failed"
