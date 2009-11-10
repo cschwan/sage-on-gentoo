@@ -18,8 +18,7 @@ IUSE="doc examples"
 
 # TODO: check dependencies
 
-CDEPEND=">=dev-lang/R-2.9.2[lapack,readline]
-	>=dev-libs/mpfr-2.4.1
+CDEPEND=">=dev-libs/mpfr-2.4.1
 	|| (
 	>=dev-libs/ntl-5.4.2[gmp]
 	>=dev-libs/ntl-5.5.2
@@ -27,7 +26,6 @@ CDEPEND=">=dev-lang/R-2.9.2[lapack,readline]
 	>=net-libs/gnutls-2.2.1
 	>=sci-libs/gsl-1.10
 	>=sci-libs/lapack-atlas-3.8.3
-	>=sci-mathematics/maxima-5.19.1
 	>=sci-mathematics/pari-2.3.3[data,gmp]
 	>=sys-libs/zlib-1.2.3
 	>=app-arch/bzip2-1.0.5
@@ -43,9 +41,9 @@ CDEPEND=">=dev-lang/R-2.9.2[lapack,readline]
 	>=sci-libs/givaro-3.2.13
 	>=sci-libs/iml-1.0.1
 	>=sci-libs/zn_poly-0.9"
-DEPEND="${CDEPEND}"
-RDEPEND="${CDEPEND}
+DEPEND="${CDEPEND}
 	>=app-arch/tar-1.20"
+RDEPEND="${CDEPEND}"
 
 # if we are reintroducing maxima, add the following lines to DEPEND:
 # || (
@@ -54,6 +52,11 @@ RDEPEND="${CDEPEND}
 # )
 # this will make sure to build maxima without sbcl-lisp which is known to cause
 # problems
+
+# >=dev-lang/R-2.9.2[lapack,readline]
+
+# TODO: Optimize spkg_* functions, so that one can use mutiple spkg_* calls on
+# the same package without unpacking and repacking it everytime
 
 spkg_unpack() {
 	# untar spkg and and remove it
@@ -126,14 +129,14 @@ src_prepare(){
 		spkg_sed "sage_scripts-4.2" -i \
 			"/\"\$SAGE_ROOT\"\/sage -docbuild all html/d" "install"
 
-		# TODO: remove documentation
+		# TODO: remove documentation and the related tests
 	fi
 
 	# do not make examples if not needed
 	if ! use examples ; then
 		epatch "$FILESDIR/deps-no-examples.patch"
 
-		# TODO: remove examples
+		# TODO: remove examples and examples related tests
 	fi
 
 	# TODO: patch to set PYTHONPATH correctly for all python packages
@@ -151,8 +154,10 @@ src_prepare(){
 	spkg_patch "lcalc-20080205.p3" "$FILESDIR/lcalc-fix-paths.patch"
 	spkg_patch "eclib-20080310.p7" "$FILESDIR/eclib-fix-paths.patch"
 
-	# TODO: anything creates a file sage_pari in 'local/bin' - possibly more
-	# patches are needed
+	# patch to make a correct symbolic link to gp
+	spkg_sed "sage_scripts-4.2" -i \
+		's/ln -sf gp sage_pari/ln -sf \/usr\/bin\/gp sage_pari/g' \
+		"spkg-install" "sage-spkg-install"
 
 	# patches for sage on gentoo
 	spkg_patch "sage-4.2" "${FILESDIR}/sage-fix-paths.patch"

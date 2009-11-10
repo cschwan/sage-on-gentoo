@@ -2,6 +2,12 @@
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  10 Nov 2009; Christopher Schwan <cschwan@students.uni-mainz.de>
+  sage-4.2.ebuild:
+  Removed dependency on maxima as this package is used from sage, added
+  some comments about what should be done in future and patched two files
+  to correctly make a link sage_pari->(/usr/bin/)gp
+
   09 Nov 2009; Christopher Schwan <cschwan@students.uni-mainz.de>
   sage-4.2.ebuild:
   Removed usage of R from portage because of test failures. Force sage to
