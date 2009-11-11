@@ -2,6 +2,11 @@
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  11 Nov 2009; Christopher Schwan <cschwan@students.uni-mainz.de>
+  sage-4.2.ebuild:
+  Added use-flags disable-mpfr and disable-pari which should help finding
+  bugs on amd64
+
   10 Nov 2009; Christopher Schwan <cschwan@students.uni-mainz.de>
   sage-4.2.ebuild:
   Removed dependency on maxima as this package is used from sage, added

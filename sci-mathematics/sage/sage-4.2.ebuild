@@ -14,19 +14,24 @@ SRC_URI="http://mirror.switch.ch/mirror/sagemath/src/${P}.tar"
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~x86"
-IUSE="doc examples"
+IUSE="disable-pari disable-mpfr doc examples"
 
 # TODO: check dependencies
 
-CDEPEND=">=dev-libs/mpfr-2.4.1
+CDEPEND="
+	!disable-mpfr? (
+		>=dev-libs/mpfr-2.4.1
+	)
 	|| (
-	>=dev-libs/ntl-5.4.2[gmp]
-	>=dev-libs/ntl-5.5.2
+		>=dev-libs/ntl-5.4.2[gmp]
+		>=dev-libs/ntl-5.5.2
 	)
 	>=net-libs/gnutls-2.2.1
 	>=sci-libs/gsl-1.10
 	>=sci-libs/lapack-atlas-3.8.3
-	>=sci-mathematics/pari-2.3.3[data,gmp]
+	!disable-pari? (
+		>=sci-mathematics/pari-2.3.3[data,gmp]
+	)
 	>=sys-libs/zlib-1.2.3
 	>=app-arch/bzip2-1.0.5
 	>=dev-util/mercurial-1.3.1
@@ -143,24 +148,31 @@ src_prepare(){
 
 	# remove dependencies which will be provided by portage
 	patch_deps_file atlas boehmgc bzip2 freetype givaro gd gnutls iml gsl \
-		libpng linbox mercurial mpfi mpfr ntl pari readline scons sqlite zlib \
-		znpoly
+		libpng linbox mercurial mpfi ntl readline scons sqlite zlib znpoly
+
+	if ! use disable-mpfr ; then
+		patch_deps mpfr
+	fi
+
+	if ! use disable-pari ; then
+		patch_deps pari
+
+		# patches to use pari from portage
+		spkg_patch "genus2reduction-0.3.p5" \
+			"$FILESDIR/g2red-pari-include-fix.patch"
+		spkg_patch "lcalc-20080205.p3" "$FILESDIR/lcalc-fix-paths.patch"
+		spkg_patch "eclib-20080310.p7" "$FILESDIR/eclib-fix-paths.patch"
+
+		# patch to make a correct symbolic link to gp
+		spkg_sed "sage_scripts-4.2" -i \
+			's/ln -sf gp sage_pari/ln -sf \/usr\/bin\/gp sage_pari/g' \
+			"spkg-install" "sage-spkg-install"
+	fi
 
 	# FIX: some tests fail because of pari from portage (data related)
 
-	# patches to use pari from portage
-	spkg_patch "genus2reduction-0.3.p5" \
-		"$FILESDIR/g2red-pari-include-fix.patch"
-	spkg_patch "lcalc-20080205.p3" "$FILESDIR/lcalc-fix-paths.patch"
-	spkg_patch "eclib-20080310.p7" "$FILESDIR/eclib-fix-paths.patch"
-
-	# patch to make a correct symbolic link to gp
-	spkg_sed "sage_scripts-4.2" -i \
-		's/ln -sf gp sage_pari/ln -sf \/usr\/bin\/gp sage_pari/g' \
-		"spkg-install" "sage-spkg-install"
-
 	# patches for sage on gentoo
-	spkg_patch "sage-4.2" "${FILESDIR}/sage-fix-paths.patch"
+	#spkg_patch "sage-4.2" "${FILESDIR}/sage-fix-paths.patch"
 
 	# patch to use atlas from portage
 	spkg_sed "cvxopt-0.9.p8" -i "s/f77blas/blas/g" "patches/setup_f95.py"
