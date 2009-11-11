@@ -12,7 +12,7 @@ SRC_URI="http://www.cims.nyu.edu/~harvey/zn_poly/releases/${P}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~x86"
+KEYWORDS="~x86 ~amd64"
 IUSE=""
 
 # TODO: License ?
@@ -26,18 +26,21 @@ RDEPEND="${CDEPEND}"
 # TODO: --ntl-prefix= --use-flint --flint-prefix=
 
 src_configure() {
+	MY_CFLAGS="${CFLAGS}"
+
+	# fixes bug on amd64
+	if use amd64 ; then
+		MY_CFLAGS="${MY_CFLAGS} -fPIC"
+	fi
+
 	# this command actually calls a python script
 	./configure \
 		--prefix=${D}/usr \
-		--cflags="${CFLAGS} -fPIC" \
+		--cflags="${MY_CFLAGS}" \
 		--ldflags="${LDFLAGS}" \
 		--gmp-prefix=/usr \
 		|| die "configure failed"
 }
-
-# src_compile() {
-# 	emake || die "emake failed"
-# }
 
 src_install() {
 	emake DESTDIR="${D}" install || die "emake install failed"
