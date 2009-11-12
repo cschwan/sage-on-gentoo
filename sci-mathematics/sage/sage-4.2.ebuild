@@ -14,7 +14,7 @@ SRC_URI="http://mirror.switch.ch/mirror/sagemath/src/${P}.tar"
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~x86"
-IUSE="disable-pari disable-mpfr doc examples"
+IUSE="sage-minimal doc examples"
 
 # TODO: check dependencies
 
@@ -146,16 +146,14 @@ src_prepare(){
 
 	# TODO: patch to set PYTHONPATH correctly for all python packages
 
-	# remove dependencies which will be provided by portage
-	patch_deps_file atlas boehmgc bzip2 freetype givaro gd gnutls iml gsl \
-		libpng linbox mercurial mpfi ntl readline scons sqlite zlib znpoly
-
-	if ! use disable-mpfr ; then
-		patch_deps mpfr
-	fi
-
-	if ! use disable-pari ; then
-		patch_deps pari
+	if use sage-minimal ; then
+		patch_deps_file boehmgc bzip2 freetype gd gnutls iml libpng mercurial \
+			scons sqlite zlib
+	else
+		# remove dependencies which will be provided by portage
+		patch_deps_file atlas boehmgc bzip2 freetype givaro gd gnutls iml gsl \
+			libpng linbox mercurial mpfi mpfr ntl pari readline scons sqlite \
+		    zlib znpoly
 
 		# patches to use pari from portage
 		spkg_patch "genus2reduction-0.3.p5" \
@@ -167,16 +165,16 @@ src_prepare(){
 		spkg_sed "sage_scripts-4.2" -i \
 			's/ln -sf gp sage_pari/ln -sf \/usr\/bin\/gp sage_pari/g' \
 			"spkg-install" "sage-spkg-install"
+
+		# FIX: some tests fail because of pari from portage (data related)
+
+		# patches for sage on gentoo
+		#spkg_patch "sage-4.2" "${FILESDIR}/sage-fix-paths.patch"
+
+		# patch to use atlas from portage
+		spkg_sed "cvxopt-0.9.p8" -i "s/f77blas/blas/g" "patches/setup_f95.py"
+		# TODO: patch also setup_gfortran ?
 	fi
-
-	# FIX: some tests fail because of pari from portage (data related)
-
-	# patches for sage on gentoo
-	#spkg_patch "sage-4.2" "${FILESDIR}/sage-fix-paths.patch"
-
-	# patch to use atlas from portage
-	spkg_sed "cvxopt-0.9.p8" -i "s/f77blas/blas/g" "patches/setup_f95.py"
-	# TODO: patch also setup_gfortran ?
 }
 
 src_compile() {
