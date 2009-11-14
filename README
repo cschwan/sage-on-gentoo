@@ -23,25 +23,38 @@ Quick Installation:
    Go to the overlay directory (if you are following the above example that will
    be your home directory) and type:
 
-   git clone git://github.com/cschwan/sage-on-gentoo.git
+     git clone git://github.com/cschwan/sage-on-gentoo.git
 
    (which means you will need dev-util/git). This will create the sage-on-gentoo
    directory.
 
-3. Test the ebuild:
+3. Unmask packages:
+   Before installing, you will need to unmask the required packages. A list of
+   all required packages is located at:
+
+   sage-on-gentoo/packages.keywords/sage
+
+4. Test the ebuild:
    Type
 
-   emerge -va sage
+     emerge -va sage
 
    to install sage; note that sci-libs/blas-atlas will take its time (on my pc
    about 4 hours). If you intend to test sage I _strongly recommend_ to use
    ccache (FEATURES=ccache, dev-util/ccache) which speeds up subsequent
    compilations.
 
-4. Update repository:
-   To update simply type:
+5. Update repository:
+   To update change to the repository (sage-on-gentoo directory) and type:
 
-   git pull
+     git pull
+
+   and reemerge sage with
+
+     emerge sage
+
+   to use the latest ebuild (if you add additional options to emerge make sure
+   that sage will get recompiled!).
 
 ################################################################################
 
