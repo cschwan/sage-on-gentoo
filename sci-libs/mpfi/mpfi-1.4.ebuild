@@ -14,7 +14,7 @@ SRC_URI="http://gforge.inria.fr/frs/download.php/22256/mpfi-1.4.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~x86"
+KEYWORDS="~amd64 ~x86"
 IUSE=""
 
 # TODO: is mpfr dependency optional ?

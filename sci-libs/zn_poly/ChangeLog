@@ -2,6 +2,10 @@
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  14 Nov 2009; Christopher Schwan <cschwan@students.uni-mainz.de>
+  zn_poly-0.9.ebuild:
+  Added ~amd64 keyword
+
   10 Nov 2009; Christopher Schwan <cschwan@students.uni-mainz.de>
   zn_poly-0.9.ebuild:
   Added -fPIC which is needed on amd64 to successfully compile. Find out

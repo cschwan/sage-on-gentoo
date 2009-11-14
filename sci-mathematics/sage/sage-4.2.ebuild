@@ -13,7 +13,7 @@ SRC_URI="http://mirror.switch.ch/mirror/sagemath/src/${P}.tar"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~x86"
+KEYWORDS="~amd64 ~x86"
 IUSE="sage-minimal doc examples"
 
 # TODO: check dependencies
