@@ -14,38 +14,36 @@ SRC_URI="http://mirror.switch.ch/mirror/sagemath/src/${P}.tar"
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
-IUSE="sage-minimal doc examples"
+IUSE="doc examples sage-minimal"
 
 # TODO: check dependencies
 
 CDEPEND="
-	!disable-mpfr? (
+	!sage-minimal? (
 		>=dev-libs/mpfr-2.4.1
-	)
-	|| (
-		>=dev-libs/ntl-5.4.2[gmp]
-		>=dev-libs/ntl-5.5.2
-	)
-	>=net-libs/gnutls-2.2.1
-	>=sci-libs/gsl-1.10
-	>=sci-libs/lapack-atlas-3.8.3
-	!disable-pari? (
+		|| (
+			>=dev-libs/ntl-5.4.2[gmp]
+			>=dev-libs/ntl-5.5.2
+		)
+		>=net-libs/gnutls-2.2.1
+		>=sci-libs/gsl-1.10
+		>=sci-libs/lapack-atlas-3.8.3
 		>=sci-mathematics/pari-2.3.3[data,gmp]
-	)
-	>=sys-libs/zlib-1.2.3
-	>=app-arch/bzip2-1.0.5
-	>=dev-util/mercurial-1.3.1
-	>=sys-libs/readline-6.0
-	>=media-libs/libpng-1.2.35
-	>=dev-db/sqlite-3.6.17
-	>=dev-util/scons-1.2.0
-	>=media-libs/gd-2.0.35
-	>=media-libs/freetype-2.3.5
-	>=sci-libs/linbox-1.1.6[ntl,sage]
-	>=sci-libs/mpfi-1.3.4
-	>=sci-libs/givaro-3.2.13
-	>=sci-libs/iml-1.0.1
-	>=sci-libs/zn_poly-0.9"
+		>=sys-libs/zlib-1.2.3
+		>=app-arch/bzip2-1.0.5
+		>=dev-util/mercurial-1.3.1
+		>=sys-libs/readline-6.0
+		>=media-libs/libpng-1.2.35
+		>=dev-db/sqlite-3.6.17
+		>=dev-util/scons-1.2.0
+		>=media-libs/gd-2.0.35
+		>=media-libs/freetype-2.3.5
+		>=sci-libs/linbox-1.1.6[ntl,sage]
+		>=sci-libs/mpfi-1.3.4
+		>=sci-libs/givaro-3.2.13
+		>=sci-libs/iml-1.0.1
+		>=sci-libs/zn_poly-0.9
+	)"
 DEPEND="${CDEPEND}
 	>=app-arch/tar-1.20"
 RDEPEND="${CDEPEND}"
@@ -103,6 +101,7 @@ patch_deps_file() {
 }
 
 pkg_setup() {
+	# TODO: do not change fortran compiler if sage-minimal is used
 	FORTRAN="gfortran"
 
 	fortran_pkg_setup
@@ -122,6 +121,8 @@ src_prepare(){
 	# fix sandbox violation errors
 	spkg_patch "ecm-6.2.1.p0" "$FILESDIR/ecm-6.2.1.p0-fix-typo.patch"
 	spkg_sed "zlib-1.2.3.p4" -i "/ldconfig/d" src/Makefile src/Makefile.in
+
+	# TODO: do not remove documentation and examples if sage-minimal is used
 
 	# do not generate documentation if not needed
 	if ! use doc ; then
