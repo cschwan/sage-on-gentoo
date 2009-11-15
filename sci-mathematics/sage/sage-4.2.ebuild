@@ -104,10 +104,11 @@ patch_deps_file() {
 
 pkg_setup() {
 	FORTRAN="gfortran"
+
 	fortran_pkg_setup
 
 	# force sage to use our fortran compiler
-	SAGE_FORTRAN="${FORTRANC}"
+	export SAGE_FORTRAN="${FORTRANC}"
 
 	einfo "Sage itself is released under the GPL-2 _or later_ license"
 	einfo "However sage is distributed with packages having different licenses."
@@ -118,10 +119,9 @@ pkg_setup() {
 src_prepare(){
 	cd "${S}/spkg/standard"
 
-	# fix sandbox violation error
+	# fix sandbox violation errors
 	spkg_patch "ecm-6.2.1.p0" "$FILESDIR/ecm-6.2.1.p0-fix-typo.patch"
-	# another violation error in zlib, but this wont be fixed since ebuild is
-	# using the portage version of it
+	spkg_sed "zlib-1.2.3.p4" -i "/ldconfig/d" src/Makefile src/Makefile.in
 
 	# do not generate documentation if not needed
 	if ! use doc ; then
@@ -146,14 +146,11 @@ src_prepare(){
 
 	# TODO: patch to set PYTHONPATH correctly for all python packages
 
-	if use sage-minimal ; then
-		patch_deps_file boehmgc bzip2 freetype gd gnutls iml libpng mercurial \
-			scons sqlite zlib
-	else
+	if ! use sage-minimal ; then
 		# remove dependencies which will be provided by portage
 		patch_deps_file atlas boehmgc bzip2 freetype givaro gd gnutls iml gsl \
-			libpng linbox mercurial mpfi mpfr ntl pari readline scons sqlite \
-		    zlib znpoly
+	    	libpng linbox mercurial mpfi mpfr ntl pari readline scons sqlite \
+			zlib znpoly
 
 		# patches to use pari from portage
 		spkg_patch "genus2reduction-0.3.p5" \
@@ -172,8 +169,10 @@ src_prepare(){
 		#spkg_patch "sage-4.2" "${FILESDIR}/sage-fix-paths.patch"
 
 		# patch to use atlas from portage
-		spkg_sed "cvxopt-0.9.p8" -i "s/f77blas/blas/g" "patches/setup_f95.py"
-		# TODO: patch also setup_gfortran ?
+		spkg_sed "cvxopt-0.9.p8" -i "s/f77blas/blas/g" "patches/setup_f95.py" \
+			"patches/setup_gfortran.py"
+
+		# TODO: more fortran patches needed, maybe: cvxopt, numpy, scipy
 	fi
 }
 
