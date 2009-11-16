@@ -3,9 +3,9 @@
 <pkgmetadata>
 	<herd>sage</herd>
 	<maintainer>
-		<email>cschwan@students.uni-mainz.de</email>
+		<email></email>
 	</maintainer>
 	<use>
-		<flag name='sage-minimal'>Builds SAGE without removing packages shipped with</flag>
+		<flag name='qs'>Compiles support for quadratic sieve algorithm</flag>
 	</use>
 </pkgmetadata>

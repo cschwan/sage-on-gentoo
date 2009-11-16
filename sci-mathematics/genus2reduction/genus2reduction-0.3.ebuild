@@ -6,8 +6,8 @@ EAPI=0
 
 inherit eutils
 
-DESCRIPTION="genus2reduction is a program for computing the conductor and
-reduction types for a genus 2 hyperelliptic curve"
+DESCRIPTION="A program for computing the conductor and reduction types for a
+genus 2 hyperelliptic curve"
 HOMEPAGE="http://www.math.u-bordeaux.fr/~liu/G2R/"
 SRC_URI="http://www.math.u-bordeaux.fr/~liu/G2R/${P}.tar.gz"
 

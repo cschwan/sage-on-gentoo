@@ -6,18 +6,20 @@ EAPI=2
 
 inherit eutils
 
-# TODO: find a description
+# TODO: Official description is: MPFI est une bibliotheque C d'arithmetique par
+# intervalles multi-precision basee sur les bibliotheques MPFR et GMP. Is my
+# description correct ?
 
-DESCRIPTION=""
+DESCRIPTION="A C library for multiprecision integer operations"
 HOMEPAGE="http://mpfi.gforge.inria.fr/"
-SRC_URI="http://gforge.inria.fr/frs/download.php/22256/mpfi-1.4.tar.gz"
+SRC_URI="http://gforge.inria.fr/frs/download.php/22256/${P}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
 IUSE=""
 
-# TODO: is mpfr dependency optional ?
+# TODO: is mpfr an optional dependency ?
 
 DEPEND="dev-libs/gmp
 	dev-libs/mpfr"

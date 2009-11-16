@@ -6,14 +6,13 @@
 
 inherit eutils
 
-DESCRIPTION="A portable, high performance parallel ray tracing system supporting
-MPI and multithreaded implementations"
+DESCRIPTION="A portable, high performance parallel ray tracing system"
 HOMEPAGE="http://jedi.ks.uiuc.edu/~johns/raytracer/"
 SRC_URI="http://jedi.ks.uiuc.edu/~johns/raytracer/files/${PV}/${P}.tar.gz"
 
 # TODO: has its own license
 
-LICENSE=""
+LICENSE="as-is"
 SLOT="0"
 KEYWORDS="~x86"
 IUSE="opengl"
@@ -24,19 +23,16 @@ RDEPEND="${DEPEND}"
 S="${WORKDIR}/${PN}"
 
 # TODO: add other architectures
-
 # TODO: this ebuild needs more work
+
+PORTAGE_MAKE_TARGET=linux-thr
 
 src_compile() {
 	cd "unix"
 
-	PORTAGE_MAKE_TARGET=linux-thr
-
 	if use opengl ; then
 		PORTAGE_MAKE_TARGET=linux-thr-ogl
 	fi
-
-	export PORTAGE_MAKE_TARGET
 
 	emake ${PORTAGE_MAKE_TARGET} || die "emake failed"
 }

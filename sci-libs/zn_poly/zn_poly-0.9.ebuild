@@ -35,7 +35,7 @@ src_configure() {
 
 	# this command actually calls a python script
 	./configure \
-		--prefix=${D}/usr \
+		--prefix="${D}/usr" \
 		--cflags="${MY_CFLAGS}" \
 		--ldflags="${LDFLAGS}" \
 		--gmp-prefix=/usr \
