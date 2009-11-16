@@ -10,8 +10,9 @@ inherit eutils
 # intervalles multi-precision basee sur les bibliotheques MPFR et GMP. Is my
 # description correct ?
 
-DESCRIPTION="A C library for multiprecision integer operations"
-HOMEPAGE="http://mpfi.gforge.inria.fr/"
+DESCRIPTION="a multiple precision interval arithmetic library based on MPFR"
+HOMEPAGE="http://perso.ens-lyon.fr/nathalie.revol/software.html"
+RESTRICT="mirror"
 SRC_URI="http://gforge.inria.fr/frs/download.php/22256/${P}.tar.gz"
 
 LICENSE="GPL-2"
