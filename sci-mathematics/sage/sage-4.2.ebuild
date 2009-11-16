@@ -187,21 +187,17 @@ src_prepare(){
 }
 
 src_compile() {
-	# This is so (at least) mpir will compile.
-	ABI=32
-	if ( (use amd64) || (use ppc64) ); then
-		ABI=64
-	fi
+	emake || die "emake failed"
 
-	emake || die "make failed"
 	if ( grep "sage: An error occurred" "${S}/install.log" ); then
 		die "make failed"
 	fi
 }
 
 src_install() {
-	emake DESTDIR="${D}/opt" install
+	emake DESTDIR="${D}/opt" install || die "emake install failed"
 
+	# set sage's correct path to /opt
 	sed -i "s/SAGE_ROOT=.*\/opt/SAGE_ROOT=\"\/opt/" "${D}/opt/bin/sage" \
 		"${D}/opt/sage/sage"
 
