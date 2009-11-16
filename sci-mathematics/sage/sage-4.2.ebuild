@@ -187,13 +187,10 @@ src_prepare(){
 }
 
 src_compile() {
-	# The following lines fixes a problem with mpir; without it mpir configure
-	# fails with the following message: "ABI=amd64 is not among th following
-	# choices" - what sets this variable to amd64 ?
-	ABI=32
-	if ( (use amd64) || (use ppc64) ); then
-		ABI=64
-	fi
+	# On amd64 the ABI variable is used to select between 32- and 64-bit
+	# compilation - but this causes problems since ABI is also used on SAGE for
+	# different reasons
+	ABI=
 
 	emake || die "emake failed"
 
