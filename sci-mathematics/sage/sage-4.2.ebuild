@@ -43,20 +43,18 @@ CDEPEND="
 		>=sci-libs/givaro-3.2.13
 		>=sci-libs/iml-1.0.1
 		>=sci-libs/zn_poly-0.9
+		>=sci-mathematics/maxima-5.19.1[ecl,-sbcl]
 	)"
 DEPEND="${CDEPEND}
 	>=app-arch/tar-1.20"
 RDEPEND="${CDEPEND}"
 
-# if we are reintroducing maxima, add the following lines to DEPEND:
-# || (
-# >=sci-mathematics/maxima-5.19.1[clisp,-sbcl]
-# >=sci-mathematics/maxima-5.19.1[ecl,-sbcl]
-# )
-# this will make sure to build maxima without sbcl-lisp which is known to cause
-# problems
+# TODO: Support maxima with clisp ? Problems that may arise: readline+clisp
 
-# >=dev-lang/R-2.9.2[lapack,readline]
+# To remove R, add
+# >=dev-lang/R-2.9.2[lapack,readline] to DEPEND,
+# change RHOME in sage-env
+# and LD_LIBRARY_PATH in the same file and check if depend on internal rpy2
 
 # TODO: Optimize spkg_* functions, so that one can use mutiple spkg_* calls on
 # the same package without unpacking and repacking it everytime
@@ -135,14 +133,14 @@ src_prepare(){
 		spkg_sed "sage_scripts-4.2" -i \
 			"/\"\$SAGE_ROOT\"\/sage -docbuild all html/d" "install"
 
-		# TODO: remove documentation and the related tests
+		# TODO: remove documentation (and related tests ?)
 	fi
 
 	# do not make examples if not needed
 	if ! use examples ; then
 		epatch "$FILESDIR/deps-no-examples.patch"
 
-		# TODO: remove examples and examples related tests
+		# TODO: remove examples (and related tests ?)
 	fi
 
 	# TODO: patch to set PYTHONPATH correctly for all python packages
@@ -150,8 +148,8 @@ src_prepare(){
 	if ! use sage-minimal ; then
 		# remove dependencies which will be provided by portage
 		patch_deps_file atlas boehmgc bzip2 freetype givaro gd gnutls iml gsl \
-	    	libpng linbox mercurial mpfi mpfr ntl pari readline scons sqlite \
-			zlib znpoly
+	    	libpng linbox maxima mercurial mpfi mpfr ntl pari readline scons \
+			sqlite zlib znpoly
 
 		# patches to use pari from portage
 		spkg_patch "genus2reduction-0.3.p5" \
@@ -161,19 +159,30 @@ src_prepare(){
 
 		# patch to make a correct symbolic link to gp
 		spkg_sed "sage_scripts-4.2" -i \
-			's/ln -sf gp sage_pari/ln -sf \/usr\/bin\/gp sage_pari/g' \
+			"s/ln -sf gp sage_pari/ln -sf \/usr\/bin\/gp sage_pari/g" \
 			"spkg-install" "sage-spkg-install"
 
-		# FIX: some tests fail because of pari from portage (data related)
+		# fix pari data path
+		spkg_sed "sage_scripts-4.2" -i \
+			"s/\$SAGE_LOCAL\/share\/pari/\/usr\/share\/pari/g" "sage-env"
 
-		# patches for sage on gentoo
-		#spkg_patch "sage-4.2" "${FILESDIR}/sage-fix-paths.patch"
+		# TODO: fix pari variables: GPHELP and GPDOCDIR, but first have to find
+		# out the gentoo paths. Force pari to build with USE=doc ? See also
+		# gentoo bug #293303
 
 		# patch to use atlas from portage
 		spkg_sed "cvxopt-0.9.p8" -i "s/f77blas/blas/g" "patches/setup_f95.py" \
 			"patches/setup_gfortran.py"
 
-		# TODO: more fortran patches needed, maybe: cvxopt, numpy, scipy
+		# fix command for calling maxima
+		spkg_sed "sage-4.2" -i "s/maxima-noreadline/maxima/g" \
+			"sage/interfaces/maxima.py"
+
+		# TODO: fix the following library path - it contains a version string
+
+		# fix ecl library path
+		spkg_sed "sage_scripts-4.2" -i \
+			"s/\$SAGE_LOCAL\/lib\/ecl\//\/usr\/lib\/ecl-9.8.4\//g" "sage-env"
 	fi
 }
 
@@ -192,6 +201,7 @@ src_compile() {
 
 src_install() {
 	emake DESTDIR="${D}/opt" install
+
 	sed -i "s/SAGE_ROOT=.*\/opt/SAGE_ROOT=\"\/opt/" "${D}/opt/bin/sage" \
 		"${D}/opt/sage/sage"
 

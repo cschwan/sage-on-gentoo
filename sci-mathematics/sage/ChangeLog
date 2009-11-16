@@ -2,6 +2,11 @@
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  16 Nov 2009; Christopher Schwan <cschwan@students.uni-mainz.de>
+  sage-4.2.ebuild:
+  Successfully removed maxima and introduced a patch for pari-data which
+  fixes at least one test. Also added some notes about further proceeding.
+
   12 Nov 2009; Christopher Schwan <cschwan@students.uni-mainz.de>
   sage-4.2.ebuild:
   Removed disable-* USE flags and added new USE-flag: sage-minimal which
