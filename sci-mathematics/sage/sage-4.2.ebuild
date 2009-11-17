@@ -4,7 +4,7 @@
 
 EAPI=2
 
-inherit eutils flag-o-matic fortran
+inherit fortran
 
 DESCRIPTION="Math software for algebra, geometry, number theory, cryptography,
 and numerical computation."
@@ -48,6 +48,8 @@ CDEPEND="
 DEPEND="${CDEPEND}
 	>=app-arch/tar-1.20"
 RDEPEND="${CDEPEND}"
+
+RESTRICT="mirror"
 
 # TODO: Support maxima with clisp ? Problems that may arise: readline+clisp
 
@@ -99,13 +101,14 @@ patch_deps_file() {
 }
 
 pkg_setup() {
-	# TODO: do not change fortran compiler if sage-minimal is used
-	FORTRAN="gfortran"
+	if ! use sage-minimal ; then
+		FORTRAN="gfortran"
 
-	fortran_pkg_setup
+		fortran_pkg_setup
 
-	# force sage to use our fortran compiler
-	export SAGE_FORTRAN="${FORTRANC}"
+		# force sage to use our fortran compiler
+		export SAGE_FORTRAN="${FORTRANC}"
+	fi
 
 	einfo "Sage itself is released under the GPL-2 _or later_ license"
 	einfo "However sage is distributed with packages having different licenses."
@@ -120,7 +123,10 @@ src_prepare(){
 	spkg_patch "ecm-6.2.1.p0" "$FILESDIR/ecm-6.2.1.p0-fix-typo.patch"
 	spkg_sed "zlib-1.2.3.p4" -i "/ldconfig/d" src/Makefile src/Makefile.in
 
-	# TODO: do not remove documentation and examples if sage-minimal is used
+	# if USE=sage-minimal do not do anything
+	if use sage-minimal ; then
+		return
+	fi
 
 	# do not generate documentation if not needed
 	if ! use doc ; then
@@ -128,7 +134,7 @@ src_prepare(){
 		sed -i "/\"\$SAGE_ROOT\"\/sage -docbuild all html/d" \
 			"${S}/spkg/install" || die "sed failed"
 
-		# remove the same line in the same files in sage_scripts spkg - this
+		# remove the same line in the same file in sage_scripts spkg - this
 		# package will unpack and overwrite the original "install" file (why ?)
 		spkg_sed "sage_scripts-4.2" -i \
 			"/\"\$SAGE_ROOT\"\/sage -docbuild all html/d" "install"
@@ -143,57 +149,61 @@ src_prepare(){
 		# TODO: remove examples (and related tests ?)
 	fi
 
+	# verbosity blows up build.log and slows down installation
+	sed -i "s/cp -rpv/cp -rp/g" "${S}/makefile"
+
 	# TODO: patch to set PYTHONPATH correctly for all python packages
 
-	if ! use sage-minimal ; then
-		# remove dependencies which will be provided by portage
-		patch_deps_file atlas boehmgc bzip2 freetype givaro gd gnutls iml gsl \
-	    	libpng linbox maxima mercurial mpfi mpfr ntl pari readline scons \
-			sqlite zlib znpoly
+	# remove dependencies which will be provided by portage
+	patch_deps_file atlas boehmgc bzip2 freetype givaro gd gnutls iml gsl \
+		libpng linbox maxima mercurial mpfi mpfr ntl pari readline scons \
+		sqlite zlib znpoly
 
-		# patches to use pari from portage
-		spkg_patch "genus2reduction-0.3.p5" \
-			"$FILESDIR/g2red-pari-include-fix.patch"
-		spkg_patch "lcalc-20080205.p3" "$FILESDIR/lcalc-fix-paths.patch"
-		spkg_patch "eclib-20080310.p7" "$FILESDIR/eclib-fix-paths.patch"
+	# patches to use pari from portage
+	spkg_patch "genus2reduction-0.3.p5" \
+		"$FILESDIR/g2red-pari-include-fix.patch"
+	spkg_patch "lcalc-20080205.p3" "$FILESDIR/lcalc-fix-paths.patch"
+	spkg_patch "eclib-20080310.p7" "$FILESDIR/eclib-fix-paths.patch"
 
-		# patch to make a correct symbolic link to gp
-		spkg_sed "sage_scripts-4.2" -i \
-			"s/ln -sf gp sage_pari/ln -sf \/usr\/bin\/gp sage_pari/g" \
-			"spkg-install" "sage-spkg-install"
+	# patch to make a correct symbolic link to gp
+	spkg_sed "sage_scripts-4.2" -i \
+		"s/ln -sf gp sage_pari/ln -sf \/usr\/bin\/gp sage_pari/g" \
+		"spkg-install" "sage-spkg-install"
 
-		# fix pari data path
-		spkg_sed "sage_scripts-4.2" -i \
-			"s/\$SAGE_LOCAL\/share\/pari/\/usr\/share\/pari/g" "sage-env"
+	# fix pari data path
+	spkg_sed "sage_scripts-4.2" -i \
+		"s/\$SAGE_LOCAL\/share\/pari/\/usr\/share\/pari/g" "sage-env"
 
-		# TODO: fix pari variables: GPHELP and GPDOCDIR, but first have to find
-		# out the gentoo paths. Force pari to build with USE=doc ? See also
-		# gentoo bug #293303
+	# TODO: fix pari variables: GPHELP and GPDOCDIR, but first have to find
+	# out the gentoo paths. Force pari to build with USE=doc ? See also
+	# gentoo bug #293303
 
-		# patch to use atlas from portage
-		spkg_sed "cvxopt-0.9.p8" -i "s/f77blas/blas/g" "patches/setup_f95.py" \
-			"patches/setup_gfortran.py"
+	# patch to use atlas from portage
+	spkg_sed "cvxopt-0.9.p8" -i "s/f77blas/blas/g" "patches/setup_f95.py" \
+		"patches/setup_gfortran.py"
 
-		# fix command for calling maxima
-		spkg_sed "sage-4.2" -i "s/maxima-noreadline/maxima/g" \
-			"sage/interfaces/maxima.py"
+	# fix command for calling maxima
+	spkg_sed "sage-4.2" -i "s/maxima-noreadline/maxima/g" \
+		"sage/interfaces/maxima.py"
 
-		# TODO: fix the following library path - it contains a version string
+	# TODO: fix the following library path - it contains a version string
 
-		# fix ecl library path
-		spkg_sed "sage_scripts-4.2" -i \
-			"s/\$SAGE_LOCAL\/lib\/ecl\//\/usr\/lib\/ecl-9.8.4\//g" "sage-env"
-	fi
+	# fix ecl library path
+	spkg_sed "sage_scripts-4.2" -i \
+		"s/\$SAGE_LOCAL\/lib\/ecl\//\/usr\/lib\/ecl-9.8.4\//g" "sage-env"
 }
 
 src_compile() {
-	# On amd64 the ABI variable is used to select between 32- and 64-bit
-	# compilation - but this causes problems since ABI is also used on SAGE for
-	# different reasons
+	# On amd64 the ABI variable is used by portage to select between 32-
+	# (ABI=x86) and 64-bit (ABI=amd64) compilation. This causes problems since
+	# SAGE uses this variable but expects it to be '32' or '64'. Unsetting lets
+	# SAGE decide what ABI should be
 	ABI=
 
-	emake || die "emake failed"
+	# Do not run parallel since this is impossible with SAGE (!?)
+	emake -j1 || die "emake failed"
 
+	# TODO: Do we need this ?
 	if ( grep "sage: An error occurred" "${S}/install.log" ); then
 		die "make failed"
 	fi
@@ -207,7 +217,7 @@ src_install() {
 		"${D}/opt/sage/sage"
 
 	# TODO: handle generated docs
-	dodoc COPYING.txt HISTORY.txt README.txt || die "dodoc failed"
+	dodoc HISTORY.txt README.txt || die "dodoc failed"
 
 	# Force sage to create files in new location.  This has to be done twice -
 	# this time to create the files for gentoo to correctly record as part of
