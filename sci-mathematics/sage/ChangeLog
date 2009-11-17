@@ -2,6 +2,11 @@
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  17 Nov 2009; Christopher Schwan <cschwan@students.uni-mainz.de> ChangeLog:
+  Changed ebuild to not use system fortran compiler if USE=sage-minimal
+  and also to not remove documentation and examples. Disabled parallel
+  make.
+
   16 Nov 2009; Christopher Schwan <cschwan@students.uni-mainz.de>
   sage-4.2.ebuild:
   Successfully removed maxima and introduced a patch for pari-data which
