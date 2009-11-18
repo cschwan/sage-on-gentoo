@@ -4,31 +4,37 @@
 
 EAPI=2
 
-inherit eutils
+inherit eutils autotools
 
-DESCRIPTION="This is a sample skeleton ebuild file"
+DESCRIPTION="Integer Matrix Library"
 HOMEPAGE="http://www.cs.uwaterloo.ca/~astorjoh/iml.html"
 SRC_URI="http://www.cs.uwaterloo.ca/~astorjoh/${P}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
+RESTRICT="mirror"
 IUSE=""
 
-DEPEND=">=dev-libs/gmp-3.1.1
-	>=sci-libs/blas-atlas-3.0"
-RDEPEND="${DEPEND}"
+DEPEND="dev-util/pkgconfig
+	dev-libs/gmp
+	virtual/cblas"
+RDEPEND="dev-libs/gmp
+	virtual/cblas"
 
 src_prepare() {
-	cd src
-
+	# do not need atlas specifically any cblas will do...
+	epatch "${FILESDIR}/${P}-cblas.patch"
 	# apply patch supplied by debian bugreport #494819
 	epatch "${FILESDIR}/fix-undefined-symbol.patch"
+	eautoreconf
 }
 
 src_configure() {
 	econf \
 		--enable-shared \
+		--with-gmp-lib=-lgmp \
+		--with-cblas-lib="$(pkg-config cblas --libs)" \
 		|| die "econf failed"
 }
 

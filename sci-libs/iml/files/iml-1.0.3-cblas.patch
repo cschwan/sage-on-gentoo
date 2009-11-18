@@ -1,0 +1,53 @@
+--- configure.ac.orig	2009-11-16 15:00:18.000000000 +1300
++++ configure.ac	2009-11-18 22:00:16.000000000 +1300
+@@ -47,21 +47,27 @@
+ 
+ IML_VERBOSE_MODE
+ IML_DEFAULT_PATH
+-IML_CHECK_GMP(,,[AC_MSG_ERROR(
+-GMP not found! 
+-GMP version 3.1.1 or greater is required for this library to compile. 
+-Please make sure GMP is installed and specify the header and libraries 
+-location with the options --with-gmp-include=<path> and --with-gmp-lib=<path>
+-respectively when running configure.
+-)])
+-
+-IML_CHECK_ATLAS(,,[AC_MSG_ERROR(
+-ATLAS not found! 
+-ATLAS version 3.0 or greater is required for this library to compile. Please make sure ATLAS is installed and specify the header and libraries location with the options --with-atlas-include=<path> and --with-atlas-lib=<path> respectively when running configure.
+-)])
++
++AC_CHECK_HEADERS([cblas.h],
++	[cblas_headers_found=yes; break;])
++
++AS_IF([test "x$cblas_headers_found" != "xyes"],
++	[AC_MSG_ERROR([Unable to find the cblas headers check your installation])])
++
++AC_ARG_WITH(gmp-lib,
++            AC_HELP_STRING([--with-gmp-lib=<lib>],[Specify the flags for gmp.]),
++            with_gmp_lib=$withval)
++GMP_LIBS="$with_gmp_lib"
++
++AC_ARG_WITH(cblas-lib,
++            AC_HELP_STRING([--with-cblas-lib=<lib>],[Specify the flags for cblas.]),
++            with_cblas_lib=$withval)
++ATLAS_LIBS="$with_cblas_lib"
+ 
+ AC_SUBST(LDFLAGS)
+ AC_SUBST(ac_aux_dir)
++AC_SUBST(ATLAS_LIBS)
++AC_SUBST(GMP_LIBS)
+ 	
+ AC_OUTPUT([
+ 	Makefile
+--- config/default-path.m4~	2009-11-16 16:59:49.000000000 +1300
++++ config/default-path.m4	2009-11-16 16:59:49.000000000 +1300
+@@ -4,7 +4,7 @@
+ AC_DEFUN([IML_DEFAULT_PATH],
+ [
+ 
+- AC_ARG_WITH(default,
++ AC_ARG_WITH_PATH(default,
+ 	     [  --with-default=<path>
+ 		Add <path> to the default path for package GMP and
+ 		ATLAS searching. The default path without setting this 
