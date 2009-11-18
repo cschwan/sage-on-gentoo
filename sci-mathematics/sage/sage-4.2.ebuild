@@ -169,8 +169,8 @@ src_prepare(){
 	# fix pari paths
 	spkg_sed "sage_scripts-4.2" -i \
 		-e "s/\$SAGE_LOCAL\/share\/pari/\/usr\/share\/pari/g" \
-		-e "s/\$SAGE_LOCAL\/bin\/gphelp/\/usr/\/bin\/gphelp/g" \
-		-e "s/\$SAGE_LOCAL\/share\/pari\/doc/\/usr/share\/doc\/pari-2.3.4-r1/g" \
+		-e "s/\$SAGE_LOCAL\/bin\/gphelp/\/usr\/bin\/gphelp/g" \
+		-e "s/\$SAGE_LOCAL\/share\/pari\/doc/\/usr\/share\/doc\/pari-2.3.4-r1/g" \
 		"sage-env"
 
 	# patch to use atlas from portage
@@ -193,12 +193,12 @@ src_compile() {
 	# (ABI=x86) and 64-bit (ABI=amd64) compilation. This causes problems since
 	# SAGE uses this variable but expects it to be '32' or '64'. Unsetting lets
 	# SAGE decide what ABI should be
-	env -u ABI
+	unset ABI
 
 	# TODO: Custom flags may cause serious problems on amd64 - mpir ?
 	if use amd64 ; then
-		env -u CFLAGS
-		env -u CXXFLAGS
+		unset CFLAGS
+		unset CXXFLAGS
 	fi
 
 	# do not run parallel since this is impossible with SAGE (!?)
