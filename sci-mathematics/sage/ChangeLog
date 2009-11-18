@@ -2,6 +2,11 @@
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  18 Nov 2009; Christopher Schwan <cschwan@students.uni-mainz.de>
+  sage-4.2.ebuild, metadata.xml:
+  Adjusted pari paths: GPHELP and GPDOCDIR. Also unset compilation flags
+  on amd64 for testing
+
   17 Nov 2009; Christopher Schwan <cschwan@students.uni-mainz.de> ChangeLog:
   Changed ebuild to not use system fortran compiler if USE=sage-minimal
   and also to not remove documentation and examples. Disabled parallel

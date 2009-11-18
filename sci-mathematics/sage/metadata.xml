@@ -5,7 +5,4 @@
 	<maintainer>
 		<email>cschwan@students.uni-mainz.de</email>
 	</maintainer>
-	<use>
-		<flag name='sage-minimal'>Builds SAGE without removing packages shipped with</flag>
-	</use>
 </pkgmetadata>

@@ -14,37 +14,35 @@ SRC_URI="http://mirror.switch.ch/mirror/sagemath/src/${P}.tar"
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
-IUSE="doc examples sage-minimal"
+IUSE="doc examples"
 
 # TODO: check dependencies
 
 CDEPEND="
-	!sage-minimal? (
-		>=dev-libs/mpfr-2.4.1
-		|| (
-			>=dev-libs/ntl-5.4.2[gmp]
-			>=dev-libs/ntl-5.5.2
-		)
-		>=net-libs/gnutls-2.2.1
-		>=sci-libs/gsl-1.10
-		>=sci-libs/lapack-atlas-3.8.3
-		>=sci-mathematics/pari-2.3.3[data,gmp]
-		>=sys-libs/zlib-1.2.3
-		>=app-arch/bzip2-1.0.5
-		>=dev-util/mercurial-1.3.1
-		>=sys-libs/readline-6.0
-		>=media-libs/libpng-1.2.35
-		>=dev-db/sqlite-3.6.17
-		>=dev-util/scons-1.2.0
-		>=media-libs/gd-2.0.35
-		>=media-libs/freetype-2.3.5
-		>=sci-libs/linbox-1.1.6[ntl,sage]
-		>=sci-libs/mpfi-1.3.4
-		>=sci-libs/givaro-3.2.13
-		>=sci-libs/iml-1.0.1
-		>=sci-libs/zn_poly-0.9
-		>=sci-mathematics/maxima-5.19.1[ecl,-sbcl]
-	)"
+	>=dev-libs/mpfr-2.4.1
+	|| (
+		>=dev-libs/ntl-5.4.2[gmp]
+		>=dev-libs/ntl-5.5.2
+	)
+	>=net-libs/gnutls-2.2.1
+	>=sci-libs/gsl-1.10
+	>=sci-libs/lapack-atlas-3.8.3
+	>=sci-mathematics/pari-2.3.3[data,gmp]
+	>=sys-libs/zlib-1.2.3
+	>=app-arch/bzip2-1.0.5
+	>=dev-util/mercurial-1.3.1
+	>=sys-libs/readline-6.0
+	>=media-libs/libpng-1.2.35
+	>=dev-db/sqlite-3.6.17
+	>=dev-util/scons-1.2.0
+	>=media-libs/gd-2.0.35
+	>=media-libs/freetype-2.3.5
+	>=sci-libs/linbox-1.1.6[ntl,sage]
+	>=sci-libs/mpfi-1.3.4
+	>=sci-libs/givaro-3.2.13
+	>=sci-libs/iml-1.0.1
+	>=sci-libs/zn_poly-0.9
+	>=sci-mathematics/maxima-5.19.1[ecl,-sbcl]"
 DEPEND="${CDEPEND}
 	>=app-arch/tar-1.20"
 RDEPEND="${CDEPEND}"
@@ -101,14 +99,12 @@ patch_deps_file() {
 }
 
 pkg_setup() {
-	if ! use sage-minimal ; then
-		FORTRAN="gfortran"
+	FORTRAN="gfortran"
 
-		fortran_pkg_setup
+	fortran_pkg_setup
 
-		# force sage to use our fortran compiler
-		export SAGE_FORTRAN="${FORTRANC}"
-	fi
+	# force sage to use our fortran compiler
+	export SAGE_FORTRAN="${FORTRANC}"
 
 	einfo "Sage itself is released under the GPL-2 _or later_ license"
 	einfo "However sage is distributed with packages having different licenses."
@@ -122,11 +118,6 @@ src_prepare(){
 	# fix sandbox violation errors
 	spkg_patch "ecm-6.2.1.p0" "$FILESDIR/ecm-6.2.1.p0-fix-typo.patch"
 	spkg_sed "zlib-1.2.3.p4" -i "/ldconfig/d" src/Makefile src/Makefile.in
-
-	# if USE=sage-minimal do not do anything
-	if use sage-minimal ; then
-		return
-	fi
 
 	# do not generate documentation if not needed
 	if ! use doc ; then
@@ -170,13 +161,17 @@ src_prepare(){
 		"s/ln -sf gp sage_pari/ln -sf \/usr\/bin\/gp sage_pari/g" \
 		"spkg-install" "sage-spkg-install"
 
-	# fix pari data path
-	spkg_sed "sage_scripts-4.2" -i \
-		"s/\$SAGE_LOCAL\/share\/pari/\/usr\/share\/pari/g" "sage-env"
+	# TODO: gphelp is installed only if pari was emerged with USE=doc and
+	# documentation additionally needs FEATURES=nodoc _not_ set.
 
-	# TODO: fix pari variables: GPHELP and GPDOCDIR, but first have to find
-	# out the gentoo paths. Force pari to build with USE=doc ? See also
-	# gentoo bug #293303
+	# TODO: documentation contains a version string
+
+	# fix pari paths
+	spkg_sed "sage_scripts-4.2" -i \
+		-e "s/\$SAGE_LOCAL\/share\/pari/\/usr\/share\/pari/g" \
+		-e "s/\$SAGE_LOCAL\/bin\/gphelp/\/usr/\/bin\/gphelp/g" \
+		-e "s/\$SAGE_LOCAL\/share\/pari\/doc/\/usr/share\/doc\/pari-2.3.4-r1/g" \
+		"sage-env"
 
 	# patch to use atlas from portage
 	spkg_sed "cvxopt-0.9.p8" -i "s/f77blas/blas/g" "patches/setup_f95.py" \
@@ -198,9 +193,15 @@ src_compile() {
 	# (ABI=x86) and 64-bit (ABI=amd64) compilation. This causes problems since
 	# SAGE uses this variable but expects it to be '32' or '64'. Unsetting lets
 	# SAGE decide what ABI should be
-	ABI=
+	env -u ABI
 
-	# Do not run parallel since this is impossible with SAGE (!?)
+	# TODO: Custom flags may cause serious problems on amd64 - mpir ?
+	if use amd64 ; then
+		env -u CFLAGS
+		env -u CXXFLAGS
+	fi
+
+	# do not run parallel since this is impossible with SAGE (!?)
 	emake -j1 || die "emake failed"
 
 	# TODO: Do we need this ?
@@ -214,7 +215,7 @@ src_install() {
 
 	# set sage's correct path to /opt
 	sed -i "s/SAGE_ROOT=.*\/opt/SAGE_ROOT=\"\/opt/" "${D}/opt/bin/sage" \
-		"${D}/opt/sage/sage"
+		"${D}/opt/sage/sage" || die "sed failed"
 
 	# TODO: handle generated docs
 	dodoc HISTORY.txt README.txt || die "dodoc failed"
