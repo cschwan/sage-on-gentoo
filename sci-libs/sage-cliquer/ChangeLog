@@ -1,0 +1,10 @@
+# ChangeLog for sci-libs/sage-cliquer
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: $
+
+*sage-cliquer-1.2.2 (19 Nov 2009)
+
+  19 Nov 2009; Christopher Schwan <cschwan@students.uni-mainz.de>
+  +sage-cliquer-1.2.2.ebuild, +files/sage-cliquer-1.2.2-remove-main.patch:
+  Initial import. Derived from (now deleted) sci-mathematics/cliquer
+
