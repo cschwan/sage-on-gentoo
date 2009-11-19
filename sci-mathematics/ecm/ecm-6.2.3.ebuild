@@ -12,7 +12,7 @@ SRC_URI="http://gforge.inria.fr/frs/download.php/22124/${P}.tar.gz"
 
 LICENSE="LGPL-2.1 GPL-2"
 SLOT="0"
-KEYWORDS="~x86"
+KEYWORDS="~amd64 ~x86"
 IUSE=""
 
 DEPEND="dev-libs/gmp"
