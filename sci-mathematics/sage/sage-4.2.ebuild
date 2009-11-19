@@ -42,12 +42,18 @@ CDEPEND="
 	>=sci-libs/givaro-3.2.13
 	>=sci-libs/iml-1.0.1
 	>=sci-libs/zn_poly-0.9
-	>=sci-mathematics/maxima-5.19.1[ecl,-sbcl]"
+	>=sci-mathematics/maxima-5.19.1[ecl,-sbcl]
+	>=sci-libs/mpir-1.2[cxx]
+	>=sci-libs/libfplll-3.0.12
+	>=sci-mathematics/ecm-6.2.1
+	>=sci-visualization/tachyon-0.98"
 DEPEND="${CDEPEND}
 	>=app-arch/tar-1.20"
 RDEPEND="${CDEPEND}"
 
 RESTRICT="mirror"
+
+# TODO: mpir is configure with "gmpcompat" in sage, what to do here ?
 
 # TODO: Support maxima with clisp ? Problems that may arise: readline+clisp
 
@@ -55,6 +61,10 @@ RESTRICT="mirror"
 # >=dev-lang/R-2.9.2[lapack,readline] to DEPEND,
 # change RHOME in sage-env
 # and LD_LIBRARY_PATH in the same file and check if depend on internal rpy2
+
+# To remove GAP, we need guava
+# add this line to DEPEND: >=sci-mathematics/gap-4.4.10
+# and look for the customizations sage make to the gap startup file
 
 # TODO: Optimize spkg_* functions, so that one can use mutiple spkg_* calls on
 # the same package without unpacking and repacking it everytime
@@ -146,9 +156,9 @@ src_prepare(){
 	# TODO: patch to set PYTHONPATH correctly for all python packages
 
 	# remove dependencies which will be provided by portage
-	patch_deps_file atlas boehmgc bzip2 freetype givaro gd gnutls iml gsl \
-		libpng linbox maxima mercurial mpfi mpfr ntl pari readline scons \
-		sqlite zlib znpoly
+	patch_deps_file atlas boehmgc bzip2 ecm freetype givaro gd gnutls iml gsl \
+		libfplll libpng linbox maxima mercurial mpfi mpfr mpir ntl pari \
+		readline scons sqlite tachyon zlib znpoly
 
 	# patches to use pari from portage
 	spkg_patch "genus2reduction-0.3.p5" \
@@ -195,7 +205,7 @@ src_compile() {
 	# SAGE decide what ABI should be
 	unset ABI
 
-	# TODO: Custom flags may cause serious problems on amd64 - mpir ?
+	# TODO: Custom flags cause serious problems on amd64 - mpir ?
 	if use amd64 ; then
 		unset CFLAGS
 		unset CXXFLAGS

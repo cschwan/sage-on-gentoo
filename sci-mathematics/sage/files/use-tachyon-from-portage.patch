@@ -1,0 +1,13 @@
+--- deps	2009-10-27 18:41:31.586711209 +0000
++++ use-tachyon-from-portage	2009-11-19 16:56:49.121339817 +0000
+@@ -276,8 +276,8 @@
+ $(INST)/$(GFAN): $(BASE) $(INST)/$(MPIR) $(INST)/$(CDDLIB)
+ 	$(SAGE_SPKG) $(GFAN) 2>&1
+ 
+-$(INST)/$(TACHYON): $(BASE) $(INST)/$(LIBPNG)
+-	$(SAGE_SPKG) $(TACHYON) 2>&1
++$(INST)/$(TACHYON):
++	@echo "using tachyon from portage"
+ 
+ $(INST)/$(ECM): $(BASE) $(INST)/$(MPIR)
+ 	$(SAGE_SPKG) $(ECM) 2>&1
