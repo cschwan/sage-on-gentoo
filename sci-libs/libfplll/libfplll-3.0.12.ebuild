@@ -13,12 +13,14 @@ SRC_URI="http://perso.ens-lyon.fr/damien.stehle/downloads/${P}.tar.gz"
 
 LICENSE="LGPL-2.1"
 SLOT="0"
-KEYWORDS="~x86"
+KEYWORDS="~amd64 ~x86"
 IUSE=""
 
 DEPEND=">=dev-libs/gmp-4.2.0
 	>=dev-libs/mpfr-2.3.0"
 RDEPEND="${DEPEND}"
+
+# TODO: On amd64 -fPIC possibly needed
 
 src_configure() {
 	econf \

@@ -2,6 +2,10 @@
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  19 Nov 2009; Christopher Schwan <cschwan@students.uni-mainz.de>
+  libfplll-3.0.12.ebuild:
+  Keyword amd64 added, but not yet tested
+
   08 Nov 2009; Christopher Schwan <cschwan@students.uni-mainz.de>
   +libfplll-3.0.12.ebuild:
   Changed includedir to /usr/include/fplll to avoid conflicts with other
