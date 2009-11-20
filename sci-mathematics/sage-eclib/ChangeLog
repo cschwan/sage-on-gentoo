@@ -1,0 +1,10 @@
+# ChangeLog for sci-mathematics/sage-eclib
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: $
+
+*sage-eclib-20080310.7 (20 Nov 2009)
+
+  20 Nov 2009; Christopher Schwan <cschwan@students.uni-mainz.de>
+  +sage-eclib-20080310.7.ebuild, +metadata.xml:
+  Initial import
+
