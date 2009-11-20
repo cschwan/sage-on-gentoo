@@ -28,7 +28,8 @@ RDEPEND=""
 #	furthermore yasm do not appear to be used on my system (fbissey)
 
 src_prepare(){
-	epatch "${FILESDIR}"/${P}-yasm.patch
+	epatch "${FILESDIR}/${P}-yasm.patch"
+	epatch "${FILESDIR}/${P}-fix-yasm-path.patch"
 	eautoreconf
 }
 
