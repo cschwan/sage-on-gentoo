@@ -1,6 +1,10 @@
-# ChangeLog for dev-libs/tachyon
+# ChangeLog for sci-visualization/tachyon
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
+
+  20 Nov 2009; Christopher Schwan <cschwan@students.uni-mainz.de>
+  tachyon-0.98.7.ebuild:
+  Added more supported architectures and amd64 keyword
 
 *tachyon-0.98.7 (07 Nov 2009)
 
