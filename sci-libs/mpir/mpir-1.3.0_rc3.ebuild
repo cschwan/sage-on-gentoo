@@ -33,6 +33,9 @@ src_prepare(){
 }
 
 src_configure() {
+	# causes problems on amd64
+	unset ABI
+
 	econf \
 		$(use_enable cxx) \
 		$(use_enable cpudetection fat) \
