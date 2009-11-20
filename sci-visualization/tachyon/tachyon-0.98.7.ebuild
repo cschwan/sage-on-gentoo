@@ -25,7 +25,7 @@ RDEPEND="${DEPEND}"
 S="${WORKDIR}/${PN}"
 
 # TODO: add other architectures
-# TODO: this ebuild needs more work
+# TODO: add mpi use flag
 
 TACHYON_MAKE_TARGET=linux
 
@@ -48,7 +48,7 @@ pkg_setup() {
 
 	if use amd64 || use ia64 ; then
 		if use opengl ; then
-			TACHYON_MAKE_TARGET=linux-lam-64-ogl
+			TACHYON_MAKE_TARGET=linux-thr-ogl
 		else
 			TACHYON_MAKE_TARGET=linux-64-thr
 		fi
