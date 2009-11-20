@@ -15,7 +15,7 @@ SLOT="0"
 KEYWORDS="~amd64 ~x86"
 IUSE=""
 
-# TODO: License ?
+RESTRICT="mirror"
 
 # TODO: DEPENDs are only a guess
 CDEPEND=">=dev-libs/gmp-4.2.4"

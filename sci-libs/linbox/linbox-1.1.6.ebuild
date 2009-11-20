@@ -16,6 +16,8 @@ SLOT="0"
 KEYWORDS="~amd64 ~x86"
 IUSE="doc ntl sage"
 
+RESTRICT="mirror"
+
 # TODO: missing dependencies
 
 CDEPEND=">=sci-libs/givaro-3.2.13

@@ -16,6 +16,8 @@ SLOT="0"
 KEYWORDS="~x86"
 IUSE=""
 
+RESTRICT="mirror"
+
 DEPEND=""
 RDEPEND="${DEPEND}"
 

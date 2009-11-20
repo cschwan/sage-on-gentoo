@@ -17,6 +17,8 @@ SLOT="0"
 KEYWORDS="~amd64 ~x86"
 IUSE="nptl opengl"
 
+RESTRICT="mirror"
+
 DEPEND=""
 RDEPEND="${DEPEND}"
 

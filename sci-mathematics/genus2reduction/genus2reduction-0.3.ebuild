@@ -16,6 +16,8 @@ SLOT="0"
 KEYWORDS="~x86"
 IUSE=""
 
+RESTRICT="mirror"
+
 DEPEND=">=sci-mathematics/pari-2.0"
 RDEPEND="${DEPEND}"
 

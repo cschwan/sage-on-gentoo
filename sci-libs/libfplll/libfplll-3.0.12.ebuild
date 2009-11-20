@@ -16,6 +16,8 @@ SLOT="0"
 KEYWORDS="~amd64 ~x86"
 IUSE=""
 
+RESTRICT="mirror"
+
 DEPEND=">=dev-libs/gmp-4.2.0
 	>=dev-libs/mpfr-2.3.0"
 RDEPEND="${DEPEND}"
