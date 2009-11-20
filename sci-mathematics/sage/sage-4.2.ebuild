@@ -205,6 +205,12 @@ src_compile() {
 	# SAGE decide what ABI should be
 	unset ABI
 
+	# custom cflags cause problems on amd64
+	if use amd64 ; then
+		unset CFLAGS
+		unset CXXFLAGS
+	fi
+
 	# do not run parallel since this is impossible with SAGE (!?)
 	emake -j1 || die "emake failed"
 
