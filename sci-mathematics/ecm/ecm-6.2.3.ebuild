@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
-#EAPI=0
+EAPI=2
 
 inherit eutils
 
@@ -20,11 +20,13 @@ RESTRICT="mirror"
 DEPEND="dev-libs/gmp"
 RDEPEND="${DEPEND}"
 
-src_install() {
-	# TODO: needed for x86 ?
-	CFLAGS="${CFLAGS} -fPIC"
-	CXXFLAGS="${CXXFLAGS} -fPIC"
+src_configure() {
+	# TODO: -fPIC needed for x86 ?
+	econf CFLAGS="${CFLAGS} -fPIC" CXXFLAGS="${CXXFLAGS} -fPIC" \
+		|| die "econf failed"
+}
 
+src_install() {
 	emake DESTDIR="${D}" install || die "emake install failed"
 	dodoc ChangeLog NEWS README README.lib TODO || die "dodoc failed"
 }
