@@ -2,6 +2,10 @@
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  19 Nov 2009; Christopher Schwan <cschwan@students.uni-mainz.de>
+  sage-4.2.ebuild:
+  Removed sage packages: mpir, libfplll, tachyon, ecm. Not yet tested.
+
   18 Nov 2009; Christopher Schwan <cschwan@students.uni-mainz.de>
   sage-4.2.ebuild, metadata.xml:
   Adjusted pari paths: GPHELP and GPDOCDIR. Also unset compilation flags
