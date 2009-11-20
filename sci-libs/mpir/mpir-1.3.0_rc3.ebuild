@@ -37,7 +37,11 @@ src_configure() {
 	# causes problems on amd64
 	unset ABI
 
-	econf \
+	# may help to fix the amd64 problem
+	local ADDITIONAL_FLAGS="$(use amd64 && echo -m64)"
+
+	econf CFLAGS="${CFLAGS} ${ADDITIONAL_FLAGS}" \
+		CXXFLAGS="${CXXFLAGS} ${ADDITIONAL_FLAGS}" \
 		$(use_enable cxx) \
 		$(use_enable cpudetection fat) \
 		|| "econf failed"

@@ -3,6 +3,10 @@
 # $Header: $
 
   20 Nov 2009; Christopher Schwan <cschwan@students.uni-mainz.de>
+  mpir-1.3.0_rc3.ebuild:
+  Injected -m64 FLAG, which hopefully resolves amd64 issue
+
+  20 Nov 2009; Christopher Schwan <cschwan@students.uni-mainz.de>
   mpir-1.3.0_rc3.ebuild, +files/mpir-1.3.0_rc3-fix-yasm-path.patch:
   Added fix to correctly call yasm on amd64
 
