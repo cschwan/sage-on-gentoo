@@ -20,13 +20,14 @@ sci-libs/linbox
 sci-libs/m4ri
 sci-libs/mpfi
 sci-libs/mpir
+sci-libs/sage-cliquer
 sci-libs/scipy
 sci-libs/zn_poly
-sci-mathematics/cliquer
 sci-mathematics/ecm
 sci-mathematics/genus2reduction
 sci-mathematics/gfan
 sci-mathematics/maxima
 sci-mathematics/ratpoints
+sci-mathematics/palp
 sci-mathematics/sage
 sci-visualization/tachyon
