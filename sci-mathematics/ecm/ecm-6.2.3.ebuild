@@ -21,6 +21,10 @@ DEPEND="dev-libs/gmp"
 RDEPEND="${DEPEND}"
 
 src_install() {
+	# TODO: needed for x86 ?
+	CFLAGS="${CFLAGS} -fPIC"
+	CXXFLAGS="${CXXFLAGS} -fPIC"
+
 	emake DESTDIR="${D}" install || die "emake install failed"
 	dodoc ChangeLog NEWS README README.lib TODO || die "dodoc failed"
 }
