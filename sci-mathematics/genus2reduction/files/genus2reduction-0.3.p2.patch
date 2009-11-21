@@ -1,0 +1,11 @@
+--- genus2reduction.c.orig	2008-03-13 11:28:09.000000000 +1300
++++ genus2reduction.c	2008-03-13 11:28:52.000000000 +1300
+@@ -15,7 +15,7 @@
+ 
+ */
+ 
+-#include "pari.h"
++#include "pari/pari.h"
+ 
+ #ifdef LONG_IS_64BIT
+ #  define VERYBIGINT (9223372036854775807L) /* 2^63-1 */

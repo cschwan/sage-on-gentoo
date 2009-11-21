@@ -1,6 +1,13 @@
-# ChangeLog for sci-libs/genus2reduction
+# ChangeLog for sci-mathematics/genus2reduction
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
+
+*genus2reduction-0.3_p5 (21 Nov 2009)
+
+  21 Nov 2009; François Bissey <f.r.bissey@massey.ac.nz>
+  +genus2reduction-0.3_p5.ebuild, +files/genus2reduction-0.3.p2.patch:
+  bump ebuild to the version shipped in sage as it is now the upstream
+  source. patch fix pari headers.
 
 *genus2reduction-0.3 (07 Nov 2009)
 
