@@ -9,6 +9,7 @@ dev-python/pycxx
 dev-python/sqlalchemy
 dev-python/sympy
 dev-util/mercurial
+media-gfx/tachyon
 sci-libs/blas-atlas
 sci-libs/cddlib
 sci-libs/flint
@@ -30,4 +31,5 @@ sci-mathematics/maxima
 sci-mathematics/ratpoints
 sci-mathematics/palp
 sci-mathematics/sage
-sci-visualization/tachyon
+sci-mathematics/sage-eclib
+sci-mathematics/sage-sympow
