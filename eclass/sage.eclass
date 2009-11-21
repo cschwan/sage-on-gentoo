@@ -4,6 +4,20 @@
 
 EAPI=2
 
+# @ECLASS: sage.eclass
+# @MAINTAINER:
+# Francois Bissey <f.r.bissey@massey.ac.nz>
+# Christopher Schwan <cschwan@students.uni-mainz.de>
+#
+# Original authors: Francois Bissey <f.r.bissey@massey.ac.nz>
+#	Christopher Schwan <cschwan@students.uni-mainz.de>
+# @BLURB: This eclass provides tools to ease the installation of sage spkg
+# @DESCRIPTION:
+# The sage eclass is designed to allow easier installation of
+# spkg from the sage mathematical system and their incorporation into
+# the Gentoo Linux system.
+#
+# It inherits eutils
 # The following variables need to be defined:
 #
 # SAGE_VERSION
@@ -13,6 +27,11 @@ EAPI=2
 # SAGE_PACKAGE
 
 inherit eutils
+
+SPKG_URI="http://www.sagemath.org/packages/standard"
+SAGE_LOCAL="/usr/lib/sage/local"
+SAGE_ROOT="/usr/lib/sage"
+SAGE_DATA="/usr/lib/sage/data"
 
 SAGE_P="sage-${SAGE_VERSION}"
 
