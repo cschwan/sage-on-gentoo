@@ -1,0 +1,18 @@
+# ChangeLog for media-gfx/tachyon
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: $
+
+  21 Nov 2009; Christopher Schwan <cschwan@students.uni-mainz.de>
+  +tachyon-0.98.7.ebuild, +metadata.xml:
+  Moved to category media-gfx. Added a lot seds from Francois to fix
+  library paths. Added more achitectures
+
+  20 Nov 2009; Christopher Schwan <cschwan@students.uni-mainz.de>
+  tachyon-0.98.7.ebuild:
+  Added more supported architectures and amd64 keyword
+
+*tachyon-0.98.7 (07 Nov 2009)
+
+  07 Nov 2009; Christopher Schwan <gnuke@gentoo.org> +tachyon-0.98.7.ebuild:
+  Initial import
+
