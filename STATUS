@@ -6,5 +6,10 @@ Packages:
 
 - sci-mathematics/ecm-6.2.3
   * Patches taken from bug #88093, updated ebuild to latest (6.2.3) version
-  * TODO: Report back changes, ask for issues
   * USE=asm-redc : QA Notice: [..] text relocations
+  * Reported back new ebuild and issues with USE=asm-redc on x86
+
+- sci-libs/givaro-3.2.16
+  * See bug #227803, givaro-3.2.13 + 3.3.0 are in science overlay
+  * Tests fail
+
