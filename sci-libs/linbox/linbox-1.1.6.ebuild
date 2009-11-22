@@ -14,23 +14,25 @@ SRC_URI="http://linalg.org/${P}.tar.gz"
 LICENSE="LGPL-2.1"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
-IUSE="doc ntl sage"
+IUSE="doc expat ntl sage"
 
-# disabling commentator breaks the tests
+# TODO: support examples ?
+
+# disabling of commentator class breaks the tests
 RESTRICT="mirror
 	sage? ( test )"
 
+# TODO: givaro-3.3.0 breaks it
+
 CDEPEND="dev-libs/gmp[-nocxx]
-	~sci-libs/givaro-3.2.13
-	ntl? ( dev-libs/ntl )
+	~sci-libs/givaro-3.2.16
 	virtual/cblas
-	virtual/lapack"
+	virtual/lapack
+	expat? ( >=dev-libs/expat-1.95 )
+	ntl? ( dev-libs/ntl )"
 DEPEND="${CDEPEND}
 	doc? ( app-doc/doxygen )"
 RDEPEND="${CDEPEND}"
-
-# disabling of commentator class breaks the tests
-RESTRICT="test"
 
 src_prepare() {
 	if use sage ; then
@@ -47,13 +49,17 @@ src_prepare() {
 src_configure() {
 	# TODO: add other configure options
 	# TODO: check use && use_with/use_enable statements
+	# TODO: expat seems to have no effect
+	# TODO: configure treats --disable-doc/-sage as --enable-doc/-sage
+	# TODO: support maple, lidia, saclib ?
 	econf \
 		--with-gmp=/usr \
 		--with-blas=/usr \
 		--with-givaro=/usr \
 		--enable-optimization \
-		$(use ntl && use_with ntl) \
 		$(use doc && use_enable doc) \
+		$(use_enable expat) \
+		$(use_with ntl) \
 		$(use sage && use_enable sage) \
 		|| die "econf failed"
 }

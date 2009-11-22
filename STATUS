@@ -13,3 +13,6 @@ Packages:
   * See bug #227803, givaro-3.2.13 + 3.3.0 are in science overlay
   * Tests fail
 
+- sci-libs/linbox-1.1.6
+  * See bug #227813, and bug #230421, linbox in our overlay does better
+  * does not compile with givaro-3.3.0
