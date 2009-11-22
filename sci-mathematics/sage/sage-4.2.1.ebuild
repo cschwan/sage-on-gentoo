@@ -126,7 +126,6 @@ src_prepare(){
 	cd "${S}/spkg/standard"
 
 	# fix sandbox violation errors
-	spkg_patch "ecm-6.2.1.p0" "$FILESDIR/ecm-6.2.1.p0-fix-typo.patch"
 	spkg_sed "zlib-1.2.3.p4" -i "/ldconfig/d" src/Makefile src/Makefile.in
 
 	# do not generate documentation if not needed
@@ -137,7 +136,7 @@ src_prepare(){
 
 		# remove the same line in the same file in sage_scripts spkg - this
 		# package will unpack and overwrite the original "install" file (why ?)
-		spkg_sed "sage_scripts-4.2" -i \
+		spkg_sed "sage_scripts-${PV}" -i \
 			"/\"\$SAGE_ROOT\"\/sage -docbuild all html/d" "install"
 
 		# TODO: remove documentation (and related tests ?)
@@ -151,7 +150,7 @@ src_prepare(){
 # 	fi
 
 	# verbosity blows up build.log and slows down installation
-	sed -i "s/cp -rpv/cp -rp/g" "${S}/makefile"
+	sed -i "s:cp -rpv:cp -rp:g" "${S}/makefile"
 
 	# TODO: patch to set PYTHONPATH correctly for all python packages
 
@@ -163,12 +162,12 @@ src_prepare(){
 	# patches to use pari from portage
 	spkg_patch "genus2reduction-0.3.p5" \
 		"$FILESDIR/g2red-pari-include-fix.patch"
-	spkg_patch "lcalc-20080205.p3" "$FILESDIR/lcalc-fix-paths.patch"
-	spkg_patch "eclib-20080310.p7" "$FILESDIR/eclib-fix-paths.patch"
+	spkg_patch "lcalc-20080205.p3" "${FILESDIR}/lcalc-fix-paths.patch"
+	spkg_patch "eclib-20080310.p7" "${FILESDIR}/eclib-fix-paths.patch"
 
 	# patch to make a correct symbolic link to gp
-	spkg_sed "sage_scripts-4.2" -i \
-		"s/ln -sf gp sage_pari/ln -sf \/usr\/bin\/gp sage_pari/g" \
+	spkg_sed "sage_scripts-${PV}" -i \
+		"s:ln -sf gp sage_pari:ln -sf /usr/bin/gp sage_pari:g" \
 		"spkg-install" "sage-spkg-install"
 
 	# TODO: gphelp is installed only if pari was emerged with USE=doc and
@@ -176,26 +175,23 @@ src_prepare(){
 
 	# TODO: documentation contains a version string
 
-	# fix pari paths
-	spkg_sed "sage_scripts-4.2" -i \
-		-e "s/\$SAGE_LOCAL\/share\/pari/\/usr\/share\/pari/g" \
-		-e "s/\$SAGE_LOCAL\/bin\/gphelp/\/usr\/bin\/gphelp/g" \
-		-e "s/\$SAGE_LOCAL\/share\/pari\/doc/\/usr\/share\/doc\/pari-2.3.4-r1/g" \
+	# fix pari and ecl paths
+	spkg_sed "sage_scripts-${PV}" -i \
+		-e "s:\$SAGE_LOCAL/share/pari:/usr/share/pari:g" \
+		-e "s:\$SAGE_LOCAL/bin/gphelp:/usr/bin/gphelp:g" \
+		-e "s:\$SAGE_LOCAL/share/pari/doc:/usr/share/doc/pari-2.3.4-r1:g" \
+		-e "s:\$SAGE_LOCAL/lib/ecl:/usr/lib/ecl-9.8.4:g" \
 		"sage-env"
 
 	# patch to use atlas from portage
-	spkg_sed "cvxopt-0.9.p8" -i "s/f77blas/blas/g" "patches/setup_f95.py" \
+	spkg_sed "cvxopt-0.9.p8" -i "s:f77blas:blas:g" "patches/setup_f95.py" \
 		"patches/setup_gfortran.py"
 
 	# fix command for calling maxima
-	spkg_sed "sage-4.2" -i "s/maxima-noreadline/maxima/g" \
+	spkg_sed "sage-${PV}" -i "s:maxima-noreadline:maxima:g" \
 		"sage/interfaces/maxima.py"
 
 	# TODO: fix the following library path - it contains a version string
-
-	# fix ecl library path
-	spkg_sed "sage_scripts-4.2" -i \
-		"s/\$SAGE_LOCAL\/lib\/ecl\//\/usr\/lib\/ecl-9.8.4\//g" "sage-env"
 }
 
 src_compile() {
@@ -228,7 +224,7 @@ src_install() {
 		"${D}/opt/sage/sage" || die "sed failed"
 
 	# TODO: handle generated docs
-	dodoc HISTORY.txt README.txt || die "dodoc failed"
+	dodoc README.txt || die "dodoc failed"
 
 	# Force sage to create files in new location.  This has to be done twice -
 	# this time to create the files for gentoo to correctly record as part of

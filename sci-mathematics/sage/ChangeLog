@@ -2,6 +2,12 @@
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*sage-4.2.1 (22 Nov 2009)
+
+  22 Nov 2009; Christopher Schwan <cschwan@students.uni-mainz.de>
+  sage-4.2.ebuild, +sage-4.2.1.ebuild:
+  Added new sage-4.2.1. Compiles fine on x86, not yet tested
+
   19 Nov 2009; Christopher Schwan <cschwan@students.uni-mainz.de>
   sage-4.2.ebuild:
   Removed sage packages: mpir, libfplll, tachyon, ecm. Not yet tested.
