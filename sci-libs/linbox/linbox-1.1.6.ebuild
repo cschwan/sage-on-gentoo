@@ -20,8 +20,10 @@ RESTRICT="mirror"
 
 # TODO: missing dependencies
 
-CDEPEND=">=sci-libs/givaro-3.2.13
-	ntl? ( dev-libs/ntl )"
+CDEPEND="dev-libs/gmp[-nocxx]
+	>=sci-libs/givaro-3.2.13
+	ntl? ( dev-libs/ntl )
+	virtual/cblas"
 DEPEND="${CDEPEND}
 	doc? ( app-doc/doxygen )"
 RDEPEND="${CDEPEND}"
@@ -35,6 +37,7 @@ src_prepare() {
 }
 
 src_configure() {
+	# TODO: check use && use_with/use_enable statements
 	econf \
 		--with-gmp=/usr \
 		--with-blas=/usr \
@@ -43,13 +46,12 @@ src_configure() {
 		$(use doc && use_enable doc) \
 		$(use sage && use_enable sage) \
 		|| die "econf failed"
-
-	# TODO: It seems to me something isnt correct here
 }
 
 src_install() {
 	emake DESTDIR="${D}" install || die "emake install failed"
 	dodoc ChangeLog README NEWS TODO
+
 	if use doc ; then
 		dohtml -r doc/linbox-html doc/linbox.html
 	fi

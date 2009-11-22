@@ -2,6 +2,11 @@
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  22 Nov 2009; Christopher Schwan <cschwan@students.uni-mainz.de>
+  linbox-1.1.6.ebuild:
+  Fixed dependencies - cblas and gmp are mandatory. Thanks Francois for
+  pointing me to this
+
   14 Nov 2009; Christopher Schwan <cschwan@students.uni-mainz.de>
   linbox-1.1.6.ebuild:
   Added ~amd64 keyword
