@@ -2,6 +2,12 @@
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*givaro-3.2.16 (22 Nov 2009)
+
+  22 Nov 2009; Christopher Schwan <cschwan@students.uni-mainz.de>
+  givaro-3.2.13.ebuild, +givaro-3.2.16.ebuild, givaro-3.3.0.ebuild:
+  Added newer version of givaro and fixed LICENSE field
+
   14 Nov 2009; Christopher Schwan <cschwan@students.uni-mainz.de>
   givaro-3.2.13.ebuild:
   Added ~amd64 keyword

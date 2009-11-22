@@ -10,7 +10,7 @@ DESCRIPTION="Givaro is a C++ library for arithmetic and algebraic computations"
 HOMEPAGE="http://ljk.imag.fr/CASYS/LOGICIELS/givaro/"
 SRC_URI="http://ljk.imag.fr/CASYS/LOGICIELS/givaro/Downloads/${P}.tar.gz"
 
-LICENSE="GPL-3"
+LICENSE="CeCILL-B GPL-3"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
 IUSE=""

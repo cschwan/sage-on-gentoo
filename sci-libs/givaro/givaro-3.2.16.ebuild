@@ -6,8 +6,6 @@ EAPI=2
 
 inherit eutils
 
-# TODO: This packages is currently hardmasked since linbox does not work with it
-
 DESCRIPTION="Givaro is a C++ library for arithmetic and algebraic computations"
 HOMEPAGE="http://ljk.imag.fr/CASYS/LOGICIELS/givaro/"
 SRC_URI="http://ljk.imag.fr/CASYS/LOGICIELS/givaro/Downloads/${P}.tar.gz"
@@ -24,8 +22,8 @@ DEPEND="${RDEPEND}"
 
 src_configure() {
 	econf \
-		--with-gmp=/usr \
 		--enable-shared \
+		--with-gmp=/usr \
 		|| die "econf failed"
 }
 
