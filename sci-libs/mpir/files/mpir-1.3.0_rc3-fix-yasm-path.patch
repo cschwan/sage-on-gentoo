@@ -1,8 +1,0 @@
---- mpn/Makeasm.am	2009-06-04 18:32:57.000000000 +0000
-+++ mpn/Makeasm.am-copy	2009-11-20 10:19:10.121367770 +0000
-@@ -111,4 +111,4 @@
- #  .as assembler, assembled with Yasm
-
- .as.lo:
--	$(LIBTOOL) --mode=compile --tag=CC $(top_srcdir)/strip_fPIC.sh $(top_builddir)$(MPIR_AS) -I $(top_builddir) $(OBJECT_FORMAT) $(GSYM_FLAG) -o $@ `test -f '$<' || echo '$(srcdir)/'`$<
-+	$(LIBTOOL) --mode=compile --tag=CC $(top_srcdir)/strip_fPIC.sh $(MPIR_AS) -I $(top_builddir) $(OBJECT_FORMAT) $(GSYM_FLAG) -o $@ `test -f '$<' || echo '$(srcdir)/'`$<
