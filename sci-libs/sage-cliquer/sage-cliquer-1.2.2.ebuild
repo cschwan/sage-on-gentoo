@@ -27,13 +27,13 @@ RDEPEND="${DEPEND}"
 
 src_prepare() {
 	# overwrite Makefile
-	cp ../patch/Makefile .
+	cp "${SAGE_FILESDIR}/Makefile" .
 
 	# replace variable with flags
 	sed -i "s/\$(SAGESOFLAGS)/-shared -Wl,-soname,libcliquer.so/g" \
-		"Makefile"
+		"Makefile" || die "sed failed"
 
-	# patch to remove main function - libraries usually dont need them
+	# patch to remove main function - libraries usually dont need them (!?)
 	epatch "${FILESDIR}/sage-cliquer-1.2.2-remove-main.patch"
 }
 
