@@ -39,7 +39,7 @@ CDEPEND="
 	>=media-libs/freetype-2.3.5
 	>=sci-libs/linbox-1.1.6[ntl,sage]
 	>=sci-libs/mpfi-1.3.4
-	>=sci-libs/givaro-3.2.13
+	~sci-libs/givaro-3.2.16
 	>=sci-libs/iml-1.0.1
 	>=sci-libs/zn_poly-0.9
 	>=sci-mathematics/maxima-5.19.1[ecl,-sbcl]
