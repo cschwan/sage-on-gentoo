@@ -1,0 +1,10 @@
+Packages:
+
+- media-gfx/tachyon-0.98.7
+  * Created bug #293969
+  * Needs some testing, especially for USE=mpi and on other architectures
+
+- sci-mathematics/ecm-6.2.3
+  * Patches taken from bug #88093, updated ebuild to latest (6.2.3) version
+  * TODO: Report back changes, ask for issues
+  * USE=asm-redc : QA Notice: [..] text relocations
