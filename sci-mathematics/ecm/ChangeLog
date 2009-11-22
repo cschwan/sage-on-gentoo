@@ -2,6 +2,11 @@
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  22 Nov 2009; Christopher Schwan <cschwan@students.uni-mainz.de>
+  ecm-6.2.3.ebuild, +files/configure.patch, +files/execstack.patch,
+  +files/execstack-redc.patch, +files/makefile.patch, metadata.xml:
+  Imported patches and big parts of ebuild from bug #88093. Tested on x86
+
   19 Nov 2009; Christopher Schwan <cschwan@students.uni-mainz.de>
   ecm-6.2.3.ebuild:
   Added amd64 keyword
