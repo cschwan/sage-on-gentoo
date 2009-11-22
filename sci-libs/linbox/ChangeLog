@@ -3,6 +3,10 @@
 # $Header: $
 
   22 Nov 2009; Christopher Schwan <cschwan@students.uni-mainz.de>
+  linbox-1.1.6.ebuild, +files/linbox-1.1.6-fix-doc.patch:
+  Fixed problems with USE=doc in linbox
+
+  22 Nov 2009; Christopher Schwan <cschwan@students.uni-mainz.de>
   linbox-1.1.6.ebuild:
   Fixed dependencies - cblas and gmp are mandatory. Thanks Francois for
   pointing me to this
