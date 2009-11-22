@@ -14,7 +14,7 @@ RESTRICT="mirror"
 LICENSE="GPL-2"
 
 SLOT="0"
-KEYWORDS="~x86 ~ppc ~amd64"
+KEYWORDS="~x86 ~amd64"
 IUSE="doc sage"
 
 DEPEND=">=dev-util/scons-0.98
@@ -38,7 +38,7 @@ src_compile(){
 
 #	hevea and l2h are deprecated and will be removed so we focus on tex4ht
 #	tried to summarize all the options in a variable but it didn't parse correctly
-	if ( use doc); then 
+	if ( use doc); then
 	    DOC="True"
 	else
 	    DOC="False"
@@ -87,5 +87,4 @@ src_install() {
 		HAVE_DOXYGEN="${DOC}" \
 		DEVEL_PREFIX="${D}/usr" PYINSTALLPREFIX="${D}$(python_get_sitedir)" devel-install \
 		|| die "scons devel-install failed"
-
 }
