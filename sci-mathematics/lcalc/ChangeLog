@@ -1,0 +1,11 @@
+# ChangeLog for sci-mathematics/lcalc
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: $
+
+*lcalc-1.23 (23 Nov 2009)
+
+  23 Nov 2009; Christopher Schwan <cschwan@students.uni-mainz.de>
+  +files/linbox-1.1.6-fix-doc.patch, +lcalc-1.23.ebuild,
+  +files/lcalc-1.23-Makefile.patch:
+  Initial import. Ebuild is based on Francois' one
+

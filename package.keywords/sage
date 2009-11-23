@@ -27,6 +27,7 @@ sci-libs/zn_poly
 sci-mathematics/ecm
 sci-mathematics/genus2reduction
 sci-mathematics/gfan
+sci-mathematics/lcalc
 sci-mathematics/maxima
 sci-mathematics/ratpoints
 sci-mathematics/palp

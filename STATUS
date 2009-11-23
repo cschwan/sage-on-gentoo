@@ -14,5 +14,5 @@ Packages:
   * Tests fail
 
 - sci-libs/linbox-1.1.6
-  * See bug #227813, and bug #230421, linbox in our overlay does better
+  * See bug #227813, our ebuild supports more features
   * does not compile with givaro-3.3.0
