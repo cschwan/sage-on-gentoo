@@ -24,6 +24,7 @@ sci-libs/mpir
 sci-libs/sage-cliquer
 sci-libs/scipy
 sci-libs/zn_poly
+sci-mathematics/eclib
 sci-mathematics/ecm
 sci-mathematics/genus2reduction
 sci-mathematics/gfan
@@ -32,5 +33,4 @@ sci-mathematics/maxima
 sci-mathematics/ratpoints
 sci-mathematics/palp
 sci-mathematics/sage
-sci-mathematics/sage-eclib
 sci-mathematics/sage-sympow

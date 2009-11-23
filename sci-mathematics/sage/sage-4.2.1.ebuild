@@ -14,9 +14,7 @@ SRC_URI="http://mirror.switch.ch/mirror/sagemath/src/${P}.tar"
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
-IUSE="doc examples"
-
-# TODO: check dependencies
+IUSE="doc"
 
 CDEPEND="
 	>=dev-libs/mpfr-2.4.1
@@ -68,6 +66,8 @@ RESTRICT="mirror"
 
 # TODO: Optimize spkg_* functions, so that one can use mutiple spkg_* calls on
 # the same package without unpacking and repacking it everytime
+
+# TODO: reintroduce example use-variable when sage-examples.ebuild is written
 
 spkg_unpack() {
 	# untar spkg and and remove it
@@ -125,8 +125,7 @@ pkg_setup() {
 src_prepare(){
 	cd "${S}/spkg/standard"
 
-	# fix sandbox violation errors
-	spkg_sed "zlib-1.2.3.p4" -i "/ldconfig/d" src/Makefile src/Makefile.in
+	# TODO: Move documentation to a seperate ebuild
 
 	# do not generate documentation if not needed
 	if ! use doc ; then
@@ -155,15 +154,15 @@ src_prepare(){
 	# TODO: patch to set PYTHONPATH correctly for all python packages
 
 	# remove dependencies which will be provided by portage
-	patch_deps_file atlas boehmgc bzip2 ecm freetype givaro gd gnutls iml gsl \
-		libfplll libpng linbox maxima mercurial mpfi mpfr mpir ntl pari \
-		readline scons sqlite tachyon zlib znpoly
+	patch_deps_file atlas boehmgc bzip2 eclib ecm freetype gd genus2reduction \
+		givaro gnutls iml gsl lcalc libfplll libpng linbox maxima mercurial \
+		mpfi mpfr mpir ntl pari readline scons sqlite tachyon zlib znpoly
 
-	# patches to use pari from portage
-	spkg_patch "genus2reduction-0.3.p5" \
-		"$FILESDIR/g2red-pari-include-fix.patch"
-	spkg_patch "lcalc-20080205.p3" "${FILESDIR}/lcalc-fix-paths.patch"
-	spkg_patch "eclib-20080310.p7" "${FILESDIR}/eclib-fix-paths.patch"
+# 	# patches to use pari from portage
+# 	spkg_patch "genus2reduction-0.3.p5" \
+# 		"$FILESDIR/g2red-pari-include-fix.patch"
+# 	spkg_patch "lcalc-20080205.p3" "${FILESDIR}/lcalc-fix-paths.patch"
+# 	spkg_patch "eclib-20080310.p7" "${FILESDIR}/eclib-fix-paths.patch"
 
 	# patch to make a correct symbolic link to gp
 	spkg_sed "sage_scripts-${PV}" -i \
@@ -172,8 +171,7 @@ src_prepare(){
 
 	# TODO: gphelp is installed only if pari was emerged with USE=doc and
 	# documentation additionally needs FEATURES=nodoc _not_ set.
-
-	# TODO: documentation contains a version string
+	# TODO: fix directories containing version strings
 
 	# fix pari and ecl paths
 	spkg_sed "sage_scripts-${PV}" -i \
@@ -195,6 +193,9 @@ src_prepare(){
 }
 
 src_compile() {
+	# TODO: according to the gentoo-amd64 folks the following is a dirty hack -
+    # find the package that is causing the error and apply a better solution
+
 	# On amd64 the ABI variable is used by portage to select between 32-
 	# (ABI=x86) and 64-bit (ABI=amd64) compilation. This causes problems since
 	# SAGE uses this variable but expects it to be '32' or '64'. Unsetting lets

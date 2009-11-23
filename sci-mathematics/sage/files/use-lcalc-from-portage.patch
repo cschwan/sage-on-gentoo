@@ -1,0 +1,13 @@
+--- deps	2009-10-27 18:41:31.586711209 +0000
++++ use-lcalc-from-portage	2009-11-23 12:43:17.580283582 +0000
+@@ -142,8 +142,8 @@
+ $(INST)/$(PALP): $(BASE)
+ 	$(SAGE_SPKG) $(PALP) 2>&1
+ 
+-$(INST)/$(LCALC): $(BASE) $(INST)/$(PARI) $(INST)/$(MPFR)
+-	$(SAGE_SPKG) $(LCALC) 2>&1
++$(INST)/$(LCALC):
++	@echo "using lcalc from portage"
+ 
+ $(INST)/$(PYNAC): $(INST)/$(PYTHON)
+ 	$(SAGE_SPKG) $(PYNAC) 2>&1
