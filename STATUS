@@ -20,3 +20,7 @@ Packages:
 - sci-libs/m4ri-20090512
   * See bug #230431, ebuild taken from science overlay
   * Support for additional configure options ?
+
+- sci-libs/iml-1.0.3
+  * See bug #230429
+  * Everything seems to be fine

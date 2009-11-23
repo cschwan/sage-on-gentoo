@@ -17,7 +17,7 @@ RESTRICT="mirror"
 IUSE=""
 
 DEPEND="dev-util/pkgconfig
-	dev-libs/gmp
+	>=dev-libs/gmp-3.1.1
 	virtual/cblas"
 RDEPEND="dev-libs/gmp
 	virtual/cblas"
@@ -25,8 +25,10 @@ RDEPEND="dev-libs/gmp
 src_prepare() {
 	# do not need atlas specifically any cblas will do...
 	epatch "${FILESDIR}/${P}-cblas.patch"
+
 	# apply patch supplied by debian bugreport #494819
-	epatch "${FILESDIR}/fix-undefined-symbol.patch"
+	epatch "${FILESDIR}/${P}-fix-undefined-symbol.patch"
+
 	eautoreconf
 }
 
