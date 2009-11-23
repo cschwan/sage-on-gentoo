@@ -2,6 +2,10 @@
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  23 Nov 2009; François Bissey <f.r.bissey@massey.ac.nz> iml-1.0.3.ebuild,
+  files/iml-1.0.3-cblas.patch:
+  Refine the cblas patch. Much better now.
+
   18 Nov 2009; François Bissey <f.r.bissey@massey.ac.nz> iml-1.0.3.ebuild,
   +files/iml-1.0.3-cblas.patch:
   Make iml use virtual/cblas instead of requiring atlas. patch is a bit
