@@ -16,3 +16,7 @@ Packages:
 - sci-libs/linbox-1.1.6
   * See bug #227813, our ebuild supports more features
   * does not compile with givaro-3.3.0
+
+- sci-libs/m4ri-20090512
+  * See bug #230431, ebuild taken from science overlay
+  * Support for additional configure options ?

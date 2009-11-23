@@ -12,6 +12,8 @@ RESTRICT="mirror"
 KEYWORDS="~amd64 ~ppc ~ppc64 ~x86"
 IUSE=""
 
+# TODO: Support cachetune, debug, openmp ?
+
 src_install() {
 	emake DESTDIR="${D}" install || die "make install failed"
 	dodoc README
