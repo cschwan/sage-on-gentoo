@@ -33,7 +33,6 @@ src_prepare() {
 src_configure() {
 	econf \
 		--enable-shared \
-		--with-gmp-lib=-lgmp \
 		--with-cblas-lib="$(pkg-config cblas --libs)" \
 		|| die "econf failed"
 }
