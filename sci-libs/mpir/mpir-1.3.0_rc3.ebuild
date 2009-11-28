@@ -25,13 +25,11 @@ RDEPEND=""
 
 src_prepare(){
 	epatch "${FILESDIR}/${P}-yasm.patch"
+	epatch "${FILESDIR}/${P}-ABI-multilib.patch"
 	eautoreconf
 }
 
 src_configure() {
-	# causes problems on amd64
-	unset ABI
-
 # beware that cpudetection aka fat binaries is x86/amd64 only.
 # It will need to be filtered when extended to other archs
 	econf \
