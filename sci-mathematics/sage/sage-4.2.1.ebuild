@@ -4,7 +4,7 @@
 
 EAPI=2
 
-inherit fortran
+inherit fortran sage
 
 DESCRIPTION="Math software for algebra, geometry, number theory, cryptography,
 and numerical computation."
@@ -47,21 +47,16 @@ CDEPEND="
 	>=media-gfx/tachyon-0.98
 	>=sci-mathematics/eclib-20080310.7
 	>=sci-mathematics/lcalc-1.23[pari]
-	>=sci-mathematics/genus2reduction-0.3"
+	>=sci-mathematics/genus2reduction-0.3
+	>=dev-lang/R-2.9.2[lapack,readline]
+	>=sci-libs/m4ri-20090617"
 DEPEND="${CDEPEND}
 	>=app-arch/tar-1.20"
 RDEPEND="${CDEPEND}"
 
 RESTRICT="mirror"
 
-# TODO: mpir is configure with "gmpcompat" in sage, what to do here ?
-
 # TODO: Support maxima with clisp ? Problems that may arise: readline+clisp
-
-# To remove R, add
-# >=dev-lang/R-2.9.2[lapack,readline] to DEPEND,
-# change RHOME in sage-env
-# and LD_LIBRARY_PATH in the same file and check if depend on internal rpy2
 
 # To remove GAP, we need guava
 # add this line to DEPEND: >=sci-mathematics/gap-4.4.10
@@ -72,38 +67,14 @@ RESTRICT="mirror"
 
 # TODO: reintroduce example use-variable when sage-examples.ebuild is written
 
-spkg_unpack() {
-	# untar spkg and and remove it
-	tar -xf "$1.spkg"
-	rm "$1.spkg"
-	cd "$1"
-}
+# TODO: In order to remove Singular, pay attention to the following steps:
+# DEPEND: >=sci-mathematics/singular-3.1.0.4
+# rewrite singular ebuild to correctly install libsingular
+# check if sage needs a script and specific patches for library
+# -e "s:ln -sf Singular sage_singular:ln -sf /usr/bin/Singular sage_singular:g"
+# -e "s:\$SAGE_LOCAL/share/singular:/usr/share/singular:g" \
 
-spkg_pack() {
-	# tar patched dir and remove it
-	cd ..
-	tar -cf "$1.spkg" "$1"
-	rm -rf "$1"
-}
-
-# patch one of sage's spkgs. $1: spkg name, $2: patch name
-spkg_patch() {
-	spkg_unpack "$1"
-
-	epatch "$2"
-
-	spkg_pack "$1"
-}
-
-spkg_sed() {
-	spkg_unpack "$1"
-
-	SPKG="$1"
-	shift 1
-	sed "$@" || die "sed failed"
-
-	spkg_pack "${SPKG}"
-}
+# TODO: install a menu icon for sage (see homepage)
 
 patch_deps_file() {
 	for i in "$@"; do
@@ -117,7 +88,7 @@ pkg_setup() {
 	fortran_pkg_setup
 
 	# force sage to use our fortran compiler
-	export SAGE_FORTRAN="${FORTRANC}"
+	export SAGE_FORTRAN="$(which ${FORTRANC})"
 
 	einfo "Sage itself is released under the GPL-2 _or later_ license"
 	einfo "However sage is distributed with packages having different licenses."
@@ -144,13 +115,6 @@ src_prepare(){
 		# TODO: remove documentation (and related tests ?)
 	fi
 
-# 	# do not make examples if not needed
-# 	if ! use examples ; then
-# 		epatch "$FILESDIR/deps-no-examples.patch"
-#
-# 		# TODO: remove examples (and related tests ?)
-# 	fi
-
 	# verbosity blows up build.log and slows down installation
 	sed -i "s:cp -rpv:cp -rp:g" "${S}/makefile"
 
@@ -158,30 +122,27 @@ src_prepare(){
 
 	# remove dependencies which will be provided by portage
 	patch_deps_file atlas boehmgc bzip2 eclib ecm freetype gd genus2reduction \
-		givaro gnutls iml gsl lcalc libfplll libpng linbox maxima mercurial \
-		mpfi mpfr mpir ntl pari readline scons sqlite tachyon zlib znpoly
+		givaro gnutls iml gsl lcalc libfplll libpng linbox m4ri maxima \
+		mercurial mpfi mpfr mpir ntl pari readline scons sqlite tachyon zlib \
+		znpoly
 
-# 	# patches to use pari from portage
-# 	spkg_patch "genus2reduction-0.3.p5" \
-# 		"$FILESDIR/g2red-pari-include-fix.patch"
-# 	spkg_patch "lcalc-20080205.p3" "${FILESDIR}/lcalc-fix-paths.patch"
-# 	spkg_patch "eclib-20080310.p7" "${FILESDIR}/eclib-fix-paths.patch"
-
-	# patch to make a correct symbolic link to gp
+	# patch to make a correct symbolic links
 	spkg_sed "sage_scripts-${PV}" -i \
-		"s:ln -sf gp sage_pari:ln -sf /usr/bin/gp sage_pari:g" \
+		-e "s:ln -sf gp sage_pari:ln -sf /usr/bin/gp sage_pari:g" \
 		"spkg-install" "sage-spkg-install"
 
 	# TODO: gphelp is installed only if pari was emerged with USE=doc and
 	# documentation additionally needs FEATURES=nodoc _not_ set.
 	# TODO: fix directories containing version strings
 
-	# fix pari and ecl paths
+	# fix pari, ecl, R and singular paths
 	spkg_sed "sage_scripts-${PV}" -i \
 		-e "s:\$SAGE_LOCAL/share/pari:/usr/share/pari:g" \
 		-e "s:\$SAGE_LOCAL/bin/gphelp:/usr/bin/gphelp:g" \
 		-e "s:\$SAGE_LOCAL/share/pari/doc:/usr/share/doc/pari-2.3.4-r1:g" \
 		-e "s:\$SAGE_LOCAL/lib/ecl:/usr/lib/ecl-9.8.4:g" \
+		-e "s:\$SAGE_ROOT/local/lib/R/lib:/usr/lib/R/lib:g" \
+		-e "s:\$SAGE_LOCAL/lib/R:/usr/lib/R:g" \
 		"sage-env"
 
 	# patch to use atlas from portage
@@ -192,12 +153,21 @@ src_prepare(){
 	spkg_sed "sage-${PV}" -i "s:maxima-noreadline:maxima:g" \
 		"sage/interfaces/maxima.py"
 
-	# TODO: fix the following library path - it contains a version string
+	# do not compile R, but rpy2 which is in R's spkg (why ?)
+	spkg_patch "r-2.9.2" "${FILESDIR}/${P}-use-R-from-portage.patch"
+
+	# fix RHOME in rpy2
+	spkg_nested_sed "r-2.9.2" "rpy2-2.0.6" -i \
+		"s:\"\$SAGE_LOCAL\"/lib/R:/usr/lib/R:g" \
+		"spkg-install"
+
+	# fix compilation error for rpy2
+	spkg_nested_patch "r-2.9.2" "rpy2-2.0.6" "${FILESDIR}/${P}-fix-rpy2.patch"
 }
 
 src_compile() {
 	# TODO: according to the gentoo-amd64 folks the following is a dirty hack -
-    # find the package that is causing the error and apply a better solution
+	# find the package that is causing the error and apply a better solution
 
 	# On amd64 the ABI variable is used by portage to select between 32-
 	# (ABI=x86) and 64-bit (ABI=amd64) compilation. This causes problems since

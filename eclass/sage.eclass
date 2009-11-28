@@ -35,11 +35,65 @@ SAGE_DATA="/usr/lib/sage/data"
 
 SAGE_P="sage-${SAGE_VERSION}"
 
-DESCRIPTION=""
-HOMEPAGE=""
 SRC_URI="http://mirror.switch.ch/mirror/sagemath/src/${SAGE_P}.tar"
 
 RESTRICT="mirror"
+
+spkg_unpack() {
+	# untar spkg and and remove it
+	tar -xf "$1.spkg"
+	rm "$1.spkg"
+	cd "$1"
+}
+
+spkg_pack() {
+	# tar patched dir and remove it
+	cd ..
+	tar -cf "$1.spkg" "$1"
+	rm -rf "$1"
+}
+
+# patch one of sage's spkgs. $1: spkg name, $2: patch name
+spkg_patch() {
+	spkg_unpack "$1"
+
+	epatch "$2"
+
+	spkg_pack "$1"
+}
+
+spkg_sed() {
+	spkg_unpack "$1"
+
+	SPKG="$1"
+	shift 1
+	sed "$@" || die "sed failed"
+
+	spkg_pack "${SPKG}"
+}
+
+spkg_nested_sed() {
+	spkg_unpack "$1"
+	spkg_unpack "$2"
+
+	SPKG1="$1"
+	SPKG2="$2"
+	shift 2
+	sed "$@" || die "sed failed"
+
+	spkg_pack "${SPKG2}"
+	spkg_pack "${SPKG1}"
+}
+
+spkg_nested_patch() {
+	spkg_unpack "$1"
+	spkg_unpack "$2"
+
+	epatch "$3"
+
+	spkg_pack "$2"
+	spkg_pack "$1"
+}
 
 sage_src_unpack() {
 	cd "${WORKDIR}"

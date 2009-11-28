@@ -2,6 +2,15 @@
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  28 Nov 2009; Christopher Schwan <cschwan@students.uni-mainz.de>
+  sage-4.2.1.ebuild, +files/sage-4.2.1-fix-rpy2.patch,
+  +files/sage-4.2.1-singular-path-fix.patch,
+  +files/sage-4.2.1-use-R-from-portage.patch,
+  +files/use-m4ri-from-portage.patch,
+  +files/use-singular-from-portage.patch:
+  Removed R and m4ri from sage, added experimental singular patches -
+  they will need more testing
+
   23 Nov 2009; Christopher Schwan <cschwan@students.uni-mainz.de>
   sage-4.2.1.ebuild, +files/use-eclib-from-portage.patch,
   +files/use-genus2reduction-from-portage.patch,

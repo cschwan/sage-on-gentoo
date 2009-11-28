@@ -1,0 +1,13 @@
+--- deps	2009-10-27 18:41:31.586711209 +0000
++++ use-singular-from-portage	2009-11-24 21:22:11.513676455 +0000
+@@ -231,8 +231,8 @@
+ $(INST)/$(SETUPTOOLS): $(INST)/$(PYTHON)
+ 	$(SAGE_SPKG) $(SETUPTOOLS) 2>&1
+ 
+-$(INST)/$(SINGULAR): $(BASE) $(INST)/$(MPIR) $(INST)/$(NTL) $(INST)/$(TERMCAP) $(INST)/$(READLINE) $(INST)/$(MPFR)
+-	$(SAGE_SPKG) $(SINGULAR) 2>&1
++$(INST)/$(SINGULAR):
++	@echo "using singular from portage"
+ 
+ $(INST)/$(PYCRYPTO): $(BASE) $(INST)/$(PYTHON)
+ 	$(SAGE_SPKG) $(PYCRYPTO) 2>&1
