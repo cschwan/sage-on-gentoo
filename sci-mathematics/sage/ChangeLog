@@ -2,6 +2,10 @@
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  29 Nov 2009; Christopher Schwan <cschwan@students.uni-mainz.de>
+  sage-4.2.1.ebuild, +files/use-gap-from-portage.patch:
+  Removed GAP
+
   28 Nov 2009; Christopher Schwan <cschwan@students.uni-mainz.de>
   sage-4.2.1.ebuild, +files/sage-4.2.1-fix-rpy2.patch,
   +files/sage-4.2.1-singular-path-fix.patch,

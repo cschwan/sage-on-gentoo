@@ -49,7 +49,9 @@ CDEPEND="
 	>=sci-mathematics/lcalc-1.23[pari]
 	>=sci-mathematics/genus2reduction-0.3
 	>=dev-lang/R-2.9.2[lapack,readline]
-	>=sci-libs/m4ri-20090617"
+	>=sci-libs/m4ri-20090617
+	>=sci-mathematics/gap-4.1.2
+	>=sci-mathematics/gap-guava-3.4"
 DEPEND="${CDEPEND}
 	>=app-arch/tar-1.20"
 RDEPEND="${CDEPEND}"
@@ -124,7 +126,7 @@ src_prepare(){
 
 	# remove dependencies which will be provided by portage
 	patch_deps_file atlas boehmgc bzip2 eclib ecm freetype gd genus2reduction \
-		givaro gnutls iml gsl lcalc libfplll libpng linbox m4ri maxima \
+		givaro gnutls iml gap gsl lcalc libfplll libpng linbox m4ri maxima \
 		mercurial mpfi mpfr mpir ntl pari readline scons sqlite tachyon zlib \
 		znpoly
 
