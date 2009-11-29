@@ -68,11 +68,13 @@ RESTRICT="mirror"
 # TODO: reintroduce example use-variable when sage-examples.ebuild is written
 
 # TODO: In order to remove Singular, pay attention to the following steps:
-# DEPEND: >=sci-mathematics/singular-3.1.0.4
+# DEPEND: >=sci-mathematics/singular-3.1.0.4-r1
 # rewrite singular ebuild to correctly install libsingular
 # check if sage needs a script and specific patches for library
-# -e "s:ln -sf Singular sage_singular:ln -sf /usr/bin/Singular sage_singular:g"
+# -e "s:ln -sf Singular sage_singular:ln -sf /usr/bin/Singular sage_singular:g" \
 # -e "s:\$SAGE_LOCAL/share/singular:/usr/share/singular:g" \
+# 	# fix path to singular headers
+# 	spkg_patch "sage-${PV}" "${FILESDIR}/${P}-singular-path-fix.patch"
 
 # TODO: install a menu icon for sage (see homepage)
 
