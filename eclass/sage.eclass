@@ -35,6 +35,7 @@ SAGE_DATA="/usr/lib/sage/data"
 
 SAGE_P="sage-${SAGE_VERSION}"
 
+HOMEPAGE="http://www.sagemath.org/"
 SRC_URI="http://mirror.switch.ch/mirror/sagemath/src/${SAGE_P}.tar"
 
 RESTRICT="mirror"
@@ -116,7 +117,11 @@ sage_src_unpack() {
 }
 
 if [[ -n "${SAGE_PACKAGE}" ]]; then
-	S="${WORKDIR}/${SAGE_PACKAGE}/src"
+	if [[ -d "${WORKDIR}/${SAGE_PACKAGE}/src" ]]; then
+		S="${WORKDIR}/${SAGE_PACKAGE}/src"
+	else
+		S="${WORKDIR}/${SAGE_PACKAGE}"
+	fi
 
 	EXPORT_FUNCTIONS src_unpack
 fi

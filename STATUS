@@ -31,3 +31,6 @@ Problematic Packages:
   * Needs customization: portage version does not build libsingular.so [done]
   * Sage's libsingular.h includes more headers, which contain function not
     available in newer versions
+
+- sci-mathematics/sage-doc-4.2.1
+  * Does not work. Documentation assumes sage-${PV}.spkg be compiled
