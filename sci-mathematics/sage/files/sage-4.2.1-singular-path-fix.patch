@@ -1,5 +1,5 @@
 --- module_list.py.orig	2009-11-28 09:04:49.716977230 +0000
-+++ module_list.py	2009-11-28 09:11:48.824978456 +0000
++++ module_list.py	2009-12-01 13:23:37.169496937 +0000
 @@ -449,43 +449,43 @@
                sources = ['sage/libs/singular/singular.pyx'],
                libraries = ['m', 'readline', 'singular', 'givaro', 'gmpxx', 'gmp'],
@@ -56,3 +56,34 @@
  
      Extension('sage.libs.symmetrica.symmetrica',
                sources = ["sage/libs/symmetrica/%s"%s for s in ["symmetrica.pyx"]],
+@@ -719,8 +719,8 @@
+               sources = ['sage/matrix/matrix_mpolynomial_dense.pyx'],
+               libraries = ['m', 'readline', 'singular', 'givaro', 'gmpxx', 'gmp'],
+               language="c++",
+-              include_dirs = [SAGE_ROOT +'/local/include/singular'],
+-              depends = [SAGE_ROOT + "/local/include/libsingular.h"]),
++              include_dirs = ['/usr/include/singular'],
++              depends = ["/usr/include/libsingular.h"]),
+ 
+     #Extension('sage.matrix.matrix_pid_dense',
+     #          sources = ['sage/matrix/matrix_pid_dense.pyx']),
+@@ -1186,15 +1186,15 @@
+               sources = ['sage/rings/polynomial/multi_polynomial_ideal_libsingular.pyx'],
+               libraries = ['m', 'readline', 'singular', 'givaro', 'gmpxx', 'gmp'],
+               language="c++",
+-              include_dirs = [SAGE_ROOT +'/local/include/singular'],
+-              depends = [SAGE_ROOT + "/local/include/libsingular.h"]),
++              include_dirs = ['/usr/include/singular'],
++              depends = ["/usr/include/libsingular.h"]),
+ 
+     Extension('sage.rings.polynomial.multi_polynomial_libsingular',
+               sources = ['sage/rings/polynomial/multi_polynomial_libsingular.pyx'],
+               libraries = ['m', 'readline', 'singular', 'givaro', 'gmpxx', 'gmp'],
+               language="c++",
+-              include_dirs = [SAGE_ROOT +'/local/include/singular'],
+-              depends = [SAGE_ROOT + "/local/include/libsingular.h"]),
++              include_dirs = ['/usr/include/singular'],
++              depends = ["/usr/include/libsingular.h"]),
+ 
+     Extension('sage.rings.polynomial.multi_polynomial_ring_generic',
+               sources = ['sage/rings/polynomial/multi_polynomial_ring_generic.pyx']), 

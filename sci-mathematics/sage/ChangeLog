@@ -3,6 +3,13 @@
 # $Header: $
 
   01 Dec 2009; Christopher Schwan <cschwan@students.uni-mainz.de>
+  sage-4.2.1.ebuild, files/sage-4.2.1-singular-path-fix.patch:
+  Added more documentation to the sed script which cleans Sage's makefile
+  targets. Also adjust more singular paths. Singular will be built from
+  Sage nevertheless, because libsingular has major differences to
+  upstream
+
+  01 Dec 2009; Christopher Schwan <cschwan@students.uni-mainz.de>
   -files/pari-2.3.3.p0-fix-ldconfig.patch, -sage-4.2.ebuild,
   sage-4.2.1.ebuild, -files/ecm-6.2.1.p0-fix-typo.patch,
   -files/deps-no-examples.patch, -files/eclib-fix-paths.patch,

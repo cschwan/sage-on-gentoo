@@ -77,27 +77,54 @@ RESTRICT="mirror"
 # 	# fix path to singular headers
 # 	spkg_patch "sage-${PV}" "${FILESDIR}/${P}-singular-path-fix.patch"
 
-# TODO: Remove Python packages:
-# 	# add system path for python modules
-# 	spkg_sed "sage_scripts-${PV}" -i \
-# 		-e "s:PYTHONPATH=\"\(.*\)\":PYTHONPATH=\"\1\:$(python_get_sitedir)\":g" \
-# 		sage-env
+# TODO: install a menu icon for sage (see homepage and newsgroup for icon, etc)
 
-# TODO: install a menu icon for sage (see homepage)
-
+# @FUNCTION: sage_clean_targets
+# @USAGE: <SAGE-MAKEFILE-TARGETS>
+# @DESCRIPTION: This function clears the prerequisites and commands of
+# <SAGE-MAKEFILE-TARGETS> in deps-makefile. If one wants to use e.g. sqlite from
+# portage, call:
+#
+# sage_clean_targets SQLITE
+#
+# This replaces in spkg/standard/deps:
+#
+# $(INST)/$(SQLITE): $(INST)/$(TERMCAP) $(INST)/$(READLINE)
+#	$(SAGE_SPKG) $(SQLITE) 2>&1
+#
+# with
+#
+# $(INST)/$(SQLITE):
+#	@echo "using SQLITE from portage"
+#
+# so that deps is still a valid makefile but with SQLITE provided by portage
+# instead by Sage.
 sage_clean_targets() {
 	for i in "$@"; do
 		sed -i -n "
+		# look for the makefile-target we need
 		/^\\\$(INST)\/\\\$($i)\:.*/ {
+			# clear the target's prerequisites and add a simple 'echo'-command
+			# that will inform us that this target will not be built
 			s//\\\$(INST)\/\\\$($i)\:\n\t@echo \"using $i from portage\"/p
 			: label
+			# go to the next line without printing the buffer (note that sed is
+			# invoked with '-n') ...
 			n
-			/^$/ {
+			# and check if its empty - if that is the case the target definition
+			# is finished.
+			/^\$/ {
+				# print empty line ...
 				p
+				# and exit
 				b
 			}
+			# this is not an empty line, so it must be a line containing
+			# commands. Since we do not want these to be executed, we simply do
+			# not print them and proceed with the next line
 			b label
 		}
+		# default action: print line
 		p
 		" "${S}"/spkg/standard/deps
 	done
@@ -119,8 +146,6 @@ pkg_setup() {
 
 src_prepare(){
 	cd "${S}/spkg/standard"
-
-	# TODO: Move documentation to a seperate ebuild
 
 	# do not generate documentation if not needed
 	if ! use doc ; then
@@ -181,6 +206,11 @@ src_prepare(){
 
 	# fix compilation error for rpy2
 	spkg_nested_patch "r-2.9.2" "rpy2-2.0.6" "${FILESDIR}/${P}-fix-rpy2.patch"
+
+	# add system path for python modules
+	spkg_sed "sage_scripts-${PV}" -i \
+		-e "s:PYTHONPATH=\"\(.*\)\":PYTHONPATH=\"\1\:$(python_get_sitedir)\":g" \
+		sage-env
 }
 
 src_compile() {
@@ -212,8 +242,8 @@ src_install() {
 	emake DESTDIR="${D}/opt" install || die "emake install failed"
 
 	# set sage's correct path to /opt
-	sed -i "s/SAGE_ROOT=.*\/opt/SAGE_ROOT=\"\/opt/" "${D}/opt/bin/sage" \
-		"${D}/opt/sage/sage" || die "sed failed"
+	sed -i "s/SAGE_ROOT=.*\/opt/SAGE_ROOT=\"\/opt/" "${D}"/opt/bin/sage \
+		"${D}"/opt/sage/sage || die "sed failed"
 
 	# TODO: handle generated docs
 	dodoc README.txt || die "dodoc failed"
@@ -221,7 +251,7 @@ src_install() {
 	# Force sage to create files in new location.  This has to be done twice -
 	# this time to create the files for gentoo to correctly record as part of
 	# the sage install
-	"${D}/opt/sage/sage" -c quit
+	"${D}"/opt/sage/sage -c quit
 }
 
 pkg_postinst() {
