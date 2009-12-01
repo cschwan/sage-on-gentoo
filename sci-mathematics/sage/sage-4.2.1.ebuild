@@ -4,7 +4,7 @@
 
 EAPI=2
 
-inherit fortran python sage
+inherit fortran sage
 
 DESCRIPTION="Math software for algebra, geometry, number theory, cryptography,
 and numerical computation."
@@ -51,11 +51,15 @@ CDEPEND="
 	>=dev-lang/R-2.9.2[lapack,readline]
 	>=sci-libs/m4ri-20090617
 	>=sci-mathematics/gap-4.1.2
-	>=sci-mathematics/gap-guava-3.4"
+	>=sci-mathematics/gap-guava-3.4
+	>=sci-mathematics/palp-1.1
+	>=sci-mathematics/ratpoints-2.1.2
+	>=sci-libs/libcliquer-1.2.2"
 DEPEND="${CDEPEND}"
 RDEPEND="${CDEPEND}"
 
-RESTRICT="mirror"
+# tests _will_ fail!
+RESTRICT="mirror test"
 
 # TODO: Support maxima with clisp ? Problems that may arise: readline+clisp
 
@@ -164,10 +168,10 @@ src_prepare(){
 	# verbosity blows up build.log and slows down installation
 	sed -i "s:cp -rpv:cp -rp:g" "${S}/makefile"
 
-	sage_clean_targets ATLAS BOEHM_GC SAGE_BZIP2 ECLIB ECM FPLLL FREETYPE GAP \
-		GD G2RED GIVARO GNUTLS GSL IML LCALC LIBM4RI LIBPNG LINBOX MAXIMA \
-		MERCURIAL MPFI MPFR MPIR NTL PARI READLINE SCONS SQLITE TACHYON ZLIB \
-		ZNPOLY
+	sage_clean_targets ATLAS BOEHM_GC CLIQUER ECLIB ECM FPLLL FREETYPE GAP GD \
+		G2RED GIVARO GNUTLS GSL IML LCALC LIBM4RI LIBPNG LINBOX MAXIMA \
+		MERCURIAL MPFI MPFR MPIR NTL PALP PARI RATPOINTS READLINE SAGE_BZIP2 \
+		SCONS SQLITE TACHYON ZLIB ZNPOLY
 
 	# patch to make a correct symbolic links
 	spkg_sed "sage_scripts-${PV}" -i \
@@ -207,10 +211,20 @@ src_prepare(){
 	# fix compilation error for rpy2
 	spkg_nested_patch "r-2.9.2" "rpy2-2.0.6" "${FILESDIR}/${P}-fix-rpy2.patch"
 
-	# add system path for python modules
-	spkg_sed "sage_scripts-${PV}" -i \
-		-e "s:PYTHONPATH=\"\(.*\)\":PYTHONPATH=\"\1\:$(python_get_sitedir)\":g" \
-		sage-env
+# 	# add system path for python modules
+# 	spkg_sed "sage_scripts-${PV}" -i \
+# 		-e "s:PYTHONPATH=\"\(.*\)\":PYTHONPATH=\"\1\:$(python_get_sitedir)\":g" \
+# 		sage-env
+
+	# TODO: Are these needed ?
+	spkg_sed "sage-${PV}" -i \
+		-e "s:SAGE_ROOT +'/local/include/fplll':'/usr/include/fplll':g" \
+		-e "s:SAGE_ROOT + \"/local/include/ecm.h\":\"/usr/include/ecm.h\":g" \
+		-e "s:SAGE_ROOT + \"/local/include/png.h\":\"/usr/include/png.h\":g" \
+		module_list.py
+
+	# TODO: -e "s:SAGE_ROOT + \"/local/include/fplll/fplll.h\":\"\":g" \
+	# This file does not exist
 }
 
 src_compile() {

@@ -109,19 +109,21 @@ sage_src_unpack() {
 	# remove spkg-file
 	rm "${SAGE_PACKAGE}.spkg"
 
+	# set Sage's FILESDIR
 	if [[ -d "${WORKDIR}/${SAGE_PACKAGE}/patches" ]]; then
 		SAGE_FILESDIR="${WORKDIR}/${SAGE_PACKAGE}/patches"
 	elif [[ -d "${WORKDIR}/${SAGE_PACKAGE}/patch" ]]; then
 		SAGE_FILESDIR="${WORKDIR}/${SAGE_PACKAGE}/patch"
 	fi
+
+	# set correct source path
+	if [[ -d "${WORKDIR}/${SAGE_PACKAGE}/src" ]]; then
+		S="${WORKDIR}/${SAGE_PACKAGE}/src"
+	fi
 }
 
 if [[ -n "${SAGE_PACKAGE}" ]]; then
-	if [[ -d "${WORKDIR}/${SAGE_PACKAGE}/src" ]]; then
-		S="${WORKDIR}/${SAGE_PACKAGE}/src"
-	else
-		S="${WORKDIR}/${SAGE_PACKAGE}"
-	fi
+	S="${WORKDIR}/${SAGE_PACKAGE}"
 
 	EXPORT_FUNCTIONS src_unpack
 fi

@@ -27,4 +27,6 @@ src_install() {
 	mkdir -p "${D}/usr/lib"
 
 	emake INSTALL_DIR="${D}/usr" install || die "emake install failed"
+
+	# TODO: Has documentation!
 }

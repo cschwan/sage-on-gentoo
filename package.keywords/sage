@@ -21,7 +21,7 @@ sci-libs/linbox
 sci-libs/m4ri
 sci-libs/mpfi
 sci-libs/mpir
-sci-libs/sage-cliquer
+sci-libs/libcliquer
 sci-libs/scipy
 sci-libs/zn_poly
 sci-mathematics/eclib

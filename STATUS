@@ -23,7 +23,22 @@ Packages:
 
 - sci-libs/iml-1.0.3
   * See bug #230429
-  * Everything seems to be fine
+  * Everything seems fine
+
+- sci-libs/libcliquer-1.2.2
+  * No bugreport for cliquer
+  * Treating Sage as upstream since they do not need binary but a shared object
+  * QA Notice: [..] runtime text relocations
+  * All tests successful
+
+- sci-mathematics/palp-1.1
+  * See bug #230441
+  * Everything seems fine
+  * Does not have tests
+
+- sci-mathematics/ratpoints-2.1.3
+  * No bugreport available
+  * Tests fail
 
 Problematic Packages:
 

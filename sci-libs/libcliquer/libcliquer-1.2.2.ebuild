@@ -5,7 +5,7 @@
 EAPI=2
 
 SAGE_PACKAGE="cliquer-1.2.p2"
-SAGE_VERSION="4.2"
+SAGE_VERSION="4.2.1"
 
 inherit eutils sage
 
@@ -26,6 +26,8 @@ RDEPEND="${DEPEND}"
 # TODO: Test on amd64 for -fPIC
 
 src_prepare() {
+	echo "$(pwd)"
+
 	# overwrite Makefile
 	cp "${SAGE_FILESDIR}/Makefile" .
 
@@ -43,6 +45,6 @@ src_test() {
 
 src_install() {
 	insinto /usr/include/cliquer
-	doins cl.h cliquer.h graph.h misc.h reorder.h set.h
+	doins cl.h cliquer.h cliquerconf.h graph.h misc.h reorder.h set.h
 	dolib libcliquer.so
 }
