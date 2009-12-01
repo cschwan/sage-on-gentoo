@@ -4,7 +4,7 @@
 
 EAPI=2
 
-inherit fortran sage
+inherit fortran python sage
 
 DESCRIPTION="Math software for algebra, geometry, number theory, cryptography,
 and numerical computation."
@@ -52,8 +52,7 @@ CDEPEND="
 	>=sci-libs/m4ri-20090617
 	>=sci-mathematics/gap-4.1.2
 	>=sci-mathematics/gap-guava-3.4"
-DEPEND="${CDEPEND}
-	>=app-arch/tar-1.20"
+DEPEND="${CDEPEND}"
 RDEPEND="${CDEPEND}"
 
 RESTRICT="mirror"
@@ -78,11 +77,29 @@ RESTRICT="mirror"
 # 	# fix path to singular headers
 # 	spkg_patch "sage-${PV}" "${FILESDIR}/${P}-singular-path-fix.patch"
 
+# TODO: Remove Python packages:
+# 	# add system path for python modules
+# 	spkg_sed "sage_scripts-${PV}" -i \
+# 		-e "s:PYTHONPATH=\"\(.*\)\":PYTHONPATH=\"\1\:$(python_get_sitedir)\":g" \
+# 		sage-env
+
 # TODO: install a menu icon for sage (see homepage)
 
-patch_deps_file() {
+sage_clean_targets() {
 	for i in "$@"; do
-		epatch "$FILESDIR/use-$i-from-portage.patch"
+		sed -i -n "
+		/^\\\$(INST)\/\\\$($i)\:.*/ {
+			s//\\\$(INST)\/\\\$($i)\:\n\t@echo \"using $i from portage\"/p
+			: label
+			n
+			/^$/ {
+				p
+				b
+			}
+			b label
+		}
+		p
+		" "${S}"/spkg/standard/deps
 	done
 }
 
@@ -122,18 +139,15 @@ src_prepare(){
 	# verbosity blows up build.log and slows down installation
 	sed -i "s:cp -rpv:cp -rp:g" "${S}/makefile"
 
-	# TODO: patch to set PYTHONPATH correctly for all python packages
-
-	# remove dependencies which will be provided by portage
-	patch_deps_file atlas boehmgc bzip2 eclib ecm freetype gd genus2reduction \
-		givaro gnutls iml gap gsl lcalc libfplll libpng linbox m4ri maxima \
-		mercurial mpfi mpfr mpir ntl pari readline scons sqlite tachyon zlib \
-		znpoly
+	sage_clean_targets ATLAS BOEHM_GC SAGE_BZIP2 ECLIB ECM FPLLL FREETYPE GAP \
+		GD G2RED GIVARO GNUTLS GSL IML LCALC LIBM4RI LIBPNG LINBOX MAXIMA \
+		MERCURIAL MPFI MPFR MPIR NTL PARI READLINE SCONS SQLITE TACHYON ZLIB \
+		ZNPOLY
 
 	# patch to make a correct symbolic links
 	spkg_sed "sage_scripts-${PV}" -i \
 		-e "s:ln -sf gp sage_pari:ln -sf /usr/bin/gp sage_pari:g" \
-		"spkg-install" "sage-spkg-install"
+		spkg-install sage-spkg-install
 
 	# TODO: gphelp is installed only if pari was emerged with USE=doc and
 	# documentation additionally needs FEATURES=nodoc _not_ set.
@@ -147,15 +161,15 @@ src_prepare(){
 		-e "s:\$SAGE_LOCAL/lib/ecl:/usr/lib/ecl-9.8.4:g" \
 		-e "s:\$SAGE_ROOT/local/lib/R/lib:/usr/lib/R/lib:g" \
 		-e "s:\$SAGE_LOCAL/lib/R:/usr/lib/R:g" \
-		"sage-env"
+		sage-env
 
 	# patch to use atlas from portage
-	spkg_sed "cvxopt-0.9.p8" -i "s:f77blas:blas:g" "patches/setup_f95.py" \
-		"patches/setup_gfortran.py"
+	spkg_sed "cvxopt-0.9.p8" -i "s:f77blas:blas:g" patches/setup_f95.py \
+		patches/setup_gfortran.py
 
 	# fix command for calling maxima
 	spkg_sed "sage-${PV}" -i "s:maxima-noreadline:maxima:g" \
-		"sage/interfaces/maxima.py"
+		sage/interfaces/maxima.py
 
 	# do not compile R, but rpy2 which is in R's spkg (why ?)
 	spkg_patch "r-2.9.2" "${FILESDIR}/${P}-use-R-from-portage.patch"
@@ -163,7 +177,7 @@ src_prepare(){
 	# fix RHOME in rpy2
 	spkg_nested_sed "r-2.9.2" "rpy2-2.0.6" -i \
 		"s:\"\$SAGE_LOCAL\"/lib/R:/usr/lib/R:g" \
-		"spkg-install"
+		spkg-install
 
 	# fix compilation error for rpy2
 	spkg_nested_patch "r-2.9.2" "rpy2-2.0.6" "${FILESDIR}/${P}-fix-rpy2.patch"

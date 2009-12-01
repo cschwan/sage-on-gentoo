@@ -2,6 +2,42 @@
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  01 Dec 2009; Christopher Schwan <cschwan@students.uni-mainz.de>
+  -files/pari-2.3.3.p0-fix-ldconfig.patch, -sage-4.2.ebuild,
+  sage-4.2.1.ebuild, -files/ecm-6.2.1.p0-fix-typo.patch,
+  -files/deps-no-examples.patch, -files/eclib-fix-paths.patch,
+  -files/g2red-pari-include-fix.patch, -files/install-no-doc.patch,
+  -files/lcalc-fix-paths.patch, -files/linbox-fix-configure.patch,
+  -files/sage-fix-paths.patch, -files/use-atlas-from-portage.patch,
+  -files/use-blas-from-portage.patch, -files/use-boehmgc-from-portage.patch,
+  -files/use-bzip2-from-portage.patch,
+  -files/use-cliquer-from-portage.patch,
+  -files/use-eclib-from-portage.patch, -files/use-ecm-from-portage.patch,
+  -files/use-freetype-from-portage.patch, -files/use-gap-from-portage.patch,
+  -files/use-gd-from-portage.patch,
+  -files/use-genus2reduction-from-portage.patch,
+  -files/use-givaro-from-portage.patch,
+  -files/use-gnutls-from-portage.patch, -files/use-gsl-from-portage.patch,
+  -files/use-iml-from-portage.patch, -files/use-lapack-from-portage.patch,
+  -files/use-lcalc-from-portage.patch,
+  -files/use-libfplll-from-portage.patch,
+  -files/use-libpng-from-portage.patch,
+  -files/use-linbox-from-portage.patch, -files/use-m4ri-from-portage.patch,
+  -files/use-maxima-from-portage.patch,
+  -files/use-mercurial-from-portage.patch,
+  -files/use-mpfi-from-portage.patch, -files/use-mpfr-from-portage.patch,
+  -files/use-mpir-from-portage.patch, -files/use-ntl-from-portage.patch,
+  -files/use-pari-from-portage.patch,
+  -files/use-readline-from-portage.patch,
+  -files/use-scons-from-portage.patch,
+  -files/use-singular-from-portage.patch,
+  -files/use-sqlite-from-portage.patch,
+  -files/use-tachyon-from-portage.patch, -files/use-zlib-from-portage.patch,
+  -files/use-znpoly-from-portage.patch:
+  Removed support for sage-4.2 - update to sage-4.2.1! Also rewritten the
+  code which cleans sage's makefile targets, now there are no patches
+  needed. Everything will be done with sed.
+
   29 Nov 2009; Christopher Schwan <cschwan@students.uni-mainz.de>
   sage-4.2.1.ebuild, +files/use-gap-from-portage.patch:
   Removed GAP
