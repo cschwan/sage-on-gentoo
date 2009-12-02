@@ -27,8 +27,11 @@ src_prepare() {
 	# overwrite Makefile
 	cp "${SAGE_FILESDIR}/Makefile" .
 
+	# needed on amd64
+	CFLAGS="${CFLAGS} -fPIC"
+
 	# replace variable with flags
-	sed -i "s/\$(SAGESOFLAGS)/-fPIC -shared -Wl,-soname,libcliquer.so/g" \
+	sed -i "s/\$(SAGESOFLAGS)/-shared -Wl,-soname,libcliquer.so/g" \
 		"Makefile" || die "sed failed"
 
 	# patch to remove main function - libraries usually dont need them (!?)
