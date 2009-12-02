@@ -21,6 +21,10 @@ RESTRICT="mirror"
 DEPEND=""
 RDEPEND="${DEPEND}"
 
+src_compile() {
+	emake CCFLAGS1="${CFLAGS} -fPIC" || die "emake failed"
+}
+
 src_install() {
 	mkdir -p "${D}/usr/bin"
 	mkdir -p "${D}/usr/include"
@@ -28,5 +32,5 @@ src_install() {
 
 	emake INSTALL_DIR="${D}/usr" install || die "emake install failed"
 
-	# TODO: Has documentation!
+
 }
