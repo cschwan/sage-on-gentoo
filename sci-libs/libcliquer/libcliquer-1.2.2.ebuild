@@ -23,16 +23,12 @@ RESTRICT="mirror"
 DEPEND=""
 RDEPEND="${DEPEND}"
 
-# TODO: Test on amd64 for -fPIC
-
 src_prepare() {
-	echo "$(pwd)"
-
 	# overwrite Makefile
 	cp "${SAGE_FILESDIR}/Makefile" .
 
 	# replace variable with flags
-	sed -i "s/\$(SAGESOFLAGS)/-shared -Wl,-soname,libcliquer.so/g" \
+	sed -i "s/\$(SAGESOFLAGS)/-fPIC -shared -Wl,-soname,libcliquer.so/g" \
 		"Makefile" || die "sed failed"
 
 	# patch to remove main function - libraries usually dont need them (!?)
