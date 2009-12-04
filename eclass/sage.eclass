@@ -40,64 +40,114 @@ SRC_URI="http://mirror.switch.ch/mirror/sagemath/src/${SAGE_P}.tar"
 
 RESTRICT="mirror"
 
-spkg_unpack() {
-	# untar spkg and and remove it
-	tar -xf "$1.spkg"
-	rm "$1.spkg"
-	cd "$1"
-}
+_SAGE_UNPACKED_SPKGS=( )
 
-spkg_pack() {
-	# tar patched dir and remove it
-	cd ..
-	tar -cf "$1.spkg" "$1"
-	rm -rf "$1"
+_sage_package_unpack() {
+	# make sure spkg is unpacked
+	if [[ ! -d "$1" ]] ; then
+		ebegin "Unpacking $1"
+		tar -xf "$1.spkg"
+		eend
+
+		# remove the spkg file
+		rm "$1.spkg"
+
+		# record unpacked spkg
+		_SAGE_UNPACKED_SPKGS=( ${_SAGE_UNPACKED_SPKGS[@]} $1 )
+	fi
 }
 
 # patch one of sage's spkgs. $1: spkg name, $2: patch name
-spkg_patch() {
-	spkg_unpack "$1"
+sage_package_patch() {
+	_sage_package_unpack "$1"
 
+	# change to the spkg's directory, apply patch and move back
+	cd "$1"
 	epatch "$2"
-
-	spkg_pack "$1"
+	cd ..
 }
 
-spkg_sed() {
-	spkg_unpack "$1"
+sage_package_sed() {
+	_sage_package_unpack "$1"
 
-	SPKG="$1"
+	cd "$1"
 	shift 1
 	sed "$@" || die "sed failed"
-
-	spkg_pack "${SPKG}"
+	cd ..
 }
 
-spkg_nested_sed() {
-	spkg_unpack "$1"
-	spkg_unpack "$2"
+sage_package_cp() {
+	_sage_package_unpack "$1"
 
-	SPKG1="$1"
-	SPKG2="$2"
+	cd "$1"
+	shift 1
+	cp "$@" || die "cp failed"
+	cd ..
+}
+
+sage_package_nested_sed() {
+	_sage_package_unpack "$1"
+
+	cd "$1"
+	tar -xf "$2.spkg" || die "tar failed"
+	rm "$2.spkg" || die "rm failed"
+	cd "$2"
+	SPKG="$2"
 	shift 2
 	sed "$@" || die "sed failed"
-
-	spkg_pack "${SPKG2}"
-	spkg_pack "${SPKG1}"
+	cd ..
+	tar -cf "${SPKG}.spkg" "${SPKG}"
+	rm -rf "${SPKG}"
+	cd ..
 }
 
-spkg_nested_patch() {
-	spkg_unpack "$1"
-	spkg_unpack "$2"
+sage_package_nested_patch() {
+	_sage_package_unpack "$1"
 
+	cd "$1"
+	tar -xf "$2.spkg" || die "tar failed"
+	rm "$2.spkg" || die "rm failed"
+	cd "$2"
 	epatch "$3"
+	cd ..
+	tar -cf "$2.spkg" "$2" || die "tar failed"
+	rm -rf "$2"
+	cd ..
+}
 
-	spkg_pack "$2"
-	spkg_pack "$1"
+sage_package_finish() {
+	ebegin "Packing Sage packages"
+	for i in ${_SAGE_UNPACKED_SPKGS[@]} ; do
+		tar -cf "$i.spkg" "$i"
+		rm -rf "$i"
+	done
+	eend
 }
 
 sage_src_unpack() {
 	cd "${WORKDIR}"
+
+	# unpack spkg-file from tar
+	tar -xf "${DISTDIR}/${A}" --strip-components 3 \
+		"${SAGE_P}/spkg/standard/${SAGE_PACKAGE}.spkg"
+
+	# unpack spkg-file
+	tar -xjf "${SAGE_PACKAGE}.spkg"
+
+	# remove spkg-file
+	rm "${SAGE_PACKAGE}.spkg"
+
+	# set Sage's FILESDIR
+	if [[ -d "${WORKDIR}/${SAGE_PACKAGE}/patches" ]]; then
+		SAGE_FILESDIR="${WORKDIR}/${SAGE_PACKAGE}/patches"
+	elif [[ -d "${WORKDIR}/${SAGE_PACKAGE}/patch" ]]; then
+		SAGE_FILESDIR="${WORKDIR}/${SAGE_PACKAGE}/patch"
+	fi
+
+	# set correct source path
+	if [[ -d "${WORKDIR}/${SAGE_PACKAGE}/src" ]]; then
+		S="${WORKDIR}/${SAGE_PACKAGE}/src"
+	fi
 
 	# unpack spkg-file from tar
 	tar -xf "${DISTDIR}/${A}" --strip-components 3 \

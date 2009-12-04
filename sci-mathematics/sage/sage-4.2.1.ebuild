@@ -54,23 +54,22 @@ CDEPEND="
 	>=sci-mathematics/gap-guava-3.4
 	>=sci-mathematics/palp-1.1
 	>=sci-mathematics/ratpoints-2.1.2
-	>=sci-libs/libcliquer-1.2.2"
-DEPEND="${CDEPEND}"
+	>=sci-libs/libcliquer-1.2.2
+	>=dev-lang/f2c-20060507
+	virtual/cblas
+	virtual/lapack
+"
+
+DEPEND="
+	${CDEPEND}
+	dev-util/pkgconfig
+"
 RDEPEND="${CDEPEND}"
 
 # tests _will_ fail!
 RESTRICT="mirror test"
 
 # TODO: Support maxima with clisp ? Problems that may arise: readline+clisp
-
-# To remove GAP, we need guava
-# add this line to DEPEND: >=sci-mathematics/gap-4.4.10
-# and look for the customizations sage make to the gap startup file
-
-# TODO: Optimize spkg_* functions, so that one can use mutiple spkg_* calls on
-# the same package without unpacking and repacking it everytime
-
-# TODO: reintroduce example use-variable when sage-examples.ebuild is written
 
 # TODO: In order to remove Singular, pay attention to the following steps:
 # DEPEND: >=sci-mathematics/singular-3.1.0.4-r1
@@ -79,7 +78,7 @@ RESTRICT="mirror test"
 # -e "s:ln -sf Singular sage_singular:ln -sf /usr/bin/Singular sage_singular:g" \
 # -e "s:\$SAGE_LOCAL/share/singular:/usr/share/singular:g" \
 # 	# fix path to singular headers
-# 	spkg_patch "sage-${PV}" "${FILESDIR}/${P}-singular-path-fix.patch"
+# 	sage_package_patch "sage-${PV}" "${FILESDIR}/${P}-singular-path-fix.patch"
 
 # TODO: install a menu icon for sage (see homepage and newsgroup for icon, etc)
 
@@ -149,32 +148,32 @@ pkg_setup() {
 }
 
 src_prepare(){
-	cd "${S}/spkg/standard"
+	cd "${S}"/spkg/standard
 
 	# do not generate documentation if not needed
 	if ! use doc ; then
 		# remove the following line which builds documentation
 		sed -i "/\"\$SAGE_ROOT\"\/sage -docbuild all html/d" \
-			"${S}/spkg/install" || die "sed failed"
+			"${S}"/spkg/install || die "sed failed"
 
 		# remove the same line in the same file in sage_scripts spkg - this
 		# package will unpack and overwrite the original "install" file (why ?)
-		spkg_sed "sage_scripts-${PV}" -i \
-			"/\"\$SAGE_ROOT\"\/sage -docbuild all html/d" "install"
+		sage_package_sed "sage_scripts-${PV}" -i \
+			"/\"\$SAGE_ROOT\"\/sage -docbuild all html/d" install
 
 		# TODO: remove documentation (and related tests ?)
 	fi
 
 	# verbosity blows up build.log and slows down installation
-	sed -i "s:cp -rpv:cp -rp:g" "${S}/makefile"
+	sed -i "s:cp -rpv:cp -rp:g" "${S}"/makefile
 
-	sage_clean_targets ATLAS BOEHM_GC CLIQUER ECLIB ECM FPLLL FREETYPE GAP GD \
-		G2RED GIVARO GNUTLS GSL IML LCALC LIBM4RI LIBPNG LINBOX MAXIMA \
-		MERCURIAL MPFI MPFR MPIR NTL PALP PARI RATPOINTS READLINE SAGE_BZIP2 \
-		SCONS SQLITE TACHYON ZLIB ZNPOLY
+	sage_clean_targets ATLAS BLAS BOEHM_GC CLIQUER ECLIB ECM F2C FPLLL \
+		FREETYPE GAP GD G2RED GIVARO GNUTLS GSL IML LAPACK LCALC LIBM4RI \
+		LIBPNG LINBOX MAXIMA MERCURIAL MPFI MPFR MPIR NTL PALP PARI RATPOINTS \
+		READLINE SAGE_BZIP2 SCONS SQLITE TACHYON ZLIB ZNPOLY
 
 	# patch to make a correct symbolic links
-	spkg_sed "sage_scripts-${PV}" -i \
+	sage_package_sed "sage_scripts-${PV}" -i \
 		-e "s:ln -sf gp sage_pari:ln -sf /usr/bin/gp sage_pari:g" \
 		spkg-install sage-spkg-install
 
@@ -183,7 +182,7 @@ src_prepare(){
 	# TODO: fix directories containing version strings
 
 	# fix pari, ecl, R and singular paths
-	spkg_sed "sage_scripts-${PV}" -i \
+	sage_package_sed "sage_scripts-${PV}" -i \
 		-e "s:\$SAGE_LOCAL/share/pari:/usr/share/pari:g" \
 		-e "s:\$SAGE_LOCAL/bin/gphelp:/usr/bin/gphelp:g" \
 		-e "s:\$SAGE_LOCAL/share/pari/doc:/usr/share/doc/pari-2.3.4-r1:g" \
@@ -193,31 +192,32 @@ src_prepare(){
 		sage-env
 
 	# patch to use atlas from portage
-	spkg_sed "cvxopt-0.9.p8" -i "s:f77blas:blas:g" patches/setup_f95.py \
+	sage_package_sed cvxopt-0.9.p8 -i "s:f77blas:blas:g" patches/setup_f95.py \
 		patches/setup_gfortran.py
 
 	# fix command for calling maxima
-	spkg_sed "sage-${PV}" -i "s:maxima-noreadline:maxima:g" \
+	sage_package_sed "sage-${PV}" -i "s:maxima-noreadline:maxima:g" \
 		sage/interfaces/maxima.py
 
 	# do not compile R, but rpy2 which is in R's spkg (why ?)
-	spkg_patch "r-2.9.2" "${FILESDIR}/${P}-use-R-from-portage.patch"
+	sage_package_patch r-2.9.2 "${FILESDIR}/${P}-use-R-from-portage.patch"
 
 	# fix RHOME in rpy2
-	spkg_nested_sed "r-2.9.2" "rpy2-2.0.6" -i \
+	sage_package_nested_sed r-2.9.2 rpy2-2.0.6 -i \
 		"s:\"\$SAGE_LOCAL\"/lib/R:/usr/lib/R:g" \
 		spkg-install
 
 	# fix compilation error for rpy2
-	spkg_nested_patch "r-2.9.2" "rpy2-2.0.6" "${FILESDIR}/${P}-fix-rpy2.patch"
+	sage_package_nested_patch r-2.9.2 rpy2-2.0.6 \
+		"${FILESDIR}/${P}-fix-rpy2.patch"
 
 # 	# add system path for python modules
-# 	spkg_sed "sage_scripts-${PV}" -i \
+# 	sage_package_sed "sage_scripts-${PV}" -i \
 # 		-e "s:PYTHONPATH=\"\(.*\)\":PYTHONPATH=\"\1\:$(python_get_sitedir)\":g" \
 # 		sage-env
 
 	# TODO: Are these needed ?
-	spkg_sed "sage-${PV}" -i \
+	sage_package_sed "sage-${PV}" -i \
 		-e "s:SAGE_ROOT +'/local/include/fplll':'/usr/include/fplll':g" \
 		-e "s:SAGE_ROOT + \"/local/include/ecm.h\":\"/usr/include/ecm.h\":g" \
 		-e "s:SAGE_ROOT + \"/local/include/png.h\":\"/usr/include/png.h\":g" \
@@ -225,6 +225,45 @@ src_prepare(){
 
 	# TODO: -e "s:SAGE_ROOT + \"/local/include/fplll/fplll.h\":\"\":g" \
 	# This file does not exist
+
+	# this file is taken from portage's scipy ebuild
+	cat > "${T}"/site.cfg <<-EOF
+		[DEFAULT]
+		library_dirs = /usr/$(get_libdir)
+		include_dirs = /usr/include
+		[atlas]
+		include_dirs = $(pkg-config --cflags-only-I \
+			cblas | sed -e 's/^-I//' -e 's/ -I/:/g')
+		library_dirs = $(pkg-config --libs-only-L \
+			cblas blas lapack| sed -e \
+			's/^-L//' -e 's/ -L/:/g' -e 's/ //g'):/usr/$(get_libdir)
+		atlas_libs = $(pkg-config --libs-only-l \
+			cblas blas | sed -e 's/^-l//' -e 's/ -l/, /g' -e 's/,.pthread//g')
+		lapack_libs = $(pkg-config --libs-only-l \
+			lapack | sed -e 's/^-l//' -e 's/ -l/, /g' -e 's/,.pthread//g')
+		[blas_opt]
+			include_dirs = $(pkg-config --cflags-only-I \
+			cblas | sed -e 's/^-I//' -e 's/ -I/:/g')
+		library_dirs = $(pkg-config --libs-only-L \
+		cblas blas | sed -e 's/^-L//' -e 's/ -L/:/g' \
+			-e 's/ //g'):/usr/$(get_libdir)
+		libraries = $(pkg-config --libs-only-l \
+			cblas blas | sed -e 's/^-l//' -e 's/ -l/, /g' -e 's/,.pthread//g')
+		[lapack_opt]
+		library_dirs = $(pkg-config --libs-only-L \
+		lapack | sed -e 's/^-L//' -e 's/ -L/:/g' \
+			-e 's/ //g'):/usr/$(get_libdir)
+		libraries = $(pkg-config --libs-only-l \
+		lapack | sed -e 's/^-l//' -e 's/ -l/, /g' -e 's/,.pthread//g')
+	EOF
+
+	# copy file into scipy's spkg and scipy_sandbox
+	sage_package_cp scipy-0.7.p3 "${T}"/site.cfg src/site.cfg
+	sage_package_cp scipy_sandbox-20071020.p4 "${T}"/site.cfg arpack/site.cfg
+	sage_package_cp scipy_sandbox-20071020.p4 "${T}"/site.cfg delaunay/site.cfg
+
+	# pack all unpacked spkgs
+	sage_package_finish
 }
 
 src_compile() {
