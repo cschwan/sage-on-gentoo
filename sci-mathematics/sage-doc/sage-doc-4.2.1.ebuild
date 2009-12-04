@@ -2,6 +2,8 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
+EAPI=2
+
 SAGE_VERSION="${PV}"
 SAGE_PACKAGE="sage-${PV}"
 
@@ -27,11 +29,16 @@ DEPEND=">=dev-python/sphinx-0.6.3
 	virtual/python"
 RDEPEND="${DEPEND}"
 
+src_prepare() {
+	epatch "${FILESDIR}/${P}-fix-source-path.patch"
+}
+
 src_compile() {
-	export PYTHONPATH="${S}"
-	export SAGE_ROOT="/opt/sage"
-	export LD_LIBRARY_PATH="${SAGE_ROOT}/local/lib"
-	export SAGE_DOC="${S}/doc"
+	export SAGE_ROOT=/opt/sage
+	export PYTHONPATH="${SAGE_ROOT}"/devel/sage
+	export LD_LIBRARY_PATH="${SAGE_ROOT}"/local/lib
+	export SAGE_DOC="${S}"/doc
+	export SAGE_DOC_SRC="${SAGE_ROOT}"/devel/sage/doc
 
 	# this command is mandatory - builder.py deletes '.' from PYTHONPATH!
 	cd "${S}"/doc/common

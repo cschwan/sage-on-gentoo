@@ -32,5 +32,5 @@ src_install() {
 
 	emake INSTALL_DIR="${D}/usr" install || die "emake install failed"
 
-
+	dodoc ratpoints-doc.pdf
 }

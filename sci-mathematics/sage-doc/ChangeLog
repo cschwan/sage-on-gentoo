@@ -2,6 +2,11 @@
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  04 Dec 2009; Christopher Schwan <cschwan@students.uni-mainz.de>
+  sage-doc-4.2.1.ebuild, +files/sage-doc-4.2.1-fix-source-path.patch:
+  Added a patch that make builder.py enable to read and write in
+  dfferent directories
+
 *sage-doc-4.2.1 (01 Dec 2009)
 
   01 Dec 2009; Christopher Schwan <cschwan@students.uni-mainz.de>
