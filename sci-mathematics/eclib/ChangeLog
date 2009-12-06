@@ -2,6 +2,14 @@
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*eclib-20080310_p7 (06 Dec 2009)
+
+  06 Dec 2009; François Bissey <f.r.bissey@massey.ac.nz>
+  +eclib-20080310_p7.ebuild, -eclib-20080310.7.ebuild,
+  +files/eclib-makefiles.patch.bz2:
+  Imported my version of eclib with *comprehensive* patches, one day some of
+  them will be included upstream...
+
 *eclib-20080310.7 (22 Nov 2009)
 
   22 Nov 2009; Christopher Schwan <cschwan@students.uni-mainz.de>
