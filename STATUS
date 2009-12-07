@@ -40,6 +40,10 @@ Packages:
   * No bugreport available
   * Tests fail
 
+- sci-libs/cddlib-094f
+  * See bug #230423
+  * Compiles fine, no QA warnings, no tests
+
 Problematic Packages:
 
 - sci-mathematics/singular-3.1.0.7-r1
