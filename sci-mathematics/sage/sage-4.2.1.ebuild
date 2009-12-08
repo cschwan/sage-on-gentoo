@@ -4,11 +4,11 @@
 
 EAPI=2
 
-inherit fortran sage
+inherit flag-o-matic fortran sage
 
 DESCRIPTION="Math software for algebra, geometry, number theory, cryptography,
 and numerical computation."
-HOMEPAGE="http://www.sagemath.org"
+HOMEPAGE="http://www.sagemath.org/"
 SRC_URI="http://mirror.switch.ch/mirror/sagemath/src/${P}.tar"
 
 LICENSE="GPL-2"
@@ -45,7 +45,7 @@ CDEPEND="
 	>=sci-libs/libfplll-3.0.12
 	>=sci-mathematics/ecm-6.2.1
 	>=media-gfx/tachyon-0.98
-	>=sci-mathematics/eclib-20080310.7
+	>=sci-mathematics/eclib-20080310
 	>=sci-mathematics/lcalc-1.23[pari]
 	>=sci-mathematics/genus2reduction-0.3
 	>=dev-lang/R-2.9.2[lapack,readline]
@@ -82,57 +82,6 @@ RESTRICT="mirror test"
 
 # TODO: install a menu icon for sage (see homepage and newsgroup for icon, etc)
 
-# @FUNCTION: sage_clean_targets
-# @USAGE: <SAGE-MAKEFILE-TARGETS>
-# @DESCRIPTION: This function clears the prerequisites and commands of
-# <SAGE-MAKEFILE-TARGETS> in deps-makefile. If one wants to use e.g. sqlite from
-# portage, call:
-#
-# sage_clean_targets SQLITE
-#
-# This replaces in spkg/standard/deps:
-#
-# $(INST)/$(SQLITE): $(INST)/$(TERMCAP) $(INST)/$(READLINE)
-#	$(SAGE_SPKG) $(SQLITE) 2>&1
-#
-# with
-#
-# $(INST)/$(SQLITE):
-#	@echo "using SQLITE from portage"
-#
-# so that deps is still a valid makefile but with SQLITE provided by portage
-# instead by Sage.
-sage_clean_targets() {
-	for i in "$@"; do
-		sed -i -n "
-		# look for the makefile-target we need
-		/^\\\$(INST)\/\\\$($i)\:.*/ {
-			# clear the target's prerequisites and add a simple 'echo'-command
-			# that will inform us that this target will not be built
-			s//\\\$(INST)\/\\\$($i)\:\n\t@echo \"using $i from portage\"/p
-			: label
-			# go to the next line without printing the buffer (note that sed is
-			# invoked with '-n') ...
-			n
-			# and check if its empty - if that is the case the target definition
-			# is finished.
-			/^\$/ {
-				# print empty line ...
-				p
-				# and exit
-				b
-			}
-			# this is not an empty line, so it must be a line containing
-			# commands. Since we do not want these to be executed, we simply do
-			# not print them and proceed with the next line
-			b label
-		}
-		# default action: print line
-		p
-		" "${S}"/spkg/standard/deps
-	done
-}
-
 pkg_setup() {
 	FORTRAN="gfortran"
 
@@ -150,19 +99,12 @@ pkg_setup() {
 src_prepare(){
 	cd "${S}"/spkg/standard
 
-	# do not generate documentation if not needed
-	if ! use doc ; then
-		# remove the following line which builds documentation
-		sed -i "/\"\$SAGE_ROOT\"\/sage -docbuild all html/d" \
-			"${S}"/spkg/install || die "sed failed"
+	# remove documentation
+	sage_package_sed "sage_scripts-${PV}" -i \
+		"/\"\$SAGE_ROOT\"\/sage -docbuild all html/d" install
 
-		# remove the same line in the same file in sage_scripts spkg - this
-		# package will unpack and overwrite the original "install" file (why ?)
-		sage_package_sed "sage_scripts-${PV}" -i \
-			"/\"\$SAGE_ROOT\"\/sage -docbuild all html/d" install
-
-		# TODO: remove documentation (and related tests ?)
-	fi
+	# apply patch which is needed to successfully build sage-doc
+	sage_package_patch "sage-${PV}" "${FILESDIR}/${P}-documentation.patch"
 
 	# verbosity blows up build.log and slows down installation
 	sed -i "s:cp -rpv:cp -rp:g" "${S}"/makefile
@@ -211,6 +153,8 @@ src_prepare(){
 	sage_package_nested_patch r-2.9.2 rpy2-2.0.6 \
 		"${FILESDIR}/${P}-fix-rpy2.patch"
 
+	# TODO: Custom PYTHONPATH causes a build error (even if no python packages
+	# required from portage
 # 	# add system path for python modules
 # 	sage_package_sed "sage_scripts-${PV}" -i \
 # 		-e "s:PYTHONPATH=\"\(.*\)\":PYTHONPATH=\"\1\:$(python_get_sitedir)\":g" \
@@ -267,19 +211,10 @@ src_prepare(){
 }
 
 src_compile() {
-	# TODO: according to the gentoo-amd64 folks the following is a dirty hack -
-	# find the package that is causing the error and apply a better solution
-
-	# On amd64 the ABI variable is used by portage to select between 32-
-	# (ABI=x86) and 64-bit (ABI=amd64) compilation. This causes problems since
-	# SAGE uses this variable but expects it to be '32' or '64'. Unsetting lets
-	# SAGE decide what ABI should be
-	unset ABI
-
-	# custom cflags cause problems on amd64
+	# hack to circumvent bug with amd64 gentoo
 	if use amd64 ; then
-		unset CFLAGS
-		unset CXXFLAGS
+		append-cflags -fno-strict-aliasing
+		append-cxxflags -fno-strict-aliasing
 	fi
 
 	# do not run parallel since this is impossible with SAGE (!?)
@@ -289,6 +224,14 @@ src_compile() {
 	if ( grep "sage: An error occurred" "${S}/install.log" ); then
 		die "make failed"
 	fi
+
+	# replace *.spkg files with empty ones to save space
+	ebegin "Replacing *.spkg files"
+	for i in "${S}"/spkg/standard/*.spkg ; do
+		rm "$i"
+		touch "$i"
+	done
+	eend
 }
 
 src_install() {
