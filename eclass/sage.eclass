@@ -124,57 +124,6 @@ sage_package_finish() {
 	eend
 }
 
-# @FUNCTION: sage_clean_targets
-# @USAGE: <SAGE-MAKEFILE-TARGETS>
-# @DESCRIPTION: This function clears the prerequisites and commands of
-# <SAGE-MAKEFILE-TARGETS> in deps-makefile. If one wants to use e.g. sqlite from
-# portage, call:
-#
-# sage_clean_targets SQLITE
-#
-# This replaces in spkg/standard/deps:
-#
-# $(INST)/$(SQLITE): $(INST)/$(TERMCAP) $(INST)/$(READLINE)
-#	$(SAGE_SPKG) $(SQLITE) 2>&1
-#
-# with
-#
-# $(INST)/$(SQLITE):
-#	@echo "using SQLITE from portage"
-#
-# so that deps is still a valid makefile but with SQLITE provided by portage
-# instead by Sage.
-sage_clean_targets() {
-	for i in "$@"; do
-		sed -i -n "
-		# look for the makefile-target we need
-		/^\\\$(INST)\/\\\$($i)\:.*/ {
-			# clear the target's prerequisites and add a simple 'echo'-command
-			# that will inform us that this target will not be built
-			s//\\\$(INST)\/\\\$($i)\:\n\t@echo \"using $i from portage\"/p
-			: label
-			# go to the next line without printing the buffer (note that sed is
-			# invoked with '-n') ...
-			n
-			# and check if its empty - if that is the case the target definition
-			# is finished.
-			/^\$/ {
-				# print empty line ...
-				p
-				# and exit
-				b
-			}
-			# this is not an empty line, so it must be a line containing
-			# commands. Since we do not want these to be executed, we simply do
-			# not print them and proceed with the next line
-			b label
-		}
-		# default action: print line
-		p
-		" "${S}"/spkg/standard/deps
-	done
-}
-
 sage_src_unpack() {
 	cd "${WORKDIR}"
 
