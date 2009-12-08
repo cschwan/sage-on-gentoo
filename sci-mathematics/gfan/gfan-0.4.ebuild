@@ -22,6 +22,18 @@ src_prepare () {
 	sed -i "s/-O2/${CXXFLAGS}/" Makefile
 }
 
+# TODO: handle examples and documentation
+
+src_compile() {
+	emake || die "emake install failed"
+	./gfan installlinks
+}
+
 src_install() {
 	dobin gfan || die "emake install failed"
+
+	# install symlink needed by sage
+	for i in gfan_* ; do
+		dosym gfan /usr/bin/$i || die "dosym failed"
+	done
 }

@@ -2,6 +2,10 @@
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  08 Dec 2009; Christopher Schwan <cschwan@students.uni-mainz.de>
+  gfan-0.4.ebuild:
+  Added installation of symlinks which are needed by sage
+
 *gfan-0.4 (07 Dec 2009)
 
   07 Dec 2009; Christopher Schwan <cschwan@students.uni-mainz.de>
