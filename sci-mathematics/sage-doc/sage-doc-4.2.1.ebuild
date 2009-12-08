@@ -16,8 +16,6 @@ IUSE="linguas_en linguas_fr"
 # TODO: build html, pdf
 # TODO: Handle LINGUAS=en,fr
 
-RESTRICT="mirror"
-
 # in fact sage ships twisted-8.2.0
 DEPEND=">=dev-python/sphinx-0.6.3
 	>=dev-python/twisted-8.1.0
@@ -25,7 +23,10 @@ DEPEND=">=dev-python/sphinx-0.6.3
 RDEPEND="${DEPEND}"
 
 src_compile() {
-	"${SAGE_ROOT}"/sage -docbuild all html
+	export SAGE_DOC_DEST="${D}"
+
+	# TODO: fix sandbox violation errors
+	/opt/sage/sage -docbuild all html
 }
 
 src_install() {

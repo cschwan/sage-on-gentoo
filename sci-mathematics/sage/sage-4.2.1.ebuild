@@ -259,8 +259,8 @@ src_install() {
 	"${D}"/opt/sage/sage -c quit
 
 	# set sage's correct path to /opt - this must be done _after_ calling sage!
-	sed -i "s:SAGE_ROOT=.*/opt:SAGE_ROOT=\"/opt:" "${D}"/opt/bin/sage \
-		"${D}"/opt/sage/sage || die "sed failed"
+	sed -i "s:${D}::" "${D}"/opt/bin/sage "${D}"/opt/sage/sage \
+		|| die "sed failed"
 }
 
 pkg_postinst() {

@@ -29,9 +29,6 @@ EAPI=2
 inherit eutils
 
 SPKG_URI="http://www.sagemath.org/packages/standard"
-SAGE_LOCAL="/usr/lib/sage/local"
-SAGE_ROOT="/usr/lib/sage"
-SAGE_DATA="/usr/lib/sage/data"
 
 SAGE_P="sage-${SAGE_VERSION}"
 
