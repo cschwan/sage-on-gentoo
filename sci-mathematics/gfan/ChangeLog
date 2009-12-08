@@ -1,0 +1,10 @@
+# ChangeLog for sci-mathematics/gfan
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: $
+
+*gfan-0.4 (07 Dec 2009)
+
+  07 Dec 2009; Christopher Schwan <cschwan@students.uni-mainz.de>
+  +gfan-0.4.ebuild, +metadata.xml:
+  Initial import. Ebuild taken from science overlay
+
