@@ -58,6 +58,8 @@ CDEPEND="
 	>=dev-lang/f2c-20060507
 	virtual/cblas
 	virtual/lapack
+	>=sci-libs/cddlib-094f
+	>=sci-mathematics/gfan-0.3.4
 "
 
 DEPEND="
@@ -109,8 +111,8 @@ src_prepare(){
 	# but include a patch to let sage-doc successfully build it
 	sage_package_patch "sage-${PV}" "${FILESDIR}/${P}-documentation.patch"
 
-	sage_clean_targets ATLAS BLAS BOEHM_GC CLIQUER ECLIB ECM F2C FPLLL \
-		FREETYPE GAP GD G2RED GIVARO GNUTLS GSL IML LAPACK LCALC LIBM4RI \
+	sage_clean_targets ATLAS BLAS BOEHM_GC CDDLIB CLIQUER ECLIB ECM F2C FPLLL \
+		FREETYPE G2RED GAP GD GFAN GIVARO GNUTLS GSL IML LAPACK LCALC LIBM4RI \
 		LIBPNG LINBOX MAXIMA MERCURIAL MPFI MPFR MPIR NTL PALP PARI RATPOINTS \
 		READLINE SAGE_BZIP2 SCONS SQLITE TACHYON ZLIB ZNPOLY
 
@@ -257,8 +259,8 @@ src_install() {
 	"${D}"/opt/sage/sage -c quit
 
 	# set sage's correct path to /opt - this must be done _after_ calling sage!
-	sed -i "s:${D}:/opt:g" "${D}"/opt/bin/sage "${D}"/opt/sage/sage \
-		|| die "sed failed"
+	sed -i "s:SAGE_ROOT=.*/opt:SAGE_ROOT=\"/opt:" "${D}"/opt/bin/sage \
+		"${D}"/opt/sage/sage || die "sed failed"
 }
 
 pkg_postinst() {
