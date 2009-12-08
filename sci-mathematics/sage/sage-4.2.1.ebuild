@@ -14,7 +14,7 @@ SRC_URI="http://mirror.switch.ch/mirror/sagemath/src/${P}.tar"
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
-IUSE="doc"
+IUSE=""
 
 CDEPEND="
 	>=dev-libs/mpfr-2.4.1
@@ -45,7 +45,7 @@ CDEPEND="
 	>=sci-libs/libfplll-3.0.12
 	>=sci-mathematics/ecm-6.2.1
 	>=media-gfx/tachyon-0.98
-	>=sci-mathematics/eclib-20080310.7
+	>=sci-mathematics/eclib-20080310
 	>=sci-mathematics/lcalc-1.23[pari]
 	>=sci-mathematics/genus2reduction-0.3
 	>=dev-lang/R-2.9.2[lapack,readline]
@@ -82,57 +82,6 @@ RESTRICT="mirror test"
 
 # TODO: install a menu icon for sage (see homepage and newsgroup for icon, etc)
 
-# @FUNCTION: sage_clean_targets
-# @USAGE: <SAGE-MAKEFILE-TARGETS>
-# @DESCRIPTION: This function clears the prerequisites and commands of
-# <SAGE-MAKEFILE-TARGETS> in deps-makefile. If one wants to use e.g. sqlite from
-# portage, call:
-#
-# sage_clean_targets SQLITE
-#
-# This replaces in spkg/standard/deps:
-#
-# $(INST)/$(SQLITE): $(INST)/$(TERMCAP) $(INST)/$(READLINE)
-#	$(SAGE_SPKG) $(SQLITE) 2>&1
-#
-# with
-#
-# $(INST)/$(SQLITE):
-#	@echo "using SQLITE from portage"
-#
-# so that deps is still a valid makefile but with SQLITE provided by portage
-# instead by Sage.
-sage_clean_targets() {
-	for i in "$@"; do
-		sed -i -n "
-		# look for the makefile-target we need
-		/^\\\$(INST)\/\\\$($i)\:.*/ {
-			# clear the target's prerequisites and add a simple 'echo'-command
-			# that will inform us that this target will not be built
-			s//\\\$(INST)\/\\\$($i)\:\n\t@echo \"using $i from portage\"/p
-			: label
-			# go to the next line without printing the buffer (note that sed is
-			# invoked with '-n') ...
-			n
-			# and check if its empty - if that is the case the target definition
-			# is finished.
-			/^\$/ {
-				# print empty line ...
-				p
-				# and exit
-				b
-			}
-			# this is not an empty line, so it must be a line containing
-			# commands. Since we do not want these to be executed, we simply do
-			# not print them and proceed with the next line
-			b label
-		}
-		# default action: print line
-		p
-		" "${S}"/spkg/standard/deps
-	done
-}
-
 pkg_setup() {
 	FORTRAN="gfortran"
 
@@ -148,24 +97,17 @@ pkg_setup() {
 }
 
 src_prepare(){
+	# verbosity blows up build.log and slows down installation
+	sed -i "s:cp -rpv:cp -rp:g" makefile || die "sed failed"
+
 	cd "${S}"/spkg/standard
 
-	# do not generate documentation if not needed
-	if ! use doc ; then
-		# remove the following line which builds documentation
-		sed -i "/\"\$SAGE_ROOT\"\/sage -docbuild all html/d" \
-			"${S}"/spkg/install || die "sed failed"
+	# do not build documentation, ...
+	sage_package_sed "sage_scripts-${PV}" -i \
+		"/\"\$SAGE_ROOT\"\/sage -docbuild all html/d" install
 
-		# remove the same line in the same file in sage_scripts spkg - this
-		# package will unpack and overwrite the original "install" file (why ?)
-		sage_package_sed "sage_scripts-${PV}" -i \
-			"/\"\$SAGE_ROOT\"\/sage -docbuild all html/d" install
-
-		# TODO: remove documentation (and related tests ?)
-	fi
-
-	# verbosity blows up build.log and slows down installation
-	sed -i "s:cp -rpv:cp -rp:g" "${S}"/makefile
+	# but include a patch to let sage-doc successfully build it
+	sage_package_patch "sage-${PV}" "${FILESDIR}/${P}-documentation.patch"
 
 	sage_clean_targets ATLAS BLAS BOEHM_GC CLIQUER ECLIB ECM F2C FPLLL \
 		FREETYPE GAP GD G2RED GIVARO GNUTLS GSL IML LAPACK LCALC LIBM4RI \
@@ -211,6 +153,8 @@ src_prepare(){
 	sage_package_nested_patch r-2.9.2 rpy2-2.0.6 \
 		"${FILESDIR}/${P}-fix-rpy2.patch"
 
+	# TODO: customizing PYTHONPATH yields build errors without using python
+	# packages from portage
 # 	# add system path for python modules
 # 	sage_package_sed "sage_scripts-${PV}" -i \
 # 		-e "s:PYTHONPATH=\"\(.*\)\":PYTHONPATH=\"\1\:$(python_get_sitedir)\":g" \
@@ -285,18 +229,24 @@ src_compile() {
 	# do not run parallel since this is impossible with SAGE (!?)
 	emake -j1 || die "emake failed"
 
-	# TODO: Do we need this ?
+	# TODO: Do we still need this ?
 	if ( grep "sage: An error occurred" "${S}/install.log" ); then
 		die "make failed"
 	fi
 }
 
 src_install() {
-	emake DESTDIR="${D}/opt" install || die "emake install failed"
+	# remove *.spkg files which will not be needed since sage must be upgraded
+	# using portage
+	for i in spkg/standard/*.spkg ; do
+		rm $i
+		touch $i
+	done
 
-	# set sage's correct path to /opt
-	sed -i "s/SAGE_ROOT=.*\/opt/SAGE_ROOT=\"\/opt/" "${D}"/opt/bin/sage \
-		"${D}"/opt/sage/sage || die "sed failed"
+	# these files are also not needed
+	rm -rf spkg/build/*
+
+	emake DESTDIR="${D}/opt" install || die "emake install failed"
 
 	# TODO: handle generated docs
 	dodoc README.txt || die "dodoc failed"
@@ -305,6 +255,10 @@ src_install() {
 	# this time to create the files for gentoo to correctly record as part of
 	# the sage install
 	"${D}"/opt/sage/sage -c quit
+
+	# set sage's correct path to /opt - this must be done _after_ calling sage!
+	sed -i "s:${D}:/opt:g" "${D}"/opt/bin/sage "${D}"/opt/sage/sage \
+		|| die "sed failed"
 }
 
 pkg_postinst() {
