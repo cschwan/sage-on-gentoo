@@ -2,6 +2,10 @@
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  08 Dec 2009; Christopher Schwan <cschwan@students.uni-mainz.de>
+  eclib-20080310_p7.ebuild:
+  Added missing ratpoint and mwrank binaries
+
 *eclib-20080310_p7 (06 Dec 2009)
 
   06 Dec 2009; François Bissey <f.r.bissey@massey.ac.nz>

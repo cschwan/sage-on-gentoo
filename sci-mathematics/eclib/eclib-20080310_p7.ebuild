@@ -51,5 +51,6 @@ src_install() {
 }
 
 src_test() {
+	# TODO: tests fail - modify patch ?
 	emake allcheck || die "tests failed"
 }
