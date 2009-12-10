@@ -208,26 +208,16 @@ src_prepare(){
 	sage_package_cp scipy_sandbox-20071020.p4 "${T}"/site.cfg arpack/site.cfg
 	sage_package_cp scipy_sandbox-20071020.p4 "${T}"/site.cfg delaunay/site.cfg
 
+	# unset custom C(XX)FLAGS on amd64 - this is just a temporary hack
+	if use amd64 ; then
+		sage_package_patch "sage-${PV}" "${FILESDIR}/${P}-amd64-hack.patch"
+	fi
+
 	# pack all unpacked spkgs
 	sage_package_finish
 }
 
 src_compile() {
-	# TODO: according to the gentoo-amd64 folks the following is a dirty hack -
-	# find the package that is causing the error and apply a better solution
-
-	# On amd64 the ABI variable is used by portage to select between 32-
-	# (ABI=x86) and 64-bit (ABI=amd64) compilation. This causes problems since
-	# SAGE uses this variable but expects it to be '32' or '64'. Unsetting lets
-	# SAGE decide what ABI should be
-	unset ABI
-
-	# custom cflags cause problems on amd64
-	if use amd64 ; then
-		unset CFLAGS
-		unset CXXFLAGS
-	fi
-
 	# do not run parallel since this is impossible with SAGE (!?)
 	emake -j1 || die "emake failed"
 
