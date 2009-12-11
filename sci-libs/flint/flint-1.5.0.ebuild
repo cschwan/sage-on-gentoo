@@ -4,7 +4,7 @@
 
 EAPI=2
 
-inherit eutils multilib toolchain-funcs
+inherit eutils flag-o-matic multilib toolchain-funcs
 
 DESCRIPTION="Fast Library for Number Theory"
 HOMEPAGE="http://www.flintlib.org/"
@@ -17,41 +17,38 @@ KEYWORDS="~amd64 ~ppc ~ppc64 ~x86"
 IUSE="qs openmp ntl doc"
 
 DEPENDS="ntl? ( dev-libs/ntl )
-		dev-libs/gmp"
+	openmp? ( sys-devel/gcc[openmp] )
+	dev-libs/gmp
+	sci-libs/zn_poly"
 RDEPENDS="ntl? ( dev-libs/ntl )
-		dev-libs/gmp"
-
-pkg_setup() {
-	if ( use openmp ) then
-	   if ( $(tc-getCC)$ == *gcc* ) then
-	      if ( $(gcc-major-version)$(gcc-minor-version) -lt 43 ) then
-		  eerror "You are using gcc and OpenMP is only available with gcc >= 4.2 "
-		  eerror "mathgl requires at least gcc >= 4.3"
-		  eerror "If you want to use gcc you also need to enable the openmp useflag for gcc"
-		  die "wrong compiler version"
-	      elif ( ! built_with_use sys-devel/gcc openmp ) then
-		  eerror "You are using gcc, gcc needs to be build with the openmp useflag"
-		  die "Wrong configuration for gcc"
-	      fi
-	    fi
-	    einfo "You are not using gcc"
-	    einfo "You should ensure that your compiler is providing support for openmp"
-	fi
-}
+	dev-libs/gmp"
 
 src_prepare() {
-	sed -i s/"-shared -o libflint.so"/"-shared -Wl,-soname,libflint.so -o libflint.so"/ makefile
-	sed -i s:"CFLAGS = \$(INCS) \$(FLINT_TUNE) -O2":" ": makefile
-	if( use openmp ); then
-	  sed -i s:"CFLAGS2 = \$(INCS) \$(FLINT_TUNE) -O2":"CFLAGS2 = \$(CFLAGS) -openmp ": makefile
+	# use zn_poly from portage
+	epatch "${FILESDIR}/${P}-without-zn_poly.patch"
+
+	# fix QA warning
+	sed -i "s:-shared -o libflint.so:-shared -Wl,-soname,libflint.so -o libflint.so:" \
+		makefile
+
+	# remove CFLAGS - use from portage
+	sed -i "s:CFLAGS = \$(INCS) \$(FLINT_TUNE) -O2::" makefile
+
+	# add support for openmp
+	if use openmp ; then
+		sed -i "s:CFLAGS2 = \$(INCS) \$(FLINT_TUNE) -O2:CFLAGS2 = \$(CFLAGS) -openmp :" \
+			makefile
 	else
-	  sed -i s:"CFLAGS2 = \$(INCS) \$(FLINT_TUNE) -O2":"CFLAGS2 = \$(CFLAGS) ": makefile
+		sed -i "s:CFLAGS2 = \$(INCS) \$(FLINT_TUNE) -O2:CFLAGS2 = \$(CFLAGS) :" \
+			makefile
 	fi
-	sed -i s:"\$(CPP) \$(CFLAGS)":"\$(CPP) \$(CXXFLAGS)": makefile
+
+	# use CXXFLAGS for C++ code
+	sed -i "s:\$(CPP) \$(CFLAGS):\$(CPP) \$(CXXFLAGS):" makefile
 }
 
 src_compile() {
-	export FLINT_GMP_INCLUDE_DIR="/usr/include"
+	export FLINT_GMP_INCLUDE_DIR=/usr/include
 	export FLINT_GMP_LIB_DIR=$(get_libdir)
 	export FLINT_NTL_LIB_DIR=$(get_libdir)
 	export FLINT_LINK_OPTIONS="${LDFLAGS}"
@@ -59,13 +56,16 @@ src_compile() {
 	export FLINT_CPP=$(tc-getCXX)
 	export FLINT_LIB="libflint.so"
 
+	# hack to fix flint's hacks
+	append-cflags -DGENTOO_FLINT_ZNP_HACK
+
 	emake library || die "Building flint shared library failed!"
 
-	if( use qs ); then
+	if use qs ; then
 		emake QS || die "Building flintQS failed!"
 	fi
 
-	if( use ntl ); then
+	if use ntl ; then
 		$(tc-getCXX) ${CXXFLAGS} -fPIC -c NTL-interface.cpp
 		$(tc-getAR) q libFLINT_NTL-interface.a  NTL-interface.o
 	fi
@@ -77,16 +77,16 @@ src_install(){
 	insinto /usr/include/FLINT
 	doins *.h || die "installation of headers failed!"
 
-	if( use ntl ); then
-	  dolib.a libFLINT_NTL-interface.a
+	if use ntl ; then
+		dolib.a libFLINT_NTL-interface.a
 	fi
 
-	if( use qs ); then
+	if use qs ; then
 		dobin mpQS || die "installation of mpQS failed!"
 	fi
 
-	if( use doc ); then
-	  insinto /usr/share/doc/${PF}
-	  doins doc/*.pdf || die "Failed to install docs"
+	if use doc ; then
+		insinto /usr/share/doc/"${PF}"
+		doins doc/*.pdf || die "Failed to install docs"
 	fi
 }

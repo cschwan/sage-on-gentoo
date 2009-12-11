@@ -1,0 +1,180 @@
+diff -Naurb flint-1.5.0.orig/F_mpz.c flint-1.5.0/F_mpz.c
+--- flint-1.5.0.orig/F_mpz.c	2009-09-23 10:03:27.000000000 +0000
++++ flint-1.5.0/F_mpz.c	2009-12-11 19:33:14.131310856 +0000
+@@ -37,7 +37,7 @@
+ #include "long_extras.h"
+ #include "F_mpz.h"
+ #include "mpz_extras.h"
+-#include "zn_poly/src/zn_poly.h"
++#include <zn_poly/zn_poly.h>
+ 
+ /*===============================================================================
+ 
+diff -Naurb flint-1.5.0.orig/F_mpz.h flint-1.5.0/F_mpz.h
+--- flint-1.5.0.orig/F_mpz.h	2009-09-23 10:03:27.000000000 +0000
++++ flint-1.5.0/F_mpz.h	2009-12-11 19:33:03.189311355 +0000
+@@ -35,7 +35,7 @@
+ #include <gmp.h>
+ #include "flint.h"
+ #include "mpn_extras.h"
+-#include "zn_poly/src/zn_poly.h"
++#include <zn_poly/zn_poly.h>
+ 
+ /* 
+    F_mpz_t type
+diff -Naurb flint-1.5.0.orig/fmpz.c flint-1.5.0/fmpz.c
+--- flint-1.5.0.orig/fmpz.c	2009-09-23 10:03:27.000000000 +0000
++++ flint-1.5.0/fmpz.c	2009-12-11 19:31:47.759310640 +0000
+@@ -37,7 +37,7 @@
+ #include "mpn_extras.h"
+ #include "F_mpn_mul-tuning.h"
+ #include "long_extras.h"
+-#include "zn_poly/src/zn_poly.h"
++#include <zn_poly/zn_poly.h>
+ 
+ #define SWAP_PTRS(x_dummy_p, y_dummy_p) \
+ do { \
+diff -Naurb flint-1.5.0.orig/fmpz.h flint-1.5.0/fmpz.h
+--- flint-1.5.0.orig/fmpz.h	2009-09-23 10:03:27.000000000 +0000
++++ flint-1.5.0/fmpz.h	2009-12-11 19:31:27.652311154 +0000
+@@ -36,7 +36,7 @@
+ #include "memory-manager.h"
+ #include "flint.h"
+ #include "long_extras.h"
+-#include "zn_poly/src/zn_poly.h"
++#include <zn_poly/zn_poly.h>
+ 
+ typedef mp_limb_t * fmpz_t;
+ 
+diff -Naurb flint-1.5.0.orig/fmpz_poly.c flint-1.5.0/fmpz_poly.c
+--- flint-1.5.0.orig/fmpz_poly.c	2009-09-23 10:03:26.000000000 +0000
++++ flint-1.5.0/fmpz_poly.c	2009-12-11 19:31:16.621298179 +0000
+@@ -43,7 +43,7 @@
+ #include "ZmodF_poly.h"
+ #include "long_extras.h"
+ #include "zmod_poly.h"
+-#include "zn_poly/src/zn_poly.h"
++#include <zn_poly/zn_poly.h>
+ 
+ /****************************************************************************
+ 
+diff -Naurb flint-1.5.0.orig/makefile flint-1.5.0/makefile
+--- flint-1.5.0.orig/makefile	2009-09-23 10:03:27.000000000 +0000
++++ flint-1.5.0/makefile	2009-12-11 20:13:28.275298046 +0000
+@@ -22,7 +22,7 @@
+ 
+ CPP = $(FLINT_CPP) 
+ 
+-LIBS = -L$(FLINT_GMP_LIB_DIR) $(FLINT_LINK_OPTIONS) -lgmp -lpthread -lm
++LIBS = -L$(FLINT_GMP_LIB_DIR) $(FLINT_LINK_OPTIONS) -lgmp -lpthread -lm -lzn_poly
+ 
+ LIBS2 = -L$(FLINT_GMP_LIB_DIR) -L$(FLINT_NTL_LIB_DIR) $(FLINT_LINK_OPTIONS) -lgmp -lpthread -lntl -lm 
+ 
+@@ -38,11 +38,6 @@
+ RM = rm -f
+ 
+ HEADERS = \
+-	zn_poly/src/zn_poly.h \
+-	zn_poly/src/wide_arith.h \
+-	zn_poly/src/support.h \
+-	zn_poly/src/profiler.h \
+-	zn_poly/src/zn_poly_internal.h \
+ 	mpz_extras.h \
+ 	F_mpn_mul-tuning.h \
+ 	ZmodF.h \
+@@ -71,23 +66,6 @@
+ ####### library object files
+ 
+ FLINTOBJ = \
+-	zn_mod.o \
+-	misc.o \
+-	mul_ks.o \
+-	pack.o \
+-	mul.o \
+-	mulmid.o \
+-	mulmid_ks.o \
+-	ks_support.o \
+-	mpn_mulmid.o \
+-	nuss.o \
+-	pmf.o \
+-	pmfvec_fft.o \
+-	tuning.o \
+-	mul_fft.o \
+-	mul_fft_dft.o \
+-	array.o \
+-	invert.o \
+ 	mpn_extras.o \
+ 	mpz_extras.o \
+ 	memory-manager.o \
+@@ -150,59 +128,6 @@
+ libflint.so: $(FLINTOBJ)
+ 	$(CC) -fPIC -shared -o libflint.so $(FLINTOBJ) $(LIBS)
+ 
+-##### zn_poly object files
+-
+-zn_mod.o: zn_poly/src/zn_mod.c $(HEADERS)
+-	$(CC) $(CFLAGS) -DNDEBUG -o zn_mod.o -c zn_poly/src/zn_mod.c
+-	
+-misc.o: zn_poly/src/misc.c $(HEADERS)
+-	$(CC) $(CFLAGS) -DNDEBUG -o misc.o -c zn_poly/src/misc.c
+-
+-ks_support.o: zn_poly/src/ks_support.c $(HEADERS)
+-	$(CC) $(CFLAGS) -DNDEBUG -o ks_support.o -c zn_poly/src/ks_support.c
+-
+-mul_ks.o: zn_poly/src/mul_ks.c $(HEADERS)
+-	$(CC) $(CFLAGS) -DNDEBUG -o mul_ks.o -c zn_poly/src/mul_ks.c
+-
+-pack.o: zn_poly/src/pack.c $(HEADERS)
+-	$(CC) $(CFLAGS) -DNDEBUG -o pack.o -c zn_poly/src/pack.c
+-
+-nuss.o: zn_poly/src/nuss.c $(HEADERS)
+-	$(CC) $(CFLAGS) -DNDEBUG -o nuss.o -c zn_poly/src/nuss.c
+-
+-mul.o: zn_poly/src/mul.c $(HEADERS)
+-	$(CC) $(CFLAGS) -DNDEBUG -o mul.o -c zn_poly/src/mul.c
+-
+-mulmid.o: zn_poly/src/mulmid.c $(HEADERS)
+-	$(CC) $(CFLAGS) -DNDEBUG -o mulmid.o -c zn_poly/src/mulmid.c
+-
+-mpn_mulmid.o: zn_poly/src/mpn_mulmid.c $(HEADERS)
+-	$(CC) $(CFLAGS) -DNDEBUG -o mpn_mulmid.o -c zn_poly/src/mpn_mulmid.c
+-
+-mulmid_ks.o: zn_poly/src/mulmid_ks.c $(HEADERS)
+-	$(CC) $(CFLAGS) -DNDEBUG -o mulmid_ks.o -c zn_poly/src/mulmid_ks.c
+-
+-pmf.o: zn_poly/src/pmf.c $(HEADERS)
+-	$(CC) $(CFLAGS) -DNDEBUG -o pmf.o -c zn_poly/src/pmf.c
+-
+-pmfvec_fft.o: zn_poly/src/pmfvec_fft.c $(HEADERS)
+-	$(CC) $(CFLAGS) -DNDEBUG -o pmfvec_fft.o -c zn_poly/src/pmfvec_fft.c
+-
+-tuning.o: zn_poly/src/tuning.c $(HEADERS)
+-	$(CC) $(CFLAGS) -DNDEBUG -o tuning.o -c zn_poly/src/tuning.c
+-
+-mul_fft.o: zn_poly/src/mul_fft.c $(HEADERS)
+-	$(CC) $(CFLAGS) -DNDEBUG -o mul_fft.o -c zn_poly/src/mul_fft.c
+-
+-mul_fft_dft.o: zn_poly/src/mul_fft_dft.c $(HEADERS)
+-	$(CC) $(CFLAGS) -DNDEBUG -o mul_fft_dft.o -c zn_poly/src/mul_fft_dft.c
+-
+-array.o: zn_poly/src/array.c $(HEADERS)
+-	$(CC) $(CFLAGS) -DNDEBUG -o array.o -c zn_poly/src/array.c
+-
+-invert.o: zn_poly/src/invert.c $(HEADERS)
+-	$(CC) $(CFLAGS) -DNDEBUG -o invert.o -c zn_poly/src/invert.c
+-
+ ##### Object files
+ 
+ mpn_extras.o: mpn_extras.c $(HEADERS)
+diff -Naurb flint-1.5.0.orig/zmod_poly.h flint-1.5.0/zmod_poly.h
+--- flint-1.5.0.orig/zmod_poly.h	2009-09-23 10:03:27.000000000 +0000
++++ flint-1.5.0/zmod_poly.h	2009-12-11 19:32:50.106298486 +0000
+@@ -38,7 +38,7 @@
+ #include "memory-manager.h"
+ #include "mpn_extras.h"
+ #include "long_extras.h"
+-#include "zn_poly/src/zn_poly.h"
++#include <zn_poly/zn_poly.h>
+ 
+ #ifndef _ZMOD_POLY_H_
+ #define _ZMOD_POLY_H_
