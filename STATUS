@@ -44,6 +44,11 @@ Packages:
   * See bug #230423
   * Compiles fine, no QA warnings, no tests
 
+- sci-libs/zn_poly-0.9
+  * No bugreport yet
+  * Tests successful
+  * Contains small hack for flint
+
 Problematic Packages:
 
 - sci-mathematics/singular-3.1.0.7-r1

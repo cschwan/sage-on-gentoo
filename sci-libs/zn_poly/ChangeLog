@@ -2,6 +2,10 @@
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  11 Dec 2009; Christopher Schwan <cschwan@students.uni-mainz.de>
+  zn_poly-0.9.ebuild, +files/zn_poly-0.9-flint-hack.patch:
+  Added small hack to make flint work
+
   14 Nov 2009; Christopher Schwan <cschwan@students.uni-mainz.de>
   zn_poly-0.9.ebuild:
   Added ~amd64 keyword

@@ -1,0 +1,12 @@
+--- include/zn_poly.h.orig	2009-12-11 19:55:14.292298540 +0000
++++ include/zn_poly.h	2009-12-11 19:57:20.100344695 +0000
+@@ -69,7 +69,9 @@
+ /*
+    I get really sick of typing unsigned long.
+ */
++#ifndef GENTOO_FLINT_ZNP_HACK
+ typedef unsigned long  ulong;
++#endif
+ 
+ 
+ #include "wide_arith.h"

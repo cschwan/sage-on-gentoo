@@ -23,6 +23,10 @@ DEPEND="${CDEPEND}
 	dev-lang/python"
 RDEPEND="${CDEPEND}"
 
+src_prepare() {
+	epatch "${FILESDIR}/${P}-flint-hack.patch"
+}
+
 # TODO: --ntl-prefix= --use-flint --flint-prefix=
 
 src_configure() {
