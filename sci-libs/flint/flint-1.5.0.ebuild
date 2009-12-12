@@ -15,11 +15,11 @@ SLOT="0"
 KEYWORDS="~amd64 ~ppc ~ppc64 ~x86"
 IUSE="qs openmp ntl doc"
 
-DEPENDS="ntl? ( dev-libs/ntl )
+DEPEND="ntl? ( dev-libs/ntl )
 	openmp? ( sys-devel/gcc[openmp] )
 	dev-libs/gmp
 	>=sci-libs/zn_poly-0.9"
-RDEPENDS="ntl? ( dev-libs/ntl )
+RDEPEND="ntl? ( dev-libs/ntl )
 	dev-libs/gmp"
 
 RESTRICT="mirror"
