@@ -60,6 +60,7 @@ CDEPEND="
 	virtual/lapack
 	>=sci-libs/cddlib-094f
 	>=sci-mathematics/gfan-0.3.4
+	>=sci-libs/flint-1.5.0[ntl,qs]
 "
 
 DEPEND="
@@ -102,6 +103,7 @@ src_prepare(){
 	# verbosity blows up build.log and slows down installation
 	sed -i "s:cp -rpv:cp -rp:g" makefile || die "sed failed"
 
+	# change to Sage's package directory
 	cd "${S}"/spkg/standard
 
 	# do not build documentation, ...
@@ -111,10 +113,10 @@ src_prepare(){
 	# but include a patch to let sage-doc successfully build it
 	sage_package_patch "sage-${PV}" "${FILESDIR}/${P}-documentation.patch"
 
-	sage_clean_targets ATLAS BLAS BOEHM_GC CDDLIB CLIQUER ECLIB ECM F2C FPLLL \
-		FREETYPE G2RED GAP GD GFAN GIVARO GNUTLS GSL IML LAPACK LCALC LIBM4RI \
-		LIBPNG LINBOX MAXIMA MERCURIAL MPFI MPFR MPIR NTL PALP PARI RATPOINTS \
-		READLINE SAGE_BZIP2 SCONS SQLITE TACHYON ZLIB ZNPOLY
+	sage_clean_targets ATLAS BLAS BOEHM_GC CDDLIB CLIQUER ECLIB ECM F2C FLINT \
+		FLINTQS FPLLL FREETYPE G2RED GAP GD GFAN GIVARO GNUTLS GSL IML LAPACK \
+		LCALC LIBM4RI LIBPNG LINBOX MAXIMA MERCURIAL MPFI MPFR MPIR NTL PALP \
+		PARI RATPOINTS READLINE SAGE_BZIP2 SCONS SQLITE TACHYON ZLIB ZNPOLY
 
 	# patch to make a correct symbolic links
 	sage_package_sed "sage_scripts-${PV}" -i \
@@ -161,6 +163,7 @@ src_prepare(){
 # 	sage_package_sed "sage_scripts-${PV}" -i \
 # 		-e "s:PYTHONPATH=\"\(.*\)\":PYTHONPATH=\"\1\:$(python_get_sitedir)\":g" \
 # 		sage-env
+	# TODO: try to use export SAGE_PATH=
 
 	# TODO: Are these needed ?
 	sage_package_sed "sage-${PV}" -i \
@@ -170,7 +173,12 @@ src_prepare(){
 		module_list.py
 
 	# TODO: -e "s:SAGE_ROOT + \"/local/include/fplll/fplll.h\":\"\":g" \
-	# This file does not exist
+	# this file does not exist
+
+	sage_package_sed "sage-${PV}" -i \
+		-e "s:SAGE_ROOT+'/local/include/FLINT/':'/usr/include/FLINT/':g" \
+		-e "s:SAGE_ROOT + \"/local/include/FLINT/flint.h\":\"/usr/include/FLINT/flint.h\":g" \
+		module_list.py
 
 	# this file is taken from portage's scipy ebuild
 	cat > "${T}"/site.cfg <<-EOF
@@ -238,6 +246,7 @@ src_install() {
 	# these files are also not needed
 	rm -rf spkg/build/*
 
+	# install files
 	emake DESTDIR="${D}/opt" install || die "emake install failed"
 
 	# TODO: handle generated docs
