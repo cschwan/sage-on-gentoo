@@ -51,6 +51,7 @@ Packages:
 
 - sci-libs/flint-1.5.0
   * See bug #230437
+  * Has QA warning: runtime text relocations
   * All tests successful
 
 Problematic Packages:
