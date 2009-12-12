@@ -60,16 +60,19 @@ diff -Naurb flint-1.5.0.orig/fmpz_poly.c flint-1.5.0/fmpz_poly.c
  
 diff -Naurb flint-1.5.0.orig/makefile flint-1.5.0/makefile
 --- flint-1.5.0.orig/makefile	2009-09-23 10:03:27.000000000 +0000
-+++ flint-1.5.0/makefile	2009-12-11 20:13:28.275298046 +0000
-@@ -22,7 +22,7 @@
++++ flint-1.5.0/makefile	2009-12-12 08:19:15.379837364 +0000
+@@ -22,9 +22,9 @@
  
  CPP = $(FLINT_CPP) 
  
 -LIBS = -L$(FLINT_GMP_LIB_DIR) $(FLINT_LINK_OPTIONS) -lgmp -lpthread -lm
 +LIBS = -L$(FLINT_GMP_LIB_DIR) $(FLINT_LINK_OPTIONS) -lgmp -lpthread -lm -lzn_poly
  
- LIBS2 = -L$(FLINT_GMP_LIB_DIR) -L$(FLINT_NTL_LIB_DIR) $(FLINT_LINK_OPTIONS) -lgmp -lpthread -lntl -lm 
+-LIBS2 = -L$(FLINT_GMP_LIB_DIR) -L$(FLINT_NTL_LIB_DIR) $(FLINT_LINK_OPTIONS) -lgmp -lpthread -lntl -lm 
++LIBS2 = -L$(FLINT_GMP_LIB_DIR) -L$(FLINT_NTL_LIB_DIR) $(FLINT_LINK_OPTIONS) -lgmp -lpthread -lntl -lm -lzn_poly
  
+ ifndef FLINT_NTL_INCLUDE_DIR
+ 	INCS = -I$(FLINT_GMP_INCLUDE_DIR) 
 @@ -38,11 +38,6 @@
  RM = rm -f
  

@@ -10,7 +10,6 @@ DESCRIPTION="Fast Library for Number Theory"
 HOMEPAGE="http://www.flintlib.org/"
 SRC_URI="http://www.flintlib.org/${P}.tar.gz"
 
-RESTRICT="mirror"
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64 ~ppc ~ppc64 ~x86"
@@ -23,9 +22,16 @@ DEPENDS="ntl? ( dev-libs/ntl )
 RDEPENDS="ntl? ( dev-libs/ntl )
 	dev-libs/gmp"
 
+RESTRICT="mirror"
+
 src_prepare() {
 	# use zn_poly from portage
 	epatch "${FILESDIR}/${P}-without-zn_poly.patch"
+
+	if use ntl ; then
+		# build ntl interface into libflint (same way as Sage does)
+		epatch "${FILESDIR}/${P}-enable-ntl.patch"
+	fi
 
 	# fix QA warning
 	sed -i "s:-shared -o libflint.so:-shared -Wl,-soname,libflint.so -o libflint.so:" \
@@ -56,8 +62,9 @@ src_compile() {
 	export FLINT_CPP=$(tc-getCXX)
 	export FLINT_LIB="libflint.so"
 
-	# hack to fix flint's hacks
+	# hack to fix flint's hacks with zn_poly
 	append-cflags -DGENTOO_FLINT_ZNP_HACK
+	append-cxxflags -DGENTOO_FLINT_ZNP_HACK
 
 	emake library || die "Building flint shared library failed!"
 
@@ -65,10 +72,7 @@ src_compile() {
 		emake QS || die "Building flintQS failed!"
 	fi
 
-	if use ntl ; then
-		$(tc-getCXX) ${CXXFLAGS} -fPIC -c NTL-interface.cpp
-		$(tc-getAR) q libFLINT_NTL-interface.a  NTL-interface.o
-	fi
+	# TODO: examples ?
 }
 
 src_install(){
@@ -76,10 +80,6 @@ src_install(){
 
 	insinto /usr/include/FLINT
 	doins *.h || die "installation of headers failed!"
-
-	if use ntl ; then
-		dolib.a libFLINT_NTL-interface.a
-	fi
 
 	if use qs ; then
 		dobin mpQS || die "installation of mpQS failed!"

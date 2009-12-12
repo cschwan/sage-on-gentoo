@@ -2,6 +2,11 @@
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  12 Dec 2009; Christopher Schwan <cschwan@students.uni-mainz.de>
+  flint-1.5.0.ebuild, +files/flint-1.5.0-enable-ntl.patch,
+  files/flint-1.5.0-without-zn_poly.patch:
+  Fixed USE=ntl
+
   11 Dec 2009; Christopher Schwan <cschwan@students.uni-mainz.de>
   flint-1.5.0.ebuild, +files/flint-1.5.0-without-zn_poly.patch:
   Changed packge to use portage version of zn_poly, simplified openmp
