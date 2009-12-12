@@ -4,7 +4,7 @@
 
 EAPI=2
 
-inherit eutils flag-o-matic multilib toolchain-funcs
+inherit eutils multilib toolchain-funcs
 
 DESCRIPTION="Fast Library for Number Theory"
 HOMEPAGE="http://www.flintlib.org/"
@@ -61,10 +61,6 @@ src_compile() {
 	export FLINT_CC=$(tc-getCC)
 	export FLINT_CPP=$(tc-getCXX)
 	export FLINT_LIB="libflint.so"
-
-	# hack to fix flint's hacks with zn_poly
-	append-cflags -DGENTOO_FLINT_ZNP_HACK
-	append-cxxflags -DGENTOO_FLINT_ZNP_HACK
 
 	emake library || die "Building flint shared library failed!"
 
