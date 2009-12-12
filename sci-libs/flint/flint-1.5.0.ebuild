@@ -40,6 +40,8 @@ src_prepare() {
 	# remove CFLAGS - use from portage
 	sed -i "s:CFLAGS = \$(INCS) \$(FLINT_TUNE) -O2::" makefile
 
+	# TODO: this needs testing, does not work (?)
+
 	# add support for openmp
 	if use openmp ; then
 		sed -i "s:CFLAGS2 = \$(INCS) \$(FLINT_TUNE) -O2:CFLAGS2 = \$(CFLAGS) -openmp :" \
