@@ -18,7 +18,7 @@ IUSE="qs openmp ntl doc"
 DEPENDS="ntl? ( dev-libs/ntl )
 	openmp? ( sys-devel/gcc[openmp] )
 	dev-libs/gmp
-	sci-libs/zn_poly"
+	>=sci-libs/zn_poly-0.9"
 RDEPENDS="ntl? ( dev-libs/ntl )
 	dev-libs/gmp"
 
