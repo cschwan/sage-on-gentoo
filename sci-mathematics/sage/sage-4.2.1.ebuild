@@ -24,7 +24,6 @@ CDEPEND="
 	)
 	>=net-libs/gnutls-2.2.1
 	>=sci-libs/gsl-1.10
-	>=sci-libs/lapack-atlas-3.8.3
 	>=sci-mathematics/pari-2.3.3[data,gmp]
 	>=sys-libs/zlib-1.2.3
 	>=app-arch/bzip2-1.0.5
@@ -37,7 +36,7 @@ CDEPEND="
 	>=media-libs/freetype-2.3.5
 	>=sci-libs/linbox-1.1.6[ntl,sage]
 	>=sci-libs/mpfi-1.3.4
-	~sci-libs/givaro-3.2.16
+	=sci-libs/givaro-3.2*
 	>=sci-libs/iml-1.0.1
 	>=sci-libs/zn_poly-0.9
 	>=sci-mathematics/maxima-5.19.1[ecl,-sbcl]
@@ -60,7 +59,8 @@ CDEPEND="
 	virtual/lapack
 	>=sci-libs/cddlib-094f
 	>=sci-mathematics/gfan-0.3.4
-	>=sci-libs/flint-1.5.0[ntl,qs]
+	>=sci-libs/flint-1.5.0[ntl]
+	>=sci-mathematics/flintqs-20070817_p4
 "
 
 DEPEND="
@@ -175,6 +175,7 @@ src_prepare(){
 	# TODO: -e "s:SAGE_ROOT + \"/local/include/fplll/fplll.h\":\"\":g" \
 	# this file does not exist
 
+	# make Sage be able to find flint's headers
 	sage_package_sed "sage-${PV}" -i \
 		-e "s:SAGE_ROOT+'/local/include/FLINT/':'/usr/include/FLINT/':g" \
 		-e "s:SAGE_ROOT + \"/local/include/FLINT/flint.h\":\"/usr/include/FLINT/flint.h\":g" \

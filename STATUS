@@ -53,6 +53,12 @@ Packages:
   * See bug #230437
   * All tests successful
 
+- sci-mathematics/flintqs-20070817_p4
+  * No bugreport
+  * Has no working homepage, svn or whatever
+  * No tests
+  * NO QA warnings
+
 Problematic Packages:
 
 - sci-mathematics/singular-3.1.0.7-r1
