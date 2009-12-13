@@ -26,6 +26,7 @@ sci-libs/scipy
 sci-libs/zn_poly
 sci-mathematics/eclib
 sci-mathematics/ecm
+sci-mathematics/flintqs
 sci-mathematics/gap
 sci-mathematics/gap-guava
 sci-mathematics/genus2reduction
