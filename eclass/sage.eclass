@@ -196,28 +196,6 @@ sage_src_unpack() {
 	if [[ -d "${WORKDIR}/${SAGE_PACKAGE}/src" ]]; then
 		S="${WORKDIR}/${SAGE_PACKAGE}/src"
 	fi
-
-	# unpack spkg-file from tar
-	tar -xf "${DISTDIR}/${A}" --strip-components 3 \
-		"${SAGE_P}/spkg/standard/${SAGE_PACKAGE}.spkg"
-
-	# unpack spkg-file
-	tar -xjf "${SAGE_PACKAGE}.spkg"
-
-	# remove spkg-file
-	rm "${SAGE_PACKAGE}.spkg"
-
-	# set Sage's FILESDIR
-	if [[ -d "${WORKDIR}/${SAGE_PACKAGE}/patches" ]]; then
-		SAGE_FILESDIR="${WORKDIR}/${SAGE_PACKAGE}/patches"
-	elif [[ -d "${WORKDIR}/${SAGE_PACKAGE}/patch" ]]; then
-		SAGE_FILESDIR="${WORKDIR}/${SAGE_PACKAGE}/patch"
-	fi
-
-	# set correct source path
-	if [[ -d "${WORKDIR}/${SAGE_PACKAGE}/src" ]]; then
-		S="${WORKDIR}/${SAGE_PACKAGE}/src"
-	fi
 }
 
 if [[ -n "${SAGE_PACKAGE}" ]]; then
