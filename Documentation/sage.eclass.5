@@ -7,13 +7,13 @@
 .\"
 .TH "SAGE.ECLASS" 5 "Dez 2009" "Portage" "portage"
 .SH "NAME"
-sage.eclass \- Tools to ease the installation of Sage's spkg-packages and Sage itself
+sage.eclass \- Tools to ease the compilation of Sage's spkg-packages and Sage itself
 .SH "DESCRIPTION"
 The sage eclass serves two purposes:
-It eases the installation of Sage itself by providing functions for patching
-and modifying its *.spkg-files.
+Fistly, it eases the compilation of Sage itself by providing functions for
+patching and modifying its *.spkg-files.
 
-In order to install packages from Sage's tarball this eclass provides a
+Secondly, in order to install packages from Sage's tarball it provides a
 src_unpack function for automatic unpacking. You must set the following two
 variables to make use of this:
 
@@ -21,9 +21,6 @@ variables to make use of this:
 SAGE_VERSION
 SAGE_PACKAGE
 .fi
-
-sage_src_unpack will then also correctly set the variables "S" and
-"SAGE_FILESDIR".
 .SH "EXAMPLE"
 The following is a minimal version of the flintqs ebuild and shows the usage
 for packages included in Sage's tarball:
@@ -49,9 +46,9 @@ src_prepare() {
 .SH "FUNCTIONS"
 .TP
 \fBsage_clean_targets\fR [list of makefile targets to clean]
-This function clears the prerequisites and commands of Sage in its
-deps-makefile for the specified targets. If one wants to use e.g. sqlite from
-portage, do the following:
+This function clears the prerequisites and commands for the specified targets
+in Sage's deps-makefile. If one wants to use e.g. sqlite from portage, do the
+following:
 
 .nf
 sage_clean_targets SQLITE
@@ -65,7 +62,7 @@ $(INST)/$(SQLITE): $(INST)/$(TERMCAP) $(INST)/$(READLINE)
     $(SAGE_SPKG) $(SQLITE) 2>&1
 .fi
 
-The results now looks like:
+The lines above will now be replaced with:
 
 .nf
 $(INST)/$(SQLITE):
@@ -76,15 +73,15 @@ so that ${S}/spkg/standard/deps is still a valid makefile but without building
 sqlite.
 .TP
 \fBsage_package_patch\fR <spkg name> <patch name>
-Applies a patch to the contents of a *.spkg-file. The spkg name must be be
+Executes 'epatch' inside the contents of a *.spkg-file. The spkg name must be
 given without the trailing ".spkg".
 .TP
 \fBsage_package_sed\fR <spkg name> <arguments for sed>
-Executes 'sed' inside the contents of a *.spkg-file. The spkg name must be be
+Executes 'sed' inside the contents of a *.spkg-file. The spkg name must be
 given without the trailing ".spkg".
 .TP
 \fBsage_package_cp\fR <spkg name> <arguments for cp>
-Executes 'cp' inside the contents of a *.spkg-file. The spkg name must be be
+Executes 'cp' inside the contents of a *.spkg-file. The spkg name must be
 given without the trailing ".spkg".
 .TP
 \fBsage_package_finish\fR 
@@ -93,11 +90,10 @@ sage_package_*-functions was called. This cleans up and packs all unpacked
 spkgs.
 .TP
 \fBsage_src_unpack\fR 
-TODO
-.TP
-\fBSAGE_FILESDIR\fR = \fI""\fR
-Path to the "patches" directory of the current spkg
-SAGE_FILESDIR=""
+If SAGE_PACKAGE and SAGE_VERSION is set this function is exported. It will
+unpack the specified spkg and also correctly set the source directory ('S')
+and a variable SAGE_FILESDIR which points to the patches directory, if
+available.
 .SH "MAINTAINERS"
 Francois Bissey <f.r.bissey@massey.ac.nz>
 Christopher Schwan <cschwan@students.uni-mainz.de>

@@ -1,18 +1,24 @@
 sage-on-gentoo tries to provide a split ebuild(s) for the computer algebra
-system SAGE (www.sagemath.org).
+system SAGE (www.sagemath.org). Since SAGE ships all of its dependencies (about
+90 packages!) this is a difficult task and actually the reason why there is no
+SAGE in portage.
 
-Since SAGE ships all of its dependencies (about 90 packages) this is a
-difficult task and actually the reason why there is no SAGE in portage. I chose
-to use GitHub so that everyone interested in can watch progress (RSS-Feed) and
-test the ebuilds. I should note that I am not a official gentoo developer.
+Internal documenation (sage.eclass manpage for example) can be found in the
+Documentation/ subdirectory.
+
+If you find errors, have suggestions report contact me via:
+
+  cschwan (at) students (dot) uni-mainz (dot) de
+
+or fork sage-on-gentoo and do it yourself!
 
 ################################################################################
 
 Quick Installation:
 
 1. Setup a Portage Overlay:
-   Create a overlay dir, e.g in your home directory and add to the
-   PORTDIR_OVERLAY variable in /etc/make.conf:
+   Create a overlay directory, e.g in your home directory and add the following
+   to the PORTDIR_OVERLAY variable in /etc/make.conf:
 
    <your-home-dir>/sage-on-gentoo
 
@@ -33,6 +39,11 @@ Quick Installation:
    all required packages is located at:
 
    sage-on-gentoo/packages.keywords/sage
+
+   Permanent unmasking can be done easily via placing a symbolic link in your
+   /etc/portage/package.keywords directory, e.g.:
+
+     ln -s ~/sage-on-gentoo/package.keywords/sage /etc/portage/package.keywords/sage
 
 4. Test the ebuild:
    Type
@@ -55,8 +66,3 @@ Quick Installation:
 
    to use the latest ebuild (if you add additional options to emerge make sure
    that sage will get recompiled!).
-
-################################################################################
-
-If you find errors or have suggestions report an issue on github.com, fork
-sage-on-gentoo!

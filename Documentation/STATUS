@@ -1,3 +1,11 @@
+This file records the status of all packages needed by Sage, that means:
+
+  - Where was the ebuild from ? New ? Science Overlay ? Portage ?
+  - Differences to its original (if appropriate)
+  - Is there a bugreport ?
+  - Has it QA warnings ?
+  - Has it tests, do they work ?
+
 Packages:
 
 - media-gfx/tachyon-0.98.7
