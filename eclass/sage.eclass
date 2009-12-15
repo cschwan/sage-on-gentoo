@@ -11,35 +11,58 @@ EAPI=2
 #
 # Original authors: Francois Bissey <f.r.bissey@massey.ac.nz>
 #	Christopher Schwan <cschwan@students.uni-mainz.de>
-# @BLURB: This eclass provides tools to ease the installation of sage spkg
+# @BLURB: Tools to ease the compilation of Sage's spkg-packages and Sage itself
 # @DESCRIPTION:
-# The sage eclass is designed to allow easier installation of
-# spkg from the sage mathematical system and their incorporation into
-# the Gentoo Linux system.
+# The sage eclass serves two purposes:
+# Fistly, it eases the compilation of Sage itself by providing functions for
+# patching and modifying its *.spkg-files.
 #
-# It inherits eutils
-# The following variables need to be defined:
+# Secondly, in order to install packages from Sage's tarball it provides a
+# src_unpack function for automatic unpacking. You must set the following two
+# variables to make use of this:
 #
+# @CODE
 # SAGE_VERSION
-#
-# and optionally
-#
 # SAGE_PACKAGE
+# @CODE
+# @EXAMPLE:
+# The following is a minimal version of the flintqs ebuild and shows the usage
+# for packages included in Sage's tarball:
+#
+# @CODE
+# EAPI=2
+#
+# SAGE_VERSION="4.2.1"
+# SAGE_PACKAGE="flintqs-20070817.p4"
+#
+# inherit eutils sage
+#
+# [..]
+#
+# src_prepare() {
+# 	cp "${SAGE_FILESDIR}"/lanczos.h .
+#
+# 	[..]
+# }
+#
+# [..]
+# @CODE
 
 inherit eutils
 
 SPKG_URI="http://www.sagemath.org/packages/standard"
 
-SAGE_P="sage-${SAGE_VERSION}"
-
 HOMEPAGE="http://www.sagemath.org/"
-SRC_URI="http://mirror.switch.ch/mirror/sagemath/src/${SAGE_P}.tar"
+SRC_URI="http://mirror.switch.ch/mirror/sagemath/src/sage-${SAGE_VERSION}.tar"
 
 RESTRICT="mirror"
 
 _SAGE_UNPACKED_SPKGS=( )
 
 _sage_package_unpack() {
+	# change to Sage's standard spkg directory
+	cd "${S}"/spkg/standard
+
 	# make sure spkg is unpacked
 	if [[ ! -d "$1" ]] ; then
 		ebegin "Unpacking $1"
@@ -55,25 +78,33 @@ _sage_package_unpack() {
 }
 
 # @FUNCTION: sage_clean_targets
-# @USAGE: <SAGE-MAKEFILE-TARGETS>
-# @DESCRIPTION: This function clears the prerequisites and commands of
-# <SAGE-MAKEFILE-TARGETS> in deps-makefile. If one wants to use e.g. sqlite from
-# portage, call:
+# @USAGE: [list of makefile targets to clean]
+# @DESCRIPTION:
+# This function clears the prerequisites and commands for the specified targets
+# in Sage's deps-makefile. If one wants to use e.g. sqlite from portage, do the
+# following:
 #
+# @CODE
 # sage_clean_targets SQLITE
+# @CODE
 #
-# This replaces in spkg/standard/deps:
+# This modifies ${S}/spkg/standard/deps, which contains in sage-4.2.1 the
+# following lines:
 #
+# @CODE
 # $(INST)/$(SQLITE): $(INST)/$(TERMCAP) $(INST)/$(READLINE)
-#	$(SAGE_SPKG) $(SQLITE) 2>&1
+#     $(SAGE_SPKG) $(SQLITE) 2>&1
+# @CODE
 #
-# with
+# The lines above will now be replaced with:
 #
+# @CODE
 # $(INST)/$(SQLITE):
-#	@echo "using SQLITE from portage"
+#     @echo "using SQLITE from portage"
+# @CODE
 #
-# so that deps is still a valid makefile but with SQLITE provided by portage
-# instead by Sage.
+# so that ${S}/spkg/standard/deps is still a valid makefile but without building
+# sqlite.
 sage_clean_targets() {
 	for i in "$@"; do
 		sed -i -n "
@@ -105,7 +136,11 @@ sage_clean_targets() {
 	done
 }
 
-# patch one of sage's spkgs. $1: spkg name, $2: patch name
+# @FUNCTION: sage_package_patch
+# @USAGE: <spkg name> <patch name>
+# @DESCRIPTION:
+# Executes 'epatch' inside the contents of a *.spkg-file. The spkg name must be
+# given without the trailing ".spkg".
 sage_package_patch() {
 	_sage_package_unpack "$1"
 
@@ -115,6 +150,11 @@ sage_package_patch() {
 	cd ..
 }
 
+# @FUNCTION: sage_package_sed
+# @USAGE: <spkg name> <arguments for sed>
+# @DESCRIPTION:
+# Executes 'sed' inside the contents of a *.spkg-file. The spkg name must be
+# given without the trailing ".spkg".
 sage_package_sed() {
 	_sage_package_unpack "$1"
 
@@ -124,6 +164,11 @@ sage_package_sed() {
 	cd ..
 }
 
+# @FUNCTION: sage_package_cp
+# @USAGE: <spkg name> <arguments for cp>
+# @DESCRIPTION:
+# Executes 'cp' inside the contents of a *.spkg-file. The spkg name must be
+# given without the trailing ".spkg".
 sage_package_cp() {
 	_sage_package_unpack "$1"
 
@@ -133,6 +178,7 @@ sage_package_cp() {
 	cd ..
 }
 
+# TODO: Remove it
 sage_package_nested_sed() {
 	_sage_package_unpack "$1"
 
@@ -149,6 +195,7 @@ sage_package_nested_sed() {
 	cd ..
 }
 
+# TODO: Remove it
 sage_package_nested_patch() {
 	_sage_package_unpack "$1"
 
@@ -163,6 +210,12 @@ sage_package_nested_patch() {
 	cd ..
 }
 
+# @FUNCTION: sage_package_finish
+# @USAGE:
+# @DESCRIPTION:
+# ATTENTION: This function must be executed if one of the
+# sage_package_*-functions was called. This cleans up and packs all unpacked
+# spkgs.
 sage_package_finish() {
 	ebegin "Packing Sage packages"
 	for i in ${_SAGE_UNPACKED_SPKGS[@]} ; do
@@ -172,12 +225,19 @@ sage_package_finish() {
 	eend
 }
 
+# @FUNCTION: sage_src_unpack
+# @USAGE:
+# @DESCRIPTION:
+# If SAGE_PACKAGE and SAGE_VERSION is set this function is exported. It will
+# unpack the specified spkg and also correctly set the source directory ('S')
+# and a variable SAGE_FILESDIR which points to the patches directory, if
+# available.
 sage_src_unpack() {
 	cd "${WORKDIR}"
 
 	# unpack spkg-file from tar
 	tar -xf "${DISTDIR}/${A}" --strip-components 3 \
-		"${SAGE_P}/spkg/standard/${SAGE_PACKAGE}.spkg"
+		"sage-${SAGE_VERSION}/spkg/standard/${SAGE_PACKAGE}.spkg"
 
 	# unpack spkg-file
 	tar -xjf "${SAGE_PACKAGE}.spkg"
