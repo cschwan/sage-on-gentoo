@@ -13,7 +13,7 @@ DESCRIPTION="William Hart's GPL'd highly optimized multi-polynomial quadratic si
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~x86"
+KEYWORDS="~amd64 ~x86"
 IUSE=""
 
 RESTRICT="fetch"

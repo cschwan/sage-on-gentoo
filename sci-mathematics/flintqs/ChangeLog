@@ -2,6 +2,10 @@
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  17 Dec 2009; Christopher Schwan <cschwan@students.uni-mainz.de>
+  flintqs-20070817_p4.ebuild:
+  Added missing amd64 keyword
+
 *flintqs-20070817_p4 (13 Dec 2009)
 
   13 Dec 2009; Christopher Schwan <cschwan@students.uni-mainz.de>
