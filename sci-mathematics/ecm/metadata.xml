@@ -4,4 +4,9 @@
 	<maintainer>
 		<email></email>
 	</maintainer>
+	<use>
+		<!-- TODO: find help string for asm-redc -->
+		<flag name='asm-redc'></flag>
+		<flag name='shellcmd'>Enable shell command execution</flag>
+	</use>
 </pkgmetadata>

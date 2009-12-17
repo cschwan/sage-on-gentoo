@@ -12,7 +12,7 @@ SRC_URI="http://www.flintlib.org/${P}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~ppc ~ppc64 ~x86"
+KEYWORDS="~amd64 ~x86"
 IUSE="qs openmp ntl doc"
 
 DEPEND="ntl? ( dev-libs/ntl )

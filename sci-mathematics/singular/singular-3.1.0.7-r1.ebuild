@@ -81,7 +81,7 @@ src_install () {
 	emake -j1 DESTDIR="${D}" install-libsingular || die "emake install failed"
 	insinto /usr/include
 	cd "${S}"/*-Linux/include && doins -r cf_gmp.h factory.h factoryconf.h \
-    	mylimits.h libsingular.h singular \
+		mylimits.h libsingular.h singular \
 		|| die "installation of headers failed"
 	dodir /usr/include/templates || die "failed to make templates directory"
 	insinto /usr/include/templates
