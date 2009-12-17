@@ -40,8 +40,7 @@ src_compile() {
 }
 
 src_install() {
-	dobin bin/* qrank/mwrank qrank/ratpoint \
-		|| die "installation of binaries failed"
+	dobin bin/* || die "installation of binaries failed"
 
 	dolib.so lib/*.so* || die "installation of shared library failed"
 
@@ -51,6 +50,5 @@ src_install() {
 }
 
 src_test() {
-	# TODO: tests fail - modify patch ?
 	emake allcheck || die "tests failed"
 }

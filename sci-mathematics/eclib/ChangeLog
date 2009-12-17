@@ -2,6 +2,10 @@
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  17 Dec 2009; François Bissey <f.r.bissey@massey.ac.nz>
+  eclib-20080310_p7.ebuild, files/eclib-makefiles.patch.bz2:
+  fixed the patch - less bindir happy and make tests happy.
+
   08 Dec 2009; Christopher Schwan <cschwan@students.uni-mainz.de>
   eclib-20080310_p7.ebuild:
   Added missing ratpoint and mwrank binaries
