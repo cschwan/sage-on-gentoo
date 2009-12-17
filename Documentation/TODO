@@ -1,4 +1,10 @@
 Next packages marked for removal:
 
-- rubiks
-- sympow
+  - rubiks
+  - sympow
+
+- Write a script that extracts the interesting parts of Sage's test.log (i.e.
+  failing tests) and gathers the package names and versions that a provided by
+  portage. This will simplify testing
+
+- Disable Sage's update functionality. Portage should be used for that
