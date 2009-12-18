@@ -138,7 +138,7 @@ src_prepare(){
 
 	# comment out the line with ECLDIR=... - maxima should work without it
 	sage_package_sed "sage_scripts-${PV}" -i \
-		-e "s:#ECLDIR=\(.*\):#ECLDIR=\1:g" sage-env
+		-e "s:ECLDIR=:#ECLDIR=:g" sage-env
 
 	# patch to use atlas from portage
 	sage_package_sed cvxopt-0.9.p8 -i "s:f77blas:blas:g" patches/setup_f95.py \
