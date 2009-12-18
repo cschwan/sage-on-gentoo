@@ -4,7 +4,7 @@
 
 EAPI=2
 
-inherit fortran sage
+inherit fortran multilib sage
 
 DESCRIPTION="Math software for algebra, geometry, number theory, cryptography,
 and numerical computation."
@@ -31,7 +31,6 @@ CDEPEND="
 	>=sys-libs/readline-6.0
 	>=media-libs/libpng-1.2.35
 	>=dev-db/sqlite-3.6.17
-	>=dev-util/scons-1.2.0
 	>=media-libs/gd-2.0.35
 	>=media-libs/freetype-2.3.5
 	>=sci-libs/linbox-1.1.6[ntl,sage]
@@ -66,6 +65,7 @@ CDEPEND="
 DEPEND="
 	${CDEPEND}
 	dev-util/pkgconfig
+	>=dev-util/scons-1.2.0
 "
 RDEPEND="${CDEPEND}"
 
@@ -100,7 +100,7 @@ pkg_setup() {
 }
 
 src_prepare(){
-	# verbosity blows up build.log and slows down installation
+	# verbosity only blows up build.log and slows down installation
 	sed -i "s:cp -rpv:cp -rp:g" makefile || die "sed failed"
 
 	# change to Sage's package directory
@@ -110,7 +110,7 @@ src_prepare(){
 	sage_package_sed "sage_scripts-${PV}" -i \
 		"/\"\$SAGE_ROOT\"\/sage -docbuild all html/d" install
 
-	# but include a patch to let sage-doc successfully build it
+	# but include a patch to let sage-doc build it
 	sage_package_patch "sage-${PV}" "${FILESDIR}/${P}-documentation.patch"
 
 	sage_clean_targets ATLAS BLAS BOEHM_GC CDDLIB CLIQUER ECLIB ECM F2C FLINT \
@@ -132,10 +132,13 @@ src_prepare(){
 		-e "s:\$SAGE_LOCAL/share/pari:/usr/share/pari:g" \
 		-e "s:\$SAGE_LOCAL/bin/gphelp:/usr/bin/gphelp:g" \
 		-e "s:\$SAGE_LOCAL/share/pari/doc:/usr/share/doc/pari-2.3.4-r1:g" \
-		-e "s:\$SAGE_LOCAL/lib/ecl:/usr/lib/ecl-9.8.4:g" \
 		-e "s:\$SAGE_ROOT/local/lib/R/lib:/usr/lib/R/lib:g" \
 		-e "s:\$SAGE_LOCAL/lib/R:/usr/lib/R:g" \
 		sage-env
+
+	# comment out the line with ECLDIR=... - maxima should work without it
+	sage_package_sed "sage_scripts-${PV}" -i \
+		-e "s:#ECLDIR=\(.*\):#ECLDIR=\1:g" sage-env
 
 	# patch to use atlas from portage
 	sage_package_sed cvxopt-0.9.p8 -i "s:f77blas:blas:g" patches/setup_f95.py \
@@ -158,12 +161,16 @@ src_prepare(){
 		"${FILESDIR}/${P}-fix-rpy2.patch"
 
 	# TODO: customizing PYTHONPATH yields build errors without using python
-	# packages from portage
-# 	# add system path for python modules
+	# packages from portage because of cython
+	# add system path for python modules
 # 	sage_package_sed "sage_scripts-${PV}" -i \
 # 		-e "s:PYTHONPATH=\"\(.*\)\":PYTHONPATH=\"\1\:$(python_get_sitedir)\":g" \
 # 		sage-env
-	# TODO: try to use export SAGE_PATH=
+
+# 	# set path to Sage's cython
+# 	sage_package_sed "sage-${PV}" -i \
+# 		-e "s:SAGE_LOCAL + '/lib/python/site-packages/Cython/Includes/':'/usr/lib/python2.6/site-packages/Cython/Includes/':g" \
+# 		setup.py
 
 	# TODO: Are these needed ?
 	sage_package_sed "sage-${PV}" -i \
@@ -238,7 +245,7 @@ src_compile() {
 
 src_install() {
 	# remove *.spkg files which will not be needed since sage must be upgraded
-	# using portage
+	# using portage, this saves about 400 MB
 	for i in spkg/standard/*.spkg ; do
 		rm $i
 		touch $i
@@ -246,6 +253,9 @@ src_install() {
 
 	# these files are also not needed
 	rm -rf spkg/build/*
+
+	# remove mercurial directories - these are not needed
+	find "${S}" -type d -name '.hg' -prune -print0 | xargs -0 rm -rf
 
 	# install files
 	emake DESTDIR="${D}/opt" install || die "emake install failed"
