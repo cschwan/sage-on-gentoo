@@ -57,7 +57,7 @@ CDEPEND="
 	virtual/cblas
 	virtual/lapack
 	>=sci-libs/cddlib-094f
-	>=sci-mathematics/gfan-0.3.4
+	=sci-mathematics/gfan-0.3*
 	>=sci-libs/flint-1.5.0[ntl]
 	>=sci-mathematics/flintqs-20070817_p4
 "
