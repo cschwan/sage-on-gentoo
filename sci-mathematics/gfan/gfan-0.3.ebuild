@@ -6,7 +6,7 @@ EAPI=2
 
 DESCRIPTION="gfan computes Groebner fans and tropical varities"
 HOMEPAGE="http://www.math.tu-berlin.de/~jensen/software/gfan/gfan.html"
-SRC_URI="http://www.math.tu-berlin.de/~jensen/software/gfan/${PN}${PV}plus.tar.gz"
+SRC_URI="http://www.math.tu-berlin.de/~jensen/software/gfan/${PN}${PV}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
@@ -17,7 +17,7 @@ DEPEND="dev-libs/gmp[-nocxx]
 	sci-libs/cddlib"
 RDEPEND="${DEPEND}"
 
-S="${WORKDIR}/${PN}${PV}plus/"
+S="${WORKDIR}/${PN}${PV}/"
 
 RESTRICT="mirror"
 
