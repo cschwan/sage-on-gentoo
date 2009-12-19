@@ -16,9 +16,6 @@ SLOT="0"
 KEYWORDS="~amd64 ~x86"
 IUSE=""
 
-# TODO: remark on =dev-python/cython-0.11* : newer versions causes compilation
-# failures, although cython is used from Sage packages
-# TODO: a system-wide cython causes all kinds of errors, so we block it
 CDEPEND="
 	>=dev-libs/mpfr-2.4.1
 	|| (
@@ -63,8 +60,6 @@ CDEPEND="
 	>=sci-mathematics/gfan-0.3.4
 	>=sci-libs/flint-1.5.0[ntl]
 	>=sci-mathematics/flintqs-20070817_p4
-	!dev-python/cython
-	>=sci-mathematics/polybori-0.6.3[gd,sage]
 "
 
 DEPEND="
@@ -118,11 +113,10 @@ src_prepare(){
 	# but include a patch to let sage-doc build it
 	sage_package_patch "sage-${PV}" "${FILESDIR}/${P}-documentation.patch"
 
-	sage_clean_targets ATLAS BLAS BOEHM_GC CDDLIB CLIQUER ECLIB ECM F2C \
-		FLINT FLINTQS FPLLL FREETYPE G2RED GAP GD GFAN GIVARO GNUTLS GSL IML \
-		LAPACK LCALC LIBM4RI LIBPNG LINBOX MAXIMA MERCURIAL MPFI MPFR MPIR NTL \
-		PALP PARI POLYBORI RATPOINTS READLINE SAGE_BZIP2 SCONS SQLITE TACHYON \
-		ZLIB ZNPOLY
+	sage_clean_targets ATLAS BLAS BOEHM_GC CDDLIB CLIQUER ECLIB ECM F2C FLINT \
+		FLINTQS FPLLL FREETYPE G2RED GAP GD GFAN GIVARO GNUTLS GSL IML LAPACK \
+		LCALC LIBM4RI LIBPNG LINBOX MAXIMA MERCURIAL MPFI MPFR MPIR NTL PALP \
+		PARI RATPOINTS READLINE SAGE_BZIP2 SCONS SQLITE TACHYON ZLIB ZNPOLY
 
 	# patch to make a correct symbolic links
 	sage_package_sed "sage_scripts-${PV}" -i \
@@ -169,10 +163,9 @@ src_prepare(){
 	# TODO: customizing PYTHONPATH yields build errors without using python
 	# packages from portage because of cython
 	# add system path for python modules
-	MY_PYTHONPATH="/usr/lib/python2.6\\:/usr/lib/python2.6/site-packages"
-	sage_package_sed "sage_scripts-${PV}" -i \
-		-e "s:PYTHONPATH=\"\(.*\)\":PYTHONPATH=\"\1\:${MY_PYTHONPATH}\":g" \
-		sage-env
+# 	sage_package_sed "sage_scripts-${PV}" -i \
+# 		-e "s:PYTHONPATH=\"\(.*\)\":PYTHONPATH=\"\1\:$(python_get_sitedir)\":g" \
+# 		sage-env
 
 # 	# set path to Sage's cython
 # 	sage_package_sed "sage-${PV}" -i \
@@ -193,15 +186,6 @@ src_prepare(){
 	sage_package_sed "sage-${PV}" -i \
 		-e "s:SAGE_ROOT+'/local/include/FLINT/':'/usr/include/FLINT/':g" \
 		-e "s:SAGE_ROOT + \"/local/include/FLINT/flint.h\":\"/usr/include/FLINT/flint.h\":g" \
-		module_list.py
-
-	# fix polybori paths
-	sage_package_sed "sage-${PV}" -i \
-		-e "s:SAGE_LOCAL + \"/share/polybori/flags.conf\":\"/usr/share/polybori/flags.conf\":g" \
-		-e "s:SAGE_ROOT+'/local/include/cudd':'/usr/include/cudd':g" \
-		-e "s:SAGE_ROOT+'/local/include/polybori':'/usr/include/polybori':g" \
-		-e "s:SAGE_ROOT+'/local/include/polybori/groebner':'/usr/include/polybori/groebner':g" \
-		-e "s:SAGE_ROOT + \"/local/include/polybori/polybori.h\":\"/usr/include/polybori/polybori.h\":g" \
 		module_list.py
 
 	# this file is taken from portage's scipy ebuild
