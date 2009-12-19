@@ -60,6 +60,8 @@ CDEPEND="
 	=sci-mathematics/gfan-0.3*
 	>=sci-libs/flint-1.5.0[ntl]
 	>=sci-mathematics/flintqs-20070817_p4
+	>=sci-mathematics/sage-data-4.2.1
+	>=sci-mathematics/sage-extcode-4.2.1
 "
 
 DEPEND="
@@ -113,10 +115,11 @@ src_prepare(){
 	# but include a patch to let sage-doc build it
 	sage_package_patch "sage-${PV}" "${FILESDIR}/${P}-documentation.patch"
 
-	sage_clean_targets ATLAS BLAS BOEHM_GC CDDLIB CLIQUER ECLIB ECM F2C FLINT \
-		FLINTQS FPLLL FREETYPE G2RED GAP GD GFAN GIVARO GNUTLS GSL IML LAPACK \
-		LCALC LIBM4RI LIBPNG LINBOX MAXIMA MERCURIAL MPFI MPFR MPIR NTL PALP \
-		PARI RATPOINTS READLINE SAGE_BZIP2 SCONS SQLITE TACHYON ZLIB ZNPOLY
+	sage_clean_targets ATLAS BLAS BOEHM_GC CDDLIB CLIQUER CONWAY ECLIB ECM \
+		ELLIPTIC_CURVES EXTCODE F2C FLINT FLINTQS FPLLL FREETYPE G2RED GAP GD \
+		GFAN GIVARO GNUTLS GRAPHS GSL IML LAPACK LCALC LIBM4RI LIBPNG LINBOX \
+		MAXIMA MERCURIAL MPFI MPFR MPIR NTL PALP PARI POLYTOPES_DB RATPOINTS \
+		READLINE SAGE_BZIP2 SCONS SQLITE TACHYON ZLIB ZNPOLY
 
 	# patch to make a correct symbolic links
 	sage_package_sed "sage_scripts-${PV}" -i \
@@ -147,6 +150,10 @@ src_prepare(){
 	# fix command for calling maxima
 	sage_package_sed "sage-${PV}" -i "s:maxima-noreadline:maxima:g" \
 		sage/interfaces/maxima.py
+
+	# extcode is installed in a separate ebuild - fix directory path
+	sage_package_sed "moin-1.5.7.p3" -i \
+		"s:../../../../data:${SAGE_DATA}:g" spkg-install
 
 	# do not compile R, but rpy2 which is in R's spkg (why ?)
 	sage_package_patch r-2.9.2 "${FILESDIR}/${P}-use-R-from-portage.patch"

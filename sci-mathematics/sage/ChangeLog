@@ -4,6 +4,10 @@
 
   19 Dec 2009; Christopher Schwan <cschwan@students.uni-mainz.de>
   sage-4.2.1.ebuild:
+  Removed packages from Sage and replaced with sage-data and sage-extcode
+
+  19 Dec 2009; Christopher Schwan <cschwan@students.uni-mainz.de>
+  sage-4.2.1.ebuild:
   Force installation of older gfan - this may fix some tests
 
   18 Dec 2009; Christopher Schwan <cschwan@students.uni-mainz.de>
