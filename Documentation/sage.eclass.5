@@ -90,10 +90,11 @@ sage_package_*-functions was called. This cleans up and packs all unpacked
 spkgs.
 .TP
 \fBsage_src_unpack\fR 
-If SAGE_PACKAGE and SAGE_VERSION is set this function is exported. It will
-unpack the specified spkg and also correctly set the source directory ('S')
-and a variable SAGE_FILESDIR which points to the patches directory, if
-available.
+If ${SAGE_PACKAGE} and ${SAGE_VERSION} is set this function is exported. It
+will unpack the specified spkgs and also correctly set the source directory
+('${S}') and a variable ${SAGE_FILESDIR} which points to the patches
+directory, if available. Note that ${SAGE_PACKAGE} may be an array. If thats
+the case all spkgs contained will be unpacked.
 .SH "MAINTAINERS"
 Francois Bissey <f.r.bissey@massey.ac.nz>
 Christopher Schwan <cschwan@students.uni-mainz.de>

@@ -57,6 +57,9 @@ SRC_URI="http://mirror.switch.ch/mirror/sagemath/src/sage-${SAGE_VERSION}.tar"
 
 RESTRICT="mirror"
 
+SAGE_ROOT=/opt/sage
+SAGE_DATA="${SAGE_ROOT}"/data
+
 _SAGE_UNPACKED_SPKGS=( )
 
 _sage_package_unpack() {
@@ -225,36 +228,47 @@ sage_package_finish() {
 	eend
 }
 
+# TODO: allow to switch between sage tarball and spkg uri
+
 # @FUNCTION: sage_src_unpack
 # @USAGE:
 # @DESCRIPTION:
-# If SAGE_PACKAGE and SAGE_VERSION is set this function is exported. It will
-# unpack the specified spkg and also correctly set the source directory ('S')
-# and a variable SAGE_FILESDIR which points to the patches directory, if
-# available.
+# If ${SAGE_PACKAGE} and ${SAGE_VERSION} is set this function is exported. It
+# will unpack the specified spkgs and also correctly set the source directory
+# ('${S}') and a variable ${SAGE_FILESDIR} which points to the patches
+# directory, if available. Note that ${SAGE_PACKAGE} may be an array. If thats
+# the case all spkgs contained will be unpacked.
 sage_src_unpack() {
 	cd "${WORKDIR}"
 
-	# unpack spkg-file from tar
-	tar -xf "${DISTDIR}/${A}" --strip-components 3 \
-		"sage-${SAGE_VERSION}/spkg/standard/${SAGE_PACKAGE}.spkg"
+	# unpack all packages requested
+	for i in "${SAGE_PACKAGE[@]}" ; do
+		# unpack spkg-file from tar
+		tar -xf "${DISTDIR}/${A}" --strip-components 3 \
+			"sage-${SAGE_VERSION}/spkg/standard/$i.spkg" || die "tar failed"
 
-	# unpack spkg-file
-	tar -xjf "${SAGE_PACKAGE}.spkg"
+		# unpack spkg-file
+		tar -xjf "$i.spkg" || die "tar failed"
 
-	# remove spkg-file
-	rm "${SAGE_PACKAGE}.spkg"
+		# remove spkg-file
+		rm "$i.spkg" || die "rm failed"
+	done
 
-	# set Sage's FILESDIR
-	if [[ -d "${WORKDIR}/${SAGE_PACKAGE}/patches" ]]; then
-		SAGE_FILESDIR="${WORKDIR}/${SAGE_PACKAGE}/patches"
-	elif [[ -d "${WORKDIR}/${SAGE_PACKAGE}/patch" ]]; then
-		SAGE_FILESDIR="${WORKDIR}/${SAGE_PACKAGE}/patch"
-	fi
+	# if there is only one package, try to set SAGE_FILESDIR
+	if [[ ${#SAGE_PACKAGE[@]} = 1 ]]; then
+		# set Sage's FILESDIR
+		if [[ -d "${WORKDIR}/${SAGE_PACKAGE}/patches" ]]; then
+			SAGE_FILESDIR="${WORKDIR}/${SAGE_PACKAGE}/patches"
+		elif [[ -d "${WORKDIR}/${SAGE_PACKAGE}/patch" ]]; then
+			SAGE_FILESDIR="${WORKDIR}/${SAGE_PACKAGE}/patch"
+		fi
 
-	# set correct source path
-	if [[ -d "${WORKDIR}/${SAGE_PACKAGE}/src" ]]; then
-		S="${WORKDIR}/${SAGE_PACKAGE}/src"
+		# set correct source path
+		if [[ -d "${WORKDIR}/${SAGE_PACKAGE}/src" ]]; then
+			S="${WORKDIR}/${SAGE_PACKAGE}/src"
+		fi
+	else
+		S="${WORKDIR}"
 	fi
 }
 
