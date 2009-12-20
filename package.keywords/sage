@@ -23,6 +23,7 @@ sci-libs/mpfi
 sci-libs/mpir
 sci-libs/libcliquer
 sci-libs/scipy
+sci-libs/symmetrica
 sci-libs/zn_poly
 sci-mathematics/eclib
 sci-mathematics/ecm
