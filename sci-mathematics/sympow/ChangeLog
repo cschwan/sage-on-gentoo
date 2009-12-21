@@ -1,0 +1,11 @@
+# ChangeLog for sci-mathematics/sympow
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: $
+
+*sympow-1.018 (21 Dec 2009)
+
+  21 Dec 2009; Christopher Schwan <cschwan@students.uni-mainz.de>
+  +sympow-1.018.ebuild, +metadata.xml:
+  Initial import. Sympow is sed'ed so that it _should be_ relocatable
+  now.
+
