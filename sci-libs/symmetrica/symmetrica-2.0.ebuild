@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
-inherit versionator
+inherit eutils versionator
 
 EAPI=2
 DESCRIPTION="A collection of routine to handle a variety of topics"
@@ -30,6 +30,12 @@ src_prepare() {
 	# For sage and ease of use we make it into a library with the following
 	# makefile (developped by F. Bissey and T. Abbott (sage on debian).
 	cp "${FILESDIR}/makefile" "${S}/makefile"
+
+	# fix macros.h - does not include def.h which results in INT not defined
+	epatch "${FILESDIR}/${P}-fix-missing-typedef.patch"
+
+	# do not display symmetrica's banner
+	sed -i "s:INT no_banner = FALSE:INT no_banner = TRUE:g" de.c
 }
 
 src_install() {

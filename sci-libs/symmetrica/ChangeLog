@@ -2,11 +2,16 @@
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  21 Dec 2009; Christopher Schwan <cschwan@students.uni-mainz.de>
+  symmetrica-2.0.ebuild, +files/symmetrica-2.0-fix-missing-typedef.patch:
+  Added additional patches to fix compilation issues and removed
+  Symmetrica's banner
+
 *symmetrica-2.0 (20 Dec 2009)
 
   20 Dec 2009; Christopher Schwan <cschwan@students.uni-mainz.de>
   +symmetrica-2.0.ebuild, +files/makefile, +metadata.xml:
   Initial import from science overlay. Changed license to AS-IS as
   stated in http://www.algorithm.uni-bayreuth.de/en/research/
-  SYMMETRICA/copyright_engl.html. Also introduces doc-USE-flags
+  SYMMETRICA/copyright_engl.html. Also introduces doc-USE-flag
 
