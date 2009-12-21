@@ -62,6 +62,7 @@ CDEPEND="
 	>=sci-mathematics/flintqs-20070817_p4
 	>=sci-mathematics/sage-data-4.2.1
 	>=sci-mathematics/sage-extcode-4.2.1
+	>=sci-libs/symmetrica-2.0
 "
 
 DEPEND="
@@ -119,7 +120,7 @@ src_prepare(){
 		ELLIPTIC_CURVES EXTCODE F2C FLINT FLINTQS FPLLL FREETYPE G2RED GAP GD \
 		GFAN GIVARO GNUTLS GRAPHS GSL IML LAPACK LCALC LIBM4RI LIBPNG LINBOX \
 		MAXIMA MERCURIAL MPFI MPFR MPIR NTL PALP PARI POLYTOPES_DB RATPOINTS \
-		READLINE SAGE_BZIP2 SCONS SQLITE TACHYON ZLIB ZNPOLY
+		READLINE SAGE_BZIP2 SCONS SQLITE SYMMETRICA TACHYON ZLIB ZNPOLY
 
 	# patch to make a correct symbolic links
 	sage_package_sed "sage_scripts-${PV}" -i \
@@ -184,6 +185,7 @@ src_prepare(){
 		-e "s:SAGE_ROOT +'/local/include/fplll':'/usr/include/fplll':g" \
 		-e "s:SAGE_ROOT + \"/local/include/ecm.h\":\"/usr/include/ecm.h\":g" \
 		-e "s:SAGE_ROOT + \"/local/include/png.h\":\"/usr/include/png.h\":g" \
+		-e "s:SAGE_ROOT + \"/local/include/symmetrica/def.h\":\"/usr/include/symmetrica/def.h\":g" \
 		module_list.py
 
 	# TODO: -e "s:SAGE_ROOT + \"/local/include/fplll/fplll.h\":\"\":g" \
