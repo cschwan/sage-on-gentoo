@@ -7,7 +7,7 @@ EAPI=2
 SAGE_VERSION=4.2.1
 SAGE_PACKAGE=sympow-1.018.1.p6
 
-inherit eutils sage
+inherit eutils flag-o-matic sage
 
 # TODO: Is Sage now upstream ? Homepage below does not work
 
@@ -49,8 +49,12 @@ src_prepare() {
 	sed -i "s:\"new_data\":\"/usr/bin/sympow_new_data\":g" generate.c \
 		|| die "sed failed"
 
-	# fix hardcoded string lengths
+	# fix hardcoded string lengths (still hardcoded, but respects new path)
 	sed -i "s:int dl=9;:int dl=9+16;:g" disk.c || die "sed failed"
+
+	# make arrays larger because pathnames are now longer
+	sed -i "s:char NM\[32\],NAME\[32\]:char NM[128],NAME[128]:g" disk.c \
+		|| die "sed failed"
 
 	# rename script
 	mv new_data sympow_new_data
