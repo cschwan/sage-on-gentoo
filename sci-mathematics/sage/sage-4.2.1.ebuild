@@ -63,6 +63,7 @@ CDEPEND="
 	>=sci-mathematics/sage-data-4.2.1
 	>=sci-mathematics/sage-extcode-4.2.1
 	>=sci-libs/symmetrica-2.0
+	>=sci-mathematics/sympow-1.018
 "
 
 DEPEND="
@@ -120,7 +121,7 @@ src_prepare(){
 		ELLIPTIC_CURVES EXTCODE F2C FLINT FLINTQS FPLLL FREETYPE G2RED GAP GD \
 		GFAN GIVARO GNUTLS GRAPHS GSL IML LAPACK LCALC LIBM4RI LIBPNG LINBOX \
 		MAXIMA MERCURIAL MPFI MPFR MPIR NTL PALP PARI POLYTOPES_DB RATPOINTS \
-		READLINE SAGE_BZIP2 SCONS SQLITE SYMMETRICA TACHYON ZLIB ZNPOLY
+		READLINE SAGE_BZIP2 SCONS SQLITE SYMMETRICA SYMPOW TACHYON ZLIB ZNPOLY
 
 	# patch to make a correct symbolic links
 	sage_package_sed "sage_scripts-${PV}" -i \

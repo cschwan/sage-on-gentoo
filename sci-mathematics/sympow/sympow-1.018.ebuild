@@ -7,7 +7,7 @@ EAPI=2
 SAGE_VERSION=4.2.1
 SAGE_PACKAGE=sympow-1.018.1.p6
 
-inherit eutils flag-o-matic sage
+inherit eutils sage
 
 # TODO: Is Sage now upstream ? Homepage below does not work
 
