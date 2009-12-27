@@ -11,19 +11,19 @@ inherit eutils sage
 
 # TODO: Is Sage now upstream ? Homepage below does not work
 
-DESCRIPTION="a package to compute special values of symmetric power elliptic curve L-functions"
+DESCRIPTION="Computes special values of symmetric power elliptic curve L-functions"
 # HOMEPAGE="http://www.maths.bris.ac.uk/%7Emamjw/"
 # SRC_URI="http://www.maths.bris.ac.uk/%7Emamjw/${PN}.tar.bz2"
 
 LICENSE="AS-IS"
 SLOT="0"
-KEYWORDS="~x86 ~amd64"
+KEYWORDS="~amd64 ~x86"
 IUSE=""
 
 RESTRICT="mirror"
 
-DEPEND="sci-mathematics/pari"
-RDEPEND="${DEPEND}"
+DEPEND=""
+RDEPEND="sci-mathematics/pari"
 
 src_prepare() {
 	# sympow assumes its datafiles in the directory it is invoked from - fix it
@@ -32,7 +32,7 @@ src_prepare() {
 	sed -i "s:cd datafiles:cd /var/lib/sympow/datafiles:g" generate.c \
 		|| die "sed failed"
 
-	# also fix gp scripts
+	# also fix paths of gp scripts
 	sed -i \
 		-e "s:standard1.gp:/usr/share/sympow/standard1.gp:g" \
 		-e "s:standard2.gp:/usr/share/sympow/standard2.gp:g" \
@@ -67,8 +67,6 @@ src_configure() {
 src_compile() {
 	emake || die "make failed"
 }
-
-# TODO: provide some tests ?
 
 # TODO: cleanup localstatedir=/var/lib/sympow in pkg_postrm ?
 src_install() {
