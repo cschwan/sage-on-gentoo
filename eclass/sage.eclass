@@ -80,6 +80,19 @@ _sage_package_unpack() {
 	fi
 }
 
+# TODO: Would be nice if this gets pulled into eutils.eclass!
+
+# @FUNCTION: hg_clean
+# @USAGE: [list of dirs]
+# @DESCRIPTION:
+# Remove Mercurial directories recursiveley.  Useful when a source tarball
+# contains internal Mercurial directories.  Defaults to $PWD.
+hg_clean() {
+    [[ -z $* ]] && set -- .
+    find "$@" -type d -name '.hg' -prune -print0 | xargs -0 rm -rf
+    find "$@" -type f -name '.hg*' -print0 | xargs -0 rm -rf
+}
+
 # @FUNCTION: sage_clean_targets
 # @USAGE: [list of makefile targets to clean]
 # @DESCRIPTION:
@@ -266,6 +279,8 @@ sage_src_unpack() {
 		# set correct source path
 		if [[ -d "${WORKDIR}/${SAGE_PACKAGE}/src" ]]; then
 			S="${WORKDIR}/${SAGE_PACKAGE}/src"
+		else
+			S="${WORKDIR}/${SAGE_PACKAGE}"
 		fi
 	else
 		S="${WORKDIR}"
