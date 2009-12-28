@@ -60,10 +60,12 @@ CDEPEND="
 	=sci-mathematics/gfan-0.3*
 	>=sci-libs/flint-1.5.0[ntl]
 	>=sci-mathematics/flintqs-20070817_p4
-	>=sci-mathematics/sage-data-4.2.1
-	>=sci-mathematics/sage-extcode-4.2.1
+	=sci-mathematics/sage-data-${PV}
+	=sci-mathematics/sage-extcode-${PV}
 	>=sci-libs/symmetrica-2.0
 	>=sci-mathematics/sympow-1.018
+	>=sci-mathematics/rubiks-20070912_p9
+	=sci-mathematics/sage-examples-${PV}
 "
 
 DEPEND="
@@ -117,11 +119,13 @@ src_prepare(){
 	# but include a patch to let sage-doc build it
 	sage_package_patch "sage-${PV}" "${FILESDIR}/${P}-documentation.patch"
 
+	# do not let Sage make the following targets
 	sage_clean_targets ATLAS BLAS BOEHM_GC CDDLIB CLIQUER CONWAY ECLIB ECM \
-		ELLIPTIC_CURVES EXTCODE F2C FLINT FLINTQS FPLLL FREETYPE G2RED GAP GD \
-		GFAN GIVARO GNUTLS GRAPHS GSL IML LAPACK LCALC LIBM4RI LIBPNG LINBOX \
-		MAXIMA MERCURIAL MPFI MPFR MPIR NTL PALP PARI POLYTOPES_DB RATPOINTS \
-		READLINE SAGE_BZIP2 SCONS SQLITE SYMMETRICA SYMPOW TACHYON ZLIB ZNPOLY
+		ELLIPTIC_CURVES EXAMPLES EXTCODE F2C FLINT FLINTQS FPLLL FREETYPE \
+		G2RED GAP GD GFAN GIVARO GNUTLS GRAPHS GSL IML LAPACK LCALC LIBM4RI \
+		LIBPNG LINBOX MAXIMA MERCURIAL MPFI MPFR MPIR NTL PALP PARI \
+		POLYTOPES_DB RATPOINTS READLINE RUBIKS SAGE_BZIP2 SCONS SQLITE \
+		SYMMETRICA SYMPOW TACHYON ZLIB ZNPOLY
 
 	# patch to make a correct symbolic links
 	sage_package_sed "sage_scripts-${PV}" -i \
@@ -265,7 +269,7 @@ src_install() {
 	rm -rf spkg/build/*
 
 	# remove mercurial directories - these are not needed
-	find "${S}" -type d -name '.hg' -prune -print0 | xargs -0 rm -rf
+	hg_clean
 
 	# install files
 	emake DESTDIR="${D}/opt" install || die "emake install failed"
