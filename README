@@ -1,10 +1,10 @@
-sage-on-gentoo tries to provide a split ebuild(s) for the computer algebra
-system SAGE (www.sagemath.org). Since SAGE ships all of its dependencies (about
-90 packages!) this is a difficult task and actually the reason why there is no
-SAGE in portage.
+sage-on-gentoo is a project that tries to provide split ebuilds for the computer
+algebra system SAGE (www.sagemath.org). Since SAGE ships all of its dependencies
+(about 90 packages!) this is a difficult and time consuming task and actually
+the reason why there is no SAGE in portage.
 
-Internal documenation (sage.eclass manpage for example) can be found in the
-Documentation/ subdirectory.
+Documenation for Sage's eclass is found in the Documentation/ subdirectory.
+Other documentation resides on the wiki-pages.
 
 If you find errors or have suggestions contact me via:
 
