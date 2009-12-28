@@ -5,7 +5,7 @@
 SAGE_VERSION="${PV}"
 SAGE_PACKAGE[0]=conway_polynomials-0.2
 SAGE_PACKAGE[1]=elliptic_curves-0.1
-SAGE_PACKAGE[2]=graphs-20070722
+SAGE_PACKAGE[2]=graphs-20070722.p1
 SAGE_PACKAGE[3]=polytopes_db-20080430
 
 inherit sage
@@ -39,5 +39,5 @@ src_install() {
 	doins -r ${SAGE_PACKAGE[2]}/graphs || die "doins failed"
 
 	# install polytopes_db
-	doins -r ${SAGE_PACKAGE[3]}/reflexive_polytopes || die "doins failed"
+	doins -r polytopes_db-20080430/reflexive_polytopes || die "doins failed"
 }
