@@ -1,0 +1,10 @@
+# ChangeLog for dev-python/cvxopt
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: $
+
+*cvxopt-1.1.2 (30 Dec 2009)
+
+  30 Dec 2009; Christopher Schwan <cschwan@students.uni-mainz.de>
+  +cvxopt-1.1.2.ebuild, +metadata.xml:
+  Initial import. Ebuild taken from sunrise overlay and updated to 1.1.2
+

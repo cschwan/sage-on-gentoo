@@ -2,6 +2,7 @@ dev-lang/R
 dev-libs/gf2x
 dev-libs/ntl
 dev-lisp/ecls
+dev-python/cvxopt
 dev-python/cython
 dev-python/gdmodule
 dev-python/matplotlib
