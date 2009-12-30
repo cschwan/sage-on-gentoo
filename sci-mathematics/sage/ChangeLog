@@ -2,6 +2,11 @@
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  30 Dec 2009; Christopher Schwan <cschwan@students.uni-mainz.de>
+  sage-4.3.ebuild:
+  Removed cython and setuptools from Sage. This version may fail if one
+  has Python packages installed that are also shipped with Sage
+
 *sage-4.3 (28 Dec 2009)
 
   28 Dec 2009; Christopher Schwan <cschwan@students.uni-mainz.de>
