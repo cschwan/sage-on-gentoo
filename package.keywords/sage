@@ -3,6 +3,7 @@ dev-libs/gf2x
 dev-libs/ntl
 dev-lisp/ecls
 dev-python/cython
+dev-python/gdmodule
 dev-python/matplotlib
 dev-python/mpmath
 dev-python/pycxx
