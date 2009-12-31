@@ -170,7 +170,7 @@ src_prepare(){
 		"s:../../../../data:${SAGE_DATA}:g" spkg-install
 
 	# do not compile R, but rpy2 which is in R's spkg (why ?)
-	sage_package_patch r-2.9.2 "${FILESDIR}/${PN}-4.2.1-use-R-from-portage.patch"
+	sage_package_patch r-2.9.2 "${FILESDIR}/${P}-use-R-from-portage.patch"
 
 	# fix RHOME in rpy2
 	sage_package_nested_sed r-2.9.2 rpy2-2.0.6 -i \
@@ -179,7 +179,7 @@ src_prepare(){
 
 	# fix compilation error for rpy2
 	sage_package_nested_patch r-2.9.2 rpy2-2.0.6 \
-		"${FILESDIR}/${PN}-4.2.1-fix-rpy2.patch"
+		"${FILESDIR}/${P}-fix-rpy2.patch"
 
 	# TODO: customizing PYTHONPATH yields build errors without using python
 	# packages from portage because of cython
@@ -259,7 +259,7 @@ src_prepare(){
 
 	# unset custom C(XX)FLAGS on amd64 - this is just a temporary hack
 	if use amd64 ; then
-		sage_package_patch "${P}" "${FILESDIR}/sage-4.2.1-amd64-hack.patch"
+		sage_package_patch "${P}" "${FILESDIR}/${P}-amd64-hack.patch"
 	fi
 
 	# fix importing of deprecated sets module

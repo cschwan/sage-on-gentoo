@@ -2,6 +2,10 @@
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  31 Dec 2009; Christopher Schwan <cschwan@students.uni-mainz.de>
+  -sage-data-4.2.1.ebuild, sage-data-4.3.ebuild:
+  Dropped old version
+
 *sage-data-4.3 (28 Dec 2009)
 
   28 Dec 2009; Christopher Schwan <cschwan@students.uni-mainz.de>

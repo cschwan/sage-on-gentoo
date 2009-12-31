@@ -39,5 +39,5 @@ src_install() {
 	doins -r ${SAGE_PACKAGE[2]}/graphs || die "doins failed"
 
 	# install polytopes_db
-	doins -r polytopes_db-20080430/reflexive_polytopes || die "doins failed"
+	doins -r ${SAGE_PACKAGE[3]}/reflexive_polytopes || die "doins failed"
 }
