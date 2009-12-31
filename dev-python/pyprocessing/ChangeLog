@@ -1,0 +1,10 @@
+# ChangeLog for dev-python/pyprocessing
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: $
+
+*pyprocessing-0.52 (31 Dec 2009)
+
+  31 Dec 2009; Christopher Schwan <cschwan@students.uni-mainz.de>
+  +pyprocessing-0.52.ebuild, +metadata.xml:
+  Initial commit
+

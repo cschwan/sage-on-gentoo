@@ -8,6 +8,7 @@ dev-python/gdmodule
 dev-python/matplotlib
 dev-python/mpmath
 dev-python/pycxx
+dev-python/pyprocessing
 dev-python/sqlalchemy
 dev-python/sympy
 dev-util/mercurial
