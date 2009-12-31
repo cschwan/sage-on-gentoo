@@ -70,6 +70,9 @@ CDEPEND="
 	>=dev-python/cython-0.12
 	>=dev-python/setuptools-0.6.9
 	>=dev-python/docutils-0.5
+	>=sci-libs/scipy-0.7
+	>=dev-python/numpy-1.3.0[lapack]
+	>=dev-python/cvxopt-0.9
 "
 
 DEPEND="
@@ -125,12 +128,12 @@ src_prepare(){
 # 		"${FILESDIR}/${PN}-4.2.1-documentation.patch"
 
 	# do not let Sage make the following targets
-	sage_clean_targets ATLAS BLAS BOEHM_GC CDDLIB CLIQUER CONWAY CYTHON \
+	sage_clean_targets ATLAS BLAS BOEHM_GC CDDLIB CLIQUER CONWAY CVXOPT CYTHON \
 		DOCUTILS ECLIB ECM ELLIPTIC_CURVES EXAMPLES EXTCODE F2C FLINT FLINTQS \
 		FPLLL FREETYPE G2RED GAP GD GFAN GIVARO GNUTLS GRAPHS GSL IML LAPACK \
-		LCALC LIBM4RI LIBPNG LINBOX MAXIMA MERCURIAL MPFI MPFR MPIR NTL PALP \
-		PARI POLYTOPES_DB RATPOINTS READLINE RUBIKS SAGE_BZIP2 SCONS \
-		SETUPTOOLS SQLITE SYMMETRICA SYMPOW TACHYON ZLIB ZNPOLY
+		LCALC LIBM4RI LIBPNG LINBOX MAXIMA MERCURIAL MPFI MPFR MPIR NTL NUMPY \
+		PALP PARI POLYTOPES_DB RATPOINTS READLINE RUBIKS SAGE_BZIP2 SCIPY \
+		SCONS SETUPTOOLS SQLITE SYMMETRICA SYMPOW TACHYON WEAVE ZLIB ZNPOLY
 
 	# patch to make correct symbolic links
 	sage_package_sed "sage_scripts-${PV}" -i \
@@ -154,9 +157,9 @@ src_prepare(){
 	sage_package_sed "sage_scripts-${PV}" -i \
 		-e "s:ECLDIR=:#ECLDIR=:g" sage-env
 
-	# patch to use atlas from portage
-	sage_package_sed cvxopt-0.9.p8 -i "s:f77blas:blas:g" patches/setup_f95.py \
-		patches/setup_gfortran.py
+# 	# patch to use atlas from portage
+# 	sage_package_sed cvxopt-0.9.p8 -i "s:f77blas:blas:g" patches/setup_f95.py \
+# 		patches/setup_gfortran.py
 
 	# fix command for calling maxima
 	sage_package_sed "sage-${PV}" -i "s:maxima-noreadline:maxima:g" \
@@ -213,10 +216,10 @@ src_prepare(){
 		-e "s:SAGE_ROOT + \"/local/include/FLINT/flint.h\":\"/usr/include/FLINT/flint.h\":g" \
 		module_list.py
 
-# 	# fix numpy's include directory
-# 	sage_package_sed "${P}" -i \
-# 		-e "s:SAGE_ROOT+'/local/lib/python/site-packages/numpy/core/include':'/usr/lib/python2.6/site-packages/numpy/core/include':g" \
-# 		module_list.py
+	# fix numpy's include directory
+	sage_package_sed "${P}" -i \
+		-e "s:SAGE_ROOT+'/local/lib/python/site-packages/numpy/core/include':'/usr/lib/python2.6/site-packages/numpy/core/include':g" \
+		module_list.py
 
 	# this file is taken from portage's scipy ebuild
 	cat > "${T}"/site.cfg <<-EOF
@@ -250,7 +253,7 @@ src_prepare(){
 	EOF
 
 	# copy file into scipy's spkg and scipy_sandbox
-	sage_package_cp scipy-0.7.p3 "${T}"/site.cfg src/site.cfg
+# 	sage_package_cp scipy-0.7.p3 "${T}"/site.cfg src/site.cfg
 	sage_package_cp scipy_sandbox-20071020.p4 "${T}"/site.cfg arpack/site.cfg
 	sage_package_cp scipy_sandbox-20071020.p4 "${T}"/site.cfg delaunay/site.cfg
 
