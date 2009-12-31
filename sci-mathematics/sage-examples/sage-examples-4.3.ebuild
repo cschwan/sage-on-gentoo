@@ -28,7 +28,7 @@ src_prepare() {
 	hg_clean
 
 	# is test_all needed ?
-	rm sage-push spkg-install test_all
+	rm sage-push spkg-install
 }
 
 src_install() {
