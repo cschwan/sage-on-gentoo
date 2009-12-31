@@ -27,11 +27,12 @@ src_prepare() {
 	# remove mecurial directories
 	hg_clean
 
-	# is test_all needed ?
+	# remove files not needed
 	rm sage-push spkg-install
 }
 
 src_install() {
 	insinto "${SAGE_ROOT}"/examples
-	doins -r *
+	doins -r * || die "doins failed"
+	fperms a+x "${SAGE_ROOT}"/examples/test_all || die "fperms failed"
 }
