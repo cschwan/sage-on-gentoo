@@ -4,11 +4,14 @@ dev-libs/ntl
 dev-lisp/ecls
 dev-python/cvxopt
 dev-python/cython
+dev-python/docutils
 dev-python/gdmodule
 dev-python/matplotlib
 dev-python/mpmath
 dev-python/pycxx
 dev-python/pyprocessing
+dev-python/setuptools
+dev-python/sphinx
 dev-python/sqlalchemy
 dev-python/sympy
 dev-util/mercurial

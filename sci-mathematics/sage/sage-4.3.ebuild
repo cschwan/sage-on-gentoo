@@ -69,6 +69,7 @@ CDEPEND="
 	=sci-mathematics/sage-examples-${PV}
 	>=dev-python/cython-0.12
 	>=dev-python/setuptools-0.6.9
+	>=dev-python/docutils-0.5
 "
 
 DEPEND="
@@ -124,12 +125,12 @@ src_prepare(){
 # 		"${FILESDIR}/${PN}-4.2.1-documentation.patch"
 
 	# do not let Sage make the following targets
-	sage_clean_targets ATLAS BLAS BOEHM_GC CDDLIB CLIQUER CONWAY CYTHON ECLIB \
-		ECM ELLIPTIC_CURVES EXAMPLES EXTCODE F2C FLINT FLINTQS FPLLL FREETYPE \
-		G2RED GAP GD GFAN GIVARO GNUTLS GRAPHS GSL IML LAPACK LCALC LIBM4RI \
-		LIBPNG LINBOX MAXIMA MERCURIAL MPFI MPFR MPIR NTL PALP PARI \
-		POLYTOPES_DB RATPOINTS READLINE RUBIKS SAGE_BZIP2 SCONS SETUPTOOLS \
-		SQLITE SYMMETRICA SYMPOW TACHYON ZLIB ZNPOLY
+	sage_clean_targets ATLAS BLAS BOEHM_GC CDDLIB CLIQUER CONWAY CYTHON \
+		DOCUTILS ECLIB ECM ELLIPTIC_CURVES EXAMPLES EXTCODE F2C FLINT FLINTQS \
+		FPLLL FREETYPE G2RED GAP GD GFAN GIVARO GNUTLS GRAPHS GSL IML LAPACK \
+		LCALC LIBM4RI LIBPNG LINBOX MAXIMA MERCURIAL MPFI MPFR MPIR NTL PALP \
+		PARI POLYTOPES_DB RATPOINTS READLINE RUBIKS SAGE_BZIP2 SCONS \
+		SETUPTOOLS SQLITE SYMMETRICA SYMPOW TACHYON ZLIB ZNPOLY
 
 	# patch to make correct symbolic links
 	sage_package_sed "sage_scripts-${PV}" -i \
@@ -212,6 +213,11 @@ src_prepare(){
 		-e "s:SAGE_ROOT + \"/local/include/FLINT/flint.h\":\"/usr/include/FLINT/flint.h\":g" \
 		module_list.py
 
+# 	# fix numpy's include directory
+# 	sage_package_sed "${P}" -i \
+# 		-e "s:SAGE_ROOT+'/local/lib/python/site-packages/numpy/core/include':'/usr/lib/python2.6/site-packages/numpy/core/include':g" \
+# 		module_list.py
+
 	# this file is taken from portage's scipy ebuild
 	cat > "${T}"/site.cfg <<-EOF
 		[DEFAULT]
@@ -253,16 +259,26 @@ src_prepare(){
 		sage_package_patch "${P}" "${FILESDIR}/sage-4.2.1-amd64-hack.patch"
 	fi
 
+	# fix importing of deprecated sets module
+	sage_package_patch "${P}" "${FILESDIR}/${P}-fix-deprecation-warning.patch"
+
 	# pack all unpacked spkgs
 	sage_package_finish
+
+	# make symbolic links to data and examples
+	ln -s "${SAGE_ROOT}"/data "${S}"/data || die "ln failed"
+	ln -s "${SAGE_ROOT}"/examples "${S}"/examples || die "ln failed"
 }
 
 src_compile() {
-	# do not run parallel since this is impossible with SAGE (!?)
+	# do not run parallel since this is not possible at this level
 	emake -j1 || die "emake failed"
 
 	# build documentation
-	"${SAGE_ROOT}"/sage -docbuild all html
+	"${S}"/sage -docbuild all html
+
+	# check if everything did successfully built
+	grep -s "Error building Sage" install.log && die "Sage build failed"
 }
 
 src_install() {
