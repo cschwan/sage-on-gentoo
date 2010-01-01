@@ -1,4 +1,4 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
@@ -73,6 +73,7 @@ CDEPEND="
 	>=sci-libs/scipy-0.7
 	>=dev-python/numpy-1.3.0[lapack]
 	>=dev-python/cvxopt-0.9
+	>=dev-python/rpy-2.0.6
 "
 
 DEPEND="
@@ -132,7 +133,7 @@ src_prepare(){
 		DOCUTILS ECLIB ECM ELLIPTIC_CURVES EXAMPLES EXTCODE F2C FLINT FLINTQS \
 		FPLLL FREETYPE G2RED GAP GD GFAN GIVARO GNUTLS GRAPHS GSL IML LAPACK \
 		LCALC LIBM4RI LIBPNG LINBOX MAXIMA MERCURIAL MPFI MPFR MPIR NTL NUMPY \
-		PALP PARI POLYTOPES_DB RATPOINTS READLINE RUBIKS SAGE_BZIP2 SCIPY \
+		PALP PARI POLYTOPES_DB R RATPOINTS READLINE RUBIKS SAGE_BZIP2 SCIPY \
 		SCONS SETUPTOOLS SQLITE SYMMETRICA SYMPOW TACHYON WEAVE ZLIB ZNPOLY
 
 	# patch to make correct symbolic links
@@ -157,10 +158,6 @@ src_prepare(){
 	sage_package_sed "sage_scripts-${PV}" -i \
 		-e "s:ECLDIR=:#ECLDIR=:g" sage-env
 
-# 	# patch to use atlas from portage
-# 	sage_package_sed cvxopt-0.9.p8 -i "s:f77blas:blas:g" patches/setup_f95.py \
-# 		patches/setup_gfortran.py
-
 	# fix command for calling maxima
 	sage_package_sed "sage-${PV}" -i "s:maxima-noreadline:maxima:g" \
 		sage/interfaces/maxima.py
@@ -168,18 +165,6 @@ src_prepare(){
 	# extcode is installed in a separate ebuild - fix directory path
 	sage_package_sed "moin-1.5.7.p3" -i \
 		"s:../../../../data:${SAGE_DATA}:g" spkg-install
-
-	# do not compile R, but rpy2 which is in R's spkg (why ?)
-	sage_package_patch r-2.9.2 "${FILESDIR}/${P}-use-R-from-portage.patch"
-
-	# fix RHOME in rpy2
-	sage_package_nested_sed r-2.9.2 rpy2-2.0.6 -i \
-		"s:\"\$SAGE_LOCAL\"/lib/R:/usr/lib/R:g" \
-		spkg-install
-
-	# fix compilation error for rpy2
-	sage_package_nested_patch r-2.9.2 rpy2-2.0.6 \
-		"${FILESDIR}/${P}-fix-rpy2.patch"
 
 	# TODO: customizing PYTHONPATH yields build errors without using python
 	# packages from portage because of cython
@@ -253,7 +238,6 @@ src_prepare(){
 	EOF
 
 	# copy file into scipy's spkg and scipy_sandbox
-# 	sage_package_cp scipy-0.7.p3 "${T}"/site.cfg src/site.cfg
 	sage_package_cp scipy_sandbox-20071020.p4 "${T}"/site.cfg arpack/site.cfg
 	sage_package_cp scipy_sandbox-20071020.p4 "${T}"/site.cfg delaunay/site.cfg
 

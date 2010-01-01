@@ -10,6 +10,7 @@ dev-python/matplotlib
 dev-python/mpmath
 dev-python/pycxx
 dev-python/pyprocessing
+dev-python/rpy
 dev-python/setuptools
 dev-python/sphinx
 dev-python/sqlalchemy

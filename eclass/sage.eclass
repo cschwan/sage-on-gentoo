@@ -194,38 +194,6 @@ sage_package_cp() {
 	cd ..
 }
 
-# TODO: Remove it
-sage_package_nested_sed() {
-	_sage_package_unpack "$1"
-
-	cd "$1"
-	tar -xf "$2.spkg" || die "tar failed"
-	rm "$2.spkg" || die "rm failed"
-	cd "$2"
-	SPKG="$2"
-	shift 2
-	sed "$@" || die "sed failed"
-	cd ..
-	tar -cf "${SPKG}.spkg" "${SPKG}"
-	rm -rf "${SPKG}"
-	cd ..
-}
-
-# TODO: Remove it
-sage_package_nested_patch() {
-	_sage_package_unpack "$1"
-
-	cd "$1"
-	tar -xf "$2.spkg" || die "tar failed"
-	rm "$2.spkg" || die "rm failed"
-	cd "$2"
-	epatch "$3"
-	cd ..
-	tar -cf "$2.spkg" "$2" || die "tar failed"
-	rm -rf "$2"
-	cd ..
-}
-
 # @FUNCTION: sage_package_finish
 # @USAGE:
 # @DESCRIPTION:
