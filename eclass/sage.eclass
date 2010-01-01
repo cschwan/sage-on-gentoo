@@ -53,7 +53,7 @@ inherit eutils
 SPKG_URI="http://www.sagemath.org/packages/standard"
 
 HOMEPAGE="http://www.sagemath.org/"
-SRC_URI="http://mirror.switch.ch/mirror/sagemath/src/sage-${SAGE_VERSION}.tar"
+SRC_URI="mirror://sage/src/sage-${SAGE_VERSION}.tar"
 
 RESTRICT="mirror"
 

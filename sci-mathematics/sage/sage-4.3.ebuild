@@ -9,7 +9,7 @@ inherit multilib python sage
 DESCRIPTION="Math software for algebra, geometry, number theory, cryptography,
 and numerical computation."
 HOMEPAGE="http://www.sagemath.org"
-SRC_URI="http://mirror.switch.ch/mirror/sagemath/src/${P}.tar"
+SRC_URI="mirror://sage/src/${P}.tar"
 
 LICENSE="GPL-2"
 SLOT="0"
