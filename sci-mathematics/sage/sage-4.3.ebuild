@@ -4,7 +4,7 @@
 
 EAPI=2
 
-inherit fortran multilib python sage
+inherit multilib python sage
 
 DESCRIPTION="Math software for algebra, geometry, number theory, cryptography,
 and numerical computation."
@@ -14,9 +14,10 @@ SRC_URI="http://mirror.switch.ch/mirror/sagemath/src/${P}.tar"
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
-IUSE=""
+IUSE="doc"
 
 # TODO: should be sci-libs/m4ri-20091120 which is not available on upstream
+# TODO: check pygments version string (Sage's pygments version seems very old)
 CDEPEND="
 	>=dev-libs/mpfr-2.4.1
 	|| (
@@ -74,6 +75,12 @@ CDEPEND="
 	>=dev-python/numpy-1.3.0[lapack]
 	>=dev-python/cvxopt-0.9
 	>=dev-python/rpy-2.0.6
+	>=dev-python/matplotlib-0.99.1
+	>=dev-python/pyprocessing-0.52
+	>=dev-python/pygments-0.11.1
+	>=dev-python/sympy-0.6.4
+	>=dev-python/gdmodule-0.56
+	>=dev-python/mpmath-0.13
 "
 
 DEPEND="
@@ -100,13 +107,6 @@ RESTRICT="mirror test"
 # TODO: install a menu icon for sage (see homepage and newsgroup for icon, etc)
 
 pkg_setup() {
-	FORTRAN="gfortran"
-
-	fortran_pkg_setup
-
-	# force sage to use our fortran compiler
-	export SAGE_FORTRAN="$(which ${FORTRANC})"
-
 	einfo "Sage itself is released under the GPL-2 _or later_ license"
 	einfo "However sage is distributed with packages having different licenses."
 	einfo "This ebuild unfortunately does too, here is a list of licenses used:"
@@ -131,10 +131,11 @@ src_prepare(){
 	# do not let Sage make the following targets
 	sage_clean_targets ATLAS BLAS BOEHM_GC CDDLIB CLIQUER CONWAY CVXOPT CYTHON \
 		DOCUTILS ECLIB ECM ELLIPTIC_CURVES EXAMPLES EXTCODE F2C FLINT FLINTQS \
-		FPLLL FREETYPE G2RED GAP GD GFAN GIVARO GNUTLS GRAPHS GSL IML LAPACK \
-		LCALC LIBM4RI LIBPNG LINBOX MAXIMA MERCURIAL MPFI MPFR MPIR NTL NUMPY \
-		PALP PARI POLYTOPES_DB R RATPOINTS READLINE RUBIKS SAGE_BZIP2 SCIPY \
-		SCONS SETUPTOOLS SQLITE SYMMETRICA SYMPOW TACHYON WEAVE ZLIB ZNPOLY
+		FPLLL FREETYPE G2RED GAP GD GDMODULE GFAN GIVARO GNUTLS GRAPHS GSL IML \
+		LAPACK LCALC LIBM4RI LIBPNG LINBOX MATPLOTLIB MAXIMA MERCURIAL MPFI \
+		MPFR MPIR MPMATH NTL NUMPY PALP PARI POLYTOPES_DB PYGMENTS \
+		PYPROCESSING R RATPOINTS READLINE RUBIKS SAGE_BZIP2 SCIPY SCONS \
+		SETUPTOOLS SQLITE SYMMETRICA SYMPOW SYMPY TACHYON WEAVE ZLIB ZNPOLY
 
 	# patch to make correct symbolic links
 	sage_package_sed "sage_scripts-${PV}" -i \
@@ -178,11 +179,11 @@ src_prepare(){
 		-e "s:SAGE_LOCAL + '/lib/python/site-packages/Cython/Includes/':'/usr/lib/python2.6/site-packages/Cython/Includes/':g" \
 		setup.py
 
-	# do not download Twisted - TODO: look for another way to solve this
-	sage_package_sed sagenb-0.4.8 -i "s:twisted>=8.2::g" \
-		src/sagenb.egg-info/requires.txt
-	sage_package_sed sagenb-0.4.8 -i \
-		"/install_requires = \['twisted>=8\.2'\],/d" src/setup.py
+# 	# do not download Twisted - TODO: look for another way to solve this
+# 	sage_package_sed sagenb-0.4.8 -i "s:twisted>=8.2::g" \
+# 		src/sagenb.egg-info/requires.txt
+# 	sage_package_sed sagenb-0.4.8 -i \
+# 		"/install_requires = \['twisted>=8\.2'\],/d" src/setup.py
 
 	# TODO: Are these needed ?
 	sage_package_sed "${P}" -i \
@@ -205,6 +206,15 @@ src_prepare(){
 	sage_package_sed "${P}" -i \
 		-e "s:SAGE_ROOT+'/local/lib/python/site-packages/numpy/core/include':'/usr/lib/python2.6/site-packages/numpy/core/include':g" \
 		module_list.py
+
+# 	# fix polybori paths
+# 	sage_package_sed "${P}" -i \
+# 		-e "s:SAGE_LOCAL + \"/share/polybori/flags.conf\":\"/usr/share/polybori/flags.conf\":g" \
+# 		-e "s:SAGE_ROOT+'/local/include/cudd':'/usr/include/cudd':g" \
+# 		-e "s:SAGE_ROOT+'/local/include/polybori':'/usr/include/polybori':g" \
+# 		-e "s:SAGE_ROOT+'/local/include/polybori/groebner':'/usr/include/polybori/groebner':g" \
+# 		-e "s:SAGE_ROOT + \"/local/include/polybori/polybori.h\":\"/usr/include/polybori/polybori.h\":g" \
+# 		module_list.py
 
 	# this file is taken from portage's scipy ebuild
 	cat > "${T}"/site.cfg <<-EOF
@@ -262,7 +272,7 @@ src_compile() {
 	emake -j1 || die "emake failed"
 
 	# build documentation
-	"${S}"/sage -docbuild all html
+	use doc && "${S}"/sage -docbuild all html
 
 	# check if everything did successfully built
 	grep -s "Error building Sage" install.log && die "Sage build failed"

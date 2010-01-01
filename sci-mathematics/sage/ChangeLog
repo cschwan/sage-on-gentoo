@@ -4,6 +4,11 @@
 
   01 Jan 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
   sage-4.3.ebuild:
+  Removed python packages from Sage: pyprocessing, pygments, sympy,
+  gdmodule and mpmath
+
+  01 Jan 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
+  sage-4.3.ebuild:
   Removed rpy from Sage
 
   31 Dec 2009; Christopher Schwan <cschwan@students.uni-mainz.de>
