@@ -8,6 +8,7 @@ dev-python/docutils
 dev-python/gdmodule
 dev-python/matplotlib
 dev-python/mpmath
+dev-python/networkx
 dev-python/pycxx
 dev-python/pyprocessing
 dev-python/python-gnutls

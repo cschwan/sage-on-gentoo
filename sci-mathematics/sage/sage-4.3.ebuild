@@ -18,6 +18,7 @@ IUSE="doc"
 
 # TODO: should be sci-libs/m4ri-20091120 which is not available on upstream
 # TODO: check pygments version string (Sage's pygments version seems very old)
+# TODO: find out version for ghmm
 CDEPEND="
 	>=dev-libs/mpfr-2.4.1
 	|| (
@@ -87,6 +88,9 @@ CDEPEND="
 	>=dev-python/jinja-1.2
 	>=dev-python/jinja2-2.1.1
 	>=dev-python/imaging-1.1.6
+	>=dev-libs/boost-1.34.1
+	sci-libs/ghmm[lapack,python]
+	>=sci-libs/pynac-0.1.10
 "
 
 DEPEND="
@@ -135,14 +139,14 @@ src_prepare(){
 # 		"${FILESDIR}/${PN}-4.2.1-documentation.patch"
 
 	# do not let Sage make the following targets
-	sage_clean_targets ATLAS BLAS BOEHM_GC CDDLIB CLIQUER CONWAY CVXOPT CYTHON \
-		DOCUTILS ECLIB ECM ELLIPTIC_CURVES EXAMPLES EXTCODE F2C FLINT FLINTQS \
-		FPLLL FREETYPE G2RED GAP GD GDMODULE GFAN GIVARO GNUTLS GRAPHS GSL IML \
-		JINJA JINJA2 LAPACK LCALC LIBM4RI LIBPNG LINBOX MATPLOTLIB MAXIMA \
-		MERCURIAL MPFI MPFR MPIR MPMATH NTL NUMPY PALP PARI PEXPECT PIL \
-		POLYTOPES_DB PYCRYPTO PYGMENTS PYPROCESSING PYTHON_GNUTLS R RATPOINTS \
-		READLINE RUBIKS SAGE_BZIP2 SCIPY SCONS SETUPTOOLS SQLITE SYMMETRICA \
-		SYMPOW SYMPY TACHYON WEAVE ZLIB ZNPOLY
+	sage_clean_targets ATLAS BLAS BOEHM_GC BOOST_CROPPED CDDLIB CLIQUER CONWAY \
+		CVXOPT CYTHON DOCUTILS ECLIB ECM ELLIPTIC_CURVES EXAMPLES EXTCODE F2C \
+		FLINT FLINTQS FPLLL FREETYPE G2RED GAP GD GDMODULE GFAN GHMM GIVARO \
+		GNUTLS GRAPHS GSL IML JINJA JINJA2 LAPACK LCALC LIBM4RI LIBPNG LINBOX \
+		MATPLOTLIB MAXIMA MERCURIAL MPFI MPFR MPIR MPMATH NTL NUMPY PALP PARI \
+		PEXPECT PIL POLYTOPES_DB PYCRYPTO PYGMENTS PYNAC PYPROCESSING \
+		PYTHON_GNUTLS R RATPOINTS READLINE RUBIKS SAGE_BZIP2 SCIPY SCONS \
+		SETUPTOOLS SQLITE SYMMETRICA SYMPOW SYMPY TACHYON WEAVE ZLIB ZNPOLY
 
 	# patch to make correct symbolic links
 	sage_package_sed "sage_scripts-${PV}" -i \
@@ -207,6 +211,11 @@ src_prepare(){
 	sage_package_sed "${P}" -i \
 		-e "s:SAGE_ROOT+'/local/include/FLINT/':'/usr/include/FLINT/':g" \
 		-e "s:SAGE_ROOT + \"/local/include/FLINT/flint.h\":\"/usr/include/FLINT/flint.h\":g" \
+		module_list.py
+
+	# fix path to pynac/ginac header
+	sage_package_sed "${P}" -i \
+		-e "s:SAGE_ROOT + \"/local/include/pynac/ginac.h\":\"/usr/include/pynac/ginac.h\":g" \
 		module_list.py
 
 	# fix numpy's include directory
