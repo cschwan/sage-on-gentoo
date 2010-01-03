@@ -21,6 +21,7 @@ media-gfx/tachyon
 sci-libs/blas-atlas
 sci-libs/cddlib
 sci-libs/flint
+sci-libs/ghmm
 sci-libs/givaro
 sci-libs/iml
 sci-libs/lapack-atlas

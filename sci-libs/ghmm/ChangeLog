@@ -1,0 +1,10 @@
+# ChangeLog for sci-libs/ghmm
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: $
+
+*ghmm-0.9_rc1 (01 Jan 2010)
+
+  01 Jan 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
+  +ghmm-0.9_rc1.ebuild:
+  Initial import
+
