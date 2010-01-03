@@ -4,6 +4,8 @@
 
 EAPI=2
 
+NEED_PYTHON=2.5
+
 inherit eutils python versionator
 
 DESCRIPTION="Polynomials over Boolean Rings"
@@ -21,7 +23,6 @@ IUSE="doc gd sage singular"
 
 DEPEND=">=dev-util/scons-0.98
 	>=dev-libs/boost-1.34.1[python]
-	>=dev-lang/python-2.5
 	dev-python/ipython
 	>=sci-libs/m4ri-20090512
 	doc? (
@@ -31,7 +32,6 @@ DEPEND=">=dev-util/scons-0.98
 	gd? ( media-libs/gd )
 	singular? ( sci-mathematics/singular )"
 RDEPEND=">=dev-libs/boost-1.34.1[python]
-	>=dev-lang/python-2.5
 	dev-python/ipython
 	gd? ( media-libs/gd )
 	singular? ( sci-mathematics/singular )"
