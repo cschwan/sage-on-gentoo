@@ -20,6 +20,7 @@ RESTRICT="mirror"
 
 # TODO: check dependencies
 CDEPEND=">=dev-libs/libxml2-2.6.0
+	>=dev-lang/swig-1.3.17
 	sci-libs/gsl
 	lapack? ( virtual/lapack )
 	virtual/python"
