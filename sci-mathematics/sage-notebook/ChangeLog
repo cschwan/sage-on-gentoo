@@ -1,0 +1,10 @@
+# ChangeLog for sci-mathematics/sage-notebook
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: $
+
+*sage-notebook-0.4.8 (05 Jan 2010)
+
+  05 Jan 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
+  +sage-notebook-0.4.8.ebuild, +metadata.xml:
+  Initial import
+
