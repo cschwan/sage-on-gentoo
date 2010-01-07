@@ -91,6 +91,8 @@ CDEPEND="
 	>=dev-libs/boost-1.34.1
 	sci-libs/ghmm[lapack,python]
 	>=sci-libs/pynac-0.1.10
+	>=dev-python/ipython-0.9.1
+	>=sci-mathematics/polybori-0.6.3[sage]
 "
 
 DEPEND="
@@ -111,8 +113,7 @@ RESTRICT="mirror test"
 # check if sage needs a script and specific patches for library
 # -e "s:ln -sf Singular sage_singular:ln -sf /usr/bin/Singular sage_singular:g" \
 # -e "s:\$SAGE_LOCAL/share/singular:/usr/share/singular:g" \
-# 	# fix path to singular headers
-# 	sage_package_patch "${P}" "${FILESDIR}/${PN}-4.2.1-singular-path-fix.patch"
+# and fix paths to singular
 
 # TODO: install a menu icon for sage (see homepage and newsgroup for icon, etc)
 
@@ -142,11 +143,12 @@ src_prepare(){
 	sage_clean_targets ATLAS BLAS BOEHM_GC BOOST_CROPPED CDDLIB CLIQUER CONWAY \
 		CVXOPT CYTHON DOCUTILS ECLIB ECM ELLIPTIC_CURVES EXAMPLES EXTCODE F2C \
 		FLINT FLINTQS FPLLL FREETYPE G2RED GAP GD GDMODULE GFAN GHMM GIVARO \
-		GNUTLS GRAPHS GSL IML JINJA JINJA2 LAPACK LCALC LIBM4RI LIBPNG LINBOX \
-		MATPLOTLIB MAXIMA MERCURIAL MPFI MPFR MPIR MPMATH NTL NUMPY PALP PARI \
-		PEXPECT PIL POLYTOPES_DB PYCRYPTO PYGMENTS PYNAC PYPROCESSING \
-		PYTHON_GNUTLS R RATPOINTS READLINE RUBIKS SAGE_BZIP2 SCIPY SCONS \
-		SETUPTOOLS SQLITE SYMMETRICA SYMPOW SYMPY TACHYON WEAVE ZLIB ZNPOLY
+		GNUTLS GRAPHS GSL IML IPYTHON JINJA JINJA2 LAPACK LCALC LIBM4RI LIBPNG \
+		LINBOX MATPLOTLIB MAXIMA MERCURIAL MPFI MPFR MPIR MPMATH NTL NUMPY \
+		PALP PARI PEXPECT PIL POLYBORI POLYTOPES_DB PYCRYPTO PYGMENTS PYNAC \
+		PYPROCESSING PYTHON_GNUTLS R RATPOINTS READLINE RUBIKS SAGE_BZIP2 \
+		SCIPY SCONS SETUPTOOLS SQLITE SYMMETRICA SYMPOW SYMPY \
+		TACHYON WEAVE ZLIB ZNPOLY
 
 	# patch to make correct symbolic links
 	sage_package_sed "sage_scripts-${PV}" -i \
@@ -171,7 +173,7 @@ src_prepare(){
 		-e "s:ECLDIR=:#ECLDIR=:g" sage-env
 
 	# fix command for calling maxima
-	sage_package_sed "sage-${PV}" -i "s:maxima-noreadline:maxima:g" \
+	sage_package_sed "${P}" -i "s:maxima-noreadline:maxima:g" \
 		sage/interfaces/maxima.py
 
 	# extcode is installed in a separate ebuild - fix directory path
@@ -223,14 +225,14 @@ src_prepare(){
 		-e "s:SAGE_ROOT+'/local/lib/python/site-packages/numpy/core/include':'/usr/lib/python2.6/site-packages/numpy/core/include':g" \
 		module_list.py
 
-# 	# fix polybori paths
-# 	sage_package_sed "${P}" -i \
-# 		-e "s:SAGE_LOCAL + \"/share/polybori/flags.conf\":\"/usr/share/polybori/flags.conf\":g" \
-# 		-e "s:SAGE_ROOT+'/local/include/cudd':'/usr/include/cudd':g" \
-# 		-e "s:SAGE_ROOT+'/local/include/polybori':'/usr/include/polybori':g" \
-# 		-e "s:SAGE_ROOT+'/local/include/polybori/groebner':'/usr/include/polybori/groebner':g" \
-# 		-e "s:SAGE_ROOT + \"/local/include/polybori/polybori.h\":\"/usr/include/polybori/polybori.h\":g" \
-# 		module_list.py
+	# fix polybori paths
+	sage_package_sed "${P}" -i \
+		-e "s:SAGE_LOCAL + \"/share/polybori/flags.conf\":\"/usr/share/polybori/flags.conf\":g" \
+		-e "s:SAGE_ROOT+'/local/include/cudd':'/usr/include/cudd':g" \
+		-e "s:SAGE_ROOT+'/local/include/polybori':'/usr/include/polybori':g" \
+		-e "s:SAGE_ROOT+'/local/include/polybori/groebner':'/usr/include/polybori/groebner':g" \
+		-e "s:SAGE_ROOT + \"/local/include/polybori/polybori.h\":\"/usr/include/polybori/polybori.h\":g" \
+		module_list.py
 
 	# this file is taken from portage's scipy ebuild
 	cat > "${T}"/site.cfg <<-EOF
