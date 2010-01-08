@@ -13,36 +13,36 @@ HOMEPAGE="http://polybori.sourceforge.net/"
 SRC_URI="mirror://sourceforge/${PN}/${PN}/${PV}/${PN}-$(replace_version_separator 2 '-').tar.gz -> ${P}.tar.gz"
 
 RESTRICT="mirror test"
-LICENSE="GPL-2"
 
+LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~x86 ~amd64"
 IUSE="doc gd sage singular"
 
 # TODO: clean up this file
 
-DEPEND=">=dev-util/scons-0.98
-	>=dev-libs/boost-1.34.1[python]
+CDEPEND=">=dev-libs/boost-1.34.1[python]
 	dev-python/ipython
+	gd? ( media-libs/gd )
+	singular? ( sci-mathematics/singular )"
+DEPEND="${CDEPEND}
+	>=dev-util/scons-0.98
 	>=sci-libs/m4ri-20090512
 	doc? (
 		dev-tex/tex4ht
 		app-doc/doxygen
-	)
-	gd? ( media-libs/gd )
-	singular? ( sci-mathematics/singular )"
-RDEPEND=">=dev-libs/boost-1.34.1[python]
-	dev-python/ipython
-	gd? ( media-libs/gd )
-	singular? ( sci-mathematics/singular )"
+	)"
+RDEPEND=""
 
 S="${WORKDIR}/${PN}-$(get_version_component_range 1-2)"
 
 src_prepare(){
 	if use sage ; then
+		# TODO: This should not be done; find a better solution
 		cp "${FILESDIR}/PyPolyBoRi.py" "${S}/pyroot/polybori/"
 
-		# TODO: Sage needs this file but we should find a better solution
+		# TODO: Sage needs this file but we should find a better solution,
+		# maybe dev-util/pkgconfig ?
 		epatch "${FILESDIR}/${P}-save-flags.patch"
 	fi
 
@@ -93,9 +93,7 @@ src_install() {
 		|| die "scons install devel-install failed"
 
 	# remove incomplete documentation
-	if ! use doc ; then
-		rm -rf "${D}"/usr/share/polybori/doc
-	fi
+	use doc || rm -rf "${D}"/usr/share/polybori/doc
 }
 
 src_test() {
