@@ -62,24 +62,6 @@ SAGE_DATA="${SAGE_ROOT}"/data
 
 _SAGE_UNPACKED_SPKGS=( )
 
-_sage_package_unpack() {
-	# change to Sage's standard spkg directory
-	cd "${S}"/spkg/standard
-
-	# make sure spkg is unpacked
-	if [[ ! -d "$1" ]] ; then
-		ebegin "Unpacking $1"
-		tar -xf "$1.spkg"
-		eend
-
-		# remove the spkg file
-		rm "$1.spkg"
-
-		# record unpacked spkg
-		_SAGE_UNPACKED_SPKGS=( ${_SAGE_UNPACKED_SPKGS[@]} $1 )
-	fi
-}
-
 # TODO: Would be nice if this gets pulled into eutils.eclass!
 
 # @FUNCTION: hg_clean
@@ -152,46 +134,35 @@ sage_clean_targets() {
 	done
 }
 
-# @FUNCTION: sage_package_patch
-# @USAGE: <spkg name> <patch name>
+# @FUNCTION: sage_package
+# @USAGE: <spkg name> <commands>
 # @DESCRIPTION:
-# Executes 'epatch' inside the contents of a *.spkg-file. The spkg name must be
-# given without the trailing ".spkg".
-sage_package_patch() {
-	_sage_package_unpack "$1"
+# Extracts package and runns supplied command(s).
+sage_package() {
+	# change to Sage's standard spkg directory
+	cd "${S}"/spkg/standard
 
-	# change to the spkg's directory, apply patch and move back
+	# make sure spkg is unpacked
+	if [[ ! -d "$1" ]] ; then
+		ebegin "Unpacking $1"
+		tar -xf "$1.spkg" || die "tar failed"
+		eend
+
+		# remove the spkg file
+		rm "$1.spkg" || die "rm failed"
+
+		# record unpacked spkg
+		_SAGE_UNPACKED_SPKGS=( ${_SAGE_UNPACKED_SPKGS[@]} $1 )
+	fi
+
+	# change to unpacked spkg directory
 	cd "$1"
-	epatch "$2"
-	cd ..
-}
 
-# @FUNCTION: sage_package_sed
-# @USAGE: <spkg name> <arguments for sed>
-# @DESCRIPTION:
-# Executes 'sed' inside the contents of a *.spkg-file. The spkg name must be
-# given without the trailing ".spkg".
-sage_package_sed() {
-	_sage_package_unpack "$1"
+	local COMMAND=$2
+	shift 2
 
-	cd "$1"
-	shift 1
-	sed "$@" || die "sed failed"
-	cd ..
-}
-
-# @FUNCTION: sage_package_cp
-# @USAGE: <spkg name> <arguments for cp>
-# @DESCRIPTION:
-# Executes 'cp' inside the contents of a *.spkg-file. The spkg name must be
-# given without the trailing ".spkg".
-sage_package_cp() {
-	_sage_package_unpack "$1"
-
-	cd "$1"
-	shift 1
-	cp "$@" || die "cp failed"
-	cd ..
+	# execute commands
+	"${COMMAND}" "$@" || die "${COMMAND} failed"
 }
 
 # @FUNCTION: sage_package_finish
@@ -201,11 +172,17 @@ sage_package_cp() {
 # sage_package_*-functions was called. This cleans up and packs all unpacked
 # spkgs.
 sage_package_finish() {
+	# change to Sage's standard spkg directory
+	cd "${S}"/spkg/standard
+
 	ebegin "Packing Sage packages"
+
+	# pack all recorded packages
 	for i in ${_SAGE_UNPACKED_SPKGS[@]} ; do
-		tar -cf "$i.spkg" "$i"
-		rm -rf "$i"
+		tar -cf "$i.spkg" "$i" || die "tar failed"
+		rm -rf "$i" || die "rm failed"
 	done
+
 	eend
 }
 
