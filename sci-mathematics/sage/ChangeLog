@@ -2,6 +2,11 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  08 Jan 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
+  sage-4.3.ebuild, +files/sage-4.3-fix-deprecated-module.patch:
+  Added a patch to fix importing of deprecated module "sets" in
+  sqlalchemy and rewrote src_prepare to use new eclass function
+
   07 Jan 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
   -files/sage-4.2.1-singular-path-fix.patch, sage-4.3.ebuild,
   -files/sage-4.3-fix-rpy2.patch, -files/sage-4.3-use-R-from-portage.patch:

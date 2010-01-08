@@ -125,20 +125,6 @@ pkg_setup() {
 }
 
 src_prepare(){
-	# verbosity only blows up build.log and slows down installation
-	sed -i "s:cp -rpv:cp -rp:g" makefile || die "sed failed"
-
-	# change to Sage's package directory
-	cd "${S}"/spkg/standard
-
-	# disable automatic generation of documentation, will be built manually
-	sage_package_sed "sage_scripts-${PV}" -i \
-		"/\"\$SAGE_ROOT\"\/sage -docbuild all html/d" install
-
-# 	# but include a patch to let sage-doc build it
-# 	sage_package_patch "sage-${PV}" \
-# 		"${FILESDIR}/${PN}-4.2.1-documentation.patch"
-
 	# do not let Sage make the following targets
 	sage_clean_targets ATLAS BLAS BOEHM_GC BOOST_CROPPED CDDLIB CLIQUER CONWAY \
 		CVXOPT CYTHON DOCUTILS ECLIB ECM ELLIPTIC_CURVES EXAMPLES EXTCODE F2C \
@@ -150,9 +136,16 @@ src_prepare(){
 		SCIPY SCONS SETUPTOOLS SQLITE SYMMETRICA SYMPOW SYMPY \
 		TACHYON WEAVE ZLIB ZNPOLY
 
+	# verbosity only blows up build.log and slows down installation
+	sed -i "s:cp -rpv:cp -rp:g" makefile || die "sed failed"
+
+	# disable automatic generation of documentation - it will be built later
+	sage_package sage_scripts-${PV} \
+		sed -i "/\"\$SAGE_ROOT\"\/sage -docbuild all html/d" install
+
 	# patch to make correct symbolic links
-	sage_package_sed "sage_scripts-${PV}" -i \
-		-e "s:ln -sf gp sage_pari:ln -sf /usr/bin/gp sage_pari:g" \
+	sage_package sage_scripts-${PV} \
+		sed -i "s:ln -sf gp sage_pari:ln -sf /usr/bin/gp sage_pari:g" \
 		spkg-install sage-spkg-install
 
 	# TODO: gphelp is installed only if pari was emerged with USE=doc and
@@ -160,36 +153,33 @@ src_prepare(){
 	# TODO: fix directories containing version strings
 
 	# fix pari, ecl, R and singular paths
-	sage_package_sed "sage_scripts-${PV}" -i \
+	sage_package sage_scripts-${PV} \
+		sed -i \
 		-e "s:\$SAGE_LOCAL/share/pari:/usr/share/pari:g" \
 		-e "s:\$SAGE_LOCAL/bin/gphelp:/usr/bin/gphelp:g" \
 		-e "s:\$SAGE_LOCAL/share/pari/doc:/usr/share/doc/pari-2.3.4-r1:g" \
 		-e "s:\$SAGE_ROOT/local/lib/R/lib:/usr/lib/R/lib:g" \
 		-e "s:\$SAGE_LOCAL/lib/R:/usr/lib/R:g" \
+		-e "s:ECLDIR=:#ECLDIR=:g" \
 		sage-env
 
-	# comment out the line with ECLDIR=... - maxima should work without it
-	sage_package_sed "sage_scripts-${PV}" -i \
-		-e "s:ECLDIR=:#ECLDIR=:g" sage-env
-
 	# fix command for calling maxima
-	sage_package_sed "${P}" -i "s:maxima-noreadline:maxima:g" \
-		sage/interfaces/maxima.py
+	sage_package ${P} \
+		sed -i "s:maxima-noreadline:maxima:g" sage/interfaces/maxima.py
 
 	# extcode is installed in a separate ebuild - fix directory path
-	sage_package_sed "moin-1.5.7.p3" -i \
-		"s:../../../../data:${SAGE_DATA}:g" spkg-install
+	sage_package moin-1.5.7.p3 \
+		sed -i "s:\.\./\.\./\.\./\.\./data:${SAGE_DATA}:g" spkg-install
 
-	# TODO: customizing PYTHONPATH yields build errors without using python
-	# packages from portage because of cython
 	# add system path for python modules
-	sage_package_sed "sage_scripts-${PV}" -i \
-		-e "s:PYTHONPATH=\"\(.*\)\":PYTHONPATH=\"\1\:$(python_get_sitedir)\":g" \
+	sage_package sage_scripts-${PV} \
+		sed -i \
+		"s:PYTHONPATH=\"\(.*\)\":PYTHONPATH=\"\1\:$(python_get_sitedir)\":g" \
 		sage-env
 
 	# set path to Sage's cython
-	sage_package_sed "${P}" -i \
-		-e "s:SAGE_LOCAL + '/lib/python/site-packages/Cython/Includes/':'/usr/lib/python2.6/site-packages/Cython/Includes/':g" \
+	sage_package ${P} \
+		sed -i "s:SAGE_LOCAL + '/lib/python/site-packages/Cython/Includes/':'/usr/lib/python2.6/site-packages/Cython/Includes/':g" \
 		setup.py
 
 # 	# do not download Twisted - TODO: look for another way to solve this
@@ -199,7 +189,8 @@ src_prepare(){
 # 		"/install_requires = \['twisted>=8\.2'\],/d" src/setup.py
 
 	# TODO: Are these needed ?
-	sage_package_sed "${P}" -i \
+	sage_package ${P} \
+		sed -i \
 		-e "s:SAGE_ROOT +'/local/include/fplll':'/usr/include/fplll':g" \
 		-e "s:SAGE_ROOT + \"/local/include/ecm.h\":\"/usr/include/ecm.h\":g" \
 		-e "s:SAGE_ROOT + \"/local/include/png.h\":\"/usr/include/png.h\":g" \
@@ -209,24 +200,18 @@ src_prepare(){
 	# TODO: -e "s:SAGE_ROOT + \"/local/include/fplll/fplll.h\":\"\":g" \
 	# this file does not exist
 
-	# make Sage be able to find flint's headers
-	sage_package_sed "${P}" -i \
+	# make Sage able to find flint's headers
+	sage_package ${P} \
+		sed -i \
 		-e "s:SAGE_ROOT+'/local/include/FLINT/':'/usr/include/FLINT/':g" \
 		-e "s:SAGE_ROOT + \"/local/include/FLINT/flint.h\":\"/usr/include/FLINT/flint.h\":g" \
 		module_list.py
 
-	# fix path to pynac/ginac header
-	sage_package_sed "${P}" -i \
+	# fix paths for pynac/ginac, numpy and polybori
+	sage_package ${P} \
+		sed -i \
 		-e "s:SAGE_ROOT + \"/local/include/pynac/ginac.h\":\"/usr/include/pynac/ginac.h\":g" \
-		module_list.py
-
-	# fix numpy's include directory
-	sage_package_sed "${P}" -i \
 		-e "s:SAGE_ROOT+'/local/lib/python/site-packages/numpy/core/include':'/usr/lib/python2.6/site-packages/numpy/core/include':g" \
-		module_list.py
-
-	# fix polybori paths
-	sage_package_sed "${P}" -i \
 		-e "s:SAGE_LOCAL + \"/share/polybori/flags.conf\":\"/usr/share/polybori/flags.conf\":g" \
 		-e "s:SAGE_ROOT+'/local/include/cudd':'/usr/include/cudd':g" \
 		-e "s:SAGE_ROOT+'/local/include/polybori':'/usr/include/polybori':g" \
@@ -265,17 +250,20 @@ src_prepare(){
 		lapack | sed -e 's/^-l//' -e 's/ -l/, /g' -e 's/,.pthread//g')
 	EOF
 
-	# copy file into scipy's spkg and scipy_sandbox
-	sage_package_cp scipy_sandbox-20071020.p4 "${T}"/site.cfg arpack/site.cfg
-	sage_package_cp scipy_sandbox-20071020.p4 "${T}"/site.cfg delaunay/site.cfg
+	# copy file into scipy_sandbox
+	sage_package scipy_sandbox-20071020.p4 \
+		cp "${T}"/site.cfg arpack/site.cfg ; \
+		cp "${T}"/site.cfg delaunay/site.cfg
 
 	# unset custom C(XX)FLAGS on amd64 - this is just a temporary hack
-	if use amd64 ; then
-		sage_package_patch "${P}" "${FILESDIR}/${P}-amd64-hack.patch"
-	fi
+	use amd64 && sage_package "${P}" \
+		epatch"${FILESDIR}/${P}-amd64-hack.patch"
 
 	# fix importing of deprecated sets module
-	sage_package_patch "${P}" "${FILESDIR}/${P}-fix-deprecation-warning.patch"
+	sage_package "${P}" \
+		epatch "${FILESDIR}/${P}-fix-deprecation-warning.patch"
+	sage_package "sqlalchemy-0.4.6.p1" \
+		epatch "${FILESDIR}/${P}-fix-deprecated-module.patch"
 
 	# pack all unpacked spkgs
 	sage_package_finish
