@@ -268,8 +268,12 @@ src_prepare(){
 # 		"/install_requires = \['twisted>=8\.2'\],/d" src/setup.py
 
 	# create this directories manually
-	mkdir -p "${S}"/local/$(get_libdir)/python/site-packages \
+	mkdir -p "${S}"/local/$(get_libdir)/python2.6/site-packages \
 		|| die "mkdir failed"
+
+	# make unversioned symbolic link
+	cd "${S}"/local/$(get_libdir)
+	ln -s python2.6 python || die "ln failed"
 
 	local SPKGS_NEEDING_FIX=( dsage-1.0.1.p0 moin-1.5.7.p3 sagenb-0.4.8
 		scipy_sandbox-20071020.p4 sphinx-0.6.3.p3 sqlalchemy-0.4.6.p1
