@@ -93,6 +93,7 @@ CDEPEND="
 	>=sci-libs/pynac-0.1.10
 	>=dev-python/ipython-0.9.1
 	>=sci-mathematics/polybori-0.6.3[sage]
+	dev-lang/python[sqlite]
 "
 
 DEPEND="
@@ -132,8 +133,8 @@ src_prepare(){
 		GNUTLS GRAPHS GSL IML IPYTHON JINJA JINJA2 LAPACK LCALC LIBM4RI LIBPNG \
 		LINBOX MATPLOTLIB MAXIMA MERCURIAL MPFI MPFR MPIR MPMATH NTL NUMPY \
 		PALP PARI PEXPECT PIL POLYBORI POLYTOPES_DB PYCRYPTO PYGMENTS PYNAC \
-		PYPROCESSING PYTHON_GNUTLS R RATPOINTS READLINE RUBIKS SAGE_BZIP2 \
-		SCIPY SCONS SETUPTOOLS SQLITE SYMMETRICA SYMPOW SYMPY \
+		PYPROCESSING PYTHON_GNUTLS PYTHON R RATPOINTS READLINE RUBIKS \
+		SAGE_BZIP2 SCIPY SCONS SETUPTOOLS SQLITE SYMMETRICA SYMPOW SYMPY \
 		TACHYON WEAVE ZLIB ZNPOLY
 
 	# verbosity only blows up build.log and slows down installation
@@ -174,7 +175,8 @@ src_prepare(){
 	# add system path for python modules
 	sage_package sage_scripts-${PV} \
 		sed -i \
-		"s:PYTHONPATH=\"\(.*\)\":PYTHONPATH=\"\1\:$(python_get_sitedir)\":g" \
+		-e "s:PYTHONPATH=\"\(.*\)\":PYTHONPATH=\"$(python_get_sitedir)\:\1\:\$SAGE_ROOT/local/lib/python/site-packages\":g" \
+		-e "/PYTHONHOME=.*/d" \
 		sage-env
 
 	# set path to Sage's cython
@@ -260,10 +262,40 @@ src_prepare(){
 		epatch"${FILESDIR}/${P}-amd64-hack.patch"
 
 	# fix importing of deprecated sets module
-	sage_package "${P}" \
+	sage_package ${P} \
 		epatch "${FILESDIR}/${P}-fix-deprecation-warning.patch"
-	sage_package "sqlalchemy-0.4.6.p1" \
-		epatch "${FILESDIR}/${P}-fix-deprecated-module.patch"
+# 	sage_package sqlalchemy-0.4.6.p1 \
+# 		epatch "${FILESDIR}/${P}-fix-deprecated-module.patch"
+
+	# create these directories manually
+	mkdir -p "${S}"/local/lib/python2.6/site-packages || die "mkdir failed"
+	cd "${S}"/local/lib
+	ln -s python2.6 python || die "ln failed"
+
+	local SPKGS_NEEDING_FIX=( dsage-1.0.1.p0 moin-1.5.7.p3 sagenb-0.4.8
+		scipy_sandbox-20071020.p4 sphinx-0.6.3.p3 sqlalchemy-0.4.6.p1
+		twisted-8.2.0.p1 zodb3-3.7.0.p2 )
+
+	# fix installation paths - this must be done in order to remove python
+	for i in "${SPKGS_NEEDING_FIX[@]}" ; do
+		sage_package $i \
+			sed -i "s:python setup.py install:python setup.py install --prefix=\"\${SAGE_LOCAL}\":g" \
+			spkg-install
+	done
+
+	# same for sage spkg in install file
+	sage_package ${P} \
+		sed -i "s:python setup.py install:python setup.py install --prefix=\"\${SAGE_LOCAL}\":g" \
+		install
+
+	# fix include directories
+	sage_package ${P} \
+		sed -i "s:\$SAGE_LOCAL/include:/usr/include:g" c_lib/SConstruct
+
+	# fix installation paths
+	sage_package networkx-0.99.p1-fake_really-0.36.p1 \
+		sed -i "s:python setup.py install --home=\"\$SAGE_LOCAL\":python setup.py install --prefix=\"\${SAGE_LOCAL}\":g" \
+		spkg-install
 
 	# pack all unpacked spkgs
 	sage_package_finish

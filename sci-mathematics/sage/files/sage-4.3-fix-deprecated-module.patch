@@ -1,3 +1,37 @@
+--- src/lib/sqlalchemy/orm/attributes.py.orig	2010-01-08 20:15:21.235103232 +0000
++++ src/lib/sqlalchemy/orm/attributes.py	2010-01-08 20:15:39.765102887 +0000
+@@ -720,8 +720,7 @@
+         self.attrs = {}
+         self.has_mutable_scalars = False
+ 
+-import sets
+-_empty_set = sets.ImmutableSet()
++_empty_set = frozenset
+ 
+ class InstanceState(object):
+     """tracks state information at the instance level."""
+--- src/lib/sqlalchemy/orm/collections.py.orig	2010-01-08 20:09:24.354101961 +0000
++++ src/lib/sqlalchemy/orm/collections.py	2010-01-08 20:11:28.806102439 +0000
+@@ -97,7 +97,6 @@
+ 
+ import copy
+ import inspect
+-import sets
+ import sys
+ import weakref
+ 
+@@ -1141,10 +1140,7 @@
+     return l
+ 
+ 
+-try:
+-    _set_binop_bases = (set, frozenset, sets.BaseSet)
+-except NameError:
+-    _set_binop_bases = (sets.BaseSet,)
++_set_binop_bases = (set, frozenset)
+ 
+ def _set_binops_check_strict(self, obj):
+     """Allow only set, frozenset and self.__class__-derived objects in binops."""
 --- src/lib/sqlalchemy/util.py.orig	2010-01-08 10:18:58.801450610 +0000
 +++ src/lib/sqlalchemy/util.py	2010-01-08 10:20:20.290449516 +0000
 @@ -4,7 +4,7 @@

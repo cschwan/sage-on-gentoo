@@ -2,6 +2,12 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  09 Jan 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
+  sage-4.3.ebuild, files/sage-4.3-fix-deprecated-module.patch:
+  Removed python from Sage; WARNING: Tests with custom cPickle class
+  fail, maybe because Sage patches python to implement custom features
+  for cPickle
+
   08 Jan 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
   sage-4.3.ebuild, +files/sage-4.3-fix-deprecated-module.patch:
   Added a patch to fix importing of deprecated module "sets" in
