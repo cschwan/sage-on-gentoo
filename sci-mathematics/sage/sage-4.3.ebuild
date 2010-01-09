@@ -259,7 +259,7 @@ src_prepare(){
 
 	# unset custom C(XX)FLAGS on amd64 - this is just a temporary hack
 	use amd64 && sage_package "${P}" \
-		epatch"${FILESDIR}/${P}-amd64-hack.patch"
+		epatch "${FILESDIR}/${P}-amd64-hack.patch"
 
 	# fix importing of deprecated sets module
 	sage_package ${P} \
