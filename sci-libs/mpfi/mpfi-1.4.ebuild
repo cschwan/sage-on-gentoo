@@ -12,7 +12,6 @@ inherit eutils
 
 DESCRIPTION="a multiple precision interval arithmetic library based on MPFR"
 HOMEPAGE="http://perso.ens-lyon.fr/nathalie.revol/software.html"
-RESTRICT="mirror"
 SRC_URI="http://gforge.inria.fr/frs/download.php/22256/${P}.tar.gz"
 
 LICENSE="GPL-2"
@@ -22,10 +21,8 @@ IUSE=""
 
 RESTRICT="mirror"
 
-# TODO: is mpfr an optional dependency ?
-
-DEPEND="dev-libs/gmp
-	dev-libs/mpfr"
+DEPEND=">=dev-libs/gmp-4.1.2
+	>=dev-libs/mpfr-2.0.1"
 RDEPEND="${DEPEND}"
 
 src_configure() {
@@ -34,6 +31,8 @@ src_configure() {
 		--with-mpfr-dir=/usr \
 		|| die "econf failed"
 }
+
+# TODO: no tests, but a test target ?
 
 src_install() {
 	emake DESTDIR="${D}" install || die "emake install failed"
