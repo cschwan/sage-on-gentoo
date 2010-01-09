@@ -252,7 +252,8 @@ src_prepare(){
 	# add system path for python modules
 	sage_package sage_scripts-${PV} \
 		sed -i \
-		-e "s:PYTHONPATH=\"\(.*\)\":PYTHONPATH=\"\$SAGE_PATH\:$(python_get_sitedir)\:\$SAGE_ROOT/local/$(get_libdir)/python\:\$SAGE_ROOT/local/$(get_libdir)/python/site-packages\":g" \
+		-e "s:\"\$SAGE_ROOT/local/lib/python\":\"\$SAGE_ROOT/local/$(get_libdir)/python\":g" \
+		-e "s:PYTHONPATH=\"\(.*\)\":PYTHONPATH=\"\$SAGE_PATH\:$(python_get_sitedir)\:\$SAGE_ROOT/local/$(get_libdir)/python/site-packages\":g" \
 		-e "/PYTHONHOME=.*/d" \
 		sage-env
 
