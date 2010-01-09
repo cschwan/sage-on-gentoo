@@ -253,7 +253,7 @@ src_prepare(){
 	sage_package sage_scripts-${PV} \
 		sed -i \
 		-e "s:\"\$SAGE_ROOT/local/lib/python\":\"\$SAGE_ROOT/local/$(get_libdir)/python\":g" \
-		-e "s:PYTHONPATH=\"\(.*\)\":PYTHONPATH=\"\$SAGE_PATH\:$(python_get_sitedir)\:\$SAGE_ROOT/local/$(get_libdir)/python/site-packages\":g" \
+		-e "s:PYTHONPATH=\"\(.*\)\":PYTHONPATH=\"\$SAGE_PATH\:$(python_get_sitedir)\:\1\:\$SAGE_ROOT/local/$(get_libdir)/python/site-packages\":g" \
 		-e "/PYTHONHOME=.*/d" \
 		sage-env
 
