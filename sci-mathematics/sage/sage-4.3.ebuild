@@ -172,24 +172,6 @@ src_prepare(){
 	sage_package moin-1.5.7.p3 \
 		sed -i "s:\.\./\.\./\.\./\.\./data:${SAGE_DATA}:g" spkg-install
 
-	# add system path for python modules
-	sage_package sage_scripts-${PV} \
-		sed -i \
-		-e "s:PYTHONPATH=\"\(.*\)\":PYTHONPATH=\"$(python_get_sitedir)\:\1\:\$SAGE_ROOT/local/$(get_libdir)/python/site-packages\":g" \
-		-e "/PYTHONHOME=.*/d" \
-		sage-env
-
-	# set path to Sage's cython
-	sage_package ${P} \
-		sed -i "s:SAGE_LOCAL + '/lib/python/site-packages/Cython/Includes/':'/usr/lib/python2.6/site-packages/Cython/Includes/':g" \
-		setup.py
-
-# 	# do not download Twisted - TODO: look for another way to solve this
-# 	sage_package_sed sagenb-0.4.8 -i "s:twisted>=8.2::g" \
-# 		src/sagenb.egg-info/requires.txt
-# 	sage_package_sed sagenb-0.4.8 -i \
-# 		"/install_requires = \['twisted>=8\.2'\],/d" src/setup.py
-
 	# TODO: Are these needed ?
 	sage_package ${P} \
 		sed -i \
@@ -257,6 +239,10 @@ src_prepare(){
 		cp "${T}"/site.cfg arpack/site.cfg ; \
 		cp "${T}"/site.cfg delaunay/site.cfg
 
+	# TODO: find a better solution for this
+	local LIBDIR=$(get_libdir)
+	local LIBNAME=${LIBDIR/\/usr/}
+
 	# unset custom C(XX)FLAGS on amd64 - this is just a temporary hack
 	use amd64 && sage_package "${P}" \
 		epatch "${FILESDIR}/${P}-amd64-hack.patch"
@@ -267,11 +253,26 @@ src_prepare(){
 # 	sage_package sqlalchemy-0.4.6.p1 \
 # 		epatch "${FILESDIR}/${P}-fix-deprecated-module.patch"
 
-	# create these directories manually
-	mkdir -p "${S}"/local/$(get_libdir)/python2.6/site-packages \
-		|| die "mkdir failed"
-	cd "${S}"/local/$(get_libdir)
-	ln -s python2.6 python || die "ln failed"
+	# add system path for python modules
+	sage_package sage_scripts-${PV} \
+		sed -i \
+		-e "s:PYTHONPATH=\"\(.*\)\":PYTHONPATH=\"$(python_get_sitedir)\:\$SAGE_ROOT/local/${LIBNAME}/python/site-packages\":g" \
+		-e "/PYTHONHOME=.*/d" \
+		sage-env
+
+	# set path to Sage's cython
+	sage_package ${P} \
+		sed -i "s:SAGE_LOCAL + '/lib/python/site-packages/Cython/Includes/':'/usr/lib/python2.6/site-packages/Cython/Includes/':g" \
+		setup.py
+
+# 	# do not download Twisted - TODO: look for another way to solve this
+# 	sage_package_sed sagenb-0.4.8 -i "s:twisted>=8.2::g" \
+# 		src/sagenb.egg-info/requires.txt
+# 	sage_package_sed sagenb-0.4.8 -i \
+# 		"/install_requires = \['twisted>=8\.2'\],/d" src/setup.py
+
+	# create this directories manually
+	mkdir -p "${S}"/local/${LIBNAME}/python/site-packages || die "mkdir failed"
 
 	local SPKGS_NEEDING_FIX=( dsage-1.0.1.p0 moin-1.5.7.p3 sagenb-0.4.8
 		scipy_sandbox-20071020.p4 sphinx-0.6.3.p3 sqlalchemy-0.4.6.p1
