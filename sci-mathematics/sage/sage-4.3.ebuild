@@ -253,7 +253,7 @@ src_prepare(){
 	sage_package sage_scripts-${PV} \
 		sed -i \
 		-e "s:\"\$SAGE_ROOT/local/lib/python\":\"\$SAGE_ROOT/local/$(get_libdir)/python\":g" \
-		-e "s:PYTHONPATH=\"\(.*\)\":PYTHONPATH=\"\$SAGE_PATH\:$(python_get_sitedir)\:\1\:\$SAGE_ROOT/local/$(get_libdir)/python/site-packages\":g" \
+		-e "s:PYTHONPATH=\"\(.*\)\":PYTHONPATH=\"$(python_get_sitedir)\:\1\:\$SAGE_ROOT/local/$(get_libdir)/python/site-packages\":g" \
 		-e "/PYTHONHOME=.*/d" \
 		sage-env
 
@@ -275,6 +275,10 @@ src_prepare(){
 	# make unversioned symbolic link
 	cd "${S}"/local/$(get_libdir)
 	ln -s python2.6 python || die "ln failed"
+
+	# fix site-packages check
+	sage_package ${P} \
+		sed -i "s:'%s/lib/python:'%s/$(get_libdir)/python:g" setup.py
 
 	local SPKGS_NEEDING_FIX=( dsage-1.0.1.p0 moin-1.5.7.p3 sagenb-0.4.8
 		scipy_sandbox-20071020.p4 sphinx-0.6.3.p3 sqlalchemy-0.4.6.p1
