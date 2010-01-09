@@ -239,10 +239,6 @@ src_prepare(){
 		cp "${T}"/site.cfg arpack/site.cfg ; \
 		cp "${T}"/site.cfg delaunay/site.cfg
 
-	# TODO: find a better solution for this
-	local LIBDIR=$(get_libdir)
-	local LIBNAME=${LIBDIR/\/usr/}
-
 	# unset custom C(XX)FLAGS on amd64 - this is just a temporary hack
 	use amd64 && sage_package "${P}" \
 		epatch "${FILESDIR}/${P}-amd64-hack.patch"
@@ -256,7 +252,7 @@ src_prepare(){
 	# add system path for python modules
 	sage_package sage_scripts-${PV} \
 		sed -i \
-		-e "s:PYTHONPATH=\"\(.*\)\":PYTHONPATH=\"$(python_get_sitedir)\:\$SAGE_ROOT/local/${LIBNAME}/python/site-packages\":g" \
+		-e "s:PYTHONPATH=\"\(.*\)\":PYTHONPATH=\"$(python_get_sitedir)\:\$SAGE_ROOT/local/$(get_libdir)/python/site-packages\":g" \
 		-e "/PYTHONHOME=.*/d" \
 		sage-env
 
@@ -272,7 +268,7 @@ src_prepare(){
 # 		"/install_requires = \['twisted>=8\.2'\],/d" src/setup.py
 
 	# create this directories manually
-	mkdir -p "${S}"/local/${LIBNAME}/python/site-packages || die "mkdir failed"
+	mkdir -p "${S}"/local/$(get_libdir)/python/site-packages || die "mkdir failed"
 
 	local SPKGS_NEEDING_FIX=( dsage-1.0.1.p0 moin-1.5.7.p3 sagenb-0.4.8
 		scipy_sandbox-20071020.p4 sphinx-0.6.3.p3 sqlalchemy-0.4.6.p1
