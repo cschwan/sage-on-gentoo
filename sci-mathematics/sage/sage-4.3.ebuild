@@ -93,7 +93,7 @@ CDEPEND="
 	>=sci-libs/pynac-0.1.10
 	>=dev-python/ipython-0.9.1
 	>=sci-mathematics/polybori-0.6.3[sage]
-	dev-lang/python[sqlite]
+	=dev-lang/python-2.6*[sqlite]
 "
 
 DEPEND="
@@ -268,8 +268,9 @@ src_prepare(){
 # 		epatch "${FILESDIR}/${P}-fix-deprecated-module.patch"
 
 	# create these directories manually
-	mkdir -p "${S}"/local/lib/python2.6/site-packages || die "mkdir failed"
-	cd "${S}"/local/lib
+	mkdir -p "${S}"/local/$(get_libdir)/python2.6/site-packages \
+		|| die "mkdir failed"
+	cd "${S}"/local/$(get_libdir)
 	ln -s python2.6 python || die "ln failed"
 
 	local SPKGS_NEEDING_FIX=( dsage-1.0.1.p0 moin-1.5.7.p3 sagenb-0.4.8
