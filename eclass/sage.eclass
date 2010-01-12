@@ -59,6 +59,7 @@ RESTRICT="mirror"
 
 SAGE_ROOT=/opt/sage
 SAGE_DATA="${SAGE_ROOT}"/data
+SAGE_LOCAL="${SAGE_ROOT}"/local
 
 _SAGE_UNPACKED_SPKGS=( )
 
