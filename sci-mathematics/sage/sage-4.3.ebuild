@@ -6,8 +6,7 @@ EAPI=2
 
 inherit multilib python sage
 
-DESCRIPTION="Math software for algebra, geometry, number theory, cryptography,
-and numerical computation."
+DESCRIPTION="Math software for algebra, geometry, number theory, cryptography and numerical computation."
 HOMEPAGE="http://www.sagemath.org"
 SRC_URI="mirror://sage/src/${P}.tar"
 
@@ -30,7 +29,6 @@ CDEPEND="
 	>=sci-mathematics/pari-2.3.3[data,gmp]
 	>=sys-libs/zlib-1.2.3
 	>=app-arch/bzip2-1.0.5
-	>=dev-util/mercurial-1.3.1
 	>=sys-libs/readline-6.0
 	>=media-libs/libpng-1.2.35
 	>=dev-db/sqlite-3.6.17
@@ -94,6 +92,13 @@ CDEPEND="
 	>=dev-python/ipython-0.9.1
 	>=sci-mathematics/polybori-0.6.3[sage]
 	=dev-lang/python-2.6*[sqlite]
+	>=dev-python/twisted-8.2.0
+	>=dev-python/twisted-conch-8.2.0
+	>=dev-python/twisted-lore-8.2.0
+	>=dev-python/twisted-mail-8.2.0
+	>=dev-python/twisted-web2-8.1.0
+	>=dev-python/twisted-words-8.2.0
+	>=net-zope/zodb-3.7.0
 "
 
 DEPEND="
@@ -131,11 +136,11 @@ src_prepare(){
 		CVXOPT CYTHON DOCUTILS ECLIB ECM ELLIPTIC_CURVES EXAMPLES EXTCODE F2C \
 		FLINT FLINTQS FPLLL FREETYPE G2RED GAP GD GDMODULE GFAN GHMM GIVARO \
 		GNUTLS GRAPHS GSL IML IPYTHON JINJA JINJA2 LAPACK LCALC LIBM4RI LIBPNG \
-		LINBOX MATPLOTLIB MAXIMA MERCURIAL MPFI MPFR MPIR MPMATH NTL NUMPY \
-		PALP PARI PEXPECT PIL POLYBORI POLYTOPES_DB PYCRYPTO PYGMENTS PYNAC \
-		PYPROCESSING PYTHON_GNUTLS PYTHON R RATPOINTS READLINE RUBIKS \
-		SAGE_BZIP2 SCIPY SCONS SETUPTOOLS SQLITE SYMMETRICA SYMPOW SYMPY \
-		TACHYON WEAVE ZLIB ZNPOLY
+		LINBOX MATPLOTLIB MAXIMA MPFI MPFR MPIR MPMATH NTL NUMPY PALP PARI \
+		PEXPECT PIL POLYBORI POLYTOPES_DB PYCRYPTO PYGMENTS PYNAC PYPROCESSING \
+		PYTHON_GNUTLS PYTHON R RATPOINTS READLINE RUBIKS SAGE_BZIP2 SCIPY \
+		SCONS SETUPTOOLS SQLITE SYMMETRICA SYMPOW SYMPY TACHYON TERMCAP \
+		TWISTED TWISTEDWEB2 WEAVE ZLIB ZNPOLY ZODB
 
 	# verbosity only blows up build.log and slows down installation
 	sed -i "s:cp -rpv:cp -rp:g" makefile || die "sed failed"
@@ -246,8 +251,8 @@ src_prepare(){
 	# fix importing of deprecated sets module
 	sage_package ${P} \
 		epatch "${FILESDIR}/${P}-fix-deprecation-warning.patch"
-# 	sage_package sqlalchemy-0.4.6.p1 \
-# 		epatch "${FILESDIR}/${P}-fix-deprecated-module.patch"
+	sage_package sqlalchemy-0.4.6.p1 \
+		epatch "${FILESDIR}/${P}-fix-deprecated-module.patch"
 
 	# add system path for python modules
 	sage_package sage_scripts-${PV} \
@@ -259,14 +264,14 @@ src_prepare(){
 
 	# set path to Sage's cython
 	sage_package ${P} \
-		sed -i "s:SAGE_LOCAL + '/lib/python/site-packages/Cython/Includes/':'/usr/lib/python2.6/site-packages/Cython/Includes/':g" \
+		sed -i "s:SAGE_LOCAL + '/lib/python/site-packages/Cython/Includes/':'/usr/$(get_libdir)/python2.6/site-packages/Cython/Includes/':g" \
 		setup.py
 
-# 	# do not download Twisted - TODO: look for another way to solve this
-# 	sage_package_sed sagenb-0.4.8 -i "s:twisted>=8.2::g" \
-# 		src/sagenb.egg-info/requires.txt
-# 	sage_package_sed sagenb-0.4.8 -i \
-# 		"/install_requires = \['twisted>=8\.2'\],/d" src/setup.py
+	# do not download Twisted - TODO: look for another way to solve this
+	sage_package sagenb-0.4.8 \
+		sed -i "s:twisted>=8.2::g" src/sagenb.egg-info/requires.txt
+	sage_package sagenb-0.4.8 \
+		sed -i "/install_requires = \['twisted>=8\.2'\],/d" src/setup.py
 
 	# create this directories manually
 	mkdir -p "${S}"/local/$(get_libdir)/python2.6/site-packages \

@@ -1,12 +1,12 @@
 --- src/lib/sqlalchemy/orm/attributes.py.orig	2010-01-08 20:15:21.235103232 +0000
-+++ src/lib/sqlalchemy/orm/attributes.py	2010-01-08 20:15:39.765102887 +0000
++++ src/lib/sqlalchemy/orm/attributes.py	2010-01-10 08:34:39.464692357 +0000
 @@ -720,8 +720,7 @@
          self.attrs = {}
          self.has_mutable_scalars = False
  
 -import sets
 -_empty_set = sets.ImmutableSet()
-+_empty_set = frozenset
++_empty_set = frozenset()
  
  class InstanceState(object):
      """tracks state information at the instance level."""
