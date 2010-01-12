@@ -17,6 +17,7 @@ dev-python/setuptools
 dev-python/sphinx
 dev-python/sqlalchemy
 dev-python/sympy
+dev-python/twisted-web2
 dev-util/mercurial
 media-gfx/tachyon
 sci-libs/blas-atlas
