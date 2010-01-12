@@ -22,7 +22,6 @@ dev-python/twisted-conch
 dev-python/twisted-lore
 dev-python/twisted-mail
 dev-python/twisted-names
-dev-python/twisted-web
 dev-python/twisted-web2
 dev-python/twisted-words
 dev-util/mercurial
