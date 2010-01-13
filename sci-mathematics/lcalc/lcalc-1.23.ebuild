@@ -1,4 +1,4 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
@@ -15,20 +15,21 @@ SRC_URI="http://pmmac03.math.uwaterloo.ca/~mrubinst/L_function_public/CODE/${MY_
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
-IUSE="examples openmp pari"
+IUSE="pari"
 
 # TODO: depend on pari[gmp] ?
 DEPEND=">=dev-libs/gmp-4.2.1
-	sci-mathematics/pari
-	openmp? ( sys-devel/gcc[openmp] )"
+	pari? ( sci-mathematics/pari )"
 RDEPEND="${DEPEND}"
 
-RESTRICT="mirror"
+# testing does not work because archive missed test program!
+RESTRICT="mirror test"
 
 S="${WORKDIR}/${MY_P}/src"
 
+# TODO: Support for openmp ?
 src_prepare() {
-	epatch "${FILESDIR}/${P}-Makefile.patch"
+	epatch "${FILESDIR}/${P}-makefile.patch"
 
 	if use pari ; then
 		sed -i \
@@ -36,29 +37,9 @@ src_prepare() {
 			-e "s:#PREPROCESSOR_DEFINE = -DUSE_LONG_DOUBLE:PREPROCESSOR_DEFINE = -DUSE_LONG_DOUBLE:g" \
 			Makefile
 	fi
-
-	# TODO: openmp is not tested
-	if use openmp ; then
-		sed -i "s:#OPENMP_FLAG = -fopenmp:OPENMP_FLAG = -fopenmp:g" Makefile
-	fi
-}
-
-# TODO: Fix QA warning
-# TODO: examples do not compile
-
-src_compile() {
-	emake \
-		libLfunction.so  \
-		lcalc \
-		$(use examples && echo "examples") \
-		|| die "emake failed"
 }
 
 src_install() {
-	dodir /usr/bin
-	dodir /usr/include
-	dodir /usr/lib
-
 	emake DESTDIR="${D}/usr" install || die "emake install failed"
 
 	dodoc ../README

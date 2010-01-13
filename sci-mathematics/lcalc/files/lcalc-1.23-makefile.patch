@@ -1,0 +1,90 @@
+--- Makefile.orig	2009-11-23 11:36:03.987284458 +0000
++++ Makefile	2010-01-13 14:43:04.373699355 +0000
+@@ -30,6 +30,7 @@
+ OS_NAME := $(shell uname)
+ 
+ CC = g++
++MAKE = make
+ #cc = /home/mrubinst/local/bin/gcc
+ #CC = /home/mrubinst/local/bin/g++
+ #LD = /home/mrubinst/local/bin/g++
+@@ -58,7 +59,7 @@
+    #MACHINE_SPECIFIC_FLAGS = -mpowerpc -mpowerpc64 -m64
+ endif
+ 
+-CCFLAGS =  -Wa,-W -O3 $(OPENMP_FLAG) -Wno-deprecated $(PREPROCESSOR_DEFINE) $(MACHINE_SPECIFIC_FLAGS) $(EXTRA)
++CCFLAGS = $(CFLAGS) $(OPENMP_FLAG) $(PREPROCESSOR_DEFINE) $(MACHINE_SPECIFIC_FLAGS)
+ #CCFLAGS =  -Wa,-W -O3 $(OPENMP_FLAG)  $(PREPROCESSOR_DEFINE) $(MACHINE_SPECIFIC_FLAGS) $(EXTRA)
+ #CCFLAGS =  -Wa,-W -O2 -fno-exceptions -Wno-deprecated $(PREPROCESSOR_DEFINE) $(MACHINE_SPECIFIC_FLAGS) $(EXTRA)
+ 
+@@ -68,12 +69,12 @@
+ 
+ ifeq ($(PARI_DEFINE),-DINCLUDE_PARI)
+     #location of pari.h.
+-    LOCATION_PARI_H = /usr/local/include/pari #usual location
++    LOCATION_PARI_H = /usr/include/pari #usual location
+ 
+     #location of libpari.a or of libpari.so
+     #depending on whether static or dynamic libraries are being used.
+     #On mac os x it's the former, on linux I think usually the latter.
+-    LOCATION_PARI_LIBRARY = /usr/local/lib #usual location
++    LOCATION_PARI_LIBRARY = /usr/lib #usual location
+ else
+     #supplied as a dummy so as to avoid more ifeq's below
+     LOCATION_PARI_H = .
+@@ -89,7 +90,7 @@
+ 
+ ifeq ($(OS_NAME),Darwin)
+     LDFLAGS2 =
+-    DYN_OPTION=dynamiclib
++    DYN_OPTION=-dynamiclib
+ else
+     LDFLAGS1 = -Xlinker -export-dynamic #not sure why pari calls these when linking but on the web I found
+     #'Libtool provides the `-export-dynamic' link flag (see section Link mode), which does this declaration.
+@@ -100,7 +101,7 @@
+     #else
+     #    LDFLAGS2 = $(LDFLAGS1)
+     #endif
+-    DYN_OPTION=shared
++    DYN_OPTION=-shared -Wl,-soname,libLfunction.so
+ endif
+ 
+ ifeq ($(PARI_DEFINE),-DINCLUDE_PARI)
+@@ -129,7 +130,7 @@
+ #become clear which libraries the computer can find.
+ 
+ 
+-INSTALL_DIR= /usr/local
++INSTALL_DIR= $(DESTDIR)
+ 
+ #object files for the libLfunction library
+ OBJ_L = Lglobals.o Lgamma.o Lriemannsiegel.o Lriemannsiegel_blfi.o Ldokchitser.o
+@@ -141,9 +142,8 @@
+ 
+ all:
+ #	make print_vars
+-	make libLfunction.so
+-	make lcalc
+-	make examples
++	$(MAKE) libLfunction.so
++	$(MAKE) lcalc
+ #	make find_L
+ #	make test
+ 
+@@ -262,12 +262,15 @@
+ 
+ 
+ libLfunction.so: $(OBJ_L)
+-	g++ -$(DYN_OPTION)  -o libLfunction.so $(OBJ_L)
++	g++ $(DYN_OPTION) -o libLfunction.so $(OBJ_L)
+ 
+ clean:
+ 	rm -f *.o lcalc libLfunction.so example_programs/example
+ 
+ install:
++	mkdir -p $(INSTALL_DIR)/bin
++	mkdir -p $(INSTALL_DIR)/lib
++	mkdir -p $(INSTALL_DIR)/include
+ 	cp -f lcalc $(INSTALL_DIR)/bin/.
+ 	cp -f libLfunction.so $(INSTALL_DIR)/lib/.
+ 	cp -rf ../include $(INSTALL_DIR)/include/Lfunction
