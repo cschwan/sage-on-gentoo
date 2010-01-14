@@ -14,16 +14,16 @@ SRC_URI="mirror://sourceforge/${PN}/${MY_P}.tar.gz"
 LICENSE="LGPL-2"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
-IUSE="doc gsl lapack python"
+IUSE="gsl lapack python"
 
-RESTRICT="mirror"
+# tests are broken
+RESTRICT="mirror test"
 
-# TODO: check dependencies
 CDEPEND=">=dev-libs/libxml2-2.6.0
 	>=dev-lang/swig-1.3.17
-	sci-libs/gsl
-	lapack? ( virtual/lapack )
-	virtual/python"
+	>=sci-libs/gsl-1.4
+	lapack? ( sci-libs/lapack-atlas )
+	python? ( virtual/python )"
 DEPEND="${CDEPEND}
 	dev-util/pkgconfig"
 RDEPEND="${CDEPEND}"
@@ -37,11 +37,11 @@ src_prepare() {
 	fi
 }
 
-# TODO: configure is broken
 src_configure() {
+	# do not build python, functions from distutils.eclass will do that
 	econf \
 		$(use_enable gsl) \
-		$(use_enable lapack atlas) \
+		$(use lapack && use_enable lapack atlas) \
 		--without-python \
 		|| die "econf failed"
 }
