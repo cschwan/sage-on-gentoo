@@ -19,6 +19,7 @@ IUSE="gsl lapack python"
 # tests are broken
 RESTRICT="mirror test"
 
+# depends on lapack from atlas because this ships with clapack.h
 CDEPEND=">=dev-libs/libxml2-2.6.0
 	>=dev-lang/swig-1.3.17
 	>=sci-libs/gsl-1.4
@@ -54,8 +55,6 @@ src_compile() {
 		distutils_src_compile
 	fi
 }
-
-# TODO: tests fail
 
 src_install() {
 	emake DESTDIR="${D}" install || die "emake install failed"
