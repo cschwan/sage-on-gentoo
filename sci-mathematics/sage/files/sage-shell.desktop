@@ -1,0 +1,11 @@
+[Desktop Entry]
+Version=1.0
+Name=Sage Shell
+Type=Application
+Comment=Launch Sage shell
+Comment[de]=Sage Terminal starten
+Exec=sage
+TryExec=sage
+Icon=sage.svg
+Categories=Math;Science;Utility
+Terminal=true

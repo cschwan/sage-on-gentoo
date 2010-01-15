@@ -121,8 +121,6 @@ RESTRICT="mirror test"
 # -e "s:\$SAGE_LOCAL/share/singular:/usr/share/singular:g" \
 # and fix paths to singular
 
-# TODO: install a menu icon for sage (see homepage and newsgroup for icon, etc)
-
 pkg_setup() {
 	einfo "Sage itself is released under the GPL-2 _or later_ license"
 	einfo "However sage is distributed with packages having different licenses."
@@ -139,15 +137,16 @@ src_prepare(){
 		LINBOX MATPLOTLIB MAXIMA MERCURIAL MPFI MPFR MPIR MPMATH NTL NUMPY \
 		PALP PARI PEXPECT PIL POLYBORI POLYTOPES_DB PYCRYPTO PYGMENTS PYNAC \
 		PYPROCESSING PYTHON_GNUTLS PYTHON R RATPOINTS READLINE RUBIKS \
-		SAGE_BZIP2 SCIPY SCONS SETUPTOOLS SQLITE SYMMETRICA \
-		SYMPOW SYMPY TACHYON TERMCAP TWISTED TWISTEDWEB2 WEAVE ZLIB ZNPOLY ZODB
+		SAGE_BZIP2 SCIPY SCONS SETUPTOOLS SQLITE SYMMETRICA SYMPOW SYMPY \
+		TACHYON TERMCAP TWISTED TWISTEDWEB2 WEAVE ZLIB ZNPOLY ZODB
 
-	# verbosity only blows up build.log and slows down installation
+	# disable verbose copying and remove hardcoding of Sage's root
 	sed -i "s:cp -rpv:cp -rp:g" makefile || die "sed failed"
 
 	# disable automatic generation of documentation - it will be built later
-	sage_package sage_scripts-${PV} \
-		sed -i "/\"\$SAGE_ROOT\"\/sage -docbuild all html/d" install
+	use doc || sage_package sage_scripts-${PV} \
+		sed -i "/\"\$SAGE_ROOT\"\/sage -docbuild all html/d" install \
+		|| die "sed failed"
 
 	# patch to make correct symbolic links
 	sage_package sage_scripts-${PV} \
@@ -175,7 +174,7 @@ src_prepare(){
 
 	# extcode is installed in a separate ebuild - fix directory path
 	sage_package moin-1.5.7.p3 \
-		sed -i "s:\.\./\.\./\.\./\.\./data:${SAGE_DATA}:g" spkg-install
+		sed -i "s:\.\./\.\./\.\./\.\./data:\${SAGE_DATA}:g" spkg-install
 
 	# TODO: Are these needed ?
 	sage_package ${P} \
@@ -273,7 +272,7 @@ src_prepare(){
 	sage_package sagenb-0.4.8 \
 		sed -i "/install_requires = \['twisted>=8\.2'\],/d" src/setup.py
 
-	# create this directories manually
+	# create this directory manually
 	mkdir -p "${S}"/local/$(get_libdir)/python2.6/site-packages \
 		|| die "mkdir failed"
 
@@ -286,8 +285,7 @@ src_prepare(){
 		sed -i "s:'%s/lib/python:'%s/$(get_libdir)/python:g" setup.py
 
 	local SPKGS_NEEDING_FIX=( dsage-1.0.1.p0 moin-1.5.7.p3 sagenb-0.4.8
-		scipy_sandbox-20071020.p4 sphinx-0.6.3.p3 sqlalchemy-0.4.6.p1
-		twisted-8.2.0.p1 zodb3-3.7.0.p2 )
+		scipy_sandbox-20071020.p4 sphinx-0.6.3.p3 sqlalchemy-0.4.6.p1 )
 
 	# fix installation paths - this must be done in order to remove python
 	for i in "${SPKGS_NEEDING_FIX[@]}" ; do
@@ -319,11 +317,8 @@ src_prepare(){
 }
 
 src_compile() {
-	# do not run parallel since this is not possible at this level
-	emake -j1 || die "emake failed"
-
-	# build documentation
-	use doc && "${S}"/sage -docbuild all html
+	# Sage's makefile just does this
+	cd spkg; ./install || die "install failed"
 
 	# check if everything did successfully built
 	grep -s "Error building Sage" install.log && die "Sage build failed"
@@ -339,6 +334,7 @@ src_install() {
 
 	# these files are also not needed
 	rm -rf spkg/build/*
+	rm -rf tmp
 
 	# remove mercurial directories - these are not needed
 	hg_clean
@@ -349,7 +345,17 @@ src_install() {
 	# TODO: handle generated docs
 	dodoc README.txt || die "dodoc failed"
 
-	# set sage's correct path to /opt/sage
+	# TODO: create additional desktop files
+
+	# install entries for desktop managers
+	doicon "${FILESDIR}"/sage.svg || die "doicon failed"
+	domenu "${FILESDIR}"/sage-shell.desktop || die "domenu failed"
+# 	domenu "${FILESDIR}"/sage-notebook.desktop || die "domenu failed"
+
+# 	# install entry for documentation if available
+# 	use doc && domenu "${FILESDIR}"/sage-documentation.desktop \
+# 		|| die "domenu failed"
+
 	sed -i "s:${D}::" "${D}"/opt/bin/sage "${D}"/opt/sage/sage \
 		|| die "sed failed"
 }

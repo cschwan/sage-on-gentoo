@@ -2,6 +2,10 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  15 Jan 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
+  sage-4.3.ebuild, +files/sage.svg, +files/sage-shell.desktop:
+  Added menu-entries
+
   12 Jan 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
   sage-4.3.ebuild, files/sage-4.3-fix-deprecated-module.patch:
   Fixed patch fixing deprecation warning in old sqlalchemy, removed
