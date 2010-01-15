@@ -1,0 +1,10 @@
+# ChangeLog for sci-mathematics/sage-distributed
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: $
+
+*sage-distributed-4.3 (15 Jan 2010)
+
+  15 Jan 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
+  +sage-distributed-4.3.ebuild, +metadata.xml:
+  Initial import
+
