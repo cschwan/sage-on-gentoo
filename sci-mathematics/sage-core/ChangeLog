@@ -1,0 +1,11 @@
+# ChangeLog for sci-mathematics/sage-core
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: $
+
+*sage-core-4.3 (15 Jan 2010)
+
+  15 Jan 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
+  +sage-core-4.3.ebuild, +files/sage-core-4.3-amd64-hack.patch,
+  +files/sage-core-4.3-fix-deprecation-warning.patch, +metadata.xml:
+  Initial import (not working)
+

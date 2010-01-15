@@ -66,6 +66,7 @@ sci-mathematics/palp
 sci-mathematics/rubiks
 sci-mathematics/sage
 sci-mathematics/sage-clib
+sci-mathematics/sage-core
 sci-mathematics/sage-data
 sci-mathematics/sage-distributed
 sci-mathematics/sage-doc

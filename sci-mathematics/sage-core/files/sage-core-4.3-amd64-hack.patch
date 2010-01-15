@@ -1,0 +1,12 @@
+--- spkg-install.orig	2009-12-10 15:31:31.314552352 +0000
++++ spkg-install	2009-12-10 15:32:53.271552816 +0000
+@@ -1,5 +1,9 @@
+ #!/bin/sh
+ 
++# temporary hack for amd64
++unset CFLAGS
++unset CXXFLAGS
++
+ #######################################
+ # Install SAGE libraries
+ #######################################
