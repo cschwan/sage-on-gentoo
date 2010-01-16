@@ -99,6 +99,7 @@ CDEPEND="
 	>=dev-python/twisted-web2-8.1.0
 	>=dev-python/twisted-words-8.2.0
 	>=net-zope/zodb-3.7.0
+	=dev-lang/python-2.6.4-r1
 "
 
 DEPEND="
