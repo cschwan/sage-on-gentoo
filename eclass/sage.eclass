@@ -138,7 +138,7 @@ sage_clean_targets() {
 # @FUNCTION: sage_package
 # @USAGE: <spkg name> <commands>
 # @DESCRIPTION:
-# Extracts package and runns supplied command(s).
+# Extracts package and runs supplied command(s).
 sage_package() {
 	# change to Sage's standard spkg directory
 	cd "${S}"/spkg/standard
@@ -169,9 +169,8 @@ sage_package() {
 # @FUNCTION: sage_package_finish
 # @USAGE:
 # @DESCRIPTION:
-# ATTENTION: This function must be executed if one of the
-# sage_package_*-functions was called. This cleans up and packs all unpacked
-# spkgs.
+# ATTENTION: This function must be executed if the sage_package-function was
+# invoked. This cleans up and packs all unpacked spkgs.
 sage_package_finish() {
 	# change to Sage's standard spkg directory
 	cd "${S}"/spkg/standard

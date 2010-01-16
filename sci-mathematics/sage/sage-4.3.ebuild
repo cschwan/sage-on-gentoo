@@ -140,10 +140,10 @@ src_prepare(){
 		SAGE_BZIP2 SCIPY SCONS SETUPTOOLS SQLITE SYMMETRICA SYMPOW SYMPY \
 		TACHYON TERMCAP TWISTED TWISTEDWEB2 WEAVE ZLIB ZNPOLY ZODB
 
-	# disable verbose copying and remove hardcoding of Sage's root
+	# disable verbose copying
 	sed -i "s:cp -rpv:cp -rp:g" makefile || die "sed failed"
 
-	# disable automatic generation of documentation - it will be built later
+	# disable documentation if not needed
 	use doc || sage_package sage_scripts-${PV} \
 		sed -i "/\"\$SAGE_ROOT\"\/sage -docbuild all html/d" install \
 		|| die "sed failed"
