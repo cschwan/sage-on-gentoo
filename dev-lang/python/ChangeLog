@@ -1,0 +1,14 @@
+# ChangeLog for dev-lang/python
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: $
+
+*python-2.6.4-r1 (16 Jan 2010)
+
+  16 Jan 2010; François Bissey <f.r.bissey@massey.ac.nz>
+  +files/python-config-2.4-r1, +files/python-2.4.4-test-cross.patch,
+  +files/python-2.5-cross-printf.patch, +python-2.6.4-r1.ebuild,
+  +files/python-2.6-chflags-cross.patch, +files/python-2.6-test-cross.patch,
+  +files/dynamic_class_copyreg.patch, +files/pydoc.conf, +files/pydoc.init,
+  +metadata.xml:
+  Initial import - patched for pickles.
+
