@@ -189,16 +189,11 @@ src_prepare(){
 	# TODO: -e "s:SAGE_ROOT + \"/local/include/fplll/fplll.h\":\"\":g" \
 	# this file does not exist
 
-	# make Sage able to find flint's headers
+	# fix paths for flint, pynac/ginac, numpy and polybori
 	sage_package ${P} \
 		sed -i \
 		-e "s:SAGE_ROOT+'/local/include/FLINT/':'/usr/include/FLINT/':g" \
 		-e "s:SAGE_ROOT + \"/local/include/FLINT/flint.h\":\"/usr/include/FLINT/flint.h\":g" \
-		module_list.py
-
-	# fix paths for pynac/ginac, numpy and polybori
-	sage_package ${P} \
-		sed -i \
 		-e "s:SAGE_ROOT + \"/local/include/pynac/ginac.h\":\"/usr/include/pynac/ginac.h\":g" \
 		-e "s:SAGE_ROOT+'/local/lib/python/site-packages/numpy/core/include':'/usr/lib/python2.6/site-packages/numpy/core/include':g" \
 		-e "s:SAGE_LOCAL + \"/share/polybori/flags.conf\":\"/usr/share/polybori/flags.conf\":g" \
@@ -245,14 +240,18 @@ src_prepare(){
 		cp "${T}"/site.cfg delaunay/site.cfg
 
 	# unset custom C(XX)FLAGS on amd64 - this is just a temporary hack
-	use amd64 && sage_package "${P}" \
-		epatch "${FILESDIR}/${P}-amd64-hack.patch"
+	use amd64 && sage_package ${P} \
+		epatch "${FILESDIR}"/${P}-amd64-hack.patch
 
-	# fix importing of deprecated sets module
+	# apply patches fixing deprecation warning which interfers with test output
 	sage_package ${P} \
-		epatch "${FILESDIR}/${P}-fix-deprecation-warning.patch"
+		epatch "${FILESDIR}"/${P}-combinat-sets-deprecation.patch
+	sage_package moin-1.5.7.p3 \
+		epatch "${FILESDIR}"/${P}-moinmoin-sets-deprecation.patch
+	sage_package networkx-0.99.p1-fake_really-0.36.p1 \
+		epatch "${FILESDIR}"/${P}-networkx-sets-deprecation.patch
 	sage_package sqlalchemy-0.4.6.p1 \
-		epatch "${FILESDIR}/${P}-fix-deprecated-module.patch"
+		epatch "${FILESDIR}"/${P}-sqlalchemy-sets-deprecation.patch
 
 	# add system path for python modules
 	sage_package sage_scripts-${PV} \
@@ -339,6 +338,8 @@ src_install() {
 
 	# remove mercurial directories - these are not needed
 	hg_clean
+
+	# TODO: write own installation routine which copies only needed files
 
 	# install files
 	emake DESTDIR="${D}/opt" install || die "emake install failed"

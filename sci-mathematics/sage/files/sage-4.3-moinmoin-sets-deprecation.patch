@@ -1,0 +1,123 @@
+--- src/MoinMoin/formatter/text_html.py.orig	2010-01-16 12:32:15.882690784 +0000
++++ src/MoinMoin/formatter/text_html.py	2010-01-16 12:33:59.104690636 +0000
+@@ -6,7 +6,6 @@
+     @license: GNU GPL, see COPYING for details.
+ """
+ import os.path, re
+-from sets import Set # TODO: when we require Python 2.4+ use the builtin 'set' type
+ from MoinMoin.formatter.base import FormatterBase
+ from MoinMoin import wikiutil, i18n, config
+ from MoinMoin.Page import Page
+@@ -16,7 +15,7 @@
+ prettyprint = False
+ 
+ # These are the HTML elements that we treat as block elements.
+-_blocks = Set(['dd', 'div', 'dl', 'dt', 'form', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6',
++_blocks = set(['dd', 'div', 'dl', 'dt', 'form', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6',
+                'hr', 'li', 'ol', 'p', 'pre', 'table', 'tbody', 'td', 'tfoot', 'th',
+                'thead', 'tr', 'ul', 'blockquote', ])
+ 
+@@ -26,30 +25,30 @@
+ # content, and also IE has a parsing bug with those two elements (only)
+ # when they don't have a closing tag even if valid XHTML.
+ 
+-_self_closing_tags = Set(['area', 'base', 'br', 'col', 'frame', 'hr', 'img', 'input',
++_self_closing_tags = set(['area', 'base', 'br', 'col', 'frame', 'hr', 'img', 'input',
+                           'isindex', 'link', 'meta', 'param'])
+ 
+ # We only open those tags and let the browser auto-close them:
+-_auto_closing_tags = Set(['p'])
++_auto_closing_tags = set(['p'])
+ 
+ # These are the elements which generally should cause an increase in the
+ # indention level in the html souce code.
+-_indenting_tags = Set(['ol', 'ul', 'dl', 'li', 'dt', 'dd', 'tr', 'td'])
++_indenting_tags = set(['ol', 'ul', 'dl', 'li', 'dt', 'dd', 'tr', 'td'])
+ 
+ # These are the elements that discard any whitespace they contain as
+ # immediate child nodes.
+-_space_eating_tags = Set(['colgroup', 'dl', 'frameset', 'head', 'map' 'menu',
++_space_eating_tags = set(['colgroup', 'dl', 'frameset', 'head', 'map' 'menu',
+                           'ol', 'optgroup', 'select', 'table', 'tbody', 'tfoot',
+                           'thead', 'tr', 'ul'])
+ 
+ # These are standard HTML attributes which are typically used without any
+ # value; e.g., as boolean flags indicated by their presence.
+-_html_attribute_boolflags = Set(['compact', 'disabled', 'ismap', 'nohref',
++_html_attribute_boolflags = set(['compact', 'disabled', 'ismap', 'nohref',
+                                  'noresize', 'noshade', 'nowrap', 'readonly',
+                                  'selected', 'wrap'])
+ 
+ # These are all the standard HTML attributes that are allowed on any element.
+-_common_attributes = Set(['accesskey', 'class', 'dir', 'disabled', 'id', 'lang',
++_common_attributes = set(['accesskey', 'class', 'dir', 'disabled', 'id', 'lang',
+                           'style', 'tabindex', 'title'])
+ 
+ 
+--- src/MoinMoin/script/maint/mkpagepacks.py.orig	2010-01-16 12:59:57.750691743 +0000
++++ src/MoinMoin/script/maint/mkpagepacks.py	2010-01-16 13:00:39.685690565 +0000
+@@ -9,7 +9,6 @@
+ 
+ import os
+ import zipfile
+-from sets import Set
+ from datetime import datetime
+ 
+ from MoinMoin import wikidicts, wikiutil
+@@ -32,7 +31,7 @@
+         request = self.request
+         pageSets = {}
+ 
+-        allPages = Set(request.rootpage.getPageList())
++        allPages = set(request.rootpage.getPageList())
+ 
+         systemPages = wikidicts.Group(request, "SystemPagesGroup").members()
+ 
+@@ -41,21 +40,21 @@
+                 #print x + " -> " + repr(wikidicts.Group(request, x).members())
+                 self.gd.addgroup(request, pagename)
+ 
+-        langPages = Set()
++        langPages = set()
+         for name, group in self.gd.dictdict.items():
+             group.expandgroups(self.gd)
+-            groupPages = Set(group.members() + [name])
++            groupPages = set(group.members() + [name])
+             name = name.replace("SystemPagesIn", "").replace("Group", "")
+             pageSets[name] = groupPages
+             langPages |= groupPages
+ 
+-        specialPages = Set(["SystemPagesGroup"])
++        specialPages = set(["SystemPagesGroup"])
+ 
+         masterNonSystemPages = allPages - langPages - specialPages
+ 
+-        moinI18nPages = Set([x for x in masterNonSystemPages if x.startswith("MoinI18n")])
++        moinI18nPages = set([x for x in masterNonSystemPages if x.startswith("MoinI18n")])
+         
+-        nodistPages = moinI18nPages | Set(["InterWikiMap", ])
++        nodistPages = moinI18nPages | set(["InterWikiMap", ])
+ 
+         extraPages = masterNonSystemPages - nodistPages
+ 
+--- src/MoinMoin/util/antispam.py.orig	2010-01-16 12:30:11.213690917 +0000
++++ src/MoinMoin/util/antispam.py	2010-01-16 12:31:06.724690155 +0000
+@@ -14,7 +14,6 @@
+ debug = 1
+ 
+ import re, sys, time, datetime
+-import sets
+ 
+ if __name__ == '__main__':
+     sys.path.insert(0, "../..")
+@@ -198,8 +197,8 @@
+                     page = Page(request, editor.page_name, rev=rev)
+                     oldtext = page.get_raw_body()
+ 
+-                newset = sets.ImmutableSet(newtext.splitlines(1))
+-                oldset = sets.ImmutableSet(oldtext.splitlines(1))
++                newset = frozenset(newtext.splitlines(1))
++                oldset = frozenset(oldtext.splitlines(1))
+                 difference = newset.difference(oldset)
+                 addedtext = ''.join(difference) 
+                 
