@@ -15,7 +15,7 @@ IUSE=""
 
 RESTRICT="mirror"
 
-DEPEND=""
+DEPEND="dev-python/twisted"
 RDEPEND="${DEPEND}"
 
 RESTRICT_PYTHON_ABIS="3.*"
