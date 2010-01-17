@@ -176,7 +176,7 @@ src_prepare(){
 
 	# extcode is a seperate ebuild - hack to prevent spkg-install from exiting
 	sage_package moin-1.5.7.p3 \
-		sed -i "s:echo \"Error missing jsmath directory.\":echo || \\:g" \
+		sed -i "s:echo \"Error missing jsmath directory.\":false \&\& \\\\:g" \
 		spkg-install
 
 	# TODO: Are these needed ?
