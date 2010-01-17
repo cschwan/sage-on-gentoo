@@ -141,8 +141,9 @@ src_prepare(){
 		SAGE_BZIP2 SCIPY SCONS SETUPTOOLS SQLITE SYMMETRICA SYMPOW SYMPY \
 		TACHYON TERMCAP TWISTED TWISTEDWEB2 WEAVE ZLIB ZNPOLY ZODB
 
-	# disable verbose copying
-	sed -i "s:cp -rpv:cp -rp:g" makefile || die "sed failed"
+	# disable verbose copying but copy symbolic links
+	sed -i "s:cp -rpv:cp -r --preserve=mode,ownership,timestamps,links:g" \
+		makefile || die "sed failed"
 
 	# disable documentation if not needed
 	use doc || sage_package sage_scripts-${PV} \
@@ -173,9 +174,10 @@ src_prepare(){
 	sage_package ${P} \
 		sed -i "s:maxima-noreadline:maxima:g" sage/interfaces/maxima.py
 
-	# extcode is installed in a separate ebuild - fix directory path
+	# extcode is a seperate ebuild - hack to prevent spkg-install from exiting
 	sage_package moin-1.5.7.p3 \
-		sed -i "s:\.\./\.\./\.\./\.\./data:\${SAGE_DATA}:g" spkg-install
+		sed -i "s:echo \"Error missing jsmath directory.\":echo || \\:g" \
+		spkg-install
 
 	# TODO: Are these needed ?
 	sage_package ${P} \
@@ -278,9 +280,7 @@ src_prepare(){
 
 	# make sure the lib directory exists
 	cd "${S}"/local
-	if [[ ! -d lib ]]; then
-		ln -s $(get_libdir) lib || die "ln failed"
-	fi
+	[[ -d lib ]] || ln -s $(get_libdir) lib || die "ln failed"
 
 	# make unversioned symbolic link
 	cd "${S}"/local/$(get_libdir)
@@ -316,10 +316,6 @@ src_prepare(){
 
 	# pack all unpacked spkgs
 	sage_package_finish
-
-	# make symbolic links to data and examples
-	ln -s "${SAGE_ROOT}"/data "${S}"/data || die "ln failed"
-	ln -s "${SAGE_ROOT}"/examples "${S}"/examples || die "ln failed"
 }
 
 src_compile() {
