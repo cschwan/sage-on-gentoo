@@ -276,6 +276,12 @@ src_prepare(){
 	mkdir -p "${S}"/local/$(get_libdir)/python2.6/site-packages \
 		|| die "mkdir failed"
 
+	# make sure the lib directory exists
+	cd "${S}"/local
+	if [[ ! -d lib ]]; then
+		ln -s $(get_libdir) lib || die "ln failed"
+	fi
+
 	# make unversioned symbolic link
 	cd "${S}"/local/$(get_libdir)
 	ln -s python2.6 python || die "ln failed"
