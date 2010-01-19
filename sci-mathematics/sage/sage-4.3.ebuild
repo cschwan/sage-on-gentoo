@@ -241,8 +241,8 @@ src_prepare(){
 		cp "${T}"/site.cfg arpack/site.cfg ; \
 		cp "${T}"/site.cfg delaunay/site.cfg
 
-	# unset custom C(XX)FLAGS on amd64 - this is just a temporary hack
-	use amd64 && sage_package ${P} \
+	# unset custom C(XX)FLAGS - this is just a temporary hack
+	sage_package ${P} \
 		epatch "${FILESDIR}"/${P}-amd64-hack.patch
 
 	# apply patches fixing deprecation warning which interfers with test output
