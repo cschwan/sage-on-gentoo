@@ -99,6 +99,7 @@ CDEPEND="
 	>=net-zope/zodb-3.7.0
 	=dev-lang/python-2.6.4-r1[sqlite]
 	>=sci-mathematics/polybori-20091028[sage]
+	>=sci-mathematics/sage-clib-${PV}
 "
 
 DEPEND="
@@ -204,6 +205,24 @@ src_prepare(){
 		-e "s:SAGE_ROOT + \"/local/include/polybori/polybori.h\":\"/usr/include/polybori/polybori.h\":g" \
 		module_list.py
 
+	# remove csage which will be built in another ebuild
+	sage_package ${P} \
+		epatch "${FILESDIR}"/${P}-remove-csage.patch
+	sage_package sage_scripts-${PV} \
+		epatch "${FILESDIR}"/${P}-remove-csage-2.patch
+
+	# fix csage include
+	sage_package ${P} \
+		sed -i "s:'%s/include/csage'%SAGE_LOCAL:'/usr/include/csage':g" setup.py
+
+	# remove c_lib
+	sage_package ${P} \
+		rm -rf c_lib
+
+# 	# fix include directories
+# 	sage_package ${P} \
+# 		sed -i "s:\$SAGE_LOCAL/include:/usr/include:g" c_lib/SConstruct
+
 	# this file is taken from portage's scipy ebuild
 	cat > "${T}"/site.cfg <<-EOF
 		[DEFAULT]
@@ -307,10 +326,6 @@ src_prepare(){
 	sage_package ${P} \
 		sed -i "s:python setup.py install:python setup.py install --prefix=\"\${SAGE_LOCAL}\":g" \
 		install
-
-	# fix include directories
-	sage_package ${P} \
-		sed -i "s:\$SAGE_LOCAL/include:/usr/include:g" c_lib/SConstruct
 
 	# fix installation paths
 	sage_package networkx-0.99.p1-fake_really-0.36.p1 \

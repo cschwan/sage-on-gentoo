@@ -2,6 +2,11 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  23 Jan 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
+  sage-4.3.1.ebuild, +files/sage-4.3.1-remove-csage.patch,
+  +files/sage-4.3.1-remove-csage-2.patch:
+  Removed Sage's C library - is built in sage-clib
+
 *sage-4.3.1 (23 Jan 2010)
 
   23 Jan 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
