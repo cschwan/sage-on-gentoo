@@ -13,24 +13,25 @@ SRC_URI="http://modular.math.washington.edu/home/wbhart/webpage/${P}.tar.gz"
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
-IUSE="qs openmp ntl doc"
+IUSE="qs ntl doc"
 
-DEPEND="ntl? ( dev-libs/ntl )
-	openmp? ( sys-devel/gcc[openmp] )
-	dev-libs/gmp
-	>=sci-libs/zn_poly-0.9"
-RDEPEND="ntl? ( dev-libs/ntl )
+CDEPEND="ntl? ( dev-libs/ntl )
 	dev-libs/gmp"
+DEPEND="${CDEPEND}
+	>=sci-libs/zn_poly-0.9"
+RDEPEND="${CDEPEND}"
 
 RESTRICT="mirror"
 
+# TODO: examples, openmp ?
+
 src_prepare() {
 	# use zn_poly from portage
-	epatch "${FILESDIR}/${PN}-1.5.0-without-zn_poly.patch"
+	epatch "${FILESDIR}/${P}-without-zn_poly.patch"
 
+	# build ntl interface into libflint
 	if use ntl ; then
-		# build ntl interface into libflint (same way as Sage does)
-		epatch "${FILESDIR}/${PN}-1.5.0-enable-ntl.patch"
+		epatch "${FILESDIR}/${P}-enable-ntl.patch"
 	fi
 
 	# fix QA warning
@@ -39,17 +40,6 @@ src_prepare() {
 
 	# remove CFLAGS - use from portage
 	sed -i "s:CFLAGS = \$(INCS) \$(FLINT_TUNE) -O2::" makefile
-
-	# TODO: this needs testing, does not work (?)
-
-	# add support for openmp
-	if use openmp ; then
-		sed -i "s:CFLAGS2 = \$(INCS) \$(FLINT_TUNE) -O2:CFLAGS2 = \$(CFLAGS) -openmp :" \
-			makefile
-	else
-		sed -i "s:CFLAGS2 = \$(INCS) \$(FLINT_TUNE) -O2:CFLAGS2 = \$(CFLAGS) :" \
-			makefile
-	fi
 
 	# use CXXFLAGS for C++ code
 	sed -i "s:\$(CPP) \$(CFLAGS):\$(CPP) \$(CXXFLAGS):" makefile
@@ -64,27 +54,28 @@ src_compile() {
 	export FLINT_CPP=$(tc-getCXX)
 	export FLINT_LIB="libflint.so"
 
-	emake library || die "Building flint shared library failed!"
+	emake library || die "emake failed"
 
 	if use qs ; then
-		emake QS || die "Building flintQS failed!"
+		emake QS || die "emake failed"
 	fi
-
-	# TODO: examples ?
 }
 
 src_install(){
-	dolib.so libflint.so || die "installation of library failed!"
+	# install library
+	dolib.so libflint.so || die "dolib failed"
 
+	# install headers
 	insinto /usr/include/FLINT
-	doins *.h || die "installation of headers failed!"
+	doins *.h || die "doins failed"
 
+	# install quadratic sieve program
 	if use qs ; then
-		dobin mpQS || die "installation of mpQS failed!"
+		dobin mpQS || die "dobin failed"
 	fi
 
+	# install docs
 	if use doc ; then
-		insinto /usr/share/doc/"${PF}"
-		doins doc/*.pdf || die "Failed to install docs"
+		doins doc/*.pdf || die "doins failed"
 	fi
 }
