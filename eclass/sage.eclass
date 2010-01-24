@@ -221,14 +221,18 @@ sage_src_unpack() {
 			SAGE_FILESDIR="${WORKDIR}/${SAGE_PACKAGE}/patch"
 		fi
 
-		# set correct source path
-		if [[ -d "${WORKDIR}/${SAGE_PACKAGE}/src" ]]; then
-			S="${WORKDIR}/${SAGE_PACKAGE}/src"
-		else
-			S="${WORKDIR}/${SAGE_PACKAGE}"
+		if [[ "${S}" = "${WORKDIR}/${P}" ]]; then
+			# set correct source path
+			if [[ -d "${WORKDIR}/${SAGE_PACKAGE}/src" ]]; then
+				S="${WORKDIR}/${SAGE_PACKAGE}/src"
+			else
+				S="${WORKDIR}/${SAGE_PACKAGE}"
+			fi
 		fi
 	else
-		S="${WORKDIR}"
+		if [[ "${S}" = "${WORKDIR}/${P}" ]]; then
+			S="${WORKDIR}"
+		fi
 	fi
 }
 
