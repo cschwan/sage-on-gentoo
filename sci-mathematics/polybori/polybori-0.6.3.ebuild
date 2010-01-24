@@ -1,4 +1,4 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
@@ -17,14 +17,11 @@ RESTRICT="mirror test"
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~x86 ~amd64"
-IUSE="doc gd sage singular"
-
-# TODO: clean up this file
+IUSE="doc gd sage"
 
 CDEPEND=">=dev-libs/boost-1.34.1[python]
 	dev-python/ipython
-	gd? ( media-libs/gd )
-	singular? ( sci-mathematics/singular )"
+	gd? ( media-libs/gd )"
 DEPEND="${CDEPEND}
 	>=dev-util/scons-0.98
 	>=sci-libs/m4ri-20090512
@@ -38,7 +35,6 @@ S="${WORKDIR}/${PN}-$(get_version_component_range 1-2)"
 
 src_prepare(){
 	if use sage ; then
-		# TODO: This should not be done; find a better solution
 		cp "${FILESDIR}/PyPolyBoRi.py" "${S}/pyroot/polybori/"
 
 		# TODO: Sage needs this file but we should find a better solution,
@@ -58,8 +54,6 @@ src_compile(){
 	else
 	    DOC="False"
 	fi
-
-	# TODO: handle singular
 
 	scons CFLAGS="${CFLAGS}" \
 		CCFLAGS="" \
@@ -94,9 +88,4 @@ src_install() {
 
 	# remove incomplete documentation
 	use doc || rm -rf "${D}"/usr/share/polybori/doc
-}
-
-src_test() {
-	# TODO: test programs do net get compiled
-	testsuite/execsuite
 }
