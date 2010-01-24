@@ -7,7 +7,6 @@ SAGE_PACKAGE=sage-${PV}
 
 inherit sage
 
-# TODO: write description
 DESCRIPTION="C library for Sage"
 # HOMEPAGE=""
 # SRC_URI=""
@@ -27,14 +26,14 @@ DEPEND="dev-libs/gmp
 	>=sci-mathematics/polybori-20091028"
 RDEPEND="${DEPEND}"
 
+S="${WORKDIR}"/${SAGE_PACKAGE}/src/c_lib
+
 src_compile() {
 	# build libcsage.so
-	cd c_lib
 	CXX= SAGE_LOCAL=/usr scons || die "scons failed"
 }
 
 src_install() {
-	cd c_lib
 	dolib.so libcsage.so || die "dolib.so failed"
 	insinto /usr/include/csage
 	doins include/*.h || die "doins failed"

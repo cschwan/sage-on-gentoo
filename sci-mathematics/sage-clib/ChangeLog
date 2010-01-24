@@ -2,6 +2,10 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  24 Jan 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
+  -sage-clib-4.3.ebuild, sage-clib-4.3.1.ebuild:
+  Removed old version and changed S according to new eclass
+
 *sage-clib-4.3.1 (23 Jan 2010)
 
   23 Jan 2010; Christopher Schwan <cschwan@students.uni-mainz.de>

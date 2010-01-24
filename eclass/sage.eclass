@@ -215,29 +215,27 @@ sage_src_unpack() {
 	# if there is only one package, try to set SAGE_FILESDIR
 	if [[ ${#SAGE_PACKAGE[@]} = 1 ]]; then
 		# set Sage's FILESDIR
-		if [[ -d "${WORKDIR}/${SAGE_PACKAGE}/patches" ]]; then
-			SAGE_FILESDIR="${WORKDIR}/${SAGE_PACKAGE}/patches"
-		elif [[ -d "${WORKDIR}/${SAGE_PACKAGE}/patch" ]]; then
-			SAGE_FILESDIR="${WORKDIR}/${SAGE_PACKAGE}/patch"
+		if [[ -d "${WORKDIR}"/${SAGE_PACKAGE}/patches ]]; then
+			SAGE_FILESDIR="${WORKDIR}"/${SAGE_PACKAGE}/patches
+		elif [[ -d "${WORKDIR}"/${SAGE_PACKAGE}/patch ]]; then
+			SAGE_FILESDIR="${WORKDIR}"/${SAGE_PACKAGE}/patch
 		fi
 
-		if [[ "${S}" = "${WORKDIR}/${P}" ]]; then
+		if [[ "${S}" = "${WORKDIR}"/${P} ]]; then
 			# set correct source path
-			if [[ -d "${WORKDIR}/${SAGE_PACKAGE}/src" ]]; then
-				S="${WORKDIR}/${SAGE_PACKAGE}/src"
+			if [[ -d "${WORKDIR}"/${SAGE_PACKAGE}/src ]]; then
+				S="${WORKDIR}"/${SAGE_PACKAGE}/src
 			else
-				S="${WORKDIR}/${SAGE_PACKAGE}"
+				S="${WORKDIR}"/${SAGE_PACKAGE}
 			fi
 		fi
 	else
-		if [[ "${S}" = "${WORKDIR}/${P}" ]]; then
+		if [[ "${S}" = "${WORKDIR}"/${P} ]]; then
 			S="${WORKDIR}"
 		fi
 	fi
 }
 
 if [[ -n "${SAGE_PACKAGE}" ]]; then
-	S="${WORKDIR}/${SAGE_PACKAGE}"
-
 	EXPORT_FUNCTIONS src_unpack
 fi
