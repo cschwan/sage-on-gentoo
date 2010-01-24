@@ -26,7 +26,7 @@ DEPEND="dev-libs/gmp
 	>=sci-mathematics/polybori-20091028"
 RDEPEND="${DEPEND}"
 
-S="${WORKDIR}"/${SAGE_PACKAGE}/src/c_lib
+S="${WORKDIR}"/${SAGE_PACKAGE}/c_lib
 
 src_compile() {
 	# build libcsage.so
