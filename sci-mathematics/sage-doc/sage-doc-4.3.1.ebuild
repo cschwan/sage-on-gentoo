@@ -21,6 +21,6 @@ RDEPEND="${DEPEND}"
 S="${WORKDIR}/${MY_P}"
 
 src_install() {
-	insinto "${SAGE_ROOT}"/devel/sage/doc/output/html
+	insinto "${SAGE_ROOT}"/devel/sage-main/doc/output/html
 	doins -r *
 }
