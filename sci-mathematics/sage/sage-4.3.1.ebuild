@@ -100,6 +100,7 @@ CDEPEND="
 	=dev-lang/python-2.6.4-r1[sqlite]
 	>=sci-mathematics/polybori-20091028[sage]
 	>=sci-mathematics/sage-clib-${PV}
+	doc? ( =sci-mathematics/sage-doc-${PV} )
 "
 
 DEPEND="
@@ -145,8 +146,8 @@ src_prepare(){
 	sed -i "s:cp -rpv:cp -r --preserve=mode,ownership,timestamps,links:g" \
 		makefile || die "sed failed"
 
-	# disable documentation if not needed
-	use doc || sage_package sage_scripts-${PV} \
+	# disable generation of documentation
+	sage_package sage_scripts-${PV} \
 		sed -i "/\"\$SAGE_ROOT\"\/sage -docbuild all html/d" install \
 		|| die "sed failed"
 
@@ -210,6 +211,15 @@ src_prepare(){
 		epatch "${FILESDIR}"/${P}-remove-csage.patch
 	sage_package sage_scripts-${PV} \
 		epatch "${FILESDIR}"/${P}-remove-csage-2.patch
+
+	# fix csage include
+	sage_package ${P} \
+		sed -i "s:'%s/include/csage'%SAGE_LOCAL:'/usr/include/csage':g" setup.py
+	sage_package ${P} \
+		sed -i "s:'%s/local/include/csage/'%SAGE_ROOT:'/usr/include/csage/':g" \
+		sage/misc/cython.py
+
+	# TODO: maybe there are more paths to fix in sage/misc/cython.py
 
 	# remove csage files which are not needed
 	sage_package ${P} \
@@ -347,6 +357,7 @@ src_install() {
 	# these files are also not needed
 	rm -rf spkg/build/*
 	rm -rf tmp
+	rm -rf devel/sage-main/doc/output/html/*
 
 	# remove mercurial directories - these are not needed
 	hg_clean
@@ -356,7 +367,7 @@ src_install() {
 	# install files
 	emake DESTDIR="${D}/opt" install || die "emake install failed"
 
-	# TODO: handle generated docs
+	# install docs
 	dodoc README.txt || die "dodoc failed"
 
 	# TODO: create additional desktop files
