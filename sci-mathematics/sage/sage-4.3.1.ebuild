@@ -205,23 +205,15 @@ src_prepare(){
 		-e "s:SAGE_ROOT + \"/local/include/polybori/polybori.h\":\"/usr/include/polybori/polybori.h\":g" \
 		module_list.py
 
-	# remove csage which will be built in another ebuild
+	# remove csage which is built elsewhere
 	sage_package ${P} \
 		epatch "${FILESDIR}"/${P}-remove-csage.patch
 	sage_package sage_scripts-${PV} \
 		epatch "${FILESDIR}"/${P}-remove-csage-2.patch
 
-	# fix csage include
-	sage_package ${P} \
-		sed -i "s:'%s/include/csage'%SAGE_LOCAL:'/usr/include/csage':g" setup.py
-
-	# remove c_lib
+	# remove csage files which are not needed
 	sage_package ${P} \
 		rm -rf c_lib
-
-# 	# fix include directories
-# 	sage_package ${P} \
-# 		sed -i "s:\$SAGE_LOCAL/include:/usr/include:g" c_lib/SConstruct
 
 	# this file is taken from portage's scipy ebuild
 	cat > "${T}"/site.cfg <<-EOF
@@ -359,7 +351,7 @@ src_install() {
 	# remove mercurial directories - these are not needed
 	hg_clean
 
-	# TODO: write own installation routine which copies only needed files
+	# TODO: write own installation routine which copies only files needed
 
 	# install files
 	emake DESTDIR="${D}/opt" install || die "emake install failed"
@@ -378,6 +370,7 @@ src_install() {
 # 	use doc && domenu "${FILESDIR}"/sage-documentation.desktop \
 # 		|| die "domenu failed"
 
+	# fix installation path
 	sed -i "s:${D}::" "${D}"/opt/bin/sage "${D}"/opt/sage/sage \
 		|| die "sed failed"
 }

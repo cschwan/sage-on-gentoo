@@ -7,5 +7,5 @@ Comment[de]=Sage Terminal starten
 Exec=sage
 TryExec=sage
 Icon=sage.svg
-Categories=Math;Science;Utility
+Categories=Math;Science;Utility;
 Terminal=true
