@@ -1,6 +1,13 @@
 # ChangeLog for sci-mathematics/sage-doc
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
+
+*sage-doc-4.3.1 (25 Jan 2010)
+
+  25 Jan 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
+  -sage-doc-4.2.1.ebuild, +sage-doc-4.3.1.ebuild:
+  Removed old version of sage-doc which did not work and wasnt used. New
+  version simply downloads pre-generated documentation and installs it
 
   04 Dec 2009; Christopher Schwan <cschwan@students.uni-mainz.de>
   sage-doc-4.2.1.ebuild, +files/sage-doc-4.2.1-fix-source-path.patch:
