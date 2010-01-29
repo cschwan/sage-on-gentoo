@@ -2,6 +2,12 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*python-2.6.4-r99 (29 Jan 2010)
+
+  29 Jan 2010; François Bissey <f.r.bissey@massey.ac.nz>
+  -python-2.6.4-r1.ebuild, +python-2.6.4-r99.ebuild:
+  revision bump to include patches from 2.6.4-r1 from the main portage tree. 
+
 *python-2.6.4-r1 (16 Jan 2010)
 
   16 Jan 2010; François Bissey <f.r.bissey@massey.ac.nz>
