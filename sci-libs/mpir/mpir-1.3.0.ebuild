@@ -4,18 +4,17 @@
 
 EAPI=2
 
-inherit eutils versionator autotools
+inherit eutils autotools
 
 DESCRIPTION="MPIR is a library for arbitrary precision integer arithmetic derived from version 4.2.1 of gmp"
 HOMEPAGE="http://www.mpir.org/"
-SRC_URI="http://www.mpir.org/${PN}-$(replace_version_separator 3 -).tar.gz"
+SRC_URI="http://www.mpir.org/${P}.tar.gz"
+RESTRICT="mirror"
 
 LICENSE="LGPL-2.1"
 SLOT="0"
-KEYWORDS="~amd64 ~x86"
+KEYWORDS="~x86 ~amd64"
 IUSE="nocxx cpudetection"
-
-RESTRICT="mirror"
 
 # Beware: cpudetection aka fat binaries only works on x86/amd64
 # When we enable more cpus we will have to carefully filter.
@@ -23,11 +22,9 @@ RESTRICT="mirror"
 DEPEND="dev-lang/yasm"
 RDEPEND=""
 
-S="${WORKDIR}/${PN}-$(get_version_component_range 1-3)"
-
 src_prepare(){
-	epatch "${FILESDIR}/${PN}-1.3.0_rc3-yasm.patch"
-	epatch "${FILESDIR}/${PN}-1.3.0_rc3-ABI-multilib.patch"
+	epatch "${FILESDIR}/${P}-yasm.patch"
+	epatch "${FILESDIR}/${P}-ABI-multilib.patch"
 	eautoreconf
 }
 
@@ -42,6 +39,5 @@ src_configure() {
 
 src_install() {
 	emake DESTDIR="${D}" install || die "emake install failed"
-
-	dodoc ChangeLog README NEWS || die "dodoc failed"
+	dodoc ChangeLog README NEWS
 }
