@@ -101,6 +101,8 @@ CDEPEND="
 	>=sci-mathematics/polybori-20091028[sage]
 	>=sci-mathematics/sage-clib-${PV}
 	doc? ( =sci-mathematics/sage-doc-${PV} )
+	>=net-zope/zope-testbrowser-3.7.0
+	>=net-zope/zope-i18nmessageid-3.5.0
 "
 
 DEPEND="
@@ -130,7 +132,11 @@ pkg_setup() {
 	einfo "BSD, LGPL, apache 2.0, PYTHON, MIT, public-domain, ZPL and as-is"
 }
 
-src_prepare(){
+src_prepare() {
+	############################################################################
+	# Modifications to the build system and to Sage's scripts
+	############################################################################
+
 	# do not let Sage make the following targets
 	sage_clean_targets ATLAS BLAS BOEHM_GC BOOST_CROPPED CDDLIB CLIQUER CONWAY \
 		CVXOPT CYTHON DOCUTILS ECLIB ECM ELLIPTIC_CURVES EXAMPLES EXTCODE F2C \
@@ -171,14 +177,33 @@ src_prepare(){
 		-e "s:ECLDIR=:#ECLDIR=:g" \
 		sage-env
 
+	# add system path for python modules
+	sage_package sage_scripts-${PV} \
+		sed -i \
+		-e "s:\"\$SAGE_ROOT/local/lib/python\":\"\$SAGE_ROOT/local/$(get_libdir)/python\":g" \
+		-e "s:PYTHONPATH=\"\(.*\)\":PYTHONPATH=\"$(python_get_sitedir)\:\1\:\$SAGE_ROOT/local/$(get_libdir)/python/site-packages\":g" \
+		-e "/PYTHONHOME=.*/d" \
+		sage-env
+
+	# create this directory manually
+	mkdir -p "${S}"/local/$(get_libdir)/python2.6/site-packages \
+		|| die "mkdir failed"
+
+	# make sure the lib directory exists
+	cd "${S}"/local
+	[[ -d lib ]] || ln -s $(get_libdir) lib || die "ln failed"
+
+	# make unversioned symbolic link
+	cd "${S}"/local/$(get_libdir)
+	ln -s python2.6 python || die "ln failed"
+
+	############################################################################
+	# Fixes to sage itself
+	############################################################################
+
 	# fix command for calling maxima
 	sage_package ${P} \
 		sed -i "s:maxima-noreadline:maxima:g" sage/interfaces/maxima.py
-
-	# extcode is a seperate ebuild - hack to prevent spkg-install from exiting
-	sage_package moin-1.5.7.p3 \
-		sed -i "s:echo \"Error missing jsmath directory.\":false \&\& \\\\:g" \
-		spkg-install
 
 	# TODO: Are these needed ?
 	sage_package ${P} \
@@ -225,6 +250,40 @@ src_prepare(){
 	sage_package ${P} \
 		rm -rf c_lib
 
+	# unset custom C(XX)FLAGS - this is just a temporary hack
+	sage_package ${P} \
+		epatch "${FILESDIR}"/${PN}-4.3-amd64-hack.patch
+
+	# set path to Sage's cython
+	sage_package ${P} \
+		sed -i "s:SAGE_LOCAL + '/lib/python/site-packages/Cython/Includes/':'/usr/$(get_libdir)/python2.6/site-packages/Cython/Includes/':g" \
+		setup.py
+
+	# fix site-packages check
+	sage_package ${P} \
+		sed -i "s:'%s/lib/python:'%s/$(get_libdir)/python:g" setup.py
+
+	# apply patches fixing deprecation warning which interfers with test output
+	sage_package ${P} \
+		epatch "${FILESDIR}"/${PN}-4.3-combinat-sets-deprecation.patch
+
+	############################################################################
+	# Modifications to other packages
+	############################################################################
+
+	# save versioned package names
+	local MOINMOIN=moin-1.5.7.p3
+	local SCIPY_SANDBOX=scipy_sandbox-20071020.p4
+	local NETWORKX=networkx-0.99.p1-fake_really-0.36.p1
+	local SQLALCHEMY=sqlalchemy-0.4.6.p1
+	local SPHINX=sphinx-0.6.3.p4
+	local SAGENB=sagenb-0.6
+
+	# extcode is a seperate ebuild - hack to prevent spkg-install from exiting
+	sage_package ${MOINMOIN} \
+		sed -i "s:echo \"Error missing jsmath directory.\":false \&\& \\\\:g" \
+		spkg-install
+
 	# this file is taken from portage's scipy ebuild
 	cat > "${T}"/site.cfg <<-EOF
 		[DEFAULT]
@@ -257,65 +316,34 @@ src_prepare(){
 	EOF
 
 	# copy file into scipy_sandbox
-	sage_package scipy_sandbox-20071020.p4 \
+	sage_package ${SCIPY_SANDBOX} \
 		cp "${T}"/site.cfg arpack/site.cfg ; \
 		cp "${T}"/site.cfg delaunay/site.cfg
 
-	# unset custom C(XX)FLAGS - this is just a temporary hack
-	sage_package ${P} \
-		epatch "${FILESDIR}"/${PN}-4.3-amd64-hack.patch
-
 	# apply patches fixing deprecation warning which interfers with test output
-	sage_package ${P} \
-		epatch "${FILESDIR}"/${PN}-4.3-combinat-sets-deprecation.patch
-	sage_package moin-1.5.7.p3 \
+	sage_package ${MOINMOIN} \
 		epatch "${FILESDIR}"/${PN}-4.3-moinmoin-sets-deprecation.patch
-	sage_package networkx-0.99.p1-fake_really-0.36.p1 \
+	sage_package ${NETWORKX} \
 		epatch "${FILESDIR}"/${PN}-4.3-networkx-sets-deprecation.patch
-	sage_package sqlalchemy-0.4.6.p1 \
+	sage_package ${SQLALCHEMY} \
 		epatch "${FILESDIR}"/${PN}-4.3-sqlalchemy-sets-deprecation.patch
 
-	# add system path for python modules
-	sage_package sage_scripts-${PV} \
-		sed -i \
-		-e "s:\"\$SAGE_ROOT/local/lib/python\":\"\$SAGE_ROOT/local/$(get_libdir)/python\":g" \
-		-e "s:PYTHONPATH=\"\(.*\)\":PYTHONPATH=\"$(python_get_sitedir)\:\1\:\$SAGE_ROOT/local/$(get_libdir)/python/site-packages\":g" \
-		-e "/PYTHONHOME=.*/d" \
-		sage-env
+	############################################################################
+	# Prefixing of Python packages
+	############################################################################
 
-	# set path to Sage's cython
-	sage_package ${P} \
-		sed -i "s:SAGE_LOCAL + '/lib/python/site-packages/Cython/Includes/':'/usr/$(get_libdir)/python2.6/site-packages/Cython/Includes/':g" \
-		setup.py
+# 	sage_package ${SAGENB} \
+# 		sed -i "s:easy_install:easy_install --prefix=\"\$SAGE_ROOT/local\":g" \
+# 		spkg-install
 
-# 	# do not download Twisted - TODO: look for another way to solve this
-# 	sage_package sagenb-0.6 \
-# 		sed -i "s:twisted>=8.2::g" src/sagenb.egg-info/requires.txt
-# 	sage_package sagenb-0.6 \
-# 		sed -i "/install_requires = \['twisted>=8\.2'\],/d" src/setup.py
+	# remove easy_install commands - packages are provided by portage as usual
+	sage_package ${SAGENB} \
+		sed -i "s:easy_install [^;]*; ::g" spkg-install
 
-	sage_package sagenb-0.6 \
-		sed -i "s:easy_install:easy_install --prefix=\"\$SAGE_ROOT/local\":g" \
-		spkg-install
+	# TODO: is sphinx actually needed
 
-	# create this directory manually
-	mkdir -p "${S}"/local/$(get_libdir)/python2.6/site-packages \
-		|| die "mkdir failed"
-
-	# make sure the lib directory exists
-	cd "${S}"/local
-	[[ -d lib ]] || ln -s $(get_libdir) lib || die "ln failed"
-
-	# make unversioned symbolic link
-	cd "${S}"/local/$(get_libdir)
-	ln -s python2.6 python || die "ln failed"
-
-	# fix site-packages check
-	sage_package ${P} \
-		sed -i "s:'%s/lib/python:'%s/$(get_libdir)/python:g" setup.py
-
-	local SPKGS_NEEDING_FIX=( moin-1.5.7.p3 sagenb-0.6 scipy_sandbox-20071020.p4
-		sphinx-0.6.3.p4 sqlalchemy-0.4.6.p1 )
+	local SPKGS_NEEDING_FIX=( ${MOINMOIN} ${SAGENB} ${SCIPY_SANDBOX} ${SPHINX}
+		${SQLALCHEMY} )
 
 	# fix installation paths - this must be done in order to remove python
 	for i in "${SPKGS_NEEDING_FIX[@]}" ; do
@@ -330,7 +358,7 @@ src_prepare(){
 		install
 
 	# fix installation paths
-	sage_package networkx-0.99.p1-fake_really-0.36.p1 \
+	sage_package ${NETWORKX} \
 		sed -i "s:python setup.py install --home=\"\$SAGE_LOCAL\":python setup.py install --prefix=\"\${SAGE_LOCAL}\":g" \
 		spkg-install
 
