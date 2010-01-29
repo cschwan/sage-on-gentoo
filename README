@@ -1,7 +1,5 @@
-sage-on-gentoo is a project that tries to provide split ebuilds for the computer
-algebra system SAGE (www.sagemath.org). Since SAGE ships all of its dependencies
-(about 90 packages!) this is a difficult and time consuming task and actually
-the reason why there is no SAGE in portage.
+sage-on-gentoo provides (experimental) split ebuilds for the computer algebra
+system SAGE (www.sagemath.org).
 
 Documenation for Sage's eclass is found in the Documentation/ subdirectory.
 Other documentation resides on the wiki-pages.
@@ -18,38 +16,33 @@ or fork sage-on-gentoo and do it yourself!
 
 ################################################################################
 
-Quick Installation:
+QUICK INSTALLATION GUIDE:
 
-1. Setup a Portage Overlay:
-   Create a overlay directory, e.g in your home directory and add the following
-   to the PORTDIR_OVERLAY variable in /etc/make.conf:
+1. GET LAYMAN:
+   The preferred method of getting this repository is now layman. Make sure you
+   have it installed and correctly configured. You can find a guide here:
 
-   <your-home-dir>/sage-on-gentoo
+     http://www.gentoo.org/proj/en/overlays/userguide.xml.
 
-   Make sure to include the trailing 'sage-on-gentoo' (which does not yet
-   exist but will be created by git).
+2. ADD REPOSITORY:
+   Update your layman list and add this repository with:
 
-2. Download the repository:
-   Go to the overlay directory (if you are following the above example that will
-   be your home directory) and type:
+     layman -L
+     layman -a sage-on-gentoo
 
-     git clone git://github.com/cschwan/sage-on-gentoo.git
-
-   (which means you will need dev-util/git). This will create the sage-on-gentoo
-   directory.
-
-3. Unmask packages:
+3. UNMASK PACKAGES:
    Before installing, you will need to unmask the required packages. A list of
    all required packages is located at:
 
-   sage-on-gentoo/packages.keywords/sage
+     sage-on-gentoo/packages.keywords/sage
 
    Permanent unmasking can be done easily via placing a symbolic link in your
    /etc/portage/package.keywords directory, e.g.:
 
-     ln -s ~/sage-on-gentoo/package.keywords/sage /etc/portage/package.keywords/sage
+     ln -s /usr/local/portage/layman/sage-on-gentoo/package.keywords/sage \
+           /etc/portage/package.keywords/sage
 
-4. Test the ebuild:
+4. TEST THE EBUILD:
    Type
 
      emerge -va sage
@@ -59,10 +52,10 @@ Quick Installation:
    ccache (FEATURES=ccache, dev-util/ccache) which speeds up subsequent
    compilations.
 
-5. Update repository:
-   To update change to the repository (sage-on-gentoo directory) and type:
+5. UPDATE REPOSITORY:
+   To update simply type:
 
-     git pull
+     layman -S
 
    and reemerge sage with
 
