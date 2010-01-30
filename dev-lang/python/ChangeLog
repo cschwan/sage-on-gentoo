@@ -2,6 +2,10 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  30 Jan 2010; François Bissey <f.r.bissey@massey.ac.nz>
+  python-2.6.4-r99.ebuild:
+  reverted to patch set 0 as the newest patch set is problematic.
+
 *python-2.6.4-r99 (29 Jan 2010)
 
   29 Jan 2010; François Bissey <f.r.bissey@massey.ac.nz>
