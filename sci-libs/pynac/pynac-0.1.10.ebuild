@@ -4,12 +4,13 @@
 
 EAPI=2
 
-SAGE_VERSION=4.3
+SAGE_VERSION=4.3.1
 SAGE_PACKAGE=${P}
 
 inherit flag-o-matic python sage
 
-DESCRIPTION="A modified version of GiNaC that replaces the dependency on CLN by Python"
+DESCRIPTION="A modified version of GiNaC that replaces the dependency on CLN by
+Python"
 # HOMEPAGE=""
 # SRC_URI=""
 
