@@ -1,6 +1,12 @@
 # ChangeLog for sci-mathematics/rubiks
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
+
+*rubiks-20070912_p10 (30 Jan 2010)
+
+  30 Jan 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
+  -rubiks-20070912_p9.ebuild, +rubiks-20070912_p10.ebuild:
+  Version bump; dropped old version
 
 *rubiks-20070912_p9 (27 Dec 2009)
 
