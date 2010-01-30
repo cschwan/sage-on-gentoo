@@ -1,6 +1,11 @@
 # ChangeLog for sci-libs/libcliquer
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
+
+  30 Jan 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
+  libcliquer-1.2.2.ebuild, +files/libcliquer-1.2.2-remove-main.patch,
+  -files/sage-cliquer-1.2.2-remove-main.patch:
+  Updated ebuild and changed SAGE_VERSION to 4.3.1
 
   02 Dec 2009; Christopher Schwan <cschwan@students.uni-mainz.de>
   libcliquer-1.2.2.ebuild:
