@@ -1,10 +1,10 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
 EAPI=2
 
-SAGE_VERSION=4.2.1
+SAGE_VERSION=4.3.1
 SAGE_PACKAGE=sympow-1.018.1.p6
 
 inherit eutils sage

@@ -1,6 +1,10 @@
 # ChangeLog for sci-mathematics/sympow
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
+
+  30 Jan 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
+  sympow-1.018.ebuild:
+  Updated SAGE_VERSION string to 4.3.1
 
   25 Dec 2009; Christopher Schwan <cschwan@students.uni-mainz.de>
   sympow-1.018.ebuild:
