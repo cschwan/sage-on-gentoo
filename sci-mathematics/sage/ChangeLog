@@ -4,6 +4,10 @@
 
   30 Jan 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
   sage-4.3.ebuild, sage-4.3.1.ebuild:
+  Fixed dependency on eclib
+
+  30 Jan 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
+  sage-4.3.ebuild, sage-4.3.1.ebuild:
   Fixed dependency on rubiks
 
   29 Jan 2010; François Bissey <f.r.bissey@massey.ac.nz> sage-4.3.1.ebuild:
