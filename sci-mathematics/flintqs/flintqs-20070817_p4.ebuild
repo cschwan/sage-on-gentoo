@@ -1,15 +1,18 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
 EAPI=2
 
-SAGE_VERSION="4.2.1"
-SAGE_PACKAGE="flintqs-20070817.p4"
+SAGE_VERSION=4.3.1
+SAGE_PACKAGE=flintqs-20070817.p4
 
 inherit eutils sage
 
-DESCRIPTION="William Hart's GPL'd highly optimized multi-polynomial quadratic sieve for integer factorization"
+DESCRIPTION="William Hart's GPL'd highly optimized multi-polynomial quadratic
+sieve for integer factorization"
+# HOMEPAGE=""
+# SRC_URI=""
 
 LICENSE="GPL-2"
 SLOT="0"

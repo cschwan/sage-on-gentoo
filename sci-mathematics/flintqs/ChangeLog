@@ -1,6 +1,10 @@
 # ChangeLog for sci-mathematics/flintqs
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
+
+  30 Jan 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
+  flintqs-20070817_p4.ebuild:
+  Updated SAGE_VERSION to 4.3.1
 
   17 Dec 2009; Christopher Schwan <cschwan@students.uni-mainz.de>
   flintqs-20070817_p4.ebuild:
