@@ -89,6 +89,16 @@ will unpack the specified spkgs and also correctly set the source directory
 ('${S}') and a variable ${SAGE_FILESDIR} which points to the patches
 directory, if available. Note that ${SAGE_PACKAGE} may be an array. If thats
 the case all spkgs contained will be unpacked.
+.SH "ECLASS VARIABLES"
+.TP
+\fBSAGE_ROOT\fR = \fI/opt/sage\fR
+Points to the directory where Sage will be installed to
+.TP
+\fBSAGE_DATA\fR = \fI"${SAGE_ROOT}"/data\fR
+Points to the directory where Sage's data files will be installed to
+.TP
+\fBSAGE_LOCAL\fR = \fI"${SAGE_ROOT}"/local\fR
+Points to the directory where Sage's local directory will be
 .SH "MAINTAINERS"
 Francois Bissey <f.r.bissey@massey.ac.nz>
 Christopher Schwan <cschwan@students.uni-mainz.de>

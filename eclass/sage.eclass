@@ -1,4 +1,4 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
@@ -57,8 +57,19 @@ SRC_URI="mirror://sage/src/sage-${SAGE_VERSION}.tar"
 
 RESTRICT="mirror"
 
+# @ECLASS-VARIABLE: SAGE_ROOT
+# @DESCRIPTION:
+# Points to the directory where Sage will be installed to
 SAGE_ROOT=/opt/sage
+
+# @ECLASS-VARIABLE: SAGE_DATA
+# @DESCRIPTION:
+# Points to the directory where Sage's data files will be installed to
 SAGE_DATA="${SAGE_ROOT}"/data
+
+# @ECLASS-VARIABLE: SAGE_LOCAL
+# @DESCRIPTION:
+# Points to the directory where Sage's local directory will be
 SAGE_LOCAL="${SAGE_ROOT}"/local
 
 _SAGE_UNPACKED_SPKGS=( )
@@ -221,8 +232,9 @@ sage_src_unpack() {
 			SAGE_FILESDIR="${WORKDIR}"/${SAGE_PACKAGE}/patch
 		fi
 
+		# if S is already set, do not change it
 		if [[ "${S}" = "${WORKDIR}"/${P} ]]; then
-			# set correct source path
+			# if a src subdirectory exists point S to it
 			if [[ -d "${WORKDIR}"/${SAGE_PACKAGE}/src ]]; then
 				S="${WORKDIR}"/${SAGE_PACKAGE}/src
 			else
@@ -230,6 +242,7 @@ sage_src_unpack() {
 			fi
 		fi
 	else
+		# if S is already set, do not change it
 		if [[ "${S}" = "${WORKDIR}"/${P} ]]; then
 			S="${WORKDIR}"
 		fi
