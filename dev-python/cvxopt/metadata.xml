@@ -4,4 +4,7 @@
 	<maintainer>
 		<email></email>
 	</maintainer>
+	<use>
+		<flag name='glpk'>Use GNU Linear Programming Kit</flag>
+	</use>
 </pkgmetadata>
