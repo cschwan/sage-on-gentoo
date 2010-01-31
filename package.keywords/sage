@@ -74,12 +74,12 @@ net-zope/zope-traversing
 sci-libs/blas-atlas
 sci-libs/cddlib
 sci-libs/flint
+sci-libs/fplll
 sci-libs/ghmm
 sci-libs/givaro
 sci-libs/iml
 sci-libs/lapack-atlas
 sci-libs/libcliquer
-sci-libs/libfplll
 sci-libs/linbox
 sci-libs/m4ri
 sci-libs/mpfi

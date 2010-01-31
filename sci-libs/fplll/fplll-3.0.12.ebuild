@@ -1,4 +1,4 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
@@ -6,10 +6,11 @@ EAPI=2
 
 inherit eutils
 
-DESCRIPTION="fpLLL-3.0 contains several algorithms on lattices that rely on
-floating-point computations"
+MY_P="lib${P}"
+
+DESCRIPTION="fpLLL contains several algorithms on lattices"
 HOMEPAGE="http://perso.ens-lyon.fr/damien.stehle/"
-SRC_URI="http://perso.ens-lyon.fr/damien.stehle/downloads/${P}.tar.gz"
+SRC_URI="http://perso.ens-lyon.fr/damien.stehle/downloads/${MY_P}.tar.gz"
 
 LICENSE="LGPL-2.1"
 SLOT="0"
@@ -22,9 +23,10 @@ DEPEND=">=dev-libs/gmp-4.2.0
 	>=dev-libs/mpfr-2.3.0"
 RDEPEND="${DEPEND}"
 
-# TODO: On amd64 -fPIC possibly needed
+S="${WORKDIR}/${MY_P}"
 
 src_configure() {
+	# place headers into a subdirectory where it cannot conflict with others
 	econf \
 		--includedir=/usr/include/fplll \
 		|| die "econf failed"
