@@ -2,6 +2,19 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  31 Jan 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
+  -sage-4.3.ebuild, -files/sage-4.3-amd64-hack.patch, sage-4.3.1.ebuild,
+  +files/sage-4.3.1-amd64-hack.patch,
+  +files/sage-4.3.1-combinat-sets-deprecation.patch,
+  +files/sage-4.3.1-moinmoin-sets-deprecation.patch,
+  +files/sage-4.3.1-networkx-sets-deprecation.patch,
+  +files/sage-4.3.1-sqlalchemy-sets-deprecation.patch,
+  -files/sage-4.3-combinat-sets-deprecation.patch,
+  -files/sage-4.3-moinmoin-sets-deprecation.patch,
+  -files/sage-4.3-networkx-sets-deprecation.patch,
+  -files/sage-4.3-sqlalchemy-sets-deprecation.patch:
+  Removed old version and renamed patches accordingly
+
   30 Jan 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
   sage-4.3.ebuild, sage-4.3.1.ebuild:
   Fixed dependency on eclib

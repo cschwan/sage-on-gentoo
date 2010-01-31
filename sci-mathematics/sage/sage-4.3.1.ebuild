@@ -252,7 +252,7 @@ src_prepare() {
 
 	# unset custom C(XX)FLAGS - this is just a temporary hack
 	sage_package ${P} \
-		epatch "${FILESDIR}"/${PN}-4.3-amd64-hack.patch
+		epatch "${FILESDIR}"/${P}-amd64-hack.patch
 
 	# set path to Sage's cython
 	sage_package ${P} \
@@ -265,7 +265,7 @@ src_prepare() {
 
 	# apply patches fixing deprecation warning which interfers with test output
 	sage_package ${P} \
-		epatch "${FILESDIR}"/${PN}-4.3-combinat-sets-deprecation.patch
+		epatch "${FILESDIR}"/${P}-combinat-sets-deprecation.patch
 
 	############################################################################
 	# Modifications to other packages
@@ -322,19 +322,15 @@ src_prepare() {
 
 	# apply patches fixing deprecation warning which interfers with test output
 	sage_package ${MOINMOIN} \
-		epatch "${FILESDIR}"/${PN}-4.3-moinmoin-sets-deprecation.patch
+		epatch "${FILESDIR}"/${P}-moinmoin-sets-deprecation.patch
 	sage_package ${NETWORKX} \
-		epatch "${FILESDIR}"/${PN}-4.3-networkx-sets-deprecation.patch
+		epatch "${FILESDIR}"/${P}-networkx-sets-deprecation.patch
 	sage_package ${SQLALCHEMY} \
-		epatch "${FILESDIR}"/${PN}-4.3-sqlalchemy-sets-deprecation.patch
+		epatch "${FILESDIR}"/${P}-sqlalchemy-sets-deprecation.patch
 
 	############################################################################
 	# Prefixing of Python packages
 	############################################################################
-
-# 	sage_package ${SAGENB} \
-# 		sed -i "s:easy_install:easy_install --prefix=\"\$SAGE_ROOT/local\":g" \
-# 		spkg-install
 
 	# remove easy_install commands - packages are provided by portage as usual
 	sage_package ${SAGENB} \
