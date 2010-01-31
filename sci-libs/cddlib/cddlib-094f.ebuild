@@ -32,5 +32,7 @@ src_install() {
 	dodoc ChangeLog README || die "dodoc failed"
 
 	# install manuals
-	use doc && dodoc doc/cddlibman.pdf doc/cddlibman.ps || die "dodoc failed"
+	if use doc ; then
+		dodoc doc/cddlibman.pdf doc/cddlibman.ps || die "dodoc failed"
+	fi
 }
