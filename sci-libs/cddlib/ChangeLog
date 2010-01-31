@@ -1,6 +1,10 @@
 # ChangeLog for sci-libs/cddlib
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
+
+  31 Jan 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
+  cddlib-094f.ebuild:
+  Added manuals with USE=doc
 
 *cddlib-094f (07 Dec 2009)
 
