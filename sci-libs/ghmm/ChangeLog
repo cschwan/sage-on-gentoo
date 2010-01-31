@@ -2,6 +2,10 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  31 Jan 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
+  ghmm-0.9_rc1.ebuild:
+  Adjusted dependencies according to bug #302951
+
   14 Jan 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
   ghmm-0.9_rc1.ebuild:
   Fixed dependencies and versioned some of them - thanks elteck for
