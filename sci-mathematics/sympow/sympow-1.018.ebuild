@@ -15,7 +15,7 @@ DESCRIPTION="Computes special values of symmetric power elliptic curve L-functio
 # HOMEPAGE="http://www.maths.bris.ac.uk/%7Emamjw/"
 # SRC_URI="http://www.maths.bris.ac.uk/%7Emamjw/${PN}.tar.bz2"
 
-LICENSE="AS-IS"
+LICENSE="BSD"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
 IUSE=""
