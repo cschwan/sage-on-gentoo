@@ -24,16 +24,11 @@ CDEPEND="
 		>=dev-libs/ntl-5.4.2[gmp]
 		>=dev-libs/ntl-5.5.2
 	)
-	>=net-libs/gnutls-2.2.1
 	>=sci-libs/gsl-1.10
 	>=sci-mathematics/pari-2.3.3[data,gmp]
-	>=sys-libs/zlib-1.2.3
 	>=app-arch/bzip2-1.0.5
 	>=sys-libs/readline-6.0
-	>=media-libs/libpng-1.2.35
-	>=dev-db/sqlite-3.6.17
 	>=media-libs/gd-2.0.35
-	>=media-libs/freetype-2.3.5
 	>=sci-libs/linbox-1.1.6[ntl,sage]
 	>=sci-libs/mpfi-1.3.4
 	=sci-libs/givaro-3.2*
@@ -54,7 +49,6 @@ CDEPEND="
 	>=sci-mathematics/palp-1.1
 	>=sci-mathematics/ratpoints-2.1.3
 	>=sci-libs/libcliquer-1.2.2
-	>=dev-lang/f2c-20060507
 	virtual/cblas
 	virtual/lapack
 	>=sci-libs/cddlib-094f
@@ -145,8 +139,8 @@ src_prepare() {
 		LINBOX MATPLOTLIB MAXIMA MERCURIAL MPFI MPFR MPIR MPMATH NTL NUMPY \
 		PALP PARI PEXPECT PIL POLYBORI POLYTOPES_DB PYCRYPTO PYGMENTS PYNAC \
 		PYPROCESSING PYTHON_GNUTLS PYTHON R RATPOINTS READLINE RUBIKS \
-		SAGE_BZIP2 SCIPY SCONS SETUPTOOLS SQLITE SYMMETRICA SYMPOW SYMPY \
-		TACHYON TERMCAP TWISTED TWISTEDWEB2 WEAVE ZLIB ZNPOLY ZODB
+		SAGE_BZIP2 SCIPY SCIPY_SANDBOX SCONS SETUPTOOLS SQLITE SYMMETRICA \
+		SYMPOW SYMPY TACHYON TERMCAP TWISTED TWISTEDWEB2 WEAVE ZLIB ZNPOLY ZODB
 
 	# disable verbose copying but copy symbolic links
 	sed -i "s:cp -rpv:cp -r --preserve=mode,ownership,timestamps,links:g" \
@@ -267,13 +261,20 @@ src_prepare() {
 	sage_package ${P} \
 		epatch "${FILESDIR}"/${P}-combinat-sets-deprecation.patch
 
+	# use delaunay from matplotlib (see ticket #6946)
+	sage_package ${P} \
+		epatch "${FILESDIR}"/${P}-delaunay-from-matplotlib.patch
+
+	# use arpack from scipy (see also scipy ticket #231)
+	sage_package ${P} \
+		epatch "${FILESDIR}"/${P}-arpack-from-scipy.patch
+
 	############################################################################
 	# Modifications to other packages
 	############################################################################
 
 	# save versioned package names
 	local MOINMOIN=moin-1.5.7.p3
-	local SCIPY_SANDBOX=scipy_sandbox-20071020.p4
 	local NETWORKX=networkx-0.99.p1-fake_really-0.36.p1
 	local SQLALCHEMY=sqlalchemy-0.4.6.p1
 	local SPHINX=sphinx-0.6.3.p4
@@ -283,42 +284,6 @@ src_prepare() {
 	sage_package ${MOINMOIN} \
 		sed -i "s:echo \"Error missing jsmath directory.\":false \&\& \\\\:g" \
 		spkg-install
-
-	# this file is taken from portage's scipy ebuild
-	cat > "${T}"/site.cfg <<-EOF
-		[DEFAULT]
-		library_dirs = /usr/$(get_libdir)
-		include_dirs = /usr/include
-		[atlas]
-		include_dirs = $(pkg-config --cflags-only-I \
-			cblas | sed -e 's/^-I//' -e 's/ -I/:/g')
-		library_dirs = $(pkg-config --libs-only-L \
-			cblas blas lapack| sed -e \
-			's/^-L//' -e 's/ -L/:/g' -e 's/ //g'):/usr/$(get_libdir)
-		atlas_libs = $(pkg-config --libs-only-l \
-			cblas blas | sed -e 's/^-l//' -e 's/ -l/, /g' -e 's/,.pthread//g')
-		lapack_libs = $(pkg-config --libs-only-l \
-			lapack | sed -e 's/^-l//' -e 's/ -l/, /g' -e 's/,.pthread//g')
-		[blas_opt]
-			include_dirs = $(pkg-config --cflags-only-I \
-			cblas | sed -e 's/^-I//' -e 's/ -I/:/g')
-		library_dirs = $(pkg-config --libs-only-L \
-		cblas blas | sed -e 's/^-L//' -e 's/ -L/:/g' \
-			-e 's/ //g'):/usr/$(get_libdir)
-		libraries = $(pkg-config --libs-only-l \
-			cblas blas | sed -e 's/^-l//' -e 's/ -l/, /g' -e 's/,.pthread//g')
-		[lapack_opt]
-		library_dirs = $(pkg-config --libs-only-L \
-		lapack | sed -e 's/^-L//' -e 's/ -L/:/g' \
-			-e 's/ //g'):/usr/$(get_libdir)
-		libraries = $(pkg-config --libs-only-l \
-		lapack | sed -e 's/^-l//' -e 's/ -l/, /g' -e 's/,.pthread//g')
-	EOF
-
-	# copy file into scipy_sandbox
-	sage_package ${SCIPY_SANDBOX} \
-		cp "${T}"/site.cfg arpack/site.cfg ; \
-		cp "${T}"/site.cfg delaunay/site.cfg
 
 	# apply patches fixing deprecation warning which interfers with test output
 	sage_package ${MOINMOIN} \
@@ -336,10 +301,8 @@ src_prepare() {
 	sage_package ${SAGENB} \
 		sed -i "s:easy_install [^;]*; ::g" spkg-install
 
-	# TODO: is sphinx actually needed
-
-	local SPKGS_NEEDING_FIX=( ${MOINMOIN} ${SAGENB} ${SCIPY_SANDBOX} ${SPHINX}
-		${SQLALCHEMY} )
+	# TODO: is sphinx actually needed ?
+	local SPKGS_NEEDING_FIX=( ${MOINMOIN} ${SAGENB} ${SPHINX} ${SQLALCHEMY} )
 
 	# fix installation paths - this must be done in order to remove python
 	for i in "${SPKGS_NEEDING_FIX[@]}" ; do
@@ -378,10 +341,9 @@ src_install() {
 		touch $i
 	done
 
-	# these files are also not needed
-	rm -rf spkg/build/*
-	rm -rf tmp
-	rm -rf devel/sage-main/doc/output/html/*
+	# these files are not needed
+	rm -rf .BUILDSTART devel/sage-main/doc/output/html/* spkg/build/* tmp \
+		die "rm failed"
 
 	# remove mercurial directories - these are not needed
 	hg_clean
