@@ -143,8 +143,8 @@ src_prepare() {
 		SYMPOW SYMPY TACHYON TERMCAP TWISTED TWISTEDWEB2 WEAVE ZLIB ZNPOLY ZODB
 
 	# disable verbose copying but copy symbolic links
-	sed -i "s:cp -rpv:cp -r --preserve=mode,ownership,timestamps,links:g" \
-		makefile || die "sed failed"
+	sed -i "s:cp -rpv:cp -r --preserve=mode,links:g" makefile \
+		|| die "sed failed"
 
 	# disable generation of documentation
 	sage_package sage_scripts-${PV} \
