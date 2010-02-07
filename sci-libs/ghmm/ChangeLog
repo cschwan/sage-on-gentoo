@@ -2,6 +2,10 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  07 Feb 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
+  ghmm-0.9_rc1.ebuild:
+  Removed restriction on atlas because path are fixed now
+
   31 Jan 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
   ghmm-0.9_rc1.ebuild:
   Adjusted dependencies according to bug #302951

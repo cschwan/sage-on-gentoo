@@ -21,10 +21,9 @@ IUSE="gsl lapack python"
 RESTRICT="mirror test"
 
 # depends on lapack from atlas because this lapack-version ships with clapack.h
-# bug #302951: depend on lapack-atlas lower than 3.9.21
 CDEPEND=">=dev-libs/libxml2-2.6.0
 	>=sci-libs/gsl-1.4
-	lapack? ( <=sci-libs/lapack-atlas-3.9.3 )
+	lapack? ( sci-libs/lapack-atlas )
 	python? ( virtual/python )"
 DEPEND="${CDEPEND}
 	>=dev-lang/swig-1.3.17
