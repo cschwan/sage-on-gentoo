@@ -18,6 +18,7 @@ IUSE="doc"
 # TODO: should be sci-libs/m4ri-20091120 which is not available on upstream
 # TODO: check pygments version string (Sage's pygments version seems very old)
 # TODO: check dependencies use flagged packages
+# TODO: upgrading mpmath to 0.14 results in some test failures (api changes ?)
 CDEPEND="
 	>=app-arch/bzip2-1.0.5
 	=dev-lang/python-2.6.4-r99[sqlite]
@@ -36,7 +37,7 @@ CDEPEND="
 	>=dev-python/numpy-1.3.0[lapack]
 	>=dev-python/rpy-2.0.6
 	>=dev-python/matplotlib-0.99.1
-	>=dev-python/mpmath-0.13
+	=dev-python/mpmath-0.13
 	>=dev-python/pexpect-2.0
 	>=dev-python/pycrypto-2.0.1
 	>=dev-python/pygments-0.11.1
