@@ -1,0 +1,6 @@
+#!/bin/sh
+
+# Example usage:
+# cat <sage-test-log-file> | ./sog-testloganalyzer | less
+
+awk --re-interval -f testloganalyzer.awk
