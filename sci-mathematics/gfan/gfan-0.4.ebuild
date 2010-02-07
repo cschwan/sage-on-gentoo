@@ -1,10 +1,12 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
 EAPI=2
 
-DESCRIPTION="gfan computes Groebner fans and tropical varities"
+inherit eutils
+
+DESCRIPTION="Gfan computes Groebner fans and tropical varities"
 HOMEPAGE="http://www.math.tu-berlin.de/~jensen/software/gfan/gfan.html"
 SRC_URI="http://www.math.tu-berlin.de/~jensen/software/gfan/${PN}${PV}plus.tar.gz"
 
@@ -23,20 +25,13 @@ RESTRICT="mirror"
 
 src_prepare () {
 	sed -i "s/-O2/${CXXFLAGS}/" Makefile
+
+	# TODO: find out what this patch actually fixes
+	epatch "${FILESDIR}"/${P}-fix-polynomial.patch
 }
 
 # TODO: handle examples and documentation
 
-src_compile() {
-	emake || die "emake install failed"
-	./gfan installlinks
-}
-
 src_install() {
-	dobin gfan || die "emake install failed"
-
-	# install symlink needed by sage
-	for i in gfan_* ; do
-		dosym gfan /usr/bin/$i || die "dosym failed"
-	done
+	emake PREFIX="${D}/usr" install || die "emake install failed"
 }

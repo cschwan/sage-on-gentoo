@@ -1,6 +1,10 @@
 # ChangeLog for sci-mathematics/gfan
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
+
+  07 Feb 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
+  gfan-0.4.ebuild, +files/gfan-0.4-fix-polynomial.patch:
+  Added patch for new gfan and cleaned up ebuild
 
 *gfan-0.3 (19 Dec 2009)
 
