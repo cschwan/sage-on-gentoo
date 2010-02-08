@@ -276,7 +276,7 @@ src_prepare() {
 	local NETWORKX=networkx-0.99.p1-fake_really-0.36.p1
 	local SQLALCHEMY=sqlalchemy-0.4.6.p1
 	local SPHINX=sphinx-0.6.3.p4
-	local SAGENB=sagenb-0.6
+	local SAGENB=sagenb-0.7.4
 	local SAGETEX=sagetex-2.2.3
 
 	# extcode is a seperate ebuild - hack to prevent spkg-install from exiting
@@ -298,7 +298,7 @@ src_prepare() {
 
 	# remove easy_install commands - packages are provided by portage as usual
 	sage_package ${SAGENB} \
-		sed -i "s:easy_install [^;]*; ::g" spkg-install
+		sed -i "/easy_install/d" spkg-install
 
 	# TODO: is sphinx actually needed ?
 	local SPKGS_NEEDING_FIX=( ${MOINMOIN} ${SAGENB} ${SAGETEX} ${SPHINX}
