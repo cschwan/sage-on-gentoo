@@ -1,0 +1,9 @@
+dev-lang/R					lapack
+sci-mathematics/lcalc		pari
+sci-mathematics/pari		data gmp
+sci-mathematics/polybori	gd sage
+dev-python/numpy			lapack
+sci-libs/linbox				ntl sage
+sci-libs/flint				ntl
+sci-libs/ghmm				lapack
+dev-lang/python				sqlite
