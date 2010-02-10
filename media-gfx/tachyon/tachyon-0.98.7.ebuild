@@ -1,4 +1,4 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
@@ -20,7 +20,8 @@ RESTRICT="mirror"
 DEPEND="jpeg? ( media-libs/jpeg )
 	mpi? ( virtual/mpi )
 	opengl? ( virtual/opengl )
-	png? ( media-libs/libpng )"
+	png? ( media-libs/libpng )
+	dev-util/pkgconfig"
 RDEPEND="${DEPEND}"
 
 S="${WORKDIR}/${PN}/unix"
@@ -33,14 +34,34 @@ S="${WORKDIR}/${PN}/unix"
 
 TACHYON_MAKE_TARGET=
 
-pkg_setup() {
+src_prepare() {
+	if use jpeg ; then
+		sed -i \
+			-e "s:USEJPEG=:USEJPEG=-DUSEJPEG:g" \
+			-e "s:JPEGLIB=:JPEGLIB=-ljpeg:g" Make-config \
+			|| die "sed failed"
+	fi
+
+	if use png ; then
+		sed -i \
+			-e "s:USEPNG=:USEPNG=-DUSEPNG:g" \
+			-e "s:PNGINC=:PNGINC=$(pkg-config libpng --cflags):g" \
+			-e "s:PNGLIB=:PNGLIB=$(pkg-config libpng --libs):g" Make-config \
+			|| die "sed failed"
+	fi
+
+	if use mpi ; then
+		sed -i "s:MPIDIR=:MPIDIR=/usr:g" Make-config || die "sed failed"
+	fi
+}
+
+src_compile() {
 	if use threads ; then
 		if use opengl ; then
 			TACHYON_MAKE_TARGET=linux-thr-ogl
 
 			if use mpi ; then
-				eerror "tachyon does not support MPI with OpenGL and threads"
-				die
+				die "tachyon does not support MPI with OpenGL and threads"
 			fi
 		elif use mpi ; then
 			TACHYON_MAKE_TARGET=linux-lam-thr
@@ -57,7 +78,7 @@ pkg_setup() {
 		if use opengl ; then
 			# TODO: Support target: linux-lam-64-ogl
 
-			eerror "OpenGL is only available with USE=threads!"
+			die "OpenGL is only available with USE=threads!"
 		elif use mpi ; then
 			if use amd64 ; then
 				TACHYON_MAKE_TARGET=linux-lam-64
@@ -82,53 +103,31 @@ pkg_setup() {
 	fi
 
 	if [[ -z "${TACHYON_MAKE_TARGET}" ]]; then
-		eerror "No target found, check use flags" && die
+		die "No target found, check use flags"
 	else
+		# TODO: remove this once we are sure makefile target selection works
 		einfo "Using target: ${TACHYON_MAKE_TARGET}"
 	fi
-}
 
-src_prepare() {
-	if use jpeg ; then
-		sed -i \
-			-e "s:USEJPEG=:USEJPEG=-DUSEJPEG:g" \
-			-e "s:JPEGLIB=:JPEGLIB=-ljpeg:g" Make-config \
-			|| die "sed failed"
-	fi
-
-	if use png ; then
-		sed -i \
-			-e "s:USEPNG=:USEPNG=-DUSEPNG:g" \
-			-e "s:PNGINC=:PNGINC=$(libpng-config --cflags):g" \
-			-e "s:PNGLIB=:PNGLIB=$(libpng-config --ldflags):g" Make-config \
-			|| die "sed failed"
-	fi
-
-	if use mpi ; then
-		sed -i "s:MPIDIR=:MPIDIR=/usr:g" Make-config || die "sed failed"
-	fi
-}
-
-src_compile() {
-	emake "${TACHYON_MAKE_TARGET}" || die "emake failed"
+	emake ${TACHYON_MAKE_TARGET} || die "emake failed"
 }
 
 src_install() {
 	cd ..
-	dodoc Changes README
+	dodoc Changes README || die "dodoc failed"
 
 	if use doc ; then
-		dohtml docs/tachyon/*
+		dohtml docs/tachyon/* || die "dohtml failed"
 	fi
 
-	cd "compile/${TACHYON_MAKE_TARGET}"
+	cd compile/${TACHYON_MAKE_TARGET}
 
-	dobin tachyon
-	dolib libtachyon.a
+	dobin tachyon || die "dobin failed"
+	dolib libtachyon.a || die "dolib failed"
 
 	if use examples; then
-		cd "${S}/../scenes"
-		insinto "/usr/share/${PN}/examples"
-		doins *
+		cd "${S}"/../scenes
+		insinto /usr/share/${PN}/examples
+		doins * || die "doins failed"
 	fi
 }
