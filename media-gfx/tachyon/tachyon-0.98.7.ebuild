@@ -17,12 +17,13 @@ IUSE="doc examples jpeg mpi opengl png threads"
 
 RESTRICT="mirror"
 
-DEPEND="jpeg? ( media-libs/jpeg )
+CDEPEND="jpeg? ( media-libs/jpeg )
 	mpi? ( virtual/mpi )
 	opengl? ( virtual/opengl )
-	png? ( media-libs/libpng )
+	png? ( media-libs/libpng )"
+DEPEND="${CDEPEND}
 	dev-util/pkgconfig"
-RDEPEND="${DEPEND}"
+RDEPEND="${CEPEND}"
 
 S="${WORKDIR}/${PN}/unix"
 
