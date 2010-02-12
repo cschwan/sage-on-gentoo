@@ -4,8 +4,8 @@
 
 EAPI=2
 
+SAGE_VERSION=4.3.2
 SAGE_PACKAGE=cliquer-1.2.p2
-SAGE_VERSION=4.3.1
 
 inherit eutils sage
 

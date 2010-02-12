@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
-SAGE_VERSION=4.3.1
+SAGE_VERSION=4.3.2
 SAGE_PACKAGE=rubiks-20070912.p10
 
 inherit eutils sage

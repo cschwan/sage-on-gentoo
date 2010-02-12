@@ -4,7 +4,7 @@
 
 EAPI=2
 
-SAGE_VERSION=4.3.1
+SAGE_VERSION=4.3.2
 SAGE_PACKAGE=eclib-20080310.p8
 
 inherit eutils sage versionator

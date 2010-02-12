@@ -2,6 +2,10 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  12 Feb 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
+  libcliquer-1.2.2.ebuild:
+  Updated SAGE_VERSION variable to 4.3.2
+
   30 Jan 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
   libcliquer-1.2.2.ebuild, +files/libcliquer-1.2.2-remove-main.patch,
   -files/sage-cliquer-1.2.2-remove-main.patch:
