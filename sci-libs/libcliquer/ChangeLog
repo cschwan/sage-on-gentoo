@@ -2,6 +2,15 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*libcliquer-1.21 (13 Feb 2010)
+
+  13 Feb 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
+  libcliquer-1.2.2.ebuild, +libcliquer-1.21.ebuild,
+  +files/libcliquer-1.21-makefile.patch,
+  +files/libcliquer-1.21-sage-functions.patch:
+  Added file for upgrade to cliquer-1.21 (not yet finished) and fixed
+  wrong SAGE_PACKAGE variable in libcliquer-1.2.2
+
   12 Feb 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
   libcliquer-1.2.2.ebuild:
   Updated SAGE_VERSION variable to 4.3.2

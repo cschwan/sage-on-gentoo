@@ -1,0 +1,11 @@
+--- Makefile.orig	2010-01-22 07:53:21.000000000 +0000
++++ Makefile	2010-02-12 17:54:29.000000000 +0000
+@@ -36,7 +36,7 @@
+ 	$(CC) $(LDFLAGS) -o $@ testcases.o cliquer.o graph.o reorder.o
+
+ cl: cl.o cliquer.o graph.o reorder.o
+-	$(CC) $(LDFLAGS) -o $@ cl.o cliquer.o graph.o reorder.o
++	$(CC) $(LDFLAGS) -shared -Wl,-soname,libcliquer.so -o libcliquer.so cl.o cliquer.o graph.o reorder.o
+
+
+ cl.o testcases.o cliquer.o graph.o reorder.o: cliquer.h set.h graph.h misc.h reorder.h Makefile cliquerconf.h

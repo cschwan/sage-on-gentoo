@@ -4,14 +4,12 @@
 
 EAPI=2
 
-SAGE_VERSION=4.3.2
-SAGE_PACKAGE=cliquer-1.2.p3
-
-inherit eutils sage
+inherit eutils flag-o-matic
 
 DESCRIPTION="Cliquer is a set of C routines for finding cliques in an arbitrary
 weighted graph"
 HOMEPAGE="http://users.tkk.fi/pat/cliquer.html"
+SRC_URI="http://users.tkk.fi/~pat/cliquer/cliquer-${PV}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
@@ -25,21 +23,16 @@ RDEPEND="${DEPEND}"
 
 src_prepare() {
 	# overwrite Makefile
-	cp "${SAGE_FILESDIR}"/Makefile .
+	epatch "${FILESDIR}"/${P}-makefile.patch
 
-	# needed on amd64
-	CFLAGS="${CFLAGS} -fPIC"
+	# at least amd64 needs PIC
+	append-cflags -fPIC
 
-	# replace variable with flags fixing QA warnings
-	sed -i "s/\$(SAGESOFLAGS)/-shared -Wl,-soname,libcliquer.so/g" \
-		"Makefile" || die "sed failed"
+	# add functions Sage needs
+	epatch "${FILESDIR}"/${P}-sage-functions.patch
 
 	# patch to remove main function - libraries usually dont need them (!?)
-	epatch "${FILESDIR}"/${P}-remove-main.patch
-}
-
-src_test() {
-	PATH="$PATH:." emake test || die "emake test failed"
+	epatch "${FILESDIR}"/${PN}-1.2.2-remove-main.patch
 }
 
 src_install() {
