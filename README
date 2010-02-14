@@ -1,7 +1,7 @@
-sage-on-gentoo provides (experimental) split ebuilds for the computer algebra
+sage-on-gentoo provides (experimental !) split ebuilds for the computer algebra
 system SAGE (www.sagemath.org).
 
-Documenation for Sage's eclass is found in the Documentation/ subdirectory.
+Documenation for Sage's eclass can be found in the Documentation/ subdirectory.
 Other documentation resides on the wiki-pages.
 
 If you find errors or have suggestions contact me via:
@@ -30,7 +30,7 @@ QUICK INSTALLATION GUIDE:
      layman -L
      layman -a sage-on-gentoo
 
-3. UNMASK PACKAGES:
+3. UNMASK AND USE-FLAG PACKAGES:
    Before installing, you will need to unmask the required packages. A list of
    all required packages is located at:
 
@@ -41,6 +41,12 @@ QUICK INSTALLATION GUIDE:
 
      ln -s /usr/local/portage/layman/sage-on-gentoo/package.keywords/sage \
            /etc/portage/package.keywords/sage
+
+   Since the Sage ebuild requires its dependencies to be built with several USE-
+   flags it is also a good idea to use the provided package.use file:
+
+     ln -s /usr/local/portage/layman/sage-on-gentoo/package.use/sage \
+           /etc/portage/package.use/sage
 
 4. TEST THE EBUILD:
    Type
