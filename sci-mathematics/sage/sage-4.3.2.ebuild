@@ -92,6 +92,7 @@ CDEPEND="
 	doc? ( =sci-mathematics/sage-doc-${PV} )
 	=sci-mathematics/sage-examples-${PV}
 	=sci-mathematics/sage-extcode-${PV}
+	=sci-mathematics/sage-notebook-${PV}
 	>=sci-mathematics/sympow-1.018
 	virtual/cblas
 	virtual/lapack
@@ -137,8 +138,9 @@ src_prepare() {
 		LINBOX MATPLOTLIB MAXIMA MERCURIAL MPFI MPFR MPIR MPMATH NTL NUMPY \
 		PALP PARI PEXPECT PIL POLYBORI POLYTOPES_DB PYCRYPTO PYGMENTS PYNAC \
 		PYPROCESSING PYTHON_GNUTLS PYTHON R RATPOINTS READLINE RUBIKS \
-		SAGE_BZIP2 SCIPY SCIPY_SANDBOX SCONS SETUPTOOLS SQLITE SYMMETRICA \
-		SYMPOW SYMPY TACHYON TERMCAP TWISTED TWISTEDWEB2 WEAVE ZLIB ZNPOLY ZODB
+		SAGE_BZIP2 SAGENB SCIPY SCIPY_SANDBOX SCONS SETUPTOOLS SQLITE \
+		SYMMETRICA SYMPOW SYMPY TACHYON TERMCAP TWISTED TWISTEDWEB2 WEAVE \
+		ZLIB ZNPOLY ZODB
 
 	# disable verbose copying but copy symbolic links
 	sed -i "s:cp -rpv:cp -r --preserve=mode,links:g" makefile \
@@ -276,7 +278,6 @@ src_prepare() {
 	local NETWORKX=networkx-0.99.p1-fake_really-0.36.p1
 	local SQLALCHEMY=sqlalchemy-0.4.6.p1
 	local SPHINX=sphinx-0.6.3.p4
-	local SAGENB=sagenb-0.7.4
 	local SAGETEX=sagetex-2.2.3
 
 	# extcode is a seperate ebuild - hack to prevent spkg-install from exiting
@@ -296,13 +297,8 @@ src_prepare() {
 	# Prefixing of Python packages
 	############################################################################
 
-	# remove easy_install commands - packages are provided by portage as usual
-	sage_package ${SAGENB} \
-		sed -i "/easy_install/d" spkg-install
-
 	# TODO: is sphinx actually needed ?
-	local SPKGS_NEEDING_FIX=( ${MOINMOIN} ${SAGENB} ${SAGETEX} ${SPHINX}
-		${SQLALCHEMY} )
+	local SPKGS_NEEDING_FIX=( ${MOINMOIN} ${SAGETEX} ${SPHINX} ${SQLALCHEMY} )
 
 	# fix installation paths - this must be done in order to remove python
 	for i in "${SPKGS_NEEDING_FIX[@]}" ; do
