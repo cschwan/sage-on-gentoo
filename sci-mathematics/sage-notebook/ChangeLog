@@ -2,6 +2,10 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  14 Feb 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
+  -sage-notebook-4.3.ebuild:
+  Removed old version
+
 *sage-notebook-4.3.2 (14 Feb 2010)
 
   14 Feb 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
