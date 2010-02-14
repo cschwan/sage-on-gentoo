@@ -142,7 +142,7 @@ src_prepare() {
 		SYMMETRICA SYMPOW SYMPY TACHYON TERMCAP TWISTED TWISTEDWEB2 WEAVE \
 		ZLIB ZNPOLY ZODB
 
-	# disable verbose copying but copy symbolic links
+	# no verbose copying, copy links and do not change permissions
 	sed -i "s:cp -rpv:cp -r --preserve=mode,links:g" makefile \
 		|| die "sed failed"
 
@@ -330,6 +330,9 @@ src_compile() {
 }
 
 src_install() {
+	# install docs
+	dodoc README.txt || die "dodoc failed"
+
 	# remove *.spkg files which will not be needed since sage must be upgraded
 	# using portage, this saves about 400 MB
 	for i in spkg/standard/*.spkg ; do
@@ -338,8 +341,9 @@ src_install() {
 	done
 
 	# these files are not needed
-	rm -rf .BUILDSTART devel/sage-main/doc/output/html/* spkg/build/* tmp \
-		die "rm failed"
+	rm -rf .BUILDSTART COPYING.txt devel/sage-main/doc/output/html/* \
+		README.txt sage-README-osx.txt spkg/build/* tmp \
+		|| die "rm failed"
 
 	# remove mercurial directories - these are not needed
 	hg_clean
@@ -348,9 +352,6 @@ src_install() {
 
 	# install files
 	emake DESTDIR="${D}/opt" install || die "emake install failed"
-
-	# install docs
-	dodoc README.txt || die "dodoc failed"
 
 	# TODO: create additional desktop files
 
