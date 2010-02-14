@@ -9,45 +9,52 @@
 
 # WARNING: program must be started with --re-interval
 
-function parse_failed_testcases() {
+function parse_failed_testcases(     filename, linenumber, command, expected, got, exception) {
 	# every failed testcase begins with its filename and linenumber
 	while ($0 ~ /^File ".+", line [[:digit:]]+/) {
-		print "<<FIL>>"
-		print gensub(/File "([^"]+)", line ([[:digit:]]+):/, "\\1", "g")
-		print "<<NUM>>"
-		print gensub(/File "([^"]+)", line ([[:digit:]]+):/, "\\2", "g")
+		# save position which failed the test
+		filename = gensub(/File "([^"]+)", line ([[:digit:]]+):/, "\\1", "g")
+		linenumber = gensub(/File "([^"]+)", line ([[:digit:]]+):/, "\\2", "g")
 		getline
 
 		# save command
-		print "<<COM>>"
-		print gensub(/^    sage: /, "", "g")
+		command = gensub(/^    sage: /, "", "g")
 		getline
 
 		if ($0 ~ /^Expected/) {
 			getline
-			print "<<EXP>>"
+
+			#
+			testcase_failure_begin(filename, linenumber, command)
 
 			do {
-				print gensub(/^    /, "", "g")
+				testcase_failure_expected(gensub(/^    /, "", "g"))
 				getline
 			} while ($0 !~ /^Got/)
 
 			# skip "Got:"
 			getline
-			print "<<GOT>>"
 
 			do {
-				print gensub(/^    /, "", "g")
+				testcase_failure_got(gensub(/^    /, "", "g"))
 				getline
 			} while ($0 !~ /\*{70}/)
+
+			#
+			testcase_failure_end()
 		} else if ($0 ~ /^Exception raised/) {
 			getline
-			print "<<EXC>>"
+
+			#
+			testcase_exception_begin(filename, linenumber, command)
 
 			do {
-				print gensub(/^    /, "", "g")
+				testcase_exception_text(gensub(/^    /, "", "g"))
 				getline
 			} while ($0 !~ /\*{70}/)
+
+			#
+			testcase_exception_end()
 		}
 
 		# skip "***..."
@@ -55,9 +62,13 @@ function parse_failed_testcases() {
 	}
 }
 
+BEGIN {
+	begin()
+}
+
 /^sage \-t/ {
 	# save file name of test
-	test = $0
+	testcommand = $0
 
 	# go to the next line
 	getline
@@ -70,18 +81,22 @@ function parse_failed_testcases() {
 		if ($0 ~ /\*{70}/) {
 			getline
 
-			# TODO: fix regular expression
-			print "<<FAI>>"
-			print gensub(/sage \-t  "([^"]+)"/, "\\1", "g", test)
-
+			# signal failed test
+			begin_failed_test(testcommand)
 			parse_failed_testcases()
+			end_failed_test()
 		} else {
-			print "<<ERR>>"
-
 			do {
-				print $0
+				error = error"\n"$0
 				getline
 			} while ($0 !~ /^sage \-t/)
+
+			#
+			test_error(error)
 		}
 	}
+}
+
+END {
+	end()
 }

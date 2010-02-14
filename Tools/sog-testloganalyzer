@@ -3,4 +3,4 @@
 # Example usage:
 # cat <sage-test-log-file> | ./sog-testloganalyzer | less
 
-awk --re-interval -f testloganalyzer.awk
+awk --re-interval -f testlogprettyprinter.awk -f testloganalyzer.awk
