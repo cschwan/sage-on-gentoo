@@ -25,7 +25,7 @@ CDEPEND="
 	>=dev-lang/R-2.10.1[lapack,readline]
 	>=dev-libs/boost-1.34.1
 	>=dev-libs/mpfr-2.4.1
-	|| ( >=dev-libs/ntl-5.4.2[gmp] >=dev-libs/ntl-5.5.2 )
+	>=dev-libs/ntl-5.5.2
 	>=dev-python/cvxopt-0.9
 	>=dev-python/cython-0.12
 	>=dev-python/docutils-0.5
@@ -87,12 +87,12 @@ CDEPEND="
 	>=sci-mathematics/polybori-20091028[sage]
 	>=sci-mathematics/ratpoints-2.1.3
 	>=sci-mathematics/rubiks-20070912_p10
-	=sci-mathematics/sage-clib-${PV}
-	=sci-mathematics/sage-data-${PV}
-	doc? ( =sci-mathematics/sage-doc-${PV} )
-	=sci-mathematics/sage-examples-${PV}
-	=sci-mathematics/sage-extcode-${PV}
-	=sci-mathematics/sage-notebook-${PV}
+	~sci-mathematics/sage-clib-${PV}
+	~sci-mathematics/sage-data-${PV}
+	doc? ( ~sci-mathematics/sage-doc-${PV} )
+	~sci-mathematics/sage-examples-${PV}
+	~sci-mathematics/sage-extcode-${PV}
+	~sci-mathematics/sage-notebook-${PV}
 	>=sci-mathematics/sympow-1.018
 	virtual/cblas
 	virtual/lapack
