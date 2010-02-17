@@ -1,6 +1,12 @@
 # ChangeLog for sci-libs/zn_poly
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
+
+*zn_poly-0.9-r1 (17 Feb 2010)
+
+  17 Feb 2010; François Bissey <f.r.bissey@massey.ac.nz>
+  +zn_poly-0.9-r1.ebuild, +files/zn_poly-0.9-mpir.patch:
+  mpir-ify zn_poly
 
   11 Dec 2009; Christopher Schwan <cschwan@students.uni-mainz.de>
   zn_poly-0.9.ebuild, +files/zn_poly-0.9-flint-hack.patch:

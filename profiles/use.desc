@@ -1,2 +1,3 @@
+mpir - enable the use of mpir instead of gmp
 ntl - Adds support for Number Theory Library
 sage - Adds suport for sage
