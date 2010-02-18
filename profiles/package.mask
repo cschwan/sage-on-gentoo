@@ -1,2 +1,9 @@
 =sci-libs/libcliquer-1.21
 =sci-mathematics/singular-3.1.0.7-r1
+##########################################################
+# Francois 18 Feb. 2010
+# ebuilds modified to build against mpir are not ready
+# for use for now.
+=sci-libs/zn_poly-0.9-r1
+=sci-mathematics/sage-clib-4.3.2-r1
+###########################################################
