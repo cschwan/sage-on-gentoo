@@ -4,7 +4,7 @@
 
 EAPI=2
 
-inherit multilib python sage
+inherit multilib python sage flag-o-matic
 
 DESCRIPTION="Math software for algebra, geometry, number theory, cryptography and numerical computation."
 HOMEPAGE="http://www.sagemath.org"
@@ -123,6 +123,9 @@ pkg_setup() {
 	einfo "However sage is distributed with packages having different licenses."
 	einfo "This ebuild unfortunately does too, here is a list of licenses used:"
 	einfo "BSD, LGPL, apache 2.0, PYTHON, MIT, public-domain, ZPL and as-is"
+
+	# fliter -Wl,--as-needed as it breaks installation
+	filter-ldflags -Wl,--as-needed
 }
 
 src_prepare() {
