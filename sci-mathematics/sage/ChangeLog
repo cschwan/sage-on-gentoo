@@ -5,7 +5,18 @@
   20 Feb 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
   sage-4.3.2.ebuild, +files/sage-4.3.2-disable-linbox-commentator.patch,
   +files/sage-4.3.2-fix-undefined-symbols.patch:
-  Fixed Sage to correctly compile with --as-needed
+  Fixed Sage to (at least) compile with --as-needed
+
+  20 Feb 2010; François Bissey <f.r.bissey@massey.ac.nz> sage-4.3.1.ebuild,
+  sage-4.3.2.ebuild:
+  Adjust mpir dependency for useflag change. Adjust sage-4.3.1 for mpir pari
+  as well.
+
+  20 Feb 2010; François Bissey <f.r.bissey@massey.ac.nz> sage-4.3.2.ebuild:
+  Allow dependency to a mpir or gmp enabled pari.
+
+  19 Feb 2010; François Bissey <f.r.bissey@massey.ac.nz> sage-4.3.2.ebuild:
+  filter --as-needed as it causes breakage
 
   14 Feb 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
   sage-4.3.2.ebuild:

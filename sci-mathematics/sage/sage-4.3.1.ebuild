@@ -25,7 +25,7 @@ CDEPEND="
 		>=dev-libs/ntl-5.5.2
 	)
 	>=sci-libs/gsl-1.10
-	>=sci-mathematics/pari-2.3.3[data,gmp]
+	|| ( >=sci-mathematics/pari-2.3.3[data,gmp] >=sci-mathematics/pari-2.3.3[data,mpir] )
 	>=app-arch/bzip2-1.0.5
 	>=sys-libs/readline-6.0
 	>=media-libs/gd-2.0.35
@@ -35,7 +35,7 @@ CDEPEND="
 	>=sci-libs/iml-1.0.1
 	>=sci-libs/zn_poly-0.9
 	>=sci-mathematics/maxima-5.20.1[ecl,-sbcl]
-	>=sci-libs/mpir-1.2.2[-nocxx]
+	>=sci-libs/mpir-1.2.2[cxx]
 	>=sci-libs/fplll-3.0.12
 	>=sci-mathematics/ecm-6.2.1
 	>=media-gfx/tachyon-0.98

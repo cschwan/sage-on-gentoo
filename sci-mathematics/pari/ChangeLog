@@ -1,0 +1,12 @@
+# ChangeLog for sci-mathematics/pari
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: $
+
+*pari-2.3.4-r2 (20 Feb 2010)
+
+  20 Feb 2010; François Bissey <f.r.bissey@massey.ac.nz>
+  +files/50pari-gentoo.el, +files/pari-2.3.2-ppc-powerpc-arch-fix.patch,
+  +files/pari-2.3.2-strip.patch, +pari-2.3.4-r2.ebuild,
+  +files/pari-2.3.4-mpir.patch, +files/get_mpir, +files/mpir_version.c:
+  Initial import of pari. This version can use mpir instead of gmp.
+
