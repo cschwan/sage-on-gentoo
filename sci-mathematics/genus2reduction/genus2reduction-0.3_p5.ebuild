@@ -1,4 +1,4 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
@@ -17,7 +17,7 @@ RESTRICT="mirror"
 KEYWORDS="~amd64 ~ppc ~x86 ~ppc64"
 IUSE=""
 
-RDEPEND=">=sci-mathematics/pari-2.3.3[gmp]"
+RDEPEND="|| ( >=sci-mathematics/pari-2.3.3[gmp] >=sci-mathematics/pari-2.3.3[mpir] )"
 DEPEND="${RDEPEND}"
 
 S="${WORKDIR}/${MY_P}/src"
