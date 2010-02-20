@@ -1,0 +1,10 @@
+--- sage/libs/linbox/matrix_rational_dense_linbox.cpp.orig	2010-02-19 18:35:50.484371095 +0000
++++ sage/libs/linbox/matrix_rational_dense_linbox.cpp	2010-02-19 18:36:53.117371101 +0000
+@@ -1,5 +1,7 @@
+ #include<iostream>
+ 
++#define DISABLE_COMMENTATOR
++
+ #include "gmp.h"
+ #include "matrix_rational_dense_linbox.h"
+ #include "linbox/integer.h"

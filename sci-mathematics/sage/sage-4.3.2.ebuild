@@ -199,6 +199,15 @@ src_prepare() {
 	sage_package ${P} \
 		sed -i "s:maxima-noreadline:maxima:g" sage/interfaces/maxima.py
 
+	# fix missing libraries needed with "--as-needed"
+	sage_package ${P} \
+		epatch "${FILESDIR}"/${P}-fix-undefined-symbols.patch
+
+	# TODO: why does Sage fail with commentator ?
+# 	# disable linbox commentator which is too verbose and confuses Sage
+# 	sage_package ${P} \
+# 		epatch "${FILESDIR}"/${P}-disable-linbox-commentator.patch
+
 	# TODO: Are these needed ?
 	sage_package ${P} \
 		sed -i \
