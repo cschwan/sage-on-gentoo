@@ -22,10 +22,8 @@ IUSE="doc expat ntl sage"
 RESTRICT="mirror
 	sage? ( test )"
 
-# TODO: givaro-3.3.0 breaks it
-
 CDEPEND="dev-libs/gmp[-nocxx]
-	~sci-libs/givaro-3.2.16
+	=sci-libs/givaro-3.2*
 	virtual/cblas
 	virtual/lapack
 	expat? ( >=dev-libs/expat-1.95 )
@@ -37,13 +35,18 @@ RDEPEND="${CDEPEND}"
 src_prepare() {
 	if use sage ; then
 		# disable commentator; this is needed for sage
-		epatch "${FILESDIR}/${P}-disable-commentator.patch"
+		epatch "${FILESDIR}"/${P}-disable-commentator.patch
+
+		# fix problem with --as-needed
+		epatch "${FILESDIR}"/${P}-fix-undefined-symbols.patch
 	fi
 
 	if use doc ; then
 		epatch "${FILESDIR}/${P}-fix-doc.patch"
-		AT_M4DIR="${S}/macros" eautoreconf
 	fi
+
+	# regenerate makefiles
+	AT_M4DIR="${S}"/macros eautoreconf
 }
 
 src_configure() {
@@ -53,12 +56,9 @@ src_configure() {
 	# TODO: configure treats --disable-doc/-sage as --enable-doc/-sage
 	# TODO: support maple, lidia, saclib ?
 	econf \
-		--with-gmp=/usr \
-		--with-blas=/usr \
-		--with-givaro=/usr \
 		--enable-optimization \
 		$(use doc && use_enable doc) \
-		$(use_enable expat) \
+		$(use expat && use_enable expat) \
 		$(use_with ntl) \
 		$(use sage && use_enable sage) \
 		|| die "econf failed"
@@ -66,9 +66,9 @@ src_configure() {
 
 src_install() {
 	emake DESTDIR="${D}" install || die "emake install failed"
-	dodoc ChangeLog README NEWS TODO
+	dodoc ChangeLog README NEWS TODO || die "dodoc failed"
 
 	if use doc ; then
-		dohtml -r doc/linbox-html/*
+		dohtml -r doc/linbox-html/* || die "dohtml failed"
 	fi
 }
