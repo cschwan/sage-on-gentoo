@@ -124,8 +124,8 @@ pkg_setup() {
 	einfo "This ebuild unfortunately does too, here is a list of licenses used:"
 	einfo "BSD, LGPL, apache 2.0, PYTHON, MIT, public-domain, ZPL and as-is"
 
-	# fliter -Wl,--as-needed as it breaks installation
-	filter-ldflags -Wl,--as-needed
+	# disable --as-needed until all bugs related are fixed
+	append-ldflags -Wl,--no-as-needed
 }
 
 src_prepare() {
@@ -190,6 +190,8 @@ src_prepare() {
 	cd "${S}"/local
 	[[ -d lib ]] || ln -s $(get_libdir) lib || die "ln failed"
 
+	# TODO. check if this is needed
+
 	# make unversioned symbolic link
 	cd "${S}"/local/$(get_libdir)
 	ln -s python2.6 python || die "ln failed"
@@ -205,6 +207,8 @@ src_prepare() {
 	# fix missing libraries needed with "--as-needed"
 	sage_package ${P} \
 		epatch "${FILESDIR}"/${P}-fix-undefined-symbols.patch
+
+	# TODO: At least one more patch needed: devel/sage/sage/misc/misc.py breaks
 
 	# TODO: why does Sage fail with commentator ?
 # 	# disable linbox commentator which is too verbose and confuses Sage
@@ -363,7 +367,7 @@ src_install() {
 	# TODO: write own installation routine which copies only files needed
 
 	# install files
-	emake DESTDIR="${D}/opt" install || die "emake install failed"
+	emake DESTDIR="${D}${SAGE_PREFIX}" install || die "emake install failed"
 
 	# TODO: create additional desktop files
 
@@ -377,12 +381,12 @@ src_install() {
 # 		|| die "domenu failed"
 
 	# fix installation path
-	sed -i "s:${D}::" "${D}"/opt/bin/sage "${D}"/opt/sage/sage \
+	sed -i "s:${D}::" "${D}/${SAGE_PREFIX}"/bin/sage "${D}/${SAGE_ROOT}"/sage \
 		|| die "sed failed"
 }
 
 pkg_postinst() {
 	# make sure files are correctly setup in the new location by running sage
 	# as root. This prevent nasty message to be presented to the user.
-	"${SAGE_ROOT}"/sage -c quit
+	"${SAGE_ROOT}"/sage -c
 }

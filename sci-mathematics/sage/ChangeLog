@@ -2,6 +2,11 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  21 Feb 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
+  sage-4.3.2.ebuild:
+  Changed --as-needed filtering code and prepared Sage to be moved out
+  of /opt
+
   20 Feb 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
   sage-4.3.2.ebuild, +files/sage-4.3.2-disable-linbox-commentator.patch,
   +files/sage-4.3.2-fix-undefined-symbols.patch:
