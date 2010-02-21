@@ -2,8 +2,8 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
-SAGE_VERSION=${PV}
-SAGE_PACKAGE=sagenb-0.7.4
+SAGE_VERSION=4.3.2
+SAGE_PACKAGE=sagenb-${PV}
 
 NEED_PYTHON=2.6
 
