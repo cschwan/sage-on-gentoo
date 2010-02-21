@@ -103,5 +103,6 @@ sci-mathematics/sage-data
 sci-mathematics/sage-doc
 sci-mathematics/sage-examples
 sci-mathematics/sage-extcode
+sci-mathematics/sage-latex
 sci-mathematics/sage-notebook
 sci-mathematics/sympow
