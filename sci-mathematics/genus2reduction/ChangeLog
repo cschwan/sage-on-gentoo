@@ -2,6 +2,11 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  21 Feb 2010; François Bissey <f.r.bissey@massey.ac.nz>
+  genus2reduction-0.3_p5.ebuild:
+  A better mpir treatment to insure the right linking. Note that it
+  introduces the mpir useflag in the ebuild.
+
   20 Feb 2010; François Bissey <f.r.bissey@massey.ac.nz>
   genus2reduction-0.3_p5.ebuild:
   Adjust pari dependency to allow mpir enabled pari.

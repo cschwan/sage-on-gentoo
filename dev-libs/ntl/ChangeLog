@@ -1,0 +1,12 @@
+# ChangeLog for dev-libs/ntl
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: $
+
+*ntl-5.5.2-r1 (21 Feb 2010)
+
+  21 Feb 2010; François Bissey <f.r.bissey@massey.ac.nz>
+  +ntl-5.5.2-r1.ebuild, +files/ntl-5.5.2-sage-tools.patch,
+  +files/ntl-5.5.2-shared_mpir.patch, +files/ntl-5.5.2-singular.patch:
+  Initial import of ntl in the overlay. This is a mpir enabled version of
+  ntl.
+
