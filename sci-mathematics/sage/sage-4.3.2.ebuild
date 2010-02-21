@@ -92,7 +92,7 @@ CDEPEND="
 	doc? ( ~sci-mathematics/sage-doc-${PV} )
 	~sci-mathematics/sage-examples-${PV}
 	~sci-mathematics/sage-extcode-${PV}
-	~sci-mathematics/sage-notebook-${PV}
+	~sci-mathematics/sage-notebook-0.7.4
 	>=sci-mathematics/sympow-1.018
 	virtual/cblas
 	virtual/lapack
@@ -190,7 +190,7 @@ src_prepare() {
 	cd "${S}"/local
 	[[ -d lib ]] || ln -s $(get_libdir) lib || die "ln failed"
 
-	# TODO. check if this is needed
+	# TODO: check if this is needed
 
 	# make unversioned symbolic link
 	cd "${S}"/local/$(get_libdir)
@@ -352,8 +352,8 @@ src_install() {
 	# remove *.spkg files which will not be needed since sage must be upgraded
 	# using portage, this saves about 400 MB
 	for i in spkg/standard/*.spkg ; do
-		rm $i
-		touch $i
+		rm $i || die "rm failed"
+		touch $i || die "touch failed"
 	done
 
 	# these files are not needed
