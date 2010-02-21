@@ -57,20 +57,25 @@ SRC_URI="mirror://sage/src/sage-${SAGE_VERSION}.tar"
 
 RESTRICT="mirror"
 
+# @ECLASS-VARIABLE: SAGE_PREFIX
+# @DESCRIPTION:
+# Points to the directory where Sage will be installed
+SAGE_PREFIX="/opt"
+
 # @ECLASS-VARIABLE: SAGE_ROOT
 # @DESCRIPTION:
-# Points to the directory where Sage will be installed to
-SAGE_ROOT=/opt/sage
+# Points to the directory where Sage's files will be placed
+SAGE_ROOT="${SAGE_PREFIX}/sage"
 
 # @ECLASS-VARIABLE: SAGE_DATA
 # @DESCRIPTION:
 # Points to the directory where Sage's data files will be installed to
-SAGE_DATA="${SAGE_ROOT}"/data
+SAGE_DATA="${SAGE_ROOT}/data"
 
 # @ECLASS-VARIABLE: SAGE_LOCAL
 # @DESCRIPTION:
 # Points to the directory where Sage's local directory will be
-SAGE_LOCAL="${SAGE_ROOT}"/local
+SAGE_LOCAL="${SAGE_ROOT}/local"
 
 _SAGE_UNPACKED_SPKGS=( )
 

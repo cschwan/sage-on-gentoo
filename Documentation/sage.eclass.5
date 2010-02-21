@@ -5,7 +5,7 @@
 .\" See eclass-to-manpage.awk for documentation on how to get
 .\" your eclass nicely documented as well.
 .\"
-.TH "SAGE.ECLASS" 5 "Jan 2010" "Portage" "portage"
+.TH "SAGE.ECLASS" 5 "Feb 2010" "Portage" "portage"
 .SH "NAME"
 sage.eclass \- Tools to ease the compilation of Sage's spkg-packages and Sage itself
 .SH "DESCRIPTION"
@@ -91,13 +91,16 @@ directory, if available. Note that ${SAGE_PACKAGE} may be an array. If thats
 the case all spkgs contained will be unpacked.
 .SH "ECLASS VARIABLES"
 .TP
-\fBSAGE_ROOT\fR = \fI/opt/sage\fR
-Points to the directory where Sage will be installed to
+\fBSAGE_PREFIX\fR = \fI"/opt"\fR
+Points to the directory where Sage will be installed
 .TP
-\fBSAGE_DATA\fR = \fI"${SAGE_ROOT}"/data\fR
+\fBSAGE_ROOT\fR = \fI"${SAGE_PREFIX}/sage"\fR
+Points to the directory where Sage's files will be placed
+.TP
+\fBSAGE_DATA\fR = \fI"${SAGE_ROOT}/data"\fR
 Points to the directory where Sage's data files will be installed to
 .TP
-\fBSAGE_LOCAL\fR = \fI"${SAGE_ROOT}"/local\fR
+\fBSAGE_LOCAL\fR = \fI"${SAGE_ROOT}/local"\fR
 Points to the directory where Sage's local directory will be
 .SH "MAINTAINERS"
 Francois Bissey <f.r.bissey@massey.ac.nz>
