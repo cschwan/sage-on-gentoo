@@ -14,10 +14,11 @@ SRC_URI="${SPKG_URI}/${MY_P}.spkg -> ${MY_P}.tar.bz2"
 LICENSE="GPL-2"
 SLOT="0"
 RESTRICT="mirror"
-KEYWORDS="~amd64 ~ppc ~x86 ~ppc64"
-IUSE=""
+KEYWORDS="~amd64 ~x86"
+IUSE="mpir"
 
-RDEPEND="|| ( >=sci-mathematics/pari-2.3.3[gmp] >=sci-mathematics/pari-2.3.3[mpir] )"
+RDEPEND="mpir? ( >=sci-mathematics/pari-2.3.3[mpir] )
+	!mpir? (  >=sci-mathematics/pari-2.3.3[gmp] )"
 DEPEND="${RDEPEND}"
 
 S="${WORKDIR}/${MY_P}/src"
@@ -27,7 +28,11 @@ src_prepare() {
 }
 
 src_compile() {
-	$(tc-getCC ) ${CFLAGS} -o ${PN} ${PN}.c -lpari -lgmp -lm || die "Compile failed!"
+	if use mpir ; then
+		$(tc-getCC ) ${CFLAGS} -o ${PN} ${PN}.c -lpari -lmpir -lm || die "Compile failed!"
+	else
+		$(tc-getCC ) ${CFLAGS} -o ${PN} ${PN}.c -lpari -lgmp -lm || die "Compile failed!"
+	fi
 }
 
 src_install() {
