@@ -2,6 +2,12 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*libcliquer-1.2.5 (22 Feb 2010)
+
+  22 Feb 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
+  +libcliquer-1.2.5.ebuild:
+  Version bump
+
 *libcliquer-1.21 (13 Feb 2010)
 
   13 Feb 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
