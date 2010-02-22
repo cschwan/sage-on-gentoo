@@ -37,7 +37,7 @@ src_prepare() {
 		"Makefile" || die "sed failed"
 
 	# patch to remove main function - libraries usually dont need them (!?)
-	epatch "${FILESDIR}"/${P}-remove-main.patch
+	epatch "${FILESDIR}"/${PN}-1.2.2-remove-main.patch
 }
 
 src_test() {
