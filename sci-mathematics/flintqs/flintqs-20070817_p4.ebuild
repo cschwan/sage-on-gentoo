@@ -4,7 +4,7 @@
 
 EAPI=2
 
-SAGE_VERSION=4.3.2
+SAGE_VERSION=4.3.3
 SAGE_PACKAGE=flintqs-20070817.p4
 
 inherit eutils sage

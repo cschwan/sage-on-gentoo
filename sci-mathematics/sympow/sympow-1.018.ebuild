@@ -4,7 +4,7 @@
 
 EAPI=2
 
-SAGE_VERSION=4.3.2
+SAGE_VERSION=4.3.3
 SAGE_PACKAGE=sympow-1.018.1.p6
 
 inherit eutils sage
