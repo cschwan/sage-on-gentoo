@@ -4,7 +4,7 @@
 
 EAPI=2
 
-SAGE_VERSION=4.3.2
+SAGE_VERSION=4.3.3
 SAGE_PACKAGE=${PN}-20080310.p9
 
 inherit eutils sage versionator
