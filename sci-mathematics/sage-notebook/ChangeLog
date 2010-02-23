@@ -2,6 +2,13 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*sage-notebook-0.7.5.1-r1 (23 Feb 2010)
+
+  23 Feb 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
+  +sage-notebook-0.7.5.1-r1.ebuild,
+  +files/sage-notebook-4.3.3-fix-deprecated-module.patch:
+  Fixed importing of deprecated sha module
+
 *sage-notebook-0.7.5.1 (22 Feb 2010)
 
   22 Feb 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
