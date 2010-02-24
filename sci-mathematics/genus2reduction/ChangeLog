@@ -2,6 +2,13 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*genus2reduction-0.3_p6 (23 Feb 2010)
+
+  23 Feb 2010; François Bissey <f.r.bissey@massey.ac.nz>
+  -genus2reduction-0.3_p5.ebuild, +genus2reduction-0.3_p6.ebuild:
+  Revbump for sage-4.3.3, 0.3_p5 is not available anymore as per standard
+  sage procedure. 
+
   21 Feb 2010; François Bissey <f.r.bissey@massey.ac.nz>
   genus2reduction-0.3_p5.ebuild:
   A better mpir treatment to insure the right linking. Note that it
