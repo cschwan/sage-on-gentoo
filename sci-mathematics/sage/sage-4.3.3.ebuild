@@ -273,6 +273,7 @@ src_prepare() {
 	sage_package ${P} \
 		sed -i "s:'%s/lib/python:'%s/$(get_libdir)/python:g" setup.py
 
+	# Ticket #7803:
 	# apply patches fixing deprecation warning which interfers with test output
 	sage_package ${P} \
 		epatch "${FILESDIR}"/${PN}-4.3.1-combinat-sets-deprecation.patch
@@ -296,14 +297,7 @@ src_prepare() {
 	local SPHINX=sphinx-0.6.3.p4
 	local SAGETEX=sagetex-2.2.3
 
-# 	# extcode is a seperate ebuild - hack to prevent spkg-install from exiting
-# 	sage_package ${MOINMOIN} \
-# 		sed -i "s:echo \"Error missing jsmath directory.\":false \&\& \\\\:g" \
-# 		spkg-install
-
 	# apply patches fixing deprecation warning which interfers with test output
-# 	sage_package ${MOINMOIN} \
-# 		epatch "${FILESDIR}"/${PN}-4.3.1-moinmoin-sets-deprecation.patch
 	sage_package ${NETWORKX} \
 		epatch "${FILESDIR}"/${PN}-4.3.1-networkx-sets-deprecation.patch
 	sage_package ${SQLALCHEMY} \
