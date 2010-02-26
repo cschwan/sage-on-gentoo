@@ -81,7 +81,7 @@ CDEPEND="
 	>=sci-mathematics/genus2reduction-0.3
 	>=sci-mathematics/gfan-0.4
 	>=sci-mathematics/lcalc-1.23[pari]
-	>=sci-mathematics/maxima-5.20.1[ecl,-sbcl]
+	>=sci-mathematics/maxima-5.20.1[ecl]
 	>=sci-mathematics/palp-1.1
 	|| ( >=sci-mathematics/pari-2.3.3[data,gmp] >=sci-mathematics/pari-2.3.3[data,mpir] )
 	>=sci-mathematics/polybori-20091028[sage]
@@ -200,9 +200,9 @@ src_prepare() {
 	# Fixes to sage itself
 	############################################################################
 
-	# fix command for calling maxima
+	# run maxima with ecl
 	sage_package ${P} \
-		sed -i "s:maxima-noreadline:maxima:g" sage/interfaces/maxima.py
+		sed -i "s:maxima-noreadline:maxima -l ecl:g" sage/interfaces/maxima.py
 
 	# fix missing libraries needed with "--as-needed"
 	sage_package ${P} \

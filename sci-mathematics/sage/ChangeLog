@@ -2,6 +2,10 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  26 Feb 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
+  sage-4.3.3.ebuild:
+  Changed maxima code to allow it to compile with sbcl
+
 *sage-4.3.3 (22 Feb 2010)
 
   22 Feb 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
