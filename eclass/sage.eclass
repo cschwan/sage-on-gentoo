@@ -50,7 +50,7 @@ EAPI=2
 
 inherit eutils
 
-SPKG_URI="http://www.sagemath.org/packages/standard"
+SPKG_URI="mirror://sage/spkg/standard"
 
 HOMEPAGE="http://www.sagemath.org/"
 SRC_URI="mirror://sage/src/sage-${SAGE_VERSION}.tar"
