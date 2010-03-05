@@ -122,7 +122,7 @@ pkg_setup() {
 	einfo "Sage itself is released under the GPL-2 _or later_ license"
 	einfo "However sage is distributed with packages having different licenses."
 	einfo "This ebuild unfortunately does too, here is a list of licenses used:"
-	einfo "BSD, LGPL, apache 2.0, PYTHON, MIT, public-domain, ZPL and as-is"
+	einfo "BSD, LGPL, MIT"
 
 	# disable --as-needed until all bugs related are fixed
 	append-ldflags -Wl,--no-as-needed
@@ -350,10 +350,16 @@ src_install() {
 		touch $i || die "touch failed"
 	done
 
+	# remove file not needed
+	cd devel/sage-main
+	rm -rf bundle export install MANIFEST.in module_list.py PKG_INFO pull \
+		README.txt sage-push setup.py spkg-delauto spkg-dist spkg-install \
+		doc/output/html/* build/lib.* build/temp.* || die "rm failed"
+	cd ../..
+
 	# these files are not needed
-	rm -rf .BUILDSTART COPYING.txt devel/sage-main/doc/output/html/* \
-		README.txt sage-README-osx.txt spkg/build/* tmp \
-		|| die "rm failed"
+	rm -rf .BUILDSTART COPYING.txt README.txt sage-README-osx.txt spkg/build/* \
+		tmp || die "rm failed"
 
 	# remove mercurial directories - these are not needed
 	hg_clean
