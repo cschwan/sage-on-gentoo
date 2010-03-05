@@ -4,13 +4,10 @@ system SAGE (www.sagemath.org).
 Documenation for Sage's eclass can be found in the Documentation/ subdirectory.
 Other documentation resides on the wiki-pages.
 
-If you find errors or have suggestions contact me via:
+If you find errors or have suggestions write a mail to the gentoo-science
+mailing list:
 
-  cschwan (at) students (dot) uni-mainz (dot) de
-
-or
-
-  gnuke @ irc.freenode.net in #gentoo-science
+  http://www.gentoo.org/main/en/lists.xml
 
 or fork sage-on-gentoo and do it yourself!
 
