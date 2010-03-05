@@ -6,6 +6,11 @@
   sage-4.3.3.ebuild:
   Removed unneded files - this hopefully does not break Sage
 
+  05 Mar 2010; François Bissey <f.r.bissey@massey.ac.nz> sage-4.3.3.ebuild,
+  +files/sage-4.3.3-sphinx-nobytecompile.patch,
+  +files/sage-4.3.3-sqlalchemy-nobytecompile.patch:
+  Fix the bytecompiling problem.
+
   26 Feb 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
   sage-4.3.3.ebuild:
   Changed maxima code to allow it to compile with sbcl
