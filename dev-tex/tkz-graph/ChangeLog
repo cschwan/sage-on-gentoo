@@ -1,0 +1,10 @@
+# ChangeLog for dev-tex/tkz-graph
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: $
+
+*tkz-graph-2.7d (07 Mar 2010)
+
+  07 Mar 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
+  +tkz-graph-2.7d.ebuild, +metadata.xml:
+  Initial import
+
