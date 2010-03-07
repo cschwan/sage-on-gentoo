@@ -286,6 +286,38 @@ src_prepare() {
 	sage_package ${P} \
 		epatch "${FILESDIR}"/${PN}-4.3.1-arpack-from-scipy.patch
 
+	# Replace gmp with mpir
+# 	sage_package ${P} \
+# 		sed -i "s:gmp\.h:mpir.h:g" \
+# 			module_list.py \
+# 			sage/libs/gmp/types.pxd \
+# 			sage/combinat/partitions_c.cc \
+# 			sage/combinat/partitions_c.h \
+# 			sage/combinat/partitions.pyx \
+# 			sage/ext/cdefs.pxi \
+# 			sage/libs/gmp/mpf.pxd \
+# 			sage/libs/gmp/mpn.pxd \
+# 			sage/libs/gmp/mpq.pxd \
+# 			sage/libs/gmp/mpz.pxd \
+# 			sage/libs/gmp/random.pxd \
+# 			sage/libs/gmp/types.pxd \
+# 			sage/libs/linbox/matrix_rational_dense_linbox.cpp \
+# 			sage/misc/cython.py \
+# 			sage/rings/memory.pyx \
+# 			sage/rings/bernmm/bern_modp.cpp \
+# 			sage/rings/bernmm/bern_rat.cpp \
+# 			sage/rings/bernmm/bern_rat.h \
+# 			sage/rings/bernmm/bernmm-test.cpp \
+# 			sage/rings/integer.pyx || die "sed failed"
+
+# 	sage_package ${P} \
+# 		sed -i \
+# 			-e "s:'gmp':'mpir':g" \
+# 			-e "s:\"gmp\":\"mpir\":g" \
+# 			-e "s:'gmpxx':'mpirxx':g" \
+# 			-e "s:\"gmpxx\":\"mpirxx\":g" \
+# 			module_list.py sage/misc/cython.py || die "sed failed"
+
 	############################################################################
 	# Modifications to other packages
 	############################################################################
@@ -357,7 +389,7 @@ src_install() {
 
 	# remove file not needed
 	cd devel/sage-main
-	rm -rf bundle export install MANIFEST.in module_list.py PKG_INFO pull \
+	rm -rf bundle export install MANIFEST.in module_list.py PKG-INFO pull \
 		README.txt sage-push setup.py spkg-delauto spkg-dist spkg-install \
 		doc/output/html/* build/lib.* build/temp.* || die "rm failed"
 	cd ../..
