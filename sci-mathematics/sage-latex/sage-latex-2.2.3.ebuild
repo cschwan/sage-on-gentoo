@@ -18,19 +18,9 @@ IUSE=""
 
 RESTRICT="mirror"
 
-# TODO: Depend on python ?
+# TODO: Check dependencies
 
-DEPEND=""
+DEPEND=">=dev-tex/tkz-berge-2.8"
 RDEPEND="${DEPEND}"
 
 # TODO: move examples to another directory ?
-
-# TODO: ebuild does not correctly work
-
-src_compile() {
-	distutils_src_compile
-}
-
-src_install() {
-	distutils_src_install
-}

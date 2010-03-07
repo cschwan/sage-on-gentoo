@@ -2,6 +2,10 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  07 Mar 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
+  sage-latex-2.2.3.ebuild, +metadata.xml:
+  Fixed ebuild
+
 *sage-latex-2.2.3 (21 Feb 2010)
 
   21 Feb 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
