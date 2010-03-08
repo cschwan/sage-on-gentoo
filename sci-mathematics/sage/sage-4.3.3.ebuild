@@ -93,6 +93,7 @@ CDEPEND="
 	~sci-mathematics/sage-examples-${PV}
 	~sci-mathematics/sage-extcode-${PV}
 	~sci-mathematics/sage-notebook-0.7.5.1
+	~sci-mathematics/sage-latex-2.2.3
 	>=sci-mathematics/sympow-1.018
 	virtual/cblas
 	virtual/lapack
@@ -141,7 +142,7 @@ src_prepare() {
 		LINBOX MATPLOTLIB MAXIMA MERCURIAL MPFI MPFR MPIR MPMATH NTL NUMPY \
 		PALP PARI PEXPECT PIL POLYBORI POLYTOPES_DB PYCRYPTO PYGMENTS PYNAC \
 		PYPROCESSING PYTHON_GNUTLS PYTHON R RATPOINTS READLINE RUBIKS \
-		SAGE_BZIP2 SAGENB SCIPY SCIPY_SANDBOX SCONS SETUPTOOLS SQLITE \
+		SAGE_BZIP2 SAGENB SAGETEX SCIPY SCIPY_SANDBOX SCONS SETUPTOOLS SQLITE \
 		SYMMETRICA SYMPOW SYMPY TACHYON TERMCAP TWISTED TWISTEDWEB2 WEAVE \
 		ZLIB ZNPOLY ZODB
 
@@ -327,7 +328,6 @@ src_prepare() {
 	local NETWORKX=networkx-0.99.p1-fake_really-0.36.p1
 	local SQLALCHEMY=sqlalchemy-0.4.6.p1
 	local SPHINX=sphinx-0.6.3.p4
-	local SAGETEX=sagetex-2.2.3
 
 	# apply patches fixing deprecation warning which interfers with test output
 	sage_package ${NETWORKX} \
@@ -345,7 +345,7 @@ src_prepare() {
 	############################################################################
 
 	# TODO: is sphinx actually needed ?
-	local SPKGS_NEEDING_FIX=( ${MOINMOIN} ${SAGETEX} ${SPHINX} ${SQLALCHEMY} )
+	local SPKGS_NEEDING_FIX=( ${MOINMOIN} ${SPHINX} ${SQLALCHEMY} )
 
 	# fix installation paths - this must be done in order to remove python
 	for i in "${SPKGS_NEEDING_FIX[@]}" ; do
