@@ -1,0 +1,23 @@
+--- src/setup.py.orig	2009-12-30 03:00:06.000000000 +0000
++++ src/setup.py	2010-03-08 18:04:21.667223314 +0000
+@@ -11,18 +11,9 @@
+       license='GPLv2+',
+       py_modules=['sagetex'],
+       data_files = [('share/texmf/tex/generic/sagetex',
+-        ['example.pdf',
+-         'example.tex',
+-         'extractsagecode.py',
++        ['extractsagecode.py',
+          'makestatic.py',
+-         'scripts.dtx',
+-         'remote-sagetex.dtx',
+          'remote-sagetex.py',
+-         'py-and-sty.dtx',
+-         'sagetexpackage.dtx',
+-         'sagetexpackage.ins',
+-         'sagetexpackage.pdf',
+-         'sagetexparse.py',
+-         'sagetex.sty'])])
++         'sagetexparse.py'])])
+ 
+ 
