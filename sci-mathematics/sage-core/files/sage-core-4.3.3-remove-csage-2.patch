@@ -1,0 +1,53 @@
+--- sage-build.orig	2010-01-20 09:36:25.000000000 +0000
++++ sage-build	2010-01-23 17:33:43.794548084 +0000
+@@ -4,35 +4,6 @@
+    if [ -d $SAGE_ROOT/devel/$1/ ]; then
+       cd $SAGE_ROOT/devel/$1/
+       chmod +x ./install
+-      echo ""
+-      echo "----------------------------------------------------------"
+-      echo "sage: Building and installing modified Sage library files."
+-      echo ""
+-
+-      ## install c_lib
+-      ## we're doing this here instead of setup.py because
+-      ## it's easier to keep track of whether or not we're 
+-      ## switching branches, which changes what we do with
+-      ## the c_lib install
+-      ##
+-      ## that's no longer true, but it's easier to just 
+-      ## keep this here.
+-      echo ""
+-      echo "Installing c_lib"
+-      CUR=`pwd`
+-      cd "c_lib"
+-      if [ -n "$SAGE_DEBIAN" ]; then
+-        SAGE_LOCAL=/usr scons -Q install
+-      else
+-        scons -Q install
+-      fi
+-      ## make sure c_lib install went okay
+-      if [ $? -ne 0 ]; then
+-	  echo "ERROR: There was an error building c_lib."
+-	  echo ""
+-	  exit 1
+-      fi
+-      cd $CUR
+ 
+       ./install $SAGE_ROOT
+       if [ $? -ne 0 ]; then
+@@ -77,14 +48,6 @@
+    cd "$SAGE_ROOT/devel/sage/sage"
+    echo "*** TOUCHING ALL CYTHON (.pyx) FILES ***"
+    touch */*.pyx */*/*.pyx */*/*/*.pyx */*/*/*/*.pyx */*/*/*/*/*.pyx */*/*/*/*/*.pyx  */*/*/*/*/*/*.pyx 2> /dev/null
+-   cd ../c_lib
+-   if [ -n "$SAGE_DEBIAN" ]; then
+-     SAGE_LOCAL=/usr scons -Q install
+-   else
+-     scons -Q install
+-   fi
+-   cd ..
+-
+    cd "$CUR"
+ fi
+ 
