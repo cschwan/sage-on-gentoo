@@ -21,17 +21,25 @@ IUSE="fftw glpk gsl"
 RESTRICT="mirror"
 
 DEPEND="virtual/blas
-	virtual/lapack
 	virtual/cblas
+	virtual/lapack
 	fftw? ( sci-libs/fftw )
 	glpk? ( sci-mathematics/glpk )
 	gsl? ( sci-libs/gsl )"
 RDEPEND="${DEPEND}"
 
-S="${WORKDIR}/${P}/src"
+S="${WORKDIR}"/${P}/src
 
 src_prepare(){
-	use gsl && sed -i "s:BUILD_GSL = 0:BUILD_GSL = 1:" setup.py
-	use fftw && sed -i "s:BUILD_FFTW = 0"/"BUILD_FFTW = 1:" setup.py
-	use glpk && sed -i "s:BUILD_GLPK = 0:BUILD_GLPK = 1:" setup.py
+	if use gsl ; then
+		sed -i "s:BUILD_GSL = 0:BUILD_GSL = 1:" setup.py || die "sed failed"
+	fi
+
+	if use fftw ; then 
+		sed -i "s:BUILD_FFTW = 0:BUILD_FFTW = 1:" setup.py || die "sed failed"
+	fi
+
+	if use glpk ; then
+		sed -i "s:BUILD_GLPK = 0:BUILD_GLPK = 1:" setup.py || die "sed failed"
+	fi
 }

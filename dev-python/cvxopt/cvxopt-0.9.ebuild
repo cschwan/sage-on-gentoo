@@ -30,7 +30,7 @@ RDEPEND="${DEPEND}"
 
 S="${WORKDIR}"/${P}/src
 
-src_prepare(){
+src_prepare() {
 	sed -i "s:g2c:gfortran:g" setup.py || die "sed failed"
 
 	if use gsl ; then
