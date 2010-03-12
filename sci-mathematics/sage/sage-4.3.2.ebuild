@@ -309,6 +309,12 @@ src_prepare() {
 	sage_package ${SQLALCHEMY} \
 		epatch "${FILESDIR}"/${PN}-4.3.1-sqlalchemy-sets-deprecation.patch
 
+	# Fixing bytecompiling
+	sage_package ${SQLALCHEMY} \
+		epatch "${FILESDIR}"/${PN}-4.3.3-sqlalchemy-nobytecompile.patch
+	sage_package ${SPHINX} \
+		epatch "${FILESDIR}"/${PN}-4.3.3-sphinx-nobytecompile.patch
+
 	############################################################################
 	# Prefixing of Python packages
 	############################################################################

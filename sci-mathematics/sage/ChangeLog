@@ -3,6 +3,9 @@
 # $Header: $
 
   12 Mar 2010; François Bissey <f.r.bissey@massey.ac.nz> sage-4.3.2.ebuild:
+  more backporting fixes (python bytecompiling)
+
+  12 Mar 2010; François Bissey <f.r.bissey@massey.ac.nz> sage-4.3.2.ebuild:
   backporting maxima changes to 4.3.2 - for testing purposes.
 
   08 Mar 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
