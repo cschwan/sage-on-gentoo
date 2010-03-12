@@ -32,14 +32,6 @@ RDEPEND="${CDEPEND}"
 
 S="${WORKDIR}/${MY_P}"
 
-pkg_setup() {
-	#switch to lapack-atlas if needed
-	if use lapack ; then
-		OLD_IMPLEM="$(eselect lapack show)"
-		eselect lapack set atlas
-	fi
-}
-
 src_prepare() {
 	if use python ; then
 		cd ghmmwrapper
@@ -77,14 +69,6 @@ src_install() {
 pkg_postinst() {
 	if use python ; then
 		distutils_pkg_postinst
-	fi
-
-	if use lapack ; then
-		if ( grep lib64 <<< ${OLD_IMPLEM} ); then
-			eselect lapack set "${OLD_IMPLEM:7}"
-		else
-			eselect lapack set "${OLD_IMPLEM:5}"
-		fi
 	fi
 }
 
