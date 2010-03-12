@@ -2,6 +2,10 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  12 Mar 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
+  -gap-4.4.10.ebuild:
+  Dropped old gap version
+
 *gap-4.4.10 (20 Feb 2010)
 
   20 Feb 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
