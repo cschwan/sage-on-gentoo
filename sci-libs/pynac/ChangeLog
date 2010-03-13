@@ -2,6 +2,10 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  13 Mar 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
+  -pynac-0.1.10.ebuild:
+  Dropped old version
+
 *pynac-0.1.11 (22 Feb 2010)
 
   22 Feb 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
