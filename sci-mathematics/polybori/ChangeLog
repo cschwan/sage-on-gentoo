@@ -3,6 +3,11 @@
 # $Header: $
 
   13 Mar 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
+  polybori-0.6.4.ebuild, +files/polybori-0.6.4-save-flags.patch,
+  -polybori-20091028.ebuild, -files/polybori-20091028-save-flags.patch:
+  Removed old version and adjusted patch name
+
+  13 Mar 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
   -polybori-0.6.3.ebuild, -files/polybori-0.6.3-save-flags.patch:
   Dropped old polybori
 

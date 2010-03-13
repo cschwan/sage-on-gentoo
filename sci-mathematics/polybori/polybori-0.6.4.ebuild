@@ -42,7 +42,7 @@ src_prepare(){
 
 		# TODO: Sage needs this file but we should find a better solution,
 		# maybe dev-util/pkgconfig ?
-		epatch "${FILESDIR}"/${PN}-20091028-save-flags.patch
+		epatch "${FILESDIR}"/${P}-save-flags.patch
 	fi
 
 	# make sure polybori does not use its own version of m4ri
