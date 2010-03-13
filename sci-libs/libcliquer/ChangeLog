@@ -2,6 +2,10 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  13 Mar 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
+  libcliquer-1.21.ebuild, +files/libcliquer-1.21-make-sage-library.patch:
+  Fixed libcliquer-1.21 to correctly build and install
+
 *libcliquer-1.2.5 (22 Feb 2010)
 
   22 Feb 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
