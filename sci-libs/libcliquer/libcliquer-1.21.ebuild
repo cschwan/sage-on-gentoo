@@ -4,14 +4,12 @@
 
 EAPI=2
 
-inherit eutils
-
-MY_P=cliquer-${PV}
+inherit eutils flag-o-matic
 
 DESCRIPTION="Cliquer is a set of C routines for finding cliques in an arbitrary
 weighted graph"
 HOMEPAGE="http://users.tkk.fi/pat/cliquer.html"
-SRC_URI="http://users.tkk.fi/~pat/cliquer/${MY_P}.tar.gz"
+SRC_URI="http://users.tkk.fi/~pat/cliquer/cliquer-${PV}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
@@ -23,15 +21,22 @@ RESTRICT="mirror"
 DEPEND=""
 RDEPEND="${DEPEND}"
 
-S="${WORKDIR}"/${MY_P}
-
 src_prepare() {
-	# patch Makefile and sources to build a library instead of a program
-	epatch "${FILESDIR}"/${P}-make-sage-library.patch
+	# overwrite Makefile
+	epatch "${FILESDIR}"/${P}-makefile.patch
+
+	# at least amd64 needs PIC
+	append-cflags -fPIC
+
+	# add functions Sage needs
+	epatch "${FILESDIR}"/${P}-sage-functions.patch
+
+	# patch to remove main function - libraries usually dont need them (!?)
+	epatch "${FILESDIR}"/${PN}-1.2.2-remove-main.patch
 }
 
 src_install() {
 	insinto /usr/include/cliquer
 	doins cl.h cliquer.h cliquerconf.h graph.h misc.h reorder.h set.h
-	dolib.so libcliquer.so
+	dolib libcliquer.so
 }
