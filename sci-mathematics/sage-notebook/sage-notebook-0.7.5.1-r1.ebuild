@@ -2,6 +2,8 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
+EAPI=2
+
 SAGE_VERSION=4.3.3
 SAGE_PACKAGE=sagenb-${PV}
 
@@ -9,7 +11,8 @@ NEED_PYTHON=2.6
 
 inherit distutils sage
 
-DESCRIPTION="The Sage Notebook is a web-based graphical user interface for mathematical software"
+DESCRIPTION="The Sage Notebook is a web-based graphical user interface for
+mathematical software"
 # HOMEPAGE=""
 # SRC_URI=""
 
@@ -34,4 +37,8 @@ RDEPEND="${DEPEND}"
 
 S="${WORKDIR}/${SAGE_PACKAGE}/src/sagenb"
 
-# TODO: write a src_test function
+src_prepare() {
+	# TODO: Report this to upstream
+	epatch "${FILESDIR}"/${P}-fix-deprecated-module.patch
+	distutils_src_prepare
+}
