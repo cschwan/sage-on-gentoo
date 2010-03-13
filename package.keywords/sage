@@ -10,6 +10,7 @@ dev-python/gdmodule
 dev-python/matplotlib
 dev-python/mpmath
 #dev-python/pycxx
+dev-python/pexpect
 dev-python/pyprocessing
 dev-python/python-gnutls
 dev-python/restrictedpython

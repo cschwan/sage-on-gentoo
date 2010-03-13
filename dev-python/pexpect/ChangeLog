@@ -2,6 +2,10 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  13 Mar 2010; François Bissey <f.r.bissey@massey.ac.nz>
+  pexpect-2.4-r1.ebuild:
+  Properly keyword pexpect ~arch.
+
 *pexpect-2.4-r1 (13 Mar 2010)
 
   13 Mar 2010; François Bissey <f.r.bissey@massey.ac.nz>
