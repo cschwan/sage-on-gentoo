@@ -2,6 +2,13 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*pexpect-2.4-r1 (13 Mar 2010)
+
+  13 Mar 2010; François Bissey <f.r.bissey@massey.ac.nz>
+  -pexpect-2.0.ebuild, +pexpect-2.4-r1.ebuild,
+  +files/pexpect.py-isdir_bug_fix.patch:
+  Adding a patch to pexpect to solve the notebook problems.
+
 *pexpect-2.0 (12 Mar 2010)
 
   12 Mar 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
