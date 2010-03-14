@@ -84,7 +84,7 @@ CDEPEND="
 	>=sci-mathematics/maxima-5.20.1[ecl]
 	>=sci-mathematics/palp-1.1
 	|| ( >=sci-mathematics/pari-2.3.3[data,gmp] >=sci-mathematics/pari-2.3.3[data,mpir] )
-	>=sci-mathematics/polybori-20091028[sage]
+	>=sci-mathematics/polybori-0.6.4[sage]
 	>=sci-mathematics/ratpoints-2.1.3
 	>=sci-mathematics/rubiks-20070912_p10
 	~sci-mathematics/sage-clib-${PV}
