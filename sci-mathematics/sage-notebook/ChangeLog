@@ -2,6 +2,10 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  14 Mar 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
+  sage-notebook-0.7.5.1-r1.ebuild:
+  Correctly depend on pexpect-2.0
+
   13 Mar 2010; François Bissey <f.r.bissey@massey.ac.nz>
   sage-notebook-0.7.5.1-r1.ebuild:
   Force dependency to pexpect-2.4-r1 so the notebook actually works.

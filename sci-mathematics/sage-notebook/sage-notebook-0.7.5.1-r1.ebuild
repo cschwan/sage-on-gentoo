@@ -24,7 +24,7 @@ IUSE=""
 RESTRICT="mirror"
 
 # TODO: find out dependencies
-DEPEND=">=dev-python/pexpect-2.4-r1
+DEPEND="~dev-python/pexpect-2.0
 	>=dev-python/twisted-8.2.0
 	>=dev-python/twisted-conch-8.2.0
 	>=dev-python/twisted-lore-8.2.0
