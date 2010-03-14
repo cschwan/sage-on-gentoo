@@ -1,13 +1,16 @@
 --- pexpect.py.orig	2010-03-14 07:12:13.613916842 +0000
-+++ pexpect.py	2010-03-14 07:15:08.897689364 +0000
++++ pexpect.py	2010-03-14 07:52:37.914541069 +0000
 @@ -339,9 +339,12 @@
          If the child file descriptor was opened outside of this class
          (passed to the constructor) then this does not close it.
          """
+-        if self.closed:
+-            return
+-        self.close()
 +        try:
-         if self.closed:
-             return
-         self.close()
++            if self.closed:
++                return
++            self.close()
 +        except:
 +            pass
  

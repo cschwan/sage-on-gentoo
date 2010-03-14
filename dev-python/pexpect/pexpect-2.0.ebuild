@@ -2,7 +2,9 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
-inherit distutils
+EAPI=2
+
+inherit distutils eutils
 
 DESCRIPTION="Python module for spawning child applications and responding to expected patterns"
 HOMEPAGE="http://pexpect.sourceforge.net/"

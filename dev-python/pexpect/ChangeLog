@@ -3,6 +3,10 @@
 # $Header: $
 
   14 Mar 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
+  pexpect-2.0.ebuild, files/pexpect-2.0-fix-misc-bugs.patch:
+  Fixed missing EAPI
+
+  14 Mar 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
   +pexpect-2.0.ebuild, +files/pexpect-2.0-fix-misc-bugs.patch:
   Tempoarily adding pexpect-2.0 to test Sage's notebook + graphics
 
