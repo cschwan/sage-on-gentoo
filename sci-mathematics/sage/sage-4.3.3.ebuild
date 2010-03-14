@@ -38,7 +38,7 @@ CDEPEND="
 	>=dev-python/rpy-2.0.6
 	>=dev-python/matplotlib-0.99.1
 	=dev-python/mpmath-0.13
-	>=dev-python/pexpect-2.0
+	~dev-python/pexpect-2.0
 	>=dev-python/pycrypto-2.0.1
 	>=dev-python/pygments-0.11.1
 	>=dev-python/pyprocessing-0.52
