@@ -140,6 +140,8 @@ src_prepare() {
 	# Modifications to the build system and to Sage's scripts
 	############################################################################
 
+	# sqlalchemy is apparently not needed
+
 	# do not let Sage make the following targets
 	sage_clean_targets ATLAS BLAS BOEHM_GC BOOST_CROPPED CDDLIB CLIQUER CONWAY \
 		CVXOPT CYTHON DOCUTILS ECLIB ECM ELLIPTIC_CURVES EXAMPLES EXTCODE F2C \
@@ -148,9 +150,9 @@ src_prepare() {
 		LINBOX MATPLOTLIB MAXIMA MERCURIAL MPFI MPFR MPIR MPMATH NTL NUMPY \
 		PALP PARI PEXPECT PIL POLYBORI POLYTOPES_DB PYCRYPTO PYGMENTS PYNAC \
 		PYPROCESSING PYTHON_GNUTLS PYTHON R RATPOINTS READLINE RUBIKS \
-		SAGE_BZIP2 SAGENB SAGETEX SCIPY SCIPY_SANDBOX SCONS SETUPTOOLS SQLITE \
-		SYMMETRICA SYMPOW SYMPY TACHYON TERMCAP TWISTED TWISTEDWEB2 WEAVE \
-		ZLIB ZNPOLY ZODB
+		SAGE_BZIP2 SAGENB SAGETEX SCIPY SCIPY_SANDBOX SCONS SETUPTOOLS \
+		SQLALCHEMY SQLITE SYMMETRICA SYMPOW SYMPY TACHYON TERMCAP TWISTED \
+		TWISTEDWEB2 WEAVE ZLIB ZNPOLY ZODB
 
 	# no verbose copying, copy links and do not change permissions
 	sed -i "s:cp -rpv:cp -r --preserve=mode,links:g" makefile \

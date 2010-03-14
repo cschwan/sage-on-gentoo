@@ -2,6 +2,10 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  14 Mar 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
+  sage-4.3.3.ebuild:
+  Removed sqlalchemy from Sage
+
   14 Mar 2010; François Bissey <f.r.bissey@massey.ac.nz> sage-4.3.3.ebuild:
   Depend explicitly on lapack-atlas as it is required to link against ghmm
   and possibly linbox. Enforcing its 
