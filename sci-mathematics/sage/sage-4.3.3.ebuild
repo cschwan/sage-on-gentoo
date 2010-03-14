@@ -334,17 +334,13 @@ src_prepare() {
 	# save versioned package names
 	local MOINMOIN=moin-1.9.1.p1
 	local NETWORKX=networkx-0.99.p1-fake_really-0.36.p1
-	local SQLALCHEMY=sqlalchemy-0.4.6.p1
 	local SPHINX=sphinx-0.6.3.p4
 
 	# apply patches fixing deprecation warning which interfers with test output
 	sage_package ${NETWORKX} \
 		epatch "${FILESDIR}"/${PN}-4.3.1-networkx-sets-deprecation.patch
-	sage_package ${SQLALCHEMY} \
-		epatch "${FILESDIR}"/${PN}-4.3.1-sqlalchemy-sets-deprecation.patch
+
 	# Fixing bytecompiling
-	sage_package ${SQLALCHEMY} \
-		epatch "${FILESDIR}"/${PN}-4.3.3-sqlalchemy-nobytecompile.patch
 	sage_package ${SPHINX} \
 		epatch "${FILESDIR}"/${PN}-4.3.3-sphinx-nobytecompile.patch
 
@@ -353,7 +349,7 @@ src_prepare() {
 	############################################################################
 
 	# TODO: is sphinx actually needed ?
-	local SPKGS_NEEDING_FIX=( ${MOINMOIN} ${SPHINX} ${SQLALCHEMY} )
+	local SPKGS_NEEDING_FIX=( ${MOINMOIN} ${SPHINX} )
 
 	# fix installation paths - this must be done in order to remove python
 	for i in "${SPKGS_NEEDING_FIX[@]}" ; do
