@@ -37,7 +37,7 @@ src_prepare() {
 		sed -i "s:BUILD_GSL = 0:BUILD_GSL = 1:" setup.py || die "sed failed"
 	fi
 
-	if use fftw ; then 
+	if use fftw ; then
 		sed -i "s:BUILD_FFTW = 0:BUILD_FFTW = 1:" setup.py || die "sed failed"
 	fi
 

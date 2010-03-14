@@ -9,7 +9,7 @@ SAGE_PACKAGE=sagetex-${PV}
 
 inherit distutils latex-package sage
 
-DESCRIPTION="SageTeX package allows you to embed code from the Sage mathematics
+DESCRIPTION="SageTeX package allows to embed code from the Sage mathematics
 software suite into LaTeX documents"
 # HOMEPAGE=""
 # SRC_URI=""
@@ -27,15 +27,17 @@ DEPEND=">=dev-tex/tkz-berge-2.8"
 RDEPEND="${DEPEND}"
 
 src_prepare() {
-	# 
+	# LaTeX file are installed by eclass functions
 	epatch "${FILESDIR}"/${P}-install-python-files-only.patch
 
-	# 
+	# set the right location of latex documents
 	sed -i "s:share/texmf/tex/generic/sagetex:share/texmf/tex/latex/${PN}:g" \
 		setup.py || die "sed failed"
 
 	distutils_src_prepare
 }
+
+# TODO: fix documentation: install precompiled pdf file manually
 
 src_compile() {
 	latex-package_src_compile
