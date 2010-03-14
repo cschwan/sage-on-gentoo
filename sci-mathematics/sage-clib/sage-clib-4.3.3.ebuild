@@ -25,7 +25,7 @@ DEPEND=">=sci-libs/mpir-1.2.2
 	>=dev-lang/python-2.6.4
 	>=sci-libs/pynac-0.1.11
 	>=sci-mathematics/pari-2.3.3
-	>=sci-mathematics/polybori-20091028"
+	>=sci-mathematics/polybori-0.6.4[sage]"
 RDEPEND="${DEPEND}"
 
 S="${WORKDIR}"/${SAGE_PACKAGE}/c_lib
