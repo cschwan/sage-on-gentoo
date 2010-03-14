@@ -96,7 +96,7 @@ CDEPEND="
 	~sci-mathematics/sage-latex-2.2.3
 	>=sci-mathematics/sympow-1.018
 	virtual/cblas
-	virtual/lapack
+	sci-libs/lapack-atlas
 "
 
 DEPEND="
@@ -127,6 +127,12 @@ pkg_setup() {
 
 	# disable --as-needed until all bugs related are fixed
 	append-ldflags -Wl,--no-as-needed
+
+	# switch to lapack-atlas as some dependencies of sage are linked against it
+	# specifically because of clapack.
+	OLD_IMPLEM="$(eselect lapack show)"
+	einfo "Switching to lapack-atlas with eselect."
+	eselect lapack set atlas
 }
 
 src_prepare() {
@@ -426,4 +432,12 @@ pkg_postinst() {
 	# make sure files are correctly setup in the new location by running sage
 	# as root. This prevent nasty message to be presented to the user.
 	"${SAGE_ROOT}"/sage -c
+
+	# Restoring the original lapack settings.
+	einfo "Restoring your original lapack settings with eselect"
+	if ( grep lib64 <<< ${OLD_IMPLEM} ); then
+		eselect lapack set "${OLD_IMPLEM:7}"
+	else
+		eselect lapack set "${OLD_IMPLEM:5}"
+	fi
 }

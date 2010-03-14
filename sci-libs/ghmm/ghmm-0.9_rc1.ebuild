@@ -36,6 +36,7 @@ pkg_setup() {
 	#switch to lapack-atlas if needed
 	if use lapack ; then
 		OLD_IMPLEM="$(eselect lapack show)"
+		einfo "Switching to lapack-atlas with eselect."
 		eselect lapack set atlas
 	fi
 }
@@ -80,6 +81,7 @@ pkg_postinst() {
 	fi
 
 	if use lapack ; then
+		einfo "Restoring your original lapack settings with eselect"
 		if ( grep lib64 <<< ${OLD_IMPLEM} ); then
 			eselect lapack set "${OLD_IMPLEM:7}"
 		else

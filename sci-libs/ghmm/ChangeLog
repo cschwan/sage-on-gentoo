@@ -2,6 +2,10 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  14 Mar 2010; François Bissey <f.r.bissey@massey.ac.nz>
+  ghmm-0.9_rc1.ebuild:
+  Be a bit more verbose about the lapack eselecting.
+
   12 Mar 2010; François Bissey <f.r.bissey@massey.ac.nz>
   ghmm-0.9_rc1.ebuild:
   Enforce lapack-atlas for building ghmm (with lapack flag). Check needed on
