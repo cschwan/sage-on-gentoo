@@ -4,7 +4,7 @@
 
 EAPI=2
 
-SAGE_VERSION=4.3.2
+SAGE_VERSION=4.3.3
 SAGE_PACKAGE=sagetex-${PV}
 
 inherit distutils latex-package sage
