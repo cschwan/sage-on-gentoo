@@ -30,6 +30,9 @@ S="${WORKDIR}/${MY_P}/src"
 # TODO: Support for openmp ?
 src_prepare() {
 	epatch "${FILESDIR}/${P}-makefile.patch"
+	# gcc-4.4 love for deprecation warnings
+	sed -i s:"strstream":"sstream": include/*.h
+	sed -i s:"ostrstream":"basic_ostringstream": src/*.cc
 
 	if use pari ; then
 		sed -i \

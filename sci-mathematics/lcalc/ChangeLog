@@ -2,6 +2,9 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  19 Mar 2010; François Bissey <f.r.bissey@massey.ac.nz> lcalc-1.23.ebuild:
+  Minor touch up for gcc-4.4 antiquated headers warnings
+
   13 Jan 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
   lcalc-1.23.ebuild, -files/lcalc-1.23-Makefile.patch,
   +files/lcalc-1.23-makefile.patch:
