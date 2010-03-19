@@ -31,8 +31,8 @@ S="${WORKDIR}/${MY_P}/src"
 src_prepare() {
 	epatch "${FILESDIR}/${P}-makefile.patch"
 	# gcc-4.4 love for deprecation warnings
-	sed -i s:"strstream":"sstream": ../include/*.h
-	sed -i s:"ostrstream":"basic_ostringstream": *.cc
+#	sed -i s:"strstream":"sstream": ../include/*.h
+#	sed -i s:"ostrstream":"basic_ostringstream": *.cc
 
 	if use pari ; then
 		sed -i \

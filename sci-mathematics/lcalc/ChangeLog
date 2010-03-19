@@ -3,6 +3,9 @@
 # $Header: $
 
   19 Mar 2010; François Bissey <f.r.bissey@massey.ac.nz> lcalc-1.23.ebuild:
+  reverting till I find what broke
+
+  19 Mar 2010; François Bissey <f.r.bissey@massey.ac.nz> lcalc-1.23.ebuild:
   oops imported fix from my old ebuild without proper checks
 
   19 Mar 2010; François Bissey <f.r.bissey@massey.ac.nz> lcalc-1.23.ebuild:
