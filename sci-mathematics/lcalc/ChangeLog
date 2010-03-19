@@ -3,6 +3,9 @@
 # $Header: $
 
   19 Mar 2010; François Bissey <f.r.bissey@massey.ac.nz> lcalc-1.23.ebuild:
+  oops imported fix from my old ebuild without proper checks
+
+  19 Mar 2010; François Bissey <f.r.bissey@massey.ac.nz> lcalc-1.23.ebuild:
   Minor touch up for gcc-4.4 antiquated headers warnings
 
   13 Jan 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
