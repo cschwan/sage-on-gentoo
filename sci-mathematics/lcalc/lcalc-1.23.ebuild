@@ -30,9 +30,6 @@ S="${WORKDIR}/${MY_P}/src"
 # TODO: Support for openmp ?
 src_prepare() {
 	epatch "${FILESDIR}/${P}-makefile.patch"
-	# gcc-4.4 love for deprecation warnings
-	cd ..
-	epatch "$FILESDIR/${P}-sstream.patch"
 
 	if use pari ; then
 		sed -i \
@@ -40,6 +37,9 @@ src_prepare() {
 			-e "s:#PREPROCESSOR_DEFINE = -DUSE_LONG_DOUBLE:PREPROCESSOR_DEFINE = -DUSE_LONG_DOUBLE:g" \
 			Makefile
 	fi
+	# gcc-4.4 love for deprecation warnings
+	cd ..
+	epatch "$FILESDIR/${P}-sstream.patch"
 }
 
 src_install() {
