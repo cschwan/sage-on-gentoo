@@ -4,16 +4,13 @@
 
 EAPI=2
 
-SAGE_VERSION=4.3.3
-SAGE_PACKAGE=sympow-1.018.1.p6
-
-inherit eutils sage
+MY_P="${P}.1.p6"
 
 # TODO: Is Sage now upstream ? Homepage below does not work
 
 DESCRIPTION="Computes special values of symmetric power elliptic curve L-functions"
 # HOMEPAGE="http://www.maths.bris.ac.uk/%7Emamjw/"
-# SRC_URI="http://www.maths.bris.ac.uk/%7Emamjw/${PN}.tar.bz2"
+SRC_URI="mirror://sage/spkg/standard/${MY_P}.spkg -> ${P}.tar.bz2"
 
 LICENSE="BSD"
 SLOT="0"
@@ -24,6 +21,8 @@ RESTRICT="mirror"
 
 DEPEND=""
 RDEPEND="sci-mathematics/pari"
+
+S="${WORKDIR}/${MY_P}/src"
 
 src_prepare() {
 	# sympow assumes its datafiles in the directory it is invoked from - fix it

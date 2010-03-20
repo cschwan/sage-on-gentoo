@@ -2,6 +2,10 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  20 Mar 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
+  sympow-1.018.ebuild:
+  Removed dependency on sage eclass
+
   12 Feb 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
   sympow-1.018.ebuild:
   Updated SAGE_VERSION variable to 4.3.2
