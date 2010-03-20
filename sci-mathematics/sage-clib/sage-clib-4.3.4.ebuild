@@ -27,7 +27,7 @@ CDEPEND=">=sci-libs/mpir-1.2.2
 	>=sci-mathematics/polybori-0.6.4[sage]"
 DEPEND="${CDEPEND}
 	>=dev-util/scons-1.2.0"
-RDEPEND="${DEPEND}"
+RDEPEND="${CDEPEND}"
 
 S="${WORKDIR}/${MY_P}/c_lib"
 
