@@ -3,6 +3,9 @@
 # $Header: $
 
   20 Mar 2010; François Bissey <f.r.bissey@massey.ac.nz> lcalc-1.23.ebuild:
+  Remove useless files from include so that they are not installed.
+
+  20 Mar 2010; François Bissey <f.r.bissey@massey.ac.nz> lcalc-1.23.ebuild:
   Please tell me it's the last mistake...
 
   20 Mar 2010; François Bissey <f.r.bissey@massey.ac.nz> lcalc-1.23.ebuild:
