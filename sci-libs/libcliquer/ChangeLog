@@ -2,6 +2,10 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  20 Mar 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
+  libcliquer-1.2.5.ebuild:
+  Removed dependency on sage eclass
+
   18 Mar 2010; François Bissey <f.r.bissey@massey.ac.nz>
   -libcliquer-1.2.2.ebuild:
   Remove old version tied to sage-4.3.2

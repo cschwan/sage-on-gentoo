@@ -6,14 +6,14 @@ EAPI=2
 
 # TODO: Fix version naming and make use original upstream
 
-SAGE_VERSION=4.3.3
-SAGE_PACKAGE=cliquer-1.2.p5
+MY_P="cliquer-1.2.p5"
 
-inherit eutils sage
+inherit eutils flag-o-matic
 
 DESCRIPTION="Cliquer is a set of C routines for finding cliques in an arbitrary
 weighted graph"
 HOMEPAGE="http://users.tkk.fi/pat/cliquer.html"
+SRC_URI="mirror://sage/spkg/standard/${MY_P}.spkg -> ${P}.tar.bz2"
 
 LICENSE="GPL-2"
 SLOT="0"
@@ -25,18 +25,20 @@ RESTRICT="mirror"
 DEPEND=""
 RDEPEND="${DEPEND}"
 
+S="${WORKDIR}/${MY_P}/src"
+
 src_prepare() {
 	# overwrite Makefile
-	cp "${SAGE_FILESDIR}"/Makefile .
+	cp ../patch/Makefile .
 
-	# needed on amd64
-	CFLAGS="${CFLAGS} -fPIC"
+	# fix QA Notice: [..] runtime text relocations
+	append-cflags -fPIC
 
 	# replace variable with flags fixing QA warnings
-	sed -i "s/\$(SAGESOFLAGS)/-shared -Wl,-soname,libcliquer.so/g" \
+	sed -i "s:\$(SAGESOFLAGS):-shared -Wl,-soname,libcliquer.so:g" \
 		"Makefile" || die "sed failed"
 
-	# patch to remove main function - libraries usually dont need them (!?)
+	# remove main function - useless in libraries
 	epatch "${FILESDIR}"/${PN}-1.2.2-remove-main.patch
 }
 
