@@ -2,6 +2,12 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*eclib-20080310_p10 (20 Mar 2010)
+
+  20 Mar 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
+  +eclib-20080310_p10.ebuild:
+  Version bump - does not work, patch must be fixed
+
   12 Mar 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
   -eclib-20080310_p7.ebuild, -eclib-20080310_p8.ebuild:
   Dropped old versions
