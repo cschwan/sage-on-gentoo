@@ -4,15 +4,14 @@
 
 EAPI=2
 
-SAGE_VERSION=4.3.3
-SAGE_PACKAGE=${P}
+inherit flag-o-matic python
 
-inherit flag-o-matic python sage
+# TODO: Homepage ?
 
 DESCRIPTION="A modified version of GiNaC that replaces the dependency on CLN by
 Python"
 # HOMEPAGE=""
-# SRC_URI=""
+SRC_URI="mirror://sage/spkg/standard/${P}.spkg -> ${P}.tar.bz2"
 
 LICENSE="GPL-2"
 SLOT="0"
@@ -25,6 +24,8 @@ CDEPEND="virtual/python"
 DEPEND="${CDEPEND}
 	dev-util/pkgconfig"
 RDEPEND="${CDEPEND}"
+
+S="${WORKDIR}/${P}/src"
 
 src_configure() {
 	# add missing include path
