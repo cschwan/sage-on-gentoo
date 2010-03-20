@@ -4,15 +4,16 @@
 
 EAPI=2
 
-SAGE_VERSION=4.3.3
-SAGE_PACKAGE=flintqs-20070817.p4
+inherit versionator
 
-inherit eutils sage
+MY_P="${PN}-$(replace_version_separator 1 '.')"
+
+# TODO: Homepage ?
 
 DESCRIPTION="William Hart's GPL'd highly optimized multi-polynomial quadratic
 sieve for integer factorization"
 # HOMEPAGE=""
-# SRC_URI=""
+SRC_URI="mirror://sage/spkg/standard/${MY_P}.spkg -> ${P}.tar.bz2"
 
 LICENSE="GPL-2"
 SLOT="0"
@@ -24,16 +25,18 @@ RESTRICT="mirror"
 DEPEND=""
 RDEPEND="${DEPEND}"
 
+S="${WORKDIR}/${MY_P}/src"
+
 src_prepare() {
-	cp "${SAGE_FILESDIR}"/lanczos.h .
+	cp ../patches/lanczos.h . || die "cp failed"
 
 	if use amd64 ; then
-		cp makefile.opteron makefile
+		cp makefile.opteron makefile || die "cp failed"
 	else
-		cp makefile.sage makefile
+		cp makefile.sage makefile || die "cp failed"
 	fi
 }
 
 src_install() {
-	dobin QuadraticSieve
+	dobin QuadraticSieve || die "dobin failed"
 }
