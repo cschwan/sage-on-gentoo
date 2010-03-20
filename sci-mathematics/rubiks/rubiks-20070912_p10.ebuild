@@ -2,14 +2,17 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
-SAGE_VERSION=4.3.3
-SAGE_PACKAGE=rubiks-20070912.p10
+EAPI=2
 
-inherit eutils sage
+inherit versionator
+
+MY_P="${PN}-$(replace_version_separator 1 '.')"
+
+# TODO: Homepage ?
 
 DESCRIPTION="A collection of programs solving rubik's cube"
 # HOMEPAGE=""
-# SRC_URI=""
+SRC_URI="mirror://sage/spkg/standard/${MY_P}.spkg -> ${P}.tar.bz2"
 
 LICENSE="GPL-2 MIT"
 SLOT="0"
@@ -20,6 +23,8 @@ RESTRICT="mirror"
 
 DEPEND=""
 RDEPEND="${DEPEND}"
+
+S="${WORKDIR}/${MY_P}/src"
 
 src_compile() {
 	cd "${S}"/dietz/cu2
