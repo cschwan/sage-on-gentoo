@@ -2,6 +2,10 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  20 Mar 2010; François Bissey <f.r.bissey@massey.ac.nz> lcalc-1.23.ebuild,
+  +files/lcalc-1.23-sstream.patch:
+  Finally fixing lcalc warnings - hopefully!
+
   19 Mar 2010; François Bissey <f.r.bissey@massey.ac.nz> lcalc-1.23.ebuild:
   reverting till I find what broke
 

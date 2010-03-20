@@ -1,0 +1,71 @@
+--- ../L-1.23/include/L.h	2009-07-23 20:56:07.000000000 +1200
++++ include/L.h	2010-03-20 21:24:03.229604175 +1300
+@@ -31,8 +31,8 @@
+ #include <iomanip>          //for manipulating output such as setprecision
+ #include <fstream>          //for file input output
+ #include <string.h>         //for string functions such as strcpy
+-#include <strstream>        //for ostream:w
+-#include <iostream>         //for ostrstream
++#include <sstream>          //for ostringstream:w
++#include <iostream>         //for sstream
+ 
+ #include <math.h>
+ #include<vector>
+--- ../L-1.23/include/Lcommandline_misc.h	2005-06-13 08:34:19.000000000 +1200
++++ include/Lcommandline_misc.h	2010-03-20 21:24:48.018604501 +1300
+@@ -28,8 +28,8 @@
+ #include <iostream>
+ #include <iomanip>       //for manipulating output such as setprecision
+ #include <fstream>       //for file input output
+-#include <strstream>     //for ostream:w
+-#include <iostream>      //for ostrstream
++#include <sstream>       //for ostringstream:w
++#include <iostream>      //for sstream
+ 
+ #include "L.h"             //for the L_function class
+ #include "Lcommandline_numbertheory.h"  //for number theory functions
+--- ../L-1.23/src/Lcommandline_values_zeros.cc	2008-09-17 15:41:06.000000000 +1200
++++ src/Lcommandline_values_zeros.cc	2010-03-20 21:27:40.940603245 +1300
+@@ -158,7 +158,7 @@
+ 
+     double t;
+     char message_stamp[300];
+-    ostrstream os2(message_stamp,300);
++    ostringstream os2(message_stamp);
+ 
+ 
+     t=0;
+--- ../L-1.23/src/Lcommandline_twist.cc	2009-02-18 12:32:58.000000000 +1300
++++ src/Lcommandline_twist.cc	2010-03-20 21:29:24.226604804 +1300
+@@ -122,16 +122,16 @@
+     int k,n;
+ 
+     char filename[300];
+-    ostrstream os(filename,300);
++    ostringstream os(filename);
+     char message_stamp[300];
+-    ostrstream os2(message_stamp,300);
++    ostringstream os2(message_stamp);
+ 
+ 
+     Complex s,u;
+ 
+     Long  d;
+     char tmp_name[300];
+-    ostrstream os3(tmp_name,300);
++    ostringstream os3(tmp_name);
+ 
+ 
+ 
+@@ -595,9 +595,9 @@
+     //----------------------------------------
+ 
+     char filename[300];
+-    ostrstream os(filename,300);
++    ostringstream os(filename);
+     char message_stamp[300];
+-    ostrstream os2(message_stamp,300);
++    ostringstream os2(message_stamp);
+ 
+ 
+     Complex s;
