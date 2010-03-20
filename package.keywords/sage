@@ -1,6 +1,7 @@
 =dev-lang/python-2.6.4-r99
 dev-lang/R
 #dev-libs/gf2x
+dev-libs/mpfr
 #dev-libs/ntl
 dev-lisp/ecls
 dev-python/cvxopt
