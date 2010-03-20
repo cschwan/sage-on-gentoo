@@ -4,15 +4,14 @@
 
 EAPI=2
 
-SAGE_VERSION=4.3.3
-SAGE_PACKAGE=sagetex-${PV}
+inherit distutils latex-package
 
-inherit distutils latex-package sage
+MY_P="sagetex-${PV}.p0"
 
 DESCRIPTION="SageTeX package allows to embed code from the Sage mathematics
 software suite into LaTeX documents"
-# HOMEPAGE=""
-# SRC_URI=""
+HOMEPAGE="http://www.sagemath.org"
+SRC_URI="mirror://sage/spkg/standard/${MY_P}.spkg -> ${P}.tar.bz2"
 
 LICENSE="GPL-2"
 SLOT="0"
@@ -25,6 +24,8 @@ RESTRICT="mirror"
 
 DEPEND=">=dev-tex/tkz-berge-2.8"
 RDEPEND="${DEPEND}"
+
+S="${WORKDIR}/${MY_P}/src"
 
 src_prepare() {
 	# LaTeX file are installed by eclass functions
