@@ -19,8 +19,7 @@ IUSE="doc"
 # TODO: check pygments version string (Sage's pygments version seems very old)
 # TODO: check dependencies use flagged packages
 # TODO: upgrading mpmath to 0.14 results in some test failures (api changes ?)
-CDEPEND="
-	>=app-arch/bzip2-1.0.5
+CDEPEND=">=app-arch/bzip2-1.0.5
 	=dev-lang/python-2.6.4-r99[sqlite]
 	>=dev-lang/R-2.10.1[lapack,readline]
 	>=dev-libs/boost-1.34.1
@@ -63,6 +62,7 @@ CDEPEND="
 	=sci-libs/givaro-3.2*
 	>=sci-libs/gsl-1.10
 	>=sci-libs/iml-1.0.1
+	>=sci-libs/lapack-atlas-3.8.3
 	>=sci-libs/libcliquer-1.2.5
 	>=sci-libs/linbox-1.1.6[ntl,sage]
 	>=sci-libs/m4ri-20091101
@@ -95,21 +95,14 @@ CDEPEND="
 	~sci-mathematics/sage-notebook-0.7.5.1
 	~sci-mathematics/sage-latex-2.2.3
 	>=sci-mathematics/sympow-1.018
-	virtual/cblas
-	sci-libs/lapack-atlas
-"
+	virtual/cblas"
 
-DEPEND="
-	${CDEPEND}
-	dev-util/pkgconfig
-	>=dev-util/scons-1.2.0
-"
+DEPEND="${CDEPEND}
+	dev-util/pkgconfig"
 RDEPEND="${CDEPEND}"
 
 # tests _will_ fail!
 RESTRICT="mirror test"
-
-# TODO: Support maxima with clisp ? Problems that may arise: readline+clisp
 
 # TODO: In order to remove Singular, pay attention to the following steps:
 # DEPEND: >=sci-mathematics/singular-3.1.0.4-r1
@@ -120,11 +113,6 @@ RESTRICT="mirror test"
 # and fix paths to singular
 
 pkg_setup() {
-	einfo "Sage itself is released under the GPL-2 _or later_ license"
-	einfo "However sage is distributed with packages having different licenses."
-	einfo "This ebuild unfortunately does too, here is a list of licenses used:"
-	einfo "BSD, LGPL, MIT"
-
 	# disable --as-needed until all bugs related are fixed
 	append-ldflags -Wl,--no-as-needed
 

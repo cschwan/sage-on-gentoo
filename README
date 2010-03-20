@@ -1,23 +1,22 @@
-sage-on-gentoo provides (experimental !) split ebuilds for the computer algebra
-system SAGE (www.sagemath.org).
+sage-on-gentoo provides (experimental!) split ebuilds (www.gentoo.org) for the
+computer algebra system SAGE (www.sagemath.org).
 
-Documenation for Sage's eclass can be found in the Documentation/ subdirectory.
-Other documentation resides on the wiki-pages.
+* Look at our wiki pages for Documentation.
 
-If you find errors or have suggestions write a mail to the gentoo-science
-mailing list:
+* If you find errors or have suggestions write a mail to the gentoo-science
+  mailing list:
 
   http://www.gentoo.org/main/en/lists.xml
 
-or fork sage-on-gentoo and do it yourself!
+  or fork sage-on-gentoo and do it yourself!
 
 ################################################################################
 
-QUICK INSTALLATION GUIDE:
+INSTALLATION GUIDE AND SOME NOTES:
 
 1. GET LAYMAN:
-   The preferred method of getting this repository is now layman. Make sure you
-   have it installed and correctly configured. You can find a guide here:
+   The preferred method of getting sage-on-gentoo is layman. Make sure you have
+   it installed and correctly configured. If not, you will find a guide here:
 
      http://www.gentoo.org/proj/en/overlays/userguide.xml.
 
@@ -45,7 +44,7 @@ QUICK INSTALLATION GUIDE:
      ln -s /usr/local/portage/layman/sage-on-gentoo/package.use/sage \
            /etc/portage/package.use/sage
 
-4. TEST THE EBUILD:
+4. INSTALL SAGE:
    Type
 
      emerge -va sage
@@ -56,13 +55,12 @@ QUICK INSTALLATION GUIDE:
    compilations.
 
 5. UPDATE REPOSITORY:
-   To update simply type:
+   To update your local copy of sage-on-gentoo simply type:
 
      layman -S
 
-   and reemerge sage with
-
-     emerge sage
-
-   to use the latest ebuild (if you add additional options to emerge make sure
-   that sage will get recompiled!).
+   WARNING: We apply patches and make changes to Sage's ebuild (which holds true
+   only for sci-mathematics/sage) without updating its name (e.g. adding a
+   revision suffix "-rX") to make ccache work.
+   For this reason you will need to _manually_ re-emerge sci-mathematics/sage
+   after updating the overlay - if you want to use our latest changes.
