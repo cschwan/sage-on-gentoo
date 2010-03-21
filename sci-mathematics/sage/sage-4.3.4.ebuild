@@ -66,7 +66,7 @@ CDEPEND=">=app-arch/bzip2-1.0.5
 	>=sci-libs/scipy-0.7
 	>=sci-libs/symmetrica-2.0
 	>=sci-libs/zn_poly-0.9
-	>=sci-mathematics/eclib-20080310_p9
+	>=sci-mathematics/eclib-20080310_p10
 	>=sci-mathematics/ecm-6.2.1
 	>=sci-mathematics/flintqs-20070817_p4
 	>=sci-mathematics/gap-4.4.12
