@@ -30,7 +30,7 @@ S="${WORKDIR}/${MY_P}/src"
 
 src_prepare() {
 	# patch for shared objects and various make issues.
-	epatch "${FILESDIR}"/${PN}-makefiles.patch.bz2
+	epatch "${FILESDIR}"/${P}-makefiles.patch.bz2
 }
 
 src_compile() {
