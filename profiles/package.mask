@@ -1,3 +1,2 @@
 =sci-libs/libcliquer-1.21
 =sci-mathematics/singular-3.1.0.7-r1
-=sci-mathematics/eclib-20080310_p10
