@@ -1,5 +1,5 @@
---- Makefile.orig	2009-11-23 11:36:03.987284458 +0000
-+++ Makefile	2010-01-13 14:43:04.373699355 +0000
+--- Makefile.orig	2009-07-15 06:23:17.000000000 +1200
++++ Makefile	2010-03-23 09:31:00.184214341 +1300
 @@ -30,6 +30,7 @@
  OS_NAME := $(shell uname)
  
@@ -71,7 +71,7 @@
  #	make find_L
  #	make test
  
-@@ -262,12 +262,15 @@
+@@ -262,15 +262,18 @@
  
  
  libLfunction.so: $(OBJ_L)
@@ -84,7 +84,11 @@
  install:
 +	mkdir -p $(INSTALL_DIR)/bin
 +	mkdir -p $(INSTALL_DIR)/lib
-+	mkdir -p $(INSTALL_DIR)/include
++	mkdir -p $(INSTALL_DIR)/include/Lfunction
  	cp -f lcalc $(INSTALL_DIR)/bin/.
  	cp -f libLfunction.so $(INSTALL_DIR)/lib/.
- 	cp -rf ../include $(INSTALL_DIR)/include/Lfunction
+-	cp -rf ../include $(INSTALL_DIR)/include/Lfunction
++	cp -rf ../include/*.h $(INSTALL_DIR)/include/Lfunction
+ 
+ 
+ SRCS = Lcommandline.cc Lcommandline_elliptic.cc Lcommandline_globals.cc Lcommandline_misc.cc Lcommandline_numbertheory.cc Lcommandline_twist.cc Lcommandline_values_zeros.cc Lgamma.cc Lglobals.cc Lmisc.cc Lriemannsiegel.cc Lriemannsiegel_blfi.cc cmdline.c

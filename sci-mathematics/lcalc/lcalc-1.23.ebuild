@@ -37,12 +37,6 @@ src_prepare() {
 			-e "s:#PREPROCESSOR_DEFINE = -DUSE_LONG_DOUBLE:PREPROCESSOR_DEFINE = -DUSE_LONG_DOUBLE:g" \
 			Makefile
 	fi
-	# gcc-4.4 love for deprecation warnings
-	cd ..
-	epatch "$FILESDIR/${P}-sstream.patch"
-	# remove garbage files from the include directory so that they are not installed.
-	cd include
-	rm .DS_Store .Lexplicit_formula.h.swp .Lvalue.h.swp ._.DS_Store Lexplicit_formula.h.swap.crap Lvalue.h.bak
 }
 
 src_install() {
