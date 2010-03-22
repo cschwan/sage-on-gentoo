@@ -25,7 +25,6 @@ CDEPEND=">=app-arch/bzip2-1.0.5
 	>=dev-libs/boost-1.34.1
 	>=dev-libs/mpfr-2.4.2
 	>=dev-libs/ntl-5.5.2
-	>=dev-python/cvxopt-0.9
 	>=dev-python/cython-0.12.1
 	>=dev-python/docutils-0.5
 	>=dev-python/gdmodule-0.56
@@ -44,11 +43,9 @@ CDEPEND=">=app-arch/bzip2-1.0.5
 	>=dev-python/setuptools-0.6.9
 	>=dev-python/sympy-0.6.4
 	>=media-libs/gd-2.0.35
-	>=media-gfx/tachyon-0.98
 	>=net-zope/zodb-3.7.0
 	>=net-zope/zope-i18nmessageid-3.5.0
 	>=net-zope/zope-testbrowser-3.7.0
-	>=sci-libs/cddlib-094f
 	>=sci-libs/flint-1.5.0[ntl]
 	>=sci-libs/fplll-3.0.12
 	>=sci-libs/ghmm-0.9_rc1[lapack,python]
@@ -63,19 +60,10 @@ CDEPEND=">=app-arch/bzip2-1.0.5
 	>=sci-libs/mpir-1.2.2[cxx]
 	>=sci-libs/pynac-0.1.10
 	>=sys-libs/readline-6.0
-	>=sci-libs/scipy-0.7
 	>=sci-libs/symmetrica-2.0
 	>=sci-libs/zn_poly-0.9
 	>=sci-mathematics/eclib-20080310_p10
 	>=sci-mathematics/ecm-6.2.1
-	>=sci-mathematics/flintqs-20070817_p4
-	>=sci-mathematics/gap-4.4.12
-	>=sci-mathematics/gap-guava-3.4
-	>=sci-mathematics/genus2reduction-0.3
-	>=sci-mathematics/gfan-0.4
-	>=sci-mathematics/lcalc-1.23[pari]
-	>=sci-mathematics/maxima-5.20.1[ecl]
-	>=sci-mathematics/palp-1.1
 	|| ( >=sci-mathematics/pari-2.3.3[data,gmp]
 	     >=sci-mathematics/pari-2.3.3[data,mpir] )
 	>=sci-mathematics/polybori-0.6.4[sage]
@@ -83,17 +71,30 @@ CDEPEND=">=app-arch/bzip2-1.0.5
 	>=sci-mathematics/rubiks-20070912_p10
 	~sci-mathematics/sage-clib-${PV}
 	~sci-mathematics/sage-data-${PV}
-	doc? ( ~sci-mathematics/sage-doc-${PV} )
-	~sci-mathematics/sage-examples-${PV}
 	~sci-mathematics/sage-extcode-${PV}
 	~sci-mathematics/sage-notebook-0.7.5.3
-	~sci-mathematics/sage-latex-2.2.3
-	>=sci-mathematics/sympow-1.018
 	virtual/cblas"
 
 DEPEND="${CDEPEND}
 	dev-util/pkgconfig"
-RDEPEND="${CDEPEND}"
+RDEPEND="${CDEPEND}
+	~sci-mathematics/sage-examples-${PV}
+	~sci-mathematics/sage-latex-2.2.3
+	doc? ( ~sci-mathematics/sage-doc-${PV} )
+	>=sci-mathematics/gap-4.4.12
+	>=sci-mathematics/gap-guava-3.4
+	>=sci-mathematics/maxima-5.20.1[ecl]
+	>=sci-mathematics/genus2reduction-0.3
+	>=sci-mathematics/lcalc-1.23[pari]
+	>=sci-mathematics/sympow-1.018
+	>=sci-libs/cddlib-094f
+	>=sci-mathematics/gfan-0.4
+	>=media-gfx/tachyon-0.98
+	>=sci-mathematics/flintqs-20070817_p4
+	>=sci-mathematics/palp-1.1
+	>=sci-libs/scipy-0.7
+	>=dev-python/cvxopt-0.9
+	dev-python/sqlalchemy[sqlite]"
 
 # tests _will_ fail!
 RESTRICT="mirror test"
@@ -121,8 +122,6 @@ src_prepare() {
 	############################################################################
 	# Modifications to the build system and to Sage's scripts
 	############################################################################
-
-	# sqlalchemy is apparently not needed
 
 	# do not let Sage make the following targets
 	sage_clean_targets ATLAS BLAS BOEHM_GC BOOST_CROPPED CDDLIB CLIQUER CONWAY \
