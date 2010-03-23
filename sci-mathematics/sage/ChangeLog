@@ -2,6 +2,12 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  23 Mar 2010; François Bissey <f.r.bissey@massey.ac.nz> sage-4.3.4.ebuild:
+  registering the change in git properly would help.
+
+  23 Mar 2010; François Bissey <f.r.bissey@massey.ac.nz> sage-4.3.4.ebuild:
+  Found one more maxima execution, fixing some more tests :).
+
   22 Mar 2010; François Bissey <f.r.bissey@massey.ac.nz> sage-4.3.4.ebuild:
   Better separation of RDEPEND an DEPEND. Return sqlalchemy as a RDEPEND
   as its functionality is expected. This is however open to discussion.

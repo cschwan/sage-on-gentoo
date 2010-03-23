@@ -194,7 +194,10 @@ src_prepare() {
 
 	# run maxima with ecl
 	sage_package ${P} \
-		sed -i "s:maxima-noreadline:maxima -l ecl:g" sage/interfaces/maxima.py
+		sed -i \
+		-e "s:maxima-noreadline:maxima -l ecl:g" \
+		-e "s:maxima --very-quiet:maxima -l ecl --very-quiet:g" \
+		sage/interfaces/maxima.py
 
 	# fix missing libraries needed with "--as-needed"
 	sage_package ${P} \
