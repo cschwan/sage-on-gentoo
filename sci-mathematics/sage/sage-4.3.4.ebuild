@@ -92,7 +92,7 @@ RDEPEND="${CDEPEND}
 	>=sci-mathematics/palp-1.1
 	>=sci-libs/scipy-0.7
 	>=dev-python/cvxopt-0.9
-	dev-python/sqlalchemy[sqlite]"
+	>=dev-python/sqlalchemy-0.5.8[sqlite]"
 
 # tests _will_ fail!
 RESTRICT="mirror test"

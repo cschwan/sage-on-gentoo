@@ -1,7 +1,7 @@
 sage-on-gentoo provides (experimental!) split ebuilds (www.gentoo.org) for the
 computer algebra system SAGE (www.sagemath.org).
 
-* Look at our wiki pages for Documentation.
+* Look at our wiki for documentation.
 
 * If you find errors or have suggestions write a mail to the gentoo-science
   mailing list:
@@ -18,7 +18,7 @@ INSTALLATION GUIDE AND SOME NOTES:
    The preferred method of getting sage-on-gentoo is layman. Make sure you have
    it installed and correctly configured. If not, you will find a guide here:
 
-     http://www.gentoo.org/proj/en/overlays/userguide.xml.
+     http://www.gentoo.org/proj/en/overlays/userguide.xml
 
 2. ADD REPOSITORY:
    Update your layman list and add this repository with:
