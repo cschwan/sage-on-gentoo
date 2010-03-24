@@ -22,13 +22,11 @@ IUSE="doc"
 CDEPEND=">=app-arch/bzip2-1.0.5
 	=dev-lang/python-2.6.4-r99[sqlite]
 	>=dev-lang/R-2.10.1[lapack,readline]
-	>=dev-libs/boost-1.34.1
 	>=dev-libs/mpfr-2.4.2
 	>=dev-libs/ntl-5.5.2
 	>=dev-python/cython-0.12.1
 	>=dev-python/docutils-0.5
 	>=dev-python/gdmodule-0.56
-	>=dev-python/imaging-1.1.6
 	>=dev-python/ipython-0.9.1
 	>=dev-python/jinja-1.2
 	>=dev-python/jinja2-2.1.1
@@ -42,7 +40,6 @@ CDEPEND=">=app-arch/bzip2-1.0.5
 	>=dev-python/python-gnutls-1.1.4
 	>=dev-python/setuptools-0.6.9
 	>=dev-python/sympy-0.6.4
-	>=media-libs/gd-2.0.35
 	>=net-zope/zodb-3.7.0
 	>=net-zope/zope-i18nmessageid-3.5.0
 	>=net-zope/zope-testbrowser-3.7.0
@@ -78,6 +75,7 @@ CDEPEND=">=app-arch/bzip2-1.0.5
 DEPEND="${CDEPEND}
 	dev-util/pkgconfig"
 RDEPEND="${CDEPEND}
+	>=dev-python/imaging-1.1.6
 	~sci-mathematics/sage-examples-${PV}
 	~sci-mathematics/sage-latex-2.2.3
 	doc? ( ~sci-mathematics/sage-doc-${PV} )
