@@ -2,6 +2,10 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  26 Mar 2010; François Bissey <f.r.bissey@massey.ac.nz>
+  fplll-3.0.12-r1.ebuild:
+  keywording ~ppc
+
   12 Mar 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
   -fplll-3.0.12.ebuild:
   Dropped old version

@@ -2,6 +2,10 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  26 Mar 2010; François Bissey <f.r.bissey@massey.ac.nz>
+  zn_poly-0.9.ebuild, zn_poly-0.9-r1.ebuild:
+  keywording ~ppc
+
 *zn_poly-0.9-r1 (17 Feb 2010)
 
   17 Feb 2010; François Bissey <f.r.bissey@massey.ac.nz>

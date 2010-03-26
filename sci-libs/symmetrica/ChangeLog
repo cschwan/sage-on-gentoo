@@ -1,6 +1,10 @@
 # ChangeLog for sci-libs/symmetrica
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
+
+  26 Mar 2010; François Bissey <f.r.bissey@massey.ac.nz>
+  symmetrica-2.0.ebuild:
+  keywording ~ppc
 
   21 Dec 2009; Christopher Schwan <cschwan@students.uni-mainz.de>
   symmetrica-2.0.ebuild, +files/symmetrica-2.0-fix-missing-typedef.patch:

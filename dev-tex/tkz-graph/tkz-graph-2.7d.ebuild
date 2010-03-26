@@ -12,7 +12,7 @@ SRC_URI="http://altermundus.com/downloads/packages/${PN}.sty"
 
 LICENSE=""
 SLOT="0"
-KEYWORDS="~amd64 ~x86"
+KEYWORDS="~amd64 ~ppc ~x86"
 IUSE=""
 
 # TODO: examples
