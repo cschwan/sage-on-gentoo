@@ -12,7 +12,7 @@ SRC_URI="mirror://sourceforge/${PN}/files/${PN}/Release%20${PV}/${P}.tgz"
 
 LICENSE="MIT"
 SLOT="0"
-KEYWORDS="~amd64 ~x86"
+KEYWORDS="~amd64 ~ppc ~x86"
 IUSE="doc"
 
 RESTRICT="mirror"
