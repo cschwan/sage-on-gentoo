@@ -2,6 +2,10 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  26 Mar 2010; François Bissey <f.r.bissey@massey.ac.nz>
+  sage-examples-4.3.4.ebuild:
+  keywording ~ppc
+
 *sage-examples-4.3.4 (20 Mar 2010)
 
   20 Mar 2010; Christopher Schwan <cschwan@students.uni-mainz.de>

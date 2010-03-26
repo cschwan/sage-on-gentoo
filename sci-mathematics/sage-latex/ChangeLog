@@ -2,6 +2,10 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  26 Mar 2010; François Bissey <f.r.bissey@massey.ac.nz>
+  sage-latex-2.2.3.ebuild:
+  keywording ~ppc
+
   20 Mar 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
   sage-latex-2.2.3.ebuild:
   Removed dependency on sage eclass

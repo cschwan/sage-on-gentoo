@@ -16,7 +16,7 @@ SRC_URI="mirror://sage/spkg/standard/${MY_P[0]}.spkg -> ${MY_P[0]}.tar.bz2
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~x86"
+KEYWORDS="~amd64 ~ppc ~x86"
 IUSE=""
 
 RESTRICT="mirror"

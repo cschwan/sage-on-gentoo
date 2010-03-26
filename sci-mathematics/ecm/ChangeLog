@@ -1,6 +1,9 @@
 # ChangeLog for sci-mathematics/ecm
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
+
+  26 Mar 2010; François Bissey <f.r.bissey@massey.ac.nz> ecm-6.2.3.ebuild:
+  keywording ~ppc
 
   22 Nov 2009; Christopher Schwan <cschwan@students.uni-mainz.de>
   ecm-6.2.3.ebuild, +files/configure.patch, +files/execstack.patch,
