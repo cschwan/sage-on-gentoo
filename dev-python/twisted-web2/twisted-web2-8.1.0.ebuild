@@ -10,7 +10,7 @@ inherit eutils twisted versionator
 
 DESCRIPTION="Experimental Twisted web2 server, programmable in Python"
 
-KEYWORDS="~amd64 ~x86"
+KEYWORDS="~amd64 ~ppc ~x86"
 IUSE=""
 
 RESTRICT="mirror"

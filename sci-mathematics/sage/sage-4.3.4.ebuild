@@ -12,7 +12,7 @@ SRC_URI="mirror://sage/src/${P}.tar"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~x86"
+KEYWORDS="~amd64 ~ppc ~x86"
 IUSE="doc"
 
 # TODO: should be sci-libs/m4ri-20091120 which is not available on upstream

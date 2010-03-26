@@ -2,6 +2,9 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  26 Mar 2010; François Bissey <f.r.bissey@massey.ac.nz> gap-4.4.12.ebuild:
+  keywording ~ppc
+
   13 Mar 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
   -gap-4.4.10.ebuild:
   Dropped old version

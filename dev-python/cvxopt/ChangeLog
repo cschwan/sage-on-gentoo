@@ -2,6 +2,10 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  26 Mar 2010; François Bissey <f.r.bissey@massey.ac.nz> cvxopt-0.9.ebuild,
+  cvxopt-1.1.2.ebuild:
+  keywording ~ppc
+
 *cvxopt-0.9 (12 Mar 2010)
 
   12 Mar 2010; Christopher Schwan <cschwan@students.uni-mainz.de>

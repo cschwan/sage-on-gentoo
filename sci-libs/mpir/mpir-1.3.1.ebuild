@@ -13,7 +13,7 @@ RESTRICT="mirror"
 
 LICENSE="LGPL-2.1"
 SLOT="0"
-KEYWORDS="~x86 ~ppc ~amd64"
+KEYWORDS="~amd64 ~ppc ~x86"
 IUSE="+cxx cpudetection"
 
 DEPEND="x86? ( dev-lang/yasm )

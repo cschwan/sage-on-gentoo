@@ -2,6 +2,10 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  26 Mar 2010; François Bissey <f.r.bissey@massey.ac.nz>
+  tkz-berge-2.8.ebuild:
+  keywording ~ppc
+
 *tkz-berge-2.8 (07 Mar 2010)
 
   07 Mar 2010; Christopher Schwan <cschwan@students.uni-mainz.de>

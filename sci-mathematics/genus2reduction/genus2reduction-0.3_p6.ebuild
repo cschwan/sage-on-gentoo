@@ -14,7 +14,7 @@ SRC_URI="${SPKG_URI}/${MY_P}.spkg -> ${MY_P}.tar.bz2"
 LICENSE="GPL-2"
 SLOT="0"
 RESTRICT="mirror"
-KEYWORDS="~amd64 ~x86"
+KEYWORDS="~amd64 ~ppc ~x86"
 IUSE="mpir"
 
 RDEPEND="mpir? ( >=sci-mathematics/pari-2.3.3[mpir] )

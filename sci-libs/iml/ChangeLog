@@ -1,6 +1,9 @@
 # ChangeLog for sci-libs/iml
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
+
+  26 Mar 2010; François Bissey <f.r.bissey@massey.ac.nz> iml-1.0.3.ebuild:
+  keywording ~ppc
 
   23 Nov 2009; Christopher Schwan <cschwan@students.uni-mainz.de>
   iml-1.0.3.ebuild, +files/iml-1.0.3-fix-undefined-symbol.patch,

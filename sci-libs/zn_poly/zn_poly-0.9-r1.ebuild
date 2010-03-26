@@ -12,7 +12,7 @@ SRC_URI="http://www.cims.nyu.edu/~harvey/zn_poly/releases/${P}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~x86"
+KEYWORDS="~amd64 ~ppc ~x86"
 IUSE="mpir"
 
 RESTRICT="mirror"

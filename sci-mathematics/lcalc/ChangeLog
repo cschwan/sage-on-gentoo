@@ -2,6 +2,9 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  26 Mar 2010; François Bissey <f.r.bissey@massey.ac.nz> lcalc-1.23.ebuild:
+  keywording ~ppc
+
   22 Mar 2010; François Bissey <f.r.bissey@massey.ac.nz> lcalc-1.23.ebuild,
   files/lcalc-1.23-makefile.patch, -files/lcalc-1.23-sstream.patch:
   remove sstream patch as it break some tests from sage which stress input. 

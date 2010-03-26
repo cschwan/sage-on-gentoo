@@ -2,6 +2,9 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  26 Mar 2010; François Bissey <f.r.bissey@massey.ac.nz> gfan-0.4.ebuild:
+  keywording ~ppc
+
   12 Mar 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
   -gfan-0.3.ebuild:
   Dropped old version

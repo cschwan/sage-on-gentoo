@@ -1,6 +1,9 @@
 # ChangeLog for sci-mathematics/palp
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
+
+  26 Mar 2010; François Bissey <f.r.bissey@massey.ac.nz> palp-1.1.ebuild:
+  keywording ~ppc
 
   20 Nov 2009; Christopher Schwan <cschwan@students.uni-mainz.de>
   palp-1.1.ebuild:
