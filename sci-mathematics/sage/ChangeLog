@@ -3,6 +3,9 @@
 # $Header: $
 
   27 Mar 2010; François Bissey <f.r.bissey@massey.ac.nz> sage-4.3.4.ebuild:
+  Revert gap "fix" as it breaks install instead of fixing it.
+
+  27 Mar 2010; François Bissey <f.r.bissey@massey.ac.nz> sage-4.3.4.ebuild:
   Introduce a fix to the gap interface, hopefully it will solve Marek's
   problem.
 

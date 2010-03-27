@@ -281,10 +281,6 @@ src_prepare() {
 	sage_package ${P} \
 		epatch "${FILESDIR}"/${PN}-4.3.1-arpack-from-scipy.patch
 
-	# fix gap problem reported by Marek - hopefully.
-	sage_package ${P} \
-		sed -i "s:cmd += \" -b -p -T\":cmd += \" -b -T\":g" sage/interfaces/gap.py
-
 	# Replace gmp with mpir
 # 	sage_package ${P} \
 # 		sed -i "s:gmp\.h:mpir.h:g" \
