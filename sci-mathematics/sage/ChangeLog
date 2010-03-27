@@ -2,6 +2,10 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  27 Mar 2010; François Bissey <f.r.bissey@massey.ac.nz> sage-4.3.4.ebuild:
+  Introduce a fix to the gap interface, hopefully it will solve Marek's
+  problem.
+
   27 Mar 2010; François Bissey <f.r.bissey@massey.ac.nz> sage-4.3.4.ebuild,
   metadata.xml:
   use flag adjustment.
