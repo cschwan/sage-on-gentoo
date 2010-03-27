@@ -15,8 +15,8 @@ SLOT="0"
 KEYWORDS="~amd64 ~x86"
 IUSE=""
 
-DEPEND=""
-RDEPEND="${DEPEND}"
+DEPEND=" || ( !sci-mathematics/sage ~sci-mathematics/sage-${PV}[-build-doc] )"
+RDEPEND=""
 
 S="${WORKDIR}/${MY_P}"
 

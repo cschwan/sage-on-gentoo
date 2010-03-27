@@ -12,8 +12,8 @@ SRC_URI="mirror://sage/src/${P}.tar"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~ppc ~x86"
-IUSE="doc"
+KEYWORDS="~amd64 ~x86"
+IUSE="doc build-doc"
 
 # TODO: should be sci-libs/m4ri-20091120 which is not available on upstream
 # TODO: check pygments version string (Sage's pygments version seems very old)
@@ -25,20 +25,16 @@ CDEPEND=">=app-arch/bzip2-1.0.5
 	>=dev-libs/mpfr-2.4.2
 	>=dev-libs/ntl-5.5.2
 	>=dev-python/cython-0.12.1
-	>=dev-python/docutils-0.5
 	>=dev-python/gdmodule-0.56
 	>=dev-python/ipython-0.9.1
 	>=dev-python/jinja-1.2
-	>=dev-python/jinja2-2.1.1
 	>=dev-python/numpy-1.3.0[lapack]
 	>=dev-python/rpy-2.0.6
 	>=dev-python/matplotlib-0.99.1
 	>=dev-python/mpmath-0.14
 	~dev-python/pexpect-2.0
 	>=dev-python/pycrypto-2.0.1
-	>=dev-python/pygments-0.11.1
 	>=dev-python/python-gnutls-1.1.4
-	>=dev-python/setuptools-0.6.9
 	>=dev-python/sympy-0.6.4
 	>=net-zope/zodb-3.7.0
 	>=net-zope/zope-i18nmessageid-3.5.0
@@ -73,12 +69,13 @@ CDEPEND=">=app-arch/bzip2-1.0.5
 	virtual/cblas"
 
 DEPEND="${CDEPEND}
+	>=dev-python/setuptools-0.6.9
+	doc? ( build-doc? ( >=dev-python/sphinx-0.6.3 ) )
 	dev-util/pkgconfig"
 RDEPEND="${CDEPEND}
 	>=dev-python/imaging-1.1.6
 	~sci-mathematics/sage-examples-${PV}
 	~sci-mathematics/sage-latex-2.2.3
-	doc? ( ~sci-mathematics/sage-doc-${PV} )
 	>=sci-mathematics/gap-4.4.12
 	>=sci-mathematics/gap-guava-3.4
 	>=sci-mathematics/maxima-5.20.1[ecl]
@@ -92,7 +89,9 @@ RDEPEND="${CDEPEND}
 	>=sci-mathematics/palp-1.1
 	>=sci-libs/scipy-0.7
 	>=dev-python/cvxopt-0.9
-	>=dev-python/sqlalchemy-0.5.8[sqlite]"
+	dev-python/sqlalchemy[sqlite]
+	>=dev-python/sphinx-0.6.3
+	doc? ( !build-doc? ( ~sci-mathematics/sage-doc-"${PV}" ) )"
 
 # tests _will_ fail!
 RESTRICT="mirror test"
@@ -129,13 +128,16 @@ src_prepare() {
 		LIBPNG LINBOX MATPLOTLIB MAXIMA MERCURIAL MPFI MPFR MPIR MPMATH NTL \
 		NUMPY PALP PARI PEXPECT PIL POLYBORI POLYTOPES_DB PYCRYPTO PYGMENTS \
 		PYNAC PYPROCESSING PYTHON_GNUTLS PYTHON R RATPOINTS READLINE RUBIKS \
-		SAGE_BZIP2 SAGENB SAGETEX SCIPY SCIPY_SANDBOX SCONS SETUPTOOLS \
+		SAGE_BZIP2 SAGENB SAGETEX SCIPY SCIPY_SANDBOX SCONS SETUPTOOLS SPHINX \
 		SQLALCHEMY SQLITE SYMMETRICA SYMPOW SYMPY TACHYON TERMCAP TWISTED \
 		TWISTEDWEB2 WEAVE ZLIB ZNPOLY ZODB
 
 	# no verbose copying, copy links and do not change permissions
-	sed -i "s:cp -rpv:cp -r --preserve=mode,links:g" makefile \
-		|| die "sed failed"
+	# Make sure that "make test" doesn't build doc
+	sed -i \
+		-e "s:cp -rpv:cp -r --preserve=mode,links:g" \
+		-e "s/all: build doc/all: build/g" \
+		makefile || die "sed failed ifor the makefile"
 
 	# disable generation of documentation
 	sage_package sage_scripts-${PV} \
@@ -318,22 +320,16 @@ src_prepare() {
 	# save versioned package names
 	local MOINMOIN=moin-1.9.1.p1
 	local NETWORKX=networkx-0.99.p1-fake_really-0.36.p1
-	local SPHINX=sphinx-0.6.3.p4
 
 	# apply patches fixing deprecation warning which interfers with test output
 	sage_package ${NETWORKX} \
 		epatch "${FILESDIR}"/${PN}-4.3.1-networkx-sets-deprecation.patch
 
-	# Fixing bytecompiling
-	sage_package ${SPHINX} \
-		epatch "${FILESDIR}"/${PN}-4.3.3-sphinx-nobytecompile.patch
-
 	############################################################################
 	# Prefixing of Python packages
 	############################################################################
 
-	# TODO: is sphinx actually needed ?
-	local SPKGS_NEEDING_FIX=( ${MOINMOIN} ${SPHINX} )
+	local SPKGS_NEEDING_FIX=( ${MOINMOIN} )
 
 	# fix installation paths - this must be done in order to remove python
 	for i in "${SPKGS_NEEDING_FIX[@]}" ; do
@@ -362,6 +358,16 @@ src_compile() {
 
 	# check if everything did successfully built
 	grep -s "Error building Sage" install.log && die "Sage build failed"
+
+	# Generate documentation, or not!
+	if ( use doc && use build-doc ); then
+		"${S}"/sage -docbuild all html
+	# pdf is slooooooooow and it may need some specific tex packages to identify.
+#		"${S}"/sage -docbuild all pdf
+	else
+		rm -rf "${S}"/devel/sage-main/doc/output/html/*
+	fi
+
 }
 
 src_install() {
@@ -379,7 +385,7 @@ src_install() {
 	cd devel/sage-main
 	rm -rf bundle export install MANIFEST.in module_list.py PKG-INFO pull \
 		README.txt sage-push setup.py spkg-delauto spkg-dist spkg-install \
-		doc/output/html/* build/lib.* build/temp.* || die "rm failed"
+		build/lib.* build/temp.* || die "rm failed"
 	cd ../..
 
 	# these files are not needed
@@ -415,6 +421,11 @@ pkg_postinst() {
 	# as root. This prevent nasty message to be presented to the user.
 	"${SAGE_ROOT}"/sage -c
 
+	if ( ! use doc ); then
+		ewarn "You haven't installed/built the documentation."
+		ewarn "This means the html documentation won't be available in sage notebook."
+	fi
+
 	# Restoring the original lapack settings.
 	einfo "Restoring your original lapack settings with eselect"
 	if ( grep lib64 <<< ${OLD_IMPLEM} ); then
@@ -422,4 +433,8 @@ pkg_postinst() {
 	else
 		eselect lapack set "${OLD_IMPLEM:5}"
 	fi
+}
+
+pkg_postrm() {
+	python_mod_cleanup "${SAGE_ROOT}"
 }
