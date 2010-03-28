@@ -358,8 +358,8 @@ src_compile() {
 	# check if everything did successfully built
 	grep -s "Error building Sage" install.log && die "Sage build failed"
 
-	rm -rf "${S}"/devel/sage-main/doc/output/html/*
-
+	# remove documentation which will be installed with sage-doc
+	rm -rf "${S}"/devel/sage-main/doc/output/html/* || die "rm failed"
 }
 
 src_install() {
