@@ -13,7 +13,7 @@ SRC_URI="mirror://sage/src/${P}.tar"
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
-IUSE="doc build-doc"
+IUSE="doc"
 
 # TODO: should be sci-libs/m4ri-20091120 which is not available on upstream
 # TODO: check pygments version string (Sage's pygments version seems very old)
@@ -70,7 +70,6 @@ CDEPEND=">=app-arch/bzip2-1.0.5
 
 DEPEND="${CDEPEND}
 	>=dev-python/setuptools-0.6.9
-	doc? ( build-doc? ( >=dev-python/sphinx-0.6.3 ) )
 	dev-util/pkgconfig"
 RDEPEND="${CDEPEND}
 	>=dev-python/imaging-1.1.6
@@ -91,7 +90,7 @@ RDEPEND="${CDEPEND}
 	>=dev-python/cvxopt-0.9
 	dev-python/sqlalchemy[sqlite]
 	>=dev-python/sphinx-0.6.3
-	doc? ( !build-doc? ( ~sci-mathematics/sage-doc-"${PV}" ) )"
+	doc? ( sci-mathematics/sage-doc )"
 
 # tests _will_ fail!
 RESTRICT="mirror test"
@@ -359,14 +358,7 @@ src_compile() {
 	# check if everything did successfully built
 	grep -s "Error building Sage" install.log && die "Sage build failed"
 
-	# Generate documentation, or not!
-	if ( use doc && use build-doc ); then
-		"${S}"/sage -docbuild all html
-	# pdf is slooooooooow and it may need some specific tex packages to identify.
-#		"${S}"/sage -docbuild all pdf
-	else
-		rm -rf "${S}"/devel/sage-main/doc/output/html/*
-	fi
+	rm -rf "${S}"/devel/sage-main/doc/output/html/*
 
 }
 
@@ -422,8 +414,8 @@ pkg_postinst() {
 	"${SAGE_ROOT}"/sage -c
 
 	if ( ! use doc ); then
-		ewarn "You haven't installed/built the documentation."
-		ewarn "This means the html documentation won't be available in sage notebook."
+		ewarn "You haven't requested the documentation."
+		ewarn "If you don't install sage-doc the html documentation won't be available in sage notebook."
 	fi
 
 	# Restoring the original lapack settings.
