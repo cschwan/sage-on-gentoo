@@ -4,4 +4,7 @@
 	<maintainer>
 		<email></email>
 	</maintainer>
+	<use>
+		<flag name='pdf'>Install the pdf version of the documentation.</flag>
+	</use>
 </pkgmetadata>
