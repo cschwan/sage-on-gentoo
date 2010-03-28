@@ -2,6 +2,10 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  28 Mar 2010; François Bissey <f.r.bissey@massey.ac.nz>
+  sage-doc-4.3.4.ebuild, metadata.xml:
+  Don't deal with generated doc anymore, add pdf docs.
+
   28 Mar 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
   sage-doc-4.3.4.ebuild:
   Adjusted DEPEND - the line from previous commit did not allow to

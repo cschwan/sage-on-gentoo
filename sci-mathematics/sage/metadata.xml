@@ -5,7 +5,4 @@
 	<maintainer>
 		<email></email>
 	</maintainer>
-	<use>
-		<flag name='build-doc'>Generate the html documention instead of installing it from a separate ebuild.</flag>
-	</use>
 </pkgmetadata>
