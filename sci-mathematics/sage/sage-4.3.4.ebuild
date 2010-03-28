@@ -91,7 +91,7 @@ RDEPEND="${CDEPEND}
 	>=dev-python/cvxopt-0.9
 	dev-python/sqlalchemy[sqlite]
 	>=dev-python/sphinx-0.6.3
-	doc? ( !build-doc? ( ~sci-mathematics/sage-doc-"${PV}" ) )"
+	doc? ( !build-doc? ( ~sci-mathematics/sage-doc-${PV} ) )"
 
 # tests _will_ fail!
 RESTRICT="mirror test"
@@ -110,7 +110,7 @@ pkg_setup() {
 
 	# switch to lapack-atlas as some dependencies of sage are linked against it
 	# specifically because of clapack.
-	OLD_IMPLEM="$(eselect lapack show)"
+	OLD_IMPLEM=$(eselect lapack show | cut -d: -f2)
 	einfo "Switching to lapack-atlas with eselect."
 	eselect lapack set atlas
 }
@@ -428,11 +428,7 @@ pkg_postinst() {
 
 	# Restoring the original lapack settings.
 	einfo "Restoring your original lapack settings with eselect"
-	if ( grep lib64 <<< ${OLD_IMPLEM} ); then
-		eselect lapack set "${OLD_IMPLEM:7}"
-	else
-		eselect lapack set "${OLD_IMPLEM:5}"
-	fi
+	eselect lapack set ${OLD_IMPLEM}
 }
 
 pkg_postrm() {
