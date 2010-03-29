@@ -2,6 +2,9 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  29 Mar 2010; François Bissey <f.r.bissey@massey.ac.nz> sage-4.3.4.ebuild:
+  Try a fix for Marek.
+
   28 Mar 2010; François Bissey <f.r.bissey@massey.ac.nz> sage-4.3.4.ebuild,
   metadata.xml:
   Remove doc generation. Too complicated.
