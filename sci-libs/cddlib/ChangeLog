@@ -2,6 +2,10 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  30 Mar 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
+  -cddlib-094f.ebuild:
+  Dropped old cddlib-94f
+
   26 Mar 2010; François Bissey <f.r.bissey@massey.ac.nz>
   cddlib-094f.ebuild, cddlib-094f-r1.ebuild:
   keywording ~ppc
