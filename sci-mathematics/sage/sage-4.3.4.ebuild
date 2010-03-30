@@ -280,6 +280,11 @@ src_prepare() {
 	sage_package ${P} \
 		epatch "${FILESDIR}"/${PN}-4.3.1-arpack-from-scipy.patch
 
+	# Fix gap invocation of sage.g - hopefully fixing Marek's problem.
+	sage_package ${P} \
+		sed -i "s:DB_HOME = \"%s/data/\"%SAGE_ROOT:DB_HOME = \"${SAGE_ROOT}/data/\":g" \
+		sage/interfaces/gap.py
+
 	# Replace gmp with mpir
 # 	sage_package ${P} \
 # 		sed -i "s:gmp\.h:mpir.h:g" \
