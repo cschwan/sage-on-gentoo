@@ -6,16 +6,18 @@ EAPI=2
 
 inherit toolchain-funcs sage versionator
 
+MY_P="${PN}-$(replace_version_separator 2 '.')"
+
 DESCRIPTION="Conductor and Reduction Types for Genus 2 Curves"
 HOMEPAGE="http://www.math.u-bordeaux.fr/~liu/G2R/"
-MY_P=${PN}-$(replace_version_separator 2 '.')
-SRC_URI="${SPKG_URI}/${MY_P}.spkg -> ${MY_P}.tar.bz2"
+SRC_URI="mirror://sage/spkg/standard/${MY_P}.spkg -> ${MY_P}.tar.bz2"
 
 LICENSE="GPL-2"
 SLOT="0"
-RESTRICT="mirror"
 KEYWORDS="~amd64 ~ppc ~x86"
 IUSE="mpir"
+
+RESTRICT="mirror"
 
 RDEPEND="mpir? ( >=sci-mathematics/pari-2.3.3[mpir] )
 	!mpir? (  >=sci-mathematics/pari-2.3.3[gmp] )"
