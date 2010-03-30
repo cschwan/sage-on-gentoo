@@ -13,21 +13,12 @@ EAPI=2
 #	Christopher Schwan <cschwan@students.uni-mainz.de>
 # @BLURB: Tools to ease the compilation of Sage's spkg-packages and Sage itself
 # @DESCRIPTION:
-# The sage eclass serves two purposes:
-# Fistly, it eases the compilation of Sage itself by providing functions for
-# patching and modifying its *.spkg-files.
-#
-# Secondly, it provides variables pointing to the Sage installation directory
-# which are use by the sci-mathematics/sage-XXX ebuilds.
+# The sage eclass eases the compilation of Sage itself by providing functions
+# for patching and modifying its *.spkg-files and by providing variables
+# pointing to the Sage installation directory which are used by the
+# sci-mathematics/sage-XXX ebuilds.
 
 inherit eutils
-
-SPKG_URI="mirror://sage/spkg/standard"
-
-HOMEPAGE="http://www.sagemath.org/"
-SRC_URI="mirror://sage/src/sage-${SAGE_VERSION}.tar"
-
-RESTRICT="mirror"
 
 # @ECLASS-VARIABLE: SAGE_PREFIX
 # @DESCRIPTION:

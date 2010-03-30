@@ -5,44 +5,14 @@
 .\" See eclass-to-manpage.awk for documentation on how to get
 .\" your eclass nicely documented as well.
 .\"
-.TH "SAGE.ECLASS" 5 "Feb 2010" "Portage" "portage"
+.TH "SAGE.ECLASS" 5 "Mar 2010" "Portage" "portage"
 .SH "NAME"
 sage.eclass \- Tools to ease the compilation of Sage's spkg-packages and Sage itself
 .SH "DESCRIPTION"
-The sage eclass serves two purposes:
-Fistly, it eases the compilation of Sage itself by providing functions for
-patching and modifying its *.spkg-files.
-
-Secondly, in order to install packages from Sage's tarball it provides a
-src_unpack function for automatic unpacking. You must set the following two
-variables to make use of this:
-
-.nf
-SAGE_VERSION
-SAGE_PACKAGE
-.fi
-.SH "EXAMPLE"
-The following is a minimal version of the flintqs ebuild and shows the usage
-for packages included in Sage's tarball:
-
-.nf
-EAPI=2
-
-SAGE_VERSION="4.2.1"
-SAGE_PACKAGE="flintqs-20070817.p4"
-
-inherit eutils sage
-
-[..]
-
-src_prepare() {
-	cp "${SAGE_FILESDIR}"/lanczos.h .
-
-	[..]
-}
-
-[..]
-.fi
+The sage eclass eases the compilation of Sage itself by providing functions
+for patching and modifying its *.spkg-files and by providing variables
+pointing to the Sage installation directory which are used by the
+sci-mathematics/sage-XXX ebuilds.
 .SH "FUNCTIONS"
 .TP
 \fBhg_clean\fR [list of dirs]
@@ -82,13 +52,6 @@ Extracts package and runs supplied command(s).
 \fBsage_package_finish\fR 
 ATTENTION: This function must be executed if the sage_package-function was
 invoked. This cleans up and packs all unpacked spkgs.
-.TP
-\fBsage_src_unpack\fR 
-If ${SAGE_PACKAGE} and ${SAGE_VERSION} is set this function is exported. It
-will unpack the specified spkgs and also correctly set the source directory
-('${S}') and a variable ${SAGE_FILESDIR} which points to the patches
-directory, if available. Note that ${SAGE_PACKAGE} may be an array. If thats
-the case all spkgs contained will be unpacked.
 .SH "ECLASS VARIABLES"
 .TP
 \fBSAGE_PREFIX\fR = \fI"/opt"\fR
