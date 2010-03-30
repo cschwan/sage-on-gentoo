@@ -2,6 +2,10 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  30 Mar 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
+  -sage-notebook-0.7.5.1-r1.ebuild:
+  Dropped old version
+
   26 Mar 2010; François Bissey <f.r.bissey@massey.ac.nz>
   sage-notebook-0.7.5.3.ebuild:
   keywording ~ppc
