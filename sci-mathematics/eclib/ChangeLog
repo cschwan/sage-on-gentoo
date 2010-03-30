@@ -2,6 +2,10 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  30 Mar 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
+  -eclib-20080310_p9.ebuild:
+  Dropped old version
+
   21 Mar 2010; François Bissey <f.r.bissey@massey.ac.nz>
   eclib-20080310_p10.ebuild, +files/eclib-20080310_p10-makefiles.patch.bz2:
   update the patch for eclib
