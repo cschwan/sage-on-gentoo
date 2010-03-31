@@ -4,6 +4,8 @@
 
 EAPI=2
 
+inherit autotools
+
 MY_P="lib${P}.p0"
 
 DESCRIPTION="Method of four russian for inversion (M4RI)"
@@ -22,11 +24,15 @@ RDEPEND=""
 
 S="${WORKDIR}/${MY_P}/src"
 
+# src_prepare() {
+# 	WANT_AUTOCONF=latest eautoconf
+# }
+
 src_configure() {
 	# cachetune option is not available, because its kills X when I switch
 	# yakuake to desktop
-	econf $(use debug && use_enable debug) \
-		$(use openmp && use_enable openmp) \
+	econf $(use_enable debug) \
+		$(use_with openmp) \
 		|| die "econf failed"
 }
 
