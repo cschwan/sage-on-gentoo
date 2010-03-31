@@ -5,4 +5,7 @@
 	<maintainer>
 		<email></email>
 	</maintainer>
+	<use>
+		<flag name='wiki'>Enables support for preconfigured MoinMoin wiki</flag>
+	</use>
 </pkgmetadata>

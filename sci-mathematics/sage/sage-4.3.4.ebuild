@@ -13,9 +13,8 @@ SRC_URI="mirror://sage/src/${P}.tar"
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
-IUSE="doc"
+IUSE="doc wiki"
 
-# TODO: should be sci-libs/m4ri-20091120 which is not available on upstream
 # TODO: check pygments version string (Sage's pygments version seems very old)
 # TODO: check dependencies use flagged packages
 # TODO: upgrading mpmath to 0.14 results in some test failures (api changes ?)
@@ -48,7 +47,7 @@ CDEPEND=">=app-arch/bzip2-1.0.5
 	>=sci-libs/lapack-atlas-3.8.3
 	>=sci-libs/libcliquer-1.2.5
 	>=sci-libs/linbox-1.1.6[ntl,sage]
-	>=sci-libs/m4ri-20091101
+	>=sci-libs/m4ri-20091120
 	>=sci-libs/mpfi-1.3.4
 	>=sci-libs/mpir-1.2.2[cxx]
 	>=sci-libs/pynac-0.1.10
@@ -130,6 +129,11 @@ src_prepare() {
 		SAGE_BZIP2 SAGENB SAGETEX SCIPY SCIPY_SANDBOX SCONS SETUPTOOLS SPHINX \
 		SQLALCHEMY SQLITE SYMMETRICA SYMPOW SYMPY TACHYON TERMCAP TWISTED \
 		TWISTEDWEB2 WEAVE ZLIB ZNPOLY ZODB
+
+	# nobody uses it (?) and on my pc it does not work
+	if ! use wiki ; then
+		sage_clean_targets MOIN
+	fi
 
 	# no verbose copying, copy links and do not change permissions
 	# Make sure that "make test" doesn't build doc
@@ -333,14 +337,10 @@ src_prepare() {
 	# Prefixing of Python packages
 	############################################################################
 
-	local SPKGS_NEEDING_FIX=( ${MOINMOIN} )
-
 	# fix installation paths - this must be done in order to remove python
-	for i in "${SPKGS_NEEDING_FIX[@]}" ; do
-		sage_package $i \
-			sed -i "s:python setup.py install:python setup.py install --prefix=\"\${SAGE_LOCAL}\":g" \
-			spkg-install
-	done
+	use wiki && sage_package ${MOINMOIN} \
+		sed -i "s:python setup.py install:python setup.py install --prefix=\"\${SAGE_LOCAL}\":g" \
+		spkg-install
 
 	# same for sage spkg in install file
 	sage_package ${P} \
@@ -397,16 +397,9 @@ src_install() {
 	# install files
 	emake DESTDIR="${D}${SAGE_PREFIX}" install || die "emake install failed"
 
-	# TODO: create additional desktop files
-
 	# install entries for desktop managers
 	doicon "${FILESDIR}"/sage.svg || die "doicon failed"
 	domenu "${FILESDIR}"/sage-shell.desktop || die "domenu failed"
-# 	domenu "${FILESDIR}"/sage-notebook.desktop || die "domenu failed"
-
-# 	# install entry for documentation if available
-# 	use doc && domenu "${FILESDIR}"/sage-documentation.desktop \
-# 		|| die "domenu failed"
 
 	# fix installation path
 	sed -i "s:${D}::" "${D}/${SAGE_PREFIX}"/bin/sage "${D}/${SAGE_ROOT}"/sage \
