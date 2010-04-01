@@ -17,7 +17,6 @@ IUSE="doc wiki"
 
 # TODO: check pygments version string (Sage's pygments version seems very old)
 # TODO: check dependencies use flagged packages
-# TODO: upgrading mpmath to 0.14 results in some test failures (api changes ?)
 CDEPEND=">=app-arch/bzip2-1.0.5
 	=dev-lang/python-2.6.4-r99[sqlite]
 	>=dev-lang/R-2.10.1[lapack,readline]
