@@ -2,6 +2,10 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  01 Apr 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
+  -files/patch-provided-by-sage.patch:
+  Removed unneeded patch
+
   30 Mar 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
   genus2reduction-0.3_p6.ebuild:
   Updated ebuild to use mirrors file and dropped old version
