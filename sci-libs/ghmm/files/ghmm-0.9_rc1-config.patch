@@ -1,0 +1,93 @@
+--- configure.in.orig	2010-03-31 22:28:35.538680214 +1300
++++ configure.in	2010-04-01 22:14:02.388552313 +1300
+@@ -132,8 +132,10 @@
+ 
+ dnl check GSL functions and use it instead of ghmm interpolation algorithms
+ AC_ARG_ENABLE(gsl,
+-  AC_HELP_STRING([--enable-gsl], [enable gsl library [[default=no]]]),
+-  [ if test "x$enable_gsl" != "xno" ; then
++  AC_HELP_STRING([--enable-gsl], [enable gsl library [[default=no]]])
++)
++
++AS_IF([test "x$enable_gsl" != "xno"],[
+       AC_DEFINE(DO_WITH_GSL,1,[use GSL functions instead of ghmm equivalents])
+ 
+       dnl these macros are from acinclude.m4! (modified gsl.m4)
+@@ -179,21 +181,18 @@
+ 
+     GHMM_RNG_GSL=1
+     AC_MSG_NOTICE(using GSL random number generator)
+-    fi
+-  ],
+-  [
++])
++
++AS_IF([test "x$enable_gsl" != "xyes"],[
+     AC_MSG_NOTICE("not using gsl")
+     AC_CHECK_LIB(m, cos)
+-  ]
+-)
+-
++  ])
+ 
+ dnl check lapack functions from atlas
+ AC_ARG_ENABLE(atlas,
+-  AC_HELP_STRING([--enable-atlas], [use matrix operations from atlas lapack [[default=no]]]),
+-  [
+-    if test "x$enable_lapack" != "xno" ; then
++  AC_HELP_STRING([--enable-atlas], [use matrix operations from atlas lapack [[default=no]]]))
+ 
++AS_IF([test "x$enable_atlas" != "xno"],[
+         AC_DEFINE(DO_WITH_ATLAS,1,[use matrix operations from lapack])
+ 
+         echo -n "checking for lapack with pkg-config... "
+@@ -247,12 +246,11 @@
+         AC_DEFINE(HAVE_CLAPACK_DPOTRF,1,[clapack_dpotrf exists]),
+         AC_MSG_RESULT(no)
+         )
+-    fi
+-  ],
+-  [
++])
++
++AS_IF([test "x$enable_atlas" != "xyes"],[
+     AC_MSG_NOTICE("not using lapack")
+-  ]
+-)
++])
+ 
+ 
+ dnl select random number generator
+@@ -319,21 +317,19 @@
+             [
+               AC_HELP_STRING([--without-python],
+                              [disable build and installation of the python bindings])
+-            ],
+-            [
+-              if test "x$with_python" != "xno" ; then
+-                 AC_PATH_PROG(PYTHON, $with_python) 
++            ])
++
++ case $with_python in
++	yes) use_python=python ;;
++	no | "" ) use_python=no ;;
++	*) use_python="$with_python" ;;
++ esac
++
++AS_IF([test "x$use_python" != "xno"],[
++                 AC_PATH_PROG(PYTHON, $use_python)
+                  PYTHONVER=$($PYTHON -V 2>&1 | cut -c 8-10)
+                  SUBDIRS="$SUBDIRS ghmmwrapper HMMEd"
+-              fi
+-            ],
+-            [
+-              dnl default enabled
+-              AC_PATH_PROG(PYTHON, python)
+-              PYTHONVER=$($PYTHON -V 2>&1 | cut -c 8-10)
+-              SUBDIRS="$SUBDIRS ghmmwrapper HMMEd"
+-            ]
+-)
++])
+ 
+ dnl finished
+ AC_SUBST(SUBDIRS)

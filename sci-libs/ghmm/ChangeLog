@@ -2,6 +2,12 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*ghmm-0.9_rc1-r1 (01 Apr 2010)
+
+  01 Apr 2010; François Bissey <f.r.bissey@massey.ac.nz>
+  +ghmm-0.9_rc1-r1.ebuild, +files/ghmm-0.9_rc1-config.patch:
+  Fix configure script - did I mention I hate AC_ARG_WITH?
+
   26 Mar 2010; François Bissey <f.r.bissey@massey.ac.nz>
   ghmm-0.9_rc1.ebuild:
   keywording ~ppc
