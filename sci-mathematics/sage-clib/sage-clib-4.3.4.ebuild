@@ -10,7 +10,7 @@ MY_P="sage-${PV}"
 
 DESCRIPTION="C library for Sage"
 HOMEPAGE="http://www.sagemath.org"
-SRC_URI="mirror://sage/spkg/standard/${MY_P}.spkg -> ${P}.tar.bz2"
+SRC_URI="mirror://sage/spkg/standard/${MY_P}.spkg -> sage-core-${PV}.tar.bz2"
 
 LICENSE="GPL-2"
 SLOT="0"
