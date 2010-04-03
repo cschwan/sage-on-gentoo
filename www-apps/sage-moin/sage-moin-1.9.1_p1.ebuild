@@ -36,11 +36,9 @@ src_prepare() {
 	cp -r src/jsmath           src/moin/MoinMoin/web/static/htdocs/common/js
 
 	cd "${S}"
+	cat >> setup.cfg <<-EOF
+	[install]
+	prefix = ${SAGE_LOCAL}
+	EOF
 	distutils_src_prepare
-}
-
-src_install() {
-	python_need_rebuild
-
-	"$(PYTHON)" setup.py "${DISTUTILS_GLOBAL_OPTIONS[@]}" install --root="${D}" --prefix="${SAGE_LOCAL}" --no-compile || die "Installation failed"
 }
