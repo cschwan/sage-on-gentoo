@@ -2,6 +2,13 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*sage-core-4.3.5 (03 Apr 2010)
+
+  03 Apr 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
+  +files/sage-core-4.3.4-site-packages.patch, +sage-core-4.3.5.ebuild:
+  Version bump. The new ebuild actually compiles - some issues are left
+  and further testing is needed
+
   13 Mar 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
   -sage-core-4.3.ebuild:
   Removed old version
