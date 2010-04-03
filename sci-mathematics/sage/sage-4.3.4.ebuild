@@ -15,7 +15,6 @@ SLOT="0"
 KEYWORDS="~amd64 ~x86"
 IUSE="doc wiki"
 
-# TODO: check pygments version string (Sage's pygments version seems very old)
 # TODO: check dependencies use flagged packages
 CDEPEND=">=app-arch/bzip2-1.0.5
 	=dev-lang/python-2.6.4-r99[sqlite]
@@ -88,7 +87,8 @@ RDEPEND="${CDEPEND}
 	>=dev-python/cvxopt-0.9
 	dev-python/sqlalchemy[sqlite]
 	>=dev-python/sphinx-0.6.3
-	doc? ( sci-mathematics/sage-doc )"
+	doc? ( sci-mathematics/sage-doc )
+	wiki? ( www-apps/sage-moin-1.9.1_p1 )"
 
 # tests _will_ fail!
 RESTRICT="mirror test"
@@ -122,17 +122,12 @@ src_prepare() {
 		CVXOPT CYTHON DOCUTILS ECLIB ECM ELLIPTIC_CURVES EXAMPLES EXTCODE F2C \
 		FLINT FLINTQS FPLLL FREETYPE G2RED GAP GD GDMODULE GFAN GHMM GIVARO \
 		GNUTLS GRAPHS GSL ICONV IML IPYTHON JINJA JINJA2 LAPACK LCALC LIBM4RI \
-		LIBPNG LINBOX MATPLOTLIB MAXIMA MERCURIAL MPFI MPFR MPIR MPMATH NTL \
+		LIBPNG LINBOX MATPLOTLIB MAXIMA MERCURIAL MOIN MPFI MPFR MPIR MPMATH NTL \
 		NUMPY PALP PARI PEXPECT PIL POLYBORI POLYTOPES_DB PYCRYPTO PYGMENTS \
 		PYNAC PYPROCESSING PYTHON_GNUTLS PYTHON R RATPOINTS READLINE RUBIKS \
 		SAGE_BZIP2 SAGENB SAGETEX SCIPY SCIPY_SANDBOX SCONS SETUPTOOLS SPHINX \
 		SQLALCHEMY SQLITE SYMMETRICA SYMPOW SYMPY TACHYON TERMCAP TWISTED \
 		TWISTEDWEB2 WEAVE ZLIB ZNPOLY ZODB
-
-	# nobody uses it (?) and on my pc it does not work
-	if ! use wiki ; then
-		sage_clean_targets MOIN
-	fi
 
 	# no verbose copying, copy links and do not change permissions
 	# Make sure that "make test" doesn't build doc
@@ -325,7 +320,6 @@ src_prepare() {
 	############################################################################
 
 	# save versioned package names
-	local MOINMOIN=moin-1.9.1.p1
 	local NETWORKX=networkx-0.99.p1-fake_really-0.36.p1
 
 	# apply patches fixing deprecation warning which interfers with test output
@@ -335,11 +329,6 @@ src_prepare() {
 	############################################################################
 	# Prefixing of Python packages
 	############################################################################
-
-	# fix installation paths - this must be done in order to remove python
-	use wiki && sage_package ${MOINMOIN} \
-		sed -i "s:python setup.py install:python setup.py install --prefix=\"\${SAGE_LOCAL}\":g" \
-		spkg-install
 
 	# same for sage spkg in install file
 	sage_package ${P} \
