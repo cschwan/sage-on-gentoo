@@ -2,6 +2,11 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  04 Apr 2010; François Bissey <f.r.bissey@massey.ac.nz>
+  +files/trac_7608-networkx-upgrade.patch.bz2, sage-4.3.4.ebuild:
+  Patched sage to upgrade to networkx-1.0.1 following issues 7608. 
+  All doc tests mentioned in the trac report pass.
+
   03 Apr 2010; François Bissey <f.r.bissey@massey.ac.nz> sage-4.3.4.ebuild:
   Removing moin completely.
 

@@ -33,6 +33,7 @@ CDEPEND=">=app-arch/bzip2-1.0.5
 	>=dev-python/pycrypto-2.0.1
 	>=dev-python/python-gnutls-1.1.4
 	>=dev-python/sympy-0.6.4
+	>=dev-python/networkx-1.0.1
 	>=net-zope/zodb-3.7.0
 	>=net-zope/zope-i18nmessageid-3.5.0
 	>=net-zope/zope-testbrowser-3.7.0
@@ -122,11 +123,11 @@ src_prepare() {
 		CVXOPT CYTHON DOCUTILS ECLIB ECM ELLIPTIC_CURVES EXAMPLES EXTCODE F2C \
 		FLINT FLINTQS FPLLL FREETYPE G2RED GAP GD GDMODULE GFAN GHMM GIVARO \
 		GNUTLS GRAPHS GSL ICONV IML IPYTHON JINJA JINJA2 LAPACK LCALC LIBM4RI \
-		LIBPNG LINBOX MATPLOTLIB MAXIMA MERCURIAL MOIN MPFI MPFR MPIR MPMATH NTL \
-		NUMPY PALP PARI PEXPECT PIL POLYBORI POLYTOPES_DB PYCRYPTO PYGMENTS \
-		PYNAC PYPROCESSING PYTHON_GNUTLS PYTHON R RATPOINTS READLINE RUBIKS \
-		SAGE_BZIP2 SAGENB SAGETEX SCIPY SCIPY_SANDBOX SCONS SETUPTOOLS SPHINX \
-		SQLALCHEMY SQLITE SYMMETRICA SYMPOW SYMPY TACHYON TERMCAP TWISTED \
+		LIBPNG LINBOX MATPLOTLIB MAXIMA MERCURIAL MOIN MPFI MPFR MPIR MPMATH \
+		NTL NETWORX NUMPY PALP PARI PEXPECT PIL POLYBORI POLYTOPES_DB PYCRYPTO \
+		PYGMENTS PYNAC PYPROCESSING PYTHON_GNUTLS PYTHON R RATPOINTS READLINE \
+		RUBIKS SAGE_BZIP2 SAGENB SAGETEX SCIPY SCIPY_SANDBOX SCONS SETUPTOOLS \
+		SPHINX SQLALCHEMY SQLITE SYMMETRICA SYMPOW SYMPY TACHYON TERMCAP TWISTED \
 		TWISTEDWEB2 WEAVE ZLIB ZNPOLY ZODB
 
 	# no verbose copying, copy links and do not change permissions
@@ -198,7 +199,7 @@ src_prepare() {
 
 	# fix missing libraries needed with "--as-needed"
 	sage_package ${P} \
-		epatch "${FILESDIR}"/${PN}-4.3.2-fix-undefined-symbols.patch
+		epatch "${FILESDIR}/${PN}"-4.3.2-fix-undefined-symbols.patch
 
 	# TODO: At least one more patch needed: devel/sage/sage/misc/misc.py breaks
 
@@ -316,17 +317,6 @@ src_prepare() {
 # 			module_list.py sage/misc/cython.py || die "sed failed"
 
 	############################################################################
-	# Modifications to other packages
-	############################################################################
-
-	# save versioned package names
-	local NETWORKX=networkx-0.99.p1-fake_really-0.36.p1
-
-	# apply patches fixing deprecation warning which interfers with test output
-	sage_package ${NETWORKX} \
-		epatch "${FILESDIR}"/${PN}-4.3.1-networkx-sets-deprecation.patch
-
-	############################################################################
 	# Prefixing of Python packages
 	############################################################################
 
@@ -335,10 +325,13 @@ src_prepare() {
 		sed -i "s:python setup.py install:python setup.py install --prefix=\"\${SAGE_LOCAL}\":g" \
 		install
 
-	# fix installation paths
-	sage_package ${NETWORKX} \
-		sed -i "s:python setup.py install --home=\"\$SAGE_LOCAL\":python setup.py install --prefix=\"\${SAGE_LOCAL}\":g" \
-		spkg-install
+	############################################################################
+	# Patch sage to use networx-1.0.1 trac #7608
+	############################################################################
+
+	# same for sage spkg in install file
+	sage_package ${P} \
+		epatch "${FILESDIR}"/trac_7608-networkx-upgrade.patch.bz2
 
 	# pack all unpacked spkgs
 	sage_package_finish
