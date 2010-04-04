@@ -10,6 +10,7 @@ dev-python/docutils
 dev-python/gdmodule
 dev-python/matplotlib
 dev-python/mpmath
+dev-python/networkx
 #dev-python/pycxx
 dev-python/pexpect
 dev-python/pyprocessing
