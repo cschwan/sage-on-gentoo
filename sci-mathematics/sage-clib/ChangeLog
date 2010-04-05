@@ -2,6 +2,10 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  05 Apr 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
+  -files/sage-clib-mpir.patch:
+  Removed unneeded patch
+
 *sage-clib-4.3.5 (05 Apr 2010)
 
   05 Apr 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
