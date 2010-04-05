@@ -124,11 +124,11 @@ src_prepare() {
 		FLINT FLINTQS FPLLL FREETYPE G2RED GAP GD GDMODULE GFAN GHMM GIVARO \
 		GNUTLS GRAPHS GSL ICONV IML IPYTHON JINJA JINJA2 LAPACK LCALC LIBM4RI \
 		LIBPNG LINBOX MATPLOTLIB MAXIMA MERCURIAL MOIN MPFI MPFR MPIR MPMATH \
-		NTL NETWORX NUMPY PALP PARI PEXPECT PIL POLYBORI POLYTOPES_DB PYCRYPTO \
-		PYGMENTS PYNAC PYPROCESSING PYTHON_GNUTLS PYTHON R RATPOINTS READLINE \
-		RUBIKS SAGE_BZIP2 SAGENB SAGETEX SCIPY SCIPY_SANDBOX SCONS SETUPTOOLS \
-		SPHINX SQLALCHEMY SQLITE SYMMETRICA SYMPOW SYMPY TACHYON TERMCAP TWISTED \
-		TWISTEDWEB2 WEAVE ZLIB ZNPOLY ZODB
+		NTL NETWORKX NUMPY PALP PARI PEXPECT PIL POLYBORI POLYTOPES_DB \
+		PYCRYPTO PYGMENTS PYNAC PYPROCESSING PYTHON_GNUTLS PYTHON R RATPOINTS \
+		READLINE RUBIKS SAGE_BZIP2 SAGENB SAGETEX SCIPY SCIPY_SANDBOX SCONS \
+		SETUPTOOLS SPHINX SQLALCHEMY SQLITE SYMMETRICA SYMPOW SYMPY TACHYON \
+		TERMCAP TWISTED TWISTEDWEB2 WEAVE ZLIB ZNPOLY ZODB
 
 	# no verbose copying, copy links and do not change permissions
 	# Make sure that "make test" doesn't build doc
@@ -208,23 +208,18 @@ src_prepare() {
 # 	sage_package ${P} \
 # 		epatch "${FILESDIR}"/${PN}-4.3.2-disable-linbox-commentator.patch
 
-	# TODO: Are these needed ?
-	sage_package ${P} \
-		sed -i \
+	# fix paths for various libraries
+	sed -i \
 		-e "s:SAGE_ROOT +'/local/include/fplll':'/usr/include/fplll':g" \
+		-e "s:SAGE_ROOT + \"/local/include/fplll/fplll.h\":\"/usr/include/fplll/fplll.h\":g" \
+		-e "s:SAGE_ROOT + '/local/include/gmp.h':'/usr/include/gmp.h':g" \
 		-e "s:SAGE_ROOT + \"/local/include/ecm.h\":\"/usr/include/ecm.h\":g" \
 		-e "s:SAGE_ROOT + \"/local/include/png.h\":\"/usr/include/png.h\":g" \
+		-e "s:SAGE_ROOT + '/local/include/ratpoints.h':'/usr/include/ratpoints.h':g" \
 		-e "s:SAGE_ROOT + \"/local/include/symmetrica/def.h\":\"/usr/include/symmetrica/def.h\":g" \
-		module_list.py
-
-	# TODO: -e "s:SAGE_ROOT + \"/local/include/fplll/fplll.h\":\"\":g" \
-	# this file does not exist
-
-	# fix paths for flint, pynac/ginac, numpy and polybori
-	sage_package ${P} \
-		sed -i \
 		-e "s:SAGE_ROOT+'/local/include/FLINT/':'/usr/include/FLINT/':g" \
 		-e "s:SAGE_ROOT + \"/local/include/FLINT/flint.h\":\"/usr/include/FLINT/flint.h\":g" \
+		-e "s:SAGE_ROOT + '/local/include/FLINT/flint.h':'/usr/include/FLINT/flint.h':g" \
 		-e "s:SAGE_ROOT + \"/local/include/pynac/ginac.h\":\"/usr/include/pynac/ginac.h\":g" \
 		-e "s:SAGE_ROOT+'/local/lib/python/site-packages/numpy/core/include':'/usr/lib/python2.6/site-packages/numpy/core/include':g" \
 		-e "s:SAGE_LOCAL + \"/share/polybori/flags.conf\":\"/usr/share/polybori/flags.conf\":g" \
@@ -232,7 +227,7 @@ src_prepare() {
 		-e "s:SAGE_ROOT+'/local/include/polybori':'/usr/include/polybori':g" \
 		-e "s:SAGE_ROOT+'/local/include/polybori/groebner':'/usr/include/polybori/groebner':g" \
 		-e "s:SAGE_ROOT + \"/local/include/polybori/polybori.h\":\"/usr/include/polybori/polybori.h\":g" \
-		module_list.py
+		module_list.py || die "sed failed"
 
 	# remove csage which is built elsewhere
 	sage_package ${P} \
