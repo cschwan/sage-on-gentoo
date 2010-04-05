@@ -2,6 +2,13 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  05 Apr 2010; François Bissey <f.r.bissey@massey.ac.nz>
+  -files/sage-4.3.1-moinmoin-sets-deprecation.patch,
+  -files/sage-4.3.1-networkx-sets-deprecation.patch,
+  -files/sage-4.3.3-sphinx-nobytecompile.patch,
+  -files/sage-4.3.3-sqlalchemy-nobytecompile.patch, sage-4.3.4.ebuild:
+  correct atom for sage-moin, drop old patches now unused.
+
   04 Apr 2010; François Bissey <f.r.bissey@massey.ac.nz>
   +files/trac_7608-networkx-upgrade.patch.bz2, sage-4.3.4.ebuild:
   Patched sage to upgrade to networkx-1.0.1 following issues 7608. 

@@ -89,7 +89,7 @@ RDEPEND="${CDEPEND}
 	dev-python/sqlalchemy[sqlite]
 	>=dev-python/sphinx-0.6.3
 	doc? ( sci-mathematics/sage-doc )
-	wiki? ( www-apps/sage-moin-1.9.1_p1 )"
+	wiki? ( ~www-apps/sage-moin-1.9.1_p1 )"
 
 # tests _will_ fail!
 RESTRICT="mirror test"
