@@ -1,6 +1,14 @@
 # ChangeLog for sci-mathematics/singular
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/sci-mathematics/singular/ChangeLog,v 1.30 2009/11/24 03:47:20 markusle Exp $
+
+*singular-3.1.1 (09 Apr 2010)
+
+  09 Apr 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
+  +files/singular-3.1-emacs-22.patch, +singular-3.1.1.ebuild,
+  +files/singular-3.1-gentoo.patch, +files/singular-3.1-glibc-2.10.patch,
+  +files/singular-3.1.1-nostrip.patch:
+  Version bump. Files copied from bug #311289
 
   24 Nov 2009; Markus Dittrich <markusle@gentoo.org>
   -singular-3.0.4.2.ebuild, singular-3.0.4.4.ebuild:
