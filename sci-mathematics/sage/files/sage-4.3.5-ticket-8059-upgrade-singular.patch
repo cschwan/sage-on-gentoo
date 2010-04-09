@@ -1,0 +1,348 @@
+--- sage/libs/singular/function.pyx.orig	2010-03-28 20:29:46.000000000 +0000
++++ sage/libs/singular/function.pyx	2010-04-07 18:55:22.630981191 +0000
+@@ -1205,7 +1205,7 @@
+         self.call_handler = self.get_call_handler()
+ 
+     cdef BaseCallHandler get_call_handler(self):
+-        cdef idhdl* singular_idhdl = ggetid(self._name, 0)
++        cdef idhdl* singular_idhdl = ggetid(self._name)
+         if singular_idhdl==NULL:
+             raise NameError("Function '%s' is not defined."%self._name)
+         if singular_idhdl.typ!=PROC_CMD:
+@@ -1216,7 +1216,7 @@
+         return res
+ 
+     cdef bint function_exists(self):
+-        cdef idhdl* singular_idhdl = ggetid(self._name, 0)
++        cdef idhdl* singular_idhdl = ggetid(self._name)
+         return singular_idhdl!=NULL
+ 
+ cdef class SingularKernelFunction(SingularFunction):
+--- sage/libs/singular/option.pyx.orig	2010-03-28 20:29:46.000000000 +0000
++++ sage/libs/singular/option.pyx	2010-04-07 18:55:22.634980771 +0000
+@@ -93,7 +93,7 @@
+ from sage.libs.singular.decl cimport OPT_WEIGHTM, Sy_bit
+ 
+ from sage.libs.singular.decl cimport V_SHOW_MEM, V_YACC, V_REDEFINE, V_READING, V_LOAD_LIB, V_DEBUG_LIB
+-from sage.libs.singular.decl cimport V_LOAD_PROC, V_DEF_RES, V_DEBUG_MEM, V_SHOW_USE, V_IMAP, V_PROMPT
++from sage.libs.singular.decl cimport V_LOAD_PROC, V_DEF_RES, V_SHOW_USE, V_IMAP, V_PROMPT
+ from sage.libs.singular.decl cimport V_NSB, V_CONTENTSB, V_CANCELUNIT, V_DEG_STOP
+ 
+ 
+@@ -314,7 +314,6 @@
+      - ``debugLib`` -
+      - ``loadProc`` -
+      - ``defRes`` -
+-     - ``debugMem`` -
+      - ``usage`` -
+      - ``Imap`` -
+      - ``prompt`` -
+@@ -350,7 +349,6 @@
+                          "debugLib": Sy_bit(V_DEBUG_LIB), 
+                          "loadProc": Sy_bit(V_LOAD_PROC), 
+                          "defRes":   Sy_bit(V_DEF_RES),   
+-                         "debugMem": Sy_bit(V_DEBUG_MEM), 
+                          "usage":    Sy_bit(V_SHOW_USE),  
+                          "Imap":     Sy_bit(V_IMAP),      
+                          "prompt":   Sy_bit(V_PROMPT),    
+--- sage/libs/singular/singular-cdefs.pxi.orig	2010-02-11 16:56:03.000000000 +0000
++++ sage/libs/singular/singular-cdefs.pxi	2010-04-07 18:55:22.638980486 +0000
+@@ -75,7 +75,6 @@
+     cdef int V_DEBUG_LIB
+     cdef int V_LOAD_PROC
+     cdef int V_DEF_RES  
+-    cdef int V_DEBUG_MEM
+     cdef int V_SHOW_USE
+     cdef int V_IMAP    
+     cdef int V_PROMPT  
+@@ -115,6 +114,8 @@
+         napoly *n
+         int s
+ 
++    ctypedef struct ring "ip_sring"
++
+     ctypedef struct n_Procs_s:
+ 
+         number* nDiv(number *, number *)
+@@ -127,7 +128,7 @@
+         number*  (*nPar)(int i)
+         int     (*nParDeg)(number* n)
+         int     (*nSize)(number* n)
+-        int     (*nInt)(number* n)
++        int     (*n_Int)(number* n, ring *)
+         int     (*nDivComp)(number* a,number* b)
+         number*  (*nGetUnit)(number* a)
+         number*  (*nExtGcd)(number* a, number* b, number* *s, number* *t)
+@@ -212,7 +213,7 @@
+ 
+     # ideals
+ 
+-    ctypedef struct ideal "ip_sideal":
++    ctypedef struct ideal "sip_sideal":
+         poly **m # gens array
+         long rank # rank of module, 1 for ideals
+         int nrows # always 1
+@@ -679,7 +680,7 @@
+ 
+     # return int representation of number n
+     
+-    int nInt(number *n)
++    int n_Int(number *n, ring *r)
+ 
+     # general number division
+     
+@@ -727,7 +728,7 @@
+ 
+     # get numerator
+     
+-    number *nlGetNom(number *n, ring *r)
++    number *nlGetNumerator(number *n, ring *r)
+ 
+     # get denominator
+     
+@@ -759,7 +760,7 @@
+ 
+     # algebraic number from int
+     
+-    number *naInit(int)
++    number *naInit(int, ring *r)
+ 
+     # algebraic number destructor
+     
+@@ -779,11 +780,7 @@
+ 
+     # get exponent of i-th variable
+     
+-    int napGetExp(napoly *, int i)
+-
+-    # loop through algebraic number
+-    
+-    napoly *napIter(napoly *)
++    int napGetExpFrom(napoly *, int i, ring* r)
+ 
+     # normalize a number
+ 
+@@ -802,7 +799,7 @@
+ 
+ 
+     # init integer
+-    number *nrzInit(int i)
++    number *nrzInit(int i, ring *r)
+ 
+     # init ZmodN from GMP
+     number *nrnMapGMP(number *v)
+@@ -945,7 +942,6 @@
+     cdef int V_DEBUG_LIB
+     cdef int V_LOAD_PROC
+     cdef int V_DEF_RES
+-    cdef int V_DEBUG_MEM
+     cdef int V_SHOW_USE
+     cdef int V_IMAP
+     cdef int V_PROMPT
+@@ -962,7 +958,7 @@
+ 
+     int     IsCmd(char *n, int  tok)
+ 
+-    idhdl* ggetid(char *n, bint local)
++    idhdl* ggetid(char *n)
+ 
+     leftv * iiMake_proc(idhdl *pn, package *pack, leftv *sl)
+     
+--- sage/libs/singular/singular.pyx.orig	2010-03-28 20:29:46.000000000 +0000
++++ sage/libs/singular/singular.pyx	2010-04-07 18:55:22.639980488 +0000
+@@ -29,12 +29,12 @@
+ from sage.libs.singular.decl cimport SR_HDL, SR_INT, SR_TO_INT, singular_options
+ from sage.libs.singular.decl cimport On, Off, SW_USE_NTL, SW_USE_NTL_GCD_0, SW_USE_EZGCD, SW_USE_NTL_SORT, SW_USE_NTL_GCD_P
+ from sage.libs.singular.decl cimport napoly, lnumber, Sy_bit, OPT_REDSB, OPT_INTSTRATEGY, OPT_REDTAIL, OPT_REDTHROUGH
+-from sage.libs.singular.decl cimport nlGetNom, nlGetDenom, nlDelete, nlInit2gmp
++from sage.libs.singular.decl cimport nlGetNumerator, nlGetDenom, nlDelete, nlInit2gmp
+ from sage.libs.singular.decl cimport naIsOne, naIsOne, naIsZero, naPar, naInit, naAdd, naMult, naDelete, naMap00
+-from sage.libs.singular.decl cimport napGetCoeff, napGetExp, napIter
++from sage.libs.singular.decl cimport napGetCoeff, napGetExpFrom, pNext
+ from sage.libs.singular.decl cimport nrzInit, nr2mMapZp, nrnMapGMP
+ from sage.libs.singular.decl cimport siInit
+-from sage.libs.singular.decl cimport nInt, n_Init
++from sage.libs.singular.decl cimport n_Int, n_Init
+ from sage.libs.singular.decl cimport rChangeCurrRing
+ 
+ from sage.rings.rational_field import RationalField
+@@ -78,7 +78,7 @@
+     ##  structures aligned on 4 byte boundaries and therefor have last bit  zero.
+     ##  (The second bit is reserved as tag to allow extensions of  this  scheme.)
+     ##  Using immediates as pointers and dereferencing them gives address errors.
+-    nom = nlGetNom(n, _ring)
++    nom = nlGetNumerator(n, _ring)
+     mpz_init(nom_z)
+ 
+     if (SR_HDL(nom) & SR_INT): mpz_set_si(nom_z, SR_TO_INT(nom))
+@@ -153,13 +153,13 @@
+ 
+     while z:
+         c = base.objectptr.initi(c,<long>napGetCoeff(z))
+-        e = napGetExp(z,1)
++        e = napGetExpFrom(z,1, _ring)
+         if e == 0:
+             ret = base.objectptr.add(ret, c, ret)
+         else:
+             a = ( e * base.objectptr.sage_generator() ) % order
+             ret = base.objectptr.axpy(ret, c, a, ret)
+-        z = napIter(z)
++        z = <napoly*>pNext(<poly*>z)
+     return (<FFgivE>base._zero_element)._new_c(ret)
+ 
+ cdef FFgf2eE si2sa_GFqNTLGF2E(number *n, ring *_ring, FiniteField_ntl_gf2e base):
+@@ -190,9 +190,9 @@
+ 
+     while z:
+         c = <long>napGetCoeff(z)
+-        e = napGetExp(z,1)
++        e = napGetExpFrom(z,1, _ring)
+         ret += c * a**e
+-        z = napIter(z)
++        z = <napoly*>pNext(<poly*>z)
+     return ret
+ 
+ cdef object si2sa_GFqPari(number *n, ring *_ring, object base):
+@@ -223,12 +223,12 @@
+ 
+     while z:
+         c = <long>napGetCoeff(z)
+-        e = napGetExp(z,1)
++        e = napGetExpFrom(z,1, _ring)
+         if e == 0:
+             ret = ret + c
+         elif c != 0:
+             ret = ret  + c * a**e 
+-        z = napIter(z)
++        z = <napoly*>pNext(<poly*>z)
+     return base(ret)
+ 
+ cdef object si2sa_NF(number *n, ring *_ring, object base):
+@@ -261,12 +261,12 @@
+     while z:
+         c = napGetCoeff(z)
+         coeff = si2sa_QQ(c, _ring)
+-        e = napGetExp(z,1)
++        e = napGetExpFrom(z,1, _ring)
+         if e == 0:
+             ret = ret + coeff
+         elif coeff != 0:
+             ret = ret  + coeff * a**e 
+-        z = napIter(z)
++        z = <napoly*>pNext(<poly*>z)
+     return base(ret)
+ 
+ cdef inline object si2sa_ZZmod(number *n, ring *_ring, object base):
+@@ -313,7 +313,7 @@
+         ret.set_from_mpz(<__mpz_struct*>n)
+         return base(ret)
+ 
+-    return base(_ring.cf.nInt(n))
++    return base(_ring.cf.n_Int(n,_ring))
+ 
+ cdef number *sa2si_QQ(Rational r, ring *_ring):
+     """
+@@ -342,11 +342,11 @@
+ 
+     a = naPar(1)
+ 
+-    apow1 = naInit(1)
+-    n1 = naInit(0)
++    apow1 = naInit(1, _ring)
++    n1 = naInit(0, _ring)
+ 
+     while quo!=0:
+-        coeff = naInit(quo%b)
++        coeff = naInit(quo%b, _ring)
+ 
+         if not naIsZero(coeff):
+             n2 = naAdd( naMult(coeff, apow1),  n1)
+@@ -375,12 +375,12 @@
+     cdef GF2X_c rep = GF2E_rep(elem.x)
+ 
+     if GF2X_deg(rep) >= 1:
+-        n1 = naInit(0)
++        n1 = naInit(0, _ring)
+         a = naPar(1)
+-        apow1 = naInit(1)
++        apow1 = naInit(1, _ring)
+ 
+         for i from 0 <= i <= GF2X_deg(rep):
+-            coeff = naInit(GF2_conv_to_long(GF2X_coeff(rep,i)))
++            coeff = naInit(GF2_conv_to_long(GF2X_coeff(rep,i)), _ring)
+ 
+             if not naIsZero(coeff):
+                 n2 = naAdd( naMult(coeff, apow1),  n1)
+@@ -396,7 +396,7 @@
+         naDelete(&apow1, _ring)
+         naDelete(&a, _ring)
+     else:
+-       n1 = naInit(GF2_conv_to_long(GF2X_coeff(rep,0)))
++       n1 = naInit(GF2_conv_to_long(GF2X_coeff(rep,0)), _ring)
+ 
+     return n1
+ 
+@@ -412,12 +412,12 @@
+ 
+ 
+     if len(elem) > 1:
+-        n1 = naInit(0)
++        n1 = naInit(0, _ring)
+         a = naPar(1)
+-        apow1 = naInit(1)
++        apow1 = naInit(1, _ring)
+ 
+         for i from 0 <= i < len(elem):
+-            coeff = naInit(int(elem[i]))
++            coeff = naInit(int(elem[i]), _ring)
+ 
+             if not naIsZero(coeff):
+                 n2 = naAdd( naMult(coeff, apow1),  n1)
+@@ -433,7 +433,7 @@
+         naDelete(&apow1, _ring)
+         naDelete(&a, _ring)
+     else:
+-        n1 = naInit(int(elem))
++        n1 = naInit(int(elem), _ring)
+ 
+     return n1
+ 
+@@ -447,9 +447,9 @@
+ 
+     elem = list(elem)
+ 
+-    n1 = naInit(0)
++    n1 = naInit(0, _ring)
+     a = naPar(1)
+-    apow1 = naInit(1)
++    apow1 = naInit(1, _ring)
+ 
+     for i from 0 <= i < len(elem):
+         nlCoeff = nlInit2gmp( mpq_numref((<Rational>elem[i]).value), mpq_denref((<Rational>elem[i]).value) )
+@@ -485,7 +485,7 @@
+         sage: P(12345678901234567890) + 2 - 2
+         12345678901234567890
+     """
+-    cdef number *n = nrzInit(0)
++    cdef number *n = nrzInit(0, _ring)
+     mpz_set(<__mpz_struct*>n, d.value)
+     return <number*>n
+ 
+@@ -535,7 +535,7 @@
+ 
+ cdef object si2sa(number *n, ring *_ring, object base):
+     if PY_TYPE_CHECK(base, FiniteField_prime_modn):
+-        return base(nInt(n))
++        return base(n_Int(n, _ring))
+ 
+     elif PY_TYPE_CHECK(base, RationalField):
+         return si2sa_QQ(n,_ring)
+@@ -557,7 +557,7 @@
+ 
+     elif PY_TYPE_CHECK(base, IntegerModRing_generic):
+         if _ring.ringtype == 0:
+-            return base(nInt(n))
++            return base(n_Int(n, _ring))
+         return si2sa_ZZmod(n, _ring, base)
+ 
+     else:

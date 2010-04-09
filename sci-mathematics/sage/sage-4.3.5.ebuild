@@ -94,13 +94,12 @@ RDEPEND="${CDEPEND}
 # tests _will_ fail!
 RESTRICT="mirror test"
 
-# TODO: In order to remove Singular, pay attention to the following steps:
-# DEPEND: >=sci-mathematics/singular-3.1.0.4-r1
-# rewrite singular ebuild to correctly install libsingular
-# check if sage needs a script and specific patches for library
-# -e "s:ln -sf Singular sage_singular:ln -sf /usr/bin/Singular sage_singular:g" \
-# -e "s:\$SAGE_LOCAL/share/singular:/usr/share/singular:g" \
-# and fix paths to singular
+# TODO: Wait for Ticket #8059 to get fixed and do the following things:
+# - DEPEND: >=sci-mathematics/singular-3.1.0.9 (3.1.1 ?)
+# - add SINGULAR to sage_clean_targets
+# - rewrite singular ebuild to install libsingular or write separate ebuild
+# - check if Sage needs symbolic links and/or start scripts
+# - unccomment sections which fixes directories pointing to singular
 
 pkg_setup() {
 	# disable --as-needed until all bugs related are fixed
@@ -229,6 +228,12 @@ src_prepare() {
 		-e "s:SAGE_ROOT + \"/local/include/polybori/polybori.h\":\"/usr/include/polybori/polybori.h\":g" \
 		module_list.py || die "sed failed"
 
+# 	# fix paths for singular
+# 	sed -i \
+# 		-e "s:SAGE_ROOT +'/local/include/singular':'/usr/include/singular':g" \
+# 		-e "s:SAGE_ROOT + \"/local/include/libsingular.h\":\"/usr/include/libsingular.h\":g" \
+# 		module_list.py || die "sed failed"
+
 	# remove csage which is built elsewhere
 	sage_package ${P} \
 		epatch "${FILESDIR}"/${PN}-4.3.1-remove-csage.patch
@@ -274,10 +279,15 @@ src_prepare() {
 	sage_package ${P} \
 		epatch "${FILESDIR}"/${PN}-4.3.1-arpack-from-scipy.patch
 
-	# Fix gap invocation of sage.g - hopefully fixing Marek's problem.
-	sage_package ${P} \
-		sed -i "s:DB_HOME = \"%s/data/\"%SAGE_ROOT:DB_HOME = \"${SAGE_ROOT}/data/\":g" \
-		sage/interfaces/gap.py
+	# TODO: Did not work (?), remove it
+# 	# Fix gap invocation of sage.g - hopefully fixing Marek's problem.
+# 	sage_package ${P} \
+# 		sed -i "s:DB_HOME = \"%s/data/\"%SAGE_ROOT:DB_HOME = \"${SAGE_ROOT}/data/\":g" \
+# 		sage/interfaces/gap.py
+
+# 	# upgrade singular
+# 	sage_package ${P} \
+# 		epatch "${FILESDIR}"/${P}-ticket-8059-upgrade-singular.patch
 
 	# Replace gmp with mpir
 # 	sage_package ${P} \
