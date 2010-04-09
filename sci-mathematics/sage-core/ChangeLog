@@ -2,6 +2,10 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  09 Apr 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
+  sage-core-4.3.5.ebuild:
+  Added new code which which is not tested - we need Singular for it
+
   03 Apr 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
   -sage-core-4.3.3.ebuild, -files/sage-core-4.3.3-remove-csage.patch,
   -files/sage-core-4.3.3-remove-csage-2.patch:

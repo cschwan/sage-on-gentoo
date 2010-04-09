@@ -22,7 +22,8 @@ IUSE=""
 RESTRICT="mirror"
 
 # TODO: add dependencies
-DEPEND=""
+DEPEND="~sci-mathematics/sage-base-${PV}
+	~sci-mathematics/sage-scripts-${PV}"
 RDEPEND="${DEPEND}"
 
 S="${WORKDIR}/${MY_P}"
@@ -30,6 +31,12 @@ S="${WORKDIR}/${MY_P}"
 pkg_setup() {
 	# disable --as-needed until all bugs related are fixed
 	append-ldflags -Wl,--no-as-needed
+
+	# switch to lapack-atlas as some dependencies of sage are linked against it
+	# specifically because of clapack.
+	OLD_IMPLEM=$(eselect lapack show | cut -d: -f2)
+	einfo "Switching to lapack-atlas with eselect."
+	eselect lapack set atlas
 }
 
 src_prepare() {
@@ -60,6 +67,12 @@ src_prepare() {
 		-e "s:SAGE_ROOT+'/local/include/polybori/groebner':'/usr/include/polybori/groebner':g" \
 		-e "s:SAGE_ROOT + \"/local/include/polybori/polybori.h\":\"/usr/include/polybori/polybori.h\":g" \
 		module_list.py || die "sed failed"
+
+# 	# fix paths for singular
+# 	sed -i \
+# 		-e "s:SAGE_ROOT +'/local/include/singular':'${SAGE_LOCAL}/include/singular':g" \
+# 		-e "s:SAGE_ROOT + \"/local/include/libsingular.h\":\"${SAGE_LOCAL}/include/libsingular.h\":g" \
+# 		module_list.py || die "sed failed"
 
 	# set path to system Cython
 	sed -i "s:SAGE_LOCAL + '/lib/python/site-packages/Cython/Includes/':'/usr/$(get_libdir)/python2.6/site-packages/Cython/Includes/':g" \
@@ -110,6 +123,38 @@ src_prepare() {
 	# use arpack from scipy (see also scipy ticket #231)
 	epatch "${FILESDIR}"/${PN}-4.3.3-arpack-from-scipy.patch
 
+	# Replace gmp with mpir
+# 	sage_package ${P} \
+# 		sed -i "s:gmp\.h:mpir.h:g" \
+# 			module_list.py \
+# 			sage/libs/gmp/types.pxd \
+# 			sage/combinat/partitions_c.cc \
+# 			sage/combinat/partitions_c.h \
+# 			sage/combinat/partitions.pyx \
+# 			sage/ext/cdefs.pxi \
+# 			sage/libs/gmp/mpf.pxd \
+# 			sage/libs/gmp/mpn.pxd \
+# 			sage/libs/gmp/mpq.pxd \
+# 			sage/libs/gmp/mpz.pxd \
+# 			sage/libs/gmp/random.pxd \
+# 			sage/libs/gmp/types.pxd \
+# 			sage/libs/linbox/matrix_rational_dense_linbox.cpp \
+# 			sage/misc/cython.py \
+# 			sage/rings/memory.pyx \
+# 			sage/rings/bernmm/bern_modp.cpp \
+# 			sage/rings/bernmm/bern_rat.cpp \
+# 			sage/rings/bernmm/bern_rat.h \
+# 			sage/rings/bernmm/bernmm-test.cpp \
+# 			sage/rings/integer.pyx || die "sed failed"
+
+# 	sage_package ${P} \
+# 		sed -i \
+# 			-e "s:'gmp':'mpir':g" \
+# 			-e "s:\"gmp\":\"mpir\":g" \
+# 			-e "s:'gmpxx':'mpirxx':g" \
+# 			-e "s:\"gmpxx\":\"mpirxx\":g" \
+# 			module_list.py sage/misc/cython.py || die "sed failed"
+
 	# do not forget to run distutils
 	distutils_src_prepare
 }
@@ -125,6 +170,21 @@ src_configure() {
 
 	# files are not built unless they are touched
 	find sage -name "*pyx" -exec touch '{}' \; || die "find failed"
+}
+
+src_install() {
+	# TODO: check if this works - copies files to Sage's devel dir
+	insinto "${SAGE_ROOT}"/devel/sage-main
+	doins -r build/* || die "doins failed"
+
+	# 
+	distutils_src_install
+}
+
+pkg_postinst() {
+	# Restoring the original lapack settings.
+	einfo "Restoring your original lapack settings with eselect"
+	eselect lapack set ${OLD_IMPLEM}
 }
 
 # TODO: some files are not installed
