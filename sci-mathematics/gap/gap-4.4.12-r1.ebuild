@@ -4,7 +4,7 @@
 
 EAPI=2
 
-inherit versionator elisp-common
+inherit eutils versionator elisp-common
 
 XTOM_VERSION=1r1p4
 
