@@ -231,7 +231,9 @@ src_prepare() {
 		-e "s:SAGE_ROOT + \"/local/include/libsingular.h\":\"${SAGE_LOCAL}/include/libsingular.h\":g" \
 		module_list.py || die "sed failed"
 
-	sed -i "s:m.library_dirs += \['%s/lib' % SAGE_LOCAL\]:m.library_dirs += \['${SAGE_LOCAL}/$(get_libdir)','%s/lib' % SAGE_LOCAL\]:g" \
+	sed -i \
+		-e "s:m.library_dirs += \['%s/lib' % SAGE_LOCAL\]:m.library_dirs += \['${SAGE_LOCAL}/$(get_libdir)','%s/lib' % SAGE_LOCAL\]:g" \
+		-e "s:include_dirs = \['%s/include'%SAGE_LOCAL:include_dirs = \['${SAGE_LOCAL}/include','%s/include'%SAGE_LOCAL:g" \
 		setup.py
 # 	# fix paths for singular
 # 	sed -i \
