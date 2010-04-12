@@ -3,6 +3,9 @@
 # $Header: $
 
   12 Apr 2010; François Bissey <f.r.bissey@massey.ac.nz> sage-4.3.5.ebuild:
+  First fix to use external singular. There may be other later.
+
+  12 Apr 2010; François Bissey <f.r.bissey@massey.ac.nz> sage-4.3.5.ebuild:
   Remove singular and use sage-singular
 
   09 Apr 2010; Christopher Schwan <cschwan@students.uni-mainz.de>

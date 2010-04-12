@@ -227,6 +227,8 @@ src_prepare() {
 		-e "s:SAGE_ROOT+'/local/include/polybori':'/usr/include/polybori':g" \
 		-e "s:SAGE_ROOT+'/local/include/polybori/groebner':'/usr/include/polybori/groebner':g" \
 		-e "s:SAGE_ROOT + \"/local/include/polybori/polybori.h\":\"/usr/include/polybori/polybori.h\":g" \
+		-e "s:SAGE_ROOT+'/local/include/singular':'${SAGE_LOCAL}/include/singular':g" \
+		-e "s:SAGE_ROOT+'/local/include/libsingular.h':'${SAGE_LOCAL}/include/libsingular.h':g" \
 		module_list.py || die "sed failed"
 
 # 	# fix paths for singular
