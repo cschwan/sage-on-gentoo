@@ -3,6 +3,9 @@
 # $Header: $
 
   12 Apr 2010; François Bissey <f.r.bissey@massey.ac.nz> sage-4.3.5.ebuild:
+  Hopefully the last bit of frustration.
+
+  12 Apr 2010; François Bissey <f.r.bissey@massey.ac.nz> sage-4.3.5.ebuild:
   More fix for using sage-singular
 
   12 Apr 2010; François Bissey <f.r.bissey@massey.ac.nz> sage-4.3.5.ebuild:
