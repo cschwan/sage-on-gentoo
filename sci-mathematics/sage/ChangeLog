@@ -3,6 +3,9 @@
 # $Header: $
 
   12 Apr 2010; François Bissey <f.r.bissey@massey.ac.nz> sage-4.3.5.ebuild:
+  Trying to fix sage install with sage-singular
+
+  12 Apr 2010; François Bissey <f.r.bissey@massey.ac.nz> sage-4.3.5.ebuild:
   And one more... Last for this evening -hopefully it works now.
 
   12 Apr 2010; François Bissey <f.r.bissey@massey.ac.nz> sage-4.3.5.ebuild:

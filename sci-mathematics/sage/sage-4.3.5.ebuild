@@ -388,6 +388,7 @@ src_install() {
 	# TODO: write own installation routine which copies only files needed
 
 	# install files
+	export LIBRARY_PATH="${SAGE_LOCAL}"/$(get_libdir)
 	emake DESTDIR="${D}${SAGE_PREFIX}" install || die "emake install failed"
 
 	# install entries for desktop managers
