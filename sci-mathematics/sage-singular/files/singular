@@ -1,0 +1,2 @@
+#!/bin/sh
+Singular-3-1-0 $*
