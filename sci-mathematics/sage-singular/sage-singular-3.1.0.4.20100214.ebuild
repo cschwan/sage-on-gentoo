@@ -101,7 +101,7 @@ src_compile() {
 		--with-apint=gmp \
 		--with-gmp=/usr \
 		--with-NTL \
-		--with-ntl=/usr
+		--with-ntl=/usr \
 		--enable-factory \
 		--enable-libfac \
                 --enable-omalloc
