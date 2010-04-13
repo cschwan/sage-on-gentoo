@@ -1,0 +1,18 @@
+#!/bin/sh
+
+REPOSITORY=..
+
+# Find all ebuilds in this repository
+EBUILDS=( $(find "${REPOSITORY}" -name "*ebuild" | sort) )
+
+for i in "${EBUILDS[@]}" ; do
+	echo $i
+
+	# find TODOs
+	grep --regexp "# TODO.*" $i | sed "s:[[:space:]]*\# TODO:# TODO:g"
+
+	# check if testing is restricted
+	if grep RESTRICT $i | grep test --quiet ; then
+		echo "Testing restricted"
+	fi
+done
