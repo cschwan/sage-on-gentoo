@@ -396,7 +396,7 @@ src_install() {
 	dodir ${SAGE_PREFIX}/bin
 	cp -r --preserve=mode,links * ${D}${SAGE_ROOT}
 	python local/bin/sage-hardcode_sage_root ${D}${SAGE_ROOT}/sage ${D}${SAGE_ROOT}
-	cp ${D}${SAGE_ROOT} ${SAGE_PREFIX}/bin/
+	cp ${D}${SAGE_ROOT}/sage ${D}${SAGE_PREFIX}/bin/
 
 	# install entries for desktop managers
 	doicon "${FILESDIR}"/sage.svg || die "doicon failed"
