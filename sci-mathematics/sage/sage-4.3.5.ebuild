@@ -170,6 +170,10 @@ src_prepare() {
 		-e "/PYTHONHOME=.*/d" \
 		sage-env
 
+	# both sage-script and sage-singular want to create the sage_singular link
+	sage_package sage_scripts-${PV} \
+		sed -i ":ln -sf Singular sage_singular:d" spkg-install sage-spkg-install
+
 	# create this directory manually
 	mkdir -p "${S}"/local/$(get_libdir)/python2.6/site-packages \
 		|| die "mkdir failed"
