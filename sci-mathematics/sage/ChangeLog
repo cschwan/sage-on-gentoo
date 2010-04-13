@@ -3,6 +3,9 @@
 # $Header: $
 
   13 Apr 2010; François Bissey <f.r.bissey@massey.ac.nz> sage-4.3.5.ebuild:
+  Correct sed syntax.
+
+  13 Apr 2010; François Bissey <f.r.bissey@massey.ac.nz> sage-4.3.5.ebuild:
   When you think it is all over... bang package collision!
 
   13 Apr 2010; François Bissey <f.r.bissey@massey.ac.nz> sage-4.3.5.ebuild:

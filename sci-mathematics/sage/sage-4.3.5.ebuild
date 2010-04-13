@@ -172,7 +172,7 @@ src_prepare() {
 
 	# both sage-script and sage-singular want to create the sage_singular link
 	sage_package sage_scripts-${PV} \
-		sed -i ":ln -sf Singular sage_singular:d" spkg-install sage-spkg-install
+		sed -i "/ln -sf Singular sage_singular/d" spkg-install sage-spkg-install
 
 	# create this directory manually
 	mkdir -p "${S}"/local/$(get_libdir)/python2.6/site-packages \
