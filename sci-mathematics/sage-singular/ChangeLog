@@ -2,6 +2,14 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header$
 
+  13 Apr 2010; François Bissey <f.r.bissey@massey.ac.nz>
+  sage-singular-3.1.0.4.20100214.ebuild:
+  remove LIB
+
+  12 Apr 2010; François Bissey <f.r.bissey@massey.ac.nz>
+  sage-singular-3.1.0.4.20100214.ebuild:
+  Enforce PICness for now. minor fix to files not installed.
+
 *sage-singular-3.1.0.4.20100214 (12 Apr 2010)
 
   12 Apr 2010; François Bissey <f.r.bissey@massey.ac.nz>

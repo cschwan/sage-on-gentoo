@@ -29,6 +29,8 @@ DEPEND="${RDEPEND}
 
 S="${WORKDIR}/${MY_P}/src"
 
+append-flags -fPIC
+
 src_prepare () {
 	cp ../patches/mminit.cc kernel/
 	cp ../patches/assert.h factory/
@@ -113,12 +115,13 @@ src_install(){
 #	Not making the link LIB to lib since it seems to be incorrect in the first place.
 	cp -R build/* "${D}"
 	rm "${D}${SAGE_LOCAL}/bin/Singular"
+	rm "${D}${SAGE_LOCAL}/LIB"
 	cp "${FILESDIR}/singular" "${D}${SAGE_LOCAL}/bin"
 	cp "${D}${SAGE_LOCAL}/bin/singular" "${D}${SAGE_LOCAL}/bin/Singular"
 	cd "${D}${SAGE_LOCAL}/bin/"
 	ln -sf Singular sage_singular
-	cp ../shared/singular.hlp "${D}${SAGE_LOCAL}/share/singular"
-	cp ../shared/singular.idx "${D}${SAGE_LOCAL}/share/singular"
+	cp "${S}/../shared/singular.hlp" "${D}${SAGE_LOCAL}/share/singular"
+	cp "${S}/../shared/singular.idx" "${D}${SAGE_LOCAL}/share/singular"
 #	Beware that when we move stuff in /usr we should make sure
 #	that we call singular's binaries in $SAGE_LOCAL.
 }
