@@ -115,6 +115,7 @@ src_install(){
 #	Not making the link LIB to lib since it seems to be incorrect in the first place.
 	cp -R build/* "${D}"
 	rm "${D}${SAGE_LOCAL}/bin/Singular"
+	rm "${D}${SAGE_LOCAL}/LIB"
 	cp "${FILESDIR}/singular" "${D}${SAGE_LOCAL}/bin"
 	cp "${D}${SAGE_LOCAL}/bin/singular" "${D}${SAGE_LOCAL}/bin/Singular"
 	cd "${D}${SAGE_LOCAL}/bin/"
