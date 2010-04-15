@@ -170,6 +170,10 @@ src_prepare() {
 		-e "/PYTHONHOME=.*/d" \
 		sage-env
 
+	# both sage-script and sage-singular want to create the sage_singular link
+	sage_package sage_scripts-${PV} \
+		sed -i "/ln -sf Singular sage_singular/d" spkg-install sage-spkg-install
+
 	# create this directory manually
 	mkdir -p "${S}"/local/$(get_libdir)/python2.6/site-packages \
 		|| die "mkdir failed"
@@ -388,7 +392,15 @@ src_install() {
 	# TODO: write own installation routine which copies only files needed
 
 	# install files
-	emake DESTDIR="${D}${SAGE_PREFIX}" install || die "emake install failed"
+#	export LD_LIBRARY_PATH="${SAGE_LOCAL}"/$(get_libdir)
+#	emake DESTDIR="${D}${SAGE_PREFIX}" install || die "emake install failed"
+#	Do things manually not running sage -c before pkg_postinst
+	dodir ${SAGE_PREFIX}
+	dodir ${SAGE_ROOT}
+	dodir ${SAGE_PREFIX}/bin
+	cp -r --preserve=mode,links * ${D}${SAGE_ROOT}
+	python local/bin/sage-hardcode_sage_root ${D}${SAGE_ROOT}/sage ${D}${SAGE_ROOT}
+	cp ${D}${SAGE_ROOT}/sage ${D}${SAGE_PREFIX}/bin/
 
 	# install entries for desktop managers
 	doicon "${FILESDIR}"/sage.svg || die "doicon failed"
