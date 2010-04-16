@@ -2,6 +2,13 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*sage-doc-4.3.5-r1 (16 Apr 2010)
+
+  16 Apr 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
+  +sage-doc-4.3.5-r1.ebuild:
+  New revision installs help files which where installed before in
+  sage-core
+
 *sage-doc-4.3.5 (05 Apr 2010)
 
   05 Apr 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
