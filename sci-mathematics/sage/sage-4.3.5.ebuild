@@ -13,7 +13,7 @@ SRC_URI="mirror://sage/src/${P}.tar"
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64 ~ppc ~x86"
-IUSE="doc wiki"
+IUSE="wiki"
 
 # TODO: check dependencies use flagged packages
 CDEPEND=">=app-arch/bzip2-1.0.5
@@ -72,6 +72,7 @@ DEPEND="${CDEPEND}
 	dev-util/pkgconfig"
 RDEPEND="${CDEPEND}
 	>=dev-python/imaging-1.1.6
+	sci-mathematics/sage-doc
 	~sci-mathematics/sage-examples-${PV}
 	~sci-mathematics/sage-latex-2.2.3
 	>=sci-mathematics/gap-4.4.12
@@ -89,7 +90,6 @@ RDEPEND="${CDEPEND}
 	>=dev-python/cvxopt-0.9
 	dev-python/sqlalchemy[sqlite]
 	>=dev-python/sphinx-0.6.3
-	doc? ( sci-mathematics/sage-doc )
 	wiki? ( ~www-apps/sage-moin-1.9.1_p1 )"
 
 # tests _will_ fail!
@@ -263,6 +263,10 @@ src_prepare() {
 	# remove csage files which are not needed
 	sage_package ${P} \
 		rm -rf c_lib
+
+	# documentation and help files are installed with sage-doc
+	sage_package ${P} \
+		rm -rf doc
 
 	# unset custom C(XX)FLAGS - this is just a temporary hack
 	sage_package ${P} \
