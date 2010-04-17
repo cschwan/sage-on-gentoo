@@ -66,17 +66,19 @@ src_prepare() {
 		-e "s:SAGE_ROOT+'/local/include/polybori':'/usr/include/polybori':g" \
 		-e "s:SAGE_ROOT+'/local/include/polybori/groebner':'/usr/include/polybori/groebner':g" \
 		-e "s:SAGE_ROOT + \"/local/include/polybori/polybori.h\":\"/usr/include/polybori/polybori.h\":g" \
+		-e "s:SAGE_ROOT +'/local/include/singular':'${SAGE_LOCAL}/include/singular':g" \
+		-e "s:SAGE_ROOT + \"/local/include/libsingular.h\":\"${SAGE_LOCAL}/include/libsingular.h\":g" \
 		module_list.py || die "sed failed"
-
-# 	# fix paths for singular
-# 	sed -i \
-# 		-e "s:SAGE_ROOT +'/local/include/singular':'${SAGE_LOCAL}/include/singular':g" \
-# 		-e "s:SAGE_ROOT + \"/local/include/libsingular.h\":\"${SAGE_LOCAL}/include/libsingular.h\":g" \
-# 		module_list.py || die "sed failed"
 
 	# set path to system Cython
 	sed -i "s:SAGE_LOCAL + '/lib/python/site-packages/Cython/Includes/':'/usr/$(get_libdir)/python2.6/site-packages/Cython/Includes/':g" \
 		setup.py || die "sed failed"
+
+	# TODO: once Singular is installed to standard dirs, remove the following
+	sed -i \
+		-e "s:m.library_dirs += \['%s/lib' % SAGE_LOCAL\]:m.library_dirs += \['${SAGE_LOCAL}/$(get_libdir)','%s/lib' % SAGE_LOCAL\]:g" \
+		-e "s:include_dirs = \['%s/include'%SAGE_LOCAL:include_dirs = \['${SAGE_LOCAL}/include','%s/include'%SAGE_LOCAL:g" \
+		setup.py
 
 	# fix include paths
 	sed -i \
@@ -113,6 +115,12 @@ src_prepare() {
 		-e "s:maxima --very-quiet:maxima -l ecl --very-quiet:g" \
 		sage/interfaces/maxima.py || die "sed failed"
 
+	# TODO: Did not work (?), remove it
+# 	# Fix gap invocation of sage.g - hopefully fixing Marek's problem.
+# 	sage_package ${P} \
+# 		sed -i "s:DB_HOME = \"%s/data/\"%SAGE_ROOT:DB_HOME = \"${SAGE_ROOT}/data/\":g" \
+# 		sage/interfaces/gap.py
+
 	# Ticket #7803:
 	# apply patches fixing deprecation warning which interfers with test output
 	epatch "${FILESDIR}"/${PN}-4.3.3-combinat-sets-deprecation.patch
@@ -122,6 +130,9 @@ src_prepare() {
 
 	# use arpack from scipy (see also scipy ticket #231)
 	epatch "${FILESDIR}"/${PN}-4.3.3-arpack-from-scipy.patch
+
+	# upgrade networkx to 1.0.1 (see Trac #7608)
+	epatch "${FILESDIR}"/${P}-upgrade-networkx.patch.bz2
 
 	# Replace gmp with mpir
 # 	sage_package ${P} \
@@ -174,8 +185,9 @@ src_configure() {
 
 src_install() {
 	# TODO: check if this works - copies files to Sage's devel dir
+	# TODO: check if this is needed only for testing
 	insinto "${SAGE_ROOT}"/devel/sage-main
-	doins -r build/* || die "doins failed"
+	doins -r sage || die "doins failed"
 
 	# 
 	distutils_src_install

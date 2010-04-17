@@ -105,6 +105,7 @@ sci-mathematics/rubiks
 sci-mathematics/sage
 sci-mathematics/sage-base
 sci-mathematics/sage-clib
+sci-mathematics/sage-core
 sci-mathematics/sage-data
 sci-mathematics/sage-doc
 sci-mathematics/sage-examples
