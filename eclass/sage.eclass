@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
-EAPI=2
-
 # @ECLASS: sage.eclass
 # @MAINTAINER:
 # Francois Bissey <f.r.bissey@massey.ac.nz>

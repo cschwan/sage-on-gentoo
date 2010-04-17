@@ -2,6 +2,8 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
+EAPI=2
+
 inherit sage
 
 MY_P=( conway_polynomials-0.2 elliptic_curves-0.1 graphs-20070722.p1
