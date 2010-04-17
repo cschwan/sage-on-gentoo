@@ -12,7 +12,7 @@ SRC_URI="mirror://sage/src/${P}.tar"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~ppc ~x86"
+KEYWORDS="~amd64 ~x86"
 IUSE="wiki"
 
 # TODO: check dependencies use flagged packages
@@ -380,12 +380,13 @@ src_install() {
 	# TODO: write own installation routine which copies only files needed
 
 	# install files
-	dodir ${SAGE_PREFIX}
-	dodir ${SAGE_ROOT}
-	dodir ${SAGE_PREFIX}/bin
-	cp -r --preserve=mode,links * ${D}${SAGE_ROOT}
-	python local/bin/sage-hardcode_sage_root ${D}${SAGE_ROOT}/sage ${D}${SAGE_ROOT}
-	cp ${D}${SAGE_ROOT}/sage ${D}${SAGE_PREFIX}/bin/
+	dodir "${SAGE_PREFIX}" || die "dodir failed"
+	dodir "${SAGE_ROOT}" || die "dodir failed"
+	dodir "${SAGE_PREFIX}"/bin || die "dodir failed"
+	cp -r --preserve=mode,links * "${D}${SAGE_ROOT}"
+	python local/bin/sage-hardcode_sage_root "${D}${SAGE_ROOT}"/sage \
+		"${D}${SAGE_ROOT}"
+	cp "${D}${SAGE_ROOT}"/sage "${D}${SAGE_PREFIX}"/bin/
 
 	# install entries for desktop managers
 	doicon "${FILESDIR}"/sage.svg || die "doicon failed"
