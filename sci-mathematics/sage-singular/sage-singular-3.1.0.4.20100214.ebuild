@@ -4,7 +4,7 @@
 
 EAPI=2
 
-inherit eutils flag-o-matic autotools multilib versionator sage
+inherit eutils flag-o-matic multilib versionator sage
 
 MY_P="singular-$(replace_all_version_separators '-')"
 
@@ -47,27 +47,25 @@ src_prepare () {
 }
 
 src_configure() {
-	local myconf="--prefix=${S}/build${SAGE_LOCAL} \
-			--exec-prefix=${S}/build${SAGE_LOCAL} \
-			--bindir=${S}/build${SAGE_LOCAL}/bin \
-			--libdir=${S}/build${SAGE_LOCAL}/$(get_libdir) \
-			--libexecdir=${S}/build${SAGE_LOCAL}/$(get_libdir) \
-			--with-apint=gmp \
-			--with-gmp=/usr \
-			--with-NTL \
-			--with-ntl=/usr \
-			--without-MP \
-			--without-lex \
-			--without-bison \
-			--without-Boost \
-			--enable-Singular \
-			--enable-IntegerProgramming \
-			--enable-factory \
-			--enable-libfac \
-			--disable-doc \
-			--with-malloc=system"
-
-	econf ${myconf} || die "econf failed"
+	econf --prefix="${S}/build${SAGE_LOCAL}" \
+		--exec-prefix="${S}/build${SAGE_LOCAL}" \
+		--bindir="${S}/build${SAGE_LOCAL}"/bin \
+		--libdir="${S}/build${SAGE_LOCAL}/$(get_libdir)" \
+		--libexecdir="${S}/build${SAGE_LOCAL}/$(get_libdir)" \
+		--with-apint=gmp \
+		--with-gmp=/usr \
+		--with-NTL \
+		--with-ntl=/usr \
+		--without-MP \
+		--without-lex \
+		--without-bison \
+		--without-Boost \
+		--enable-Singular \
+		--enable-IntegerProgramming \
+		--enable-factory \
+		--enable-libfac \
+		--disable-doc \
+		--with-malloc=system || die "econf failed"
 }
 
 src_compile() {
@@ -80,7 +78,7 @@ src_compile() {
 #	We should check that all these are really needed.
 #	Then if needed check if we could build a specific target rather than reconfiguring.
 #	Not that we cannot move these configurations in src_configure as it breaks.
-	cd ${S}/factory
+	cd "${S}"/factory
 	emake distclean
 	./configure --prefix="${S}/build${SAGE_LOCAL}" \
 		--exec-prefix="${S}/build${SAGE_LOCAL}" \
@@ -93,7 +91,7 @@ src_compile() {
 		--with-ntl=/usr
 	emake -j1
 	emake -j1 install || die "factory install failed"
-	cd ${S}/libfac
+	cd "${S}"/libfac
 	emake distclean
 	./configure --prefix="${S}/build${SAGE_LOCAL}" \
 		--exec-prefix="${S}/build${SAGE_LOCAL}" \
@@ -106,7 +104,7 @@ src_compile() {
 		--with-ntl=/usr \
 		--enable-factory \
 		--enable-libfac \
-                --enable-omalloc
+		--enable-omalloc
 	emake -j1
 	emake -j1 install || die "libfac install failed"
 }
