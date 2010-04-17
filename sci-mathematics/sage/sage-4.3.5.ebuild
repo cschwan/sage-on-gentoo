@@ -95,13 +95,6 @@ RDEPEND="${CDEPEND}
 # tests _will_ fail!
 RESTRICT="mirror test"
 
-# TODO: Wait for Ticket #8059 to get fixed and do the following things:
-# - DEPEND: >=sci-mathematics/singular-3.1.0.9 (3.1.1 ?)
-# - add SINGULAR to sage_clean_targets
-# - rewrite singular ebuild to install libsingular or write separate ebuild
-# - check if Sage needs symbolic links and/or start scripts
-# - unccomment sections which fixes directories pointing to singular
-
 pkg_setup() {
 	# disable --as-needed until all bugs related are fixed
 	append-ldflags -Wl,--no-as-needed
@@ -239,11 +232,6 @@ src_prepare() {
 		-e "s:m.library_dirs += \['%s/lib' % SAGE_LOCAL\]:m.library_dirs += \['${SAGE_LOCAL}/$(get_libdir)','%s/lib' % SAGE_LOCAL\]:g" \
 		-e "s:include_dirs = \['%s/include'%SAGE_LOCAL:include_dirs = \['${SAGE_LOCAL}/include','%s/include'%SAGE_LOCAL:g" \
 		setup.py
-# 	# fix paths for singular
-# 	sed -i \
-# 		-e "s:SAGE_ROOT +'/local/include/singular':'/usr/include/singular':g" \
-# 		-e "s:SAGE_ROOT + \"/local/include/libsingular.h\":\"/usr/include/libsingular.h\":g" \
-# 		module_list.py || die "sed failed"
 
 	# remove csage which is built elsewhere
 	sage_package ${P} \
@@ -299,10 +287,6 @@ src_prepare() {
 # 	sage_package ${P} \
 # 		sed -i "s:DB_HOME = \"%s/data/\"%SAGE_ROOT:DB_HOME = \"${SAGE_ROOT}/data/\":g" \
 # 		sage/interfaces/gap.py
-
-# 	# upgrade singular
-# 	sage_package ${P} \
-# 		epatch "${FILESDIR}"/${P}-ticket-8059-upgrade-singular.patch
 
 	# Replace gmp with mpir
 # 	sage_package ${P} \
@@ -396,9 +380,6 @@ src_install() {
 	# TODO: write own installation routine which copies only files needed
 
 	# install files
-#	export LD_LIBRARY_PATH="${SAGE_LOCAL}"/$(get_libdir)
-#	emake DESTDIR="${D}${SAGE_PREFIX}" install || die "emake install failed"
-#	Do things manually not running sage -c before pkg_postinst
 	dodir ${SAGE_PREFIX}
 	dodir ${SAGE_ROOT}
 	dodir ${SAGE_PREFIX}/bin
