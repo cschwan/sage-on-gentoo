@@ -32,7 +32,7 @@ CDEPEND=">=app-arch/bzip2-1.0.5
 	~dev-python/pexpect-2.0
 	>=dev-python/pycrypto-2.0.1
 	>=dev-python/python-gnutls-1.1.4
-	>=dev-python/sympy-0.6.4
+	~dev-python/sympy-0.6.6
 	>=dev-python/networkx-1.0.1
 	>=net-zope/zodb-3.7.0
 	>=net-zope/zope-i18nmessageid-3.5.0
