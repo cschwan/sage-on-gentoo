@@ -26,6 +26,9 @@ RDEPEND="${DEPEND}"
 
 S="${WORKDIR}/${MY_P}"
 
+# TODO: Find out which files are not needed and remove them
+# TODO: Add files from Francois
+
 src_prepare() {
 	# remove files not needed
 	rm sage-banner.orig || die "rm failed"
@@ -53,6 +56,8 @@ src_prepare() {
 		sage-env || die "sed failed"
 }
 
+# TODO: Scripts into libexec, ipython into /usr/share ?
+
 src_install() {
 	dodoc README.txt || die "dodoc failed"
 
@@ -70,6 +75,5 @@ src_install() {
 
 	# TODO: fix paths
 	dosym $(which python) "${SAGE_LOCAL}"/bin/sage.bin
-	dosym Singular "${SAGE_LOCAL}"/bin/sage_singular
 	dosym $(which gp) "${SAGE_LOCAL}"/bin/sage_pari
 }
