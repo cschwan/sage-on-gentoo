@@ -48,6 +48,7 @@ src_test() {
 
 src_install() {
 	insinto /usr/include/cliquer
-	doins cl.h cliquer.h cliquerconf.h graph.h misc.h reorder.h set.h
-	dolib libcliquer.so
+	doins cl.h cliquer.h cliquerconf.h graph.h misc.h reorder.h set.h \
+		|| die "doins failed"
+	dolib libcliquer.so || die "doins failed"
 }

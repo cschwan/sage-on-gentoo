@@ -84,7 +84,7 @@ src_prepare() {
 	sed -i \
 		-e "s:'%s/include/csage'%SAGE_LOCAL:'/usr/include/csage':g" \
 		-e "s:'%s/sage/sage/ext'%SAGE_DEVEL:'sage/ext':g" \
-		setup.py || die "sed failed" 
+		setup.py || die "sed failed"
 	sed -i "s:'%s/local/include/csage/'%SAGE_ROOT:'/usr/include/csage/':g" \
 		sage/misc/cython.py || die "sed failed"
 
