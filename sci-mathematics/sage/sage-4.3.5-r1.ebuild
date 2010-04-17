@@ -93,6 +93,12 @@ RDEPEND="${CDEPEND}
 	>=dev-python/sphinx-0.6.3
 	wiki? ( ~www-apps/sage-moin-1.9.1_p1 )"
 
+src_install() {
+	# install entries for desktop managers
+	doicon "${FILESDIR}"/sage.svg || die "doicon failed"
+	domenu "${FILESDIR}"/sage-shell.desktop || die "domenu failed"
+}
+
 pkg_postinst() {
 	# make sure files are correctly setup in the new location by running sage
 	# as root. This prevent nasty message to be presented to the user.
