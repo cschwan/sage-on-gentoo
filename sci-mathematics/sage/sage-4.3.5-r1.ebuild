@@ -95,7 +95,7 @@ RDEPEND="${CDEPEND}
 
 src_install() {
 	# install entries for desktop managers
-	doicon "${FILESDIR}"/sage.svg || die "doicon failed"
+	doicon "${FILESDIR}"/sage.svg.bz2 || die "doicon failed"
 	domenu "${FILESDIR}"/sage-shell.desktop || die "domenu failed"
 }
 
