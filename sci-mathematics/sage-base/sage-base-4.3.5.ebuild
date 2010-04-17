@@ -29,12 +29,17 @@ src_compile() {
 }
 
 src_install() {
-	into "${SAGE_ROOT}"
+	exeinto "${SAGE_ROOT}"
 	doexe sage || die "doexe failed"
 
 	# install a symbolic link so that sage is actually found
-	dosym "${SAGE_PREFIX}"/bin/sage "${SAGE_ROOT}"/sage || die "dosym failed"
+	dosym "${SAGE_ROOT}"/sage "${SAGE_PREFIX}"/bin/sage || die "dosym failed"
 
 	# this directory is needed by sage-core
 	dodir "${SAGE_ROOT}"/spkg/installed || die "dodir failed"
+
+	# install devel directories and link
+	dodir "${SAGE_ROOT}"/devel/sage-main || die "dodir failed"
+	dosym "${SAGE_ROOT}"/devel/sage-main "${SAGE_ROOT}"/devel/sage \
+		|| die "dosym failed"
 }

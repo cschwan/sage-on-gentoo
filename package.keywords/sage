@@ -103,6 +103,7 @@ sci-mathematics/polybori
 sci-mathematics/ratpoints
 sci-mathematics/rubiks
 sci-mathematics/sage
+sci-mathematics/sage-base
 sci-mathematics/sage-clib
 sci-mathematics/sage-data
 sci-mathematics/sage-doc
