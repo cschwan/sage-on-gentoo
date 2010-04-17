@@ -2,6 +2,8 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
+EAPI=2
+
 inherit sage
 
 MY_P="sage-${PV}"
@@ -42,5 +44,13 @@ src_install() {
 			insinto "${SAGE_ROOT}"/devel/sage-main/doc/output/pdf
 			doins -r * || die "doins failed"
 		fi
+	fi
+}
+
+pkg_postinst() {
+	if ! use doc ; then
+		ewarn "You haven't requested the documentation."
+		ewarn "If you don't install sage-doc the html documentation won't be"
+		ewarn "available in sage notebook."
 	fi
 }
