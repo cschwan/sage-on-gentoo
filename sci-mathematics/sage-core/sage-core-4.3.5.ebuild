@@ -44,6 +44,11 @@ src_prepare() {
 	# Fixes to Sage's build system
 	############################################################################
 
+	# Fix compilation issues on amd64 reported by Steve Trogdon
+	if use amd64 ; then
+		append-flags -fno-strict-aliasing
+	fi
+
 	# fix build file to make it compile without other Sage componenents
 	epatch "${FILESDIR}"/${PN}-4.3.4-site-packages.patch
 
@@ -101,9 +106,6 @@ src_prepare() {
 	# TODO: At least one more patch needed: devel/sage/sage/misc/misc.py breaks
 
 	# TODO: why does Sage fail with commentator ?
-
-	# unset custom C(XX)FLAGS - this is just a temporary hack
-	epatch "${FILESDIR}"/${PN}-4.3-amd64-hack.patch
 
 	############################################################################
 	# Fixes to Sage itself
