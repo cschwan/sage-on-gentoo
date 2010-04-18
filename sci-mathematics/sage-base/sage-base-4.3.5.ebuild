@@ -38,6 +38,15 @@ src_install() {
 	# this directory is needed by sage-core
 	dodir "${SAGE_ROOT}"/spkg/installed || die "dodir failed"
 
+	# correctly create library dir
+	dodir "${SAGE_LOCAL}/$(get_libdir)" || die "dodir failed"
+
+	# Sage needs also a lib dir
+	if [[ $(get_libdir) != lib ]]; then
+		dosym "${SAGE_LOCAL}/$(get_libdir)" "${SAGE_LOCAL}"/lib \
+			|| die "dodir failed"
+	fi
+
 	# install devel directories and link
 	dodir "${SAGE_ROOT}"/devel/sage-main || die "dodir failed"
 	dosym "${SAGE_ROOT}"/devel/sage-main "${SAGE_ROOT}"/devel/sage \
