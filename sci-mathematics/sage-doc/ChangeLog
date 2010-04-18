@@ -2,6 +2,10 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  18 Apr 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
+  -sage-doc-4.3.5.ebuild:
+  Removed old sage-doc-4.3.5
+
   17 Apr 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
   -sage-doc-4.3.4.ebuild:
   Dropped old ebuild
