@@ -3,6 +3,10 @@
 # $Header: $
 
   19 Apr 2010; François Bissey <f.r.bissey@massey.ac.nz>
+  sage-doc-4.3.5-r1.ebuild:
+  forgot one doc -> html,
+
+  19 Apr 2010; François Bissey <f.r.bissey@massey.ac.nz>
   +files/sage-doc-cvxopt-1.1.2.patch, sage-doc-4.3.5-r1.ebuild,
   metadata.xml:
   Added a patch to fix tests with cvxopt-1.1.2. 

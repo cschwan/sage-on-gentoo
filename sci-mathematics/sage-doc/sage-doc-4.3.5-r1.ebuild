@@ -13,7 +13,7 @@ MY_P_PDF="sage-${PV}-doc-pdf"
 DESCRIPTION="Documentation for Sage"
 HOMEPAGE="http://www.sagemath.org/"
 SRC_URI="mirror://sage/spkg/standard/${MY_P}.spkg -> sage-core-${PV}.tar.bz2
-	doc? ( http://www.sagemath.org/doc-bz2/${MY_P_HTML}.tar.bz2
+	html? ( http://www.sagemath.org/doc-bz2/${MY_P_HTML}.tar.bz2
 	pdf? ( http://www.sagemath.org/doc-bz2/${MY_P_PDF}.tar.bz2 ) )"
 
 LICENSE="GPL-2"
