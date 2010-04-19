@@ -193,6 +193,9 @@ src_install() {
 
 	# 
 	distutils_src_install
+
+	# prevent false positive reports from revdep-rebuild
+	insinto /etc/revdep-rebuild && doins "${FILESDIR}/50sage-core"
 }
 
 pkg_postinst() {
