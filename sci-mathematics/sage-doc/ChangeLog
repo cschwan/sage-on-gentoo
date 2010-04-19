@@ -2,6 +2,13 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  19 Apr 2010; François Bissey <f.r.bissey@massey.ac.nz>
+  +files/sage-doc-cvxopt-1.1.2.patch, sage-doc-4.3.5-r1.ebuild,
+  metadata.xml:
+  Added a patch to fix tests with cvxopt-1.1.2. 
+  Changed the doc useflag to html.
+  Minor cleanup.
+
   18 Apr 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
   -sage-doc-4.3.5.ebuild:
   Removed old sage-doc-4.3.5

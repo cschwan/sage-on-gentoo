@@ -4,7 +4,7 @@
 
 EAPI=2
 
-inherit sage
+inherit sage eutils
 
 MY_P="sage-${PV}"
 MY_P_HTML="sage-${PV}-doc-html"
@@ -19,14 +19,19 @@ SRC_URI="mirror://sage/spkg/standard/${MY_P}.spkg -> sage-core-${PV}.tar.bz2
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64 ~ppc ~x86"
-IUSE="doc pdf"
+IUSE="html pdf"
 
 RESTRICT="mirror"
 
 DEPEND=""
-RDEPEND=""
+RDEPEND=">=dev-python/sphinx-0.6.3"
 
 S="${WORKDIR}/${MY_P}/doc"
+
+src_prepare() {
+	# Patch the tests in the documentation to use cvxopt-1.1.2
+	epatch "${FILESDIR}/${PN}"-cvxopt-1.1.2.patch
+}
 
 src_install() {
 	# TODO: check if all these files are needed
@@ -34,23 +39,22 @@ src_install() {
 	insinto "${SAGE_ROOT}"/devel/sage-main/doc
 	doins -r * || die "doins failed"
 
-	if use doc ; then
+	if use html ; then
 		cd "${WORKDIR}"/${MY_P_HTML}
 		insinto "${SAGE_ROOT}"/devel/sage-main/doc/output/html
 		doins -r * || die "doins failed"
+	fi
 
-		if use pdf ; then
-			cd "${WORKDIR}"/${MY_P_PDF}
-			insinto "${SAGE_ROOT}"/devel/sage-main/doc/output/pdf
-			doins -r * || die "doins failed"
-		fi
+	if use pdf ; then
+		cd "${WORKDIR}"/${MY_P_PDF}
+		insinto "${SAGE_ROOT}"/devel/sage-main/doc/output/pdf
+		doins -r * || die "doins failed"
 	fi
 }
 
 pkg_postinst() {
-	if ! use doc ; then
-		ewarn "You haven't requested the documentation."
-		ewarn "If you don't install sage-doc the html documentation won't be"
-		ewarn "available in sage notebook."
+	if ! use html ; then
+		ewarn "You haven't requested the html documentation."
+		ewarn "The html version of the sage manual won't be available in the sage notebook."
 	fi
 }
