@@ -2,6 +2,10 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  23 Apr 2010; François Bissey <f.r.bissey@massey.ac.nz>
+  sage-core-4.3.5.ebuild:
+  Allow python-2.6.5-r99 to be used. Work on dependencies.
+
   19 Apr 2010; François Bissey <f.r.bissey@massey.ac.nz>
   +files/50sage-core, sage-core-4.3.5.ebuild:
   Add a rule to revdep-rebuild to prevent false positive.
