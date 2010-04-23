@@ -2,6 +2,12 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*python-2.6.5-r99 (20 Apr 2010)
+
+  20 Apr 2010; François Bissey <f.r.bissey@massey.ac.nz>
+  +python-2.6.5-r99.ebuild:
+  Add a python-2.6.5 for people who want to live on the edge - untested.
+
   02 Mar 2010; François Bissey <f.r.bissey@massey.ac.nz>
   python-2.6.4-r99.ebuild:
   Bumping the patchset in line with stable x86/amd64 versions.
