@@ -6,6 +6,6 @@ Comment=Launch Sage shell
 Comment[de]=Sage Terminal starten
 Exec=sage
 TryExec=sage
-Icon=sage.svg
+Icon=sage
 Categories=Math;Science;Utility;
 Terminal=true

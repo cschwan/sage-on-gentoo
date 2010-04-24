@@ -6,14 +6,14 @@ EAPI=2
 
 inherit multilib python sage flag-o-matic
 
-DESCRIPTION="Math software for algebra, geometry, number theory, cryptography and numerical computation."
+DESCRIPTION="Math software for algebra, geometry, number theory, cryptography and numerical computation"
 HOMEPAGE="http://www.sagemath.org"
 SRC_URI=""
 
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
-IUSE="wiki"
+IUSE="wiki X"
 
 # TODO: check dependencies use flagged packages
 CDEPEND=">=app-arch/bzip2-1.0.5
@@ -63,12 +63,25 @@ RDEPEND="${CDEPEND}
 	wiki? ( ~www-apps/sage-moin-1.9.1_p1 )"
 
 src_install() {
-	# install entries for desktop managers
-	doicon "${FILESDIR}"/sage.svg.bz2 || die "doicon failed"
-	domenu "${FILESDIR}"/sage-shell.desktop || die "domenu failed"
+	# TODO: grab icon from official site
+
+	if use X ; then
+		# unpack icon
+		cp 	"${FILESDIR}"/${PN}.svg.bz2 . || die "cp failed"
+		bzip2 -d ${PN}.svg.bz2 || die "tar failed"
+
+		# install icon
+		doicon ${PN}.svg || die "doicon failed"
+
+		# make .desktop file
+		make_desktop_entry ${PN} "Sage Shell" ${PN} ${C} \
+			|| die "make_desktop_entry failed"
+	fi
 }
 
 pkg_postinst() {
+	# TODO: check if this is still needed
+
 	# make sure files are correctly setup in the new location by running sage
 	# as root. This prevent nasty message to be presented to the user.
 	"${SAGE_ROOT}"/sage -c
