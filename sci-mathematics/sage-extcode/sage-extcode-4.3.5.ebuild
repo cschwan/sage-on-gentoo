@@ -27,10 +27,9 @@ S="${WORKDIR}/${MY_P}"
 src_install() {
 	insinto "${SAGE_DATA}"/extcode
 
-	# remove mercurial stuff
-	hg_clean
-
-	rm -r mirror sage-push spkg-debian spkg-dist spkg-install || die "rm failed"
+	# remove stuff not needed
+	rm -rf .hg .hgignore .hgtags mirror sage-push spkg-debian spkg-dist \
+		spkg-install || die "rm failed"
 
 	doins -r * || die "doins failed"
 }

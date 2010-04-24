@@ -25,11 +25,8 @@ RDEPEND="${DEPEND}"
 S="${WORKDIR}/${MY_P}"
 
 src_prepare() {
-	# remove mecurial directories
-	hg_clean
-
-	# remove files not needed
-	rm sage-push spkg-install || die "rm failed"
+	# remove stuff not needed
+	rm -rf .hg .hgignore .hgtags sage-push spkg-install || die "rm failed"
 }
 
 src_install() {
