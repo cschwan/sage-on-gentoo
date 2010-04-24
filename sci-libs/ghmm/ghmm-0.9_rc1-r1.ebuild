@@ -32,10 +32,12 @@ RDEPEND="${CDEPEND}"
 
 S="${WORKDIR}/${MY_P}"
 
+# TODO: Try to split python from the rest of this ebuild
+
 pkg_setup() {
-	#switch to lapack-atlas if needed
+	# switch to lapack-atlas if needed
 	if use lapack ; then
-		OLD_IMPLEM="$(eselect lapack show)"
+		OLD_IMPLEM=$(eselect lapack show | cut -d: -f2)
 		einfo "Switching to lapack-atlas with eselect."
 		eselect lapack set atlas
 	fi
@@ -86,11 +88,7 @@ pkg_postinst() {
 
 	if use lapack ; then
 		einfo "Restoring your original lapack settings with eselect"
-		if ( grep lib64 <<< ${OLD_IMPLEM} ); then
-			eselect lapack set "${OLD_IMPLEM:7}"
-		else
-			eselect lapack set "${OLD_IMPLEM:5}"
-		fi
+		eselect lapack set ${OLD_IMPLEM}
 	fi
 }
 
