@@ -2,6 +2,14 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*zn_poly-0.9-r2 (25 Apr 2010)
+
+  25 Apr 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
+  zn_poly-0.9-r1.ebuild, +zn_poly-0.9-r2.ebuild,
+  +files/zn_poly-0.9-use-mpir-instead-of-gmp.patch:
+  Updated HOMEPAGE variable. New revision runs all test available.
+  Also simplified gmp-mpir replacement
+
   01 Apr 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
   -zn_poly-0.9.ebuild:
   Dropped old version

@@ -7,7 +7,7 @@ EAPI=2
 inherit eutils flag-o-matic
 
 DESCRIPTION="A library for polynomial arithmetic"
-HOMEPAGE="http://www.cims.nyu.edu/~harvey/zn_poly"
+HOMEPAGE="http://www.cims.nyu.edu/~harvey/code/zn_poly/"
 SRC_URI="http://www.cims.nyu.edu/~harvey/zn_poly/releases/${P}.tar.gz"
 
 LICENSE="GPL-2"
