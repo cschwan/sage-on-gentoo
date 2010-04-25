@@ -1,0 +1,13 @@
+--- makefile.orig	2010-04-25 12:05:53.773786031 +0000
++++ makefile	2010-04-25 12:09:19.864544071 +0000
+@@ -125,8 +125,8 @@
+ libflint.dll: $(FLINTOBJ)
+ 	$(CC) -fPIC -shared -o libflint.dll $(FLINTOBJ) $(LIBS)
+ 
+-libflint.so: $(FLINTOBJ)
+-	$(CC) -fPIC -shared -Wl,-soname,libflint.so -o libflint.so $(FLINTOBJ) $(LIBS)
++libflint.so: $(FLINTOBJ) NTL-interface.o
++	$(CC) -fPIC -shared -Wl,-soname,libflint.so -o libflint.so $(FLINTOBJ) NTL-interface.o $(LIBS)
+ 
+ ##### Object files
+ 
