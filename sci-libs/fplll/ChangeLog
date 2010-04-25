@@ -2,6 +2,13 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*fplll-3.0.12-r2 (25 Apr 2010)
+
+  25 Apr 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
+  +fplll-3.0.12-r2.ebuild,
+  +files/fplll-3.0.12-use-mpir-instead-of-gmp.patch:
+  New revision includes support for USE=mpir
+
   26 Mar 2010; François Bissey <f.r.bissey@massey.ac.nz>
   fplll-3.0.12-r1.ebuild:
   keywording ~ppc
