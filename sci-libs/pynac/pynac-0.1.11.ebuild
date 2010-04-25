@@ -6,11 +6,9 @@ EAPI=2
 
 inherit flag-o-matic python
 
-# TODO: Homepage ?
-
 DESCRIPTION="A modified version of GiNaC that replaces the dependency on CLN by
 Python"
-# HOMEPAGE=""
+HOMEPAGE="http://sagemath.org/ http://www.ginac.de/"
 SRC_URI="mirror://sage/spkg/standard/${P}.spkg -> ${P}.tar.bz2"
 
 LICENSE="GPL-2"
@@ -36,4 +34,5 @@ src_configure() {
 
 src_install() {
 	emake DESTDIR="${D}" install || die "emake install failed"
+	dodoc AUTHORS NEWS README || die "dodoc failed"
 }
