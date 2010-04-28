@@ -2,6 +2,19 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  28 Apr 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
+  -files/sage-4.3.1-amd64-hack.patch,
+  -files/sage-4.3.1-arpack-from-scipy.patch,
+  -files/sage-4.3.1-combinat-sets-deprecation.patch,
+  -files/sage-4.3.1-delaunay-from-matplotlib.patch,
+  -files/sage-4.3.1-remove-csage.patch,
+  -files/sage-4.3.1-remove-csage-2.patch,
+  -files/sage-4.3.2-disable-linbox-commentator.patch,
+  -files/sage-4.3.2-fix-undefined-symbols.patch,
+  -files/sage-4.3.5-ticket-8059-upgrade-singular.patch,
+  -files/trac_7608-networkx-upgrade.patch.bz2:
+  Deleted unneeded patches
+
 *sage-4.4 (28 Apr 2010)
 
   28 Apr 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
