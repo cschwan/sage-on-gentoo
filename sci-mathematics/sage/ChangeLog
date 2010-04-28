@@ -2,6 +2,12 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*sage-4.4 (28 Apr 2010)
+
+  28 Apr 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
+  +sage-4.4.ebuild:
+  Version bump
+
   24 Apr 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
   sage-4.3.5-r1.ebuild, files/sage-shell.desktop, metadata.xml:
   Fixed installation of Sage's icon - install uncompressed file.
