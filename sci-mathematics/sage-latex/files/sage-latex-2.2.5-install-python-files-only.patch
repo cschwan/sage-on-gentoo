@@ -1,0 +1,23 @@
+--- setup.py.orig	2010-04-28 12:20:27.291097959 +0000
++++ setup.py	2010-04-28 12:29:56.698730031 +0000
+@@ -10,17 +10,8 @@
+       url='http://bitbucket.org/ddrake/sagetex/',
+       license='GPLv2+',
+       py_modules=['sagetex'],
+-      data_files = [('share/texmf/tex/generic/sagetex',
+-        ['example.pdf',
+-         'example.tex',
+-         'extractsagecode.py',
++      data_files = [('share/texmf/tex/latex/sage-latex',
++        ['extractsagecode.py',
+          'makestatic.py',
+-         'scripts.dtx',
+-         'remote-sagetex.dtx',
+          'remote-sagetex.py',
+-         'py-and-sty.dtx',
+-         'sagetexpackage.dtx',
+-         'sagetexpackage.ins',
+-         'sagetexpackage.pdf',
+-         'sagetexparse.py',
+-         'sagetex.sty'])])
++         'sagetexparse.py'])])
