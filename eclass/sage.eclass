@@ -14,8 +14,6 @@
 # The Sage eclass contains variables which store installation paths of Sage's
 # components
 
-inherit eutils
-
 # @ECLASS-VARIABLE: SAGE_PREFIX
 # @DESCRIPTION:
 # Points to the directory where Sage will be installed
