@@ -2,6 +2,10 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  29 Apr 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
+  pexpect-2.0.ebuild:
+  Fixed SRC_URI and added die after dohtml
+
   26 Mar 2010; François Bissey <f.r.bissey@massey.ac.nz>
   pexpect-2.0.ebuild:
   keywording ~ppc

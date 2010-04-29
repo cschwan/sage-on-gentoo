@@ -8,7 +8,7 @@ inherit distutils eutils
 
 DESCRIPTION="Python module for spawning child applications and responding to expected patterns"
 HOMEPAGE="http://pexpect.sourceforge.net/"
-SRC_URI="mirror://sourceforge/${PN}/files/${PN}/Release%20${PV}/${P}.tgz"
+SRC_URI="mirror://sourceforge/project/${PN}/${PN}/Release%20${PV}/${P}.tgz"
 
 LICENSE="MIT"
 SLOT="0"
@@ -24,5 +24,5 @@ src_prepare() {
 src_install() {
 	distutils_src_install
 
-	use doc && dohtml -r doc/*
+	use doc && dohtml -r doc/* || die "dohtml failed"
 }
