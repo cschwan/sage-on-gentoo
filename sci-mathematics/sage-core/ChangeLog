@@ -2,6 +2,10 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  29 Apr 2010; François Bissey <f.r.bissey@massey.ac.nz>
+  sage-core-4.3.5.ebuild, sage-core-4.4.ebuild:
+  Put mpfi back in the dependencies.
+
   28 Apr 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
   -files/sage-core-4.3.3-amd64-hack.patch:
   Deleted outdated patch
