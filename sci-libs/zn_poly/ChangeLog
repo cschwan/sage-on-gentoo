@@ -2,6 +2,10 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  29 Apr 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
+  -zn_poly-0.9-r1.ebuild:
+  Dropped old ebuild
+
 *zn_poly-0.9-r2 (25 Apr 2010)
 
   25 Apr 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
