@@ -4,7 +4,7 @@
 
 EAPI=2
 
-inherit toolchain-funcs sage versionator
+inherit toolchain-funcs sage versionator eutils
 
 MY_P="${PN}-$(replace_version_separator 2 '.')"
 
