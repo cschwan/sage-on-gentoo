@@ -45,7 +45,7 @@ RDEPEND="${CDEPEND}
 	latex? ( ~sci-mathematics/sage-latex-2.2.5 )
 	>=sci-mathematics/gap-4.4.12
 	>=sci-mathematics/gap-guava-3.4
-	>=sci-mathematics/maxima-5.20.1[ecl]
+	~sci-mathematics/maxima-5.20.1[ecl]
 	>=sci-mathematics/genus2reduction-0.3
 	>=sci-mathematics/lcalc-1.23[pari]
 	>=sci-mathematics/sympow-1.018
@@ -73,8 +73,20 @@ src_install() {
 		doicon ${PN}.svg || die "doicon failed"
 
 		# make .desktop file
-		make_desktop_entry ${PN} "Sage Shell" ${PN} ${C} \
-			|| die "make_desktop_entry failed"
+		cat > sage-sage.desktop <<-EOF
+			[Desktop Entry]
+			Name=Sage Shell
+			Type=Application
+			Comment=${DESCRIPTION}
+			Exec=${PN}
+			TryExec=${PN}
+			Icon=${PN}
+			Categories=Education;Science;Math;
+			Terminal=true
+		EOF
+
+		# install .desktop file
+		domenu sage-sage.desktop || die "domenu failed"
 	fi
 }
 
