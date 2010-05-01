@@ -27,7 +27,6 @@ DEPEND="|| ( =dev-lang/python-2.6.4-r99[sqlite]
 	>=dev-libs/mpfr-2.4.2
 	>=dev-lisp/ecls-10.2.1
 	>=dev-python/cython-0.12.1
-	>=dev-python/networkx-1.0.1
 	>=dev-python/numpy-1.3.0[lapack]
 	>=dev-python/rpy-2.0.6
 	media-libs/gd

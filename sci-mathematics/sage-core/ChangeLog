@@ -6,6 +6,10 @@
   sage-core-4.4.ebuild:
   Generalized procedure that replaces directory strings
 
+  01 May 2010; François Bissey <f.r.bissey@massey.ac.nz>
+  sage-core-4.4.ebuild:
+  networkx is a run-time dependency moved in sage.
+
   29 Apr 2010; François Bissey <f.r.bissey@massey.ac.nz>
   sage-core-4.3.5.ebuild, sage-core-4.4.ebuild:
   Put mpfi back in the dependencies.
