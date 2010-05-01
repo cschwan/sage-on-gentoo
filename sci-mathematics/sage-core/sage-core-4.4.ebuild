@@ -4,7 +4,7 @@
 
 EAPI=2
 
-inherit distutils eutils flag-o-matic sage
+inherit distutils eutils flag-o-matic python sage
 
 MY_P="sage-${PV}"
 
@@ -19,13 +19,13 @@ IUSE=""
 
 RESTRICT="mirror"
 
-# TODO: check if new version depends on ecl
 # TODO: add dependencies
 DEPEND="|| ( =dev-lang/python-2.6.4-r99[sqlite]
 		=dev-lang/python-2.6.5-r99[sqlite] )
 	>=dev-lang/R-2.10.1[lapack,readline]
 	>=dev-libs/ntl-5.5.2
 	>=dev-libs/mpfr-2.4.2
+	>=dev-lisp/ecls-10.2.1
 	>=dev-python/cython-0.12.1
 	>=dev-python/networkx-1.0.1
 	>=dev-python/numpy-1.3.0[lapack]
@@ -86,36 +86,25 @@ src_prepare() {
 	# fix build file to make it compile without other Sage componenents
 	epatch "${FILESDIR}"/${PN}-4.3.4-site-packages.patch
 
-	# TODO: write a helper function which automizes the following
+	# use already installed csage
+	rm -rf c_lib || die "rm failed"
+
+	# fix paths for sigular - TODO: remove once singular is moved out of Sage
+	sed -i \
+		-e "s:SAGE_ROOT[[:space:]]*+[[:space:]]*\([\'\"]\)/local/include/singular\([^\1]*\)\1:\1${SAGE_LOCAL}/include/singular\2\1:g" \
+		-e "s:SAGE_ROOT[[:space:]]*+[[:space:]]*\([\'\"]\)/local/include/libsingular.h\1:\1${SAGE_LOCAL}/include/libsingular.h\1:g" \
+		module_list.py || die "sed failed"
 
 	# fix paths for various libraries
 	sed -i \
-		-e "s:SAGE_ROOT +'/local/include/fplll':'/usr/include/fplll':g" \
-		-e "s:SAGE_ROOT + \"/local/include/fplll/fplll.h\":\"/usr/include/fplll/fplll.h\":g" \
-		-e "s:SAGE_ROOT + '/local/include/gmp.h':'/usr/include/gmp.h':g" \
-		-e "s:SAGE_ROOT + \"/local/include/ecm.h\":\"/usr/include/ecm.h\":g" \
-		-e "s:SAGE_ROOT+'/local/include/ecl/':'/usr/include/ecl/':g" \
-		-e "s:SAGE_ROOT + '/local/include/ecl/ecl.h':'/usr/include/ecl/ecl.h':g" \
-		-e "s:SAGE_ROOT + \"/local/include/png.h\":\"/usr/include/png.h\":g" \
-		-e "s:SAGE_ROOT + '/local/include/ratpoints.h':'/usr/include/ratpoints.h':g" \
-		-e "s:SAGE_ROOT + \"/local/include/symmetrica/def.h\":\"/usr/include/symmetrica/def.h\":g" \
-		-e "s:SAGE_ROOT+'/local/include/FLINT/':'/usr/include/FLINT/':g" \
-		-e "s:SAGE_ROOT + '/local/include/FLINT/':'/usr/include/FLINT/':g" \
-		-e "s:SAGE_ROOT + \"/local/include/FLINT/flint.h\":\"/usr/include/FLINT/flint.h\":g" \
-		-e "s:SAGE_ROOT + '/local/include/FLINT/flint.h':'/usr/include/FLINT/flint.h':g" \
-		-e "s:SAGE_ROOT + \"/local/include/pynac/ginac.h\":\"/usr/include/pynac/ginac.h\":g" \
-		-e "s:SAGE_ROOT+'/local/lib/python/site-packages/numpy/core/include':'/usr/lib/python2.6/site-packages/numpy/core/include':g" \
+		-e "s:SAGE_ROOT[[:space:]]*+[[:space:]]*\([\'\"]\)/local/include/\([^\1]*\)\1:\1/usr/include/\2\1:g" \
 		-e "s:SAGE_LOCAL + \"/share/polybori/flags.conf\":\"/usr/share/polybori/flags.conf\":g" \
-		-e "s:SAGE_ROOT+'/local/include/cudd':'/usr/include/cudd':g" \
-		-e "s:SAGE_ROOT+'/local/include/polybori':'/usr/include/polybori':g" \
-		-e "s:SAGE_ROOT+'/local/include/polybori/groebner':'/usr/include/polybori/groebner':g" \
-		-e "s:SAGE_ROOT + \"/local/include/polybori/polybori.h\":\"/usr/include/polybori/polybori.h\":g" \
-		-e "s:SAGE_ROOT +'/local/include/singular':'${SAGE_LOCAL}/include/singular':g" \
-		-e "s:SAGE_ROOT + \"/local/include/libsingular.h\":\"${SAGE_LOCAL}/include/libsingular.h\":g" \
+		-e "s:SAGE_ROOT+'/local/lib/python/site-packages/numpy/core/include':'$(python_get_sitedir)/numpy/core/include':g" \
+		-e "s:sage/c_lib/include/:/usr/share/include/csage/:g" \
 		module_list.py || die "sed failed"
 
 	# set path to system Cython
-	sed -i "s:SAGE_LOCAL + '/lib/python/site-packages/Cython/Includes/':'/usr/$(get_libdir)/python2.6/site-packages/Cython/Includes/':g" \
+	sed -i "s:SAGE_LOCAL + '/lib/python/site-packages/Cython/Includes/':'$(python_get_sitedir)/Cython/Includes/':g" \
 		setup.py || die "sed failed"
 
 	# TODO: once Singular is installed to standard dirs, remove the following
