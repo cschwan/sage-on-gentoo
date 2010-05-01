@@ -17,7 +17,6 @@ IUSE="examples latex wiki X"
 
 # TODO: check dependencies use flagged packages
 CDEPEND=">=app-arch/bzip2-1.0.5
-	>=dev-python/networkx-1.0.1
 	>=net-zope/zodb-3.7.0
 	>=net-zope/zope-i18nmessageid-3.5.0
 	>=net-zope/zope-testbrowser-3.7.0
@@ -37,6 +36,7 @@ RDEPEND="${CDEPEND}
 	~dev-python/pexpect-2.0
 	>=dev-python/mpmath-0.14
 	>=dev-python/matplotlib-0.99.1
+	~dev-python/networkx-1.0.1
 	>=dev-python/ipython-0.9.1
 	>=dev-python/pycrypto-2.0.1
 	>=dev-python/python-gnutls-1.1.4
