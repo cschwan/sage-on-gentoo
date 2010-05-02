@@ -29,7 +29,9 @@ src_prepare(){
 src_install() {
 	distutils_src_install
 
-	use doc && dohtml -r doc/*
+	if use doc ; then
+		dohtml -r doc/* || die "dohtml failed"
+	fi
 
 	if use examples; then
 		insinto /usr/share/doc/${PF}

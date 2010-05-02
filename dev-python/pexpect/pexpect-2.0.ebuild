@@ -24,5 +24,7 @@ src_prepare() {
 src_install() {
 	distutils_src_install
 
-	use doc && dohtml -r doc/* || die "dohtml failed"
+	if use doc ; then
+		dohtml -r doc/* || die "dohtml failed"
+	fi
 }
