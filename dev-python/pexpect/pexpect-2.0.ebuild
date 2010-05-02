@@ -13,18 +13,10 @@ SRC_URI="mirror://sourceforge/project/${PN}/${PN}/Release%20${PV}/${P}.tgz"
 LICENSE="MIT"
 SLOT="0"
 KEYWORDS="~amd64 ~ppc ~x86"
-IUSE="doc"
+IUSE=""
 
 RESTRICT="mirror"
 
 src_prepare() {
 	epatch "${FILESDIR}"/${P}-fix-misc-bugs.patch
-}
-
-src_install() {
-	distutils_src_install
-
-	if use doc ; then
-		dohtml -r doc/* || die "dohtml failed"
-	fi
 }
