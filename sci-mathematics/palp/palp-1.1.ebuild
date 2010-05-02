@@ -2,6 +2,8 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
+EAPI=2
+
 inherit eutils
 
 DESCRIPTION="A Package for Analyzing Lattice Polytopes"
@@ -19,6 +21,10 @@ DEPEND=""
 RDEPEND="${DEPEND}"
 
 S="${WORKDIR}/${PN}"
+
+src_prepare() {
+	sed -i "s:-O3 -g -W -Wall:${CFLAGS}:g" GNUmakefile
+}
 
 src_install() {
 	dobin class.x cws.x nef.x poly.x || die "dobin failed"
