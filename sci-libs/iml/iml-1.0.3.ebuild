@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
-EAPI=2
+EAPI="2"
 
 inherit eutils autotools
 
@@ -13,33 +13,33 @@ SRC_URI="http://www.cs.uwaterloo.ca/~astorjoh/${P}.tar.gz"
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64 ~ppc ~x86"
-RESTRICT="mirror"
 IUSE=""
+
+RESTRICT="mirror"
 
 DEPEND="dev-util/pkgconfig
 	>=dev-libs/gmp-3.1.1
 	virtual/cblas"
-RDEPEND="dev-libs/gmp
+RDEPEND=">=dev-libs/gmp-3.1.1
 	virtual/cblas"
 
 src_prepare() {
 	# do not need atlas specifically any cblas will do...
-	epatch "${FILESDIR}/${P}-cblas.patch"
+	epatch "${FILESDIR}"/${P}-cblas.patch
 
 	# apply patch supplied by debian bugreport #494819
-	epatch "${FILESDIR}/${P}-fix-undefined-symbol.patch"
+	epatch "${FILESDIR}"/${P}-fix-undefined-symbol.patch
 
 	eautoreconf
 }
 
 src_configure() {
-	econf \
-		--enable-shared \
-		--with-cblas-lib="$(pkg-config cblas --libs)" \
+	# TODO: QA: ./configure: line 10482: -O2: command not found
+	econf --enable-shared --with-cblas-lib="$(pkg-config cblas --libs)" \
 		|| die "econf failed"
 }
 
 src_install() {
 	emake DESTDIR="${D}" install || die "emake install failed"
-	dodoc ChangeLog README
+	dodoc ChangeLog README || die "dodoc failed"
 }
