@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
-EAPI=2
+EAPI="2"
 
 inherit distutils eutils flag-o-matic python sage
 
@@ -42,9 +42,9 @@ DEPEND="|| ( =dev-lang/python-2.6.4-r99[sqlite]
 	>=sci-libs/m4ri-20091120
 	>=sci-libs/mpir-1.2.2[cxx]
 	>=sci-libs/mpfi-1.4
-	|| ( >=sci-mathematics/pari-2.3.3[data,gmp]
-	     >=sci-mathematics/pari-2.3.3[data,mpir] )
-	>=sci-libs/pynac-0.1.10
+	|| ( >=sci-mathematics/pari-2.3.5[data,gmp]
+	     >=sci-mathematics/pari-2.3.5[data,mpir] )
+	>=sci-libs/pynac-0.1.12
 	>=sci-libs/symmetrica-2.0
 	>=sci-libs/zn_poly-0.9
 	>=sci-mathematics/eclib-20080310_p10
@@ -149,9 +149,6 @@ src_prepare() {
 	# use arpack from scipy (see also scipy ticket #231)
 	epatch "${FILESDIR}"/${PN}-4.3.3-arpack-from-scipy.patch
 
-	# upgrade networkx to 1.0.1 (see Trac #7608)
-	epatch "${FILESDIR}"/${P}-upgrade-networkx.patch.bz2
-
 	# fix include paths
 	sed -i \
 		-e "s:'%s/include/csage'%SAGE_LOCAL:'/usr/include/csage':g" \
@@ -221,7 +218,8 @@ src_install() {
 	distutils_src_install
 
 	# prevent false positive reports from revdep-rebuild
-	insinto /etc/revdep-rebuild && doins "${FILESDIR}/50sage-core"
+	insinto /etc/revdep-rebuild
+	doins "${FILESDIR}/50sage-core" || die "doins failed"
 }
 
 pkg_postinst() {
