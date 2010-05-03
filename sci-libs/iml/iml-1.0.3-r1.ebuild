@@ -30,7 +30,7 @@ src_prepare() {
 	epatch "${FILESDIR}"/${P}-combined-cblas-mpir.patch
 
 	# apply patch supplied by debian bugreport #494819
-	epatch "${FILESDIR}"/fix-undefined-symbol.patch
+	epatch "${FILESDIR}"/${P}-fix-undefined-symbol.patch
 
 	eautoreconf
 }
