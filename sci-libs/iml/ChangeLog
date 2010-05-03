@@ -2,6 +2,12 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*iml-1.0.3-r1 (03 May 2010)
+
+  03 May 2010; François Bissey <f.r.bissey@massey.ac.nz>
+  +iml-1.0.3-r1.ebuild, +files/iml-1.0.3-combined-cblas-mpir.patch:
+  Make iml mpir ready.
+
   26 Mar 2010; François Bissey <f.r.bissey@massey.ac.nz> iml-1.0.3.ebuild:
   keywording ~ppc
 
