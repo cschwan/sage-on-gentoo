@@ -10,11 +10,12 @@ MY_P="sage-${PV}"
 MY_P_HTML="sage-${PV}-doc-html"
 MY_P_PDF="sage-${PV}-doc-pdf"
 
+# TODO: uncomment the lines once files are uploaded
 DESCRIPTION="Documentation for Sage"
 HOMEPAGE="http://www.sagemath.org/"
-SRC_URI="mirror://sage/spkg/standard/${MY_P}.spkg -> sage-core-${PV}.tar.bz2
-	html? ( http://www.sagemath.org/doc-bz2/${MY_P_HTML}.tar.bz2 )
-	pdf? ( http://www.sagemath.org/doc-bz2/${MY_P_PDF}.tar.bz2 )"
+SRC_URI="mirror://sage/spkg/standard/${MY_P}.spkg -> sage-core-${PV}.tar.bz2"
+# 	html? ( http://www.sagemath.org/doc-bz2/${MY_P_HTML}.tar.bz2 )"
+# 	pdf? ( http://www.sagemath.org/doc-bz2/${MY_P_PDF}.tar.bz2 )"
 
 LICENSE="GPL-2"
 SLOT="0"
@@ -30,7 +31,7 @@ S="${WORKDIR}/${MY_P}/doc"
 
 src_prepare() {
 	# Patch the tests in the documentation to use cvxopt-1.1.2
-	epatch "${FILESDIR}/${PN}"-cvxopt-1.1.2.patch
+	epatch "${FILESDIR}"/${PN}-cvxopt-1.1.2.patch
 }
 
 src_install() {
