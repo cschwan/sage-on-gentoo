@@ -78,10 +78,8 @@ src_prepare() {
 	# Fixes to Sage's build system
 	############################################################################
 
-	# Fix compilation issues on amd64 reported by Steve Trogdon
-	if use amd64 ; then
-		append-flags -fno-strict-aliasing
-	fi
+	# Fix startup issue reported by Steve Trogdon
+	append-flags -fno-strict-aliasing
 
 	# fix build file to make it compile without other Sage componenents
 	epatch "${FILESDIR}"/${PN}-4.3.4-site-packages.patch
