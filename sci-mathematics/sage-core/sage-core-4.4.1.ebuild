@@ -78,8 +78,10 @@ src_prepare() {
 	# Fixes to Sage's build system
 	############################################################################
 
-	# Fix startup issue reported by Steve Trogdon
-	append-flags -fno-strict-aliasing
+	# Fix compilation issues on amd64 reported by Steve Trogdon
+	if use amd64 ; then
+		append-flags -fno-strict-aliasing
+	fi
 
 	# fix build file to make it compile without other Sage componenents
 	epatch "${FILESDIR}"/${PN}-4.3.4-site-packages.patch
@@ -190,6 +192,12 @@ src_prepare() {
 # 			-e "s:'gmpxx':'mpirxx':g" \
 # 			-e "s:\"gmpxx\":\"mpirxx\":g" \
 # 			module_list.py sage/misc/cython.py || die "sed failed"
+	# fix jmol's and sage3d's path
+	sed -i \
+		-e "s:sage.misc.misc.SAGE_LOCAL, \"bin/jmol\":\"/usr/bin/jmol\":g" \
+		-e "s:sage.misc.misc.SAGE_LOCAL, \"bin/sage3d\":\"/usr/bin/sage3d\":g" \
+		plot/plot3d/base.pyx || die "sed failed"
+
 	# make sure line endings are unix ones so as not to confuse python-2.6.5
 	dos2unix sage/libs/mpmath/ext_impl.pxd
 	dos2unix sage/libs/mpmath/ext_main.pyx

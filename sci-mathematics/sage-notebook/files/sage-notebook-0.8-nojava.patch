@@ -1,0 +1,12 @@
+--- setup.py.orig	2010-05-07 23:03:27.387936354 +1200
++++ setup.py	2010-05-07 23:06:07.884936636 +1200
+@@ -40,9 +40,6 @@
+                      'sagenb.testing.tests',
+                      'sagenb.testing.selenium'
+                      ],
+-      scripts      = ['sagenb/data/jmol/jmol',
+-                      'sagenb/data/sage3d/sage3d',
+-                     ],
+       package_data = {'sagenb':
+                           all_files('sagenb/data', 'sagenb/')
+                       },

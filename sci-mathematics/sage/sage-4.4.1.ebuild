@@ -13,7 +13,7 @@ SRC_URI=""
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64 ~ppc ~x86"
-IUSE="examples latex wiki X"
+IUSE="examples latex wiki X java"
 
 # TODO: check dependencies use flagged packages
 CDEPEND=">=app-arch/bzip2-1.0.5
@@ -24,7 +24,7 @@ CDEPEND=">=app-arch/bzip2-1.0.5
 	~sci-mathematics/sage-core-${PV}
 	~sci-mathematics/sage-data-${PV}
 	~sci-mathematics/sage-extcode-${PV}
-	~sci-mathematics/sage-notebook-0.8
+	~sci-mathematics/sage-notebook-0.8[java=]
 	~sci-mathematics/sage-singular-3.1.0.4.20100214
 	virtual/cblas"
 
@@ -59,7 +59,8 @@ RDEPEND="${CDEPEND}
 	>=dev-python/cvxopt-0.9
 	dev-python/sqlalchemy[sqlite]
 	>=dev-python/sphinx-0.6.3
-	wiki? ( ~www-apps/sage-moin-1.9.1_p1 )"
+	wiki? ( ~www-apps/sage-moin-1.9.1_p1 )
+	java? ( >=virtual/jre-1.6 )"
 
 src_install() {
 	# TODO: grab icon from official site
