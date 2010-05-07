@@ -17,7 +17,7 @@ SRC_URI="mirror://sage/spkg/standard/${MY_P}.spkg -> ${P}.tar.bz2"
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64 ~ppc ~x86"
-IUSE=""
+IUSE="java"
 
 RESTRICT="mirror"
 
@@ -29,15 +29,26 @@ DEPEND="~dev-python/pexpect-2.0
 	>=dev-python/twisted-mail-9.0
 	>=dev-python/twisted-web2-8.1.0
 	>=dev-python/twisted-words-9.0
-	>=dev-python/jinja-1.2
-	>=dev-python/docutils-0.5
-	>=net-zope/zope-testbrowser-3.7.0"
-RDEPEND="${DEPEND}"
+	>=dev-python/jinja2-2.1.1
+	>=net-zope/zope-testbrowser-3.7.0
+	>=dev-python/docutils-0.5"
+RDEPEND="${DEPEND}
+	java? ( >=virtual/jre-1.6 )"
 
 S="${WORKDIR}/${MY_P}/src/sagenb"
 
 src_prepare() {
 	# TODO: Report this to upstream
-	epatch "${FILESDIR}"/${PN}-0.7.5.1-fix-deprecated-module.patch
+	epatch "${FILESDIR}/${PN}-0.7.5.1-fix-deprecated-module.patch"
+
+	if use java ; then
+		mv sagenb/data/jmol/jmol sagenb/data/jmol/sage-jmol
+		sed -i "s:jmol/jmol:jmol/sage-jmol:g" setup.py || die "sed failed"
+	else
+		epatch "${FILESDIR}/${P}-nojava.patch"
+		rm -rf sagenb/data/jmol || die "rm failed"
+		rm -rf sagenb/data/sage3d || die "rm failed"
+	fi
+
 	distutils_src_prepare
 }

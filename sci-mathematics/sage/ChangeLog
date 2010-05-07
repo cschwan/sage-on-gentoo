@@ -6,6 +6,9 @@
   sage-4.4.1.ebuild:
   Updated dependencies
 
+  07 May 2010; François Bissey <f.r.bissey@massey.ac.nz> sage-4.4.1.ebuild:
+  Add a java useflag to get a jre for jmol and sage3d.
+
   06 May 2010; François Bissey <f.r.bissey@massey.ac.nz> sage-4.4.1.ebuild:
   Restrict scipy to version-0.7.1
 

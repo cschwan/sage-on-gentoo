@@ -6,6 +6,10 @@
   sage-notebook-0.8.ebuild:
   Sagenb depends on zope-testbrowser according to its require.txt file
 
+  07 May 2010; François Bissey <f.r.bissey@massey.ac.nz>
+  sage-notebook-0.8.ebuild, +files/sage-notebook-0.8-nojava.patch:
+  Work on deps and make java an option to get jmol and sage3d.
+
 *sage-notebook-0.8 (03 May 2010)
 
   03 May 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
