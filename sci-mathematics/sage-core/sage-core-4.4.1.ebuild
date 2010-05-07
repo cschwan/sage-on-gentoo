@@ -22,7 +22,6 @@ RESTRICT="mirror"
 # TODO: add dependencies
 DEPEND="|| ( =dev-lang/python-2.6.4-r99[sqlite]
 		=dev-lang/python-2.6.5-r99[sqlite] )
-	app-text/dos2unix
 	>=dev-lang/R-2.10.1[lapack,readline]
 	>=dev-libs/ntl-5.5.2
 	>=dev-libs/mpfr-2.4.2
@@ -198,10 +197,10 @@ src_prepare() {
 		sage/plot/plot3d/base.pyx || die "sed failed"
 
 	# make sure line endings are unix ones so as not to confuse python-2.6.5
-	dos2unix sage/libs/mpmath/ext_impl.pxd
-	dos2unix sage/libs/mpmath/ext_main.pyx
-	dos2unix sage/libs/mpmath/ext_main.pxd
-	dos2unix sage/libs/mpmath/ext_libmp.pyx
+	edos2unix sage/libs/mpmath/ext_impl.pxd
+	edos2unix sage/libs/mpmath/ext_main.pyx
+	edos2unix sage/libs/mpmath/ext_main.pxd
+	edos2unix sage/libs/mpmath/ext_libmp.pyx
 
 	# do not forget to run distutils
 	distutils_src_prepare
