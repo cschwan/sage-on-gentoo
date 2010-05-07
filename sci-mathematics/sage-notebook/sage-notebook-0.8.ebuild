@@ -30,7 +30,8 @@ DEPEND="~dev-python/pexpect-2.0
 	>=dev-python/twisted-web2-8.1.0
 	>=dev-python/twisted-words-9.0
 	>=dev-python/jinja-1.2
-	>=dev-python/docutils-0.5"
+	>=dev-python/docutils-0.5
+	>=net-zope/zope-testbrowser-3.7.0"
 RDEPEND="${DEPEND}"
 
 S="${WORKDIR}/${MY_P}/src/sagenb"

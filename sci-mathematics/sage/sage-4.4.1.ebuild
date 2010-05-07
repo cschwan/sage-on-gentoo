@@ -17,9 +17,6 @@ IUSE="examples latex wiki X"
 
 # TODO: check dependencies use flagged packages
 CDEPEND=">=app-arch/bzip2-1.0.5
-	>=net-zope/zodb-3.7.0
-	>=net-zope/zope-i18nmessageid-3.5.0
-	>=net-zope/zope-testbrowser-3.7.0
 	>=sci-mathematics/rubiks-20070912_p10
 	~sci-mathematics/sage-core-${PV}
 	~sci-mathematics/sage-data-${PV}

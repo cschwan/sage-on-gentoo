@@ -2,6 +2,10 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  07 May 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
+  sage-core-4.4.1.ebuild:
+  Moved zodb dependency from sage to this ebuild
+
   06 May 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
   sage-core-4.4.1.ebuild:
   Changed src_prepare to always add flag "-fno-strict-aliasing"
