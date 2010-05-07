@@ -195,7 +195,7 @@ src_prepare() {
 	sed -i \
 		-e "s:sage.misc.misc.SAGE_LOCAL, \"bin/jmol\":\"/usr/bin/jmol\":g" \
 		-e "s:sage.misc.misc.SAGE_LOCAL, \"bin/sage3d\":\"/usr/bin/sage3d\":g" \
-		plot/plot3d/base.pyx || die "sed failed"
+		sage/plot/plot3d/base.pyx || die "sed failed"
 
 	# make sure line endings are unix ones so as not to confuse python-2.6.5
 	dos2unix sage/libs/mpmath/ext_impl.pxd
