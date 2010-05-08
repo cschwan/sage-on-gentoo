@@ -10,12 +10,11 @@ MY_P="sage-${PV}"
 MY_P_HTML="sage-${PV}-doc-html"
 MY_P_PDF="sage-${PV}-doc-pdf"
 
-# TODO: uncomment the lines once files are uploaded
 DESCRIPTION="Documentation for Sage"
 HOMEPAGE="http://www.sagemath.org/"
-SRC_URI="mirror://sage/spkg/standard/${MY_P}.spkg -> sage-core-${PV}.tar.bz2"
-# 	html? ( http://www.sagemath.org/doc-bz2/${MY_P_HTML}.tar.bz2 )"
-# 	pdf? ( http://www.sagemath.org/doc-bz2/${MY_P_PDF}.tar.bz2 )"
+SRC_URI="mirror://sage/spkg/standard/${MY_P}.spkg -> sage-core-${PV}.tar.bz2
+	html? ( http://www.sagemath.org/doc-bz2/${MY_P_HTML}.tar.bz2 )
+	pdf? ( http://www.sagemath.org/doc-bz2/${MY_P_PDF}.tar.bz2 )"
 
 LICENSE="GPL-2"
 SLOT="0"
@@ -46,7 +45,6 @@ src_install() {
 		doins -r * || die "doins failed"
 	fi
 
-	# TODO: pdf installation fails because pdfs are not unpacked ?
 	if use pdf ; then
 		cd "${WORKDIR}"/${MY_P_PDF}
 		insinto "${SAGE_ROOT}"/devel/sage-main/doc/output/pdf

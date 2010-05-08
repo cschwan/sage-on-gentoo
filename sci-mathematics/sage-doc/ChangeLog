@@ -2,6 +2,11 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  08 May 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
+  sage-doc-4.4.1.ebuild:
+  Added missing html and pdf files which are now available from
+  upstream
+
 *sage-doc-4.4.1 (03 May 2010)
 
   03 May 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
