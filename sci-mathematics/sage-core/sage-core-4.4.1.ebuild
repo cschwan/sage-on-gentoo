@@ -192,7 +192,7 @@ src_prepare() {
 # 			module_list.py sage/misc/cython.py || die "sed failed"
 	# fix jmol's and sage3d's path
 	sed -i \
-		-e "s:sage.misc.misc.SAGE_LOCAL, \"bin/jmol\":\"/usr/bin/sage-jmol\":g" \
+		-e "s:sage.misc.misc.SAGE_LOCAL, \"bin/jmol\":\"/usr/bin/jmol\":g" \
 		-e "s:sage.misc.misc.SAGE_LOCAL, \"bin/sage3d\":\"/usr/bin/sage3d\":g" \
 		sage/plot/plot3d/base.pyx || die "sed failed"
 

@@ -2,6 +2,11 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  09 May 2010; François Bissey <f.r.bissey@massey.ac.nz>
+  sage-core-4.4.1.ebuild:
+  Adjusting calling name of jmol again as we are switching to an ebuild
+  provided version.
+
   07 May 2010; François Bissey <f.r.bissey@massey.ac.nz>
   sage-core-4.4.1.ebuild:
   Forgot to change jmol to sage-jmol. 
