@@ -2,6 +2,13 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  09 May 2010; François Bissey <f.r.bissey@massey.ac.nz>
+  sage-notebook-0.8.ebuild:
+  Make the java run-time dependency call on building jmol. Remove jmol and
+  sage3d from
+  the notebook. They are binary packages and sage3d is not meant to work out
+  of the box.
+
   07 May 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
   sage-notebook-0.8.ebuild:
   Sagenb depends on zope-testbrowser according to its require.txt file

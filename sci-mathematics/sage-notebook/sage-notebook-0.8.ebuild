@@ -33,7 +33,7 @@ DEPEND="~dev-python/pexpect-2.0
 	>=net-zope/zope-testbrowser-3.7.0
 	>=dev-python/docutils-0.5"
 RDEPEND="${DEPEND}
-	java? ( >=virtual/jre-1.6 )"
+	java? ( >=sci-chemistry/jmol-11.6 )"
 
 S="${WORKDIR}/${MY_P}/src/sagenb"
 
@@ -41,14 +41,14 @@ src_prepare() {
 	# TODO: Report this to upstream
 	epatch "${FILESDIR}/${PN}-0.7.5.1-fix-deprecated-module.patch"
 
-	if use java ; then
-		mv sagenb/data/jmol/jmol sagenb/data/jmol/sage-jmol
-		sed -i "s:jmol/jmol:jmol/sage-jmol:g" setup.py || die "sed failed"
-	else
-		epatch "${FILESDIR}/${P}-nojava.patch"
-		rm -rf sagenb/data/jmol || die "rm failed"
-		rm -rf sagenb/data/sage3d || die "rm failed"
-	fi
+	epatch "${FILESDIR}/${P}-nojava.patch"
+	rm -rf sagenb/data/jmol || die "rm failed"
+	# FIXME: sage3d isnot supposed to work out of the box.
+	# It requires extra sun java components (dev-java/sun-java3d-bin)
+	# The latest stable version of which is fetch restricted (but not latest unstable).
+	# Furthermore the install procedure, as is, install a "binary" version of sage3d.
+	# We would need to rebuild it from the provided sources.
+	rm -rf sagenb/data/sage3d || die "rm failed"
 
 	distutils_src_prepare
 }
