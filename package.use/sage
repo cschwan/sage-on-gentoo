@@ -8,3 +8,7 @@ sci-mathematics/lcalc		pari
 sci-mathematics/maxima		ecl
 sci-mathematics/pari		data gmp
 sci-mathematics/polybori	gd sage
+################################################
+# Recomended flags for optional dependency jmol
+################################################
+sci-chemistry/jmol client-only
