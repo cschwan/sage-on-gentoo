@@ -52,7 +52,7 @@ net-zope/zope-copy
 net-zope/zope-dottedname
 net-zope/zope-error
 net-zope/zope-event
-net-zope/zope-exceptions
+=net-zope/zope-exceptions-3.5.2
 net-zope/zope-filerepresentation
 net-zope/zope-hookable
 net-zope/zope-i18n
