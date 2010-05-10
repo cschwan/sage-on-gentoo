@@ -2,6 +2,10 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  10 May 2010; François Bissey <f.r.bissey@massey.ac.nz>
+  sage-notebook-0.8.ebuild:
+  Being more subtle with jmol - do not remove the webapplets.
+
   09 May 2010; François Bissey <f.r.bissey@massey.ac.nz>
   sage-notebook-0.8.ebuild:
   Make the java run-time dependency call on building jmol. Remove jmol and

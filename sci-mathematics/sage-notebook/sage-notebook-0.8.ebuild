@@ -42,7 +42,9 @@ src_prepare() {
 	epatch "${FILESDIR}/${PN}-0.7.5.1-fix-deprecated-module.patch"
 
 	epatch "${FILESDIR}/${P}-nojava.patch"
-	rm -rf sagenb/data/jmol || die "rm failed"
+	rm -rf sagenb/data/jmol/*.jar || die "rm failed"
+	rm -rf sagenb/data/jmol/jars || die "rm failed"
+	rm sagenb/data/jmol/jmol sagenb/data/jmol/jmol.sh || die "rm failed"
 	# FIXME: sage3d isnot supposed to work out of the box.
 	# It requires extra sun java components (dev-java/sun-java3d-bin)
 	# The latest stable version of which is fetch restricted (but not latest unstable).
