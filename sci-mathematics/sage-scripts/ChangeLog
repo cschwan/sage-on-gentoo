@@ -2,6 +2,14 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*sage-scripts-4.4.1-r1 (10 May 2010)
+
+  10 May 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
+  +sage-scripts-4.4.1-r1.ebuild,
+  +files/sage-scripts-4.4.1-gentooify-scripts.patch:
+  New revision removes scripts not needed - the remains a problem with
+  Singular thus the ebuild is masked
+
 *sage-scripts-4.4.1 (03 May 2010)
 
   03 May 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
