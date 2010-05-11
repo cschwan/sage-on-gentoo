@@ -2,6 +2,10 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  11 May 2010; François Bissey <f.r.bissey@massey.ac.nz>
+  jmol-11.6.16.ebuild:
+  Changes to install applets for sage.
+
 *jmol-11.6.16 (09 May 2010)
 
   09 May 2010; François Bissey <f.r.bissey@massey.ac.nz>

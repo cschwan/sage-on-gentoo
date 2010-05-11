@@ -15,7 +15,7 @@ LICENSE="LGPL-2.1"
 
 RESTRICT="mirror"
 
-IUSE="client-only vhosts"
+IUSE="client-only applet vhosts"
 
 WEBAPP_MANUAL_SLOT="yes"
 SLOT="0"
@@ -79,10 +79,27 @@ src_install() {
 	dohtml -r  build/doc/* || die "Failed to install html docs."
 	dodoc *.txt doc/*license* || die "Failed to install licenses."
 
+	if use applet ; then
+		java-pkg_dojar build/JmolApplet.jar
+		java-pkg_dojar build/JmolApplet0.jar
+		java-pkg_dojar build/JmolApplet0_Minimize.jar
+		java-pkg_dojar build/JmolApplet0_Popup.jar
+		java-pkg_dojar build/JmolApplet0_Quantum.jar
+		java-pkg_dojar build/JmolApplet0_ReadersMolXyz.jar
+		java-pkg_dojar build/JmolApplet0_ReadersCifPdb.jar
+		java-pkg_dojar build/JmolApplet0_ReadersMore.jar
+		java-pkg_dojar build/JmolApplet0_ReadersXml.jar
+		java-pkg_dojar build/JmolApplet0_ShapeBio.jar
+		java-pkg_dojar build/JmolApplet0_ShapeSpecial.jar
+		java-pkg_dojar build/JmolApplet0_ShapeSurface.jar
+		java-pkg_dojar build/JmolApplet0_Smiles.jar
+		java-pkg_dojar build/JmolApplet0_Symmetry.jar
+	fi
+
 	java-pkg_dolauncher ${PN} --main org.openscience.jmol.app.Jmol \
 		--java_args "-Xmx512m"
 
-	if ! use client-only ; then
+	if ! ( use client-only || use applet) ; then
 		webapp_src_preinst || die "Failed webapp_src_preinst."
 		cmd="cp Jmol.js build/Jmol.jar "${D}${MY_HTDOCSDIR}"" ; ${cmd} \
 		|| die "${cmd} failed."
@@ -105,7 +122,7 @@ src_install() {
 
 pkg_postinst() {
 
-	if ! use client-only ; then
+	if ! ( use client-only || use applet) ; then
 		webapp_pkg_postinst || die "webapp_pkg_postinst failed"
 	fi
 
