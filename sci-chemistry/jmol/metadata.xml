@@ -9,5 +9,7 @@
 <use>
   <flag name='client-only'>Install the viewer only, no applet files for httpd
     </flag>
+  <flag name='applet'>Install the viewer and applets files for use in a separate application.
+    </flag>
 </use>
 </pkgmetadata>
