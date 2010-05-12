@@ -13,7 +13,7 @@ SRC_URI=""
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
-IUSE="wiki X"
+IUSE="latex wiki X"
 
 # TODO: check dependencies use flagged packages
 CDEPEND=">=app-arch/bzip2-1.0.5
@@ -43,7 +43,7 @@ RDEPEND="${CDEPEND}
 	>=dev-python/python-gnutls-1.1.4
 	sci-mathematics/sage-doc
 	~sci-mathematics/sage-examples-${PV}
-	~sci-mathematics/sage-latex-2.2.3
+	latex? ( ~sci-mathematics/sage-latex-2.2.3 )
 	>=sci-mathematics/gap-4.4.12
 	>=sci-mathematics/gap-guava-3.4
 	>=sci-mathematics/maxima-5.20.1[ecl]
