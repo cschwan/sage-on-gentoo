@@ -1,1 +1,0 @@
-=sci-mathematics/sage-scripts-4.4.1-r1
