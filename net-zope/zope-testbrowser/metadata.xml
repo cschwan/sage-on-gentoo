@@ -3,4 +3,8 @@
 <pkgmetadata>
 	<herd>net-zope</herd>
 	<herd>python</herd>
+<use>
+  <flag name='testing'>Pull the optional testing infrastructure
+    </flag>
+</use>
 </pkgmetadata>
