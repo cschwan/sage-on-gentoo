@@ -2,6 +2,11 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*ghmm-20080813_p0 (12 May 2010)
+
+  12 May 2010; <gnuke@gentoo.org> +ghmm-20080813_p0.ebuild:
+  Added ghmm ebuild which takes sources from Sage - works on amd64
+
   24 Apr 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
   -ghmm-0.9_rc1.ebuild:
   Removed old version
