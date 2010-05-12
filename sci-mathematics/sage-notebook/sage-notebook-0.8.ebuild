@@ -30,7 +30,6 @@ DEPEND="~dev-python/pexpect-2.0
 	>=dev-python/twisted-web2-8.1.0
 	>=dev-python/twisted-words-9.0
 	>=dev-python/jinja2-2.1.1
-	>=net-zope/zope-testbrowser-3.7.0
 	>=dev-python/docutils-0.5"
 RDEPEND="${DEPEND}
 	java? ( >=sci-chemistry/jmol-11.6 )"
