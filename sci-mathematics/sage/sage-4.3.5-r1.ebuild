@@ -74,8 +74,20 @@ src_install() {
 		doicon ${PN}.svg || die "doicon failed"
 
 		# make .desktop file
-		make_desktop_entry ${PN} "Sage Shell" ${PN} ${C} \
-			|| die "make_desktop_entry failed"
+		cat > sage-sage.desktop <<-EOF
+			[Desktop Entry]
+			Name=Sage Shell
+			Type=Application
+			Comment=${DESCRIPTION}
+			Exec=${PN}
+			TryExec=${PN}
+			Icon=${PN}
+			Categories=Education;Science;Math;
+			Terminal=true
+		EOF
+
+		# install .desktop file
+		domenu sage-sage.desktop || die "domenu failed"
 	fi
 }
 
