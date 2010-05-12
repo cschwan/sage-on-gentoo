@@ -1,0 +1,45 @@
+# ChangeLog for net-zope/zope-testbrowser
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/net-zope/zope-testbrowser/ChangeLog,v 1.7 2010/04/19 20:02:11 arfrever Exp $
+
+  12 May 2010; François Bissey <f.r.bissey@massey.ac.nz>
+  +zope-testbrowser-3.8.1.ebuild, +metadata.xml:
+  Initial import in the overlay. Only pull zop-app-testing related if the
+  testing flag is set.
+
+*zope-testbrowser-3.8.1 (19 Apr 2010)
+
+  19 Apr 2010; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  -zope-testbrowser-3.8.0.ebuild, +zope-testbrowser-3.8.1.ebuild:
+  Version bump.
+
+*zope-testbrowser-3.8.0 (14 Mar 2010)
+
+  14 Mar 2010; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  -zope-testbrowser-3.7.0.ebuild, +zope-testbrowser-3.8.0.ebuild:
+  Version bump.
+
+  14 Feb 2010; Raúl Porcel <armin76@gentoo.org>
+  zope-testbrowser-3.7.0.ebuild:
+  Add ~alpha/~sparc wrt #297734
+
+  22 Jan 2010; Brent Baude <ranger@gentoo.org>
+  zope-testbrowser-3.7.0.ebuild:
+  Marking zope-testbrowser-3.7.0 ~ppc for bug 297734
+
+  16 Jan 2010; Christian Faulhammer <fauli@gentoo.org>
+  zope-testbrowser-3.7.0.ebuild:
+  keyworded ~arch for x86, bug 297734
+
+*zope-testbrowser-3.7.0 (20 Dec 2009)
+
+  20 Dec 2009; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  -zope-testbrowser-3.7.0_alpha1.ebuild, +zope-testbrowser-3.7.0.ebuild:
+  Version bump.
+
+*zope-testbrowser-3.7.0_alpha1 (08 Dec 2009)
+
+  08 Dec 2009; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  +zope-testbrowser-3.7.0_alpha1.ebuild, +metadata.xml:
+  Initial addition. Ebuild written by me.
+

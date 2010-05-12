@@ -29,7 +29,7 @@ src_install() {
 
 	# remove stuff not needed
 	rm -rf .hg .hgignore .hgtags mirror sage-push spkg-debian spkg-dist \
-		spkg-install || die "rm failed"
+		spkg-install dist || die "rm failed"
 
 	doins -r * || die "doins failed"
 }
