@@ -2,6 +2,10 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  13 May 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
+  +ghmm-0.9_rc1.ebuild:
+  Added old ebuild again because newer fails on amd64
+
   24 Apr 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
   -ghmm-0.9_rc1.ebuild:
   Removed old version
