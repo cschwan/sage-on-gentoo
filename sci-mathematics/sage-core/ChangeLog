@@ -2,6 +2,13 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*sage-core-4.3.5-r1 (13 May 2010)
+
+  13 May 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
+  sage-core-4.3.5.ebuild, +sage-core-4.3.5-r1.ebuild:
+  Added new sage-core-4.3.5-r1 which is 4.4.1 but checks out 4.3.5 to
+  enable hg bisect to find the amd64 error
+
   09 May 2010; François Bissey <f.r.bissey@massey.ac.nz>
   sage-core-4.4.1.ebuild:
   Adjusting calling name of jmol again as we are switching to an ebuild

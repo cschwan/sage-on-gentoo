@@ -8,11 +8,14 @@ NEED_PYTHON=2.6
 
 inherit distutils eutils flag-o-matic sage
 
-MY_P="sage-${PV}"
+# we are using version 4.4.1 but checkout 4.3.5 (enables possibility to use
+# hg bisect and to investigate on the amd64 SIGABRT error)
+MY_PN="sage"
+MY_P="${MY_PN}-4.4.1"
 
 DESCRIPTION="Sage's core componenents"
 HOMEPAGE="http://www.sagemath.org"
-SRC_URI="mirror://sage/spkg/standard/${MY_P}.spkg -> ${P}.tar.bz2"
+SRC_URI="mirror://sage/spkg/standard/${MY_P}.spkg -> ${PN}-4.4.1.tar.bz2"
 
 LICENSE="GPL-2"
 SLOT="0"
@@ -31,6 +34,7 @@ DEPEND="|| ( =dev-lang/python-2.6.4-r99[sqlite]
 	>=dev-python/networkx-1.0.1
 	>=dev-python/numpy-1.3.0[lapack]
 	>=dev-python/rpy-2.0.6
+	dev-vcs/mercurial
 	media-libs/gd
 	media-libs/libpng
 	>=sci-libs/flint-1.5.0[ntl]
@@ -73,6 +77,14 @@ pkg_setup() {
 	OLD_IMPLEM=$(eselect lapack show | cut -d: -f2)
 	einfo "Switching to lapack-atlas with eselect."
 	eselect lapack set atlas
+}
+
+src_unpack() {
+	default_src_unpack
+
+	cd "${S}"
+	# checkout version 4.3.5
+	hg update 4.3.5 || die "hg failed"
 }
 
 src_prepare() {
