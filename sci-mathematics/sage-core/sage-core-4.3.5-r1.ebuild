@@ -146,12 +146,6 @@ src_prepare() {
 		-e "s:maxima --very-quiet:maxima -l ecl --very-quiet:g" \
 		sage/interfaces/maxima.py || die "sed failed"
 
-	# TODO: Did not work (?), remove it
-# 	# Fix gap invocation of sage.g - hopefully fixing Marek's problem.
-# 	sage_package ${P} \
-# 		sed -i "s:DB_HOME = \"%s/data/\"%SAGE_ROOT:DB_HOME = \"${SAGE_ROOT}/data/\":g" \
-# 		sage/interfaces/gap.py
-
 	# Ticket #7803:
 	# apply patches fixing deprecation warning which interfers with test output
 	epatch "${FILESDIR}"/${PN}-4.3.3-combinat-sets-deprecation.patch
@@ -161,6 +155,9 @@ src_prepare() {
 
 	# use arpack from scipy (see also scipy ticket #231)
 	epatch "${FILESDIR}"/${PN}-4.3.3-arpack-from-scipy.patch
+
+	# upgrade networkx to 1.0.1 (see Trac #7608)
+	epatch "${FILESDIR}"/${P}-upgrade-networkx.patch.bz2
 
 	# fix include paths
 	sed -i \
