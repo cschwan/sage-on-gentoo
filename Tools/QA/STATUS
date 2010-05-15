@@ -1,0 +1,27 @@
+sci-libs/flint-1.5.2:
+	- bugreport: 230437
+	- tests: successful, also with USE=mpir and/or USE=ntl
+
+sci-libs/fplll-3.0.12-r1:
+	- bugreport: 230427
+	- tests: successful
+
+sci-libs/iml-1.0.3:
+	- bugreport: 230429
+	- tests: successful
+
+sci-libs/m4ri-20091120:
+	- bugreport: 230431
+	- tests: successful
+
+sci-libs/pynac-0.1.11:
+	- bugreport: none
+	- tests: test target present but no tests
+
+sci-libs/symmetrica-2.0:
+	- bugreport: 232014
+	- tests: successful
+
+sci-libs/zn_poly-0.9-r2:
+	- bugreport: none
+	- tests: successful, also with USE=mpir

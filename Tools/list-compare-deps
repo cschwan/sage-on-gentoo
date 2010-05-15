@@ -12,7 +12,8 @@ installed_version() {
 }
 
 dependencies() {
-	local raw_dependencies=( $(qdepends $1) )
+	# TODO: list all dependencies
+	local raw_dependencies=( $(qdepends --rdepend $1) )
 
 	# first element is ebuild itself
 	unset raw_dependencies[0]
