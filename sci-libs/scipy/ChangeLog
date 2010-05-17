@@ -1,0 +1,283 @@
+# ChangeLog for sci-libs/scipy
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sci-libs/scipy/ChangeLog,v 1.50 2010/04/22 20:28:27 bicatali Exp $
+
+*scipy-0.7.1-r1 (17 May 2010)
+
+  17 May 2010; François Bissey <f.r.bissey@massey.ac.nz>
+  +files/scipy-0.6.0-stsci.patch, +files/scipy-0.7.0_beta1-implicit.patch,
+  +scipy-0.7.1-r1.ebuild, +files/scipy-0.7.1-weave.patch,
+  +files/scipy-0.7-optimize.patch, +metadata.xml:
+  Initial import of scipy in the overlay - include fixe to optimize.py.
+
+*scipy-0.7.2 (22 Apr 2010)
+
+  22 Apr 2010; Sébastien Fabbro <bicatali@gentoo.org> +scipy-0.7.2.ebuild:
+  Version bump. Should be prefix ready
+
+  25 Feb 2010; Sébastien Fabbro <bicatali@gentoo.org> scipy-0.7.1.ebuild,
+  +files/scipy-0.7.1-weave.patch:
+  Added a patch for a working weave, bug #304799
+
+  03 Feb 2010; Markos Chandras <hwoarang@gentoo.org> scipy-0.7.1.ebuild:
+  Stable on amd64 wrt bug #270478
+
+  12 Jan 2010; Christian Faulhammer <fauli@gentoo.org> scipy-0.7.1.ebuild:
+  stable x86, bug 270478
+
+  05 Jan 2010; Fabian Groffen <grobian@gentoo.org> scipy-0.7.1.ebuild:
+  Fix for Darwin, marked ~ppc-macos
+
+  02 Jan 2010; Christian Faulhammer <fauli@gentoo.org> scipy-0.7.1.ebuild:
+  Transfer Prefix keywords
+
+  20 Nov 2009; Sébastien Fabbro <bicatali@gentoo.org>
+  -scipy-0.6.0-r6.ebuild, -files/scipy-0.6.0-cdf.patch,
+  -files/scipy-0.6.0-fftw-fix.patch, -files/scipy-0.6.0-implicit.patch,
+  -files/scipy-0.6.0-ndimage.patch,
+  -files/scipy-0.6.0-python-2.6-c_abs.patch,
+  -files/scipy-0.6.0-randomkit.patch, -scipy-0.7.0.ebuild,
+  scipy-0.7.1.ebuild:
+  Added doc flag, bug #293525, thanks Denilson
+
+  04 Sep 2009; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  scipy-0.7.1.ebuild:
+  Set SUPPORT_PYTHON_ABIS. Tests are restricted so remove "test" USE flag.
+
+*scipy-0.7.1 (21 Jul 2009)
+
+  21 Jul 2009; Sébastien Fabbro <bicatali@gentoo.org> +scipy-0.7.1.ebuild:
+  Version bump. Better compatibility with python-2.6.
+
+  20 Feb 2009; Sébastien Fabbro <bicatali@gentoo.org>
+  scipy-0.6.0-r6.ebuild, scipy-0.7.0.ebuild:
+  Fixed swig python deps for newer swig versions (>=1.3.38), closing bug
+  #259593
+
+*scipy-0.7.0 (18 Feb 2009)
+
+  18 Feb 2009; Sébastien Fabbro <bicatali@gentoo.org>
+  -scipy-0.7.0_rc2.ebuild, +scipy-0.7.0.ebuild:
+  Version bump
+
+*scipy-0.7.0_rc2 (02 Feb 2009)
+
+  02 Feb 2009; Sébastien Fabbro <bicatali@gentoo.org>
+  -scipy-0.6.0-r4.ebuild, -scipy-0.6.0-r5.ebuild, -scipy-0.7.0_beta1.ebuild,
+  +scipy-0.7.0_rc2.ebuild:
+  Version bump, removed older revisions
+
+*scipy-0.6.0-r6 (14 Jan 2009)
+
+  14 Jan 2009; Sébastien Fabbro <bicatali@gentoo.org>
+  +scipy-0.6.0-r6.ebuild:
+  PIC for all arches when FFLAGS are set, and some fixes for atlas.
+
+  11 Dec 2008; Sébastien Fabbro <bicatali@gentoo.org>
+  scipy-0.6.0-r5.ebuild, scipy-0.7.0_beta1.ebuild:
+  Moved pic flag to src_compile
+
+*scipy-0.7.0_beta1 (05 Dec 2008)
+*scipy-0.6.0-r5 (05 Dec 2008)
+
+  05 Dec 2008; Sébastien Fabbro <bicatali@gentoo.org>
+  files/scipy-0.6.0-implicit.patch,
+  +files/scipy-0.6.0-python-2.6-c_abs.patch, +files/scipy-0.6.0-stsci.patch,
+  +files/scipy-0.7.0_beta1-implicit.patch, +scipy-0.6.0-r5.ebuild,
+  +scipy-0.7.0_beta1.ebuild:
+  Fixed for python-2.6 (bug #245100, thanks Christian Becke for his patch),
+  now installs stsci packages, and beta version bump, still masked for
+  testing only
+
+  28 Oct 2008; Sébastien Fabbro <bicatali@gentoo.org>
+  scipy-0.6.0-r4.ebuild:
+  Added virtual/cblas dependency, thanks Michael Davidsaver, bug #244403
+
+  28 Sep 2008; Sébastien Fabbro <bicatali@gentoo.org>
+  scipy-0.6.0-r4.ebuild:
+  Fixed again blas/lapack configuration to be compatible with the available
+  gentoo implementations
+
+  26 Sep 2008; Sébastien Fabbro <bicatali@gentoo.org> metadata.xml,
+  scipy-0.6.0-r4.ebuild:
+  Changed blas/atlas configuration to match newer numpy (should be still
+  compatible with numpy-1.0.4 too. Disabled magic fortran flags detection
+
+  03 Jul 2008; Thomas Anderson <gentoofan23@gentoo.org>
+  +files/scipy-0.6.0-implicit.patch, scipy-0.6.0-r4.ebuild:
+  Fix implicit declarations, bug #204874, thanks to Dustin Surawicz for
+  reporting.
+
+  23 Jun 2008; Sébastien Fabbro <bicatali@gentoo.org>
+  scipy-0.6.0-r4.ebuild:
+  Added a few configuration options for lapack and atlas
+
+  21 Apr 2008; Sébastien Fabbro <bicatali@gentoo.org>
+  -files/scipy-0.6.0-clapack-symbol-fix.patch, -scipy-0.5.2.ebuild,
+  -scipy-0.6.0-r2.ebuild, -scipy-0.6.0-r3.ebuild:
+  Removed buggy versions
+
+  17 Apr 2008; Sébastien Fabbro <bicatali@gentoo.org>
+  scipy-0.6.0-r4.ebuild:
+  Put append-ldflags in pkg_setup and make it available always (bug #217914)
+
+  26 Mar 2008; Markus Rothe <corsair@gentoo.org> scipy-0.6.0-r4.ebuild:
+  Added ~ppc64; bug #211791
+
+*scipy-0.6.0-r4 (24 Jan 2008)
+
+  24 Jan 2008; Sébastien Fabbro <bicatali@gentoo.org>
+  -files/scipy-0.5.2-bspline.patch, -files/scipy-0.5.2-cdf.patch,
+  -files/scipy-0.5.2-minpack.patch,
+  -files/scipy-0.5.2-montecarlo-test.patch,
+  -files/scipy-0.5.2-nonexisting.patch, -files/scipy-0.5.2-randomkit.patch,
+  -files/scipy-0.5.2-signals.patch, -files/scipy-0.5.2-viewer.patch,
+  +files/scipy-0.6.0-ndimage.patch, -files/enabled_packages.txt,
+  -scipy-0.5.2.1.ebuild, -scipy-0.6.0.ebuild, -scipy-0.6.0-r1.ebuild,
+  +scipy-0.6.0-r4.ebuild:
+  New patch to fix some undefined pointer (mainly on amd64). Trying to fix bug
+  #195619 by forcing a fixed numpy version and rewrite of site configuration
+  file. Removed some obsolete versions.
+
+*scipy-0.6.0-r3 (17 Dec 2007)
+
+  17 Dec 2007; Sébastien Fabbro <bicatali@gentoo.org>
+  +scipy-0.6.0-r3.ebuild:
+  Revert clapack patch (see bug #197527) and take care of LDFLAGS as numpy
+
+*scipy-0.6.0-r2 (18 Oct 2007)
+
+  18 Oct 2007; Markus Dittrich <markusle@gentoo.org>
+  +files/scipy-0.6.0-clapack-symbol-fix.patch, 
+  +scipy-0.6.0-r2.ebuild:
+  Added new revision to fix undefined lapack symbols (see bug #195619).
+
+*scipy-0.6.0-r1 (05 Oct 2007)
+
+  05 Oct 2007; Markus Dittrich <markusle@gentoo.org>
+  +files/scipy-0.6.0-fftw-fix.patch, +scipy-0.6.0-r1.ebuild:
+  New revision with patch to fix fftw problem (see bug #194708). 
+  Thanks much to David Heavens <david.heavens@gmail.com> for his patch.
+
+*scipy-0.6.0 (25 Sep 2007)
+
+  25 Sep 2007; Sébastien Fabbro <bicatali@gentoo.org>
+  +files/scipy-0.6.0-cdf.patch, +files/scipy-0.6.0-randomkit.patch,
+  +files/enabled_packages-0.6.0.txt, +scipy-0.6.0.ebuild:
+  Version bump. Added dev-python/imaging in RDEPEND. Re-organize
+  sandbox modules building.
+
+  11 Sep 2007; Sébastien Fabbro <bicatali@gentoo.org>
+  +files/scipy-0.5.2-cdf.patch, -files/scipy-0.5.2-getpath.patch,
+  -files/scipy-0.5.2-mio.patch, -files/scipy-0.5.2-umfpack.patch,
+  scipy-0.5.2.1.ebuild:
+  fixed conflict with cdf (bug #191593), removed old versions
+
+  09 Sep 2007; Joseph Jezak <josejx@gentoo.org> scipy-0.5.2.1.ebuild:
+  Marked ~ppc for bug #191600.
+
+*scipy-0.5.2.1 (24 Aug 2007)
+
+  24 Aug 2007; Sébastien Fabbro <bicatali@gentoo.org>
+  +scipy-0.5.2.1.ebuild:
+  Version bump + cleaning configuration
+
+*scipy-0.5.2-r2 (06 Jun 2007)
+
+  06 Jun 2007; Sébastien Fabbro <bicatali@gentoo.org>
+  +files/scipy-0.5.2-getpath.patch, +files/scipy-0.5.2-minpack.patch,
+  +files/scipy-0.5.2-mio.patch, +files/scipy-0.5.2-montecarlo-test.patch,
+  +files/scipy-0.5.2-nonexisting.patch, +files/scipy-0.5.2-randomkit.patch,
+  +files/scipy-0.5.2-signals.patch, +files/scipy-0.5.2-umfpack.patch,
+  +files/scipy-0.5.2-viewer.patch, +files/enabled_packages.txt,
+  +files/scipy-0.5.2-bspline.patch +scipy-0.5.2-r2.ebuild:
+  Revision including a bunch of patches from scipy-svn. Now also includes
+  sandbox modules with a use flag. Revert to fftw-2.* for fftw, faster for
+  complex. Added a patch to enable numpy-1.0.3 API changes.
+
+  04 Jun 2007; Sébastien Fabbro <bicatali@gentoo.org>
+  -files/system_info.diff, -scipy-0.4.9.ebuild, -scipy-0.5.1.ebuild:
+  Removed old unused versions
+
+  19 Feb 2007; Sébastien Fabbro <bicatali@gentoo.org> -scipy-0.3.2.ebuild,
+  -scipy-0.4.8.ebuild, -scipy-0.4.8-r1.ebuild:
+  removed buggy versions, closing bug #166882.
+
+*scipy-0.5.2-r1 (19 Feb 2007)
+
+  19 Feb 2007; Sébastien Fabbro <bicatali@gentoo.org> metadata.xml,
+  +scipy-0.5.2-r1.ebuild:
+  A lot of cleaning+testing. Added umfpack support. Closing #135956.
+
+*scipy-0.5.2 (31 Jan 2007)
+
+  31 Jan 2007; Steve Arnold <nerdboy@gentoo.org> +scipy-0.5.2.ebuild:
+  version bump with fix for bug 149153 (needs cleanup and stablization)
+
+  01 Nov 2006; Donnie Berkholz <dberkholz@gentoo.org>; ChangeLog:
+  Update for my nick change spyderous -> dberkholz.
+
+  24 Sep 2006; Donnie Berkholz <dberkholz@gentoo.org>; scipy-0.5.1.ebuild:
+  Drop pkg_setup() and use default fortran one. This gets rid of the forced
+  ATLAS use and blas/lapack-config checks added in #129524. It seems to work
+  OK with other implems as long as you're consistent about it, and it breaks
+  in an annoying way with newer eselect modules (see #136023 e.g.). Also this
+  drops the LDFLAGS stuff that was wrongly added, a better fix is already in
+  here.
+
+  24 Sep 2006; Donnie Berkholz <dberkholz@gentoo.org>; scipy-0.4.8.ebuild,
+  scipy-0.4.8-r1.ebuild, scipy-0.4.9.ebuild:
+  (#144744) Block out >=numpy-1_beta and newer.
+
+*scipy-0.5.1 (24 Sep 2006)
+
+  24 Sep 2006; Donnie Berkholz <dberkholz@gentoo.org>; +scipy-0.5.1.ebuild:
+  Bump.
+
+  24 Sep 2006; Donnie Berkholz <dberkholz@gentoo.org>; scipy-0.4.9.ebuild:
+  Setting LDFLAGS at all entirely overrides the linker flags within the build
+  and breaks it. See comp.lang.python thread 'Building things with setup.py'
+  from 21 Sept. 2006.
+
+  24 Sep 2006; Donnie Berkholz <dberkholz@gentoo.org>; scipy-0.4.9.ebuild:
+  Newer atlas doesn't have USE=ifc, so stop checking for it.
+
+*scipy-0.4.9 (14 Jun 2006)
+
+  14 Jun 2006; Donnie Berkholz <dberkholz@gentoo.org>; +scipy-0.4.9.ebuild:
+  Bump. Incorporates many changes from the science overlay, mainly from bicatali.
+
+  14 Jun 2006; Donnie Berkholz <dberkholz@gentoo.org>;
+  scipy-0.4.8-r1.ebuild:
+  Remove =gcc-3* dep.
+
+  13 Jun 2006; Donnie Berkholz <dberkholz@gentoo.org>;
+  scipy-0.4.8-r1.ebuild:
+  Keyword ~ppc.
+
+  13 Jun 2006; Donnie Berkholz <dberkholz@gentoo.org>;
+  scipy-0.4.8-r1.ebuild:
+  (#134248) Fix for gcc4, and stop appending -O3 -funroll-loops at the end of
+  our compiler flags by specifying --opt.
+
+  13 Jun 2006; Donnie Berkholz <dberkholz@gentoo.org>;
+  scipy-0.4.8-r1.ebuild:
+  When checking for ATLAS, do it case-insensitively. Future planning for
+  blas-config and lapack-config as eselect wrappers.
+
+*scipy-0.4.8-r1 (13 Apr 2006)
+
+  13 Apr 2006; Olivier Fisette <ribosome@gentoo.org> +scipy-0.4.8-r1.ebuild:
+  Added ATLAS profile check in pk_setup() (fixes bug #129524).
+
+*scipy-0.4.8 (01 Apr 2006)
+
+  01 Apr 2006; Olivier Fisette <ribosome@gentoo.org> +scipy-0.4.8.ebuild:
+  New version. Thanks to bicatali and other contributors for their work.
+
+*scipy-0.3.2 (22 Aug 2005)
+
+  22 Aug 2005; Peter Bienstman <pbienst@gentoo.org> +files/system_info.diff,
+  +metadata.xml, +scipy-0.3.2.ebuild:
+  Initial import. Closes 24593. Thanks to D. Grant, D. Dale and others.
+
