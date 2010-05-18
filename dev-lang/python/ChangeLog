@@ -2,6 +2,10 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  18 May 2010; François Bissey <f.r.bissey@massey.ac.nz>
+  python-2.6.4-r99.ebuild, python-2.6.5-r99.ebuild:
+  Update 2.6.5 to patchset 4 matching 2.6.5-r2. Minor QA.
+
 *python-2.6.5-r99 (20 Apr 2010)
 
   20 Apr 2010; François Bissey <f.r.bissey@massey.ac.nz>
