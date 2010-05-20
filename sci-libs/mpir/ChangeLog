@@ -2,6 +2,12 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*mpir-2.0.0 (20 May 2010)
+
+  20 May 2010; François Bissey <f.r.bissey@massey.ac.nz>
+  +mpir-2.0.0.ebuild, +files/mpir-2.0.0-yasm.patch:
+  Add latest version of mpir (2.0.0).
+
 *mpir-1.3.1-r2 (11 Apr 2010)
 
   11 Apr 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
