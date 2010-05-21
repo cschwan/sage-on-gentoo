@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<herd>sci-mathematics</herd>
+	<maintainer>
+		<email>grozin@gentoo.org</email>
+		<name>Andrey Grozin</name>
+	</maintainer>
+	<longdescription>Computer algebra system (CAS) in Python</longdescription>
+	<use>
+		<flag name='ipython'>Add support for <pkg>dev-python/ipython</pkg></flag>
+		<flag name='imaging'>Add support for <pkg>dev-python/imaging</pkg></flag>
+		<flag name='mathml'>Add support for mathml</flag>
+		<flag name='texmacs'>Add support for <pkg>app-office/texmacs</pkg></flag>
+	</use>
+</pkgmetadata>
