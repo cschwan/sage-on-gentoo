@@ -156,6 +156,10 @@ src_prepare() {
 	sed -i "s:'%s/local/include/csage/'%SAGE_ROOT:'/usr/include/csage/':g" \
 		sage/misc/cython.py || die "sed failed"
 
+	# Ticket #9004:
+	# Reported by me do things more correctly in set comparison, fix issue #9 as a side effect.
+	epatch "${FILESDIR}/${PN}-4.4.2-set.patch"
+
 	# TODO: more include paths in cython.py
 	# TODO: grep for files containing "devel/sage" and fix paths
 

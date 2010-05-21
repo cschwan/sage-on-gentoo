@@ -1,0 +1,11 @@
+--- sage/sets/set.py.orig	2010-05-21 16:22:53.670929078 +1200
++++ sage/sets/set.py	2010-05-21 15:43:59.245930561 +1200
+@@ -320,7 +320,7 @@
+             False
+         """
+         if not isinstance(right, Set_object):
+-            return cmp(type(right), type(Set_object))
++            return cmp(type(right), type(self))
+         return cmp(self.__object, right.__object)
+ 
+     def union(self, X):
