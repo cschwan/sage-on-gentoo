@@ -8,7 +8,7 @@ NEED_PYTHON=2.6
 
 inherit distutils eutils
 
-MY_P="sagenb-${PV}.p1"
+MY_P="sagenb-${PV}.p2"
 
 DESCRIPTION="The Sage Notebook is a web-based graphical user interface for mathematical software"
 HOMEPAGE="http://www.sagemath.org"

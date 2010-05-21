@@ -2,6 +2,11 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  21 May 2010; François Bissey <f.r.bissey@massey.ac.nz>
+  sage-notebook-0.8.ebuild:
+  Silent bump to .p2 - Only change is preventing setup tools to download
+  missing deps.
+
   12 May 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
   sage-notebook-0.8.ebuild:
   Removed dep: zope-testbrowser - isnt needed although sagenb says so
