@@ -2,6 +2,10 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  21 May 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
+  sage-core-4.4.2.ebuild:
+  Updated dependency on m4ri
+
 *sage-core-4.4.2 (21 May 2010)
 
   21 May 2010; Christopher Schwan <cschwan@students.uni-mainz.de>

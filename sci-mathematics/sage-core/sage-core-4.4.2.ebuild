@@ -41,7 +41,7 @@ DEPEND="|| ( =dev-lang/python-2.6.4-r99[sqlite]
 	>=sci-libs/lapack-atlas-3.8.3
 	>=sci-libs/libcliquer-1.2.5
 	>=sci-libs/linbox-1.1.6[ntl,sage]
-	>=sci-libs/m4ri-20091120
+	>=sci-libs/m4ri-20100221
 	>=sci-libs/mpfi-1.4
 	|| ( >=sci-mathematics/pari-2.3.5[data,gmp]
 	     >=sci-mathematics/pari-2.3.5[data,mpir] )
