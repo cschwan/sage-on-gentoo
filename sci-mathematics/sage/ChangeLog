@@ -3,6 +3,9 @@
 # $Header: $
 
   22 May 2010; François Bissey <f.r.bissey@massey.ac.nz> sage-4.4.2.ebuild:
+  Adjust dep on sage-data.
+
+  22 May 2010; François Bissey <f.r.bissey@massey.ac.nz> sage-4.4.2.ebuild:
   change jinja-1 RDEP to jinja-2.
 
 *sage-4.4.2 (21 May 2010)
