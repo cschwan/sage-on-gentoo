@@ -154,6 +154,9 @@ src_prepare() {
 	# Reported by me do things more correctly in set comparison, fix issue #9 as a side effect.
 	epatch "${FILESDIR}/${PN}-4.4.2-set.patch"
 
+	# Adopt Ticket #8316 to replace jinja-1 with jinja-2
+	epatch "${FILESDIR}/${PN}-4.4.2-jinja2.patch"
+
 	# TODO: more include paths in cython.py
 	# TODO: grep for files containing "devel/sage" and fix paths
 

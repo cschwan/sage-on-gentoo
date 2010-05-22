@@ -2,6 +2,10 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  22 May 2010; François Bissey <f.r.bissey@massey.ac.nz>
+  sage-core-4.4.2.ebuild, +files/sage-core-4.4.2-jinja2.patch:
+  Since jinja-1 is gone patching to build against jinja-2.
+
   21 May 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
   sage-core-4.4.2.ebuild:
   Updated dependency on m4ri
