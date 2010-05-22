@@ -2,6 +2,13 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header$
 
+*sage-base-1.0 (22 May 2010)
+
+  22 May 2010; François Bissey <f.r.bissey@massey.ac.nz>
+  +sage-base-1.0.ebuild, -sage-base-4.3.5.ebuild, -sage-base-4.4.ebuild,
+  -sage-base-4.4.1.ebuild, -sage-base-4.4.2.ebuild:
+  Change versioning of sage-base. Not based on sage's version anymore.
+
 *sage-base-4.4.2 (21 May 2010)
 
   21 May 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
