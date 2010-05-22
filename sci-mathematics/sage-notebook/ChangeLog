@@ -2,6 +2,10 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  22 May 2010; François Bissey <f.r.bissey@massey.ac.nz>
+  sage-notebook-0.8.ebuild:
+  jinja-1.x left us today and jinja2 became the new jinja!
+
   21 May 2010; François Bissey <f.r.bissey@massey.ac.nz>
   sage-notebook-0.8.ebuild:
   Silent bump to .p2 - Only change is preventing setup tools to download

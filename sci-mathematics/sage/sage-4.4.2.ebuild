@@ -29,7 +29,7 @@ DEPEND="${CDEPEND}"
 RDEPEND="${CDEPEND}
 	>=dev-python/gdmodule-0.56
 	>=dev-python/imaging-1.1.6
-	>=dev-python/jinja-1.2
+	>=dev-python/jinja-2.1.1
 	~dev-python/pexpect-2.0
 	>=dev-python/mpmath-0.14
 	>=dev-python/matplotlib-0.99.1
