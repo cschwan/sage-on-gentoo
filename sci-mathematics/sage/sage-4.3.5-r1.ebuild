@@ -22,9 +22,9 @@ CDEPEND=">=app-arch/bzip2-1.0.5
 	>=net-zope/zope-i18nmessageid-3.5.0
 	>=net-zope/zope-testbrowser-3.7.0
 	>=sci-mathematics/rubiks-20070912_p10
+	~sci-mathematics/sage-data-20100210
 	~sci-mathematics/sage-clib-${PV}
 	~sci-mathematics/sage-core-${PV}
-	~sci-mathematics/sage-data-${PV}
 	~sci-mathematics/sage-extcode-${PV}
 	~sci-mathematics/sage-notebook-0.7.5.3
 	~sci-mathematics/sage-singular-3.1.0.4.20100214
