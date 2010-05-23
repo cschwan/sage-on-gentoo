@@ -27,6 +27,7 @@ DEPEND="|| ( =dev-lang/python-2.6.4-r99[sqlite]
 	>=dev-libs/mpfr-2.4.2
 	>=dev-lisp/ecls-10.2.1
 	>=dev-python/cython-0.12.1
+	>=dev-python/jinja-2.1.1
 	>=dev-python/numpy-1.3.0[lapack]
 	>=dev-python/rpy-2.0.6
 	media-libs/gd
@@ -159,6 +160,9 @@ src_prepare() {
 	# Ticket #9004:
 	# Reported by me do things more correctly in set comparison, fix issue #9 as a side effect.
 	epatch "${FILESDIR}/${PN}-4.4.2-set.patch"
+
+	# Adopt Ticket #8316 to replace jinja-1 with jinja-2
+	epatch "${FILESDIR}/${PN}-4.4.2-jinja2.patch"
 
 	# TODO: more include paths in cython.py
 	# TODO: grep for files containing "devel/sage" and fix paths
