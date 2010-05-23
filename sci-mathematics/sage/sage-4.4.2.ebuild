@@ -21,7 +21,7 @@ CDEPEND=">=app-arch/bzip2-1.0.5
 	~sci-mathematics/sage-data-20100210
 	~sci-mathematics/sage-core-${PV}
 	~sci-mathematics/sage-extcode-${PV}
-	~sci-mathematics/sage-notebook-0.8[java=]
+	~sci-mathematics/sage-notebook-0.8_p2[java=]
 	~sci-mathematics/sage-singular-3.1.0.4.20100214
 	virtual/cblas"
 
