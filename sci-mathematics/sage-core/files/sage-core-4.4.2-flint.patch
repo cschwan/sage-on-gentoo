@@ -1,0 +1,11 @@
+--- sage/libs/flint/flint.pxd.orig	2010-05-24 10:53:07.676486281 +1200
++++ sage/libs/flint/flint.pxd	2010-05-24 14:35:38.169806635 +1200
+@@ -4,4 +4,7 @@
+     cdef long FLINT_D_BITS
+ 
+     cdef unsigned long FLINT_BIT_COUNT(unsigned long)
+-    void flint_stack_cleanup()
++
++cdef extern from "memory-manager.h":
++
++    cdef void flint_stack_cleanup()

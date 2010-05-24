@@ -158,6 +158,10 @@ src_prepare() {
 	# Adopt Ticket #8316 to replace jinja-1 with jinja-2
 	epatch "${FILESDIR}/${PN}-4.4.2-jinja2.patch"
 
+	# Fix portage QA warning. Potentially prevent some leaking.
+	# Unfortunatly there's still some double linking corruptions.
+	epatch "${FILESDIR}/${PN}-4.4.2-flint.patch"
+
 	# TODO: more include paths in cython.py
 	# TODO: grep for files containing "devel/sage" and fix paths
 

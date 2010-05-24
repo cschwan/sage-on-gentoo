@@ -2,6 +2,12 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  24 May 2010; François Bissey <f.r.bissey@massey.ac.nz>
+  sage-core-4.4.2.ebuild, +files/sage-core-4.4.2-flint.patch:
+  Fix portage QA warning about sage/libs/flint.so - should prevent some
+  leaking. I am still experiencing some double linking corruptions 
+  on x86
+
   23 May 2010; François Bissey <f.r.bissey@massey.ac.nz>
   sage-core-4.4.1.ebuild, sage-core-4.4.2.ebuild:
   Backport jinja2 fix to 4.4.1, add jinja-2 to the list of deps.
