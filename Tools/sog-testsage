@@ -1,8 +1,8 @@
 #!/bin/sh
 
-TESTDIRS="devel/sage/doc/common devel/sage/doc/en devel/sage/doc/fr devel/sage/sage"
+TESTDIRS=(devel/sage/doc/common devel/sage/doc/en devel/sage/doc/fr devel/sage/sage)
 DIR="$(pwd)"
 
 # commands taken from Sage's makefile
-cd /opt/sage && . local/bin/sage-env && sage-starts && \
-./sage -t -sagenb -long ${TESTDIRS} 2>&1 | tee "${DIR}"/test.log
+( cd /opt/sage && . local/bin/sage-env && sage-starts && \
+./sage -t -sagenb -long "${TESTDIRS[@]}" 2>&1 ) | tee "${DIR}"/test.log
