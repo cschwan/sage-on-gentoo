@@ -2,6 +2,10 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  26 May 2010; François Bissey <f.r.bissey@massey.ac.nz>
+  sage-core-4.4.2.ebuild, files/sage-core-4.4.2-flint.patch:
+  libpng-1.4 love.
+
   24 May 2010; François Bissey <f.r.bissey@massey.ac.nz>
   sage-core-4.4.2.ebuild, +files/sage-core-4.4.2-flint.patch:
   Fix portage QA warning about sage/libs/flint.so - should prevent some
