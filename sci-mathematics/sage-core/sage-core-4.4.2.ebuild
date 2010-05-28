@@ -94,12 +94,13 @@ src_prepare() {
 		-e "s:SAGE_ROOT[[:space:]]*+[[:space:]]*\([\'\"]\)/local/include/libsingular.h\1:\1${SAGE_LOCAL}/include/libsingular.h\1:g" \
 		module_list.py || die "sed failed"
 
-	# fix paths for various libraries
+	# fix paths for various libraries (including fix for png14)
 	sed -i \
 		-e "s:SAGE_ROOT[[:space:]]*+[[:space:]]*\([\'\"]\)/local/include/\([^\1]*\)\1:\1/usr/include/\2\1:g" \
 		-e "s:SAGE_LOCAL + \"/share/polybori/flags.conf\":\"/usr/share/polybori/flags.conf\":g" \
 		-e "s:SAGE_ROOT+'/local/lib/python/site-packages/numpy/core/include':'$(python_get_sitedir)/numpy/core/include':g" \
 		-e "s:sage/c_lib/include/:/usr/share/include/csage/:g" \
+		-e "s:png12:png:g" \
 		module_list.py || die "sed failed"
 
 	# set path to system Cython
@@ -157,6 +158,10 @@ src_prepare() {
 
 	# Adopt Ticket #8316 to replace jinja-1 with jinja-2
 	epatch "${FILESDIR}/${PN}-4.4.2-jinja2.patch"
+
+	# Fix portage QA warning. Potentially prevent some leaking.
+	# Unfortunatly there's still some double linking corruptions.
+	epatch "${FILESDIR}/${PN}-4.4.2-flint.patch"
 
 	# TODO: more include paths in cython.py
 	# TODO: grep for files containing "devel/sage" and fix paths
