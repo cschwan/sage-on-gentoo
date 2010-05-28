@@ -35,14 +35,17 @@ INSTALLATION GUIDE AND SOME NOTES:
    Permanent unmasking can be done easily via placing a symbolic link in your
    /etc/portage/package.keywords directory, e.g.:
 
-     ln -s /usr/local/portage/layman/sage-on-gentoo/package.keywords/sage \
+     ln -s <path-to-layman>/sage-on-gentoo/package.keywords/sage \
            /etc/portage/package.keywords/sage
 
    Since the Sage ebuild requires its dependencies to be built with several USE-
    flags it is also a good idea to use the provided package.use file:
 
-     ln -s /usr/local/portage/layman/sage-on-gentoo/package.use/sage \
+     ln -s <path-to-layman>/sage-on-gentoo/package.use/sage \
            /etc/portage/package.use/sage
+
+   <path-to-layman> is usually /usr/local/portage/layman, for layman 1.3.0 and
+   higher it is /var/lib/layman.
 
 4. INSTALL SAGE:
    Type
