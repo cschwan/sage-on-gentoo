@@ -15,7 +15,7 @@ SRC_URI="mirror://sage/spkg/standard/${MY_P}.spkg -> sage-core-${PV}.tar.bz2"
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64 ~ppc ~x86"
-IUSE=""
+IUSE="mpir"
 
 RESTRICT="mirror"
 
@@ -30,6 +30,12 @@ DEPEND="${CDEPEND}
 RDEPEND="${CDEPEND}"
 
 S="${WORKDIR}/${MY_P}/c_lib"
+
+src_prepare() {
+	if use mpir ; then
+		epatch "${FILESDIR}"/${PN}-4.3.4-replace-gmp-with-mpir.patch
+	fi
+}
 
 src_compile() {
 	# build libcsage.so
