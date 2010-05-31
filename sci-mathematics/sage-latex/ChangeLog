@@ -2,6 +2,11 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  31 May 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
+  -sage-latex-2.2.3.ebuild,
+  -files/sage-latex-2.2.3-install-python-files-only.patch:
+  Removed old stuff
+
 *sage-latex-2.2.5 (28 Apr 2010)
 
   28 Apr 2010; Christopher Schwan <cschwan@students.uni-mainz.de>

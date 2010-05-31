@@ -2,6 +2,13 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  31 May 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
+  -sage-core-4.3.5.ebuild, -sage-core-4.3.5-r1.ebuild,
+  -files/sage-core-4.3.5-upgrade-networkx.patch.bz2,
+  -files/sage-core-4.3-fix-deprecation-warning.patch, -sage-core-4.4.ebuild,
+  -sage-core-4.4.1.ebuild, -files/sage-core-4.4-upgrade-networkx.patch.bz2:
+  Removed old stuff
+
   26 May 2010; François Bissey <f.r.bissey@massey.ac.nz>
   sage-core-4.4.2.ebuild, files/sage-core-4.4.2-flint.patch:
   libpng-1.4 love.
