@@ -2,6 +2,11 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  03 Jun 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
+  sage-core-4.4.2.ebuild:
+  Temporarily added -DNDEBUG to fix problem with Python 2.6.5 and allow
+  building with -Wl,--as-needed
+
   31 May 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
   -sage-core-4.3.5.ebuild, -sage-core-4.3.5-r1.ebuild,
   -files/sage-core-4.3.5-upgrade-networkx.patch.bz2,

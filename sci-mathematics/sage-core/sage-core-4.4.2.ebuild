@@ -65,7 +65,7 @@ S="${WORKDIR}/${MY_P}"
 
 pkg_setup() {
 	# disable --as-needed until all bugs related are fixed
-	append-ldflags -Wl,--no-as-needed
+# 	append-ldflags -Wl,--no-as-needed
 
 	# switch to lapack-atlas as some dependencies of sage are linked against it
 	# specifically because of clapack.
@@ -79,8 +79,8 @@ src_prepare() {
 	# Fixes to Sage's build system
 	############################################################################
 
-	# Fix startup issue reported by Steve Trogdon
-	append-flags -fno-strict-aliasing
+	# Fix startup issue and python-2.6.5 problem
+	append-flags -fno-strict-aliasing -DNDEBUG
 
 	# fix build file to make it compile without other Sage componenents
 	epatch "${FILESDIR}"/${PN}-4.3.4-site-packages.patch
