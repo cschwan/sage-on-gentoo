@@ -1,8 +1,6 @@
 =dev-lang/python-2.6.4-r99
 dev-lang/R
-#dev-libs/gf2x
 dev-libs/mpfr
-#dev-libs/ntl
 dev-lisp/ecls
 dev-python/cvxopt
 dev-python/cython
@@ -11,13 +9,11 @@ dev-python/gdmodule
 dev-python/matplotlib
 dev-python/mpmath
 dev-python/networkx
-#dev-python/pycxx
 dev-python/pexpect
 dev-python/pyprocessing
 dev-python/python-gnutls
 dev-python/restrictedpython
 dev-python/rpy
-#dev-python/setuptools
 dev-python/sympy
 ~dev-python/twisted-9.0.0
 ~dev-python/twisted-conch-9.0.0
@@ -35,6 +31,8 @@ net-zope/zc-lockfile
 net-zope/zconfig
 net-zope/zdaemon
 net-zope/zodb
+net-zope/zope-event
+net-zope/zope-proxy
 sci-libs/blas-atlas
 sci-libs/cddlib
 sci-libs/flint
@@ -49,7 +47,6 @@ sci-libs/m4ri
 sci-libs/mpfi
 sci-libs/mpir
 sci-libs/pynac
-#sci-libs/scipy
 sci-libs/symmetrica
 sci-libs/zn_poly
 sci-mathematics/eclib
