@@ -37,7 +37,8 @@ RDEPEND="${DEPEND}
 S="${WORKDIR}/${MY_P}/src/sagenb"
 
 src_prepare() {
-	# TODO: Report this to upstream
+	# Ticket #9148:
+	# replace deprecated sha module with haslib to prevent warnings
 	epatch "${FILESDIR}"/${PN}-0.7.5.1-fix-deprecated-module.patch
 
 	epatch "${FILESDIR}"/${PN}-0.8-nojava.patch
