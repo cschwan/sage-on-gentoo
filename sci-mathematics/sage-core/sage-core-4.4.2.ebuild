@@ -15,7 +15,7 @@ SRC_URI="mirror://sage/spkg/standard/${MY_P}.spkg -> ${P}.tar.bz2"
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64 ~ppc ~x86"
-IUSE=""
+IUSE="testsuite"
 
 RESTRICT="mirror"
 
@@ -64,9 +64,6 @@ RDEPEND="${DEPEND}"
 S="${WORKDIR}/${MY_P}"
 
 pkg_setup() {
-	# disable --as-needed until all bugs related are fixed
-# 	append-ldflags -Wl,--no-as-needed
-
 	# switch to lapack-atlas as some dependencies of sage are linked against it
 	# specifically because of clapack.
 	OLD_IMPLEM=$(eselect lapack show | cut -d: -f2)
@@ -117,10 +114,9 @@ src_prepare() {
 	sed -i "s:SAGE_DEVEL + 'sage/sage/ext/interpreters':'sage/ext/interpreters':g" \
 		setup.py || die "sed failed"
 
+	# Ticket #9147:
 	# fix missing libraries needed with "--as-needed"
 	epatch "${FILESDIR}"/${PN}-4.3.3-fix-undefined-symbols.patch
-
-	# TODO: At least one more patch needed: devel/sage/sage/misc/misc.py breaks
 
 	# TODO: why does Sage fail with commentator ?
 
@@ -154,17 +150,13 @@ src_prepare() {
 
 	# Ticket #9004:
 	# Reported by me do things more correctly in set comparison, fix issue #9 as a side effect.
-	epatch "${FILESDIR}/${PN}-4.4.2-set.patch"
+	epatch "${FILESDIR}"/${PN}-4.4.2-set.patch
 
 	# Adopt Ticket #8316 to replace jinja-1 with jinja-2
-	epatch "${FILESDIR}/${PN}-4.4.2-jinja2.patch"
+	epatch "${FILESDIR}"/${PN}-4.4.2-jinja2.patch
 
 	# Fix portage QA warning. Potentially prevent some leaking.
-	# Unfortunatly there's still some double linking corruptions.
-	epatch "${FILESDIR}/${PN}-4.4.2-flint.patch"
-
-	# TODO: more include paths in cython.py
-	# TODO: grep for files containing "devel/sage" and fix paths
+	epatch "${FILESDIR}"/${PN}-4.4.2-flint.patch
 
 	# Replace gmp with mpir
 # 	sage_package ${P} \
@@ -197,6 +189,7 @@ src_prepare() {
 # 			-e "s:'gmpxx':'mpirxx':g" \
 # 			-e "s:\"gmpxx\":\"mpirxx\":g" \
 # 			module_list.py sage/misc/cython.py || die "sed failed"
+
 	# fix jmol's and sage3d's path
 	sed -i \
 		-e "s:sage.misc.misc.SAGE_LOCAL, \"bin/jmol\":\"/usr/bin/jmol\":g" \
@@ -227,16 +220,16 @@ src_configure() {
 }
 
 src_install() {
-	# TODO: check if this is needed only for testing
-	insinto "${SAGE_ROOT}"/devel/sage-main
-	doins -r sage || die "doins failed"
+	if use testsuite ; then
+		insinto "${SAGE_ROOT}"/devel/sage-main
+		doins -r sage || die "doins failed"
+	fi
 
-	#
 	distutils_src_install
 
 	# prevent false positive reports from revdep-rebuild
 	insinto /etc/revdep-rebuild
-	doins "${FILESDIR}/50sage-core" || die "doins failed"
+	doins "${FILESDIR}"/50sage-core || die "doins failed"
 }
 
 pkg_postinst() {
@@ -244,6 +237,3 @@ pkg_postinst() {
 	einfo "Restoring your original lapack settings with eselect"
 	eselect lapack set ${OLD_IMPLEM}
 }
-
-# TODO: some files are not installed
-# TODO: edit Sage's relocation code

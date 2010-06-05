@@ -2,6 +2,11 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  05 Jun 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
+  sage-core-4.4.2.ebuild, metadata.xml:
+  New USE-flag testsuite which controls installation of sources needed
+  for testing Sage; QA fixes
+
   03 Jun 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
   sage-core-4.4.2.ebuild:
   Temporarily added -DNDEBUG to fix problem with Python 2.6.5 and allow
