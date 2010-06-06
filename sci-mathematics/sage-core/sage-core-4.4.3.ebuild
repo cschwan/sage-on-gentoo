@@ -4,6 +4,9 @@
 
 EAPI="3"
 
+PYTHON_DEPEND="2:2.6"
+PYTHON_USE_WITH="sqlite"
+
 inherit distutils eutils flag-o-matic python sage
 
 MY_P="sage-${PV}"
@@ -20,8 +23,8 @@ IUSE="testsuite"
 RESTRICT="mirror"
 
 # TODO: add dependencies
-DEPEND="|| ( =dev-lang/python-2.6.4-r99[sqlite]
-		=dev-lang/python-2.6.5-r99[sqlite] )
+DEPEND="|| ( =dev-lang/python-2.6.4-r99
+		=dev-lang/python-2.6.5-r99 )
 	>=dev-lang/R-2.10.1[lapack,readline]
 	dev-libs/gmp
 	>=dev-libs/ntl-5.5.2
@@ -69,6 +72,10 @@ pkg_setup() {
 	OLD_IMPLEM=$(eselect lapack show | cut -d: -f2)
 	einfo "Switching to lapack-atlas with eselect."
 	eselect lapack set atlas
+
+	# make sure we are using Python 2.6 and check use flags
+	python_set_active_version 2.6
+	python_pkg_setup
 }
 
 src_prepare() {

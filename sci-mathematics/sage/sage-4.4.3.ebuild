@@ -4,7 +4,7 @@
 
 EAPI="3"
 
-inherit multilib python sage flag-o-matic
+inherit multilib sage flag-o-matic
 
 DESCRIPTION="Math software for algebra, geometry, number theory, cryptography and numerical computation"
 HOMEPAGE="http://www.sagemath.org"
@@ -13,7 +13,7 @@ SRC_URI=""
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64 ~ppc ~x86"
-IUSE="examples latex wiki X java"
+IUSE="examples java latex wiki X"
 
 # TODO: check dependencies use flagged packages
 CDEPEND=">=app-arch/bzip2-1.0.5
