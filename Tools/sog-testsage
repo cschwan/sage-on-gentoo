@@ -1,8 +1,34 @@
 #!/bin/sh
 
-TESTDIRS=(devel/sage/doc/common devel/sage/doc/en devel/sage/doc/fr devel/sage/sage)
+TESTDIRS=(
+	devel/sage/doc/common
+	devel/sage/doc/en
+	devel/sage/doc/fr
+	devel/sage/sage
+)
 DIR="$(pwd)"
+ROOT=/
+
+(
+
+if [[ $(whoami) != root ]]; then
+	echo "warning: you are not root"
+fi
+
+if [[ -z $(portageq best_version "${ROOT}" sage-examples) ]]; then
+	echo "warning: sage-examples is not installed"
+fi
+
+if [[ -z $(portageq best_version "${ROOT}" sage-doc[html]) ]]; then
+	echo "warning: sage-doc is not compiled with USE=html"
+fi
+
+if [[ -z $(portageq best_version "${ROOT}" sage-core[testsuite]) ]]; then
+	echo "error: sage-core is not compiled with USE=testsuite"
+fi
 
 # commands taken from Sage's makefile
-( cd /opt/sage && . local/bin/sage-env && sage-starts && \
-./sage -t -sagenb -long "${TESTDIRS[@]}" 2>&1 ) | tee "${DIR}"/test.log
+cd /opt/sage && . local/bin/sage-env && sage-starts && \
+./sage -t -sagenb "$@" "${TESTDIRS[@]}" 2>&1
+
+) | tee "${DIR}"/test.log
