@@ -2,6 +2,12 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*sage-core-4.4.3 (06 Jun 2010)
+
+  06 Jun 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
+  +sage-core-4.4.3.ebuild:
+  Version bump
+
   05 Jun 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
   sage-core-4.4.2.ebuild, metadata.xml:
   New USE-flag testsuite which controls installation of sources needed
