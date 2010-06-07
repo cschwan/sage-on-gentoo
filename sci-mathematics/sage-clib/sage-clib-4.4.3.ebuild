@@ -33,7 +33,7 @@ S="${WORKDIR}/${MY_P}/c_lib"
 
 src_prepare() {
 	if use mpir ; then
-		epatch "${FILESDIR}"/${PN}-4.3.4-replace-gmp-with-mpir.patch
+		epatch "${FILESDIR}"/${PN}-4.4.3-replace-gmp-with-mpir.patch
 	fi
 }
 
