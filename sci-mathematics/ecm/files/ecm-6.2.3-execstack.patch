@@ -1,0 +1,259 @@
+--- x86_64/mulredc1.asm~	2008-02-27 00:40:52.000000000 +0100
++++ x86_64/mulredc1.asm	2008-09-27 01:43:30.798092504 +0200
+@@ -16,6 +16,9 @@
+ #  WARNING: z is only n limbs but since it might be unreduced, there
+ #  could be a carry that does not fit in z. This carry is returned.
+ 
++#if defined(__linux__) && defined(__ELF__)
++.section .note.GNU-stack,"",%progbits
++#endif
+ 
+ include(`config.m4')
+ 	TEXT
+--- x86_64/mulredc2.asm~	2007-02-26 11:20:08.000000000 +0100
++++ x86_64/mulredc2.asm	2008-09-27 01:43:39.061093957 +0200
+@@ -2,6 +2,10 @@
+ #                 const mp_limb_t *m, mp_limb_t inv_m);
+ #
+ 
++#if defined(__linux__) && defined(__ELF__)
++.section .note.GNU-stack,"",%progbits
++#endif
++
+ include(`config.m4')
+ 	TEXT
+ 	GLOBL GSYM_PREFIX`'mulredc2
+--- x86_64/mulredc3.asm~	2007-12-14 14:16:40.000000000 +0100
++++ x86_64/mulredc3.asm	2008-09-27 01:43:46.429151496 +0200
+@@ -3,7 +3,9 @@
+ #
+ # z: %rdi, x: %rsi, y: %rdx, m: %rcx, inv_m: %r8
+ 
+-
++#if defined(__linux__) && defined(__ELF__)
++.section .note.GNU-stack,"",%progbits
++#endif
+ 
+ include(`config.m4')
+ 
+--- x86_64/mulredc4.asm~	2007-12-14 14:16:40.000000000 +0100
++++ x86_64/mulredc4.asm	2008-09-27 01:44:02.077091130 +0200
+@@ -3,7 +3,9 @@
+ #
+ # z: %rdi, x: %rsi, y: %rdx, m: %rcx, inv_m: %r8
+ 
+-
++#if defined(__linux__) && defined(__ELF__)
++.section .note.GNU-stack,"",%progbits
++#endif
+ 
+ include(`config.m4')
+ 
+--- x86_64/mulredc5.asm~	2007-12-14 14:16:40.000000000 +0100
++++ x86_64/mulredc5.asm	2008-09-27 01:44:10.447092217 +0200
+@@ -3,7 +3,9 @@
+ #
+ # z: %rdi, x: %rsi, y: %rdx, m: %rcx, inv_m: %r8
+ 
+-
++#if defined(__linux__) && defined(__ELF__)
++.section .note.GNU-stack,"",%progbits
++#endif
+ 
+ include(`config.m4')
+ 
+--- x86_64/mulredc6.asm~	2007-12-14 14:16:40.000000000 +0100
++++ x86_64/mulredc6.asm	2008-09-27 01:44:17.728092618 +0200
+@@ -3,7 +3,9 @@
+ #
+ # z: %rdi, x: %rsi, y: %rdx, m: %rcx, inv_m: %r8
+ 
+-
++#if defined(__linux__) && defined(__ELF__)
++.section .note.GNU-stack,"",%progbits
++#endif
+ 
+ include(`config.m4')
+ 
+--- x86_64/mulredc7.asm~	2007-12-14 14:16:40.000000000 +0100
++++ x86_64/mulredc7.asm	2008-09-27 01:44:25.206092066 +0200
+@@ -3,7 +3,9 @@
+ #
+ # z: %rdi, x: %rsi, y: %rdx, m: %rcx, inv_m: %r8
+ 
+-
++#if defined(__linux__) && defined(__ELF__)
++.section .note.GNU-stack,"",%progbits
++#endif
+ 
+ include(`config.m4')
+ 
+--- x86_64/mulredc8.asm~	2007-12-14 14:16:40.000000000 +0100
++++ x86_64/mulredc8.asm	2008-09-27 01:44:34.436092191 +0200
+@@ -3,7 +3,9 @@
+ #
+ # z: %rdi, x: %rsi, y: %rdx, m: %rcx, inv_m: %r8
+ 
+-
++#if defined(__linux__) && defined(__ELF__)
++.section .note.GNU-stack,"",%progbits
++#endif
+ 
+ include(`config.m4')
+ 
+--- x86_64/mulredc9.asm~	2007-12-14 14:16:40.000000000 +0100
++++ x86_64/mulredc9.asm	2008-09-27 01:44:41.829091809 +0200
+@@ -3,7 +3,9 @@
+ #
+ # z: %rdi, x: %rsi, y: %rdx, m: %rcx, inv_m: %r8
+ 
+-
++#if defined(__linux__) && defined(__ELF__)
++.section .note.GNU-stack,"",%progbits
++#endif
+ 
+ include(`config.m4')
+ 
+--- x86_64/mulredc10.asm~	2007-12-14 14:16:40.000000000 +0100
++++ x86_64/mulredc10.asm	2008-09-27 01:44:48.282091766 +0200
+@@ -3,7 +3,9 @@
+ #
+ # z: %rdi, x: %rsi, y: %rdx, m: %rcx, inv_m: %r8
+ 
+-
++#if defined(__linux__) && defined(__ELF__)
++.section .note.GNU-stack,"",%progbits
++#endif
+ 
+ include(`config.m4')
+ 
+--- x86_64/mulredc11.asm~	2007-12-14 14:16:40.000000000 +0100
++++ x86_64/mulredc11.asm	2008-09-27 01:44:54.808091020 +0200
+@@ -3,7 +3,9 @@
+ #
+ # z: %rdi, x: %rsi, y: %rdx, m: %rcx, inv_m: %r8
+ 
+-
++#if defined(__linux__) && defined(__ELF__)
++.section .note.GNU-stack,"",%progbits
++#endif
+ 
+ include(`config.m4')
+ 
+--- x86_64/mulredc12.asm~	2007-12-14 14:16:40.000000000 +0100
++++ x86_64/mulredc12.asm	2008-09-27 01:45:01.229090823 +0200
+@@ -3,7 +3,9 @@
+ #
+ # z: %rdi, x: %rsi, y: %rdx, m: %rcx, inv_m: %r8
+ 
+-
++#if defined(__linux__) && defined(__ELF__)
++.section .note.GNU-stack,"",%progbits
++#endif
+ 
+ include(`config.m4')
+ 
+--- x86_64/mulredc13.asm~	2007-12-14 14:16:40.000000000 +0100
++++ x86_64/mulredc13.asm	2008-09-27 01:45:08.175093747 +0200
+@@ -3,7 +3,9 @@
+ #
+ # z: %rdi, x: %rsi, y: %rdx, m: %rcx, inv_m: %r8
+ 
+-
++#if defined(__linux__) && defined(__ELF__)
++.section .note.GNU-stack,"",%progbits
++#endif
+ 
+ include(`config.m4')
+ 
+--- x86_64/mulredc14.asm~	2007-12-14 14:16:40.000000000 +0100
++++ x86_64/mulredc14.asm	2008-09-27 01:45:14.137092717 +0200
+@@ -3,7 +3,9 @@
+ #
+ # z: %rdi, x: %rsi, y: %rdx, m: %rcx, inv_m: %r8
+ 
+-
++#if defined(__linux__) && defined(__ELF__)
++.section .note.GNU-stack,"",%progbits
++#endif
+ 
+ include(`config.m4')
+ 
+--- x86_64/mulredc15.asm~	2007-12-14 14:16:40.000000000 +0100
++++ x86_64/mulredc15.asm	2008-09-27 01:45:23.771093002 +0200
+@@ -3,7 +3,9 @@
+ #
+ # z: %rdi, x: %rsi, y: %rdx, m: %rcx, inv_m: %r8
+ 
+-
++#if defined(__linux__) && defined(__ELF__)
++.section .note.GNU-stack,"",%progbits
++#endif
+ 
+ include(`config.m4')
+ 
+--- x86_64/mulredc16.asm~	2007-12-14 14:16:40.000000000 +0100
++++ x86_64/mulredc16.asm	2008-09-27 01:45:32.597091768 +0200
+@@ -3,7 +3,9 @@
+ #
+ # z: %rdi, x: %rsi, y: %rdx, m: %rcx, inv_m: %r8
+ 
+-
++#if defined(__linux__) && defined(__ELF__)
++.section .note.GNU-stack,"",%progbits
++#endif
+ 
+ include(`config.m4')
+ 
+--- x86_64/mulredc17.asm~	2007-12-14 14:16:40.000000000 +0100
++++ x86_64/mulredc17.asm	2008-09-27 01:45:39.799093645 +0200
+@@ -3,7 +3,9 @@
+ #
+ # z: %rdi, x: %rsi, y: %rdx, m: %rcx, inv_m: %r8
+ 
+-
++#if defined(__linux__) && defined(__ELF__)
++.section .note.GNU-stack,"",%progbits
++#endif
+ 
+ include(`config.m4')
+ 
+--- x86_64/mulredc18.asm~	2007-12-14 14:16:40.000000000 +0100
++++ x86_64/mulredc18.asm	2008-09-27 01:45:48.813093706 +0200
+@@ -3,7 +3,9 @@
+ #
+ # z: %rdi, x: %rsi, y: %rdx, m: %rcx, inv_m: %r8
+ 
+-
++#if defined(__linux__) && defined(__ELF__)
++.section .note.GNU-stack,"",%progbits
++#endif
+ 
+ include(`config.m4')
+ 
+--- x86_64/mulredc19.asm~	2007-12-14 14:16:40.000000000 +0100
++++ x86_64/mulredc19.asm	2008-09-27 01:45:55.839091930 +0200
+@@ -3,7 +3,9 @@
+ #
+ # z: %rdi, x: %rsi, y: %rdx, m: %rcx, inv_m: %r8
+ 
+-
++#if defined(__linux__) && defined(__ELF__)
++.section .note.GNU-stack,"",%progbits
++#endif
+ 
+ include(`config.m4')
+ 
+--- x86_64/mulredc20.asm~	2007-12-14 14:16:40.000000000 +0100
++++ x86_64/mulredc20.asm	2008-09-27 01:46:03.919090778 +0200
+@@ -3,7 +3,9 @@
+ #
+ # z: %rdi, x: %rsi, y: %rdx, m: %rcx, inv_m: %r8
+ 
+-
++#if defined(__linux__) && defined(__ELF__)
++.section .note.GNU-stack,"",%progbits
++#endif
+ 
+ include(`config.m4')
+ 

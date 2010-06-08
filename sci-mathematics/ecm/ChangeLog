@@ -2,6 +2,15 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  08 Jun 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
+  ecm-6.2.3.ebuild, +files/ecm-6.2.3-configure.patch,
+  +files/ecm-6.2.3-execstack.patch, +files/ecm-6.2.3-execstack-redc.patch,
+  +files/ecm-6.2.3-makefile.patch, -files/configure.patch,
+  -files/execstack.patch, -files/execstack-redc.patch,
+  -files/makefile.patch:
+  Renamed patches and applied patch reported from LinuxDoIt which fixes
+  double installtion of manpage; removed wrong statements "append_..flags"
+
   26 Mar 2010; François Bissey <f.r.bissey@massey.ac.nz> ecm-6.2.3.ebuild:
   keywording ~ppc
 

@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
-EAPI=2
+EAPI="3"
 
 inherit autotools eutils flag-o-matic
 
@@ -22,21 +22,15 @@ DEPEND=">=dev-libs/gmp-4.2.2
 RDEPEND="${DEPEND}"
 
 src_prepare() {
-	epatch "${FILESDIR}/configure.patch"
-	epatch "${FILESDIR}/makefile.patch"
-	epatch "${FILESDIR}/execstack.patch"
-	epatch "${FILESDIR}/execstack-redc.patch"
+	epatch "${FILESDIR}"/${PN}-6.2.3-configure.patch
+	epatch "${FILESDIR}"/${PN}-6.2.3-makefile.patch
+	epatch "${FILESDIR}"/${PN}-6.2.3-execstack.patch
+	epatch "${FILESDIR}"/${PN}-6.2.3-execstack-redc.patch
 
 	eautoreconf
 }
 
 src_configure() {
-	# needed by sage, is this the right place ?
-	if use amd64 ; then
-		append_cflags -fPIC
-		append_cxxflags -fPIC
-	fi
-
 	econf \
 		--enable-shared \
 		$(use_enable asm-redc) \
