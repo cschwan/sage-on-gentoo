@@ -1,0 +1,10 @@
+--- linbox/matrix/Makefile.am.orig	2008-06-14 01:20:50.000000000 +0000
++++ linbox/matrix/Makefile.am	2010-06-09 17:17:11.157197379 +0000
+@@ -2,7 +2,6 @@
+ 
+ BASIC_HDRS =			\
+ 	archetype.h		\
+-	matrix-category.h	\
+ 	sparse.h		\
+ 	sparse.inl		\
+ 	transpose-matrix.h		\
