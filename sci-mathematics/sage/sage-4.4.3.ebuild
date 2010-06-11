@@ -31,7 +31,7 @@ RDEPEND="${CDEPEND}
 	>=dev-python/imaging-1.1.6
 	>=dev-python/jinja-2.1.1
 	~dev-python/pexpect-2.0
-	>=dev-python/mpmath-0.14
+	~dev-python/mpmath-0.14
 	>=dev-python/matplotlib-0.99.1
 	~dev-python/networkx-1.0.1
 	>=dev-python/ipython-0.9.1
