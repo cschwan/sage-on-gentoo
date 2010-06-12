@@ -6,12 +6,14 @@ EAPI="3"
 
 inherit eutils flag-o-matic multilib versionator sage
 
-MY_P="singular-$(replace_all_version_separators '-')"
+#MY_P="singular-$(replace_all_version_separators '-')"
+MY_P="singular-$(replace_version_separator 4 '.')"
 
 DESCRIPTION="Sage's version of singular: Computer algebra system for polynomial computations"
 # TODO Splitting the ebuild to build libsingular separately to enforce correct pic-ness.
 HOMEPAGE="http://www.singular.uni-kl.de/"
-SRC_URI="mirror://sage/spkg/standard/${MY_P}.spkg -> ${P}.tar.bz2"
+SRC_URI="http://sage.math.washington.edu/home/mpatel/trac/9185/${MY_P}.spkg -> ${P}.tar.bz2"
+#SRC_URI="mirror://sage/spkg/standard/${MY_P}.spkg -> ${P}.tar.bz2"
 #### Remove the following line when moving this ebuild to the main tree!
 RESTRICT="mirror"
 
