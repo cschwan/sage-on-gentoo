@@ -19,7 +19,8 @@ IUSE="mpir"
 
 RESTRICT="mirror"
 
-CDEPEND="dev-libs/gmp[-nocxx]
+CDEPEND="mpir? ( sci-lib/mpir[cxx] )
+	!mpir? ( dev-libs/gmp[-nocxx] )
 	>=dev-libs/ntl-5.4.2
 	>=dev-lang/python-2.6.4
 	>=sci-libs/pynac-0.2.0_p3

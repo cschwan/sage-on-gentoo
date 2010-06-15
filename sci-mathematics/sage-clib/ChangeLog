@@ -2,6 +2,10 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  15 Jun 2010; François Bissey <f.r.bissey@massey.ac.nz>
+  sage-clib-4.4.3.ebuild:
+  Fix dependencies for mpir/gmp.
+
   07 Jun 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
   sage-clib-4.4.3.ebuild,
   +files/sage-clib-4.4.3-replace-gmp-with-mpir.patch:
