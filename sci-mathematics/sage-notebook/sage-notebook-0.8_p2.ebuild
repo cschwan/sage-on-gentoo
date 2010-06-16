@@ -32,7 +32,7 @@ DEPEND="~dev-python/pexpect-2.0
 	>=dev-python/jinja-2.1.1
 	>=dev-python/docutils-0.5"
 RDEPEND="${DEPEND}
-	java? ( >=sci-chemistry/jmol-11.6 )"
+	java? ( ~sci-chemistry/jmol-11.6.16[vhosts] )"
 
 S="${WORKDIR}/${MY_P}/src/sagenb"
 
@@ -42,9 +42,16 @@ src_prepare() {
 	epatch "${FILESDIR}"/${PN}-0.7.5.1-fix-deprecated-module.patch
 
 	epatch "${FILESDIR}"/${PN}-0.8-nojava.patch
-	rm -rf sagenb/data/jmol/*.jar || die "rm failed"
-	rm -rf sagenb/data/jmol/jars || die "rm failed"
-	rm sagenb/data/jmol/jmol sagenb/data/jmol/jmol.sh || die "rm failed"
+#	rm -rf sagenb/data/jmol/*.jar || die "rm failed"
+#	rm -rf sagenb/data/jmol/jars || die "rm failed"
+#	rm sagenb/data/jmol/jmol sagenb/data/jmol/jmol.sh || die "rm failed"
+	rm -rf sagenb/data/jmol
+	sed -i \
+		-e "s:jmolInitialize(\"/java/jmol\");jmolSetCallback(\"menuFile\",\"/java/jmol/appletweb/SageMenu.mnu\"):jmolInitialize(\"/usr/bin/jmol\",1):g" \
+		-e "s:java/jmol/appletweb/Jmol.js:java/Jmol.js:g" \
+		sagenb/data/sage/html/notebook/base.html
+	sed -i "s:java_path            = os.path.join(DATA):java_path            = os.path.join(\"/usr/share/webapps/jmol/11.6.16/htdocs\"):g" \
+		sagenb/notebook/twist.py
 
 	# FIXME: sage3d isnot supposed to work out of the box.
 	# It requires extra sun java components (dev-java/sun-java3d-bin)

@@ -2,6 +2,10 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  16 Jun 2010; François Bissey <f.r.bissey@massey.ac.nz>
+  jmol-11.6.16.ebuild:
+  Put the ebuild in-line with the version in portage we'll try vhosts.
+
   11 May 2010; François Bissey <f.r.bissey@massey.ac.nz> metadata.xml:
   Add flag description.
 
