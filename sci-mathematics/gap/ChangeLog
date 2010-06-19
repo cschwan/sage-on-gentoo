@@ -2,6 +2,10 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  19 Jun 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
+  +gap-4.4.12-r1.ebuild:
+  Added new revision with EAPI=3
+
   16 May 2010; <gnuke@gentoo.org> gap-4.4.12.ebuild:
   Some QA fixes - test now work, but take a lot of time
 
