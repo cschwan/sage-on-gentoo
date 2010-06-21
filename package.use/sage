@@ -11,4 +11,4 @@ sci-mathematics/polybori	gd sage
 ################################################
 # Recomended flags for optional dependency jmol
 ################################################
-sci-chemistry/jmol applet
+sci-chemistry/jmol client-only
