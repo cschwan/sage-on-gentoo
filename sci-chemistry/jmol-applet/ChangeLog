@@ -2,6 +2,10 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  21 Jun 2010; François Bissey <f.r.bissey@massey.ac.nz>
+  jmol-applet-11.6.16.ebuild:
+  Pack everything needed - this is now looking like the jmol webapp.
+
 *jmol-applet-11.6.16 (21 Jun 2010)
 
   21 Jun 2010; François Bissey <f.r.bissey@massey.ac.nz>

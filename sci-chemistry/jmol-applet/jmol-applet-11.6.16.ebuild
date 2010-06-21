@@ -73,6 +73,8 @@ src_install() {
 
 	insinto "${JAVA_PKG_SHAREPATH}"
 	doins Jmol.js build/Jmol.jar build/JmolApplet*.jar applet.classes
+	doins -r build/applet-classes/*
+	doins -r build/appletjars/*
 	doins "${FILESDIR}"/caffeine.xyz "${FILESDIR}"/index.html
 
 }
