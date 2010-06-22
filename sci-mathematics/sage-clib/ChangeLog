@@ -2,6 +2,10 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  22 Jun 2010; François Bissey <f.r.bissey@massey.ac.nz>
+  sage-clib-4.4.3.ebuild:
+  Correct typo in DEPs. Thanks to Steve for pointing it.
+
   15 Jun 2010; François Bissey <f.r.bissey@massey.ac.nz>
   sage-clib-4.4.3.ebuild:
   Fix dependencies for mpir/gmp.
