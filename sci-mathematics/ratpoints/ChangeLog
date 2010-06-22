@@ -2,6 +2,10 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  22 Jun 2010; François Bissey <f.r.bissey@massey.ac.nz>
+  ratpoints-2.1.3-r1.ebuild:
+  Make the test respect CFLAGS including the sse use flag.
+
 *ratpoints-2.1.3-r1 (20 Jun 2010)
 
   20 Jun 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
