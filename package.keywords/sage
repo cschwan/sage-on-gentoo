@@ -80,4 +80,5 @@ sci-mathematics/sympow
 # optional dependencies
 ##########################
 sci-chemistry/jmol
+sci-chemistry/jmol-applet
 sci-libs/jmol-acme

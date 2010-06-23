@@ -39,3 +39,7 @@ src_install() {
 		dodoc ratpoints-doc.pdf || die
 	fi
 }
+
+src_test() {
+	emake CCFLAGS1="${CFLAGS}" test || die
+}
