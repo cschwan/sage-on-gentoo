@@ -23,6 +23,11 @@ RDEPEND="${DEPEND}"
 
 # TODO: no tests, but a test target ?
 
+src_prepare() {
+	# fix for deprecated mpfr_random, gone in mpfr-3.0
+	epatch "${FILESDIR}"/${P}-mpfr3.patch
+}
+
 src_install() {
 	emake DESTDIR="${D}" install || die "emake install failed"
 	dodoc ChangeLog NEWS

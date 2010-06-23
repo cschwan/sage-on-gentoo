@@ -2,6 +2,10 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  23 Jun 2010; François Bissey <f.r.bissey@massey.ac.nz> mpfi-1.4.ebuild,
+  +files/mpfi-1.4-mpfr3.patch:
+  Introducing a fix for the removal of mpfr_random.
+
   26 Mar 2010; François Bissey <f.r.bissey@massey.ac.nz> mpfi-1.4.ebuild:
   keywording ~ppc
 
