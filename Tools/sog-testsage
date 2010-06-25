@@ -1,4 +1,33 @@
-#!/bin/sh
+#!/bin/bash
+
+function print_help() {
+	cat 1>&2 <<-EOF
+		Usage: $(basename $0) [options]
+		  options:
+		    -h --help      print help text
+		    -p --parallel  number of test run parallel
+		    -l --long      test all testcases available
+	EOF
+
+	exit 0
+}
+
+function warning() {
+	echo "warning: $1 - some tests will fail"
+}
+
+function error() {
+	echo "error: $1"
+	exit 1
+}
+
+function is_installed() {
+	portageq best_version "${ROOT}" $1
+}
+
+function option_append() {
+	options=( ${options[@]} $@ )
+}
 
 TESTDIRS=(
 	devel/sage/doc/common
@@ -8,27 +37,61 @@ TESTDIRS=(
 )
 DIR="$(pwd)"
 ROOT=/
+SAGE_INSTALLATION=/opt/sage
+
+PARAMS=$(getopt -o "h,p:,l" -l "help,parallel:,long" -a -n "$(basename $0)" -- "$@")
+
+eval set -- "${PARAMS}"
+
+while true; do
+	case "$1" in
+	-h|--help)     print_help;               shift  ;;
+	-p|--parallel) NUM_THREADS=$2;           shift 2;;
+	-l|--long)     declare -r TEST_LONG=yes; shift  ;;
+	--) shift; break;;
+	*) error "unknown option: $1";;
+	esac
+done
+
+if [[ -n ${NUM_THREADS} ]]; then
+	option_append -tp ${NUM_THREADS}
+else
+	option_append -t
+fi
+
+option_append -sagenb
+
+if [[ -n ${TEST_LONG} ]]; then
+	option_append -long
+fi
 
 (
 
 if [[ $(whoami) != root ]]; then
-	echo "warning: you are not root"
+	warning "you are not root"
 fi
 
-if [[ -z $(portageq best_version "${ROOT}" sage-examples) ]]; then
-	echo "warning: sage-examples is not installed"
+if [[ -z $(is_installed sage-examples) ]]; then
+	warning "sage-examples is not installed"
 fi
 
-if [[ -z $(portageq best_version "${ROOT}" sage-doc[html]) ]]; then
-	echo "warning: sage-doc is not compiled with USE=html"
+if [[ -z $(is_installed sage-doc[html]) ]]; then
+	warning "sage-doc is not compiled with USE=html"
 fi
 
-if [[ -z $(portageq best_version "${ROOT}" sage-core[testsuite]) ]]; then
-	echo "error: sage-core is not compiled with USE=testsuite"
+if [[ -z $(is_installed sage-core[testsuite]) ]]; then
+	error "sage-core is not compiled with USE=testsuite"
 fi
 
-# commands taken from Sage's makefile
-cd /opt/sage && . local/bin/sage-env && sage-starts && \
-./sage -t -sagenb "$@" "${TESTDIRS[@]}" 2>&1
+cd "${SAGE_INSTALLATION}" \
+	|| error "could not change into Sage's directory: ${SAGE_INSTALLATION}"
+
+. local/bin/sage-env \
+	|| error "executing Sage's environment script failed"
+
+sage-starts >/dev/null \
+	|| error "Sage did not start"
+
+sage "${options[@]}" "${TESTDIRS[@]}" 2>&1
 
 ) | tee "${DIR}"/test.log
