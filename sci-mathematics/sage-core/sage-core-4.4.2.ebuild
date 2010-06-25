@@ -54,7 +54,7 @@ DEPEND="|| ( =dev-lang/python-2.6.4-r99[sqlite]
 	>=sci-mathematics/polybori-0.6.4[sage]
 	>=sci-mathematics/ratpoints-2.1.3
 	~sci-mathematics/sage-clib-${PV}
-	~sci-mathematics/sage-singular-3.1.0.4.20100214
+	~sci-mathematics/sage-singular-3.1.0.4_p6
 	~sci-mathematics/sage-base-1.0
 	~sci-mathematics/sage-scripts-${PV}
 	>=sys-libs/readline-6.0

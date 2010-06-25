@@ -2,6 +2,14 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header$
 
+*sage-singular-3.1.0.4_p6 (25 Jun 2010)
+
+  25 Jun 2010; François Bissey <f.r.bissey@massey.ac.nz>
+  +sage-singular-3.1.0.4_p6.ebuild, -sage-singular-3.1.0.4_p7.ebuild,
+  -sage-singular-3.1.0.4.20100214.ebuild,
+  -sage-singular-3.1.0.4.20100214-r1.ebuild:
+  singular for sage-4.4.4 drop old.
+
 *sage-singular-3.1.0.4_p7 (12 Jun 2010)
 
   12 Jun 2010; François Bissey <f.r.bissey@massey.ac.nz>
