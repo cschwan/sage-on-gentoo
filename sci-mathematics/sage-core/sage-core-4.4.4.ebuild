@@ -191,6 +191,7 @@ src_prepare() {
 		-e "s:sage.misc.misc.SAGE_LOCAL, \"bin/sage3d\":\"/usr/bin/sage3d\":g" \
 		sage/plot/plot3d/base.pyx || die "failed to patch jmol directories"
 
+	# Ticket 8898:
 	# make sure line endings are unix ones so as not to confuse python-2.6.5
 	edos2unix sage/libs/mpmath/ext_impl.pxd
 	edos2unix sage/libs/mpmath/ext_main.pyx
