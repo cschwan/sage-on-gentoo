@@ -1,45 +1,45 @@
 sage-on-gentoo provides split ebuilds (www.gentoo.org) for the computer algebra
 system SAGE (www.sagemath.org).
 
-* Look at our wiki for documentation.
+* If you have problems with sage-on-gentoo or have suggestions write a mail to
+  the "gentoo-science" mailing list:
 
-* If you find errors or have suggestions write a mail to the gentoo-science
-  mailing list:
+    http://www.gentoo.org/main/en/lists.xml
 
-  http://www.gentoo.org/main/en/lists.xml
+  An archive of listing all mails may be found at:
 
-  or fork sage-on-gentoo and do it yourself!
+    http://archives.gentoo.org/gentoo-science/
 
 ################################################################################
 
 INSTALLATION GUIDE AND SOME NOTES:
 
 1. GET LAYMAN:
-   The preferred method of getting sage-on-gentoo is layman. Make sure you have
-   it installed and correctly configured. If not, you will find a guide here:
+   The preferred way of getting sage-on-gentoo is layman. Make sure layman is
+   installed and correctly configured. You may find a guide for layman here:
 
      http://www.gentoo.org/proj/en/overlays/userguide.xml
 
-2. ADD REPOSITORY:
-   Update your layman list and add this repository with:
+2. ADD OVERLAY:
+   Update your layman list and add this overlay with:
 
      layman -L
      layman -a sage-on-gentoo
 
 3. UNMASK AND USE-FLAG PACKAGES:
-   Before installing, you will need to unmask the required packages. A list of
-   all required packages is located at:
+   Before the installation you will need to unmask the required ebuilds. You
+   should use the following file which already contains all required entries:
 
      sage-on-gentoo/packages.keywords/sage
 
-   Permanent unmasking can be done easily via placing a symbolic link in your
-   /etc/portage/package.keywords directory, e.g.:
+   For permanent unmasking place a symbolic link to this file into your
+   /etc/portage/package.keywords/ directory:
 
      ln -s <path-to-layman>/sage-on-gentoo/package.keywords/sage \
            /etc/portage/package.keywords/sage
 
    Since the Sage ebuild requires its dependencies to be built with several USE-
-   flags it is also a good idea to use the provided package.use file:
+   flags we provide a standard package.use file:
 
      ln -s <path-to-layman>/sage-on-gentoo/package.use/sage \
            /etc/portage/package.use/sage
@@ -52,18 +52,17 @@ INSTALLATION GUIDE AND SOME NOTES:
 
      emerge -va sage
 
-   to install sage; note that sci-libs/blas-atlas will take its time (on my pc
-   about 4 hours). If you intend to test sage I _strongly recommend_ to use
-   ccache (FEATURES=ccache, dev-util/ccache) which speeds up subsequent
-   compilations.
+   to install sage; note that this will pull in a lot of dependencies. You will
+   also notice that sci-libs/blas-atlas will take a lot of time to compile (3 to
+   4 hours).
 
-5. UPDATE REPOSITORY:
+5. UPDATE OVERLAY:
    To update your local copy of sage-on-gentoo simply type:
 
      layman -S
 
-   WARNING: We apply patches and make changes to Sage's ebuild (which holds true
-   only for sci-mathematics/sage) without updating its name (e.g. adding a
-   revision suffix "-rX") to make ccache work.
-   For this reason you will need to _manually_ re-emerge sci-mathematics/sage
-   after updating the overlay - if you want to use our latest changes.
+   After that you may run
+
+     emerge -vuDNa world
+
+   or a similar command to check for updates.
