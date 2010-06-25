@@ -22,7 +22,7 @@ CDEPEND=">=app-arch/bzip2-1.0.5
 	~sci-mathematics/sage-core-${PV}
 	~sci-mathematics/sage-extcode-${PV}
 	~sci-mathematics/sage-notebook-0.8_p2[java=]
-	~sci-mathematics/sage-singular-3.1.0.4.20100214
+	~sci-mathematics/sage-singular-3.1.0.4_p6
 	virtual/cblas"
 
 DEPEND="${CDEPEND}"
