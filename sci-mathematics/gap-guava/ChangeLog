@@ -2,6 +2,14 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*gap-guava-3.10-r1 (26 Jun 2010)
+
+  26 Jun 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
+  +gap-guava-3.10-r1.ebuild, +files/gap-guava-3.10-fix-missing-header.patch:
+  New revision fixes wrong CFLAGS, installation of documentation. Also 
+  fixed warnings about installation and fixed QA warning about implicit
+  declared "exit". Moved to EAPI=3
+
   26 Mar 2010; François Bissey <f.r.bissey@massey.ac.nz>
   gap-guava-3.10.ebuild:
   keywording ~ppc
