@@ -2,6 +2,13 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  27 Jun 2010; François Bissey <f.r.bissey@massey.ac.nz>
+  -files/50sage-core, sage-core-4.4.4.ebuild,
+  +files/sage-core-4.4.4-extra-stdc99.patch,
+  +files/sage-core-4.4.4-rpathsingular.patch:
+  Bunch of stuff: use rpapth for sage-singular and remove revdep-rebuild
+  exceptions. minor annoyances and correctness.
+
   27 Jun 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
   -files/sage-core-4.3.3-combinat-sets-deprecation.patch,
   -files/sage-core-4.3.3-fix-undefined-symbols.patch,

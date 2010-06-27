@@ -1,4 +1,0 @@
-#Those files look for a version of libsingular that will be located through
-# LD_LIBRARY_PATH at run-time.
-LD_LIBRARY_MASK="function.so groebner_strategy.so option.so polynomial.so ring.so singular.so matrix_mpolynomial_dense.so multi_polynomial_ideal_libsingular.so multi_polynomial_libsingular.so"
-

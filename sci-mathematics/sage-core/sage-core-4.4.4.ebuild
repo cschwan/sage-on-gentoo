@@ -29,7 +29,7 @@ DEPEND="|| ( =dev-lang/python-2.6.4-r99
 	dev-libs/gmp
 	>=dev-libs/ntl-5.5.2
 	>=dev-libs/mpfr-2.4.2
-	>=dev-lisp/ecls-10.2.1
+	>=dev-lisp/ecls-10.2.1[-unicode]
 	>=dev-python/cython-0.12.1
 	>=dev-python/jinja-2.1.1
 	>=dev-python/numpy-1.3.0[lapack]
@@ -67,12 +67,6 @@ RDEPEND="${DEPEND}"
 S="${WORKDIR}/${MY_P}"
 
 pkg_setup() {
-	# switch to lapack-atlas as some dependencies of sage are linked against it
-	# specifically because of clapack.
-	OLD_IMPLEM=$(eselect lapack show | cut -d: -f2)
-	einfo "Switching to lapack-atlas with eselect."
-	eselect lapack set atlas
-
 	# make sure we are using Python 2.6 and check use flags
 	python_set_active_version 2.6
 	python_pkg_setup
@@ -89,6 +83,16 @@ src_prepare() {
 	# fix build file to make it compile without other Sage componenents
 	epatch "${FILESDIR}"/${PN}-4.3.4-site-packages.patch
 
+	# add pari and gmp to everything.
+	sed -i "s:\['stdc++', 'ntl'\]:\['stdc++', 'ntl','pari','gmp'\]:g" \
+		setup.py || die "failed to add pari and gmp everywhere"
+
+	# remove annoying std=c99 from a c++ file.
+	epatch "${FILESDIR}"/${PN}-4.4.4-extra-stdc99.patch
+
+	# make singular use rpath
+	epatch "${FILESDIR}"/${PN}-4.4.4-rpathsingular.patch
+
 	# use already installed csage
 	rm -rf c_lib || die "failed to remove useless stuff"
 
@@ -96,6 +100,7 @@ src_prepare() {
 	sed -i \
 		-e "s:SAGE_ROOT[[:space:]]*+[[:space:]]*\([\'\"]\)/local/include/singular\([^\1]*\)\1:\1${SAGE_LOCAL}/include/singular\2\1:g" \
 		-e "s:SAGE_ROOT[[:space:]]*+[[:space:]]*\([\'\"]\)/local/include/libsingular.h\1:\1${SAGE_LOCAL}/include/libsingular.h\1:g" \
+		-e "s:runtime_library_dirs = \[''\]:runtime_library_dirs = \['${SAGE_LOCAL}/$(get_libdir)'\]:g" \
 		module_list.py || die "failed to patch paths for singular"
 
 	# fix paths for various libraries (including fix for png14)
@@ -113,8 +118,8 @@ src_prepare() {
 
 	# TODO: once Singular is installed to standard dirs, remove the following
 	sed -i \
-		-e "s:m.library_dirs += \['%s/lib' % SAGE_LOCAL\]:m.library_dirs += \['${SAGE_LOCAL}/$(get_libdir)','%s/lib' % SAGE_LOCAL\]:g" \
-		-e "s:include_dirs = \['%s/include'%SAGE_LOCAL:include_dirs = \['${SAGE_LOCAL}/include','%s/include'%SAGE_LOCAL:g" \
+		-e "s:m.library_dirs += \['%s/lib' % SAGE_LOCAL\]:m.library_dirs += \['${SAGE_LOCAL}/$(get_libdir)'\]:g" \
+		-e "s:include_dirs = \['%s/include'%SAGE_LOCAL:include_dirs = \['${SAGE_LOCAL}/include':g" \
 		setup.py || die "failed to patch directories for singular"
 
 	# rebuild in place
@@ -191,7 +196,6 @@ src_prepare() {
 		-e "s:sage.misc.misc.SAGE_LOCAL, \"bin/sage3d\":\"/usr/bin/sage3d\":g" \
 		sage/plot/plot3d/base.pyx || die "failed to patch jmol directories"
 
-	# Ticket 8898:
 	# make sure line endings are unix ones so as not to confuse python-2.6.5
 	edos2unix sage/libs/mpmath/ext_impl.pxd
 	edos2unix sage/libs/mpmath/ext_main.pyx
@@ -225,12 +229,6 @@ src_install() {
 	distutils_src_install
 
 	# prevent false positive reports from revdep-rebuild
-	insinto /etc/revdep-rebuild
-	doins "${FILESDIR}"/50sage-core || die
-}
-
-pkg_postinst() {
-	# Restoring the original lapack settings.
-	einfo "Restoring your original lapack settings with eselect"
-	eselect lapack set ${OLD_IMPLEM}
+#	insinto /etc/revdep-rebuild
+#	doins "${FILESDIR}"/50sage-core || die
 }
