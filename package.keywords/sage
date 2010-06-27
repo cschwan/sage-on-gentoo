@@ -69,6 +69,10 @@ sci-mathematics/sage-base
 sci-mathematics/sage-clib
 sci-mathematics/sage-core
 sci-mathematics/sage-data
+sci-mathematics/sage-data-conway_polynomials
+sci-mathematics/sage-data-elliptic_curves
+sci-mathematics/sage-data-graphs
+sci-mathematics/sage-data-polytopes_db
 sci-mathematics/sage-doc
 sci-mathematics/sage-examples
 sci-mathematics/sage-extcode
