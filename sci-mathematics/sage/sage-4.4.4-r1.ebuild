@@ -15,6 +15,7 @@ SLOT="0"
 KEYWORDS="~amd64 ~ppc ~x86"
 IUSE="examples java latex wiki X"
 
+# TODO: remove blocker on sage-data once its removed
 # TODO: check dependencies use flagged packages
 CDEPEND=">=app-arch/bzip2-1.0.5
 	>=sci-mathematics/rubiks-20070912_p10
@@ -22,6 +23,7 @@ CDEPEND=">=app-arch/bzip2-1.0.5
 	~sci-mathematics/sage-data-elliptic_curves-0.1
 	~sci-mathematics/sage-data-graphs-20070722_p1
 	~sci-mathematics/sage-data-polytopes_db-20100210
+	!!sci-mathematics/sage-data
 	~sci-mathematics/sage-core-${PV}
 	~sci-mathematics/sage-extcode-${PV}
 	~sci-mathematics/sage-notebook-0.8_p2[java=]
