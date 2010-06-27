@@ -1,0 +1,10 @@
+# ChangeLog for sci-mathematics/sage-data-elliptic_curves
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: $
+
+*sage-data-elliptic_curves-0.1 (27 Jun 2010)
+
+  27 Jun 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
+  +sage-data-elliptic_curves-0.1.ebuild, +metadata.xml:
+  Initial import - ebuild replaces parts of sage-data
+
