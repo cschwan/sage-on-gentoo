@@ -4,7 +4,7 @@
 
 EAPI="3"
 
-inherit eutils
+inherit eutils toolchain-funcs
 
 MY_P="sage-${PV}"
 
@@ -36,11 +36,16 @@ src_prepare() {
 	if use mpir ; then
 		epatch "${FILESDIR}"/${PN}-4.4.3-replace-gmp-with-mpir.patch
 	fi
+
+	epatch "${FILESDIR}"/${PN}-4.4.4-importenv.patch
 }
 
 src_compile() {
 	# build libcsage.so
-	CXX= SAGE_LOCAL=/usr UNAME=$(uname) scons || die "scons failed"
+	CXX= \
+	SAGE_LOCAL=/usr \
+	UNAME=$(uname) \
+	scons ${MAKEOPTS}|| die "scons failed"
 }
 
 src_install() {
