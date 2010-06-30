@@ -37,8 +37,8 @@ src_install() {
 
 	# core scripts which are needed in every case
 	dobin sage-banner sage-cleaner sage-env sage-eval sage-ipython \
-		sage-location sage-maxima.lisp sage-python sage-make_relative \
-		sage-sage sage-spkg || die
+		sage-location sage-maxima.lisp sage-make_relative sage-python sage-run \
+		sage-sage sage-spkg sage-startuptime.py || die
 
 	# DOCTESTING helper scripts
 	dobin sage-doctest sage-maketest sage-ptest sage-starts sage-test || die

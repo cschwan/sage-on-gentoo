@@ -2,6 +2,13 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*sage-scripts-4.4.4-r1 (30 Jun 2010)
+
+  30 Jun 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
+  sage-scripts-4.4.4.ebuild, +sage-scripts-4.4.4-r1.ebuild:
+  Add missing scripts - 4.4.4-r1 is the same version as 4.4.3 and therefore
+  contains still useless stuff
+
   27 Jun 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
   -files/sage-scripts-4.4.1-gentooify-scripts.patch,
   -sage-scripts-4.4.2.ebuild, -sage-scripts-4.4.3.ebuild,
