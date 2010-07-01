@@ -2,6 +2,10 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  01 Jul 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
+  files/sage-clib-4.4.4-importenv.patch:
+  Fixed LDFLAGS issue reported by golodhrim
+
   29 Jun 2010; François Bissey <f.r.bissey@massey.ac.nz>
   sage-clib-4.4.4.ebuild, +files/sage-clib-4.4.4-importenv.patch:
   Your {C/CXX/LD}FLAGS now get respect. Now with an soname: libcsage.so.

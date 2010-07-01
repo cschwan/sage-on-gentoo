@@ -1,17 +1,16 @@
---- SConstruct.orig	2010-05-26 12:13:50.000000000 +1200
-+++ SConstruct	2010-06-28 22:47:20.080615376 +1200
-@@ -120,6 +120,10 @@
+--- SConstruct.orig	2010-05-26 00:55:53.000000000 +0000
++++ SConstruct	2010-07-01 09:16:32.811309958 +0000
+@@ -120,6 +120,9 @@
  env['SAGE_LOCAL'] = os.environ['SAGE_LOCAL']
  if os.environ.has_key('SAGE_DEBIAN'):
      env['SAGE_LOCAL'] = '/usr'
 +env['CFLAGS'] = os.environ['CFLAGS']
 +env['CXXFLAGS'] = os.environ['CXXFLAGS']
-+env['LINKFLAGS'] = os.environ['LDFLAGS']
-+env.Append(LINKFLAGS = ['-Wl,-soname,libcsage.so'])
++env['LINKFLAGS'] = os.environ['LDFLAGS']+' -Wl,-soname,libcsage.so'
  
  # The SCons convenience function Split is the only strange thing 
  # to python programmers. It just makes a list by splitting on 
-@@ -132,7 +136,7 @@
+@@ -132,7 +135,7 @@
  srcFiles = cFiles + cppFiles
  
  lib = env.SharedLibrary( "csage", [ "src/" + x for x in srcFiles ],
