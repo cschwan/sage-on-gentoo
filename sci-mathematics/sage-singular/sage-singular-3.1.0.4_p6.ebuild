@@ -34,7 +34,6 @@ src_prepare () {
 	cp ../patches/mminit.cc kernel/
 	cp ../patches/assert.h factory/
 	cp ../patches/kernel.rmodulon.cc kernel/rmodulon.cc
-	cp ../patches/src.Singular.Makefile.in Singular/Makefile.in
 	cp ../patches/Singular.libsingular.h Singular/libsingular.h
 	cp ../patches/factory.GNUmakefile.in factory/GNUmakefile.in
 	cp ../patches/libfac.charset.alg_factor.cc libfac/charset/alg_factor.cc
