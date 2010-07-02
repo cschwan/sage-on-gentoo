@@ -18,7 +18,7 @@ SRC_URI="mirror://sage/spkg/standard/${MY_P}.spkg -> ${P}.tar.bz2"
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64 ~ppc ~x86"
-IUSE="testsuite"
+IUSE="testsuite glpk"
 
 RESTRICT="mirror"
 
@@ -61,7 +61,8 @@ DEPEND="|| ( =dev-lang/python-2.6.4-r99
 	~sci-mathematics/sage-base-1.0
 	~sci-mathematics/sage-scripts-${PV}
 	>=sys-libs/readline-6.0
-	virtual/cblas"
+	virtual/cblas
+	glpk? ( >=sci-mathematics/glpk-4.43[gmp] )"
 RDEPEND="${DEPEND}"
 
 S="${WORKDIR}/${MY_P}"
@@ -98,17 +99,17 @@ src_prepare() {
 
 	# fix paths for sigular - TODO: remove once singular is moved out of Sage
 	sed -i \
-		-e "s:SAGE_ROOT[[:space:]]*+[[:space:]]*\([\'\"]\)/local/include/singular\([^\1]*\)\1:\1${SAGE_LOCAL}/include/singular\2\1:g" \
-		-e "s:SAGE_ROOT[[:space:]]*+[[:space:]]*\([\'\"]\)/local/include/libsingular.h\1:\1${SAGE_LOCAL}/include/libsingular.h\1:g" \
-		-e "s:runtime_library_dirs = \[''\]:runtime_library_dirs = \['${SAGE_LOCAL}/$(get_libdir)'\]:g" \
+		-e "s:SAGE_ROOT[[:space:]]*+[[:space:]]*\([\'\"]\)/local/include/singular\([^\1]*\)\1:\1${EPREFIX}${SAGE_LOCAL}/include/singular\2\1:g" \
+		-e "s:SAGE_ROOT[[:space:]]*+[[:space:]]*\([\'\"]\)/local/include/libsingular.h\1:\1${EPREFIX}${SAGE_LOCAL}/include/libsingular.h\1:g" \
+		-e "s:runtime_library_dirs = \[''\]:runtime_library_dirs = \['${EPREFIX}${SAGE_LOCAL}/$(get_libdir)'\]:g" \
 		module_list.py || die "failed to patch paths for singular"
 
 	# fix paths for various libraries (including fix for png14)
 	sed -i \
-		-e "s:SAGE_ROOT[[:space:]]*+[[:space:]]*\([\'\"]\)/local/include/\([^\1]*\)\1:\1/usr/include/\2\1:g" \
-		-e "s:SAGE_LOCAL + \"/share/polybori/flags.conf\":\"/usr/share/polybori/flags.conf\":g" \
+		-e "s:SAGE_ROOT[[:space:]]*+[[:space:]]*\([\'\"]\)/local/include/\([^\1]*\)\1:\1${EPREFIX}/usr/include/\2\1:g" \
+		-e "s:SAGE_LOCAL + \"/share/polybori/flags.conf\":\"${EPREFIX}/usr/share/polybori/flags.conf\":g" \
 		-e "s:SAGE_ROOT+'/local/lib/python/site-packages/numpy/core/include':'$(python_get_sitedir)/numpy/core/include':g" \
-		-e "s:sage/c_lib/include/:/usr/share/include/csage/:g" \
+		-e "s:sage/c_lib/include/:${EPREFIX}/usr/share/include/csage/:g" \
 		-e "s:png12:png:g" \
 		module_list.py || die "failed to patch paths for libraries"
 
@@ -118,8 +119,8 @@ src_prepare() {
 
 	# TODO: once Singular is installed to standard dirs, remove the following
 	sed -i \
-		-e "s:m.library_dirs += \['%s/lib' % SAGE_LOCAL\]:m.library_dirs += \['${SAGE_LOCAL}/$(get_libdir)'\]:g" \
-		-e "s:include_dirs = \['%s/include'%SAGE_LOCAL:include_dirs = \['${SAGE_LOCAL}/include':g" \
+		-e "s:m.library_dirs += \['%s/lib' % SAGE_LOCAL\]:m.library_dirs += \['${EPREFIX}${SAGE_LOCAL}/$(get_libdir)'\]:g" \
+		-e "s:include_dirs = \['%s/include'%SAGE_LOCAL:include_dirs = \['${EPREFIX}${SAGE_LOCAL}/include':g" \
 		setup.py || die "failed to patch directories for singular"
 
 	# rebuild in place
@@ -146,10 +147,10 @@ src_prepare() {
 
 	# fix include paths
 	sed -i \
-		-e "s:'%s/include/csage'%SAGE_LOCAL:'/usr/include/csage':g" \
+		-e "s:'%s/include/csage'%SAGE_LOCAL:'${EPREFIX}/usr/include/csage':g" \
 		-e "s:'%s/sage/sage/ext'%SAGE_DEVEL:'sage/ext':g" \
 		setup.py || die "failed to patch include paths"
-	sed -i "s:'%s/local/include/csage/'%SAGE_ROOT:'/usr/include/csage/':g" \
+	sed -i "s:'%s/local/include/csage/'%SAGE_ROOT:'${EPREFIX}/usr/include/csage/':g" \
 		sage/misc/cython.py || die "failed to patch include paths"
 
 	# Adopt Ticket #8316 to replace jinja-1 with jinja-2
@@ -192,9 +193,19 @@ src_prepare() {
 
 	# fix jmol's and sage3d's path
 	sed -i \
-		-e "s:sage.misc.misc.SAGE_LOCAL, \"bin/jmol\":\"/usr/bin/jmol\":g" \
-		-e "s:sage.misc.misc.SAGE_LOCAL, \"bin/sage3d\":\"/usr/bin/sage3d\":g" \
+		-e "s:sage.misc.misc.SAGE_LOCAL, \"bin/jmol\":\"${EPREFIX}/usr/bin/jmol\":g" \
+		-e "s:sage.misc.misc.SAGE_LOCAL, \"bin/sage3d\":\"${EPREFIX}/usr/bin/sage3d\":g" \
 		sage/plot/plot3d/base.pyx || die "failed to patch jmol directories"
+
+	# patch for optional glpk
+	sed -i "s:../../local/include/glpk.h:${EPREFIX}/usr/include/glpk.h:g" \
+		sage/numerical/mip_glpk.pxd || die "failed to patch mip_glpk.pxd"
+	sed -i "s:../../../../devel/sage/sage:..:g" \
+		sage/numerical/mip_glpk.pyx || die "failed to patch mip_glpk.pyx"
+	# enable glpk if asked.
+	if use glpk ; then
+		sed -i "s:is_package_installed('glpk'):True:g" module_list.py || die "failed to enable glpk"
+	fi
 
 	# make sure line endings are unix ones so as not to confuse python-2.6.5
 	edos2unix sage/libs/mpmath/ext_impl.pxd
@@ -222,13 +233,9 @@ src_configure() {
 
 src_install() {
 	if use testsuite ; then
-		insinto "${SAGE_ROOT}"/devel/sage-main
+		insinto "${EPREFIX}${SAGE_ROOT}"/devel/sage-main
 		doins -r sage || die
 	fi
 
 	distutils_src_install
-
-	# prevent false positive reports from revdep-rebuild
-#	insinto /etc/revdep-rebuild
-#	doins "${FILESDIR}"/50sage-core || die
 }
