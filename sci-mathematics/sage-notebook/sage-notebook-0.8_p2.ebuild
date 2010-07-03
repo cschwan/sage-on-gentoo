@@ -2,9 +2,9 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
-EAPI="2"
+EAPI="3"
 
-NEED_PYTHON=2.6
+PYTHON_DEPEND="2:2.6"
 
 inherit distutils eutils versionator
 
@@ -51,7 +51,7 @@ src_prepare() {
 		-e "s:jmolInitialize(\"/java/jmol\");jmolSetCallback(\"menuFile\",\"/java/jmol/appletweb/SageMenu.mnu\"):jmolInitialize(\"/java\",1):g" \
 		-e "s:java/jmol/appletweb/Jmol.js:java/Jmol.js:g" \
 		sagenb/data/sage/html/notebook/base.html
-	sed -i "s:java_path            = os.path.join(DATA):java_path            = os.path.join(\"/usr/share/jmol-applet\"):g" \
+	sed -i "s:java_path            = os.path.join(DATA):java_path            = os.path.join(\"${EPREFIX}/usr/share/jmol-applet\"):g" \
 		sagenb/notebook/twist.py
 
 	# FIXME: sage3d isnot supposed to work out of the box.

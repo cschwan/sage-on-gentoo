@@ -2,6 +2,14 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  03 Jul 2010; François Bissey <f.r.bissey@massey.ac.nz>
+  sage-notebook-0.8_p2.ebuild:
+  More EAPI 3 adjustements.
+
+  03 Jul 2010; François Bissey <f.r.bissey@massey.ac.nz>
+  sage-notebook-0.8_p2.ebuild:
+  Bump to EAPI 3.
+
   21 Jun 2010; François Bissey <f.r.bissey@massey.ac.nz>
   sage-notebook-0.8_p2.ebuild:
   Depend on jmol and jmol-applet. 
