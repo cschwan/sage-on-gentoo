@@ -2,6 +2,8 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
+EAPI="3"
+
 inherit multilib sage
 
 DESCRIPTION="Sage baselayout"
@@ -24,7 +26,7 @@ src_compile() {
 	cp "${FILESDIR}"/sage . || die "cp failed"
 
 	# correctly set SAGE_ROOT
-	sed -i "s:SAGE_ROOT=\"\.\.\.\.\.\":SAGE_ROOT=\"${SAGE_ROOT}\":g" sage \
+	sed -i "s:SAGE_ROOT=\"\.\.\.\.\.\":SAGE_ROOT=\"${EPREFIX}${SAGE_ROOT}\":g" sage \
 		|| die "sed failed"
 }
 
