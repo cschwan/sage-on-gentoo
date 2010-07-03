@@ -24,7 +24,7 @@ CDEPEND=">=app-arch/bzip2-1.0.5
 	~sci-mathematics/sage-data-graphs-20070722_p1
 	~sci-mathematics/sage-data-polytopes_db-20100210
 	!!sci-mathematics/sage-data
-	~sci-mathematics/sage-core-${PV}
+	~sci-mathematics/sage-core-${PV}[glpk=]
 	~sci-mathematics/sage-extcode-${PV}
 	~sci-mathematics/sage-notebook-0.8_p2[java=]
 	~sci-mathematics/sage-singular-3.1.0.4_p6
@@ -99,5 +99,5 @@ pkg_postinst() {
 
 	# make sure files are correctly setup in the new location by running sage
 	# as root. This prevent nasty message to be presented to the user.
-	"${SAGE_ROOT}"/sage -c
+	"${EPREFIX}${SAGE_ROOT}"/sage -c
 }
