@@ -2,6 +2,15 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*sage-scripts-4.4.4-r2 (03 Jul 2010)
+
+  03 Jul 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
+  +sage-scripts-4.4.4-r2.ebuild,
+  +files/sage-scripts-4.4.4-remove-useless-options.patch,
+  +files/sage-scripts-4.4.4-remove-useless-variables.patch:
+  New revision removes a lot of scripts and cleans up Sage's sage-sage
+  script from unneeded/useless/developer options
+
 *sage-scripts-4.4.4-r1 (30 Jun 2010)
 
   30 Jun 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
