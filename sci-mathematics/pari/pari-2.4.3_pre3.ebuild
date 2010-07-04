@@ -1,36 +1,35 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sci-mathematics/pari/pari-2.3.4-r1.ebuild,v 1.9 2010/01/11 22:38:57 jer Exp $
+# $Header: $
 
-EAPI=2
+EAPI="3"
 inherit elisp-common eutils flag-o-matic toolchain-funcs
 
 DESCRIPTION="A software package for computer-aided number theory"
 HOMEPAGE="http://pari.math.u-bordeaux.fr/"
 
 SRC_COM="http://pari.math.u-bordeaux.fr/pub/${PN}"
-SRC_URI="${SRC_COM}/unix/${P}.tar.gz
+SRC_URI="http://sage.math.washington.edu/home/wstein/patches/pari-2.4.3.svn.p3.spkg -> ${P}.tar.bz2
 	data? (	${SRC_COM}/packages/elldata.tgz
 			${SRC_COM}/packages/galdata.tgz
 			${SRC_COM}/packages/seadata.tgz
 			${SRC_COM}/packages/nftables.tgz )"
 
 LICENSE="GPL-2"
-SLOT="0"
-KEYWORDS="~amd64 ~ppc ~x86"
-IUSE="doc data emacs fltk gmp mpir static X"
+SLOT="3"
+KEYWORDS="~alpha ~amd64 ~hppa ~mips ~ppc ~ppc64 ~sparc ~x86 ~x86-fbsd"
+IUSE="doc data fltk gmp X"
+RESTRICT="mirror"
 
 RDEPEND="sys-libs/readline
-	emacs? ( virtual/emacs )
 	fltk? ( x11-libs/fltk )
 	gmp? ( dev-libs/gmp )
-	mpir? ( sci-libs/mpir )
 	X? ( x11-libs/libX11 )
 	doc? ( X? ( x11-misc/xdg-utils ) )"
 DEPEND="${RDEPEND}
 	doc? ( virtual/latex-base )"
 
-SITEFILE=50${PN}-gentoo.el
+S="${WORKDIR}/pari-2.4.3.svn.p3/src"
 
 get_compile_dir() {
 	pushd "${S}/config" >& /dev/null
@@ -40,24 +39,16 @@ get_compile_dir() {
 	echo "O${osname}-${arch}"
 }
 
-pkg_setup() {
-	if( use gmp && use mpir ); then
-		einfo "gmp and mpir use flags are mutually exclusise."
-		einfo "please choose only one."
-		die
-	fi
-}
-
 src_prepare() {
+	# remove data shipped with sage's svn snapshot of pari
+	rm -rf data/*
 	# move data into place
 	if use data; then
 		mv "${WORKDIR}"/data "${S}" || die "failed to move data"
 	fi
 	epatch "${FILESDIR}/${PN}"-2.3.2-strip.patch
 	epatch "${FILESDIR}/${PN}"-2.3.2-ppc-powerpc-arch-fix.patch
-	epatch "${FILESDIR}/${PN}"-2.3.4-mpir.patch
-	cp "${FILESDIR}/get_mpir" "${S}/config"
-	cp "${FILESDIR}/mpir_version.c" "${S}/config"
+	epatch "${FILESDIR}/${P}"-errhandling.patch
 
 	# disable default building of docs during install
 	sed -i \
@@ -73,6 +64,11 @@ src_prepare() {
 		-e 's:"xdvi":"xdg-open":' \
 		-e 's:xdvi -paper 29.7x21cm:xdg-open:' \
 		doc/gphelp.in || die "Failed to fix doc dir"
+
+	# fix gp compilation - thanks dilfridge for the syntax.
+	# slot everything, remove tex2mail to avoid clash with 2.3
+	epatch "${FILESDIR}/${P}"-MakefileSH.patch
+	sed -i "s:-lpari:-lpari24:" Configure || die "Failed to slot in Configure"
 }
 
 src_configure() {
@@ -85,32 +81,33 @@ src_configure() {
 	fi
 	# sysdatadir installs a pari.cfg stuff which is informative only
 	./Configure \
-		--prefix=/usr \
-		--datadir=/usr/share/${PN} \
-		--libdir=/usr/$(get_libdir) \
-		--sysdatadir=/usr/share/doc/${PF} \
-		--mandir=/usr/share/man/man1 \
+		--prefix=${EPREFIX}/usr \
+		--datadir=${EPREFIX}/usr/share/${PF} \
+		--libdir=${EPREFIX}/usr/$(get_libdir) \
+		--sysdatadir=${EPREFIX}/usr/share/doc/${PF} \
+		--mandir=${EPREFIX}/usr/share/man/man1 \
 		--with-readline \
 		$(use_with gmp) \
-		$(use_with mpir) \
 		|| die "./Configure failed"
 }
 
 src_compile() {
 	if use hppa; then
-		mymake=DLLD\=/usr/bin/gcc\ DLLDFLAGS\=-shared\ -Wl,-soname=\$\(LIBPARI_SONAME\)\ -lm
+		mymake=DLLD\=${EPREFIX}/usr/bin/gcc\ DLLDFLAGS\=-shared\ -Wl,-soname=\$\(LIBPARI_SONAME\)\ -lm
 	fi
 
 	local installdir=$(get_compile_dir)
 	cd "${installdir}" || die "Bad directory"
 
-	emake ${mymake} CFLAGS="${CFLAGS} -DGCC_INLINE -fPIC" lib-dyn \
+	# upstream set -fno-strict-aliasing.
+	# aliasing is a known issue on amd64, it probably work on x86 by sheer luuck.
+	emake ${mymake} CFLAGS="${CFLAGS} -fno-strict-aliasing -DGCC_INLINE -fPIC" lib-dyn \
 		|| die "Building shared library failed!"
 
-	if use static; then
-		emake ${mymake} CFLAGS="${CFLAGS} -DGCC_INLINE" lib-sta \
-			|| die "Building static library failed!"
-	fi
+#	if use static; then
+#		emake ${mymake} CFLAGS="${CFLAGS} -DGCC_INLINE" lib-sta \
+#			|| die "Building static library failed!"
+#	fi
 
 	emake ${mymake} CFLAGS="${CFLAGS} -DGCC_INLINE" gp ../gp \
 		|| die "Building executables failed!"
@@ -121,10 +118,6 @@ src_compile() {
 		VARTEXFONTS="${T}"/fonts emake docpdf \
 			|| die "Failed to generate docs"
 	fi
-	if use emacs; then
-		cd "${S}/emacs"
-		elisp-compile *.el || die "elisp-compile failed"
-	fi
 }
 
 src_test() {
@@ -134,18 +127,12 @@ src_test() {
 src_install() {
 	emake DESTDIR="${D}" install || die "Install failed"
 
-	if use emacs; then
-		elisp-install ${PN} emacs/*.el emacs/*.elc \
-			|| die "elisp-install failed"
-		elisp-site-file-install "${FILESDIR}/${SITEFILE}"
-	fi
-
 	dodoc AUTHORS Announce.2.1 CHANGES README NEW MACHINES COMPAT
 	if use doc; then
 		emake \
-			DESTDIR="${D}" \
-			EXDIR="${D}/usr/share/doc/${PF}/examples" \
-			DOCDIR="${D}/usr/share/doc/${PF}" \
+			DESTDIR="${ED}" \
+			EXDIR="${ED}/usr/share/doc/${PF}/examples" \
+			DOCDIR="${ED}/usr/share/doc/${PF}" \
 			install-doc || die "Failed to install docs"
 		insinto /usr/share/doc/${PF}
 		doins doc/*.pdf || die "Failed to install pdf docs"
@@ -154,18 +141,16 @@ src_install() {
 	if use data; then
 		emake DESTDIR="${D}" install-data || die "Failed to install data files"
 	fi
-
-	if use static; then
-		emake \
-			DESTDIR="${D}" \
-			install-lib-sta || die "Install of static library failed"
-	fi
 }
 
-pkg_postinst() {
-	use emacs && elisp-site-regen
-}
-
-pkg_postrm() {
-	use emacs && elisp-site-regen
+pkg_postins(){
+	ewarn "This version of pari is a svn snapshot used in the sage project."
+	ewarn "It is installed in its own slot, so you can use the stable pari in parallel."
+	ewarn "The default pari is the stable one, if you want to sue this version of pari"
+	ewarn "you have to go out of your ways to do it."
+	ewarn "The executable is gp-2.4, gp is reserved for pari-2.3.xx."
+	ewarn "The headers are in /usr/include/pari24 nor /usr/include/pari whicj should hold pari-2.3.xx"
+	ewarn "To use the library you need to use -lpari24."
+	ewarn "emacs installation has changed and is not included here, if you want to help with that"
+	ewarn "send us a line."
 }

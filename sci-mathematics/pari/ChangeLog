@@ -2,6 +2,14 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*pari-2.4.3_pre3 (04 Jul 2010)
+
+  04 Jul 2010; François Bissey <f.r.bissey@massey.ac.nz>
+  -pari-2.3.4-r2.ebuild, +pari-2.4.3_pre3.ebuild,
+  +files/pari-2.4.3_pre3-MakefileSH.patch,
+  +files/pari-2.4.3_pre3-errhandling.patch:
+  Import pari svn snapshot that will be used in future sage. Remove old.
+
 *pari-2.3.5 (03 May 2010)
 
   03 May 2010; François Bissey <f.r.bissey@massey.ac.nz>
