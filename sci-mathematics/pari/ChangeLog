@@ -4,6 +4,10 @@
 
   05 Jul 2010; François Bissey <f.r.bissey@massey.ac.nz>
   pari-2.4.3_pre3.ebuild:
+  More typos.
+
+  05 Jul 2010; François Bissey <f.r.bissey@massey.ac.nz>
+  pari-2.4.3_pre3.ebuild:
   Fix typo.
 
 *pari-2.4.3_pre3 (04 Jul 2010)

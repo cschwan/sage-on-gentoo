@@ -146,11 +146,10 @@ src_install() {
 pkg_postinst(){
 	ewarn "This version of pari is a svn snapshot used in the sage project."
 	ewarn "It is installed in its own slot, so you can use the stable pari in parallel."
-	ewarn "The default pari is the stable one, if you want to sue this version of pari"
-	ewarn "you have to go out of your ways to do it."
-	ewarn "The executable is gp-2.4, gp is reserved for pari-2.3.xx."
-	ewarn "The headers are in /usr/include/pari24 nor /usr/include/pari whicj should hold pari-2.3.xx"
-	ewarn "To use the library you need to use -lpari24."
-	ewarn "emacs installation has changed and is not included here, if you want to help with that"
-	ewarn "send us a line."
+	ewarn "The default pari is the stable one, if you want to use this version of pari"
+	ewarn "you have to explicitly require it."
+	ewarn "The executable is gp-2.4, gp is a reserved link for pari-2.3.xx."
+	ewarn "The headers are in /usr/include/pari24 not /usr/include/pari which should hold pari-2.3.xx headers."
+	ewarn "To use the library you need to link with -lpari24."
+	ewarn "emacs installation has changed and is not included here, if you want to help with that send us a line."
 }
