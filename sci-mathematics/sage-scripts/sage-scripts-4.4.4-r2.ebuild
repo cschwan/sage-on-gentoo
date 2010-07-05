@@ -69,8 +69,4 @@ src_install() {
 
 	insinto "${SAGE_ROOT}"
 	doins -r ipython || die
-
-	# TODO: fix paths
-	dosym $(which python) "${SAGE_LOCAL}"/bin/sage.bin || die
-	dosym $(which gp) "${SAGE_LOCAL}"/bin/sage_pari || die
 }
