@@ -143,7 +143,7 @@ src_install() {
 	fi
 }
 
-pkg_postins(){
+pkg_postinst(){
 	ewarn "This version of pari is a svn snapshot used in the sage project."
 	ewarn "It is installed in its own slot, so you can use the stable pari in parallel."
 	ewarn "The default pari is the stable one, if you want to sue this version of pari"
