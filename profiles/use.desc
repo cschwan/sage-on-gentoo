@@ -1,3 +1,4 @@
 mpir - enable the use of mpir instead of gmp
 ntl - Adds support for Number Theory Library
+pari24 - Uses pari-2.4 instead of pari-2.3
 sage - Adds suport for sage

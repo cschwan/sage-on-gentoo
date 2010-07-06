@@ -2,6 +2,10 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  06 Jul 2010; François Bissey <f.r.bissey@massey.ac.nz>
+  lcalc-1.23-r1.ebuild:
+  Add support for pari-2.4, port to EAPI 3 fix homepage.
+
   26 Mar 2010; François Bissey <f.r.bissey@massey.ac.nz> lcalc-1.23.ebuild:
   keywording ~ppc
 
