@@ -19,8 +19,8 @@ IUSE="mpir"
 
 RESTRICT="mirror"
 
-RDEPEND="mpir? ( >=sci-mathematics/pari-2.3.3[mpir] )
-	!mpir? (  >=sci-mathematics/pari-2.3.3[gmp] )"
+RDEPEND="mpir? ( >=sci-mathematics/pari-2.3.3:0[mpir] )
+	!mpir? (  >=sci-mathematics/pari-2.3.3:0[gmp] )"
 DEPEND="${RDEPEND}"
 
 S="${WORKDIR}/${MY_P}/src"

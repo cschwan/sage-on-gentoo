@@ -1,1 +1,3 @@
 sci-mathematics/pari:3
+# This is broken - do not use.
+=sci-mathematics/genus2reduction-0.3_p6-r1
