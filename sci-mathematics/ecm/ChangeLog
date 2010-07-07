@@ -2,6 +2,11 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*ecm-6.3 (07 Jul 2010)
+
+  07 Jul 2010; François Bissey <f.r.bissey@massey.ac.nz> +ecm-6.3.ebuild:
+  Version bump. Hopefully helpfull with gmp-5.
+
   08 Jun 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
   ecm-6.2.3.ebuild, +files/ecm-6.2.3-configure.patch,
   +files/ecm-6.2.3-execstack.patch, +files/ecm-6.2.3-execstack-redc.patch,
