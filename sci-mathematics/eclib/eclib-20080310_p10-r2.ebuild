@@ -15,12 +15,13 @@ SRC_URI="mirror://sage/spkg/standard/${MY_P}.spkg -> ${P}.tar.bz2"
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64 ~ppc ~x86"
-IUSE=""
+IUSE="-pari24"
 
 RESTRICT="mirror"
 
 RDEPEND="dev-libs/gmp
-	>=sci-mathematics/pari-2.3.3:0
+	pari24? ( sci-mathematics/pari:3 )
+	!pari24? ( >=sci-mathematics/pari-2.3.3:0 )
 	>=dev-libs/ntl-5.4.2"
 DEPEND="${RDEPEND}"
 
@@ -29,8 +30,19 @@ S="${WORKDIR}/${MY_P}/src"
 src_prepare() {
 	# patch for shared objects and various make issues.
 	epatch "${FILESDIR}"/${P}-makefiles.patch.bz2
-	sed -i "s:/usr/local/bin/gp:${EPREFIX}/usr/bin/gp:" \
-		procs/gpslave.cc || die "failed to set the right path for pari/gp"
+
+	if use pari24 ; then
+		sed -i "s:-lpari:-lpari24:g" g0n/Makefile || die "failed to patch g0n/Makefile for pari24"
+		sed -i "s:/usr/local/bin/gp:${EPREFIX}/usr/bin/gp-2.4:" \
+			procs/gpslave.cc || die "failed to set the right path for pari/gp"
+		sed -i "s:pari/pari:pari24/pari:" procs/parifact.cc || die "failed to patch pari24 headers"
+		sed -i "s:-lpari:-lpari24:g" procs/Makefile || die "failed to patch procs/Makefile for pari24"
+		sed -i "s:-lpari:-lpari24:g" qcurves/Makefile || die "failed to patch qcurves/Makefile for pari24"
+		sed -i "s:-lpari:-lpari24:g" qrank/Makefile || die "failed to patch qrank/Makefile for pari24"
+	else
+		sed -i "s:/usr/local/bin/gp:${EPREFIX}/usr/bin/gp:" \
+			procs/gpslave.cc || die "failed to set the right path for pari/gp"
+	fi
 }
 
 src_compile() {

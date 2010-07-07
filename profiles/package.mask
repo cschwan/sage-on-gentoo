@@ -1,3 +1,5 @@
 sci-mathematics/pari:3
 # This is broken - do not use.
 =sci-mathematics/genus2reduction-0.3_p6-r1
+# Mask for now, keep it for when pari-2.4 goes live.
+=sci-mathematics/eclib-20080310_p10-r2
