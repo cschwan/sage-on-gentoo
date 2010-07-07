@@ -94,6 +94,10 @@ src_prepare() {
 	# make singular use rpath
 	epatch "${FILESDIR}"/${PN}-4.4.4-rpathsingular.patch
 
+	# gmp-5 compatibility - works with gmp-4.3 as well
+	sed -i "s:__GMP_BITS_PER_MP_LIMB:GMP_LIMB_BITS:g" \
+		sage/rings/integer.pyx|| die "failed to patch for gmp-5"
+
 	# use already installed csage
 	rm -rf c_lib || die "failed to remove useless stuff"
 
