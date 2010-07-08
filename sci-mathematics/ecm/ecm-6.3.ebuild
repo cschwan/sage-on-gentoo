@@ -29,6 +29,11 @@ src_prepare() {
 	epatch "${FILESDIR}"/${PN}-6.2.3-makefile.patch
 	epatch "${FILESDIR}"/${PN}-6.2.3-execstack.patch
 	epatch "${FILESDIR}"/${PN}-6.2.3-execstack-redc.patch
+	# Fix for gmp-5
+	sed -i "s:__GMP_BITS_PER_MP_LIMB:GMP_LIMB_BITS:g" bestd.c || die "failed to patch bestd.c for gmp-5"
+	sed -i "s:__GMP_BITS_PER_MP_LIMB:GMP_LIMB_BITS:g" mpmod.c || die "failed to patch mpmod.c for gmp-5"
+	sed -i "s:__GMP_BITS_PER_MP_LIMB:GMP_LIMB_BITS:g" schoen_strass.c || die "failed to patch schoen_strass.c for gmp-5"
+	sed -i "s:__GMP_BITS_PER_MP_LIMB:GMP_LIMB_BITS:g" sp.h || die "failed to patch sp.h for gmp-5"
 
 	eautoreconf
 }

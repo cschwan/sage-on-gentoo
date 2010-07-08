@@ -2,6 +2,9 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  08 Jul 2010; François Bissey <f.r.bissey@massey.ac.nz> ecm-6.3.ebuild:
+  Hopefully fixed for gmp-5
+
 *ecm-6.3 (07 Jul 2010)
 
   07 Jul 2010; François Bissey <f.r.bissey@massey.ac.nz> +ecm-6.3.ebuild:
