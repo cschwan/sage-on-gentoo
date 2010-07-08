@@ -4,7 +4,7 @@
 
 EAPI="3"
 
-inherit eutils
+inherit eutils multilib
 
 DESCRIPTION="A program for calculating with L-functions"
 HOMEPAGE="http://pmmac03.math.uwaterloo.ca/~mrubinst/L_function_public/CODE/"
@@ -45,7 +45,7 @@ src_prepare() {
 }
 
 src_install() {
-	emake DESTDIR="${ED}"/usr install || die "emake install failed"
+	emake DESTDIR="${ED}"/usr LIB_DIR=$(get_libdir) install || die "emake install failed"
 
 	dodoc ../README || die "dodoc failed"
 }

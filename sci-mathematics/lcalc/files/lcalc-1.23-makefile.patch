@@ -1,10 +1,21 @@
---- Makefile.orig	2009-07-15 06:23:17.000000000 +1200
-+++ Makefile	2010-03-23 09:31:00.184214341 +1300
+--- Makefile.orig	2010-07-08 21:20:57.757940191 +1200
++++ Makefile	2010-07-08 21:29:56.464940112 +1200
+@@ -13,8 +13,8 @@
+ # elliptic curve routines. Doing so disables the -e option.
+ # g++ with -DINCLUDE_PARI sends a #define INCLUDE_PARI to the preprocessor.
+ 
+-#PARI_DEFINE = -DINCLUDE_PARI
+-#PREPROCESSOR_DEFINE = -DUSE_LONG_DOUBLE
++PARI_DEFINE = -DINCLUDE_PARI
++PREPROCESSOR_DEFINE = -DUSE_LONG_DOUBLE
+ 
+ #OPENMP_FLAG = -fopenmp
+ 
 @@ -30,6 +30,7 @@
  OS_NAME := $(shell uname)
  
  CC = g++
-+MAKE = make
++#MAKE = make
  #cc = /home/mrubinst/local/bin/gcc
  #CC = /home/mrubinst/local/bin/g++
  #LD = /home/mrubinst/local/bin/g++
@@ -50,28 +61,29 @@
  endif
  
  ifeq ($(PARI_DEFINE),-DINCLUDE_PARI)
-@@ -129,7 +130,7 @@
+@@ -129,7 +130,8 @@
  #become clear which libraries the computer can find.
  
  
 -INSTALL_DIR= /usr/local
 +INSTALL_DIR= $(DESTDIR)
++LIB_DIR ?=lib
  
  #object files for the libLfunction library
  OBJ_L = Lglobals.o Lgamma.o Lriemannsiegel.o Lriemannsiegel_blfi.o Ldokchitser.o
-@@ -141,9 +142,8 @@
+@@ -141,9 +143,8 @@
  
  all:
  #	make print_vars
 -	make libLfunction.so
 -	make lcalc
 -	make examples
-+	$(MAKE) libLfunction.so
-+	$(MAKE) lcalc
++	${MAKE} libLfunction.so
++	${MAKE} lcalc
  #	make find_L
  #	make test
  
-@@ -262,15 +262,18 @@
+@@ -262,15 +263,18 @@
  
  
  libLfunction.so: $(OBJ_L)
@@ -83,11 +95,12 @@
  
  install:
 +	mkdir -p $(INSTALL_DIR)/bin
-+	mkdir -p $(INSTALL_DIR)/lib
++	mkdir -p $(INSTALL_DIR)/$(LIB_DIR)
 +	mkdir -p $(INSTALL_DIR)/include/Lfunction
  	cp -f lcalc $(INSTALL_DIR)/bin/.
- 	cp -f libLfunction.so $(INSTALL_DIR)/lib/.
+-	cp -f libLfunction.so $(INSTALL_DIR)/lib/.
 -	cp -rf ../include $(INSTALL_DIR)/include/Lfunction
++	cp -f libLfunction.so $(INSTALL_DIR)/$(LIB_DIR)/.
 +	cp -rf ../include/*.h $(INSTALL_DIR)/include/Lfunction
  
  
