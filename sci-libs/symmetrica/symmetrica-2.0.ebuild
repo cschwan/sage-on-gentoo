@@ -2,9 +2,9 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
-EAPI=2
+EAPI="3"
 
-inherit eutils versionator
+inherit eutils versionator multilib
 
 MY_P="SYM$(replace_all_version_separators '_')"
 
@@ -39,7 +39,7 @@ src_prepare() {
 }
 
 src_install() {
-	emake DESTDIR="${D}" install || die "make install failed"
+	emake DESTDIR="${ED}" install LIBDIR=$(get_libdir) || die "make install failed"
 
 	dodoc README || die "dodoc failed"
 

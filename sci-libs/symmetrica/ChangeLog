@@ -2,6 +2,10 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  08 Jul 2010; François Bissey <f.r.bissey@massey.ac.nz>
+  symmetrica-2.0.ebuild, files/makefile:
+  Fix for mltilib-strict. Move to EAPI 3.
+
   26 Mar 2010; François Bissey <f.r.bissey@massey.ac.nz>
   symmetrica-2.0.ebuild:
   keywording ~ppc
