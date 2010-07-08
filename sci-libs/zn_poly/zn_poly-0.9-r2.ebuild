@@ -2,9 +2,9 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
-EAPI=2
+EAPI="3"
 
-inherit eutils flag-o-matic
+inherit eutils flag-o-matic multilib
 
 DESCRIPTION="A library for polynomial arithmetic"
 HOMEPAGE="http://www.cims.nyu.edu/~harvey/code/zn_poly/"
@@ -30,6 +30,9 @@ src_prepare() {
 	if use mpir ; then
 		epatch "${FILESDIR}"/${P}-use-mpir-instead-of-gmp.patch
 	fi
+
+	# fix for multilib-strict
+	sed -i "s:%s/lib:%s/$(get_libdir):g" makemakefile.py || die "failed to patch for multilib-strict"
 }
 
 src_configure() {
@@ -37,7 +40,7 @@ src_configure() {
 
 	# this command actually calls a python script
 	./configure \
-		--prefix="${D}"/usr \
+		--prefix="${ED}"/usr \
 		--cflags="${CFLAGS}" \
 		--ldflags="${LDFLAGS}" \
 		--gmp-prefix=/usr \
@@ -62,6 +65,6 @@ src_test() {
 }
 
 src_install() {
-	emake DESTDIR="${D}" install || die "emake failed"
+	emake install || die "emake failed"
 	dodoc CHANGES || die "dodoc failed"
 }
