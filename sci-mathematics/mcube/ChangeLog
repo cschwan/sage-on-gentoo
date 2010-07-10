@@ -1,0 +1,10 @@
+# ChangeLog for sci-mathematics/mcube
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: $
+
+*mcube-20051209 (10 Jul 2010)
+
+  10 Jul 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
+  +mcube-20051209.ebuild, +metadata.xml:
+  Initial import
+
