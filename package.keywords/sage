@@ -50,6 +50,7 @@ sci-libs/mpir
 sci-libs/pynac
 sci-libs/symmetrica
 sci-libs/zn_poly
+sci-mathematics/cu2
 sci-mathematics/dikcube
 sci-mathematics/eclib
 sci-mathematics/ecm
