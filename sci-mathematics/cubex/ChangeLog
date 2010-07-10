@@ -1,0 +1,11 @@
+# ChangeLog for sci-mathematics/cubex
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: $
+
+*cubex-20060128 (10 Jul 2010)
+
+  10 Jul 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
+  +cubex-20060128.ebuild, +files/cubex-20060128-fix-missing-include.patch,
+  +metadata.xml:
+  Initial import
+

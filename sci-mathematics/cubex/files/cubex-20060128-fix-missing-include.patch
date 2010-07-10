@@ -1,0 +1,10 @@
+--- cubex.h.orig	2010-07-10 06:30:30.027920523 +0000
++++ cubex.h	2010-07-10 06:30:49.724921222 +0000
+@@ -12,6 +12,7 @@
+ #define _CUBEX_H_
+ 
+ // required includes/namespace
++#include <cstdlib>
+ #include <string>
+ using namespace std;
+ 
