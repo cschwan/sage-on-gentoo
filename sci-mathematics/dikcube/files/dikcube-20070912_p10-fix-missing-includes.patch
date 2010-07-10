@@ -1,0 +1,56 @@
+--- globals.h.orig	2010-07-10 06:57:48.222825644 +0000
++++ globals.h	2010-07-10 06:57:59.560923806 +0000
+@@ -1,4 +1,5 @@
+ #include <stdio.h>
++#include <stdlib.h>
+ 
+ #define MAX_MOVES	30
+ 
+--- size222.c.orig	2010-07-10 07:04:23.699920314 +0000
++++ size222.c	2010-07-10 07:04:45.329921850 +0000
+@@ -1,4 +1,5 @@
+ #include <stdio.h>
++#include <stdlib.h>
+ 
+ #define NOMAX
+ #include "trans/perm7.a"
+--- size333c.c.orig	2010-07-10 07:05:04.117920454 +0000
++++ size333c.c	2010-07-10 07:05:18.097921921 +0000
+@@ -1,4 +1,5 @@
+ #include <stdio.h>
++#include <stdlib.h>
+ 
+ #define EQUIV
+ #define NOMAX
+--- sizedom.c.orig	2010-07-10 07:06:00.091931699 +0000
++++ sizedom.c	2010-07-10 07:06:14.611922549 +0000
+@@ -1,4 +1,5 @@
+ #include <stdio.h>
++#include <stdlib.h>
+ 
+ #define SUBGROUP
+ #define EQUIV
+--- sizekoc1.c.orig	2010-07-10 07:06:31.014920384 +0000
++++ sizekoc1.c	2010-07-10 07:13:28.597920314 +0000
+@@ -1,4 +1,5 @@
+ #include <stdio.h>
++#include <stdlib.h>
+ 
+ #define EQUIV
+ #define NOMAX
+--- sizekoc2.c.orig	2010-07-10 07:07:00.874920593 +0000
++++ sizekoc2.c	2010-07-10 07:07:23.061921431 +0000
+@@ -1,4 +1,5 @@
+ #include <stdio.h>
++#include <stdlib.h>
+ 
+ #define EQUIV
+ #define NOMAX
+--- sizesquare.c.orig	2010-07-10 07:05:34.616921013 +0000
++++ sizesquare.c	2010-07-10 07:05:49.479922060 +0000
+@@ -1,4 +1,5 @@
+ #include <stdio.h>
++#include <stdlib.h>
+ 
+ #define NOMAX
+ #include "trans/perm4.a"
