@@ -2,6 +2,13 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*sympow-1.018-r1 (10 Jul 2010)
+
+  10 Jul 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
+  +sympow-1.018-r1.ebuild:
+  New revision reads and writes from/to ${HOME}/.sympow/datafiles. This
+  fixes QA warnings of the last revision
+
   26 Mar 2010; François Bissey <f.r.bissey@massey.ac.nz>
   sympow-1.018.ebuild:
   keywording ~ppc
