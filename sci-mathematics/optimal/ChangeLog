@@ -1,0 +1,10 @@
+# ChangeLog for sci-mathematics/optimal
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: $
+
+*optimal-20040603 (10 Jul 2010)
+
+  10 Jul 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
+  +optimal-20040603.ebuild, +metadata.xml:
+  Initial import
+
