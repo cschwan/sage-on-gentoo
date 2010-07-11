@@ -6,7 +6,7 @@ EAPI="3"
 
 inherit eutils
 
-MY_P="${P}.1.p6"
+MY_P="${P}.1.p7"
 
 DESCRIPTION="Computes special values of symmetric power elliptic curve L-functions"
 HOMEPAGE="http://www.sagemath.org"

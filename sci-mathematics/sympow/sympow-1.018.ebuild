@@ -4,7 +4,7 @@
 
 EAPI=2
 
-MY_P="${P}.1.p6"
+MY_P="${P}.1.p7"
 
 # TODO: Is Sage now upstream ? Homepage below does not work
 
