@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
-EAPI=2
+EAPI="3"
 
 inherit autotools eutils
 
@@ -27,8 +27,9 @@ RDEPEND="${DEPEND}"
 S="${WORKDIR}/${MY_P}"
 
 src_prepare() {
-	# Replace deprecated functions which are removed with mpir-1.3.0
-	sed -i "s:mpz_div_2exp:mpz_tdiv_q_2exp:g" src/nr.cpp src/util.h
+	# Replace deprecated gmp functions which are removed with mpir-1.3.0
+	sed -i "s:mpz_div_2exp:mpz_tdiv_q_2exp:g" src/nr.cpp src/util.h \
+		|| die "failed to patch depracated gmp function calls"
 
 	if use mpir ; then
 		# replace gmp library with mpir
@@ -40,10 +41,10 @@ src_prepare() {
 
 src_configure() {
 	# place headers into a subdirectory where it cannot conflict with others
-	econf --includedir=/usr/include/fplll || die "econf failed"
+	econf --includedir=/usr/include/fplll || die
 }
 
 src_install() {
-	emake DESTDIR="${D}" install || die "emake install failed"
-	dodoc AUTHORS NEWS README || die "dodoc failed"
+	emake DESTDIR="${D}" install || die
+	dodoc AUTHORS NEWS README || die
 }
