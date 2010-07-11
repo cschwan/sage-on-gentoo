@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
-EAPI=2
+EAPI="3"
 
 inherit eutils multilib toolchain-funcs
 
@@ -54,39 +54,39 @@ src_compile() {
 		export FLINT_NTL_LIB_DIR=$(get_libdir)
 	fi
 
-	emake library || die "emake failed"
+	emake library || die
 
 	if use qs ; then
-		emake QS || die "emake failed"
+		emake QS || die
 	fi
 }
 
 src_test() {
-	emake check || die "emake failed"
+	emake check || die
 
 	if use ntl ; then
-		emake NTL-interface-test || die "emake failed"
+		emake NTL-interface-test || die
 
 		# run test
-		./NTL-interface-test || die "NTL-interface-test failed"
+		./NTL-interface-test || die "failed to run ntl interface test"
 	fi
 }
 
 src_install(){
 	# install library
-	dolib.so libflint.so || die "dolib failed"
+	dolib.so libflint.so || die
 
 	# install headers
 	insinto /usr/include/FLINT
-	doins *.h || die "doins failed"
+	doins *.h || die
 
 	# install quadratic sieve program
 	if use qs ; then
-		dobin mpQS || die "dobin failed"
+		dobin mpQS || die
 	fi
 
 	# install docs
 	if use doc ; then
-		doins doc/*.pdf || die "doins failed"
+		doins doc/*.pdf || die
 	fi
 }
