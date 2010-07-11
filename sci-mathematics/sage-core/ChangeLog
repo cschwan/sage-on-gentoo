@@ -2,6 +2,10 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  11 Jul 2010; <gnuke@gentoo.org> sage-core-4.4.4.ebuild:
+  Downgraded dependency on numpy to 1.3.0 to fix runtime warnings in
+  Sage
+
   07 Jul 2010; François Bissey <f.r.bissey@massey.ac.nz>
   sage-core-4.4.4.ebuild:
   Patch to support gmp-5.

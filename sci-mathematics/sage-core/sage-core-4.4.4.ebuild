@@ -32,7 +32,7 @@ DEPEND="|| ( =dev-lang/python-2.6.4-r99
 	>=dev-lisp/ecls-10.2.1[-unicode]
 	>=dev-python/cython-0.12.1
 	>=dev-python/jinja-2.1.1
-	>=dev-python/numpy-1.3.0[lapack]
+	~dev-python/numpy-1.3.0[lapack]
 	>=dev-python/rpy-2.0.6
 	media-libs/gd
 	media-libs/libpng
