@@ -4,7 +4,7 @@
 
 EAPI="3"
 
-inherit eutils
+inherit eutils toolchain-funcs
 
 DESCRIPTION="Gfan computes Groebner fans and tropical varities"
 HOMEPAGE="http://www.math.tu-berlin.de/~jensen/software/gfan/gfan.html"
@@ -24,12 +24,18 @@ RDEPEND="${DEPEND}"
 S="${WORKDIR}/${PN}${PV}plus/"
 
 src_prepare () {
-	sed -i "s:-O2:${CXXFLAGS}:" Makefile || die "patching failed"
+	sed -i -e "s/-O2/${CXXFLAGS}/" \
+		-e "/GPROFFLAG =/d" \
+		-e "s/g++/$(tc-getCXX)/" \
+		-e "s/\$(CCLINKER)/& \$(LDFLAGS)/" Makefile || die
+
+	# http://trac.sagemath.org/sage_trac/ticket/8770
+	epatch "${FILESDIR}"/${P}-gcc45.patch
 
 	# TODO: find out what this patch actually fixes
 	epatch "${FILESDIR}"/${P}-fix-polynomial.patch
 }
 
 src_install() {
-	emake PREFIX="${D}/usr" install || die "emake install failed"
+	emake PREFIX="${ED}/usr" install || die "emake install failed"
 }
