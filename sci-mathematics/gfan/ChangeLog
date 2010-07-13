@@ -2,6 +2,10 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  13 Jul 2010; François Bissey <f.r.bissey@massey.ac.nz>
+  +files/gcc45_matrix.h.patch, gfan-0.4-r1.ebuild:
+  More gcc-4.5 fixes.
+
   12 Jul 2010; François Bissey <f.r.bissey@massey.ac.nz>
   gfan-0.4-r1.ebuild, +files/gfan-0.4-gcc45.patch:
   Merge fixes from science overlay. Respect FLAGS.
