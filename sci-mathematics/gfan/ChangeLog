@@ -2,6 +2,10 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  12 Jul 2010; François Bissey <f.r.bissey@massey.ac.nz>
+  gfan-0.4-r1.ebuild, +files/gfan-0.4-gcc45.patch:
+  Merge fixes from science overlay. Respect FLAGS.
+
 *gfan-0.4-r1 (19 Jun 2010)
 
   19 Jun 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
