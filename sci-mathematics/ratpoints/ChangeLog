@@ -2,6 +2,10 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  15 Jul 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
+  ratpoints-2.1.3-r1.ebuild, +files/ratpoints-2.1.3-fix-test-program.patch:
+  Replaced USE flags "sse" with correct "sse2" and fixed test program
+
   22 Jun 2010; François Bissey <f.r.bissey@massey.ac.nz>
   ratpoints-2.1.3-r1.ebuild:
   Make the test respect CFLAGS including the sse use flag.
