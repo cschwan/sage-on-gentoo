@@ -29,9 +29,8 @@ src_prepare () {
 		-e "s/g++/$(tc-getCXX)/" \
 		-e "s/\$(CCLINKER)/& \$(LDFLAGS)/" Makefile || die
 
-	# http://trac.sagemath.org/sage_trac/ticket/8770 - 2 patches
+	# http://trac.sagemath.org/sage_trac/ticket/8770
 	epatch "${FILESDIR}"/${P}-gcc45.patch
-	epatch "${FILESDIR}"/gcc45_matrix.h.patch
 
 	# TODO: find out what this patch actually fixes
 	epatch "${FILESDIR}"/${P}-fix-polynomial.patch
