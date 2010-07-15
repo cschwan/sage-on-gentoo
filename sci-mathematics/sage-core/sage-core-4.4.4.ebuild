@@ -25,15 +25,12 @@ RESTRICT="mirror"
 # TODO: add dependencies
 DEPEND="|| ( =dev-lang/python-2.6.4-r99
 		=dev-lang/python-2.6.5-r99 )
-	>=dev-lang/R-2.10.1[lapack,readline]
 	dev-libs/gmp
 	>=dev-libs/ntl-5.5.2
 	>=dev-libs/mpfr-2.4.2
 	>=dev-lisp/ecls-10.2.1[-unicode]
 	>=dev-python/cython-0.12.1
 	>=dev-python/jinja-2.1.1
-	~dev-python/numpy-1.3.0[lapack]
-	>=dev-python/rpy-2.0.6
 	media-libs/gd
 	media-libs/libpng
 	>=net-zope/zodb-3.7.0
@@ -42,7 +39,6 @@ DEPEND="|| ( =dev-lang/python-2.6.4-r99
 	=sci-libs/givaro-3.2*
 	>=sci-libs/gsl-1.10
 	>=sci-libs/iml-1.0.1
-	>=sci-libs/lapack-atlas-3.8.3
 	>=sci-libs/libcliquer-1.2.5
 	>=sci-libs/linbox-1.1.6[ntl,sage]
 	>=sci-libs/m4ri-20100221
@@ -63,7 +59,10 @@ DEPEND="|| ( =dev-lang/python-2.6.4-r99
 	>=sys-libs/readline-6.0
 	virtual/cblas
 	glpk? ( >=sci-mathematics/glpk-4.43[gmp] )"
-RDEPEND="${DEPEND}"
+RDEPEND="${DEPEND}
+	>=dev-lang/R-2.10.1[lapack,readline]
+	~dev-python/numpy-1.3.0[lapack]
+	>=dev-python/rpy-2.0.6"
 
 S="${WORKDIR}/${MY_P}"
 
@@ -109,12 +108,13 @@ src_prepare() {
 		module_list.py || die "failed to patch paths for singular"
 
 	# fix paths for various libraries (including fix for png14)
+	local pnglib=$(libpng-config --libs | cut -dl -f2)
 	sed -i \
 		-e "s:SAGE_ROOT[[:space:]]*+[[:space:]]*\([\'\"]\)/local/include/\([^\1]*\)\1:\1${EPREFIX}/usr/include/\2\1:g" \
 		-e "s:SAGE_LOCAL + \"/share/polybori/flags.conf\":\"${EPREFIX}/usr/share/polybori/flags.conf\":g" \
 		-e "s:SAGE_ROOT+'/local/lib/python/site-packages/numpy/core/include':'$(python_get_sitedir)/numpy/core/include':g" \
 		-e "s:sage/c_lib/include/:${EPREFIX}/usr/share/include/csage/:g" \
-		-e "s:png12:png:g" \
+		-e "s:png12:${pnglib}:g" \
 		module_list.py || die "failed to patch paths for libraries"
 
 	# set path to system Cython
@@ -149,13 +149,15 @@ src_prepare() {
 	# use arpack from scipy (see also scipy ticket #231)
 	epatch "${FILESDIR}"/${PN}-4.3.3-arpack-from-scipy.patch
 
-	# fix include paths
+	# fix include paths and CBLAS/ATLAS
 	sed -i \
 		-e "s:'%s/include/csage'%SAGE_LOCAL:'${EPREFIX}/usr/include/csage':g" \
 		-e "s:'%s/sage/sage/ext'%SAGE_DEVEL:'sage/ext':g" \
 		setup.py || die "failed to patch include paths"
-	sed -i "s:'%s/local/include/csage/'%SAGE_ROOT:'${EPREFIX}/usr/include/csage/':g" \
+	sed -i \
+		-e "s:'%s/local/include/csage/'%SAGE_ROOT:'${EPREFIX}/usr/include/csage/':g" \
 		sage/misc/cython.py || die "failed to patch include paths"
+#		-e "s:cblas(), atlas():cblas():" \
 
 	# Adopt Ticket #8316 to replace jinja-1 with jinja-2
 	epatch "${FILESDIR}"/${PN}-4.4.2-jinja2.patch
@@ -229,6 +231,14 @@ src_configure() {
 	# from Sage
 	export SAGE_ROOT
 	export SAGE_LOCAL
+
+#	export SAGE_BLAS=\'$(pkg-config --libs-only-l \
+#			cblas | sed -e 's/^-l//' -e 's/ -l/, /g' -e 's/,.pthread//g')\'
+
+#	export SAGE_CBLAS=\'$(pkg-config --libs-only-l \
+#			cblas | sed -e 's/^-l//' -e 's/ -l/, /g' -e 's/,.pthread//g')\'
+
+	export MAKE="${MAKEOPTS}"
 
 	# files are not built unless they are touched
 	find sage -name "*pyx" -exec touch '{}' \; \
