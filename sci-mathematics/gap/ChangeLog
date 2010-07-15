@@ -6,7 +6,8 @@
   +gap-4.4.12-r1.ebuild:
   Added new revision with EAPI=3
 
-  16 May 2010; <gnuke@gentoo.org> gap-4.4.12.ebuild:
+  16 May 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
+  gap-4.4.12.ebuild:
   Some QA fixes - test now work, but take a lot of time
 
   15 Apr 2010; Christopher Schwan <cschwan@students.uni-mainz.de>

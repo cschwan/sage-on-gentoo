@@ -4,7 +4,8 @@
 
 *polybori-0.6.4-r1 (30 May 2010)
 
-  30 May 2010; <gnuke@gentoo.org> +polybori-0.6.4-r1.ebuild:
+  30 May 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
+  +polybori-0.6.4-r1.ebuild:
   Added new revision for polybori which fixes random SIGABRT failures
   of Sage by removing shared objects of polybori
 

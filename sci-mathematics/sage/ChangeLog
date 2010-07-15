@@ -68,7 +68,8 @@
   +sage-4.4.2.ebuild:
   Version bump
 
-  12 May 2010; <gnuke@gentoo.org> sage-4.3.5-r1.ebuild:
+  12 May 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
+  sage-4.3.5-r1.ebuild:
   Backported .desktop file fixes for sage-4.3.5-r1
 
   07 May 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
