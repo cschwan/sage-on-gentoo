@@ -2,6 +2,9 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  15 Jul 2010; <gnuke@gentoo.org> -palp-1.1.ebuild:
+  Removed old revision
+
 *palp-1.1-r1 (20 Jun 2010)
 
   20 Jun 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
