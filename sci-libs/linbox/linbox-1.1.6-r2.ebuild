@@ -14,7 +14,7 @@ SRC_URI="http://linalg.org/${P}.tar.gz"
 LICENSE="LGPL-2.1"
 SLOT="0"
 KEYWORDS="~amd64 ~ppc ~x86"
-IUSE="doc expat ntl sage"
+IUSE="doc ntl sage"
 
 # TODO: support examples ?
 
@@ -54,13 +54,11 @@ src_prepare() {
 src_configure() {
 	# TODO: add other configure options
 	# TODO: check use && use_with/use_enable statements
-	# TODO: expat seems to have no effect
 	# TODO: configure treats --disable-doc/-sage as --enable-doc/-sage
 	# TODO: support maple, lidia, saclib ?
 	econf \
 		--enable-optimization \
 		$(use doc && use_enable doc) \
-		$(use expat && use_enable expat) \
 		$(use_with ntl) \
 		$(use sage && use_enable sage) \
 		|| die "econf failed"

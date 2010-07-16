@@ -2,6 +2,10 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  16 Jul 2010; François Bissey <f.r.bissey@massey.ac.nz>
+  linbox-1.1.6-r2.ebuild:
+  Remove expat useflag and configure option as it is not recognized anymore.
+
 *linbox-1.1.6-r2 (09 Jun 2010)
 
   09 Jun 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
