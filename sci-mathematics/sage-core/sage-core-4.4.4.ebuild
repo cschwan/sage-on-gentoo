@@ -157,7 +157,6 @@ src_prepare() {
 	sed -i \
 		-e "s:'%s/local/include/csage/'%SAGE_ROOT:'${EPREFIX}/usr/include/csage/':g" \
 		sage/misc/cython.py || die "failed to patch include paths"
-#		-e "s:cblas(), atlas():cblas():" \
 
 	# Adopt Ticket #8316 to replace jinja-1 with jinja-2
 	epatch "${FILESDIR}"/${PN}-4.4.2-jinja2.patch
@@ -203,6 +202,22 @@ src_prepare() {
 		-e "s:sage.misc.misc.SAGE_LOCAL, \"bin/sage3d\":\"${EPREFIX}/usr/bin/sage3d\":g" \
 		sage/plot/plot3d/base.pyx || die "failed to patch jmol directories"
 
+	# ATLAS independence
+	local cblaslibs=\'$(pkg-config --libs-only-l cblas | sed \
+		-e 's/^-l//' \
+		-e "s/ -l/\',\'/g" \
+		-e 's/,.pthread//g' \
+		-e "s:  ::")\'
+
+	sed -i \
+		-e "s:cblas(), atlas():${cblaslibs}:" \
+		sage/misc/cython.py || die "failed to patch cython.py for ATLAS"
+
+	sed -i \
+		-e "s:BLAS, BLAS2:${cblaslibs}:g" \
+		-e "s:,BLAS:,${cblaslibs}:g" \
+		module_list.py || die "failed to patch module_list.py for ATLAS"
+
 	# patch for optional glpk
 	sed -i "s:../../local/include/glpk.h:${EPREFIX}/usr/include/glpk.h:g" \
 		sage/numerical/mip_glpk.pxd || die "failed to patch mip_glpk.pxd"
@@ -231,12 +246,6 @@ src_configure() {
 	# from Sage
 	export SAGE_ROOT
 	export SAGE_LOCAL
-
-#	export SAGE_BLAS=\'$(pkg-config --libs-only-l \
-#			cblas | sed -e 's/^-l//' -e 's/ -l/, /g' -e 's/,.pthread//g')\'
-
-#	export SAGE_CBLAS=\'$(pkg-config --libs-only-l \
-#			cblas | sed -e 's/^-l//' -e 's/ -l/, /g' -e 's/,.pthread//g')\'
 
 	export MAKE="${MAKEOPTS}"
 
