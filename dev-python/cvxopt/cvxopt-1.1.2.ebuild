@@ -2,10 +2,10 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
-EAPI=2
+EAPI="2"
 
-NEED_PYTHON=2.5
-PYTHON_MODNAME=cvxopt
+PYTHON_DEPEND="2:2.5"
+PYTHON_MODNAME="cvxopt"
 
 inherit distutils
 
