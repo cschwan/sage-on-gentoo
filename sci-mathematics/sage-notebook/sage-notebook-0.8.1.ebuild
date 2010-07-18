@@ -5,6 +5,7 @@
 EAPI="3"
 
 PYTHON_DEPEND="2:2.6"
+PYTHON_MODNAME="sagenb"
 
 inherit distutils eutils versionator
 

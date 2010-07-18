@@ -2,6 +2,10 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  18 Jul 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
+  sage-notebook-0.8_p2.ebuild, sage-notebook-0.8.1.ebuild:
+  Added missing PYTHON_MODNAME
+
 *sage-notebook-0.8.1 (18 Jul 2010)
 
   18 Jul 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
