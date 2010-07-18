@@ -2,6 +2,10 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header$
 
+  18 Jul 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
+  +sage-singular-3.1.0.4_p7.ebuild:
+  Version bump
+
   30 Jun 2010; François Bissey <f.r.bissey@massey.ac.nz>
   sage-singular-3.1.0.4_p6.ebuild:
   Remove double patch to the Makefile. Thanks to David Kirby for pointing it
