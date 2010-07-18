@@ -2,6 +2,13 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*sage-core-4.5 (18 Jul 2010)
+
+  18 Jul 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
+  +sage-core-4.5.ebuild, +files/sage-core-4.5-fix-qepcad-path.patch:
+  Version bump. Includes several fixes to Make Sage write to DOT_SAGE
+  instead of . - fixes some doctests
+
   16 Jul 2010; François Bissey <f.r.bissey@massey.ac.nz>
   sage-core-4.4.4.ebuild:
   ATLAS has been granted.
