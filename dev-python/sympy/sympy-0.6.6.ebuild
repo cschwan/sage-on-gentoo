@@ -1,8 +1,11 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
-EAPI=2
-NEED_PYTHON=2.4
+
+EAPI="2"
+
+PYTHON_DEPEND="2:2.4"
+
 inherit eutils distutils
 
 DESCRIPTION="Computer algebra system (CAS) in Python"
