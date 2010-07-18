@@ -2,6 +2,13 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*sage-notebook-0.8.1 (18 Jul 2010)
+
+  18 Jul 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
+  +sage-notebook-0.8.1.ebuild:
+  Version bump. Includes a fix for test in sagenb/notebook/twist.py - 
+  one can test it as user now
+
   03 Jul 2010; François Bissey <f.r.bissey@massey.ac.nz>
   sage-notebook-0.8_p2.ebuild:
   More EAPI 3 adjustements.
