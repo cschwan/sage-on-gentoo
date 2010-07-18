@@ -6,6 +6,7 @@ EAPI="3"
 
 PYTHON_DEPEND="2:2.6"
 PYTHON_USE_WITH="sqlite"
+PYTHON_MODNAME="sage"
 
 inherit distutils eutils flag-o-matic python sage
 
