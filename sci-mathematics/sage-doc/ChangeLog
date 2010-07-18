@@ -2,6 +2,13 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*sage-doc-4.5 (18 Jul 2010)
+
+  18 Jul 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
+  +sage-doc-4.5.ebuild:
+  Version bump - WARNING: files are not available upstream and
+  Manifest file is therefore not updated
+
   27 Jun 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
   -sage-doc-4.4.3.ebuild:
   Removed old stuff
