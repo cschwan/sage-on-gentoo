@@ -4,7 +4,7 @@
 
 EAPI="2"
 
-NEED_PYTHON=2.5
+PYTHON_DEPEND="2:2.5"
 
 inherit eutils flag-o-matic python sage versionator
 
