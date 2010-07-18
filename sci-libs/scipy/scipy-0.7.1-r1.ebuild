@@ -3,7 +3,8 @@
 # $Header: $
 
 EAPI="2"
-NEED_PYTHON="2.4"
+
+PYTHON_DEPEND="2:2.4"
 SUPPORT_PYTHON_ABIS="1"
 
 inherit eutils distutils flag-o-matic toolchain-funcs versionator

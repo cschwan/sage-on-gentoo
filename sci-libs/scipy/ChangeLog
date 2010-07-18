@@ -2,6 +2,10 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/sci-libs/scipy/ChangeLog,v 1.50 2010/04/22 20:28:27 bicatali Exp $
 
+  18 Jul 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
+  scipy-0.7.1-r1.ebuild:
+  Replaced NEED_PYTHON with PYTHON_DEPEND because its now deprecated
+
   18 May 2010; François Bissey <f.r.bissey@massey.ac.nz>
   scipy-0.7.1-r1.ebuild, files/scipy-0.7-optimize.patch:
   Full changeset applied - including the tests.
