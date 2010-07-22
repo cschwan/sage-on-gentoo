@@ -22,17 +22,23 @@ IUSE="doc ntl sage"
 RESTRICT="mirror
 	sage? ( test )"
 
+# FIXME: using external expat breaks the tests.
 CDEPEND="dev-libs/gmp[-nocxx]
 	=sci-libs/givaro-3.2*
 	virtual/cblas
 	virtual/lapack
-	expat? ( >=dev-libs/expat-1.95 )
 	ntl? ( dev-libs/ntl )"
 DEPEND="${CDEPEND}
 	doc? ( app-doc/doxygen )"
 RDEPEND="${CDEPEND}"
 
 src_prepare() {
+	# fix configuration scripts so enable works properly
+	epatch "${FILESDIR}"/${P}-fix-config.patch
+
+	# Eliminate -llapack from the compilation flags as it is only needed if you use a particular template.
+	epatch "${FILESDIR}"/${P}-nolapack.patch
+
 	if use sage ; then
 		# disable commentator; this is needed for sage
 		epatch "${FILESDIR}"/${P}-disable-commentator.patch
@@ -53,14 +59,13 @@ src_prepare() {
 
 src_configure() {
 	# TODO: add other configure options
-	# TODO: check use && use_with/use_enable statements
-	# TODO: configure treats --disable-doc/-sage as --enable-doc/-sage
 	# TODO: support maple, lidia, saclib ?
+	# FIXME: using external expat breaks the tests and various other components.
 	econf \
 		--enable-optimization \
-		$(use doc && use_enable doc) \
+		$(use_enable doc) \
 		$(use_with ntl) \
-		$(use sage && use_enable sage) \
+		$(use_enable sage) \
 		|| die "econf failed"
 }
 
@@ -71,4 +76,9 @@ src_install() {
 	if use doc ; then
 		dohtml -r doc/linbox-html/* || die "dohtml failed"
 	fi
+}
+
+pkg_postinst() {
+	einfo "One template shipped with linbox needs to be compiled agaisnt lapack."
+	einfo "If you use linbox/algorithms/rational-solver.inl you may have to add -llapack to your flags."
 }

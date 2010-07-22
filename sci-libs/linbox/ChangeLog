@@ -2,6 +2,12 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  22 Jul 2010; François Bissey <f.r.bissey@massey.ac.nz>
+  linbox-1.1.6-r2.ebuild, +files/linbox-1.1.6-fix-config.patch,
+  +files/linbox-1.1.6-nolapack.patch:
+  Remove lapack as it is only needed if a particular template is used. Fix
+  config script for doc and sage.
+
   16 Jul 2010; François Bissey <f.r.bissey@massey.ac.nz>
   linbox-1.1.6-r2.ebuild:
   Remove expat useflag and configure option as it is not recognized anymore.
