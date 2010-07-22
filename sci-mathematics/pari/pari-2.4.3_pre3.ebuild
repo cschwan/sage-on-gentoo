@@ -9,7 +9,7 @@ DESCRIPTION="A software package for computer-aided number theory"
 HOMEPAGE="http://pari.math.u-bordeaux.fr/"
 
 SRC_COM="http://pari.math.u-bordeaux.fr/pub/${PN}"
-SRC_URI="http://sage.math.washington.edu/home/wstein/patches/pari-2.4.3.svn.p3.spkg -> ${P}.tar.bz2
+SRC_URI="http://www.warwick.ac.uk/staff/J.E.Cremona/pari-2.4.3.svn.p5.spkg -> ${P}.tar.bz2
 	data? (	${SRC_COM}/packages/elldata.tgz
 			${SRC_COM}/packages/galdata.tgz
 			${SRC_COM}/packages/seadata.tgz
@@ -29,7 +29,7 @@ RDEPEND="sys-libs/readline
 DEPEND="${RDEPEND}
 	doc? ( virtual/latex-base )"
 
-S="${WORKDIR}/pari-2.4.3.svn.p3/src"
+S="${WORKDIR}/pari-2.4.3.svn.p5/src"
 
 get_compile_dir() {
 	pushd "${S}/config" >& /dev/null

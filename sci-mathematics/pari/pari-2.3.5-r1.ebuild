@@ -17,7 +17,7 @@ SRC_URI="${SRC_COM}/unix/${P}.tar.gz
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~alpha ~amd64 ~hppa ~mips ~ppc ~ppc64 ~sparc ~x86 ~x86-fbsd"
+KEYWORDS="~amd64 ~ppc ~x86"
 IUSE="doc data emacs fltk gmp mpir static X"
 
 RDEPEND="sys-libs/readline
