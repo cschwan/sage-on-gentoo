@@ -2,6 +2,17 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*pari-2.3.5-r1 (22 Jul 2010)
+
+  22 Jul 2010; François Bissey <f.r.bissey@massey.ac.nz>
+  -pari-2.3.5.ebuild, +pari-2.3.5-r1.ebuild, pari-2.4.3_pre3.ebuild:
+  Move pari-2.3.5 to 2.3.5-r1 so that it doesn't shadow the version of
+  portage.
+
+  22 Jul 2010; François Bissey <f.r.bissey@massey.ac.nz>
+  pari-2.4.3_pre3.ebuild:
+  Bump to the .p6 spkg from John Cremona, change SRC_URI accordingly.
+
   05 Jul 2010; François Bissey <f.r.bissey@massey.ac.nz>
   pari-2.4.3_pre3.ebuild:
   More typos.
