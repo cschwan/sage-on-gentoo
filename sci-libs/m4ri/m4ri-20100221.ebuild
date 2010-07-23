@@ -2,7 +2,9 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
-EAPI=2
+EAPI="3"
+
+inherit autotools-utils
 
 MY_P="lib${P}"
 
@@ -13,7 +15,7 @@ SRC_URI="mirror://sage/spkg/standard/${MY_P}.spkg -> ${P}.tar.bz2"
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64 ~ppc ~ppc64 ~x86"
-IUSE="debug openmp"
+IUSE="debug openmp static-libs"
 
 RESTRICT="mirror"
 
@@ -22,15 +24,14 @@ RDEPEND=""
 
 S="${WORKDIR}/${MY_P}/src"
 
+DOCS=( AUTHORS README )
+
 src_configure() {
 	# cachetune option is not available, because it kills (at least my) X when I
 	# switch from yakuake to desktop
-	econf $(use_enable debug) \
-		$(use_with openmp) \
-		|| die "econf failed"
-}
+	myeconfargs=(
+		$(use_with openmp)
+	)
 
-src_install() {
-	emake DESTDIR="${D}" install || die "make install failed"
-	dodoc AUTHORS README || die "dodoc failed"
+	autotools-utils_src_configure
 }
