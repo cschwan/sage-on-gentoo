@@ -2,6 +2,12 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*ecm-6.3-r1 (23 Jul 2010)
+
+  23 Jul 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
+  +ecm-6.3-r1.ebuild:
+  Migrated to autotools-utils.eclass
+
   08 Jul 2010; François Bissey <f.r.bissey@massey.ac.nz> ecm-6.3.ebuild:
   Hopefully fixed for gmp-5
 
