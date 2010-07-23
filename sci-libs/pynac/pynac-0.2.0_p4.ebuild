@@ -4,7 +4,7 @@
 
 EAPI="3"
 
-inherit versionator
+inherit autotools-utils versionator
 
 MY_P="${PN}-$(replace_version_separator 3 '.')"
 
@@ -15,7 +15,7 @@ SRC_URI="mirror://sage/spkg/standard/${MY_P}.spkg -> ${P}.tar.bz2"
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64 ~ppc ~x86"
-IUSE=""
+IUSE="static-libs"
 
 RESTRICT="mirror"
 
@@ -26,7 +26,4 @@ RDEPEND="${CDEPEND}"
 
 S="${WORKDIR}/${MY_P}/src"
 
-src_install() {
-	emake DESTDIR="${D}" install || die
-	dodoc AUTHORS NEWS README || die
-}
+DOCS=( AUTHORS NEWS README )
