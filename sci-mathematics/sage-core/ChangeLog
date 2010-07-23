@@ -2,6 +2,10 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  23 Jul 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
+  sage-core-4.5.1.ebuild:
+  Depend on sage-examples if USEing testsuite
+
 *sage-core-4.5.1 (20 Jul 2010)
 
   20 Jul 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
