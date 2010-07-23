@@ -118,6 +118,8 @@ src_install () {
 		cd "${S}"/Singular
 		insinto /usr/include
 		doins libsingular.h
+		insinto /usr/include/singular
+		doins singular/*.h
 		dolib.so libsingular.so."${SOSUFFIX}"
 		dosym libsingular.so."${SOSUFFIX}" /usr/$(get_libdir)/libsingular.so \
 			|| die "failed to create symlink"
