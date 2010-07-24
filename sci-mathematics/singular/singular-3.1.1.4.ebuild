@@ -127,9 +127,9 @@ src_install () {
 			|| die "failed to create symlink"
 		insinto /usr/include
 		cd "${S}"/build/include
-		doins libsingular.h
+		doins libsingular.h mylimits.h
 		insinto /usr/include/singular
-		doins singular/*.h
+		doins singular/*
 	fi
 
 	# stuff from the share tar ball

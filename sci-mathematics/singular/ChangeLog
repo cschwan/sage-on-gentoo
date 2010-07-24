@@ -4,6 +4,10 @@
 
   24 Jul 2010; François Bissey <f.r.bissey@massey.ac.nz>
   singular-3.1.1.4.ebuild:
+  Add a few more files needed by sage-core.
+
+  24 Jul 2010; François Bissey <f.r.bissey@massey.ac.nz>
+  singular-3.1.1.4.ebuild:
   Fix singular headers this time. Hope I got everything right now.
 
   23 Jul 2010; François Bissey <f.r.bissey@massey.ac.nz>
