@@ -2,11 +2,11 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
-EAPI="3"
+EAPI="2"
 
 PYTHON_DEPEND="2:2.5"
 
-inherit eutils flag-o-matic multilib python sage versionator
+inherit eutils flag-o-matic python sage versionator
 
 DESCRIPTION="Polynomials over Boolean Rings"
 HOMEPAGE="http://polybori.sourceforge.net/"
@@ -62,25 +62,25 @@ src_compile(){
 	PARAMS=( CFLAGS=${CFLAGS} CCFLAGS= CXXFLAGS=${CXXFLAGS} \
 		LINKFLAGS=${LDFLAGS} HAVE_HEVEA=False HAVE_L2H=False \
 		HAVE_TEX4HT=${DOC} HAVE_DOXYGEN=${DOC} HAVE_PYDOC=${DOC} \
-		MANDIR="${ED}"/usr/share/man PREFIX="${ED}"/usr \
-		PYINSTALLPREFIX="${ED}"$(python_get_sitedir) \
-		INSTALLDIR="${ED}"/usr/share/polybori \
-		LIBPREFIX="${ED}"/usr/$(get_libdir) )
+		MANDIR="${D}"/usr/share/man PREFIX="${D}"/usr \
+		PYINSTALLPREFIX="${D}"$(python_get_sitedir) \
+		INSTALLDIR="${D}"/usr/share/polybori )
 
-	scons "${MAKEOPTS}" "${PARAMS[@]}" prepare-install prepare-devel || die "scons failed"
+	scons "${PARAMS[@]}" prepare-install prepare-devel || die "scons failed"
 }
 
 src_install() {
-	scons "${MAKEOPTS}" "${PARAMS[@]}" install devel-install || die "scons failed"
+	scons "${PARAMS[@]}" install devel-install || die "scons failed"
 
 	# remove incomplete documentation
 	if ! use doc ; then
-		rm -rf "${ED}"/usr/share/polybori/doc || die "rm failed"
+		rm -rf "${D}"/usr/share/polybori/doc || die "rm failed"
 	fi
 
-	# fixes problem of random SIGABRT in Sage on amd64
-	rm "${ED}"/usr/$(get_libdir)/lib*.so* \
-		|| die "failed to remove shared objects"
+	# TODO: fix on amd64 : lib -> lib64 ?
+
+	# tentative fix for random SIGABRT failure on amd64
+	rm "${D}"/usr/lib/lib*.so* || die "rm failed"
 }
 
 src_test() {
