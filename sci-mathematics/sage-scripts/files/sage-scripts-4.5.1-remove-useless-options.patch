@@ -1,5 +1,5 @@
 --- sage-sage.orig	2010-07-18 22:10:46.000000000 +0000
-+++ sage-sage	2010-07-24 20:15:41.864714579 +0000
++++ sage-sage	2010-07-25 08:02:21.371341989 +0000
 @@ -5,28 +5,20 @@
      cat "$SAGE_LOCAL/bin/sage-banner" | grep -i "version" | sed "s/\| //" | sed "s/ *\|//"
      echo "----------------------------------------------------------------------"
@@ -29,7 +29,7 @@
      exit 1
  }
  
-@@ -36,55 +28,27 @@
+@@ -36,55 +28,26 @@
      echo "----------------------------------------------------------------------"
      echo "  no options below    -- start interactive session, passing options to ipython"
      echo "  filename.sage -- run the given file using Sage"
@@ -78,14 +78,14 @@
      echo "  -q            -- quiet; start with no banner"
      echo "  -root         -- print the Sage root directory"
 -    echo "  -scons <..>   -- run Sage's scons"
-     echo "  -sdist VER    -- build a source distribution of Sage"
+-    echo "  -sdist VER    -- build a source distribution of Sage"
      echo "  -sh           -- run \$SHELL ($SHELL) with Sage environment variables set"
      echo "  -singular <..>-- run Sage's singular with given arguments"
 -    echo "  -standard     -- list all standard packages that can be downloaded"
      echo "  -startuptime  -- display how long each component of sage takes to startup"
      echo "  -twistd <..>  -- run Twisted server"
      echo "  -t [-verbose] [-long] [-optional] [-only-optional=list,of,tags] <files|dir>"
-@@ -94,15 +58,9 @@
+@@ -94,15 +57,9 @@
      echo "                      -optional -- also test all #optional examples"
      echo "                      -only-optional -- only run doctests with #optional <nonempty subset of tags>"
      echo "                      -randorder[=seed] -- randomize order of tests"
@@ -101,7 +101,7 @@
      echo "  -gthread, -qthread, -q4thread, -wthread, -pylab"
      echo "                -- pass the option through to ipython"
      echo "  -valgrind     -- this is an alias for -memcheck"
-@@ -122,7 +80,7 @@
+@@ -122,7 +79,7 @@
      echo "                   The log files can be found in $HOME/.sage/ Those are named "
      echo "                   sage-omega.PID."
      echo ""
@@ -110,7 +110,7 @@
      echo ""
      exit 1
  }
-@@ -162,13 +120,6 @@
+@@ -162,13 +119,6 @@
          cat "$SAGE_LOCAL/bin/sage-banner"
      fi
  
@@ -124,7 +124,7 @@
      cd "$SAGE_ROOT/local/bin"
      IPYTHONDIR="$DOT_SAGE/ipython" && export IPYTHONDIR
      IPYTHONRC="ipythonrc" && export IPYTHONRC
-@@ -240,11 +191,6 @@
+@@ -240,11 +190,6 @@
      exit 0
  fi
  
@@ -136,7 +136,7 @@
  #####################################################################
  # Run Sage's versions of the standard Algebra/Geometry etc. software
  #####################################################################
-@@ -256,13 +202,6 @@
+@@ -256,13 +201,6 @@
      exit $?
  fi
  
@@ -150,17 +150,10 @@
  if [ "$1" = '-gap' -o "$1" = '--gap' ]; then
      cd "$CUR"
      shift
-@@ -305,20 +244,6 @@
+@@ -312,13 +250,6 @@
      exit $?
  fi
  
--if [ "$1" = '-kash'  -o "$1" = '--kash' ]; then
--    cd "$CUR"
--    shift
--    kash "$@"
--    exit $?
--fi
--
 -if [ "$1" = '-fixdoctests' -o "$1" = '--fixdoctests' ]; then
 -    cd "$CUR"
 -    shift
@@ -171,7 +164,7 @@
  if [ "$1" = '-maxima'  -o "$1" = '--maxima' ]; then
      cd "$CUR"
      shift
-@@ -333,21 +258,6 @@
+@@ -333,21 +264,6 @@
      exit $?
  fi
  
@@ -193,7 +186,7 @@
  if [ "$1" = '-python'  -o "$1" = '--python' ]; then
      cd "$CUR"
      shift
-@@ -425,86 +335,10 @@
+@@ -425,86 +341,10 @@
      exit $?
  fi
  
@@ -280,7 +273,7 @@
  if [ "$1" = "-notebook"  -o "$1" = '--notebook' -o "$1" = '-n' ]; then
     cd "$CUR"
     shift
-@@ -513,14 +347,6 @@
+@@ -513,14 +353,6 @@
     exit $?
  fi
  
@@ -295,7 +288,7 @@
  if [ "$1" = "-inotebook"  -o "$1" = '--inotebook' ]; then
     cd "$CUR"
     shift
-@@ -536,25 +362,6 @@
+@@ -536,25 +368,6 @@
     exit $?
  fi
  
@@ -321,7 +314,7 @@
  if [ "$1" = '-q' ]; then
     SAGE_BANNER="no"
     sage_setup
-@@ -563,70 +370,6 @@
+@@ -563,70 +376,6 @@
     exit $?
  fi
  
@@ -392,7 +385,7 @@
  if [ "$1" = '-t' ]; then
     if ! [  -f  "$DOT_SAGE"/init.sage ]; then
        echo "init.sage does not exist ... creating"
-@@ -650,13 +393,6 @@
+@@ -650,13 +399,6 @@
     exit $?
  fi
  
@@ -406,7 +399,7 @@
  if [ "$1" = '-testall' -o "$1" = "--testall" ]; then
     shift
     sage-maketest "$@"
-@@ -675,185 +411,23 @@
+@@ -675,185 +417,23 @@
  install() {
     cd "$SAGE_ROOT/spkg"
     if [ $# -lt 2 ]; then
@@ -593,7 +586,7 @@
  if [ "$1" = "-cython" -o "$1" = '--cython' -o "$1" = '-pyrex' -o "$1" = "--pyrex" ]; then
      shift
      cd "$CUR"
-@@ -902,10 +476,6 @@
+@@ -902,10 +482,6 @@
  
  if [ $# -ge 1 ]; then
     T=`echo "$1" | sed -e "s/.*\.//"`
