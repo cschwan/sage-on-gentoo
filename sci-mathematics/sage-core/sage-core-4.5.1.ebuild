@@ -64,7 +64,10 @@ RDEPEND="${DEPEND}
 	>=dev-lang/R-2.10.1[lapack,readline]
 	~dev-python/numpy-1.3.0[lapack]
 	>=dev-python/rpy-2.0.6
-	testsuite? ( ~sci-mathematics/sage-examples-${PV} )"
+	testsuite? (
+		~sci-mathematics/sage-doc-{PV}[html]
+		~sci-mathematics/sage-examples-${PV}
+	)"
 
 S="${WORKDIR}/${MY_P}"
 
