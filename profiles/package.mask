@@ -5,3 +5,6 @@ sci-mathematics/pari:3
 =sci-mathematics/eclib-20080310_p10-r2
 # Ongoing work there, do not touch before it has been properly tested.
 =sci-chemistry/jmol-11.8.25
+# unmask to use system singular in sage-4.5.1
+=sci-mathematics/sage-4.5.1-r1
+=sci-mathematics/sage-core-4.5.1-r1

@@ -55,7 +55,8 @@ DEPEND="|| ( =dev-lang/python-2.6.4-r99
 	>=sci-mathematics/polybori-0.6.4[sage]
 	>=sci-mathematics/ratpoints-2.1.3
 	~sci-mathematics/sage-clib-${PV}
-	~sci-mathematics/sage-singular-3.1.0.4_p7
+	~sci-mathematics/singular-3.1.1.4[libsingular]
+	!!sci-mathematics/sage-singular
 	~sci-mathematics/sage-base-1.0
 	~sci-mathematics/sage-scripts-${PV}
 	>=sys-libs/readline-6.0
@@ -86,7 +87,7 @@ src_prepare() {
 	# Fix startup issue and python-2.6.5 problem
 	append-flags -fno-strict-aliasing -DNDEBUG
 
-	# fix build file to make it compile without other Sage componenents
+	# fix build file to make it compile without other Sage components
 	epatch "${FILESDIR}"/${PN}-4.3.4-site-packages.patch
 
 	# add pari and gmp to everything.
@@ -96,17 +97,16 @@ src_prepare() {
 	# remove annoying std=c99 from a c++ file.
 	epatch "${FILESDIR}"/${PN}-4.4.4-extra-stdc99.patch
 
-	# make singular use rpath
-	epatch "${FILESDIR}"/${PN}-4.4.4-rpathsingular.patch
+	# make use of singular-3.1.1.4 from the system
+	epatch "${FILESDIR}"/singular-3-1-1-4.patch
 
 	# use already installed csage
 	rm -rf c_lib || die "failed to remove c library directory"
 
-	# fix paths for sigular - TODO: remove once singular is moved out of Sage
+	# fix paths for sigular
 	sed -i \
-		-e "s:SAGE_ROOT[[:space:]]*+[[:space:]]*\([\'\"]\)/local/include/singular\([^\1]*\)\1:\1${EPREFIX}${SAGE_LOCAL}/include/singular\2\1:g" \
-		-e "s:SAGE_ROOT[[:space:]]*+[[:space:]]*\([\'\"]\)/local/include/libsingular.h\1:\1${EPREFIX}${SAGE_LOCAL}/include/libsingular.h\1:g" \
-		-e "s:runtime_library_dirs = \[''\]:runtime_library_dirs = \['${EPREFIX}${SAGE_LOCAL}/$(get_libdir)'\]:g" \
+		-e "s:SAGE_ROOT[[:space:]]*+[[:space:]]*\([\'\"]\)/local/include/singular\([^\1]*\)\1:\1${EPREFIX}/usr/include/singular\2\1:g" \
+		-e "s:SAGE_ROOT[[:space:]]*+[[:space:]]*\([\'\"]\)/local/include/libsingular.h\1:\1${EPREFIX}/usr/include/libsingular.h\1:g" \
 		module_list.py || die "failed to patch paths for singular"
 
 	# fix paths for various libraries (including fix for png14)
@@ -122,12 +122,6 @@ src_prepare() {
 	# set path to system Cython
 	sed -i "s:SAGE_LOCAL + '/lib/python/site-packages/Cython/Includes/':'$(python_get_sitedir)/Cython/Includes/':g" \
 		setup.py || die "failed to patch path for cython include directory"
-
-	# TODO: once Singular is installed to standard dirs, remove the following
-	sed -i \
-		-e "s:m.library_dirs += \['%s/lib' % SAGE_LOCAL\]:m.library_dirs += \['${EPREFIX}${SAGE_LOCAL}/$(get_libdir)'\]:g" \
-		-e "s:include_dirs = \['%s/include'%SAGE_LOCAL:include_dirs = \['${EPREFIX}${SAGE_LOCAL}/include':g" \
-		setup.py || die "failed to patch directories for singular"
 
 	# rebuild in place
 	sed -i "s:SAGE_DEVEL + 'sage/sage/ext/interpreters':'sage/ext/interpreters':g" \

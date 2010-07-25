@@ -2,6 +2,21 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  25 Jul 2010; François Bissey <f.r.bissey@massey.ac.nz>
+  +files/singular-3-1-1-4.patch, sage-core-4.5.1.ebuild,
+  +sage-core-4.5.1-r1.ebuild:
+  Fix invalid atoms.
+
+  25 Jul 2010; François Bissey <f.r.bissey@massey.ac.nz>
+  +files/singular-3-1-1-4.patch, +sage-core-4.5.1-r1.ebuild:
+  Synchronizing with sage-core-4.5.1.ebuild
+
+*sage-core-4.5.1-r1 (25 Jul 2010)
+
+  25 Jul 2010; François Bissey <f.r.bissey@massey.ac.nz>
+  +files/singular-3-1-1-4.patch, +sage-core-4.5.1-r1.ebuild:
+  Revbump to support system singular. Experimental.
+
   25 Jul 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
   sage-core-4.5.1.ebuild:
   Added sage-doc[html] if USEing testsuite
