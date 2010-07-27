@@ -20,4 +20,5 @@ RESTRICT="mirror"
 RDEPEND=">=dev-libs/gmp-3.1.1"
 DEPEND="${RDEPEND}"
 
+AUTOTOOLS_IN_SOURCE_BUILD="1"
 DOCS=( AUTHORS ChangeLog )

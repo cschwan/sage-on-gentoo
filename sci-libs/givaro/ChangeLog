@@ -2,6 +2,10 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  27 Jul 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
+  givaro-3.2.16.ebuild:
+  Forcing autotool to build in-source to fix problem
+
   23 Jul 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
   givaro-3.2.16.ebuild:
   Migrated to autotools-utils.eclass
