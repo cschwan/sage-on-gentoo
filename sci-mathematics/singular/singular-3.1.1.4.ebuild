@@ -74,15 +74,17 @@ src_configure() {
 		--bindir="${S}"/build/bin \
 		--libdir="${S}"/build/lib \
 		--libexecdir="${S}"/build/lib \
+		--with-apint=gmp \
+		--with-gmp="${EPREFIX}"/usr \
+		--disable-NTL \
 		--disable-debug \
 		--disable-doc \
-		--disable-NTL \
-		--disable-gmp \
 		--without-MP \
 		--enable-factory \
 		--enable-libfac \
 		--enable-IntegerProgramming \
 		--enable-Singular \
+		--with-malloc=system \
 		$(use_with boost Boost) \
 		$(use_enable emacs) \
 		$(use_with readline) || die "configure failed"

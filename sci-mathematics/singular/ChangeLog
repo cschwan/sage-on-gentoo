@@ -2,6 +2,10 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  28 Jul 2010; François Bissey <f.r.bissey@massey.ac.nz>
+  singular-3.1.1.4.ebuild:
+  minor changes.
+
   24 Jul 2010; François Bissey <f.r.bissey@massey.ac.nz>
   singular-3.1.1.4.ebuild:
   Add a few more files needed by sage-core.
