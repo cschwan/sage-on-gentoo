@@ -102,12 +102,6 @@ src_prepare() {
 	# use already installed csage
 	rm -rf c_lib || die "failed to remove c library directory"
 
-	# fix paths for sigular
-#	sed -i \
-#		-e "s:SAGE_ROOT[[:space:]]*+[[:space:]]*\([\'\"]\)/local/include/singular\([^\1]*\)\1:\1${EPREFIX}/usr/include/singular\2\1:g" \
-#		-e "s:SAGE_ROOT[[:space:]]*+[[:space:]]*\([\'\"]\)/local/include/libsingular.h\1:\1${EPREFIX}/usr/include/libsingular.h\1:g" \
-#		module_list.py || die "failed to patch paths for singular"
-
 	# fix paths for various libraries (including fix for png14)
 	local pnglib=$(libpng-config --libs | cut -dl -f2)
 	sed -i \
@@ -240,6 +234,15 @@ src_prepare() {
 	edos2unix sage/libs/mpmath/ext_main.pxd
 	edos2unix sage/libs/mpmath/ext_libmp.pyx
 
+	# fix paths for Singular
+	sed -i "s:os\.environ\[\"SAGE_LOCAL\"\]+\"/share/singular/\":\"${EPREFIX}/usr/share/singular/\":g" \
+		sage/interfaces/singular.py || die "failed to patch singular path"
+
+	sed -i "s:os\.environ\['SAGE_LOCAL'\]+\"/lib/libsingular\.\":\"${EPREFIX}/usr/$(get_libdir)/libsingular.\":g" \
+		sage/libs/singular/singular.pyx || die "failed to patch libsingular path"
+
+	# TODO: fix SAGE_LOCAL in misc/misc.py, misc/cython.py and interfaces/lie.py
+
 	# do not forget to run distutils
 	distutils_src_prepare
 }
@@ -262,6 +265,7 @@ src_configure() {
 
 src_install() {
 	if use testsuite ; then
+		# TODO: install sources only ?
 		insinto "${EPREFIX}${SAGE_ROOT}"/devel/sage-main
 		doins -r sage || die
 	fi

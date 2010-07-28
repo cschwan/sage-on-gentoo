@@ -2,6 +2,13 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*sage-scripts-4.5.1-r2 (28 Jul 2010)
+
+  28 Jul 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
+  +sage-scripts-4.5.1-r2.ebuild,
+  +files/sage-scripts-4.5.1-fix-singular-path.patch:
+  New revision supports sage-singular-3.1.1.4-r1
+
 *sage-scripts-4.5.1-r1 (25 Jul 2010)
 
   25 Jul 2010; Christopher Schwan <cschwan@students.uni-mainz.de>

@@ -4,7 +4,7 @@
 
 EAPI="3"
 
-inherit eutils flag-o-matic multilib versionator sage
+inherit eutils flag-o-matic multilib versionator
 
 MY_P="singular-3-1-1-4"
 
@@ -79,7 +79,6 @@ src_install(){
 	dobin build/bin/* || die
 	newbin "${FILESDIR}"/singular-3.1.1 singular || die
 	newbin "${FILESDIR}"/singular-3.1.1 Singular || die
-	dosym Singular sage_singular || die
 
 	dolib build/lib/*.so build/lib/*.a build/lib/*.o || die
 

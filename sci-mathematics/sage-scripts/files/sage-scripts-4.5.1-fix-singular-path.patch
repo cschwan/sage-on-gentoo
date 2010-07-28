@@ -1,0 +1,12 @@
+--- sage-env.orig	2010-07-24 20:20:57.371714369 +0000
++++ sage-env	2010-07-28 19:36:09.601386824 +0000
+@@ -42,8 +42,7 @@
+ fi
+ export LIBRARY_PATH
+ 
+-SINGULARPATH="$SAGE_LOCAL/share/singular" && export SINGULARPATH
+-SINGULAR_EXECUTABLE="$SAGE_LOCAL/bin/Singular" && export SINGULAR_EXECUTABLE
++SINGULARPATH="/usr/share/singular" && export SINGULARPATH
+ 
+ if [ "$SAGE_SERVER" = "" ]; then
+     SAGE_SERVER="http://www.sagemath.org/"

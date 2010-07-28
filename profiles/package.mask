@@ -7,4 +7,7 @@ sci-mathematics/pari:3
 =sci-chemistry/jmol-11.8.25
 # unmask to use system singular in sage-4.5.1
 =sci-mathematics/sage-4.5.1-r1
+=sci-mathematics/sage-4.5.1-r2
 =sci-mathematics/sage-core-4.5.1-r1
+=sci-mathematics/sage-core-4.5.1-r2
+=sci-mathematics/sage-scripts-4.5.1-r2

@@ -1,14 +1,15 @@
-dev-lang/python:2.6			sqlite
-dev-lang/R					lapack
-dev-python/numpy			lapack
-sci-libs/flint				ntl
-sci-mathematics/glpk	gmp
-sci-libs/linbox				ntl sage
-sci-mathematics/lcalc		pari
-sci-mathematics/maxima		ecl
-sci-mathematics/pari		data gmp
-sci-mathematics/polybori	gd sage
-dev-lisp/ecls	-unicode
+dev-lang/python:2.6         sqlite
+dev-lang/R                  lapack
+dev-lisp/ecls               -unicode
+dev-python/numpy            lapack
+sci-libs/flint              ntl
+sci-mathematics/glpk        gmp
+sci-libs/linbox             ntl sage
+sci-mathematics/lcalc       pari
+sci-mathematics/maxima      ecl
+sci-mathematics/pari        data gmp
+sci-mathematics/polybori    gd sage
+sci-mathematics/singular	libsingular
 ################################################
 # Recomended flags for optional dependency jmol
 ################################################
