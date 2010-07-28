@@ -2,6 +2,12 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header$
 
+*sage-singular-3.1.1.4-r1 (28 Jul 2010)
+
+  28 Jul 2010; François Bissey <f.r.bissey@massey.ac.nz>
+  +sage-singular-3.1.1.4-r1.ebuild:
+  sage-singular-3.1.1.4-r1 doesn't go in SAGE_LOCAL and blocks singular.
+
 *sage-singular-3.1.1.4 (28 Jul 2010)
 
   28 Jul 2010; François Bissey <f.r.bissey@massey.ac.nz>
