@@ -69,10 +69,14 @@ sci-mathematics/pari
 sci-mathematics/polybori
 sci-mathematics/ratpoints
 sci-mathematics/rubiks
-sci-mathematics/sage
+=sci-mathematics/sage-4.4.4
+=sci-mathematics/sage-4.4.4-r1
+=sci-mathematics/sage-4.4.4-r2
+=sci-mathematics/sage-4.5.1
 sci-mathematics/sage-base
 sci-mathematics/sage-clib
-sci-mathematics/sage-core
+=sci-mathematics/sage-core-4.4.4
+=sci-mathematics/sage-core-4.5.1
 sci-mathematics/sage-data
 sci-mathematics/sage-data-conway_polynomials
 sci-mathematics/sage-data-elliptic_curves
