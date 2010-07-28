@@ -25,7 +25,10 @@ RDEPEND=">=dev-libs/gmp-4.1-r1
 
 DEPEND="${RDEPEND}
 	>=dev-lang/perl-5.6
-	!!sci-mathematics/singular"
+	!!sci-mathematics/singular
+	!!sci-libs/factory
+	!!sci-libs/libfac
+	!!sci-libs/omalloc"
 
 S="${WORKDIR}/${MY_P}/src"
 
