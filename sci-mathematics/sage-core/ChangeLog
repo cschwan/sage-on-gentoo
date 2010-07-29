@@ -2,6 +2,10 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  29 Jul 2010; François Bissey <f.r.bissey@massey.ac.nz>
+  sage-core-4.5.1-r2.ebuild:
+  switch -r2 to use system singular.
+
   28 Jul 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
   sage-core-4.5.1-r2.ebuild:
   New revision supports sage-singular-3.1.1.4-r1
