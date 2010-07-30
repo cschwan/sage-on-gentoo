@@ -9,7 +9,7 @@ sci-mathematics/lcalc       pari
 sci-mathematics/maxima      ecl
 sci-mathematics/pari        data gmp
 sci-mathematics/polybori    gd sage
-sci-mathematics/singular	libsingular sage
+sci-mathematics/singular    libsingular sage
 ################################################
 # Recomended flags for optional dependency jmol
 ################################################
