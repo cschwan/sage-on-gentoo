@@ -4,6 +4,10 @@
 
   30 Jul 2010; François Bissey <f.r.bissey@massey.ac.nz>
   sage-core-4.5.1-r2.ebuild:
+  depend on singular[libsingular,sage]
+
+  30 Jul 2010; François Bissey <f.r.bissey@massey.ac.nz>
+  sage-core-4.5.1-r2.ebuild:
   Add factory to the dependency list - required to build.
 
   29 Jul 2010; François Bissey <f.r.bissey@massey.ac.nz>

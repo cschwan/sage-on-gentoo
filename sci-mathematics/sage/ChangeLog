@@ -2,6 +2,10 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  30 Jul 2010; François Bissey <f.r.bissey@massey.ac.nz>
+  sage-4.5.1-r1.ebuild:
+  Depend on singular[libsingular,sage]
+
   29 Jul 2010; François Bissey <f.r.bissey@massey.ac.nz>
   -sage-4.5.1-r2.ebuild:
   Removing -r2 which requires sage-singular.

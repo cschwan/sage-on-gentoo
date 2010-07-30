@@ -2,6 +2,18 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  30 Jul 2010; François Bissey <f.r.bissey@massey.ac.nz>
+  singular-3.1.1.4.ebuild, metadata.xml:
+  Last touch up.
+
+  30 Jul 2010; François Bissey <f.r.bissey@massey.ac.nz>
+  singular-3.1.1.4.ebuild, metadata.xml:
+  minor touch up.
+
+  30 Jul 2010; François Bissey <f.r.bissey@massey.ac.nz>
+  singular-3.1.1.4.ebuild, metadata.xml:
+  Add a sage use flag to install singular.hlp
+
   28 Jul 2010; François Bissey <f.r.bissey@massey.ac.nz>
   singular-3.1.1.4.ebuild:
   minor changes.
