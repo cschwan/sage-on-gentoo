@@ -145,7 +145,7 @@ src_install () {
 	fi
 	if use sage ; then
 		insinto /usr/share/${PN}
-		doins "${WORKDIR}/${MY_PN}/${MY_DIR}"/info/"${PN}".hlp
+		doins info/"${PN}".hlp
 	fi
 	if use doc; then
 		dohtml -r html/* || die "failed to install html docs"
