@@ -35,6 +35,7 @@ DEPEND="|| ( =dev-lang/python-2.6.4-r99
 	media-libs/gd
 	media-libs/libpng
 	>=net-zope/zodb-3.7.0
+	>=sci-libs/factory-3.1.1
 	>=sci-libs/flint-1.5.0[ntl]
 	>=sci-libs/fplll-3.0.12
 	=sci-libs/givaro-3.2*
