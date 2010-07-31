@@ -26,6 +26,7 @@ RESTRICT="mirror"
 # TODO: add dependencies
 DEPEND="|| ( =dev-lang/python-2.6.4-r99
 		=dev-lang/python-2.6.5-r99 )
+	=dev-python/cython-0.12*
 	dev-libs/gmp
 	>=dev-libs/ntl-5.5.2
 	>=dev-libs/mpfr-2.4.2
@@ -56,7 +57,6 @@ DEPEND="|| ( =dev-lang/python-2.6.4-r99
 	>=sci-mathematics/polybori-0.6.4[sage]
 	>=sci-mathematics/ratpoints-2.1.3
 	~sci-mathematics/sage-clib-${PV}
-	~sci-mathematics/sage-base-1.0
 	~sci-mathematics/sage-scripts-${PV}
 	~sci-mathematics/singular-3.1.1.4[libsingular,sage]
 	!!sci-mathematics/sage-singular
