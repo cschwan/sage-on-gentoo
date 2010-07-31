@@ -37,9 +37,6 @@ src_install() {
 	# install a symbolic link so that sage is actually found
 	dosym "${SAGE_ROOT}"/sage "${SAGE_PREFIX}"/bin/sage || die "dosym failed"
 
-	# this directory is needed by sage-core
-	dodir "${SAGE_ROOT}"/spkg/installed || die "dodir failed"
-
 	# correctly create library dir
 	dodir "${SAGE_LOCAL}/$(get_libdir)" || die "dodir failed"
 
