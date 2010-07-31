@@ -1,0 +1,15 @@
+--- sage-doctest.orig	2010-07-19 00:20:08.000000000 +0000
++++ sage-doctest	2010-07-31 07:15:14.613485563 +0000
+@@ -87,11 +87,7 @@
+ # Set environment variables
+ ######################################################    
+ SAGE_ROOT = os.environ["SAGE_ROOT"]
+-LD = os.environ["LD_LIBRARY_PATH"]
+-os.environ["LD_LIBRARY_PATH"] = os.path.join(SAGE_ROOT, 'local',
+-                                             'lib') + ":" + LD
+-os.environ["PYTHONPATH"] = os.path.join(SAGE_ROOT, 'local', 'lib', 'python',
+-                                        'site-packages')
++
+ if os.environ.has_key('SAGE_PATH'):
+     os.environ["PYTHONPATH"] = os.environ["PYTHONPATH"] + ':' + os.environ['SAGE_PATH']
+ 

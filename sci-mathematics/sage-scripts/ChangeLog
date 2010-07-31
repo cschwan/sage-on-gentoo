@@ -2,6 +2,16 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*sage-scripts-4.5.1-r3 (31 Jul 2010)
+
+  31 Jul 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
+  +sage-scripts-4.5.1-r3.ebuild,
+  +files/sage-scripts-4.5.1-fix-doctest.patch,
+  +files/sage-scripts-4.5.1-remove-useless-variables-v2.patch:
+  New revision features USE=testsuite; without it removes all testing
+  related scripts - update your packahe.use file ! Removed further
+  variables
+
 *sage-scripts-4.5.1-r2 (28 Jul 2010)
 
   28 Jul 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
