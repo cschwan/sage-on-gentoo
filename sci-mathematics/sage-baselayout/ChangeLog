@@ -1,0 +1,13 @@
+# ChangeLog for sci-mathematics/sage-baselayout
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: $
+
+*sage-baselayout-4.5.1 (31 Jul 2010)
+
+  31 Jul 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
+  +sage-baselayout-4.5.1.ebuild,
+  +files/sage-baselayout-4.5.1-fix-doctest.patch,
+  +files/sage-baselayout-4.5.1-remove-useless-options.patch,
+  +files/sage-baselayout-4.5-remove-sage-location.patch, +metadata.xml:
+  Initial import
+
