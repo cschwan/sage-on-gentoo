@@ -4,9 +4,9 @@
 
 EAPI="3"
 
-MY_P="extcode-${PV}"
+MY_P="conway_polynomials-${PV}"
 
-DESCRIPTION="Extcode for Sage"
+DESCRIPTION="Sage's conway polynomial database"
 HOMEPAGE="http://www.sagemath.org"
 SRC_URI="mirror://sage/spkg/standard/${MY_P}.spkg -> ${P}.tar.bz2"
 
@@ -22,16 +22,7 @@ RDEPEND="${DEPEND}"
 
 S="${WORKDIR}/${MY_P}"
 
-src_prepare() {
-	find . -name "*pyc" -exec rm '{}' \; \
-		|| die "failed to remove precompiled files"
-}
-
 src_install() {
-	# remove stuff not needed
-	rm -rf .hg .hgignore .hgtags mirror sage-push spkg-debian spkg-dist \
-		spkg-install dist || die "failed to remove useless files"
-
-	insinto /usr/share/sage/data/extcode
-	doins -r * || die
+	insinto /usr/share/sage/data
+	doins -r src/conway_polynomials/ || die
 }

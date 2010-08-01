@@ -2,6 +2,13 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*sage-core-4.5.1-r3 (01 Aug 2010)
+
+  01 Aug 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
+  +sage-core-4.5.1-r3.ebuild, +files/sage-core-4.5.1-fix-SAGE_LOCAL.patch,
+  +files/sage-core-4.5.1-fix-qepcad-path.patch:
+  New revision installs to new location
+
   30 Jul 2010; François Bissey <f.r.bissey@massey.ac.nz>
   sage-core-4.5.1-r2.ebuild:
   depend on singular[libsingular,sage]

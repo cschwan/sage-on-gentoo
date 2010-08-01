@@ -4,7 +4,7 @@
 
 EAPI="3"
 
-inherit multilib sage flag-o-matic
+inherit eutils
 
 DESCRIPTION="Math software for algebra, geometry, number theory, cryptography and numerical computation"
 HOMEPAGE="http://www.sagemath.org"
@@ -68,7 +68,7 @@ RDEPEND="${CDEPEND}
 	java? ( >=virtual/jre-1.6 )"
 
 src_install() {
-	# TODO: grab icon from official site
+	# TODO: grab icon from official site ?
 
 	if use X ; then
 		# unpack icon
