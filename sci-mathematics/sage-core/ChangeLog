@@ -2,6 +2,11 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  02 Aug 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
+  -sage-core-4.4.4.ebuild, -sage-core-4.5.1.ebuild,
+  -sage-core-4.5.1-r1.ebuild, -sage-core-4.5.1-r2.ebuild:
+  Removed old version
+
 *sage-core-4.5.1-r3 (01 Aug 2010)
 
   01 Aug 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
