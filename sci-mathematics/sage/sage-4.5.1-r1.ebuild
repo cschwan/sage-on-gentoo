@@ -58,7 +58,7 @@ RDEPEND="${CDEPEND}
 	>=media-gfx/tachyon-0.98
 	>=sci-mathematics/flintqs-20070817_p4
 	>=sci-mathematics/palp-1.1
-	~sci-libs/scipy-0.7.1
+	=sci-libs/scipy-0.7*
 	~dev-python/sympy-0.6.6
 	>=dev-python/cvxopt-0.9
 	dev-python/sqlalchemy[sqlite]

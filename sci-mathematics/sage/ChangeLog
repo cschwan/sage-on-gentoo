@@ -3,6 +3,10 @@
 # $Header: $
 
   03 Aug 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
+  sage-4.5.1-r1.ebuild:
+  Do not strictly depend on scipy-0.7.1 - any 0.7 should do
+
+  03 Aug 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
   sage-4.5.1-r1.ebuild, metadata.xml:
   Removed wiki USE-flag and glpk in metadata.xml
 
