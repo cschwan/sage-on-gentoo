@@ -4,7 +4,7 @@
 
 EAPI="3"
 
-inherit eutils sage versionator
+inherit eutils versionator
 
 MY_P="${PN}-$(replace_version_separator 1 '.')"
 
@@ -29,6 +29,7 @@ S="${WORKDIR}/${MY_P}/src"
 src_prepare() {
 	# patch for shared objects and various make issues.
 	epatch "${FILESDIR}"/${P}-makefiles.patch.bz2
+
 	sed -i "s:/usr/local/bin/gp:${EPREFIX}/usr/bin/gp:" \
 		procs/gpslave.cc || die "failed to set the right path for pari/gp"
 }

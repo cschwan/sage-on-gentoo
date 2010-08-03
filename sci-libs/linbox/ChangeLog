@@ -2,6 +2,10 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  03 Aug 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
+  -linbox-1.1.6-r1.ebuild:
+  Removed old version
+
   22 Jul 2010; François Bissey <f.r.bissey@massey.ac.nz>
   linbox-1.1.6-r2.ebuild, +files/linbox-1.1.6-fix-config.patch,
   +files/linbox-1.1.6-nolapack.patch:

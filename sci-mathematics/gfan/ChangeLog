@@ -2,6 +2,10 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  03 Aug 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
+  -gfan-0.4.ebuild:
+  Removed old version
+
   15 Jul 2010; François Bissey <f.r.bissey@massey.ac.nz>
   -files/gcc45_matrix.h.patch, gfan-0.4-r1.ebuild:
   Remove a gcc4.5 patch as it is a gcc bug - that is fixed upstream.

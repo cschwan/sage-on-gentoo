@@ -4,7 +4,7 @@
 
 EAPI="3"
 
-inherit toolchain-funcs sage versionator eutils
+inherit eutils toolchain-funcs versionator
 
 MY_P="${PN}-$(replace_version_separator 2 '.')"
 
@@ -26,18 +26,21 @@ DEPEND="${RDEPEND}"
 S="${WORKDIR}/${MY_P}/src"
 
 src_prepare() {
-	epatch "$FILESDIR/${PN}-0.3.p2.patch"
+	epatch "${FILESDIR}"/${PN}-0.3.p2.patch
 }
 
 src_compile() {
+	local mylib="-lgmp"
+
 	if use mpir ; then
-		$(tc-getCC ) ${CFLAGS} -o ${PN} ${PN}.c -lpari -lmpir -lm || die "Compile failed!"
-	else
-		$(tc-getCC ) ${CFLAGS} -o ${PN} ${PN}.c -lpari -lgmp -lm || die "Compile failed!"
+		mylib="-mpir"
 	fi
+
+	$(tc-getCC) ${CFLAGS} -o ${PN} ${PN}.c -lpari ${mylib} -lm \
+		|| die "compilation of source failed"
 }
 
 src_install() {
 	dobin ${PN} || die "installation failed!"
-	dodoc README RELEASE.NOTES WARNING
+	dodoc README RELEASE.NOTES WARNING || die
 }

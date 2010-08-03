@@ -2,6 +2,10 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  03 Aug 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
+  -ecm-6.2.3.ebuild, -ecm-6.3.ebuild:
+  Removed old versions
+
 *ecm-6.3-r1 (23 Jul 2010)
 
   23 Jul 2010; Christopher Schwan <cschwan@students.uni-mainz.de>

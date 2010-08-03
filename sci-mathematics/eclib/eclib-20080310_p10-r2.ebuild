@@ -4,7 +4,7 @@
 
 EAPI="3"
 
-inherit eutils sage versionator
+inherit eutils versionator
 
 MY_P="${PN}-$(replace_version_separator 1 '.')"
 
@@ -32,13 +32,18 @@ src_prepare() {
 	epatch "${FILESDIR}"/${P}-makefiles.patch.bz2
 
 	if use pari24 ; then
-		sed -i "s:-lpari:-lpari24:g" g0n/Makefile || die "failed to patch g0n/Makefile for pari24"
+		sed -i "s:-lpari:-lpari24:g" g0n/Makefile \
+			|| die "failed to patch g0n/Makefile for pari24"
 		sed -i "s:/usr/local/bin/gp:${EPREFIX}/usr/bin/gp-2.4:" \
 			procs/gpslave.cc || die "failed to set the right path for pari/gp"
-		sed -i "s:pari/pari:pari24/pari:" procs/parifact.cc || die "failed to patch pari24 headers"
-		sed -i "s:-lpari:-lpari24:g" procs/Makefile || die "failed to patch procs/Makefile for pari24"
-		sed -i "s:-lpari:-lpari24:g" qcurves/Makefile || die "failed to patch qcurves/Makefile for pari24"
-		sed -i "s:-lpari:-lpari24:g" qrank/Makefile || die "failed to patch qrank/Makefile for pari24"
+		sed -i "s:pari/pari:pari24/pari:" procs/parifact.cc \
+			|| die "failed to patch pari24 headers"
+		sed -i "s:-lpari:-lpari24:g" procs/Makefile \
+			|| die "failed to patch procs/Makefile for pari24"
+		sed -i "s:-lpari:-lpari24:g" qcurves/Makefile \
+			|| die "failed to patch qcurves/Makefile for pari24"
+		sed -i "s:-lpari:-lpari24:g" qrank/Makefile \
+			|| die "failed to patch qrank/Makefile for pari24"
 	else
 		sed -i "s:/usr/local/bin/gp:${EPREFIX}/usr/bin/gp:" \
 			procs/gpslave.cc || die "failed to set the right path for pari/gp"

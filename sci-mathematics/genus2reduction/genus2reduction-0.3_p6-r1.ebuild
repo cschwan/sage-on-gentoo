@@ -4,7 +4,7 @@
 
 EAPI="3"
 
-inherit toolchain-funcs sage versionator eutils
+inherit toolchain-funcs versionator
 
 MY_P="${PN}-$(replace_version_separator 2 '.')"
 
@@ -21,7 +21,7 @@ RESTRICT="mirror"
 
 RDEPEND="pari24? ( sci-mathematics/pari:3[gmp] )
 	!pari24? ( mpir? ( >=sci-mathematics/pari-2.3.3:0[mpir] )
-		  !mpir? (  >=sci-mathematics/pari-2.3.3:0[gmp] ) )"
+	!mpir? ( >=sci-mathematics/pari-2.3.3:0[gmp] ) )"
 DEPEND="${RDEPEND}"
 
 S="${WORKDIR}/${MY_P}/src"
@@ -37,13 +37,14 @@ src_prepare() {
 			${PN}.c || die "patching for pari-2.4 failed."
 	# FIXME we are missing a replacement for gi
 	else
-		sed -i "s:pari:pari/pari:" ${PN}.c || die "patching for pari-2.3 failed."
+		sed -i "s:pari:pari/pari:" ${PN}.c \
+			|| die "failed to patch path for pari"
 	fi
 }
 
 src_compile() {
+	local mylflags=
 
-	local mylflags=""
 	if use pari24 ; then
 		mylflags="${mylflags} -lpari24"
 	else
@@ -56,10 +57,11 @@ src_compile() {
 		mylflags="${mylflags} -lgmp -lm"
 	fi
 
-	$(tc-getCC ) ${CFLAGS} -o ${PN} ${PN}.c ${mylflags} || die "Compile failed!"
+	$(tc-getCC) ${CFLAGS} -o ${PN} ${PN}.c ${mylflags} \
+		|| die "failed to compile source"
 }
 
 src_install() {
-	dobin ${PN} || die "installation failed!"
-	dodoc README RELEASE.NOTES WARNING
+	dobin ${PN} || die
+	dodoc README RELEASE.NOTES WARNING || die
 }

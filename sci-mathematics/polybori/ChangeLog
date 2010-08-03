@@ -2,6 +2,10 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  03 Aug 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
+  -polybori-0.6.4.ebuild:
+  Removed old version
+
   25 Jul 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
   polybori-0.6.4-r1.ebuild:
   Migrated to EAPI=3, fixed library path and made scons able to build

@@ -2,6 +2,10 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  03 Aug 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
+  -dikcube-20070912_p10.ebuild:
+  Removed old version
+
 *dikcube-20070912_p12 (18 Jul 2010)
 
   18 Jul 2010; Christopher Schwan <cschwan@students.uni-mainz.de>

@@ -2,6 +2,10 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  03 Aug 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
+  -lcalc-1.23.ebuild:
+  Removed old version
+
   08 Jul 2010; François Bissey <f.r.bissey@massey.ac.nz>
   lcalc-1.23-r1.ebuild, files/lcalc-1.23-makefile.patch:
   Fix for multilib-strict. Fix internal of MAKE in makefile as well.
