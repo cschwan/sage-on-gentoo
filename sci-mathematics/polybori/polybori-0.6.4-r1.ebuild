@@ -6,7 +6,7 @@ EAPI="3"
 
 PYTHON_DEPEND="2:2.5"
 
-inherit eutils flag-o-matic multilib python sage versionator
+inherit eutils flag-o-matic multilib python versionator
 
 DESCRIPTION="Polynomials over Boolean Rings"
 HOMEPAGE="http://polybori.sourceforge.net/"

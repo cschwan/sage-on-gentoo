@@ -3,6 +3,10 @@
 # $Header: $
 
   03 Aug 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
+  polybori-0.6.4-r1.ebuild:
+  Removed unneeded usage of sage.eclass
+
+  03 Aug 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
   -polybori-0.6.4.ebuild:
   Removed old version
 
