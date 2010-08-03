@@ -8,7 +8,5 @@
 	<use>
 		<flag name='testsuite'>If activated installs Sage's sources into
 		${SAGE_ROOT}/devel/sage to enable testing</flag>
-		<flag name='glpk'>Enable the integration of the "GNU Linear Programming Kit"
-		in sage.</flag>
 	</use>
 </pkgmetadata>

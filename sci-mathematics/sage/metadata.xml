@@ -6,8 +6,6 @@
 		<email></email>
 	</maintainer>
 	<use>
-		<flag name='wiki'>Enables support for preconfigured MoinMoin wiki</flag>
 		<flag name='X'>Installs icon and desktop file</flag>
-		<flag name='glpk'>Enable the integration of the "GNU Linear Programming Kit" in sage.</flag>
 	</use>
 </pkgmetadata>

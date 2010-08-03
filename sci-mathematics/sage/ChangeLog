@@ -2,6 +2,10 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  03 Aug 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
+  sage-4.5.1-r1.ebuild, metadata.xml:
+  Removed wiki USE-flag and glpk in metadata.xml
+
   02 Aug 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
   -sage-4.4.4.ebuild, -sage-4.4.4-r1.ebuild, -sage-4.4.4-r2.ebuild,
   -sage-4.5.1.ebuild:
