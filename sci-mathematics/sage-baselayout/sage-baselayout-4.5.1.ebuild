@@ -19,8 +19,7 @@ IUSE="debug testsuite"
 
 RESTRICT="mirror"
 
-DEPEND="!!sci-mathematics/sage-base
-	!!sci-mathematics/sage-scripts"
+DEPEND=""
 RDEPEND="${DEPEND}"
 
 S="${WORKDIR}/${MY_P}"

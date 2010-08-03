@@ -59,7 +59,6 @@ DEPEND="|| ( =dev-lang/python-2.6.4-r99
 	~sci-mathematics/sage-clib-${PV}
 	~sci-mathematics/sage-baselayout-${PV}[testsuite=]
 	~sci-mathematics/singular-3.1.1.4[libsingular,sage]
-	!!sci-mathematics/sage-singular
 	>=sys-libs/readline-6.0
 	virtual/cblas"
 RDEPEND="${DEPEND}

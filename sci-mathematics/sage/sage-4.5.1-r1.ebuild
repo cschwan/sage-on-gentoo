@@ -30,7 +30,6 @@ CDEPEND=">=app-arch/bzip2-1.0.5
 	~sci-mathematics/sage-extcode-${PV}
 	~sci-mathematics/sage-notebook-0.8.1[java=]
 	~sci-mathematics/singular-3.1.1.4[libsingular,sage]
-	!!sci-mathematics/sage-singular
 	virtual/cblas"
 
 DEPEND="${CDEPEND}"
