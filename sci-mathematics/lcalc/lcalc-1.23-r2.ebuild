@@ -15,12 +15,11 @@ SRC_URI="http://pmmac03.math.uwaterloo.ca/~mrubinst/L_function_public/CODE/${MY_
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64 ~ppc ~x86"
-IUSE="pari -pari24 mpfr"
+IUSE="pari -pari24"
 
 # TODO: depend on pari[gmp] ?
 DEPEND="pari24? ( sci-mathematics/pari:3 )
-	pari? ( !pari24? ( sci-mathematics/pari:0 ) )
-	mpfr? ( dev-libs/mpfr )"
+	pari? ( !pari24? ( sci-mathematics/pari:0 ) )"
 RDEPEND="${DEPEND}"
 
 # testing does not work because archive missed test program!
@@ -48,10 +47,6 @@ src_prepare() {
 
 	if ( use pari || use pari24 ) ; then
 		export PARI_DEFINE=-DINCLUDE_PARI
-	fi
-	if ( use mpfr ) ; then
-		export PREPROCESSOR_DEFINE=-DUSE_MPFR
-	else
 		export PREPROCESSOR_DEFINE=-DUSE_LONG_DOUBLE
 	fi
 }
