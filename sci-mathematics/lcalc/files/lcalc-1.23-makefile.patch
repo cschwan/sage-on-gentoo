@@ -1,34 +1,15 @@
---- Makefile.orig	2010-07-08 21:20:57.757940191 +1200
-+++ Makefile	2010-07-08 21:29:56.464940112 +1200
-@@ -13,8 +13,8 @@
- # elliptic curve routines. Doing so disables the -e option.
- # g++ with -DINCLUDE_PARI sends a #define INCLUDE_PARI to the preprocessor.
- 
--#PARI_DEFINE = -DINCLUDE_PARI
--#PREPROCESSOR_DEFINE = -DUSE_LONG_DOUBLE
-+PARI_DEFINE = -DINCLUDE_PARI
-+PREPROCESSOR_DEFINE = -DUSE_LONG_DOUBLE
- 
- #OPENMP_FLAG = -fopenmp
- 
-@@ -30,6 +30,7 @@
- OS_NAME := $(shell uname)
- 
- CC = g++
-+#MAKE = make
- #cc = /home/mrubinst/local/bin/gcc
- #CC = /home/mrubinst/local/bin/g++
- #LD = /home/mrubinst/local/bin/g++
-@@ -58,7 +59,7 @@
+--- Makefile.orig	2010-08-04 23:47:25.594042595 +1200
++++ Makefile	2010-08-04 23:49:28.824041638 +1200
+@@ -58,7 +58,7 @@
     #MACHINE_SPECIFIC_FLAGS = -mpowerpc -mpowerpc64 -m64
  endif
  
 -CCFLAGS =  -Wa,-W -O3 $(OPENMP_FLAG) -Wno-deprecated $(PREPROCESSOR_DEFINE) $(MACHINE_SPECIFIC_FLAGS) $(EXTRA)
-+CCFLAGS = $(CFLAGS) $(OPENMP_FLAG) $(PREPROCESSOR_DEFINE) $(MACHINE_SPECIFIC_FLAGS)
++CCFLAGS = $(CXXFLAGS) $(OPENMP_FLAG) $(PREPROCESSOR_DEFINE) $(MACHINE_SPECIFIC_FLAGS)
  #CCFLAGS =  -Wa,-W -O3 $(OPENMP_FLAG)  $(PREPROCESSOR_DEFINE) $(MACHINE_SPECIFIC_FLAGS) $(EXTRA)
  #CCFLAGS =  -Wa,-W -O2 -fno-exceptions -Wno-deprecated $(PREPROCESSOR_DEFINE) $(MACHINE_SPECIFIC_FLAGS) $(EXTRA)
  
-@@ -68,12 +69,12 @@
+@@ -68,12 +68,12 @@
  
  ifeq ($(PARI_DEFINE),-DINCLUDE_PARI)
      #location of pari.h.
@@ -43,16 +24,21 @@
  else
      #supplied as a dummy so as to avoid more ifeq's below
      LOCATION_PARI_H = .
-@@ -89,7 +90,7 @@
+@@ -89,24 +89,24 @@
  
  ifeq ($(OS_NAME),Darwin)
      LDFLAGS2 =
 -    DYN_OPTION=dynamiclib
 +    DYN_OPTION=-dynamiclib
  else
-     LDFLAGS1 = -Xlinker -export-dynamic #not sure why pari calls these when linking but on the web I found
+-    LDFLAGS1 = -Xlinker -export-dynamic #not sure why pari calls these when linking but on the web I found
++    LDFLAGS1 = #not sure why pari calls these when linking but on the web I found
      #'Libtool provides the `-export-dynamic' link flag (see section Link mode), which does this declaration.
-@@ -100,7 +101,7 @@
+     #You need to use this flag if you are linking a shared library that will be dlopened'
+     #see notes below
+     #ifeq ($(PARI_DEFINE),-DINCLUDE_PARI)
+-       LDFLAGS2 = $(LDFLAGS1) -Xlinker -rpath -Xlinker $(LOCATION_PARI_LIBRARY)
++       LDFLAGS2 = $(LDFLAGS)
      #else
      #    LDFLAGS2 = $(LDFLAGS1)
      #endif
@@ -61,7 +47,15 @@
  endif
  
  ifeq ($(PARI_DEFINE),-DINCLUDE_PARI)
-@@ -129,7 +130,8 @@
+-    LDFLAGS = $(LDFLAGS2) -L$(LOCATION_PARI_LIBRARY) -lpari
++    MYLDFLAGS = $(LDFLAGS2) -L$(LOCATION_PARI_LIBRARY) -lpari
+ else
+-    LDFLAGS = $(LDFLAGS2)
++    MYLDFLAGS = $(LDFLAGS2)
+ endif
+ 
+ 
+@@ -129,7 +129,8 @@
  #become clear which libraries the computer can find.
  
  
@@ -71,7 +65,7 @@
  
  #object files for the libLfunction library
  OBJ_L = Lglobals.o Lgamma.o Lriemannsiegel.o Lriemannsiegel_blfi.o Ldokchitser.o
-@@ -141,9 +143,8 @@
+@@ -141,9 +142,8 @@
  
  all:
  #	make print_vars
@@ -83,12 +77,21 @@
  #	make find_L
  #	make test
  
-@@ -262,15 +263,18 @@
+@@ -151,7 +151,7 @@
+ 	@echo OS_NAME = $(OS_NAME)
+ 
+ lcalc: $(OBJECTS)
+-	$(CC) $(CCFLAGS) $(INCLUDEFILES) $(OBJECTS) $(LDFLAGS) -o lcalc $(GMP_FLAGS)
++	$(CC) $(CCFLAGS) $(INCLUDEFILES) $(OBJECTS) $(MYLDFLAGS) -o lcalc $(GMP_FLAGS)
+ 
+ examples:
+ 	$(CC) $(CCFLAGS) $(INCLUDEFILES) example_programs/example.cc libLfunction.so -o example_programs/example $(GMP_FLAGS)
+@@ -262,15 +262,18 @@
  
  
  libLfunction.so: $(OBJ_L)
 -	g++ -$(DYN_OPTION)  -o libLfunction.so $(OBJ_L)
-+	g++ $(DYN_OPTION) -o libLfunction.so $(OBJ_L)
++	g++ $(DYN_OPTION)  -o libLfunction.so $(OBJ_L)
  
  clean:
  	rm -f *.o lcalc libLfunction.so example_programs/example
