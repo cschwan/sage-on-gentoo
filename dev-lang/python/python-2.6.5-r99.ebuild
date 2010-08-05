@@ -77,7 +77,7 @@ src_prepare() {
 		rm "${WORKDIR}/${PV}"/*_all_crosscompile.patch
 	fi
 
-        EPATCH_SUFFIX="patch" epatch "${WORKDIR}/${PV}"
+	EPATCH_SUFFIX="patch" epatch "${WORKDIR}/${PV}"
 
 	# patch pickle for sage http://bugs.python.org/issue7689
 	epatch "${FILESDIR}/dynamic_class_copyreg.patch"
