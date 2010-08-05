@@ -43,7 +43,7 @@
      #    LDFLAGS2 = $(LDFLAGS1)
      #endif
 -    DYN_OPTION=shared
-+    DYN_OPTION=-shared -Wl,-soname,libLfunction.so
++    DYN_OPTION=$(LDFLAGS) -shared -Wl,-soname,libLfunction.so
  endif
  
  ifeq ($(PARI_DEFINE),-DINCLUDE_PARI)
@@ -91,7 +91,7 @@
  
  libLfunction.so: $(OBJ_L)
 -	g++ -$(DYN_OPTION)  -o libLfunction.so $(OBJ_L)
-+	g++ $(DYN_OPTION)  -o libLfunction.so $(OBJ_L)
++	g++ $(DYN_OPTION) -o libLfunction.so $(OBJ_L)
  
  clean:
  	rm -f *.o lcalc libLfunction.so example_programs/example
