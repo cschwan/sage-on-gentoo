@@ -2,7 +2,9 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
-EAPI=2
+EAPI="3"
+
+PYTHON_DEPEND="2:2.6"
 
 inherit distutils eutils
 
@@ -16,6 +18,9 @@ KEYWORDS="~amd64 ~ppc ~x86"
 IUSE=""
 
 RESTRICT="mirror"
+
+DEPEND=""
+RDEPEND=""
 
 src_prepare() {
 	epatch "${FILESDIR}"/${P}-fix-misc-bugs.patch

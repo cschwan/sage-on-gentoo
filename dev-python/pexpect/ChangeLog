@@ -2,6 +2,10 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  05 Aug 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
+  pexpect-2.0.ebuild, pexpect-2.4-r1.ebuild:
+  QA: Python ABI fixes, moved to EAPI=3 and used mirror syntax
+
   02 May 2010; François Bissey <f.r.bissey@massey.ac.nz>
   pexpect-2.0.ebuild:
   Remove doc from pexpect-2.0 as it is not there.
