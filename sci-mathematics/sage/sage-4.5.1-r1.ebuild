@@ -63,7 +63,6 @@ RDEPEND="${CDEPEND}
 	>=dev-python/cvxopt-0.9
 	dev-python/sqlalchemy[sqlite]
 	>=dev-python/sphinx-0.6.3
-	wiki? ( ~www-apps/sage-moin-1.9.1_p1 )
 	java? ( >=virtual/jre-1.6 )"
 
 src_install() {
