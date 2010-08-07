@@ -2,6 +2,12 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*zn_poly-0.9-r3 (07 Aug 2010)
+
+  07 Aug 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
+  +zn_poly-0.9-r3.ebuild:
+  New revision builds shared object instead of archive
+
   08 Jul 2010; François Bissey <f.r.bissey@massey.ac.nz>
   zn_poly-0.9-r2.ebuild:
   Fix for multilib-strict, clean up and EAPI 3 support.
