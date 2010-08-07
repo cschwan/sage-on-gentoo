@@ -2,6 +2,12 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*symmetrica-2.0-r1 (07 Aug 2010)
+
+  07 Aug 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
+  +symmetrica-2.0-r1.ebuild:
+  Enabled use of ccache and removed static library
+
   08 Jul 2010; François Bissey <f.r.bissey@massey.ac.nz>
   symmetrica-2.0.ebuild, files/makefile:
   Fix for mltilib-strict. Move to EAPI 3.
