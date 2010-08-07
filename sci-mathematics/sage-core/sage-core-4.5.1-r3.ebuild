@@ -217,6 +217,8 @@ src_prepare() {
 	sed -i "s:\.\./\.\./\.\./\.\./devel/sage/sage:..:g" \
 		sage/numerical/mip_glpk.pyx || die "failed to patch mip_glpk.pyx"
 
+	# Ticket #5155:
+
 	# save gap_stamp to directory where sage is able to write
 	sed -i "s:GAP_STAMP = '%s/local/bin/gap_stamp'%SAGE_ROOT:GAP_STAMP = '%s/gap_stamp'%DOT_SAGE:g" \
 		sage/interfaces/gap.py || die "patch to patch gap interface"
@@ -225,7 +227,7 @@ src_prepare() {
 	epatch "${FILESDIR}"/${PN}-4.5.1-fix-qepcad-path.patch
 
 	# fix save path (for testing only)
-	sed -i "s:save(w,'test'):save(w,SAGE_TMP+'test'):g" \
+	sed -i "s:save(w,'test'):save(w,tmp_filename()):g" \
 		sage/combinat/words/morphism.py || die "failed to patch path for save"
 
 	# make sure line endings are unix ones so as not to confuse python-2.6.5
