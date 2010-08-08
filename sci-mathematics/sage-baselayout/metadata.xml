@@ -6,7 +6,8 @@
 		<email></email>
 	</maintainer>
 	<use>
-	<flag name='testsuite'>If activated installs scripts to enable testing of
-	Sage</flag>
+		<flag name='testsuite'>If activated installs scripts to enable testing
+		of Sage</flag>
+		<flag name='X'>Installs icon and desktop file</flag>
 	</use>
 </pkgmetadata>

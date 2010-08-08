@@ -2,6 +2,15 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*sage-baselayout-4.5.2 (08 Aug 2010)
+
+  08 Aug 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
+  +sage-baselayout-4.5.2.ebuild,
+  +files/sage-baselayout-4.5.2-fix-SAGE_LOCAL.patch, +files/sage.svg.bz2,
+  metadata.xml:
+  Version bump - baselayout now installs .desktop file which used to be
+  installed by sage
+
 *sage-baselayout-4.5.1 (31 Jul 2010)
 
   31 Jul 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
