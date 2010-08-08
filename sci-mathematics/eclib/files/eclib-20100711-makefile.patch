@@ -1,0 +1,66 @@
+--- Makefile.orig	2010-03-01 13:08:27.000000000 +1300
++++ Makefile	2010-08-08 11:37:44.204698416 +1200
+@@ -5,7 +5,9 @@
+ CXX      ?= g++ -g
+ # PICFLAG -- set to -fPIC to also have the option to build shared libraries (position independent code)
+ # This is only needed on linux.
+-OPTFLAG  ?=  $(PICFLAG) -g -O2 -DNEW_OP_ORDER -DUSE_PARI_FACTORING
++CXXFLAGS ?=-g -O2
++PICFLAG  ?=-fPIC
++OPTFLAG= $(CXXFLAGS) -DNEW_OP_ORDER -DUSE_PARI_FACTORING
+ 
+ # default settings
+ PARI_PREFIX ?= /usr/local
+@@ -21,7 +23,7 @@
+ # these paths are relative to the current path of the Makefile it is included from
+ INCDIR = ../include
+ LIBDIR = ../lib
+-BINDIR = .
++BINDIR = ../bin
+ 
+ 
+ 
+@@ -53,6 +55,7 @@
+ dirs: 
+ 	mkdir -p include
+ 	mkdir -p lib
++	mkdir -p bin
+ 
+ dylib:
+ 	cd procs && ${MAKE} install_dylib && ${MAKE} tests progs
+@@ -72,7 +75,7 @@
+ 	cd qrank && ${MAKE} install_dll && ${MAKE} tests progs
+ 	cd g0n && ${MAKE} install_dll && ${MAKE} tests progs
+ 
+-clean:
++allclean:
+ 	cd procs && ${MAKE} clean
+ 	cd qcurves && ${MAKE} clean
+ 	cd qrank && ${MAKE} clean
+@@ -80,7 +83,7 @@
+ 	cd lib && /bin/rm -f *.a *.so *.dylib *.def
+ 	cd include && /bin/rm -f *.h
+ 
+-veryclean:
++allveryclean:
+ 	cd procs && ${MAKE} veryclean
+ 	cd qcurves && ${MAKE} veryclean
+ 	cd qrank && ${MAKE} veryclean
+@@ -91,7 +94,7 @@
+ show:
+ 	echo $(OPTFLAG)
+ 
+-check: 
++allcheck: 
+ 	cd procs && ${MAKE} check
+ 	cd qcurves && ${MAKE} check
+ 	cd qrank && ${MAKE} check
+@@ -102,7 +105,7 @@
+ # Used for creating a shared library on OS X.
+ DYN_OPTS = -dynamiclib
+ # Used for creating a shared library on Linux/Unix
+-SO_OPTS = -fPIC --shared
++SO_OPTS = $(PICFLAG) --shared
+ # Used for creating a shared library on Cygwin:
+ DLL_OPTS = -shared
+ 

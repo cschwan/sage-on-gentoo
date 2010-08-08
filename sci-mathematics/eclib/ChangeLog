@@ -2,6 +2,17 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*eclib-20100711 (08 Aug 2010)
+
+  08 Aug 2010; François Bissey <f.r.bissey@massey.ac.nz>
+  +eclib-20100711.ebuild, +files/eclib-20100711-g0n_makefile.patch,
+  +files/eclib-20100711-makefile.dynamic.patch,
+  +files/eclib-20100711-makefile.patch,
+  +files/eclib-20100711-procs_makefile.patch,
+  +files/eclib-20100711-qcurves_makefile.patch,
+  +files/eclib-20100711-qrank_makefile.patch:
+  revbump for sage-4.5.2?
+
   03 Aug 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
   -eclib-20080310_p10.ebuild, eclib-20080310_p10-r1.ebuild,
   eclib-20080310_p10-r2.ebuild:
