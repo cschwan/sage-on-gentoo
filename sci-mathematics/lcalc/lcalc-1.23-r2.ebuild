@@ -6,10 +6,11 @@ EAPI="3"
 
 inherit eutils multilib
 
-DESCRIPTION="A program for calculating with L-functions"
-HOMEPAGE="http://pmmac03.math.uwaterloo.ca/~mrubinst/L_function_public/CODE/"
 MY_PN="L"
 MY_P="${MY_PN}-${PV}"
+
+DESCRIPTION="A program for calculating with L-functions"
+HOMEPAGE="http://pmmac03.math.uwaterloo.ca/~mrubinst/L_function_public/CODE/"
 SRC_URI="http://pmmac03.math.uwaterloo.ca/~mrubinst/L_function_public/CODE/${MY_P}.tar.gz"
 
 LICENSE="GPL-2"
@@ -47,7 +48,6 @@ src_prepare() {
 
 	if ( use pari || use pari24 ) ; then
 		export PARI_DEFINE=-DINCLUDE_PARI
-		export PREPROCESSOR_DEFINE=-DUSE_LONG_DOUBLE
 	fi
 }
 
