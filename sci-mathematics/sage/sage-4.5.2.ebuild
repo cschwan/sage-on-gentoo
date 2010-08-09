@@ -20,9 +20,6 @@ SLOT="0"
 KEYWORDS="~amd64 ~ppc ~x86"
 IUSE="examples latex testsuite X"
 
-# TODO: is cython RDEPEND ?
-# TODO: there is only a test file which imports rpy: stats/test.py
-# TODO: check if use flags are necessary
 DEPEND="|| ( =dev-lang/python-2.6.4-r99
 	=dev-lang/python-2.6.5-r99 )
 	dev-libs/gmp
@@ -102,21 +99,16 @@ RDEPEND="${CDEPEND}
 	examples? ( ~sci-mathematics/sage-examples-${PV} )
 	latex? ( ~sci-mathematics/sage-latex-2.2.5 )
 	testsuite? (
+		~sci-mathematics/sage-doc-${PV}[html]
 		~sci-mathematics/sage-examples-${PV}
 	)"
 
-# TODO: add:
-# 		~sci-mathematics/sage-doc-${PV}[html]
+# TODO: is cython RDEPEND ?
+# TODO: there is only a test file which imports rpy: stats/test.py
+# TODO: check if use flags are necessary
 
 # TODO: Are these DEPS ? :
 # - >=sci-libs/factory-3.1.1
-
-# Removed DEPS:
-# - >=dev-python/imaging-1.1.6
-# - dev-python/sqlalchemy[sqlite]
-# - java? ( >=virtual/jre-1.6 )"
-# - >=app-arch/bzip2-1.0.5
-# -
 
 src_prepare() {
 	# ATLAS independence
