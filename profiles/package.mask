@@ -5,3 +5,6 @@ sci-mathematics/pari:3
 =sci-mathematics/eclib-20080310_p10-r2
 # Ongoing work there, do not touch before it has been properly tested.
 =sci-chemistry/jmol-11.8.25
+# Unmaske this when sage requires it - it has positive review.
+=sci-mathematics/eclib-20100711
+
