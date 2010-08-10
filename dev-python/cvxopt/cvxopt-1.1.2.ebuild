@@ -7,7 +7,7 @@ EAPI="2"
 PYTHON_DEPEND="2:2.5"
 PYTHON_MODNAME="cvxopt"
 
-inherit distutils
+inherit distutils eutils
 
 DESCRIPTION="A Python Package for Convex Optimization"
 HOMEPAGE="http://abel.ee.ucla.edu/cvxopt"
@@ -31,6 +31,8 @@ RDEPEND="${DEPEND}"
 S="${WORKDIR}"/${P}/src
 
 src_prepare(){
+	epatch "${FILESDIR}"/${P}-headers.patch
+
 	if use gsl ; then
 		sed -i "s:BUILD_GSL = 0:BUILD_GSL = 1:" setup.py || die "sed failed"
 	fi

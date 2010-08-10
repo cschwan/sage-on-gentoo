@@ -2,6 +2,11 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  10 Aug 2010; François Bissey <f.r.bissey@massey.ac.nz>
+  cvxopt-1.1.2.ebuild, +files/cvxopt-1.1.2-headers.patch:
+  Patch cvxopt-1.1.2 - see
+  http://trac.sagemath.org/sage_trac/ticket/6456#comment:82
+
   18 Jul 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
   cvxopt-0.9.ebuild, cvxopt-1.1.2.ebuild:
   Replaced NEED_PYTHON with PYTHON_DEPEND because its now deprecated
