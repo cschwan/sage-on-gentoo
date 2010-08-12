@@ -87,3 +87,25 @@
      err = call(s, shell=True)
  
      # Check the process exit code that sage-doctest returns
+--- sage-notebook.orig	2010-08-12 16:59:01.672841664 +0000
++++ sage-notebook	2010-08-12 16:59:45.491842711 +0000
+@@ -2,7 +2,7 @@
+ 
+ import os, sys, socket
+ 
+-print open(os.environ['SAGE_ROOT'] + '/local/bin/sage-banner').read()
++print open(os.environ['SAGE_LOCAL'] + '/bin/sage-banner').read()
+ 
+ print "Please wait while the Sage Notebook server starts..."
+ 
+--- sage-notebook-insecure.orig	2010-08-12 16:59:18.404841594 +0000
++++ sage-notebook-insecure	2010-08-12 16:59:57.045842572 +0000
+@@ -2,7 +2,7 @@
+ 
+ import os, sys, socket
+ 
+-print open(os.environ['SAGE_ROOT'] + '/local/bin/sage-banner').read()
++print open(os.environ['SAGE_LOCAL'] + '/bin/sage-banner').read()
+ 
+ print "Please wait while the Sage Notebook server starts..."
+ 

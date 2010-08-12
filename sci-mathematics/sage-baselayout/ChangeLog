@@ -2,6 +2,10 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  12 Aug 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
+  files/sage-baselayout-4.5.2-fix-SAGE_LOCAL.patch:
+  Additional SAGE_LOCAL fixes in sage-notebook / -insecure
+
 *sage-baselayout-4.5.2 (08 Aug 2010)
 
   08 Aug 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
