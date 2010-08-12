@@ -4,7 +4,7 @@
 
 EAPI="3"
 
-inherit eutils
+inherit eutils toolchain-funcs
 
 MY_P="sage_scripts-${PV}"
 
@@ -90,6 +90,10 @@ src_install() {
 		dobin sage-cachegrind sage-callgrind sage-massif sage-omega \
 			sage-valgrind || die
 	fi
+
+	# install files for sage/misc/inline_fortran.py
+	dobin sage-g77_shared || die
+	dosym $(tc-getFC) /usr/bin/sage_fortran || die
 
 	insinto /usr/bin
 	doins *doctest.py ipy_profile_sage.py || die
