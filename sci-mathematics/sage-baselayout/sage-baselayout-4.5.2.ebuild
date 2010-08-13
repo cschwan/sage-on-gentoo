@@ -58,6 +58,9 @@ src_prepare() {
 	sed -i "s:\"\$SAGE_ROOT\"/sage:\"\$SAGE_LOCAL\"/bin/sage:g" \
 		sage-maketest || die "failed to patch SAGE_LOCAL path"
 
+	sed -i "s:sage_fortran:$(tc-getFC):g" sage-g77_shared \
+		|| die "failed to patch fortran compiler path"
+
 	# TODO: if USE=debug/testsuite, remove corresponding options
 
 	rm ipython/*pyc || die "failed to remove compiled python files"
@@ -91,9 +94,8 @@ src_install() {
 			sage-valgrind || die
 	fi
 
-	# install files for sage/misc/inline_fortran.py
+	# install file for sage/misc/inline_fortran.py
 	dobin sage-g77_shared || die
-	dosym $(tc-getFC) /usr/bin/sage_fortran || die
 
 	insinto /usr/bin
 	doins *doctest.py ipy_profile_sage.py || die
