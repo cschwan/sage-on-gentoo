@@ -2,6 +2,10 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  13 Aug 2010; François Bissey <f.r.bissey@massey.ac.nz>
+  singular-3.1.1.4.ebuild, +files/singular-3.1.1.4-parrallelmake.patch:
+  Parallel make get respect at last.
+
   30 Jul 2010; François Bissey <f.r.bissey@massey.ac.nz>
   singular-3.1.1.4.ebuild:
   Revert some useless fiddling I done last night.

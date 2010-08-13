@@ -53,6 +53,7 @@ src_prepare () {
 #	epatch "${FILESDIR}"/${PN}-3.1.0-glibc-2.10.patch
 	epatch "${FILESDIR}"/${PN}-3.0.4.4-nostrip.patch
 	epatch "${FILESDIR}"/${PN}-3.1.1.3-soname.patch
+	epatch "${FILESDIR}"/${P}-parrallelmake.patch
 
 	sed -i \
 		-e "/CXXFLAGS/ s/--no-exceptions//g" \
@@ -92,10 +93,10 @@ src_configure() {
 }
 
 src_compile() {
-	emake -j1 || die "emake failed"
+	emake || die "emake failed"
 
 	if (use libsingular || use test ) ; then
-		emake -j1 libsingular || die "emake libsingular failed"
+		emake libsingular || die "emake libsingular failed"
 	fi
 
 	if use emacs; then
@@ -106,7 +107,7 @@ src_compile() {
 
 src_test() {
 	# Tests fail to link -lsingular, upstream ticket #243
-	emake -j1 test || die "tests failed"
+	emake test || die "tests failed"
 }
 
 src_install () {
@@ -123,7 +124,7 @@ src_install () {
 
 	if use libsingular; then
 		cd "${S}"
-		emake -j1 install-libsingular || die "failed to put libsingular in the right location"
+		emake install-libsingular || die "failed to put libsingular in the right location"
 		cd "${S}"/build/lib
 		dolib.so libsingular.so."${SOSUFFIX}"
 		dosym libsingular.so."${SOSUFFIX}" /usr/$(get_libdir)/libsingular.so \
