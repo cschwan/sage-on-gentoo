@@ -1,0 +1,83 @@
+#!/bin/bash
+
+function print_help() {
+	cat 1>&2 <<-EOF
+		Usage: $(basename $0) [options]
+		  options:
+		    -h --help      print help text
+		    -l --long      include tests marked with "# long"
+		    -o --optional  include tests marked with "# optional"
+		    -p --parallel  number of test run parallel
+	EOF
+
+	exit 0
+}
+
+function error() {
+	echo "error: $1"
+	exit 1
+}
+
+function is_installed() {
+	portageq best_version "${ROOT}" $1
+}
+
+function option_append() {
+	options=( ${options[@]} $@ )
+}
+
+TESTDIRS=(
+	devel/sage/doc/common
+	devel/sage/doc/en
+	devel/sage/doc/fr
+	devel/sage/sage
+)
+DIR="$(pwd)"
+ROOT=/
+MY_SAGE_ROOT=/usr/share/sage
+
+PARAMS=$(getopt -o "h,l,o,p:" -l "help,long,optional,parallel:" -a -n "$(basename $0)" -- "$@")
+
+eval set -- "${PARAMS}"
+
+while true; do
+	case "$1" in
+	-h|--help)     print_help;                   shift  ;;
+	-l|--long)     declare -r TEST_LONG=yes;     shift  ;;
+	-o|--optional) declare -r TEST_OPTIONAL=yes; shift ;;
+	-p|--parallel) NUM_THREADS=$2;               shift 2;;
+	--)                                          shift; break;;
+	*) error "unknown option: $1";;
+	esac
+done
+
+if [[ -n ${NUM_THREADS} ]]; then
+	option_append -tp ${NUM_THREADS}
+else
+	option_append -t
+fi
+
+option_append -sagenb
+
+if [[ -n ${TEST_LONG} ]]; then
+	option_append -long
+fi
+
+if [[ -n ${TEST_OPTIONAL} ]]; then
+	option_append -optional
+fi
+
+(
+
+cd "${MY_SAGE_ROOT}"
+
+if [[ -z $(is_installed sage[testsuite]) ]]; then
+	error "sage is not compiled with USE=testsuite"
+fi
+
+sage-starts >/dev/null \
+	|| error "Sage did not start"
+
+sage "${options[@]}" "${TESTDIRS[@]}" 2>&1
+
+) | tee "${DIR}"/test.log
