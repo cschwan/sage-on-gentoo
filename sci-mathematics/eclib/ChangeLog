@@ -2,6 +2,11 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  14 Aug 2010; François Bissey <f.r.bissey@massey.ac.nz>
+  -eclib-20080310_p10-r2.ebuild:
+  Remove experimental pari-2.4 version. Newest eclib is pari-2.4 safe and
+  will be used in sage before pari-2.4 ships.
+
 *eclib-20100711 (08 Aug 2010)
 
   08 Aug 2010; François Bissey <f.r.bissey@massey.ac.nz>

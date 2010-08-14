@@ -1,10 +1,9 @@
+# Unmask this and change src_uri when sage switch to it. sage-4.6?
 sci-mathematics/pari:3
-# This is broken - do not use.
-=sci-mathematics/genus2reduction-0.3_p6-r1
-# Mask for now, keep it for when pari-2.4 goes live.
-=sci-mathematics/eclib-20080310_p10-r2
+# This needs to be unmasked with pari:3
+=sci-mathematics/genus2reduction-0.3_p7
 # Ongoing work there, do not touch before it has been properly tested.
 =sci-chemistry/jmol-11.8.25
-# Unmaske this when sage requires it - it has positive review.
+# Unmask this when sage requires it - it has positive review. It is pari:3 ready.
 =sci-mathematics/eclib-20100711
 
