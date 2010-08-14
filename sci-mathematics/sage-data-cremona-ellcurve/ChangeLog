@@ -1,0 +1,10 @@
+# ChangeLog for sci-mathematics/sage-data-cremona-ellcurve
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: $
+
+*sage-data-cremona-ellcurve-20071019_p0 (14 Aug 2010)
+
+  14 Aug 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
+  +sage-data-cremona-ellcurve-20071019_p0.ebuild, +metadata.xml:
+  Initial import
+
