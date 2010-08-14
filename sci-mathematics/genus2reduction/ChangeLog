@@ -2,6 +2,13 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*genus2reduction-0.3_p8 (14 Aug 2010)
+
+  14 Aug 2010; François Bissey <f.r.bissey@massey.ac.nz>
+  -genus2reduction-0.3_p7.ebuild, +genus2reduction-0.3_p8.ebuild,
+  -files/genus2reduction-0.3.p7.patch, +files/genus2reduction-0.3.p8.patch:
+  revbump to newest pari-2.4 ready package.
+
 *genus2reduction-0.3_p7 (14 Aug 2010)
 
   14 Aug 2010; François Bissey <f.r.bissey@massey.ac.nz>
