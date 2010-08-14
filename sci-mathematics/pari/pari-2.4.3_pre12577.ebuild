@@ -9,7 +9,7 @@ DESCRIPTION="A software package for computer-aided number theory"
 HOMEPAGE="http://pari.math.u-bordeaux.fr/"
 
 SRC_COM="http://pari.math.u-bordeaux.fr/pub/${PN}"
-SRC_URI="http://www.warwick.ac.uk/staff/J.E.Cremona/pari-2.4.3.svn.p5.spkg -> ${P}.tar.bz2
+SRC_URI="http://cage.ugent.be/~jdemeyer/sage/pari-2.4.3.svn-12577.spkg -> ${P}.tar.bz2
 	data? (	${SRC_COM}/packages/elldata.tgz
 			${SRC_COM}/packages/galdata.tgz
 			${SRC_COM}/packages/seadata.tgz
@@ -29,7 +29,7 @@ RDEPEND="sys-libs/readline
 DEPEND="${RDEPEND}
 	doc? ( virtual/latex-base )"
 
-S="${WORKDIR}/pari-2.4.3.svn.p5/src"
+S="${WORKDIR}/pari-2.4.3.svn-12577/src"
 
 get_compile_dir() {
 	pushd "${S}/config" >& /dev/null
@@ -48,7 +48,11 @@ src_prepare() {
 	fi
 	epatch "${FILESDIR}/${PN}"-2.3.2-strip.patch
 	epatch "${FILESDIR}/${PN}"-2.3.2-ppc-powerpc-arch-fix.patch
-	epatch "${FILESDIR}/${P}"-errhandling.patch
+	# sage error handling patch
+	epatch "${FILESDIR}/${PN}"-2.4.3-errhandling.patch
+	# Fix for PARI bug 1079 (jdemeyer: temporary until this is fixed upstream)
+	epatch "${FILESDIR}"/1079_part1.patch
+	epatch "${FILESDIR}"/1079_part2.patch
 
 	# disable default building of docs during install
 	sed -i \
@@ -65,9 +69,8 @@ src_prepare() {
 		-e 's:xdvi -paper 29.7x21cm:xdg-open:' \
 		doc/gphelp.in || die "Failed to fix doc dir"
 
-	# fix gp compilation - thanks dilfridge for the syntax.
 	# slot everything, remove tex2mail to avoid clash with 2.3
-	epatch "${FILESDIR}/${P}"-MakefileSH.patch
+	epatch "${FILESDIR}/${PN}"-2.4.3-MakefileSH.patch
 	sed -i "s:-lpari:-lpari24:" Configure || die "Failed to slot in Configure"
 }
 
@@ -103,11 +106,6 @@ src_compile() {
 	# aliasing is a known issue on amd64, it probably work on x86 by sheer luuck.
 	emake ${mymake} CFLAGS="${CFLAGS} -fno-strict-aliasing -DGCC_INLINE -fPIC" lib-dyn \
 		|| die "Building shared library failed!"
-
-#	if use static; then
-#		emake ${mymake} CFLAGS="${CFLAGS} -DGCC_INLINE" lib-sta \
-#			|| die "Building static library failed!"
-#	fi
 
 	emake ${mymake} CFLAGS="${CFLAGS} -DGCC_INLINE" gp ../gp \
 		|| die "Building executables failed!"
