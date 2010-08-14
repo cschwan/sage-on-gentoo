@@ -1,0 +1,10 @@
+# ChangeLog for sci-mathematics/sage-data-odlyzko-zeta
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: $
+
+*sage-data-odlyzko-zeta-1 (14 Aug 2010)
+
+  14 Aug 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
+  +sage-data-odlyzko-zeta-1.ebuild, +metadata.xml:
+  Initial import
+
