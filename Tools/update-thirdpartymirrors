@@ -1,0 +1,18 @@
+#!/bin/env python
+# -*- coding: utf-8 -*-
+
+from urllib import urlopen
+
+mirrorfile = open('../profiles/thirdpartymirrors', 'w')
+mirrorfile.write('sage\t\t')
+
+servers = eval(urlopen('http://www.sagemath.org/mirror_list').read())
+
+# write first entry without space
+mirrorfile.write(servers.pop(0))
+
+for server in servers:
+	mirrorfile.write(' ' + server)
+
+mirrorfile.write('\n')
+mirrorfile.close()
