@@ -1,0 +1,36 @@
+# ChangeLog for dev-python/networkx
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-python/networkx/ChangeLog,v 1.5 2010/06/01 15:15:54 josejx Exp $
+
+*networkx-1.2 (15 Aug 2010)
+
+  15 Aug 2010; François Bissey <f.r.bissey@massey.ac.nz>
+  +networkx-1.2.ebuild, +metadata.xml:
+  Initial import of networkx 1.2 in the overlay for sage-4.5.3
+
+  01 Jun 2010; Joseph Jezak <josejx@gentoo.org> networkx-1.0.1.ebuild,
+  networkx-1.1.ebuild:
+  Marked ~ppc for bug #317225.
+
+*networkx-1.1 (28 Apr 2010)
+
+  28 Apr 2010; Sébastien Fabbro <bicatali@gentoo.org>
+  -networkx-0.99.ebuild, +networkx-1.1.ebuild:
+  Version bump
+
+*networkx-1.0.1 (15 Jan 2010)
+
+  15 Jan 2010; Sébastien Fabbro <bicatali@gentoo.org>
+  +networkx-1.0.1.ebuild:
+  Version bump
+
+  19 Aug 2009; Sébastien Fabbro <bicatali@gentoo.org> networkx-0.99.ebuild:
+  Added dependendcies for the examples, closing bug #276075
+
+*networkx-0.99 (28 Feb 2009)
+
+  28 Feb 2009; Sébastien Fabbro <bicatali@gentoo.org>
+  +files/networkx-0.99-setup.py.patch, +metadata.xml, +networkx-0.99.ebuild:
+  Initial import, see bug #120794. Thanks ibm, Marek and Tim Cera for their
+  contributions
+
