@@ -237,7 +237,7 @@ src_prepare() {
 	epatch "${FILESDIR}"/${PN}-4.5.1-fix-qepcad-path.patch
 
 	# fix save path (for testing only)
-	sed -i "s:save(w,'test'):save(w,tmp_filename()):g" \
+	sed -i "s:save(w,'test'):save(w,tmp_filename('test')):g" \
 		sage/combinat/words/morphism.py || die "failed to patch path for save"
 
 	# make sure line endings are unix ones so as not to confuse python-2.6.5
@@ -248,6 +248,34 @@ src_prepare() {
 
 	# replace SAGE_ROOT/local with SAGE_LOCAL
 	epatch "${FILESDIR}"/${PN}-4.5.1-fix-SAGE_LOCAL.patch
+
+	# patch path for saving sessions
+	sed -i "s:save_session('tmp_f', :save_session(tmp_f, :g" \
+		sage/misc/session.pyx || die "failed to patch session path"
+
+	# patch lie library path
+	sed -i "s:open(SAGE_LOCAL + 'lib/lie/INFO\.0'):open(SAGE_LOCAL + '/lib/lie/INFO.0'):g" \
+		sage/interfaces/lie.py || die "failed to patch lie library path"
+
+	# TODO: the following may be well for tests but not for the user
+
+	# patch path where graphics are saved
+	sed -i "s:'sage%d\.%s'%(i,ext):'%s/sage%d.%s'%(SAGE_TMP,i,ext):g" \
+		sage/misc/misc.py || die "failed to patch graphics_filename"
+
+	# fix test paths
+	sed -i \
+		-e "s:'my_animation.gif':tmp_filename('my_animation')+'.gif':g" \
+		-e "s:'wave.gif':tmp_filename('wave')+'.gif':g" \
+		-e "s:'wave0.sobj':tmp_filename('wave0')+'.sobj':g" \
+		-e "s:'wave1.sobj':tmp_filename('wave1')+'.sobj':g" \
+		sage/plot/animate.py
+
+	# fix fortran stuff
+	sed -i \
+		-e "s:#name = tmp_dir():name = tmp_dir():" \
+		-e "s:name = 'fortran_module_%d'%count:#name = 'fortran_module_%d'%count:" \
+		sage/misc/inline_fortran.py || die "failed to patch fortran module path"
 
 	# do not forget to run distutils
 	distutils_src_prepare
