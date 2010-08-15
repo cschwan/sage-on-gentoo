@@ -51,7 +51,7 @@ src_prepare() {
 		export SAGE_TESTDIR="\${DOT_SAGE}/tmp"
 	EOF
 
-	epatch "${FILESDIR}"/${PN}-4.5.1-remove-useless-options.patch
+	epatch "${FILESDIR}"/${PN}-4.5.2-gentooify-startup-script.patch
 	epatch "${FILESDIR}"/${PN}-4.5.1-remove-sage-location.patch
 	epatch "${FILESDIR}"/${PN}-4.5.2-fix-SAGE_LOCAL.patch
 
