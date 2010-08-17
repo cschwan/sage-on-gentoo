@@ -20,13 +20,12 @@ SLOT="0"
 KEYWORDS="~amd64 ~ppc ~x86"
 IUSE="examples latex testsuite X"
 
-DEPEND="|| ( =dev-lang/python-2.6.4-r99
+CDEPEND="|| ( =dev-lang/python-2.6.4-r99
 	=dev-lang/python-2.6.5-r99 )
 	dev-libs/gmp
 	>=dev-libs/mpfr-2.4.2
 	>=dev-libs/ntl-5.5.2
 	>=dev-lisp/ecls-10.2.1[-unicode]
-	=dev-python/cython-0.12*
 	~dev-python/numpy-1.3.0[lapack]
 	>=sci-mathematics/eclib-20080310_p10
 	>=sci-mathematics/ecm-6.2.1
@@ -57,6 +56,10 @@ DEPEND="|| ( =dev-lang/python-2.6.4-r99
 	sys-libs/zlib
 	virtual/cblas"
 
+DEPEND="${CDEPEND}
+	=dev-python/cython-0.12*
+	>=sci-libs/factory-3.1.1"
+
 RDEPEND="${CDEPEND}
 	>=dev-lang/R-2.10.1[lapack,readline]
 	>=dev-python/cvxopt-0.9
@@ -71,6 +74,7 @@ RDEPEND="${CDEPEND}
 	>=dev-python/python-gnutls-1.1.4
 	>=dev-python/rpy-2.0.6
 	>=dev-python/sphinx-0.6.3
+	dev-python/sqlalchemy
 	~dev-python/sympy-0.6.6
 	>=media-gfx/tachyon-0.98
 	>=net-zope/zodb-3.7.0
@@ -103,12 +107,7 @@ RDEPEND="${CDEPEND}
 		~sci-mathematics/sage-examples-${PV}
 	)"
 
-# TODO: is cython RDEPEND ?
-# TODO: there is only a test file which imports rpy: stats/test.py
 # TODO: check if use flags are necessary
-
-# TODO: Are these DEPS ? :
-# - >=sci-libs/factory-3.1.1
 
 src_prepare() {
 	# ATLAS independence
