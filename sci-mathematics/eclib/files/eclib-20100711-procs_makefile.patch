@@ -1,5 +1,5 @@
 --- procs/Makefile.orig	2010-03-01 13:14:52.000000000 +1300
-+++ procs/Makefile	2010-08-08 11:38:49.566699535 +1200
++++ procs/Makefile	2010-08-17 23:14:34.783937237 +1200
 @@ -19,7 +19,8 @@
  LIBBASE = libjcntl
  NTLCFLAGS = -DNTL_ALL -I$(NTLINCDIR)
@@ -104,52 +104,25 @@
  	rm -f procs.shar procs.shar.Z procs.shar.gz
  	shar -i files -o procs.shar
  	gzip procs.shar
-@@ -104,136 +129,136 @@
+@@ -104,7 +129,7 @@
  	tar -cvf procs.tar -I files
  	gzip procs.tar
  
 -check: $(TESTS)
 +check: tests
  	rm -f PRIMES t 1
--	./vectest1 < vectest.in >  t && diff t vectest.out
--	./vectest2 < vectest.in >  t && diff t vectest.out
--	./mattest1 < mattest.in >  t && diff t mattest.out
--	./mattest2 < mattest.in >  t && diff t mattest.out
--	./space1 < space.in > t && diff t space.out
--	./space2 < space.in > t && diff t space.out
--	./svectest1 < svectest.in > t && diff t svectest.out
--	./svectest2 < svectest.in > t && diff t svectest.out
--	./smattest < smattest.in > t && diff t smattest.out
--	./mvectest < mvectest.in > t && diff t mvectest.out
--	./mmattest < mmattest.in > t && diff t mmattest.out
--	./mspace < mspace.in > t && diff t mspace.out
--	./rattest < rattest.in > t && diff t rattest.out
--	./bigrattest < bigrattest.in > t && diff t bigrattest.out
--	./ptest < ptest.in > t && diff t ptest.out
--	./mptest < mptest.in > t && diff t mptest.out
+ 	./vectest1 < vectest.in >  t && diff t vectest.out
+ 	./vectest2 < vectest.in >  t && diff t vectest.out
+@@ -122,7 +147,7 @@
+ 	./bigrattest < bigrattest.in > t && diff t bigrattest.out
+ 	./ptest < ptest.in > t && diff t ptest.out
+ 	./mptest < mptest.in > t && diff t mptest.out
 -	./tconic < tconic.in > t && diff t tconic.out
--	./tleg < tleg.in > t && diff t tleg.out
-+	$(BINDIR)/vectest1 < vectest.in >  t && diff t vectest.out
-+	$(BINDIR)/vectest2 < vectest.in >  t && diff t vectest.out
-+	$(BINDIR)/mattest1 < mattest.in >  t && diff t mattest.out
-+	$(BINDIR)/mattest2 < mattest.in >  t && diff t mattest.out
-+	$(BINDIR)/space1 < space.in > t && diff t space.out
-+	$(BINDIR)/space2 < space.in > t && diff t space.out
-+	$(BINDIR)/svectest1 < svectest.in > t && diff t svectest.out
-+	$(BINDIR)/svectest2 < svectest.in > t && diff t svectest.out
-+	$(BINDIR)/smattest < smattest.in > t && diff t smattest.out
-+	$(BINDIR)/mvectest < mvectest.in > t && diff t mvectest.out
-+	$(BINDIR)/mmattest < mmattest.in > t && diff t mmattest.out
-+	$(BINDIR)/mspace < mspace.in > t && diff t mspace.out
-+	$(BINDIR)/rattest < rattest.in > t && diff t rattest.out
-+	$(BINDIR)/bigrattest < bigrattest.in > t && diff t bigrattest.out
-+	$(BINDIR)/ptest < ptest.in > t && diff t ptest.out
-+	$(BINDIR)/mptest < mptest.in > t && diff t mptest.out
 +	$(BINDIR)/tconic < tconic.in > t && diff t tconic.out
-+	$(BINDIR)/tleg < tleg.in > t && diff t tleg.out
+ 	./tleg < tleg.in > t && diff t tleg.out
  	./thilbert < thilbert.in > t && diff t thilbert.out
  	./rcubic < rcubic.in > t && diff t rcubic.out
- 	./lcubic < lcubic.in > t && diff t lcubic.out
+@@ -130,110 +155,110 @@
  	./tp2points < tp2points.in > t && diff t tp2points.out
  	rm -f PRIMES t 1
  
@@ -158,28 +131,28 @@
 -	$(CXX) -o $(BINDIR)/vectest1 vectest1$(OBJ_SUF).o vector$(OBJ_SUF).o arith$(OBJ_SUF).o interface$(OBJ_SUF).o $(LFLAGS)
 +vectest1: vectest.cc vector$(OBJ_SUF) arith$(OBJ_SUF) interface$(OBJ_SUF)
 +	$(CXX) $(CFLAGS) -DSCALAR_OPTION=1 vectest.cc -o vectest1$(OBJ_SUF)
-+	$(CXX) -o $(BINDIR)/vectest1 vectest1$(OBJ_SUF) vector$(OBJ_SUF) arith$(OBJ_SUF) interface$(OBJ_SUF) $(LFLAGS)
++	$(CXX) $(LDFLAGS) -o vectest1 vectest1$(OBJ_SUF) vector$(OBJ_SUF) arith$(OBJ_SUF) interface$(OBJ_SUF) $(LFLAGS)
  
 -vectest2: vectest.cc vector$(OBJ_SUF).o arith$(OBJ_SUF).o interface$(OBJ_SUF).o
 -	$(CXX) $(CFLAGS) -DSCALAR_OPTION=2 vectest.cc -o vectest2$(OBJ_SUF).o
 -	$(CXX) -o $(BINDIR)/vectest2 vectest2$(OBJ_SUF).o vector$(OBJ_SUF).o arith$(OBJ_SUF).o interface$(OBJ_SUF).o $(LFLAGS)
 +vectest2: vectest.cc vector$(OBJ_SUF) arith$(OBJ_SUF) interface$(OBJ_SUF)
 +	$(CXX) $(CFLAGS) -DSCALAR_OPTION=2 vectest.cc -o vectest2$(OBJ_SUF)
-+	$(CXX) -o $(BINDIR)/vectest2 vectest2$(OBJ_SUF) vector$(OBJ_SUF) arith$(OBJ_SUF) interface$(OBJ_SUF) $(LFLAGS)
++	$(CXX) $(LDFLAGS) -o vectest2 vectest2$(OBJ_SUF) vector$(OBJ_SUF) arith$(OBJ_SUF) interface$(OBJ_SUF) $(LFLAGS)
  
 -mattest1: mattest.cc matrix$(OBJ_SUF).o vector$(OBJ_SUF).o arith$(OBJ_SUF).o interface$(OBJ_SUF).o timer$(OBJ_SUF).o
 -	$(CXX) $(CFLAGS) -DSCALAR_OPTION=1 mattest.cc -o mattest1$(OBJ_SUF).o
 -	$(CXX) -o $(BINDIR)/mattest1 mattest1$(OBJ_SUF).o matrix$(OBJ_SUF).o vector$(OBJ_SUF).o arith$(OBJ_SUF).o interface$(OBJ_SUF).o timer$(OBJ_SUF).o $(LFLAGS)
 +mattest1: mattest.cc matrix$(OBJ_SUF) vector$(OBJ_SUF) arith$(OBJ_SUF) interface$(OBJ_SUF) timer$(OBJ_SUF)
 +	$(CXX) $(CFLAGS) -DSCALAR_OPTION=1 mattest.cc -o mattest1$(OBJ_SUF)
-+	$(CXX) -o $(BINDIR)/mattest1 mattest1$(OBJ_SUF) matrix$(OBJ_SUF) vector$(OBJ_SUF) arith$(OBJ_SUF) interface$(OBJ_SUF) timer$(OBJ_SUF) $(LFLAGS)
++	$(CXX) $(LDFLAGS) -o mattest1 mattest1$(OBJ_SUF) matrix$(OBJ_SUF) vector$(OBJ_SUF) arith$(OBJ_SUF) interface$(OBJ_SUF) timer$(OBJ_SUF) $(LFLAGS)
  
 -mattest2: mattest.cc matrix$(OBJ_SUF).o vector$(OBJ_SUF).o arith$(OBJ_SUF).o interface$(OBJ_SUF).o timer$(OBJ_SUF).o
 -	$(CXX) $(CFLAGS) -DSCALAR_OPTION=2 mattest.cc -o mattest2$(OBJ_SUF).o
 -	$(CXX) -o $(BINDIR)/mattest2 mattest2$(OBJ_SUF).o matrix$(OBJ_SUF).o vector$(OBJ_SUF).o arith$(OBJ_SUF).o interface$(OBJ_SUF).o timer$(OBJ_SUF).o $(LFLAGS)
 +mattest2: mattest.cc matrix$(OBJ_SUF) vector$(OBJ_SUF) arith$(OBJ_SUF) interface$(OBJ_SUF) timer$(OBJ_SUF)
 +	$(CXX) $(CFLAGS) -DSCALAR_OPTION=2 mattest.cc -o mattest2$(OBJ_SUF)
-+	$(CXX) -o $(BINDIR)/mattest2 mattest2$(OBJ_SUF) matrix$(OBJ_SUF) vector$(OBJ_SUF) arith$(OBJ_SUF) interface$(OBJ_SUF) timer$(OBJ_SUF) $(LFLAGS)
++	$(CXX) $(LDFLAGS) -o mattest2 mattest2$(OBJ_SUF) matrix$(OBJ_SUF) vector$(OBJ_SUF) arith$(OBJ_SUF) interface$(OBJ_SUF) timer$(OBJ_SUF) $(LFLAGS)
  
 -space1: space.cc subspace$(OBJ_SUF).o matrix$(OBJ_SUF).o vector$(OBJ_SUF).o arith$(OBJ_SUF).o interface$(OBJ_SUF).o
 -	$(CXX) $(CFLAGS) -DSCALAR_OPTION=1 space.cc -o space1$(OBJ_SUF).o
@@ -187,7 +160,7 @@
 -	 interface$(OBJ_SUF).o $(LFLAGS)
 +space1: space.cc subspace$(OBJ_SUF) matrix$(OBJ_SUF) vector$(OBJ_SUF) arith$(OBJ_SUF) interface$(OBJ_SUF)
 +	$(CXX) $(CFLAGS) -DSCALAR_OPTION=1 space.cc -o space1$(OBJ_SUF)
-+	$(CXX) -o $(BINDIR)/space1 space1$(OBJ_SUF) subspace$(OBJ_SUF) matrix$(OBJ_SUF) vector$(OBJ_SUF) arith$(OBJ_SUF) \
++	$(CXX) $(LDFLAGS) -o space1 space1$(OBJ_SUF) subspace$(OBJ_SUF) matrix$(OBJ_SUF) vector$(OBJ_SUF) arith$(OBJ_SUF) \
 +	 interface$(OBJ_SUF) $(LFLAGS)
  
 -space2: space.cc subspace$(OBJ_SUF).o matrix$(OBJ_SUF).o vector$(OBJ_SUF).o arith$(OBJ_SUF).o interface$(OBJ_SUF).o
@@ -196,14 +169,14 @@
 -	interface$(OBJ_SUF).o $(LFLAGS)
 +space2: space.cc subspace$(OBJ_SUF) matrix$(OBJ_SUF) vector$(OBJ_SUF) arith$(OBJ_SUF) interface$(OBJ_SUF)
 +	$(CXX) $(CFLAGS) -DSCALAR_OPTION=2 space.cc -o space2$(OBJ_SUF)
-+	$(CXX) -o $(BINDIR)/space2 space2$(OBJ_SUF) subspace$(OBJ_SUF) matrix$(OBJ_SUF) vector$(OBJ_SUF) arith$(OBJ_SUF) \
++	$(CXX) $(LDFLAGS) -o space2 space2$(OBJ_SUF) subspace$(OBJ_SUF) matrix$(OBJ_SUF) vector$(OBJ_SUF) arith$(OBJ_SUF) \
 +	interface$(OBJ_SUF) $(LFLAGS)
  
 -mvectest: mvectest$(OBJ_SUF).o mvector$(OBJ_SUF).o vector$(OBJ_SUF).o marith$(OBJ_SUF).o gpslave$(OBJ_SUF).o parifact$(OBJ_SUF).o arith$(OBJ_SUF).o compproc$(OBJ_SUF).o interface$(OBJ_SUF).o
 -	$(CXX) -o $(BINDIR)/mvectest mvectest$(OBJ_SUF).o mvector$(OBJ_SUF).o vector$(OBJ_SUF).o arith$(OBJ_SUF).o marith$(OBJ_SUF).o gpslave$(OBJ_SUF).o parifact$(OBJ_SUF).o  \
 -	compproc$(OBJ_SUF).o interface$(OBJ_SUF).o $(LFLAGS)
 +mvectest: mvectest$(OBJ_SUF) mvector$(OBJ_SUF) vector$(OBJ_SUF) marith$(OBJ_SUF) gpslave$(OBJ_SUF) parifact$(OBJ_SUF) arith$(OBJ_SUF) compproc$(OBJ_SUF) interface$(OBJ_SUF)
-+	$(CXX) -o $(BINDIR)/mvectest mvectest$(OBJ_SUF) mvector$(OBJ_SUF) vector$(OBJ_SUF) arith$(OBJ_SUF) marith$(OBJ_SUF) gpslave$(OBJ_SUF) parifact$(OBJ_SUF)  \
++	$(CXX) $(LDFLAGS) -o mvectest mvectest$(OBJ_SUF) mvector$(OBJ_SUF) vector$(OBJ_SUF) arith$(OBJ_SUF) marith$(OBJ_SUF) gpslave$(OBJ_SUF) parifact$(OBJ_SUF)  \
 +	compproc$(OBJ_SUF) interface$(OBJ_SUF) $(LFLAGS)
  
 -svectest1: svectest.cc svector$(OBJ_SUF).o vector$(OBJ_SUF).o arith$(OBJ_SUF).o interface$(OBJ_SUF).o
@@ -211,105 +184,105 @@
 -	$(CXX) -o $(BINDIR)/svectest1 svectest1$(OBJ_SUF).o svector$(OBJ_SUF).o vector$(OBJ_SUF).o arith$(OBJ_SUF).o interface$(OBJ_SUF).o $(LFLAGS)
 +svectest1: svectest.cc svector$(OBJ_SUF) vector$(OBJ_SUF) arith$(OBJ_SUF) interface$(OBJ_SUF)
 +	$(CXX) $(CFLAGS) -DSCALAR_OPTION=1 svectest.cc -o svectest1$(OBJ_SUF)
-+	$(CXX) -o $(BINDIR)/svectest1 svectest1$(OBJ_SUF) svector$(OBJ_SUF) vector$(OBJ_SUF) arith$(OBJ_SUF) interface$(OBJ_SUF) $(LFLAGS)
++	$(CXX) $(LDFLAGS) -o svectest1 svectest1$(OBJ_SUF) svector$(OBJ_SUF) vector$(OBJ_SUF) arith$(OBJ_SUF) interface$(OBJ_SUF) $(LFLAGS)
  
 -svectest2: svectest.cc svector$(OBJ_SUF).o vector$(OBJ_SUF).o arith$(OBJ_SUF).o interface$(OBJ_SUF).o
 -	$(CXX) $(CFLAGS) -DSCALAR_OPTION=2 svectest.cc -o svectest2$(OBJ_SUF).o
 -	$(CXX) -o $(BINDIR)/svectest2 svectest2$(OBJ_SUF).o svector$(OBJ_SUF).o vector$(OBJ_SUF).o arith$(OBJ_SUF).o interface$(OBJ_SUF).o $(LFLAGS)
 +svectest2: svectest.cc svector$(OBJ_SUF) vector$(OBJ_SUF) arith$(OBJ_SUF) interface$(OBJ_SUF)
 +	$(CXX) $(CFLAGS) -DSCALAR_OPTION=2 svectest.cc -o svectest2$(OBJ_SUF)
-+	$(CXX) -o $(BINDIR)/svectest2 svectest2$(OBJ_SUF) svector$(OBJ_SUF) vector$(OBJ_SUF) arith$(OBJ_SUF) interface$(OBJ_SUF) $(LFLAGS)
++	$(CXX) $(LDFLAGS) -o svectest2 svectest2$(OBJ_SUF) svector$(OBJ_SUF) vector$(OBJ_SUF) arith$(OBJ_SUF) interface$(OBJ_SUF) $(LFLAGS)
  
 -#svectest: svectest$(OBJ_SUF).o svec$(OBJ_SUF).o vector$(OBJ_SUF).o arith$(OBJ_SUF).o
 -#	$(CXX) -o $(BINDIR)/svectest svectest$(OBJ_SUF).o svec$(OBJ_SUF).o vector$(OBJ_SUF).o arith$(OBJ_SUF).o $(LFLAGS)
 +#svectest: svectest$(OBJ_SUF) svec$(OBJ_SUF) vector$(OBJ_SUF) arith$(OBJ_SUF)
-+#	$(CXX) -o $(BINDIR)/svectest svectest$(OBJ_SUF) svec$(OBJ_SUF) vector$(OBJ_SUF) arith$(OBJ_SUF) $(LFLAGS)
++#	$(CXX) $(LDFLAGS) -o $(BINDIR)/svectest svectest$(OBJ_SUF) svec$(OBJ_SUF) vector$(OBJ_SUF) arith$(OBJ_SUF) $(LFLAGS)
  
 -lintest: lintest$(OBJ_SUF).o linsyst$(OBJ_SUF).o linear$(OBJ_SUF).o
 -	$(CXX) -o $(BINDIR)/lintest lintest$(OBJ_SUF).o linsyst$(OBJ_SUF).o linear$(OBJ_SUF).o $(LFLAGS)
 +lintest: lintest$(OBJ_SUF) linsyst$(OBJ_SUF) linear$(OBJ_SUF)
-+	$(CXX) -o $(BINDIR)/lintest lintest$(OBJ_SUF) linsyst$(OBJ_SUF) linear$(OBJ_SUF) $(LFLAGS)
++	$(CXX) $(LDFLAGS) -o lintest lintest$(OBJ_SUF) linsyst$(OBJ_SUF) linear$(OBJ_SUF) $(LFLAGS)
  
 -mmattest: mmattest$(OBJ_SUF).o mmatrix$(OBJ_SUF).o matrix$(OBJ_SUF).o vector$(OBJ_SUF).o mvector$(OBJ_SUF).o arith$(OBJ_SUF).o marith$(OBJ_SUF).o gpslave$(OBJ_SUF).o parifact$(OBJ_SUF).o compproc$(OBJ_SUF).o interface$(OBJ_SUF).o
 -	$(CXX) -o $(BINDIR)/mmattest mmattest$(OBJ_SUF).o  mmatrix$(OBJ_SUF).o matrix$(OBJ_SUF).o vector$(OBJ_SUF).o \
 -	mvector$(OBJ_SUF).o arith$(OBJ_SUF).o marith$(OBJ_SUF).o gpslave$(OBJ_SUF).o parifact$(OBJ_SUF).o compproc$(OBJ_SUF).o interface$(OBJ_SUF).o $(LFLAGS)
 +mmattest: mmattest$(OBJ_SUF) mmatrix$(OBJ_SUF) matrix$(OBJ_SUF) vector$(OBJ_SUF) mvector$(OBJ_SUF) arith$(OBJ_SUF) marith$(OBJ_SUF) gpslave$(OBJ_SUF) parifact$(OBJ_SUF) compproc$(OBJ_SUF) interface$(OBJ_SUF)
-+	$(CXX) -o $(BINDIR)/mmattest mmattest$(OBJ_SUF)  mmatrix$(OBJ_SUF) matrix$(OBJ_SUF) vector$(OBJ_SUF) \
++	$(CXX) $(LDFLAGS) -o mmattest mmattest$(OBJ_SUF)  mmatrix$(OBJ_SUF) matrix$(OBJ_SUF) vector$(OBJ_SUF) \
 +	mvector$(OBJ_SUF) arith$(OBJ_SUF) marith$(OBJ_SUF) gpslave$(OBJ_SUF) parifact$(OBJ_SUF) compproc$(OBJ_SUF) interface$(OBJ_SUF) $(LFLAGS)
  
 -smattest: smattest$(OBJ_SUF).o smatrix_elim$(OBJ_SUF).o svector$(OBJ_SUF).o smatrix$(OBJ_SUF).o subspace$(OBJ_SUF).o matrix$(OBJ_SUF).o vector$(OBJ_SUF).o arith$(OBJ_SUF).o 
 -	  $(CXX) -Wall -g -o $(BINDIR)/smattest smattest$(OBJ_SUF).o smatrix_elim$(OBJ_SUF).o svector$(OBJ_SUF).o smatrix$(OBJ_SUF).o subspace$(OBJ_SUF).o matrix$(OBJ_SUF).o vector$(OBJ_SUF).o arith$(OBJ_SUF).o $(LFLAGS)
 +smattest: smattest$(OBJ_SUF) smatrix_elim$(OBJ_SUF) svector$(OBJ_SUF) smatrix$(OBJ_SUF) subspace$(OBJ_SUF) matrix$(OBJ_SUF) vector$(OBJ_SUF) arith$(OBJ_SUF)
-+	  $(CXX) -Wall -g -o $(BINDIR)/smattest smattest$(OBJ_SUF) smatrix_elim$(OBJ_SUF) svector$(OBJ_SUF) smatrix$(OBJ_SUF) subspace$(OBJ_SUF) matrix$(OBJ_SUF) vector$(OBJ_SUF) arith$(OBJ_SUF) $(LFLAGS)
++	  $(CXX) -Wall -g -o smattest smattest$(OBJ_SUF) smatrix_elim$(OBJ_SUF) svector$(OBJ_SUF) smatrix$(OBJ_SUF) subspace$(OBJ_SUF) matrix$(OBJ_SUF) vector$(OBJ_SUF) arith$(OBJ_SUF) $(LFLAGS)
  
 -smat2test: smat2test$(OBJ_SUF).o smatrix2_elim$(OBJ_SUF).o svector$(OBJ_SUF).o smatrix2$(OBJ_SUF).o subspace$(OBJ_SUF).o matrix$(OBJ_SUF).o vector$(OBJ_SUF).o arith$(OBJ_SUF).o 
 -	  $(CXX) -Wall -g -o $(BINDIR)/smat2test smat2test$(OBJ_SUF).o smatrix2_elim$(OBJ_SUF).o svector$(OBJ_SUF).o smatrix2$(OBJ_SUF).o subspace$(OBJ_SUF).o matrix$(OBJ_SUF).o vector$(OBJ_SUF).o arith$(OBJ_SUF).o $(LFLAGS)
 +smat2test: smat2test$(OBJ_SUF) smatrix2_elim$(OBJ_SUF) svector$(OBJ_SUF) smatrix2$(OBJ_SUF) subspace$(OBJ_SUF) matrix$(OBJ_SUF) vector$(OBJ_SUF) arith$(OBJ_SUF)
-+	  $(CXX) -Wall -g -o $(BINDIR)/smat2test smat2test$(OBJ_SUF) smatrix2_elim$(OBJ_SUF) svector$(OBJ_SUF) smatrix2$(OBJ_SUF) subspace$(OBJ_SUF) matrix$(OBJ_SUF) vector$(OBJ_SUF) arith$(OBJ_SUF) $(LFLAGS)
++	  $(CXX) -Wall -g -o smat2test smat2test$(OBJ_SUF) smatrix2_elim$(OBJ_SUF) svector$(OBJ_SUF) smatrix2$(OBJ_SUF) subspace$(OBJ_SUF) matrix$(OBJ_SUF) vector$(OBJ_SUF) arith$(OBJ_SUF) $(LFLAGS)
  
 -matxtest: matxtest$(OBJ_SUF).o  matx$(OBJ_SUF).o vector$(OBJ_SUF).o arith$(OBJ_SUF).o
 -	$(CXX) -o $(BINDIR)/matxtest matxtest$(OBJ_SUF).o  matx$(OBJ_SUF).o vector$(OBJ_SUF).o arith$(OBJ_SUF).o $(LFLAGS)
 +matxtest: matxtest$(OBJ_SUF)  matx$(OBJ_SUF) vector$(OBJ_SUF) arith$(OBJ_SUF)
-+	$(CXX) -o $(BINDIR)/matxtest matxtest$(OBJ_SUF)  matx$(OBJ_SUF) vector$(OBJ_SUF) arith$(OBJ_SUF) $(LFLAGS)
++	$(CXX) $(LDFLAGS) -o matxtest matxtest$(OBJ_SUF)  matx$(OBJ_SUF) vector$(OBJ_SUF) arith$(OBJ_SUF) $(LFLAGS)
  
 -mspace: mspace$(OBJ_SUF).o msubspace$(OBJ_SUF).o mmatrix$(OBJ_SUF).o mvector$(OBJ_SUF).o marith$(OBJ_SUF).o gpslave$(OBJ_SUF).o parifact$(OBJ_SUF).o compproc$(OBJ_SUF).o matrix$(OBJ_SUF).o vector$(OBJ_SUF).o arith$(OBJ_SUF).o interface$(OBJ_SUF).o 
 -	$(CXX) -o $(BINDIR)/mspace mspace$(OBJ_SUF).o msubspace$(OBJ_SUF).o mmatrix$(OBJ_SUF).o mvector$(OBJ_SUF).o marith$(OBJ_SUF).o gpslave$(OBJ_SUF).o \
 -	 parifact$(OBJ_SUF).o compproc$(OBJ_SUF).o matrix$(OBJ_SUF).o vector$(OBJ_SUF).o arith$(OBJ_SUF).o interface$(OBJ_SUF).o $(LFLAGS)
 +mspace: mspace$(OBJ_SUF) msubspace$(OBJ_SUF) mmatrix$(OBJ_SUF) mvector$(OBJ_SUF) marith$(OBJ_SUF) gpslave$(OBJ_SUF) parifact$(OBJ_SUF) compproc$(OBJ_SUF) matrix$(OBJ_SUF) vector$(OBJ_SUF) arith$(OBJ_SUF) interface$(OBJ_SUF)
-+	$(CXX) -o $(BINDIR)/mspace mspace$(OBJ_SUF) msubspace$(OBJ_SUF) mmatrix$(OBJ_SUF) mvector$(OBJ_SUF) marith$(OBJ_SUF) gpslave$(OBJ_SUF) \
++	$(CXX) $(LDFLAGS) -o mspace mspace$(OBJ_SUF) msubspace$(OBJ_SUF) mmatrix$(OBJ_SUF) mvector$(OBJ_SUF) marith$(OBJ_SUF) gpslave$(OBJ_SUF) \
 +	 parifact$(OBJ_SUF) compproc$(OBJ_SUF) matrix$(OBJ_SUF) vector$(OBJ_SUF) arith$(OBJ_SUF) interface$(OBJ_SUF) $(LFLAGS)
  
 -periods: periods$(OBJ_SUF).o parifact$(OBJ_SUF).o compproc$(OBJ_SUF).o
 -	$(CXX) -o $(BINDIR)/periods periods$(OBJ_SUF).o compproc$(OBJ_SUF).o $(LFLAGS)
 +periods: periods$(OBJ_SUF) parifact$(OBJ_SUF) compproc$(OBJ_SUF)
-+	$(CXX) -o $(BINDIR)/periods periods$(OBJ_SUF) compproc$(OBJ_SUF) $(LFLAGS)
++	$(CXX) $(LDFLAGS) -o periods periods$(OBJ_SUF) compproc$(OBJ_SUF) $(LFLAGS)
  
 -comptest: comptest$(OBJ_SUF).o compproc$(OBJ_SUF).o arith$(OBJ_SUF).o marith$(OBJ_SUF).o gpslave$(OBJ_SUF).o parifact$(OBJ_SUF).o interface$(OBJ_SUF).o
 -	$(CXX) -o $(BINDIR)/comptest comptest$(OBJ_SUF).o compproc$(OBJ_SUF).o arith$(OBJ_SUF).o marith$(OBJ_SUF).o gpslave$(OBJ_SUF).o parifact$(OBJ_SUF).o interface$(OBJ_SUF).o $(LFLAGS)
 +comptest: comptest$(OBJ_SUF) compproc$(OBJ_SUF) arith$(OBJ_SUF) marith$(OBJ_SUF) gpslave$(OBJ_SUF) parifact$(OBJ_SUF) interface$(OBJ_SUF)
-+	$(CXX) -o $(BINDIR)/comptest comptest$(OBJ_SUF) compproc$(OBJ_SUF) arith$(OBJ_SUF) marith$(OBJ_SUF) gpslave$(OBJ_SUF) parifact$(OBJ_SUF) interface$(OBJ_SUF) $(LFLAGS)
++	$(CXX) $(LDFLAGS) -o comptest comptest$(OBJ_SUF) compproc$(OBJ_SUF) arith$(OBJ_SUF) marith$(OBJ_SUF) gpslave$(OBJ_SUF) parifact$(OBJ_SUF) interface$(OBJ_SUF) $(LFLAGS)
  
 -rattest: rattest$(OBJ_SUF).o arith$(OBJ_SUF).o
 -	$(CXX) -o $(BINDIR)/rattest rattest$(OBJ_SUF).o  arith$(OBJ_SUF).o $(LFLAGS)
 +rattest: rattest$(OBJ_SUF) arith$(OBJ_SUF)
-+	$(CXX) -o $(BINDIR)/rattest rattest$(OBJ_SUF)  arith$(OBJ_SUF) $(LFLAGS)
++	$(CXX) $(LDFLAGS) -o rattest rattest$(OBJ_SUF)  arith$(OBJ_SUF) $(LFLAGS)
  
 -bigrattest: bigrattest$(OBJ_SUF).o marith$(OBJ_SUF).o arith$(OBJ_SUF).o interface$(OBJ_SUF).o parifact$(OBJ_SUF).o
 -	$(CXX) -o $(BINDIR)/bigrattest bigrattest$(OBJ_SUF).o  marith$(OBJ_SUF).o arith$(OBJ_SUF).o interface$(OBJ_SUF).o parifact$(OBJ_SUF).o $(LFLAGS)
 +bigrattest: bigrattest$(OBJ_SUF) marith$(OBJ_SUF) arith$(OBJ_SUF) interface$(OBJ_SUF) parifact$(OBJ_SUF)
-+	$(CXX) -o $(BINDIR)/bigrattest bigrattest$(OBJ_SUF)  marith$(OBJ_SUF) arith$(OBJ_SUF) interface$(OBJ_SUF) parifact$(OBJ_SUF) $(LFLAGS)
++	$(CXX) $(LDFLAGS) -o bigrattest bigrattest$(OBJ_SUF)  marith$(OBJ_SUF) arith$(OBJ_SUF) interface$(OBJ_SUF) parifact$(OBJ_SUF) $(LFLAGS)
  
 -ptest: ptest$(OBJ_SUF).o arith$(OBJ_SUF).o
 -	$(CXX) -o $(BINDIR)/ptest ptest$(OBJ_SUF).o arith$(OBJ_SUF).o $(LFLAGS) 
 +ptest: ptest$(OBJ_SUF) arith$(OBJ_SUF)
-+	$(CXX) -o $(BINDIR)/ptest ptest$(OBJ_SUF) arith$(OBJ_SUF) $(LFLAGS)
++	$(CXX) $(LDFLAGS) -o ptest ptest$(OBJ_SUF) arith$(OBJ_SUF) $(LFLAGS)
  
 -mptest: mptest$(OBJ_SUF).o marith$(OBJ_SUF).o gpslave$(OBJ_SUF).o arith$(OBJ_SUF).o compproc$(OBJ_SUF).o interface$(OBJ_SUF).o parifact$(OBJ_SUF).o
 -	$(CXX) -o $(BINDIR)/mptest mptest$(OBJ_SUF).o marith$(OBJ_SUF).o gpslave$(OBJ_SUF).o arith$(OBJ_SUF).o compproc$(OBJ_SUF).o interface$(OBJ_SUF).o parifact$(OBJ_SUF).o $(LFLAGS) 
 +mptest: mptest$(OBJ_SUF) marith$(OBJ_SUF) gpslave$(OBJ_SUF) arith$(OBJ_SUF) compproc$(OBJ_SUF) interface$(OBJ_SUF) parifact$(OBJ_SUF)
-+	$(CXX) -o $(BINDIR)/mptest mptest$(OBJ_SUF) marith$(OBJ_SUF) gpslave$(OBJ_SUF) arith$(OBJ_SUF) compproc$(OBJ_SUF) interface$(OBJ_SUF) parifact$(OBJ_SUF) $(LFLAGS)
++	$(CXX) $(LDFLAGS) -o mptest mptest$(OBJ_SUF) marith$(OBJ_SUF) gpslave$(OBJ_SUF) arith$(OBJ_SUF) compproc$(OBJ_SUF) interface$(OBJ_SUF) parifact$(OBJ_SUF) $(LFLAGS)
  
 -test: test$(OBJ_SUF).o marith$(OBJ_SUF).o gpslave$(OBJ_SUF).o arith$(OBJ_SUF).o compproc$(OBJ_SUF).o interface$(OBJ_SUF).o parifact$(OBJ_SUF).o
 -	$(CXX) -o $(BINDIR)/test test$(OBJ_SUF).o marith$(OBJ_SUF).o gpslave$(OBJ_SUF).o arith$(OBJ_SUF).o compproc$(OBJ_SUF).o interface$(OBJ_SUF).o $(LFLAGS)  parifact$(OBJ_SUF).o
 +test: test$(OBJ_SUF) marith$(OBJ_SUF) gpslave$(OBJ_SUF) arith$(OBJ_SUF) compproc$(OBJ_SUF) interface$(OBJ_SUF) parifact$(OBJ_SUF)
-+	$(CXX) -o $(BINDIR)/test test$(OBJ_SUF) marith$(OBJ_SUF) gpslave$(OBJ_SUF) arith$(OBJ_SUF) compproc$(OBJ_SUF) interface$(OBJ_SUF) $(LFLAGS)  parifact$(OBJ_SUF)
++	$(CXX) $(LDFLAGS) -o test test$(OBJ_SUF) marith$(OBJ_SUF) gpslave$(OBJ_SUF) arith$(OBJ_SUF) compproc$(OBJ_SUF) interface$(OBJ_SUF) $(LFLAGS)  parifact$(OBJ_SUF)
  
 -tbessel: tbessel$(OBJ_SUF).o kbessel$(OBJ_SUF).o
 -	$(CXX) -o $(BINDIR)/tbessel tbessel$(OBJ_SUF).o kbessel$(OBJ_SUF).o $(LFLAGS)
 +tbessel: tbessel$(OBJ_SUF) kbessel$(OBJ_SUF)
-+	$(CXX) -o $(BINDIR)/tbessel tbessel$(OBJ_SUF) kbessel$(OBJ_SUF) $(LFLAGS)
++	$(CXX) $(LDFLAGS) -o tbessel tbessel$(OBJ_SUF) kbessel$(OBJ_SUF) $(LFLAGS)
  
  
 -read_rat: read_rat$(OBJ_SUF).o
 -	$(CXX) -o $(BINDIR)/read_rat read_rat$(OBJ_SUF).o $(LFLAGS)
 +read_rat: read_rat$(OBJ_SUF)
-+	$(CXX) -o $(BINDIR)/read_rat read_rat$(OBJ_SUF) $(LFLAGS)
++	$(CXX) $(LDFLAGS) -o read_rat read_rat$(OBJ_SUF) $(LFLAGS)
  
 -divisors: divisors$(OBJ_SUF).o  marith$(OBJ_SUF).o gpslave$(OBJ_SUF).o arith$(OBJ_SUF).o compproc$(OBJ_SUF).o interface$(OBJ_SUF).o parifact$(OBJ_SUF).o
 -	$(CXX) -o $(BINDIR)/divisors divisors$(OBJ_SUF).o  marith$(OBJ_SUF).o gpslave$(OBJ_SUF).o arith$(OBJ_SUF).o compproc$(OBJ_SUF).o interface$(OBJ_SUF).o parifact$(OBJ_SUF).o $(LFLAGS)
 -divisors$(OBJ_SUF).o: divisors.cc
 +divisors: divisors$(OBJ_SUF)  marith$(OBJ_SUF) gpslave$(OBJ_SUF) arith$(OBJ_SUF) compproc$(OBJ_SUF) interface$(OBJ_SUF) parifact$(OBJ_SUF)
-+	$(CXX) -o $(BINDIR)/divisors divisors$(OBJ_SUF)  marith$(OBJ_SUF) gpslave$(OBJ_SUF) arith$(OBJ_SUF) compproc$(OBJ_SUF) interface$(OBJ_SUF) parifact$(OBJ_SUF) $(LFLAGS)
++	$(CXX) $(LDFLAGS) -o divisors divisors$(OBJ_SUF)  marith$(OBJ_SUF) gpslave$(OBJ_SUF) arith$(OBJ_SUF) compproc$(OBJ_SUF) interface$(OBJ_SUF) parifact$(OBJ_SUF) $(LFLAGS)
 +divisors$(OBJ_SUF): divisors.cc
  
  fact1: fact1.cc
@@ -329,7 +302,7 @@
 -fact3: fact3$(OBJ_SUF).o marith$(OBJ_SUF).o gpslave$(OBJ_SUF).o arith$(OBJ_SUF).o compproc$(OBJ_SUF).o interface$(OBJ_SUF).o
 -	$(CXX) -o $(BINDIR)/fact3 fact3$(OBJ_SUF).o marith$(OBJ_SUF).o gpslave$(OBJ_SUF).o arith$(OBJ_SUF).o compproc$(OBJ_SUF).o interface$(OBJ_SUF).o $(LFLAGS) 
 +fact3: fact3$(OBJ_SUF) marith$(OBJ_SUF) gpslave$(OBJ_SUF) arith$(OBJ_SUF) compproc$(OBJ_SUF) interface$(OBJ_SUF)
-+	$(CXX) -o $(BINDIR)/fact3 fact3$(OBJ_SUF) marith$(OBJ_SUF) gpslave$(OBJ_SUF) arith$(OBJ_SUF) compproc$(OBJ_SUF) interface$(OBJ_SUF) $(LFLAGS)
++	$(CXX) $(LDFLAGS) -o fact3 fact3$(OBJ_SUF) marith$(OBJ_SUF) gpslave$(OBJ_SUF) arith$(OBJ_SUF) compproc$(OBJ_SUF) interface$(OBJ_SUF) $(LFLAGS)
  
  
  CC.o: CC.cc RRextra.h
@@ -344,23 +317,23 @@
 -fifo: fifo$(OBJ_SUF).o marith$(OBJ_SUF).o gpslave$(OBJ_SUF).o arith$(OBJ_SUF).o compproc$(OBJ_SUF).o interface$(OBJ_SUF).o
 -	$(CXX) -o $(BINDIR)/fifo fifo$(OBJ_SUF).o marith$(OBJ_SUF).o gpslave$(OBJ_SUF).o arith$(OBJ_SUF).o compproc$(OBJ_SUF).o interface$(OBJ_SUF).o $(LFLAGS) 
 +fifo: fifo$(OBJ_SUF) marith$(OBJ_SUF) gpslave$(OBJ_SUF) arith$(OBJ_SUF) compproc$(OBJ_SUF) interface$(OBJ_SUF)
-+	$(CXX) -o $(BINDIR)/fifo fifo$(OBJ_SUF) marith$(OBJ_SUF) gpslave$(OBJ_SUF) arith$(OBJ_SUF) compproc$(OBJ_SUF) interface$(OBJ_SUF) $(LFLAGS)
++	$(CXX) $(LDFLAGS) -o fifo fifo$(OBJ_SUF) marith$(OBJ_SUF) gpslave$(OBJ_SUF) arith$(OBJ_SUF) compproc$(OBJ_SUF) interface$(OBJ_SUF) $(LFLAGS)
  
  
 -tconic: tconic$(OBJ_SUF).o conic$(OBJ_SUF).o legendre$(OBJ_SUF).o quadratic$(OBJ_SUF).o marith$(OBJ_SUF).o gpslave$(OBJ_SUF).o parifact$(OBJ_SUF).o arith$(OBJ_SUF).o compproc$(OBJ_SUF).o mmatrix$(OBJ_SUF).o mvector$(OBJ_SUF).o matrix$(OBJ_SUF).o vector$(OBJ_SUF).o illl$(OBJ_SUF).o unimod$(OBJ_SUF).o interface$(OBJ_SUF).o
 -	$(CXX) -o $(BINDIR)/tconic tconic$(OBJ_SUF).o conic$(OBJ_SUF).o legendre$(OBJ_SUF).o quadratic$(OBJ_SUF).o marith$(OBJ_SUF).o gpslave$(OBJ_SUF).o parifact$(OBJ_SUF).o arith$(OBJ_SUF).o compproc$(OBJ_SUF).o mmatrix$(OBJ_SUF).o mvector$(OBJ_SUF).o matrix$(OBJ_SUF).o vector$(OBJ_SUF).o illl$(OBJ_SUF).o unimod$(OBJ_SUF).o interface$(OBJ_SUF).o $(LFLAGS)
 +tconic: tconic$(OBJ_SUF) conic$(OBJ_SUF) legendre$(OBJ_SUF) quadratic$(OBJ_SUF) marith$(OBJ_SUF) gpslave$(OBJ_SUF) parifact$(OBJ_SUF) arith$(OBJ_SUF) compproc$(OBJ_SUF) mmatrix$(OBJ_SUF) mvector$(OBJ_SUF) matrix$(OBJ_SUF) vector$(OBJ_SUF) illl$(OBJ_SUF) unimod$(OBJ_SUF) interface$(OBJ_SUF)
-+	$(CXX) -o $(BINDIR)/tconic tconic$(OBJ_SUF) conic$(OBJ_SUF) legendre$(OBJ_SUF) quadratic$(OBJ_SUF) marith$(OBJ_SUF) gpslave$(OBJ_SUF) parifact$(OBJ_SUF) arith$(OBJ_SUF) compproc$(OBJ_SUF) mmatrix$(OBJ_SUF) mvector$(OBJ_SUF) matrix$(OBJ_SUF) vector$(OBJ_SUF) illl$(OBJ_SUF) unimod$(OBJ_SUF) interface$(OBJ_SUF) $(LFLAGS)
++	$(CXX) $(LDFLAGS) -o $(BINDIR)/tconic tconic$(OBJ_SUF) conic$(OBJ_SUF) legendre$(OBJ_SUF) quadratic$(OBJ_SUF) marith$(OBJ_SUF) gpslave$(OBJ_SUF) parifact$(OBJ_SUF) arith$(OBJ_SUF) compproc$(OBJ_SUF) mmatrix$(OBJ_SUF) mvector$(OBJ_SUF) matrix$(OBJ_SUF) vector$(OBJ_SUF) illl$(OBJ_SUF) unimod$(OBJ_SUF) interface$(OBJ_SUF) $(LFLAGS)
  
 -tcon2: tcon2$(OBJ_SUF).o conic$(OBJ_SUF).o legendre$(OBJ_SUF).o quadratic$(OBJ_SUF).o marith$(OBJ_SUF).o gpslave$(OBJ_SUF).o parifact$(OBJ_SUF).o arith$(OBJ_SUF).o compproc$(OBJ_SUF).o mmatrix$(OBJ_SUF).o mvector$(OBJ_SUF).o matrix$(OBJ_SUF).o vector$(OBJ_SUF).o illl$(OBJ_SUF).o unimod$(OBJ_SUF).o interface$(OBJ_SUF).o
 -	$(CXX) -o $(BINDIR)/tcon2 tcon2$(OBJ_SUF).o conic$(OBJ_SUF).o legendre$(OBJ_SUF).o quadratic$(OBJ_SUF).o marith$(OBJ_SUF).o gpslave$(OBJ_SUF).o parifact$(OBJ_SUF).o arith$(OBJ_SUF).o compproc$(OBJ_SUF).o mmatrix$(OBJ_SUF).o mvector$(OBJ_SUF).o matrix$(OBJ_SUF).o vector$(OBJ_SUF).o illl$(OBJ_SUF).o unimod$(OBJ_SUF).o interface$(OBJ_SUF).o $(LFLAGS)
 +tcon2: tcon2$(OBJ_SUF) conic$(OBJ_SUF) legendre$(OBJ_SUF) quadratic$(OBJ_SUF) marith$(OBJ_SUF) gpslave$(OBJ_SUF) parifact$(OBJ_SUF) arith$(OBJ_SUF) compproc$(OBJ_SUF) mmatrix$(OBJ_SUF) mvector$(OBJ_SUF) matrix$(OBJ_SUF) vector$(OBJ_SUF) illl$(OBJ_SUF) unimod$(OBJ_SUF) interface$(OBJ_SUF)
-+	$(CXX) -o $(BINDIR)/tcon2 tcon2$(OBJ_SUF) conic$(OBJ_SUF) legendre$(OBJ_SUF) quadratic$(OBJ_SUF) marith$(OBJ_SUF) gpslave$(OBJ_SUF) parifact$(OBJ_SUF) arith$(OBJ_SUF) compproc$(OBJ_SUF) mmatrix$(OBJ_SUF) mvector$(OBJ_SUF) matrix$(OBJ_SUF) vector$(OBJ_SUF) illl$(OBJ_SUF) unimod$(OBJ_SUF) interface$(OBJ_SUF) $(LFLAGS)
++	$(CXX) $(LDFLAGS) -o tcon2 tcon2$(OBJ_SUF) conic$(OBJ_SUF) legendre$(OBJ_SUF) quadratic$(OBJ_SUF) marith$(OBJ_SUF) gpslave$(OBJ_SUF) parifact$(OBJ_SUF) arith$(OBJ_SUF) compproc$(OBJ_SUF) mmatrix$(OBJ_SUF) mvector$(OBJ_SUF) matrix$(OBJ_SUF) vector$(OBJ_SUF) illl$(OBJ_SUF) unimod$(OBJ_SUF) interface$(OBJ_SUF) $(LFLAGS)
  
 -tleg: tleg$(OBJ_SUF).o legendre$(OBJ_SUF).o conic$(OBJ_SUF).o marith$(OBJ_SUF).o gpslave$(OBJ_SUF).o parifact$(OBJ_SUF).o arith$(OBJ_SUF).o compproc$(OBJ_SUF).o mvector$(OBJ_SUF).o mmatrix$(OBJ_SUF).o vector$(OBJ_SUF).o matrix$(OBJ_SUF).o illl$(OBJ_SUF).o quadratic$(OBJ_SUF).o unimod$(OBJ_SUF).o interface$(OBJ_SUF).o
 -	$(CXX) -o $(BINDIR)/tleg tleg$(OBJ_SUF).o legendre$(OBJ_SUF).o conic$(OBJ_SUF).o marith$(OBJ_SUF).o gpslave$(OBJ_SUF).o parifact$(OBJ_SUF).o arith$(OBJ_SUF).o compproc$(OBJ_SUF).o  mvector$(OBJ_SUF).o mmatrix$(OBJ_SUF).o vector$(OBJ_SUF).o matrix$(OBJ_SUF).o illl$(OBJ_SUF).o quadratic$(OBJ_SUF).o unimod$(OBJ_SUF).o interface$(OBJ_SUF).o $(LFLAGS)
 +tleg: tleg$(OBJ_SUF) legendre$(OBJ_SUF) conic$(OBJ_SUF) marith$(OBJ_SUF) gpslave$(OBJ_SUF) parifact$(OBJ_SUF) arith$(OBJ_SUF) compproc$(OBJ_SUF) mvector$(OBJ_SUF) mmatrix$(OBJ_SUF) vector$(OBJ_SUF) matrix$(OBJ_SUF) illl$(OBJ_SUF) quadratic$(OBJ_SUF) unimod$(OBJ_SUF) interface$(OBJ_SUF)
-+	$(CXX) -o $(BINDIR)/tleg tleg$(OBJ_SUF) legendre$(OBJ_SUF) conic$(OBJ_SUF) marith$(OBJ_SUF) gpslave$(OBJ_SUF) parifact$(OBJ_SUF) arith$(OBJ_SUF) compproc$(OBJ_SUF)  mvector$(OBJ_SUF) mmatrix$(OBJ_SUF) vector$(OBJ_SUF) matrix$(OBJ_SUF) illl$(OBJ_SUF) quadratic$(OBJ_SUF) unimod$(OBJ_SUF) interface$(OBJ_SUF) $(LFLAGS)
++	$(CXX) $(LDFLAGS) -o tleg tleg$(OBJ_SUF) legendre$(OBJ_SUF) conic$(OBJ_SUF) marith$(OBJ_SUF) gpslave$(OBJ_SUF) parifact$(OBJ_SUF) arith$(OBJ_SUF) compproc$(OBJ_SUF)  mvector$(OBJ_SUF) mmatrix$(OBJ_SUF) vector$(OBJ_SUF) matrix$(OBJ_SUF) illl$(OBJ_SUF) quadratic$(OBJ_SUF) unimod$(OBJ_SUF) interface$(OBJ_SUF) $(LFLAGS)
  
 -thilbert: thilbert$(OBJ_SUF).o hilbert$(OBJ_SUF).o  quadratic$(OBJ_SUF).o marith$(OBJ_SUF).o gpslave$(OBJ_SUF).o parifact$(OBJ_SUF).o interface$(OBJ_SUF).o\
 -	compproc$(OBJ_SUF).o mvector$(OBJ_SUF).o vector$(OBJ_SUF).o conic$(OBJ_SUF).o legendre$(OBJ_SUF).o illl$(OBJ_SUF).o arith$(OBJ_SUF).o unimod$(OBJ_SUF).o
@@ -368,13 +341,13 @@
 -	compproc$(OBJ_SUF).o mvector$(OBJ_SUF).o vector$(OBJ_SUF).o conic$(OBJ_SUF).o legendre$(OBJ_SUF).o illl$(OBJ_SUF).o arith$(OBJ_SUF).o unimod$(OBJ_SUF).o $(LFLAGS)
 +thilbert: thilbert$(OBJ_SUF) hilbert$(OBJ_SUF)  quadratic$(OBJ_SUF) marith$(OBJ_SUF) gpslave$(OBJ_SUF) parifact$(OBJ_SUF) interface$(OBJ_SUF)\
 +	compproc$(OBJ_SUF) mvector$(OBJ_SUF) vector$(OBJ_SUF) conic$(OBJ_SUF) legendre$(OBJ_SUF) illl$(OBJ_SUF) arith$(OBJ_SUF) unimod$(OBJ_SUF)
-+	$(CXX) -o thilbert thilbert$(OBJ_SUF) hilbert$(OBJ_SUF) quadratic$(OBJ_SUF) marith$(OBJ_SUF) gpslave$(OBJ_SUF) parifact$(OBJ_SUF) interface$(OBJ_SUF) \
++	$(CXX) $(LDFLAGS) -o thilbert thilbert$(OBJ_SUF) hilbert$(OBJ_SUF) quadratic$(OBJ_SUF) marith$(OBJ_SUF) gpslave$(OBJ_SUF) parifact$(OBJ_SUF) interface$(OBJ_SUF) \
 +	compproc$(OBJ_SUF) mvector$(OBJ_SUF) vector$(OBJ_SUF) conic$(OBJ_SUF) legendre$(OBJ_SUF) illl$(OBJ_SUF) arith$(OBJ_SUF) unimod$(OBJ_SUF) $(LFLAGS)
  
 -auto: auto$(OBJ_SUF).o matrix$(OBJ_SUF).o vector$(OBJ_SUF).o arith$(OBJ_SUF).o
 -	$(CXX) -o $(BINDIR)/auto auto$(OBJ_SUF).o matrix$(OBJ_SUF).o vector$(OBJ_SUF).o arith$(OBJ_SUF).o $(LFLAGS)
 +auto: auto$(OBJ_SUF) matrix$(OBJ_SUF) vector$(OBJ_SUF) arith$(OBJ_SUF)
-+	$(CXX) -o $(BINDIR)/auto auto$(OBJ_SUF) matrix$(OBJ_SUF) vector$(OBJ_SUF) arith$(OBJ_SUF) $(LFLAGS)
++	$(CXX) $(LDFLAGS) -o auto auto$(OBJ_SUF) matrix$(OBJ_SUF) vector$(OBJ_SUF) arith$(OBJ_SUF) $(LFLAGS)
  
 -auto$(OBJ_SUF).o: auto.cc matrix.h vector.h arith.h xmod.h
 +auto$(OBJ_SUF): auto.cc matrix.h vector.h arith.h xmod.h
@@ -603,17 +576,17 @@
 +p2points$(OBJ_SUF): p2points.cc p2points.h bigrat.h marith.h interface.h arith.h
 +tp2points$(OBJ_SUF): tp2points.cc p2points.h bigrat.h marith.h interface.h arith.h
 +tp2points: tp2points$(OBJ_SUF) p2points$(OBJ_SUF) marith$(OBJ_SUF) arith$(OBJ_SUF) interface$(OBJ_SUF) gpslave$(OBJ_SUF) parifact$(OBJ_SUF)
-+	$(CXX) -o tp2points tp2points$(OBJ_SUF) p2points$(OBJ_SUF) marith$(OBJ_SUF) arith$(OBJ_SUF) interface$(OBJ_SUF) gpslave$(OBJ_SUF) parifact$(OBJ_SUF) $(LFLAGS)
++	$(CXX) $(LDFLAGS) -o tp2points tp2points$(OBJ_SUF) p2points$(OBJ_SUF) marith$(OBJ_SUF) arith$(OBJ_SUF) interface$(OBJ_SUF) gpslave$(OBJ_SUF) parifact$(OBJ_SUF) $(LFLAGS)
  
 -rcubic: rcubic$(OBJ_SUF).o cubic$(OBJ_SUF).o marith$(OBJ_SUF).o gpslave$(OBJ_SUF).o parifact$(OBJ_SUF).o arith$(OBJ_SUF).o compproc$(OBJ_SUF).o interface$(OBJ_SUF).o realroots$(OBJ_SUF).o
 -	$(CXX) -o rcubic rcubic$(OBJ_SUF).o cubic$(OBJ_SUF).o marith$(OBJ_SUF).o gpslave$(OBJ_SUF).o parifact$(OBJ_SUF).o arith$(OBJ_SUF).o compproc$(OBJ_SUF).o interface$(OBJ_SUF).o realroots$(OBJ_SUF).o $(LFLAGS)
 +rcubic: rcubic$(OBJ_SUF) cubic$(OBJ_SUF) marith$(OBJ_SUF) gpslave$(OBJ_SUF) parifact$(OBJ_SUF) arith$(OBJ_SUF) compproc$(OBJ_SUF) interface$(OBJ_SUF) realroots$(OBJ_SUF)
-+	$(CXX) -o rcubic rcubic$(OBJ_SUF) cubic$(OBJ_SUF) marith$(OBJ_SUF) gpslave$(OBJ_SUF) parifact$(OBJ_SUF) arith$(OBJ_SUF) compproc$(OBJ_SUF) interface$(OBJ_SUF) realroots$(OBJ_SUF) $(LFLAGS)
++	$(CXX) $(LDFLAGS) -o rcubic rcubic$(OBJ_SUF) cubic$(OBJ_SUF) marith$(OBJ_SUF) gpslave$(OBJ_SUF) parifact$(OBJ_SUF) arith$(OBJ_SUF) compproc$(OBJ_SUF) interface$(OBJ_SUF) realroots$(OBJ_SUF) $(LFLAGS)
  
 -lcubic: lcubic$(OBJ_SUF).o cubic$(OBJ_SUF).o marith$(OBJ_SUF).o gpslave$(OBJ_SUF).o parifact$(OBJ_SUF).o arith$(OBJ_SUF).o compproc$(OBJ_SUF).o interface$(OBJ_SUF).o realroots$(OBJ_SUF).o
 -	$(CXX) -o lcubic lcubic$(OBJ_SUF).o cubic$(OBJ_SUF).o marith$(OBJ_SUF).o gpslave$(OBJ_SUF).o parifact$(OBJ_SUF).o arith$(OBJ_SUF).o compproc$(OBJ_SUF).o interface$(OBJ_SUF).o realroots$(OBJ_SUF).o $(LFLAGS)
 +lcubic: lcubic$(OBJ_SUF) cubic$(OBJ_SUF) marith$(OBJ_SUF) gpslave$(OBJ_SUF) parifact$(OBJ_SUF) arith$(OBJ_SUF) compproc$(OBJ_SUF) interface$(OBJ_SUF) realroots$(OBJ_SUF)
-+	$(CXX) -o lcubic lcubic$(OBJ_SUF) cubic$(OBJ_SUF) marith$(OBJ_SUF) gpslave$(OBJ_SUF) parifact$(OBJ_SUF) arith$(OBJ_SUF) compproc$(OBJ_SUF) interface$(OBJ_SUF) realroots$(OBJ_SUF) $(LFLAGS)
++	$(CXX) $(LDFLAGS) -o lcubic lcubic$(OBJ_SUF) cubic$(OBJ_SUF) marith$(OBJ_SUF) gpslave$(OBJ_SUF) parifact$(OBJ_SUF) arith$(OBJ_SUF) compproc$(OBJ_SUF) interface$(OBJ_SUF) realroots$(OBJ_SUF) $(LFLAGS)
  
 -quadratic$(OBJ_SUF).o: quadratic.cc marith.h interface.h templates.h arith.h xmod.h \
 +quadratic$(OBJ_SUF): quadratic.cc marith.h interface.h templates.h arith.h xmod.h \
@@ -631,7 +604,7 @@
 -	 $(CXX) -o testlat testlat$(OBJ_SUF).o $(LFLAGS)
 +testlat$(OBJ_SUF): testlat.cc
 +testlat: testlat$(OBJ_SUF)
-+	 $(CXX) -o testlat testlat$(OBJ_SUF) $(LFLAGS)
++	 $(CXX) $(LDFLAGS) -o testlat testlat$(OBJ_SUF) $(LFLAGS)
  
 -illl$(OBJ_SUF).o: illl.cc mvector.h vector.h vec.h interface.h templates.h arith.h \
 +illl$(OBJ_SUF): illl.cc mvector.h vector.h vec.h interface.h templates.h arith.h \
@@ -655,12 +628,12 @@
 +tilll$(OBJ_SUF): illl.h tilll.cc mmatrix.h mvector.h marith.h
 +tilll: tilll$(OBJ_SUF) illl$(OBJ_SUF) marith$(OBJ_SUF) gpslave$(OBJ_SUF) mvector$(OBJ_SUF) mmatrix$(OBJ_SUF) matrix$(OBJ_SUF) vector$(OBJ_SUF) \
 +                               arith$(OBJ_SUF) compproc$(OBJ_SUF)
-+	$(CXX) -o tilll tilll$(OBJ_SUF) illl$(OBJ_SUF) marith$(OBJ_SUF) gpslave$(OBJ_SUF) mvector$(OBJ_SUF) mmatrix$(OBJ_SUF) \
++	$(CXX) $(LDFLAGS) -o tilll tilll$(OBJ_SUF) illl$(OBJ_SUF) marith$(OBJ_SUF) gpslave$(OBJ_SUF) mvector$(OBJ_SUF) mmatrix$(OBJ_SUF) \
 +                       matrix$(OBJ_SUF) vector$(OBJ_SUF) arith$(OBJ_SUF) compproc$(OBJ_SUF) $(LFLAGS)
 +leg_lll$(OBJ_SUF): illl.h tilll.cc mmatrix.h mvector.h marith.h legendre.h conic.h
 +leg_lll: leg_lll$(OBJ_SUF) illl$(OBJ_SUF) marith$(OBJ_SUF) gpslave$(OBJ_SUF) mvector$(OBJ_SUF) mmatrix$(OBJ_SUF) matrix$(OBJ_SUF) vector$(OBJ_SUF) \
 +                                   arith$(OBJ_SUF) compproc$(OBJ_SUF) legendre$(OBJ_SUF) conic$(OBJ_SUF)
-+	$(CXX) -o leg_lll leg_lll$(OBJ_SUF) illl$(OBJ_SUF) marith$(OBJ_SUF) gpslave$(OBJ_SUF) mvector$(OBJ_SUF) mmatrix$(OBJ_SUF) \
++	$(CXX) $(LDFLAGS) -o leg_lll leg_lll$(OBJ_SUF) illl$(OBJ_SUF) marith$(OBJ_SUF) gpslave$(OBJ_SUF) mvector$(OBJ_SUF) mmatrix$(OBJ_SUF) \
 +           matrix$(OBJ_SUF) vector$(OBJ_SUF) arith$(OBJ_SUF) compproc$(OBJ_SUF) legendre$(OBJ_SUF) conic$(OBJ_SUF) $(LFLAGS)
  
 -timer$(OBJ_SUF).o: timer.cc interface.h templates.h timer.h

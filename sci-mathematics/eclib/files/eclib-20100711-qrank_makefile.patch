@@ -1,5 +1,5 @@
 --- qrank/Makefile.orig	2010-03-01 13:08:27.000000000 +1300
-+++ qrank/Makefile	2010-08-07 23:51:27.523790428 +1200
++++ qrank/Makefile	2010-08-17 23:16:43.199935599 +1200
 @@ -32,7 +32,8 @@
  CURVELIBFLAG = -L../libs -lcurvesntl
  RANKLIBBASE = librankntl
@@ -119,7 +119,7 @@
 -	$(CXX) -o mwrank version$(OBJ_SUF).o mwrank$(OBJ_SUF).o descent$(OBJ_SUF).o mrank1$(OBJ_SUF).o mrank2$(OBJ_SUF).o mequiv$(OBJ_SUF).o mquartic$(OBJ_SUF).o \
 -	mlocsol$(OBJ_SUF).o mglobsol$(OBJ_SUF).o  qc$(OBJ_SUF).o sqfdiv$(OBJ_SUF).o desc2$(OBJ_SUF).o \
 -	transform$(OBJ_SUF).o minim$(OBJ_SUF).o reduce$(OBJ_SUF).o bitspace$(OBJ_SUF).o GetOpt$(OBJ_SUF).o twoadic$(OBJ_SUF).o \
-+	$(CXX) -o $(BINDIR)/mwrank version$(OBJ_SUF) mwrank$(OBJ_SUF) descent$(OBJ_SUF) mrank1$(OBJ_SUF) mrank2$(OBJ_SUF) mequiv$(OBJ_SUF) mquartic$(OBJ_SUF) \
++	$(CXX) $(LDFLAGS) -o $(BINDIR)/mwrank version$(OBJ_SUF) mwrank$(OBJ_SUF) descent$(OBJ_SUF) mrank1$(OBJ_SUF) mrank2$(OBJ_SUF) mequiv$(OBJ_SUF) mquartic$(OBJ_SUF) \
 +	mlocsol$(OBJ_SUF) mglobsol$(OBJ_SUF)  qc$(OBJ_SUF) sqfdiv$(OBJ_SUF) desc2$(OBJ_SUF) \
 +	transform$(OBJ_SUF) minim$(OBJ_SUF) reduce$(OBJ_SUF) bitspace$(OBJ_SUF) GetOpt$(OBJ_SUF) twoadic$(OBJ_SUF) \
  	$(LFLAGS)
@@ -149,12 +149,12 @@
 -	mlocsol$(OBJ_SUF).o mglobsol$(OBJ_SUF).o  qc$(OBJ_SUF).o $(LFLAGS)
 +tmrank: version$(OBJ_SUF) tmrank$(OBJ_SUF) descent$(OBJ_SUF) mrank1$(OBJ_SUF) mrank2$(OBJ_SUF) mequiv$(OBJ_SUF) mquartic$(OBJ_SUF) mlocsol$(OBJ_SUF) mglobsol$(OBJ_SUF) \
 +	 qc$(OBJ_SUF) sqfdiv$(OBJ_SUF) desc2$(OBJ_SUF) transform$(OBJ_SUF) minim$(OBJ_SUF) reduce$(OBJ_SUF) bitspace$(OBJ_SUF) twoadic$(OBJ_SUF)
-+	$(CXX) -o tmrank version$(OBJ_SUF) tmrank$(OBJ_SUF) descent$(OBJ_SUF) mrank1$(OBJ_SUF) mrank2$(OBJ_SUF) mequiv$(OBJ_SUF) mquartic$(OBJ_SUF) \
++	$(CXX) $(LDFLAGS) -o tmrank version$(OBJ_SUF) tmrank$(OBJ_SUF) descent$(OBJ_SUF) mrank1$(OBJ_SUF) mrank2$(OBJ_SUF) mequiv$(OBJ_SUF) mquartic$(OBJ_SUF) \
 +	mlocsol$(OBJ_SUF) mglobsol$(OBJ_SUF)  qc$(OBJ_SUF) sqfdiv$(OBJ_SUF) desc2$(OBJ_SUF) transform$(OBJ_SUF) minim$(OBJ_SUF) \
 +	reduce$(OBJ_SUF) bitspace$(OBJ_SUF) twoadic$(OBJ_SUF) $(LFLAGS)
 +
 +ratpoint: version$(OBJ_SUF) ratpoint$(OBJ_SUF) mquartic$(OBJ_SUF) mlocsol$(OBJ_SUF) mglobsol$(OBJ_SUF)  qc$(OBJ_SUF)
-+	$(CXX) -o $(BINDIR)/ratpoint version$(OBJ_SUF) ratpoint$(OBJ_SUF) mquartic$(OBJ_SUF) mlocsol$(OBJ_SUF) mglobsol$(OBJ_SUF) \
++	$(CXX) $(LDFLAGS) -o $(BINDIR)/ratpoint version$(OBJ_SUF) ratpoint$(OBJ_SUF) mquartic$(OBJ_SUF) mlocsol$(OBJ_SUF) mglobsol$(OBJ_SUF) \
 +	 qc$(OBJ_SUF) $(LFLAGS)
 +
 +ratpoint_sta: version$(OBJ_SUF) ratpoint$(OBJ_SUF) mquartic$(OBJ_SUF) mlocsol$(OBJ_SUF) mglobsol$(OBJ_SUF)  qc$(OBJ_SUF)
@@ -163,18 +163,18 @@
 +
 +d2: d2$(OBJ_SUF) version$(OBJ_SUF) desc2$(OBJ_SUF) mquartic$(OBJ_SUF) mlocsol$(OBJ_SUF) mglobsol$(OBJ_SUF)   qc$(OBJ_SUF) reduce$(OBJ_SUF) \
 +	minim$(OBJ_SUF) transform$(OBJ_SUF) sqfdiv$(OBJ_SUF)
-+	$(CXX) -o d2 d2$(OBJ_SUF) version$(OBJ_SUF) desc2$(OBJ_SUF) mquartic$(OBJ_SUF) mlocsol$(OBJ_SUF) mglobsol$(OBJ_SUF)  \
++	$(CXX) $(LDFLAGS) -o d2 d2$(OBJ_SUF) version$(OBJ_SUF) desc2$(OBJ_SUF) mquartic$(OBJ_SUF) mlocsol$(OBJ_SUF) mglobsol$(OBJ_SUF)  \
 +	qc$(OBJ_SUF) reduce$(OBJ_SUF) minim$(OBJ_SUF) transform$(OBJ_SUF) sqfdiv$(OBJ_SUF) $(LFLAGS)
 +
 +tred: version$(OBJ_SUF) tred$(OBJ_SUF) reduce$(OBJ_SUF) minim$(OBJ_SUF) transform$(OBJ_SUF) mquartic$(OBJ_SUF) mlocsol$(OBJ_SUF) mglobsol$(OBJ_SUF) \
 +	 qc$(OBJ_SUF)
-+	$(CXX) -o tred version$(OBJ_SUF) tred$(OBJ_SUF) reduce$(OBJ_SUF) minim$(OBJ_SUF) transform$(OBJ_SUF) mquartic$(OBJ_SUF) \
++	$(CXX) $(LDFLAGS) -o tred version$(OBJ_SUF) tred$(OBJ_SUF) reduce$(OBJ_SUF) minim$(OBJ_SUF) transform$(OBJ_SUF) mquartic$(OBJ_SUF) \
 +	mlocsol$(OBJ_SUF) mglobsol$(OBJ_SUF)  qc$(OBJ_SUF) $(LFLAGS)
  
 -tequiv: version$(OBJ_SUF).o tequiv$(OBJ_SUF).o mquartic$(OBJ_SUF).o mequiv$(OBJ_SUF).o
 -	$(CXX) -o tequiv version$(OBJ_SUF).o tequiv$(OBJ_SUF).o mquartic$(OBJ_SUF).o mequiv$(OBJ_SUF).o $(LFLAGS)
 +tequiv: version$(OBJ_SUF) tequiv$(OBJ_SUF) mquartic$(OBJ_SUF) mequiv$(OBJ_SUF)
-+	$(CXX) -o tequiv version$(OBJ_SUF) tequiv$(OBJ_SUF) mquartic$(OBJ_SUF) mequiv$(OBJ_SUF) $(LFLAGS)
++	$(CXX) $(LDFLAGS) -o tequiv version$(OBJ_SUF) tequiv$(OBJ_SUF) mquartic$(OBJ_SUF) mequiv$(OBJ_SUF) $(LFLAGS)
  
  
  # DEPENDENCIES

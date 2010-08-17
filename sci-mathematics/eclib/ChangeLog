@@ -2,6 +2,13 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  17 Aug 2010; François Bissey <f.r.bissey@massey.ac.nz>
+  files/eclib-20100711-g0n_makefile.patch,
+  files/eclib-20100711-procs_makefile.patch,
+  files/eclib-20100711-qcurves_makefile.patch,
+  files/eclib-20100711-qrank_makefile.patch:
+  Update the patches to respect LDFLAGS and don't install test only binaries
+
   14 Aug 2010; François Bissey <f.r.bissey@massey.ac.nz>
   -eclib-20080310_p10-r2.ebuild:
   Remove experimental pari-2.4 version. Newest eclib is pari-2.4 safe and

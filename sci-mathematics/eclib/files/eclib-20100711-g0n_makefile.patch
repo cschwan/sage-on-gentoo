@@ -1,5 +1,5 @@
---- g0n/Makefile.orig	2010-08-08 10:12:39.613699404 +1200
-+++ g0n/Makefile	2010-08-08 10:20:17.526698392 +1200
+--- g0n/Makefile.orig	2010-03-02 11:03:21.000000000 +1300
++++ g0n/Makefile	2010-08-17 23:08:21.188937664 +1200
 @@ -12,9 +12,13 @@
  
  DOT_H = periods.h cusp.h homspace.h newforms.h nflist.h moddata.h oldforms.h symb.h fixc6.h pcprocs.h
@@ -97,32 +97,32 @@
 -mhcount: mhcount$(OBJ_SUF).o
 -	$(CXX) -o mhcount mhcount$(OBJ_SUF).o   $(LFLAGS)
 +mhcount: mhcount$(OBJ_SUF)
-+	$(CXX) -o mhcount mhcount$(OBJ_SUF)   $(LFLAGS)
++	$(CXX) $(LDFLAGS) -o mhcount mhcount$(OBJ_SUF)   $(LFLAGS)
  
 -g0ngens: g0ngens$(OBJ_SUF).o symb$(OBJ_SUF).o moddata$(OBJ_SUF).o
 -	$(CXX) -o g0ngens g0ngens$(OBJ_SUF).o symb$(OBJ_SUF).o moddata$(OBJ_SUF).o   $(LFLAGS)
 +g0ngens: g0ngens$(OBJ_SUF) symb$(OBJ_SUF) moddata$(OBJ_SUF)
-+	$(CXX) -o g0ngens g0ngens$(OBJ_SUF) symb$(OBJ_SUF) moddata$(OBJ_SUF)   $(LFLAGS)
++	$(CXX) $(LDFLAGS) -o g0ngens g0ngens$(OBJ_SUF) symb$(OBJ_SUF) moddata$(OBJ_SUF)   $(LFLAGS)
  
 -modtest: modtest$(OBJ_SUF).o symb$(OBJ_SUF).o moddata$(OBJ_SUF).o
 -	$(CXX) -o modtest modtest$(OBJ_SUF).o symb$(OBJ_SUF).o moddata$(OBJ_SUF).o   $(LFLAGS)
 +modtest: modtest$(OBJ_SUF) symb$(OBJ_SUF) moddata$(OBJ_SUF)
-+	$(CXX) -o modtest modtest$(OBJ_SUF) symb$(OBJ_SUF) moddata$(OBJ_SUF)   $(LFLAGS)
++	$(CXX) $(LDFLAGS) -o modtest modtest$(OBJ_SUF) symb$(OBJ_SUF) moddata$(OBJ_SUF)   $(LFLAGS)
  
 -homtest: homtest$(OBJ_SUF).o symb$(OBJ_SUF).o moddata$(OBJ_SUF).o cusp$(OBJ_SUF).o homspace$(OBJ_SUF).o
 -	$(CXX) -o homtest homtest$(OBJ_SUF).o symb$(OBJ_SUF).o moddata$(OBJ_SUF).o cusp$(OBJ_SUF).o homspace$(OBJ_SUF).o  $(LFLAGS)
 +homtest: homtest$(OBJ_SUF) symb$(OBJ_SUF) moddata$(OBJ_SUF) cusp$(OBJ_SUF) homspace$(OBJ_SUF)
-+	$(CXX) -o homtest homtest$(OBJ_SUF) symb$(OBJ_SUF) moddata$(OBJ_SUF) cusp$(OBJ_SUF) homspace$(OBJ_SUF)  $(LFLAGS)
++	$(CXX) $(LDFLAGS) -o homtest homtest$(OBJ_SUF) symb$(OBJ_SUF) moddata$(OBJ_SUF) cusp$(OBJ_SUF) homspace$(OBJ_SUF)  $(LFLAGS)
  
 -oftest: oftest$(OBJ_SUF).o symb$(OBJ_SUF).o moddata$(OBJ_SUF).o oldforms$(OBJ_SUF).o homspace$(OBJ_SUF).o newforms$(OBJ_SUF).o  cusp$(OBJ_SUF).o
 -	$(CXX) -o oftest oftest$(OBJ_SUF).o symb$(OBJ_SUF).o moddata$(OBJ_SUF).o oldforms$(OBJ_SUF).o homspace$(OBJ_SUF).o newforms$(OBJ_SUF).o  cusp$(OBJ_SUF).o $(LFLAGS)
 +oftest: oftest$(OBJ_SUF) symb$(OBJ_SUF) moddata$(OBJ_SUF) oldforms$(OBJ_SUF) homspace$(OBJ_SUF) newforms$(OBJ_SUF)  cusp$(OBJ_SUF)
-+	$(CXX) -o oftest oftest$(OBJ_SUF) symb$(OBJ_SUF) moddata$(OBJ_SUF) oldforms$(OBJ_SUF) homspace$(OBJ_SUF) newforms$(OBJ_SUF)  cusp$(OBJ_SUF) $(LFLAGS)
++	$(CXX) $(LDFLAGS) -o oftest oftest$(OBJ_SUF) symb$(OBJ_SUF) moddata$(OBJ_SUF) oldforms$(OBJ_SUF) homspace$(OBJ_SUF) newforms$(OBJ_SUF)  cusp$(OBJ_SUF) $(LFLAGS)
  
 -hecketest: hecketest$(OBJ_SUF).o cusp$(OBJ_SUF).o homspace$(OBJ_SUF).o symb$(OBJ_SUF).o moddata$(OBJ_SUF).o
 -	$(CXX) -o hecketest hecketest$(OBJ_SUF).o cusp$(OBJ_SUF).o homspace$(OBJ_SUF).o symb$(OBJ_SUF).o moddata$(OBJ_SUF).o \
 +hecketest: hecketest$(OBJ_SUF) cusp$(OBJ_SUF) homspace$(OBJ_SUF) symb$(OBJ_SUF) moddata$(OBJ_SUF)
-+	$(CXX) -o hecketest hecketest$(OBJ_SUF) cusp$(OBJ_SUF) homspace$(OBJ_SUF) symb$(OBJ_SUF) moddata$(OBJ_SUF) \
++	$(CXX) $(LDFLAGS) -o hecketest hecketest$(OBJ_SUF) cusp$(OBJ_SUF) homspace$(OBJ_SUF) symb$(OBJ_SUF) moddata$(OBJ_SUF) \
  		 $(LFLAGS)
  
  
@@ -130,19 +130,19 @@
 -gd: gd$(OBJ_SUF).o cusp$(OBJ_SUF).o homspace$(OBJ_SUF).o symb$(OBJ_SUF).o moddata$(OBJ_SUF).o
 -	$(CXX) -o gd gd$(OBJ_SUF).o cusp$(OBJ_SUF).o homspace$(OBJ_SUF).o symb$(OBJ_SUF).o moddata$(OBJ_SUF).o \
 +gd: gd$(OBJ_SUF) cusp$(OBJ_SUF) homspace$(OBJ_SUF) symb$(OBJ_SUF) moddata$(OBJ_SUF)
-+	$(CXX) -o gd gd$(OBJ_SUF) cusp$(OBJ_SUF) homspace$(OBJ_SUF) symb$(OBJ_SUF) moddata$(OBJ_SUF) \
++	$(CXX) $(LDFLAGS) -o gd gd$(OBJ_SUF) cusp$(OBJ_SUF) homspace$(OBJ_SUF) symb$(OBJ_SUF) moddata$(OBJ_SUF) \
  		 $(LFLAGS)
  
 -gd2: gd2$(OBJ_SUF).o cusp$(OBJ_SUF).o homspace$(OBJ_SUF).o symb$(OBJ_SUF).o moddata$(OBJ_SUF).o
 -	$(CXX) -o gd2 gd2$(OBJ_SUF).o cusp$(OBJ_SUF).o homspace$(OBJ_SUF).o symb$(OBJ_SUF).o moddata$(OBJ_SUF).o \
 +gd2: gd2$(OBJ_SUF) cusp$(OBJ_SUF) homspace$(OBJ_SUF) symb$(OBJ_SUF) moddata$(OBJ_SUF)
-+	$(CXX) -o gd2 gd2$(OBJ_SUF) cusp$(OBJ_SUF) homspace$(OBJ_SUF) symb$(OBJ_SUF) moddata$(OBJ_SUF) \
++	$(CXX) $(LDFLAGS) -o gd2 gd2$(OBJ_SUF) cusp$(OBJ_SUF) homspace$(OBJ_SUF) symb$(OBJ_SUF) moddata$(OBJ_SUF) \
  		 $(LFLAGS)
  
 -tnfd: tnfd$(OBJ_SUF).o nfd$(OBJ_SUF).o cusp$(OBJ_SUF).o homspace$(OBJ_SUF).o symb$(OBJ_SUF).o moddata$(OBJ_SUF).o
 -	$(CXX) -o tnfd tnfd$(OBJ_SUF).o nfd$(OBJ_SUF).o cusp$(OBJ_SUF).o homspace$(OBJ_SUF).o symb$(OBJ_SUF).o moddata$(OBJ_SUF).o \
 +tnfd: tnfd$(OBJ_SUF) nfd$(OBJ_SUF) cusp$(OBJ_SUF) homspace$(OBJ_SUF) symb$(OBJ_SUF) moddata$(OBJ_SUF)
-+	$(CXX) -o tnfd tnfd$(OBJ_SUF) nfd$(OBJ_SUF) cusp$(OBJ_SUF) homspace$(OBJ_SUF) symb$(OBJ_SUF) moddata$(OBJ_SUF) \
++	$(CXX) $(LDFLAGS) -o tnfd tnfd$(OBJ_SUF) nfd$(OBJ_SUF) cusp$(OBJ_SUF) homspace$(OBJ_SUF) symb$(OBJ_SUF) moddata$(OBJ_SUF) \
  		 $(LFLAGS)
  
 -nftest: nftest$(OBJ_SUF).o cusp$(OBJ_SUF).o homspace$(OBJ_SUF).o symb$(OBJ_SUF).o moddata$(OBJ_SUF).o oldforms$(OBJ_SUF).o \
@@ -151,7 +151,7 @@
 -		oldforms$(OBJ_SUF).o newforms$(OBJ_SUF).o  $(LFLAGS)
 +nftest: nftest$(OBJ_SUF) cusp$(OBJ_SUF) homspace$(OBJ_SUF) symb$(OBJ_SUF) moddata$(OBJ_SUF) oldforms$(OBJ_SUF) \
 +		newforms$(OBJ_SUF)
-+	$(CXX) -o nftest nftest$(OBJ_SUF) cusp$(OBJ_SUF) homspace$(OBJ_SUF) symb$(OBJ_SUF) moddata$(OBJ_SUF) \
++	$(CXX) $(LDFLAGS) -o nftest nftest$(OBJ_SUF) cusp$(OBJ_SUF) homspace$(OBJ_SUF) symb$(OBJ_SUF) moddata$(OBJ_SUF) \
 +		oldforms$(OBJ_SUF) newforms$(OBJ_SUF)  $(LFLAGS)
  
 -ecnf: ecnf$(OBJ_SUF).o cusp$(OBJ_SUF).o homspace$(OBJ_SUF).o symb$(OBJ_SUF).o moddata$(OBJ_SUF).o oldforms$(OBJ_SUF).o \
@@ -160,114 +160,114 @@
 -		oldforms$(OBJ_SUF).o newforms$(OBJ_SUF).o  $(LFLAGS)
 +ecnf: ecnf$(OBJ_SUF) cusp$(OBJ_SUF) homspace$(OBJ_SUF) symb$(OBJ_SUF) moddata$(OBJ_SUF) oldforms$(OBJ_SUF) \
 +		newforms$(OBJ_SUF)
-+	$(CXX) -o ecnf ecnf$(OBJ_SUF) cusp$(OBJ_SUF) homspace$(OBJ_SUF) symb$(OBJ_SUF) moddata$(OBJ_SUF) \
++	$(CXX) $(LDFLAGS) -o ecnf ecnf$(OBJ_SUF) cusp$(OBJ_SUF) homspace$(OBJ_SUF) symb$(OBJ_SUF) moddata$(OBJ_SUF) \
 +		oldforms$(OBJ_SUF) newforms$(OBJ_SUF)  $(LFLAGS)
  
 -nfcount: nfcount$(OBJ_SUF).o
 -	$(CXX) -o nfcount nfcount$(OBJ_SUF).o $(LFLAGS)
 +nfcount: nfcount$(OBJ_SUF)
-+	$(CXX) -o nfcount nfcount$(OBJ_SUF) $(LFLAGS)
++	$(CXX) $(LDFLAGS) -o nfcount nfcount$(OBJ_SUF) $(LFLAGS)
  
 -aplist: aplist$(OBJ_SUF).o
 -	$(CXX) -o aplist aplist$(OBJ_SUF).o $(LFLAGS)
 +aplist: aplist$(OBJ_SUF)
-+	$(CXX) -o aplist aplist$(OBJ_SUF) $(LFLAGS)
++	$(CXX) $(LDFLAGS) -o aplist aplist$(OBJ_SUF) $(LFLAGS)
  
 -aplist2: aplist2$(OBJ_SUF).o
 -	$(CXX) -o aplist2 aplist2$(OBJ_SUF).o $(LFLAGS)
 +aplist2: aplist2$(OBJ_SUF)
-+	$(CXX) -o aplist2 aplist2$(OBJ_SUF) $(LFLAGS)
++	$(CXX) $(LDFLAGS) -o aplist2 aplist2$(OBJ_SUF) $(LFLAGS)
  
 -findcong: findcong$(OBJ_SUF).o nflist$(OBJ_SUF).o
 -	$(CXX) -o findcong findcong$(OBJ_SUF).o nflist$(OBJ_SUF).o $(LFLAGS)
 +findcong: findcong$(OBJ_SUF) nflist$(OBJ_SUF)
-+	$(CXX) -o findcong findcong$(OBJ_SUF) nflist$(OBJ_SUF) $(LFLAGS)
++	$(CXX) $(LDFLAGS) -o findcong findcong$(OBJ_SUF) nflist$(OBJ_SUF) $(LFLAGS)
  
 -find1cong: find1cong$(OBJ_SUF).o nflist$(OBJ_SUF).o
 -	$(CXX) -o find1cong find1cong$(OBJ_SUF).o nflist$(OBJ_SUF).o $(LFLAGS)
 +find1cong: find1cong$(OBJ_SUF) nflist$(OBJ_SUF)
-+	$(CXX) -o find1cong find1cong$(OBJ_SUF) nflist$(OBJ_SUF) $(LFLAGS)
++	$(CXX) $(LDFLAGS) -o find1cong find1cong$(OBJ_SUF) nflist$(OBJ_SUF) $(LFLAGS)
  
 -checkap: checkap$(OBJ_SUF).o
 -	$(CXX) -o checkap checkap$(OBJ_SUF).o -I$(INCDIR) -L$(LIBDIR) $(LFLAGS)
 +checkap: checkap$(OBJ_SUF)
-+	$(CXX) -o checkap checkap$(OBJ_SUF) -I$(INCDIR) -L$(LIBDIR) $(LFLAGS)
++	$(CXX) $(LDFLAGS) -o checkap checkap$(OBJ_SUF) -I$(INCDIR) -L$(LIBDIR) $(LFLAGS)
  
 -tmanin: tmanin$(OBJ_SUF).o $(G0NLIBNAME)
 -	$(CXX) -o tmanin tmanin$(OBJ_SUF).o $(G0NLIBFLAG) $(LFLAGS)
 +tmanin: tmanin$(OBJ_SUF) $(G0NLIBNAME)
-+	$(CXX) -o tmanin tmanin$(OBJ_SUF) $(G0NLIBFLAG) $(LFLAGS)
++	$(CXX) $(LDFLAGS) -o tmanin tmanin$(OBJ_SUF) $(G0NLIBFLAG) $(LFLAGS)
  
 -getoldeigs: getoldeigs$(OBJ_SUF).o
 -	$(CXX) -o getoldeigs getoldeigs$(OBJ_SUF).o $(LFLAGS)
 +getoldeigs: getoldeigs$(OBJ_SUF)
-+	$(CXX) -o getoldeigs getoldeigs$(OBJ_SUF) $(LFLAGS)
++	$(CXX) $(LDFLAGS) -o getoldeigs getoldeigs$(OBJ_SUF) $(LFLAGS)
  
 -putoldeigs: putoldeigs$(OBJ_SUF).o
 -	$(CXX) -o putoldeigs putoldeigs$(OBJ_SUF).o $(LFLAGS)
 +putoldeigs: putoldeigs$(OBJ_SUF)
-+	$(CXX) -o putoldeigs putoldeigs$(OBJ_SUF) $(LFLAGS)
++	$(CXX) $(LDFLAGS) -o putoldeigs putoldeigs$(OBJ_SUF) $(LFLAGS)
  
  
 -fix1290: fix1290$(OBJ_SUF).o $(G0NLIBNAME)
 -	$(CXX) -o fix1290 fix1290$(OBJ_SUF).o $(G0NLIBFLAG) $(LFLAGS)
 +fix1290: fix1290$(OBJ_SUF) $(G0NLIBNAME)
-+	$(CXX) -o fix1290 fix1290$(OBJ_SUF) $(G0NLIBFLAG) $(LFLAGS)
++	$(CXX) $(LDFLAGS) -o fix1290 fix1290$(OBJ_SUF) $(G0NLIBFLAG) $(LFLAGS)
  
 -h1test: h1test$(OBJ_SUF).o $(G0NLIBNAME)
 -	$(CXX) -o h1test h1test$(OBJ_SUF).o $(G0NLIBFLAG) $(LFLAGS)
 +h1test: h1test$(OBJ_SUF) $(G0NLIBNAME)
-+	$(CXX) -o h1test h1test$(OBJ_SUF) $(G0NLIBFLAG) $(LFLAGS)
++	$(CXX) $(LDFLAGS) -o h1test h1test$(OBJ_SUF) $(G0NLIBFLAG) $(LFLAGS)
  
 -h1first: h1first$(OBJ_SUF).o $(G0NLIBNAME)
 -	$(CXX) -o h1first h1first$(OBJ_SUF).o $(G0NLIBFLAG) $(LFLAGS)
 +h1first: h1first$(OBJ_SUF) $(G0NLIBNAME)
-+	$(CXX) -o h1first h1first$(OBJ_SUF) $(G0NLIBFLAG) $(LFLAGS)
++	$(CXX) $(LDFLAGS) -o h1first h1first$(OBJ_SUF) $(G0NLIBFLAG) $(LFLAGS)
  
 -mh1first: h1first$(OBJ_SUF).o $(G0NLIBNAME)
 -	$(CXX) -o mh1first h1first$(OBJ_SUF).o $(G0NLIBFLAG) $(LFLAGS)
 +mh1first: h1first$(OBJ_SUF) $(G0NLIBNAME)
-+	$(CXX) -o mh1first h1first$(OBJ_SUF) $(G0NLIBFLAG) $(LFLAGS)
++	$(CXX) $(LDFLAGS) -o mh1first h1first$(OBJ_SUF) $(G0NLIBFLAG) $(LFLAGS)
  
 -h1: h1$(OBJ_SUF).o $(G0NLIBNAME)
 -	$(CXX) -o h1 h1$(OBJ_SUF).o $(G0NLIBFLAG) $(LFLAGS)
 +h1: h1$(OBJ_SUF) $(G0NLIBNAME)
-+	$(CXX) -o h1 h1$(OBJ_SUF) $(G0NLIBFLAG) $(LFLAGS)
++	$(CXX) $(LDFLAGS) -o h1 h1$(OBJ_SUF) $(G0NLIBFLAG) $(LFLAGS)
  
 -h1bsd: h1bsd$(OBJ_SUF).o $(G0NLIBNAME)
 -	$(CXX) -o h1bsd h1bsd$(OBJ_SUF).o $(G0NLIBFLAG) $(LFLAGS)
 +h1bsd: h1bsd$(OBJ_SUF) $(G0NLIBNAME)
-+	$(CXX) -o h1bsd h1bsd$(OBJ_SUF) $(G0NLIBFLAG) $(LFLAGS)
++	$(CXX) $(LDFLAGS) -o h1bsd h1bsd$(OBJ_SUF) $(G0NLIBFLAG) $(LFLAGS)
  
 -cong_vec: cong_vec$(OBJ_SUF).o $(G0NLIBNAME)
 -	$(CXX) -o cong_vec cong_vec$(OBJ_SUF).o $(G0NLIBFLAG) $(LFLAGS)
 +cong_vec: cong_vec$(OBJ_SUF) $(G0NLIBNAME)
-+	$(CXX) -o cong_vec cong_vec$(OBJ_SUF) $(G0NLIBFLAG) $(LFLAGS)
++	$(CXX) $(LDFLAGS) -o cong_vec cong_vec$(OBJ_SUF) $(G0NLIBFLAG) $(LFLAGS)
  
 -cong_vec_h1: cong_vec_h1$(OBJ_SUF).o cong_procs$(OBJ_SUF).o $(G0NLIBNAME)
 -	$(CXX) -o cong_vec_h1 cong_vec_h1$(OBJ_SUF).o cong_procs$(OBJ_SUF).o $(G0NLIBFLAG) $(LFLAGS)
 +cong_vec_h1: cong_vec_h1$(OBJ_SUF) cong_procs$(OBJ_SUF) $(G0NLIBNAME)
-+	$(CXX) -o cong_vec_h1 cong_vec_h1$(OBJ_SUF) cong_procs$(OBJ_SUF) $(G0NLIBFLAG) $(LFLAGS)
++	$(CXX) $(LDFLAGS) -o cong_vec_h1 cong_vec_h1$(OBJ_SUF) cong_procs$(OBJ_SUF) $(G0NLIBFLAG) $(LFLAGS)
  
 -cong_vec_x: cong_vec_x$(OBJ_SUF).o cong_procs$(OBJ_SUF).o  $(G0NLIBNAME)
 -	$(CXX) -o cong_vec_x cong_vec_x$(OBJ_SUF).o cong_procs$(OBJ_SUF).o $(G0NLIBFLAG) $(LFLAGS)
 +cong_vec_x: cong_vec_x$(OBJ_SUF) cong_procs$(OBJ_SUF)  $(G0NLIBNAME)
-+	$(CXX) -o cong_vec_x cong_vec_x$(OBJ_SUF) cong_procs$(OBJ_SUF) $(G0NLIBFLAG) $(LFLAGS)
++	$(CXX) $(LDFLAGS) -o cong_vec_x cong_vec_x$(OBJ_SUF) cong_procs$(OBJ_SUF) $(G0NLIBFLAG) $(LFLAGS)
  
 -lf1per: lf1per$(OBJ_SUF).o $(G0NLIBNAME)
 -	$(CXX) -o lf1per lf1per$(OBJ_SUF).o $(G0NLIBFLAG) $(LFLAGS)
 +lf1per: lf1per$(OBJ_SUF) $(G0NLIBNAME)
-+	$(CXX) -o lf1per lf1per$(OBJ_SUF) $(G0NLIBFLAG) $(LFLAGS)
++	$(CXX) $(LDFLAGS) -o lf1per lf1per$(OBJ_SUF) $(G0NLIBFLAG) $(LFLAGS)
  
 -nfhpcurve: nfhpcurve$(OBJ_SUF).o pcprocs$(OBJ_SUF).o $(G0NLIBNAME)
 -	$(CXX) -o nfhpcurve nfhpcurve$(OBJ_SUF).o pcprocs$(OBJ_SUF).o $(G0NLIBFLAG) $(LFLAGS)
 +nfhpcurve: nfhpcurve$(OBJ_SUF) pcprocs$(OBJ_SUF) $(G0NLIBNAME)
-+	$(CXX) -o nfhpcurve nfhpcurve$(OBJ_SUF) pcprocs$(OBJ_SUF) $(G0NLIBFLAG) $(LFLAGS)
++	$(CXX) $(LDFLAGS) -o nfhpcurve nfhpcurve$(OBJ_SUF) pcprocs$(OBJ_SUF) $(G0NLIBFLAG) $(LFLAGS)
  
 -hpcurve: hpcurve$(OBJ_SUF).o $(G0NLIBNAME)
 -	$(CXX) -o hpcurve hpcurve$(OBJ_SUF).o $(G0NLIBFLAG) $(LFLAGS)
 +hpcurve: hpcurve$(OBJ_SUF) $(G0NLIBNAME)
-+	$(CXX) -o hpcurve hpcurve$(OBJ_SUF) $(G0NLIBFLAG) $(LFLAGS)
++	$(CXX) $(LDFLAGS) -o hpcurve hpcurve$(OBJ_SUF) $(G0NLIBFLAG) $(LFLAGS)
  
 -hpcurve1$(OBJ_SUF).o:  moddata.h oldforms.h newforms.h periods.h \
 +hpcurve1$(OBJ_SUF):  moddata.h oldforms.h newforms.h periods.h \
@@ -278,22 +278,22 @@
 -hpcurve1: hpcurve1$(OBJ_SUF).o $(G0NLIBNAME)
 -	$(CXX) -o hpcurve1 hpcurve1$(OBJ_SUF).o $(G0NLIBFLAG) $(LFLAGS)
 +hpcurve1: hpcurve1$(OBJ_SUF) $(G0NLIBNAME)
-+	$(CXX) -o hpcurve1 hpcurve1$(OBJ_SUF) $(G0NLIBFLAG) $(LFLAGS)
++	$(CXX) $(LDFLAGS) -o hpcurve1 hpcurve1$(OBJ_SUF) $(G0NLIBFLAG) $(LFLAGS)
  
 -hppcurve: hppcurve$(OBJ_SUF).o $(G0NLIBNAME)
 -	$(CXX) -o hppcurve hppcurve$(OBJ_SUF).o $(G0NLIBFLAG) $(LFLAGS)
 +hppcurve: hppcurve$(OBJ_SUF) $(G0NLIBNAME)
-+	$(CXX) -o hppcurve hppcurve$(OBJ_SUF) $(G0NLIBFLAG) $(LFLAGS)
++	$(CXX) $(LDFLAGS) -o hppcurve hppcurve$(OBJ_SUF) $(G0NLIBFLAG) $(LFLAGS)
  
 -hpper: hpper$(OBJ_SUF).o $(G0NLIBNAME)
 -	$(CXX) -o hpper hpper$(OBJ_SUF).o $(G0NLIBFLAG) $(LFLAGS)
 +hpper: hpper$(OBJ_SUF) $(G0NLIBNAME)
-+	$(CXX) -o hpper hpper$(OBJ_SUF) $(G0NLIBFLAG) $(LFLAGS)
++	$(CXX) $(LDFLAGS) -o hpper hpper$(OBJ_SUF) $(G0NLIBFLAG) $(LFLAGS)
  
 -pcurve: pcurve$(OBJ_SUF).o pcprocs$(OBJ_SUF).o $(G0NLIBNAME)
 -	$(CXX) -o pcurve pcurve$(OBJ_SUF).o pcprocs$(OBJ_SUF).o $(G0NLIBFLAG) $(LFLAGS)
 +pcurve: pcurve$(OBJ_SUF) pcprocs$(OBJ_SUF) $(G0NLIBNAME)
-+	$(CXX) -o pcurve pcurve$(OBJ_SUF) pcprocs$(OBJ_SUF) $(G0NLIBFLAG) $(LFLAGS)
++	$(CXX) $(LDFLAGS) -o pcurve pcurve$(OBJ_SUF) pcprocs$(OBJ_SUF) $(G0NLIBFLAG) $(LFLAGS)
  
 -pcurve1$(OBJ_SUF).o:  moddata.h oldforms.h newforms.h periods.h \
 +pcurve1$(OBJ_SUF):  moddata.h oldforms.h newforms.h periods.h \
@@ -304,37 +304,37 @@
 -pcurve1: pcurve1$(OBJ_SUF).o pcprocs$(OBJ_SUF).o $(G0NLIBNAME)
 -	$(CXX) -o pcurve1 pcurve1$(OBJ_SUF).o pcprocs$(OBJ_SUF).o $(G0NLIBFLAG) $(LFLAGS)
 +pcurve1: pcurve1$(OBJ_SUF) pcprocs$(OBJ_SUF) $(G0NLIBNAME)
-+	$(CXX) -o pcurve1 pcurve1$(OBJ_SUF) pcprocs$(OBJ_SUF) $(G0NLIBFLAG) $(LFLAGS)
++	$(CXX) $(LDFLAGS) -o pcurve1 pcurve1$(OBJ_SUF) pcprocs$(OBJ_SUF) $(G0NLIBFLAG) $(LFLAGS)
  
 -allpcurve: allpcurve$(OBJ_SUF).o pcprocs$(OBJ_SUF).o $(G0NLIBNAME)
 -	$(CXX) -o allpcurve allpcurve$(OBJ_SUF).o pcprocs$(OBJ_SUF).o $(G0NLIBFLAG) $(LFLAGS)
 +allpcurve: allpcurve$(OBJ_SUF) pcprocs$(OBJ_SUF) $(G0NLIBNAME)
-+	$(CXX) -o allpcurve allpcurve$(OBJ_SUF) pcprocs$(OBJ_SUF) $(G0NLIBFLAG) $(LFLAGS)
++	$(CXX) $(LDFLAGS) -o allpcurve allpcurve$(OBJ_SUF) pcprocs$(OBJ_SUF) $(G0NLIBFLAG) $(LFLAGS)
  
 -h1bsdc: h1bsdc$(OBJ_SUF).o $(G0NLIBNAME)
 -	$(CXX) -o h1bsdc h1bsdc$(OBJ_SUF).o $(G0NLIBFLAG) $(LFLAGS)
 +h1bsdc: h1bsdc$(OBJ_SUF) $(G0NLIBNAME)
-+	$(CXX) -o h1bsdc h1bsdc$(OBJ_SUF) $(G0NLIBFLAG) $(LFLAGS)
++	$(CXX) $(LDFLAGS) -o h1bsdc h1bsdc$(OBJ_SUF) $(G0NLIBFLAG) $(LFLAGS)
  
 -bsdtex2: bsdtex2$(OBJ_SUF).o $(G0NLIBNAME)
 -	$(CXX) -o bsdtex2 bsdtex2$(OBJ_SUF).o $(G0NLIBFLAG) $(LFLAGS)
 +bsdtex2: bsdtex2$(OBJ_SUF) $(G0NLIBNAME)
-+	$(CXX) -o bsdtex2 bsdtex2$(OBJ_SUF) $(G0NLIBFLAG) $(LFLAGS)
++	$(CXX) $(LDFLAGS) -o bsdtex2 bsdtex2$(OBJ_SUF) $(G0NLIBFLAG) $(LFLAGS)
  
 -h1clist: h1clist$(OBJ_SUF).o $(G0NLIBNAME)
 -	$(CXX) -o h1clist h1clist$(OBJ_SUF).o $(G0NLIBFLAG) $(LFLAGS)
 +h1clist: h1clist$(OBJ_SUF) $(G0NLIBNAME)
-+	$(CXX) -o h1clist h1clist$(OBJ_SUF) $(G0NLIBFLAG) $(LFLAGS)
++	$(CXX) $(LDFLAGS) -o h1clist h1clist$(OBJ_SUF) $(G0NLIBFLAG) $(LFLAGS)
  
 -h1curve: h1curve$(OBJ_SUF).o $(G0NLIBNAME)
 -	$(CXX) -o h1curve h1curve$(OBJ_SUF).o $(G0NLIBFLAG) $(LFLAGS)
 +h1curve: h1curve$(OBJ_SUF) $(G0NLIBNAME)
-+	$(CXX) -o h1curve h1curve$(OBJ_SUF) $(G0NLIBFLAG) $(LFLAGS)
++	$(CXX) $(LDFLAGS) -o h1curve h1curve$(OBJ_SUF) $(G0NLIBFLAG) $(LFLAGS)
  
 -h1periods: h1periods$(OBJ_SUF).o $(G0NLIBNAME)
 -	$(CXX) -o h1periods h1periods$(OBJ_SUF).o $(G0NLIBFLAG) $(LFLAGS)
 +h1periods: h1periods$(OBJ_SUF) $(G0NLIBNAME)
-+	$(CXX) -o h1periods h1periods$(OBJ_SUF) $(G0NLIBFLAG) $(LFLAGS)
++	$(CXX) $(LDFLAGS) -o h1periods h1periods$(OBJ_SUF) $(G0NLIBFLAG) $(LFLAGS)
  
 -h1curve1$(OBJ_SUF).o: moddata.h symb.h cusp.h homspace.h oldforms.h newforms.h \
 +h1curve1$(OBJ_SUF): moddata.h symb.h cusp.h homspace.h oldforms.h newforms.h \
@@ -345,33 +345,33 @@
 -h1curve1: h1curve1$(OBJ_SUF).o $(G0NLIBNAME)
 -	$(CXX) -o h1curve1 h1curve1$(OBJ_SUF).o $(G0NLIBFLAG) $(LFLAGS)
 +h1curve1: h1curve1$(OBJ_SUF) $(G0NLIBNAME)
-+	$(CXX) -o h1curve1 h1curve1$(OBJ_SUF) $(G0NLIBFLAG) $(LFLAGS)
++	$(CXX) $(LDFLAGS) -o h1curve1 h1curve1$(OBJ_SUF) $(G0NLIBFLAG) $(LFLAGS)
  
 -h1curisog: h1curisog$(OBJ_SUF).o $(G0NLIBNAME)
 -	$(CXX) -o h1curisog h1curisog$(OBJ_SUF).o $(G0NLIBFLAG) $(LFLAGS)
 +h1curisog: h1curisog$(OBJ_SUF) $(G0NLIBNAME)
-+	$(CXX) -o h1curisog h1curisog$(OBJ_SUF) $(G0NLIBFLAG) $(LFLAGS)
++	$(CXX) $(LDFLAGS) -o h1curisog h1curisog$(OBJ_SUF) $(G0NLIBFLAG) $(LFLAGS)
  
 -h1isogbsd: h1isogbsd$(OBJ_SUF).o $(G0NLIBNAME)
 -	$(CXX) -o h1isogbsd h1isogbsd$(OBJ_SUF).o $(G0NLIBFLAG) $(LFLAGS)
 +h1isogbsd: h1isogbsd$(OBJ_SUF) $(G0NLIBNAME)
-+	$(CXX) -o h1isogbsd h1isogbsd$(OBJ_SUF) $(G0NLIBFLAG) $(LFLAGS)
++	$(CXX) $(LDFLAGS) -o h1isogbsd h1isogbsd$(OBJ_SUF) $(G0NLIBFLAG) $(LFLAGS)
  
 -nfconvert: nfconvert$(OBJ_SUF).o $(G0NLIBNAME)
 -	$(CXX) -o nfconvert nfconvert$(OBJ_SUF).o $(G0NLIBFLAG) $(LFLAGS)
 +nfconvert: nfconvert$(OBJ_SUF) $(G0NLIBNAME)
-+	$(CXX) -o nfconvert nfconvert$(OBJ_SUF) $(G0NLIBFLAG) $(LFLAGS)
++	$(CXX) $(LDFLAGS) -o nfconvert nfconvert$(OBJ_SUF) $(G0NLIBFLAG) $(LFLAGS)
  
  
 -h1bsdcurisog: h1bsdcurisog$(OBJ_SUF).o $(G0NLIBNAME)
 -	$(CXX) -o h1bsdcurisog h1bsdcurisog$(OBJ_SUF).o $(G0NLIBFLAG) $(RANKLIBFLAG) $(LFLAGS)
 +h1bsdcurisog: h1bsdcurisog$(OBJ_SUF) $(G0NLIBNAME)
-+	$(CXX) -o h1bsdcurisog h1bsdcurisog$(OBJ_SUF) $(G0NLIBFLAG) $(RANKLIBFLAG) $(LFLAGS)
++	$(CXX) $(LDFLAGS) -o h1bsdcurisog h1bsdcurisog$(OBJ_SUF) $(G0NLIBFLAG) $(RANKLIBFLAG) $(LFLAGS)
  
 -th1nf: th1nf$(OBJ_SUF).o $(G0NLIBNAME)
 -	$(CXX) -o th1nf th1nf$(OBJ_SUF).o $(G0NLIBFLAG) $(LFLAGS)
 +th1nf: th1nf$(OBJ_SUF) $(G0NLIBNAME)
-+	$(CXX) -o th1nf th1nf$(OBJ_SUF) $(G0NLIBFLAG) $(LFLAGS)
++	$(CXX) $(LDFLAGS) -o th1nf th1nf$(OBJ_SUF) $(G0NLIBFLAG) $(LFLAGS)
  
 -mazurcheck$(OBJ_SUF).o: moddata.h symb.h cusp.h homspace.h oldforms.h newforms.h \
 +mazurcheck$(OBJ_SUF): moddata.h symb.h cusp.h homspace.h oldforms.h newforms.h \
@@ -382,7 +382,7 @@
 -mazurcheck2$(OBJ_SUF).o: moddata.h symb.h cusp.h homspace.h oldforms.h newforms.h \
 +	$(CXX) $(CFLAGS) mazurcheck.cc -o mazurcheck$(OBJ_SUF)
 +mazurcheck: mazurcheck$(OBJ_SUF) $(G0NLIBNAME)
-+	$(CXX) -o mazurcheck mazurcheck$(OBJ_SUF) $(G0NLIBFLAG) $(LFLAGS)
++	$(CXX) $(LDFLAGS) -o mazurcheck mazurcheck$(OBJ_SUF) $(G0NLIBFLAG) $(LFLAGS)
 +mazurcheck2$(OBJ_SUF): moddata.h symb.h cusp.h homspace.h oldforms.h newforms.h \
  	    periods.h mazurcheck2.cc curvesort.cc
 -	$(CXX) $(CFLAGS) mazurcheck2.cc -o mazurcheck2$(OBJ_SUF).o
@@ -390,51 +390,51 @@
 -	$(CXX) -o mazurcheck2 mazurcheck2$(OBJ_SUF).o $(G0NLIBFLAG) $(LFLAGS)
 +	$(CXX) $(CFLAGS) mazurcheck2.cc -o mazurcheck2$(OBJ_SUF)
 +mazurcheck2: mazurcheck2$(OBJ_SUF) $(G0NLIBNAME)
-+	$(CXX) -o mazurcheck2 mazurcheck2$(OBJ_SUF) $(G0NLIBFLAG) $(LFLAGS)
++	$(CXX) $(LDFLAGS) -o mazurcheck2 mazurcheck2$(OBJ_SUF) $(G0NLIBFLAG) $(LFLAGS)
  
  
 -tnf2: tnf2$(OBJ_SUF).o $(G0NLIBNAME)
 -	$(CXX) -o tnf2 tnf2$(OBJ_SUF).o $(G0NLIBFLAG) $(LFLAGS)
 +tnf2: tnf2$(OBJ_SUF) $(G0NLIBNAME)
-+	$(CXX) -o tnf2 tnf2$(OBJ_SUF) $(G0NLIBFLAG) $(LFLAGS)
++	$(CXX) $(LDFLAGS) -o tnf2 tnf2$(OBJ_SUF) $(G0NLIBFLAG) $(LFLAGS)
  
  
 -h1degphi: h1degphi$(OBJ_SUF).o $(G0NLIBNAME)
 -	$(CXX) -o h1degphi h1degphi$(OBJ_SUF).o $(G0NLIBFLAG) $(LFLAGS)
 +h1degphi: h1degphi$(OBJ_SUF) $(G0NLIBNAME)
-+	$(CXX) -o h1degphi h1degphi$(OBJ_SUF) $(G0NLIBFLAG) $(LFLAGS)
++	$(CXX) $(LDFLAGS) -o h1degphi h1degphi$(OBJ_SUF) $(G0NLIBFLAG) $(LFLAGS)
  
 -h1degphi_mw: h1degphi_mw$(OBJ_SUF).o $(G0NLIBNAME)
 -	$(CXX) -o h1degphi_mw h1degphi_mw$(OBJ_SUF).o $(G0NLIBFLAG) $(LFLAGS)
 +h1degphi_mw: h1degphi_mw$(OBJ_SUF) $(G0NLIBNAME)
-+	$(CXX) -o h1degphi_mw h1degphi_mw$(OBJ_SUF) $(G0NLIBFLAG) $(LFLAGS)
++	$(CXX) $(LDFLAGS) -o h1degphi_mw h1degphi_mw$(OBJ_SUF) $(G0NLIBFLAG) $(LFLAGS)
  
 -mazurdeg: mazurdeg$(OBJ_SUF).o $(G0NLIBNAME)
 -	$(CXX) -o mazurdeg mazurdeg$(OBJ_SUF).o $(G0NLIBFLAG) $(LFLAGS)
 +mazurdeg: mazurdeg$(OBJ_SUF) $(G0NLIBNAME)
-+	$(CXX) -o mazurdeg mazurdeg$(OBJ_SUF) $(G0NLIBFLAG) $(LFLAGS)
++	$(CXX) $(LDFLAGS) -o mazurdeg mazurdeg$(OBJ_SUF) $(G0NLIBFLAG) $(LFLAGS)
  
 -degphitab: degphitab$(OBJ_SUF).o $(G0NLIBNAME)
 -	$(CXX) -o degphitab degphitab$(OBJ_SUF).o $(G0NLIBFLAG) $(LFLAGS)
 +degphitab: degphitab$(OBJ_SUF) $(G0NLIBNAME)
-+	$(CXX) -o degphitab degphitab$(OBJ_SUF) $(G0NLIBFLAG) $(LFLAGS)
++	$(CXX) $(LDFLAGS) -o degphitab degphitab$(OBJ_SUF) $(G0NLIBFLAG) $(LFLAGS)
  
 -degphitex: degphitex$(OBJ_SUF).o
 -	$(CXX) -o degphitex degphitex$(OBJ_SUF).o $(LFLAGS)
 +degphitex: degphitex$(OBJ_SUF)
-+	$(CXX) -o degphitex degphitex$(OBJ_SUF) $(LFLAGS)
++	$(CXX) $(LDFLAGS) -o degphitex degphitex$(OBJ_SUF) $(LFLAGS)
  
 -test: test$(OBJ_SUF).o
 -	$(CXX) -o test test$(OBJ_SUF).o $(LFLAGS)
 +test: test$(OBJ_SUF)
-+	$(CXX) -o test test$(OBJ_SUF) $(LFLAGS)
++	$(CXX) $(LDFLAGS) -o test test$(OBJ_SUF) $(LFLAGS)
  
 -checkgens$(OBJ_SUF).o: checkgens.cc curvesort.cc
 -checkgens: checkgens$(OBJ_SUF).o
 -	   $(CXX) -o checkgens checkgens$(OBJ_SUF).o  $(LFLAGS)
 +checkgens$(OBJ_SUF): checkgens.cc curvesort.cc
 +checkgens: checkgens$(OBJ_SUF)
-+	   $(CXX) -o checkgens checkgens$(OBJ_SUF)  $(LFLAGS)
++	   $(CXX) $(LDFLAGS) -o checkgens checkgens$(OBJ_SUF)  $(LFLAGS)
  
  # DEPENDENCIES
  
@@ -563,7 +563,7 @@
 -vlift: vlift$(OBJ_SUF).o 
 -	$(CXX) -o vlift vlift$(OBJ_SUF).o $(LFLAGS)
 +vlift: vlift$(OBJ_SUF)
-+	$(CXX) -o vlift vlift$(OBJ_SUF) $(LFLAGS)
++	$(CXX) $(LDFLAGS) -o vlift vlift$(OBJ_SUF) $(LFLAGS)
  
  e2x: e2x.cc
  	$(CXX) $(OPTFLAG) e2x.cc -o e2x $(IOLIB)
@@ -600,9 +600,9 @@
 +aphomspace$(OBJ_SUF): moddata.h symb.h cusp.h homspace.h aphomspace.cc
 +aphomtest$(OBJ_SUF): aphomtest.cc moddata.h symb.h cusp.h homspace.h
 +aphomtest: homtest$(OBJ_SUF) symb$(OBJ_SUF) moddata$(OBJ_SUF) cusp$(OBJ_SUF) aphomspace$(OBJ_SUF)
-+	$(CXX) -o aphomtest homtest$(OBJ_SUF) symb$(OBJ_SUF) moddata$(OBJ_SUF) cusp$(OBJ_SUF) aphomspace$(OBJ_SUF)  $(LFLAGS)
++	$(CXX) $(LDFLAGS) -o aphomtest homtest$(OBJ_SUF) symb$(OBJ_SUF) moddata$(OBJ_SUF) cusp$(OBJ_SUF) aphomspace$(OBJ_SUF)  $(LFLAGS)
 +aphecketest: hecketest$(OBJ_SUF) cusp$(OBJ_SUF) aphomspace$(OBJ_SUF) symb$(OBJ_SUF) moddata$(OBJ_SUF)
-+	$(CXX) -o aphecketest hecketest$(OBJ_SUF) cusp$(OBJ_SUF) aphomspace$(OBJ_SUF) symb$(OBJ_SUF) moddata$(OBJ_SUF) \
++	$(CXX) $(LDFLAGS) -o aphecketest hecketest$(OBJ_SUF) cusp$(OBJ_SUF) aphomspace$(OBJ_SUF) symb$(OBJ_SUF) moddata$(OBJ_SUF) \
  		 $(LFLAGS)
  
  
