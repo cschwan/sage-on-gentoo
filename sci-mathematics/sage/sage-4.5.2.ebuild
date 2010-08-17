@@ -256,12 +256,6 @@ src_prepare() {
 	sed -i "s:open(SAGE_LOCAL + 'lib/lie/INFO\.0'):open(SAGE_LOCAL + '/lib/lie/INFO.0'):g" \
 		sage/interfaces/lie.py || die "failed to patch lie library path"
 
-	# TODO: the following may be well for tests but not for the user
-
-	# patch path where graphics are saved
-	sed -i "s:'sage%d\.%s'%(i,ext):'%s/sage%d.%s'%(SAGE_TMP,i,ext):g" \
-		sage/misc/misc.py || die "failed to patch graphics_filename"
-
 	# fix test paths
 	sed -i \
 		-e "s:'my_animation.gif':tmp_filename('my_animation')+'.gif':g" \
@@ -269,12 +263,6 @@ src_prepare() {
 		-e "s:'wave0.sobj':tmp_filename('wave0')+'.sobj':g" \
 		-e "s:'wave1.sobj':tmp_filename('wave1')+'.sobj':g" \
 		sage/plot/animate.py
-
-	# fix fortran stuff
-	sed -i \
-		-e "s:#name = tmp_dir():name = tmp_dir():" \
-		-e "s:name = 'fortran_module_%d'%count:#name = 'fortran_module_%d'%count:" \
-		sage/misc/inline_fortran.py || die "failed to patch fortran module path"
 
 	# do not forget to run distutils
 	distutils_src_prepare

@@ -4,6 +4,10 @@
 
   17 Aug 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
   sage-4.5.2.ebuild:
+  Removed seds which broke graphics in notebook and inline_fortran.py
+
+  17 Aug 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
+  sage-4.5.2.ebuild:
   Fixed DEPENDencies: missing sqlalchemy and factory
 
   15 Aug 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
