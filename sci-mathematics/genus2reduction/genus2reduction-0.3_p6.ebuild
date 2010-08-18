@@ -36,7 +36,7 @@ src_compile() {
 		mylib="-mpir"
 	fi
 
-	$(tc-getCC) ${CFLAGS} -o ${PN} ${PN}.c -lpari ${mylib} -lm \
+	$(tc-getCC) ${CFLAGS} ${LDFLAGS} -o ${PN} ${PN}.c -lpari ${mylib} -lm \
 		|| die "compilation of source failed"
 }
 

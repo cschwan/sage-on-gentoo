@@ -29,7 +29,7 @@ src_prepare() {
 }
 
 src_compile() {
-	$(tc-getCC) ${CFLAGS} -o ${PN} ${PN}.c -lpari24 -lgmp -lm \
+	$(tc-getCC) ${CFLAGS} ${LDFLAGS} -o ${PN} ${PN}.c -lpari24 -lgmp -lm \
 		|| die "compilation of source failed"
 }
 
