@@ -6,7 +6,7 @@ EAPI="3"
 
 PYTHON_DEPEND="2:2.6"
 
-inherit eutils flag-o-matic multilib python scons versionator
+inherit eutils flag-o-matic multilib python versionator
 
 DESCRIPTION="Polynomials over Boolean Rings"
 HOMEPAGE="http://polybori.sourceforge.net/"
@@ -67,11 +67,11 @@ src_compile(){
 		INSTALLDIR="${ED}"/usr/share/polybori \
 		LIBDIRPREFIX="${ED}"/usr/$(get_libdir) )
 
-	escons "${PARAMS[@]}" prepare-install prepare-devel || die
+	scons "${MAKEOPTS}" "${PARAMS[@]}" prepare-install prepare-devel || die
 }
 
 src_install() {
-	escons "${PARAMS[@]}" install devel-install || die
+	scons "${MAKEOPTS}" "${PARAMS[@]}" install devel-install || die
 
 	# remove incomplete documentation
 	if ! use doc ; then
