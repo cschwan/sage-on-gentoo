@@ -2,6 +2,12 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*palp-1.1-r2 (18 Aug 2010)
+
+  18 Aug 2010; François Bissey <f.r.bissey@massey.ac.nz>
+  +palp-1.1-r2.ebuild, +files/palp-1.1-GNUMakefile.patch:
+  Use a patch instead of sed to insert LDFLAGS and CC as well in -r2.
+
   15 Jul 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
   -palp-1.1.ebuild:
   Removed old revision
