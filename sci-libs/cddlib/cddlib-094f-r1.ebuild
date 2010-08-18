@@ -23,6 +23,7 @@ RDEPEND="${DEPEND}"
 # TODO: examples. cddlib installs programs named like test* which are maybe not
 # used
 
+AUTOTOOLS_IN_SOURCE_BUILD="1"
 DOCS=( ChangeLog README )
 PATCHES=(
 	"${FILESDIR}"/${PN}-094f-use-libtool.patch
