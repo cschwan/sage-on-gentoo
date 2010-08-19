@@ -30,12 +30,12 @@ S="${WORKDIR}/${P}/src"
 
 src_prepare() {
 	# patch for shared objects and various make issues.
-	epatch "${FILESDIR}"/${P}-makefile.patch
-	epatch "${FILESDIR}"/${P}-makefile.dynamic.patch
-	epatch "${FILESDIR}"/${P}-g0n_makefile.patch
-	epatch "${FILESDIR}"/${P}-procs_makefile.patch
-	epatch "${FILESDIR}"/${P}-qcurves_makefile.patch
-	epatch "${FILESDIR}"/${P}-qrank_makefile.patch
+	epatch "${FILESDIR}"/${P}-makefile.patch.bz2
+	epatch "${FILESDIR}"/${P}-makefile.dynamic.patch.bz2
+	epatch "${FILESDIR}"/${P}-g0n_makefile.patch.bz2
+	epatch "${FILESDIR}"/${P}-procs_makefile.patch.bz2
+	epatch "${FILESDIR}"/${P}-qcurves_makefile.patch.bz2
+	epatch "${FILESDIR}"/${P}-qrank_makefile.patch.bz2
 
 	if use pari24 ; then
 		sed -i "s:-lpari:-lpari24:g" g0n/Makefile \
@@ -59,7 +59,7 @@ src_prepare() {
 }
 
 src_compile() {
-	emake CXX=$(tc-getCXX) all so || die
+	emake CXX=$(tc-getCXX) so || die
 }
 
 src_install() {

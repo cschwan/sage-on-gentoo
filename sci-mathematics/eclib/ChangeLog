@@ -2,6 +2,21 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  19 Aug 2010; François Bissey <f.r.bissey@massey.ac.nz>
+  eclib-20100711.ebuild, -files/eclib-20100711-g0n_makefile.patch,
+  +files/eclib-20100711-g0n_makefile.patch.bz2,
+  -files/eclib-20100711-makefile.dynamic.patch,
+  +files/eclib-20100711-makefile.dynamic.patch.bz2,
+  -files/eclib-20100711-makefile.patch,
+  +files/eclib-20100711-makefile.patch.bz2,
+  -files/eclib-20100711-procs_makefile.patch,
+  +files/eclib-20100711-procs_makefile.patch.bz2,
+  -files/eclib-20100711-qcurves_makefile.patch,
+  +files/eclib-20100711-qcurves_makefile.patch.bz2,
+  -files/eclib-20100711-qrank_makefile.patch,
+  +files/eclib-20100711-qrank_makefile.patch.bz2:
+  Finalizing eclib - much shorter and lighter build.
+
   17 Aug 2010; François Bissey <f.r.bissey@massey.ac.nz>
   files/eclib-20100711-g0n_makefile.patch,
   files/eclib-20100711-procs_makefile.patch,
