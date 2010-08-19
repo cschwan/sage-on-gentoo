@@ -79,7 +79,7 @@ src_install() {
 	fi
 
 	# fixes problem of random SIGABRT in Sage on amd64
-	rm "${ED}"/usr/$(get_libdir)/lib*.so* \
+	rm "${ED}"/usr/lib/lib*.so* \
 		|| die "failed to remove shared objects"
 }
 

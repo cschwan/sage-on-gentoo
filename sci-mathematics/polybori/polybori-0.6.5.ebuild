@@ -79,10 +79,9 @@ src_install() {
 			|| die "failed to remove useless documentation"
 	fi
 
-# 	# fixes problem of random SIGABRT in Sage on amd64
-# 	rm "${ED}"/usr/$(get_libdir)/lib*.so* \
-# 		|| die "failed to remove shared objects"
+	# TODO: fix installation directory for libraries
 
-	rm "${ED}"/usr/$(get_libdir)/lib*.a \
-		|| die "failed to remove static libraries"
+	# circumvents problem of random SIGABRT in Sage on amd64
+	rm "${ED}"/usr/lib/lib*.so* \
+		|| die "failed to remove shared objects"
 }
