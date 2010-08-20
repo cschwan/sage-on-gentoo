@@ -34,6 +34,10 @@ src_prepare() {
 	# fix for multilib-strict
 	sed -i "s:%s/lib:%s/$(get_libdir):g" makemakefile.py \
 		|| die "failed to patch for multilib-strict"
+
+	# fix to make zn_poly respect LDFLAGS
+	sed -i "s:so \$(LIBOBJS) \$(LIBS):so \$(LDFLAGS) \$(LIBOBJS) \$(LIBS):g" \
+		makemakefile.py || die "failed to add linker flags"
 }
 
 # TODO: support flint instead of gmp option ?
