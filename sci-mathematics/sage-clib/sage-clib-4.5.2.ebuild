@@ -4,7 +4,7 @@
 
 EAPI="3"
 
-inherit eutils toolchain-funcs
+inherit eutils scons
 
 MY_P="sage-${PV}"
 
@@ -39,8 +39,7 @@ src_prepare() {
 
 src_compile() {
 	# build libcsage.so
-	CXX= SAGE_LOCAL=/usr UNAME=$(uname) scons ${MAKEOPTS} \
-		|| die "failed to compile"
+	CXX= SAGE_LOCAL=/usr UNAME=$(uname) escons || die
 }
 
 src_install() {
