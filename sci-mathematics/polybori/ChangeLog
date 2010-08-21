@@ -2,6 +2,13 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*polybori-0.6.5-r1 (21 Aug 2010)
+
+  21 Aug 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
+  +polybori-0.6.5-r1.ebuild,
+  +files/polybori-0.6.5-fix-double-free-error.patch:
+  New revision with patch for shared libraries
+
 *polybori-0.6.5 (18 Aug 2010)
 
   18 Aug 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
