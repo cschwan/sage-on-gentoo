@@ -2,6 +2,12 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*sage-4.5.2-r1 (22 Aug 2010)
+
+  22 Aug 2010; François Bissey <f.r.bissey@massey.ac.nz>
+  +sage-4.5.2-r1.ebuild:
+  Get rid of singular[sage] dep in favor of sage-doc including singular.hlp.
+
   17 Aug 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
   sage-4.5.2.ebuild:
   Removed seds which broke graphics in notebook and inline_fortran.py
