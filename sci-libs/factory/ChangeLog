@@ -2,6 +2,10 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  22 Aug 2010; François Bissey <f.r.bissey@massey.ac.nz>
+  factory-3.1.1.ebuild:
+  Keyword ~ppc
+
   30 Jul 2010; François Bissey <f.r.bissey@massey.ac.nz>
   +factory-3.1.1.ebuild, +files/factory-3.1.1-gentoo.diff, +metadata.xml:
   Initial import from science overlay.
