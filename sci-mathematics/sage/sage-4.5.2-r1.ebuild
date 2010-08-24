@@ -257,7 +257,7 @@ src_prepare() {
 		sage/interfaces/lie.py || die "failed to patch lie library path"
 
 	# Patch to singular info file shipped with sage-doc
-	sed -i "s:os.environ\[\"SAGE_LOCAL\"\]+\"/share/singular/\":os.environ\[\"SAGE_DOC\"\]:g" \
+	sed -i "s:os.environ\[\"SAGE_LOCAL\"\]+\"/share/singular/\":os.environ\[\"SAGE_DOC\"\]+\"/\":g" \
 		sage/interfaces/singular.py || die "failed to patch singular.hlp path"
 
 	# fix test paths
