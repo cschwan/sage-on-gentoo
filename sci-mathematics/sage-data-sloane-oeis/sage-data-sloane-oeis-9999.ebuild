@@ -15,11 +15,6 @@ IUSE=""
 
 RESTRICT="mirror"
 
-DEPEND=""
-RDEPEND="${DEPEND}"
-
-S="${WORKDIR}/${MY_P}"
-
 src_unpack() {
 	wget http://www.research.att.com/~njas/sequences/names.gz \
 		|| die "failed to download 'names' file"
