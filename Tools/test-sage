@@ -36,7 +36,8 @@ DIR="$(pwd)"
 ROOT=/
 MY_SAGE_ROOT=/usr/share/sage
 
-PARAMS=$(getopt -o "h,l,o,p:" -l "help,long,optional,parallel:" -a -n "$(basename $0)" -- "$@")
+PARAMS=$(getopt -o "h,l,o,p:" -l "help,long,optional,parallel:" -a -n \
+	"$(basename $0)" -- "$@")
 
 eval set -- "${PARAMS}"
 
