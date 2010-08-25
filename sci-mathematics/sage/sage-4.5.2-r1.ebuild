@@ -66,7 +66,7 @@ RDEPEND="${CDEPEND}
 	>=dev-python/gdmodule-0.56
 	>=dev-python/ipython-0.9.1
 	>=dev-python/jinja-2.1.1
-	>=dev-python/matplotlib-0.99.3
+	>=dev-python/matplotlib-1.0.0
 	~dev-python/mpmath-0.15
 	~dev-python/networkx-1.0.1
 	~dev-python/pexpect-2.0
@@ -203,6 +203,9 @@ src_prepare() {
 
 	# make use of singular-3.1.1.4 from the system
 	epatch "${FILESDIR}"/${PN}-4.5.2-upgrade-singular.patch
+
+	# upgrade to matplotlib-1.0.0 as it is now marked stable
+	epatch "${FILESDIR}"/trac-9221-matplotlib-update.patch
 
 	# use delaunay from matplotlib (see ticket #6946)
 	epatch "${FILESDIR}"/${PN}-4.3.3-delaunay-from-matplotlib.patch

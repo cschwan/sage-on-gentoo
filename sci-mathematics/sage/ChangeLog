@@ -2,6 +2,10 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  25 Aug 2010; François Bissey <f.r.bissey@massey.ac.nz>
+  sage-4.5.2-r1.ebuild, +files/trac-9221-matplotlib-update.patch:
+  Adopt trac 9221 and raise matplotlib dep to 1.0.0 as it is now stable.
+
   24 Aug 2010; François Bissey <f.r.bissey@massey.ac.nz>
   sage-4.5.2-r1.ebuild:
   Fix missing "/" in singular.hlp path.
