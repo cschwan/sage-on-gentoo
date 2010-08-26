@@ -24,6 +24,7 @@ IUSE="html pdf"
 
 RESTRICT="mirror"
 
+# TODO: depend on sage-baselayout (creates sage-main directory) ?
 DEPEND=""
 RDEPEND=">=dev-python/sphinx-0.6.3"
 
@@ -35,6 +36,11 @@ src_prepare() {
 }
 
 src_install() {
+	# install missing directories to satisfy builder.py test
+	dodir /usr/share/sage/devel/sage-main/doc/output/doctrees/en/tutorial || die
+	dodir /usr/share/sage/devel/sage-main/doc/en/tutorial/templates || die
+	dodir /usr/share/sage/devel/sage-main/doc/en/tutorial/static || die
+
 	# TODO: check if all of these files are needed
 	rm -rf output || die "failed to remove useless files"
 	insinto /usr/share/sage/devel/sage-main/doc
