@@ -6,7 +6,7 @@ EAPI="3"
 
 PYTHON_DEPEND="2:2.6"
 
-inherit eutils flag-o-matic multilib python scons versionator
+inherit eutils flag-o-matic multilib python scons-utils versionator
 
 DESCRIPTION="Polynomials over Boolean Rings"
 HOMEPAGE="http://polybori.sourceforge.net/"
@@ -24,7 +24,6 @@ CDEPEND=">=dev-libs/boost-1.34.1[python]
 	dev-python/ipython
 	gd? ( media-libs/gd )"
 DEPEND="${CDEPEND}
-	>=dev-util/scons-0.98
 	>=sci-libs/m4ri-20090512
 	doc? (
 		dev-tex/tex4ht
@@ -33,6 +32,9 @@ DEPEND="${CDEPEND}
 RDEPEND="${CDEPEND}"
 
 S="${WORKDIR}"/${PN}-$(get_version_component_range 1-2)
+
+USE_SCONS_TRUE="True"
+USE_SCONS_FALSE="False"
 
 src_prepare() {
 	if use sage ; then
@@ -59,27 +61,29 @@ src_compile(){
 	# needed to make polybori linkable
 	append-flags -fPIC
 
-	if use doc ; then
-	    DOC="True"
-	else
-	    DOC="False"
-	fi
-
 	# TODO: handle singular
 
 	# store all parameters for scons in a bash array
-	PARAMS=( CFLAGS=${CFLAGS} CCFLAGS= CXXFLAGS=${CXXFLAGS} \
-		LINKFLAGS=${LDFLAGS} HAVE_HEVEA=False HAVE_L2H=False \
-		HAVE_TEX4HT=${DOC} HAVE_DOXYGEN=${DOC} HAVE_PYDOC=${DOC} \
-		MANDIR="${ED}"/usr/share/man PREFIX="${ED}"/usr \
-		PYINSTALLPREFIX="${ED}"$(python_get_sitedir) \
-		INSTALLDIR="${ED}"/usr/share/polybori )
+	myesconsargs=(
+		CFLAGS=${CFLAGS}
+		CXXFLAGS=${CXXFLAGS}
+		LINKFLAGS=${LDFLAGS}
+		HAVE_HEVEA=False
+		HAVE_L2H=False
+		$(use_scons doc HAVE_TEX4HT)
+		$(use_scons doc HAVE_DOXYGEN)
+		$(use_scons doc HAVE_PYDOC)
+		MANDIR="${ED}"/usr/share/man
+		PREFIX="${ED}"/usr
+		PYINSTALLPREFIX="${ED}"$(python_get_sitedir)
+		INSTALLDIR="${ED}"/usr/share/polybori
+	)
 
-	escons "${PARAMS[@]}" prepare-install prepare-devel || die
+	escons "${myesconsargs[@]}" prepare-install prepare-devel || die
 }
 
 src_install() {
-	escons "${PARAMS[@]}" install devel-install || die
+	escons "${myesconsargs[@]}" install devel-install || die
 
 	# remove incomplete documentation
 	if ! use doc ; then
