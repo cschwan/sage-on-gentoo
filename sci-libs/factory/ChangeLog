@@ -2,6 +2,12 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*factory-3.1.1-r1 (26 Aug 2010)
+
+  26 Aug 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
+  +factory-3.1.1-r1.ebuild:
+  Added ebuild migrated to autotools-utils.eclass
+
   22 Aug 2010; François Bissey <f.r.bissey@massey.ac.nz>
   factory-3.1.1.ebuild:
   Keyword ~ppc
