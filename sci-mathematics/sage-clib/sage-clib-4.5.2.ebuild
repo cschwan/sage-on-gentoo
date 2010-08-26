@@ -4,7 +4,7 @@
 
 EAPI="3"
 
-inherit eutils scons
+inherit eutils scons-utils
 
 MY_P="sage-${PV}"
 
@@ -19,15 +19,13 @@ IUSE=""
 
 RESTRICT="mirror"
 
-CDEPEND="dev-libs/gmp[-nocxx]
+DEPEND="dev-libs/gmp[-nocxx]
 	>=dev-libs/ntl-5.4.2
 	>=dev-lang/python-2.6.4
 	>=sci-libs/pynac-0.2.0_p4
 	>=sci-mathematics/pari-2.3.5
 	>=sci-mathematics/polybori-0.6.4[sage]"
-DEPEND="${CDEPEND}
-	>=dev-util/scons-1.2.0"
-RDEPEND="${CDEPEND}"
+RDEPEND="${DEPEND}"
 
 S="${WORKDIR}/${MY_P}/c_lib"
 
