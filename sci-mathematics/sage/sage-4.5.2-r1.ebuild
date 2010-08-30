@@ -296,3 +296,18 @@ src_install() {
 
 	distutils_src_install
 }
+
+pkg_postinst() {
+	einfo "If you use Sage's browser interface ('Sage Notebook') and experience"
+	einfo "an 'Internal Server Error' you should append the following line to"
+	einfo "your ~/.bashrc (replace firefox with your favorite browser):"
+	einfo ""
+	einfo "export SAGE_BROWSER=/usr/bin/firefox"
+	einfo ""
+	einfo "Sage comes with the 'Standard' set of Sage Packages, i.e. those"
+	einfo "listed at: http://sagemath.org/packages/standard/ which are now"
+	einfo "already installed."
+	einfo "There are also some packages of the 'Optional' set (which consists"
+	einfo "of the these packages: http://sagemath.org/packages/optional/)"
+	einfo "available which may be installed with portage as usual."
+}
