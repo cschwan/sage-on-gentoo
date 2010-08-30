@@ -43,12 +43,23 @@ eval set -- "${PARAMS}"
 
 while true; do
 	case "$1" in
-	-h|--help)     print_help;                   shift  ;;
-	-l|--long)     declare -r TEST_LONG=yes;     shift  ;;
-	-o|--optional) declare -r TEST_OPTIONAL=yes; shift ;;
-	-p|--parallel) NUM_THREADS=$2;               shift 2;;
-	--)                                          shift; break;;
-	*) error "unknown option: $1";;
+	-h|--help)
+		print_help
+		shift;;
+	-l|--long)
+		declare -r TEST_LONG=yes
+		shift;;
+	-o|--optional)
+		declare -r TEST_OPTIONAL=yes
+		shift;;
+	-p|--parallel)
+		declare -r NUM_THREADS=$2
+		shift 2;;
+	--)
+		shift
+		break;;
+	*)
+		error "unknown option: $1";;
 	esac
 done
 
@@ -59,6 +70,7 @@ else
 fi
 
 option_append -sagenb
+
 
 if [[ -n ${TEST_LONG} ]]; then
 	option_append -long
@@ -76,7 +88,7 @@ if [[ -z $(is_installed sage[testsuite]) ]]; then
 	error "sage is not compiled with USE=testsuite"
 fi
 
-sage-starts >/dev/null \
+sage-starts \
 	|| error "Sage did not start"
 
 sage "${options[@]}" "${TESTDIRS[@]}" 2>&1
