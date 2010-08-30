@@ -134,6 +134,11 @@ src_prepare() {
 	# remove annoying std=c99 from a c++ file.
 	epatch "${FILESDIR}"/${PN}-4.4.4-extra-stdc99.patch
 
+	# Fix ecls bug for ppc see #308909. This has to be done before sed is applied to module_list.py
+	if use ppc ; then
+		epatch "${FILESDIR}"/${P}-ecls_ppc.patch
+	fi
+
 	# use already installed csage
 	rm -rf c_lib || die "failed to remove c library directory"
 
