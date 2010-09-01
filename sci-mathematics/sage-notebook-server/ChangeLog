@@ -1,0 +1,11 @@
+# ChangeLog for sci-mathematics/sage-notebook-server
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: $
+
+*sage-notebook-server-9999 (01 Sep 2010)
+
+  01 Sep 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
+  +sage-notebook-server-9999.ebuild, +files/sage-notebook-server,
+  +files/sage-notebook-server.conf, +metadata.xml:
+  Initial import
+
