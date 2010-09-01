@@ -26,24 +26,30 @@ S="${WORKDIR}/${MY_P}"
 
 # TODO: scripts into /usr/libexec ?
 src_prepare() {
+	rm ipython/*pyc || die "failed to remove compiled python files"
+
+	# ship our own version of sage-env
+	rm sage-env || die "failed to remove sage-env"
+
+	cat > sage-env <<-EOF
+		#!/bin/bash
+
+		if [[ -z \${DOT_SAGE} ]]; then
+		    export DOT_SAGE="\${HOME}/.sage"
+		fi
+
+		export SAGE_STARTUP_FILE="\${DOT_SAGE}/init.sage"
+		export SAGE_TESTDIR="\${DOT_SAGE}/tmp"
+		export SAGE_SERVER="http://www.sagemath.org/"
+	EOF
+
 	# make sage startup script
-	cat > "${S}"/sage <<-EOF
+	cat > sage <<-EOF
 		#!/bin/bash
 
 		export CUR=\$(pwd)
 		. ${EPREFIX}/usr/bin/sage-env
 		${EPREFIX}/usr/bin/sage-sage "\$@"
-	EOF
-
-	# ship our own version of sage-env
-	rm sage-env || die "failed to remove sage-env"
-	cat > "${S}"/sage-env <<-EOF
-		#!/bin/bash
-
-		export SAGE_SERVER="http://www.sagemath.org/"
-		export DOT_SAGE="\${HOME}/.sage"
-		export SAGE_STARTUP_FILE="\${DOT_SAGE}/init.sage"
-		export SAGE_TESTDIR="\${DOT_SAGE}/tmp"
 	EOF
 
 	# These variables must be globally available (e.g. for sympy-0.6.7)
@@ -54,19 +60,38 @@ src_prepare() {
 		SAGE_DOC="${EPREFIX}/usr/share/sage/devel/sage/doc"
 	EOF
 
+	# make .desktop file
+	cat > "${T}"/sage-sage.desktop <<-EOF
+		[Desktop Entry]
+		Name=Sage Shell
+		Type=Application
+		Comment=Math software for algebra, geometry, number theory, cryptography and numerical computation
+		Exec=sage
+		TryExec=sage
+		Icon=sage
+		Categories=Education;Science;Math;
+		Terminal=true
+	EOF
+
+	# TODO: do not remove scons and M2
+
+	# remove developer- and unsupported options
 	epatch "${FILESDIR}"/${PN}-4.5.2-gentooify-startup-script.patch
+
+	# we dont need this script
 	epatch "${FILESDIR}"/${PN}-4.5.1-remove-sage-location.patch
+
+	# replace ${SAGE_ROOT}/local with ${SAGE_LOCAL}
 	epatch "${FILESDIR}"/${PN}-4.5.2-fix-SAGE_LOCAL.patch
 
+	# sage startup script is placed into /usr/bin
 	sed -i "s:\"\$SAGE_ROOT\"/sage:\"\$SAGE_LOCAL\"/bin/sage:g" \
-		sage-maketest || die "failed to patch SAGE_LOCAL path"
+		sage-maketest || die "failed to patch path for Sage's startup script"
 
 	sed -i "s:sage_fortran:$(tc-getFC):g" sage-g77_shared \
 		|| die "failed to patch fortran compiler path"
 
 	# TODO: if USE=debug/testsuite, remove corresponding options
-
-	rm ipython/*pyc || die "failed to remove compiled python files"
 }
 
 src_install() {
@@ -114,26 +139,10 @@ src_install() {
 
 	if use X ; then
 		# unpack icon
-		cp "${FILESDIR}"/sage.svg.bz2 . || die "failed to copy icon"
-		bzip2 -d sage.svg.bz2 || die "failed to unzip icon"
+		cp "${FILESDIR}"/sage.svg.bz2 "${T}" || die "failed to copy icon"
+		bzip2 -d "${T}"/sage.svg.bz2 || die "failed to unzip icon"
 
-		# install icon
-		doicon sage.svg || die
-
-		# make .desktop file
-		cat > sage-sage.desktop <<-EOF
-			[Desktop Entry]
-			Name=Sage Shell
-			Type=Application
-			Comment=Math software for algebra, geometry, number theory, cryptography and numerical computation
-			Exec=sage
-			TryExec=sage
-			Icon=sage
-			Categories=Education;Science;Math;
-			Terminal=true
-		EOF
-
-		# install .desktop file
-		domenu sage-sage.desktop || die
+		doicon "${T}"/sage.svg || die
+		domenu "${T}"/sage-sage.desktop || die
 	fi
 }
