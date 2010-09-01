@@ -101,11 +101,11 @@ RDEPEND="${CDEPEND}
 	~sci-mathematics/sage-notebook-0.8.1
 	>=sci-mathematics/sympow-1.018
 	examples? ( ~sci-mathematics/sage-examples-${PV} )
-	latex? ( ~sci-mathematics/sage-latex-2.2.5 )
 	testsuite? (
 		~sci-mathematics/sage-doc-${PV}[html]
 		~sci-mathematics/sage-examples-${PV}
 	)"
+PDEPEND="latex? ( ~sci-mathematics/sage-latex-2.2.5 )"
 
 # TODO: check if use flags are necessary
 
