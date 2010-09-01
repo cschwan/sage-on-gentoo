@@ -1,8 +1,12 @@
 sage-on-gentoo provides split ebuilds (www.gentoo.org) for the computer algebra
 system SAGE (www.sagemath.org).
 
-* If you have problems with sage-on-gentoo or have suggestions write a mail to
-  the "gentoo-science" mailing list:
+* If you have problems with sage-on-gentoo or have suggestions talk to us on
+  #gentoo-science on freenode:
+
+    http://www.gentoo.org/main/en/irc.xml
+
+  or write a mail to the "gentoo-science" mailing list:
 
     http://www.gentoo.org/main/en/lists.xml
 
@@ -52,9 +56,7 @@ INSTALLATION GUIDE AND SOME NOTES:
 
      emerge -va sage
 
-   to install sage; note that this will pull in a lot of dependencies. You will
-   also notice that sci-libs/blas-atlas will take a lot of time to compile (3 to
-   4 hours).
+   to install sage; note that this will pull in a lot of dependencies.
 
 5. UPDATE OVERLAY:
    To update your local copy of sage-on-gentoo simply type:
