@@ -32,3 +32,7 @@ src_install() {
 	doinitd init.d/${PN} || die
 	doconfd conf.d/${PN} || die
 }
+
+pkg_postinst() {
+	ewarn "WARNING: The startup script isnt fully tested - use at your own risk"
+}
