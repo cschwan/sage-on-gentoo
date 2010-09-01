@@ -68,7 +68,7 @@ RDEPEND="${CDEPEND}
 	>=dev-python/jinja-2.1.1
 	>=dev-python/matplotlib-1.0.0
 	~dev-python/mpmath-0.15
-	~dev-python/networkx-1.0.1
+	>=dev-python/networkx-1.0.1
 	~dev-python/pexpect-2.0
 	>=dev-python/pycrypto-2.0.1
 	>=dev-python/python-gnutls-1.1.4
