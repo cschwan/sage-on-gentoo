@@ -68,7 +68,7 @@ RDEPEND="${CDEPEND}
 	>=dev-python/jinja-2.1.1
 	>=dev-python/matplotlib-1.0.0
 	~dev-python/mpmath-0.15
-	>=dev-python/networkx-1.0.1
+	>=dev-python/networkx-1.2
 	~dev-python/pexpect-2.0
 	>=dev-python/pycrypto-2.0.1
 	>=dev-python/python-gnutls-1.1.4
@@ -138,6 +138,10 @@ src_prepare() {
 	if use ppc ; then
 		epatch "${FILESDIR}"/${P}-ecls_ppc.patch
 	fi
+
+	# networkx-1.0.1 has left the tree so we update to 1.2 before the sage-4.5.3 release
+	epatch "${FILESDIR}"/trac_9567-networkx-1.2.patch
+	epatch "${FILESDIR}"/trac_9567-cycle_basis.patch
 
 	# use already installed csage
 	rm -rf c_lib || die "failed to remove c library directory"
