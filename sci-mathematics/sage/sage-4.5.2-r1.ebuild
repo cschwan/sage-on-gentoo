@@ -105,7 +105,7 @@ RDEPEND="${CDEPEND}
 		~sci-mathematics/sage-doc-${PV}[html]
 		~sci-mathematics/sage-examples-${PV}
 	)"
-PDEPEND="latex? ( ~sci-mathematics/sage-latex-2.2.5 )"
+PDEPEND="latex? ( ~dev-tex/sage-latex-2.2.5 )"
 
 # TODO: check if use flags are necessary
 

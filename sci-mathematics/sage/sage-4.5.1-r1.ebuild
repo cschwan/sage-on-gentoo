@@ -46,7 +46,7 @@ RDEPEND="${CDEPEND}
 	>=dev-python/python-gnutls-1.1.4
 	sci-mathematics/sage-doc
 	examples? ( ~sci-mathematics/sage-examples-${PV} )
-	latex? ( ~sci-mathematics/sage-latex-2.2.5 )
+	latex? ( ~dev-tex/sage-latex-2.2.5 )
 	>=sci-mathematics/gap-4.4.12
 	>=sci-mathematics/gap-guava-3.4
 	~sci-mathematics/maxima-5.20.1[ecl]
