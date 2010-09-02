@@ -23,9 +23,9 @@ RESTRICT="mirror"
 # TODO: Check dependencies
 # TODO: enable/disable documentation with USE=doc ?
 
-DEPEND=">=dev-tex/tkz-berge-2.8
+DEPEND=">=dev-tex/tkz-berge-2.8"
+RDEPEND="${DEPEND}
 	sci-mathematics/sage"
-RDEPEND="${DEPEND}"
 
 S="${WORKDIR}/${MY_P}/src"
 

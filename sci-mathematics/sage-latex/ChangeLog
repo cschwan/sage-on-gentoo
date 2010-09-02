@@ -2,6 +2,11 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  02 Sep 2010; François Bissey <f.r.bissey@massey.ac.nz>
+  sage-latex-2.2.5-r1.ebuild:
+  make sage a RDEPEND as it is not needed to install sage-latex, just to use
+  it. It may help the circular dependency problem.
+
 *sage-latex-2.2.5-r1 (08 Aug 2010)
 
   08 Aug 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
