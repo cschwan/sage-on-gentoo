@@ -8,6 +8,5 @@
   <flag name='libsingular'>Build and install the singular </flag>
   <flag name='readline'>Provide command line completion features of
   sys-libs/readline(<pkg>sys-libs/readline</pkg>)</flag>
-  <flag name='sage'>Install the info file singular.hlp to be used in sage </flag>
 </use>
 </pkgmetadata>

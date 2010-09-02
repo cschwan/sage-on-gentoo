@@ -22,7 +22,7 @@ RESTRICT="mirror"
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64 ~ppc ~x86"
-IUSE="boost doc emacs examples libsingular +readline sage"
+IUSE="boost doc emacs examples libsingular +readline"
 
 RDEPEND="dev-libs/gmp
 	>=dev-libs/ntl-5.5.1
@@ -143,10 +143,6 @@ src_install () {
 	if use examples; then
 		insinto /usr/share/doc/${PF}
 		doins -r examples || die "failed to install examples"
-	fi
-	if use sage ; then
-		insinto /usr/share/${PN}
-		doins info/"${PN}".hlp
 	fi
 	if use doc; then
 		dohtml -r html/* || die "failed to install html docs"
