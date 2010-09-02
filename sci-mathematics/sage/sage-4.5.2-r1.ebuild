@@ -98,7 +98,7 @@ RDEPEND="${CDEPEND}
 	~sci-mathematics/sage-data-polytopes_db-20100210
 	>=sci-mathematics/sage-doc-4.5.2-r1
 	~sci-mathematics/sage-extcode-${PV}
-	~sci-mathematics/sage-notebook-0.8.1
+	~sci-mathematics/sage-notebook-0.8.2
 	>=sci-mathematics/sympow-1.018
 	examples? ( ~sci-mathematics/sage-examples-${PV} )
 	testsuite? (

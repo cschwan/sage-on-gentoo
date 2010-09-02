@@ -2,6 +2,10 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  02 Sep 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
+  sage-4.5.2-r1.ebuild:
+  Update dependency on notebook from 0.8.1 to 0.8.2
+
   02 Sep 2010; François Bissey <f.r.bissey@massey.ac.nz>
   +files/trac_9567-cycle_basis.patch, +files/trac_9567-networkx-1.2.patch,
   -sage-4.5.2.ebuild, sage-4.5.2-r1.ebuild:
