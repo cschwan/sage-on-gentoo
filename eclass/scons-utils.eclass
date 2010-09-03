@@ -2,32 +2,43 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
-# @ECLASS: scons.eclass
+# @ECLASS: scons-utils.eclass
 # @MAINTAINER:
 # gentoo@mgorny.alt.pl
 # @BLURB: helper functions to deal with SCons buildsystem
 # @DESCRIPTION:
 # This eclass provides a set of function to help developers sanely call
 # dev-util/scons and pass parameters to it.
+# @EXAMPLE:
+#
+# @CODE
+# inherit scons-utils
+#
+# src_compile() {
+# 	escons \
+# 		$(use_scons nls ENABLE_NLS) \
+# 		|| die
+# }
+# @CODE
 
 # -- public variables --
 
 # @ECLASS-VARIABLE: SCONS_MIN_VERSION
+# @DEFAULT_UNSET
 # @DESCRIPTION:
 # The minimal version of SCons required for the build to work.
-# @DEFAULT-UNSET
 
 # @ECLASS-VARIABLE: SCONSOPTS
+# @DEFAULT_UNSET
 # @DESCRIPTION:
 # The default set of options to pass to scons. Similar to MAKEOPTS,
 # supposed to be set in make.conf. If unset, escons() will use cleaned
 # up MAKEOPTS instead.
-# @DEFAULT-UNSET
 
 # @ECLASS-VARIABLE: EXTRA_ESCONS
+# @DEFAULT_UNSET
 # @DESCRIPTION:
 # The additional parameters to pass to SCons whenever escons() is used.
-# @DEFAULT-UNSET
 
 # @ECLASS-VARIABLE: USE_SCONS_TRUE
 # @DESCRIPTION:
