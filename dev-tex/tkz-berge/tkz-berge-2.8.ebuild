@@ -4,7 +4,7 @@
 
 inherit latex-package
 
-DESCRIPTION="This is a sample skeleton ebuild file"
+DESCRIPTION="tkz-berge is a collection of some useful macros if you want to draw some classic graphs of the graph theory or to make others graphs"
 HOMEPAGE="http://altermundus.com/pages/graphtheory.html"
 SRC_URI="http://altermundus.com/downloads/packages/tkz-arith.sty
 	http://altermundus.com/downloads/packages/${PN}.sty"
@@ -22,8 +22,9 @@ RESTRICT="mirror"
 
 # TODO: check dependencies
 
-DEPEND=">=dev-tex/tkz-graph-2.7d"
-RDEPEND="${DEPEND}"
+DEPEND=""
+RDEPEND="dev-tex/pgf
+	>=dev-tex/tkz-graph-2.7d"
 
 # TODO: is there a more convenient way to do the following ?
 

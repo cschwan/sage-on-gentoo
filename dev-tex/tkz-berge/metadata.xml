@@ -4,4 +4,7 @@
 	<maintainer>
 		<email></email>
 	</maintainer>
+	<longdescription>The package tkz-berge.sty is a collection of some useful macros if you want to draw some classic 
+graphs of the graph theory or to make others graphs.
+	</longdescription>
 </pkgmetadata>
