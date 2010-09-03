@@ -10,7 +10,7 @@ SRC_URI="http://altermundus.com/downloads/packages/${PN}.sty"
 
 # TODO: could not find a license
 
-LICENSE=""
+LICENSE="LPPL-1.3 GPL-3"
 SLOT="0"
 KEYWORDS="~amd64 ~ppc ~x86"
 IUSE=""
@@ -22,7 +22,7 @@ RESTRICT="mirror"
 # TODO: check dependencies
 
 DEPEND=""
-RDEPEND="${DEPEND}"
+RDEPEND="dev-tex/pgf"
 
 # TODO: is there a more convenient way to do the following ?
 

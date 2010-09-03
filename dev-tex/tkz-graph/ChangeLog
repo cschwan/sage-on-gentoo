@@ -2,6 +2,10 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  03 Sep 2010; François Bissey <f.r.bissey@massey.ac.nz>
+  tkz-graph-2.7d.ebuild, metadata.xml:
+  Provide a license, description and some dependency.
+
   26 Mar 2010; François Bissey <f.r.bissey@massey.ac.nz>
   tkz-graph-2.7d.ebuild:
   keywording ~ppc
