@@ -2,6 +2,14 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*sage-latex-2.2.5-r2 (03 Sep 2010)
+
+  03 Sep 2010; François Bissey <f.r.bissey@massey.ac.nz>
+  -sage-latex-2.2.5.ebuild, -sage-latex-2.2.5-r1.ebuild,
+  +sage-latex-2.2.5-r2.ebuild:
+  Remove most tex sources to avoid generating documentation, therefore
+  requiring sage. Depend on pgf.
+
   02 Sep 2010; François Bissey <f.r.bissey@massey.ac.nz>
   +sage-latex-2.2.5.ebuild, +sage-latex-2.2.5-r1.ebuild,
   +files/sage-latex-2.2.5-install-python-files-only.patch, +metadata.xml:
