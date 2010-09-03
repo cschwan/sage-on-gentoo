@@ -11,7 +11,7 @@ SRC_URI="http://altermundus.com/downloads/packages/tkz-arith.sty
 
 # TODO: no license found
 
-LICENSE=""
+LICENSE="LPPL-1.3 GPL-3"
 SLOT="0"
 KEYWORDS="~amd64 ~ppc ~x86"
 IUSE=""

@@ -3,6 +3,10 @@
 # $Header: $
 
   03 Sep 2010; François Bissey <f.r.bissey@massey.ac.nz>
+  tkz-berge-2.8.ebuild:
+  Provide licenses.
+
+  03 Sep 2010; François Bissey <f.r.bissey@massey.ac.nz>
   tkz-berge-2.8.ebuild, metadata.xml:
   Provide a better description and change the dependencies.
 
