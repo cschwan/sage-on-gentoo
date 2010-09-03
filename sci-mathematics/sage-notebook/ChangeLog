@@ -2,6 +2,14 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*sage-notebook-0.8.2-r1 (03 Sep 2010)
+
+  03 Sep 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
+  +sage-notebook-0.8.2-r1.ebuild,
+  +files/sage-notebook-0.8.2-add-pidfile-option.patch:
+  New revision lets one set the location of twistd's PID file which is
+  need for sage-notebook-server
+
 *sage-notebook-0.8.2 (08 Aug 2010)
 
   08 Aug 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
