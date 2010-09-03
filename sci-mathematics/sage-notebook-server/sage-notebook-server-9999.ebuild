@@ -18,7 +18,8 @@ IUSE=""
 RDEPEND="sci-mathematics/sage"
 
 pkg_setup() {
-	enewuser sage -1 -1 /var/lib/sage sage || die
+	enewgroup sage
+	enewuser sage -1 /bin/bash /var/lib/sage sage || die
 }
 
 src_prepare() {
