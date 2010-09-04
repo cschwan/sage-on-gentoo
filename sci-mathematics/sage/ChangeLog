@@ -3,6 +3,10 @@
 # $Header: $
 
   04 Sep 2010; François Bissey <f.r.bissey@massey.ac.nz>
+  -sage-4.5.1-r1.ebuild:
+  remove old.
+
+  04 Sep 2010; François Bissey <f.r.bissey@massey.ac.nz>
   sage-4.5.2-r1.ebuild:
   Use the new singular ebuild with internal factory headers
 

@@ -2,6 +2,10 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  04 Sep 2010; François Bissey <f.r.bissey@massey.ac.nz>
+  -sage-examples-4.5.1-r1.ebuild:
+  remove old
+
 *sage-examples-4.5.2 (08 Aug 2010)
 
   08 Aug 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
