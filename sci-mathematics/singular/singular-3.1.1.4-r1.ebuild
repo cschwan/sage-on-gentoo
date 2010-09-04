@@ -26,7 +26,6 @@ IUSE="boost doc emacs examples libsingular +readline"
 
 RDEPEND="dev-libs/gmp
 	>=dev-libs/ntl-5.5.1
-	libsingular? ( >=sci-libs/factory-3.1.1 )
 	emacs? ( >=virtual/emacs-22 )"
 
 DEPEND="${RDEPEND}
@@ -131,9 +130,18 @@ src_install () {
 			|| die "failed to create symlink"
 		insinto /usr/include
 		cd "${S}"/build/include
+		# Move factory.h and cf_gmp.h in the singular folder so we don't either
+		# collide with factory or need it to use libsingular.
+		sed -e "s:factory.h:singular/factory.h:" \
+			-i singular/clapconv.h singular/fglm.h singular/mod2.h || die
+		sed -e "s:cf_gmp.h:singular/cf_gmp.h:" \
+			-i singular/si_gmp.h factory.h || die
+		sed -e ":factoryconf.h:singular/factoryconf.h:" \
+			-i factory.h || die
 		doins libsingular.h mylimits.h
 		insinto /usr/include/singular
 		doins singular/*
+		doins factory.h factoryconf.h cf_gmp.h
 	fi
 
 	# stuff from the share tar ball
@@ -172,6 +180,14 @@ pkg_postinst() {
 		echo
 	fi
 
+	if use libsingular ; then
+		einfo "libsingular include the functionality included by libfactory (factory ebuild)"
+		einfo "To avoid file collisions with factory and the need of factory to use libsingular"
+		einfo "We have moved the factory headers shipped by singular in /usr/include/singular."
+		einfo "If you want to use the factory functionality offered by libsingular rather than"
+		einfo "the one offered by the factory ebuild you should include sngular/factory.h rather"
+		einfo "than just factory.h."
+	fi
 	use emacs && elisp-site-regen
 }
 

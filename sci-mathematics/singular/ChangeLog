@@ -2,6 +2,13 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*singular-3.1.1.4-r1 (04 Sep 2010)
+
+  04 Sep 2010; François Bissey <f.r.bissey@massey.ac.nz>
+  -singular-3.1.1.4.ebuild, +singular-3.1.1.4-r1.ebuild:
+  With libsingular we now ship factory headers, so fatory is not needed to
+  use libsingular.
+
   02 Sep 2010; François Bissey <f.r.bissey@massey.ac.nz>
   singular-3.1.1.4.ebuild, metadata.xml:
   get rid of the sage use flag-installing the relevant file with sage-doc
