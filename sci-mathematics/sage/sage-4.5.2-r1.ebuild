@@ -57,8 +57,7 @@ CDEPEND="|| ( =dev-lang/python-2.6.4-r99
 	virtual/cblas"
 
 DEPEND="${CDEPEND}
-	=dev-python/cython-0.12*
-	>=sci-libs/factory-3.1.1"
+	=dev-python/cython-0.12*"
 
 RDEPEND="${CDEPEND}
 	>=dev-lang/R-2.10.1[lapack,readline]
@@ -104,8 +103,8 @@ RDEPEND="${CDEPEND}
 	testsuite? (
 		~sci-mathematics/sage-doc-${PV}[html]
 		~sci-mathematics/sage-examples-${PV}
-	)"
-PDEPEND="latex? ( ~dev-tex/sage-latex-2.2.5 )"
+	)
+	latex? ( ~dev-tex/sage-latex-2.2.5 )"
 
 # TODO: check if use flags are necessary
 
@@ -212,6 +211,9 @@ src_prepare() {
 
 	# make use of singular-3.1.1.4 from the system
 	epatch "${FILESDIR}"/${PN}-4.5.2-upgrade-singular.patch
+	# Uses singular internal copy of the factory header
+	sed -i "s:factory.h:singular/factory.h:" sage/libs/singular/singular-cdefs.pxi \
+		|| die "failed to patch factory header"""
 
 	# upgrade to matplotlib-1.0.0 as it is now marked stable
 	epatch "${FILESDIR}"/trac-9221-matplotlib-update.patch
