@@ -16,21 +16,21 @@ system SAGE (www.sagemath.org).
 
 ################################################################################
 
-INSTALLATION GUIDE AND SOME NOTES:
+INSTALLATION GUIDE:
 
-1. GET LAYMAN:
+1. INSTALL AND CONFIGURE LAYMAN:
    The preferred way of getting sage-on-gentoo is layman. Make sure layman is
    installed and correctly configured. You may find a guide for layman here:
 
      http://www.gentoo.org/proj/en/overlays/userguide.xml
 
-2. ADD OVERLAY:
+2. ADD OUR OVERLAY:
    Update your layman list and add this overlay with:
 
      layman -L
      layman -a sage-on-gentoo
 
-3. UNMASK AND USE-FLAG PACKAGES:
+3. UNMASK AND USE-FLAG EBUILDS:
    Before the installation you will need to unmask the required ebuilds. You
    should use the following file which already contains all required entries:
 
@@ -58,7 +58,7 @@ INSTALLATION GUIDE AND SOME NOTES:
 
    to install sage; note that this will pull in a lot of dependencies.
 
-5. UPDATE OVERLAY:
+5. UPDATE YOUR LOCAL OVERLAY:
    To update your local copy of sage-on-gentoo simply type:
 
      layman -S
