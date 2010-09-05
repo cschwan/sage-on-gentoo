@@ -22,14 +22,12 @@ RESTRICT="mirror
 	sage? ( test )"
 
 # FIXME: using external expat breaks the tests.
-CDEPEND="dev-libs/gmp[-nocxx]
+DEPEND="dev-libs/gmp[-nocxx]
 	=sci-libs/givaro-3.2*
 	virtual/cblas
 	virtual/lapack
 	ntl? ( dev-libs/ntl )"
-DEPEND="${CDEPEND}
-	doc? ( app-doc/doxygen )"
-RDEPEND="${CDEPEND}"
+RDEPEND="${DEPEND}"
 
 AUTOTOOLS_IN_SOURCE_BUILD="1"
 DOCS=( ChangeLog README NEWS TODO )
