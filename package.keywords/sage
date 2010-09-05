@@ -87,7 +87,7 @@ sci-mathematics/sage-extcode
 sci-mathematics/sage-notebook
 sci-mathematics/sage-scripts
 sci-mathematics/sage-singular
-=sci-mathematics/singular-3.1.1.4
+~sci-mathematics/singular-3.1.1.4
 sci-mathematics/sympow
 ##########################
 # optional dependencies
