@@ -302,19 +302,23 @@ src_configure() {
 }
 
 src_install() {
+	distutils_src_install
+
 	if use testsuite ; then
-		# TODO: install sources only ?
+		# install testable sources only
+		find sage ! \( -name "*.py" -o -name "*.pyx" -o -name "*.pxi" \) \
+			-type f -delete || die "failed to remove non-testable sources"
+
 		insinto "${EPREFIX}${SAGE_ROOT}"/devel/sage-main
 		doins -r sage || die
 	fi
-
-	distutils_src_install
 }
 
 pkg_postinst() {
 	einfo "If you use Sage's browser interface ('Sage Notebook') and experience"
 	einfo "an 'Internal Server Error' you should append the following line to"
-	einfo "your ~/.bashrc (replace firefox with your favorite browser):"
+	einfo "your ~/.bashrc (replace firefox with your favorite browser and note"
+	einfo "that it DOES NOT WORK CORRECTLY with xdg-open):"
 	einfo ""
 	einfo "export SAGE_BROWSER=/usr/bin/firefox"
 	einfo ""
@@ -322,6 +326,6 @@ pkg_postinst() {
 	einfo "listed at: http://sagemath.org/packages/standard/ which are now"
 	einfo "already installed."
 	einfo "There are also some packages of the 'Optional' set (which consists"
-	einfo "of the these packages: http://sagemath.org/packages/optional/)"
-	einfo "available which may be installed with portage as usual."
+	einfo "of the these: http://sagemath.org/packages/optional/) available"
+	einfo "which may be installed with portage as usual."
 }

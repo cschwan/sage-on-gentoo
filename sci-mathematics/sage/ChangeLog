@@ -2,6 +2,11 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  05 Sep 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
+  sage-4.5.2-r1.ebuild, sage-4.5.2-r2.ebuild:
+  Adjusted Sage's einfo messages and removed useless sources which
+  saves about 140 MBytes
+
 *sage-4.5.2-r2 (05 Sep 2010)
 
   05 Sep 2010; François Bissey <f.r.bissey@massey.ac.nz>
