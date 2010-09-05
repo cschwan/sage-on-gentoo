@@ -6,3 +6,5 @@ sci-mathematics/pari:3
 =sci-chemistry/jmol-11.8.25
 # Unmask this when sage requires it - it has positive review. It is pari:3 ready.
 =sci-mathematics/eclib-20100711
+# Experimental upgrade to numpy-1.4.1/scipy-0.8 unmask at your own perils.
+=sci-mathematics/sage-4.5.2-r2

@@ -2,6 +2,13 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*sage-4.5.2-r2 (05 Sep 2010)
+
+  05 Sep 2010; François Bissey <f.r.bissey@massey.ac.nz>
+  +files/trac_9808_numpy_doctest_change.patch, +sage-4.5.2-r2.ebuild:
+  Experimental ebuild to upgrade to numpy-1.4.1/scipy-0.8. This is masked
+  for now.
+
   04 Sep 2010; François Bissey <f.r.bissey@massey.ac.nz>
   -sage-4.5.1-r1.ebuild:
   remove old.
