@@ -2,6 +2,12 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*sage-doc-4.5.2-r2 (06 Sep 2010)
+
+  06 Sep 2010; François Bissey <f.r.bissey@massey.ac.nz>
+  +files/sage-doc-scipy-0.8.patch, +sage-doc-4.5.2-r2.ebuild:
+  Patch sage-doc for the numpy/scipy upgrade.
+
   04 Sep 2010; François Bissey <f.r.bissey@massey.ac.nz>
   -sage-doc-4.5.1-r1.ebuild:
   remove old

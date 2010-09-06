@@ -95,7 +95,7 @@ RDEPEND="${CDEPEND}
 	~sci-mathematics/sage-data-elliptic_curves-0.1
 	~sci-mathematics/sage-data-graphs-20070722_p1
 	~sci-mathematics/sage-data-polytopes_db-20100210
-	>=sci-mathematics/sage-doc-4.5.2-r1
+	>=sci-mathematics/sage-doc-4.5.2-r2
 	~sci-mathematics/sage-extcode-${PV}
 	~sci-mathematics/sage-notebook-0.8.2
 	>=sci-mathematics/sympow-1.018
