@@ -1,9 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <pkgmetadata>
 	<herd>sage</herd>
-	<maintainer>
-		<email></email>
-	</maintainer>
 	<use>
 		<!-- TODO: find help string for asm-redc -->
 		<flag name='asm-redc'></flag>

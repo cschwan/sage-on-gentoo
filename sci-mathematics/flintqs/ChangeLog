@@ -2,6 +2,9 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  08 Sep 2010; François Bissey <f.r.bissey@massey.ac.nz> metadata.xml:
+  fix metadata
+
   05 Aug 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
   flintqs-20070817_p4.ebuild:
   QA Fixes: Use proper compilation and link flags, add HOMEPAGE and

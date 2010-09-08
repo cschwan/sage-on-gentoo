@@ -2,6 +2,9 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  08 Sep 2010; François Bissey <f.r.bissey@massey.ac.nz> metadata.xml:
+  fix metadata
+
   06 Sep 2010; François Bissey <f.r.bissey@massey.ac.nz>
   sage-4.5.2-r2.ebuild:
   Raise sage-doc dependency of sage-4.5.2-r2 to 4.5.2-r2 for the numpy/scipy
