@@ -2,6 +2,9 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  08 Sep 2010; François Bissey <f.r.bissey@massey.ac.nz> metadata.xml:
+  Fix metadata
+
   03 Sep 2010; François Bissey <f.r.bissey@massey.ac.nz>
   tkz-graph-2.7d.ebuild, metadata.xml:
   Provide a license, description and some dependency.

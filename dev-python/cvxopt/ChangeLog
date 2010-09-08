@@ -2,6 +2,9 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  08 Sep 2010; François Bissey <f.r.bissey@massey.ac.nz> metadata.xml:
+  Fix metadata
+
   10 Aug 2010; François Bissey <f.r.bissey@massey.ac.nz>
   cvxopt-1.1.2.ebuild, +files/cvxopt-1.1.2-headers.patch:
   Patch cvxopt-1.1.2 - see
