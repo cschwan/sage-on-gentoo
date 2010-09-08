@@ -211,6 +211,7 @@ src_prepare() {
 
 	# make use of singular-3.1.1.4 from the system
 	epatch "${FILESDIR}"/${PN}-4.5.2-upgrade-singular.patch
+
 	# Uses singular internal copy of the factory header
 	sed -i "s:factory.h:singular/factory.h:" sage/libs/singular/singular-cdefs.pxi \
 		|| die "failed to patch factory header"""
@@ -252,6 +253,8 @@ src_prepare() {
 	# fix save path (for testing only)
 	sed -i "s:save(w,'test'):save(w,tmp_filename('test')):g" \
 		sage/combinat/words/morphism.py || die "failed to patch path for save"
+
+	# Ticket #8898:
 
 	# make sure line endings are unix ones so as not to confuse python-2.6.5
 	edos2unix sage/libs/mpmath/ext_impl.pxd
@@ -315,9 +318,9 @@ pkg_postinst() {
 	einfo "If you use Sage's browser interface ('Sage Notebook') and experience"
 	einfo "an 'Internal Server Error' you should append the following line to"
 	einfo "your ~/.bashrc (replace firefox with your favorite browser and note"
-	einfo "that it DOES NOT WORK CORRECTLY with xdg-open):"
+	einfo "that it your case it WILL NOT WORK with xdg-open):"
 	einfo ""
-	einfo "export SAGE_BROWSER=/usr/bin/firefox"
+	einfo "    export SAGE_BROWSER=/usr/bin/firefox"
 	einfo ""
 	einfo "Sage comes with the 'Standard' set of Sage Packages, i.e. those"
 	einfo "listed at: http://sagemath.org/packages/standard/ which are now"
@@ -325,4 +328,18 @@ pkg_postinst() {
 	einfo "There are also some packages of the 'Optional' set (which consists"
 	einfo "of the these: http://sagemath.org/packages/optional/) available"
 	einfo "which may be installed with portage as usual."
+
+	if use testsuite ; then
+
+	einfo "You have installed Sage's testsuite. In order to test Sage run the"
+	einfo "following command in a directory where Sage may write to:"
+	einfo ""
+	einfo "    sage -testall"
+	einfo ""
+	einfo "Note that testing Sage may take more than 4 hours. If you want to"
+	einfo "compare your results look at the list of known failures:"
+	einfo ""
+	einfo "    http://github.com/cschwan/sage-on-gentoo/wiki/Known-test-failures"
+
+	fi
 }
