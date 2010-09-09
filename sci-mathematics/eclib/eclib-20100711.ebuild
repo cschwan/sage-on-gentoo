@@ -6,12 +6,11 @@ EAPI="3"
 
 inherit eutils versionator toolchain-funcs
 
-#MY_P="${PN}-$(replace_version_separator 1 '.')"
+MY_P="${PN}-$(replace_version_separator 1 '.')"
 
 DESCRIPTION="Programs for enumerating and computing with elliptic curves defined over the rational numbers."
 HOMEPAGE="http://www.warwick.ac.uk/~masgaj/mwrank/index.html"
-#SRC_URI="mirror://sage/spkg/standard/${MY_P}.spkg -> ${P}.tar.bz2"
-SRC_URI="http://www.warwick.ac.uk/staff/J.E.Cremona/${P}.spkg -> ${P}.tar.bz2" 
+SRC_URI="mirror://sage/spkg/standard/${MY_P}.spkg -> ${P}.tar.bz2"
 
 LICENSE="GPL-2"
 SLOT="0"

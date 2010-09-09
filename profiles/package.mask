@@ -4,5 +4,3 @@ sci-mathematics/pari:3
 =sci-mathematics/genus2reduction-0.3_p8
 # Ongoing work there, do not touch before it has been properly tested.
 =sci-chemistry/jmol-11.8.25
-# Unmask this when sage requires it - it has positive review. It is pari:3 ready.
-=sci-mathematics/eclib-20100711
