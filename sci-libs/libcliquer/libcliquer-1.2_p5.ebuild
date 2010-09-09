@@ -2,16 +2,13 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
-EAPI=2
+EAPI="3"
 
-# TODO: Fix version naming and make use original upstream
+inherit eutils flag-o-matic versionator
 
-MY_P="cliquer-1.2.p5"
+MY_P="cliquer-$(replace_version_separator 2 '.')"
 
-inherit eutils flag-o-matic
-
-DESCRIPTION="Cliquer is a set of C routines for finding cliques in an arbitrary
-weighted graph"
+DESCRIPTION="Cliquer is a set of C routines for finding cliques in an arbitrary weighted graph"
 HOMEPAGE="http://users.tkk.fi/pat/cliquer.html"
 SRC_URI="mirror://sage/spkg/standard/${MY_P}.spkg -> ${P}.tar.bz2"
 
@@ -49,6 +46,6 @@ src_test() {
 src_install() {
 	insinto /usr/include/cliquer
 	doins cl.h cliquer.h cliquerconf.h graph.h misc.h reorder.h set.h \
-		|| die "doins failed"
-	dolib libcliquer.so || die "doins failed"
+		|| die
+	dolib libcliquer.so || die
 }
