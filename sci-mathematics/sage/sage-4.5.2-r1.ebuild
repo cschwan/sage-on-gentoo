@@ -34,7 +34,7 @@ CDEPEND="|| ( =dev-lang/python-2.6.4-r99
 	=sci-libs/givaro-3.2*
 	>=sci-libs/gsl-1.10
 	>=sci-libs/iml-1.0.1
-	>=sci-libs/libcliquer-1.2.5
+	>=sci-libs/libcliquer-1.2_p5
 	>=sci-libs/linbox-1.1.6[ntl,sage]
 	>=sci-libs/m4ri-20100221
 	>=sci-libs/mpfi-1.4
