@@ -44,7 +44,7 @@ CDEPEND="|| ( =dev-lang/python-2.6.4-r99
 	>=sci-mathematics/glpk-4.43[gmp]
 	>=sci-mathematics/lcalc-1.23[pari]
 	>=sci-mathematics/pari-2.3.5[data,gmp]
-	>=sci-mathematics/polybori-0.6.4[sage]
+	>=sci-mathematics/polybori-0.6.5-r2[sage]
 	>=sci-mathematics/ratpoints-2.1.3
 	~sci-mathematics/sage-baselayout-${PV}[testsuite=]
 	~sci-mathematics/sage-clib-${PV}
