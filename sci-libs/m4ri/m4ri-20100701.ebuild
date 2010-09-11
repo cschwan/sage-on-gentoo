@@ -4,7 +4,7 @@
 
 EAPI="3"
 
-inherit autotools-utils
+inherit autotools-utils flag-o-matic
 
 DESCRIPTION="Method of four russian for inversion (M4RI)"
 HOMEPAGE="http://m4ri.sagemath.org/"
@@ -21,6 +21,13 @@ DEPEND="openmp? ( >=sys-devel/gcc-4.2[openmp] )"
 RDEPEND=""
 
 DOCS=( AUTHORS README )
+
+pkg_setup() {
+	# TODO: is this really needed ? there should be a better way to fix this
+	if use openmp ; then
+		append-flags -lgomp
+	fi
+}
 
 src_prepare() {
 	autotools-utils_src_prepare
