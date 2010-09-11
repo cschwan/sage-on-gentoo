@@ -2,6 +2,9 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  11 Sep 2010; François Bissey <f.r.bissey@massey.ac.nz> metadata.xml:
+  fix metadta hopefully
+
   09 Sep 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
   eclib-20100711.ebuild:
   Unmask eclib
