@@ -1,8 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <pkgmetadata>
 	<herd>sage</herd>
-	<maintainer>
-		<email>f.r.bissey@massey.ac.nz</email>
-		<name>François Bissey</name>
-	</maintainer>
 </pkgmetadata>
