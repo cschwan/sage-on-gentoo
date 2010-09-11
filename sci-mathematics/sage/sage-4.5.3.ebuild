@@ -297,11 +297,12 @@ src_install() {
 	distutils_src_install
 
 	if use testsuite ; then
-		# install testable sources only
-		find sage ! \( -name "*.py" -o -name "*.pyx" -o -name "*.pxi" \) \
-			-type f -delete || die "failed to remove non-testable sources"
+		# install testable sources and sources needed for testing
+		find sage ! \( -name "*.py" -o -name "*.pyx" -o -name "*.pxd" -o \
+			-name "*.pxi" \) -type f -delete \
+			|| die "failed to remove non-testable sources"
 
-		insinto "${EPREFIX}${SAGE_ROOT}"/devel/sage-main
+		insinto "${SAGE_ROOT}"/devel/sage-main
 		doins -r sage || die
 	fi
 }
