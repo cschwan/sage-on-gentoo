@@ -4,7 +4,7 @@
 
 EAPI="3"
 
-inherit eutils toolchain-funcs
+inherit base toolchain-funcs
 
 DESCRIPTION="A Package for Analyzing Lattice Polytopes"
 HOMEPAGE="http://hep.itp.tuwien.ac.at/~kreuzer/CY/CYpalp.html"
@@ -22,9 +22,10 @@ RDEPEND="${DEPEND}"
 
 S="${WORKDIR}/${PN}"
 
-src_prepare() {
-	epatch "${FILESDIR}"/${P}-GNUMakefile.patch
-	CC=$(tc-getCC)
+PATCHES=( "${FILESDIR}"/${PN}-1.1-GNUMakefile.patch )
+
+pkg_setup() {
+	tc-export CC
 }
 
 src_install() {

@@ -2,6 +2,10 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  12 Sep 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
+  palp-1.1-r2.ebuild:
+  Migrated to base eclass
+
 *palp-1.1-r2 (18 Aug 2010)
 
   18 Aug 2010; François Bissey <f.r.bissey@massey.ac.nz>
