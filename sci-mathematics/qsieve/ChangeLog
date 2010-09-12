@@ -2,6 +2,10 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  12 Sep 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
+  qsieve-3.02.ebuild:
+  Added more options
+
   08 Sep 2010; François Bissey <f.r.bissey@massey.ac.nz> metadata.xml:
   fix metadata
 

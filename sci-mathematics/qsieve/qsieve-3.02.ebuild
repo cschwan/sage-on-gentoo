@@ -13,13 +13,22 @@ SRC_URI="http://www.thorstenreinecke.de/downloads/${P}.tar.bz2"
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64 ~ppc ~x86"
-IUSE=""
+IUSE="doc sse2"
 
 RESTRICT="mirror"
 
-DEPEND=">=dev-libs/gmp-4.0.0"
-RDEPEND="${DEPEND}"
+CDEPEND=">=dev-libs/gmp-4.0.0"
+DEPEND="${CDEPEND}
+	doc? ( app-doc/doxygen )"
+RDEPEND="${CDEPEND}"
 
-src_prepare() {
-	epatch "${FILESDIR}"/${P}-fix-programming-errors.patch
+PATCHES=( "${FILESDIR}"/${PN}-3.02-fix-programming-errors.patch )
+
+src_configure() {
+	myeconfargs=(
+		$(use_enable doc reference-manual)
+		$(use_enable sse2 SSE2)
+	)
+
+	autotools-utils_src_configure
 }
