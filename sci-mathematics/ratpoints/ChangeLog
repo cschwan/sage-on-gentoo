@@ -2,6 +2,13 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*ratpoints-2.1.3-r2 (12 Sep 2010)
+
+  12 Sep 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
+  +ratpoints-2.1.3-r2.ebuild, +files/ratpoints-2.1.3-fix-makefile.patch:
+  Migrated to base eclass, made ratpoints respect LDFLAGS and replaced
+  static lib with shared object
+
   15 Jul 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
   -ratpoints-2.1.3.ebuild:
   Removed old revision
