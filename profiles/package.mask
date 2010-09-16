@@ -1,5 +1,5 @@
 # Unmask this and change src_uri when sage switch to it. sage-4.6?
-sci-mathematics/pari:3
+>=sci-mathematics/pari-2.4
 # This needs to be unmasked with pari:3
 =sci-mathematics/genus2reduction-0.3_p8
 # Ongoing work there, do not touch before it has been properly tested.
