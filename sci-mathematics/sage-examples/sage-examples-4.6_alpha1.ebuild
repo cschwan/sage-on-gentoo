@@ -5,12 +5,14 @@
 EAPI="3"
 
 #MY_P="examples-${PV}"
-MY_P="examples-4.6.alpha0"
+SAGE_PV="4.6.alpha1"
+SAGE_DIR="sage-${SAGE_PV}"
+MY_P="examples-${SAGE_PV}"
 
 DESCRIPTION="Example code and scripts for Sage"
 HOMEPAGE="http://www.sagemath.org"
 #SRC_URI="mirror://sage/spkg/standard/${MY_P}.spkg -> ${P}.tar.bz2"
-SRC_URI="http://sage.math.washington.edu/home/release/sage-4.6.alpha0/sage-4.6.alpha0/spkg/standard/${MY_P}.spkg -> ${P}.tar.bz2"
+SRC_URI="http://sage.math.washington.edu/home/release/${SAGE_DIR}/${SAGE_DIR}/spkg/standard/${MY_P}.spkg -> ${P}.tar.bz2"
 
 LICENSE="GPL-2"
 SLOT="0"

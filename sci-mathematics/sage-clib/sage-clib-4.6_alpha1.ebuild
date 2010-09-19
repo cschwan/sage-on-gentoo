@@ -4,16 +4,17 @@
 
 EAPI="3"
 
-inherit eutils scons-utils
+inherit eutils scons-utils versionator
 
-MY_P="sage-${PV}"
+#MY_P="sage-${PV}"
+SAGE_PV=$(replace_version_separator 2 '.')
+MY_P="sage-${SAGE_PV}"
 
 DESCRIPTION="Sage's C library"
 HOMEPAGE="http://www.sagemath.org"
 #SRC_URI="mirror://sage/spkg/standard/${MY_P}.spkg -> sage-${PV}.tar.bz2"
-SRC_URI="http://sage.math.washington.edu/home/release/sage-4.6.alpha0/sage-4.6.alpha0/spkg/standard/sage-4.6.alpha0.spkg -> ${MY_P}.tar.bz2"
+SRC_URI="http://sage.math.washington.edu/home/release/${MY_P}/${MY_P}/spkg/standard/${MY_P}.spkg -> sage-${PV}.tar.bz2"
 RESTRICT="mirror"
-S="${WORKDIR}/sage-4.6.alpha0/c_lib"
 
 LICENSE="GPL-2"
 SLOT="0"
@@ -30,7 +31,7 @@ DEPEND="dev-libs/gmp[-nocxx]
 	>=sci-mathematics/polybori-0.6.4[sage]"
 RDEPEND="${DEPEND}"
 
-#S="${WORKDIR}/${MY_P}/c_lib"
+S="${WORKDIR}/${MY_P}/c_lib"
 
 src_prepare() {
 	epatch "${FILESDIR}"/${PN}-4.6-importenv.patch
