@@ -54,6 +54,7 @@ src_prepare () {
 	epatch "${FILESDIR}"/${PN}-3.1.1.3-soname.patch
 	epatch "${FILESDIR}"/${P}-parrallelmake.patch
 	epatch "${FILESDIR}"/${P}-parrallelmake-2.patch
+	epatch "${FILESDIR}"/${P}-parrallelmake-3.patch
 
 	sed -i \
 		-e "/CXXFLAGS/ s/--no-exceptions//g" \
