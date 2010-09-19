@@ -10,7 +10,7 @@ MY_P="${PN}-$(replace_version_separator 2 '.')"
 
 DESCRIPTION="Conductor and Reduction Types for Genus 2 Curves"
 HOMEPAGE="http://www.math.u-bordeaux.fr/~liu/G2R/"
-SRC_URI="http://cage.ugent.be/~jdemeyer/sage/${MY_P}.spkg -> ${MY_P}.tar.bz2"
+SRC_URI="http://sage.math.washington.edu/home/release/sage-4.6.alpha0/sage-4.6.alpha0/spkg/standard/${MY_P}.spkg -> ${MY_P}.tar.bz2"
 
 LICENSE="GPL-2"
 SLOT="0"
