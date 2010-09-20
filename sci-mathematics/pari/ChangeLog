@@ -2,6 +2,12 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*pari-2.4.3_pre12577_p5 (20 Sep 2010)
+
+  20 Sep 2010; François Bissey <f.r.bissey@massey.ac.nz>
+  -pari-2.4.3_pre12577.ebuild, +pari-2.4.3_pre12577_p5.ebuild:
+  bump to pari version from sage-4.6.alpha1
+
 *pari-2.4.3_pre12577 (14 Aug 2010)
 
   14 Aug 2010; François Bissey <f.r.bissey@massey.ac.nz>

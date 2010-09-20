@@ -5,11 +5,14 @@
 EAPI="3"
 inherit elisp-common eutils flag-o-matic toolchain-funcs
 
+MY_P="pari-2.4.3.svn-12577.p5"
+SAGE_DIR="sage-4.6.alpha1"
+
 DESCRIPTION="A software package for computer-aided number theory"
 HOMEPAGE="http://pari.math.u-bordeaux.fr/"
 
 SRC_COM="http://pari.math.u-bordeaux.fr/pub/${PN}"
-SRC_URI="http://cage.ugent.be/~jdemeyer/sage/pari-2.4.3.svn-12577.spkg -> ${P}.tar.bz2
+SRC_URI="http://sage.math.washington.edu/home/release/${SAGE_DIR}/${SAGE_DIR}/spkg/standard/${MY_P}.spkg -> ${P}.tar.bz2
 	data? (	${SRC_COM}/packages/elldata.tgz
 			${SRC_COM}/packages/galdata.tgz
 			${SRC_COM}/packages/seadata.tgz
@@ -29,7 +32,7 @@ RDEPEND="sys-libs/readline
 DEPEND="${RDEPEND}
 	doc? ( virtual/latex-base )"
 
-S="${WORKDIR}/pari-2.4.3.svn-12577/src"
+S="${WORKDIR}/${MY_P}/src"
 
 get_compile_dir() {
 	pushd "${S}/config" >& /dev/null
