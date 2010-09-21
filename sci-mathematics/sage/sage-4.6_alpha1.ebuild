@@ -142,12 +142,24 @@ src_prepare() {
 
 	sed -i "s:\"pari\":\"pari24\":" module_list.py || die "failed to convert to pari24"
 
-	sed -e "s:pari/:pari24/:g" \
+	sed -e "s:pari\/:pari24\/:g" \
 		-i sage/ext/interpreters/wrapper_cdf.pxd \
 		sage/matrix/matrix_integer_dense.pyx \
 		sage/matrix/matrix_rational_dense.pyx \
 		sage/libs/pari/gen.pyx \
 		|| die "failed to convert pxd/pyx to pari24"
+
+	# additional pari/pari24 include patches
+	sed -e "s:pari\/:pari24\/:g" \
+		-i sage/libs/pari/pari_err.h \
+		   sage/libs/pari/decl.pxi \
+		   sage/libs/pari/misc.h \
+		   sage/ext/gen_interpreters.py \
+		   || die "failed to patch additional pari/pari24 includes"
+
+	sed -i "s:cdef extern from \"pari\/:cdef extern from \"pari24\/:g" \
+		sage/rings/fast_arith.pyx \
+		|| die "failed to patch pari/pari24 includes in sage/rings/fast_arith.pyx"
 
 	sed -i "s:gp --emacs --fast --quiet --stacksize:gp-2.4 --emacs --fast --quiet --stacksize:" \
 		sage/interfaces/gp.py || die "failed to use gp-2.4 in interfaces/gp.py"
