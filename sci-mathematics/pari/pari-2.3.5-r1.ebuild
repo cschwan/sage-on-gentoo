@@ -55,6 +55,8 @@ src_prepare() {
 	fi
 	epatch "${FILESDIR}/${PN}"-2.3.2-strip.patch
 	epatch "${FILESDIR}/${PN}"-2.3.2-ppc-powerpc-arch-fix.patch
+	# Patch doc makefile for parallel make.
+	epatch "${FILESDIR}/${PN}"-2.3.5-DOC_MAKE.patch
 	epatch "${FILESDIR}/${PN}"-2.3.4-mpir.patch
 	cp "${FILESDIR}/get_mpir" "${S}/config"
 	cp "${FILESDIR}/mpir_version.c" "${S}/config"

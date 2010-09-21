@@ -51,6 +51,8 @@ src_prepare() {
 	fi
 	epatch "${FILESDIR}/${PN}"-2.3.2-strip.patch
 	epatch "${FILESDIR}/${PN}"-2.3.2-ppc-powerpc-arch-fix.patch
+	# Patch doc makefile for parallel make.
+	epatch "${FILESDIR}/${PN}"-2.3.5-DOC_MAKE.patch
 	# sage error handling patch
 	epatch "${FILESDIR}/${PN}"-2.4.3-errhandling.patch
 	# Fix for PARI bug 1079 (jdemeyer: temporary until this is fixed upstream)
@@ -87,11 +89,11 @@ src_configure() {
 	fi
 	# sysdatadir installs a pari.cfg stuff which is informative only
 	./Configure \
-		--prefix=${EPREFIX}/usr \
-		--datadir=${EPREFIX}/usr/share/${PF} \
-		--libdir=${EPREFIX}/usr/$(get_libdir) \
-		--sysdatadir=${EPREFIX}/usr/share/doc/${PF} \
-		--mandir=${EPREFIX}/usr/share/man/man1 \
+		--prefix="${EPREFIX}"/usr \
+		--datadir="${EPREFIX}"/usr/share/"${PF}" \
+		--libdir="${EPREFIX}"/usr/$(get_libdir) \
+		--sysdatadir="${EPREFIX}"/usr/share/doc/"${PF}" \
+		--mandir="${EPREFIX}"/usr/share/man/man1 \
 		--with-readline \
 		$(use_with gmp) \
 		|| die "./Configure failed"
@@ -137,6 +139,8 @@ src_install() {
 			install-doc || die "Failed to install docs"
 		insinto /usr/share/doc/${PF}
 		doins doc/*.pdf || die "Failed to install pdf docs"
+		# avoid file collision with pari-2.3
+		mv "${ED}"/usr/bin/gphelp "${ED}"/usr/bin/gphelp-2.4
 	fi
 
 	if use data; then
