@@ -30,6 +30,15 @@ S="${WORKDIR}/${MY_P}/src"
 
 # TODO: Support for openmp ?
 # TODO: Get pari to generate a configuration file to use here
+pkg_setup() {
+	if (use pari) && (use pari24) ; then
+		ewarn "You ask for both pari and pari-2.4 usage."
+		ewarn "They cannot be used at the same time."
+		ewarn "pari-2.4 will be used now."
+	fi
+}
+
+
 src_prepare() {
 	# patch for proper installation routine, flag respect and crufty linking flag removal.
 	epatch "${FILESDIR}"/${P}-makefile.patch
