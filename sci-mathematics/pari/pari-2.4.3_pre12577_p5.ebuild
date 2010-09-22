@@ -77,6 +77,9 @@ src_prepare() {
 	# slot everything, remove tex2mail to avoid clash with 2.3
 	epatch "${FILESDIR}/${PN}"-2.4.3-MakefileSH.patch
 	sed -i "s:-lpari:-lpari24:" Configure || die "Failed to slot in Configure"
+	# Finally get gp to call gphelp-2.4 if the documentation is built. Thanks Steve.
+	sed -i -e "s:bindir\/gphelp:bindir\/gphelp-2.4:" \
+		config/paricfg.h.SH || die "Failed to change name of gphelp"
 }
 
 src_configure() {
