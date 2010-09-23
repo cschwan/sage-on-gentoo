@@ -71,7 +71,7 @@ src_prepare() {
 	sed -i \
 		-e "s:\$d = \$0:\$d = '/usr/share/doc/${PF}':" \
 		-e 's:"xdvi":"xdg-open":' \
-		-e 's:xdvi -paper 29.7x21cm:xdg-open:' \
+		-e 's:\$xdvi -paper 29.7x21cm:xdg-open:' \
 		doc/gphelp.in || die "Failed to fix doc dir"
 
 	# slot everything, remove tex2mail to avoid clash with 2.3
