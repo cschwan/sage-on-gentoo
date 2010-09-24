@@ -161,6 +161,8 @@ src_install() {
 		dobin doc/gphelp
 		insinto /usr/share/doc/${PF}
 		doins doc/*.pdf || die "Failed to install pdf docs"
+		# gphelp looks for some of the tex sources...
+		doins doc/*.tex || die "Failed to install tex sources"
 		doins doc/translations || die "Failed to install translations"
 		# Install the examples - for real.
 		local installdir=$(get_compile_dir)

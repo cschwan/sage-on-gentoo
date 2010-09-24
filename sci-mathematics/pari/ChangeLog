@@ -4,6 +4,10 @@
 
   24 Sep 2010; François Bissey <f.r.bissey@massey.ac.nz>
   pari-2.3.5-r1.ebuild:
+  gphelp needs some of the tex sources!
+
+  24 Sep 2010; François Bissey <f.r.bissey@massey.ac.nz>
+  pari-2.3.5-r1.ebuild:
   Add missing file for gphelp
 
   24 Sep 2010; François Bissey <f.r.bissey@massey.ac.nz>
