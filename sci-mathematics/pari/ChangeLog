@@ -4,6 +4,10 @@
 
   24 Sep 2010; François Bissey <f.r.bissey@massey.ac.nz>
   pari-2.3.5-r1.ebuild:
+  Fix examples installation.
+
+  24 Sep 2010; François Bissey <f.r.bissey@massey.ac.nz>
+  pari-2.3.5-r1.ebuild:
   Change the behavior of the doc useflag in 2.3.5.
 
   23 Sep 2010; François Bissey <f.r.bissey@massey.ac.nz>

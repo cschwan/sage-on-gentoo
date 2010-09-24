@@ -143,19 +143,6 @@ src_install() {
 		elisp-site-file-install "${FILESDIR}/${SITEFILE}"
 	fi
 
-	dodoc AUTHORS Announce.2.1 CHANGES README NEW MACHINES COMPAT
-	if use doc; then
-		# Install the examples - for real.
-		emake \
-			EXDIR="${D}/usr/share/doc/${PF}/examples" \
-			install-examples || die "Failed to install docs"
-		# install gphelp and the pdf documentations manually.
-		# the install-doc target is overkill, installing even the tex sources.
-		dobin doc/gphelp
-		insinto /usr/share/doc/${PF}
-		doins doc/*.pdf || die "Failed to install pdf docs"
-	fi
-
 	if use data; then
 		emake DESTDIR="${D}" install-data || die "Failed to install data files"
 	fi
@@ -164,6 +151,22 @@ src_install() {
 		emake \
 			DESTDIR="${D}" \
 			install-lib-sta || die "Install of static library failed"
+	fi
+
+	# Do documentation last as we will change directory for the examples.
+	dodoc AUTHORS Announce.2.1 CHANGES README NEW MACHINES COMPAT
+	if use doc; then
+		# install gphelp and the pdf documentations manually.
+		# the install-doc target is overkill, installing even the tex sources.
+		dobin doc/gphelp
+		insinto /usr/share/doc/${PF}
+		doins doc/*.pdf || die "Failed to install pdf docs"
+		# Install the examples - for real.
+		local installdir=$(get_compile_dir)
+		cd "${installdir}" || die "Bad directory"
+		emake \
+			EXDIR="${D}/usr/share/doc/${PF}/examples" \
+			install-examples || die "Failed to install docs"
 	fi
 }
 
