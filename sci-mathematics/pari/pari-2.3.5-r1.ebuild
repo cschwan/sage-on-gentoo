@@ -161,6 +161,7 @@ src_install() {
 		dobin doc/gphelp
 		insinto /usr/share/doc/${PF}
 		doins doc/*.pdf || die "Failed to install pdf docs"
+		doins doc/translations || die "Failed to install translations"
 		# Install the examples - for real.
 		local installdir=$(get_compile_dir)
 		cd "${installdir}" || die "Bad directory"
