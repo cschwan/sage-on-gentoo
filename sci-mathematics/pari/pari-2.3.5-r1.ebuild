@@ -72,8 +72,7 @@ src_prepare() {
 	# move doc dir to a gentoo doc dir and replace hardcoded xdvi by xdg-open
 	sed -i \
 		-e "s:\$d = \$0:\$d = '/usr/share/doc/${PF}':" \
-		-e 's:"xdvi":"xdg-open":' \
-		-e 's:\$xdvi -paper 29.7x21cm:xdg-open:' \
+		-e 's:"acroread":"xdg-open":' \
 		doc/gphelp.in || die "Failed to fix doc dir"
 }
 
@@ -146,11 +145,13 @@ src_install() {
 
 	dodoc AUTHORS Announce.2.1 CHANGES README NEW MACHINES COMPAT
 	if use doc; then
+		# Install the examples - for real.
 		emake \
-			DESTDIR="${D}" \
 			EXDIR="${D}/usr/share/doc/${PF}/examples" \
-			DOCDIR="${D}/usr/share/doc/${PF}" \
-			install-doc || die "Failed to install docs"
+			install-examples || die "Failed to install docs"
+		# install gphelp and the pdf documentations manually.
+		# the install-doc target is overkill, installing even the tex sources.
+		dobin doc/gphelp
 		insinto /usr/share/doc/${PF}
 		doins doc/*.pdf || die "Failed to install pdf docs"
 	fi

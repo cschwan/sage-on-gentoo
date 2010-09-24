@@ -2,6 +2,10 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  24 Sep 2010; François Bissey <f.r.bissey@massey.ac.nz>
+  pari-2.3.5-r1.ebuild:
+  Change the behavior of the doc useflag in 2.3.5.
+
   23 Sep 2010; François Bissey <f.r.bissey@massey.ac.nz>
   pari-2.3.5-r1.ebuild, pari-2.4.3_pre12577_p5.ebuild:
   Corrected sed line replacing sdvi by xdg-open for refcard.
