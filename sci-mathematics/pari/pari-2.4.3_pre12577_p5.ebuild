@@ -135,19 +135,6 @@ src_test() {
 src_install() {
 	emake DESTDIR="${D}" install || die "Install failed"
 
-	dodoc AUTHORS Announce.2.1 CHANGES README NEW MACHINES COMPAT
-	if use doc; then
-		emake \
-			DESTDIR="${ED}" \
-			EXDIR="${ED}/usr/share/doc/${PF}/examples" \
-			DOCDIR="${ED}/usr/share/doc/${PF}" \
-			install-doc || die "Failed to install docs"
-		insinto /usr/share/doc/${PF}
-		doins doc/*.pdf || die "Failed to install pdf docs"
-		# avoid file collision with pari-2.3
-		mv "${ED}"/usr/bin/gphelp "${ED}"/usr/bin/gphelp-2.4
-	fi
-
 	if use data; then
 		emake DESTDIR="${D}" install-data || die "Failed to install data files"
 	fi

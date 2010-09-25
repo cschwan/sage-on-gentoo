@@ -3,6 +3,10 @@
 # $Header: $
 
   25 Sep 2010; François Bissey <f.r.bissey@massey.ac.nz>
+  pari-2.4.3_pre12577_p5.ebuild:
+  remove double install....
+
+  25 Sep 2010; François Bissey <f.r.bissey@massey.ac.nz>
   files/pari-2.3.5-DOC_MAKE.patch, pari-2.4.3_pre12577_p5.ebuild:
   still working on pari-2.4 doc. Put 2.4 in line with 2.3 and try something
   new.
