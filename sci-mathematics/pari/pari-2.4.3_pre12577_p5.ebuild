@@ -67,12 +67,14 @@ src_prepare() {
 	sed -i \
 		-e 's/-shared $extra/-shared $extra \\$(LDFLAGS)/' \
 		config/get_dlld || die "Failed to fix LDFLAGS"
-	# move doc dir to a gentoo doc dir and replace hardcoded xdvi by xdg-open
+	# move doc dir to a gentoo doc dir and replace hardcoded acroread by xdg-open
 	sed -i \
 		-e "s:\$d = \$0:\$d = '/usr/share/doc/${PF}':" \
-		-e 's:"xdvi":"xdg-open":' \
-		-e 's:\$xdvi -paper 29.7x21cm:xdg-open:' \
+		-e 's:"acroread":"xdg-open":' \
 		doc/gphelp.in || die "Failed to fix doc dir"
+
+	# in pari-2.4 usersch3.tex is generated
+	rm -f doc/usersch3.tex
 
 	# slot everything, remove tex2mail to avoid clash with 2.3
 	epatch "${FILESDIR}/${PN}"-2.4.3-MakefileSH.patch
@@ -148,6 +150,25 @@ src_install() {
 
 	if use data; then
 		emake DESTDIR="${D}" install-data || die "Failed to install data files"
+	fi
+
+	# Do documentation last as we will change directory for the examples.
+	dodoc AUTHORS Announce.2.1 CHANGES README NEW MACHINES COMPAT
+	if use doc; then
+		# install gphelp and the pdf documentations manually.
+		# the install-doc target is overkill.
+		newbin doc/gphelp gphelp-2.4
+		insinto /usr/share/doc/${PF}
+		doins doc/*.pdf || die "Failed to install pdf docs"
+		# gphelp looks for some of the tex sources...
+		doins doc/*.tex || die "Failed to install tex sources"
+		doins doc/translations || die "Failed to install translations"
+		# Install the examples - for real.
+		local installdir=$(get_compile_dir)
+		cd "${installdir}" || die "Bad directory"
+		emake \
+			EXDIR="${D}/usr/share/doc/${PF}/examples" \
+			install-examples || die "Failed to install docs"
 	fi
 }
 

@@ -1,14 +1,11 @@
---- config/DOC_Make.SH.orig	2010-09-07 07:26:42.000000000 +1200
-+++ config/DOC_Make.SH	2010-09-25 19:07:32.855653796 +1200
-@@ -32,30 +32,27 @@
- 
- libpari.pdf: \$(PARI_TEX) \$(MACROS)
+--- config/DOC_Make.SH.orig	2010-09-21 21:24:56.655520480 +1200
++++ config/DOC_Make.SH	2010-09-21 21:26:24.683520242 +1200
+@@ -30,23 +30,23 @@
  	-rm -f libpari.std
--	pdftex libpari
--	pdftex libpari
+ 	pdftex libpari
+ 	pdftex libpari
 -	make libpari.std; pdftex libpari; rm -f libpari.std
-+	pdftex libpari && pdftex libpari
-+	\$(MAKE) libpari.std && pdftex libpari && rm -f libpari.std
++	\$(MAKE) libpari.std; pdftex libpari; rm -f libpari.std
  libpari.dvi: \$(PARI_TEX) \$(MACROS)
  	-rm -f libpari.std
  	tex libpari
@@ -18,11 +15,10 @@
  
  develop.pdf: develop.tex \$(MACROS)
  	-rm -f develop.std
--	pdftex develop
--	pdftex develop
+ 	pdftex develop
+ 	pdftex develop
 -	make develop.std; pdftex develop; rm -f develop.std
-+	pdftex develop && pdftex develop
-+	\$(MAKE) develop.std && pdftex develop && rm -f develop.std
++	\$(MAKE) develop.std; pdftex develop; rm -f develop.std
  develop.dvi: develop.tex \$(MACROS)
  	-rm -f develop.std
  	tex develop
@@ -32,13 +28,7 @@
  
  tutorial.pdf: tutorial.tex \$(MACROS)
  	-rm -f tutorial.std
--	pdftex tutorial
--	pdftex tutorial
-+	pdftex tutorial && pdftex tutorial
- tutorial.dvi: tutorial.tex \$(MACROS)
- 	-rm -f tutorial.std
- 	tex tutorial
-@@ -78,13 +75,12 @@
+@@ -74,13 +74,13 @@
  	-rm -f users.std
  	tex users
  	tex users
@@ -47,11 +37,10 @@
  
  users.pdf: \$(USERS_TEX)
  	-rm -f users.std
--	pdftex users
--	pdftex users
+ 	pdftex users
+ 	pdftex users
 -	make users.std; pdftex users; rm -f users.std
-+	pdftex users && pdftex users
-+	\$(MAKE) users.std && pdftex users && rm -f users.std
++	\$(MAKE) users.std; pdftex users; rm -f users.std
  
  gpman: gp.1
  	nroff -man gp.1 | unix2dos -ascii > gp.man
