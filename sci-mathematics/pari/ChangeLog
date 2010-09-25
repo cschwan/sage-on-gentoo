@@ -2,6 +2,10 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  25 Sep 2010; François Bissey <f.r.bissey@massey.ac.nz>
+  files/pari-2.3.5-DOC_MAKE.patch:
+  tweak to the doc makefile.
+
   24 Sep 2010; François Bissey <f.r.bissey@massey.ac.nz>
   pari-2.3.5-r1.ebuild:
   gphelp needs some of the tex sources!
