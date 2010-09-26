@@ -52,7 +52,7 @@ src_prepare() {
 	epatch "${FILESDIR}/${PN}"-2.3.2-strip.patch
 	epatch "${FILESDIR}/${PN}"-2.3.2-ppc-powerpc-arch-fix.patch
 	# Patch doc makefile for parallel make.
-	epatch "${FILESDIR}/${PN}"-2.3.5-DOC_MAKE.patch
+	epatch "${FILESDIR}/${PN}"-2.4.3-DOC_MAKE.patch
 	# sage error handling patch
 	epatch "${FILESDIR}/${PN}"-2.4.3-errhandling.patch
 	# Fix for PARI bug 1079 (jdemeyer: temporary until this is fixed upstream)
