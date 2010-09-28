@@ -1,13 +1,12 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/python-2.6.5-r2.ebuild,v 1.11 2010/05/25 17:09:38 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/python-2.6.5-r2.ebuild,v 1.17 2010/07/31 19:14:08 arfrever Exp $
 
 EAPI="2"
 
 inherit autotools eutils flag-o-matic multilib pax-utils python toolchain-funcs
 
 MY_P="Python-${PV}"
-S="${WORKDIR}/${MY_P}"
 
 PATCHSET_REVISION="4"
 
@@ -19,7 +18,7 @@ SRC_URI="http://www.python.org/ftp/python/${PV}/${MY_P}.tar.bz2
 LICENSE="PSF-2.2"
 SLOT="2.6"
 PYTHON_ABI="${SLOT}"
-KEYWORDS="~alpha amd64 ~arm hppa ~ia64 ~m68k ~mips ppc ~ppc64 ~s390 ~sh ~sparc ~x86 ~sparc-fbsd ~x86-fbsd"
+KEYWORDS="~alpha amd64 arm hppa ~ia64 ~m68k ~mips ppc ~ppc64 ~s390 ~sh ~sparc x86 ~sparc-fbsd ~x86-fbsd"
 IUSE="-berkdb build doc elibc_uclibc examples gdbm ipv6 +ncurses +readline sqlite +ssl +threads tk +wide-unicode wininst +xml"
 
 # NOTE: dev-python/{elementtree,celementtree,pysqlite}
@@ -38,7 +37,6 @@ RDEPEND=">=app-admin/eselect-python-20091230
 				sys-libs/db:4.3
 				sys-libs/db:4.2
 			) )
-			doc? ( dev-python/python-docs:${SLOT} )
 			gdbm? ( sys-libs/gdbm )
 			ncurses? (
 				>=sys-libs/ncurses-5.2
@@ -48,7 +46,8 @@ RDEPEND=">=app-admin/eselect-python-20091230
 			ssl? ( dev-libs/openssl )
 			tk? ( >=dev-lang/tk-8.0 )
 			xml? ( >=dev-libs/expat-2 )
-		)"
+		)
+		doc? ( dev-python/python-docs:${SLOT} )"
 DEPEND="${RDEPEND}
 		dev-util/pkgconfig
 		!sys-devel/gcc[libffi]"
@@ -56,6 +55,8 @@ RDEPEND+=" !build? ( app-misc/mime-types )"
 PDEPEND="app-admin/python-updater"
 
 PROVIDE="virtual/python"
+
+S="${WORKDIR}/${MY_P}"
 
 pkg_setup() {
 	python_pkg_setup
@@ -79,8 +80,8 @@ src_prepare() {
 
 	EPATCH_SUFFIX="patch" epatch "${WORKDIR}/${PV}"
 
-	# patch pickle for sage http://bugs.python.org/issue7689
-	epatch "${FILESDIR}/dynamic_class_copyreg.patch"
+       # patch pickle for sage http://bugs.python.org/issue7689
+       epatch "${FILESDIR}/dynamic_class_copyreg.patch"
 
 	sed -i -e "s:@@GENTOO_LIBDIR@@:$(get_libdir):g" \
 		Lib/distutils/command/install.py \
@@ -196,8 +197,7 @@ src_test() {
 	# Otherwise test_import fails.
 	python_enable_pyc
 
-	# Skip all tests that fail during emerge but pass without emerge:
-	# (See bug #67970)
+	# Skip failing tests.
 	local skip_tests="distutils httpservers minidom pyexpat sax tcl"
 
 	# test_ctypes fails with PAX kernel (bug #234498).
@@ -274,7 +274,7 @@ src_install() {
 }
 
 pkg_preinst() {
-	if has_version "<${CATEGORY}/${PN}-${SLOT}" && ! has_version ">=${CATEGORY}/${PN}-${SLOT}_alpha"; then
+	if has_version "<${CATEGORY}/${PN}-${SLOT}" && ! has_version "${CATEGORY}/${PN}:2.6" && ! has_version "${CATEGORY}/${PN}:2.7"; then
 		python_updater_warning="1"
 	fi
 }
