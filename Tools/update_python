@@ -1,0 +1,40 @@
+#!/bin/bash
+
+set -e
+
+offset=100
+cd "$(dirname "$0")/.." # change to root of sage tree
+pre=( dev-lang/python/*.ebuild )
+rm -rf dev-lang/python/*.ebuild
+for src in /usr/portage/dev-lang/python/python-2.[6-9]*.ebuild; do
+	dst="${src#/usr/portage/}"
+	dst="${dst%.ebuild}"
+	rev="${dst##*-r}"
+	if [[ ${rev} == ${dst} ]]; then
+		dst="${dst}-r${offset}.ebuild"
+	else
+		dst="${dst%-r*}-r$((rev + offset)).ebuild"
+	fi
+	cp -v "${src}" "${dst}"
+	patch --quiet --no-backup-if-mismatch "${dst}" <<'EOF'
+--- python-2.6.5-r2.ebuild
++++ python-2.6.5-r99.ebuild
+@@ -81,3 +80,6 @@
+        EPATCH_SUFFIX="patch" epatch "${WORKDIR}/${PV}"
+
++       # patch pickle for sage http://bugs.python.org/issue7689
++       epatch "${FILESDIR}/dynamic_class_copyreg.patch"
++
+        sed -i -e "s:@@GENTOO_LIBDIR@@:$(get_libdir):g" \
+
+EOF
+	git add "${dst}"
+done
+
+# Copy official manifest so we can assume digests
+cp /usr/portage/dev-lang/python/Manifest dev-lang/python/
+ebuild "${dst}" digest
+git add dev-lang/python/Manifest
+for old in "${pre[@]}"; do
+	test -e "${old}" || git rm "${old}"
+done
