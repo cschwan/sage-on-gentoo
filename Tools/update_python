@@ -16,16 +16,18 @@ for src in /usr/portage/dev-lang/python/python-2.[6-9]*.ebuild; do
 		dst="${dst%-r*}-r$((rev + offset)).ebuild"
 	fi
 	cp -v "${src}" "${dst}"
-	patch --quiet --no-backup-if-mismatch "${dst}" <<'EOF'
+	patch --quiet --no-backup-if-mismatch -l "${dst}" <<'EOF'
 --- python-2.6.5-r2.ebuild
 +++ python-2.6.5-r99.ebuild
-@@ -81,3 +80,6 @@
-        EPATCH_SUFFIX="patch" epatch "${WORKDIR}/${PV}"
-
-+       # patch pickle for sage http://bugs.python.org/issue7689
-+       epatch "${FILESDIR}/dynamic_class_copyreg.patch"
+@@ -81,3 +80,8 @@
+ 	EPATCH_SUFFIX="patch" epatch "${WORKDIR}/${PV}"
+ 
++	# patch pickle for sage http://bugs.python.org/issue7689
++	epatch "${FILESDIR}/dynamic_class_copyreg_py.patch"
++	EPATCH_OPTS="${EPATCH_OPTS} -l" \
++		epatch "${FILESDIR}/dynamic_class_copyreg_c.patch"
 +
-        sed -i -e "s:@@GENTOO_LIBDIR@@:$(get_libdir):g" \
+ 	sed -i -e "s:@@GENTOO_LIBDIR@@:$(get_libdir):g" \
 
 EOF
 	git add "${dst}"

@@ -80,8 +80,10 @@ src_prepare() {
 
 	EPATCH_SUFFIX="patch" epatch "${WORKDIR}/${PV}"
 
-       # patch pickle for sage http://bugs.python.org/issue7689
-       epatch "${FILESDIR}/dynamic_class_copyreg.patch"
+	# patch pickle for sage http://bugs.python.org/issue7689
+	epatch "${FILESDIR}/dynamic_class_copyreg_py.patch"
+	EPATCH_OPTS="${EPATCH_OPTS} -l" \
+		epatch "${FILESDIR}/dynamic_class_copyreg_c.patch"
 
 	sed -i -e "s:@@GENTOO_LIBDIR@@:$(get_libdir):g" \
 		Lib/distutils/command/install.py \
