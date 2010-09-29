@@ -11,7 +11,7 @@ inherit distutils eutils
 
 DESCRIPTION="A Python Package for Convex Optimization"
 HOMEPAGE="http://abel.ee.ucla.edu/cvxopt"
-SRC_URI="http://abel.ee.ucla.edu/cvxopt/${P}.tar.gz"
+SRC_URI="http://abel.ee.ucla.edu/src/${P}.tar.gz"
 
 LICENSE="GPL-3"
 SLOT="0"
