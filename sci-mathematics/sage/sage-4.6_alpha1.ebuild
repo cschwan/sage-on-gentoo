@@ -25,8 +25,8 @@ SLOT="0"
 KEYWORDS="~amd64 ~ppc ~x86"
 IUSE="examples latex testsuite X"
 
-CDEPEND="|| ( =dev-lang/python-2.6.4-r99
-	=dev-lang/python-2.6.5-r99 )
+CDEPEND=">=dev-lang/python-2.6.5-r99:2.6
+	~dev-lang/python-2.6.5:2.6
 	dev-libs/gmp
 	>=dev-libs/mpfr-2.4.2
 	>=dev-libs/ntl-5.5.2
