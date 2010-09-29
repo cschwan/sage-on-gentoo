@@ -2,6 +2,11 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  29 Sep 2010; Martin von Gagern (MvG) <Martin.vGagern@gmx.net>
+  linbox-1.1.6-r3.ebuild:
+  Force linking against cblas. This avoids unresolved symbols due to
+  configure not recognizing sci-libs/gsl.
+
   08 Sep 2010; François Bissey <f.r.bissey@massey.ac.nz> metadata.xml:
   Fix metadata
 

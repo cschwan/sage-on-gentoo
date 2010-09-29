@@ -61,6 +61,7 @@ src_configure() {
 		--enable-optimization
 		$(use_with ntl)
 		$(use_enable sage)
+		--with-blas=-lcblas
 	)
 
 	autotools-utils_src_configure
