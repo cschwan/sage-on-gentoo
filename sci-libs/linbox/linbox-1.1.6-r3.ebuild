@@ -64,10 +64,9 @@ src_configure() {
 		--enable-optimization
 		$(use_with ntl)
 		$(use_enable sage)
-		--with-blas="${cblas_libs}"
 	)
 
-	autotools-utils_src_configure
+	autotools-utils_src_configure --with-blas="${cblas_libs}"
 }
 
 pkg_postinst() {
