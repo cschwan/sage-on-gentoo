@@ -1,0 +1,28 @@
+Index: Modules/cPickle.c
+===================================================================
+--- Modules/cPickle.c	(revision 77421)
++++ Modules/cPickle.c	(working copy)
+@@ -2701,11 +2701,6 @@
+ 		}
+ 	}
+ 
+-	if (PyType_IsSubtype(type, &PyType_Type)) {
+-		res = save_global(self, args, NULL);
+-		goto finally;
+-	}
+-
+ 	/* Get a reduction callable, and call it.  This may come from
+ 	 * copy_reg.dispatch_table, the object's __reduce_ex__ method,
+ 	 * or the object's __reduce__ method.
+@@ -2721,6 +2716,11 @@
+ 		}
+ 	}
+ 	else {
++	        if (PyType_IsSubtype(type, &PyType_Type)) {
++		        res = save_global(self, args, NULL);
++		        goto finally;
++		}
++
+ 		/* Check for a __reduce_ex__ method. */
+ 		__reduce__ = PyObject_GetAttr(args, __reduce_ex___str);
+ 		if (__reduce__ != NULL) {
