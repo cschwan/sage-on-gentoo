@@ -25,7 +25,6 @@ RESTRICT="mirror
 CDEPEND="dev-libs/gmp[-nocxx]
 	=sci-libs/givaro-3.2*
 	virtual/cblas
-	virtual/lapack
 	dev-util/pkgconfig
 	ntl? ( dev-libs/ntl )"
 DEPEND="${CDEPEND}
