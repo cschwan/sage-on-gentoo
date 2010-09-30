@@ -4,7 +4,7 @@
 
 EAPI="3"
 
-inherit autotools-utils eutils
+inherit autotools-utils toolchain-funcs eutils
 
 DESCRIPTION="LinBox is a C++ template library for linear algebra computation over integers and over finite fields"
 HOMEPAGE="http://linalg.org/"
@@ -26,6 +26,7 @@ DEPEND="dev-libs/gmp[-nocxx]
 	=sci-libs/givaro-3.2*
 	virtual/cblas
 	virtual/lapack
+	dev-util/pkgconfig
 	ntl? ( dev-libs/ntl )"
 RDEPEND="${DEPEND}"
 
@@ -57,11 +58,13 @@ src_configure() {
 	# TODO: support maple, lidia, saclib ?
 	# FIXME: using external expat breaks the tests and various other components.
 
+	local cblas_libs="$("$(tc-getPKG_CONFIG)" --libs cblas)"
+	[[ -n ${cblas_libs} ]] || die "pkg-config for cblas seems broken"
 	myeconfargs=(
 		--enable-optimization
 		$(use_with ntl)
 		$(use_enable sage)
-		--with-blas=-lcblas
+		--with-blas="${cblas_libs}"
 	)
 
 	autotools-utils_src_configure
