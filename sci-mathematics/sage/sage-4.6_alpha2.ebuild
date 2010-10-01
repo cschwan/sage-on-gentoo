@@ -290,7 +290,7 @@ src_prepare() {
 	edos2unix sage/libs/mpmath/ext_libmp.pyx
 
 	# replace SAGE_ROOT/local with SAGE_LOCAL
-	epatch "${FILESDIR}"/${PN}-4.5.1-fix-SAGE_LOCAL.patch
+	epatch "${FILESDIR}"/${PN}-4.6-fix-SAGE_LOCAL.patch
 
 	# patch path for saving sessions
 	sed -i "s:save_session('tmp_f', :save_session(tmp_f, :g" \
