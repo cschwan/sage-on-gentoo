@@ -80,7 +80,7 @@ src_prepare() {
 	# TODO: do not remove scons and M2
 
 	# remove developer- and unsupported options
-	epatch "${FILESDIR}"/${PN}-4.5.3-gentooify-startup-script.patch
+	epatch "${FILESDIR}"/${PN}-4.6-gentooify-startup-script.patch
 
 	# we dont need this script
 	epatch "${FILESDIR}"/${PN}-4.5.1-remove-sage-location.patch

@@ -2,6 +2,11 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  01 Oct 2010; François Bissey <f.r.bissey@massey.ac.nz>
+  sage-baselayout-4.6_alpha2.ebuild,
+  +files/sage-baselayout-4.6-gentooify-startup-script.patch:
+  Apply Steve's 4.6 version of the gentooify patch.
+
 *sage-baselayout-4.6_alpha2 (01 Oct 2010)
 
   01 Oct 2010; François Bissey <f.r.bissey@massey.ac.nz>
