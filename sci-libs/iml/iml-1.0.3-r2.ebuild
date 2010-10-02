@@ -13,13 +13,11 @@ SRC_URI="http://www.cs.uwaterloo.ca/~astorjoh/${P}.tar.gz"
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64 ~ppc ~x86"
-IUSE="mpir static-libs"
+IUSE="static-libs"
 
 RESTRICT="mirror"
 
-DEPEND="mpir? ( sci-libs/mpir )
-	!mpir? ( >=dev-libs/gmp-3.1.1 )
-	virtual/cblas"
+DEPEND="virtual/cblas"
 RDEPEND="${DEPEND}"
 
 DOCS=( AUTHORS ChangeLog README )

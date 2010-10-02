@@ -2,6 +2,11 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  02 Oct 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
+  -iml-1.0.3-r1.ebuild, iml-1.0.3-r2.ebuild,
+  -files/iml-1.0.3-combined-cblas-mpir.patch:
+  Clean up old stuff
+
   08 Sep 2010; François Bissey <f.r.bissey@massey.ac.nz> metadata.xml:
   Fix metadata
 
