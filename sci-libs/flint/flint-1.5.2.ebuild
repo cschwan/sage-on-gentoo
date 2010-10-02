@@ -17,18 +17,17 @@ IUSE="doc qs mpir ntl"
 
 RESTRICT="mirror"
 
-CDEPEND="ntl? ( dev-libs/ntl )
+DEPEND="ntl? ( dev-libs/ntl )
 	mpir? ( sci-libs/mpir )
-	!mpir? ( dev-libs/gmp )"
-DEPEND="${CDEPEND}
+	!mpir? ( dev-libs/gmp )
 	>=sci-libs/zn_poly-0.9"
-RDEPEND="${CDEPEND}"
+RDEPEND="${DEPEND}"
 
 src_prepare() {
-	# use zn_poly from portage
+	# do not use internal copy of zn_poly
 	epatch "${FILESDIR}"/${PN}-1.5.1-without-zn_poly.patch
 
-	# fixes to correctly use flags from portage
+	# use CXXFLAGS for C++ files and add -fPIC if needed
 	epatch "${FILESDIR}"/${P}-makefile.patch
 
 	# build ntl interface into libflint
@@ -42,22 +41,17 @@ src_prepare() {
 }
 
 src_compile() {
-	export FLINT_GMP_INCLUDE_DIR=/usr/include
-	export FLINT_GMP_LIB_DIR=$(get_libdir)
-	export FLINT_LINK_OPTIONS="${LDFLAGS}"
-	export FLINT_CC=$(tc-getCC)
-	export FLINT_CPP=$(tc-getCXX)
-	export FLINT_LIB=lib${PN}.so
+	local flint_flags=(
+		FLINT_CC=$(tc-getCC)
+		FLINT_CPP=$(tc-getCXX)
+		FLINT_LIB=lib${PN}.so
+		FLINT_LINK_OPTIONS="${LDFLAGS}"
+	)
 
-	if use ntl ; then
-		export FLINT_NTL_INCLUDE_DIR=/usr/include
-		export FLINT_NTL_LIB_DIR=$(get_libdir)
-	fi
-
-	emake library || die
+	emake "${flint_flags[@]}" library || die
 
 	if use qs ; then
-		emake QS || die
+		emake "${flint_flags[@]}" QS || die
 	fi
 }
 
@@ -67,25 +61,20 @@ src_test() {
 	if use ntl ; then
 		emake NTL-interface-test || die
 
-		# run test
 		./NTL-interface-test || die "failed to run ntl interface test"
 	fi
 }
 
 src_install(){
-	# install library
 	dolib.so libflint.so || die
 
-	# install headers
 	insinto /usr/include/FLINT
 	doins *.h || die
 
-	# install quadratic sieve program
 	if use qs ; then
 		dobin mpQS || die
 	fi
 
-	# install docs
 	if use doc ; then
 		doins doc/*.pdf || die
 	fi
