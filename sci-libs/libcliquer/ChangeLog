@@ -2,6 +2,13 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  02 Oct 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
+  -libcliquer-1.2_p5.ebuild, libcliquer-1.2_p6.ebuild,
+  -files/libcliquer-1.2.2-remove-main.patch,
+  +files/libcliquer-1.2_p6-remove-main.patch:
+  Renamed patch to match ebuild's version string; fixed ebuilds CC and
+  cleaned up a bit
+
 *libcliquer-1.2_p6 (09 Sep 2010)
 
   09 Sep 2010; Christopher Schwan <cschwan@students.uni-mainz.de>

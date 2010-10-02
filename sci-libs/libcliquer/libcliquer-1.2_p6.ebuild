@@ -4,7 +4,7 @@
 
 EAPI="3"
 
-inherit eutils flag-o-matic versionator
+inherit eutils flag-o-matic toolchain-funcs versionator
 
 MY_P="cliquer-$(replace_version_separator 2 '.')"
 
@@ -24,6 +24,10 @@ RDEPEND="${DEPEND}"
 
 S="${WORKDIR}/${MY_P}/src"
 
+pkg_setup() {
+	tc-export CC
+}
+
 src_prepare() {
 	# overwrite Makefile
 	cp ../patch/Makefile .
@@ -32,20 +36,19 @@ src_prepare() {
 	append-cflags -fPIC
 
 	# replace variable with flags fixing QA warnings
-	sed -i "s:\$(SAGESOFLAGS):-shared -Wl,-soname,libcliquer.so:g" \
-		"Makefile" || die "sed failed"
+	sed -i "s:\$(SAGESOFLAGS):-shared -Wl,-soname,libcliquer.so:g" Makefile \
+		|| die "failed to add flags for linking shared library"
 
 	# remove main function - useless in libraries
-	epatch "${FILESDIR}"/${PN}-1.2.2-remove-main.patch
+	epatch "${FILESDIR}"/${PN}-1.2_p6-remove-main.patch
 }
 
 src_test() {
-	PATH="$PATH:." emake test || die "emake test failed"
+	PATH="$PATH:." emake test || die "failed to test cliquer"
 }
 
 src_install() {
 	insinto /usr/include/cliquer
-	doins cl.h cliquer.h cliquerconf.h graph.h misc.h reorder.h set.h \
-		|| die
+	doins cl.h cliquer.h cliquerconf.h graph.h misc.h reorder.h set.h || die
 	dolib libcliquer.so || die
 }
