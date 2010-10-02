@@ -2,6 +2,11 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  02 Oct 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
+  -linbox-1.1.6-r1.ebuild, -linbox-1.1.6-r2.ebuild, linbox-1.1.6-r3.ebuild,
+  -files/linbox-1.1.6-fix-doc.patch:
+  Removed outdated files, cleaned up -r3
+
   30 Sep 2010; François Bissey <f.r.bissey@massey.ac.nz>
   linbox-1.1.6-r3.ebuild:
   Remove lapack dependency

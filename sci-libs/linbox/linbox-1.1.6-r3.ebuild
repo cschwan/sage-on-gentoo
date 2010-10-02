@@ -25,7 +25,6 @@ RESTRICT="mirror
 CDEPEND="dev-libs/gmp[-nocxx]
 	=sci-libs/givaro-3.2*
 	virtual/cblas
-	dev-util/pkgconfig
 	ntl? ( dev-libs/ntl )"
 DEPEND="${CDEPEND}
 	dev-util/pkgconfig"
@@ -37,6 +36,7 @@ PATCHES=(
 	"${FILESDIR}"/${P}-fix-config.patch
 	"${FILESDIR}"/${P}-nolapack.patch
 	"${FILESDIR}"/${P}-fix-double-installation.patch
+	"${FILESDIR}"/${P}-fix-undefined-symbols.patch
 )
 
 # TODO: installation of documentation does not work ?
@@ -46,9 +46,6 @@ src_prepare() {
 	if use sage ; then
 		# disable commentator; this is needed for sage
 		epatch "${FILESDIR}"/${P}-disable-commentator.patch
-
-		# fix problem with --as-needed
-		epatch "${FILESDIR}"/${P}-fix-undefined-symbols.patch
 	fi
 
 	AT_M4DIR=macros eautoreconf
@@ -57,16 +54,19 @@ src_prepare() {
 src_configure() {
 	# TODO: add other configure options ?
 	# TODO: support maple, lidia, saclib ?
-	# FIXME: using external expat breaks the tests and various other components.
+	# FIXME: using external expat breaks the tests and various other components
+	# TODO: documentation does not work
 
 	local cblas_libs="$("$(tc-getPKG_CONFIG)" --libs cblas)"
-	[[ -n ${cblas_libs} ]] || die "pkg-config for cblas seems broken"
+
+	# TODO: what does --enable-optimization do ?
 	myeconfargs=(
 		--enable-optimization
 		$(use_with ntl)
 		$(use_enable sage)
 	)
 
+	# TODO: once gentoo bug #339227 is fixed move argument back into array
 	autotools-utils_src_configure --with-blas="${cblas_libs}"
 }
 
