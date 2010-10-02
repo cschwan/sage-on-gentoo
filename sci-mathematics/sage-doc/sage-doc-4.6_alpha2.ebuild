@@ -43,7 +43,7 @@ S="${WORKDIR}/${MY_P}/doc"
 src_prepare() {
 	# Patch the tests in the documentation to use cvxopt-1.1.2
 	epatch "${FILESDIR}"/${PN}-cvxopt-1.1.2.patch
-	# patch to upgrade to numpy-1.4.1/scipy-0.8.0
+	# patch to upgrade to numpy-1.5.0/scipy-0.8.0
 	epatch "${FILESDIR}"/${PN}-scipy-0.8.patch
 }
 

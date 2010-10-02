@@ -31,7 +31,7 @@ CDEPEND=">=dev-lang/python-2.6.5-r99:2.6
 	>=dev-libs/mpfr-2.4.2
 	>=dev-libs/ntl-5.5.2
 	>=dev-lisp/ecls-10.2.1[-unicode]
-	~dev-python/numpy-1.4.1[lapack]
+	>=dev-python/numpy-1.5.0-r3[lapack]
 	>=sci-mathematics/eclib-20100711[pari24]
 	>=sci-mathematics/ecm-6.2.1
 	>=sci-libs/flint-1.5.0[ntl]
@@ -172,8 +172,8 @@ src_prepare() {
 		epatch "${FILESDIR}"/${P}-ecls_ppc.patch
 	fi
 
-	# upgrade to numpy-1.4.1/scipy-0.8
-	epatch "${FILESDIR}"/trac_9808_numpy_doctest_change.patch
+	# upgrade to numpy-1.5.0/scipy-0.8
+	epatch "${FILESDIR}"/${PN}-4.6-numpy-1.5.patch
 
 	# use already installed csage
 	rm -rf c_lib || die "failed to remove c library directory"

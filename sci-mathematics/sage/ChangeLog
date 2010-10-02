@@ -2,6 +2,10 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  02 Oct 2010; François Bissey <f.r.bissey@massey.ac.nz>
+  sage-4.6_alpha2.ebuild, +files/sage-4.6-numpy-1.5.patch:
+  Update sage-4.6 to use numpy-1.5
+
   02 Oct 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
   -files/sage.svg.bz2 -sage-4.5.2-r1.ebuild, -sage-4.5.2-r2.ebuild:
   Removed old ebuilds

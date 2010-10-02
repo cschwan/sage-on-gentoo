@@ -9,6 +9,7 @@ dev-python/gdmodule
 dev-python/matplotlib
 dev-python/mpmath
 dev-python/networkx
+=dev-python/numpy-1.5.0-r3
 dev-python/pexpect
 dev-python/pyprocessing
 dev-python/python-gnutls
