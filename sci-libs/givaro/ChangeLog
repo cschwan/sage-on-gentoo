@@ -2,6 +2,10 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  02 Oct 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
+  -givaro-3.3.0.ebuild:
+  Removed unused ebuild
+
   08 Sep 2010; François Bissey <f.r.bissey@massey.ac.nz> metadata.xml:
   Fix metadata
 
