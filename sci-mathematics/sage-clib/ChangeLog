@@ -2,6 +2,11 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  02 Oct 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
+  -files/sage-clib-4.4.3-replace-gmp-with-mpir.patch,
+  -sage-clib-4.5.2.ebuild:
+  Removed old files
+
   21 Sep 2010; François Bissey <f.r.bissey@massey.ac.nz>
   files/sage-clib-4.6-importenv.patch:
   amended patch as suggested by Steve.

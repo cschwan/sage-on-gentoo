@@ -2,6 +2,13 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  02 Oct 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
+  -files/sage-baselayout-4.5.1-fix-SAGE_LOCAL.patch,
+  -files/sage-baselayout-4.5.1-remove-useless-options.patch,
+  -sage-baselayout-4.5.2.ebuild, -sage-baselayout-4.5.2-r1.ebuild,
+  -files/sage-baselayout-4.5.2-gentooify-startup-script.patch:
+  Removed old files
+
   01 Oct 2010; François Bissey <f.r.bissey@massey.ac.nz>
   sage-baselayout-4.6_alpha2.ebuild,
   +files/sage-baselayout-4.6-gentooify-startup-script.patch:
