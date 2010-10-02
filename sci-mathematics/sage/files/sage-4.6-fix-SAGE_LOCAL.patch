@@ -1,5 +1,5 @@
---- sage/misc/cython.py.orig	2010-09-30 17:07:44.000000000 -0500
-+++ sage/misc/cython.py	2010-09-30 17:13:04.000000000 -0500
+--- sage/misc/cython.py.orig	2010-10-01 17:31:00.000000000 -0500
++++ sage/misc/cython.py	2010-10-01 17:36:02.000000000 -0500
 @@ -16,7 +16,7 @@
  
  import os, sys
@@ -17,10 +17,10 @@
 -                '%s/local/include/'%SAGE_ROOT,  \
 -                '%s/local/include/python%s/'%(SAGE_ROOT, sys.version[:3]), \
 -                '%s/local/lib/python%s/site-packages/numpy/core/include'%(SAGE_ROOT, sys.version[:3]), \
-+include_dirs = ['%s/local/include/csage/'%SAGE_LOCAL,
-+                '%s/local/include/'%SAGE_LOCAL,  \
-+                '%s/local/include/python%s/'%(SAGE_LOCAL, sys.version[:3]), \
-+                '%s/local/lib/python%s/site-packages/numpy/core/include'%(SAGE_LOCAL, sys.version[:3]), \
++include_dirs = ['%s/include/csage/'%SAGE_LOCAL,
++                '%s/include/'%SAGE_LOCAL,  \
++                '%s/include/python%s/'%(SAGE_LOCAL, sys.version[:3]), \
++                '%s/lib/python%s/site-packages/numpy/core/include'%(SAGE_LOCAL, sys.version[:3]), \
                  '%s/devel/sage/sage/ext/'%SAGE_ROOT, \
                  '%s/devel/sage/'%SAGE_ROOT, \
                  '%s/devel/sage/sage/gsl/'%SAGE_ROOT]
@@ -109,14 +109,14 @@
          # We set maxima's configuration directory to $DOT_SAGE/maxima
          # This avoids that sage's maxima inadvertently loads
  
---- sage/server/trac/trac.py.orig	2010-09-30 17:20:54.000000000 -0500
-+++ sage/server/trac/trac.py	2010-09-30 17:22:20.000000000 -0500
+--- sage/server/trac/trac.py.orig	2010-10-01 17:54:16.000000000 -0500
++++ sage/server/trac/trac.py	2010-10-01 17:57:01.000000000 -0500
 @@ -120,7 +120,7 @@
          print "    cd %s" % os.path.abspath(os.path.join(directory, 'conf'))
          print "    htdigest passwd %s <username>" % address
          print "\nTo grant full admin permissions to a user:"
 -        print "    %s %s permission add <username> TRAC_ADMIN" % (os.path.join(SAGE_ROOT, 'local/bin/trac-admin'), os.path.abspath(directory))
-+        print "    %s %s permission add <username> TRAC_ADMIN" % (os.path.join(SAGE_LOCAL, 'local/bin/trac-admin'), os.path.abspath(directory))
++        print "    %s %s permission add <username> TRAC_ADMIN" % (os.path.join(SAGE_LOCAL, '/bin/trac-admin'), os.path.abspath(directory))
          print "\nThen restart the trac server."
          print "*" * 80
          open(passwd,'w').close()
