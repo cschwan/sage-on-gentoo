@@ -1,0 +1,37 @@
+--- include/ntl_wrap.h.orig	2010-06-28 16:37:05.000000000 +0000
++++ include/ntl_wrap.h	2010-10-03 08:37:12.165889079 +0000
+@@ -24,6 +24,10 @@
+ using namespace NTL;
+ #endif
+ 
++#ifdef EXTERN
++#undef EXTERN
++#endif
++
+ #ifdef __cplusplus
+ #define EXTERN extern "C"
+ #else 
+@@ -308,13 +312,14 @@
+ struct GF2EContext;
+ #endif
+ 
+-EXTERN struct GF2EContext* GF2EContext_new(struct GF2X_c* p);
++EXTERN struct GF2EContext* GF2EContext_new(struct GF2X* p);
+ EXTERN struct GF2EContext* GF2EContext_construct(void *mem, const struct GF2X *p);
+ 
+ //////// mat_GF2E //////////
+ 
+ #ifndef __cplusplus
+ struct mat_GF2E;
++struct GF2E;
+ #endif
+ 
+ EXTERN void mat_GF2E_setitem(struct mat_GF2E* x, int i, int j, const struct GF2E* z);
+@@ -323,6 +328,7 @@
+ 
+ #ifndef __cplusplus
+ struct mat_GF2;
++struct GF2;
+ #endif
+ 
+ EXTERN void mat_GF2_setitem(struct mat_GF2* x, int i, int j, const struct GF2* z);
