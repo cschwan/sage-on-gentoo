@@ -2,6 +2,12 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  03 Oct 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
+  -files/sage-4.4.2-jinja2.patch, -files/trac_9567-cycle_basis.patch,
+  -files/trac_9567-networkx-1.2.patch,
+  -files/sage-4.5.2-upgrade-singular.patch:
+  Removed unneeded patches
+
   02 Oct 2010; François Bissey <f.r.bissey@massey.ac.nz>
   sage-4.6_alpha2.ebuild, +files/sage-4.6-numpy-1.5.patch:
   Update sage-4.6 to use numpy-1.5
