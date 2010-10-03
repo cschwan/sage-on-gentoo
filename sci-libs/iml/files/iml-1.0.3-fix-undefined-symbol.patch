@@ -5,7 +5,7 @@
  		for (j = 0; j < m; j++)
  		    mpz_init_set_ui(mp_N[i * m + j], 0);
 -		mpz_init_ui(mp_N[i * m + i], 1);
-+		mpz_init_set_ui(mp_N[i * m + i], 1);
++		mpz_set_ui(mp_N[i * m + i], 1);
  	    }
  	    *mp_N_pass = mp_N;
  	} else {		/* r>0 and s>0 */
