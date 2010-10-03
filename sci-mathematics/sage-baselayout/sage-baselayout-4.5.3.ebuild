@@ -147,3 +147,13 @@ src_install() {
 		domenu "${T}"/sage-sage.desktop || die
 	fi
 }
+
+pkg_postinst() {
+	einfo "${PN} has installed a file into /etc/env.d - if you"
+	einfo "have installed it for the very first time update your environment"
+	einfo "with:"
+	einfo ""
+	einfo "  env-update && source /etc/profile"
+	einfo ""
+	einfo "or logoff and logon to your shell, otherwise Sage will fail to start"
+}
