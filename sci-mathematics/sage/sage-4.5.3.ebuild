@@ -311,28 +311,30 @@ pkg_postinst() {
 	einfo "If you use Sage's browser interface ('Sage Notebook') and experience"
 	einfo "an 'Internal Server Error' you should append the following line to"
 	einfo "your ~/.bashrc (replace firefox with your favorite browser and note"
-	einfo "that it your case it WILL NOT WORK with xdg-open):"
+	einfo "that in your case it WILL NOT WORK with xdg-open):"
 	einfo ""
-	einfo "    export SAGE_BROWSER=/usr/bin/firefox"
+	einfo "  export SAGE_BROWSER=/usr/bin/firefox"
 	einfo ""
-	einfo "Sage comes with the 'Standard' set of Sage Packages, i.e. those"
-	einfo "listed at: http://sagemath.org/packages/standard/ which are now"
-	einfo "already installed."
+
+	einfo "Vanilla Sage comes with the 'Standard' set of Sage Packages, i.e."
+	einfo "those listed at: http://sagemath.org/packages/standard/ which are"
+	einfo "installed now."
 	einfo "There are also some packages of the 'Optional' set (which consists"
 	einfo "of the these: http://sagemath.org/packages/optional/) available"
 	einfo "which may be installed with portage as usual."
+	einfo ""
 
 	if use testsuite ; then
 
 	einfo "You have installed Sage's testsuite. In order to test Sage run the"
-	einfo "following command in a directory where Sage may write to:"
+	einfo "following command in a directory where Sage may write to, e.g.:"
 	einfo ""
-	einfo "    sage -testall"
+	einfo "  cd \$(mktemp -d) && sage -testall"
 	einfo ""
 	einfo "Note that testing Sage may take more than 4 hours. If you want to"
-	einfo "compare your results look at the list of known failures:"
+	einfo "check your results look at the list of known failures:"
 	einfo ""
-	einfo "    http://github.com/cschwan/sage-on-gentoo/wiki/Known-test-failures"
+	einfo "  http://github.com/cschwan/sage-on-gentoo/wiki/Known-test-failures"
 
 	fi
 }
