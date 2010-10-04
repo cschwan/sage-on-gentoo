@@ -5,8 +5,8 @@
 EAPI="3"
 inherit elisp-common eutils flag-o-matic toolchain-funcs
 
-MY_P="pari-2.4.3.svn-12577.p5"
-SAGE_DIR="sage-4.6.alpha1"
+MY_P="pari-2.4.3.svn-12577.p7"
+SAGE_DIR="sage-4.6.alpha2"
 
 DESCRIPTION="A software package for computer-aided number theory"
 HOMEPAGE="http://pari.math.u-bordeaux.fr/"
@@ -56,7 +56,8 @@ src_prepare() {
 	# sage error handling patch
 	epatch "${FILESDIR}/${PN}"-2.4.3-errhandling.patch
 	# Fix for PARI bug 1079 (jdemeyer: temporary until this is fixed upstream)
-	epatch "${FILESDIR}"/1079_part1.patch
+	#epatch "${FILESDIR}"/1079_part1.patch
+	# the .p7 spkg is actually a later snapshot which includes part 1.
 	epatch "${FILESDIR}"/1079_part2.patch
 
 	# disable default building of docs during install
