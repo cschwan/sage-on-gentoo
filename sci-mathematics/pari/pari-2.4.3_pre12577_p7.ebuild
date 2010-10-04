@@ -55,10 +55,6 @@ src_prepare() {
 	epatch "${FILESDIR}/${PN}"-2.4.3-DOC_MAKE.patch
 	# sage error handling patch
 	epatch "${FILESDIR}/${PN}"-2.4.3-errhandling.patch
-	# Fix for PARI bug 1079 (jdemeyer: temporary until this is fixed upstream)
-	#epatch "${FILESDIR}"/1079_part1.patch
-	# the .p7 spkg is actually a later snapshot which includes part 1.
-	epatch "${FILESDIR}"/1079_part2.patch
 
 	# disable default building of docs during install
 	sed -i \

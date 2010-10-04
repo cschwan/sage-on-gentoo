@@ -2,6 +2,10 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  04 Oct 2010; François Bissey <f.r.bissey@massey.ac.nz>
+  -files/1079_part2.patch, pari-2.4.3_pre12577_p7.ebuild:
+  Remove the patch for 1079 completely after mail exchange on sage-devel.
+
 *pari-2.4.3_pre12577_p7 (04 Oct 2010)
 
   04 Oct 2010; François Bissey <f.r.bissey@massey.ac.nz>
