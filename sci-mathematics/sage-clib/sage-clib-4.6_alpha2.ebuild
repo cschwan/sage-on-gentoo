@@ -35,6 +35,7 @@ S="${WORKDIR}/${MY_P}/c_lib"
 
 src_prepare() {
 	epatch "${FILESDIR}"/${PN}-4.6-importenv.patch
+	epatch "${FILESDIR}"/${PN}-4.5.3-fix-undefined-symbols-warning.patch
 
 	# Use pari-2.4
 	sed -i "s:pari/:pari24/:" include/convert.h || die "failed to use pari2.4 headers"
