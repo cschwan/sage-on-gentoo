@@ -9,7 +9,7 @@ inherit autotools-utils versionator
 MY_P="${PN}-$(replace_version_separator 3 '.')"
 
 DESCRIPTION="A modified version of GiNaC that replaces the dependency on CLN by Python"
-HOMEPAGE="http://sagemath.org/ http://www.ginac.de/"
+HOMEPAGE="http://pynac.sagemath.org/"
 SRC_URI="mirror://sage/spkg/standard/${MY_P}.spkg -> ${P}.tar.bz2"
 
 LICENSE="GPL-2"
