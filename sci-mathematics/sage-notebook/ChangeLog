@@ -2,6 +2,20 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  08 Oct 2010; François Bissey <f.r.bissey@massey.ac.nz>
+  +sage-notebook-0.8.6.ebuild:
+  package naming fixes
+
+  08 Oct 2010; François Bissey <f.r.bissey@massey.ac.nz>
+  +sage-notebook-0.8.6.ebuild:
+  SRC_URI fix
+
+*sage-notebook-0.8.6 (08 Oct 2010)
+
+  08 Oct 2010; François Bissey <f.r.bissey@massey.ac.nz>
+  +sage-notebook-0.8.6.ebuild:
+  New version for sage-4.6
+
   08 Sep 2010; François Bissey <f.r.bissey@massey.ac.nz> metadata.xml:
   fix metadata
 

@@ -8,5 +8,7 @@
 >=sci-mathematics/sage-examples-4.6_alpha0
 >=sci-mathematics/sage-doc-4.6_alpha0
 >=dev-python/numpy-1.5.0
+>=sci-mathematics/sage-notebook-0.8.6
+>=sci-libs/pynac-0.2.1
 # Ongoing work there, do not touch before it has been properly tested.
 =sci-chemistry/jmol-11.8.25

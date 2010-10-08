@@ -43,7 +43,7 @@ CDEPEND=">=dev-lang/python-2.6.5-r99:2.6
 	>=sci-libs/linbox-1.1.6[ntl,sage]
 	>=sci-libs/m4ri-20100701
 	>=sci-libs/mpfi-1.4
-	>=sci-libs/pynac-0.2.0_p5
+	>=sci-libs/pynac-0.2.1
 	>=sci-libs/symmetrica-2.0
 	>=sci-libs/zn_poly-0.9
 	>=sci-mathematics/glpk-4.43[gmp]
@@ -61,7 +61,7 @@ CDEPEND=">=dev-lang/python-2.6.5-r99:2.6
 	virtual/cblas"
 
 DEPEND="${CDEPEND}
-	=dev-python/cython-0.12*"
+	=dev-python/cython-0.13*"
 
 RDEPEND="${CDEPEND}
 	>=dev-lang/R-2.10.1[lapack,readline]
@@ -101,7 +101,7 @@ RDEPEND="${CDEPEND}
 	~sci-mathematics/sage-data-polytopes_db-20100210
 	>=sci-mathematics/sage-doc-${PV}
 	~sci-mathematics/sage-extcode-${PV}
-	~sci-mathematics/sage-notebook-0.8.2
+	~sci-mathematics/sage-notebook-0.8.6
 	>=sci-mathematics/sympow-1.018.1_p8
 	examples? ( ~sci-mathematics/sage-examples-${PV} )
 	testsuite? (
@@ -169,7 +169,7 @@ src_prepare() {
 
 	# Fix ecls bug for ppc see #308909. This has to be done before sed is applied to module_list.py
 	if use ppc ; then
-		epatch "${FILESDIR}"/${P}-ecls_ppc.patch
+		epatch "${FILESDIR}"/${PN}-4.5.2-ecls_ppc.patch
 	fi
 
 	# upgrade to numpy-1.5.0/scipy-0.8
@@ -245,9 +245,6 @@ src_prepare() {
 	# Uses singular internal copy of the factory header
 	sed -i "s:factory.h:singular/factory.h:" sage/libs/singular/singular-cdefs.pxi \
 		|| die "failed to patch factory header"""
-
-	# upgrade to matplotlib-1.0.0 as it is now marked stable
-	epatch "${FILESDIR}"/trac-9221-matplotlib-update.patch
 
 	# use delaunay from matplotlib (see ticket #6946)
 	epatch "${FILESDIR}"/${PN}-4.3.3-delaunay-from-matplotlib.patch
