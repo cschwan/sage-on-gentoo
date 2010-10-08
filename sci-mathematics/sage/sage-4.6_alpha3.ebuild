@@ -200,7 +200,9 @@ src_prepare() {
 		module_list.py || die "failed to patch path for numpy include directory"
 
 	# fix cython path
-	sed -i "s:SAGE_LOCAL + '/lib/python/site-packages/Cython/Includes/':'$(python_get_sitedir)/Cython/Includes/':g" \
+	sed -i \
+		-e "s:SAGE_LOCAL + '/lib/python/site-packages/Cython/Includes/':'$(python_get_sitedir)/Cython/Includes/':g" \
+		-e "s:SAGE_LOCAL + '/lib/python/site-packages/Cython/Includes/Deprecated/':'$(python_get_sitedir)/Cython/Includes/Deprecated/':g" \
 		setup.py || die "failed to patch path for cython include directory"
 
 	# fix lcalc path
