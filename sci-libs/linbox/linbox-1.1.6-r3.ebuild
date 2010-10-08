@@ -57,17 +57,15 @@ src_configure() {
 	# FIXME: using external expat breaks the tests and various other components
 	# TODO: documentation does not work
 
-	local cblas_libs="$("$(tc-getPKG_CONFIG)" --libs cblas)"
-
 	# TODO: what does --enable-optimization do ?
 	myeconfargs=(
 		--enable-optimization
+		--with-blas="$("$(tc-getPKG_CONFIG)" --libs cblas)"
 		$(use_with ntl)
 		$(use_enable sage)
 	)
 
-	# TODO: once gentoo bug #339227 is fixed move argument back into array
-	autotools-utils_src_configure --with-blas="${cblas_libs}"
+	autotools-utils_src_configure
 }
 
 pkg_postinst() {
