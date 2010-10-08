@@ -7,7 +7,7 @@ EAPI="3"
 inherit autotools-utils
 
 DESCRIPTION="A modified version of GiNaC that replaces the dependency on CLN by Python"
-HOMEPAGE="http://sagemath.org/ http://www.ginac.de/"
+HOMEPAGE="http://pynac.sagemath.org/"
 #SRC_URI="mirror://sage/spkg/standard/${MY_P}.spkg -> ${P}.tar.bz2"
 SAGE_DIR="sage-4.6.alpha3"
 SRC_URI="http://sage.math.washington.edu/home/release/${SAGE_DIR}/${SAGE_DIR}/spkg/standard/${P}.spkg -> ${P}.tar.bz2"
