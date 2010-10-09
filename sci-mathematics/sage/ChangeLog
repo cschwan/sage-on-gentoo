@@ -4,6 +4,10 @@
 
   09 Oct 2010; François Bissey <f.r.bissey@massey.ac.nz>
   sage-4.6_alpha3.ebuild:
+  Forgot "s" in the sed command
+
+  09 Oct 2010; François Bissey <f.r.bissey@massey.ac.nz>
+  sage-4.6_alpha3.ebuild:
   adjust dep for latest sagenb
 
   09 Oct 2010; François Bissey <f.r.bissey@massey.ac.nz>
