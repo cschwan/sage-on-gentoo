@@ -303,6 +303,10 @@ src_prepare() {
 	sed -i "s:os.environ\[\"SAGE_LOCAL\"\]+\"/share/singular/\":os.environ\[\"SAGE_DOC\"\]+\"/\":g" \
 		sage/interfaces/singular.py || die "failed to patch singular.hlp path"
 
+	# tentative patch for issue #
+	sed -i ":nullspaceMP (self._nrows, self._ncols, self._entries, &mp_N):nullspaceMP (self._nrows, self._ncols, self._entries, &&mp_N):" \
+		sage/matrix/matrix_integer_dense.pyx || die "failed to patch matrix_integer_dense.pyx"
+
 	# fix test paths
 	sed -i \
 		-e "s:'my_animation.gif':tmp_filename('my_animation')+'.gif':g" \
