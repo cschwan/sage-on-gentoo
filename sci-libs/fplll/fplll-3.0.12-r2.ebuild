@@ -14,7 +14,7 @@ SRC_URI="http://perso.ens-lyon.fr/damien.stehle/downloads/${MY_P}.tar.gz"
 
 LICENSE="LGPL-2.1"
 SLOT="0"
-KEYWORDS="~amd64 ~ppc ~x86"
+KEYWORDS="~amd64 ~ppc ~x86 ~x86-linux"
 IUSE="mpir static-libs"
 
 RESTRICT="mirror"
@@ -45,7 +45,7 @@ src_prepare() {
 
 src_configure() {
 	# place headers into a subdirectory where it cannot conflict with others
-	myeconfargs=( --includedir=/usr/include/fplll )
+	myeconfargs=( --includedir="${EPREFIX}"/usr/include/fplll )
 
 	autotools-utils_src_configure
 }
