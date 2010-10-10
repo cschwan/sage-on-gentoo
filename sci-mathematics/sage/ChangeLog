@@ -2,6 +2,10 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  10 Oct 2010; François Bissey <f.r.bissey@massey.ac.nz>
+  sage-4.6_alpha3.ebuild:
+  Fix compilation problem with polynomial_rational_flint.pyx
+
   09 Oct 2010; François Bissey <f.r.bissey@massey.ac.nz>
   sage-4.6_alpha3.ebuild:
   Remove tentative fix for issue 3 as it's not building.

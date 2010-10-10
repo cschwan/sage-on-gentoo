@@ -182,6 +182,10 @@ src_prepare() {
 	sed -i "s:SAGE_LOCAL = SAGE_ROOT + '/local/':SAGE_LOCAL = os.environ['SAGE_LOCAL']:g" \
 		module_list.py setup.py || die "failed to patch SAGE_LOCAL"
 
+	# fix polynomial_rational_flint.pyx include path - before it is done generally which screws up things
+	sed -i "s:SAGE_ROOT + '/devel/sage/sage/libs/flint/':'sage/libs/flint/':"\
+		module_list.py || die "failed to patch paths for polynomial_rational_flint.pyx"
+
 	# fix include paths
 	sed -i \
 		-e "s:SAGE_ROOT[[:space:]]*+[[:space:]]*\([\'\"]\)/local/include/\([^\1]*\)\1:SAGE_LOCAL + \1/include/\2\1:g" \
