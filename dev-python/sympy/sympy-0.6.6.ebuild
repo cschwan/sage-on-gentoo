@@ -14,7 +14,7 @@ SRC_URI="http://sympy.googlecode.com/files/${P}.tar.gz"
 
 LICENSE="BSD"
 SLOT="0"
-KEYWORDS="~amd64 ~ppc ~x86"
+KEYWORDS="~amd64 ~ppc ~x86 ~x86-linux"
 IUSE="doc examples gtk imaging ipython latex mathml opengl pdf png test texmacs"
 
 RDEPEND="mathml? ( dev-libs/libxml2[python]
@@ -57,7 +57,8 @@ src_test() {
 src_install() {
 	distutils_src_install
 
-	rm "${D}"/usr/bin/test "${D}"/usr/bin/doctest || die "rm  test doctest failed"
+	rm "${ED}"/usr/bin/test "${ED}"/usr/bin/doctest \
+		|| die "rm  test doctest failed"
 
 	if use doc; then
 		dohtml -r doc/_build/html/*
