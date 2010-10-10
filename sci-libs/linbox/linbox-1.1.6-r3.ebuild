@@ -12,7 +12,7 @@ SRC_URI="http://linalg.org/${P}.tar.gz"
 
 LICENSE="LGPL-2.1"
 SLOT="0"
-KEYWORDS="~amd64 ~ppc ~x86"
+KEYWORDS="~amd64 ~ppc ~x86 ~x86-linux"
 IUSE="ntl sage static-libs"
 
 # TODO: support examples ?
@@ -58,9 +58,11 @@ src_configure() {
 	# TODO: documentation does not work
 
 	# TODO: what does --enable-optimization do ?
+	# TODO: why do I have to explicitly state givaro's directory ?
 	myeconfargs=(
 		--enable-optimization
 		--with-blas="$("$(tc-getPKG_CONFIG)" --libs cblas)"
+		--with-givaro="${EPREFIX}"/usr
 		$(use_with ntl)
 		$(use_enable sage)
 	)
