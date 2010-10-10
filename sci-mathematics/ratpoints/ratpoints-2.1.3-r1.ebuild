@@ -12,7 +12,7 @@ SRC_URI="http://www.mathe2.uni-bayreuth.de/stoll/programs/${P}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~ppc ~x86"
+KEYWORDS="~amd64 ~ppc ~x86 ~x86-linux"
 IUSE="doc sse2"
 
 RESTRICT="mirror"

@@ -11,7 +11,7 @@ MY_P="${MY_PN}-${PV}"
 DESCRIPTION="Jmol is a java molecular viever for 3-D chemical structures."
 SRC_URI="mirror://sourceforge/${MY_PN}/${MY_P}-full.tar.gz"
 HOMEPAGE="http://jmol.sourceforge.net/"
-KEYWORDS="~x86 ~amd64"
+KEYWORDS="~amd64 ~x86 ~x86-linux"
 LICENSE="LGPL-2.1"
 S="${WORKDIR}/${MY_P}"
 

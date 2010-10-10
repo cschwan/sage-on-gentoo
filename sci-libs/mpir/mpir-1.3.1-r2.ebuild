@@ -13,7 +13,7 @@ SRC_URI="http://www.mpir.org/${P}.tar.gz"
 
 LICENSE="LGPL-2.1"
 SLOT="0"
-KEYWORDS="~amd64 ~ppc ~x86"
+KEYWORDS="~amd64 ~ppc ~x86 ~x86-linux"
 IUSE="+cxx cpudetection"
 
 RESTRICT="mirror"

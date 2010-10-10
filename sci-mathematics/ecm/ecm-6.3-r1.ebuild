@@ -12,7 +12,7 @@ SRC_URI="http://gforge.inria.fr/frs/download.php/22124/${P}.tar.gz"
 
 LICENSE="LGPL-2.1 GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~ppc ~x86"
+KEYWORDS="~amd64 ~ppc ~x86 ~x86-linux"
 IUSE="asm-redc openmp shellcmd sse2 static-libs"
 
 RESTRICT="mirror"

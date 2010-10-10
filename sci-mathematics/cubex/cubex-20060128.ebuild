@@ -14,7 +14,7 @@ SRC_URI="http://www.wrongway.org/work/${MY_PN}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~ppc ~x86"
+KEYWORDS="~amd64 ~ppc ~x86 ~x86-linux"
 IUSE=""
 
 RESTRICT="mirror"
