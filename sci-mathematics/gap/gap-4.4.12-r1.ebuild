@@ -20,7 +20,7 @@ SRC_URI="ftp://ftp.gap-system.org/pub/gap/gap4/tar.bz2/${PN}${PV2}.tar.bz2
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~ppc ~x86"
+KEYWORDS="~amd64 ~ppc ~x86 ~x86-linux"
 IUSE="emacs vim-syntax xtom"
 
 RESTRICT="mirror"
@@ -46,8 +46,8 @@ src_install() {
 	exeinto /usr/libexec/${PN}
 	doexe bin/${GAParch}/gap || die
 
-	sed -e "s:@gapdir@:/usr/share/${PN}:" \
-		-e "s:@target@-@CC@:/usr/libexec/${PN}:" \
+	sed -e "s:@gapdir@:${EPREFIX}/usr/share/${PN}:" \
+		-e "s:@target@-@CC@:${EPREFIX}/usr/libexec/${PN}:" \
 		-e "s:@EXEEXT@::" \
 		-e 's:$GAP_DIR/bin/::' \
 		gap.shi > gap || die "patching failed"
