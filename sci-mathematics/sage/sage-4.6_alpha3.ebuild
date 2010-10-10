@@ -22,7 +22,7 @@ S="${WORKDIR}/${SAGE_P}"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~ppc ~x86"
+KEYWORDS="~amd64 ~ppc ~x86 ~x86-linux"
 IUSE="examples latex testsuite X"
 
 CDEPEND=">=dev-lang/python-2.6.5-r99:2.6
@@ -200,13 +200,13 @@ src_prepare() {
 		module_list.py || die "failed to patch png library name"
 
 	# fix numpy path
-	sed -i "s:SAGE_ROOT+'/local/lib/python/site-packages/numpy/core/include':'$(python_get_sitedir)/numpy/core/include':g" \
+	sed -i "s:SAGE_ROOT+'/local/lib/python/site-packages/numpy/core/include':'${EPREFIX}$(python_get_sitedir)/numpy/core/include':g" \
 		module_list.py || die "failed to patch path for numpy include directory"
 
 	# fix cython path
 	sed -i \
-		-e "s:SAGE_LOCAL + '/lib/python/site-packages/Cython/Includes/':'$(python_get_sitedir)/Cython/Includes/':g" \
-		-e "s:SAGE_LOCAL + '/lib/python/site-packages/Cython/Includes/Deprecated/':'$(python_get_sitedir)/Cython/Includes/Deprecated/':g" \
+		-e "s:SAGE_LOCAL + '/lib/python/site-packages/Cython/Includes/':'${EPREFIX}$(python_get_sitedir)/Cython/Includes/':g" \
+		-e "s:SAGE_LOCAL + '/lib/python/site-packages/Cython/Includes/Deprecated/':'${EPREFIX}$(python_get_sitedir)/Cython/Includes/Deprecated/':g" \
 		setup.py || die "failed to patch path for cython include directory"
 
 	# fix lcalc path
