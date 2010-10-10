@@ -17,7 +17,7 @@ SRC_URI="${SRC_COM}/unix/${P}.tar.gz
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~ppc ~x86"
+KEYWORDS="~amd64 ~ppc ~x86 ~x86-linux"
 IUSE="doc data emacs fltk gmp mpir static X"
 
 RDEPEND="sys-libs/readline
@@ -71,7 +71,7 @@ src_prepare() {
 		config/get_dlld || die "Failed to fix LDFLAGS"
 	# move doc dir to a gentoo doc dir and replace hardcoded xdvi by xdg-open
 	sed -i \
-		-e "s:\$d = \$0:\$d = '/usr/share/doc/${PF}':" \
+		-e "s:\$d = \$0:\$d = '${EPREFIX}/usr/share/doc/${PF}':" \
 		-e 's:"acroread":"xdg-open":' \
 		doc/gphelp.in || die "Failed to fix doc dir"
 }
@@ -86,11 +86,11 @@ src_configure() {
 	fi
 	# sysdatadir installs a pari.cfg stuff which is informative only
 	./Configure \
-		--prefix=/usr \
-		--datadir=/usr/share/${PN} \
-		--libdir=/usr/$(get_libdir) \
-		--sysdatadir=/usr/share/doc/${PF} \
-		--mandir=/usr/share/man/man1 \
+		--prefix="${EPREFIX}"/usr \
+		--datadir="${EPREFIX}"/usr/share/${PN} \
+		--libdir="${EPREFIX}"/usr/$(get_libdir) \
+		--sysdatadir="${EPREFIX}"/usr/share/doc/${PF} \
+		--mandir="${EPREFIX}"/usr/share/man/man1 \
 		--with-readline \
 		$(use_with gmp) \
 		$(use_with mpir) \

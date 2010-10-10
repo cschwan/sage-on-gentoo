@@ -20,7 +20,7 @@ SRC_URI="http://sage.math.washington.edu/home/release/${SAGE_DIR}/${SAGE_DIR}/sp
 
 LICENSE="GPL-2"
 SLOT="3"
-KEYWORDS="~alpha ~amd64 ~hppa ~mips ~ppc ~ppc64 ~sparc ~x86 ~x86-fbsd"
+KEYWORDS="~alpha ~amd64 ~hppa ~mips ~ppc ~ppc64 ~sparc ~x86 ~x86-fbsd ~x86-linux"
 IUSE="doc data fltk gmp X"
 RESTRICT="mirror"
 
@@ -66,7 +66,7 @@ src_prepare() {
 		config/get_dlld || die "Failed to fix LDFLAGS"
 	# move doc dir to a gentoo doc dir and replace hardcoded acroread by xdg-open
 	sed -i \
-		-e "s:\$d = \$0:\$d = '/usr/share/doc/${PF}':" \
+		-e "s:\$d = \$0:\$d = '${EPREFIX}/usr/share/doc/${PF}':" \
 		-e 's:"acroread":"xdg-open":' \
 		doc/gphelp.in || die "Failed to fix doc dir"
 
