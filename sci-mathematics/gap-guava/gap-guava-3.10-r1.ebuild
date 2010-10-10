@@ -14,7 +14,7 @@ SRC_URI="http://sage.math.washington.edu/home/wdj/${MY_PN}/${MY_PN}${PV}.tar.bz2
 
 LICENSE="GPL-2 GPL-3"
 SLOT="0"
-KEYWORDS="~amd64 ~ppc ~x86"
+KEYWORDS="~amd64 ~ppc ~x86 ~x86-linux"
 IUSE="doc"
 
 DEPEND="sci-mathematics/gap"
@@ -33,8 +33,8 @@ src_prepare() {
 }
 
 src_configure() {
-	# not a true configuration script from autoconf
-	./configure /usr/share/gap || die "configuration failed"
+	# this is not configuration script from autoconf
+	./configure "${EPREFIX}"/usr/share/gap || die "configuration failed"
 }
 
 src_compile() {
@@ -42,7 +42,7 @@ src_compile() {
 }
 
 src_install() {
-	source /usr/share/gap/sysinfo.gap
+	source "${EPREFIX}"/usr/share/gap/sysinfo.gap
 	rm bin/${GAParch}/*.o || die "failed to remove object files"
 
 	exeinto /usr/share/gap/pkg/${MY_PN}/bin
