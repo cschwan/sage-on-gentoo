@@ -238,6 +238,10 @@ src_prepare() {
 	# Fixes to Sage itself
 	############################################################################
 
+	# Fix issue #1
+	sed -i "s:type.__cmp__:cmp:" sage/combinat/iet/strata.py \
+		|| die "failed to patch strata.py"
+
 	# gmp-5 compatibility - works with gmp-4.3 as well
 	sed -i "s:__GMP_BITS_PER_MP_LIMB:GMP_LIMB_BITS:g" sage/rings/integer.pyx \
 		|| die "failed to patch for gmp-5"
