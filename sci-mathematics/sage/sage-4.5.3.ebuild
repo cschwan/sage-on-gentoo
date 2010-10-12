@@ -49,7 +49,7 @@ CDEPEND=">=dev-lang/python-2.6.5-r99:2.6
 	~sci-mathematics/sage-baselayout-${PV}[testsuite=]
 	~sci-mathematics/sage-clib-${PV}
 	~sci-mathematics/singular-3.1.1.4[libsingular]
-	media-libs/gd
+	media-libs/gd[png]
 	media-libs/libpng
 	>=sys-libs/readline-6.0
 	sys-libs/zlib
