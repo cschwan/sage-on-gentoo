@@ -5,7 +5,7 @@
 EAPI="3"
 WANT_AUTOCONF="2.1" # Upstream ticket 240 -> wontfix
 
-inherit autotools eutils elisp-common flag-o-matic multilib versionator
+inherit autotools eutils elisp-common flag-o-matic multilib prefix versionator
 
 MY_PN=Singular
 MY_PV=$(replace_all_version_separators -)
@@ -22,7 +22,7 @@ RESTRICT="mirror"
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64 ~ppc ~x86 ~x86-linux"
-IUSE="boost doc emacs examples libsingular +readline"
+IUSE="boost doc debug emacs examples libsingular +readline"
 
 RDEPEND="dev-libs/gmp
 	>=dev-libs/ntl-5.5.1
@@ -39,8 +39,13 @@ S="${WORKDIR}"/${MY_PN}-${MY_DIR}
 SITEFILE=60${PN}-gentoo.el
 
 pkg_setup() {
-	append-flags "-fPIC"
-	append-ldflags "-fPIC"
+	# TODO: remove RESOURCE_DEBUG once prefix bug is found
+	if use debug ; then
+		append-cppflags -DRESOURCE_DEBUG
+	fi
+
+	append-flags -fPIC
+	append-ldflags -fPIC
 	tc-export CC CPP CXX
 }
 
@@ -53,6 +58,14 @@ src_prepare () {
 	epatch "${FILESDIR}"/${PN}-3.0.4.4-nostrip.patch
 	epatch "${FILESDIR}"/${PN}-3.1.1.3-soname.patch
 	epatch "${FILESDIR}"/${P}-parrallelmake.patch
+
+	eprefixify kernel/feResource.cc
+
+	# TODO: remove with -DRESOURCE_DEBUG
+	if use debug ; then
+		sed -i "s:PrintS:Print:g" kernel/feResource.cc \
+			|| die "failed to patch function name"
+	fi
 
 	sed -i \
 		-e "/CXXFLAGS/ s/--no-exceptions//g" \
@@ -78,7 +91,7 @@ src_configure() {
 		--with-apint=gmp \
 		--with-gmp="${EPREFIX}"/usr \
 		--disable-NTL \
-		--disable-debug \
+		$(use_enable debug) \
 		--disable-doc \
 		--without-MP \
 		--enable-factory \
@@ -116,7 +129,9 @@ src_install () {
 	dobin ${MY_PN}* gen_test change_cost solve_IP toric_ideal LLL \
 		|| die "failed to install binaries"
 	insinto /usr/$(get_libdir)/${PN}
+	insopts -m0755
 	doins *.so || die "failed to install libraries"
+	insopts -m0644
 
 	dosym ${MY_PN}-${MY_DIR} /usr/bin/${MY_PN} \
 		|| die "failed to create symbolic link"
