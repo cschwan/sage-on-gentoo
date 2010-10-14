@@ -54,7 +54,7 @@ CDEPEND=">=dev-lang/python-2.6.5-r99:2.6
 	~sci-mathematics/sage-baselayout-${PV}[testsuite=]
 	~sci-mathematics/sage-clib-${PV}
 	~sci-mathematics/singular-3.1.1.4[libsingular]
-	media-libs/gd[png]
+	media-libs/gd[jpeg,png]
 	media-libs/libpng
 	>=sys-libs/readline-6.0
 	sys-libs/zlib
@@ -348,7 +348,7 @@ src_install() {
 			-name "*.pxi" \) -type f -delete \
 			|| die "failed to remove non-testable sources"
 
-		insinto "${SAGE_ROOT}"/devel/sage-main
+		insinto /usr/share/sage/devel/sage-main
 		doins -r sage || die
 	fi
 }
