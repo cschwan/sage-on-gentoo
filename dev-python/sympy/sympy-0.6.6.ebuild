@@ -4,7 +4,7 @@
 
 EAPI="2"
 
-PYTHON_DEPEND="2:2.4"
+PYTHON_DEPEND="2:2.5"
 
 inherit eutils distutils
 
@@ -27,7 +27,6 @@ RDEPEND="mathml? ( dev-libs/libxml2[python]
 	ipython? ( dev-python/ipython )
 	opengl? ( dev-python/pyopengl )
 	imaging? ( dev-python/imaging )
-	|| ( dev-python/ctypes >=dev-lang/python-2.5 )
 	>=dev-python/pexpect-2.0"
 DEPEND="doc? ( dev-python/sphinx )
 	test? ( >=dev-python/py-0.9.0 )"
