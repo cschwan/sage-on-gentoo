@@ -52,7 +52,7 @@ src_prepare () {
 #	epatch "${FILESDIR}"/${PN}-3.1.0-glibc-2.10.patch
 	epatch "${FILESDIR}"/${PN}-3.0.4.4-nostrip.patch
 	epatch "${FILESDIR}"/${PN}-3.1.1.3-soname.patch
-	epatch "${FILESDIR}"/${P}-parrallelmake.patch
+	epatch "${FILESDIR}"/${P}-parallelmake.patch
 
 	eprefixify kernel/feResource.cc
 
