@@ -66,7 +66,7 @@ src_prepare() {
 	sed -i "s:load_notebook('notebook-test\.sagenb'):load_notebook(tmp_dir()+'.sagenb'):" \
 		sagenb/notebook/twist.py || die "failed to change notebook path"
 
-	# Ticket: TODO
+	# Ticket: #10131
 	epatch "${FILESDIR}"/${PN}-0.8.2-add-pidfile-option.patch
 
 	distutils_src_prepare
