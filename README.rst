@@ -1,3 +1,6 @@
+SUMMARY
+=======
+
 sage-on-gentoo provides split ebuilds (www.gentoo.org) for the computer algebra
 system SAGE (www.sagemath.org).
 
@@ -10,22 +13,25 @@ system SAGE (www.sagemath.org).
 
     http://www.gentoo.org/main/en/lists.xml
 
-  An archive of listing all mails may be found at:
+  An archive listing all mails may be found at:
 
     http://archives.gentoo.org/gentoo-science/
 
-################################################################################
+--------------------------------------------------------------------------------
 
-INSTALLATION GUIDE:
+QUICK INSTALLATION GUIDE
+========================
 
 1. INSTALL AND CONFIGURE LAYMAN:
    The preferred way of getting sage-on-gentoo is layman. Make sure layman is
-   installed and correctly configured. You may find a guide for layman here:
+   installed and correctly configured. You may find a guide for layman at:
 
      http://www.gentoo.org/proj/en/overlays/userguide.xml
 
 2. ADD OUR OVERLAY:
    Update your layman list and add this overlay with:
+
+::
 
      layman -L
      layman -a sage-on-gentoo
@@ -34,16 +40,22 @@ INSTALLATION GUIDE:
    Before the installation you will need to unmask the required ebuilds. You
    should use the following file which already contains all required entries:
 
+::
+
      sage-on-gentoo/packages.keywords/sage
 
    For permanent unmasking place a symbolic link to this file into your
    /etc/portage/package.keywords/ directory:
+
+::
 
      ln -s <path-to-layman>/sage-on-gentoo/package.keywords/sage \
            /etc/portage/package.keywords/sage
 
    Since the Sage ebuild requires its dependencies to be built with several USE-
    flags we provide a standard package.use file:
+
+::
 
      ln -s <path-to-layman>/sage-on-gentoo/package.use/sage \
            /etc/portage/package.use/sage
@@ -54,6 +66,8 @@ INSTALLATION GUIDE:
 4. INSTALL SAGE:
    Type
 
+::
+
      emerge -va sage
 
    to install sage; note that this will pull in a lot of dependencies.
@@ -61,9 +75,13 @@ INSTALLATION GUIDE:
 5. UPDATE YOUR LOCAL OVERLAY:
    To update your local copy of sage-on-gentoo simply type:
 
+::
+
      layman -S
 
    After that you may run
+
+::
 
      emerge -vuDNa world
 
