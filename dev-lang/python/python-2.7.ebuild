@@ -1,14 +1,14 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/python-2.6.5-r2.ebuild,v 1.17 2010/07/31 19:14:08 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/python-2.7.ebuild,v 1.4 2010/07/31 19:14:08 arfrever Exp $
 
 EAPI="2"
 
-inherit autotools eutils flag-o-matic multilib pax-utils python toolchain-funcs
+inherit eutils flag-o-matic multilib pax-utils python toolchain-funcs
 
 MY_P="Python-${PV}"
 
-PATCHSET_REVISION="4"
+PATCHSET_REVISION="0"
 
 DESCRIPTION="Python is an interpreted, interactive, object-oriented programming language."
 HOMEPAGE="http://www.python.org/"
@@ -16,10 +16,10 @@ SRC_URI="http://www.python.org/ftp/python/${PV}/${MY_P}.tar.bz2
 	mirror://gentoo/python-gentoo-patches-${PV}$([[ "${PATCHSET_REVISION}" != "0" ]] && echo "-r${PATCHSET_REVISION}").tar.bz2"
 
 LICENSE="PSF-2.2"
-SLOT="2.6"
+SLOT="2.7"
 PYTHON_ABI="${SLOT}"
-KEYWORDS="~alpha amd64 arm hppa ~ia64 ~m68k ~mips ppc ~ppc64 ~s390 ~sh ~sparc x86 ~sparc-fbsd ~x86-fbsd ~x86-linux"
-IUSE="-berkdb build doc elibc_uclibc examples gdbm ipv6 +ncurses +readline sqlite +ssl +threads tk +wide-unicode wininst +xml"
+KEYWORDS="~alpha ~amd64 ~arm ~hppa ~ia64 ~m68k ~mips ~ppc ~ppc64 ~s390 ~sh ~sparc ~x86 ~sparc-fbsd ~x86-fbsd"
+IUSE="sage -berkdb build doc elibc_uclibc examples gdbm ipv6 +ncurses +readline sqlite +ssl +threads tk +wide-unicode wininst +xml"
 
 # NOTE: dev-python/{elementtree,celementtree,pysqlite}
 #       do not conflict with the ones in python proper. - liquidx
@@ -30,6 +30,7 @@ RDEPEND=">=app-admin/eselect-python-20091230
 		virtual/libintl
 		!build? (
 			berkdb? ( || (
+				sys-libs/db:4.8
 				sys-libs/db:4.7
 				sys-libs/db:4.6
 				sys-libs/db:4.5
@@ -80,15 +81,19 @@ src_prepare() {
 
 	EPATCH_SUFFIX="patch" epatch "${WORKDIR}/${PV}"
 
-	# patch pickle for sage http://bugs.python.org/issue7689
-	epatch "${FILESDIR}/dynamic_class_copyreg_py.patch"
-	EPATCH_OPTS="${EPATCH_OPTS} -l" \
-		epatch "${FILESDIR}/dynamic_class_copyreg_c.patch"
+       if use sage; then
+		# patch pickle for sage http://bugs.python.org/issue7689
+		epatch "${FILESDIR}/dynamic_class_copyreg_py.patch"
+		EPATCH_OPTS="${EPATCH_OPTS} -l" \
+			epatch "${FILESDIR}/dynamic_class_copyreg_c.patch"
+	fi
 
 	sed -i -e "s:@@GENTOO_LIBDIR@@:$(get_libdir):g" \
 		Lib/distutils/command/install.py \
 		Lib/distutils/sysconfig.py \
 		Lib/site.py \
+		Lib/sysconfig.py \
+		Lib/test/test_site.py \
 		Makefile.pre.in \
 		Modules/Setup.dist \
 		Modules/getpath.c \
@@ -107,7 +112,8 @@ src_prepare() {
 	# that stdin is a tty for bug #248081.
 	sed -e "s:'osf1V5':'osf1V5' and sys.stdin.isatty():" -i Lib/test/test_file.py || die "sed failed"
 
-	eautoreconf
+	# Support versions of Autoconf other than 2.65.
+	sed -e "/version_required(2\.65)/d" -i configure.in || die "sed failed"
 }
 
 src_configure() {
@@ -171,10 +177,18 @@ src_configure() {
 	# Export CXX so it ends up in /usr/lib/python2.X/config/Makefile.
 	tc-export CXX
 
-	# Set LDFLAGS so we link modules with -lpython2.6 correctly.
-	# Needed on FreeBSD unless Python 2.6 is already installed.
+	# Set LDFLAGS so we link modules with -lpython2.7 correctly.
+	# Needed on FreeBSD unless Python 2.7 is already installed.
 	# Please query BSD team before removing this!
 	append-ldflags "-L."
+
+	local dbmliborder
+	if use gdbm; then
+		dbmliborder+="${dbmliborder:+:}gdbm"
+	fi
+	if use berkdb; then
+		dbmliborder+="${dbmliborder:+:}bdb"
+	fi
 
 	OPT="" econf \
 		--with-fpectl \
@@ -184,7 +198,9 @@ src_configure() {
 		$(use wide-unicode && echo "--enable-unicode=ucs4" || echo "--enable-unicode=ucs2") \
 		--infodir='${prefix}/share/info' \
 		--mandir='${prefix}/share/man' \
+		--with-dbmliborder="${dbmliborder}" \
 		--with-libc="" \
+		--with-system-expat \
 		--with-system-ffi
 }
 
@@ -200,7 +216,7 @@ src_test() {
 	python_enable_pyc
 
 	# Skip failing tests.
-	local skip_tests="distutils httpservers minidom pyexpat sax tcl"
+	local skip_tests="distutils gdb minidom pyexpat sax"
 
 	# test_ctypes fails with PAX kernel (bug #234498).
 	host-is-pax && skip_tests+=" ctypes"
@@ -245,7 +261,6 @@ src_install() {
 	mv "${ED}usr/bin/2to3" "${ED}usr/bin/2to3-${SLOT}"
 	mv "${ED}usr/bin/pydoc" "${ED}usr/bin/pydoc${SLOT}"
 	mv "${ED}usr/bin/idle" "${ED}usr/bin/idle${SLOT}"
-	mv "${ED}usr/share/man/man1/python.1" "${ED}usr/share/man/man1/python${SLOT}.1"
 	rm -f "${ED}usr/bin/smtpd.py"
 
 	if use build; then
@@ -271,12 +286,13 @@ src_install() {
 	newinitd "${FILESDIR}/pydoc.init" pydoc-${SLOT} || die "newinitd failed"
 	newconfd "${FILESDIR}/pydoc.conf" pydoc-${SLOT} || die "newconfd failed"
 
-	# Do not install empty directory.
+	# Do not install empty directories.
 	rmdir "${ED}$(python_get_libdir)/lib-old"
+	rmdir "${ED}$(python_get_libdir)/test/data"
 }
 
 pkg_preinst() {
-	if has_version "<${CATEGORY}/${PN}-${SLOT}" && ! has_version "${CATEGORY}/${PN}:2.6" && ! has_version "${CATEGORY}/${PN}:2.7"; then
+	if has_version "<${CATEGORY}/${PN}-${SLOT}" && ! has_version "${CATEGORY}/${PN}:2.7"; then
 		python_updater_warning="1"
 	fi
 }

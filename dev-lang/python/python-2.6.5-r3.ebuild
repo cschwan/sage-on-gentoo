@@ -18,8 +18,8 @@ SRC_URI="http://www.python.org/ftp/python/${PV}/${MY_P}.tar.bz2
 LICENSE="PSF-2.2"
 SLOT="2.6"
 PYTHON_ABI="${SLOT}"
-KEYWORDS="alpha amd64 arm hppa ia64 m68k ~mips ppc ppc64 s390 sh sparc x86 ~sparc-fbsd ~x86-fbsd ~x86-linux"
-IUSE="-berkdb build doc elibc_uclibc examples gdbm ipv6 +ncurses +readline sqlite +ssl +threads tk +wide-unicode wininst +xml"
+KEYWORDS="alpha amd64 arm hppa ia64 m68k ~mips ppc ppc64 s390 sh sparc x86 ~sparc-fbsd ~x86-fbsd"
+IUSE="sage -berkdb build doc elibc_uclibc examples gdbm ipv6 +ncurses +readline sqlite +ssl +threads tk +wide-unicode wininst +xml"
 
 RDEPEND=">=app-admin/eselect-python-20091230
 		>=sys-libs/zlib-1.1.3
@@ -80,10 +80,12 @@ src_prepare() {
 	# Avoid regeneration, which would not change contents of files.
 	touch Include/Python-ast.h Python/Python-ast.c
 
-	# patch pickle for sage http://bugs.python.org/issue7689
-	epatch "${FILESDIR}/dynamic_class_copyreg_py.patch"
-	EPATCH_OPTS="${EPATCH_OPTS} -l" \
-		epatch "${FILESDIR}/dynamic_class_copyreg_c.patch"
+       if use sage; then
+		# patch pickle for sage http://bugs.python.org/issue7689
+		epatch "${FILESDIR}/dynamic_class_copyreg_py.patch"
+		EPATCH_OPTS="${EPATCH_OPTS} -l" \
+			epatch "${FILESDIR}/dynamic_class_copyreg_c.patch"
+	fi
 
 	sed -i -e "s:@@GENTOO_LIBDIR@@:$(get_libdir):g" \
 		Lib/distutils/command/install.py \

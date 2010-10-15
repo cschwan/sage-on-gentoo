@@ -1,4 +1,4 @@
-dev-lang/python:2.6         sqlite
+dev-lang/python:2.6         sqlite sage
 dev-lang/R                  lapack
 dev-lisp/ecls               -unicode
 dev-python/numpy            lapack

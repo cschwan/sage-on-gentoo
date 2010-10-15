@@ -1,14 +1,14 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/python-2.7.ebuild,v 1.4 2010/07/31 19:14:08 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/python-2.5.4-r4.ebuild,v 1.23 2010/07/10 13:06:28 arfrever Exp $
 
-EAPI="2"
+EAPI="1"
 
-inherit eutils flag-o-matic multilib pax-utils python toolchain-funcs
+inherit autotools eutils flag-o-matic multilib pax-utils python toolchain-funcs
 
 MY_P="Python-${PV}"
 
-PATCHSET_REVISION="0"
+PATCHSET_REVISION="3"
 
 DESCRIPTION="Python is an interpreted, interactive, object-oriented programming language."
 HOMEPAGE="http://www.python.org/"
@@ -16,9 +16,9 @@ SRC_URI="http://www.python.org/ftp/python/${PV}/${MY_P}.tar.bz2
 	mirror://gentoo/python-gentoo-patches-${PV}$([[ "${PATCHSET_REVISION}" != "0" ]] && echo "-r${PATCHSET_REVISION}").tar.bz2"
 
 LICENSE="PSF-2.2"
-SLOT="2.7"
+SLOT="2.5"
 PYTHON_ABI="${SLOT}"
-KEYWORDS="~alpha ~amd64 ~arm ~hppa ~ia64 ~m68k ~mips ~ppc ~ppc64 ~s390 ~sh ~sparc ~x86 ~sparc-fbsd ~x86-fbsd ~x86-linux"
+KEYWORDS="alpha amd64 arm hppa ia64 m68k ~mips ppc ppc64 s390 sh sparc x86 ~sparc-fbsd ~x86-fbsd"
 IUSE="-berkdb build doc elibc_uclibc examples gdbm ipv6 +ncurses +readline sqlite +ssl +threads tk +wide-unicode wininst +xml"
 
 # NOTE: dev-python/{elementtree,celementtree,pysqlite}
@@ -30,9 +30,6 @@ RDEPEND=">=app-admin/eselect-python-20091230
 		virtual/libintl
 		!build? (
 			berkdb? ( || (
-				sys-libs/db:4.8
-				sys-libs/db:4.7
-				sys-libs/db:4.6
 				sys-libs/db:4.5
 				sys-libs/db:4.4
 				sys-libs/db:4.3
@@ -50,8 +47,7 @@ RDEPEND=">=app-admin/eselect-python-20091230
 		)
 		doc? ( dev-python/python-docs:${SLOT} )"
 DEPEND="${RDEPEND}
-		dev-util/pkgconfig
-		!sys-devel/gcc[libffi]"
+		dev-util/pkgconfig"
 RDEPEND+=" !build? ( app-misc/mime-types )"
 PDEPEND="app-admin/python-updater"
 
@@ -67,31 +63,33 @@ pkg_setup() {
 		ewarn "been additionally removed in Python 3. You should use external, still maintained \"bsddb3\""
 		ewarn "module provided by dev-python/bsddb3 which supports both Python 2 and Python 3."
 	fi
+
+	if built_with_use sys-devel/gcc libffi; then
+		die "Reinstall sys-devel/gcc with \"libffi\" USE flag disabled"
+	fi
 }
 
-src_prepare() {
+src_unpack() {
+	unpack ${A}
+	cd "${S}"
+
 	# Ensure that internal copies of expat, libffi and zlib are not used.
 	rm -fr Modules/expat
 	rm -fr Modules/_ctypes/libffi*
 	rm -fr Modules/zlib
 
-	if ! tc-is-cross-compiler; then
+	if tc-is-cross-compiler; then
+		epatch "${FILESDIR}/python-2.5-cross-printf.patch"
+	else
 		rm "${WORKDIR}/${PV}"/*_all_crosscompile.patch
 	fi
 
 	EPATCH_SUFFIX="patch" epatch "${WORKDIR}/${PV}"
 
-	# patch pickle for sage http://bugs.python.org/issue7689
-	epatch "${FILESDIR}/dynamic_class_copyreg_py.patch"
-	EPATCH_OPTS="${EPATCH_OPTS} -l" \
-		epatch "${FILESDIR}/dynamic_class_copyreg_c.patch"
-
 	sed -i -e "s:@@GENTOO_LIBDIR@@:$(get_libdir):g" \
 		Lib/distutils/command/install.py \
 		Lib/distutils/sysconfig.py \
 		Lib/site.py \
-		Lib/sysconfig.py \
-		Lib/test/test_site.py \
 		Makefile.pre.in \
 		Modules/Setup.dist \
 		Modules/getpath.c \
@@ -106,18 +104,13 @@ src_prepare() {
 		rm Lib/distutils/command/wininst-*.exe
 	fi
 
-	# Fix OtherFileTests.testStdin() not to assume
-	# that stdin is a tty for bug #248081.
-	sed -e "s:'osf1V5':'osf1V5' and sys.stdin.isatty():" -i Lib/test/test_file.py || die "sed failed"
-
-	# Support versions of Autoconf other than 2.65.
-	sed -e "/version_required(2\.65)/d" -i configure.in || die "sed failed"
+	eautoreconf
 }
 
 src_configure() {
 	# Disable extraneous modules with extra dependencies.
 	if use build; then
-		export PYTHON_DISABLE_MODULES="dbm _bsddb gdbm _curses _curses_panel readline _sqlite3 _tkinter _elementtree pyexpat"
+		export PYTHON_DISABLE_MODULES="dbm _bsddb gdbm _curses _curses_panel readline _sqlite3 _tkinter pyexpat"
 		export PYTHON_DISABLE_SSL="1"
 	else
 		# dbm module can be linked against berkdb or gdbm.
@@ -131,7 +124,7 @@ src_configure() {
 		use sqlite   || disable+=" _sqlite3"
 		use ssl      || export PYTHON_DISABLE_SSL="1"
 		use tk       || disable+=" _tkinter"
-		use xml      || disable+=" _elementtree pyexpat" # _elementtree uses pyexpat.
+		use xml      || disable+=" pyexpat"
 		export PYTHON_DISABLE_MODULES="${disable}"
 
 		if ! use xml; then
@@ -148,6 +141,8 @@ src_configure() {
 	if [[ "$(gcc-major-version)" -ge 4 ]]; then
 		append-flags -fwrapv
 	fi
+
+	export OPT="${CFLAGS}"
 
 	filter-flags -malign-double
 
@@ -175,20 +170,12 @@ src_configure() {
 	# Export CXX so it ends up in /usr/lib/python2.X/config/Makefile.
 	tc-export CXX
 
-	# Set LDFLAGS so we link modules with -lpython2.7 correctly.
-	# Needed on FreeBSD unless Python 2.7 is already installed.
+	# Set LDFLAGS so we link modules with -lpython2.5 correctly.
+	# Needed on FreeBSD unless Python 2.5 is already installed.
 	# Please query BSD team before removing this!
 	append-ldflags "-L."
 
-	local dbmliborder
-	if use gdbm; then
-		dbmliborder+="${dbmliborder:+:}gdbm"
-	fi
-	if use berkdb; then
-		dbmliborder+="${dbmliborder:+:}bdb"
-	fi
-
-	OPT="" econf \
+	econf \
 		--with-fpectl \
 		--enable-shared \
 		$(use_enable ipv6) \
@@ -196,10 +183,13 @@ src_configure() {
 		$(use wide-unicode && echo "--enable-unicode=ucs4" || echo "--enable-unicode=ucs2") \
 		--infodir='${prefix}/share/info' \
 		--mandir='${prefix}/share/man' \
-		--with-dbmliborder="${dbmliborder}" \
 		--with-libc="" \
-		--with-system-expat \
 		--with-system-ffi
+}
+
+src_compile() {
+	src_configure
+	emake || die "emake failed"
 }
 
 src_test() {
@@ -214,7 +204,7 @@ src_test() {
 	python_enable_pyc
 
 	# Skip failing tests.
-	local skip_tests="distutils gdb minidom pyexpat sax"
+	local skip_tests="distutils global mimetools minidom mmap posix pyexpat sax strptime subprocess syntax tcl time urllib urllib2 xml_etree"
 
 	# test_ctypes fails with PAX kernel (bug #234498).
 	host-is-pax && skip_tests+=" ctypes"
@@ -223,8 +213,9 @@ src_test() {
 		mv "${S}/Lib/test/test_${test}.py" "${T}"
 	done
 
+	# Redirect stdin from /dev/tty as a workaround for bug #248081.
 	# Rerun failed tests in verbose mode (regrtest -w).
-	EXTRATESTOPTS="-w" emake test
+	EXTRATESTOPTS="-w" emake test < /dev/tty
 	local result="$?"
 
 	for test in ${skip_tests}; do
@@ -256,10 +247,14 @@ src_install() {
 	mv "${ED}usr/bin/python${SLOT}-config" "${ED}usr/bin/python-config-${SLOT}"
 
 	# Fix collisions between different slots of Python.
-	mv "${ED}usr/bin/2to3" "${ED}usr/bin/2to3-${SLOT}"
 	mv "${ED}usr/bin/pydoc" "${ED}usr/bin/pydoc${SLOT}"
 	mv "${ED}usr/bin/idle" "${ED}usr/bin/idle${SLOT}"
+	mv "${ED}usr/share/man/man1/python.1" "${ED}usr/share/man/man1/python${SLOT}.1"
 	rm -f "${ED}usr/bin/smtpd.py"
+
+	# Fix the OPT variable so that it doesn't have any flags listed in it.
+	# Prevents the problem with compiling things with conflicting flags later.
+	sed -e "s:^OPT=.*:OPT=\t\t-DNDEBUG:" -i "${ED}$(python_get_libdir)/config/Makefile"
 
 	if use build; then
 		rm -fr "${ED}usr/bin/idle${SLOT}" "${ED}$(python_get_libdir)/"{bsddb,idlelib,lib-tk,sqlite3,test}
@@ -269,8 +264,6 @@ src_install() {
 		use sqlite || rm -fr "${ED}$(python_get_libdir)/"{sqlite3,test/test_sqlite*}
 		use tk || rm -fr "${ED}usr/bin/idle${SLOT}" "${ED}$(python_get_libdir)/"{idlelib,lib-tk}
 	fi
-
-	use threads || rm -fr "${ED}$(python_get_libdir)/multiprocessing"
 
 	prep_ml_includes $(python_get_includedir)
 
@@ -283,14 +276,10 @@ src_install() {
 
 	newinitd "${FILESDIR}/pydoc.init" pydoc-${SLOT} || die "newinitd failed"
 	newconfd "${FILESDIR}/pydoc.conf" pydoc-${SLOT} || die "newconfd failed"
-
-	# Do not install empty directories.
-	rmdir "${ED}$(python_get_libdir)/lib-old"
-	rmdir "${ED}$(python_get_libdir)/test/data"
 }
 
 pkg_preinst() {
-	if has_version "<${CATEGORY}/${PN}-${SLOT}" && ! has_version "${CATEGORY}/${PN}:2.7"; then
+	if has_version "<${CATEGORY}/${PN}-${SLOT}" && ! has_version "${CATEGORY}/${PN}:2.5" && ! has_version "${CATEGORY}/${PN}:2.6" && ! has_version "${CATEGORY}/${PN}:2.7"; then
 		python_updater_warning="1"
 	fi
 }

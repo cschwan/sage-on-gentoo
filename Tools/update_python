@@ -4,39 +4,39 @@ set -e
 
 offset=100
 cd "$(dirname "$0")/.." # change to root of sage tree
-pre=( dev-lang/python/*.ebuild )
-rm -rf dev-lang/python/*.ebuild
-for src in /usr/portage/dev-lang/python/python-2.[6-9]*.ebuild; do
-	dst="${src#/usr/portage/}"
-	dst="${dst%.ebuild}"
-	rev="${dst##*-r}"
-	if [[ ${rev} == ${dst} ]]; then
-		dst="${dst}-r${offset}.ebuild"
-	else
-		dst="${dst%-r*}-r$((rev + offset)).ebuild"
-	fi
-	cp -v "${src}" "${dst}"
+IFS=$'\n'
+pre=( $(find dev-lang/python -type f | \
+    grep -v dev-lang/python/files/dynamic_class_copyreg_.*\\.patch) )
+rm "${pre[@]}"
+cp -r /usr/portage/dev-lang/python dev-lang/
+rm dev-lang/python/python-[3-9]*.ebuild
+for dst in dev-lang/python/python-2.[6-9]*.ebuild; do
 	patch --quiet --no-backup-if-mismatch -l "${dst}" <<'EOF'
---- python-2.6.5-r2.ebuild
-+++ python-2.6.5-r99.ebuild
-@@ -81,3 +80,8 @@
+--- python.ebuild
++++ python.ebuild
+@@ -81,3 +80,10 @@
  	EPATCH_SUFFIX="patch" epatch "${WORKDIR}/${PV}"
  
-+	# patch pickle for sage http://bugs.python.org/issue7689
-+	epatch "${FILESDIR}/dynamic_class_copyreg_py.patch"
-+	EPATCH_OPTS="${EPATCH_OPTS} -l" \
-+		epatch "${FILESDIR}/dynamic_class_copyreg_c.patch"
++       if use sage; then
++		# patch pickle for sage http://bugs.python.org/issue7689
++		epatch "${FILESDIR}/dynamic_class_copyreg_py.patch"
++		EPATCH_OPTS="${EPATCH_OPTS} -l" \
++			epatch "${FILESDIR}/dynamic_class_copyreg_c.patch"
++	fi
 +
  	sed -i -e "s:@@GENTOO_LIBDIR@@:$(get_libdir):g" \
 
 EOF
-	git add "${dst}"
+        sed -i 's/^IUSE="/IUSE="sage /' "${dst}"
+        if [[ $(grep '^IUSE="sage ' ${dst} | wc -l) -ne 1 ]]; then
+            echo "Sed didn't apply cleanly to ${dst}" >&2
+            exit 1
+        fi
 done
 
-# Copy official manifest so we can assume digests
-cp /usr/portage/dev-lang/python/Manifest dev-lang/python/
+sed -i 's:</use>:\t<flag name="sage">Apply fix for issue7689'\
+' reuired by sage.</flag>\n</use>:' dev-lang/python/metadata.xml
+
 ebuild "${dst}" digest
-git add dev-lang/python/Manifest
-for old in "${pre[@]}"; do
-	test -e "${old}" || git rm "${old}"
-done
+git add -A dev-lang/python
+git status
