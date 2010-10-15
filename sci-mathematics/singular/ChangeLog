@@ -3,8 +3,13 @@
 # $Header: $
 
   15 Oct 2010; Martin von Gagern (MvG) <Martin.vGagern@gmx.net>
+  singular-3.1.1.4-r1.ebuild, +files/singular-3.1.1.4-parallelmake.patch,
+  -files/singular-3.1.1.4-parrallelmake.patch:
+  Fix typos.
+
+  15 Oct 2010; Martin von Gagern (MvG) <Martin.vGagern@gmx.net>
   files/singular-3.1.1.4-parrallelmake.patch:
-  Anoter parallel build fix.
+  Another parallel build fix.
 
   15 Oct 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
   singular-3.1.1.4-r1.ebuild:
