@@ -39,11 +39,6 @@ S="${WORKDIR}"/${MY_PN}-${MY_DIR}
 SITEFILE=60${PN}-gentoo.el
 
 pkg_setup() {
-	# TODO: remove RESOURCE_DEBUG once prefix bug is found
-	if use debug ; then
-		append-cppflags -DRESOURCE_DEBUG
-	fi
-
 	append-flags -fPIC
 	append-ldflags -fPIC
 	tc-export CC CPP CXX
@@ -60,12 +55,6 @@ src_prepare () {
 	epatch "${FILESDIR}"/${P}-parrallelmake.patch
 
 	eprefixify kernel/feResource.cc
-
-	# TODO: remove with -DRESOURCE_DEBUG
-	if use debug ; then
-		sed -i "s:PrintS:Print:g" kernel/feResource.cc \
-			|| die "failed to patch function name"
-	fi
 
 	sed -i \
 		-e "/CXXFLAGS/ s/--no-exceptions//g" \
