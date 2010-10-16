@@ -5,7 +5,7 @@
 EAPI="3"
 
 PYTHON_DEPEND="2:2.6"
-PYTHON_USE_WITH="sqlite"
+PYTHON_USE_WITH="sage sqlite"
 
 inherit distutils eutils flag-o-matic python
 
@@ -20,8 +20,7 @@ SLOT="0"
 KEYWORDS="~amd64 ~ppc ~x86 ~x86-linux"
 IUSE="examples latex testsuite X"
 
-CDEPEND=">=dev-lang/python-2.6.5:2.6[sage]
-	dev-libs/gmp
+CDEPEND="dev-libs/gmp
 	>=dev-libs/mpfr-2.4.2
 	>=dev-libs/ntl-5.5.2
 	>=dev-lisp/ecls-10.2.1[-unicode]
