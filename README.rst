@@ -1,33 +1,32 @@
 PROJECT SUMMARY
 ===============
 
-Sage-on-Gentoo provides split ebuilds (www.gentoo.org) for the computer algebra
-system SAGE (www.sagemath.org).
+Sage-on-Gentoo provides split ebuilds (http://www.gentoo.org) for the computer
+algebra system SAGE (http://www.sagemath.org).
 
-* If you have problems with sage-on-gentoo or have suggestions talk to us on
-  #gentoo-science on freenode:
+If you have problems with sage-on-gentoo or have suggestions talk to us on
+#gentoo-science on freenode:
 
-    http://www.gentoo.org/main/en/irc.xml
+  http://www.gentoo.org/main/en/irc.xml
 
-  or write a mail to the "gentoo-science" mailing list:
+or write a mail to the "gentoo-science" mailing list:
 
-    http://www.gentoo.org/main/en/lists.xml
+  http://www.gentoo.org/main/en/lists.xml
 
-  An archive listing all mails may be found at:
+An archive listing all mails may be found at:
 
-    http://archives.gentoo.org/gentoo-science/
-
+  http://archives.gentoo.org/gentoo-science/
 
 QUICK INSTALLATION GUIDE
 ========================
 
-1. **INSTALL AND CONFIGURE LAYMAN**:
+1. *INSTALL AND CONFIGURE LAYMAN*:
    The preferred way of getting sage-on-gentoo is layman. Make sure layman is
    installed and correctly configured. You may find a guide for layman at:
 
      http://www.gentoo.org/proj/en/overlays/userguide.xml
 
-2. **ADD OUR OVERLAY**:
+2. *ADD OUR OVERLAY*:
    Update your layman list and add this overlay with:
 
    ::
@@ -35,7 +34,7 @@ QUICK INSTALLATION GUIDE
      layman -L
      layman -a sage-on-gentoo
 
-3. **UNMASK AND USE-FLAG EBUILDS**:
+3. *UNMASK AND USE-FLAG EBUILDS*:
    Before the installation you will need to unmask the required ebuilds. You
    should use the following file which already contains all required entries:
 
@@ -62,7 +61,7 @@ QUICK INSTALLATION GUIDE
    <path-to-layman> is usually /usr/local/portage/layman, for layman 1.3.0 and
    higher it is /var/lib/layman.
 
-4. **INSTALL SAGE**:
+4. *INSTALL SAGE*:
    Type
 
    ::
@@ -71,7 +70,7 @@ QUICK INSTALLATION GUIDE
 
    to install sage; note that this will pull in a lot of dependencies.
 
-5. **UPDATE YOUR LOCAL OVERLAY**:
+5. *UPDATE YOUR LOCAL OVERLAY*:
    To update your local copy of sage-on-gentoo simply type:
 
    ::
