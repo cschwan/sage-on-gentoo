@@ -34,6 +34,11 @@ DEPEND="doc? ( dev-python/sphinx )
 src_prepare() {
 	distutils_src_prepare
 
+	# remove import sympy
+	sed -i "/import sympy/d" setup.py
+	# FIXME find a way to use ${PN}
+	sed -i 's:sympy.__version__:'\'0.6.6\'':' setup.py
+
 	# use local sphinx
 	epatch "${FILESDIR}"/${P}-sphinx.patch
 }

@@ -2,6 +2,10 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/dev-python/sympy/ChangeLog,v 1.10 2010/04/16 01:47:31 arfrever Exp $
 
+  18 Oct 2010; François Bissey <f.r.bissey@massey.ac.nz>
+  sympy-0.6.6.ebuild:
+  Fix sympy reinstall with sage.
+
   14 Oct 2010; François Bissey <f.r.bissey@massey.ac.nz>
   sympy-0.6.6.ebuild:
   Adjuste dependency to make portage-2.2 happy (ctypes removal)
