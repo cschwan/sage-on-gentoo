@@ -19,7 +19,7 @@ SRC_URI="http://pari.math.u-bordeaux.fr/pub/pari/testing/${MY_P}.tar.gz
 LICENSE="GPL-2"
 SLOT="3"
 KEYWORDS="~alpha ~amd64 ~hppa ~mips ~ppc ~ppc64 ~sparc ~x86 ~x86-fbsd ~x86-linux"
-IUSE="doc data fltk gmp X"
+IUSE="doc data fltk gmp X sage"
 RESTRICT="mirror"
 
 RDEPEND="sys-libs/readline
@@ -151,6 +151,11 @@ src_install() {
 		emake \
 			EXDIR="${D}/usr/share/doc/${PF}/examples" \
 			install-examples || die "Failed to install docs"
+	fi
+
+	if use sage; then
+		insinto /etc
+		doins "${FILESDIR}"/gprc.expect
 	fi
 }
 
