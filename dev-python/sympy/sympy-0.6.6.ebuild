@@ -31,20 +31,22 @@ RDEPEND="mathml? ( dev-libs/libxml2[python]
 DEPEND="doc? ( dev-python/sphinx )
 	test? ( >=dev-python/py-0.9.0 )"
 
+pkg_setup() {
+	export MPMATH_NOSAGE=1
+}
+
 src_prepare() {
 	distutils_src_prepare
 
-	# remove import sympy
-	sed -i "/import sympy/d" setup.py
-	# FIXME find a way to use ${PN}
-	sed -i 's:sympy.__version__:'\'0.6.6\'':' setup.py
+	# remove sage's test as it will lead to the usual breakage
+	rm sympy/test_external/test_sage.py
 
 	# use local sphinx
 	epatch "${FILESDIR}"/${P}-sphinx.patch
 }
 
 src_compile() {
-	distutils_src_compile
+	PYTHONPATH="." distutils_src_compile
 
 	if use doc; then
 		cd doc
@@ -59,7 +61,7 @@ src_test() {
 }
 
 src_install() {
-	distutils_src_install
+	PYTHONPATH="." distutils_src_install
 
 	rm "${ED}"/usr/bin/test "${ED}"/usr/bin/doctest \
 		|| die "rm  test doctest failed"
