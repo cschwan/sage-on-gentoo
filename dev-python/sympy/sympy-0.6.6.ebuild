@@ -32,13 +32,14 @@ DEPEND="doc? ( dev-python/sphinx )
 	test? ( >=dev-python/py-0.9.0 )"
 
 pkg_setup() {
-	export MPMATH_NOSAGE=1
+	export DOT_SAGE="${S}"
 }
 
 src_prepare() {
 	distutils_src_prepare
 
-	# remove sage's test as it will lead to the usual breakage
+	# remove sage's test as it is broken:
+	# http://code.google.com/p/sympy/issues/detail?id=1866&q=test_sage
 	rm sympy/test_external/test_sage.py
 
 	# use local sphinx
