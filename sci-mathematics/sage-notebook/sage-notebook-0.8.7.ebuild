@@ -24,14 +24,10 @@ IUSE="java"
 
 RESTRICT="mirror"
 
-# TODO: find out dependencies
 DEPEND="~dev-python/pexpect-2.0
 	>=dev-python/twisted-9.0
-	>=dev-python/twisted-conch-9.0
-	>=dev-python/twisted-lore-9.0
 	>=dev-python/twisted-mail-9.0
 	>=dev-python/twisted-web2-8.1.0
-	>=dev-python/twisted-words-9.0
 	>=dev-python/jinja-2.1.1
 	>=dev-python/docutils-0.5"
 RDEPEND="${DEPEND}
