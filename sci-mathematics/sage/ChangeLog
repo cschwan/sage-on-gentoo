@@ -3,6 +3,10 @@
 # $Header: $
 
   22 Oct 2010; François Bissey <f.r.bissey@massey.ac.nz>
+  sage-4.6_rc0.ebuild:
+  Correct a mistake on gprc
+
+  22 Oct 2010; François Bissey <f.r.bissey@massey.ac.nz>
   +sage-4.6_rc0.ebuild:
   small cleanup
 
