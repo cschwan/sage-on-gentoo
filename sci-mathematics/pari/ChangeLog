@@ -2,6 +2,10 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  22 Oct 2010; François Bissey <f.r.bissey@massey.ac.nz>
+  -pari-2.4.3_pre12577_p7.ebuild:
+  Moving to official 2.4.3.alpha, so dropping old snapshot.
+
   19 Oct 2010; François Bissey <f.r.bissey@massey.ac.nz> pari-2.4.3.ebuild,
   +files/gprc.expect:
   Add a sage useflag to install gprc.expect. This is to be used in
