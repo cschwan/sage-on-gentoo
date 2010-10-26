@@ -58,12 +58,11 @@ src_configure() {
 	# TODO: documentation does not work
 
 	# TODO: what does --enable-optimization do ?
-	# TODO: why do I have to explicitly state givaro's directory ?
 	myeconfargs=(
 		--enable-optimization
 		--with-blas="$("$(tc-getPKG_CONFIG)" --libs cblas)"
-		--with-givaro="${EPREFIX}"/usr
-		$(use_with ntl)
+		--with-default="${EPREFIX}"/usr
+		--with-ntl="${EPREFIX}"/usr
 		$(use_enable sage)
 	)
 
