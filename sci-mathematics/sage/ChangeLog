@@ -3,6 +3,16 @@
 # $Header: $
 
   27 Oct 2010; François Bissey <f.r.bissey@massey.ac.nz>
+  +sage-4.6.1_alpha0.ebuild:
+  Hardmask 4.6.1_alpha0
+
+*sage-4.6.1_alpha0 (27 Oct 2010)
+
+  27 Oct 2010; François Bissey <f.r.bissey@massey.ac.nz>
+  +sage-4.6.1_alpha0.ebuild:
+  Introducing 4.6.1_alpha0 - separately masked - not officially released.
+
+  27 Oct 2010; François Bissey <f.r.bissey@massey.ac.nz>
   sage-4.6_alpha3.ebuild, sage-4.6_rc0.ebuild:
   Adjust cddlib dependency in sage-4.6
 
