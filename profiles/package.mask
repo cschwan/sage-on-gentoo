@@ -10,6 +10,6 @@
 >=dev-python/numpy-1.5.0
 >=sci-mathematics/sage-notebook-0.8.6
 >=sci-libs/pynac-0.2.1
->=sci-libs/cddlib-0.94f-r2
+>=sci-libs/cddlib-094f-r2
 # Ongoing work there, do not touch before it has been properly tested.
 =sci-chemistry/jmol-11.8.25
