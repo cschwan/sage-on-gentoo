@@ -79,7 +79,7 @@ RDEPEND="${CDEPEND}
 	~dev-python/sympy-0.6.6
 	>=media-gfx/tachyon-0.98
 	>=net-zope/zodb-3.7.0
-	>=sci-libs/cddlib-094f
+	>=sci-libs/cddlib-094f-r2
 	=sci-libs/scipy-0.8*
 	>=sci-mathematics/flintqs-20070817_p4
 	>=sci-mathematics/gap-4.4.12
