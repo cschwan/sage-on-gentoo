@@ -96,6 +96,11 @@ src_prepare() {
 		|| die "failed to patch fortran compiler path"
 
 	# TODO: if USE=debug/testsuite, remove corresponding options
+
+	# replace $SAGE_ROOT/local with $SAGE_LOCAL
+	sed -i "s:\$SAGE_ROOT/local:\$SAGE_LOCAL:g" sage-gdb sage-gdb-ipython \
+		sage-cachegrind sage-callgrind sage-massif sage-omega sage-valgrind \
+		|| die "failed to patch GNU Debugger scripts"
 }
 
 src_install() {
