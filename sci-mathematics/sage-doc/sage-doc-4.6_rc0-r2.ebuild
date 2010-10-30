@@ -46,6 +46,7 @@ src_prepare() {
 	# patch to upgrade to numpy-1.5.0/scipy-0.8.0
 	epatch "${FILESDIR}"/${PN}-scipy-0.8.patch
 	# upgrade to maxima-5.22.1 ticket #10187
+	cd ..
 	epatch "${FILESDIR}"/trac_10187_maxima-upgrade.patch
 	epatch "${FILESDIR}"/trac_10187_maxima-doctest.patch
 }
