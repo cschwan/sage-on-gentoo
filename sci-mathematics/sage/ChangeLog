@@ -4,6 +4,10 @@
 
   31 Oct 2010; François Bissey <f.r.bissey@massey.ac.nz>
   sage-4.6_rc0-r1.ebuild:
+  Fix typo in patch name
+
+  31 Oct 2010; François Bissey <f.r.bissey@massey.ac.nz>
+  sage-4.6_rc0-r1.ebuild:
   Apply maxima patches in the right order
 
   30 Oct 2010; François Bissey <f.r.bissey@massey.ac.nz>
