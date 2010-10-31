@@ -175,8 +175,8 @@ src_prepare() {
 	epatch "${FILESDIR}"/${PN}-4.6-numpy-1.5.patch
 
 	# upgrade to maxima-5.22.1 ticket #10187
-	epatch "${FILESDIR}"/trac_10187_maxima-upgrade.patch
 	epatch "${FILESDIR}"/trac_10187_maxima-doctest.patch
+	epatch "${FILESDIR}"/trac_10187_maxima-upgrade.patch
 
 	# use already installed csage
 	rm -rf c_lib || die "failed to remove c library directory"
