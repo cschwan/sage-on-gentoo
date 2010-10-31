@@ -1,4 +1,4 @@
-diff -r 48c661a3d3a4 -r 85e0f73986c4 sage/interfaces/maxima.py
+diff -r 048498647787 -r b2c29b301c07 sage/interfaces/maxima.py
 --- a/sage/interfaces/maxima.py	Fri Oct 29 18:09:29 2010 +0100
 +++ b/sage/interfaces/maxima.py	Fri Oct 29 21:51:07 2010 +0100
 @@ -544,10 +544,11 @@
@@ -96,9 +96,12 @@ diff -r 48c661a3d3a4 -r 85e0f73986c4 sage/interfaces/maxima.py
      def _synchronize(self):
          """
          Synchronize pexpect interface.
-@@ -884,7 +910,7 @@
+@@ -882,9 +908,9 @@
+             p = subprocess.Popen(cmd, shell=True, stdin=subprocess.PIPE,
+                              stdout=subprocess.PIPE, stderr=subprocess.PIPE)
              res = p.stdout.read()
-             # we are now getting three lines of commented verbosity
+-            # we are now getting three lines of commented verbosity
++            # we are now getting five lines of commented verbosity
              # every time Maxima starts, so we need to get rid of them
 -            for _ in range(3):
 +            for _ in range(5):

@@ -1,4 +1,4 @@
-diff -r f667e86a25fb -r 48c661a3d3a4 sage/calculus/calculus.py
+diff -r f667e86a25fb -r aac88499e163 sage/calculus/calculus.py
 --- a/sage/calculus/calculus.py	Thu Oct 21 15:01:01 2010 -0700
 +++ b/sage/calculus/calculus.py	Fri Oct 29 18:09:29 2010 +0100
 @@ -341,8 +341,9 @@
@@ -48,19 +48,31 @@ diff -r f667e86a25fb -r 48c661a3d3a4 sage/calculus/calculus.py
           
      We do a formal calculation::
  
-diff -r f667e86a25fb -r 48c661a3d3a4 sage/calculus/functional.py
+diff -r f667e86a25fb -r aac88499e163 sage/calculus/functional.py
 --- a/sage/calculus/functional.py	Thu Oct 21 15:01:01 2010 -0700
 +++ b/sage/calculus/functional.py	Fri Oct 29 18:09:29 2010 +0100
-@@ -237,7 +237,7 @@
+@@ -236,11 +236,16 @@
+     
          sage: integral(abs(x), x, 0, 5)
          25/2
-         sage: integral(abs(x), x, 0, a)
+-        sage: integral(abs(x), x, 0, a)
 -        integrate(abs(x), x, 0, a)
-+        1/2*a*abs(a)
++        sage: integral(abs(x)*x, x, 0, a)
++        Traceback (most recent call last):
++        ...
++        TypeError: Computation failed since Maxima requested additional 
++        constraints (try the command 'assume(a>0)' before integral or limit 
++        evaluation, for example):
++        Is  a  positive, negative, or zero?
          sage: assume(a>0)
-         sage: integral(abs(x), x, 0, a)
-         1/2*a^2
-diff -r f667e86a25fb -r 48c661a3d3a4 sage/calculus/tests.py
+-        sage: integral(abs(x), x, 0, a)
+-        1/2*a^2
++        sage: integral(abs(x)*x, x, 0, a)
++        1/3*a^3
+         sage: forget()      # forget the assumptions.
+     
+     We integrate and differentiate a huge mess::
+diff -r f667e86a25fb -r aac88499e163 sage/calculus/tests.py
 --- a/sage/calculus/tests.py	Thu Oct 21 15:01:01 2010 -0700
 +++ b/sage/calculus/tests.py	Fri Oct 29 18:09:29 2010 +0100
 @@ -105,7 +105,7 @@
@@ -72,7 +84,7 @@ diff -r f667e86a25fb -r 48c661a3d3a4 sage/calculus/tests.py
      sage: integrate(exp(1-x^2),x)
      1/2*sqrt(pi)*e*erf(x)
      sage: integrate(sin(x^2),x)
-diff -r f667e86a25fb -r 48c661a3d3a4 sage/calculus/wester.py
+diff -r f667e86a25fb -r aac88499e163 sage/calculus/wester.py
 --- a/sage/calculus/wester.py	Thu Oct 21 15:01:01 2010 -0700
 +++ b/sage/calculus/wester.py	Fri Oct 29 18:09:29 2010 +0100
 @@ -500,9 +500,9 @@
@@ -87,7 +99,7 @@ diff -r f667e86a25fb -r 48c661a3d3a4 sage/calculus/wester.py
  
  ::
  
-diff -r f667e86a25fb -r 48c661a3d3a4 sage/interfaces/maxima.py
+diff -r f667e86a25fb -r aac88499e163 sage/interfaces/maxima.py
 --- a/sage/interfaces/maxima.py	Thu Oct 21 15:01:01 2010 -0700
 +++ b/sage/interfaces/maxima.py	Fri Oct 29 18:09:29 2010 +0100
 @@ -537,7 +537,7 @@
@@ -126,22 +138,25 @@ diff -r f667e86a25fb -r 48c661a3d3a4 sage/interfaces/maxima.py
      """
      return os.popen('maxima --version').read().split()[-1]
  
-diff -r f667e86a25fb -r 48c661a3d3a4 sage/misc/functional.py
+diff -r f667e86a25fb -r aac88499e163 sage/misc/functional.py
 --- a/sage/misc/functional.py	Thu Oct 21 15:01:01 2010 -0700
 +++ b/sage/misc/functional.py	Fri Oct 29 18:09:29 2010 +0100
-@@ -703,9 +703,9 @@
+@@ -702,10 +702,10 @@
+ 
      Numerical approximation::
  
-         sage: h = integral(sin(x)/x^2, (x, 1, pi/2)); h
+-        sage: h = integral(sin(x)/x^2, (x, 1, pi/2)); h
 -        integrate(sin(x)/x^2, x, 1, 1/2*pi)
-+        1/2*gamma(-1, -1/2*I*pi) + 1/2*gamma(-1, 1/2*I*pi) - 1/2*gamma(-1, -I) - 1/2*gamma(-1, I)
-         sage: h.n()
+-        sage: h.n()
 -        0.339447940978915...
-+        0.339447940978...
++        sage: h = integral(tan(x)/x, (x, 1, pi/3)); h 
++        integrate(tan(x)/x, x, 1, 1/3*pi) 
++        sage: h.n()                                   
++        0.07571599101...
  
      Specific algorithm can be used for integration::
  
-diff -r f667e86a25fb -r 48c661a3d3a4 sage/plot/plot3d/transform.pyx
+diff -r f667e86a25fb -r aac88499e163 sage/plot/plot3d/transform.pyx
 --- a/sage/plot/plot3d/transform.pyx	Thu Oct 21 15:01:01 2010 -0700
 +++ b/sage/plot/plot3d/transform.pyx	Fri Oct 29 18:09:29 2010 +0100
 @@ -213,12 +213,11 @@
@@ -161,7 +176,7 @@ diff -r f667e86a25fb -r 48c661a3d3a4 sage/plot/plot3d/transform.pyx
              
          Re-expressing some entries in terms of y and resolving the absolute 
          values introduced by eliminating y, we get the desired result. 
-diff -r f667e86a25fb -r 48c661a3d3a4 sage/symbolic/expression.pyx
+diff -r f667e86a25fb -r aac88499e163 sage/symbolic/expression.pyx
 --- a/sage/symbolic/expression.pyx	Thu Oct 21 15:01:01 2010 -0700
 +++ b/sage/symbolic/expression.pyx	Fri Oct 29 18:09:29 2010 +0100
 @@ -6315,7 +6315,7 @@
@@ -173,16 +188,46 @@ diff -r f667e86a25fb -r 48c661a3d3a4 sage/symbolic/expression.pyx
              sage: type(res)
              <type 'sage.symbolic.expression.Expression'>
          """
-@@ -6749,7 +6749,7 @@
-         This shows that the issue at trac #7344 is fixed:: 
+@@ -6348,8 +6348,9 @@
+     
+     def simplify_full(self):
+         """
+-        Applies simplify_factorial, simplify_trig, simplify_rational, and simplify_radical
+-        to self (in that order).
++        Applies simplify_factorial, simplify_trig, simplify_rational,
++        simplify_radical, simplify_log, and again simplify_rational to
++        self (in that order).
+         
+         ALIAS: simplify_full and full_simplify are the same.
+         
+@@ -6385,6 +6386,7 @@
+         x = x.simplify_rational()
+         x = x.simplify_radical()
+         x = x.simplify_log('one')
++        x = x.simplify_rational()
+         return x
  
-             sage: (log(sqrt(2)-1)+log(sqrt(2)+1)).simplify_full()
--            0
+     full_simplify = simplify_full
+@@ -6746,9 +6748,15 @@
+ 
+         TESTS:
+         
+-        This shows that the issue at trac #7344 is fixed:: 
+-
+-            sage: (log(sqrt(2)-1)+log(sqrt(2)+1)).simplify_full()
++        This shows that the issue at trac #7334 is fixed. Maxima intentionally 
++        keeps the expression inside the log factored::
++
++            sage: log_expr = (log(sqrt(2)-1)+log(sqrt(2)+1))
++            sage: log_expr.simplify_log('all')
 +            log((sqrt(2) - 1)*(sqrt(2) + 1))
++            sage: _.simplify_rational()
++            0
++            sage: log_expr.simplify_full()   # applies both simplify_log and simplify_rational
+             0
              
          AUTHORS:
-         
-@@ -7344,9 +7344,9 @@
+@@ -7344,9 +7352,9 @@
          The following examples show use of the keyword ``to_poly_solve``::
  
              sage: solve(abs(1-abs(1-x)) == 10, x)
@@ -194,7 +239,7 @@ diff -r f667e86a25fb -r 48c661a3d3a4 sage/symbolic/expression.pyx
  
              sage: var('Q')
              Q
-@@ -7360,7 +7360,7 @@
+@@ -7360,7 +7368,7 @@
          assumed to be an integer, a real if with ``r``, and so on::
  
              sage: solve( sin(x)==cos(x), x, to_poly_solve=True)
@@ -203,7 +248,7 @@ diff -r f667e86a25fb -r 48c661a3d3a4 sage/symbolic/expression.pyx
          
          An effort is made to only return solutions that satisfy the current assumptions::
          
-@@ -7400,7 +7400,7 @@
+@@ -7400,7 +7408,7 @@
              sage: from sage.calculus.calculus import maxima
              sage: sol = maxima(cos(x)==0).to_poly_solve(x)
              sage: sol.sage()
@@ -212,7 +257,7 @@ diff -r f667e86a25fb -r 48c661a3d3a4 sage/symbolic/expression.pyx
  
          If a returned unsolved expression has a denominator, but the
          original one did not, this may also be true::
-@@ -7410,7 +7410,7 @@
+@@ -7410,7 +7418,7 @@
              sage: from sage.calculus.calculus import maxima
              sage: sol = maxima(cos(x) * sin(x) == 1/2).to_poly_solve(x)
              sage: sol.sage()
@@ -221,7 +266,7 @@ diff -r f667e86a25fb -r 48c661a3d3a4 sage/symbolic/expression.pyx
  
          Some basic inequalities can be also solved::
  
-@@ -7467,8 +7467,7 @@
+@@ -7467,8 +7475,7 @@
          ::
  
              sage: solve(sin(x)==1/2,x,to_poly_solve='force')
@@ -231,7 +276,7 @@ diff -r f667e86a25fb -r 48c661a3d3a4 sage/symbolic/expression.pyx
          """
          import operator
          cdef Expression ex
-@@ -7685,7 +7684,7 @@
+@@ -7685,7 +7692,7 @@
              sage: b.solve(t)
              []
              sage: b.solve(t, to_poly_solve=True)
@@ -240,7 +285,7 @@ diff -r f667e86a25fb -r 48c661a3d3a4 sage/symbolic/expression.pyx
              sage: n(1/900*log(-3/4*sqrt(41) + 25/4))
              0.000411051404934985
  
-@@ -8029,6 +8028,7 @@
+@@ -8029,6 +8036,7 @@
  
          A well known binomial identity::
  
@@ -248,7 +293,7 @@ diff -r f667e86a25fb -r 48c661a3d3a4 sage/symbolic/expression.pyx
              sage: binomial(n,k).sum(k, 0, n)
              2^n
  
-diff -r f667e86a25fb -r 48c661a3d3a4 sage/symbolic/integration/integral.py
+diff -r f667e86a25fb -r aac88499e163 sage/symbolic/integration/integral.py
 --- a/sage/symbolic/integration/integral.py	Thu Oct 21 15:01:01 2010 -0700
 +++ b/sage/symbolic/integration/integral.py	Fri Oct 29 18:09:29 2010 +0100
 @@ -183,10 +183,10 @@
@@ -298,7 +343,23 @@ diff -r f667e86a25fb -r 48c661a3d3a4 sage/symbolic/integration/integral.py
          sage: nres = numerical_integral(f.subs(y=2), 0.0001414, 1.); nres
          (1.4638323264144..., 1.6251803529759...e-14)
          sage: res.subs(y=2).n()
-diff -r f667e86a25fb -r 48c661a3d3a4 sage/symbolic/maxima_wrapper.py
+@@ -546,6 +551,15 @@
+         sage: x.integral()
+         doctest:...: DeprecationWarning: Variable of integration should be specified explicitly.
+         1/2*x^2
++
++    Test that #8729 is fixed::
++
++        sage: t = var('t')
++        sage: a = sqrt((sin(t))^2 + (cos(t))^2)
++        sage: integrate(a, t, 0, 2*pi)
++        2*pi
++        sage: a.simplify_full().simplify_trig()
++        1
+     """           
+     if isinstance(v, (list, tuple)) and a is None and b is None:
+         if len(v)==1: # bare variable in a tuple
+diff -r f667e86a25fb -r aac88499e163 sage/symbolic/maxima_wrapper.py
 --- a/sage/symbolic/maxima_wrapper.py	Thu Oct 21 15:01:01 2010 -0700
 +++ b/sage/symbolic/maxima_wrapper.py	Fri Oct 29 18:09:29 2010 +0100
 @@ -44,7 +44,7 @@

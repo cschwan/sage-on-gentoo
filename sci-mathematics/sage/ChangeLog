@@ -3,6 +3,11 @@
 # $Header: $
 
   31 Oct 2010; François Bissey <f.r.bissey@massey.ac.nz>
+  files/trac_10187_maxima-doctests.patch,
+  files/trac_10187_maxima-upgrade.patch:
+  updating maxima patches
+
+  31 Oct 2010; François Bissey <f.r.bissey@massey.ac.nz>
   sage-4.6_rc0-r1.ebuild:
   Fix typo in patch name
 
