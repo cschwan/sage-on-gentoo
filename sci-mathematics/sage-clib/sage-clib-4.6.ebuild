@@ -6,9 +6,7 @@ EAPI="3"
 
 inherit eutils scons-utils versionator
 
-#MY_P="sage-${PV}"
-SAGE_PV=$(replace_version_separator 2 '.')
-MY_P="sage-${SAGE_PV}"
+MY_P="sage-${PV}"
 
 DESCRIPTION="Sage's C library"
 HOMEPAGE="http://www.sagemath.org"

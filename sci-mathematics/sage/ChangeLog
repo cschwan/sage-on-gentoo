@@ -2,6 +2,16 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  01 Nov 2010; François Bissey <f.r.bissey@massey.ac.nz>
+  -sage-4.6_alpha3.ebuild, -sage-4.6_rc0.ebuild, +sage-4.6.ebuild:
+  Adjust variables
+
+*sage-4.6 (01 Nov 2010)
+
+  01 Nov 2010; François Bissey <f.r.bissey@massey.ac.nz>
+  -sage-4.6_alpha3.ebuild, -sage-4.6_rc0.ebuild, +sage-4.6.ebuild:
+  4.6 is out but not mirrored yet.
+
   31 Oct 2010; François Bissey <f.r.bissey@massey.ac.nz>
   files/trac_10187_maxima-doctests.patch,
   files/trac_10187_maxima-upgrade.patch:

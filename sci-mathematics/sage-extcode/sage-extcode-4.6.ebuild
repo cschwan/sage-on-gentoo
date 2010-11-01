@@ -4,10 +4,8 @@
 
 EAPI="3"
 
-#MY_P="extcode-${PV}"
-SAGE_PV="4.6.alpha2"
-SAGE_DIR="sage-${SAGE_PV}"
-MY_P="extcode-${SAGE_PV}"
+MY_P="extcode-${PV}"
+SAGE_DIR="sage-${PV}"
 
 DESCRIPTION="Extcode for Sage"
 HOMEPAGE="http://www.sagemath.org"
