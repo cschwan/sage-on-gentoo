@@ -6,12 +6,18 @@ media-libs/gd               jpeg png
 sci-libs/flint              ntl
 sci-mathematics/glpk        gmp
 sci-libs/linbox             ntl sage
-sci-mathematics/lcalc       pari
-sci-mathematics/maxima      ecl
-sci-mathematics/pari        data gmp
+sci-mathematics/eclib       pari24
+sci-mathematics/lcalc       -pari pari24
+sci-mathematics/maxima      ecls ecl
+sci-mathematics/pari        data gmp sage
 sci-mathematics/polybori    gd sage
 sci-mathematics/singular    libsingular sage
 ################################################
 # Recomended flags for optional dependency jmol
 ################################################
 sci-chemistry/jmol client-only
+################################################
+# The following provide only binaries,
+# pari24 usage is therefore not mandatory here
+################################################
+sci-mathematics/sympow pari24
