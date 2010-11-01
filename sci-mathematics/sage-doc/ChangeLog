@@ -2,6 +2,41 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*sage-doc-4.6 (01 Nov 2010)
+
+  01 Nov 2010; François Bissey <f.r.bissey@massey.ac.nz>
+  -sage-doc-4.6_alpha3.ebuild, -sage-doc-4.6_rc0-r1.ebuild,
+  +sage-doc-4.6.ebuild:
+  4.6 is out, use 4.6_rc0 doc for now.
+
+  30 Oct 2010; François Bissey <f.r.bissey@massey.ac.nz>
+  -files/trac_10187_maxima-doctests.patch, -sage-doc-4.6_rc0-r2.ebuild,
+  -files/trac_10187_maxima-upgrade.patch:
+  remove useless version bump and patches
+
+*sage-doc-4.6_rc0-r2 (30 Oct 2010)
+
+  30 Oct 2010; François Bissey <f.r.bissey@massey.ac.nz>
+  +files/trac_10187_maxima-doctests.patch, +sage-doc-4.6_rc0-r2.ebuild,
+  +files/trac_10187_maxima-upgrade.patch:
+  Revbump to upgrade to maxima-5.22.1
+
+*sage-doc-4.6.1_alpha0 (27 Oct 2010)
+
+  27 Oct 2010; François Bissey <f.r.bissey@massey.ac.nz>
+  +sage-doc-4.6.1_alpha0.ebuild:
+  Introducing 4.6.1_alpha0 - really 4.6_rc0 for now
+
+  23 Oct 2010; François Bissey <f.r.bissey@massey.ac.nz>
+  -sage-doc-4.6_rc0.ebuild:
+  remove old
+
+*sage-doc-4.6_rc0-r1 (23 Oct 2010)
+
+  23 Oct 2010; François Bissey <f.r.bissey@massey.ac.nz>
+  +sage-doc-4.6_rc0-r1.ebuild:
+  We have generated doc
+
 *sage-doc-4.6_rc0 (22 Oct 2010)
 
   22 Oct 2010; François Bissey <f.r.bissey@massey.ac.nz>

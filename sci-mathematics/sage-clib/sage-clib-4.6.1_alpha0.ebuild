@@ -7,7 +7,7 @@ EAPI="3"
 inherit eutils scons-utils versionator
 
 #MY_P="sage-${PV}"
-SAGE_PV=$(replace_version_separator 2 '.')
+SAGE_PV=$(replace_version_separator 3 '.')
 MY_P="sage-${SAGE_PV}"
 
 DESCRIPTION="Sage's C library"
@@ -18,7 +18,7 @@ RESTRICT="mirror"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~ppc ~x86 ~x86-linux"
+KEYWORDS=""
 IUSE=""
 
 RESTRICT="mirror"

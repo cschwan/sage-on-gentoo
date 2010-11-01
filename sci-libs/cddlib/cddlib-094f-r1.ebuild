@@ -12,7 +12,7 @@ SRC_URI="ftp://ftp.ifor.math.ethz.ch/pub/fukuda/cdd/${P}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~ppc ~x86 ~x86-linux"
+KEYWORDS="~amd64 ~ppc ~x86 ~amd64-linux ~x86-linux"
 IUSE="doc static-libs"
 
 RESTRICT="mirror"
@@ -34,7 +34,7 @@ src_prepare() {
 	autotools-utils_src_prepare
 	eautoreconf
 
-	cp "${FILESDIR}"/cdd_both_reps.c "${S}"/src/ \
+	cp "${FILESDIR}"/cdd_both_reps-4.5.c "${S}"/src/cdd_both_reps.c \
 		|| die "failed to copy source file"
 	ln -s "${S}"/src/cdd_both_reps.c "${S}"/src-gmp/cdd_both_reps.c \
 		|| die "failed to make symbolic link to source file"

@@ -2,6 +2,64 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*sage-4.6-r1 (01 Nov 2010)
+
+  01 Nov 2010; François Bissey <f.r.bissey@massey.ac.nz>
+  -sage-4.6_rc0-r1.ebuild, sage-4.6.ebuild, +sage-4.6-r1.ebuild:
+  Get a test version for the maxima upgrade, correct mistake in initial 4.6
+
+  01 Nov 2010; François Bissey <f.r.bissey@massey.ac.nz>
+  -sage-4.6_alpha3.ebuild, -sage-4.6_rc0.ebuild, +sage-4.6.ebuild:
+  Adjust variables
+
+*sage-4.6 (01 Nov 2010)
+
+  01 Nov 2010; François Bissey <f.r.bissey@massey.ac.nz>
+  -sage-4.6_alpha3.ebuild, -sage-4.6_rc0.ebuild, +sage-4.6.ebuild:
+  4.6 is out but not mirrored yet.
+
+  31 Oct 2010; François Bissey <f.r.bissey@massey.ac.nz>
+  files/trac_10187_maxima-doctests.patch,
+  files/trac_10187_maxima-upgrade.patch:
+  updating maxima patches
+
+  31 Oct 2010; François Bissey <f.r.bissey@massey.ac.nz>
+  sage-4.6_rc0-r1.ebuild:
+  Fix typo in patch name
+
+  31 Oct 2010; François Bissey <f.r.bissey@massey.ac.nz>
+  sage-4.6_rc0-r1.ebuild:
+  Apply maxima patches in the right order
+
+  30 Oct 2010; François Bissey <f.r.bissey@massey.ac.nz>
+  sage-4.6_rc0-r1.ebuild:
+  adjust ecl dependency flag
+
+*sage-4.6_rc0-r1 (30 Oct 2010)
+
+  30 Oct 2010; François Bissey <f.r.bissey@massey.ac.nz>
+  +files/trac_10187_maxima-doctests.patch, +sage-4.6_rc0-r1.ebuild,
+  +files/trac_10187_maxima-upgrade.patch:
+  Revbump to update maxima to 5.22.1
+
+  27 Oct 2010; François Bissey <f.r.bissey@massey.ac.nz>
+  +sage-4.6.1_alpha0.ebuild:
+  Hardmask 4.6.1_alpha0
+
+*sage-4.6.1_alpha0 (27 Oct 2010)
+
+  27 Oct 2010; François Bissey <f.r.bissey@massey.ac.nz>
+  +sage-4.6.1_alpha0.ebuild:
+  Introducing 4.6.1_alpha0 - separately masked - not officially released.
+
+  27 Oct 2010; François Bissey <f.r.bissey@massey.ac.nz>
+  sage-4.6_alpha3.ebuild, sage-4.6_rc0.ebuild:
+  Adjust cddlib dependency in sage-4.6
+
+  24 Oct 2010; François Bissey <f.r.bissey@massey.ac.nz>
+  sage-4.6_rc0.ebuild:
+  small patch to re-enable the gslcblas trick for issue 3
+
   22 Oct 2010; François Bissey <f.r.bissey@massey.ac.nz>
   sage-4.6_rc0.ebuild:
   Correct a mistake on gprc

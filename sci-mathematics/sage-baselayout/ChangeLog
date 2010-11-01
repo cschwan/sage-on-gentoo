@@ -2,6 +2,36 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*sage-baselayout-4.6-r1 (01 Nov 2010)
+
+  01 Nov 2010; François Bissey <f.r.bissey@massey.ac.nz>
+  -sage-baselayout-4.6_rc0-r1.ebuild, +sage-baselayout-4.6-r1.ebuild:
+  Get a version to test maxima upgrade
+
+*sage-baselayout-4.6 (01 Nov 2010)
+
+  01 Nov 2010; François Bissey <f.r.bissey@massey.ac.nz>
+  -sage-baselayout-4.6_alpha3.ebuild, -sage-baselayout-4.6_rc0.ebuild,
+  +sage-baselayout-4.6.ebuild:
+  4.6 is out
+
+*sage-baselayout-4.6_rc0-r1 (31 Oct 2010)
+
+  31 Oct 2010; François Bissey <f.r.bissey@massey.ac.nz>
+  +sage-baselayout-4.6_rc0-r1.ebuild, +files/sage-maxima.lisp.patch:
+  Upgrading to maxima-5.22.1
+
+*sage-baselayout-4.6.1_alpha0 (27 Oct 2010)
+
+  27 Oct 2010; François Bissey <f.r.bissey@massey.ac.nz>
+  +sage-baselayout-4.6.1_alpha0.ebuild:
+  Introducing 4.6.1_alpha0
+
+  27 Oct 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
+  sage-baselayout-4.5.3.ebuild, sage-baselayout-4.6_alpha3.ebuild,
+  sage-baselayout-4.6_rc0.ebuild:
+  Patches for scripts that are installed with USE=debug
+
 *sage-baselayout-4.6_rc0 (22 Oct 2010)
 
   22 Oct 2010; François Bissey <f.r.bissey@massey.ac.nz>

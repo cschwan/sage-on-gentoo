@@ -6,10 +6,8 @@ EAPI="3"
 
 inherit eutils toolchain-funcs versionator
 
-#MY_P="sage_scripts-${PV}"
-SAGE_PV=$(replace_version_separator 2 '.')
-SAGE_DIR="sage-${SAGE_PV}"
-MY_P="sage_scripts-${SAGE_PV}"
+MY_P="sage_scripts-${PV}"
+SAGE_DIR="sage-${PV}"
 
 DESCRIPTION="Sage baselayout files"
 HOMEPAGE="http://www.sagemath.org"
@@ -18,7 +16,7 @@ SRC_URI="http://sage.math.washington.edu/home/release/${SAGE_DIR}/${SAGE_DIR}/sp
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~ppc ~x86 ~x86-linux"
+KEYWORDS="~amd64 ~ppc ~x86 ~amd64-linux ~x86-linux"
 IUSE="debug testsuite X"
 
 RESTRICT="mirror"
@@ -96,6 +94,11 @@ src_prepare() {
 		|| die "failed to patch fortran compiler path"
 
 	# TODO: if USE=debug/testsuite, remove corresponding options
+
+	# replace $SAGE_ROOT/local with $SAGE_LOCAL
+	sed -i "s:\$SAGE_ROOT/local:\$SAGE_LOCAL:g" sage-gdb sage-gdb-ipython \
+		sage-cachegrind sage-callgrind sage-massif sage-omega sage-valgrind \
+		|| die "failed to patch GNU Debugger scripts"
 }
 
 src_install() {

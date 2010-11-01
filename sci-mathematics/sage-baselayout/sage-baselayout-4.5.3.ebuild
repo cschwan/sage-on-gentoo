@@ -14,7 +14,7 @@ SRC_URI="mirror://sage/spkg/standard/${MY_P}.spkg -> ${P}.tar.bz2"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~ppc ~x86 ~x86-linux"
+KEYWORDS="~amd64 ~ppc ~x86 ~amd64-linux ~x86-linux"
 IUSE="debug testsuite X"
 
 RESTRICT="mirror"
@@ -92,6 +92,11 @@ src_prepare() {
 		|| die "failed to patch fortran compiler path"
 
 	# TODO: if USE=debug/testsuite, remove corresponding options
+
+	# replace $SAGE_ROOT/local with $SAGE_LOCAL
+	sed -i "s:\$SAGE_ROOT/local:\$SAGE_LOCAL:g" sage-gdb sage-gdb-ipython \
+		sage-cachegrind sage-callgrind sage-massif sage-omega sage-valgrind \
+		|| die "failed to patch GNU Debugger scripts"
 }
 
 src_install() {

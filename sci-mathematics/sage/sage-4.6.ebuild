@@ -10,19 +10,17 @@ PYTHON_USE_WITH="sage sqlite"
 inherit distutils eutils flag-o-matic python versionator
 
 MY_P="sage-${PV}"
-SAGE_PV=$(replace_version_separator 2 '.')
-SAGE_P="sage-${SAGE_PV}"
 
 DESCRIPTION="Math software for algebra, geometry, number theory, cryptography and numerical computation"
 HOMEPAGE="http://www.sagemath.org"
 #SRC_URI="mirror://sage/spkg/standard/${MY_P}.spkg -> ${P}.tar.bz2"
-SRC_URI="http://sage.math.washington.edu/home/release/${SAGE_P}/${SAGE_P}/spkg/standard/${SAGE_P}.spkg -> ${P}.tar.bz2"
+SRC_URI="http://sage.math.washington.edu/home/release/${MY_P}/${MY_P}/spkg/standard/${MY_P}.spkg -> ${P}.tar.bz2"
 RESTRICT="mirror"
-S="${WORKDIR}/${SAGE_P}"
+S="${WORKDIR}/${MY_P}"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~ppc ~x86 ~x86-linux"
+KEYWORDS="~amd64 ~ppc ~x86 ~amd64-linux ~x86-linux"
 IUSE="examples latex testsuite X"
 
 CDEPEND="dev-libs/gmp
@@ -79,7 +77,7 @@ RDEPEND="${CDEPEND}
 	~dev-python/sympy-0.6.6
 	>=media-gfx/tachyon-0.98
 	>=net-zope/zodb-3.7.0
-	>=sci-libs/cddlib-094f
+	>=sci-libs/cddlib-094f-r2
 	=sci-libs/scipy-0.8*
 	>=sci-mathematics/flintqs-20070817_p4
 	>=sci-mathematics/gap-4.4.12
@@ -215,6 +213,10 @@ src_prepare() {
 	# rebuild in place
 	sed -i "s:SAGE_DEVEL + 'sage/sage/ext/interpreters':'sage/ext/interpreters':g" \
 		setup.py || die "failed to patch interpreters path"
+
+	# Do not overlink to cblas, this enable the gslcblas trick to solve issue #
+	sed -i "s:'iml', 'gmp', 'm', 'pari24', BLAS, BLAS2:'iml', 'gmp', 'm', 'pari24':" \
+		module_list.py || die "failed to patch module_list.py for iml"
 
 	# fix include paths and CBLAS/ATLAS
 	sed -i \

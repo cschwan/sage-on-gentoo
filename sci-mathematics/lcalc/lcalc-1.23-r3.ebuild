@@ -15,7 +15,7 @@ SRC_URI="http://pmmac03.math.uwaterloo.ca/~mrubinst/L_function_public/CODE/${MY_
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~ppc ~x86 ~x86-linux"
+KEYWORDS="~amd64 ~ppc ~x86 ~amd64-linux ~x86-linux"
 IUSE="pari -pari24"
 
 # TODO: depend on pari[gmp] ?
@@ -45,10 +45,11 @@ src_prepare() {
 
 	# patch for pari-2.4 this pari-2.3 safe.
 	sed -i "s:lgeti:(long)cgeti:g" Lcommandline_elliptic.cc || die "sed for lgeti failed"
+
 	# patch pari's location in a prefix safe way.
 	sed -i \
-		-e "s:LOCATION_PARI_H = /usr/local/include/pari:LOCATION_PARI_H = ${EPREFIX}/usr/include/pari:" \
-		-e "s:LOCATION_PARI_LIBRARY = /usr/local/lib:LOCATION_PARI_LIBRARY = ${EPREFIX}/usr/$(get_libdir):" \
+		-e "s:LOCATION_PARI_H = /usr/include/pari:LOCATION_PARI_H = ${EPREFIX}/usr/include/pari:" \
+		-e "s:LOCATION_PARI_LIBRARY = /usr/lib:LOCATION_PARI_LIBRARY = ${EPREFIX}/usr/$(get_libdir):" \
 		Makefile || die "sed for pari location failed"
 
 	if use pari24 ; then
@@ -61,7 +62,7 @@ src_prepare() {
 }
 
 src_install() {
-	emake DESTDIR="${ED}"/usr LIB_DIR=$(get_libdir) install || die "emake install failed"
+	emake DESTDIR="${ED}"/usr LIB_DIR=$(get_libdir) install || die
 
-	dodoc ../README || die "dodoc failed"
+	dodoc ../README || die
 }

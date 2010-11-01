@@ -18,7 +18,7 @@ SRC_URI="http://pari.math.u-bordeaux.fr/pub/pari/testing/${MY_P}.tar.gz
 
 LICENSE="GPL-2"
 SLOT="3"
-KEYWORDS="~alpha ~amd64 ~hppa ~mips ~ppc ~ppc64 ~sparc ~x86 ~x86-fbsd ~x86-linux"
+KEYWORDS="~alpha ~amd64 ~hppa ~mips ~ppc ~ppc64 ~sparc ~x86 ~x86-fbsd ~amd64-linux ~x86-linux"
 IUSE="doc data fltk gmp X sage"
 RESTRICT="mirror"
 

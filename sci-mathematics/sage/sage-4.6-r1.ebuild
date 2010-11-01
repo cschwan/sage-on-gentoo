@@ -10,19 +10,17 @@ PYTHON_USE_WITH="sage sqlite"
 inherit distutils eutils flag-o-matic python versionator
 
 MY_P="sage-${PV}"
-SAGE_PV=$(replace_version_separator 2 '.')
-SAGE_P="sage-${SAGE_PV}"
 
 DESCRIPTION="Math software for algebra, geometry, number theory, cryptography and numerical computation"
 HOMEPAGE="http://www.sagemath.org"
 #SRC_URI="mirror://sage/spkg/standard/${MY_P}.spkg -> ${P}.tar.bz2"
-SRC_URI="http://sage.math.washington.edu/home/release/${SAGE_P}/${SAGE_P}/spkg/standard/${SAGE_P}.spkg -> ${P}.tar.bz2"
+SRC_URI="http://sage.math.washington.edu/home/release/${MY_P}/${MY_P}/spkg/standard/${MY_P}.spkg -> ${P}.tar.bz2"
 RESTRICT="mirror"
-S="${WORKDIR}/${SAGE_P}"
+S="${WORKDIR}/${MY_P}"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~ppc ~x86 ~x86-linux"
+KEYWORDS="~amd64 ~ppc ~x86 ~amd64-linux ~x86-linux"
 IUSE="examples latex testsuite X"
 
 CDEPEND="dev-libs/gmp
@@ -46,7 +44,7 @@ CDEPEND="dev-libs/gmp
 	>=sci-libs/zn_poly-0.9
 	>=sci-mathematics/glpk-4.43[gmp]
 	>=sci-mathematics/lcalc-1.23[pari24]
-	sci-mathematics/pari:3[data,gmp]
+	sci-mathematics/pari:3[data,gmp,sage]
 	>=sci-mathematics/polybori-0.6.5-r2[sage]
 	>=sci-mathematics/ratpoints-2.1.3
 	~sci-mathematics/sage-baselayout-${PV}[testsuite=]
@@ -79,7 +77,7 @@ RDEPEND="${CDEPEND}
 	~dev-python/sympy-0.6.6
 	>=media-gfx/tachyon-0.98
 	>=net-zope/zodb-3.7.0
-	>=sci-libs/cddlib-094f
+	>=sci-libs/cddlib-094f-r2
 	=sci-libs/scipy-0.8*
 	>=sci-mathematics/flintqs-20070817_p4
 	>=sci-mathematics/gap-4.4.12
@@ -89,7 +87,7 @@ RDEPEND="${CDEPEND}
 	>=sci-mathematics/cu2-20060223
 	>=sci-mathematics/cubex-20060128
 	>=sci-mathematics/dikcube-20070912_p12
-	~sci-mathematics/maxima-5.20.1[ecl]
+	~sci-mathematics/maxima-5.22.1[ecls]
 	>=sci-mathematics/mcube-20051209
 	>=sci-mathematics/optimal-20040603
 	>=sci-mathematics/palp-1.1
@@ -159,8 +157,9 @@ src_prepare() {
 		sage/rings/fast_arith.pyx \
 		|| die "failed to patch pari/pari24 includes in sage/rings/fast_arith.pyx"
 
-	sed -i "s:gp --emacs --fast --quiet --stacksize:gp-2.4 --emacs --fast --quiet --stacksize:" \
-		sage/interfaces/gp.py || die "failed to use gp-2.4 in interfaces/gp.py"
+	sed -e "s:gp --emacs --quiet --stacksize:gp-2.4 --emacs --quiet --stacksize:" \
+		-e 's:\'%s/local/etc/gprc.expect\'%SAGE_ROOT:/etc/gprc.expect\': \
+		-i sage/interfaces/gp.py || die "failed to patch interfaces/gp.py"
 
 	# remove annoying std=c99 from a c++ file.
 	epatch "${FILESDIR}"/${PN}-4.4.4-extra-stdc99.patch
@@ -172,6 +171,10 @@ src_prepare() {
 
 	# upgrade to numpy-1.5.0/scipy-0.8
 	epatch "${FILESDIR}"/${PN}-4.6-numpy-1.5.patch
+
+	# upgrade to maxima-5.22.1 ticket #10187
+	epatch "${FILESDIR}"/trac_10187_maxima-doctests.patch
+	epatch "${FILESDIR}"/trac_10187_maxima-upgrade.patch
 
 	# use already installed csage
 	rm -rf c_lib || die "failed to remove c library directory"
@@ -214,6 +217,10 @@ src_prepare() {
 	# rebuild in place
 	sed -i "s:SAGE_DEVEL + 'sage/sage/ext/interpreters':'sage/ext/interpreters':g" \
 		setup.py || die "failed to patch interpreters path"
+
+	# Do not overlink to cblas, this enable the gslcblas trick to solve issue #
+	sed -i "s:'iml', 'gmp', 'm', 'pari24', BLAS, BLAS2:'iml', 'gmp', 'm', 'pari24':" \
+		module_list.py || die "failed to patch module_list.py for iml"
 
 	# fix include paths and CBLAS/ATLAS
 	sed -i \
@@ -308,10 +315,6 @@ src_prepare() {
 	# Patch to singular info file shipped with sage-doc
 	sed -i "s:os.environ\[\"SAGE_LOCAL\"\]+\"/share/singular/\":os.environ\[\"SAGE_DOC\"\]+\"/\":g" \
 		sage/interfaces/singular.py || die "failed to patch singular.hlp path"
-
-	# tentative patch for issue 3
-	#sed -i "s:nullspaceMP (self._nrows, self._ncols, self._entries, \&mp_N):nullspaceMP (self._nrows, self._ncols, self._entries, \&\&mp_N):" \
-	#	sage/matrix/matrix_integer_dense.pyx || die "failed to patch matrix_integer_dense.pyx"
 
 	# fix test paths
 	sed -i \

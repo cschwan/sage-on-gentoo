@@ -4,19 +4,17 @@
 
 EAPI="3"
 
-#MY_P="examples-${PV}"
-SAGE_PV="4.6.alpha2"
-SAGE_DIR="sage-${SAGE_PV}"
-MY_P="examples-${SAGE_PV}"
+MY_P="extcode-${PV}"
+SAGE_DIR="sage-${PV}"
 
-DESCRIPTION="Example code and scripts for Sage"
+DESCRIPTION="Extcode for Sage"
 HOMEPAGE="http://www.sagemath.org"
 #SRC_URI="mirror://sage/spkg/standard/${MY_P}.spkg -> ${P}.tar.bz2"
 SRC_URI="http://sage.math.washington.edu/home/release/${SAGE_DIR}/${SAGE_DIR}/spkg/standard/${MY_P}.spkg -> ${P}.tar.bz2"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~ppc ~x86 ~x86-linux"
+KEYWORDS="~amd64 ~ppc ~x86 ~amd64-linux ~x86-linux"
 IUSE=""
 
 RESTRICT="mirror"
@@ -27,13 +25,15 @@ RDEPEND="${DEPEND}"
 S="${WORKDIR}/${MY_P}"
 
 src_prepare() {
-	# remove stuff not needed
-	rm -rf .hg .hgignore .hgtags sage-push spkg-install \
-		|| die "failed to remove useless files"
+	find . -name "*pyc" -type f -delete \
+		|| die "failed to remove precompiled files"
 }
 
 src_install() {
-	insinto /usr/share/sage/examples
+	# remove stuff not needed
+	rm -rf .hg .hgignore .hgtags mirror sage-push spkg-debian spkg-dist \
+		spkg-install dist || die "failed to remove useless files"
+
+	insinto /usr/share/sage/data/extcode
 	doins -r * || die
-	fperms a+x /usr/share/sage/examples/test_all || die
 }

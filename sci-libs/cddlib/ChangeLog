@@ -2,6 +2,21 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  27 Oct 2010; François Bissey <f.r.bissey@massey.ac.nz>
+  +files/cdd_both_reps-4.5.c, +cddlib-094f-r1.ebuild:
+  Get -r1 back with the corresponding version of cdd_both_reps for
+  sage-4.5.3
+
+*cddlib-094f-r2 (23 Oct 2010)
+
+  23 Oct 2010; François Bissey <f.r.bissey@massey.ac.nz>
+  -cddlib-094f-r1.ebuild, +cddlib-094f-r2.ebuild, files/cdd_both_reps.c:
+  Rev-bump to force rebuild against new cdd_both_reps.c
+
+  23 Oct 2010; François Bissey <f.r.bissey@massey.ac.nz>
+  files/cdd_both_reps.c:
+  Update cdd_both_reps.c for sage-4.6_rc0
+
   08 Sep 2010; François Bissey <f.r.bissey@massey.ac.nz> metadata.xml:
   Fix metadata
 
