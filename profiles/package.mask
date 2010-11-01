@@ -1,15 +1,9 @@
-# Sage-4.6 packages - Don't unmask unless you are ready for problems.
->=sci-mathematics/pari-2.4
-=sci-mathematics/genus2reduction-0.3_p8
->=sci-mathematics/sage-4.6_alpha0
->=sci-mathematics/sage-clib-4.6_alpha0
->=sci-mathematics/sage-baselayout-4.6_alpha0
->=sci-mathematics/sage-extcode-4.6_alpha0
->=sci-mathematics/sage-examples-4.6_alpha0
->=sci-mathematics/sage-doc-4.6_alpha0
->=dev-python/numpy-1.5.0
->=sci-mathematics/sage-notebook-0.8.6
->=sci-libs/pynac-0.2.1
->=sci-libs/cddlib-094f-r2
+# Sage-4.6.1 packages - Don't unmask unless you are ready for problems.
+>=sci-mathematics/sage-4.6.1_alpha0
+>=sci-mathematics/sage-clib-4.6.1_alpha0
+>=sci-mathematics/sage-baselayout-4.6.1_alpha0
+>=sci-mathematics/sage-extcode-4.6.1_alpha0
+>=sci-mathematics/sage-examples-4.6.1_alpha0
+>=sci-mathematics/sage-doc-4.6.1_alpha0
 # Ongoing work there, do not touch before it has been properly tested.
 =sci-chemistry/jmol-11.8.25
