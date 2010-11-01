@@ -16,7 +16,7 @@ HOMEPAGE="http://www.sagemath.org"
 #SRC_URI="mirror://sage/spkg/standard/${MY_P}.spkg -> ${P}.tar.bz2"
 SRC_URI="http://sage.math.washington.edu/home/release/${MY_P}/${MY_P}/spkg/standard/${MY_P}.spkg -> ${P}.tar.bz2"
 RESTRICT="mirror"
-S="${WORKDIR}/${SAGE_P}"
+S="${WORKDIR}/${MY_P}"
 
 LICENSE="GPL-2"
 SLOT="0"

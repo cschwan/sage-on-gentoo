@@ -10,15 +10,13 @@ PYTHON_USE_WITH="sage sqlite"
 inherit distutils eutils flag-o-matic python versionator
 
 MY_P="sage-${PV}"
-SAGE_PV=$(replace_version_separator 2 '.')
-SAGE_P="sage-${SAGE_PV}"
 
 DESCRIPTION="Math software for algebra, geometry, number theory, cryptography and numerical computation"
 HOMEPAGE="http://www.sagemath.org"
 #SRC_URI="mirror://sage/spkg/standard/${MY_P}.spkg -> ${P}.tar.bz2"
-SRC_URI="http://sage.math.washington.edu/home/release/${SAGE_P}/${SAGE_P}/spkg/standard/${SAGE_P}.spkg -> ${P}.tar.bz2"
+SRC_URI="http://sage.math.washington.edu/home/release/${MY_P}/${MY_P}/spkg/standard/${MY_P}.spkg -> ${P}.tar.bz2"
 RESTRICT="mirror"
-S="${WORKDIR}/${SAGE_P}"
+S="${WORKDIR}/${MY_P}"
 
 LICENSE="GPL-2"
 SLOT="0"
