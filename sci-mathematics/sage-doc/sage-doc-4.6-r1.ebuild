@@ -7,25 +7,16 @@ EAPI="3"
 inherit eutils versionator
 
 MY_P="sage-${PV}"
-#MY_P_HTML="sage-${PV}-doc-html"
-#MY_P_PDF="sage-${PV}-doc-pdf"
-# sage-4.6_rc0 for now
-SAGE_PV="4.6.rc0"
-RCP="sage-${SAGE_PV}"
-MY_P_HTML="doc/html"
-MY_P_PDF="doc/pdf"
+MY_P_HTML="sage-${PV}-doc-html"
+MY_P_PDF="sage-${PV}-doc-pdf"
 
 
 DESCRIPTION="Documentation, tutorials and help files for Sage"
 HOMEPAGE="http://www.sagemath.org/"
-#SRC_URI="mirror://sage/spkg/standard/${MY_P}.spkg -> sage-${PV}.tar.bz2
-#	http://www.mathematik.uni-kl.de/ftp/pub/Math/Singular/SOURCES/3-1-1/Singular-3-1-1-4-share.tar.gz
-#	html? ( http://www.sagemath.org/doc-bz2/${MY_P_HTML}.tar.bz2 -> sage-doc-html-${PV}.tar.bz2 )
-#	pdf? ( http://www.sagemath.org/doc-bz2/${MY_P_PDF}.tar.bz2 -> sage-doc-pdf-${PV}.tar.bz2 )"
-SRC_URI="http://sage.math.washington.edu/home/release/${MY_P}/${MY_P}/spkg/standard/${MY_P}.spkg -> sage-${PV}.tar.bz2
+SRC_URI="mirror://sage/spkg/standard/${MY_P}.spkg -> sage-${PV}.tar.bz2
 	http://www.mathematik.uni-kl.de/ftp/pub/Math/Singular/SOURCES/3-1-1/Singular-3-1-1-4-share.tar.gz
-	html? ( pdf? ( http://sage.math.washington.edu/home/release/${RCP}/doc.tar.bz2 -> sage-doc-${SAGE_PV}.tar.bz2 )
-		!pdf? ( http://sage.math.washington.edu/home/release/${RCP}/doc.tar.bz2 -> sage-doc-${SAGE_PV}.tar.bz2 ) )"
+	html? ( http://www.sagemath.org/doc-bz2/${MY_P_HTML}.tar.bz2 -> sage-doc-html-${PV}.tar.bz2 )
+	pdf? ( http://www.sagemath.org/doc-bz2/${MY_P_PDF}.tar.bz2 -> sage-doc-pdf-${PV}.tar.bz2 )"
 
 LICENSE="GPL-2"
 SLOT="0"

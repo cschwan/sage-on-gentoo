@@ -2,6 +2,10 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  01 Nov 2010; François Bissey <f.r.bissey@massey.ac.nz>
+  sage-notebook-0.8.7.ebuild:
+  update SRC_URI
+
 *sage-notebook-0.8.7 (09 Oct 2010)
 
   09 Oct 2010; François Bissey <f.r.bissey@massey.ac.nz>

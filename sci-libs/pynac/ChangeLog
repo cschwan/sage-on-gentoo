@@ -2,6 +2,10 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  01 Nov 2010; François Bissey <f.r.bissey@massey.ac.nz>
+  pynac-0.2.1.ebuild:
+  update SRC_URI
+
   08 Oct 2010; François Bissey <f.r.bissey@massey.ac.nz>
   pynac-0.2.1.ebuild:
   Resolve conflict, fix manifest.

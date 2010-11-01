@@ -2,6 +2,10 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  01 Nov 2010; François Bissey <f.r.bissey@massey.ac.nz>
+  sage-baselayout-4.6.ebuild:
+  update SRC_URI
+
 *sage-baselayout-4.6-r1 (01 Nov 2010)
 
   01 Nov 2010; François Bissey <f.r.bissey@massey.ac.nz>

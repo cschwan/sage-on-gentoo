@@ -2,6 +2,12 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*sage-doc-4.6-r1 (01 Nov 2010)
+
+  01 Nov 2010; François Bissey <f.r.bissey@massey.ac.nz>
+  -sage-doc-4.6.ebuild, +sage-doc-4.6-r1.ebuild:
+  switch to official 4.6 docs
+
 *sage-doc-4.6 (01 Nov 2010)
 
   01 Nov 2010; François Bissey <f.r.bissey@massey.ac.nz>
