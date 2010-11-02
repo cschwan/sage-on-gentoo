@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/python-2.6.6-r1.ebuild,v 1.2 2010/10/13 09:28:57 djc Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/python-2.6.6-r1.ebuild,v 1.3 2010/10/27 12:49:29 djc Exp $
 
 EAPI="2"
 
@@ -132,7 +132,7 @@ src_configure() {
 		use ssl      || export PYTHON_DISABLE_SSL="1"
 		use tk       || disable+=" _tkinter"
 		use xml      || disable+=" _elementtree pyexpat" # _elementtree uses pyexpat.
-		export PYTHON_DISABLE_MODULES="${disable}"
+		export PYTHON_DISABLE_MODULES="__all__ ${disable}"
 
 		if ! use xml; then
 			ewarn "You have configured Python without XML support."
@@ -204,7 +204,7 @@ src_test() {
 	python_enable_pyc
 
 	# Skip failing tests.
-	local skip_tests="distutils httpservers minidom pyexpat sax tcl"
+	local skip_tests="distutils httpservers minidom pyexpat sax tcl __all__"
 
 	# test_ctypes fails with PAX kernel (bug #234498).
 	host-is-pax && skip_tests+=" ctypes"

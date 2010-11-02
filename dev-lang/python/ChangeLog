@@ -1,6 +1,13 @@
 # ChangeLog for dev-lang/python
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/ChangeLog,v 1.498 2010/10/13 09:28:57 djc Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/ChangeLog,v 1.500 2010/10/27 13:07:07 djc Exp $
+
+  27 Oct 2010; Dirkjan Ochtman <djc@gentoo.org> -python-2.6.4-r1.ebuild,
+  -python-2.6.5-r2.ebuild, -python-3.1.2-r3.ebuild:
+  Remove old versions.
+
+  27 Oct 2010; Dirkjan Ochtman <djc@gentoo.org> python-2.6.6-r1.ebuild:
+  Disable test___all__ to fix bug 321075.
 
   13 Oct 2010; Dirkjan Ochtman <djc@gentoo.org> python-2.6.6-r1.ebuild:
   Use mirrors for the patch set.

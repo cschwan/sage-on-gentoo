@@ -36,8 +36,9 @@ for dst in dev-lang/python/*.ebuild; do
  	sed -i -e "s:@@GENTOO_LIBDIR@@:$(get_libdir):g" \
 
 EOF
-        sed -i 's/^IUSE="/IUSE="sage /' "${dst}"
-	sed -i 's/^KEYWORDS="/KEYWORDS="~x86-linux /' "${dst}"
+        sed -i 's/^IUSE="/IUSE="sage /;
+		s/^KEYWORDS="\(.*\)"/KEYWORDS="\1 ~amd64-linux ~x86-linux"/;
+               ' "${dst}"
         if [[ $(grep '^IUSE="sage ' ${dst} | wc -l) -ne 1 ]]; then
             echo "Sed didn't apply cleanly to ${dst}" >&2
             exit 1
