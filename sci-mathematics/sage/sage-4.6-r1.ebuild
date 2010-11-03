@@ -158,7 +158,7 @@ src_prepare() {
 		|| die "failed to patch pari/pari24 includes in sage/rings/fast_arith.pyx"
 
 	sed -e "s:gp --emacs --quiet --stacksize:gp-2.4 --emacs --quiet --stacksize:" \
-		-e 's:\'%s/local/etc/gprc.expect\'%SAGE_ROOT:/etc/gprc.expect\': \
+		-e "s:%s/local/etc/gprc.expect'%SAGE_ROOT:${EPREFIX}/etc/gprc.expect':" \
 		-i sage/interfaces/gp.py || die "failed to patch interfaces/gp.py"
 
 	# remove annoying std=c99 from a c++ file.
