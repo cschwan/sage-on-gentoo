@@ -8,7 +8,7 @@ inherit autotools-utils
 
 DESCRIPTION="A modified version of GiNaC that replaces the dependency on CLN by Python"
 HOMEPAGE="http://pynac.sagemath.org/"
-SRC_URI="mirror://sage/spkg/standard/${MY_P}.spkg -> ${P}.tar.bz2"
+SRC_URI="mirror://sage/spkg/standard/${P}.spkg -> ${P}.tar.bz2"
 
 LICENSE="GPL-2"
 SLOT="0"
