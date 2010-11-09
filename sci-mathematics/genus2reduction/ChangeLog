@@ -2,6 +2,10 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  09 Nov 2010; François Bissey <f.r.bissey@massey.ac.nz>
+  -genus2reduction-0.3_p6.ebuild, -files/genus2reduction-0.3.p2.patch:
+  remove old
+
   01 Nov 2010; François Bissey <f.r.bissey@massey.ac.nz>
   genus2reduction-0.3_p8.ebuild:
   updated SRC_URI

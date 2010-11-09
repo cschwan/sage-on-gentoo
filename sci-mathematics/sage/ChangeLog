@@ -2,6 +2,14 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  09 Nov 2010; François Bissey <f.r.bissey@massey.ac.nz>
+  -files/sage-4.5.1-fix-SAGE_LOCAL.patch, -sage-4.5.3.ebuild:
+  remove old patch
+
+  09 Nov 2010; François Bissey <f.r.bissey@massey.ac.nz>
+  -sage-4.5.3.ebuild:
+  remove old
+
   03 Nov 2010; François Bissey <f.r.bissey@massey.ac.nz> sage-4.6.ebuild,
   sage-4.6-r1.ebuild, sage-4.6.1_alpha0.ebuild:
   Make gprc.expect respect prefix in 4.6+
