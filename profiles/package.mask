@@ -7,3 +7,8 @@
 >=sci-mathematics/sage-doc-4.6.1_alpha0
 # Ongoing work there, do not touch before it has been properly tested.
 =sci-chemistry/jmol-11.8.25
+# The new version in the tree is not compatible, works to be done there.
+>=sci-mathematics/singular-3.1.2
+# Not compatible with sage
+>=dev-lang/R-2.12.0
+
