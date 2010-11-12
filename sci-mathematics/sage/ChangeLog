@@ -4,6 +4,10 @@
 
   12 Nov 2010; François Bissey <f.r.bissey@massey.ac.nz>
   sage-4.6.1_alpha0.ebuild:
+  Hopefully I am done with glpk.
+
+  12 Nov 2010; François Bissey <f.r.bissey@massey.ac.nz>
+  sage-4.6.1_alpha0.ebuild:
   new fix for glpk rewrite
 
   12 Nov 2010; François Bissey <f.r.bissey@massey.ac.nz>

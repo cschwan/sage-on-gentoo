@@ -274,9 +274,10 @@ src_prepare() {
 		|| die "failed to patch cython.py for ATLAS"
 
 	# patch for glpk
-	sed -e "s:\.\./\.\./\.\./\.\./devel/sage/sage:..:g" \
-		-i sage/numerical/backends/glpk_backend.pxd \
-		sage/numerical/backends/cplex_backend.pxd || die "failed to patch mip_glpk.pyx"
+	sed -i \
+		-e "s:\.\./\.\./\.\./\.\./devel/sage/sage:..:g" \
+		-e "s:\.\./\.\./\.\./local:/usr:g" \
+		sage/numerical/backends/glpk_backend.pxd || die "failed to patch glpk backend"
 
 	# Ticket #5155:
 
