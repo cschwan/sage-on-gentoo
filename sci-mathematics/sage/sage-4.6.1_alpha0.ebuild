@@ -193,6 +193,10 @@ src_prepare() {
 		-e "s:sage/c_lib/include/:${EPREFIX}/usr/include/csage/:g" \
 		module_list.py || die "failed to patch paths for libraries"
 
+	# fix library path for glpk
+	sed -i -e "s:SAGE_ROOT+\"/local/lib/:SAGE_LOCAL + \"/lib/:" \
+		module_list.py || die "failed to patch paths for glpk"
+
 	sed -i "s:'%s/sage/sage/ext'%SAGE_DEVEL:'sage/ext':g" \
 		setup.py || die "failed to patch extensions path"
 
@@ -233,10 +237,6 @@ src_prepare() {
 		-e "s:,BLAS:,${cblaslibs}:g" \
 		module_list.py || die "failed to patch module_list.py for ATLAS"
 
-	# enable glpk
-	sed -i "s:is_package_installed('glpk'):True:g" module_list.py \
-		|| die "failed to enable glpk"
-
 	# TODO: why does Sage fail with linbox commentator ?
 
 	############################################################################
@@ -273,12 +273,10 @@ src_prepare() {
 	sed -i "s:cblas(), atlas():${cblaslibs}:" sage/misc/cython.py \
 		|| die "failed to patch cython.py for ATLAS"
 
-	# patch for optional glpk
-	sed -i "s:\.\./\.\./local/include/glpk\.h:${EPREFIX}/usr/include/glpk.h:g" \
-		sage/numerical/mip_glpk.pxd || die "failed to patch mip_glpk.pxd"
-
-	sed -i "s:\.\./\.\./\.\./\.\./devel/sage/sage:..:g" \
-		sage/numerical/mip_glpk.pyx || die "failed to patch mip_glpk.pyx"
+	# patch for glpk
+	sed -e "s:\.\./\.\./\.\./\.\./devel/sage/sage:..:g" \
+		-i sage/numerical/backends/glpk_backend.pxd \
+		sage/numerical/backends/cplex_backend.pxd || die "failed to patch mip_glpk.pyx"
 
 	# Ticket #5155:
 
