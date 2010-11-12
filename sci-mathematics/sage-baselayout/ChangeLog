@@ -2,6 +2,11 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  12 Nov 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
+  sage-baselayout-4.6.1_alpha0.ebuild,
+  +files/sage-baselayout-4.6.1_alpha0-gentooify-startup-script.patch:
+  Added updated gentooify patch
+
   12 Nov 2010; François Bissey <f.r.bissey@massey.ac.nz>
   sage-baselayout-4.6.1_alpha0.ebuild:
   use maxima-5.22.1 in 4.6.1.alpha0
