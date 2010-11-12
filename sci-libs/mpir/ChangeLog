@@ -2,6 +2,13 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*mpir-2.1.3 (12 Nov 2010)
+
+  12 Nov 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
+  mpir-2.1.2.ebuild, +mpir-2.1.3.ebuild:
+  Added mpir-2.1.3 imported from tomka's repository and migrated it to
+  autotools-utils.eclass. Also removed the (now) useless echos
+
 *mpir-2.1.2 (12 Sep 2010)
 
   12 Sep 2010; François Bissey <f.r.bissey@massey.ac.nz>

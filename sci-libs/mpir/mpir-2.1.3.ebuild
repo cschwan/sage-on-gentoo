@@ -4,7 +4,7 @@
 
 EAPI="3"
 
-inherit eutils autotools
+inherit autotools-utils
 
 DESCRIPTION="MPIR is a library for arbitrary precision integer arithmetic derived from version 4.2.1 of gmp"
 HOMEPAGE="http://www.mpir.org/"
@@ -14,15 +14,20 @@ RESTRICT="mirror"
 LICENSE="LGPL-3"
 SLOT="0"
 KEYWORDS="~amd64 ~ppc ~x86 ~amd64-linux ~x86-linux"
-IUSE="+cxx cpudetection"
+IUSE="+cxx cpudetection static-libs"
 
-DEPEND="x86? ( dev-lang/yasm )
-	amd64? ( dev-lang/yasm )"
+DEPEND=""
 RDEPEND=""
 
+DOCS=( ChangeLog README NEWS )
+PATCHES=(
+	"${FILESDIR}/${PN}-2.0.0-yasm.patch"
+	"${FILESDIR}/${PN}-1.3.0-ABI-multilib.patch"
+)
+
 src_prepare(){
-	epatch "${FILESDIR}/${PN}-2.0.0-yasm.patch"
-	epatch "${FILESDIR}/${PN}-1.3.0-ABI-multilib.patch"
+	autotools-utils_src_prepare
+
 	# FIXME: In the same way there was QA regarding executable stacks
 	#        with GMP we have some here as well. We cannot apply the
 	#        GMP solution as yasm is used, at least on x86/amd64.
@@ -30,12 +35,8 @@ src_prepare(){
 
 	ebegin "Patching assembler files to remove executable sections"
 
-	# TODO: report this to upstream
-	# TODO: apply patch for all files ?
-	# TODO: why does the as-style patch work (does mpir really use yasm ??)
 	for i in $(find . -type f -name '*.asm') ; do
-		echo $i >/dev/null
-		cat >> "${i}" <<-EOF
+		cat >> $i <<-EOF
 			#if defined(__linux__) && defined(__ELF__)
 			.section .note.GNU-stack,"",%progbits
 			#endif
@@ -43,8 +44,7 @@ src_prepare(){
 	done
 
 	for i in $(find . -type f -name '*.as') ; do
-		echo $i >/dev/null
-		cat >> "${i}" <<-EOF
+		cat >> $i <<-EOF
 			%ifidn __OUTPUT_FORMAT__,elf
 			section .note.GNU-stack noalloc noexec nowrite progbits
 			%endif
@@ -57,17 +57,15 @@ src_prepare(){
 }
 
 src_configure() {
-# beware that cpudetection aka fat binaries is x86/amd64 only.
-# Place mpir in profiles/arch/$arch/package.use.mask when making it available on $arch.
-	econf \
-		$(use_enable cxx) \
-		$(use_enable cpudetection fat) \
-		|| "econf failed"
-}
+	# beware that cpudetection aka fat binaries is x86/amd64 only.
+	# Place mpir in profiles/arch/$arch/package.use.mask when making it
+	# available on $arch.
+	myeconfargs=(
+		$(use_enable cxx)
+		$(use_enable cpudetection fat)
+	)
 
-src_install() {
-	emake DESTDIR="${D}" install || die
-	dodoc ChangeLog README NEWS || die
+	autotools-utils_src_configure
 }
 
 pkg_postinst() {
