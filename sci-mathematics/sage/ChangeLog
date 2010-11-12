@@ -3,6 +3,10 @@
 # $Header: $
 
   12 Nov 2010; François Bissey <f.r.bissey@massey.ac.nz>
+  sage-4.6.1_alpha0.ebuild:
+  Restore keywords in 4.6.1.alpha0
+
+  12 Nov 2010; François Bissey <f.r.bissey@massey.ac.nz>
   sage-4.6.1_alpha0.ebuild, +files/trac-8898_unix-endlines.patch:
   apply trac #8898 patch for testing. Hopefully will get included in 4.6.1
   final.

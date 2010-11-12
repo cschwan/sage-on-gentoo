@@ -18,7 +18,7 @@ RESTRICT="mirror"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS=""
+KEYWORDS="~amd64 ~ppc ~x86 ~amd64-linux ~x86-linux"
 IUSE=""
 
 RESTRICT="mirror"
