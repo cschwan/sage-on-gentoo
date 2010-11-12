@@ -2,6 +2,11 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  12 Nov 2010; François Bissey <f.r.bissey@massey.ac.nz>
+  sage-4.6.1_alpha0.ebuild, +files/trac-8898_unix-endlines.patch:
+  apply trac #8898 patch for testing. Hopefully will get included in 4.6.1
+  final.
+
   09 Nov 2010; François Bissey <f.r.bissey@massey.ac.nz>
   -files/sage-4.5.1-fix-SAGE_LOCAL.patch, -sage-4.5.3.ebuild:
   remove old patch

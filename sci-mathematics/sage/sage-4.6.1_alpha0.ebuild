@@ -291,10 +291,8 @@ src_prepare() {
 	# Ticket #8898:
 
 	# make sure line endings are unix ones so as not to confuse python-2.6.5
-	edos2unix sage/libs/mpmath/ext_impl.pxd
-	edos2unix sage/libs/mpmath/ext_main.pyx
-	edos2unix sage/libs/mpmath/ext_main.pxd
-	edos2unix sage/libs/mpmath/ext_libmp.pyx
+	# apply patch from ticket #8898
+	epatch "${FILESDIR}"/trac-8898_unix-endlines.patch
 
 	# replace SAGE_ROOT/local with SAGE_LOCAL
 	epatch "${FILESDIR}"/${PN}-4.6-fix-SAGE_LOCAL.patch
