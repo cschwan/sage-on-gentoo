@@ -89,7 +89,7 @@ RDEPEND="${CDEPEND}
 	>=sci-mathematics/cu2-20060223
 	>=sci-mathematics/cubex-20060128
 	>=sci-mathematics/dikcube-20070912_p12
-	~sci-mathematics/maxima-5.20.1[ecl]
+	~sci-mathematics/maxima-5.22.1[ecls]
 	>=sci-mathematics/mcube-20051209
 	>=sci-mathematics/optimal-20040603
 	>=sci-mathematics/palp-1.1
@@ -170,6 +170,11 @@ src_prepare() {
 	if use ppc ; then
 		epatch "${FILESDIR}"/${PN}-4.5.2-ecls_ppc.patch
 	fi
+
+	# upgrade to maxima-5.22.1 ticket #10187
+	epatch "${FILESDIR}"/trac_10187_maxima-doctests.patch
+	epatch "${FILESDIR}"/trac_10187_maxima-upgrade.patch
+
 
 	# use already installed csage
 	rm -rf c_lib || die "failed to remove c library directory"

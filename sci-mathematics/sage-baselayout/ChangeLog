@@ -4,6 +4,10 @@
 
   12 Nov 2010; François Bissey <f.r.bissey@massey.ac.nz>
   sage-baselayout-4.6.1_alpha0.ebuild:
+  use maxima-5.22.1 in 4.6.1.alpha0
+
+  12 Nov 2010; François Bissey <f.r.bissey@massey.ac.nz>
+  sage-baselayout-4.6.1_alpha0.ebuild:
   restore keywords to 4.6.1.alpha0
 
   09 Nov 2010; François Bissey <f.r.bissey@massey.ac.nz>
