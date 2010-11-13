@@ -13,6 +13,11 @@
   -sage-clib-4.6.1_alpha0.ebuild, +sage-clib-4.6.1_alpha1.ebuild:
   bump to alpha1
 
+  13 Nov 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
+  sage-clib-4.6.ebuild, sage-clib-4.6.1_alpha0.ebuild:
+  Fixed SAGE_LOCAL, removed TODO concerning mpir and removed
+  superfluous RESTRICT="mirror"
+
   12 Nov 2010; François Bissey <f.r.bissey@massey.ac.nz>
   sage-clib-4.6.1_alpha0.ebuild:
   restore keywords for 4.6.1.alpha0

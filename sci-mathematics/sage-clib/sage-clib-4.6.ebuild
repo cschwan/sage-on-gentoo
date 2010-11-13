@@ -11,7 +11,6 @@ MY_P="sage-${PV}"
 DESCRIPTION="Sage's C library"
 HOMEPAGE="http://www.sagemath.org"
 SRC_URI="mirror://sage/spkg/standard/${MY_P}.spkg -> sage-${PV}.tar.bz2"
-RESTRICT="mirror"
 
 LICENSE="GPL-2"
 SLOT="0"
@@ -36,13 +35,11 @@ src_prepare() {
 
 	# Use pari-2.4
 	sed -i "s:pari/:pari24/:" include/convert.h || die "failed to use pari2.4 headers"
-
-	# TODO: write new mpir patch ?
 }
 
 src_compile() {
 	# build libcsage.so
-	CXX= SAGE_LOCAL=/usr UNAME=$(uname) escons || die
+	CXX= SAGE_LOCAL="${EPREFIX}"/usr UNAME=$(uname) escons || die
 }
 
 src_install() {
