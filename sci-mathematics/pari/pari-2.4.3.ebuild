@@ -41,8 +41,6 @@ get_compile_dir() {
 }
 
 src_prepare() {
-	# remove data shipped with sage's svn snapshot of pari
-	rm -rf data/*
 	# move data into place
 	if use data; then
 		mv "${WORKDIR}"/data "${S}" || die "failed to move data"
@@ -69,7 +67,7 @@ src_prepare() {
 		doc/gphelp.in || die "Failed to fix doc dir"
 
 	# in pari-2.4 usersch3.tex is generated
-	rm -f doc/usersch3.tex
+	rm -f doc/usersch3.tex || die
 
 	# slot everything, remove tex2mail to avoid clash with 2.3
 	epatch "${FILESDIR}/${PN}"-2.4.3-MakefileSH.patch
@@ -82,7 +80,7 @@ src_prepare() {
 src_configure() {
 	tc-export CC
 	# need to force optimization here, as it breaks without
-	if   is-flag -O0; then
+	if is-flag -O0; then
 		replace-flags -O0 -O2
 	elif ! is-flag -O?; then
 		append-flags -O2
@@ -135,11 +133,11 @@ src_install() {
 	fi
 
 	# Do documentation last as we will change directory for the examples.
-	dodoc AUTHORS Announce.2.1 CHANGES README NEW MACHINES COMPAT
+	dodoc AUTHORS Announce.2.1 CHANGES README NEW MACHINES COMPAT || die
 	if use doc; then
 		# install gphelp and the pdf documentations manually.
 		# the install-doc target is overkill.
-		newbin doc/gphelp gphelp-2.4
+		newbin doc/gphelp gphelp-2.4 || die
 		insinto /usr/share/doc/${PF}
 		doins doc/*.pdf || die "Failed to install pdf docs"
 		# gphelp looks for some of the tex sources...
@@ -155,13 +153,12 @@ src_install() {
 
 	if use sage; then
 		insinto /etc
-		doins "${FILESDIR}"/gprc.expect
+		doins "${FILESDIR}"/gprc.expect || die
 	fi
 }
 
 pkg_postinst(){
-	ewarn "This version of pari is a svn snapshot used in the sage project."
-	ewarn "It is installed in its own slot, so you can use the stable pari in parallel."
+	ewarn "Pari 2.4 is installed in its own slot, so you can use the stable pari in parallel."
 	ewarn "The default pari is the stable one, if you want to use this version of pari"
 	ewarn "you have to explicitly require it."
 	ewarn "The executable is gp-2.4, gp is a reserved link for pari-2.3.xx."
