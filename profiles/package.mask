@@ -5,6 +5,7 @@
 >=sci-mathematics/sage-extcode-4.6.1_alpha0
 >=sci-mathematics/sage-examples-4.6.1_alpha0
 >=sci-mathematics/sage-doc-4.6.1_alpha0
+>=sci-mathematics/sage-notebook-0.8.8
 # Ongoing work there, do not touch before it has been properly tested.
 =sci-chemistry/jmol-11.8.25
 # The new version in the tree is not compatible, works to be done there.
