@@ -2,6 +2,13 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*sage-baselayout-4.6.1_alpha1 (13 Nov 2010)
+
+  13 Nov 2010; François Bissey <f.r.bissey@massey.ac.nz>
+  -sage-baselayout-4.6.1_alpha0.ebuild,
+  +sage-baselayout-4.6.1_alpha1.ebuild:
+  bump to alpha1
+
   12 Nov 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
   sage-baselayout-4.6.1_alpha0.ebuild,
   +files/sage-baselayout-4.6.1_alpha0-gentooify-startup-script.patch:
