@@ -31,20 +31,19 @@ for dst in dev-lang/python/*.ebuild; do
 
 	# add patch for Sage
 	patch --quiet --no-backup-if-mismatch -l "${dst}" <<-'EOF'
---- python.ebuild
-+++ python.ebuild
-@@ -81,3 +80,10 @@
-	    EPATCH_SUFFIX="patch" epatch "${WORKDIR}/${PV}"
+		--- python.ebuild
+		+++ python.ebuild
+		@@ -81,3 +80,10 @@
+		    EPATCH_SUFFIX="patch" epatch "${WORKDIR}/${PV}"
 
-	+	if use sage; then
-	+		# patch pickle for sage http://bugs.python.org/issue7689
-	+		epatch "${FILESDIR}/dynamic_class_copyreg_py.patch"
-	+		EPATCH_OPTS="${EPATCH_OPTS} -l" \
-	+			epatch "${FILESDIR}/dynamic_class_copyreg_c.patch"
-	+	fi
-	+
-	    sed -i -e "s:@@GENTOO_LIBDIR@@:$(get_libdir):g" \
-
+		+	if use sage; then
+		+		# patch pickle for sage http://bugs.python.org/issue7689
+		+		epatch "${FILESDIR}/dynamic_class_copyreg_py.patch"
+		+		EPATCH_OPTS="${EPATCH_OPTS} -l" \
+		+			epatch "${FILESDIR}/dynamic_class_copyreg_c.patch"
+		+	fi
+		+
+		    sed -i -e "s:@@GENTOO_LIBDIR@@:$(get_libdir):g" \
 	EOF
 
 	# add "sage" USE flag
