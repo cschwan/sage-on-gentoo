@@ -192,6 +192,10 @@ src_prepare() {
 		-e "s:SAGE_ROOT[[:space:]]*+[[:space:]]*\([\'\"]\)/local/include/\([^\1]*\)\1:SAGE_LOCAL + \1/include/\2\1:g" \
 		-e "s:sage/c_lib/include/:${EPREFIX}/usr/include/csage/:g" \
 		module_list.py || die "failed to patch paths for libraries"
+	# second pass for lines where there are two instances
+	sed -i \
+		-e "s:SAGE_ROOT[[:space:]]*+[[:space:]]*\([\'\"]\)/local/include/\([^\1]*\)\1:SAGE_LOCAL + \1/include/\2\1:g" \
+		module_list.py || die "failed to patch paths for libraries 2"
 
 	# fix library path for glpk
 	sed -i -e "s:SAGE_ROOT+\"/local/lib/:SAGE_LOCAL + \"/lib/:" \
@@ -205,7 +209,7 @@ src_prepare() {
 		module_list.py || die "failed to patch png library name"
 
 	# fix numpy path
-	sed -i "s:SAGE_ROOT+'/local/lib/python/site-packages/numpy/core/include':'${EPREFIX}$(python_get_sitedir)/numpy/core/include':g" \
+	sed -i "s:SAGE_LOCAL + '/local/lib/python/site-packages/numpy/core/include':'${EPREFIX}$(python_get_sitedir)/numpy/core/include':g" \
 		module_list.py || die "failed to patch path for numpy include directory"
 
 	# fix cython path
