@@ -4,6 +4,10 @@
 
   14 Nov 2010; François Bissey <f.r.bissey@massey.ac.nz>
   sage-4.6.1_alpha1.ebuild:
+  more numpy touch up.
+
+  14 Nov 2010; François Bissey <f.r.bissey@massey.ac.nz>
+  sage-4.6.1_alpha1.ebuild:
   numpy and other headers fix in 4.6.1.alpha1
 
   13 Nov 2010; François Bissey <f.r.bissey@massey.ac.nz>

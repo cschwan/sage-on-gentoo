@@ -208,8 +208,8 @@ src_prepare() {
 	sed -i "s:png12:$(libpng-config --libs | cut -dl -f2):g" \
 		module_list.py || die "failed to patch png library name"
 
-	# fix numpy path
-	sed -i "s:SAGE_LOCAL + '/local/lib/python/site-packages/numpy/core/include':'${EPREFIX}$(python_get_sitedir)/numpy/core/include':g" \
+	# fix numpy path (final quote removed to catch numpy_include_dirs and numpy_depends)
+	sed -i "s:SAGE_LOCAL + '/lib/python/site-packages/numpy/core/include:'${EPREFIX}$(python_get_sitedir)/numpy/core/include:g" \
 		module_list.py || die "failed to patch path for numpy include directory"
 
 	# fix cython path
