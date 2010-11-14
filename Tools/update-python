@@ -63,3 +63,5 @@ done
 # add description for sage USE flag
 sed -i 's:</use>:\t<flag name="sage">Apply fix for issue7689'\
 ' required by sage.</flag>\n</use>:' dev-lang/python/metadata.xml
+
+ebuild "${lastKeptEbuild}" manifest
