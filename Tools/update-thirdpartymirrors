@@ -1,12 +1,23 @@
 #!/bin/env python
 # -*- coding: utf-8 -*-
 
+from shlex import split
+from subprocess import Popen, PIPE
+from os.path import join
 from urllib import urlopen
 
-mirrorfile = open('../profiles/thirdpartymirrors', 'w')
+# get sage-on-gentoo overlay root directory
+directory = split(Popen(['portageq', 'get_repo_path', '/', 'sage-on-gentoo'],
+	stdout=PIPE).communicate()[0])[0]
+
+# join file we want to edit
+filepath = join(directory + '/', 'profiles/thirdpartymirrors')
+
+mirrorfile = open(filepath, 'w')
 mirrorfile.write('sage\t\t')
 
-servers = eval(urlopen('http://www.sagemath.org/mirror_list').read())
+# get list of servers - sort the result to make it more stable
+servers = sorted(eval(urlopen('http://www.sagemath.org/mirror_list').read()))
 
 # write first entry without space
 mirrorfile.write(servers.pop(0))

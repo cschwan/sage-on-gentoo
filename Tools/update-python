@@ -3,7 +3,7 @@
 set -e
 
 # change to root of sage tree
-cd "$(dirname "$0")/.."
+cd "$(portageq get_repo_path / sage-on-gentoo)"
 
 IFS=$'\n'
 pre=( $(find dev-lang/python -type f | \
