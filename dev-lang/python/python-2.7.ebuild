@@ -81,7 +81,7 @@ src_prepare() {
 
 	EPATCH_SUFFIX="patch" epatch "${WORKDIR}/${PV}"
 
-       if use sage; then
+	if use sage; then
 		# patch pickle for sage http://bugs.python.org/issue7689
 		epatch "${FILESDIR}/dynamic_class_copyreg_py.patch"
 		EPATCH_OPTS="${EPATCH_OPTS} -l" \

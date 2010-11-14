@@ -82,7 +82,7 @@ src_prepare() {
 	# Avoid regeneration, which would not change contents of files.
 	touch Include/Python-ast.h Python/Python-ast.c
 
-       if use sage; then
+	if use sage; then
 		# patch pickle for sage http://bugs.python.org/issue7689
 		epatch "${FILESDIR}/dynamic_class_copyreg_py.patch"
 		EPATCH_OPTS="${EPATCH_OPTS} -l" \

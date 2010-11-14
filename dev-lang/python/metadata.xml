@@ -6,6 +6,6 @@
 	<flag name="threads">Enable threading support. (DON'T DISABLE THIS UNLESS YOU KNOW WHAT YOU'RE DOING)</flag>
 	<flag name="wide-unicode">Enable wide Unicode implementation which uses 4-byte Unicode characters. Switching of this USE flag changes ABI of Python and requires reinstallation of many Python modules. (DON'T DISABLE THIS UNLESS YOU KNOW WHAT YOU'RE DOING)</flag>
 	<flag name="wininst">Install Windows executables required to create an executable installer for MS Windows.</flag>
-	<flag name="sage">Apply fix for issue7689 reuired by sage.</flag>
+	<flag name="sage">Apply fix for issue7689 required by sage.</flag>
 </use>
 </pkgmetadata>
