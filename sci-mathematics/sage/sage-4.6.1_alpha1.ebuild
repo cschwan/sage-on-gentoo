@@ -23,7 +23,7 @@ S="${WORKDIR}/${SAGE_P}"
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64 ~ppc ~x86 ~amd64-linux ~x86-linux"
-IUSE="examples latex testsuite X"
+IUSE="examples mpc latex testsuite X"
 
 CDEPEND="dev-libs/gmp
 	>=dev-libs/mpfr-2.4.2
@@ -56,7 +56,8 @@ CDEPEND="dev-libs/gmp
 	media-libs/libpng
 	>=sys-libs/readline-6.0
 	sys-libs/zlib
-	virtual/cblas"
+	virtual/cblas
+	mpc? ( dev-libs/mpc )"
 
 DEPEND="${CDEPEND}
 	=dev-python/cython-0.13*"
@@ -325,6 +326,12 @@ src_prepare() {
 		-e "s:'wave0.sobj':tmp_filename('wave0')+'.sobj':g" \
 		-e "s:'wave1.sobj':tmp_filename('wave1')+'.sobj':g" \
 		sage/plot/animate.py
+
+	# enable dev-libs/mpc if required
+	if use mpc ; then
+		sed -i "s:is_package_installed('mpc'):True:g" module_list.py \
+			|| die "failed to enable dev-libs/mpc"
+	fi
 
 	# do not forget to run distutils
 	distutils_src_prepare
