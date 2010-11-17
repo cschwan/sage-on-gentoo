@@ -37,7 +37,7 @@ RESTRICT="mirror"
 
 # TODO: depend on sage-baselayout (creates sage-main directory) ?
 DEPEND=""
-RDEPEND=">=dev-python/sphinx-0.6.3"
+RDEPEND=">=dev-python/sphinx-1.0.4"
 
 S="${WORKDIR}/${MY_P}/doc"
 

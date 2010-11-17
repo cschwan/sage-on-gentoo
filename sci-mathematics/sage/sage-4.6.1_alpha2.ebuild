@@ -75,7 +75,7 @@ RDEPEND="${CDEPEND}
 	>=dev-python/pycrypto-2.1.0
 	>=dev-python/python-gnutls-1.1.4
 	>=dev-python/rpy-2.0.6
-	>=dev-python/sphinx-0.6.3
+	>=dev-python/sphinx-1.0.4
 	dev-python/sqlalchemy
 	~dev-python/sympy-0.6.6
 	>=media-gfx/tachyon-0.98
@@ -100,7 +100,7 @@ RDEPEND="${CDEPEND}
 	~sci-mathematics/sage-data-polytopes_db-20100210
 	>=sci-mathematics/sage-doc-${PV}
 	~sci-mathematics/sage-extcode-${PV}
-	~sci-mathematics/sage-notebook-0.8.8
+	~sci-mathematics/sage-notebook-0.8.9
 	>=sci-mathematics/sympow-1.018.1_p8
 	examples? ( ~sci-mathematics/sage-examples-${PV} )
 	testsuite? (
