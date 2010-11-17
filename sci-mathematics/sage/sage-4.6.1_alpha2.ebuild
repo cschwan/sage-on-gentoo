@@ -276,7 +276,7 @@ src_prepare() {
 	# patch for glpk
 	sed -i \
 		-e "s:\.\./\.\./\.\./\.\./devel/sage/sage:..:g" \
-		-e "s:\.\./\.\./\.\./local:/usr:g" \
+		-e "s:\.\./\.\./\.\./local/include/::g" \
 		sage/numerical/backends/glpk_backend.pxd || die "failed to patch glpk backend"
 
 	# Ticket #5155:
