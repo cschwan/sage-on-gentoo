@@ -5,7 +5,7 @@
 EAPI="3"
 
 #MY_P="examples-${PV}"
-SAGE_PV="4.6.1.alpha1"
+SAGE_PV="4.6.1.alpha2"
 SAGE_DIR="sage-${SAGE_PV}"
 MY_P="examples-${SAGE_PV}"
 

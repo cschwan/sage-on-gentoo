@@ -2,6 +2,10 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  17 Nov 2010; François Bissey <f.r.bissey@massey.ac.nz>
+  -sage-notebook-0.8.8.ebuild:
+  remove "old"
+
 *sage-notebook-0.8.9 (15 Nov 2010)
 
   15 Nov 2010; François Bissey <f.r.bissey@massey.ac.nz>

@@ -2,6 +2,13 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*sage-4.6.1_alpha2 (17 Nov 2010)
+
+  17 Nov 2010; François Bissey <f.r.bissey@massey.ac.nz>
+  -sage-4.6.1_alpha1.ebuild, +sage-4.6.1_alpha2.ebuild,
+  -files/trac-8898_unix-endlines.patch:
+  bump to alpha2
+
   15 Nov 2010; François Bissey <f.r.bissey@massey.ac.nz>
   sage-4.6.1_alpha1.ebuild, metadata.xml:
   Add useflag to build dev-libs/mpc extension

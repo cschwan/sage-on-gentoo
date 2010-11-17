@@ -41,11 +41,6 @@ RDEPEND=">=dev-python/sphinx-0.6.3"
 
 S="${WORKDIR}/${MY_P}/doc"
 
-src_prepare() {
-	# Patch the tests in the documentation to use cvxopt-1.1.2
-	epatch "${FILESDIR}"/${PN}-cvxopt-1.1.2.patch
-}
-
 src_install() {
 	# install missing directories to satisfy builder.py test
 	dodir /usr/share/sage/devel/sage-main/doc/output/doctrees/en/tutorial || die

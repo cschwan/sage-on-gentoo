@@ -2,6 +2,12 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*sage-examples-4.6.1_alpha2 (17 Nov 2010)
+
+  17 Nov 2010; François Bissey <f.r.bissey@massey.ac.nz>
+  -sage-examples-4.6.1_alpha1.ebuild, +sage-examples-4.6.1_alpha2.ebuild:
+  bump to alpha2
+
 *sage-examples-4.6.1_alpha1 (13 Nov 2010)
 
   13 Nov 2010; François Bissey <f.r.bissey@massey.ac.nz>
