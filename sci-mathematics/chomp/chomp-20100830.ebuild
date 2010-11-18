@@ -29,8 +29,7 @@ src_compile() {
 	append-cxxflags -ansi -pedantic -Wall
 
 	# circumvent parallel build failure and use our toolchain
-	# need to set the target to unx
-	base_src_compile -j1 unx CXX=$(tc-getCXX) COMPILE="$(tc-getCXX) ${CXXFLAGS}" \
+	base_src_compile -j1 CXX=$(tc-getCXX) COMPILE="$(tc-getCXX) ${CXXFLAGS}" \
 		LINK="$(tc-getCXX) ${LDFLAGS}" LINKGUI="$(tc-getCXX) ${LDFLAGS}"
 }
 
