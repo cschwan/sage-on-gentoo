@@ -1,6 +1,7 @@
 dev-lang/python:2.6         sqlite sage
 dev-lang/R                  lapack
 dev-lisp/ecls               -unicode
+dev-python/cvxopt	    glpk
 dev-python/numpy            lapack
 media-libs/gd               jpeg png
 sci-libs/flint              ntl
