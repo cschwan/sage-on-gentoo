@@ -4,6 +4,10 @@
 
   18 Nov 2010; François Bissey <f.r.bissey@massey.ac.nz>
   chomp-20100830.ebuild:
+  more changes to S
+
+  18 Nov 2010; François Bissey <f.r.bissey@massey.ac.nz>
+  chomp-20100830.ebuild:
   set make target to unx for now
 
   18 Nov 2010; François Bissey <f.r.bissey@massey.ac.nz>
