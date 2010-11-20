@@ -2,6 +2,10 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  20 Nov 2010; François Bissey <f.r.bissey@massey.ac.nz>
+  sage-4.6.1_alpha2.ebuild:
+  Real alpha2 release hopefully.
+
   18 Nov 2010; François Bissey <f.r.bissey@massey.ac.nz>
   sage-4.6.1_alpha2.ebuild:
   correct cvxopt/glpk dependency

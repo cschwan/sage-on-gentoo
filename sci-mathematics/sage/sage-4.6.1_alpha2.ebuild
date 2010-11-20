@@ -164,9 +164,6 @@ src_prepare() {
 		-e "s:%s/local/etc/gprc.expect'%SAGE_ROOT:${EPREFIX}/etc/gprc.expect':" \
 		-i sage/interfaces/gp.py || die "failed to patch interfaces/gp.py"
 
-	# remove annoying std=c99 from a c++ file.
-	epatch "${FILESDIR}"/${PN}-4.4.4-extra-stdc99.patch
-
 	# Fix ecls bug for ppc see #308909. This has to be done before sed is applied to module_list.py
 	if use ppc ; then
 		epatch "${FILESDIR}"/${PN}-4.5.2-ecls_ppc.patch
