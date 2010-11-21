@@ -2,6 +2,11 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*mpfi-1.5 (21 Nov 2010)
+
+  21 Nov 2010; François Bissey <f.r.bissey@massey.ac.nz> +mpfi-1.5.ebuild:
+  Bump to 1.5 - upstream reworked everything very nicely for us, see ebuild.
+
   08 Sep 2010; François Bissey <f.r.bissey@massey.ac.nz> metadata.xml:
   Fix metadata
 
