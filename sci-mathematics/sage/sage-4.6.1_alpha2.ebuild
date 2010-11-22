@@ -169,6 +169,10 @@ src_prepare() {
 		epatch "${FILESDIR}"/${PN}-4.5.2-ecls_ppc.patch
 	fi
 
+	# upgrade to maxima-5.22.1 ticket #10187
+	epatch "${FILESDIR}"/trac_10187_maxima-doctests.patch
+	epatch "${FILESDIR}"/trac_10187_maxima-upgrade.patch
+
 	# use already installed csage
 	rm -rf c_lib || die "failed to remove c library directory"
 
