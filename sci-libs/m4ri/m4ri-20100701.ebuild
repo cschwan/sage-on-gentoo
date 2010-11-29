@@ -25,7 +25,7 @@ DOCS=( AUTHORS README )
 pkg_setup() {
 	# TODO: there should be a better way to fix this
 	if use openmp ; then
-		append-ldflags -lgomp
+		append-libs -lgomp
 	fi
 }
 
