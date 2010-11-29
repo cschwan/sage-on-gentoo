@@ -13,7 +13,7 @@ or write a mail to the "gentoo-science" mailing list:
 
   http://www.gentoo.org/main/en/lists.xml
 
-An archive listing all mails may be found at:
+An archive listing past mails may be found at:
 
   http://archives.gentoo.org/gentoo-science/
 
@@ -22,7 +22,8 @@ QUICK INSTALLATION GUIDE
 
 1. *INSTALL AND CONFIGURE LAYMAN*:
    The preferred way of getting sage-on-gentoo is layman. Make sure layman is
-   installed and correctly configured. You may find a guide for layman at:
+   installed with USE=git and correctly configured. You may find a guide for
+   layman at:
 
      http://www.gentoo.org/proj/en/overlays/userguide.xml
 
@@ -35,14 +36,15 @@ QUICK INSTALLATION GUIDE
      layman -a sage-on-gentoo
 
 3. *UNMASK AND USE-FLAG EBUILDS*:
-   Before the installation you will need to unmask the required ebuilds. You
-   should use the following file which already contains all required entries:
+   Before being able to install you will need to unmask the required ebuilds.
+   You should use the following file which already contains all required
+   entries:
 
    ::
 
      sage-on-gentoo/packages.keywords/sage
 
-   For permanent unmasking place a symbolic link to this file into your
+   For permanent unmasking place a symbolic link to that file into your
    /etc/portage/package.keywords/ directory:
 
    ::
@@ -50,16 +52,16 @@ QUICK INSTALLATION GUIDE
      ln -s <path-to-layman>/sage-on-gentoo/package.keywords/sage \
            /etc/portage/package.keywords/sage
 
-   Since the Sage ebuild requires its dependencies to be built with several USE-
-   flags we provide a standard package.use file:
+   Since Sage's ebuild requires its dependencies to be built with several USE-
+   flags we provide a standard package.use file as well:
 
    ::
 
      ln -s <path-to-layman>/sage-on-gentoo/package.use/sage \
            /etc/portage/package.use/sage
 
-   <path-to-layman> is usually /usr/local/portage/layman, for layman 1.3.0 and
-   higher it is /var/lib/layman.
+   <path-to-layman> is usually /var/lib/layman (this path used to
+   /usr/local/portage/layman for older version of layman).
 
 4. *INSTALL SAGE*:
    Type
@@ -68,7 +70,7 @@ QUICK INSTALLATION GUIDE
 
      emerge -va sage
 
-   to install sage; note that this will pull in a lot of dependencies.
+   to install sage; please note that this will pull in a lot of dependencies.
 
 5. *UPDATE YOUR LOCAL OVERLAY*:
    To update your local copy of sage-on-gentoo simply type:
