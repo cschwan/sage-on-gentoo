@@ -23,9 +23,9 @@ RDEPEND=""
 DOCS=( AUTHORS README )
 
 pkg_setup() {
-	# TODO: is this really needed ? there should be a better way to fix this
+	# TODO: there should be a better way to fix this
 	if use openmp ; then
-		append-flags -lgomp
+		append-ldflags -lgomp
 	fi
 }
 
@@ -39,6 +39,7 @@ src_configure() {
 	# switch from yakuake to desktop
 	myeconfargs=(
 		$(use_enable openmp)
+		$(use_enable sse2)
 	)
 
 	autotools-utils_src_configure

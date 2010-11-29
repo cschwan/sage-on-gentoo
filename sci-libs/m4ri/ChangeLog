@@ -2,6 +2,10 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  29 Nov 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
+  m4ri-20100701.ebuild:
+  Fixed problem with missing openmp library and sse2 USE-flag
+
   02 Oct 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
   -m4ri-20100221.ebuild:
   Remove old ebuild
