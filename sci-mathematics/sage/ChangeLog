@@ -2,6 +2,10 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  29 Nov 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
+  sage-4.6.ebuild, sage-4.6-r1.ebuild, sage-4.6.1_alpha2.ebuild:
+  Adjusted dependencies on flintqs and libcliquer
+
   22 Nov 2010; François Bissey <f.r.bissey@massey.ac.nz>
   sage-4.6.1_alpha2.ebuild:
   maxima-5.22.1 has been unmerged from upstream alpha2, re-enabling
