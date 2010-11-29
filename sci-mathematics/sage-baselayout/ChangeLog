@@ -2,6 +2,13 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*sage-baselayout-4.6-r2 (29 Nov 2010)
+
+  29 Nov 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
+  +sage-baselayout-4.6-r2.ebuild:
+  Removed debug useflag. Thanks to Igor Poboiko for pointing us to that
+  QA issue!
+
   22 Nov 2010; François Bissey <f.r.bissey@massey.ac.nz>
   sage-baselayout-4.6.1_alpha2.ebuild:
   re-enabling maxima-5.22.1
