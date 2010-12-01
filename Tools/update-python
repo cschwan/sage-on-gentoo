@@ -19,7 +19,7 @@ cp -r /usr/portage/dev-lang/python dev-lang/
 for dst in dev-lang/python/*.ebuild; do
 	# filter ebuilds we dont need
 	case "${dst}" in
-		dev-lang/python/python-2.[6-9]*.ebuild)
+		dev-lang/python/python-2.6*.ebuild)
 			# keep this ebuild
 			lastKeptEbuild="${dst}"
 			;;
@@ -52,11 +52,6 @@ for dst in dev-lang/python/*.ebuild; do
 	# keyword for prefix
 	ekeyword ~amd64-linux "${dst}" &> /dev/null
 	ekeyword ~x86-linux "${dst}" &> /dev/null
-
-	if [[ $(grep '^IUSE="sage ' ${dst} | wc -l) -ne 1 ]]; then
-		echo "Sed didn't apply cleanly to ${dst}" >&2
-		exit 1
-	fi
 done
 
 # add description for sage USE flag
