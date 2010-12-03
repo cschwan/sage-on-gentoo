@@ -1,16 +1,15 @@
 #!/bin/bash
 
+# exit on error
 set -e
 
 # change to root of sage tree
-cd "$(portageq get_repo_path / sage-on-gentoo)"
+cd "$(dirname $0)/.."
 
-IFS=$'\n'
-pre=( $(find dev-lang/python -type f | \
-    grep -v dev-lang/python/files/dynamic_class_copyreg_.*\\.patch) )
+echo "using overlay at $(pwd)"
 
 # remove old files
-rm "${pre[@]}"
+find dev-lang/python -type f ! -name "*dynamic_class_copyreg*patch" -delete
 
 # copy new files
 cp -r /usr/portage/dev-lang/python dev-lang/
@@ -29,7 +28,7 @@ for dst in dev-lang/python/*.ebuild; do
 			;;
 	esac
 
-	# add patch for Sage
+	# patch ebuilds to include pickle patch
 	patch --quiet --no-backup-if-mismatch -l "${dst}" <<-'EOF'
 		--- python.ebuild
 		+++ python.ebuild
@@ -47,9 +46,15 @@ for dst in dev-lang/python/*.ebuild; do
 	EOF
 
 	# add "sage" USE flag
-	sed -i 's/^IUSE="/IUSE="sage /' "${dst}"
+	sed -i "s/IUSE=\([\"\']\)/IUSE=\1sage /" "${dst}"
 
-	# keyword for prefix
+	# check if USE flag was added correctly
+	if [[ $(grep "IUSE=[\"\']sage " ${dst} | wc -l) -ne 1 ]]; then
+		echo "Sed didn't apply cleanly to ${dst}" >&2
+		exit 1
+	fi
+
+	# add keywords for prefix
 	ekeyword ~amd64-linux "${dst}" &> /dev/null
 	ekeyword ~x86-linux "${dst}" &> /dev/null
 done
@@ -58,4 +63,5 @@ done
 sed -i 's:</use>:\t<flag name="sage">Apply fix for issue7689'\
 ' required by sage.</flag>\n</use>:' dev-lang/python/metadata.xml
 
-ebuild "${lastKeptEbuild}" manifest
+# regenerate manifest file
+ebuild "${lastKeptEbuild}" manifest &> /dev/null
