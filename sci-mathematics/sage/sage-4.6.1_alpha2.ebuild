@@ -4,7 +4,7 @@
 
 EAPI="3"
 
-PYTHON_DEPEND="2:2.6"
+PYTHON_DEPEND="2:2.6:2.6"
 PYTHON_USE_WITH="sage sqlite"
 
 inherit distutils eutils flag-o-matic python versionator
@@ -101,7 +101,7 @@ RDEPEND="${CDEPEND}
 	>=sci-mathematics/sage-doc-${PV}
 	~sci-mathematics/sage-extcode-${PV}
 	~sci-mathematics/sage-notebook-0.8.9
-	>=sci-mathematics/sympow-1.018.1_p8
+	>=sci-mathematics/sympow-1.018.1_p8[pari24]
 	examples? ( ~sci-mathematics/sage-examples-${PV} )
 	testsuite? (
 		~sci-mathematics/sage-doc-${PV}[html]

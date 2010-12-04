@@ -2,6 +2,10 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  04 Dec 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
+  sage-4.6.ebuild, sage-4.6-r1.ebuild, sage-4.6.1_alpha2.ebuild:
+  Depend on sympow with pari24 USE-flag and depend on python-2.6
+
   29 Nov 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
   sage-4.6.ebuild, sage-4.6-r1.ebuild, sage-4.6.1_alpha2.ebuild:
   Adjusted dependencies on flintqs and libcliquer
