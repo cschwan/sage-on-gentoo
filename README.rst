@@ -86,3 +86,36 @@ QUICK INSTALLATION GUIDE
      emerge -vuDNa world
 
    or a similar command to check for updates.
+
+INSTALLATION NOTES FOR GENTOO PREFIX
+====================================
+
+What is Gentoo Prefix? In one sentence, a Prefix enables you to install Gentoo
+on different OS (e.g Linux, FreeBSD, MacOS, Solaris and even Windows). Thus, you
+may be able to run Sage on Gentoo e.g. on a Debian Linux. For a complete
+introduction into Gentoo Prefix and how to set it up go to
+
+  http://www.gentoo.org/proj/en/gentoo-alt/prefix/
+
+After having set up the Prefix you need additional dependencies which are not
+yet in the prefixed portage:
+
+  https://github.com/cschwan/sage-on-prefix
+
+You need to manually clone the repository and to add the local copy to the
+
+  ::
+
+    PORTDIR_OVERLAY
+
+variable in $EPREFIX/etc/make.conf. sage-on-prefix currently contains four
+ebuilds which are hopefully being added to the main prefix tree soon.
+
+If you have followed the previous steps you should be able to emerge sage as
+described the quick installation guide (see above).
+
+Currently we support every Linux running with x86 or amd64 instruction sets, in
+particular the following architectures:
+
+  - ~amd64-linux
+  - ~x86-linux
