@@ -42,6 +42,10 @@ src_prepare() {
 			-i Configure || die "failed to convert to pari24 usage"
 	fi
 
+	# must come after "if use pari24 ..."
+	sed -i "s:whichexe :which :g" Configure \
+		|| die "failed to patch Configure script"
+
 	# now this:
 	sed -i "s:\./sympow:sympow:g" disk.c new_data README \
 		|| die "failed to patch call to binary"
