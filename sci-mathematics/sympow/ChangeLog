@@ -3,6 +3,10 @@
 # $Header: $
 
   07 Dec 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
+  -sympow-1.018-r1.ebuild, -sympow-1.018.1_p8.ebuild:
+  Removed old ebuilds
+
+  07 Dec 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
   sympow-1.018.1_p8-r1.ebuild:
   Fixed use of whichexe function in custom "Configure" script. This is
   needed for Prefix, thanks to Steve for notifying us
