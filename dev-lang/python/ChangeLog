@@ -1,6 +1,15 @@
 # ChangeLog for dev-lang/python
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/ChangeLog,v 1.504 2010/12/01 19:53:20 sping Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/ChangeLog,v 1.506 2010/12/07 09:33:01 phajdan.jr Exp $
+
+  07 Dec 2010; Pawel Hajdan jr <phajdan.jr@gentoo.org>
+  python-2.6.6-r1.ebuild:
+  x86 stable wrt bug #342927
+
+  06 Dec 2010; Jorge Manuel B. S. Vicetto <jmbsvicetto@gentoo.org>
+  python-2.6.5-r3.ebuild, python-3.1.2-r4.ebuild:
+  Non-maintainer commit.
+  Reverting commit that broke stage generation - bug 347867.
 
   01 Dec 2010; <sping@gentoo.org> python-2.4.6.ebuild, python-2.5.4-r4.ebuild,
   python-2.6.5-r3.ebuild, python-2.6.6-r1.ebuild, python-2.7.ebuild,
