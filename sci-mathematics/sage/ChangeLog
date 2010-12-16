@@ -2,6 +2,10 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  16 Dec 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
+  -sage-4.6.ebuild:
+  Removed old one
+
   12 Dec 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
   sage-4.6.ebuild, sage-4.6-r1.ebuild, sage-4.6.1_alpha2.ebuild:
   Depend on gdmodule with png support; thanks to Steven for
