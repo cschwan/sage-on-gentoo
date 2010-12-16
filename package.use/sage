@@ -1,5 +1,6 @@
 dev-lang/python:2.6         sqlite sage
 dev-lang/R                  lapack
+dev-libs/boost              python
 dev-lisp/ecls               -unicode
 dev-python/cvxopt           glpk
 dev-python/gdmodule         png
