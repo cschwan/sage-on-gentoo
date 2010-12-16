@@ -2,6 +2,10 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  16 Dec 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
+  -pari-2.3.5-r1.ebuild:
+  Removed old ebuild - no longer needed
+
   22 Oct 2010; François Bissey <f.r.bissey@massey.ac.nz>
   -pari-2.4.3_pre12577_p7.ebuild:
   Moving to official 2.4.3.alpha, so dropping old snapshot.
