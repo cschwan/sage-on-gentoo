@@ -22,11 +22,10 @@ IUSE=""
 RESTRICT="mirror"
 
 DEPEND="dev-libs/gmp[-nocxx]
-	>=dev-libs/ntl-5.4.2
-	>=dev-lang/python-2.6.4
+	>=dev-libs/ntl-5.5.2
 	>=sci-libs/pynac-0.2.1
 	sci-mathematics/pari:3
-	>=sci-mathematics/polybori-0.6.4[sage]"
+	>=sci-mathematics/polybori-0.6.5-r2[sage]"
 RDEPEND="${DEPEND}"
 
 S="${WORKDIR}/${MY_P}/c_lib"
