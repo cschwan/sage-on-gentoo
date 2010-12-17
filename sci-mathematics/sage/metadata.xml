@@ -1,11 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
 <pkgmetadata>
-	<herd>sage</herd>
+	<herd>sci</herd>
+	<maintainer>
+		<email>sci@gentoo.org</email>
+	</maintainer>
 	<use>
-		<flag name='testsuite'>If activated installs Sage's sources into
-		/usr/share/sage/devel/sage to enable testing</flag>
+		<flag name='testsuite'>
+			If activated installs Sage's sources into
+			/usr/share/sage/devel/sage to enable testing
+		</flag>
 		<flag name='X'>Installs icon and desktop file</flag>
-		<flag name='mpc'>Enables the dev-libs/mpc extension for multiprecision complex arithmetic</flag>
+		<flag name='mpc'>
+			Enables the <pkg>dev-libs/mpc</pkg> extension for multiprecision
+			complex arithmetic
+		</flag>
 	</use>
 </pkgmetadata>

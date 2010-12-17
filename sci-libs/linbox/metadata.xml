@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <pkgmetadata>
-	<herd>sage</herd>
+	<herd>sci</herd>
+	<maintainer>
+		<email>sci@gentoo.org</email>
+	</maintainer>
 </pkgmetadata>

@@ -2,6 +2,9 @@
 <!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
 <pkgmetadata>
 	<herd>sci</herd>
+	<maintainer>
+		<email>sci@gentoo.org</email>
+	</maintainer>
 	<longdescription lang="en">
 		Groups, Algorithms, Programming is a system for computational
 		discrete algebra, with particular emphasis on Computational Group

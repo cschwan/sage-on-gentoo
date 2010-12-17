@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
 <pkgmetadata>
-	<herd>sage</herd>
+	<herd>sci</herd>
+	<maintainer>
+		<email>sci@gentoo.org</email>
+	</maintainer>
 	<use>
 		<flag name='qs'>Compiles support for quadratic sieve algorithm</flag>
 	</use>

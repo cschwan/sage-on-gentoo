@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
 <pkgmetadata>
-	<herd>sage</herd>
-	<longdescription>The package tkz-berge.sty is a collection of some useful macros if you want to draw some classic 
-graphs of the graph theory or to make others graphs.
+	<herd>sci</herd>
+	<maintainer>
+		<email>sci@gentoo.org</email>
+	</maintainer>
+	<longdescription lang="en">
+		The package tkz-berge.sty is a collection of some useful macros if you
+		want to draw some classic graphs of the graph theory or to make other
+		graphs.
 	</longdescription>
 </pkgmetadata>

@@ -1,9 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <pkgmetadata>
-	<herd>sage</herd>
-	<longdescription>The package tkz-graph.sty is a set of convenient macros for drawing graphs. The kind of graphs 
-that I will present, are sometimes called combinatorial graphs to distinguish them from the graphs of functions. The package 
-tkz-graph.sty is built on top of PGF and its associated front-end, TikZ and is a (La)TeX-friendly drawing package. The aim is 
-to provide a high-level user interface to build graphs relatively simply.
+	<herd>sci</herd>
+	<maintainer>
+		<email>sci@gentoo.org</email>
+	</maintainer>
+	<longdescription lang="en">
+		The package tkz-graph.sty is a set of convenient macros for drawing
+		graphs. The kind of graphs that I will present, are sometimes called
+		combinatorial graphs to distinguish them from the graphs of functions.
+		The package tkz-graph.sty is built on top of PGF and its associated
+		front-end, TikZ and is a (La)TeX-friendly drawing package. The aim is
+		to provide a high-level user interface to build graphs relatively
+		simply.
 	</longdescription>
 </pkgmetadata>

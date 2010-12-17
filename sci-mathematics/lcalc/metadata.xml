@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <pkgmetadata>
-	<herd>sage</herd>
+	<herd>sci</herd>
+	<maintainer>
+		<email>sci@gentoo.org</email>
+	</maintainer>
 	<use>
-		<flag name='pari'>Use pari for elliptic curve routines. This enables '-e' option</flag>
+		<flag name='pari'>
+			Use pari for elliptic curve routines. This enables '-e' option
+		</flag>
 	</use>
 </pkgmetadata>
