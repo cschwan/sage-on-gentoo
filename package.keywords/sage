@@ -91,6 +91,9 @@ sci-mathematics/sage-scripts
 sci-mathematics/sage-singular
 ~sci-mathematics/singular-3.1.1.4
 sci-mathematics/sympow
+## Mainly for prefix
+dev-libs/ntl **
+dev-libs/gf2x **
 ##########################
 # optional dependencies
 ##########################
