@@ -23,7 +23,7 @@ S="${WORKDIR}/${SAGE_P}"
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64 ~ppc ~x86 ~amd64-linux ~x86-linux"
-IUSE="examples mpc latex testsuite X"
+IUSE="examples mpc latex testsuite"
 
 CDEPEND="dev-libs/gmp
 	>=dev-libs/mpfr-2.4.2
