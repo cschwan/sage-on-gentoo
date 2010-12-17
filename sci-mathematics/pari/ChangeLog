@@ -2,6 +2,10 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  17 Dec 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
+  -files/pari-2.3.4-mpir.patch, -files/get_mpir, -files/mpir_version.c:
+  Removed mpir stuff
+
   16 Dec 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
   -pari-2.3.5-r1.ebuild:
   Removed old ebuild - no longer needed

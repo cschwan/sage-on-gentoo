@@ -17,8 +17,7 @@ IUSE="mpir"
 
 RESTRICT="mirror"
 
-CDEPEND="mpir? ( sci-libs/mpir )
-	!mpir? ( >=dev-libs/gmp-4.2.4 )"
+CDEPEND=">=dev-libs/gmp-4.2.4"
 DEPEND="${CDEPEND}
 	dev-lang/python"
 RDEPEND="${CDEPEND}"
@@ -26,10 +25,6 @@ RDEPEND="${CDEPEND}"
 src_prepare() {
 	# both flint and zn_poly typedef "ulong" - fix it
 	epatch "${FILESDIR}"/${P}-flint-hack.patch
-
-	if use mpir ; then
-		epatch "${FILESDIR}"/${P}-use-mpir-instead-of-gmp.patch
-	fi
 
 	# fix for multilib-strict
 	sed -i "s:%s/lib:%s/$(get_libdir):g" makemakefile.py \

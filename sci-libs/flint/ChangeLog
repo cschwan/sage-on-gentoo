@@ -2,6 +2,10 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  17 Dec 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
+  flint-1.5.2.ebuild, -files/flint-1.5.2-use-mpir-instead-of-gmp.patch:
+  Removed mpir support
+
   02 Oct 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
   -flint-1.5.1-makefile.patch:
   Removed old patches, fixed RDEPEND and cleaned up ebuild

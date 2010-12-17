@@ -13,13 +13,12 @@ SRC_URI="http://modular.math.washington.edu/home/wbhart/webpage/${P}.tar.gz"
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64 ~ppc ~x86 ~amd64-linux ~x86-linux"
-IUSE="doc qs mpir ntl"
+IUSE="doc qs ntl"
 
 RESTRICT="mirror"
 
 DEPEND="ntl? ( dev-libs/ntl )
-	mpir? ( sci-libs/mpir )
-	!mpir? ( dev-libs/gmp )
+	dev-libs/gmp
 	>=sci-libs/zn_poly-0.9"
 RDEPEND="${DEPEND}"
 
@@ -33,10 +32,6 @@ src_prepare() {
 	# build ntl interface into libflint
 	if use ntl ; then
 		epatch "${FILESDIR}"/${P}-enable-ntl.patch
-	fi
-
-	if use mpir ; then
-		epatch "${FILESDIR}"/${P}-use-mpir-instead-of-gmp.patch
 	fi
 }
 

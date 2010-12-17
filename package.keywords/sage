@@ -49,7 +49,6 @@ sci-libs/libcliquer
 sci-libs/linbox
 sci-libs/m4ri
 sci-libs/mpfi
-sci-libs/mpir
 sci-libs/pynac
 sci-libs/scipy
 sci-libs/symmetrica

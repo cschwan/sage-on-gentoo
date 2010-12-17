@@ -15,12 +15,11 @@ SRC_URI="http://perso.ens-lyon.fr/damien.stehle/downloads/${MY_P}.tar.gz"
 LICENSE="LGPL-2.1"
 SLOT="0"
 KEYWORDS="~amd64 ~ppc ~x86 ~amd64-linux ~x86-linux"
-IUSE="mpir static-libs"
+IUSE="static-libs"
 
 RESTRICT="mirror"
 
-DEPEND="mpir? ( sci-libs/mpir )
-	!mpir? ( >=dev-libs/gmp-4.2.0 )
+DEPEND=">=dev-libs/gmp-4.2.0
 	>=dev-libs/mpfr-2.3.0"
 RDEPEND="${DEPEND}"
 
@@ -35,12 +34,6 @@ src_prepare() {
 	# Replace deprecated gmp functions which are removed with mpir-1.3.0
 	sed -i "s:mpz_div_2exp:mpz_tdiv_q_2exp:g" src/nr.cpp src/util.h \
 		|| die "failed to patch depracated gmp function calls"
-
-	if use mpir ; then
-		# replace gmp library with mpir
-		epatch "${FILESDIR}"/${P}-use-mpir-instead-of-gmp.patch
-		eautoreconf
-	fi
 }
 
 src_configure() {
