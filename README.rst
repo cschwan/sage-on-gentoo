@@ -74,8 +74,8 @@ QUICK INSTALLATION GUIDE
      emerge -va sage
 
    to install sage; please note that this will pull in a lot of dependencies. If
-   you can not proceed at this steps (because circular dependencies, missing
-   USE-flags and so on) please report this behavior.
+   you can not proceed with this step (because of circular dependencies, missing
+   USE-flags, and so on) please report this behavior.
 
 5. *UPDATE YOUR LOCAL OVERLAY*:
    To update your local copy of sage-on-gentoo simply type:
