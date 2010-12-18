@@ -4,16 +4,19 @@ PROJECT SUMMARY
 Sage-on-Gentoo provides split ebuilds (http://www.gentoo.org) for the computer
 algebra system SAGE (http://www.sagemath.org).
 
+CONTACT
+=======
+
 If you have problems with sage-on-gentoo or have suggestions talk to us on
-#gentoo-science on freenode:
+#gentoo-science on freenode
 
   http://www.gentoo.org/main/en/irc.xml
 
-or write a mail to the "gentoo-science" mailing list:
+or write a mail to the "gentoo-science" mailing list
 
   http://www.gentoo.org/main/en/lists.xml
 
-An archive listing past mails may be found at:
+An archive listing past mails may be found at
 
   http://archives.gentoo.org/gentoo-science/
 
@@ -60,7 +63,7 @@ QUICK INSTALLATION GUIDE
      ln -s <path-to-layman>/sage-on-gentoo/package.use/sage \
            /etc/portage/package.use/sage
 
-   <path-to-layman> is usually /var/lib/layman (this path used to
+   <path-to-layman> is usually /var/lib/layman (this path used to be
    /usr/local/portage/layman for older version of layman).
 
 4. *INSTALL SAGE*:
@@ -70,7 +73,9 @@ QUICK INSTALLATION GUIDE
 
      emerge -va sage
 
-   to install sage; please note that this will pull in a lot of dependencies.
+   to install sage; please note that this will pull in a lot of dependencies. If
+   you can not proceed at this steps (because circular dependencies, missing
+   USE-flags and so on) please report this behavior.
 
 5. *UPDATE YOUR LOCAL OVERLAY*:
    To update your local copy of sage-on-gentoo simply type:
@@ -87,34 +92,21 @@ QUICK INSTALLATION GUIDE
 
    or a similar command to check for updates.
 
-INSTALLATION NOTES FOR GENTOO PREFIX
-====================================
+SAGE ON GENTOO PREFIX
+=====================
 
 What is Gentoo Prefix? In one sentence, a Prefix enables you to install Gentoo
 on different OS (e.g Linux, FreeBSD, MacOS, Solaris and even Windows). Thus, you
 may be able to run Sage on Gentoo e.g. on a Debian Linux. For a complete
-introduction into Gentoo Prefix and how to set it up go to
+introduction into Gentoo Prefix and how to set it up visit
 
   http://www.gentoo.org/proj/en/gentoo-alt/prefix/
 
-After having set up the Prefix you need additional dependencies which are not
-yet in the prefixed portage:
+To setup sage-on-gentoo in a Prefix simply follow the steps described in the
+quick installation guide (note that the sage-on-prefix overlay is no longer
+needed).
 
-  https://github.com/cschwan/sage-on-prefix
-
-You need to manually clone the repository and to add the local copy to the
-
-  ::
-
-    PORTDIR_OVERLAY
-
-variable in $EPREFIX/etc/make.conf. sage-on-prefix currently contains four
-ebuilds which are hopefully being added to the main prefix tree soon.
-
-If you have followed the previous steps you should be able to emerge sage as
-described the quick installation guide (see above).
-
-Currently we support every Linux running with x86 or amd64 instruction sets, in
+Currently, we support every Linux running with x86 or amd64 instruction sets, in
 particular the following architectures:
 
   - ~amd64-linux
