@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/numpy/numpy-1.5.0-r2.ebuild,v 1.2 2010/09/11 10:24:16 xarthisius Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/numpy/numpy-1.5.0-r2.ebuild,v 1.7 2010/11/07 17:41:38 arfrever Exp $
 
 EAPI="3"
 PYTHON_DEPEND="*"
@@ -21,7 +21,7 @@ SRC_URI="mirror://sourceforge/numpy/${P}.tar.gz
 
 LICENSE="BSD"
 SLOT="0"
-KEYWORDS="~alpha ~amd64 ~arm ~hppa ~ia64 -ppc -ppc64 ~s390 ~sh ~sparc ~x86 ~x86-fbsd ~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~x64-solaris ~x86-solaris"
+KEYWORDS="~alpha ~amd64 ~arm ~hppa ~ia64 ~mips -ppc ~ppc64 ~s390 ~sh ~sparc ~x86 ~x86-fbsd ~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~x64-solaris ~x86-solaris"
 IUSE="doc lapack test"
 
 RDEPEND="dev-python/setuptools
@@ -32,6 +32,8 @@ DEPEND="${RDEPEND}
 	test? ( >=dev-python/nose-0.10 )"
 
 PYTHON_CFLAGS=("* + -fno-strict-aliasing")
+
+DOCS="COMPATIBILITY DEV_README.txt THANKS.txt"
 
 pkg_setup() {
 	python_pkg_setup
@@ -128,7 +130,7 @@ src_test() {
 			--home="${S}/test-${PYTHON_ABI}" --no-compile || die "install test failed"
 		pushd "${S}/test-${PYTHON_ABI}/"lib* > /dev/null
 		PYTHONPATH=python "$(PYTHON)" -c "import numpy; numpy.test()" 2>&1 | tee test.log
-		grep -q '^ERROR' test.log && die "test failed"
+		grep -Eq '^(ERROR|FAIL):' test.log && return 1
 		popd > /dev/null
 		rm -fr test-${PYTHON_ABI}
 	}
@@ -137,11 +139,16 @@ src_test() {
 
 src_install() {
 	distutils_src_install ${NUMPY_FCONFIG}
-	dodoc THANKS.txt DEV_README.txt COMPATIBILITY
-	rm -f "${ED}"usr/lib/python*/site-packages/numpy/*.txt || die
+
+	delete_txt() {
+		rm -f "${ED}"$(python_get_sitedir)/numpy/*.txt
+	}
+	python_execute_function -q delete_txt
+
 	docinto f2py
 	dodoc numpy/f2py/docs/*.txt || die "dodoc f2py failed"
 	doman numpy/f2py/f2py.1 || die "doman failed"
+
 	if use doc; then
 		insinto /usr/share/doc/${PF}
 		doins -r "${WORKDIR}"/html || die
