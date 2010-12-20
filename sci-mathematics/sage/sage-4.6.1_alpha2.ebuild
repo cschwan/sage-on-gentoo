@@ -38,13 +38,13 @@ CDEPEND="dev-libs/gmp
 	>=sci-libs/gsl-1.14
 	>=sci-libs/iml-1.0.1
 	>=sci-libs/libcliquer-1.2_p7
-	>=sci-libs/linbox-1.1.6[ntl,sage]
+	>=sci-libs/linbox-1.1.6[sage]
 	>=sci-libs/m4ri-20100701
 	>=sci-libs/mpfi-1.4
 	>=sci-libs/pynac-0.2.1
 	>=sci-libs/symmetrica-2.0
 	>=sci-libs/zn_poly-0.9
-	>=sci-mathematics/glpk-4.43[gmp]
+	>=sci-mathematics/glpk-4.43
 	>=sci-mathematics/lcalc-1.23[pari24]
 	sci-mathematics/pari:3[data,gmp,sage]
 	>=sci-mathematics/polybori-0.6.5-r2[sage]
@@ -63,7 +63,7 @@ DEPEND="${CDEPEND}
 	=dev-python/cython-0.13*"
 
 RDEPEND="${CDEPEND}
-	>=dev-lang/R-2.10.1[lapack,readline]
+	>=dev-lang/R-2.10.1
 	>=dev-python/cvxopt-1.1.3[glpk]
 	>=dev-python/gdmodule-0.56-r2[png]
 	>=dev-python/ipython-0.9.1

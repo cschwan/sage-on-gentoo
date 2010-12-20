@@ -5,7 +5,7 @@
 EAPI="3"
 
 PYTHON_DEPEND="2:2.6:2.6"
-PYTHON_USE_WITH="sage sqlite"
+PYTHON_USE_WITH="readline sage sqlite"
 
 inherit distutils eutils flag-o-matic python versionator
 
@@ -27,7 +27,7 @@ CDEPEND="dev-libs/gmp
 	>=dev-libs/mpfr-2.4.2
 	>=dev-libs/ntl-5.5.2
 	>=dev-lisp/ecls-10.2.1[-unicode]
-	>=dev-python/numpy-1.5.0-r3
+	=dev-python/numpy-1.5.0-r3
 	>=sci-mathematics/eclib-20100711[pari24]
 	>=sci-mathematics/ecm-6.2.1
 	>=sci-libs/flint-1.5.0[ntl]
@@ -36,13 +36,13 @@ CDEPEND="dev-libs/gmp
 	>=sci-libs/gsl-1.14
 	>=sci-libs/iml-1.0.1
 	>=sci-libs/libcliquer-1.2_p7
-	>=sci-libs/linbox-1.1.6[ntl,sage]
+	>=sci-libs/linbox-1.1.6[sage]
 	>=sci-libs/m4ri-20100701
 	>=sci-libs/mpfi-1.4
 	>=sci-libs/pynac-0.2.1
 	>=sci-libs/symmetrica-2.0
 	>=sci-libs/zn_poly-0.9
-	>=sci-mathematics/glpk-4.43[gmp]
+	>=sci-mathematics/glpk-4.43
 	>=sci-mathematics/lcalc-1.23[pari24]
 	sci-mathematics/pari:3[data,gmp,sage]
 	>=sci-mathematics/polybori-0.6.5-r2[sage]
@@ -60,8 +60,8 @@ DEPEND="${CDEPEND}
 	=dev-python/cython-0.13*"
 
 RDEPEND="${CDEPEND}
-	>=dev-lang/R-2.10.1[lapack,readline]
-	>=dev-python/cvxopt-0.9
+	>=dev-lang/R-2.10.1
+	>=dev-python/cvxopt-0.9[glpk]
 	>=dev-python/gdmodule-0.56-r2[png]
 	>=dev-python/ipython-0.9.1
 	>=dev-python/jinja-2.1.1
