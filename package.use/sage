@@ -1,26 +1,24 @@
-dev-lang/python:2.6         sqlite sage
-dev-lang/R                  lapack
+dev-lang/python:2.6         readline sqlite sage
 dev-libs/boost              python
 dev-lisp/ecls               -unicode
 dev-python/cvxopt           glpk
 dev-python/gdmodule         png
-dev-python/numpy            lapack
 media-libs/gd               jpeg png
 sci-libs/flint              ntl
-sci-mathematics/glpk        gmp
-sci-libs/linbox             ntl sage
+sci-libs/linbox             sage
+sci-mathematics/maxima      ecls
 sci-mathematics/eclib       pari24
 sci-mathematics/lcalc       -pari pari24
-sci-mathematics/maxima      ecls ecl
 sci-mathematics/pari        data gmp sage
-sci-mathematics/polybori    gd sage
-sci-mathematics/singular    libsingular sage
+sci-mathematics/polybori    sage
+sci-mathematics/singular    libsingular
+sci-mathematics/sympow      pari24
+#dev-lang/R                  lapack
+#sci-libs/linbox             ntl
+#sci-mathematics/glpk        gmp
+#sci-mathematics/pari        gmp
+#sci-mathematics/polybori    gd
 ################################################
 # Recomended flags for optional dependency jmol
 ################################################
 sci-chemistry/jmol client-only
-################################################
-# The following provide only binaries,
-# pari24 usage is therefore not mandatory here
-################################################
-sci-mathematics/sympow pari24
