@@ -12,7 +12,7 @@ SRC_URI="http://m4ri.sagemath.org/downloads/${P}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~ppc ~ppc64 ~x86 ~amd64-linux ~x86-linux"
+KEYWORDS="~amd64 ~ppc64 ~x86 ~amd64-linux ~x86-linux"
 IUSE="debug openmp sse2 static-libs"
 
 RESTRICT="mirror"

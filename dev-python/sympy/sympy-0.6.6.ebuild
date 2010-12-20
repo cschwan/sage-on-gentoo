@@ -14,7 +14,7 @@ SRC_URI="http://sympy.googlecode.com/files/${P}.tar.gz"
 
 LICENSE="BSD"
 SLOT="0"
-KEYWORDS="~amd64 ~ppc ~x86 ~amd64-linux ~x86-linux"
+KEYWORDS="~amd64 ~x86 ~amd64-linux ~x86-linux"
 IUSE="doc examples gtk imaging ipython latex mathml opengl pdf png test texmacs"
 
 RDEPEND="mathml? ( dev-libs/libxml2[python]

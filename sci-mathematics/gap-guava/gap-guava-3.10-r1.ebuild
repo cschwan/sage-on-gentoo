@@ -14,7 +14,7 @@ SRC_URI="http://sage.math.washington.edu/home/wdj/${MY_PN}/${MY_PN}${PV}.tar.bz2
 
 LICENSE="GPL-2 GPL-3"
 SLOT="0"
-KEYWORDS="~amd64 ~ppc ~x86 ~amd64-linux ~x86-linux"
+KEYWORDS="~amd64 ~x86 ~amd64-linux ~x86-linux"
 IUSE="doc"
 
 DEPEND="sci-mathematics/gap"
