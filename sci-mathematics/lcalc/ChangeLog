@@ -2,6 +2,10 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  20 Dec 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
+  lcalc-1.23-r3.ebuild:
+  Corrected SRC_URI, thanks to kravitz and Steven Trogdon for reporting
+
   21 Sep 2010; François Bissey <f.r.bissey@massey.ac.nz>
   lcalc-1.23-r3.ebuild:
   Add a warning in case of multiple pari flags usage.

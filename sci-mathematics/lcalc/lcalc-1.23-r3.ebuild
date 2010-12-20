@@ -10,8 +10,8 @@ MY_PN="L"
 MY_P="${MY_PN}-${PV}"
 
 DESCRIPTION="A program for calculating with L-functions"
-HOMEPAGE="http://pmmac03.math.uwaterloo.ca/~mrubinst/L_function_public/CODE/"
-SRC_URI="http://pmmac03.math.uwaterloo.ca/~mrubinst/L_function_public/CODE/${MY_P}.tar.gz"
+HOMEPAGE="http://oto.math.uwaterloo.ca/~mrubinst/L_function_public/L.html"
+SRC_URI="http://oto.math.uwaterloo.ca/~mrubinst/L_function_public/CODE/${MY_P}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
@@ -37,7 +37,6 @@ pkg_setup() {
 		ewarn "pari-2.4 will be used now."
 	fi
 }
-
 
 src_prepare() {
 	# patch for proper installation routine, flag respect and crufty linking flag removal.
