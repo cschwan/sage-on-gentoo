@@ -8,7 +8,7 @@ inherit autotools-utils
 
 DESCRIPTION="Elliptic Curve Method for Integer Factorization"
 HOMEPAGE="http://ecm.gforge.inria.fr/"
-SRC_URI="http://gforge.inria.fr/frs/download.php/22124/${P}.tar.gz"
+SRC_URI="https://gforge.inria.fr/frs/download.php/26838/${P}.tar.gz"
 
 LICENSE="LGPL-2.1 GPL-2"
 SLOT="0"
