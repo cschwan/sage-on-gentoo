@@ -2,6 +2,13 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  23 Dec 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
+  -files/ecm-6.2.3-configure.patch, -files/ecm-6.2.3-execstack-redc.patch,
+  -files/ecm-6.2.3-makefile.patch, ecm-6.3-r1.ebuild:
+  Removed obsoleted patches. Still needed: fix for assembler stuff
+  (remaining patch has fixes for amd64, but x86 are missing) -
+  therefore USE=asm-redc is disabled
+
   23 Dec 2010; François Bissey <f.r.bissey@massey.ac.nz> ecm-6.3-r1.ebuild:
   Adjust SRC_URI
 
