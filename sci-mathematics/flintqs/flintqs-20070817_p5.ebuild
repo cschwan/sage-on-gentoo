@@ -7,10 +7,11 @@ EAPI="3"
 inherit versionator
 
 MY_P="${PN}-$(replace_version_separator 1 '.')"
+SAGE_P="sage-4.6"
 
 DESCRIPTION="William Hart's GPL'd highly optimized multi-polynomial quadratic sieve for integer factorization"
 HOMEPAGE="http://www.sagemath.org/"
-SRC_URI="mirror://sage/spkg/standard/${MY_P}.spkg -> ${P}.tar.bz2"
+SRC_URI="http://sage.math.washington.edu/home/release/${SAGE_P}/${SAGE_P}/spkg/standard/${MY_P}.spkg -> ${P}.tar.bz2"
 
 LICENSE="GPL-2"
 SLOT="0"

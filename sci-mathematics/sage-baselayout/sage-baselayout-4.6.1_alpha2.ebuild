@@ -6,15 +6,13 @@ EAPI="3"
 
 inherit eutils toolchain-funcs versionator
 
-#MY_P="sage_scripts-${PV}"
-SAGE_PV=$(replace_version_separator 3 '.')
-SAGE_DIR="sage-${SAGE_PV}"
+SAGE_PV="$(replace_version_separator 3 '.')"
+SAGE_P="sage-${SAGE_PV}"
 MY_P="sage_scripts-${SAGE_PV}"
 
 DESCRIPTION="Sage baselayout files"
 HOMEPAGE="http://www.sagemath.org"
-#SRC_URI="mirror://sage/spkg/standard/${MY_P}.spkg -> ${P}.tar.bz2"
-SRC_URI="http://sage.math.washington.edu/home/release/${SAGE_DIR}/${SAGE_DIR}/spkg/standard/${MY_P}.spkg -> ${P}.tar.bz2"
+SRC_URI="http://sage.math.washington.edu/home/release/${SAGE_P}/${SAGE_P}/spkg/standard/${MY_P}.spkg -> ${P}.tar.bz2"
 
 LICENSE="GPL-2"
 SLOT="0"

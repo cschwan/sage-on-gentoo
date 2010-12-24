@@ -7,10 +7,11 @@ EAPI="3"
 inherit eutils versionator
 
 MY_P="$(replace_version_separator 4 '.' ${P})"
+SAGE_P="sage-4.6"
 
 DESCRIPTION="Computes special values of symmetric power elliptic curve L-functions"
 HOMEPAGE="http://www.sagemath.org"
-SRC_URI="mirror://sage/spkg/standard/${MY_P}.spkg -> ${P}.tar.bz2"
+SRC_URI="http://sage.math.washington.edu/home/release/${SAGE_P}/${SAGE_P}/spkg/standard/${MY_P}.spkg -> ${P}.tar.bz2"
 
 LICENSE="BSD"
 SLOT="0"

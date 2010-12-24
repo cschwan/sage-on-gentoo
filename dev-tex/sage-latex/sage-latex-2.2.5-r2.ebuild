@@ -8,10 +8,9 @@ inherit distutils latex-package
 
 MY_P="sagetex-${PV}"
 
-DESCRIPTION="SageTeX package allows to embed code from the Sage mathematics
-software suite into LaTeX documents"
+DESCRIPTION="SageTeX package allows to embed code from the Sage mathematics software suite into LaTeX documents"
 HOMEPAGE="http://www.sagemath.org"
-SRC_URI="mirror://sage/spkg/standard/${MY_P}.spkg -> ${P}.tar.bz2"
+SRC_URI="http://sage.math.washington.edu/home/release/sage-4.6/sage-4.6/spkg/standard/${MY_P}.spkg -> ${P}.tar.bz2"
 
 LICENSE="GPL-2"
 SLOT="0"
@@ -42,7 +41,7 @@ src_compile() {
 
 src_install() {
 	if use examples ; then
-		dodoc example.tex
+		dodoc example.tex || die
 	fi
 
 	rm example.tex || die "failed to remove example file"

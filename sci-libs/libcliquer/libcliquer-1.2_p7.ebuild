@@ -7,10 +7,11 @@ EAPI="3"
 inherit eutils flag-o-matic toolchain-funcs versionator
 
 MY_P="cliquer-$(replace_version_separator 2 '.')"
+SAGE_P="sage-4.6"
 
 DESCRIPTION="Cliquer is a set of C routines for finding cliques in an arbitrary weighted graph"
 HOMEPAGE="http://users.tkk.fi/pat/cliquer.html"
-SRC_URI="mirror://sage/spkg/standard/${MY_P}.spkg -> ${P}.tar.bz2"
+SRC_URI="http://sage.math.washington.edu/home/release/${SAGE_P}/${SAGE_P}/spkg/standard/${MY_P}.spkg -> ${P}.tar.bz2"
 
 LICENSE="GPL-2"
 SLOT="0"

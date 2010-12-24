@@ -6,12 +6,10 @@ EAPI="3"
 
 inherit eutils scons-utils versionator
 
-#MY_P="sage-${PV}"
 MY_P="sage-$(replace_version_separator 3 '.')"
 
 DESCRIPTION="Sage's C library"
 HOMEPAGE="http://www.sagemath.org"
-#SRC_URI="mirror://sage/spkg/standard/${MY_P}.spkg -> sage-${PV}.tar.bz2"
 SRC_URI="http://sage.math.washington.edu/home/release/${MY_P}/${MY_P}/spkg/standard/${MY_P}.spkg -> sage-${PV}.tar.bz2"
 
 LICENSE="GPL-2"

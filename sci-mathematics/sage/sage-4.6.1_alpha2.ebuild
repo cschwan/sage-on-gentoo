@@ -5,7 +5,7 @@
 EAPI="3"
 
 PYTHON_DEPEND="2:2.6:2.6"
-PYTHON_USE_WITH="sage sqlite"
+PYTHON_USE_WITH="readline sage sqlite"
 
 inherit distutils eutils flag-o-matic python versionator
 
@@ -15,15 +15,14 @@ SAGE_P="sage-${SAGE_PV}"
 
 DESCRIPTION="Math software for algebra, geometry, number theory, cryptography and numerical computation"
 HOMEPAGE="http://www.sagemath.org"
-#SRC_URI="mirror://sage/spkg/standard/${MY_P}.spkg -> ${P}.tar.bz2"
 SRC_URI="http://sage.math.washington.edu/home/release/${SAGE_P}/${SAGE_P}/spkg/standard/${SAGE_P}.spkg -> ${P}.tar.bz2"
-RESTRICT="mirror"
-S="${WORKDIR}/${SAGE_P}"
 
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64 ~x86 ~amd64-linux ~x86-linux"
 IUSE="examples mpc latex testsuite"
+
+RESTRICT="mirror"
 
 CDEPEND="dev-libs/gmp
 	>=dev-libs/mpfr-2.4.2
@@ -109,7 +108,7 @@ RDEPEND="${CDEPEND}
 	)
 	latex? ( ~dev-tex/sage-latex-2.2.5 )"
 
-# TODO: check if use flags are necessary
+S="${WORKDIR}/${SAGE_P}"
 
 src_prepare() {
 	# ATLAS independence

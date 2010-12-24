@@ -13,15 +13,14 @@ MY_P="sage-${PV}"
 
 DESCRIPTION="Math software for algebra, geometry, number theory, cryptography and numerical computation"
 HOMEPAGE="http://www.sagemath.org"
-#SRC_URI="mirror://sage/spkg/standard/${MY_P}.spkg -> ${P}.tar.bz2"
 SRC_URI="http://sage.math.washington.edu/home/release/${MY_P}/${MY_P}/spkg/standard/${MY_P}.spkg -> ${P}.tar.bz2"
-RESTRICT="mirror"
-S="${WORKDIR}/${MY_P}"
 
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64 ~x86 ~amd64-linux ~x86-linux"
 IUSE="examples latex testsuite"
+
+RESTRICT="mirror"
 
 CDEPEND="dev-libs/gmp
 	>=dev-libs/mpfr-2.4.2
@@ -106,7 +105,7 @@ RDEPEND="${CDEPEND}
 	)
 	latex? ( ~dev-tex/sage-latex-2.2.5 )"
 
-# TODO: check if use flags are necessary
+S="${WORKDIR}/${MY_P}"
 
 src_prepare() {
 	# ATLAS independence
