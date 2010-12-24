@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
 <pkgmetadata>
-	<herd>sci-methematics</herd>
+	<herd>sci-mathematics</herd>
 	<maintainer>
 		<email>sci@gentoo.org</email>
-	<maintainer>
+	</maintainer>
 	<longdescription lang="en">
 		PARI is a widely used computer algebra system designed for fast
 		computations in number theory (factorizations, algebraic number theory,
