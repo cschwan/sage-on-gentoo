@@ -23,6 +23,16 @@ RDEPEND="${DEPEND}"
 
 DOCS=( ChangeLog NEWS README README.lib TODO )
 
+src_prepare() {
+	# TODO: report problem to upstream
+	if use openmp ; then
+		sed -i "s:libecm_la_LIBADD = :libecm_la_LIBADD = -lgomp :" Makefile.am
+	fi
+
+	eautoreconf
+	autotools-utils_src_prepare
+}
+
 src_configure() {
 	# TODO: fix assembler files on all platforms to re-enable asm-redc
 	myeconfargs=(
