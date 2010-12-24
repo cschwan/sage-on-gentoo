@@ -16,7 +16,6 @@ PVOLD="4.6"
 MY_P_HTML="sage-${PVOLD}-doc-html"
 MY_P_PDF="sage-${PVOLD}-doc-pdf"
 
-
 DESCRIPTION="Documentation, tutorials and help files for Sage"
 HOMEPAGE="http://www.sagemath.org/"
 #SRC_URI="mirror://sage/spkg/standard/${MY_P}.spkg -> sage-${PV}.tar.bz2

@@ -10,7 +10,6 @@ MY_P="sage-${PV}"
 MY_P_HTML="sage-${PV}-doc-html"
 MY_P_PDF="sage-${PV}-doc-pdf"
 
-
 DESCRIPTION="Documentation, tutorials and help files for Sage"
 HOMEPAGE="http://www.sagemath.org/"
 SRC_URI="mirror://sage/spkg/standard/${MY_P}.spkg -> sage-${PV}.tar.bz2
