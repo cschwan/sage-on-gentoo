@@ -4,7 +4,7 @@
 
 EAPI="3"
 
-inherit eutils versionator
+inherit eutils
 
 MY_P="sage-${PV}"
 MY_P_HTML="sage-${PV}-doc-html"
