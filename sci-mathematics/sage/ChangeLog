@@ -2,6 +2,10 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  25 Dec 2010; François Bissey <f.r.bissey@massey.ac.nz>
+  sage-4.6.1_rc0.ebuild:
+  adjust dep to sage-notebook in rc0
+
 *sage-4.6.1_rc0 (25 Dec 2010)
 
   25 Dec 2010; François Bissey <f.r.bissey@massey.ac.nz>
