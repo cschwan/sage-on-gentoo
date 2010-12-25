@@ -163,11 +163,6 @@ src_prepare() {
 	# remove annoying std=c99 from a c++ file.
 	epatch "${FILESDIR}"/${PN}-4.4.4-extra-stdc99.patch
 
-	# Fix ecls bug for ppc see #308909. This has to be done before sed is applied to module_list.py
-	if use ppc ; then
-		epatch "${FILESDIR}"/${PN}-4.5.2-ecls_ppc.patch
-	fi
-
 	# upgrade to numpy-1.5.0/scipy-0.8
 	epatch "${FILESDIR}"/${PN}-4.6-numpy-1.5.patch
 

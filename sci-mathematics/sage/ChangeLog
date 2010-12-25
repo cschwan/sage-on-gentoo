@@ -2,6 +2,13 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*sage-4.6.1_rc0 (25 Dec 2010)
+
+  25 Dec 2010; François Bissey <f.r.bissey@massey.ac.nz>
+  -files/sage-4.5.2-ecls_ppc.patch, sage-4.6-r1.ebuild,
+  -sage-4.6.1_alpha2.ebuild, +sage-4.6.1_rc0.ebuild:
+  Bump to rc0 - drop ppc specific patch.
+
   20 Dec 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
   sage-4.6-r1.ebuild, sage-4.6.1_alpha2.ebuild:
   Removed USE flags which seem to be unnecessary

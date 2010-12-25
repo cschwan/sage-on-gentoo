@@ -78,16 +78,13 @@ src_prepare() {
 	# TODO: do not remove scons and M2
 
 	# remove developer- and unsupported options
-	epatch "${FILESDIR}"/${PN}-4.6.1_alpha0-gentooify-startup-script.patch
+	epatch "${FILESDIR}"/${PN}-4.6.1_rc0-gentooify-startup-script.patch
 
 	# we dont need this script
 	epatch "${FILESDIR}"/${PN}-4.5.1-remove-sage-location.patch
 
 	# replace ${SAGE_ROOT}/local with ${SAGE_LOCAL}
 	epatch "${FILESDIR}"/${PN}-4.5.2-fix-SAGE_LOCAL.patch
-
-	# upgrade to maxima-5.22.1 ticket #10817
-	epatch "${FILESDIR}"/sage-maxima.lisp.patch
 
 	# sage startup script is placed into /usr/bin
 	sed -i "s:\"\$SAGE_ROOT\"/sage:\"\$SAGE_LOCAL\"/bin/sage:g" \

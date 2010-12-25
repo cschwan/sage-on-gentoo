@@ -10,7 +10,7 @@ PYTHON_MODNAME="sagenb"
 inherit distutils eutils
 
 MY_P="sagenb-${PV}"
-SAGE_P="sage-4.6.1.alpha2"
+SAGE_P="sage-4.6.1.rc0"
 
 DESCRIPTION="The Sage Notebook is a web-based graphical user interface for mathematical software"
 HOMEPAGE="http://www.sagemath.org"
@@ -27,7 +27,7 @@ DEPEND="~dev-python/pexpect-2.0
 	>=dev-python/twisted-9.0
 	>=dev-python/twisted-mail-9.0
 	>=dev-python/twisted-web2-8.1.0
-	>=dev-python/jinja-2.1.1
+	>=dev-python/jinja-2.5.5
 	>=dev-python/docutils-0.5"
 RDEPEND="${DEPEND}
 	java? ( ~sci-chemistry/jmol-11.6.16

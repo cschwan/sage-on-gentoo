@@ -163,15 +163,6 @@ src_prepare() {
 		-e "s:%s/local/etc/gprc.expect'%SAGE_ROOT:${EPREFIX}/etc/gprc.expect':" \
 		-i sage/interfaces/gp.py || die "failed to patch interfaces/gp.py"
 
-	# Fix ecls bug for ppc see #308909. This has to be done before sed is applied to module_list.py
-	if use ppc ; then
-		epatch "${FILESDIR}"/${PN}-4.5.2-ecls_ppc.patch
-	fi
-
-	# upgrade to maxima-5.22.1 ticket #10187
-	epatch "${FILESDIR}"/trac_10187_maxima-doctests.patch
-	epatch "${FILESDIR}"/trac_10187_maxima-upgrade.patch
-
 	# use already installed csage
 	rm -rf c_lib || die "failed to remove c library directory"
 

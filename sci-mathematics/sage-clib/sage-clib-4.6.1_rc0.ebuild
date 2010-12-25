@@ -42,7 +42,7 @@ src_compile() {
 }
 
 src_install() {
-	dolib.so libcsage.so || die
+	dolib.so libcsage.* || die
 	insinto /usr/include/csage
 	doins include/*.h || die
 }
