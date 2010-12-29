@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
-EAPI=2
+EAPI=3
 PYTHON_DEPEND=2:2.5
 SUPPORT_PYTHON_ABIS=1
 RESTRICT_PYTHON_ABIS="2.4 3.*"
@@ -12,7 +12,7 @@ inherit distutils
 
 DESCRIPTION="A Python Package for Convex Optimization"
 HOMEPAGE="http://abel.ee.ucla.edu/cvxopt"
-SRC_URI="http://abel.ee.ucla.edu/cvxopt/download.php -> ${P}.tar.gz"
+SRC_URI="http://abel.ee.ucla.edu/${PN}/${P}.tar.gz"
 
 RESTRICT="mirror"
 
