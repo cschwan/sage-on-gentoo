@@ -48,6 +48,7 @@ sci-libs/givaro
 sci-libs/iml
 sci-libs/lapack-atlas
 sci-libs/libcliquer
+sci-libs/libsingular
 sci-libs/linbox
 sci-libs/m4ri
 sci-libs/mpfi
