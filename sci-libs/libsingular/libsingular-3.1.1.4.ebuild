@@ -36,7 +36,7 @@ DEPEND="${RDEPEND}
 S="${WORKDIR}"/${MY_PN}-${MY_DIR}
 
 pkg_setup() {
-	append-flags -fPIC -I${EPREFIX}/usr/include/singu
+	append-flags -fPIC
 	append-ldflags -fPIC
 	tc-export CC CPP CXX
 }
