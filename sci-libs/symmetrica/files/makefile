@@ -18,7 +18,7 @@ CFLAGS?=-O1
 FPICFLAG?=-fPIC
 VERSION=2.0
 DIRNAME=symmetrica-$(VERSION)
-TARGETS=libsymmetrica.a libsymmetrica.so
+TARGETS=libsymmetrica.a sharedlib
 PREFIX?=/usr
 LIBDIR?=lib
 
@@ -40,7 +40,7 @@ libsymmetrica.a: $(OBJS)
 	ar crs $@ $(OBJS)
 	ranlib $@
 
-libsymmetrica.so: $(SHOBJS)
+sharedlib: $(SHOBJS)
 	$(CC) $(CFLAGS) $(FPICFLAG) -shared -Wl,-soname,lib$(DIRNAME).so $(LIBS) -o lib$(DIRNAME).so $(SHOBJS)
 	ln -s lib$(DIRNAME).so $@
 
