@@ -1,6 +1,10 @@
 # ChangeLog for sci-mathematics/flintqs
-# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
+
+  06 Jan 2011; François Bissey <f.r.bissey@massey.ac.nz>
+  flintqs-20070817_p5.ebuild, +files/flintqs-lanczos.patch:
+  Add sage's lanczos patch to support prefix.
 
 *flintqs-20070817_p5 (29 Nov 2010)
 

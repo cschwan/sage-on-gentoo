@@ -1,0 +1,16 @@
+--- lanczos.h.orig	2011-01-05 14:43:07.000000000 +1300
++++ lanczos.h	2011-01-05 14:43:14.000000000 +1300
+@@ -21,6 +21,13 @@
+ #ifndef LANCZOS_H
+ #define LANCZOS_H
+ 
++#ifdef __sun
++#define u_int32_t unsigned int
++#define u_int64_t unsigned long long
++#endif
++
++#include <sys/types.h> // needed on MacOS X 10.5 for uint type
++
+ #include <stdlib.h>
+ 
+ typedef struct {

@@ -1,6 +1,11 @@
 # ChangeLog for sci-mathematics/pari
-# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
+
+  06 Jan 2011; François Bissey <f.r.bissey@massey.ac.nz>
+  -files/pari-2.3.5-DOC_MAKE.patch, pari-2.4.3.ebuild,
+  +files/pari-2.4.3-macos.patch:
+  Add support for macos drop old patch
 
   17 Dec 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
   -files/pari-2.3.4-mpir.patch, -files/get_mpir, -files/mpir_version.c:

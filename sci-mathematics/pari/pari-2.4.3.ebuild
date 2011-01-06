@@ -1,4 +1,4 @@
-# Copyright 1999-2010 Gentoo Foundation
+# Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
@@ -18,7 +18,7 @@ SRC_URI="http://pari.math.u-bordeaux.fr/pub/pari/testing/${MY_P}.tar.gz
 
 LICENSE="GPL-2"
 SLOT="3"
-KEYWORDS="~alpha ~amd64 ~hppa ~mips ~ppc64 ~sparc ~x86 ~x86-fbsd ~amd64-linux ~x86-linux"
+KEYWORDS="~alpha ~amd64 ~hppa ~mips ~ppc64 ~sparc ~x86 ~x86-fbsd ~amd64-linux ~x86-linux ~x86-macos"
 IUSE="doc data fltk gmp X sage"
 RESTRICT="mirror"
 
@@ -66,6 +66,15 @@ src_prepare() {
 		-e 's:"acroread":"xdg-open":' \
 		doc/gphelp.in || die "Failed to fix doc dir"
 
+	# For OS X we need to add -install_name to the linker option
+	epatch "${FILESDIR}/${PN}"-2.4.3-macos.patch
+
+	if use prefix ; then
+	       sed -i \
+	       	   -e "s:\/usr:${EPREFIX}\/usr:g" \
+		   config/get_X11 || die "Failed to fix get_X11"
+	fi
+
 	# in pari-2.4 usersch3.tex is generated
 	rm -f doc/usersch3.tex || die
 
@@ -85,6 +94,12 @@ src_configure() {
 	elif ! is-flag -O?; then
 		append-flags -O2
 	fi
+	local myconfig
+	if use gmp ; then
+	       	myconfig="--with-gmp=${EPREFIX}/usr"
+	else
+		myconfig="--with-gmp=no"
+	fi
 	# sysdatadir installs a pari.cfg stuff which is informative only
 	./Configure \
 		--prefix="${EPREFIX}"/usr \
@@ -92,8 +107,9 @@ src_configure() {
 		--libdir="${EPREFIX}"/usr/$(get_libdir) \
 		--sysdatadir="${EPREFIX}"/usr/share/doc/"${PF}" \
 		--mandir="${EPREFIX}"/usr/share/man/man1 \
-		--with-readline \
-		$(use_with gmp) \
+		--with-readline="${EPREFIX}"/usr \
+		--with-ncurses-lib="${EPREFIX}"/usr/$(get_libdir) \
+		$myconfig \
 		|| die "./Configure failed"
 }
 

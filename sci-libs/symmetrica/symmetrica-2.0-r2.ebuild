@@ -1,4 +1,4 @@
-# Copyright 1999-2010 Gentoo Foundation
+# Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
@@ -14,7 +14,7 @@ SRC_URI="http://www.neu.uni-bayreuth.de/de/Uni_Bayreuth/Fakultaeten/1_Mathematik
 
 LICENSE="as-is"
 SLOT="0"
-KEYWORDS="~amd64 ~x86 ~amd64-linux ~x86-linux"
+KEYWORDS="~amd64 ~ppc ~x86 ~amd64-linux ~x86-linux ~x86-macos"
 IUSE="doc"
 
 # test program does not stop
@@ -30,7 +30,11 @@ src_prepare() {
 	# documentation that you can use as you wish in your programs. For sage and
 	# ease of use we make it into a library with the following makefile
 	# (developped by F. Bissey and T. Abbott (sage on debian).
-	cp "${FILESDIR}"/makefile "${S}"/makefile || die "faile to copy makefile"
+	if  [[ ${CHOST} == *-darwin* ]] ; then
+		cp "${FILESDIR}"/makefile-macos "${S}"/makefile || die "faile to copy makefile"
+	else
+		cp "${FILESDIR}"/makefile "${S}"/makefile || die "faile to copy makefile"
+	fi
 
 	# fix macros.h - does not include def.h which results in INT not defined
 	epatch "${FILESDIR}"/${P}-fix-missing-typedef.patch
@@ -46,7 +50,7 @@ src_prepare() {
 
 src_compile() {
 	# set cc to make symmetrica work with ccache
-	emake CC=$(tc-getCC) lib${PN}.so || die
+	emake CC=$(tc-getCC) LIBDIR=$(get_libdir) sharedlib || die
 }
 
 src_install() {
