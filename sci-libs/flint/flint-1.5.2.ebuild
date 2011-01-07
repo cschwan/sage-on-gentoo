@@ -43,18 +43,9 @@ src_compile() {
 	local flint_flags=(
 		FLINT_CC=$(tc-getCC)
 		FLINT_CPP=$(tc-getCXX)
+		FLINT_LIB=lib${PN}$(get_libname)
 		FLINT_LINK_OPTIONS="${LDFLAGS}"
 	)
-
-	if [[ ${CHOST} == *-darwin* ]] ; then
-		flint_flags+=(
-			FLINT_LIB=lib${PN}.dylib
-		)
-	else
-		flint_flags+=(
-			FLINT_LIB=lib${PN}.so
-		)
-	fi
 
 	emake "${flint_flags[@]}" library || die
 
@@ -74,7 +65,7 @@ src_test() {
 }
 
 src_install(){
-	dolib.so libflint.* || die
+	dolib.so libflint$(get_libname) || die
 
 	insinto /usr/include/FLINT
 	doins *.h || die

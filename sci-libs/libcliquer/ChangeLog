@@ -2,6 +2,10 @@
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  07 Jan 2011; François Bissey <f.r.bissey@massey.ac.nz>
+  libcliquer-1.2_p7.ebuild:
+  cleaner ebuild thx to multilib
+
   06 Jan 2011; François Bissey <f.r.bissey@massey.ac.nz>
   libcliquer-1.2_p7.ebuild:
   Patch for macos support
