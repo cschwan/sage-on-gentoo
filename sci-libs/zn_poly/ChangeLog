@@ -4,6 +4,10 @@
 
   07 Jan 2011; François Bissey <f.r.bissey@massey.ac.nz>
   zn_poly-0.9-r3.ebuild:
+  keyword x86-macos :)
+
+  07 Jan 2011; François Bissey <f.r.bissey@massey.ac.nz>
+  zn_poly-0.9-r3.ebuild:
   Make zn_poly works on macos
 
   17 Dec 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
