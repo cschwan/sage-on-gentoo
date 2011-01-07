@@ -1,6 +1,10 @@
 # ChangeLog for sci-libs/zn_poly
-# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
+
+  07 Jan 2011; François Bissey <f.r.bissey@massey.ac.nz>
+  zn_poly-0.9-r3.ebuild:
+  Make zn_poly works on macos
 
   17 Dec 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
   zn_poly-0.9-r3.ebuild, -files/zn_poly-0.9-mpir.patch,

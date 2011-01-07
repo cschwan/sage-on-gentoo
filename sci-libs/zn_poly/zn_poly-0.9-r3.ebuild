@@ -1,4 +1,4 @@
-# Copyright 1999-2010 Gentoo Foundation
+# Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
@@ -30,9 +30,13 @@ src_prepare() {
 	sed -i "s:%s/lib:%s/$(get_libdir):g" makemakefile.py \
 		|| die "failed to patch for multilib-strict"
 
-	# fix to make zn_poly respect LDFLAGS
-	sed -i "s:so \$(LIBOBJS) \$(LIBS):so \$(LDFLAGS) \$(LIBOBJS) \$(LIBS):g" \
+	# fix to make zn_poly respect LDFLAGS in all targets
+	sed -i "s:\$(LIBOBJS) \$(LIBS):\$(LDFLAGS) \$(LIBOBJS) \$(LIBS):g" \
 		makemakefile.py || die "failed to add linker flags"
+
+	# fix install_name for macos
+	sed -i "s:-dynamiclib:-dynamiclib -install_name ${EPREFIX}/usr/$(get_libdir)/libzn_poly.dylib:g" \
+		makemakefile.py || die "failed to fix macos dylib"
 }
 
 # TODO: support flint instead of gmp option ?
@@ -44,7 +48,7 @@ src_configure() {
 		--prefix="${ED}"/usr \
 		--cflags="${CFLAGS}" \
 		--ldflags="${LDFLAGS}" \
-		--gmp-prefix=/usr \
+		--gmp-prefix="${ED}"/usr \
 		|| die "failed to configure sources"
 }
 
@@ -53,7 +57,11 @@ src_compile() {
 	# down the tests
 
 	# make shared object only
-	emake lib${P}.so || die
+	if  [[ ${CHOST} == *-darwin* ]] ; then
+		emake libzn_poly.dylib || die
+	else
+		emake lib${P}.so || die
+	fi
 }
 
 src_test() {
@@ -64,7 +72,11 @@ src_test() {
 }
 
 src_install() {
-	dolib.so lib${PN}.so lib${P}.so || die
+	if  [[ ${CHOST} == *-darwin* ]] ; then
+		dolib.so libzn_poly.dylib || die
+	else
+		dolib.so lib${PN}.so lib${P}.so || die
+	fi
 	dodoc CHANGES || die
 	insinto /usr/include/zn_poly
 	doins include/wide_arith.h include/zn_poly.h || die
