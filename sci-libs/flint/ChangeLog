@@ -1,6 +1,9 @@
 # ChangeLog for sci-libs/flint
-# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
+
+  07 Jan 2011; François Bissey <f.r.bissey@massey.ac.nz> flint-1.5.2.ebuild:
+  Make changes for macos support
 
   17 Dec 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
   flint-1.5.2.ebuild, -files/flint-1.5.2-use-mpir-instead-of-gmp.patch:

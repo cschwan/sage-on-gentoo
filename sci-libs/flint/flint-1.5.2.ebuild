@@ -1,4 +1,4 @@
-# Copyright 1999-2010 Gentoo Foundation
+# Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
@@ -12,7 +12,7 @@ SRC_URI="http://modular.math.washington.edu/home/wbhart/webpage/${P}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~x86 ~amd64-linux ~x86-linux"
+KEYWORDS="~amd64 ~x86 ~amd64-linux ~x86-linux ~x86-macos"
 IUSE="doc qs ntl"
 
 RESTRICT="mirror"
@@ -33,15 +33,28 @@ src_prepare() {
 	if use ntl ; then
 		epatch "${FILESDIR}"/${P}-enable-ntl.patch
 	fi
+
+	# fix install name for macos
+	sed -i "s:-dynamiclib:-dynamiclib -install_name ${EPREFIX}/usr/$(get_libdir)/libflint.dylib:g" \
+		makefile || die "failed to fix macos support"
 }
 
 src_compile() {
 	local flint_flags=(
 		FLINT_CC=$(tc-getCC)
 		FLINT_CPP=$(tc-getCXX)
-		FLINT_LIB=lib${PN}.so
 		FLINT_LINK_OPTIONS="${LDFLAGS}"
 	)
+
+	if [[ ${CHOST} == *-darwin* ]] ; then
+		flint_flags+=(
+			FLINT_LIB=lib${PN}.dylib
+		)
+	else
+		flint_flags+=(
+			FLINT_LIB=lib${PN}.so
+		)
+	fi
 
 	emake "${flint_flags[@]}" library || die
 
@@ -61,7 +74,7 @@ src_test() {
 }
 
 src_install(){
-	dolib.so libflint.so || die
+	dolib.so libflint.* || die
 
 	insinto /usr/include/FLINT
 	doins *.h || die
