@@ -1,10 +1,10 @@
-# Copyright 1999-2010 Gentoo Foundation
+# Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
 EAPI="3"
 
-inherit eutils versionator toolchain-funcs
+inherit eutils versionator toolchain-funcs multilib prefix
 
 MY_P="${PN}-$(replace_version_separator 1 '.')"
 SAGE_P="sage-4.6"
@@ -15,7 +15,7 @@ SRC_URI="http://sage.math.washington.edu/home/release/${SAGE_P}/${SAGE_P}/spkg/s
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~x86 ~amd64-linux ~x86-linux"
+KEYWORDS="~amd64 ~x86 ~amd64-linux ~x86-linux ~x86-macos"
 IUSE="-pari24"
 
 RESTRICT="mirror"
@@ -32,6 +32,8 @@ src_prepare() {
 	# patch for shared objects and various make issues.
 	epatch "${FILESDIR}"/${P}-makefile.patch.bz2
 	epatch "${FILESDIR}"/${P}-makefile.dynamic.patch.bz2
+	eprefixify Makefile.dynamic
+	sed -i -e "s|@LIB_DIR@|$(get_libdir)|g" Makefile.dynamic
 	epatch "${FILESDIR}"/${P}-g0n_makefile.patch.bz2
 	epatch "${FILESDIR}"/${P}-procs_makefile.patch.bz2
 	epatch "${FILESDIR}"/${P}-qcurves_makefile.patch.bz2
@@ -59,12 +61,16 @@ src_prepare() {
 }
 
 src_compile() {
-	emake CXX=$(tc-getCXX) so || die
+	if [[ ${CHOST} == *-darwin* ]] ; then
+		emake CXX=$(tc-getCXX) dylib || die
+	else
+		emake CXX=$(tc-getCXX) so || die
+	fi
 }
 
 src_install() {
 	dobin bin/* || die
-	dolib.so lib/*.so* || die
+	dolib.so lib/*$(get_libname)* || die
 	insinto /usr/include/eclib
 	doins include/* || die
 }
