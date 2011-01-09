@@ -1,4 +1,4 @@
-# Copyright 1999-2010 Gentoo Foundation
+# Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
@@ -54,6 +54,9 @@ src_prepare () {
 	epatch "${FILESDIR}"/${PN}-3.1.1.3-soname.patch
 	epatch "${FILESDIR}"/${P}-parallelmake.patch
 
+	# remove ntl sources
+	rm -rf ntl/
+
 	eprefixify kernel/feResource.cc
 
 	sed -i \
@@ -79,7 +82,9 @@ src_configure() {
 		--libexecdir="${S}"/build/lib \
 		--with-apint=gmp \
 		--with-gmp="${EPREFIX}"/usr \
-		--disable-NTL \
+		--enable-gmp="${EPREFIX}"/usr \
+		--with-ntl="${EPREFIX}"/usr \
+		--with-NTL \
 		$(use_enable debug) \
 		--disable-doc \
 		--without-MP \

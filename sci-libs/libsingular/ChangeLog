@@ -2,6 +2,10 @@
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  09 Jan 2011; François Bissey <f.r.bissey@massey.ac.nz>
+  libsingular-3.1.1.4.ebuild:
+  config changes for better prefix support (hopefully)
+
   04 Jan 2011; François Bissey <f.r.bissey@massey.ac.nz>
   libsingular-3.1.1.4.ebuild:
   remove cruft from the ebuild.

@@ -76,7 +76,9 @@ src_configure() {
 		--libexecdir="${S}"/build/lib \
 		--with-apint=gmp \
 		--with-gmp="${EPREFIX}"/usr \
-		--disable-NTL \
+		--enable-gmp="${EPREFIX}"/usr \
+		--with-ntl="${EPREFIX}"/usr \
+		--with-NTL \
 		$(use_enable debug) \
 		--disable-doc \
 		--without-MP \
