@@ -1,0 +1,10 @@
+# ChangeLog for dev-lang/R
+# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
+# $Header: $
+
+*R-2.10.1-r1 (10 Jan 2011)
+
+  10 Jan 2011; François Bissey <f.r.bissey@massey.ac.nz> +R-2.10.1-r1.ebuild,
+  +metadata.xml:
+  Import a ~x86-macos specific version of R (should work with other too)
+
