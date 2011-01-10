@@ -1,10 +1,10 @@
-# Copyright 1999-2010 Gentoo Foundation
+# Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
 EAPI="3"
 
-inherit eutils scons-utils versionator
+inherit eutils scons-utils versionator multilib
 
 MY_P="sage-$(replace_version_separator 3 '.')"
 
@@ -14,7 +14,7 @@ SRC_URI="http://sage.math.washington.edu/home/release/${MY_P}/${MY_P}/spkg/stand
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~x86 ~amd64-linux ~x86-linux"
+KEYWORDS="~amd64 ~x86 ~amd64-linux ~x86-linux ~x86-macos"
 IUSE=""
 
 RESTRICT="mirror"
@@ -31,6 +31,10 @@ S="${WORKDIR}/${MY_P}/c_lib"
 src_prepare() {
 	epatch "${FILESDIR}"/${PN}-4.6-importenv.patch
 	epatch "${FILESDIR}"/${PN}-4.5.3-fix-undefined-symbols-warning.patch
+	if [[ ${CHOST} == *-darwin* ]] ; then
+		sed -i "s:-Wl,-soname,libcsage.so:-install_name ${EPREFIX}/usr/$(get_libdir)/libcsage.dylib:" \
+			SConstruct
+	fi
 
 	# Use pari-2.4
 	sed -i "s:pari/:pari24/:" include/convert.h || die "failed to use pari2.4 headers"
@@ -42,7 +46,7 @@ src_compile() {
 }
 
 src_install() {
-	dolib.so libcsage.* || die
+	dolib.so libcsage$(get_libname) || die
 	insinto /usr/include/csage
 	doins include/*.h || die
 }
