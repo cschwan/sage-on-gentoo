@@ -46,12 +46,19 @@ src_prepare () {
 	if  [[ ${CHOST} == *-darwin* ]] ; then
 		# really a placeholder until I figure out the patch for that one.
 		epatch "${FILESDIR}"/${PN_PATCH}-3.1.1.3-dylib.patch
+		eprefixify Singular/Makefile.in
+		sed -i -e "s|@LIB_DIR@|$(get_libdir)|g" Singular/Makefile.in
+		sed -i -e "s:::"
 	else
 		epatch "${FILESDIR}"/${PN_PATCH}-3.1.1.3-soname.patch
 	fi
 	epatch "${FILESDIR}"/${PN_PATCH}-3.1.1.4-parallelmake.patch
 
 	eprefixify kernel/feResource.cc
+	if use prefix ; then
+		sed -i -e "s:-lkernel -L../kernel -L../factory -L../libfac:-lkernel -L../kernel -L../factory -L../libfac -L${EPREFIX}/usr/$(get_libdir):" \
+			Singular/Makefile.in
+	fi
 
 	sed -i \
 		-e "/CXXFLAGS/ s/--no-exceptions//g" \
@@ -67,6 +74,10 @@ src_prepare () {
 }
 
 src_configure() {
+	if [[ ${CHOST} == *-darwin* ]] ; then
+		MACOSX_DEPLOYMENT_TARGET=10.4
+		export MACOSX_DEPLOYMENT_TARGET
+	fi
 
 	econf \
 		--prefix="${S}"/build \
@@ -110,13 +121,16 @@ src_install () {
 	cd "${S}"
 	emake install-libsingular || die "failed to put libsingular in the right location"
 	cd "${S}"/build/lib
-	# The lib bit is really linux only
-	dolib.so libsingular.so."${SOSUFFIX}"
-	dosym libsingular.so."${SOSUFFIX}" /usr/$(get_libdir)/libsingular.so \
-		|| die "failed to create symlink"
-	dosym libsingular.so."${SOSUFFIX}" \
-		/usr/$(get_libdir)/libsingular.so."$(get_major_version)" \
-		|| die "failed to create symbolic link"
+	if  [[ ${CHOST} == *-darwin* ]] ; then
+		dolib.so libsingular.dylib
+	else
+		dolib.so libsingular.so."${SOSUFFIX}"
+		dosym libsingular.so."${SOSUFFIX}" /usr/$(get_libdir)/libsingular.so \
+			|| die "failed to create symlink"
+		dosym libsingular.so."${SOSUFFIX}" \
+			/usr/$(get_libdir)/libsingular.so."$(get_major_version)" \
+			|| die "failed to create symbolic link"
+	fi
 	insinto /usr/include
 	cd "${S}"/build/include
 	# Move factory.h and cf_gmp.h in the singular folder so we don't either

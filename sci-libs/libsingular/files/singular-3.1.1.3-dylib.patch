@@ -5,7 +5,7 @@
  libsingular: mod2.h Makefile version.h $(WIN_LIBS) scanner.cc  ${OBJS} \
           iparith.o libsingular-tesths.o libparse.cc claptmpl.o mpsr_Tok.o $(DL_LIBS) 
 -	$(LIBSINGULAR_LD) ${SLDFLAGS} ${LIBSINGULAR_FLAGS} -o libsingular.${SO_SUFFIX} \
-+	$(LIBSINGULAR_LD) ${SLDFLAGS} ${LIBSINGULAR_FLAGS} -o libsingular.${SO_SUFFIX} \
++	$(LIBSINGULAR_LD) ${SLDFLAGS} ${LIBSINGULAR_FLAGS} -install_name @GENTOO_PORTAGE_EPREFIX@/usr/@LIB_DIR@/libsingular.${SO_SUFFIX} -o libsingular.${SO_SUFFIX} \
  	libsingular-tesths.o iparith.o mpsr_Tok.o claptmpl.o \
  	${OBJS} -lkernel -L../kernel -L../factory -L../libfac -L${libdir} ${LIBSINGULAR_LIBS}
  
