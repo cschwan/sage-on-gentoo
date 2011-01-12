@@ -3,7 +3,7 @@
 # $Header:  $
 
 EAPI=3
-inherit eutils flag-o-matic bash-completion versionator multilib
+inherit eutils flag-o-matic bash-completion versionator multilib autotools
 
 DESCRIPTION="Language and environment for statistical computing and graphics"
 HOMEPAGE="http://www.r-project.org/"
@@ -78,11 +78,21 @@ src_prepare() {
 	fi
 	use perl && \
 		export PERL5LIB="${S}/share/perl:${PERL5LIB:+:}${PERL5LIB}"
+		
+	# Fix for darwin (OS X)
+	sed -e 's:-install_name libR.dylib:-install_name ${libdir}/R/lib/libR.dylib:' \
+		-e 's:-install_name libRlapack.dylib:-install_name ${libdir}/R/lib/libRlapack.dylib:' \
+		-e 's:-install_name libRblas.dylib:-install_name ${libdir}/R/lib/libRblas.dylib:' \
+		-e "s:AM_INIT_AUTOMAKE:A_I_A:" \
+		-i configure.ac
+
+	AT_M4DIR=m4	eautoreconf
 }
 
 src_configure() {
 	econf \
 		--disable-rpath \
+		--disable-R-framework \
 		--enable-R-profiling \
 		--enable-memory-profiling \
 		--enable-R-shlib \
@@ -147,6 +157,13 @@ src_install() {
 	EOF
 	doenvd 99R || die "doenvd failed"
 	dobashcompletion "${WORKDIR}"/R.bash_completion
+	
+	# fix install_name for all .so objects still shipped on macos
+	for d in $(find ${D} -name *.so)  ; do
+		ebegin "  correcting install_name of ${d}"
+		install_name_tool -id "${d#${D}}" "${d}"
+		eend $?
+	done
 }
 
 pkg_config() {
