@@ -24,6 +24,7 @@ DOCS=( AUTHORS ChangeLog README )
 PATCHES=(
 	"${FILESDIR}"/${P}-use-any-cblas-implementation.patch
 	"${FILESDIR}"/${P}-fix-undefined-symbol.patch
+	"${FILESDIR}"/${P}-repl_removal.patch
 )
 
 src_prepare() {
