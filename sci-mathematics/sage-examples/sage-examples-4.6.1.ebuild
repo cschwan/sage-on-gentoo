@@ -6,9 +6,8 @@ EAPI="3"
 
 inherit versionator
 
-SAGE_PV="$(replace_version_separator 3 '.')"
-SAGE_P="sage-${SAGE_PV}"
-MY_P="examples-${SAGE_PV}"
+SAGE_P="sage-${PV}"
+MY_P="examples-${PV}"
 
 DESCRIPTION="Example code and scripts for Sage"
 HOMEPAGE="http://www.sagemath.org"

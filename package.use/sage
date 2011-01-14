@@ -11,7 +11,7 @@ sci-mathematics/eclib       pari24
 sci-mathematics/lcalc       -pari pari24
 sci-mathematics/pari        data gmp sage
 sci-mathematics/polybori    sage
-sci-mathematics/singular    libsingular
+sci-mathematics/singular    -libsingular
 sci-mathematics/sympow      pari24
 #dev-lang/R                  lapack
 #sci-libs/linbox             ntl
