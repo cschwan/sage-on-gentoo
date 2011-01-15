@@ -48,7 +48,6 @@ CDEPEND="dev-libs/gmp
 	>=sci-mathematics/ratpoints-2.1.3
 	~sci-mathematics/sage-baselayout-${PV}[testsuite=]
 	~sci-mathematics/sage-clib-${PV}
-	|| ( ~sci-mathematics/singular-3.1.1.4[-libsingular] >=sci-mathematics/singular-3.1.2 )
 	~sci-libs/libsingular-3.1.1.4
 	media-libs/gd[jpeg,png]
 	media-libs/libpng
@@ -99,6 +98,7 @@ RDEPEND="${CDEPEND}
 	>=sci-mathematics/sage-doc-${PV}
 	~sci-mathematics/sage-extcode-${PV}
 	~sci-mathematics/sage-notebook-0.8.10
+	|| ( ~sci-mathematics/singular-3.1.1.4[-libsingular] >=sci-mathematics/singular-3.1.2 )
 	>=sci-mathematics/sympow-1.018.1_p8[pari24]
 	examples? ( ~sci-mathematics/sage-examples-${PV} )
 	testsuite? (

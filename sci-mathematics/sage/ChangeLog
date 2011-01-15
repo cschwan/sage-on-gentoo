@@ -2,6 +2,9 @@
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  15 Jan 2011; François Bissey <f.r.bissey@massey.ac.nz> sage-4.6.1.ebuild:
+  move singular to RDEP in 4.6.1. libsingular is the only one needed in DEP.
+
 *sage-4.6.1 (14 Jan 2011)
 
   14 Jan 2011; François Bissey <f.r.bissey@massey.ac.nz>
