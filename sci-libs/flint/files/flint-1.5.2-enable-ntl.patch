@@ -1,13 +1,27 @@
---- makefile.orig	2010-04-25 12:05:53.773786031 +0000
-+++ makefile	2010-04-25 12:09:19.864544071 +0000
-@@ -125,8 +125,8 @@
- libflint.dll: $(FLINTOBJ)
+--- makefile.orig	2011-01-17 14:47:00.000000000 +1300
++++ makefile	2011-01-17 14:52:16.000000000 +1300
+@@ -116,17 +116,17 @@
+ 
+ library: $(FLINT_LIB)
+ 
+-libflint.dylib: $(FLINTOBJ)
+-	$(CC) -single_module -fPIC -dynamiclib -o libflint.dylib $(FLINTOBJ) $(LIBS)
++libflint.dylib: $(FLINTOBJ) NTL-interface.o
++	$(CPP) -single_module -fPIC -dynamiclib -o libflint.dylib $(FLINTOBJ) NTL-interface.o $(LIBS2)
+ 
+-libflint.dylib64: $(FLINTOBJ)
+-	$(CC) -m64 -single_module -fPIC -dynamiclib -o libflint.dylib $(FLINTOBJ) $(LIBS)
++libflint.dylib64: $(FLINTOBJ) NTL-interface.o
++	$(CPP) -m64 -single_module -fPIC -dynamiclib -o libflint.dylib $(FLINTOBJ) NTL-interface.o $(LIBS2)
+ 
+-libflint.dll: $(FLINTOBJ)
++libflint.dll: $(FLINTOBJ) NTL-interface.o
  	$(CC) -fPIC -shared -o libflint.dll $(FLINTOBJ) $(LIBS)
  
 -libflint.so: $(FLINTOBJ)
 -	$(CC) -fPIC -shared -Wl,-soname,libflint.so -o libflint.so $(FLINTOBJ) $(LIBS)
 +libflint.so: $(FLINTOBJ) NTL-interface.o
-+	$(CC) -fPIC -shared -Wl,-soname,libflint.so -o libflint.so $(FLINTOBJ) NTL-interface.o $(LIBS)
++	$(CPP) -fPIC -shared -Wl,-soname,libflint.so -o libflint.so $(FLINTOBJ) NTL-interface.o $(LIBS2)
  
  ##### Object files
  

@@ -1,4 +1,4 @@
-# Copyright 1999-2010 Gentoo Foundation
+# Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
@@ -59,6 +59,10 @@ src_prepare() {
 
 	# Ticket #9717 in Sage's bug tracker - fix SIGSEGV errors
 	epatch "${FILESDIR}"/${PN}-0.6.5-fix-another-SIGSEGV.patch
+
+	if [[ ${CHOST} == *-darwin* ]] ; then
+		epatch "${FILESDIR}"/${PN}-0.6.5-sconstruct-macos.patch
+	fi
 }
 
 src_compile(){
@@ -82,6 +86,17 @@ src_compile(){
 		PYINSTALLPREFIX="${ED}"$(python_get_sitedir)
 		INSTALLDIR="${ED}"/usr/share/polybori
 	)
+	
+	# extra configuration for macos 
+	# FIXME: don't know how to deal properly with versionned libraries with install_name so dropping it.
+	if [[ ${CHOST} == *-darwin* ]] ; then
+		myesconsargs+=(
+			SHLINKFLAGS="${LDFLAGS} -dynamiclib"
+			HAVE_PYTHON_EXTENSION=False
+			EXTERNAL_PYTHON_EXTENSION=True
+			SHLIBVERSIONING=False
+		)
+	fi
 
 	escons "${myesconsargs[@]}" prepare-install prepare-devel || die
 }
@@ -98,4 +113,14 @@ src_install() {
 	# we only need shared objects
 	rm "${ED}"/usr/$(get_libdir)/lib*.a \
 		|| die "failed to remove static libraries"
+		
+	# fixing install names on OS X
+	if [[ ${CHOST} == *-darwin* ]] ; then
+		cd "${ED}"/usr/$(get_libdir)
+		for d in *.dylib ; do
+			ebegin "  correcting install_name of ${d}"
+			install_name_tool -id "${EPREFIX}/usr/$(get_libdir)/${d}" "${d}"
+			eend $?
+		done
+	fi
 }

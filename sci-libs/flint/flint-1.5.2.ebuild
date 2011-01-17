@@ -45,6 +45,8 @@ src_compile() {
 		FLINT_CPP=$(tc-getCXX)
 		FLINT_LIB=lib${PN}$(get_libname)
 		FLINT_LINK_OPTIONS="${LDFLAGS}"
+		FLINT_GMP_LIB_DIR="${EPREFIX}"/usr/$(get_libdir)
+		FLINT_NTL_LIB_DIR="${EPREFIX}"/usr/$(get_libdir)
 	)
 
 	emake "${flint_flags[@]}" library || die

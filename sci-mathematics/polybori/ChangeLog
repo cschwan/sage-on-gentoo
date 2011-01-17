@@ -1,6 +1,10 @@
 # ChangeLog for sci-mathematics/polybori
-# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
+
+  17 Jan 2011; François Bissey <f.r.bissey@massey.ac.nz>
+  polybori-0.6.5-r2.ebuild, +files/polybori-0.6.5-sconstruct-macos.patch:
+  merge macos changes
 
 *polybori-0.6.5-r2 (10 Sep 2010)
 
