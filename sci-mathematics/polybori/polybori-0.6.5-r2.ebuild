@@ -14,7 +14,7 @@ SRC_URI="mirror://sourceforge/${PN}/${PN}/${PV}/${PN}-$(replace_version_separato
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~x86 ~amd64-linux ~x86-linux"
+KEYWORDS="~amd64 ~x86 ~amd64-linux ~x86-linux ~x86-macos"
 IUSE="doc gd sage"
 
 # polybori does not have a working set of tests
@@ -110,17 +110,24 @@ src_install() {
 			|| die "failed to remove useless documentation"
 	fi
 
-	# we only need shared objects
-	rm "${ED}"/usr/$(get_libdir)/lib*.a \
-		|| die "failed to remove static libraries"
-		
-	# fixing install names on OS X
+	# FIXME: Dynamic libraries now work on linux but are broken on OS X
 	if [[ ${CHOST} == *-darwin* ]] ; then
-		cd "${ED}"/usr/$(get_libdir)
-		for d in *.dylib ; do
-			ebegin "  correcting install_name of ${d}"
-			install_name_tool -id "${EPREFIX}/usr/$(get_libdir)/${d}" "${d}"
-			eend $?
-		done
+		# Removing dynamic libraries keeping only static objects
+		rm "${ED}"/usr/$(get_libdir)/lib*.dylib \
+			|| die "failed to remove static libraries"
+	else
+		# we only need shared objects elsewhere
+		rm "${ED}"/usr/$(get_libdir)/lib*.a \
+			|| die "failed to remove static libraries"
 	fi
+
+	# fixing install names on OS X
+	#if [[ ${CHOST} == *-darwin* ]] ; then
+	#	cd "${ED}"/usr/$(get_libdir)
+	#	for d in *.dylib ; do
+	#		ebegin "  correcting install_name of ${d}"
+	#		install_name_tool -id "${EPREFIX}/usr/$(get_libdir)/${d}" "${d}"
+	#		eend $?
+	#	done
+	#fi
 }
