@@ -36,12 +36,13 @@ src_prepare() {
 		#!/bin/bash
 
 		if [[ -z \${DOT_SAGE} ]]; then
-		    export DOT_SAGE="\${HOME}/.sage"
+			export DOT_SAGE="\${HOME}/.sage"
 		fi
 
 		export SAGE_STARTUP_FILE="\${DOT_SAGE}/init.sage"
 		export SAGE_TESTDIR="\${DOT_SAGE}/tmp"
 		export SAGE_SERVER="http://www.sagemath.org/"
+		export EPYTHON=python2.6
 	EOF
 
 	# make sage startup script
