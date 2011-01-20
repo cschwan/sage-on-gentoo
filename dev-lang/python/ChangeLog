@@ -1,6 +1,31 @@
 # ChangeLog for dev-lang/python
-# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/ChangeLog,v 1.508 2010/12/16 16:14:40 neurogeek Exp $
+# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/ChangeLog,v 1.515 2011/01/06 19:11:25 ranger Exp $
+
+  06 Jan 2011; Brent Baude <ranger@gentoo.org> python-2.6.6-r1.ebuild:
+  Marking python-2.6.6-r1 ppc for bug 342927
+
+  01 Jan 2011; Jorge Manuel B. S. Vicetto <jmbsvicetto@gentoo.org>
+  python-2.6.6-r1.ebuild:
+  Non-maintainer commit.
+  Reverting commit that broke stage generation for python-2.6.6-r1 as it wasn't
+  reverted before - bug 347867.
+  This commit was accepted by Arfrever.
+
+  29 Dec 2010; Markos Chandras <hwoarang@gentoo.org> python-2.6.6-r1.ebuild:
+  Stable on amd64 wrt bug #342927
+
+  27 Dec 2010; Brent Baude <ranger@gentoo.org> python-2.6.6-r1.ebuild:
+  Marking python-2.6.6-r1 ppc64 for bug 342927
+
+  27 Dec 2010; Brent Baude <ranger@gentoo.org> python-3.1.2-r4.ebuild:
+  Marking python-3.1.2-r4 ppc64 for bug 325593
+
+  22 Dec 2010; Tobias Klausmann <klausman@gentoo.org> python-2.6.6-r1.ebuild:
+  Stable on alpha, bug #342927
+
+  21 Dec 2010; Markus Meier <maekke@gentoo.org> python-2.6.6-r1.ebuild:
+  arm stable, bug #342927
 
   16 Dec 2010; Jesus Rivero <neurogeek@gentoo.org> python-2.4.6.ebuild,
   python-2.5.4-r4.ebuild, python-2.7.ebuild, python-2.7.1.ebuild,
