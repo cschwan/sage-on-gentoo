@@ -2,6 +2,13 @@
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*sage-notebook-0.8.10-r1 (20 Jan 2011)
+
+  20 Jan 2011; Martin von Gagern (MvG) <Martin.vGagern@gmx.net>
+  -sage-notebook-0.8.10.ebuild, +sage-notebook-0.8.10-r1.ebuild:
+  Added call to python_set_active_version which selects proper python (version
+  2.6)
+
   15 Jan 2011; Christopher Schwan <cschwan@students.uni-mainz.de>
   Manifest:
   Fixed Manifest - upstream silently changed tarball (?)

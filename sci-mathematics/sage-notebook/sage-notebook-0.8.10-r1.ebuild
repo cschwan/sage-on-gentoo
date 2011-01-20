@@ -35,6 +35,12 @@ RDEPEND="${DEPEND}
 
 S="${WORKDIR}/${MY_P}/src/sagenb"
 
+pkg_setup() {
+	# Sage only works with python 2.6.*
+	python_set_active_version 2.6
+	python_pkg_setup
+}
+
 src_prepare() {
 	epatch "${FILESDIR}"/${PN}-0.8-nojava.patch
 
