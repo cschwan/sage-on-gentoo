@@ -87,7 +87,7 @@ RDEPEND="${CDEPEND}
 	>=sci-mathematics/cu2-20060223
 	>=sci-mathematics/cubex-20060128
 	>=sci-mathematics/dikcube-20070912_p12
-	~sci-mathematics/maxima-5.22.1[ecls]
+	>=sci-mathematics/maxima-5.22.1[ecls]
 	>=sci-mathematics/mcube-20051209
 	>=sci-mathematics/optimal-20040603
 	>=sci-mathematics/palp-1.1
@@ -370,6 +370,12 @@ pkg_postinst() {
 	einfo "following command in a directory where Sage may write to, e.g.:"
 	einfo ""
 	einfo "  cd \$(mktemp -d) && sage -testall"
+	einfo ""
+	einfo "Parallel doctesting is also possible (replace '8' with an adequate"
+	einfo "number of processes):"
+	einfo ""
+	einfo "  cd \$(mktemp -d) && sage -tp 8 -sagenb \\"
+	einfo "      ${EPREFIX}/usr/share/sage/devel/sage-main/"
 	einfo ""
 	einfo "Note that testing Sage may take more than 4 hours. If you want to"
 	einfo "check your results look at the list of known failures:"

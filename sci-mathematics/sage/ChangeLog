@@ -2,6 +2,10 @@
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  21 Jan 2011; <cschwan@gentoo.org> sage-4.6.1-r1.ebuild:
+  Do not hard depend on maxima 5.22 - 5.23 is works fine. Added einfo
+  for parallel doctesting
+
 *sage-4.6-r2 (20 Jan 2011)
 
   20 Jan 2011; <cschwan@students.uni-mainz.de> +sage-4.6.1-r1.ebuild:
