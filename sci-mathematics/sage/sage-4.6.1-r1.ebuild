@@ -128,7 +128,7 @@ src_prepare() {
 	############################################################################
 
 	# Fix startup issue and python-2.6.5 problem
-	append-flags -fno-strict-aliasing -DNDEBUG
+	append-flags -fno-strict-aliasing
 
 	# fix build file to make it compile without other Sage components
 	epatch "${FILESDIR}"/${PN}-4.3.4-site-packages.patch
@@ -232,6 +232,10 @@ src_prepare() {
 		-e "s:BLAS, BLAS2:${cblaslibs}:g" \
 		-e "s:,BLAS:,${cblaslibs}:g" \
 		module_list.py || die "failed to patch module_list.py for ATLAS"
+
+	# Add -DNDEBUG to objects linking to libsingular
+	sed -i "s:'/include/singular'\]:'/include/singular'\],extra_compile_args = \['-DNDEBUG'\]:g" \
+		module_list.py || die "failed to add -DNDEBUG with libsingular"
 
 	# TODO: why does Sage fail with linbox commentator ?
 
