@@ -9,7 +9,7 @@ PYTHON_USE_WITH="readline sage sqlite"
 
 inherit distutils eutils flag-o-matic python versionator
 
-MY_P="sage-${PV}"
+MY_P="sage-$(replace_version_separator 3 '.')"
 
 DESCRIPTION="Math software for algebra, geometry, number theory, cryptography and numerical computation"
 HOMEPAGE="http://www.sagemath.org"
@@ -97,7 +97,7 @@ RDEPEND="${CDEPEND}
 	~sci-mathematics/sage-data-polytopes_db-20100210
 	>=sci-mathematics/sage-doc-${PV}
 	~sci-mathematics/sage-extcode-${PV}
-	~sci-mathematics/sage-notebook-0.8.10
+	~sci-mathematics/sage-notebook-0.8.11
 	|| ( ~sci-mathematics/singular-3.1.1.4[-libsingular] >=sci-mathematics/singular-3.1.2 )
 	>=sci-mathematics/sympow-1.018.1_p8[pari24]
 	examples? ( ~sci-mathematics/sage-examples-${PV} )
@@ -326,7 +326,7 @@ src_prepare() {
 }
 
 src_configure() {
-	export SAGE_LOCAL="${EPREFIX}"/usr
+	export SAGE_LOCAL="${EPREFIX}"/usr/
 	export SAGE_ROOT="${EPREFIX}"/usr/share/sage
 	export SAGE_VERSION=${PV}
 

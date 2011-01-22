@@ -2,6 +2,13 @@
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*pari-2.4.3-r1 (22 Jan 2011)
+
+  22 Jan 2011; François Bissey <f.r.bissey@massey.ac.nz>
+  +files/pari_1084.patch, +files/pari_1132.patch, +files/pari_1141.patch,
+  +files/pari_1143.patch, +files/pari_1144.patch, +pari-2.4.3-r1.ebuild:
+  Add a bunch of upstream bug fix. Planned to be used in sage-4.6.2.
+
   06 Jan 2011; François Bissey <f.r.bissey@massey.ac.nz>
   -files/pari-2.3.5-DOC_MAKE.patch, pari-2.4.3.ebuild,
   +files/pari-2.4.3-macos.patch:
