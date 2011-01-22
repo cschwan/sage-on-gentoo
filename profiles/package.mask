@@ -1,3 +1,5 @@
+# preparing 4.6.2
+=sci-mathematics/pari-2.4.3-r1
 # Ongoing work there, do not touch before it has been properly tested.
 =sci-chemistry/jmol-11.8.25
 # Not compatible with sage
