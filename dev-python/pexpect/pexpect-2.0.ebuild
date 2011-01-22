@@ -7,7 +7,7 @@ EAPI="3"
 PYTHON_DEPEND="2:2.6"
 SUPPORT_PYTHON_ABIS="1"
 RESTRICT_PYTHON_ABIS="3.*"
-  
+
 inherit distutils eutils
 
 DESCRIPTION="Python module for spawning child applications and responding to expected patterns"
