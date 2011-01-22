@@ -326,7 +326,7 @@ src_prepare() {
 }
 
 src_configure() {
-	export SAGE_LOCAL="${EPREFIX}"/usr
+	export SAGE_LOCAL="${EPREFIX}"/usr/
 	export SAGE_ROOT="${EPREFIX}"/usr/share/sage
 	export SAGE_VERSION=${PV}
 
