@@ -22,7 +22,7 @@ RESTRICT="mirror"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~x86 ~amd64-linux ~x86-linux"
+KEYWORDS="~amd64 ~x86 ~amd64-linux ~x86-linux ~x86-macos"
 IUSE="boost debug"
 
 RDEPEND="dev-libs/gmp
@@ -74,7 +74,13 @@ src_prepare () {
 }
 
 src_configure() {
-	if [[ ${CHOST} == *-darwin* ]] ; then
+	if [[ ${CHOST} == *-darwin10 ]] ; then
+		MACOSX_DEPLOYMENT_TARGET=10.6
+		export MACOSX_DEPLOYMENT_TARGET
+	elif [[ ${CHOST} == *-darwin9 ]] ; then
+		MACOSX_DEPLOYMENT_TARGET=10.5
+		export MACOSX_DEPLOYMENT_TARGET
+	elif [[ ${CHOST} == *-darwin8 ]] ; then
 		MACOSX_DEPLOYMENT_TARGET=10.4
 		export MACOSX_DEPLOYMENT_TARGET
 	fi
@@ -102,9 +108,9 @@ src_configure() {
 
 src_compile() {
 	cd "${S}"/omalloc && emake install || die "making omalloc failed"
-	cd "${S}"/factory && emake install || die "making omalloc failed"
-	cd "${S}"/libfac && emake install || die "making omalloc failed"
-	cd "${S}"/kernel && emake install || die "making omalloc failed"
+	cd "${S}"/factory && emake install || die "making factory failed"
+	cd "${S}"/libfac && emake install || die "making libfac failed"
+	cd "${S}"/kernel && emake install || die "making kernel failed"
 
 	cd "${S}"
 	emake libsingular || die "emake libsingular failed"
