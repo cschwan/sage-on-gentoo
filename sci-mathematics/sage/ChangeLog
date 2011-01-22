@@ -2,6 +2,10 @@
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  22 Jan 2011; François Bissey <f.r.bissey@massey.ac.nz>
+  sage-4.6.2_alpha1.ebuild:
+  adjust sagenb dependency
+
 *sage-4.6.2_alpha1 (22 Jan 2011)
 
   22 Jan 2011; François Bissey <f.r.bissey@massey.ac.nz>
