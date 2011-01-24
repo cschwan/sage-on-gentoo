@@ -25,7 +25,8 @@
   22 Jan 2011; François Bissey <f.r.bissey@massey.ac.nz> sage-4.6.1-r1.ebuild:
   Only use -DNDEBUG with libsingular.
 
-  21 Jan 2011; <cschwan@gentoo.org> sage-4.6.1-r1.ebuild:
+  21 Jan 2011; <cschwan@students.uni-mainz.de>
+  sage-4.6.1-r1.ebuild:
   Do not hard depend on maxima 5.22 - 5.23 is works fine. Added einfo
   for parallel doctesting
 
