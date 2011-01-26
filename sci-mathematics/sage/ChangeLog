@@ -2,6 +2,10 @@
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  26 Jan 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  -sage-4.6.2_alpha1.ebuild, +sage-4.6.2_alpha2.ebuild:
+  alpha2
+
   22 Jan 2011; François Bissey <f.r.bissey@massey.ac.nz>
   sage-4.6.2_alpha1.ebuild:
   Deal with SAGE_INC in 4.6.2_alpha1

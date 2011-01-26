@@ -2,6 +2,16 @@
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  26 Jan 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  -sage-clib-4.6.2_alpha1.ebuild, +sage-clib-4.6.2_alpha2.ebuild:
+  adjust pari dep in 4.6.2.alpha2
+
+*sage-clib-4.6.2_alpha2 (26 Jan 2011)
+
+  26 Jan 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  -sage-clib-4.6.2_alpha1.ebuild, +sage-clib-4.6.2_alpha2.ebuild:
+  alpha2
+
 *sage-clib-4.6.2_alpha1 (22 Jan 2011)
 
   22 Jan 2011; François Bissey <f.r.bissey@massey.ac.nz>
