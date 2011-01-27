@@ -17,14 +17,15 @@ SRC_URI="http://sage.math.washington.edu/home/release/${MY_P}/${MY_P}/spkg/stand
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~x86 ~amd64-linux ~x86-linux"
-IUSE="examples mpc latex testsuite"
+KEYWORDS="~amd64 ~x86 ~amd64-linux ~x86-linux ~x86-macos"
+IUSE="examples mpc latex testsuite -experimental"
 
 RESTRICT="mirror"
 
 CDEPEND="dev-libs/gmp
 	>=dev-libs/mpfr-2.4.2
 	>=dev-libs/ntl-5.5.2
+	experimental? ( >=dev-libs/ppl-0.11 )
 	>=dev-lisp/ecls-10.4.1[-unicode]
 	>=dev-python/numpy-1.5.0-r3
 	>=sci-mathematics/eclib-20100711[pari24]
@@ -66,7 +67,8 @@ RDEPEND="${CDEPEND}
 	>=dev-python/ipython-0.9.1
 	>=dev-python/jinja-2.1.1
 	>=dev-python/matplotlib-1.0.0
-	~dev-python/mpmath-0.15
+	experimental? ( ~dev-python/mpmath-0.16 )
+	!experimental? ( ~dev-python/mpmath-0.15 )
 	~dev-python/networkx-1.2
 	~dev-python/pexpect-2.0
 	>=dev-python/pycrypto-2.1.0
@@ -102,7 +104,7 @@ RDEPEND="${CDEPEND}
 	>=sci-mathematics/sympow-1.018.1_p8[pari24]
 	examples? ( ~sci-mathematics/sage-examples-${PV} )
 	testsuite? (
-		~sci-mathematics/sage-doc-${PV}[html]
+		~sci-mathematics/sage-doc-${PV}[html,experimental=]
 		~sci-mathematics/sage-examples-${PV}
 	)
 	latex? ( ~dev-tex/sage-latex-2.2.5 )"
@@ -113,6 +115,17 @@ pkg_setup() {
 	# Sage only works with python 2.6.*
 	python_set_active_version 2.6
 	python_pkg_setup
+
+	if use experimental ; then
+		einfo "You have enabled the inclusion of unreviewed upstream patches."
+		einfo "Your feedback on these features is appreciated (build,pass tests...)"
+		einfo "current patch included:"
+		einfo "trac #9969: upgrade to mpmath-0.16"
+		einfo "trac #10233: better support for C++ extensions (needed for the next one)"
+		einfo "trac #10039: ppl extension, this could replace cddlib one day"
+		einfo "trac #10140: a ppl application"
+		einfo "trac #7377: use maxima as a library (faster calls)"
+	fi
 }
 
 src_prepare() {
@@ -130,8 +143,28 @@ src_prepare() {
 	# Fix startup issue and python-2.6.5 problem
 	append-flags -fno-strict-aliasing
 
-	# fix build file to make it compile without other Sage components
-	epatch "${FILESDIR}"/${PN}-4.3.4-site-packages.patch
+	# upstream patch first before any corrections
+	if use experimental ; then
+		# upgrade to mpmath-0.16
+		epatch "${FILESDIR}"/14600.patch.bz2
+		epatch "${FILESDIR}"/docstring-fixes.patch.bz2
+		# Add c++ support for cython - necessary for building ppl extension
+		epatch "${FILESDIR}"/trac_10233_fix_cython_include_path.patch.bz2
+		# ppl extension
+		epatch "${FILESDIR}"/trac_10039_parma_polyhedra_library.patch.bz2
+		# rebasing cone.py on ppl instead of cddlib
+		epatch "${FILESDIR}"/trac_10140_base_cone_on_ppl.patch.bz2
+		epatch "${FILESDIR}"/trac_10140_fix_variety_doctests.patch.bz2
+		# call maxima as a library
+		epatch "${FILESDIR}"/trac_7377-abstract-maxima-rebased.patch.bz2
+		epatch "${FILESDIR}"/trac_7377-maximalib-rebased.patch.bz2
+		epatch "${FILESDIR}"/trac_7377-fastcalculus-rebased.patch.bz2
+		# fix build file to make it compile without other Sage components - experimental branch
+		epatch "${FILESDIR}"/${PN}-4.6.1-exp-site-packages.patch
+	else
+		# fix build file to make it compile without other Sage components - old branch
+		epatch "${FILESDIR}"/${PN}-4.3.4-site-packages.patch
+	fi
 
 	# add pari24 and gmp to everything.
 	sed -i "s:\['stdc++', 'ntl'\]:\['stdc++', 'ntl','pari24','gmp'\]:g" setup.py \

@@ -2,6 +2,18 @@
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  27 Jan 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  +files/14600.patch.bz2, +files/trac_10039_parma_polyhedra_library.patch.bz2,
+  sage-4.6.2_alpha2.ebuild, +files/docstring-fixes.patch.bz2,
+  +files/trac_10140_base_cone_on_ppl.patch.bz2,
+  +files/trac_10140_fix_toric_variety_doctests.patch.bz2,
+  +files/trac_10233_fix_cython_include_path.patch.bz2,
+  +files/trac_7377-abstract-maxima-rebased.patch.bz2,
+  +files/sage-4.6.1-exp-site-packages.patch,
+  +files/trac_7377-fastcalculus-rebased.patch.bz2,
+  +files/trac_7377-maximalib-rebased.patch.bz2, metadata.xml:
+  Add experimental use flag to alpha2
+
   26 Jan 2011; François Bissey <francois.bissey@canterbury.ac.nz>
   -sage-4.6.2_alpha1.ebuild, +sage-4.6.2_alpha2.ebuild:
   alpha2

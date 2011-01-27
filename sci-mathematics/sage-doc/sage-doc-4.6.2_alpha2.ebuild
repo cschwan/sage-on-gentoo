@@ -21,7 +21,7 @@ SRC_URI="http://sage.math.washington.edu/home/release/${MY_P}/${MY_P}/spkg/stand
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64 ~x86 ~amd64-linux ~x86-linux"
-IUSE="html pdf"
+IUSE="html pdf -experimental"
 
 RESTRICT="mirror"
 
@@ -30,6 +30,12 @@ DEPEND=""
 RDEPEND=">=dev-python/sphinx-1.0.4"
 
 S="${WORKDIR}/${MY_P}/doc"
+
+src_prepare(){
+	if use experimental ; then
+		epatch "${FILESDIR}"/trac_10039_ppl-doc.patch
+	fi
+}
 
 src_install() {
 	# install missing directories to satisfy builder.py test
