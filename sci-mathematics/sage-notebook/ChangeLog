@@ -2,6 +2,13 @@
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*sage-notebook-0.8.10-r2 (27 Jan 2011)
+
+  27 Jan 2011; Martin von Gagern (MvG) <Martin.vGagern@gmx.net>
+  -sage-notebook-0.8.10-r1.ebuild, +sage-notebook-0.8.10-r2.ebuild,
+  +files/sage-notebook-0.8-twistd-python-version.patch:
+  Use twistd script for correct python version.
+
 *sage-notebook-0.8.11 (22 Jan 2011)
 
   22 Jan 2011; François Bissey <f.r.bissey@massey.ac.nz>
