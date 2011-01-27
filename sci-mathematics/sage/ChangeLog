@@ -4,6 +4,10 @@
 
   27 Jan 2011; François Bissey <francois.bissey@canterbury.ac.nz>
   sage-4.6.2_alpha2.ebuild:
+  missed a sed that needed correcting
+
+  27 Jan 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-4.6.2_alpha2.ebuild:
   Fix typo in patch name
 
   27 Jan 2011; François Bissey <francois.bissey@canterbury.ac.nz>

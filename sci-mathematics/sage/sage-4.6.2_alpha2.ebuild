@@ -248,8 +248,13 @@ src_prepare() {
 		|| die "failed to patch path for lcalc include directory"
 
 	# rebuild in place
-	sed -i "s:SAGE_DEVEL + 'sage/sage/ext/interpreters':'sage/ext/interpreters':g" \
-		setup.py || die "failed to patch interpreters path"
+	if use experimental ; then
+		sed -i "s:SAGE_DEVEL + '/sage/sage/ext/interpreters':'sage/ext/interpreters':g" \
+			setup.py || die "failed to patch interpreters path"
+	else
+		sed -i "s:SAGE_DEVEL + 'sage/sage/ext/interpreters':'sage/ext/interpreters':g" \
+			setup.py || die "failed to patch interpreters path"
+	fi
 
 	# Do not overlink to cblas, this enable the gslcblas trick to solve issue 3
 	sed -i "s:'iml', 'gmp', 'm', 'pari24', BLAS, BLAS2:'iml', 'gmp', 'm', 'pari24':" \
