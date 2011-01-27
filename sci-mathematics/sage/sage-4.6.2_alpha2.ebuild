@@ -154,7 +154,7 @@ src_prepare() {
 		epatch "${FILESDIR}"/trac_10039_parma_polyhedra_library.patch.bz2
 		# rebasing cone.py on ppl instead of cddlib
 		epatch "${FILESDIR}"/trac_10140_base_cone_on_ppl.patch.bz2
-		epatch "${FILESDIR}"/trac_10140_fix_variety_doctests.patch.bz2
+		epatch "${FILESDIR}"/trac_10140_fix_toric_variety_doctests.patch.bz2
 		# call maxima as a library
 		epatch "${FILESDIR}"/trac_7377-abstract-maxima-rebased.patch.bz2
 		epatch "${FILESDIR}"/trac_7377-maximalib-rebased.patch.bz2

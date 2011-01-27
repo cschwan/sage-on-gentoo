@@ -3,6 +3,10 @@
 # $Header: $
 
   27 Jan 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-4.6.2_alpha2.ebuild:
+  Fix typo in patch name
+
+  27 Jan 2011; François Bissey <francois.bissey@canterbury.ac.nz>
   +files/14600.patch.bz2, +files/trac_10039_parma_polyhedra_library.patch.bz2,
   sage-4.6.2_alpha2.ebuild, +files/docstring-fixes.patch.bz2,
   +files/trac_10140_base_cone_on_ppl.patch.bz2,
