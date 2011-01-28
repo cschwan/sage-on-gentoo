@@ -74,17 +74,6 @@ src_prepare () {
 }
 
 src_configure() {
-	if [[ ${CHOST} == *-darwin10 ]] ; then
-		MACOSX_DEPLOYMENT_TARGET=10.6
-		export MACOSX_DEPLOYMENT_TARGET
-	elif [[ ${CHOST} == *-darwin9 ]] ; then
-		MACOSX_DEPLOYMENT_TARGET=10.5
-		export MACOSX_DEPLOYMENT_TARGET
-	elif [[ ${CHOST} == *-darwin8 ]] ; then
-		MACOSX_DEPLOYMENT_TARGET=10.4
-		export MACOSX_DEPLOYMENT_TARGET
-	fi
-
 	econf \
 		--prefix="${S}"/build \
 		--exec-prefix="${S}"/build \
