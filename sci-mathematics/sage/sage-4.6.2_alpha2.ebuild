@@ -18,7 +18,7 @@ SRC_URI="http://sage.math.washington.edu/home/release/${MY_P}/${MY_P}/spkg/stand
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64 ~x86 ~amd64-linux ~x86-linux ~x86-macos"
-IUSE="examples mpc latex testsuite -experimental"
+IUSE="examples mpc latex testsuite -experimental -maximalib"
 
 RESTRICT="mirror"
 
@@ -124,7 +124,13 @@ pkg_setup() {
 		einfo "trac #10233: better support for C++ extensions (needed for the next one)"
 		einfo "trac #10039: ppl extension, this could replace cddlib one day"
 		einfo "trac #10140: a ppl application"
-		einfo "trac #7377: use maxima as a library (faster calls)"
+	fi
+
+	if use maximalib ; then
+		einfo "You have enabled the maximalib useflag. This is a flag to help test"
+		einfo "and develop a new interface to sage."
+		einfo "See trac #7377"
+		einfo "It breaks a lot of things. You have been warned"
 	fi
 }
 
@@ -144,6 +150,13 @@ src_prepare() {
 	append-flags -fno-strict-aliasing
 
 	# upstream patch first before any corrections
+	if use maximalib ; then
+		# call maxima as a library
+		epatch "${FILESDIR}"/trac_7377-abstract-maxima-rebased.patch.bz2
+		epatch "${FILESDIR}"/trac_7377-maximalib-rebased.patch.bz2
+		epatch "${FILESDIR}"/trac_7377-fastcalculus-rebased.patch.bz2
+	fi
+
 	if use experimental ; then
 		# upgrade to mpmath-0.16
 		epatch "${FILESDIR}"/14600.patch.bz2
@@ -155,10 +168,6 @@ src_prepare() {
 		# rebasing cone.py on ppl instead of cddlib
 		epatch "${FILESDIR}"/trac_10140_base_cone_on_ppl.patch.bz2
 		epatch "${FILESDIR}"/trac_10140_fix_toric_variety_doctests.patch.bz2
-		# call maxima as a library
-		epatch "${FILESDIR}"/trac_7377-abstract-maxima-rebased.patch.bz2
-		epatch "${FILESDIR}"/trac_7377-maximalib-rebased.patch.bz2
-		epatch "${FILESDIR}"/trac_7377-fastcalculus-rebased.patch.bz2
 		# fix build file to make it compile without other Sage components - experimental branch
 		epatch "${FILESDIR}"/${PN}-4.6.1-exp-site-packages.patch
 	else

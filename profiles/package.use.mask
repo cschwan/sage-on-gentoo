@@ -1,0 +1,3 @@
+# This is development stuff. No user should use this by accident.
+# This is currently followed at trac #7377
+sci-mathematics/sage maximalib
