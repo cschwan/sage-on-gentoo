@@ -176,7 +176,7 @@ src_install() {
 			-eval '(asdf:make-build :maxima :type :fasl :move-here ".")' \
 			-eval '(quit)'
 		ECLLIB=`ecl -eval "(princ (SI:GET-LIBRARY-PATHNAME))" -eval "(quit)"`
-		insinto "${ECLLIB}"
+		insinto "${ECLLIB#${EPREFIX}}"
 		newins maxima.fasb maxima.fas
 	fi
 }
