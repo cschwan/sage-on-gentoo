@@ -2,6 +2,11 @@
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  30 Jan 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-4.6.2_alpha2.ebuild, +files/errorcatching.patch,
+  files/trac_10039_parma_polyhedra_library.patch.bz2:
+  Updated experimental and maximalib patches
+
   29 Jan 2011; François Bissey <francois.bissey@canterbury.ac.nz>
   sage-4.6.2_alpha2.ebuild, metadata.xml:
   Add a separate maximalib flag - use.masked for now as it is too broken.

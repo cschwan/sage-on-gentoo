@@ -155,6 +155,7 @@ src_prepare() {
 		epatch "${FILESDIR}"/trac_7377-abstract-maxima-rebased.patch.bz2
 		epatch "${FILESDIR}"/trac_7377-maximalib-rebased.patch.bz2
 		epatch "${FILESDIR}"/trac_7377-fastcalculus-rebased.patch.bz2
+		epatch "${FILESDIR}"/errorcatching.patch
 	fi
 
 	if use experimental ; then
