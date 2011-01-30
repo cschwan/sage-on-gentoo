@@ -377,6 +377,7 @@ src_configure() {
 	export SAGE_LOCAL="${EPREFIX}"/usr/
 	export SAGE_ROOT="${EPREFIX}"/usr/share/sage
 	export SAGE_VERSION=${PV}
+	export DOT_SAGE="${S}"
 
 	export MAKE=${MAKEOPTS}
 
