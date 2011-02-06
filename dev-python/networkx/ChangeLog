@@ -1,0 +1,10 @@
+# ChangeLog for dev-python/networkx
+# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
+# $Header: $
+
+*networkx-1.2 (06 Feb 2011)
+
+  06 Feb 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  +networkx-1.2.ebuild, +metadata.xml:
+  Importing into the overlay because it left the tree.
+
