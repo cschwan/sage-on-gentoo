@@ -15,8 +15,4 @@
 		representations, rings, vector spaces, algebras, combinatorial
 		structures, and more.
 	</longdescription>
-	<use>
-		<!-- TODO: find help string for xtom -->
-		<flag name='xtom'></flag>
-	</use>
 </pkgmetadata>

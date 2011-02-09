@@ -1,12 +1,10 @@
-# Copyright 1999-2010 Gentoo Foundation
+# Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
 EAPI="3"
 
-inherit versionator elisp-common
-
-XTOM_VERSION="1r1p4"
+inherit eutils versionator elisp-common
 
 PV1="$(get_version_component_range 1-2)"
 PV2="$(get_version_component_range 3)"
@@ -15,13 +13,12 @@ PV2="${PV1}p${PV2}"
 
 DESCRIPTION="System for computational discrete algebra"
 HOMEPAGE="http://www.gap-system.org/"
-SRC_URI="ftp://ftp.gap-system.org/pub/gap/gap4/tar.bz2/${PN}${PV2}.tar.bz2
-	xtom? ( ftp://ftp.gap-system.org/pub/gap/gap4/tar.bz2/xtom${XTOM_VERSION}.tar.bz2 )"
+SRC_URI="ftp://ftp.gap-system.org/pub/gap/gap4/tar.bz2/${PN}${PV2}.tar.bz2"
 
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64 ~x86 ~amd64-linux ~x86-linux"
-IUSE="emacs vim-syntax xtom"
+IUSE="emacs vim-syntax"
 
 RESTRICT="mirror"
 
@@ -30,6 +27,11 @@ RDEPEND="emacs? ( virtual/emacs )
 	vim-syntax? ( || ( app-editors/vim app-editors/gvim ) )"
 
 S="${WORKDIR}/${PN}${PV1}"
+
+src_prepare(){
+	epatch "${FILESDIR}"/${PN}-4.4.12-sage-and-steve-lintons-itanium.patch
+	epatch "${FILESDIR}"/${PN}-4.4.12-sage-strict_aliasing.patch
+}
 
 src_compile() {
 	# do not use default target - pre-strips the binaries
