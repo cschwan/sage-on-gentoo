@@ -3,6 +3,10 @@
 # $Header: $
 
   09 Feb 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  +files/trac_10493-cython-0.14.1.patch:
+  forgot to check the patch.
+
+  09 Feb 2011; François Bissey <francois.bissey@canterbury.ac.nz>
   sage-4.6.2_alpha4.ebuild:
   Upgrade to cython-0.14.1
 
