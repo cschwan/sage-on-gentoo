@@ -58,7 +58,7 @@ CDEPEND="dev-libs/gmp
 	mpc? ( dev-libs/mpc )"
 
 DEPEND="${CDEPEND}
-	=dev-python/cython-0.13*"
+	=dev-python/cython-0.14.1"
 
 RDEPEND="${CDEPEND}
 	>=dev-lang/R-2.10.1
@@ -167,6 +167,9 @@ src_prepare() {
 		epatch "${FILESDIR}"/trac_10140_base_cone_on_ppl.patch.bz2
 		epatch "${FILESDIR}"/trac_10140_fix_toric_variety_doctests.patch.bz2
 	fi
+
+	# use cython-0.14.1
+	epatch "${FILESDIR}"/trac_10493-cython-0.14.1.patch
 
 	epatch "${FILESDIR}"/${PN}-4.6.1-exp-site-packages.patch
 
