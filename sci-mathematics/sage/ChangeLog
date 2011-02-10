@@ -2,6 +2,11 @@
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  10 Feb 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-4.6.2_alpha4.ebuild:
+  Fix patching for sage/ext/interpreters as it is now independent of the
+  experimental flag.
+
   09 Feb 2011; FranÃ§ois Bissey <francois.bissey@canterbury.ac.nz>
   +files/trac_10493-cython-0.14.1.patch:
   forgot to check the patch.
