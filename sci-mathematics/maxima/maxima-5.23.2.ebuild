@@ -116,6 +116,11 @@ src_prepare() {
 
 	epatch "${FILESDIR}"/${P}-emacs-version.patch
 
+	# Patch next-prime-det do avoid misbehavior with ecls-11.1.1
+	# see http://www.math.utexas.edu/pipermail/maxima/2011/023868.html
+	sed -i "s:loop while 1 do:loop while T do:" src/ifactor.lisp \
+		|| die "failed to patch for ecls-11.1.1 bug"
+
 	eautoreconf
 }
 

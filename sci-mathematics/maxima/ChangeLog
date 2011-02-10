@@ -2,6 +2,10 @@
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/sci-mathematics/maxima/ChangeLog,v 1.85 2011/01/17 18:05:03 grozin Exp $
 
+  10 Feb 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  maxima-5.23.2.ebuild:
+  Patch 5.23.2 for bug in ecls-11.1.1
+
   29 Jan 2011; FranÃ§ois Bissey <francois.bissey@canterbury.ac.nz>
   maxima-5.22.1.ebuild, maxima-5.23.2.ebuild:
   Fix for prefix
