@@ -33,7 +33,7 @@ pkg_setup() {
 }
 
 src_prepare() {
-	epatch "${FILESDIR}"/${P}-comploc.lisp.patch
+	epatch "${FILESDIR}"/${P}-cmploc.lisp.patch
 	epatch "${FILESDIR}"/${PV}-headers-gentoo.patch
 }
 
