@@ -21,7 +21,13 @@ IUSE="debug testsuite X"
 RESTRICT="mirror"
 
 DEPEND=""
-RDEPEND="${DEPEND}"
+if  [[ ${CHOST} == *-darwin* ]] ; then
+	RDEPEND="${DEPEND}
+		debug? ( sys-devel/gdb-apple )"
+else
+	RDEPEND="${DEPEND}
+		debug? ( sys-devel/gdb )"
+fi
 
 S="${WORKDIR}/${MY_P}"
 
