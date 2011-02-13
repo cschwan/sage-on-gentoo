@@ -67,7 +67,7 @@ RDEPEND="${CDEPEND}
 	>=dev-python/ipython-0.9.1
 	>=dev-python/jinja-2.1.1
 	>=dev-python/matplotlib-1.0.0
-	experimental? ( ~dev-python/mpmath-0.16 )
+	experimental? ( >=dev-python/mpmath-0.16 )
 	!experimental? ( ~dev-python/mpmath-0.15 )
 	~dev-python/networkx-1.2
 	~dev-python/pexpect-2.0
