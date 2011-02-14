@@ -153,12 +153,12 @@ src_prepare() {
 		# call maxima as a library
 		epatch "${FILESDIR}"/trac_7377-abstract-maxima-rebased.patch.bz2
 		epatch "${FILESDIR}"/trac_7377-maximalib-rebased.patch.bz2
-		epatch "${FILESDIR}"/trac_7377-fastcalculus-rebased.patch.bz2
-		epatch "${FILESDIR}"/errorcatching.patch
+		epatch "${FILESDIR}"/trac_7377-fastcalculus-p1.patch.bz2
+		epatch "${FILESDIR}"/trac_7377-better-ask-error.patch
 	fi
 
 	if use experimental ; then
-		# upgrade to mpmath-0.16
+		# upgrade to mpmath-0.16/0.17
 		epatch "${FILESDIR}"/14600.patch.bz2
 		epatch "${FILESDIR}"/docstring-fixes.patch.bz2
 		# ppl extension
