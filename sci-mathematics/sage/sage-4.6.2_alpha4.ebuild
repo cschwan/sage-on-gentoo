@@ -151,6 +151,8 @@ src_prepare() {
 	# upstream patch first before any corrections
 	if use maximalib ; then
 		# call maxima as a library
+		# depends on trac #10743
+		epatch "${FILESDIR}"/ecl_iter.patch
 		epatch "${FILESDIR}"/trac_7377-abstract-maxima-rebased.patch.bz2
 		epatch "${FILESDIR}"/trac_7377-maximalib-rebased.patch.bz2
 		epatch "${FILESDIR}"/trac_7377-fastcalculus-p1.patch.bz2

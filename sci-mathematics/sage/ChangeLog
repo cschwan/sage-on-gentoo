@@ -2,6 +2,10 @@
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  15 Feb 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-4.6.2_alpha4.ebuild, +files/ecl_iter.patch:
+  Add missing patch for maximalib
+
   14 Feb 2011; FranÃ§ois Bissey <francois.bissey@canterbury.ac.nz>
   +files/trac_7377-better-ask-error.patch,
   +files/trac_7377-fastcalculus-p1.patch.bz2, sage-4.6.2_alpha4.ebuild:
