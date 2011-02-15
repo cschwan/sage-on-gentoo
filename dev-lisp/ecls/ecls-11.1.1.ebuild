@@ -14,13 +14,14 @@ SRC_URI="mirror://sourceforge/${PN}/${MY_P}.tar.gz"
 LICENSE="BSD LGPL-2"
 SLOT="0"
 KEYWORDS="~amd64 ~ppc ~sparc ~x86"
-IUSE="debug gengc precisegc threads +unicode X"
+IUSE="debug gengc precisegc threads +unicode X -emacs"
 
 RDEPEND="dev-libs/gmp
 		virtual/libffi
 		>=dev-libs/boehm-gc-7.1[threads?]"
 DEPEND="${RDEPEND}
-		app-text/texi2html"
+		app-text/texi2html
+		emacs? ( virtual/emacs )"
 PDEPEND="dev-lisp/gentoo-init"
 
 S="${WORKDIR}"/${MY_P}
@@ -35,6 +36,7 @@ pkg_setup() {
 src_prepare() {
 	epatch "${FILESDIR}"/${P}-cmploc.lisp.patch
 	epatch "${FILESDIR}"/${PV}-headers-gentoo.patch
+	sed -i "s:bin/ecl-config TAGS:bin/ecl-config:" src/Makefile.in
 }
 
 src_configure() {
@@ -55,6 +57,11 @@ src_configure() {
 src_compile() {
 	#parallel fails
 	emake -j1 || die "Compilation failed"
+
+	if use emacs ; then
+		cd build
+		emake TAGS
+	fi
 }
 
 src_install () {
