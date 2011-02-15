@@ -4,6 +4,10 @@
 
   15 Feb 2011; François Bissey <francois.bissey@canterbury.ac.nz>
   files/ecl_iter.patch:
+  Fix ecl_iter for good
+
+  15 Feb 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  files/ecl_iter.patch:
   Fix the new patch
 
   15 Feb 2011; François Bissey <francois.bissey@canterbury.ac.nz>
