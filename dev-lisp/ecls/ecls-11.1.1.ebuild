@@ -61,6 +61,8 @@ src_compile() {
 	if use emacs ; then
 		cd build
 		emake TAGS
+	else
+		touch build/TAGS
 	fi
 }
 

@@ -4,6 +4,10 @@
 
   15 Feb 2011; François Bissey <francois.bissey@canterbury.ac.nz>
   ecls-11.1.1.ebuild:
+  Fix the fix
+
+  15 Feb 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  ecls-11.1.1.ebuild:
   Fix etags problem on prefix
 
   11 Feb 2011; Fran�ois Bissey <francois.bissey@canterbury.ac.nz>
