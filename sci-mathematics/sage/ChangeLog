@@ -2,6 +2,22 @@
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  16 Feb 2011; FranÃ§ois Bissey <francois.bissey@canterbury.ac.nz>
+  +files/trac_10766-fix_doctest.patch,
+  +files/trac_10766-fix_symbolic_integration_integral.patch,
+  +files/trac_10773-fix_maxima_version.patch,
+  +files/trac_7377-abstract-maxima_p2.patch.bz2,
+  +files/trac_7377-better-ask-error_p2.patch.bz2,
+  +files/trac_7377-fastcalculus_p2.patch.bz2,
+  +files/trac_7377-maximalib_p2.patch.bz2, -files/errorcatching.patch,
+  -files/trac_7377-abstract-maxima-rebased.patch.bz2,
+  -files/trac_7377-better-ask-error.patch,
+  -files/trac_7377-fastcalculus-p1.patch.bz2, -sage-4.6.2_alpha3.ebuild,
+  -files/trac_7377-fastcalculus-rebased.patch.bz2, sage-4.6.2_alpha4.ebuild,
+  -files/trac_7377-maximalib-rebased.patch.bz2:
+  alpha4 now uses ecls-11.1.1/maxima-5.23.2; update maximalib patchset; drop
+  old.
+
   15 Feb 2011; François Bissey <francois.bissey@canterbury.ac.nz>
   files/ecl_iter.patch:
   Fix ecl_iter for good

@@ -26,7 +26,7 @@ CDEPEND="dev-libs/gmp
 	>=dev-libs/mpfr-2.4.2
 	>=dev-libs/ntl-5.5.2
 	experimental? ( >=dev-libs/ppl-0.11 )
-	>=dev-lisp/ecls-10.4.1[-unicode]
+	>=dev-lisp/ecls-11.1.1[-unicode]
 	>=dev-python/numpy-1.5.0-r3
 	>=sci-mathematics/eclib-20100711[pari24]
 	>=sci-mathematics/ecm-6.2.1
@@ -89,7 +89,7 @@ RDEPEND="${CDEPEND}
 	>=sci-mathematics/cu2-20060223
 	>=sci-mathematics/cubex-20060128
 	>=sci-mathematics/dikcube-20070912_p12
-	>=sci-mathematics/maxima-5.22.1[ecls]
+	>=sci-mathematics/maxima-5.23.2[ecls]
 	>=sci-mathematics/mcube-20051209
 	>=sci-mathematics/optimal-20040603
 	>=sci-mathematics/palp-1.1
@@ -149,14 +149,19 @@ src_prepare() {
 	append-flags -fno-strict-aliasing
 
 	# upstream patch first before any corrections
+	# trac #10766 #10773 upgrade to ecls-11.1.1/maxima-5.23.2
+	epatch "${FILESDIR}"/trac_10766-fix_doctest.patch
+	epatch "${FILESDIR}"/trac_10766-fix_symbolic_integration_integral.patch
+	epatch "${FILESDIR}"/trac_10773-fix_maxima_version.patch
+
 	if use maximalib ; then
 		# call maxima as a library
 		# depends on trac #10743
 		epatch "${FILESDIR}"/ecl_iter.patch
-		epatch "${FILESDIR}"/trac_7377-abstract-maxima-rebased.patch.bz2
-		epatch "${FILESDIR}"/trac_7377-maximalib-rebased.patch.bz2
-		epatch "${FILESDIR}"/trac_7377-fastcalculus-p1.patch.bz2
-		epatch "${FILESDIR}"/trac_7377-better-ask-error.patch
+		epatch "${FILESDIR}"/trac_7377-abstract-maxima_p2.patch.bz2
+		epatch "${FILESDIR}"/trac_7377-maximalib_p2.patch.bz2
+		epatch "${FILESDIR}"/trac_7377-fastcalculus-p2.patch.bz2
+		epatch "${FILESDIR}"/trac_7377-better-ask-error_p2.patch.bz2
 	fi
 
 	if use experimental ; then

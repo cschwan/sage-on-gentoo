@@ -1,0 +1,37 @@
+# HG changeset patch
+# User Francois Bissey <francois.bissey@canterbury.ac.nz>
+# Date 1297586110 -46800
+# Node ID e6bcec431af06252e01c6e702e466d9c30dd2211
+# Parent  0541f14f5d7f603efb75bfe0e8c6eff0cd0f5ae5
+tarc #10773: We are updating maxima to 5.23.2. So we need to fix all test where maxima's version is hardcoded.
+
+diff -r 0541f14f5d7f -r e6bcec431af0 sage/interfaces/maxima.py
+--- sage/interfaces/maxima.py	Thu Feb 03 11:06:50 2011 +0000
++++ sage/interfaces/maxima.py	Sun Feb 13 21:35:10 2011 +1300
+@@ -1266,7 +1266,7 @@
+         EXAMPLES::
+         
+             sage: maxima.version()
+-            '5.22.1'
++            '5.23.2'
+         """
+         return maxima_version()
+ 
+@@ -2796,7 +2796,7 @@
+     
+         sage: from sage.interfaces.maxima import maxima_console
+         sage: maxima_console()                    # not tested
+-        Maxima 5.22.1 http://maxima.sourceforge.net
++        Maxima 5.23.2 http://maxima.sourceforge.net
+         ...
+     """
+     os.system('maxima')
+@@ -2807,7 +2807,7 @@
+     
+         sage: from sage.interfaces.maxima import maxima_version
+         sage: maxima_version()
+-        '5.22.1'
++        '5.23.2'
+     """
+     return os.popen('maxima --version').read().split()[-1]
+ 

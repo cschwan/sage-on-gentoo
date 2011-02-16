@@ -1,0 +1,20 @@
+# HG changeset patch
+# User Francois Bissey <francois.bissey@canterbury.ac.nz>
+# Date 1297386781 -46800
+# Node ID 360cf3d6c133441ac22db136866201a3fe6efc5a
+# Parent  f00392fe6abc82913da8fb4e07b36a56dd67a060
+trac_10766: Fix doctect broken by ecls-11.1.1 - part 2: sage/symbolic/integration/integral.py
+which was forgotten in the first round
+
+diff -r f00392fe6abc -r 360cf3d6c133 sage/symbolic/integration/integral.py
+--- sage/symbolic/integration/integral.py	Fri Feb 11 12:27:40 2011 +1300
++++ sage/symbolic/integration/integral.py	Fri Feb 11 14:13:01 2011 +1300
+@@ -539,7 +539,7 @@
+         sage: integrate( ((F(x)-G(x))^2).expand(), x, -infinity, infinity).n()
+         -6.26376265908397e-17
+         sage: integrate( (F(x)-G(x))^2, x, -infinity, infinity).n()
+-        0
++        -6.26376265908397e-17
+ 
+     This was broken before Maxima 5.20::
+ 
