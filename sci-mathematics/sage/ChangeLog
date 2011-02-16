@@ -3,6 +3,10 @@
 # $Header: $
 
   16 Feb 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-4.6.2_alpha4.ebuild:
+  fix typo
+
+  16 Feb 2011; François Bissey <francois.bissey@canterbury.ac.nz>
   +files/trac_10766-fix_doctest.patch,
   +files/trac_10766-fix_symbolic_integration_integral.patch,
   +files/trac_10773-fix_maxima_version.patch,

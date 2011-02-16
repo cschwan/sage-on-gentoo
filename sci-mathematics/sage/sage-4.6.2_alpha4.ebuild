@@ -160,7 +160,7 @@ src_prepare() {
 		epatch "${FILESDIR}"/ecl_iter.patch
 		epatch "${FILESDIR}"/trac_7377-abstract-maxima_p2.patch.bz2
 		epatch "${FILESDIR}"/trac_7377-maximalib_p2.patch.bz2
-		epatch "${FILESDIR}"/trac_7377-fastcalculus-p2.patch.bz2
+		epatch "${FILESDIR}"/trac_7377-fastcalculus_p2.patch.bz2
 		epatch "${FILESDIR}"/trac_7377-better-ask-error_p2.patch.bz2
 	fi
 
