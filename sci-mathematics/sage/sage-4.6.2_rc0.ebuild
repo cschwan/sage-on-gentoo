@@ -169,6 +169,7 @@ src_prepare() {
 		epatch "${FILESDIR}"/mpmath_update_fixed_4.6.1.patch.bz2
 		epatch "${FILESDIR}"/truediv_fix.patch
 		# ppl extension
+		epatch "${FILESDIR}"/trac_10233_fix_cython_include_path.patch.bz2
 		epatch "${FILESDIR}"/trac_10039_parma_polyhedra_library.patch.bz2
 		# rebasing cone.py on ppl instead of cddlib
 		epatch "${FILESDIR}"/trac_10140_base_cone_on_ppl.patch.bz2

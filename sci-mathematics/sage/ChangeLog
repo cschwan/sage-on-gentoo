@@ -2,6 +2,12 @@
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*sage-4.6.2_rc0 (18 Feb 2011)
+
+  18 Feb 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  -sage-4.6.2_alpha4.ebuild, +sage-4.6.2_rc0.ebuild:
+  bump to rc0
+
   18 Feb 2011; François Bissey <francois.bissey@canterbury.ac.nz>
   +files/mpmath_update_fixed_4.6.1.patch.bz2, +files/truediv_fix.patch,
   -files/14600.patch.bz2, sage-4.6.2_alpha4.ebuild,
