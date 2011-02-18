@@ -1,0 +1,18 @@
+# HG changeset patch
+# User Fredrik Johansson <fredrik.johansson@gmail.com>
+# Date 1298017948 -3600
+# Node ID bad78febe5fde1af8140bd4743f5efaef3084ac6
+# Parent  f3c3a096cbbf19d016c70469aa241bf636669f1f
+fix truediv support for mpmath numbers
+
+diff -r f3c3a096cbbf -r bad78febe5fd sage/libs/mpmath/ext_main.pyx
+--- sage/libs/mpmath/ext_main.pyx	Thu Feb 17 11:12:30 2011 +0100
++++ sage/libs/mpmath/ext_main.pyx	Fri Feb 18 09:32:28 2011 +0100
+@@ -1303,6 +1303,7 @@
+     def __sub__(self, other): return binop(OP_SUB, self, other, global_opts)
+     def __mul__(self, other): return binop(OP_MUL, self, other, global_opts)
+     def __div__(self, other): return binop(OP_DIV, self, other, global_opts)
++    def __truediv__(self, other): return binop(OP_DIV, self, other, global_opts)
+     def __mod__(self, other): return binop(OP_MOD, self, other, global_opts)
+     def __pow__(self, other, mod):
+         if mod is not None:

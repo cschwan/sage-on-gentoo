@@ -166,8 +166,8 @@ src_prepare() {
 
 	if use experimental ; then
 		# upgrade to mpmath-0.16/0.17
-		epatch "${FILESDIR}"/14600.patch.bz2
-		epatch "${FILESDIR}"/docstring-fixes.patch.bz2
+		epatch "${FILESDIR}"/mpmath_update_fixed_4.6.1.patch.bz2
+		epatch "${FILESDIR}"/truediv_fix.patch
 		# ppl extension
 		epatch "${FILESDIR}"/trac_10039_parma_polyhedra_library.patch.bz2
 		# rebasing cone.py on ppl instead of cddlib
