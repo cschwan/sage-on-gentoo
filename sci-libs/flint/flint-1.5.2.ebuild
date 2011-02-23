@@ -40,7 +40,7 @@ src_prepare() {
 }
 
 src_compile() {
-	local flint_flags=(
+	flint_flags=(
 		FLINT_CC=$(tc-getCC)
 		FLINT_CPP=$(tc-getCXX)
 		FLINT_LIB=lib${PN}$(get_libname)
@@ -57,10 +57,10 @@ src_compile() {
 }
 
 src_test() {
-	emake check || die
+	emake "${flint_flags[@]}" check || die
 
 	if use ntl ; then
-		emake NTL-interface-test || die
+		emake "${flint_flags[@]}" NTL-interface-test || die
 
 		./NTL-interface-test || die "failed to run ntl interface test"
 	fi
