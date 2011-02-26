@@ -1,29 +1,41 @@
 # Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/python-2.6.6-r1.ebuild,v 1.15 2011/02/20 12:27:45 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/python-2.6.6-r2.ebuild,v 1.5 2011/02/26 09:38:35 hwoarang Exp $
 
 EAPI="2"
+WANT_AUTOMAKE="none"
 
-inherit autotools eutils flag-o-matic multilib pax-utils python toolchain-funcs
+inherit autotools eutils flag-o-matic multilib python toolchain-funcs
 
-MY_P="Python-${PV}"
+if [[ "${PV}" == *_pre* ]]; then
+	inherit subversion
 
-PATCHSET_REVISION="1"
+	ESVN_PROJECT="python"
+	ESVN_REPO_URI="http://svn.python.org/projects/python/branches/release26-maint"
+	ESVN_REVISION=""
+else
+	MY_PV="${PV%_p*}"
+	MY_P="Python-${MY_PV}"
+fi
+
+PATCHSET_REVISION="2"
 
 DESCRIPTION="Python is an interpreted, interactive, object-oriented programming language."
 HOMEPAGE="http://www.python.org/"
-SRC_URI="http://www.python.org/ftp/python/${PV}/${MY_P}.tar.bz2
-	mirror://gentoo/python-gentoo-patches-${PV}$([[ "${PATCHSET_REVISION}" != "0" ]] && echo "-r${PATCHSET_REVISION}").tar.bz2"
-#	http://dev.gentoo.org/~djc/python-gentoo-patches-${PV}$([[ "${PATCHSET_REVISION}" != "0" ]] && echo "-r${PATCHSET_REVISION}").tar.bz2"
+if [[ "${PV}" == *_pre* ]]; then
+	SRC_URI=""
+else
+	SRC_URI="http://www.python.org/ftp/python/${MY_PV}/${MY_P}.tar.bz2
+		mirror://gentoo/python-gentoo-patches-${MY_PV}$([[ "${PATCHSET_REVISION}" != "0" ]] && echo "-r${PATCHSET_REVISION}").tar.bz2"
+fi
 
 LICENSE="PSF-2.2"
 SLOT="2.6"
 PYTHON_ABI="${SLOT}"
-KEYWORDS="alpha amd64 arm hppa ia64 m68k ~mips ppc ppc64 s390 sh sparc x86 ~sparc-fbsd ~x86-fbsd ~amd64-linux ~x86-linux"
+KEYWORDS="~alpha amd64 ~arm hppa ~ia64 ~m68k ~mips ppc ppc64 ~s390 ~sh ~sparc x86 ~sparc-fbsd ~x86-fbsd ~amd64-linux ~x86-linux"
 IUSE="sage -berkdb build doc elibc_uclibc examples gdbm ipv6 +ncurses +readline sqlite +ssl +threads tk +wide-unicode wininst +xml"
 
-RDEPEND="!!<sys-apps/portage-2.1.9
-		>=app-admin/eselect-python-20091230
+RDEPEND=">=app-admin/eselect-python-20091230
 		>=sys-libs/zlib-1.1.3
 		virtual/libffi
 		virtual/libintl
@@ -46,16 +58,21 @@ RDEPEND="!!<sys-apps/portage-2.1.9
 			tk? ( >=dev-lang/tk-8.0 )
 			xml? ( >=dev-libs/expat-2 )
 		)
-		doc? ( dev-python/python-docs:${SLOT} )"
+		!!<sys-apps/portage-2.1.9"
 DEPEND="${RDEPEND}
+		$([[ "${PV}" == *_pre* ]] && echo "=${CATEGORY}/${PN}-${PV%%.*}*")
 		dev-util/pkgconfig
+		$([[ "${PV}" =~ ^[[:digit:]]+\.[[:digit:]]+_pre ]] && echo "doc? ( dev-python/sphinx )")
 		!sys-devel/gcc[libffi]"
-RDEPEND+=" !build? ( app-misc/mime-types )"
+RDEPEND+=" !build? ( app-misc/mime-types )
+		$([[ "${PV}" =~ ^[[:digit:]]+\.[[:digit:]]+_pre ]] || echo "doc? ( dev-python/python-docs:${SLOT} )")"
 PDEPEND="app-admin/python-updater"
 
 PROVIDE="virtual/python"
 
-S="${WORKDIR}/${MY_P}"
+if [[ "${PV}" != *_pre* ]]; then
+	S="${WORKDIR}/${MY_P}"
+fi
 
 pkg_setup() {
 	python_pkg_setup
@@ -73,14 +90,33 @@ src_prepare() {
 	rm -fr Modules/_ctypes/libffi*
 	rm -fr Modules/zlib
 
-	if ! tc-is-cross-compiler; then
-		rm "${WORKDIR}/${PV}"/*_all_crosscompile.patch
+	if [[ "${PV}" =~ ^[[:digit:]]+\.[[:digit:]]+\.[[:digit:]]+_pre ]]; then
+		if grep -Eq '#define PY_RELEASE_LEVEL[[:space:]]+PY_RELEASE_LEVEL_FINAL' Include/patchlevel.h; then
+			# Update micro version, release level and version string.
+			local micro_version="${PV%_pre*}"
+			micro_version="${micro_version##*.}"
+			local version_string="${PV%.*}.$((${micro_version} - 1))+"
+			sed \
+				-e "s/\(#define PY_MICRO_VERSION[[:space:]]\+\)[^[:space:]]\+/\1${micro_version}/" \
+				-e "s/\(#define PY_RELEASE_LEVEL[[:space:]]\+\)[^[:space:]]\+/\1PY_RELEASE_LEVEL_ALPHA/" \
+				-e "s/\(#define PY_VERSION[[:space:]]\+\"\)[^\"]\+\(\"\)/\1${version_string}\2/" \
+				-i Include/patchlevel.h || die "sed failed"
+		fi
 	fi
 
-	EPATCH_SUFFIX="patch" epatch "${WORKDIR}/${PV}"
+	local excluded_patches
+	if ! tc-is-cross-compiler; then
+		excluded_patches="*_all_crosscompile.patch"
+	fi
 
-	# Avoid regeneration, which would not change contents of files.
-	touch Include/Python-ast.h Python/Python-ast.c
+	local patchset_dir
+	if [[ "${PV}" == *_pre* ]]; then
+		patchset_dir="${FILESDIR}/${SLOT}-${PATCHSET_REVISION}"
+	else
+		patchset_dir="${WORKDIR}/${MY_PV}"
+	fi
+
+	EPATCH_EXCLUDE="${excluded_patches}" EPATCH_SUFFIX="patch" epatch "${patchset_dir}"
 
 	if use sage; then
 		# patch pickle for sage http://bugs.python.org/issue7689
@@ -98,25 +134,17 @@ src_prepare() {
 		Modules/getpath.c \
 		setup.py || die "sed failed to replace @@GENTOO_LIBDIR@@"
 
-	# Fix os.utime() on hppa. utimes it not supported but unfortunately reported as working - gmsoft (22 May 04)
-	# PLEASE LEAVE THIS FIX FOR NEXT VERSIONS AS IT'S A CRITICAL FIX !!!
-	[[ "${ARCH}" == "hppa" ]] && sed -e "s/utimes //" -i "${S}/configure"
-
 	if ! use wininst; then
 		# Remove Microsoft Windows executables.
 		rm Lib/distutils/command/wininst-*.exe
 	fi
 
-	# Fix OtherFileTests.testStdin() not to assume
-	# that stdin is a tty for bug #248081.
-	sed -e "s:'osf1V5':'osf1V5' and sys.stdin.isatty():" -i Lib/test/test_file.py || die "sed failed"
-
 	eautoreconf
 }
 
 src_configure() {
-	# Disable extraneous modules with extra dependencies.
 	if use build; then
+		# Disable extraneous modules with extra dependencies.
 		export PYTHON_DISABLE_MODULES="dbm _bsddb gdbm _curses _curses_panel readline _sqlite3 _tkinter _elementtree pyexpat"
 		export PYTHON_DISABLE_SSL="1"
 	else
@@ -132,7 +160,7 @@ src_configure() {
 		use ssl      || export PYTHON_DISABLE_SSL="1"
 		use tk       || disable+=" _tkinter"
 		use xml      || disable+=" _elementtree pyexpat" # _elementtree uses pyexpat.
-		export PYTHON_DISABLE_MODULES="__all__ ${disable}"
+		export PYTHON_DISABLE_MODULES="${disable}"
 
 		if ! use xml; then
 			ewarn "You have configured Python without XML support."
@@ -192,6 +220,10 @@ src_configure() {
 		--with-system-ffi
 }
 
+src_compile() {
+	emake EPYTHON="python${PV%%.*}" || die "emake failed"
+}
+
 src_test() {
 	# Tests will not work when cross compiling.
 	if tc-is-cross-compiler; then
@@ -204,17 +236,14 @@ src_test() {
 	python_enable_pyc
 
 	# Skip failing tests.
-	local skip_tests="distutils httpservers minidom pyexpat sax tcl __all__"
-
-	# test_ctypes fails with PAX kernel (bug #234498).
-	host-is-pax && skip_tests+=" ctypes"
+	local skip_tests="distutils httpservers minidom pyexpat sax tcl"
 
 	for test in ${skip_tests}; do
 		mv "${S}/Lib/test/test_${test}.py" "${T}"
 	done
 
 	# Rerun failed tests in verbose mode (regrtest -w).
-	EXTRATESTOPTS="-w" emake test
+	emake test EXTRATESTOPTS="-w" < /dev/tty
 	local result="$?"
 
 	for test in ${skip_tests}; do
@@ -286,13 +315,15 @@ pkg_preinst() {
 }
 
 eselect_python_update() {
-	local eselect_python_options
-	[[ "$(eselect python show)" == "python2."* ]] && eselect_python_options="--python2"
+	[[ -z "${EROOT}" ]] && EROOT="${ROOT%/}${EPREFIX}/"
 
-	# Create python2 symlink.
-	eselect python update --python2 > /dev/null
+	if [[ -z "$(eselect python show)" || ! -f "${EROOT}usr/bin/$(eselect python show)" ]]; then
+		eselect python update
+	fi
 
-	eselect python update ${eselect_python_options}
+	if [[ -z "$(eselect python show --python${PV%%.*})" || ! -f "${EROOT}usr/bin/$(eselect python show --python${PV%%.*})" ]]; then
+		eselect python update --python${PV%%.*}
+	fi
 }
 
 pkg_postinst() {
