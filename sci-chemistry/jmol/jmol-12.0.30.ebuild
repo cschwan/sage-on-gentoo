@@ -6,13 +6,13 @@ EAPI="3"
 WEBAPP_OPTIONAL="yes"
 
 inherit eutils webapp java-pkg-2 java-ant-2
+MY_P="Jmol-${PV}"
 
 DESCRIPTION="Jmol is a java molecular viever for 3-D chemical structures."
-SRC_URI="mirror://sourceforge/${PN}/${P}-full.tar.gz"
+SRC_URI="mirror://sourceforge/${PN}/Jmol/Version%2012.0/Version%2012.0.30/${MY_P}-full.tar.gz"
 HOMEPAGE="http://jmol.sourceforge.net/"
 KEYWORDS="~amd64 ~x86 ~amd64-linux ~x86-linux"
 LICENSE="LGPL-2.1"
-
 RESTRICT="mirror"
 
 IUSE="client-only vhosts"
@@ -32,19 +32,14 @@ DEPEND=">=virtual/jdk-1.4
 	${COMMON_DEP}"
 
 pkg_setup() {
-
 	if ! use client-only ; then
 		webapp_pkg_setup || die "Failed to setup webapp"
 	fi
 
 	java-pkg-2_pkg_setup
-
 }
 
 src_prepare() {
-
-#	epatch "${FILESDIR}"/${P}-nointl.patch
-
 	mkdir "${S}"/selfSignedCertificate || die "Failed to create Cert directory."
 	cp "${FILESDIR}"/selfSignedCertificate.store "${S}"/selfSignedCertificate/ \
 		|| die "Failed to install Cert file."
@@ -73,7 +68,6 @@ src_compile() {
 }
 
 src_install() {
-
 	MY_HTDOCSDIR="${MY_APPROOT}/${PN}"/htdocs
 
 	java-pkg_dojar build/Jmol.jar
@@ -105,17 +99,13 @@ src_install() {
 }
 
 pkg_postinst() {
-
 	if ! use client-only ; then
 		webapp_pkg_postinst || die "webapp_pkg_postinst failed"
 	fi
-
 }
 
 pkg_prerm() {
-
 	if ! use client-only ; then
 		webapp_pkg_prerm || die "webapp_pkg_prerm failed"
 	fi
-
 }

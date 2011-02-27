@@ -1,6 +1,12 @@
 # ChangeLog for sci-chemistry/jmol
-# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
+
+*jmol-12.0.30 (27 Feb 2011)
+
+  27 Feb 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  -jmol-11.8.25.ebuild, +jmol-12.0.30.ebuild:
+  a new jmol is coming to sage, we have to get ready.
 
 *jmol-11.8.25 (18 Jul 2010)
 

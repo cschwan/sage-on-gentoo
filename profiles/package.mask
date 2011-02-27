@@ -8,7 +8,7 @@
 >=sci-mathematics/sage-extcode-4.6.2_alpha1
 >=sci-mathematics/sage-notebook-0.8.11
 # Ongoing work there, do not touch before it has been properly tested.
-=sci-chemistry/jmol-11.8.25
+=sci-chemistry/jmol-12.0.30
 # Not compatible with sage
 >=dev-lang/R-2.12.0
 # Inroduce a number of doctest failures - liekly harmless
