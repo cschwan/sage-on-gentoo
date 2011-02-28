@@ -67,8 +67,7 @@ RDEPEND="${CDEPEND}
 	>=dev-python/ipython-0.9.1
 	>=dev-python/jinja-2.1.1
 	>=dev-python/matplotlib-1.0.0
-	experimental? ( >=dev-python/mpmath-0.16 )
-	!experimental? ( ~dev-python/mpmath-0.15 )
+	>=dev-python/mpmath-0.16
 	~dev-python/networkx-1.2
 	~dev-python/pexpect-2.0
 	>=dev-python/pycrypto-2.1.0
@@ -120,7 +119,6 @@ pkg_setup() {
 		einfo "You have enabled the inclusion of unreviewed upstream patches."
 		einfo "Your feedback on these features is appreciated (build,pass tests...)"
 		einfo "current patch included:"
-		einfo "trac #9969: upgrade to mpmath-0.16"
 		einfo "trac #10039: ppl extension, this could replace cddlib one day"
 		einfo "trac #10140: a ppl application"
 	fi
@@ -149,10 +147,17 @@ src_prepare() {
 	append-flags -fno-strict-aliasing
 
 	# upstream patch first before any corrections
+	# all of the following are to be included in sage-4.7
 	# trac #10766 #10773 upgrade to ecls-11.1.1/maxima-5.23.2
 	epatch "${FILESDIR}"/trac_10766-fix_doctest.patch
 	epatch "${FILESDIR}"/trac_10766-fix_symbolic_integration_integral.patch
 	epatch "${FILESDIR}"/trac_10773-fix_maxima_version.patch
+	epatch "${FILESDIR}"/mpmath_update_fixed_4.6.1.patch.bz2
+	epatch "${FILESDIR}"/truediv_fix.patch
+	# fix some cython path trac 10233
+	epatch "${FILESDIR}"/trac_10233_fix_cython_include_path.patch.bz2
+	# use cython-0.14.1
+	epatch "${FILESDIR}"/trac_10493-cython-0.14.1.patch
 
 	if use maximalib ; then
 		# call maxima as a library
@@ -165,19 +170,12 @@ src_prepare() {
 	fi
 
 	if use experimental ; then
-		# upgrade to mpmath-0.16/0.17
-		epatch "${FILESDIR}"/mpmath_update_fixed_4.6.1.patch.bz2
-		epatch "${FILESDIR}"/truediv_fix.patch
 		# ppl extension
-		epatch "${FILESDIR}"/trac_10233_fix_cython_include_path.patch.bz2
 		epatch "${FILESDIR}"/trac_10039_parma_polyhedra_library.patch.bz2
 		# rebasing cone.py on ppl instead of cddlib
 		epatch "${FILESDIR}"/trac_10140_base_cone_on_ppl.patch.bz2
 		epatch "${FILESDIR}"/trac_10140_fix_toric_variety_doctests.patch.bz2
 	fi
-
-	# use cython-0.14.1
-	epatch "${FILESDIR}"/trac_10493-cython-0.14.1.patch
 
 	epatch "${FILESDIR}"/${PN}-4.6.1-exp-site-packages.patch
 
