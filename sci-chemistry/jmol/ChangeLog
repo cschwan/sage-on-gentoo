@@ -2,6 +2,10 @@
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  28 Feb 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  jmol-12.0.30.ebuild:
+  cannot hack webapp sensibly.
+
 *jmol-12.0.30 (27 Feb 2011)
 
   27 Feb 2011; François Bissey <francois.bissey@canterbury.ac.nz>

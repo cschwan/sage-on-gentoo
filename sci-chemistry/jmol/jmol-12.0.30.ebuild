@@ -1,4 +1,4 @@
-# Copyright 1999-2010 Gentoo Foundation
+# Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
@@ -58,6 +58,7 @@ src_prepare() {
 	java-pkg_jar-from itext iText.jar itext-1.4.5.jar
 	java-pkg_jar-from jmol-acme jmol-acme.jar Acme.jar
 	java-pkg_jar-from commons-cli-1 commons-cli.jar commons-cli-1.0.jar
+	java-pkg_jar-from junit junit.jar junit.jar
 
 	mkdir -p "${S}/build/appjars" || die
 }
