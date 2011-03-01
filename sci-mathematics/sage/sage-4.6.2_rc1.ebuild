@@ -218,7 +218,7 @@ src_prepare() {
 	rm -rf c_lib || die "failed to remove c library directory"
 
 	# patch SAGE_LOCAL
-	sed -i "s:SAGE_LOCAL = SAGE_ROOT + '/local/':SAGE_LOCAL = os.environ['SAGE_LOCAL']:g" \
+	sed -i "s:SAGE_LOCAL = SAGE_ROOT + '/local':SAGE_LOCAL = os.environ['SAGE_LOCAL']:g" \
 		module_list.py setup.py || die "failed to patch SAGE_LOCAL"
 
 	# fix polynomial_rational_flint.pyx include path - before it is done generally which screws up things
