@@ -25,7 +25,7 @@ RESTRICT="mirror"
 CDEPEND="dev-libs/gmp
 	>=dev-libs/mpfr-2.4.2
 	>=dev-libs/ntl-5.5.2
-	experimental? ( >=dev-libs/ppl-0.11 )
+	experimental? ( >=dev-libs/ppl-0.11.1 )
 	>=dev-lisp/ecls-11.1.1[-unicode]
 	>=dev-python/numpy-1.5.0-r3
 	>=sci-mathematics/eclib-20100711[pari24]
@@ -127,7 +127,6 @@ pkg_setup() {
 		einfo "You have enabled the maximalib useflag. This is a flag to help test"
 		einfo "and develop a new interface to sage."
 		einfo "See trac #7377"
-		einfo "It breaks a lot of things. You have been warned"
 	fi
 }
 
@@ -159,6 +158,10 @@ src_prepare() {
 		epatch "${FILESDIR}"/trac_7377-maximalib_p2.patch.bz2
 		epatch "${FILESDIR}"/trac_7377-fastcalculus_p2.patch.bz2
 		epatch "${FILESDIR}"/trac_7377-better-ask-error_p2.patch.bz2
+		epatch "${FILESDIR}"/trac_7377-split_and_refactor-p2.patch.bz2
+		epatch "${FILESDIR}"/trac_7377-lazy-maxlib.p2.patch
+		epatch "${FILESDIR}"/trac_7377-floatcast.patch
+		epatch "${FILESDIR}"/trac_7377-unicode_to_ecl.patch
 	fi
 
 	if use experimental ; then
