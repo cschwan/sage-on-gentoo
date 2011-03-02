@@ -6,7 +6,7 @@ EAPI="3"
 
 inherit eutils scons-utils versionator multilib
 
-MY_P="sage-$(replace_version_separator 3 '.')"
+MY_P="sage-$(replace_version_separator 2 '.')"
 
 DESCRIPTION="Sage's C library"
 HOMEPAGE="http://www.sagemath.org"

@@ -1,10 +1,10 @@
-# Copyright 1999-2010 Gentoo Foundation
+# Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
 EAPI="3"
 
-inherit eutils
+inherit eutils versionator
 
 MY_P="sage-${PV}"
 MY_P_HTML="sage-${PV}-doc-html"
@@ -26,16 +26,9 @@ RESTRICT="mirror"
 
 # TODO: depend on sage-baselayout (creates sage-main directory) ?
 DEPEND=""
-RDEPEND=">=dev-python/sphinx-0.6.3"
+RDEPEND=">=dev-python/sphinx-1.0.4"
 
 S="${WORKDIR}/${MY_P}/doc"
-
-src_prepare() {
-	# Patch the tests in the documentation to use cvxopt-1.1.2
-	epatch "${FILESDIR}"/${PN}-cvxopt-1.1.2.patch
-	# patch to upgrade to numpy-1.5.0/scipy-0.8.0
-	epatch "${FILESDIR}"/${PN}-scipy-0.8.patch
-}
 
 src_install() {
 	# install missing directories to satisfy builder.py test

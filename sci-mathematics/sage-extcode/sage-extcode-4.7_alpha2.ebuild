@@ -1,14 +1,17 @@
-# Copyright 1999-2010 Gentoo Foundation
+# Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
 EAPI="3"
 
-MY_P="extcode-${PV}"
+inherit versionator
+
+SAGE_P="sage-$(replace_version_separator 2 '.')"
+MY_P="extcode-$(replace_version_separator 2 '.')"
 
 DESCRIPTION="Extcode for Sage"
 HOMEPAGE="http://www.sagemath.org"
-SRC_URI="http://sage.math.washington.edu/home/release/sage-4.6/sage-4.6/spkg/standard/${MY_P}.spkg -> ${P}.tar.bz2"
+SRC_URI="http://sage.math.washington.edu/home/release/${SAGE_P}/${SAGE_P}/spkg/standard/${MY_P}.spkg -> ${P}.tar.bz2"
 
 LICENSE="GPL-2"
 SLOT="0"

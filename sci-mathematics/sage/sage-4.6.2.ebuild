@@ -7,7 +7,7 @@ EAPI="3"
 PYTHON_DEPEND="2:2.6:2.6"
 PYTHON_USE_WITH="readline sage sqlite"
 
-inherit distutils eutils flag-o-matic python versionator
+inherit distutils eutils flag-o-matic python
 
 MY_P="sage-${PV}"
 
@@ -17,7 +17,7 @@ SRC_URI="http://sage.math.washington.edu/home/release/${MY_P}/${MY_P}/spkg/stand
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~x86 ~amd64-linux ~x86-linux"
+KEYWORDS="~amd64 ~x86 ~amd64-linux ~x86-linux ~x86-macos"
 IUSE="examples mpc latex testsuite"
 
 RESTRICT="mirror"
@@ -25,7 +25,7 @@ RESTRICT="mirror"
 CDEPEND="dev-libs/gmp
 	>=dev-libs/mpfr-2.4.2
 	>=dev-libs/ntl-5.5.2
-	>=dev-lisp/ecls-10.4.1[-unicode]
+	>=dev-lisp/ecls-11.1.1[-unicode]
 	>=dev-python/numpy-1.5.0-r3
 	>=sci-mathematics/eclib-20100711[pari24]
 	>=sci-mathematics/ecm-6.2.1
@@ -43,7 +43,7 @@ CDEPEND="dev-libs/gmp
 	>=sci-libs/zn_poly-0.9
 	>=sci-mathematics/glpk-4.43
 	>=sci-mathematics/lcalc-1.23[pari24]
-	sci-mathematics/pari:3[data,gmp,sage]
+	>=sci-mathematics/pari-2.4.3-r1[data,gmp,sage]
 	>=sci-mathematics/polybori-0.6.5-r2[sage]
 	>=sci-mathematics/ratpoints-2.1.3
 	~sci-mathematics/sage-baselayout-${PV}[testsuite=]
@@ -57,7 +57,7 @@ CDEPEND="dev-libs/gmp
 	mpc? ( dev-libs/mpc )"
 
 DEPEND="${CDEPEND}
-	=dev-python/cython-0.13*"
+	=dev-python/cython-0.14.1"
 
 RDEPEND="${CDEPEND}
 	>=dev-lang/R-2.10.1
@@ -66,7 +66,7 @@ RDEPEND="${CDEPEND}
 	>=dev-python/ipython-0.9.1
 	>=dev-python/jinja-2.1.1
 	>=dev-python/matplotlib-1.0.0
-	~dev-python/mpmath-0.15
+	>=dev-python/mpmath-0.16
 	~dev-python/networkx-1.2
 	~dev-python/pexpect-2.0
 	>=dev-python/pycrypto-2.1.0
@@ -87,7 +87,7 @@ RDEPEND="${CDEPEND}
 	>=sci-mathematics/cu2-20060223
 	>=sci-mathematics/cubex-20060128
 	>=sci-mathematics/dikcube-20070912_p12
-	~sci-mathematics/maxima-5.22.1[ecls]
+	>=sci-mathematics/maxima-5.23.2[ecls]
 	>=sci-mathematics/mcube-20051209
 	>=sci-mathematics/optimal-20040603
 	>=sci-mathematics/palp-1.1
@@ -97,7 +97,7 @@ RDEPEND="${CDEPEND}
 	~sci-mathematics/sage-data-polytopes_db-20100210
 	>=sci-mathematics/sage-doc-${PV}
 	~sci-mathematics/sage-extcode-${PV}
-	~sci-mathematics/sage-notebook-0.8.10
+	~sci-mathematics/sage-notebook-0.8.11
 	|| ( ~sci-mathematics/singular-3.1.1.4[-libsingular] >=sci-mathematics/singular-3.1.2 )
 	>=sci-mathematics/sympow-1.018.1_p8[pari24]
 	examples? ( ~sci-mathematics/sage-examples-${PV} )
@@ -108,6 +108,12 @@ RDEPEND="${CDEPEND}
 	latex? ( ~dev-tex/sage-latex-2.2.5 )"
 
 S="${WORKDIR}/${MY_P}"
+
+pkg_setup() {
+	# Sage only works with python 2.6.*
+	python_set_active_version 2.6
+	python_pkg_setup
+}
 
 src_prepare() {
 	# ATLAS independence
@@ -122,10 +128,22 @@ src_prepare() {
 	############################################################################
 
 	# Fix startup issue and python-2.6.5 problem
-	append-flags -fno-strict-aliasing -DNDEBUG
+	append-flags -fno-strict-aliasing
 
-	# fix build file to make it compile without other Sage components
-	epatch "${FILESDIR}"/${PN}-4.3.4-site-packages.patch
+	# upstream patch first before any corrections
+	# all of the following are to be included in sage-4.7
+	# trac #10766 #10773 upgrade to ecls-11.1.1/maxima-5.23.2
+	epatch "${FILESDIR}"/trac_10766-fix_doctest.patch
+	epatch "${FILESDIR}"/trac_10766-fix_symbolic_integration_integral.patch
+	epatch "${FILESDIR}"/trac_10773-fix_maxima_version.patch
+	epatch "${FILESDIR}"/mpmath_update_fixed_4.6.1.patch.bz2
+	epatch "${FILESDIR}"/truediv_fix.patch
+	# fix some cython path trac 10233
+	epatch "${FILESDIR}"/trac_10233_fix_cython_include_path.patch.bz2
+	# use cython-0.14.1
+	epatch "${FILESDIR}"/trac_10493-cython-0.14.1.patch
+
+	epatch "${FILESDIR}"/${PN}-4.6.1-exp-site-packages.patch
 
 	# add pari24 and gmp to everything.
 	sed -i "s:\['stdc++', 'ntl'\]:\['stdc++', 'ntl','pari24','gmp'\]:g" setup.py \
@@ -166,8 +184,10 @@ src_prepare() {
 	rm -rf c_lib || die "failed to remove c library directory"
 
 	# patch SAGE_LOCAL
+	sed -i "s:SAGE_LOCAL = SAGE_ROOT + '/local':SAGE_LOCAL = os.environ['SAGE_LOCAL']:g" \
+		setup.py || die "failed to patch SAGE_LOCAL"
 	sed -i "s:SAGE_LOCAL = SAGE_ROOT + '/local/':SAGE_LOCAL = os.environ['SAGE_LOCAL']:g" \
-		module_list.py setup.py || die "failed to patch SAGE_LOCAL"
+		module_list.py || die "failed to patch SAGE_LOCAL"
 
 	# fix polynomial_rational_flint.pyx include path - before it is done generally which screws up things
 	sed -i "s:SAGE_ROOT + '/devel/sage/sage/libs/flint/':'sage/libs/flint/':"\
@@ -209,7 +229,7 @@ src_prepare() {
 		|| die "failed to patch path for lcalc include directory"
 
 	# rebuild in place
-	sed -i "s:SAGE_DEVEL + 'sage/sage/ext/interpreters':'sage/ext/interpreters':g" \
+	sed -i "s:SAGE_DEVEL + '/sage/sage/ext/interpreters':'sage/ext/interpreters':g" \
 		setup.py || die "failed to patch interpreters path"
 
 	# Do not overlink to cblas, this enable the gslcblas trick to solve issue 3
@@ -226,6 +246,10 @@ src_prepare() {
 		-e "s:BLAS, BLAS2:${cblaslibs}:g" \
 		-e "s:,BLAS:,${cblaslibs}:g" \
 		module_list.py || die "failed to patch module_list.py for ATLAS"
+
+	# Add -DNDEBUG to objects linking to libsingular
+	sed -i "s:'/include/singular'\]:'/include/singular'\],extra_compile_args = \['-DNDEBUG'\]:g" \
+		module_list.py || die "failed to add -DNDEBUG with libsingular"
 
 	# TODO: why does Sage fail with linbox commentator ?
 
@@ -273,7 +297,7 @@ src_prepare() {
 
 	# save gap_stamp to directory where sage is able to write
 	sed -i "s:GAP_STAMP = '%s/local/bin/gap_stamp'%SAGE_ROOT:GAP_STAMP = '%s/gap_stamp'%DOT_SAGE:g" \
-		sage/interfaces/gap.py || die "patch to patch gap interface"
+		sage/interfaces/gap.py || die "patch to gap interface"
 
 	# fix qepcad paths
 	epatch "${FILESDIR}"/${PN}-4.5.1-fix-qepcad-path.patch
@@ -316,9 +340,10 @@ src_prepare() {
 }
 
 src_configure() {
-	export SAGE_LOCAL="${EPREFIX}"/usr
+	export SAGE_LOCAL="${EPREFIX}"/usr/
 	export SAGE_ROOT="${EPREFIX}"/usr/share/sage
 	export SAGE_VERSION=${PV}
+	export DOT_SAGE="${S}"
 
 	export MAKE=${MAKEOPTS}
 
@@ -364,6 +389,12 @@ pkg_postinst() {
 	einfo "following command in a directory where Sage may write to, e.g.:"
 	einfo ""
 	einfo "  cd \$(mktemp -d) && sage -testall"
+	einfo ""
+	einfo "Parallel doctesting is also possible (replace '8' with an adequate"
+	einfo "number of processes):"
+	einfo ""
+	einfo "  cd \$(mktemp -d) && sage -tp 8 -sagenb \\"
+	einfo "      ${EPREFIX}/usr/share/sage/devel/sage-main/"
 	einfo ""
 	einfo "Note that testing Sage may take more than 4 hours. If you want to"
 	einfo "check your results look at the list of known failures:"

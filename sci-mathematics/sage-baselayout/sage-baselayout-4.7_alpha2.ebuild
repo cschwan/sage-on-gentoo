@@ -1,4 +1,4 @@
-# Copyright 1999-2010 Gentoo Foundation
+# Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
@@ -6,8 +6,8 @@ EAPI="3"
 
 inherit eutils toolchain-funcs versionator
 
-MY_P="sage_scripts-${PV}"
-SAGE_P="sage-${PV}"
+SAGE_P="sage-$(replace_version_separator 2 '.')"
+MY_P="sage_scripts-$(replace_version_separator 2 '.')"
 
 DESCRIPTION="Sage baselayout files"
 HOMEPAGE="http://www.sagemath.org"
@@ -16,12 +16,18 @@ SRC_URI="http://sage.math.washington.edu/home/release/${SAGE_P}/${SAGE_P}/spkg/s
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64 ~x86 ~amd64-linux ~x86-linux"
-IUSE="testsuite X"
+IUSE="debug testsuite X"
 
 RESTRICT="mirror"
 
 DEPEND=""
-RDEPEND="${DEPEND}"
+if  [[ ${CHOST} == *-darwin* ]] ; then
+	RDEPEND="${DEPEND}
+		debug? ( sys-devel/gdb-apple )"
+else
+	RDEPEND="${DEPEND}
+		debug? ( sys-devel/gdb )"
+fi
 
 S="${WORKDIR}/${MY_P}"
 
@@ -36,12 +42,13 @@ src_prepare() {
 		#!/bin/bash
 
 		if [[ -z \${DOT_SAGE} ]]; then
-		    export DOT_SAGE="\${HOME}/.sage"
+			export DOT_SAGE="\${HOME}/.sage"
 		fi
 
 		export SAGE_STARTUP_FILE="\${DOT_SAGE}/init.sage"
 		export SAGE_TESTDIR="\${DOT_SAGE}/tmp"
 		export SAGE_SERVER="http://www.sagemath.org/"
+		export EPYTHON=python2.6
 	EOF
 
 	# make sage startup script
@@ -77,16 +84,13 @@ src_prepare() {
 	# TODO: do not remove scons and M2
 
 	# remove developer- and unsupported options
-	epatch "${FILESDIR}"/${PN}-4.6-gentooify-startup-script.patch
+	epatch "${FILESDIR}"/${PN}-4.6.1_rc0-gentooify-startup-script.patch
 
 	# we dont need this script
 	epatch "${FILESDIR}"/${PN}-4.5.1-remove-sage-location.patch
 
 	# replace ${SAGE_ROOT}/local with ${SAGE_LOCAL}
 	epatch "${FILESDIR}"/${PN}-4.5.2-fix-SAGE_LOCAL.patch
-
-	# upgrade to maxima-5.22.1 ticket #10817
-	epatch "${FILESDIR}"/sage-maxima.lisp.patch
 
 	# sage startup script is placed into /usr/bin
 	sed -i "s:\"\$SAGE_ROOT\"/sage:\"\$SAGE_LOCAL\"/bin/sage:g" \
@@ -123,14 +127,14 @@ src_install() {
 	# additonal helper scripts
 	dobin sage-grep sage-grepdoc sage-preparse sage-startuptime.py || die
 
-	# GNU DEBUGGER helper schripts
-	dobin sage-gdb sage-gdb-ipython sage-gdb-commands || die
+	if use debug ; then
+		# GNU DEBUGGER helper schripts
+		dobin sage-gdb sage-gdb-ipython sage-gdb-commands || die
 
-	# TODO: remove valgrind files (do not work properly, useless for us ?) ?
-
-	# VALGRIND helper scripts
-	dobin sage-cachegrind sage-callgrind sage-massif sage-omega \
-		sage-valgrind || die
+		# VALGRIND helper scripts
+		dobin sage-cachegrind sage-callgrind sage-massif sage-omega \
+			sage-valgrind || die
+	fi
 
 	# install file for sage/misc/inline_fortran.py
 	dobin sage-g77_shared || die

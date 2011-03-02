@@ -1,12 +1,10 @@
-# preparing 4.6.2
-=sci-mathematics/pari-2.4.3-r1
->=sci-mathematics/sage-4.6.2_alpha1
->=sci-mathematics/sage-clib-4.6.2_alpha1
->=sci-mathematics/sage-baselayout-4.6.2_alpha1
->=sci-mathematics/sage-doc-4.6.2_alpha1
->=sci-mathematics/sage-examples-4.6.2_alpha1
->=sci-mathematics/sage-extcode-4.6.2_alpha1
->=sci-mathematics/sage-notebook-0.8.11
+# preparing 4.7
+>=sci-mathematics/sage-4.7_alpha1
+>=sci-mathematics/sage-clib-4.7_alpha1
+>=sci-mathematics/sage-baselayout-4.7_alpha1
+>=sci-mathematics/sage-doc-4.7_alpha1
+>=sci-mathematics/sage-examples-4.7_alpha1
+>=sci-mathematics/sage-extcode-4.7_alpha1
 # Ongoing work there, do not touch before it has been properly tested.
 =sci-chemistry/jmol-12.0.30
 =sci-chemistry/jmol-applet-12.0.30

@@ -2,6 +2,14 @@
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*sage-4.7_alpha2 (02 Mar 2011)
+*sage-4.6.2 (02 Mar 2011)
+
+  02 Mar 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  -sage-4.6-r1.ebuild, -sage-4.6.1.ebuild, -sage-4.6.2_rc1.ebuild,
+  +sage-4.6.2.ebuild, +sage-4.7_alpha2.ebuild:
+  4.6.2 released drop old, start 4.7.alpha2
+
   01 Mar 2011; François Bissey <francois.bissey@canterbury.ac.nz>
   sage-4.6.2_rc1.ebuild:
   correcting some sed in 4.6.2.rc1

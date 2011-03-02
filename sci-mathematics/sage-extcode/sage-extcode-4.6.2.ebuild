@@ -1,13 +1,15 @@
-# Copyright 1999-2010 Gentoo Foundation
+# Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
 EAPI="3"
 
-MY_P="examples-${PV}"
-SAGE_P="sage-${PV}"
+inherit versionator
 
-DESCRIPTION="Example code and scripts for Sage"
+SAGE_P="sage-${PV}"
+MY_P="extcode-${PV}"
+
+DESCRIPTION="Extcode for Sage"
 HOMEPAGE="http://www.sagemath.org"
 SRC_URI="http://sage.math.washington.edu/home/release/${SAGE_P}/${SAGE_P}/spkg/standard/${MY_P}.spkg -> ${P}.tar.bz2"
 
@@ -24,13 +26,15 @@ RDEPEND="${DEPEND}"
 S="${WORKDIR}/${MY_P}"
 
 src_prepare() {
-	# remove stuff not needed
-	rm -rf .hg .hgignore .hgtags sage-push spkg-install \
-		|| die "failed to remove useless files"
+	find . -name "*pyc" -type f -delete \
+		|| die "failed to remove precompiled files"
 }
 
 src_install() {
-	insinto /usr/share/sage/examples
+	# remove stuff not needed
+	rm -rf .hg .hgignore .hgtags mirror sage-push spkg-debian spkg-dist \
+		spkg-install dist || die "failed to remove useless files"
+
+	insinto /usr/share/sage/data/extcode
 	doins -r * || die
-	fperms a+x /usr/share/sage/examples/test_all || die
 }

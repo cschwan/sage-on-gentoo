@@ -4,10 +4,10 @@
 
 EAPI="3"
 
-inherit eutils toolchain-funcs versionator
+inherit eutils toolchain-funcs
 
-SAGE_P="sage-$(replace_version_separator 3 '.')"
-MY_P="sage_scripts-$(replace_version_separator 3 '.')"
+SAGE_P="sage-${PV}"
+MY_P="sage_scripts-${PV}"
 
 DESCRIPTION="Sage baselayout files"
 HOMEPAGE="http://www.sagemath.org"
