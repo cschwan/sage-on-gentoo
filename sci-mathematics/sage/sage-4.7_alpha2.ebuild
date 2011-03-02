@@ -336,7 +336,11 @@ src_prepare() {
 		sage/combinat/words/morphism.py || die "failed to patch path for save"
 
 	# replace SAGE_ROOT/local with SAGE_LOCAL
-	epatch "${FILESDIR}"/${PN}-4.6-fix-SAGE_LOCAL.patch
+	if use maximalib ; then
+		epatch "${FILESDIR}"/${PN}-4.6-fix-SAGE_LOCAL-maximalib.patch
+	else
+		epatch "${FILESDIR}"/${PN}-4.6-fix-SAGE_LOCAL.patch
+	fi
 
 	# patch path for saving sessions
 	sed -i "s:save_session('tmp_f', :save_session(tmp_f, :g" \

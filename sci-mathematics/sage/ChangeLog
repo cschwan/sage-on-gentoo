@@ -3,6 +3,10 @@
 # $Header: $
 
   02 Mar 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  +files/sage-4.6-fix-SAGE_LOCAL-maximalib.patch, sage-4.7_alpha2.ebuild:
+  fix maximalib support in 4.7_alpha2
+
+  02 Mar 2011; François Bissey <francois.bissey@canterbury.ac.nz>
   +files/trac_7377-floatcast.patch, +files/trac_7377-lazy-maxlib.p2.patch,
   +files/trac_7377-split_and_refactor-p2.patch.bz2,
   +files/trac_7377-unicode_to_ecl.patch,
