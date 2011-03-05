@@ -1,0 +1,16 @@
+--- src/Makefile.in.orig	2011-03-05 15:54:52.436578004 +1300
++++ src/Makefile.in	2011-03-05 15:55:50.544578001 +1300
+@@ -246,7 +246,6 @@
+ # like "@si::foo" and "@(defun si::foo".
+ # This rule is allowed to fail when etags does not exist.
+ TAGS:
+-	echo > $@
+ 	if test "x$(ETAGS)" != "x"; then \
+ 	srcfiles=`find $(srcdir)/c $(srcdir)/h -name '*.[chd]'` && \
+ 	$(ETAGS) --language=c    -o $@ $$srcfiles && \
+@@ -255,4 +254,4 @@
+ 	      --regex='/@(defun \([-:*a-zA-z]+\)/\1/' \
+ 	      $$srcfiles; \
+ 	fi
+-
++	touch TAGS
