@@ -11,6 +11,5 @@ standalone executables.
 <use>
 <flag name='gengc'>Use generational garbage collection (experimental)</flag>
 <flag name='precisegc'>Use type information during garbage collection (experimental)</flag>
-<flag name='tags'>Enables the generation of TAGS file for emacs or vim</flag>
 </use>
 </pkgmetadata>

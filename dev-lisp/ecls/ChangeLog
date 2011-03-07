@@ -2,6 +2,10 @@
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  07 Mar 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  ecls-11.1.1-r1.ebuild, -files/ecls-11.1.1-ctag.patch, metadata.xml:
+  final fix for etags? from Ulrich Muller
+
 *ecls-11.1.1-r1 (05 Mar 2011)
 
   05 Mar 2011; François Bissey <francois.bissey@canterbury.ac.nz>

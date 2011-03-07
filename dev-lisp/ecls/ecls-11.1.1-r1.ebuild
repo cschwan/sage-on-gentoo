@@ -14,14 +14,14 @@ SRC_URI="mirror://sourceforge/${PN}/${MY_P}.tar.gz"
 LICENSE="BSD LGPL-2"
 SLOT="0"
 KEYWORDS="~amd64 ~ppc ~sparc ~x86"
-IUSE="debug gengc precisegc threads +unicode X tags"
+IUSE="debug gengc precisegc threads +unicode X emacs"
 
 RDEPEND="dev-libs/gmp
 		virtual/libffi
 		>=dev-libs/boehm-gc-7.1[threads?]"
 DEPEND="${RDEPEND}
 		app-text/texi2html
-		tags? ( || ( virtual/emacs dev-util/ctags ) )"
+		emacs? ( virtual/emacs >=app-admin/eselect-emacs-1.12 )"
 PDEPEND="dev-lisp/gentoo-init"
 
 S="${WORKDIR}"/${MY_P}
@@ -36,7 +36,6 @@ pkg_setup() {
 src_prepare() {
 	epatch "${FILESDIR}"/${P}-cmploc.lisp.patch
 	epatch "${FILESDIR}"/${PV}-headers-gentoo.patch
-	epatch "${FILESDIR}"/${P}-ctag.patch
 	sed -i "s:bin/ecl-config TAGS:bin/ecl-config:" src/Makefile.in
 }
 
@@ -56,15 +55,18 @@ src_configure() {
 }
 
 src_compile() {
-	#parallel fails
-	emake -j1 || die "Compilation failed"
-
-	if use tags ; then
-		cd build
-		emake TAGS
+	if use emacs; then
+		local ETAGS=$(eselect --brief etags list | sed -ne '/emacs/{p;q}')
+		[[ -n ${ETAGS} ]] || die "No etags implementation found"
+		pushd build || die
+		emake ETAGS=${ETAGS} TAGS || die
+		popd
 	else
 		touch build/TAGS
 	fi
+
+	#parallel fails
+	emake -j1 || die "Compilation failed"
 }
 
 src_install () {
