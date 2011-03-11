@@ -2,6 +2,12 @@
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*sage-4.7_alpha1 (11 Mar 2011)
+
+  11 Mar 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  +sage-4.7_alpha1.ebuild, -sage-4.7_alpha2.ebuild:
+  4.7.alpha1
+
   02 Mar 2011; François Bissey <francois.bissey@canterbury.ac.nz>
   +files/sage-4.6-fix-SAGE_LOCAL-maximalib.patch, sage-4.7_alpha2.ebuild:
   fix maximalib support in 4.7_alpha2
