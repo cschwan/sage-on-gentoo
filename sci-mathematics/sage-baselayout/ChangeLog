@@ -2,6 +2,11 @@
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  12 Mar 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-baselayout-4.7_alpha1.ebuild:
+  the ipython folder is gone. find out wherethe ipythonrc files have been
+  relocated, ipython?
+
 *sage-baselayout-4.7_alpha1 (11 Mar 2011)
 
   11 Mar 2011; François Bissey <francois.bissey@canterbury.ac.nz>

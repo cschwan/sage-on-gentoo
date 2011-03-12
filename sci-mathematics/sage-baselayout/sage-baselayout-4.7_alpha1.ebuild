@@ -33,8 +33,6 @@ S="${WORKDIR}/${MY_P}"
 
 # TODO: scripts into /usr/libexec ?
 src_prepare() {
-	rm ipython/*pyc || die "failed to remove compiled python files"
-
 	# ship our own version of sage-env
 	rm sage-env || die "failed to remove sage-env"
 
@@ -141,9 +139,6 @@ src_install() {
 
 	insinto /usr/bin
 	doins *doctest.py ipy_profile_sage.py || die
-
-	insinto /usr/share/sage
-	doins -r ipython || die
 
 	doenvd "${T}"/99sage || die
 
