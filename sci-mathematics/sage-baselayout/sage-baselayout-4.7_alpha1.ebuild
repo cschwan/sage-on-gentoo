@@ -8,10 +8,12 @@ inherit eutils toolchain-funcs versionator
 
 SAGE_P="sage-$(replace_version_separator 2 '.')"
 MY_P="sage_scripts-$(replace_version_separator 2 '.')"
+SAGEROOT="sage_root-$(replace_version_separator 2 '.')"
 
 DESCRIPTION="Sage baselayout files"
 HOMEPAGE="http://www.sagemath.org"
-SRC_URI="http://sage.math.washington.edu/home/release/${SAGE_P}/${SAGE_P}/spkg/standard/${MY_P}.spkg -> ${P}.tar.bz2"
+SRC_URI="http://sage.math.washington.edu/home/release/${SAGE_P}/${SAGE_P}/spkg/standard/${MY_P}.spkg -> ${P}.tar.bz2
+	http://sage.math.washington.edu/home/release/${SAGE_P}/${SAGE_P}/spkg/standard/${SAGEROOT}.spkg -> ${SAGEROOT}.tar.bz2"
 
 LICENSE="GPL-2"
 SLOT="0"
@@ -30,6 +32,7 @@ else
 fi
 
 S="${WORKDIR}/${MY_P}"
+IPYTHON_S="${WORKDIR}/${SAGEROOT}"
 
 # TODO: scripts into /usr/libexec ?
 src_prepare() {
@@ -106,8 +109,6 @@ src_prepare() {
 }
 
 src_install() {
-	dodoc README.txt || die
-
 	# TODO: patch sage-core and remove sage-native-execute ?
 
 	# core scripts which are needed in every case
@@ -139,6 +140,9 @@ src_install() {
 
 	insinto /usr/bin
 	doins *doctest.py ipy_profile_sage.py || die
+
+	insinto /usr/share/sage
+	doins -r "${IPYTHON_S}"/ipython || die
 
 	doenvd "${T}"/99sage || die
 

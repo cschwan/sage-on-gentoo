@@ -4,6 +4,10 @@
 
   12 Mar 2011; François Bissey <francois.bissey@canterbury.ac.nz>
   sage-baselayout-4.7_alpha1.ebuild:
+  Added the new sage_root spkg to SRC_URI, provides ipython stuff.
+
+  12 Mar 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-baselayout-4.7_alpha1.ebuild:
   the ipython folder is gone. find out wherethe ipythonrc files have been
   relocated, ipython?
 
