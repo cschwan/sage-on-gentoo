@@ -6,6 +6,7 @@
 >=sci-mathematics/sage-examples-4.7_alpha1
 >=sci-mathematics/sage-extcode-4.7_alpha1
 =sci-mathematics/sage-notebook-0.8.12
+=sci-mathematics/polybori-0.7
 # Ongoing work there, do not touch before it has been properly tested.
 =sci-chemistry/jmol-12.0.30
 =sci-chemistry/jmol-applet-12.0.30

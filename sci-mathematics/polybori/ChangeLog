@@ -2,6 +2,17 @@
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  13 Mar 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  +polybori-0.7.ebuild, +files/polybori-0.7-save-flags.patch,
+  +files/pbori_routines_misc.h.patch:
+  Polybori-0.7 work.
+
+*polybori-0.7 (12 Mar 2011)
+
+  12 Mar 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  +polybori-0.7.ebuild, +files/pbori_routines_misc.h.patch:
+  Add polybori-0.7
+
   18 Jan 2011; François Bissey <f.r.bissey@massey.ac.nz>
   polybori-0.6.5-r2.ebuild:
   Keep only static object on OS X, dynamic are broken - again!
