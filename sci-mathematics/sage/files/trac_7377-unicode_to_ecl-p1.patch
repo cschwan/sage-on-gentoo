@@ -1,11 +1,11 @@
 # HG changeset patch
 # User Jean-Pierre Flori <flori@enst.fr>
 # Date 1299059470 -3600
-# Node ID dd98bcda168acccd36422b1ad82d640f5c8e9cf4
-# Parent  4b00ac036cceb470c88130bd777746789dcb308e
+# Node ID d63ed2bc06f3757a70ca54179032ba6ef92f0d03
+# Parent  ddf7ef006e3a7b2d95f62bbea8624888ed8256c7
 Convert unicode to str before conversion to ecl_object
 
-diff -r 4b00ac036cce -r dd98bcda168a sage/libs/ecl.pyx
+diff -r ddf7ef006e3a -r d63ed2bc06f3 sage/libs/ecl.pyx
 --- sage/libs/ecl.pyx	Tue Mar 01 09:41:23 2011 -0800
 +++ sage/libs/ecl.pyx	Wed Mar 02 10:51:10 2011 +0100
 @@ -284,6 +284,9 @@
@@ -14,16 +14,7 @@ diff -r 4b00ac036cce -r dd98bcda168a sage/libs/ecl.pyx
          return ecl_make_doublefloat(pyobj)
 +    elif isinstance(pyobj,unicode):
 +        s=<bytes>(str(pyobj))
-+        return ecl_safe_read_string(s)        
++        return ecl_safe_read_string(s)
      elif isinstance(pyobj,bytes):
          s=<bytes>pyobj
          return ecl_safe_read_string(s)
-@@ -328,7 +331,7 @@
-             cl_rplacd(ptr,python_to_ecl(pyobj[-1]))
-             return L
-     else:
--        raise TypeError,"Unimplemented type for python_to_ecl"
-+        raise TypeError,"Unimplemented type %s for python_to_ecl"%type(pyobj)
- 
- cdef ecl_to_python(cl_object o):
-     # conversions from an ecl object to a python object.

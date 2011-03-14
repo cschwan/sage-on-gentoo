@@ -25,7 +25,7 @@ RESTRICT="mirror"
 CDEPEND="dev-libs/gmp
 	>=dev-libs/mpfr-2.4.2
 	>=dev-libs/ntl-5.5.2
-	experimental? ( >=dev-libs/ppl-0.11.1 )
+	experimental? ( >=dev-libs/ppl-0.11.2 )
 	>=dev-lisp/ecls-11.1.1[-unicode]
 	>=dev-python/numpy-1.5.0-r3
 	>=sci-mathematics/eclib-20100711[pari24]
@@ -58,7 +58,8 @@ CDEPEND="dev-libs/gmp
 	mpc? ( dev-libs/mpc )"
 
 DEPEND="${CDEPEND}
-	=dev-python/cython-0.14.1"
+	=dev-python/cython-0.14.1
+	maximalib? ( dev-vcs/mercurial )"
 
 RDEPEND="${CDEPEND}
 	>=dev-lang/R-2.10.1
@@ -161,12 +162,15 @@ src_prepare() {
 		epatch "${FILESDIR}"/trac_7377-split_and_refactor-p2.patch.bz2
 		epatch "${FILESDIR}"/trac_7377-lazy-maxlib.p2.patch
 		epatch "${FILESDIR}"/trac_7377-floatcast.patch
-		epatch "${FILESDIR}"/trac_7377-unicode_to_ecl.patch
+		epatch "${FILESDIR}"/trac_7377-unicode_to_ecl-p1.patch
+		hg import -f "${FILESDIR}"/trac_7377-assumptions-p2.patch
+		hg import -f "${FILESDIR}"/trac_7377-doctests.patch
 	fi
 
 	if use experimental ; then
 		# ppl extension
 		epatch "${FILESDIR}"/trac_10039_parma_polyhedra_library.patch.bz2
+		epatch "${FILESDIR}"/trac_10039_ppl-modulelist.patch
 		# rebasing cone.py on ppl instead of cddlib
 		epatch "${FILESDIR}"/trac_10140_base_cone_on_ppl.patch.bz2
 		epatch "${FILESDIR}"/trac_10140_fix_toric_variety_doctests.patch.bz2

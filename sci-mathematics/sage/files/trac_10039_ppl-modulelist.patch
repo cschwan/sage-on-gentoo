@@ -1,0 +1,17 @@
+--- module_list.py.orig	2011-03-15 11:19:14.368131599 +1300
++++ module_list.py	2011-03-15 11:20:53.360131835 +1300
+@@ -577,7 +577,13 @@
+     Extension('sage.libs.pari.gen',
+               sources = ["sage/libs/pari/gen.pyx"],
+               libraries = ['pari', 'gmp']),
+-    
++
++    Extension('sage.libs.ppl',
++              sources = ['sage/libs/ppl.pyx', 'sage/libs/ppl_shim.cc'],
++              libraries = ['ppl', 'gmpxx', 'gmp', 'm'],
++              language="c++",
++              depends = [SAGE_LOCAL + "/include/ppl.hh"]),
++
+     Extension('sage.libs.ratpoints',
+               sources = ["sage/libs/ratpoints.pyx"],
+               depends = [SAGE_ROOT + '/local/include/ratpoints.h'],

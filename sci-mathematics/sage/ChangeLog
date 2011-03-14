@@ -2,6 +2,24 @@
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  14 Mar 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  +files/trac_10039_ppl-modulelist.patch,
+  +files/trac_7377-assumptions-p2.patch, +files/trac_7377-doctests.patch,
+  +files/trac_7377-unicode_to_ecl-p1.patch,
+  -files/trac_7377-unicode_to_ecl.patch,
+  files/trac_10039_parma_polyhedra_library.patch.bz2, sage-4.7_alpha1.ebuild:
+  give up applying experimental upstream patch with gnu patch, using hg
+  directly. It sucks but redoing massive patches is too 
+  much work. It will only be done for things we really care going in stable.
+
+  14 Mar 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  +files/trac_7377-assumptions-p2.patch.bz2,
+  +files/trac_7377-doctests.patch.bz2,
+  +files/trac_7377-unicode_to_ecl-p1.patch,
+  -files/trac_7377-unicode_to_ecl.patch, sage-4.7_alpha1.ebuild,
+  files/trac_10039_parma_polyhedra_library.patch.bz2:
+  Massive patch updates in 4.7.alpha1
+
   12 Mar 2011; FranÃ§ois Bissey <francois.bissey@canterbury.ac.nz>
   sage-4.7_alpha1.ebuild:
   Adjust sagenb dependency
