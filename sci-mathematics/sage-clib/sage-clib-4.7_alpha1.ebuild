@@ -31,6 +31,9 @@ S="${WORKDIR}/${MY_P}/c_lib"
 src_prepare() {
 	epatch "${FILESDIR}"/${PN}-4.6-importenv.patch
 	epatch "${FILESDIR}"/${PN}-4.5.3-fix-undefined-symbols-warning.patch
+
+	sed -i "s:mpir.h:gmp.h:" c_lib/src/memory.c
+
 	if [[ ${CHOST} == *-darwin* ]] ; then
 		sed -i "s:-Wl,-soname,libcsage.so:-install_name ${EPREFIX}/usr/$(get_libdir)/libcsage.dylib:" \
 			SConstruct
