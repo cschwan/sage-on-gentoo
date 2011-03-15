@@ -4,6 +4,10 @@
 
   15 Mar 2011; François Bissey <francois.bissey@canterbury.ac.nz>
   sage-clib-4.7_alpha1.ebuild:
+  Get the path right
+
+  15 Mar 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-clib-4.7_alpha1.ebuild:
   Change mpir.h to gmp.h in memory.c (at long last Steve).
 
 *sage-clib-4.7_alpha1 (11 Mar 2011)
