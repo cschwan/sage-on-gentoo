@@ -1,13 +1,13 @@
 # HG changeset patch
 # User Karl-Dieter Crisman <kcrisman@gmail.com>
 # Date 1299792266 18000
-# Node ID 23b5ece5f4d2a377d261a8e5d359db7354f1dc58
+# Node ID c86e54a6bef8e0625f47bac2ec1128c30d0f235a
 # Parent  8e1dc3ae4ccc1b0ab2a5da96e0f484e56265138f
 Trac 7377 - provisional patch fixing error messages for assumptions
 
 Also fixes various other things, including extra documentation in a number of places and additional examples of assumptions in summation, integration, and limits.
 
-diff -r 8e1dc3ae4ccc -r 23b5ece5f4d2 sage/calculus/calculus.py
+diff -r 8e1dc3ae4ccc -r c86e54a6bef8 sage/calculus/calculus.py
 --- a/sage/calculus/calculus.py	Fri Feb 25 14:31:24 2011 -0800
 +++ b/sage/calculus/calculus.py	Thu Mar 10 16:24:26 2011 -0500
 @@ -483,7 +483,8 @@
@@ -82,7 +82,7 @@ diff -r 8e1dc3ae4ccc -r 23b5ece5f4d2 sage/calculus/calculus.py
      More examples::
  
          sage: limit(x*log(x), x = 0, dir='+')
-diff -r 8e1dc3ae4ccc -r 23b5ece5f4d2 sage/calculus/functional.py
+diff -r 8e1dc3ae4ccc -r c86e54a6bef8 sage/calculus/functional.py
 --- a/sage/calculus/functional.py	Fri Feb 25 14:31:24 2011 -0800
 +++ b/sage/calculus/functional.py	Thu Mar 10 16:24:26 2011 -0500
 @@ -242,9 +242,7 @@
@@ -96,7 +96,7 @@ diff -r 8e1dc3ae4ccc -r 23b5ece5f4d2 sage/calculus/functional.py
          Is  a  positive, negative, or zero?
          sage: assume(a>0)
          sage: integral(abs(x)*x, x, 0, a)
-diff -r 8e1dc3ae4ccc -r 23b5ece5f4d2 sage/interfaces/maxima.py
+diff -r 8e1dc3ae4ccc -r c86e54a6bef8 sage/interfaces/maxima.py
 --- a/sage/interfaces/maxima.py	Fri Feb 25 14:31:24 2011 -0800
 +++ b/sage/interfaces/maxima.py	Thu Mar 10 16:24:26 2011 -0500
 @@ -580,27 +580,49 @@
@@ -216,7 +216,7 @@ diff -r 8e1dc3ae4ccc -r 23b5ece5f4d2 sage/interfaces/maxima.py
  
  def is_MaximaElement(x):
      """
-diff -r 8e1dc3ae4ccc -r 23b5ece5f4d2 sage/interfaces/maxima_lib.py
+diff -r 8e1dc3ae4ccc -r c86e54a6bef8 sage/interfaces/maxima_lib.py
 --- a/sage/interfaces/maxima_lib.py	Fri Feb 25 14:31:24 2011 -0800
 +++ b/sage/interfaces/maxima_lib.py	Thu Mar 10 16:24:26 2011 -0500
 @@ -405,34 +405,154 @@
@@ -380,17 +380,55 @@ diff -r 8e1dc3ae4ccc -r 23b5ece5f4d2 sage/interfaces/maxima_lib.py
          L=[sr_to_max(SR(a)) for a in [expr,v,a]]
          if dir == "plus":
              L.append(max_plus)
-diff -r 8e1dc3ae4ccc -r 23b5ece5f4d2 sage/symbolic/assumptions.py
+diff -r 8e1dc3ae4ccc -r c86e54a6bef8 sage/symbolic/assumptions.py
 --- a/sage/symbolic/assumptions.py	Fri Feb 25 14:31:24 2011 -0800
 +++ b/sage/symbolic/assumptions.py	Thu Mar 10 16:24:26 2011 -0500
-@@ -259,15 +259,48 @@
+@@ -94,7 +94,7 @@
+         """
+         from sage.calculus.calculus import maxima
+         if self._context is None:
+-            # We get the list here because features may be added with time. 
++            # We get the list here because features may be added with time.
+             valid_features = list(maxima("features"))
+             if self._assumption not in [repr(x).strip() for x in list(valid_features)]:
+                 raise ValueError, "%s not a valid assumption, must be one of %s" % (self._assumption, valid_features)
+@@ -102,7 +102,10 @@
+             self._context = maxima.newcontext('context' + maxima._next_var_name())
+             try:
+                 maxima.eval("declare(%s, %s)" % (repr(self._var), self._assumption))
+-            except TypeError, mess:
++#            except TypeError, mess:
++#                if 'inconsistent' in str(mess): # note Maxima doesn't tell you if declarations are redundant
++#                    raise ValueError, "Assumption is inconsistent"
++            except RuntimeError, mess:
+                 if 'inconsistent' in str(mess): # note Maxima doesn't tell you if declarations are redundant
+                     raise ValueError, "Assumption is inconsistent"
+                 else:
+@@ -138,13 +141,14 @@
+         else: # trying to forget a declaration explicitly rather than implicitly
+             for x in _assumptions:
+                 if repr(self) == repr(x): # so by implication x is also a GenericDeclaration
+-                    x.forget() 
++                    x.forget()
+                     break
+             return
+     
+     def contradicts(self, soln):
+         """
+-        Returns ``True`` if this assumption is violated by the given variable assignment(s).
++        Returns ``True`` if this assumption is violated by the given
++        variable assignment(s).
+ 
+         INPUT:
+ 
+@@ -259,15 +263,49 @@
      
      -  ``*args`` - assumptions
      
 -    EXAMPLES::
 +    EXAMPLES:
 +
-+    Assumptions are typically used to ensure certain relations are 
++    Assumptions are typically used to ensure certain relations are
 +    evaluated as true that are not true in general.
      
 +    Here, we verify that for `x>0`, `\sqrt(x^2)=x`::
@@ -418,7 +456,8 @@ diff -r 8e1dc3ae4ccc -r 23b5ece5f4d2 sage/symbolic/assumptions.py
 +
 +    ::
 +
-+        sage: q, a = var('q, a')
++        sage: var('q, a, k')
++        (q, a, k)
 +        sage: assume(q > 1)
 +        sage: sum(a*q^k, k, 0, oo)
 +        Traceback (most recent call last):
@@ -433,7 +472,7 @@ diff -r 8e1dc3ae4ccc -r 23b5ece5f4d2 sage/symbolic/assumptions.py
      An integer constraint::
      
          sage: var('n, P, r, r2')
-@@ -278,7 +311,7 @@
+@@ -278,7 +316,7 @@
          sage: solve(c==d,r2)
          [r2 == e^r - 1]
      
@@ -442,7 +481,7 @@ diff -r 8e1dc3ae4ccc -r 23b5ece5f4d2 sage/symbolic/assumptions.py
      
          sage: sin(n*pi)
          sin(pi*n)
-diff -r 8e1dc3ae4ccc -r 23b5ece5f4d2 sage/symbolic/integration/external.py
+diff -r 8e1dc3ae4ccc -r c86e54a6bef8 sage/symbolic/integration/external.py
 --- a/sage/symbolic/integration/external.py	Fri Feb 25 14:31:24 2011 -0800
 +++ b/sage/symbolic/integration/external.py	Thu Mar 10 16:24:26 2011 -0500
 @@ -18,14 +18,7 @@
@@ -461,19 +500,40 @@ diff -r 8e1dc3ae4ccc -r 23b5ece5f4d2 sage/symbolic/integration/external.py
      return result._sage_()
  
  def sympy_integrator(expression, v, a=None, b=None):
-diff -r 8e1dc3ae4ccc -r 23b5ece5f4d2 sage/symbolic/integration/integral.py
+diff -r 8e1dc3ae4ccc -r c86e54a6bef8 sage/symbolic/integration/integral.py
 --- a/sage/symbolic/integration/integral.py	Fri Feb 25 14:31:24 2011 -0800
 +++ b/sage/symbolic/integration/integral.py	Thu Mar 10 16:24:26 2011 -0500
-@@ -332,7 +332,7 @@
+@@ -55,7 +55,7 @@
+         """
+         # The automatic evaluation routine will try these integrators
+         # in the given order. This is an attribute of the class instead of
+-        # a global variable in this module to enable customization by 
++        # a global variable in this module to enable customization by
+         # creating a subclasses which define a different set of integrators
+         self.integrators = [external.maxima_integrator]
+ 
+@@ -141,7 +141,7 @@
+         """
+         # The automatic evaluation routine will try these integrators
+         # in the given order. This is an attribute of the class instead of
+-        # a global variable in this module to enable customization by 
++        # a global variable in this module to enable customization by
+         # creating a subclasses which define a different set of integrators
+         self.integrators = [external.maxima_integrator]
+ 
+@@ -332,7 +332,10 @@
          sage: integral(x^n,x)
          Traceback (most recent call last):
          ...
 -        TypeError: Computation failed since Maxima requested additional constraints (try the command 'assume(n+1>0)' before integral or limit evaluation, for example):
-+        ValueError: Computation failed since Maxima requested additional constraints; using the 'assume' command before integral evaluation *may* help (example of legal syntax is 'assume(n+1>0)', see `assume?` for more details)
++        ValueError: Computation failed since Maxima requested additional
++        constraints; using the 'assume' command before integral evaluation
++        *may* help (example of legal syntax is 'assume(n+1>0)', see `assume?`
++        for more details)
          Is  n+1  zero or nonzero?
          sage: assume(n > 0)
          sage: integral(x^n,x)
-@@ -348,8 +348,7 @@
+@@ -348,13 +351,12 @@
      Note that an exception is raised when a definite integral is
      divergent::
  
@@ -483,14 +543,77 @@ diff -r 8e1dc3ae4ccc -r 23b5ece5f4d2 sage/symbolic/integration/integral.py
          sage: integrate(1/x^3,(x,0,1))
          Traceback (most recent call last):
          ...
-@@ -439,7 +438,9 @@
+         ValueError: Integral is divergent.
+-        sage: integrate(1/x^3,x,-1,3) 
++        sage: integrate(1/x^3,x,-1,3)
+         Traceback (most recent call last):
+         ...
+         ValueError: Integral is divergent.
+@@ -362,7 +364,7 @@
+     But Sage can calculate the convergent improper integral of
+     this function::
+ 
+-        sage: integrate(1/x^3,x,1,infinity) 
++        sage: integrate(1/x^3,x,1,infinity)
+         1/2
+ 
+     The examples in the Maxima documentation::
+@@ -411,7 +413,7 @@
+         -y*z + x^y/log(x)
+         sage: (x^y-z).integrate(y,algorithm="sympy")
+         -y*z + x^y/log(x)
+-    
++
+         
+     We integrate the above function in maple now::
+ 
+@@ -434,18 +436,23 @@
+ 
+     ::
+ 
+-        sage: integral(e^(-x^2),(x, 0, 0.1))       
++        sage: integral(e^(-x^2),(x, 0, 0.1))
+         0.0562314580091*sqrt(pi)
  
      ALIASES: integral() and integrate() are the same.
  
 -    EXAMPLES: Here is example where we have to use assume::
-+    EXAMPLES: 
++    EXAMPLES:
 +
 +    Here is an example where we have to use assume::
  
          sage: a,b = var('a,b')
          sage: integrate(1/(x^3 *(a+b*x)^(1/3)), x)
+         Traceback (most recent call last):
+         ...
+-        TypeError: Computation failed since Maxima requested additional constraints (try the command 'assume(a>0)' before integral or limit evaluation, for example):
++        ValueError: Computation failed since Maxima requested additional
++        constraints; using the 'assume' command before integral evaluation
++        *may* help (example of legal syntax is 'assume(a>0)', see `assume?`
++        for more details)
+         Is  a  positive or negative?
+ 
+     So we just assume that `a>0` and the integral works::
+@@ -483,9 +490,10 @@
+         sage: res = integral(f,x,0.0001414, 1.); res
+         Traceback (most recent call last):
+         ...
+-        TypeError: Computation failed since Maxima requested additional 
+-        constraints (try the command 'assume((y-1)*(y+1)>0)' before integral 
+-        or limit evaluation, for example):
++        ValueError: Computation failed since Maxima requested additional
++        constraints; using the 'assume' command before integral evaluation
++        *may* help (example of legal syntax is 'assume((y-1)*(y+1)>0)',
++        see `assume?` for more details)
+         Is  (y-1)*(y+1)  positive, negative, or zero?
+         sage: assume(y>1)
+         sage: res = integral(f,x,0.0001414, 1.); res
+@@ -560,7 +568,7 @@
+         2*pi
+         sage: a.simplify_full().simplify_trig()
+         1
+-    """           
++    """
+     if isinstance(v, (list, tuple)) and a is None and b is None:
+         if len(v)==1: # bare variable in a tuple
+             v=v[0]

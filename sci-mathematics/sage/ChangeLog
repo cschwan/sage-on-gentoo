@@ -2,6 +2,12 @@
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  15 Mar 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  +files/trac_7377-assumptions-p3.patch, +files/trac_7377-doctests-p2.patch,
+  -files/trac_7377-assumptions-p2.patch, sage-4.7_alpha1.ebuild,
+  -files/trac_7377-doctests.patch:
+  Update maximalib patch
+
   14 Mar 2011; François Bissey <francois.bissey@canterbury.ac.nz>
   +files/trac_10039_ppl-modulelist.patch,
   +files/trac_7377-assumptions-p2.patch, +files/trac_7377-doctests.patch,

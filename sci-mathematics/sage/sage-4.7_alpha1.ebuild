@@ -163,8 +163,8 @@ src_prepare() {
 		epatch "${FILESDIR}"/trac_7377-lazy-maxlib.p2.patch
 		epatch "${FILESDIR}"/trac_7377-floatcast.patch
 		epatch "${FILESDIR}"/trac_7377-unicode_to_ecl-p1.patch
-		hg import -f "${FILESDIR}"/trac_7377-assumptions-p2.patch
-		hg import -f "${FILESDIR}"/trac_7377-doctests.patch
+		hg import -f "${FILESDIR}"/trac_7377-assumptions-p3.patch
+		hg import -f "${FILESDIR}"/trac_7377-doctests-p2.patch
 	fi
 
 	if use experimental ; then
