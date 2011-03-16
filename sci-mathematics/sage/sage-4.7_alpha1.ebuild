@@ -154,7 +154,7 @@ src_prepare() {
 	if use maximalib ; then
 		# call maxima as a library
 		# depends on trac #10743
-		epatch "${FILESDIR}"/ecl_iter.patch
+		hg import -f "${FILESDIR}"/trac_10743-ecl-iter_p1.patch
 		epatch "${FILESDIR}"/trac_7377-abstract-maxima_p2.patch.bz2
 		epatch "${FILESDIR}"/trac_7377-maximalib_p2.patch.bz2
 		epatch "${FILESDIR}"/trac_7377-fastcalculus_p2.patch.bz2

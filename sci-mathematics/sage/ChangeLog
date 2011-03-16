@@ -2,6 +2,11 @@
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  16 Mar 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-4.7_alpha1.ebuild, +files/trac_10743-ecl-iter_p1.patch,
+  -files/ecl_iter.patch:
+  update ecl-iter patch
+
   15 Mar 2011; François Bissey <francois.bissey@canterbury.ac.nz>
   +files/trac_7377-assumptions-p3.patch, +files/trac_7377-doctests-p2.patch,
   -files/trac_7377-assumptions-p2.patch, sage-4.7_alpha1.ebuild,
