@@ -6,8 +6,8 @@
 make max_to_sr return RealDoubleElement rather than float
 
 diff -r 13499b4b5d70 -r 56afff4b15b4 sage/interfaces/maxima_lib.py
---- sage/interfaces/maxima_lib.py	Tue Mar 01 09:41:23 2011 -0800
-+++ sage/interfaces/maxima_lib.py	Tue Mar 01 13:27:28 2011 -0800
+--- a/sage/interfaces/maxima_lib.py	Tue Mar 01 09:41:23 2011 -0800
++++ b/sage/interfaces/maxima_lib.py	Tue Mar 01 13:27:28 2011 -0800
 @@ -725,6 +725,8 @@
              return maxima(expr).ecl()
      

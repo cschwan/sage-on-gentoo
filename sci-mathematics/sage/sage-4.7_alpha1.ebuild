@@ -155,14 +155,14 @@ src_prepare() {
 		# call maxima as a library
 		# depends on trac #10743
 		hg import -f "${FILESDIR}"/trac_10743-ecl-iter_p1.patch
-		epatch "${FILESDIR}"/trac_7377-abstract-maxima_p2.patch.bz2
-		epatch "${FILESDIR}"/trac_7377-maximalib_p2.patch.bz2
-		epatch "${FILESDIR}"/trac_7377-fastcalculus_p2.patch.bz2
-		epatch "${FILESDIR}"/trac_7377-better-ask-error_p2.patch.bz2
-		epatch "${FILESDIR}"/trac_7377-split_and_refactor-p2.patch.bz2
-		epatch "${FILESDIR}"/trac_7377-lazy-maxlib.p2.patch
-		epatch "${FILESDIR}"/trac_7377-floatcast.patch
-		epatch "${FILESDIR}"/trac_7377-unicode_to_ecl-p1.patch
+		hg import -f "${FILESDIR}"/trac_7377-abstract-maxima_p2.patch
+		hg import -f "${FILESDIR}"/trac_7377-maximalib_p2.patch
+		hg import -f "${FILESDIR}"/trac_7377-fastcalculus_p2.patch
+		hg import -f "${FILESDIR}"/trac_7377-better-ask-error_p2.patch
+		hg import -f "${FILESDIR}"/trac_7377-split_and_refactor-p2.patch
+		hg import -f "${FILESDIR}"/trac_7377-lazy-maxlib.p2.patch
+		hg import -f "${FILESDIR}"/trac_7377-floatcast.patch
+		hg import -f "${FILESDIR}"/trac_7377-unicode_to_ecl-p1.patch
 		hg import -f "${FILESDIR}"/trac_7377-assumptions-p3.patch
 		hg import -f "${FILESDIR}"/trac_7377-doctests-p2.patch
 	fi

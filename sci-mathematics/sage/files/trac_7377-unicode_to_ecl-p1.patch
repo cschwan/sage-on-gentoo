@@ -6,15 +6,15 @@
 Convert unicode to str before conversion to ecl_object
 
 diff -r ddf7ef006e3a -r d63ed2bc06f3 sage/libs/ecl.pyx
---- sage/libs/ecl.pyx	Tue Mar 01 09:41:23 2011 -0800
-+++ sage/libs/ecl.pyx	Wed Mar 02 10:51:10 2011 +0100
+--- a/sage/libs/ecl.pyx	Tue Mar 01 09:41:23 2011 -0800
++++ b/sage/libs/ecl.pyx	Wed Mar 02 10:51:10 2011 +0100
 @@ -284,6 +284,9 @@
              return string_to_object(s)
      elif isinstance(pyobj,float):
          return ecl_make_doublefloat(pyobj)
 +    elif isinstance(pyobj,unicode):
 +        s=<bytes>(str(pyobj))
-+        return ecl_safe_read_string(s)
++        return ecl_safe_read_string(s)        
      elif isinstance(pyobj,bytes):
          s=<bytes>pyobj
          return ecl_safe_read_string(s)

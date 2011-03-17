@@ -6,8 +6,8 @@
 Lazy import of maxima in calculus using sage.misc.lazy_import
 
 diff -r ab67d83570dd -r 3f933d7710d6 sage/calculus/calculus.py
---- sage/calculus/calculus.py	Tue Mar 01 08:26:37 2011 -0800
-+++ sage/calculus/calculus.py	Tue Mar 01 09:41:23 2011 -0800
+--- a/sage/calculus/calculus.py	Tue Mar 01 08:26:37 2011 -0800
++++ b/sage/calculus/calculus.py	Tue Mar 01 09:41:23 2011 -0800
 @@ -383,8 +383,8 @@
      sage: sage.calculus.calculus.maxima('f1')
      f1

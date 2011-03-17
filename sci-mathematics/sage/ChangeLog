@@ -2,6 +2,20 @@
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  17 Mar 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  +files/trac_7377-abstract-maxima_p2.patch,
+  +files/trac_7377-better-ask-error_p2.patch,
+  +files/trac_7377-fastcalculus_p2.patch, +files/trac_7377-maximalib_p2.patch,
+  +files/trac_7377-split_and_refactor-p2.patch,
+  -files/trac_7377-abstract-maxima_p2.patch.bz2,
+  -files/trac_7377-better-ask-error_p2.patch.bz2,
+  -files/trac_7377-fastcalculus_p2.patch.bz2,
+  -files/trac_7377-maximalib_p2.patch.bz2,
+  -files/trac_7377-split_and_refactor-p2.patch.bz2,
+  files/trac_7377-floatcast.patch, files/trac_7377-lazy-maxlib.p2.patch,
+  files/trac_7377-unicode_to_ecl-p1.patch, sage-4.7_alpha1.ebuild:
+  put all maximalib under hg to avoid problems applying the patches.
+
   16 Mar 2011; François Bissey <francois.bissey@canterbury.ac.nz>
   sage-4.7_alpha1.ebuild, +files/trac_10743-ecl-iter_p1.patch,
   -files/ecl_iter.patch:
