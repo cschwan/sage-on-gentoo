@@ -93,6 +93,24 @@ src_prepare() {
 	# replace ${SAGE_ROOT}/local with ${SAGE_LOCAL}
 	epatch "${FILESDIR}"/${PN}-4.5.2-fix-SAGE_LOCAL.patch
 
+	# solve sage-notebook start-up problems (after patching them)
+	mv sage-notebook sage-notebook-real
+	mv sage-notebook-insecure sage-notebook-insecure-real
+
+	cat > sage-notebook <<-EOF
+		#!/bin/bash
+
+		source ${EPREFIX}/usr/bin/sage-env
+		${EPREFIX}/usr/bin/sage-notebook-real "\$@"
+	EOF
+
+	cat > sage-notebook-insecure <<-EOF
+		#!/bin/bash
+
+		source ${EPREFIX}/usr/bin/sage-env
+		${EPREFIX}/usr/bin/sage-notebook-insecure-real "\$@"
+	EOF
+
 	# sage startup script is placed into /usr/bin
 	sed -i "s:\"\$SAGE_ROOT\"/sage:\"\$SAGE_LOCAL\"/bin/sage:g" \
 		sage-maketest || die "failed to patch path for Sage's startup script"
@@ -121,7 +139,7 @@ src_install() {
 	fi
 
 	# COMMAND helper scripts
-	dobin sage-cython sage-notebook sage-notebook-insecure sage-python || die
+	dobin sage-cython sage-notebook* sage-python || die
 
 	# additonal helper scripts
 	dobin sage-grep sage-grepdoc sage-preparse sage-startuptime.py || die
