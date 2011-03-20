@@ -23,7 +23,7 @@ IUSE="doc data fltk gmp X sage"
 RESTRICT="mirror"
 
 RDEPEND="sys-libs/readline
-	fltk? ( x11-libs/fltk )
+	fltk? ( x11-libs/fltk:1 )
 	gmp? ( dev-libs/gmp )
 	X? ( x11-libs/libX11 )
 	doc? ( X? ( x11-misc/xdg-utils ) )"
