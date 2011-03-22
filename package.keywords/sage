@@ -1,32 +1,20 @@
 =dev-lang/python-2.6.5*
-dev-lang/R
-dev-libs/gf2x **
+#dev-lang/R
 dev-libs/mpfr
-dev-libs/ntl **
 dev-lisp/ecls
 dev-python/cvxopt
-dev-python/cython
+#dev-python/cython
 dev-python/docutils
 dev-python/gdmodule
 dev-python/matplotlib
 dev-python/mpmath
-dev-python/numpy
-dev-python/networkx
+=dev-python/networkx-1.2
 =dev-python/numpy-1.5.0-r3
 dev-python/pexpect
-dev-python/pyprocessing
 dev-python/python-gnutls
-dev-python/restrictedpython
 dev-python/rpy
-dev-python/sympy
-~dev-python/twisted-9.0.0
-~dev-python/twisted-conch-9.0.0
-~dev-python/twisted-lore-9.0.0
-~dev-python/twisted-mail-9.0.0
-~dev-python/twisted-names-9.0.0
-~dev-python/twisted-web-9.0.0
+=dev-python/sympy-0.6.6
 dev-python/twisted-web2
-~dev-python/twisted-words-9.0.0
 dev-tex/sage-latex
 dev-tex/tkz-berge
 dev-tex/tkz-graph
@@ -40,11 +28,9 @@ net-zope/zope-event
 net-zope/zope-proxy
 sci-libs/blas-atlas
 sci-libs/cddlib
-sci-libs/factory
 sci-libs/flint
 sci-libs/fplll
-sci-libs/ghmm
-sci-libs/givaro
+=sci-libs/givaro-3.2.16
 sci-libs/iml
 sci-libs/lapack-atlas
 sci-libs/libcliquer
@@ -77,11 +63,8 @@ sci-mathematics/polybori
 sci-mathematics/ratpoints
 sci-mathematics/rubiks
 sci-mathematics/sage
-sci-mathematics/sage-base
 sci-mathematics/sage-baselayout
 sci-mathematics/sage-clib
-sci-mathematics/sage-core
-sci-mathematics/sage-data
 sci-mathematics/sage-data-conway_polynomials
 sci-mathematics/sage-data-elliptic_curves
 sci-mathematics/sage-data-graphs
@@ -90,9 +73,6 @@ sci-mathematics/sage-doc
 sci-mathematics/sage-examples
 sci-mathematics/sage-extcode
 sci-mathematics/sage-notebook
-sci-mathematics/sage-scripts
-sci-mathematics/sage-singular
-sci-mathematics/singular
 sci-mathematics/sympow
 ##########################
 # optional dependencies

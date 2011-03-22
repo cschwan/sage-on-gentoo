@@ -2,6 +2,10 @@
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  22 Mar 2011; FranÃ§ois Bissey <francois.bissey@canterbury.ac.nz>
+  -sage-4.7_alpha1.ebuild, +sage-4.7_alpha2.ebuild:
+  bump to alpha2
+
   17 Mar 2011; François Bissey <francois.bissey@canterbury.ac.nz>
   +files/trac_7377-abstract-maxima_p2.patch,
   +files/trac_7377-better-ask-error_p2.patch,

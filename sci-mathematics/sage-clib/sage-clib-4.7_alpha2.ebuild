@@ -23,7 +23,7 @@ DEPEND="dev-libs/gmp[-nocxx]
 	>=dev-libs/ntl-5.5.2
 	>=sci-libs/pynac-0.2.1
 	>=sci-mathematics/pari-2.4.3-r1
-	>=sci-mathematics/polybori-0.6.5-r2[sage]"
+	>=sci-mathematics/polybori-0.7[sage]"
 RDEPEND="${DEPEND}"
 
 S="${WORKDIR}/${MY_P}/c_lib"
