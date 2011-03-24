@@ -2,6 +2,9 @@
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  24 Mar 2011; Christopher Schwan <cschwan@students.uni-mainz.de> Manifest:
+  Upstream silently modified tarball
+
 *ratpoints-2.1.3-r3 (06 Jan 2011)
 
   06 Jan 2011; François Bissey <f.r.bissey@massey.ac.nz>

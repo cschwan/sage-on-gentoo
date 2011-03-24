@@ -20,16 +20,16 @@ RESTRICT="mirror"
 DEPEND=""
 RDEPEND="${DEPEND}"
 
-if  [[ ${CHOST} == *-darwin* ]] ; then
+if [[ ${CHOST} == *-darwin* ]] ; then
 	PATCHES=(
 		"${FILESDIR}"/${PN}-2.1.3-fix-makefile-macos.patch
 		"${FILESDIR}"/${PN}-2.1.3-fix-test-program.patch
 	)
 else
-        PATCHES=(
-                "${FILESDIR}"/${PN}-2.1.3-fix-makefile.patch
-                "${FILESDIR}"/${PN}-2.1.3-fix-test-program.patch
-        )
+	PATCHES=(
+		"${FILESDIR}"/${PN}-2.1.3-fix-makefile.patch
+		"${FILESDIR}"/${PN}-2.1.3-fix-test-program.patch
+	)
 fi
 
 pkg_setup() {
@@ -51,4 +51,3 @@ pkg_setup() {
 	export INSTALL_DIR="${ED}"/usr
 	export LIB_DIR=$(get_libdir)
 }
-
