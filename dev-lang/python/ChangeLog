@@ -2,6 +2,12 @@
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/dev-lang/python/ChangeLog,v 1.524 2011/02/26 09:38:35 hwoarang Exp $
 
+  24 Mar 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  python-2.6.6-r2.ebuild, +python-2.7.1-r1.ebuild:
+  Import a copy of python-2.7.1-r1 in the overlay for sage treatment. Update
+  python-2.6.6-r2 to the latest mods from the main 
+  tree.
+
   26 Feb 2011; Markos Chandras <hwoarang@gentoo.org> python-2.6.6-r2.ebuild,
   python-3.1.3-r1.ebuild:
   Stable on amd64 wrt bug #355927
