@@ -2,6 +2,22 @@
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*sage-4.7_alpha3 (04 Apr 2011)
+
+  04 Apr 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  +files/10039_manifest.patch, +files/trac_10039_parma_polyhedra_library.patch,
+  +files/trac_10039_ppl_fix_extremize.patch,
+  +files/trac_7377-doctests-p3.patch,
+  +files/trac_7377-split_and_refactor-p3.patch,
+  -files/trac_10039_parma_polyhedra_library.patch.bz2,
+  -files/trac_10039_ppl-modulelist.patch,
+  -files/trac_10140_base_cone_on_ppl.patch.bz2,
+  -files/trac_10140_fix_toric_variety_doctests.patch.bz2,
+  -files/trac_10743-ecl-iter_p1.patch, -files/trac_7377-doctests-p2.patch,
+  -files/trac_7377-split_and_refactor-p2.patch, -sage-4.7_alpha2.ebuild,
+  +sage-4.7_alpha3.ebuild:
+  alpha3
+
   22 Mar 2011; François Bissey <francois.bissey@canterbury.ac.nz>
   -sage-4.7_alpha1.ebuild, +sage-4.7_alpha2.ebuild:
   bump to alpha2

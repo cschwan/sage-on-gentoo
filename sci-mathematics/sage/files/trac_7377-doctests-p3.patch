@@ -1,11 +1,11 @@
 # HG changeset patch
 # User Jean-Pierre Flori <flori@enst.fr>
 # Date 1299854441 -3600
-# Node ID c45d947b51794b23113f735b2adca96acefc5eda
-# Parent  c86e54a6bef8e0625f47bac2ec1128c30d0f235a
+# Node ID d9e1b0bb1747c5b8d20dfbb9e6a469328a32a101
+# Parent  3ccde22e97c2fdd8455e250650a24f6dc677156e
 Doctests.
 
-diff -r c86e54a6bef8 -r c45d947b5179 sage/calculus/calculus.py
+diff -r 3ccde22e97c2 -r d9e1b0bb1747 sage/calculus/calculus.py
 --- a/sage/calculus/calculus.py	Thu Mar 10 16:24:26 2011 -0500
 +++ b/sage/calculus/calculus.py	Fri Mar 11 15:40:41 2011 +0100
 @@ -57,7 +57,7 @@
@@ -807,7 +807,7 @@ diff -r c86e54a6bef8 -r c45d947b5179 sage/calculus/calculus.py
          return var(name)
 -        
 +
- def _find_func(name):
+ def _find_func(name, create_when_missing = True):
      """
 -    Function to pass to Parser for constructing 
 +    Function to pass to Parser for constructing
@@ -819,7 +819,7 @@ diff -r c86e54a6bef8 -r c45d947b5179 sage/calculus/calculus.py
          sage: sage.calculus.calculus._find_func('limit')
          limit
          sage: sage.calculus.calculus._find_func('zeta_zeros')
-@@ -1810,26 +1822,26 @@
+@@ -1814,26 +1826,26 @@
                     make_float    = lambda x: SR(RealDoubleElement(x)),
                     make_var      = _find_var,
                     make_function = _find_func)
@@ -859,7 +859,7 @@ diff -r c86e54a6bef8 -r c45d947b5179 sage/calculus/calculus.py
          sage: y = var('y')
          sage: sage.calculus.calculus.symbolic_expression_from_string('[sin(0)*x^2,3*spam+e^pi]',syms={'spam':y},accept_sequence=True)
          [0, 3*y + e^pi]
-diff -r c86e54a6bef8 -r c45d947b5179 sage/calculus/functional.py
+diff -r 3ccde22e97c2 -r d9e1b0bb1747 sage/calculus/functional.py
 --- a/sage/calculus/functional.py	Thu Mar 10 16:24:26 2011 -0500
 +++ b/sage/calculus/functional.py	Fri Mar 11 15:40:41 2011 +0100
 @@ -203,7 +203,7 @@
@@ -974,38 +974,7 @@ diff -r c86e54a6bef8 -r c45d947b5179 sage/calculus/functional.py
      except AttributeError:
          return x
 -
-diff -r c86e54a6bef8 -r c45d947b5179 sage/interfaces/expect.py
---- a/sage/interfaces/expect.py	Thu Mar 10 16:24:26 2011 -0500
-+++ b/sage/interfaces/expect.py	Fri Mar 11 15:40:41 2011 +0100
-@@ -1,5 +1,5 @@
- """
--Common Interface Functionality
-+Common Interface Functionality through Pexpect
- 
- See the examples in the other sections for how to use specific
- interfaces. The interface classes all derive from the generic
-@@ -17,6 +17,8 @@
- - Simon King (2010-09-25): Expect._local_tmpfile() depends on
-   Expect.pid() and is cached; Expect.quit() clears that cache,
-   which is important for forking.
-+
-+- Jean-Pierre Flori (2010,2011): Split non Pexpect stuff into a parent class.
- """
- 
- #*****************************************************************************
-diff -r c86e54a6bef8 -r c45d947b5179 sage/interfaces/interface.py
---- a/sage/interfaces/interface.py	Thu Mar 10 16:24:26 2011 -0500
-+++ b/sage/interfaces/interface.py	Fri Mar 11 15:40:41 2011 +0100
-@@ -17,6 +17,8 @@
- - Simon King (2010-09-25): Expect._local_tmpfile() depends on
-   Expect.pid() and is cached; Expect.quit() clears that cache,
-   which is important for forking.
-+
-+- Jean-Pierre Flori (2010,2011): Split non Pexpect stuff into a parent class.
- """
- 
- #*****************************************************************************
-diff -r c86e54a6bef8 -r c45d947b5179 sage/interfaces/maxima.py
+diff -r 3ccde22e97c2 -r d9e1b0bb1747 sage/interfaces/maxima.py
 --- a/sage/interfaces/maxima.py	Thu Mar 10 16:24:26 2011 -0500
 +++ b/sage/interfaces/maxima.py	Fri Mar 11 15:40:41 2011 +0100
 @@ -1,5 +1,5 @@
@@ -1612,7 +1581,7 @@ diff -r c86e54a6bef8 -r c45d947b5179 sage/interfaces/maxima.py
 +    """
      import sage.interfaces.quit
      sage.interfaces.quit.expect_quitall()
-diff -r c86e54a6bef8 -r c45d947b5179 sage/interfaces/maxima_abstract.py
+diff -r 3ccde22e97c2 -r d9e1b0bb1747 sage/interfaces/maxima_abstract.py
 --- a/sage/interfaces/maxima_abstract.py	Thu Mar 10 16:24:26 2011 -0500
 +++ b/sage/interfaces/maxima_abstract.py	Fri Mar 11 15:40:41 2011 +0100
 @@ -1,5 +1,5 @@
@@ -3311,7 +3280,7 @@ diff -r c86e54a6bef8 -r c45d947b5179 sage/interfaces/maxima_abstract.py
      EXAMPLES::
      
          sage: from sage.interfaces.maxima_abstract import maxima_version
-diff -r c86e54a6bef8 -r c45d947b5179 sage/interfaces/maxima_lib.py
+diff -r 3ccde22e97c2 -r d9e1b0bb1747 sage/interfaces/maxima_lib.py
 --- a/sage/interfaces/maxima_lib.py	Thu Mar 10 16:24:26 2011 -0500
 +++ b/sage/interfaces/maxima_lib.py	Fri Mar 11 15:40:41 2011 +0100
 @@ -1,5 +1,5 @@

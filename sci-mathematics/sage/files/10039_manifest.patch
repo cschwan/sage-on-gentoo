@@ -1,0 +1,16 @@
+# HG changeset patch
+# User Jeroen Demeyer <jdemeyer@cage.ugent.be>
+# Date 1301471322 -7200
+# Node ID a1edecae71372faef22e3d1e3e7c05652e8ea760
+# Parent  309e63250fda0e5f4e4ef2a5bd3bb604a9a537eb
+#10039: Add .hh (C++ header file) files to MANIFEST.in
+
+diff -r 309e63250fda -r a1edecae7137 MANIFEST.in
+--- a/MANIFEST.in	Tue Mar 29 11:13:56 2011 +0000
++++ b/MANIFEST.in	Wed Mar 30 09:48:42 2011 +0200
+@@ -1,4 +1,4 @@
+-recursive-include * *.c *.h *.pyx *.pxd *.pxi *.cc *.txt *.tex *.i *.d 00*
++recursive-include * *.c *.cc *.h *.hh *.pyx *.pxd *.pxi *.txt *.tex *.i *.d 00*
+ recursive-include doc *.rst *.py
+ include c_lib c_lib/* c_lib/src/*
+ include MANIFEST.in README.txt

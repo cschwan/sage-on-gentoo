@@ -121,7 +121,6 @@ pkg_setup() {
 		einfo "Your feedback on these features is appreciated (build,pass tests...)"
 		einfo "current patch included:"
 		einfo "trac #10039: ppl extension, this could replace cddlib one day"
-		einfo "trac #10140: a ppl application"
 	fi
 
 	if use maximalib ; then
@@ -153,27 +152,23 @@ src_prepare() {
 
 	if use maximalib ; then
 		# call maxima as a library
-		# depends on trac #10743
-		hg import -f "${FILESDIR}"/trac_10743-ecl-iter_p1.patch
 		hg import -f "${FILESDIR}"/trac_7377-abstract-maxima_p2.patch
 		hg import -f "${FILESDIR}"/trac_7377-maximalib_p2.patch
 		hg import -f "${FILESDIR}"/trac_7377-fastcalculus_p2.patch
 		hg import -f "${FILESDIR}"/trac_7377-better-ask-error_p2.patch
-		hg import -f "${FILESDIR}"/trac_7377-split_and_refactor-p2.patch
+		hg import -f "${FILESDIR}"/trac_7377-split_and_refactor-p3.patch
 		hg import -f "${FILESDIR}"/trac_7377-lazy-maxlib.p2.patch
 		hg import -f "${FILESDIR}"/trac_7377-floatcast.patch
 		hg import -f "${FILESDIR}"/trac_7377-unicode_to_ecl-p1.patch
 		hg import -f "${FILESDIR}"/trac_7377-assumptions-p3.patch
-		hg import -f "${FILESDIR}"/trac_7377-doctests-p2.patch
+		hg import -f "${FILESDIR}"/trac_7377-doctests-p3.patch
 	fi
 
 	if use experimental ; then
 		# ppl extension
-		epatch "${FILESDIR}"/trac_10039_parma_polyhedra_library.patch.bz2
-		epatch "${FILESDIR}"/trac_10039_ppl-modulelist.patch
-		# rebasing cone.py on ppl instead of cddlib
-		epatch "${FILESDIR}"/trac_10140_base_cone_on_ppl.patch.bz2
-		epatch "${FILESDIR}"/trac_10140_fix_toric_variety_doctests.patch.bz2
+		hg import -f "${FILESDIR}"/trac_10039_parma_polyhedra_library.patch
+		hg import -f "${FILESDIR}"/trac_10039_ppl_fix_extremize.patch
+		hg import -f "${FILESDIR}"/10039_manifest.patch
 	fi
 
 	epatch "${FILESDIR}"/${PN}-4.6.1-exp-site-packages.patch
