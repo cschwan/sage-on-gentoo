@@ -1,11 +1,11 @@
 # HG changeset patch
 # User Jean-Pierre Flori <flori@enst.fr>
 # Date 1297688775 -3600
-# Node ID e20fb42bdea9d561c0cf259562ab74f529fbb8f6
+# Node ID 1d93d2e35ef6534eb448728e64c39a1b0cbb67b7
 # Parent  df3ffca8158810ee8dc20ab1476ebfc7ba04c323
 Split Expect interface.
 
-diff -r df3ffca81588 -r e20fb42bdea9 sage/calculus/calculus.py
+diff -r df3ffca81588 -r 1d93d2e35ef6 sage/calculus/calculus.py
 --- a/sage/calculus/calculus.py	Tue Feb 15 17:14:05 2011 +0100
 +++ b/sage/calculus/calculus.py	Mon Feb 14 14:06:15 2011 +0100
 @@ -364,7 +364,6 @@
@@ -44,7 +44,7 @@ diff -r df3ffca81588 -r e20fb42bdea9 sage/calculus/calculus.py
  #                script_subdirectory=None)
  
  ########################################################
-diff -r df3ffca81588 -r e20fb42bdea9 sage/interfaces/all.py
+diff -r df3ffca81588 -r 1d93d2e35ef6 sage/interfaces/all.py
 --- a/sage/interfaces/all.py	Tue Feb 15 17:14:05 2011 +0100
 +++ b/sage/interfaces/all.py	Mon Feb 14 14:06:15 2011 +0100
 @@ -17,7 +17,10 @@
@@ -59,7 +59,7 @@ diff -r df3ffca81588 -r e20fb42bdea9 sage/interfaces/all.py
  from mathematica import mathematica, mathematica_console, Mathematica
  from matlab import matlab, matlab_console, matlab_version, Matlab
  from mupad import mupad, mupad_console, Mupad  # NOT functional yet
-diff -r df3ffca81588 -r e20fb42bdea9 sage/interfaces/expect.py
+diff -r df3ffca81588 -r 1d93d2e35ef6 sage/interfaces/expect.py
 --- a/sage/interfaces/expect.py	Tue Feb 15 17:14:05 2011 +0100
 +++ b/sage/interfaces/expect.py	Mon Feb 14 14:06:15 2011 +0100
 @@ -1,5 +1,5 @@
@@ -1194,7 +1194,7 @@ diff -r df3ffca81588 -r e20fb42bdea9 sage/interfaces/expect.py
  import os
  def console(cmd):
      os.system(cmd)
-diff -r df3ffca81588 -r e20fb42bdea9 sage/interfaces/gap.py
+diff -r df3ffca81588 -r 1d93d2e35ef6 sage/interfaces/gap.py
 --- a/sage/interfaces/gap.py	Tue Feb 15 17:14:05 2011 +0100
 +++ b/sage/interfaces/gap.py	Mon Feb 14 14:06:15 2011 +0100
 @@ -599,7 +599,7 @@
@@ -1206,7 +1206,7 @@ diff -r df3ffca81588 -r e20fb42bdea9 sage/interfaces/gap.py
              sage: s.startswith('CT')
              True
          """
-diff -r df3ffca81588 -r e20fb42bdea9 sage/interfaces/interface.py
+diff -r df3ffca81588 -r 1d93d2e35ef6 sage/interfaces/interface.py
 --- /dev/null	Thu Jan 01 00:00:00 1970 +0000
 +++ b/sage/interfaces/interface.py	Mon Feb 14 14:06:15 2011 +0100
 @@ -0,0 +1,1146 @@
@@ -1252,7 +1252,7 @@ diff -r df3ffca81588 -r e20fb42bdea9 sage/interfaces/interface.py
 +from sage.structure.parent_base import ParentWithBase
 +from sage.structure.element import RingElement
 +
-+from sage.misc.sage_eval import sage_eval
++import sage.misc.sage_eval
 +
 +from sage.misc.misc import SAGE_ROOT, verbose, SAGE_TMP_INTERFACE, LOCAL_IDENTIFIER
 +
@@ -2356,7 +2356,7 @@ diff -r df3ffca81588 -r e20fb42bdea9 sage/interfaces/interface.py
 +
 +def reduce_load(parent, x):
 +    return parent(x)
-diff -r df3ffca81588 -r e20fb42bdea9 sage/interfaces/maxima.py
+diff -r df3ffca81588 -r 1d93d2e35ef6 sage/interfaces/maxima.py
 --- a/sage/interfaces/maxima.py	Tue Feb 15 17:14:05 2011 +0100
 +++ b/sage/interfaces/maxima.py	Mon Feb 14 14:06:15 2011 +0100
 @@ -45,7 +45,7 @@
@@ -2830,7 +2830,7 @@ diff -r df3ffca81588 -r e20fb42bdea9 sage/interfaces/maxima.py
  
  def __doctest_cleanup():
      import sage.interfaces.quit
-diff -r df3ffca81588 -r e20fb42bdea9 sage/interfaces/maxima_abstract.py
+diff -r df3ffca81588 -r 1d93d2e35ef6 sage/interfaces/maxima_abstract.py
 --- a/sage/interfaces/maxima_abstract.py	Tue Feb 15 17:14:05 2011 +0100
 +++ b/sage/interfaces/maxima_abstract.py	Mon Feb 14 14:06:15 2011 +0100
 @@ -28,408 +28,6 @@
@@ -3864,7 +3864,7 @@ diff -r df3ffca81588 -r e20fb42bdea9 sage/interfaces/maxima_abstract.py
          sage: maxima_console()                    # not tested
          Maxima 5.23.2 http://maxima.sourceforge.net
          ...
-diff -r df3ffca81588 -r e20fb42bdea9 sage/interfaces/maxima_lib.py
+diff -r df3ffca81588 -r 1d93d2e35ef6 sage/interfaces/maxima_lib.py
 --- a/sage/interfaces/maxima_lib.py	Tue Feb 15 17:14:05 2011 +0100
 +++ b/sage/interfaces/maxima_lib.py	Mon Feb 14 14:06:15 2011 +0100
 @@ -28,408 +28,6 @@
@@ -5252,7 +5252,7 @@ diff -r df3ffca81588 -r e20fb42bdea9 sage/interfaces/maxima_lib.py
          return op(*args)
      elif expr.symbolp():
          if not(expr in max_sym_dict):
-diff -r df3ffca81588 -r e20fb42bdea9 sage/structure/sage_object.pyx
+diff -r df3ffca81588 -r 1d93d2e35ef6 sage/structure/sage_object.pyx
 --- a/sage/structure/sage_object.pyx	Tue Feb 15 17:14:05 2011 +0100
 +++ b/sage/structure/sage_object.pyx	Mon Feb 14 14:06:15 2011 +0100
 @@ -519,7 +519,14 @@
@@ -5270,7 +5270,7 @@ diff -r df3ffca81588 -r e20fb42bdea9 sage/structure/sage_object.pyx
      def _magma_init_(self, magma):
          """
          Given a Magma interpreter M, return a string that evaluates in
-diff -r df3ffca81588 -r e20fb42bdea9 sage/symbolic/expression.pyx
+diff -r df3ffca81588 -r 1d93d2e35ef6 sage/symbolic/expression.pyx
 --- a/sage/symbolic/expression.pyx	Tue Feb 15 17:14:05 2011 +0100
 +++ b/sage/symbolic/expression.pyx	Mon Feb 14 14:06:15 2011 +0100
 @@ -444,6 +444,8 @@
@@ -5282,7 +5282,7 @@ diff -r df3ffca81588 -r e20fb42bdea9 sage/symbolic/expression.pyx
              from sage.calculus.calculus import maxima
              return super(Expression, self)._interface_(maxima)
          else:
-diff -r df3ffca81588 -r e20fb42bdea9 sage/symbolic/integration/external.py
+diff -r df3ffca81588 -r 1d93d2e35ef6 sage/symbolic/integration/external.py
 --- a/sage/symbolic/integration/external.py	Tue Feb 15 17:14:05 2011 +0100
 +++ b/sage/symbolic/integration/external.py	Mon Feb 14 14:06:15 2011 +0100
 @@ -26,7 +26,7 @@
@@ -5294,7 +5294,7 @@ diff -r df3ffca81588 -r e20fb42bdea9 sage/symbolic/integration/external.py
  
  def sympy_integrator(expression, v, a=None, b=None):
      """
-diff -r df3ffca81588 -r e20fb42bdea9 sage/symbolic/integration/integral.py
+diff -r df3ffca81588 -r 1d93d2e35ef6 sage/symbolic/integration/integral.py
 --- a/sage/symbolic/integration/integral.py	Tue Feb 15 17:14:05 2011 +0100
 +++ b/sage/symbolic/integration/integral.py	Mon Feb 14 14:06:15 2011 +0100
 @@ -596,7 +596,6 @@
