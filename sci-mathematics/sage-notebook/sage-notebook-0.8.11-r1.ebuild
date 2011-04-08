@@ -68,5 +68,8 @@ src_prepare() {
 	# Ticket: #10131
 	epatch "${FILESDIR}"/${PN}-0.8.2-add-pidfile-option.patch
 
+	# https://github.com/cschwan/sage-on-gentoo/pull/48
+	epatch "${FILESDIR}"/${PN}-0.8-twistd-python-version.patch
+
 	distutils_src_prepare
 }
