@@ -1,0 +1,27 @@
+The Gentoo /usr/bin/twistd wrapper script will determine the python version
+using eselect, not taking the override from EPYTHON into account.  With this
+patch, a version matching the currently running python interpreter will be
+tried if it exists.
+
+2010-01-27 Martin von Gagern
+
+Index: sagenb-0.8.10/src/sagenb/sagenb/notebook/run_notebook.py
+===================================================================
+--- sagenb-0.8.10.orig/src/sagenb/sagenb/notebook/run_notebook.py
++++ sagenb-0.8.10/src/sagenb/sagenb/notebook/run_notebook.py
+@@ -360,7 +360,14 @@ reactor.addSystemEventTrigger('before',
+         if pidfile is None:
+             pidfile = os.path.join(directory, 'twistd.pid')
+ 
+-        cmd = 'twistd --pidfile="%s" -ny "%s"' % (pidfile, os.path.join(directory, 'twistedconf.tac'))
++        # Gentoo twistd executable detection: run a matching version of twistd
++        # if it exists, falling back to plain twistd.
++        exe = 'twistd'
++        for try_exe in [ ('/usr/bin/twistd-%d.%d' % tuple(sys.version_info[0:2])) ]:
++            if os.path.exists(try_exe):
++                exe = try_exe
++                break
++        cmd = '%s --pidfile="%s" -ny "%s"' % (exe, pidfile, os.path.join(directory, 'twistedconf.tac'))
+ 
+         # Check if a Twistd PID exists in the given directory
+         if platformType != 'win32':
