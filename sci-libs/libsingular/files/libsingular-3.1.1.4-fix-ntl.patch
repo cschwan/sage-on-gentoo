@@ -1,0 +1,14 @@
+--- ntl/src/DoConfig.orig	2010-01-05 16:51:13.000000000 +0000
++++ ntl/src/DoConfig	2011-04-12 07:09:02.203907065 +0000
+@@ -90,11 +90,6 @@
+ 
+ foreach $arg (@ARGV) {
+ 
+-   if ($arg =~ '-h|help|-help|--help') {
+-      system("more ../doc/config.txt");
+-      exit;
+-   }
+-
+    if (($name, $val) = ($arg =~ /(.*?)=(.*)/)) {
+ 
+       $Variable{$name} = 0;
