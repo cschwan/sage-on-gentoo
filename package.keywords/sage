@@ -1,6 +1,6 @@
-=dev-lang/python-2.6.5*
 #dev-lang/R
 dev-libs/mpfr
+=dev-libs/ppl-0.11.2
 dev-lisp/ecls
 dev-python/cvxopt
 #dev-python/cython
