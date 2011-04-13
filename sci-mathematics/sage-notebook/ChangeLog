@@ -2,6 +2,10 @@
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  13 Apr 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-notebook-0.8.14.ebuild:
+  Remove pid patch from 0.8.14 until it is rebased.
+
 *sage-notebook-0.8.14 (13 Apr 2011)
 
   13 Apr 2011; François Bissey <francois.bissey@canterbury.ac.nz>
