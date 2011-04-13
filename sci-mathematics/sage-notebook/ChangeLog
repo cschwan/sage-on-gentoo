@@ -4,6 +4,10 @@
 
   13 Apr 2011; François Bissey <francois.bissey@canterbury.ac.nz>
   sage-notebook-0.8.14.ebuild:
+  darn the twistd patch also needs rebasing.
+
+  13 Apr 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-notebook-0.8.14.ebuild:
   Remove pid patch from 0.8.14 until it is rebased.
 
 *sage-notebook-0.8.14 (13 Apr 2011)
