@@ -4,13 +4,13 @@
 
 EAPI="3"
 
-PYTHON_DEPEND="2:2.6"
+PYTHON_DEPEND="2:2.7"
 PYTHON_MODNAME="sagenb"
 
 inherit distutils eutils
 
 MY_P="sagenb-${PV}"
-SAGE_P="sage-4.7.alpha1"
+SAGE_P="sage-4.7.alpha4"
 
 DESCRIPTION="The Sage Notebook is a web-based graphical user interface for mathematical software"
 HOMEPAGE="http://www.sagemath.org"
@@ -36,8 +36,8 @@ RDEPEND="${DEPEND}
 S="${WORKDIR}/${MY_P}/src/sagenb"
 
 pkg_setup() {
-	# Sage only works with python 2.6.*
-	python_set_active_version 2.6
+	# Sage now will only works with python 2.7.*
+	python_set_active_version 2.7
 	python_pkg_setup
 }
 
@@ -67,6 +67,9 @@ src_prepare() {
 
 	# Ticket: #10131
 	epatch "${FILESDIR}"/${PN}-0.8.2-add-pidfile-option.patch
+
+	# https://github.com/cschwan/sage-on-gentoo/pull/48
+	epatch "${FILESDIR}"/${PN}-0.8-twistd-python-version.patch
 
 	distutils_src_prepare
 }

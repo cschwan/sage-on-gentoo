@@ -4,7 +4,7 @@
 
 EAPI="3"
 
-PYTHON_DEPEND="2:2.6:2.6"
+PYTHON_DEPEND="2:2.7:2.7"
 PYTHON_USE_WITH="readline sage sqlite"
 
 inherit distutils eutils flag-o-matic python versionator
@@ -18,14 +18,14 @@ SRC_URI="http://sage.math.washington.edu/home/release/${MY_P}/${MY_P}/spkg/stand
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64 ~x86 ~amd64-linux ~x86-linux ~x86-macos"
-IUSE="examples mpc latex testsuite -experimental -maximalib"
+IUSE="examples mpc latex testsuite -maximalib"
 
 RESTRICT="mirror"
 
 CDEPEND="dev-libs/gmp
 	>=dev-libs/mpfr-2.4.2
 	>=dev-libs/ntl-5.5.2
-	experimental? ( >=dev-libs/ppl-0.11.2 )
+	>=dev-libs/ppl-0.11.2
 	>=dev-lisp/ecls-11.1.1-r1[-unicode]
 	>=dev-python/numpy-1.5.1
 	>=sci-mathematics/eclib-20100711[pari24]
@@ -99,12 +99,12 @@ RDEPEND="${CDEPEND}
 	~sci-mathematics/sage-data-polytopes_db-20100210
 	>=sci-mathematics/sage-doc-${PV}
 	~sci-mathematics/sage-extcode-${PV}
-	~sci-mathematics/sage-notebook-0.8.12
+	~sci-mathematics/sage-notebook-0.8.14
 	|| ( ~sci-mathematics/singular-3.1.1.4[-libsingular] >=sci-mathematics/singular-3.1.2 )
 	>=sci-mathematics/sympow-1.018.1_p8[pari24]
 	examples? ( ~sci-mathematics/sage-examples-${PV} )
 	testsuite? (
-		~sci-mathematics/sage-doc-${PV}[html,experimental=]
+		~sci-mathematics/sage-doc-${PV}[html]
 		~sci-mathematics/sage-examples-${PV}
 	)
 	latex? ( ~dev-tex/sage-latex-2.2.5 )"
@@ -112,16 +112,9 @@ RDEPEND="${CDEPEND}
 S="${WORKDIR}/${MY_P}"
 
 pkg_setup() {
-	# Sage only works with python 2.6.*
-	python_set_active_version 2.6
+	# Sage now will only works with python 2.7.*
+	python_set_active_version 2.7
 	python_pkg_setup
-
-	if use experimental ; then
-		einfo "You have enabled the inclusion of unreviewed upstream patches."
-		einfo "Your feedback on these features is appreciated (build,pass tests...)"
-		einfo "current patch included:"
-		einfo "trac #10039: ppl extension, this could replace cddlib one day"
-	fi
 
 	if use maximalib ; then
 		einfo "You have enabled the maximalib useflag. This is a flag to help test"
@@ -162,13 +155,6 @@ src_prepare() {
 		hg import -f "${FILESDIR}"/trac_7377-unicode_to_ecl-p1.patch
 		hg import -f "${FILESDIR}"/trac_7377-assumptions-p3.patch
 		hg import -f "${FILESDIR}"/trac_7377-doctests-p3.patch
-	fi
-
-	if use experimental ; then
-		# ppl extension
-		hg import -f "${FILESDIR}"/trac_10039_parma_polyhedra_library.patch
-		hg import -f "${FILESDIR}"/trac_10039_ppl_fix_extremize.patch
-		hg import -f "${FILESDIR}"/10039_manifest.patch
 	fi
 
 	epatch "${FILESDIR}"/${PN}-4.6.1-exp-site-packages.patch
@@ -288,6 +274,9 @@ src_prepare() {
 	# Fix issue #1
 	sed -i "s:type.__cmp__:cmp:" sage/combinat/iet/strata.py \
 		|| die "failed to patch strata.py"
+
+	# python 2.7 doctests: remove in 4.7.alpha5
+	epatch "${FILESDIR}"/trac_11156-sage_unittest-init-nt.patch
 
 	# gmp-5 compatibility - works with gmp-4.3 as well
 	sed -i "s:__GMP_BITS_PER_MP_LIMB:GMP_LIMB_BITS:g" sage/rings/integer.pyx \

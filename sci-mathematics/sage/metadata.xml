@@ -14,9 +14,6 @@
 			Enables the <pkg>dev-libs/mpc</pkg> extension for multiprecision
 			complex arithmetic
 		</flag>
-		<flag name='experimental'>
-			Include a number of interesting upstream patches waiting for review
-		</flag>
 		<flag name='maximalib'>
 			Enable development patch for a new interface to maximalib
 		</flag>

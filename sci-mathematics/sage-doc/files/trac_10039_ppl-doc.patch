@@ -1,8 +1,0 @@
-diff -r 0f318f0dac3b -r 1035906b6602 doc/en/reference/libs.rst
---- a/doc/en/reference/libs.rst	Fri Nov 12 10:38:32 2010 -0500
-+++ b/doc/en/reference/libs.rst	Mon Nov 15 09:42:37 2010 -0500
-@@ -32,3 +32,4 @@
-    sage/libs/mwrank/interface
-    sage/libs/singular/function
-    sage/libs/singular/option
-+   sage/libs/ppl

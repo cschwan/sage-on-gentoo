@@ -2,6 +2,22 @@
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  13 Apr 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  +files/trac_11156-sage_unittest-init-nt.patch,
+  -files/trac_10039_parma_polyhedra_library.patch,
+  -files/trac_10039_ppl_fix_extremize.patch, -sage-4.7_alpha3.ebuild,
+  +sage-4.7_alpha4.ebuild, metadata.xml:
+  adjust sagenb dep for alpha4
+
+*sage-4.7_alpha4 (13 Apr 2011)
+
+  13 Apr 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  +files/trac_11156-sage_unittest-init-nt.patch,
+  -files/trac_10039_parma_polyhedra_library.patch,
+  -files/trac_10039_ppl_fix_extremize.patch, -sage-4.7_alpha3.ebuild,
+  +sage-4.7_alpha4.ebuild, metadata.xml:
+  bump to alpha4 now using python 2.7
+
   06 Apr 2011; FranÃ§ois Bissey <francois.bissey@canterbury.ac.nz>
   files/trac_7377-split_and_refactor-p3.patch:
   One more fix to maximalib patch

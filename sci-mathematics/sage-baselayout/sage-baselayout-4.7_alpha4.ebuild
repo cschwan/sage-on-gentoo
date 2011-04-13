@@ -49,7 +49,8 @@ src_prepare() {
 		export SAGE_STARTUP_FILE="\${DOT_SAGE}/init.sage"
 		export SAGE_TESTDIR="\${DOT_SAGE}/tmp"
 		export SAGE_SERVER="http://www.sagemath.org/"
-		export EPYTHON=python2.6
+		export EPYTHON=python2.7
+		export PYTHONWARNINGS=default
 	EOF
 
 	# make sage startup script

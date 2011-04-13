@@ -4,6 +4,7 @@
 
 EAPI="3"
 
+PYTHON_DEPEND="2:2.7:2.7"
 inherit eutils scons-utils versionator multilib
 
 MY_P="sage-$(replace_version_separator 2 '.')"
@@ -41,6 +42,9 @@ src_prepare() {
 
 	# Use pari-2.4
 	sed -i "s:pari/:pari24/:" include/convert.h || die "failed to use pari2.4 headers"
+	
+	# Use python 2.7
+	sed -i "s:python2.6:python2.7:g" SConstruct
 }
 
 src_compile() {

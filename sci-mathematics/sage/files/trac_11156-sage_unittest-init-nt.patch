@@ -1,0 +1,18 @@
+# HG changeset patch
+# User Nicolas M. Thiery <nthiery@users.sf.net>
+# Date 1302254740 -7200
+# Node ID c906e6a0a81c04e26a743c7b740cd50eeb154111
+# Parent  ffc291ffbb660369cb6a6427de873cf23cda52bd
+#11156: sage.misc.sage_unittest.InstanceTester should call its base's __init__
+
+diff --git a/sage/misc/sage_unittest.py b/sage/misc/sage_unittest.py
+--- a/sage/misc/sage_unittest.py
++++ b/sage/misc/sage_unittest.py
+@@ -375,6 +375,7 @@ class InstanceTester(unittest.TestCase):
+             sage: QQ._tester()
+             Testing utilities for Rational Field
+         """
++        unittest.TestCase.__init__(self)
+         self._instance = instance
+         self._verbose = verbose
+         self._elements = elements
