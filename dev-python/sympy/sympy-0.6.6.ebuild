@@ -1,12 +1,15 @@
-# Copyright 1999-2010 Gentoo Foundation
+# Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
-EAPI="2"
+EAPI="3"
 
 PYTHON_DEPEND="2:2.5"
+SUPPORT_PYTHON_ABIS="1"
+RESTRICT_PYTHON_ABIS="2.4 3.*"
+DISTUTILS_SRC_TEST="setup.py"
 
-inherit eutils distutils
+inherit distutils eutils
 
 DESCRIPTION="Computer algebra system (CAS) in Python"
 HOMEPAGE="http://code.google.com/p/sympy/"
@@ -17,10 +20,13 @@ SLOT="0"
 KEYWORDS="~amd64 ~x86 ~amd64-linux ~x86-linux"
 IUSE="doc examples gtk imaging ipython latex mathml opengl pdf png test texmacs"
 
-RDEPEND="mathml? ( dev-libs/libxml2[python]
+RDEPEND="
+	mathml? (
+		dev-libs/libxml2:2[python]
 		dev-libs/libxslt[python]
 		gtk? ( x11-libs/gtkmathview[gtk] ) )
-	latex? ( virtual/latex-base
+	latex? (
+		virtual/latex-base
 		png? ( app-text/dvipng )
 		pdf? ( app-text/ghostscript-gpl ) )
 	texmacs? ( app-office/texmacs )
@@ -44,6 +50,8 @@ src_prepare() {
 
 	# use local sphinx
 	epatch "${FILESDIR}"/${P}-sphinx.patch
+
+	epatch "${FILESDIR}/${PN}-0.6.7-python-2.7.patch"
 }
 
 src_compile() {
@@ -64,8 +72,7 @@ src_test() {
 src_install() {
 	PYTHONPATH="." distutils_src_install
 
-	rm "${ED}"/usr/bin/test "${ED}"/usr/bin/doctest \
-		|| die "rm  test doctest failed"
+	rm -f "${ED}usr/bin/"{doctest,test} || die "rm doctest test failed"
 
 	if use doc; then
 		dohtml -r doc/_build/html/*
