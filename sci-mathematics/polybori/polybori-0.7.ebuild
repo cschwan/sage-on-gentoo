@@ -4,7 +4,7 @@
 
 EAPI="3"
 
-PYTHON_DEPEND="2:2.6"
+PYTHON_DEPEND="2:2.7"
 
 inherit eutils flag-o-matic multilib python scons-utils versionator
 
@@ -34,6 +34,12 @@ S="${WORKDIR}"/${PN}-$(get_version_component_range 1-2)
 
 USE_SCONS_TRUE="True"
 USE_SCONS_FALSE="False"
+
+pkg_setup() {
+	# This version of polybori is to be used with sage-4.7 which will be python-2.7
+	python_set_active_version 2.7
+	python_pkg_setup
+}
 
 src_prepare() {
 	if use sage ; then
@@ -82,8 +88,8 @@ src_compile(){
 		PYINSTALLPREFIX="${ED}"$(python_get_sitedir)
 		INSTALLDIR="${ED}"/usr/share/polybori
 	)
-	
-	# extra configuration for macos 
+
+	# extra configuration for macos
 	# FIXME: don't know how to deal properly with versionned libraries with install_name so dropping it.
 	if [[ ${CHOST} == *-darwin* ]] ; then
 		myesconsargs+=(
