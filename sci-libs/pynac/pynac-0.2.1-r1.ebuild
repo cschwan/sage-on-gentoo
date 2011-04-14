@@ -4,7 +4,7 @@
 
 EAPI="3"
 
-PYTHON_DEPEND="2:2.6:2.6"
+PYTHON_DEPEND="2:2.7:2.7"
 
 inherit autotools-utils python
 
@@ -29,8 +29,8 @@ S="${WORKDIR}/${P}/src"
 DOCS=( AUTHORS NEWS README )
 
 pkg_setup() {
-	# This version will use python-2.6
-	python_set_active_version 2.6
+	# This version will use python-2.7
+	python_set_active_version 2.7
 	python_pkg_setup
 }
 
