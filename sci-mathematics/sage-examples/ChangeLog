@@ -2,6 +2,12 @@
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*sage-examples-4.7_alpha5 (20 Apr 2011)
+
+  20 Apr 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  -sage-examples-4.7_alpha4.ebuild, +sage-examples-4.7_alpha5.ebuild:
+  alpha5
+
 *sage-examples-4.7_alpha4 (13 Apr 2011)
 
   13 Apr 2011; François Bissey <francois.bissey@canterbury.ac.nz>

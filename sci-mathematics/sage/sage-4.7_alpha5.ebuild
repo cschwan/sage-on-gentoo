@@ -138,11 +138,6 @@ src_prepare() {
 	# Fix startup issue and python-2.6.5 problem
 	append-flags -fno-strict-aliasing
 
-	# upstream patch first before any corrections
-	# mpmath update trac 9969
-	epatch "${FILESDIR}"/mpmath_update_fixed_4.6.1.patch.bz2
-	epatch "${FILESDIR}"/truediv_fix.patch
-
 	if use maximalib ; then
 		# call maxima as a library
 		hg import -f "${FILESDIR}"/trac_7377-abstract-maxima_p2.patch
@@ -274,9 +269,6 @@ src_prepare() {
 	# Fix issue #1
 	sed -i "s:type.__cmp__:cmp:" sage/combinat/iet/strata.py \
 		|| die "failed to patch strata.py"
-
-	# python 2.7 doctests: remove in 4.7.alpha5
-	epatch "${FILESDIR}"/trac_11156-sage_unittest-init-nt.patch
 
 	# gmp-5 compatibility - works with gmp-4.3 as well
 	sed -i "s:__GMP_BITS_PER_MP_LIMB:GMP_LIMB_BITS:g" sage/rings/integer.pyx \
