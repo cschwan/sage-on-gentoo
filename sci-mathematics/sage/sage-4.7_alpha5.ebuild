@@ -270,6 +270,11 @@ src_prepare() {
 	sed -i "s:type.__cmp__:cmp:" sage/combinat/iet/strata.py \
 		|| die "failed to patch strata.py"
 
+	# other patch for python-2.7
+	epatch "${FILESDIR}"/trac_11236-test_eq_for_python_2_7-nt.patch
+	# make sure we use cython-2.7 for consistency
+	sed -i "s:python \`which cython\`:cython-2.7:" setup.py
+
 	# gmp-5 compatibility - works with gmp-4.3 as well
 	sed -i "s:__GMP_BITS_PER_MP_LIMB:GMP_LIMB_BITS:g" sage/rings/integer.pyx \
 		|| die "failed to patch for gmp-5"
