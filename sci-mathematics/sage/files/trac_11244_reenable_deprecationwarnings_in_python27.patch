@@ -1,0 +1,28 @@
+# HG changeset patch
+# User Francois Bissey <francois.bissey@canterbury.ac.nz>
+# Date 1303616333 -43200
+# Node ID 78fa2343e4fc2b97b5360d8bfaaac03dff3a7ac4
+# Parent  6a679959b54b7975af1841df4dd77d28b0faef28
+#11244 Change to enable deprecation warnings to work with python 2.7 without getting all the chatter from setting
+PYTHONWARNINGS=default
+
+diff --git a/sage/misc/misc.py b/sage/misc/misc.py
+--- a/sage/misc/misc.py
++++ b/sage/misc/misc.py
+@@ -1947,7 +1947,7 @@
+ #################################################################
+ # Deprecation
+ #################################################################
+-from warnings import warn
++from warnings import warn, resetwarnings
+ 
+ def deprecation(message, version=None):
+     r"""
+@@ -1976,6 +1976,7 @@
+     """
+     # Stack level 3 to get the line number of the code which called
+     # the deprecated function which called this function.
++    resetwarnings()
+     if version is not None:
+         message = "(Since " + version + ") " + message
+     warn(message, DeprecationWarning, stacklevel=3)

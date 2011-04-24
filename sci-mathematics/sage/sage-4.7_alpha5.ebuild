@@ -274,6 +274,8 @@ src_prepare() {
 	epatch "${FILESDIR}"/trac_11236-test_eq_for_python_2_7-nt.patch
 	# make sure we use cython-2.7 for consistency
 	sed -i "s:python \`which cython\`:cython-2.7:" setup.py
+	# deprecation warnings re-enabled
+	epatch "${FILESDIR}"/trac_11244_reenable_deprecationwarnings_in_python27.patch
 
 	# gmp-5 compatibility - works with gmp-4.3 as well
 	sed -i "s:__GMP_BITS_PER_MP_LIMB:GMP_LIMB_BITS:g" sage/rings/integer.pyx \

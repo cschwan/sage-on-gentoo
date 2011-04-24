@@ -124,9 +124,6 @@ src_prepare() {
 	sed -i "s:\$SAGE_ROOT/local:\$SAGE_LOCAL:g" sage-gdb sage-gdb-ipython \
 		sage-cachegrind sage-callgrind sage-massif sage-omega sage-valgrind \
 		|| die "failed to patch GNU Debugger scripts"
-
-	# Re-enable sage's deprecation warnings the nice way.
-	epatch "${FILESDIR}"/${PN}-4.7-pythonwarning.patch
 }
 
 src_install() {
