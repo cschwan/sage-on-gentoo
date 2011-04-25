@@ -3,6 +3,10 @@
 # $Header: $
 
   25 Apr 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  files/trac_11244_fixmoredeprecationswarnings.patch:
+  Rebase latest patch on 4.7.alpha5
+
+  25 Apr 2011; François Bissey <francois.bissey@canterbury.ac.nz>
   +files/trac_11244_fixmoredeprecationswarnings.patch, sage-4.7_alpha5.ebuild:
   more deprecation fixes
 
