@@ -3,6 +3,10 @@
 # $Header: $
 
   25 Apr 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  files/trac_11244_fix_combinatpartition_warnings.patch:
+  refresh latest patch for mistakes
+
+  25 Apr 2011; François Bissey <francois.bissey@canterbury.ac.nz>
   +files/trac_11244_fix_combinatpartition_warnings.patch,
   sage-4.7_alpha5.ebuild:
   Add one more patch for deprecation warnings.
