@@ -1,0 +1,37 @@
+# HG changeset patch
+# User Francois Bissey <francois.bissey@canterbury.ac.nz>
+# Date 1303692051 -43200
+# Node ID 0facab681be2073a515ac21604a94d317a3d9c28
+# Parent  78fa2343e4fc2b97b5360d8bfaaac03dff3a7ac4
+#11244 reenable extra deprecation warning message issued by python' own warn mechanism in sage/combinat/partition.py. Also
+re-enable python waring in "Partitions".
+
+diff --git a/sage/combinat/partition.py b/sage/combinat/partition.py
+--- a/sage/combinat/partition.py
++++ b/sage/combinat/partition.py
+@@ -2520,6 +2520,7 @@
+         [[2, 1, 1, 1]]
+     """
+     import warnings
++    warnings.resetwarnings()
+     warnings.warn('RestrictedPartitions is deprecated; use Partitions with the parts_in keyword instead.', DeprecationWarning, stacklevel=2)
+     from sage.misc.misc import deprecation
+     deprecation('RestrictedPartitions is deprecated; use Partitions with the parts_in keyword instead.')
+@@ -2541,6 +2542,7 @@
+             True
+         """
+         import warnings
++        warnings.resetwarnings()
+         warnings.warn('RestrictedPartitions_nsk is deprecated; use Partitions with the parts_in keyword instead.', DeprecationWarning, stacklevel=2)
+         from sage.misc.misc import deprecation
+         deprecation('RestrictedPartitions_nsk is deprecated; use Partitions with the parts_in keyword instead.')
+@@ -2989,7 +2991,8 @@
+                 if 'min_part' not in kwargs:
+                     kwargs['min_part'] = 1
+                 elif kwargs['min_part'] == 0:
+-                    from warnings import warn
++                    from warnings import warn, resetwarnings
++                    resetwarnings()
+                     warn("Currently, setting min_part=0 produces Partition objects which violate internal assumptions.  Calling methods on these objects may produce errors or WRONG results!", RuntimeWarning)
+ 
+                 if 'max_slope' not in kwargs:

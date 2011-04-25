@@ -2,6 +2,11 @@
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  25 Apr 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  +files/trac_11244_fix_combinatpartition_warnings.patch,
+  sage-4.7_alpha5.ebuild:
+  Add one more patch for deprecation warnings.
+
   24 Apr 2011; François Bissey <francois.bissey@canterbury.ac.nz>
   +files/trac_11244_reenable_deprecationwarnings_in_python27.patch,
   sage-4.7_alpha5.ebuild:
