@@ -1,0 +1,60 @@
+# HG changeset patch
+# User Francois Bissey <francois.bissey@canterbury.ac.nz>
+# Date 1303695864 -43200
+# Node ID bbe65dbbe4793e39fe43a6837f6d0acb95c4bfff
+# Parent  35c09f178dabbeac3e3476f588d6a4d06b15be51
+#11244 fix more deprecation warnings. Enable in matrix/constructor.py and remove duplicates in graphs/base/graph_backends.py
+and groups/perm_gps/permgroup.py
+
+diff --git a/sage/graphs/base/graph_backends.py b/sage/graphs/base/graph_backends.py
+--- a/sage/graphs/base/graph_backends.py
++++ b/sage/graphs/base/graph_backends.py
+@@ -481,12 +481,7 @@
+         """
+         Issue deprecation warnings for the old networkx XGraph formats
+         """
+-        import warnings
+         from sage.misc.misc import deprecation
+-        warnings.warn("Your graph object is saved in an old format since networkx\
+-                    was updated to 1.0.1. You can re-save your graph by typing\
+-                    graph.save(filename) to make this warning go away.",
+-                    DeprecationWarning, stacklevel=2)
+         deprecation("Your graph object is saved in an old format since networkx\
+                     was updated to 1.0.1. You can re-save your graph by typing\
+                     graph.save(filename) to make this warning go away.")
+@@ -533,12 +528,7 @@
+         """
+         Issue deprecation warnings for the old networkx XDiGraph formats
+         """
+-        import warnings
+         from sage.misc.misc import deprecation
+-        warnings.warn("Your digraph object is saved in an old format since networkx\
+-                    was updated to 1.0.1. You can re-save your digraph by typing\
+-                    digraph.save(filename) to make this warning go away.",
+-                    DeprecationWarning, stacklevel=2)
+         deprecation("Your digraph object is saved in an old format since networkx\
+                     was updated to 1.0.1. You can re-save your digraph by typing\
+                     digraph.save(filename) to make this warning go away.")
+diff --git a/sage/groups/perm_gps/permgroup.py b/sage/groups/perm_gps/permgroup.py
+--- a/sage/groups/perm_gps/permgroup.py
++++ b/sage/groups/perm_gps/permgroup.py
+@@ -1311,8 +1311,6 @@
+             doctest:...: DeprecationWarning: quotient_group() is deprecated; use quotient() instead.
+             Permutation Group with generators [(1,2)]
+         """
+-        import warnings
+-        warnings.warn('quotient_group() is deprecated; use quotient() instead.', DeprecationWarning, stacklevel=2)
+         from sage.misc.misc import deprecation
+         deprecation('quotient_group() is deprecated; use quotient() instead.')
+ 
+diff --git a/sage/matrix/constructor.py b/sage/matrix/constructor.py
+--- a/sage/matrix/constructor.py
++++ b/sage/matrix/constructor.py
+@@ -2124,6 +2124,7 @@
+             if ncols is None:
+                 if n.is_square():
+                     import warnings
++                    warnings.resetwarnings()
+                     warnings.warn("invocation of block_matrix with just a list whose length is a perfect square is deprecated. See the documentation for details.", DeprecationWarning, stacklevel=2)
+                     nrows = ncols = n.sqrt()
+                 else:

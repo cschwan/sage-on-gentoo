@@ -277,6 +277,7 @@ src_prepare() {
 	# deprecation warnings re-enabled
 	epatch "${FILESDIR}"/trac_11244_reenable_deprecationwarnings_in_python27.patch
 	epatch "${FILESDIR}"/trac_11244_fix_combinatpartition_warnings.patch
+	epatch "${FILESDIR}"/trac_11244_fixmoredeprecationswarnings.patch
 
 	# gmp-5 compatibility - works with gmp-4.3 as well
 	sed -i "s:__GMP_BITS_PER_MP_LIMB:GMP_LIMB_BITS:g" sage/rings/integer.pyx \
