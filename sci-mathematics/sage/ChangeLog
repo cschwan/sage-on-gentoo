@@ -2,6 +2,12 @@
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*sage-4.7_rc0 (26 Apr 2011)
+
+  26 Apr 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  -sage-4.7_alpha5.ebuild, +sage-4.7_rc0.ebuild:
+  bump to rc0
+
   25 Apr 2011; FranÃ§ois Bissey <francois.bissey@canterbury.ac.nz>
   files/trac_11244_fixmoredeprecationswarnings.patch:
   Rebase latest patch on 4.7.alpha5
