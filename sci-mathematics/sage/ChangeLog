@@ -2,6 +2,14 @@
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  26 Apr 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  -files/10039_manifest.patch, -files/sage-4.4.4-extra-stdc99.patch,
+  -files/sage-4.6-numpy-1.5.patch, -files/trac_10187_maxima-doctests.patch,
+  -files/trac-9221-matplotlib-update.patch,
+  -files/trac_10187_maxima-upgrade.patch,
+  -files/trac_9808_numpy_doctest_change.patch:
+  prune old patches
+
 *sage-4.7_rc0 (26 Apr 2011)
 
   26 Apr 2011; François Bissey <francois.bissey@canterbury.ac.nz>
