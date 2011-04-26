@@ -2,6 +2,11 @@
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  26 Apr 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  -files/sage-baselayout-4.6-gentooify-startup-script.patch,
+  -files/sage-maxima.lisp.patch:
+  prune old patches
+
 *sage-baselayout-4.7_rc0 (26 Apr 2011)
 
   26 Apr 2011; François Bissey <francois.bissey@canterbury.ac.nz>
