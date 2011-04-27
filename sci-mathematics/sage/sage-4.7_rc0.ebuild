@@ -166,20 +166,17 @@ src_prepare() {
 
 	sed -i "s:\"pari\":\"pari24\":" module_list.py || die "failed to convert to pari24"
 
-	sed -e "s:pari\/:pari24\/:g" \
-		-i sage/ext/interpreters/wrapper_cdf.pxd \
-		sage/matrix/matrix_integer_dense.pyx \
-		sage/matrix/matrix_rational_dense.pyx \
-		sage/libs/pari/gen.pyx \
-		|| die "failed to convert pxd/pyx to pari24"
-
-	# additional pari/pari24 include patches
+	# pari/pari24 include patches
 	sed -e "s:pari\/:pari24\/:g" \
 		-i sage/libs/pari/pari_err.h \
 		   sage/libs/pari/decl.pxi \
 		   sage/libs/pari/misc.h \
+		   sage/libs/pari/gen.pyx \
 		   sage/ext/gen_interpreters.py \
-		   || die "failed to patch additional pari/pari24 includes"
+		   sage/ext/interpreters/wrapper_cdf.pxd \
+		   sage/matrix/matrix_integer_dense.pyx \
+		   sage/matrix/matrix_rational_dense.pyx \
+		   || die "failed to patch pari/pari24 includes"
 
 	sed -i "s:cdef extern from \"pari\/:cdef extern from \"pari24\/:g" \
 		sage/rings/fast_arith.pyx \
@@ -272,6 +269,8 @@ src_prepare() {
 
 	# other patch for python-2.7
 	epatch "${FILESDIR}"/trac_11236-test_eq_for_python_2_7-nt.patch
+	# Change python iclude in setup.py
+	sed -i "s:python2.6:python2.7:g" setup.py
 	# make sure we use cython-2.7 for consistency
 	sed -i "s:python \`which cython\`:cython-2.7:" setup.py
 	# deprecation warnings re-enabled
