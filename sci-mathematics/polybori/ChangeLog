@@ -2,6 +2,10 @@
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  03 May 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  polybori-0.7.ebuild:
+  Work on 0.7 for macos.
+
   14 Apr 2011; François Bissey <francois.bissey@canterbury.ac.nz>
   polybori-0.7.ebuild:
   Make polybori-0.7 use python-2.7. scons blows...

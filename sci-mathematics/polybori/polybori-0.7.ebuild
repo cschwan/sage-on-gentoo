@@ -61,15 +61,15 @@ src_prepare() {
 
 	# patch discused in trac #10797 to be fixed in a later version
 	epatch "${FILESDIR}"/pbori_routines_misc.h.patch
-
-	if [[ ${CHOST} == *-darwin* ]] ; then
-		epatch "${FILESDIR}"/${PN}-0.6.5-sconstruct-macos.patch
-	fi
 }
 
 src_compile(){
 	# needed to make polybori linkable
 	append-flags -fPIC
+
+	if [[ ${CHOST} == *-darwin* ]] ; then
+		append-flags -fno-strict-aliasing
+	fi
 
 	# TODO: handle singular ?
 
