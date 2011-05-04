@@ -2,6 +2,10 @@
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  04 May 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  -sage-doc-4.6.1.ebuild:
+  drop old
+
   26 Apr 2011; François Bissey <francois.bissey@canterbury.ac.nz>
   -files/sage-doc-scipy-0.8.patch, -files/sage-doc-cvxopt-1.1.2.patch:
   prune more patches

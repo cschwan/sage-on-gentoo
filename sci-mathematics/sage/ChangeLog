@@ -2,6 +2,11 @@
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  04 May 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  -files/trac_10493-cython-0.14.1.patch, -files/sage-4.3.4-site-packages.patch,
+  -sage-4.6.1-r1.ebuild:
+  drop old
+
   27 Apr 2011; François Bissey <francois.bissey@canterbury.ac.nz>
   sage-4.7_rc0.ebuild:
   Added a python-2.7 fix
