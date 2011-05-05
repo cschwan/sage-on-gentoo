@@ -18,7 +18,7 @@ cp -r /usr/portage/dev-lang/python dev-lang/
 for dst in dev-lang/python/*.ebuild; do
 	# filter ebuilds we dont need
 	case "${dst}" in
-		dev-lang/python/python-2.6*.ebuild)
+		dev-lang/python/python-2.[67]*.ebuild)
 			# keep this ebuild
 			lastKeptEbuild="${dst}"
 			;;
