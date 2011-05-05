@@ -83,7 +83,7 @@ RDEPEND="${CDEPEND}
 	>=sci-mathematics/gap-4.4.12
 	>=sci-mathematics/gap-guava-3.4
 	>=sci-mathematics/genus2reduction-0.3_p8
-	>=sci-mathematics/gfan-0.4
+	>=sci-mathematics/gfan-0.5
 	>=sci-mathematics/cu2-20060223
 	>=sci-mathematics/cubex-20060128
 	>=sci-mathematics/dikcube-20070912_p12
@@ -144,6 +144,8 @@ src_prepare() {
 	epatch "${FILESDIR}"/trac_10493-cython-0.14.1.patch
 
 	epatch "${FILESDIR}"/${PN}-4.6.1-exp-site-packages.patch
+
+	epatch "${FILESDIR}"/${PN}-4.6.2-gfan-0.5.patch
 
 	# add pari24 and gmp to everything.
 	sed -i "s:\['stdc++', 'ntl'\]:\['stdc++', 'ntl','pari24','gmp'\]:g" setup.py \

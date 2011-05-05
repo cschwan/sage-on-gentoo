@@ -2,16 +2,20 @@
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
-  04 May 2011; Fran�ois Bissey <francois.bissey@canterbury.ac.nz>
+  05 May 2011; Christopher Schwan <cschwan@students.uni-mainz.de>
+  sage-4.6.2.ebuild, +files/sage-4.6.2-gfan-0.5.patch, sage-4.7_rc0.ebuild:
+  Added patch to fix interface to gfan-0.5
+
+  04 May 2011; François Bissey <francois.bissey@canterbury.ac.nz>
   -files/trac_10493-cython-0.14.1.patch, -files/sage-4.3.4-site-packages.patch,
   -sage-4.6.1-r1.ebuild:
   drop old
 
-  27 Apr 2011; Fran�ois Bissey <francois.bissey@canterbury.ac.nz>
+  27 Apr 2011; François Bissey <francois.bissey@canterbury.ac.nz>
   sage-4.7_rc0.ebuild:
   Added a python-2.7 fix
 
-  26 Apr 2011; Fran�ois Bissey <francois.bissey@canterbury.ac.nz>
+  26 Apr 2011; François Bissey <francois.bissey@canterbury.ac.nz>
   -files/10039_manifest.patch, -files/sage-4.4.4-extra-stdc99.patch,
   -files/sage-4.6-numpy-1.5.patch, -files/trac_10187_maxima-doctests.patch,
   -files/trac-9221-matplotlib-update.patch,
@@ -21,52 +25,52 @@
 
 *sage-4.7_rc0 (26 Apr 2011)
 
-  26 Apr 2011; Fran�ois Bissey <francois.bissey@canterbury.ac.nz>
+  26 Apr 2011; François Bissey <francois.bissey@canterbury.ac.nz>
   -sage-4.7_alpha5.ebuild, +sage-4.7_rc0.ebuild:
   bump to rc0
 
-  25 Apr 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  25 Apr 2011; FranÃ§ois Bissey <francois.bissey@canterbury.ac.nz>
   files/trac_11244_fixmoredeprecationswarnings.patch:
   Rebase latest patch on 4.7.alpha5
 
-  25 Apr 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  25 Apr 2011; FranÃ§ois Bissey <francois.bissey@canterbury.ac.nz>
   +files/trac_11244_fixmoredeprecationswarnings.patch, sage-4.7_alpha5.ebuild:
   more deprecation fixes
 
-  25 Apr 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  25 Apr 2011; FranÃ§ois Bissey <francois.bissey@canterbury.ac.nz>
   files/trac_11244_fix_combinatpartition_warnings.patch:
   refresh latest patch for mistakes
 
-  25 Apr 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  25 Apr 2011; FranÃ§ois Bissey <francois.bissey@canterbury.ac.nz>
   +files/trac_11244_fix_combinatpartition_warnings.patch,
   sage-4.7_alpha5.ebuild:
   Add one more patch for deprecation warnings.
 
-  24 Apr 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  24 Apr 2011; FranÃ§ois Bissey <francois.bissey@canterbury.ac.nz>
   +files/trac_11244_reenable_deprecationwarnings_in_python27.patch,
   sage-4.7_alpha5.ebuild:
   fix deprecation warnings I hope.
 
-  23 Apr 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  23 Apr 2011; FranÃ§ois Bissey <francois.bissey@canterbury.ac.nz>
   files/trac_11236-test_eq_for_python_2_7-nt.patch:
   Update Nicolas' patch to deal with element.pyx
 
-  22 Apr 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  22 Apr 2011; FranÃ§ois Bissey <francois.bissey@canterbury.ac.nz>
   +files/trac_11236-test_eq_for_python_2_7-nt.patch, sage-4.7_alpha5.ebuild:
   Add a patch from Nicolas M Thiery for python-2.7. Enforce cython-2.7 use
 
 *sage-4.7_alpha5 (20 Apr 2011)
 
-  20 Apr 2011; Fran�ois Bissey <francois.bissey@canterbury.ac.nz>
+  20 Apr 2011; François Bissey <francois.bissey@canterbury.ac.nz>
   -files/trac_11156-sage_unittest-init-nt.patch, -sage-4.7_alpha4.ebuild,
   +sage-4.7_alpha5.ebuild:
   bump to alpha5
 
-  14 Apr 2011; Fran�ois Bissey <francois.bissey@canterbury.ac.nz>
+  14 Apr 2011; François Bissey <francois.bissey@canterbury.ac.nz>
   sage-4.6.1-r1.ebuild, sage-4.6.2.ebuild, sage-4.7_alpha4.ebuild:
   Enforce pynac dep with correct python
 
-  13 Apr 2011; Fran�ois Bissey <francois.bissey@canterbury.ac.nz>
+  13 Apr 2011; François Bissey <francois.bissey@canterbury.ac.nz>
   +files/trac_11156-sage_unittest-init-nt.patch,
   -files/trac_10039_parma_polyhedra_library.patch,
   -files/trac_10039_ppl_fix_extremize.patch, -sage-4.7_alpha3.ebuild,
@@ -75,25 +79,25 @@
 
 *sage-4.7_alpha4 (13 Apr 2011)
 
-  13 Apr 2011; Fran�ois Bissey <francois.bissey@canterbury.ac.nz>
+  13 Apr 2011; François Bissey <francois.bissey@canterbury.ac.nz>
   +files/trac_11156-sage_unittest-init-nt.patch,
   -files/trac_10039_parma_polyhedra_library.patch,
   -files/trac_10039_ppl_fix_extremize.patch, -sage-4.7_alpha3.ebuild,
   +sage-4.7_alpha4.ebuild, metadata.xml:
   bump to alpha4 now using python 2.7
 
-  06 Apr 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  06 Apr 2011; FranÃ§ois Bissey <francois.bissey@canterbury.ac.nz>
   files/trac_7377-split_and_refactor-p3.patch:
   One more fix to maximalib patch
 
-  04 Apr 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  04 Apr 2011; FranÃ§ois Bissey <francois.bissey@canterbury.ac.nz>
   files/trac_7377-doctests-p3.patch,
   files/trac_7377-split_and_refactor-p3.patch:
   refresh maximalib patches to latest.
 
 *sage-4.7_alpha3 (04 Apr 2011)
 
-  04 Apr 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  04 Apr 2011; FranÃ§ois Bissey <francois.bissey@canterbury.ac.nz>
   +files/10039_manifest.patch, +files/trac_10039_parma_polyhedra_library.patch,
   +files/trac_10039_ppl_fix_extremize.patch,
   +files/trac_7377-doctests-p3.patch,
@@ -107,11 +111,11 @@
   +sage-4.7_alpha3.ebuild:
   alpha3
 
-  22 Mar 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  22 Mar 2011; FranÃ§ois Bissey <francois.bissey@canterbury.ac.nz>
   -sage-4.7_alpha1.ebuild, +sage-4.7_alpha2.ebuild:
   bump to alpha2
 
-  17 Mar 2011; Fran�ois Bissey <francois.bissey@canterbury.ac.nz>
+  17 Mar 2011; François Bissey <francois.bissey@canterbury.ac.nz>
   +files/trac_7377-abstract-maxima_p2.patch,
   +files/trac_7377-better-ask-error_p2.patch,
   +files/trac_7377-fastcalculus_p2.patch, +files/trac_7377-maximalib_p2.patch,
@@ -125,18 +129,18 @@
   files/trac_7377-unicode_to_ecl-p1.patch, sage-4.7_alpha1.ebuild:
   put all maximalib under hg to avoid problems applying the patches.
 
-  16 Mar 2011; Fran�ois Bissey <francois.bissey@canterbury.ac.nz>
+  16 Mar 2011; François Bissey <francois.bissey@canterbury.ac.nz>
   sage-4.7_alpha1.ebuild, +files/trac_10743-ecl-iter_p1.patch,
   -files/ecl_iter.patch:
   update ecl-iter patch
 
-  15 Mar 2011; Fran�ois Bissey <francois.bissey@canterbury.ac.nz>
+  15 Mar 2011; François Bissey <francois.bissey@canterbury.ac.nz>
   +files/trac_7377-assumptions-p3.patch, +files/trac_7377-doctests-p2.patch,
   -files/trac_7377-assumptions-p2.patch, sage-4.7_alpha1.ebuild,
   -files/trac_7377-doctests.patch:
   Update maximalib patch
 
-  14 Mar 2011; Fran�ois Bissey <francois.bissey@canterbury.ac.nz>
+  14 Mar 2011; François Bissey <francois.bissey@canterbury.ac.nz>
   +files/trac_10039_ppl-modulelist.patch,
   +files/trac_7377-assumptions-p2.patch, +files/trac_7377-doctests.patch,
   +files/trac_7377-unicode_to_ecl-p1.patch,
@@ -146,7 +150,7 @@
   directly. It sucks but redoing massive patches is too 
   much work. It will only be done for things we really care going in stable.
 
-  14 Mar 2011; Fran�ois Bissey <francois.bissey@canterbury.ac.nz>
+  14 Mar 2011; François Bissey <francois.bissey@canterbury.ac.nz>
   +files/trac_7377-assumptions-p2.patch.bz2,
   +files/trac_7377-doctests.patch.bz2,
   +files/trac_7377-unicode_to_ecl-p1.patch,
@@ -154,21 +158,21 @@
   files/trac_10039_parma_polyhedra_library.patch.bz2:
   Massive patch updates in 4.7.alpha1
 
-  12 Mar 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  12 Mar 2011; FranÃ§ois Bissey <francois.bissey@canterbury.ac.nz>
   sage-4.7_alpha1.ebuild:
   Adjust sagenb dependency
 
 *sage-4.7_alpha1 (11 Mar 2011)
 
-  11 Mar 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  11 Mar 2011; FranÃ§ois Bissey <francois.bissey@canterbury.ac.nz>
   +sage-4.7_alpha1.ebuild, -sage-4.7_alpha2.ebuild:
   4.7.alpha1
 
-  02 Mar 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  02 Mar 2011; FranÃ§ois Bissey <francois.bissey@canterbury.ac.nz>
   +files/sage-4.6-fix-SAGE_LOCAL-maximalib.patch, sage-4.7_alpha2.ebuild:
   fix maximalib support in 4.7_alpha2
 
-  02 Mar 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  02 Mar 2011; FranÃ§ois Bissey <francois.bissey@canterbury.ac.nz>
   +files/trac_7377-floatcast.patch, +files/trac_7377-lazy-maxlib.p2.patch,
   +files/trac_7377-split_and_refactor-p2.patch.bz2,
   +files/trac_7377-unicode_to_ecl.patch,
@@ -178,42 +182,42 @@
 *sage-4.7_alpha2 (02 Mar 2011)
 *sage-4.6.2 (02 Mar 2011)
 
-  02 Mar 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  02 Mar 2011; FranÃ§ois Bissey <francois.bissey@canterbury.ac.nz>
   -sage-4.6-r1.ebuild, -sage-4.6.1.ebuild, -sage-4.6.2_rc1.ebuild,
   +sage-4.6.2.ebuild, +sage-4.7_alpha2.ebuild:
   4.6.2 released drop old, start 4.7.alpha2
 
-  01 Mar 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  01 Mar 2011; FranÃ§ois Bissey <francois.bissey@canterbury.ac.nz>
   sage-4.6.2_rc1.ebuild:
   correcting some sed in 4.6.2.rc1
 
-  28 Feb 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  28 Feb 2011; FranÃ§ois Bissey <francois.bissey@canterbury.ac.nz>
   sage-4.6.2_rc1.ebuild:
   move patches around for the final release of 4.6.2
 
 *sage-4.6.2_rc1 (26 Feb 2011)
 
-  26 Feb 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  26 Feb 2011; FranÃ§ois Bissey <francois.bissey@canterbury.ac.nz>
   -sage-4.6.2_rc0.ebuild, +sage-4.6.2_rc1.ebuild:
   rc1
 
 *sage-4.6.2_rc0 (18 Feb 2011)
 
-  18 Feb 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  18 Feb 2011; FranÃ§ois Bissey <francois.bissey@canterbury.ac.nz>
   -sage-4.6.2_alpha4.ebuild, +sage-4.6.2_rc0.ebuild:
   bump to rc0
 
-  18 Feb 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  18 Feb 2011; FranÃ§ois Bissey <francois.bissey@canterbury.ac.nz>
   +files/mpmath_update_fixed_4.6.1.patch.bz2, +files/truediv_fix.patch,
   -files/14600.patch.bz2, sage-4.6.2_alpha4.ebuild,
   -files/docstring-fixes.patch.bz2:
   update mpmath patch
 
-  16 Feb 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  16 Feb 2011; FranÃ§ois Bissey <francois.bissey@canterbury.ac.nz>
   sage-4.6.2_alpha4.ebuild:
   fix typo
 
-  16 Feb 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  16 Feb 2011; FranÃ§ois Bissey <francois.bissey@canterbury.ac.nz>
   +files/trac_10766-fix_doctest.patch,
   +files/trac_10766-fix_symbolic_integration_integral.patch,
   +files/trac_10773-fix_maxima_version.patch,
@@ -229,70 +233,70 @@
   alpha4 now uses ecls-11.1.1/maxima-5.23.2; update maximalib patchset; drop
   old.
 
-  15 Feb 2011; Fran�ois Bissey <francois.bissey@canterbury.ac.nz>
+  15 Feb 2011; François Bissey <francois.bissey@canterbury.ac.nz>
   files/ecl_iter.patch:
   Fix ecl_iter for good
 
-  15 Feb 2011; Fran�ois Bissey <francois.bissey@canterbury.ac.nz>
+  15 Feb 2011; François Bissey <francois.bissey@canterbury.ac.nz>
   files/ecl_iter.patch:
   Fix the new patch
 
-  15 Feb 2011; Fran�ois Bissey <francois.bissey@canterbury.ac.nz>
+  15 Feb 2011; François Bissey <francois.bissey@canterbury.ac.nz>
   sage-4.6.2_alpha4.ebuild, +files/ecl_iter.patch:
   Add missing patch for maximalib
 
-  14 Feb 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  14 Feb 2011; FranÃ§ois Bissey <francois.bissey@canterbury.ac.nz>
   +files/trac_7377-better-ask-error.patch,
   +files/trac_7377-fastcalculus-p1.patch.bz2, sage-4.6.2_alpha4.ebuild:
   Update the maximalib patches
 
-  13 Feb 2011; Fran�ois Bissey <francois.bissey@canterbury.ac.nz>
+  13 Feb 2011; François Bissey <francois.bissey@canterbury.ac.nz>
   sage-4.6.2_alpha4.ebuild:
   mpmath is also supported by experimental.
 
-  10 Feb 2011; Fran�ois Bissey <francois.bissey@canterbury.ac.nz>
+  10 Feb 2011; François Bissey <francois.bissey@canterbury.ac.nz>
   sage-4.6.2_alpha4.ebuild:
   Fix patching for sage/ext/interpreters as it is now independent of the
   experimental flag.
 
-  09 Feb 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  09 Feb 2011; FranÃ§ois Bissey <francois.bissey@canterbury.ac.nz>
   +files/trac_10493-cython-0.14.1.patch:
   forgot to check the patch.
 
-  09 Feb 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  09 Feb 2011; FranÃ§ois Bissey <francois.bissey@canterbury.ac.nz>
   sage-4.6.2_alpha4.ebuild:
   Upgrade to cython-0.14.1
 
 *sage-4.6.2_alpha4 (08 Feb 2011)
 
-  08 Feb 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  08 Feb 2011; FranÃ§ois Bissey <francois.bissey@canterbury.ac.nz>
   +sage-4.6.2_alpha4.ebuild:
   4.6.2.alpha4
 
 *sage-4.6.2_alpha3 (30 Jan 2011)
 
-  30 Jan 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  30 Jan 2011; FranÃ§ois Bissey <francois.bissey@canterbury.ac.nz>
   -sage-4.6.2_alpha2.ebuild, +sage-4.6.2_alpha3.ebuild:
   alpha3
 
-  30 Jan 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  30 Jan 2011; FranÃ§ois Bissey <francois.bissey@canterbury.ac.nz>
   sage-4.6.2_alpha2.ebuild, +files/errorcatching.patch,
   files/trac_10039_parma_polyhedra_library.patch.bz2:
   Updated experimental and maximalib patches
 
-  29 Jan 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  29 Jan 2011; FranÃ§ois Bissey <francois.bissey@canterbury.ac.nz>
   sage-4.6.2_alpha2.ebuild, metadata.xml:
   Add a separate maximalib flag - use.masked for now as it is too broken.
 
-  27 Jan 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  27 Jan 2011; FranÃ§ois Bissey <francois.bissey@canterbury.ac.nz>
   sage-4.6.2_alpha2.ebuild:
   missed a sed that needed correcting
 
-  27 Jan 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  27 Jan 2011; FranÃ§ois Bissey <francois.bissey@canterbury.ac.nz>
   sage-4.6.2_alpha2.ebuild:
   Fix typo in patch name
 
-  27 Jan 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  27 Jan 2011; FranÃ§ois Bissey <francois.bissey@canterbury.ac.nz>
   +files/14600.patch.bz2, +files/trac_10039_parma_polyhedra_library.patch.bz2,
   sage-4.6.2_alpha2.ebuild, +files/docstring-fixes.patch.bz2,
   +files/trac_10140_base_cone_on_ppl.patch.bz2,
@@ -304,31 +308,31 @@
   +files/trac_7377-maximalib-rebased.patch.bz2, metadata.xml:
   Add experimental use flag to alpha2
 
-  26 Jan 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  26 Jan 2011; FranÃ§ois Bissey <francois.bissey@canterbury.ac.nz>
   -sage-4.6.2_alpha1.ebuild, +sage-4.6.2_alpha2.ebuild:
   alpha2
 
-  22 Jan 2011; François Bissey <f.r.bissey@massey.ac.nz>
+  22 Jan 2011; FranÃ§ois Bissey <f.r.bissey@massey.ac.nz>
   sage-4.6.2_alpha1.ebuild:
   Deal with SAGE_INC in 4.6.2_alpha1
 
-  22 Jan 2011; François Bissey <f.r.bissey@massey.ac.nz>
+  22 Jan 2011; FranÃ§ois Bissey <f.r.bissey@massey.ac.nz>
   sage-4.6.2_alpha1.ebuild:
   adjust sagenb dependency
 
 *sage-4.6.2_alpha1 (22 Jan 2011)
 
-  22 Jan 2011; François Bissey <f.r.bissey@massey.ac.nz>
+  22 Jan 2011; FranÃ§ois Bissey <f.r.bissey@massey.ac.nz>
   +sage-4.6.2_alpha1.ebuild:
   Ooops worng version
 
 *sage-4.6.2_alpha2 (22 Jan 2011)
 
-  22 Jan 2011; François Bissey <f.r.bissey@massey.ac.nz>
+  22 Jan 2011; FranÃ§ois Bissey <f.r.bissey@massey.ac.nz>
   +sage-4.6.2_alpha2.ebuild:
   4.6.2_alpha1
 
-  22 Jan 2011; François Bissey <f.r.bissey@massey.ac.nz> sage-4.6.1-r1.ebuild:
+  22 Jan 2011; FranÃ§ois Bissey <f.r.bissey@massey.ac.nz> sage-4.6.1-r1.ebuild:
   Only use -DNDEBUG with libsingular.
 
   21 Jan 2011; <cschwan@students.uni-mainz.de>
@@ -342,38 +346,38 @@
   Added call to python_set_active_version which selects proper python (
   version 2.6)
 
-  15 Jan 2011; François Bissey <f.r.bissey@massey.ac.nz> sage-4.6.1.ebuild:
+  15 Jan 2011; FranÃ§ois Bissey <f.r.bissey@massey.ac.nz> sage-4.6.1.ebuild:
   move singular to RDEP in 4.6.1. libsingular is the only one needed in DEP.
 
 *sage-4.6.1 (14 Jan 2011)
 
-  14 Jan 2011; François Bissey <f.r.bissey@massey.ac.nz>
+  14 Jan 2011; FranÃ§ois Bissey <f.r.bissey@massey.ac.nz>
   -sage-4.6.1_rc1.ebuild, +sage-4.6.1.ebuild:
   4.6.1 is out
 
 *sage-4.6.1_rc1 (11 Jan 2011)
 
-  11 Jan 2011; François Bissey <f.r.bissey@massey.ac.nz>
+  11 Jan 2011; FranÃ§ois Bissey <f.r.bissey@massey.ac.nz>
   -sage-4.6.1_rc0.ebuild, -sage-4.6.1_rc0-r1.ebuild, +sage-4.6.1_rc1.ebuild:
   Bump to 4.6.1.rc1 - we are now using singular/libsingular
 
-  03 Jan 2011; François Bissey <f.r.bissey@massey.ac.nz>
+  03 Jan 2011; FranÃ§ois Bissey <f.r.bissey@massey.ac.nz>
   sage-4.6.1_rc0-r1.ebuild:
   better singular dep handling
 
 *sage-4.6.1_rc0-r1 (03 Jan 2011)
 
-  03 Jan 2011; François Bissey <f.r.bissey@massey.ac.nz>
+  03 Jan 2011; FranÃ§ois Bissey <f.r.bissey@massey.ac.nz>
   +sage-4.6.1_rc0-r1.ebuild:
   Bump to test singular/libsingular split
 
-  25 Dec 2010; François Bissey <f.r.bissey@massey.ac.nz>
+  25 Dec 2010; FranÃ§ois Bissey <f.r.bissey@massey.ac.nz>
   sage-4.6.1_rc0.ebuild:
   adjust dep to sage-notebook in rc0
 
 *sage-4.6.1_rc0 (25 Dec 2010)
 
-  25 Dec 2010; François Bissey <f.r.bissey@massey.ac.nz>
+  25 Dec 2010; FranÃ§ois Bissey <f.r.bissey@massey.ac.nz>
   -files/sage-4.5.2-ecls_ppc.patch, sage-4.6-r1.ebuild,
   -sage-4.6.1_alpha2.ebuild, +sage-4.6.1_rc0.ebuild:
   Bump to rc0 - drop ppc specific patch.
@@ -409,164 +413,164 @@
   sage-4.6.ebuild, sage-4.6-r1.ebuild, sage-4.6.1_alpha2.ebuild:
   Adjusted dependencies on flintqs and libcliquer
 
-  22 Nov 2010; François Bissey <f.r.bissey@massey.ac.nz>
+  22 Nov 2010; FranÃ§ois Bissey <f.r.bissey@massey.ac.nz>
   sage-4.6.1_alpha2.ebuild:
   maxima-5.22.1 has been unmerged from upstream alpha2, re-enabling
 
-  20 Nov 2010; François Bissey <f.r.bissey@massey.ac.nz>
+  20 Nov 2010; FranÃ§ois Bissey <f.r.bissey@massey.ac.nz>
   sage-4.6.1_alpha2.ebuild:
   Real alpha2 release hopefully.
 
-  18 Nov 2010; François Bissey <f.r.bissey@massey.ac.nz>
+  18 Nov 2010; FranÃ§ois Bissey <f.r.bissey@massey.ac.nz>
   sage-4.6.1_alpha2.ebuild:
   correct cvxopt/glpk dependency
 
-  17 Nov 2010; François Bissey <f.r.bissey@massey.ac.nz>
+  17 Nov 2010; FranÃ§ois Bissey <f.r.bissey@massey.ac.nz>
   sage-4.6.1_alpha2.ebuild:
   Better glpk header fix
 
-  17 Nov 2010; François Bissey <f.r.bissey@massey.ac.nz>
+  17 Nov 2010; FranÃ§ois Bissey <f.r.bissey@massey.ac.nz>
   sage-4.6.1_alpha2.ebuild:
   Adjust RDEP
 
 *sage-4.6.1_alpha2 (17 Nov 2010)
 
-  17 Nov 2010; François Bissey <f.r.bissey@massey.ac.nz>
+  17 Nov 2010; FranÃ§ois Bissey <f.r.bissey@massey.ac.nz>
   -sage-4.6.1_alpha1.ebuild, +sage-4.6.1_alpha2.ebuild,
   -files/trac-8898_unix-endlines.patch:
   bump to alpha2
 
-  15 Nov 2010; François Bissey <f.r.bissey@massey.ac.nz>
+  15 Nov 2010; FranÃ§ois Bissey <f.r.bissey@massey.ac.nz>
   sage-4.6.1_alpha1.ebuild, metadata.xml:
   Add useflag to build dev-libs/mpc extension
 
-  14 Nov 2010; François Bissey <f.r.bissey@massey.ac.nz>
+  14 Nov 2010; FranÃ§ois Bissey <f.r.bissey@massey.ac.nz>
   sage-4.6.1_alpha1.ebuild:
   more numpy touch up.
 
-  14 Nov 2010; François Bissey <f.r.bissey@massey.ac.nz>
+  14 Nov 2010; FranÃ§ois Bissey <f.r.bissey@massey.ac.nz>
   sage-4.6.1_alpha1.ebuild:
   numpy and other headers fix in 4.6.1.alpha1
 
-  13 Nov 2010; François Bissey <f.r.bissey@massey.ac.nz>
+  13 Nov 2010; FranÃ§ois Bissey <f.r.bissey@massey.ac.nz>
   sage-4.6.1_alpha1.ebuild:
   revert to edos2unix for 8898 - wait for fix in alpha2
 
 *sage-4.6.1_alpha1 (13 Nov 2010)
 
-  13 Nov 2010; François Bissey <f.r.bissey@massey.ac.nz>
+  13 Nov 2010; FranÃ§ois Bissey <f.r.bissey@massey.ac.nz>
   -sage-4.6.1_alpha0.ebuild, +sage-4.6.1_alpha1.ebuild:
   bump to alpha1
 
-  12 Nov 2010; François Bissey <f.r.bissey@massey.ac.nz>
+  12 Nov 2010; FranÃ§ois Bissey <f.r.bissey@massey.ac.nz>
   sage-4.6.1_alpha0.ebuild:
   Hopefully I am done with glpk.
 
-  12 Nov 2010; François Bissey <f.r.bissey@massey.ac.nz>
+  12 Nov 2010; FranÃ§ois Bissey <f.r.bissey@massey.ac.nz>
   sage-4.6.1_alpha0.ebuild:
   new fix for glpk rewrite
 
-  12 Nov 2010; François Bissey <f.r.bissey@massey.ac.nz>
+  12 Nov 2010; FranÃ§ois Bissey <f.r.bissey@massey.ac.nz>
   sage-4.6.1_alpha0.ebuild:
   clean glpk fixes - they are not needed anymore or so it seems.
 
-  12 Nov 2010; François Bissey <f.r.bissey@massey.ac.nz>
+  12 Nov 2010; FranÃ§ois Bissey <f.r.bissey@massey.ac.nz>
   sage-4.6.1_alpha0.ebuild:
   use maxima-5.22.1 in 4.6.1.alpha0
 
-  12 Nov 2010; François Bissey <f.r.bissey@massey.ac.nz>
+  12 Nov 2010; FranÃ§ois Bissey <f.r.bissey@massey.ac.nz>
   sage-4.6.1_alpha0.ebuild:
   Restore keywords in 4.6.1.alpha0
 
-  12 Nov 2010; François Bissey <f.r.bissey@massey.ac.nz>
+  12 Nov 2010; FranÃ§ois Bissey <f.r.bissey@massey.ac.nz>
   sage-4.6.1_alpha0.ebuild, +files/trac-8898_unix-endlines.patch:
   apply trac #8898 patch for testing. Hopefully will get included in 4.6.1
   final.
 
-  09 Nov 2010; François Bissey <f.r.bissey@massey.ac.nz>
+  09 Nov 2010; FranÃ§ois Bissey <f.r.bissey@massey.ac.nz>
   -files/sage-4.5.1-fix-SAGE_LOCAL.patch, -sage-4.5.3.ebuild:
   remove old patch
 
-  09 Nov 2010; François Bissey <f.r.bissey@massey.ac.nz>
+  09 Nov 2010; FranÃ§ois Bissey <f.r.bissey@massey.ac.nz>
   -sage-4.5.3.ebuild:
   remove old
 
-  03 Nov 2010; François Bissey <f.r.bissey@massey.ac.nz> sage-4.6.ebuild,
+  03 Nov 2010; FranÃ§ois Bissey <f.r.bissey@massey.ac.nz> sage-4.6.ebuild,
   sage-4.6-r1.ebuild, sage-4.6.1_alpha0.ebuild:
   Make gprc.expect respect prefix in 4.6+
 
-  01 Nov 2010; François Bissey <f.r.bissey@massey.ac.nz> sage-4.6.ebuild:
+  01 Nov 2010; FranÃ§ois Bissey <f.r.bissey@massey.ac.nz> sage-4.6.ebuild:
   update SRC_URI
 
 *sage-4.6-r1 (01 Nov 2010)
 
-  01 Nov 2010; François Bissey <f.r.bissey@massey.ac.nz>
+  01 Nov 2010; FranÃ§ois Bissey <f.r.bissey@massey.ac.nz>
   -sage-4.6_rc0-r1.ebuild, sage-4.6.ebuild, +sage-4.6-r1.ebuild:
   Get a test version for the maxima upgrade, correct mistake in initial 4.6
 
-  01 Nov 2010; François Bissey <f.r.bissey@massey.ac.nz>
+  01 Nov 2010; FranÃ§ois Bissey <f.r.bissey@massey.ac.nz>
   -sage-4.6_alpha3.ebuild, -sage-4.6_rc0.ebuild, +sage-4.6.ebuild:
   Adjust variables
 
 *sage-4.6 (01 Nov 2010)
 
-  01 Nov 2010; François Bissey <f.r.bissey@massey.ac.nz>
+  01 Nov 2010; FranÃ§ois Bissey <f.r.bissey@massey.ac.nz>
   -sage-4.6_alpha3.ebuild, -sage-4.6_rc0.ebuild, +sage-4.6.ebuild:
   4.6 is out but not mirrored yet.
 
-  31 Oct 2010; François Bissey <f.r.bissey@massey.ac.nz>
+  31 Oct 2010; FranÃ§ois Bissey <f.r.bissey@massey.ac.nz>
   files/trac_10187_maxima-doctests.patch,
   files/trac_10187_maxima-upgrade.patch:
   updating maxima patches
 
-  31 Oct 2010; François Bissey <f.r.bissey@massey.ac.nz>
+  31 Oct 2010; FranÃ§ois Bissey <f.r.bissey@massey.ac.nz>
   sage-4.6_rc0-r1.ebuild:
   Fix typo in patch name
 
-  31 Oct 2010; François Bissey <f.r.bissey@massey.ac.nz>
+  31 Oct 2010; FranÃ§ois Bissey <f.r.bissey@massey.ac.nz>
   sage-4.6_rc0-r1.ebuild:
   Apply maxima patches in the right order
 
-  30 Oct 2010; François Bissey <f.r.bissey@massey.ac.nz>
+  30 Oct 2010; FranÃ§ois Bissey <f.r.bissey@massey.ac.nz>
   sage-4.6_rc0-r1.ebuild:
   adjust ecl dependency flag
 
 *sage-4.6_rc0-r1 (30 Oct 2010)
 
-  30 Oct 2010; François Bissey <f.r.bissey@massey.ac.nz>
+  30 Oct 2010; FranÃ§ois Bissey <f.r.bissey@massey.ac.nz>
   +files/trac_10187_maxima-doctests.patch, +sage-4.6_rc0-r1.ebuild,
   +files/trac_10187_maxima-upgrade.patch:
   Revbump to update maxima to 5.22.1
 
-  27 Oct 2010; François Bissey <f.r.bissey@massey.ac.nz>
+  27 Oct 2010; FranÃ§ois Bissey <f.r.bissey@massey.ac.nz>
   +sage-4.6.1_alpha0.ebuild:
   Hardmask 4.6.1_alpha0
 
 *sage-4.6.1_alpha0 (27 Oct 2010)
 
-  27 Oct 2010; François Bissey <f.r.bissey@massey.ac.nz>
+  27 Oct 2010; FranÃ§ois Bissey <f.r.bissey@massey.ac.nz>
   +sage-4.6.1_alpha0.ebuild:
   Introducing 4.6.1_alpha0 - separately masked - not officially released.
 
-  27 Oct 2010; François Bissey <f.r.bissey@massey.ac.nz>
+  27 Oct 2010; FranÃ§ois Bissey <f.r.bissey@massey.ac.nz>
   sage-4.6_alpha3.ebuild, sage-4.6_rc0.ebuild:
   Adjust cddlib dependency in sage-4.6
 
-  24 Oct 2010; François Bissey <f.r.bissey@massey.ac.nz>
+  24 Oct 2010; FranÃ§ois Bissey <f.r.bissey@massey.ac.nz>
   sage-4.6_rc0.ebuild:
   small patch to re-enable the gslcblas trick for issue 3
 
-  22 Oct 2010; François Bissey <f.r.bissey@massey.ac.nz>
+  22 Oct 2010; FranÃ§ois Bissey <f.r.bissey@massey.ac.nz>
   sage-4.6_rc0.ebuild:
   Correct a mistake on gprc
 
-  22 Oct 2010; François Bissey <f.r.bissey@massey.ac.nz>
+  22 Oct 2010; FranÃ§ois Bissey <f.r.bissey@massey.ac.nz>
   +sage-4.6_rc0.ebuild:
   small cleanup
 
 *sage-4.6_rc0 (22 Oct 2010)
 
-  22 Oct 2010; François Bissey <f.r.bissey@massey.ac.nz>
+  22 Oct 2010; FranÃ§ois Bissey <f.r.bissey@massey.ac.nz>
   +sage-4.6_rc0.ebuild:
   bump to 4.6_rc0
 
@@ -578,7 +582,7 @@
   sage-4.5.3.ebuild, sage-4.6_alpha3.ebuild:
   Depend on gd with USE=png
 
-  11 Oct 2010; François Bissey <f.r.bissey@massey.ac.nz> sage-4.5.3.ebuild,
+  11 Oct 2010; FranÃ§ois Bissey <f.r.bissey@massey.ac.nz> sage-4.5.3.ebuild,
   sage-4.6_alpha3.ebuild:
   Fix for issue #1 (strata.py)
 
@@ -586,37 +590,37 @@
   sage-4.5.3.ebuild, sage-4.6_alpha3.ebuild:
   Added ~x86-linux keyword and added some fixes
 
-  10 Oct 2010; François Bissey <f.r.bissey@massey.ac.nz>
+  10 Oct 2010; FranÃ§ois Bissey <f.r.bissey@massey.ac.nz>
   sage-4.6_alpha3.ebuild:
   Fix compilation problem with polynomial_rational_flint.pyx
 
-  09 Oct 2010; François Bissey <f.r.bissey@massey.ac.nz>
+  09 Oct 2010; FranÃ§ois Bissey <f.r.bissey@massey.ac.nz>
   sage-4.6_alpha3.ebuild:
   Remove tentative fix for issue 3 as it's not building.
 
-  09 Oct 2010; François Bissey <f.r.bissey@massey.ac.nz>
+  09 Oct 2010; FranÃ§ois Bissey <f.r.bissey@massey.ac.nz>
   sage-4.6_alpha3.ebuild:
   Try some adjustment and regenerate manifest
 
-  09 Oct 2010; François Bissey <f.r.bissey@massey.ac.nz>
+  09 Oct 2010; FranÃ§ois Bissey <f.r.bissey@massey.ac.nz>
   sage-4.6_alpha3.ebuild:
   Forgot "s" in the sed command
 
-  09 Oct 2010; François Bissey <f.r.bissey@massey.ac.nz>
+  09 Oct 2010; FranÃ§ois Bissey <f.r.bissey@massey.ac.nz>
   sage-4.6_alpha3.ebuild:
   adjust dep for latest sagenb
 
-  09 Oct 2010; François Bissey <f.r.bissey@massey.ac.nz>
+  09 Oct 2010; FranÃ§ois Bissey <f.r.bissey@massey.ac.nz>
   sage-4.6_alpha3.ebuild:
   tentative patch for issue 3
 
-  08 Oct 2010; François Bissey <f.r.bissey@massey.ac.nz>
+  08 Oct 2010; FranÃ§ois Bissey <f.r.bissey@massey.ac.nz>
   sage-4.6_alpha3.ebuild:
   fix cython deprecated headers path
 
 *sage-4.6_alpha3 (08 Oct 2010)
 
-  08 Oct 2010; François Bissey <f.r.bissey@massey.ac.nz>
+  08 Oct 2010; FranÃ§ois Bissey <f.r.bissey@massey.ac.nz>
   -sage-4.6_alpha2.ebuild, +sage-4.6_alpha3.ebuild:
   Bump to alpha3: includes
   pynac-0.2.1/cython-0.13/sagenb-0.8.6/matplotlib-1.0.0
@@ -627,7 +631,7 @@
   -files/sage-4.5.2-upgrade-singular.patch:
   Removed unneeded patches
 
-  02 Oct 2010; François Bissey <f.r.bissey@massey.ac.nz>
+  02 Oct 2010; FranÃ§ois Bissey <f.r.bissey@massey.ac.nz>
   sage-4.6_alpha2.ebuild, +files/sage-4.6-numpy-1.5.patch:
   Update sage-4.6 to use numpy-1.5
 
@@ -635,37 +639,37 @@
   -files/sage.svg.bz2 -sage-4.5.2-r1.ebuild, -sage-4.5.2-r2.ebuild:
   Removed old ebuilds
 
-  02 Oct 2010; François Bissey <f.r.bissey@massey.ac.nz>
+  02 Oct 2010; FranÃ§ois Bissey <f.r.bissey@massey.ac.nz>
   files/sage-4.6-fix-SAGE_LOCAL.patch:
   Updated Steve's patch for 4.6
 
-  01 Oct 2010; François Bissey <f.r.bissey@massey.ac.nz>
+  01 Oct 2010; FranÃ§ois Bissey <f.r.bissey@massey.ac.nz>
   sage-4.6_alpha2.ebuild, +files/sage-4.6-fix-SAGE_LOCAL.patch:
   New sage-local patch for 4.6 - thanks Steve.
 
 *sage-4.6_alpha2 (01 Oct 2010)
 
-  01 Oct 2010; François Bissey <f.r.bissey@massey.ac.nz>
+  01 Oct 2010; FranÃ§ois Bissey <f.r.bissey@massey.ac.nz>
   -sage-4.6_alpha1.ebuild, +sage-4.6_alpha2.ebuild:
   bump to alpha2
 
-  24 Sep 2010; François Bissey <f.r.bissey@massey.ac.nz> sage-4.5.3.ebuild,
+  24 Sep 2010; FranÃ§ois Bissey <f.r.bissey@massey.ac.nz> sage-4.5.3.ebuild,
   sage-4.6_alpha1.ebuild:
   RDEPEND on ~networkx-1.2 - 1.3 breaks things
 
-  21 Sep 2010; François Bissey <f.r.bissey@massey.ac.nz>
+  21 Sep 2010; FranÃ§ois Bissey <f.r.bissey@massey.ac.nz>
   sage-4.6_alpha1.ebuild:
   Added more pari24 headers. Thanks Steve for reporting.
 
 *sage-4.6_alpha1 (19 Sep 2010)
 
-  19 Sep 2010; François Bissey <f.r.bissey@massey.ac.nz>
+  19 Sep 2010; FranÃ§ois Bissey <f.r.bissey@massey.ac.nz>
   -sage-4.6_alpha0.ebuild, +sage-4.6_alpha1.ebuild:
   bump to alpha1
 
 *sage-4.6_alpha0 (19 Sep 2010)
 
-  19 Sep 2010; François Bissey <f.r.bissey@massey.ac.nz>
+  19 Sep 2010; FranÃ§ois Bissey <f.r.bissey@massey.ac.nz>
   +sage-4.6_alpha0.ebuild:
   Experimental 4.6_alpha0
 
@@ -679,10 +683,10 @@
   sage-4.5.2-r1.ebuild, sage-4.5.2-r2.ebuild:
   Added text for USE=testsuite
 
-  08 Sep 2010; François Bissey <f.r.bissey@massey.ac.nz> metadata.xml:
+  08 Sep 2010; FranÃ§ois Bissey <f.r.bissey@massey.ac.nz> metadata.xml:
   fix metadata
 
-  06 Sep 2010; François Bissey <f.r.bissey@massey.ac.nz>
+  06 Sep 2010; FranÃ§ois Bissey <f.r.bissey@massey.ac.nz>
   sage-4.5.2-r2.ebuild:
   Raise sage-doc dependency of sage-4.5.2-r2 to 4.5.2-r2 for the numpy/scipy
   upgrade.
@@ -694,20 +698,20 @@
 
 *sage-4.5.2-r2 (05 Sep 2010)
 
-  05 Sep 2010; François Bissey <f.r.bissey@massey.ac.nz>
+  05 Sep 2010; FranÃ§ois Bissey <f.r.bissey@massey.ac.nz>
   +files/trac_9808_numpy_doctest_change.patch, +sage-4.5.2-r2.ebuild:
   Experimental ebuild to upgrade to numpy-1.4.1/scipy-0.8. This is masked
   for now.
 
-  04 Sep 2010; François Bissey <f.r.bissey@massey.ac.nz>
+  04 Sep 2010; FranÃ§ois Bissey <f.r.bissey@massey.ac.nz>
   -sage-4.5.1-r1.ebuild:
   remove old.
 
-  04 Sep 2010; François Bissey <f.r.bissey@massey.ac.nz>
+  04 Sep 2010; FranÃ§ois Bissey <f.r.bissey@massey.ac.nz>
   sage-4.5.2-r1.ebuild:
   Use the new singular ebuild with internal factory headers
 
-  02 Sep 2010; François Bissey <f.r.bissey@massey.ac.nz>
+  02 Sep 2010; FranÃ§ois Bissey <f.r.bissey@massey.ac.nz>
   sage-4.5.1-r1.ebuild, sage-4.5.2-r1.ebuild:
   sage-latex has moved to dev-tex
 
@@ -715,13 +719,13 @@
   sage-4.5.2-r1.ebuild:
   Update dependency on notebook from 0.8.1 to 0.8.2
 
-  02 Sep 2010; François Bissey <f.r.bissey@massey.ac.nz>
+  02 Sep 2010; FranÃ§ois Bissey <f.r.bissey@massey.ac.nz>
   +files/trac_9567-cycle_basis.patch, +files/trac_9567-networkx-1.2.patch,
   -sage-4.5.2.ebuild, sage-4.5.2-r1.ebuild:
   Drop old 4.5.2. Upgrade to networkx-1.2 in advance of 4.5.3 because 1.0.1
   left the main tree.
 
-  30 Aug 2010; François Bissey <f.r.bissey@massey.ac.nz>
+  30 Aug 2010; FranÃ§ois Bissey <f.r.bissey@massey.ac.nz>
   sage-4.5.2-r1.ebuild, +files/sage-4.5.2-ecls_ppc.patch:
   Fixing ecl extension on ppc.
 
@@ -729,17 +733,17 @@
   sage-4.5.2-r1.ebuild:
   Added einfo in pkg_postinst to display some informative text
 
-  25 Aug 2010; François Bissey <f.r.bissey@massey.ac.nz>
+  25 Aug 2010; FranÃ§ois Bissey <f.r.bissey@massey.ac.nz>
   sage-4.5.2-r1.ebuild, +files/trac-9221-matplotlib-update.patch:
   Adopt trac 9221 and raise matplotlib dep to 1.0.0 as it is now stable.
 
-  24 Aug 2010; François Bissey <f.r.bissey@massey.ac.nz>
+  24 Aug 2010; FranÃ§ois Bissey <f.r.bissey@massey.ac.nz>
   sage-4.5.2-r1.ebuild:
   Fix missing "/" in singular.hlp path.
 
 *sage-4.5.2-r1 (22 Aug 2010)
 
-  22 Aug 2010; François Bissey <f.r.bissey@massey.ac.nz>
+  22 Aug 2010; FranÃ§ois Bissey <f.r.bissey@massey.ac.nz>
   +sage-4.5.2-r1.ebuild:
   Get rid of singular[sage] dep in favor of sage-doc including singular.hlp.
 
@@ -780,11 +784,11 @@
   -sage-4.5.1.ebuild:
   Removed old versions
 
-  30 Jul 2010; François Bissey <f.r.bissey@massey.ac.nz>
+  30 Jul 2010; FranÃ§ois Bissey <f.r.bissey@massey.ac.nz>
   sage-4.5.1-r1.ebuild:
   Depend on singular[libsingular,sage]
 
-  29 Jul 2010; François Bissey <f.r.bissey@massey.ac.nz>
+  29 Jul 2010; FranÃ§ois Bissey <f.r.bissey@massey.ac.nz>
   -sage-4.5.1-r2.ebuild:
   Removing -r2 which requires sage-singular.
 
@@ -796,7 +800,7 @@
 
 *sage-4.5.1-r1 (25 Jul 2010)
 
-  25 Jul 2010; François Bissey <f.r.bissey@massey.ac.nz>
+  25 Jul 2010; FranÃ§ois Bissey <f.r.bissey@massey.ac.nz>
   +sage-4.5.1-r1.ebuild:
   Revbump to use system singular.
 
@@ -818,7 +822,7 @@
   +sage-4.4.4-r2.ebuild:
   New revision migrates from rubiks to split rubik's cube ebuilds
 
-  03 Jul 2010; François Bissey <f.r.bissey@massey.ac.nz>
+  03 Jul 2010; FranÃ§ois Bissey <f.r.bissey@massey.ac.nz>
   sage-4.4.4-r1.ebuild:
   Minor EAPI 3 adjustments.
 
@@ -837,7 +841,7 @@
   New revision replaces sage-data with the four sage-data-* ebuilds -
   remove sage-data first in order to properly install this revision
 
-  25 Jun 2010; François Bissey <f.r.bissey@massey.ac.nz> sage-4.4.2.ebuild,
+  25 Jun 2010; FranÃ§ois Bissey <f.r.bissey@massey.ac.nz> sage-4.4.2.ebuild,
   sage-4.4.3.ebuild, sage-4.4.4.ebuild:
   Update dep on sage-singular
 
@@ -862,14 +866,14 @@
   -sage-4.3.5-r1.ebuild, -sage-4.4.ebuild, -sage-4.4.1.ebuild:
   Removed old stuff
 
-  22 May 2010; François Bissey <f.r.bissey@massey.ac.nz>
+  22 May 2010; FranÃ§ois Bissey <f.r.bissey@massey.ac.nz>
   sage-4.3.5-r1.ebuild, sage-4.4.ebuild, sage-4.4.1.ebuild:
   Adjust sage-data dep on old ebuilds just in case.
 
-  22 May 2010; François Bissey <f.r.bissey@massey.ac.nz> sage-4.4.2.ebuild:
+  22 May 2010; FranÃ§ois Bissey <f.r.bissey@massey.ac.nz> sage-4.4.2.ebuild:
   Adjust dep on sage-data.
 
-  22 May 2010; François Bissey <f.r.bissey@massey.ac.nz> sage-4.4.2.ebuild:
+  22 May 2010; FranÃ§ois Bissey <f.r.bissey@massey.ac.nz> sage-4.4.2.ebuild:
   change jinja-1 RDEP to jinja-2.
 
 *sage-4.4.2 (21 May 2010)
@@ -886,10 +890,10 @@
   sage-4.4.1.ebuild:
   Updated dependencies
 
-  07 May 2010; François Bissey <f.r.bissey@massey.ac.nz> sage-4.4.1.ebuild:
+  07 May 2010; FranÃ§ois Bissey <f.r.bissey@massey.ac.nz> sage-4.4.1.ebuild:
   Add a java useflag to get a jre for jmol and sage3d.
 
-  06 May 2010; François Bissey <f.r.bissey@massey.ac.nz> sage-4.4.1.ebuild:
+  06 May 2010; FranÃ§ois Bissey <f.r.bissey@massey.ac.nz> sage-4.4.1.ebuild:
   Restrict scipy to version-0.7.1
 
 *sage-4.4.1 (03 May 2010)
@@ -898,7 +902,7 @@
   +sage-4.4.1.ebuild:
   Version bump
 
-  01 May 2010; François Bissey <f.r.bissey@massey.ac.nz> sage-4.4.ebuild:
+  01 May 2010; FranÃ§ois Bissey <f.r.bissey@massey.ac.nz> sage-4.4.ebuild:
   networkx is a run-time dependency and we version 1.0.1. 1.1 breaks things
   badly.
 
@@ -931,7 +935,7 @@
   Generate desktop file with "make_desktop_entry" from eutils. WARNING:
   This function is undocumented
 
-  23 Apr 2010; François Bissey <f.r.bissey@massey.ac.nz>
+  23 Apr 2010; FranÃ§ois Bissey <f.r.bissey@massey.ac.nz>
   sage-4.3.5-r1.ebuild:
   Work on the dependencies.
 
@@ -949,22 +953,22 @@
   sage-4.3.5.ebuild:
   Use new sage-doc which now installs help files
 
-  15 Apr 2010; François Bissey <f.r.bissey@massey.ac.nz> sage-4.3.5.ebuild:
+  15 Apr 2010; FranÃ§ois Bissey <f.r.bissey@massey.ac.nz> sage-4.3.5.ebuild:
   Putting back all the fixes for a proper merge.
 
-  12 Apr 2010; François Bissey <f.r.bissey@massey.ac.nz> sage-4.3.5.ebuild:
+  12 Apr 2010; FranÃ§ois Bissey <f.r.bissey@massey.ac.nz> sage-4.3.5.ebuild:
   And one more... Last for this evening -hopefully it works now.
 
-  12 Apr 2010; François Bissey <f.r.bissey@massey.ac.nz> sage-4.3.5.ebuild:
+  12 Apr 2010; FranÃ§ois Bissey <f.r.bissey@massey.ac.nz> sage-4.3.5.ebuild:
   Hopefully the last bit of frustration.
 
-  12 Apr 2010; François Bissey <f.r.bissey@massey.ac.nz> sage-4.3.5.ebuild:
+  12 Apr 2010; FranÃ§ois Bissey <f.r.bissey@massey.ac.nz> sage-4.3.5.ebuild:
   More fix for using sage-singular
 
-  12 Apr 2010; François Bissey <f.r.bissey@massey.ac.nz> sage-4.3.5.ebuild:
+  12 Apr 2010; FranÃ§ois Bissey <f.r.bissey@massey.ac.nz> sage-4.3.5.ebuild:
   First fix to use external singular. There may be other later.
 
-  12 Apr 2010; François Bissey <f.r.bissey@massey.ac.nz> sage-4.3.5.ebuild:
+  12 Apr 2010; FranÃ§ois Bissey <f.r.bissey@massey.ac.nz> sage-4.3.5.ebuild:
   Remove singular and use sage-singular
 
   09 Apr 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
@@ -983,61 +987,61 @@
   Correctly remove networkx and backported module_list.py fixes from
   sage-core
 
-  05 Apr 2010; François Bissey <f.r.bissey@massey.ac.nz>
+  05 Apr 2010; FranÃ§ois Bissey <f.r.bissey@massey.ac.nz>
   -files/sage-4.3.1-moinmoin-sets-deprecation.patch,
   -files/sage-4.3.1-networkx-sets-deprecation.patch,
   -files/sage-4.3.3-sphinx-nobytecompile.patch,
   -files/sage-4.3.3-sqlalchemy-nobytecompile.patch, sage-4.3.4.ebuild:
   correct atom for sage-moin, drop old patches now unused.
 
-  04 Apr 2010; François Bissey <f.r.bissey@massey.ac.nz>
+  04 Apr 2010; FranÃ§ois Bissey <f.r.bissey@massey.ac.nz>
   +files/trac_7608-networkx-upgrade.patch.bz2, sage-4.3.4.ebuild:
   Patched sage to upgrade to networkx-1.0.1 following issues 7608. 
   All doc tests mentioned in the trac report pass.
 
-  03 Apr 2010; François Bissey <f.r.bissey@massey.ac.nz> sage-4.3.4.ebuild:
+  03 Apr 2010; FranÃ§ois Bissey <f.r.bissey@massey.ac.nz> sage-4.3.4.ebuild:
   Removing moin completely.
 
   30 Mar 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
   -sage-4.3.3.ebuild:
   Dropped old version
 
-  29 Mar 2010; François Bissey <f.r.bissey@massey.ac.nz> sage-4.3.4.ebuild:
+  29 Mar 2010; FranÃ§ois Bissey <f.r.bissey@massey.ac.nz> sage-4.3.4.ebuild:
   Try a fix for Marek.
 
-  28 Mar 2010; François Bissey <f.r.bissey@massey.ac.nz> sage-4.3.4.ebuild,
+  28 Mar 2010; FranÃ§ois Bissey <f.r.bissey@massey.ac.nz> sage-4.3.4.ebuild,
   metadata.xml:
   Remove doc generation. Too complicated.
 
-  27 Mar 2010; François Bissey <f.r.bissey@massey.ac.nz> sage-4.3.4.ebuild:
+  27 Mar 2010; FranÃ§ois Bissey <f.r.bissey@massey.ac.nz> sage-4.3.4.ebuild:
   Revert gap "fix" as it breaks install instead of fixing it.
 
-  27 Mar 2010; François Bissey <f.r.bissey@massey.ac.nz> sage-4.3.4.ebuild:
+  27 Mar 2010; FranÃ§ois Bissey <f.r.bissey@massey.ac.nz> sage-4.3.4.ebuild:
   Introduce a fix to the gap interface, hopefully it will solve Marek's
   problem.
 
-  27 Mar 2010; François Bissey <f.r.bissey@massey.ac.nz> sage-4.3.4.ebuild,
+  27 Mar 2010; FranÃ§ois Bissey <f.r.bissey@massey.ac.nz> sage-4.3.4.ebuild,
   metadata.xml:
   use flag adjustment.
 
-  27 Mar 2010; François Bissey <f.r.bissey@massey.ac.nz> sage-4.3.4.ebuild,
+  27 Mar 2010; FranÃ§ois Bissey <f.r.bissey@massey.ac.nz> sage-4.3.4.ebuild,
   metadata.xml:
   Remove sphinx, allow building of html documentation. Various QA fix
   (pkg_postrm). 
 
-  26 Mar 2010; François Bissey <f.r.bissey@massey.ac.nz> sage-4.3.4.ebuild:
+  26 Mar 2010; FranÃ§ois Bissey <f.r.bissey@massey.ac.nz> sage-4.3.4.ebuild:
   keywording ~ppc
 
-  24 Mar 2010; François Bissey <f.r.bissey@massey.ac.nz> sage-4.3.4.ebuild:
+  24 Mar 2010; FranÃ§ois Bissey <f.r.bissey@massey.ac.nz> sage-4.3.4.ebuild:
   Further cleaning to (R)DEPEND.
 
-  23 Mar 2010; François Bissey <f.r.bissey@massey.ac.nz> sage-4.3.4.ebuild:
+  23 Mar 2010; FranÃ§ois Bissey <f.r.bissey@massey.ac.nz> sage-4.3.4.ebuild:
   registering the change in git properly would help.
 
-  23 Mar 2010; François Bissey <f.r.bissey@massey.ac.nz> sage-4.3.4.ebuild:
+  23 Mar 2010; FranÃ§ois Bissey <f.r.bissey@massey.ac.nz> sage-4.3.4.ebuild:
   Found one more maxima execution, fixing some more tests :).
 
-  22 Mar 2010; François Bissey <f.r.bissey@massey.ac.nz> sage-4.3.4.ebuild:
+  22 Mar 2010; FranÃ§ois Bissey <f.r.bissey@massey.ac.nz> sage-4.3.4.ebuild:
   Better separation of RDEPEND an DEPEND. Return sqlalchemy as a RDEPEND
   as its functionality is expected. This is however open to discussion.
 
@@ -1051,7 +1055,7 @@
   sage-4.3.3.ebuild:
   Removed sqlalchemy from Sage
 
-  14 Mar 2010; François Bissey <f.r.bissey@massey.ac.nz> sage-4.3.3.ebuild:
+  14 Mar 2010; FranÃ§ois Bissey <f.r.bissey@massey.ac.nz> sage-4.3.3.ebuild:
   Depend explicitly on lapack-atlas as it is required to link against ghmm
   and possibly linbox. Enforcing its 
   eselection.
@@ -1064,10 +1068,10 @@
   -sage-4.3.2.ebuild:
   Reverted: Dropped old version
 
-  12 Mar 2010; François Bissey <f.r.bissey@massey.ac.nz> sage-4.3.2.ebuild:
+  12 Mar 2010; FranÃ§ois Bissey <f.r.bissey@massey.ac.nz> sage-4.3.2.ebuild:
   more backporting fixes (python bytecompiling)
 
-  12 Mar 2010; François Bissey <f.r.bissey@massey.ac.nz> sage-4.3.2.ebuild:
+  12 Mar 2010; FranÃ§ois Bissey <f.r.bissey@massey.ac.nz> sage-4.3.2.ebuild:
   backporting maxima changes to 4.3.2 - for testing purposes.
 
   08 Mar 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
@@ -1078,7 +1082,7 @@
   sage-4.3.3.ebuild:
   Removed unneded files - this hopefully does not break Sage
 
-  05 Mar 2010; François Bissey <f.r.bissey@massey.ac.nz> sage-4.3.3.ebuild,
+  05 Mar 2010; FranÃ§ois Bissey <f.r.bissey@massey.ac.nz> sage-4.3.3.ebuild,
   +files/sage-4.3.3-sphinx-nobytecompile.patch,
   +files/sage-4.3.3-sqlalchemy-nobytecompile.patch:
   Fix the bytecompiling problem.
@@ -1103,15 +1107,15 @@
   +files/sage-4.3.2-fix-undefined-symbols.patch:
   Fixed Sage to (at least) compile with --as-needed
 
-  20 Feb 2010; François Bissey <f.r.bissey@massey.ac.nz> sage-4.3.1.ebuild,
+  20 Feb 2010; FranÃ§ois Bissey <f.r.bissey@massey.ac.nz> sage-4.3.1.ebuild,
   sage-4.3.2.ebuild:
   Adjust mpir dependency for useflag change. Adjust sage-4.3.1 for mpir pari
   as well.
 
-  20 Feb 2010; François Bissey <f.r.bissey@massey.ac.nz> sage-4.3.2.ebuild:
+  20 Feb 2010; FranÃ§ois Bissey <f.r.bissey@massey.ac.nz> sage-4.3.2.ebuild:
   Allow dependency to a mpir or gmp enabled pari.
 
-  19 Feb 2010; François Bissey <f.r.bissey@massey.ac.nz> sage-4.3.2.ebuild:
+  19 Feb 2010; FranÃ§ois Bissey <f.r.bissey@massey.ac.nz> sage-4.3.2.ebuild:
   filter --as-needed as it causes breakage
 
   14 Feb 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
@@ -1163,7 +1167,7 @@
   sage-4.3.ebuild, sage-4.3.1.ebuild:
   Fixed dependency on rubiks
 
-  29 Jan 2010; François Bissey <f.r.bissey@massey.ac.nz> sage-4.3.1.ebuild:
+  29 Jan 2010; FranÃ§ois Bissey <f.r.bissey@massey.ac.nz> sage-4.3.1.ebuild:
   adjust python dependency to 2.6.4-r99
 
   29 Jan 2010; Christopher Schwan <cschwan@students.uni-mainz.de>

@@ -85,7 +85,7 @@ RDEPEND="${CDEPEND}
 	>=sci-mathematics/gap-4.4.12
 	>=sci-mathematics/gap-guava-3.4
 	>=sci-mathematics/genus2reduction-0.3_p8
-	>=sci-mathematics/gfan-0.4
+	>=sci-mathematics/gfan-0.5
 	>=sci-mathematics/cu2-20060223
 	>=sci-mathematics/cubex-20060128
 	>=sci-mathematics/dikcube-20070912_p12
@@ -277,6 +277,8 @@ src_prepare() {
 	epatch "${FILESDIR}"/trac_11244_reenable_deprecationwarnings_in_python27.patch
 	epatch "${FILESDIR}"/trac_11244_fix_combinatpartition_warnings.patch
 	epatch "${FILESDIR}"/trac_11244_fixmoredeprecationswarnings.patch
+
+	epatch "${FILESDIR}"/${PN}-4.6.2-gfan-0.5.patch
 
 	# gmp-5 compatibility - works with gmp-4.3 as well
 	sed -i "s:__GMP_BITS_PER_MP_LIMB:GMP_LIMB_BITS:g" sage/rings/integer.pyx \

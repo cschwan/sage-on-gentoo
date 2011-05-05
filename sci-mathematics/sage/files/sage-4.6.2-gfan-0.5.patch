@@ -1,0 +1,13 @@
+Prevent 
+
+--- sage/interfaces/gfan.py.orig	2010-06-28 16:37:01.000000000 +0000
++++ sage/interfaces/gfan.py	2011-05-03 12:42:05.734000026 +0000
+@@ -49,7 +49,7 @@
+         if cmd != '' and cmd.lstrip()[0] != '-':
+             cmd = 'gfan_%s'%cmd
+         else:
+-            cmd = 'gfan'
++            cmd = 'gfan_bases'
+ 
+         if len(cmd.split(' ')) > 1:
+             cmd = cmd.split(' ')
