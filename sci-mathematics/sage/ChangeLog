@@ -2,6 +2,10 @@
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  05 May 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  +files/trac_10493-cython-0.14.1.patch:
+  restore cython patch
+
   05 May 2011; Christopher Schwan <cschwan@students.uni-mainz.de>
   sage-4.6.2.ebuild, +files/sage-4.6.2-gfan-0.5.patch, sage-4.7_rc0.ebuild:
   Added patch to fix interface to gfan-0.5
