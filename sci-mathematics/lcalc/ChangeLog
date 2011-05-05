@@ -2,6 +2,10 @@
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  05 May 2011; Christopher Schwan <cschwan@students.uni-mainz.de>
+  lcalc-1.23-r3.ebuild, +files/lcalc-1.23-gcc-4.6-fix.patch:
+  Add patch for gcc 4.6
+
   12 Jan 2011; François Bissey <f.r.bissey@massey.ac.nz> lcalc-1.23-r3.ebuild:
   Ported to macos prefix
 

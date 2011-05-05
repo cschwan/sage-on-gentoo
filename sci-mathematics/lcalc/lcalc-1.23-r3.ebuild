@@ -42,10 +42,15 @@ src_prepare() {
 	# patch for proper installation routine, flag respect and crufty linking flag removal.
 	epatch "${FILESDIR}"/${P}-makefile.patch
 
+	# patches with relative paths will fail in the future
+	cd ..
+	epatch "${FILESDIR}"/${PN}-1.23-gcc-4.6-fix.patch
+	cd src
+
 	# macos patch
 	sed -i "s:-dynamiclib:-dynamiclib -install_name ${EPREFIX}/usr/$(get_libdir)/libLfunction.dylib:g" \
 		Makefile || die "failed to fix macos dylib"
-	
+
 	# patch for pari-2.4 this pari-2.3 safe.
 	sed -i "s:lgeti:(long)cgeti:g" Lcommandline_elliptic.cc || die "sed for lgeti failed"
 
@@ -62,7 +67,7 @@ src_prepare() {
 	if ( use pari || use pari24 ) ; then
 		export PARI_DEFINE=-DINCLUDE_PARI
 	fi
-	
+
 	if [[ ${CHOST} == *-darwin* ]] ; then
 		sed -i "s:.so:.dylib:g" Makefile || die "sed for macos failed"
 	fi
