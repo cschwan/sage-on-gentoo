@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
-EAPI="3"
+EAPI="4"
 
 inherit eutils flag-o-matic toolchain-funcs versionator multilib
 
@@ -31,7 +31,7 @@ pkg_setup() {
 
 src_prepare() {
 	# overwrite Makefile
-	cp ../patch/Makefile .
+	cp ../patch/Makefile . || die "failed to copy Makefile"
 
 	# fix QA Notice: [..] runtime text relocations
 	append-cflags -fPIC
@@ -50,11 +50,11 @@ src_prepare() {
 }
 
 src_test() {
-	PATH="$PATH:." emake test || die "failed to test cliquer"
+	PATH="$PATH:." emake test
 }
 
 src_install() {
 	insinto /usr/include/cliquer
-	doins cl.h cliquer.h cliquerconf.h graph.h misc.h reorder.h set.h || die
-	dolib libcliquer$(get_libname) || die
+	doins cl.h cliquer.h cliquerconf.h graph.h misc.h reorder.h set.h
+	dolib libcliquer$(get_libname)
 }
