@@ -2,6 +2,10 @@
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  06 May 2011; Christopher Schwan <cschwan@students.uni-mainz.de>
+  zn_poly-0.9-r3.ebuild:
+  Migrate to EAPI 4
+
   07 Jan 2011; François Bissey <f.r.bissey@massey.ac.nz>
   zn_poly-0.9-r3.ebuild:
   keyword x86-macos :)

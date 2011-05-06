@@ -2,9 +2,9 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
-EAPI="3"
+EAPI="4"
 
-inherit eutils flag-o-matic multilib
+inherit eutils flag-o-matic multilib toolchain-funcs
 
 DESCRIPTION="A library for polynomial arithmetic"
 HOMEPAGE="http://www.cims.nyu.edu/~harvey/code/zn_poly/"
@@ -13,7 +13,7 @@ SRC_URI="http://www.cims.nyu.edu/~harvey/code/zn_poly/releases/${P}.tar.gz"
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64 ~x86 ~amd64-linux ~x86-linux ~x86-macos"
-IUSE="mpir"
+IUSE=""
 
 RESTRICT="mirror"
 
@@ -58,14 +58,14 @@ src_compile() {
 
 	# make shared object only
 	if  [[ ${CHOST} == *-darwin* ]] ; then
-		emake libzn_poly.dylib || die
+		emake CC=$(tc-getCC) libzn_poly.dylib
 	else
-		emake lib${P}.so || die
+		emake CC=$(tc-getCC) lib${P}.so
 	fi
 }
 
 src_test() {
-	emake test/test || die
+	emake test/test
 
 	# run every test available - "make test" does not do this
 	test/test all || die "tests failed"
@@ -73,11 +73,12 @@ src_test() {
 
 src_install() {
 	if  [[ ${CHOST} == *-darwin* ]] ; then
-		dolib.so libzn_poly.dylib || die
+		dolib.so libzn_poly.dylib
 	else
-		dolib.so lib${PN}.so lib${P}.so || die
+		dolib.so lib${PN}.so lib${P}.so
 	fi
-	dodoc CHANGES || die
+
+	dodoc CHANGES
 	insinto /usr/include/zn_poly
-	doins include/wide_arith.h include/zn_poly.h || die
+	doins include/wide_arith.h include/zn_poly.h
 }
