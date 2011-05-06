@@ -86,7 +86,7 @@ src_compile(){
 		PYINSTALLPREFIX="${ED}"$(python_get_sitedir)
 		INSTALLDIR="${ED}"/usr/share/polybori
 	)
-	
+
 	# extra configuration for macos 
 	# FIXME: don't know how to deal properly with versionned libraries with install_name so dropping it.
 	if [[ ${CHOST} == *-darwin* ]] ; then

@@ -1,8 +1,8 @@
-# Copyright 1999-2010 Gentoo Foundation
+# Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
-EAPI="3"
+EAPI="4"
 
 inherit eutils versionator multilib
 
@@ -24,6 +24,8 @@ DEPEND="${RDEPEND}"
 
 S="${WORKDIR}"
 
+DOCS=( README )
+
 src_prepare() {
 	# symmetrica by itself is just a bunch of files and a few headers plus
 	# documentation that you can use as you wish in your programs. For sage and
@@ -39,12 +41,10 @@ src_prepare() {
 }
 
 src_install() {
-	emake DESTDIR="${ED}" install LIBDIR=$(get_libdir) || die "make install failed"
-
-	dodoc README || die "dodoc failed"
+	default_src_install
 
 	# symmetrica's documentation are just text files with a ".doc" extension.
 	if use doc ; then
-		dodoc *.doc || die "dodoc failed"
+		dodoc *.doc
 	fi
 }

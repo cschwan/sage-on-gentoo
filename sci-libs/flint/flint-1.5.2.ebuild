@@ -66,7 +66,7 @@ src_test() {
 	fi
 }
 
-src_install(){
+src_install() {
 	dolib.so libflint$(get_libname)
 
 	insinto /usr/include/FLINT

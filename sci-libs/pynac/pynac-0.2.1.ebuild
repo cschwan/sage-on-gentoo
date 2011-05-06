@@ -33,4 +33,3 @@ pkg_setup() {
 	python_set_active_version 2.6
 	python_pkg_setup
 }
-
