@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
-EAPI="3"
+EAPI="4"
 
 inherit autotools-utils
 
@@ -34,7 +34,7 @@ src_prepare() {
 
 src_configure() {
 	myeconfargs=(
-		--with-default=${EPREFIX}/usr
+		--with-default="${EPREFIX}"/usr
 	)
- 	autotools-utils_src_configure
+	autotools-utils_src_configure
 }
