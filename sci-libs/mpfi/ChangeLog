@@ -1,6 +1,10 @@
 # ChangeLog for sci-libs/mpfi
-# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
+
+  06 May 2011; Christopher Schwan <cschwan@students.uni-mainz.de>
+  mpfi-1.4.ebuild, mpfi-1.5.ebuild:
+  Migrate to EAPI 4
 
 *mpfi-1.5 (21 Nov 2010)
 
