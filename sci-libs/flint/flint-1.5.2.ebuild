@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
-EAPI="3"
+EAPI="4"
 
 inherit eutils multilib toolchain-funcs
 
@@ -49,34 +49,34 @@ src_compile() {
 		FLINT_NTL_LIB_DIR="${EPREFIX}"/usr/$(get_libdir)
 	)
 
-	emake "${flint_flags[@]}" library || die
+	emake "${flint_flags[@]}" library
 
 	if use qs ; then
-		emake "${flint_flags[@]}" QS || die
+		emake "${flint_flags[@]}" QS
 	fi
 }
 
 src_test() {
-	emake "${flint_flags[@]}" check || die
+	emake "${flint_flags[@]}" check
 
 	if use ntl ; then
-		emake "${flint_flags[@]}" NTL-interface-test || die
+		emake "${flint_flags[@]}" NTL-interface-test
 
 		./NTL-interface-test || die "failed to run ntl interface test"
 	fi
 }
 
 src_install(){
-	dolib.so libflint$(get_libname) || die
+	dolib.so libflint$(get_libname)
 
 	insinto /usr/include/FLINT
-	doins *.h || die
+	doins *.h
 
 	if use qs ; then
-		dobin mpQS || die
+		dobin mpQS
 	fi
 
 	if use doc ; then
-		doins doc/*.pdf || die
+		doins doc/*.pdf
 	fi
 }
