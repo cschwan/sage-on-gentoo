@@ -30,7 +30,7 @@ src_prepare() {
 	# symmetrica by itself is just a bunch of files and a few headers plus
 	# documentation that you can use as you wish in your programs. For sage and
 	# ease of use we make it into a library with the following makefile
-	# (developped by F. Bissey and T. Abbott (sage on debian).
+	# (developed by F. Bissey and T. Abbott (sage on debian)).
 	cp "${FILESDIR}"/makefile "${S}"/makefile
 
 	# fix macros.h - does not include def.h which results in INT not defined
@@ -41,6 +41,8 @@ src_prepare() {
 }
 
 src_install() {
+	export LIBDIR=$(get_libdir)
+
 	default_src_install
 
 	# symmetrica's documentation are just text files with a ".doc" extension.

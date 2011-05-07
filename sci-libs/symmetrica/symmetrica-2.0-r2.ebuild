@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
-EAPI="3"
+EAPI="4"
 
 inherit eutils multilib toolchain-funcs versionator
 
@@ -25,15 +25,19 @@ DEPEND="${RDEPEND}"
 
 S="${WORKDIR}"
 
+DOCS=( README )
+
 src_prepare() {
 	# symmetrica by itself is just a bunch of files and a few headers plus
 	# documentation that you can use as you wish in your programs. For sage and
 	# ease of use we make it into a library with the following makefile
-	# (developped by F. Bissey and T. Abbott (sage on debian).
+	# (developed by F. Bissey and T. Abbott (sage on debian)).
 	if  [[ ${CHOST} == *-darwin* ]] ; then
-		cp "${FILESDIR}"/makefile-macos "${S}"/makefile || die "faile to copy makefile"
+		cp "${FILESDIR}"/makefile-macos "${S}"/makefile \
+			|| die "faile to copy makefile"
 	else
-		cp "${FILESDIR}"/makefile "${S}"/makefile || die "faile to copy makefile"
+		cp "${FILESDIR}"/makefile "${S}"/makefile \
+			|| die "faile to copy makefile"
 	fi
 
 	# fix macros.h - does not include def.h which results in INT not defined
@@ -49,17 +53,17 @@ src_prepare() {
 }
 
 src_compile() {
-	# set cc to make symmetrica work with ccache
-	emake CC=$(tc-getCC) LIBDIR=$(get_libdir) sharedlib || die
+	# set CC to make symmetrica work with ccache
+	emake CC=$(tc-getCC) sharedlib
 }
 
 src_install() {
-	emake DESTDIR="${ED}" LIBDIR=$(get_libdir) install || die
+	export LIBDIR=$(get_libdir)
 
-	dodoc README || die
+	default_src_install
 
-	# symmetrica's documentation are just text files with a ".doc" extension
+	# symmetrica's documentation are just text files with a ".doc" extension.
 	if use doc ; then
-		dodoc *.doc || die
+		dodoc *.doc
 	fi
 }
