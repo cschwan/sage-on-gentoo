@@ -1,8 +1,8 @@
-# Copyright 1999-2010 Gentoo Foundation
+# Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
-EAPI="3"
+EAPI="4"
 
 inherit eutils flag-o-matic versionator
 
@@ -34,10 +34,10 @@ src_prepare() {
 src_compile() {
 	append-cflags -DLARGE_MEM -DVERBOSE
 
-	emake CFLAGS="${CFLAGS}" all || die
+	emake CC="$(tc-getCC)" CFLAGS="${CFLAGS}" all
 }
 
 src_install() {
-	dobin dikcube size222 size333c sizesquare sizedom sizekoc1 sizekoc2 || die
-	dodoc README || die
+	dobin dikcube size222 size333c sizesquare sizedom sizekoc1 sizekoc2
+	dodoc README
 }
