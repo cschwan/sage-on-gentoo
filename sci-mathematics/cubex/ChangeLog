@@ -1,6 +1,10 @@
 # ChangeLog for sci-mathematics/cubex
-# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
+
+  08 May 2011; Christopher Schwan <cschwan@students.uni-mainz.de>
+  cubex-20060128.ebuild:
+  Migrate to EAPI 4
 
   08 Sep 2010; François Bissey <f.r.bissey@massey.ac.nz> metadata.xml:
   fix manifest

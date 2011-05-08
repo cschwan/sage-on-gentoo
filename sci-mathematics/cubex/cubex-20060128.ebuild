@@ -1,16 +1,16 @@
-# Copyright 1999-2010 Gentoo Foundation
+# Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
-EAPI="3"
+EAPI="4"
 
-inherit eutils
+inherit eutils toolchain-funcs
 
 MY_PN="solver"
 
 DESCRIPTION="An non-optimal 3x3x3 rubik's cube solver"
 HOMEPAGE="http://www.wrongway.org/?rubiksource"
-SRC_URI="http://www.wrongway.org/work/${MY_PN}.tar.gz"
+SRC_URI="http://www.wrongway.org/work/${MY_PN}.tar.gz -> ${P}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
@@ -29,10 +29,11 @@ src_prepare() {
 }
 
 src_compile() {
-	emake CFLAGS="${CFLAGS}" LFLAGS="${LDFLAGS}" || die
+	emake CC="$(tc-getCXX)" LINK="$(tc-getCXX)" CFLAGS="${CFLAGS}" \
+		LFLAGS="${LDFLAGS}"
 }
 
 src_install() {
-	dobin cubex || die
-	dodoc readme.txt || die
+	dobin cubex
+	dodoc readme.txt
 }
