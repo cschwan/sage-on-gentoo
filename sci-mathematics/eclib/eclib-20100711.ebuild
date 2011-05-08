@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
-EAPI="3"
+EAPI="4"
 
 inherit eutils versionator toolchain-funcs multilib prefix
 
@@ -33,6 +33,7 @@ src_prepare() {
 	epatch "${FILESDIR}"/${P}-makefile.patch.bz2
 	epatch "${FILESDIR}"/${P}-makefile.dynamic.patch.bz2
 	eprefixify Makefile.dynamic
+
 	sed -i -e "s|@LIB_DIR@|$(get_libdir)|g" Makefile.dynamic
 	epatch "${FILESDIR}"/${P}-g0n_makefile.patch.bz2
 	epatch "${FILESDIR}"/${P}-procs_makefile.patch.bz2
@@ -56,25 +57,26 @@ src_prepare() {
 		sed -i "s:/usr/local/bin/gp:${EPREFIX}/usr/bin/gp:" \
 			procs/gpslave.cc || die "failed to set the right path for pari/gp"
 	fi
+
 	export PARI_PREFIX="${EPREFIX}"/usr
 	export NTL_PREFIX="${EPREFIX}"/usr
 }
 
 src_compile() {
 	if [[ ${CHOST} == *-darwin* ]] ; then
-		emake CXX=$(tc-getCXX) dylib || die
+		emake CXX=$(tc-getCXX) dylib
 	else
-		emake CXX=$(tc-getCXX) so || die
+		emake CXX=$(tc-getCXX) so
 	fi
 }
 
 src_install() {
-	dobin bin/* || die
-	dolib.so lib/*$(get_libname)* || die
+	dobin bin/*
+	dolib.so lib/*$(get_libname)*
 	insinto /usr/include/eclib
-	doins include/* || die
+	doins include/*
 }
 
 src_test() {
-	emake allcheck || die
+	emake allcheck
 }
