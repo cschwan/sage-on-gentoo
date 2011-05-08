@@ -1,8 +1,8 @@
-# Copyright 1999-2010 Gentoo Foundation
+# Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
-EAPI="3"
+EAPI="4"
 
 inherit autotools-utils toolchain-funcs eutils
 
@@ -52,8 +52,6 @@ src_prepare() {
 }
 
 src_configure() {
-	# TODO: add other configure options ?
-	# TODO: support maple, lidia, saclib ?
 	# FIXME: using external expat breaks the tests and various other components
 	# TODO: documentation does not work
 
