@@ -1,8 +1,8 @@
-# Copyright 1999-2010 Gentoo Foundation
+# Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
-EAPI="3"
+EAPI="4"
 
 inherit base flag-o-matic toolchain-funcs
 
@@ -25,7 +25,7 @@ RDEPEND="${DEPEND}"
 S="${WORKDIR}/${PN}"
 
 src_compile() {
-	# since we are replacing compiler flags, add chomp' one
+	# since we are replacing compiler flags, add chomp's one
 	append-cxxflags -ansi -pedantic -Wall
 
 	# circumvent parallel build failure and use our toolchain
@@ -34,5 +34,5 @@ src_compile() {
 }
 
 src_install() {
-	dobin bin/* || die
+	dobin bin/*
 }

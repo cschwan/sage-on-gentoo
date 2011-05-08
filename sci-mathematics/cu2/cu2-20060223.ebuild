@@ -1,8 +1,10 @@
-# Copyright 1999-2010 Gentoo Foundation
+# Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
-EAPI="3"
+EAPI="4"
+
+inherit toolchain-funcs
 
 MY_PN="${PN}-src"
 
@@ -23,10 +25,11 @@ RDEPEND="${DEPEND}"
 S="${WORKDIR}/${PN}"
 
 src_compile() {
-	emake CFLAGS="${CFLAGS}" LFLAGS="${LDFLAGS}" || die
+	emake CPP="$(tc-getCXX)" LINK="$(tc-getCXX)" CFLAGS="${CFLAGS}" \
+		LFLAGS="${LDFLAGS}"
 }
 
 src_install() {
-	dobin cu2 || die
-	dodoc readme.txt || die
+	dobin cu2
+	dodoc readme.txt
 }
