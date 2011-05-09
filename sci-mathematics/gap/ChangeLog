@@ -4,7 +4,7 @@
 
 *gap-4.4.12-r2 (09 Feb 2011)
 
-  09 Feb 2011; François Bissey <francois.bissey@canterbury.ac.nz> -gap-4.4.12-r1.ebuild,
+  09 Feb 2011; FranÃ§ois Bissey <francois.bissey@canterbury.ac.nz> -gap-4.4.12-r1.ebuild,
   +gap-4.4.12-r2.ebuild, +files/gap-4.4.12-sage-strict_aliasing.patch,
   metadata.xml:
   Include patch for gcc-4.5.2 and get patch "parity" with sage.

@@ -6,15 +6,15 @@
   polybori-0.6.5-r2.ebuild:
   Fix dependency on m4ri - polybori does not build with version 20100817
 
-  04 May 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  04 May 2011; FranÃ§ois Bissey <francois.bissey@canterbury.ac.nz>
   -polybori-0.6.4-r1.ebuild, -polybori-0.6.5.ebuild, -polybori-0.6.5-r1.ebuild:
   drop old
 
-  03 May 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  03 May 2011; FranÃ§ois Bissey <francois.bissey@canterbury.ac.nz>
   polybori-0.7.ebuild:
   Work on 0.7 for macos.
 
-  14 Apr 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  14 Apr 2011; FranÃ§ois Bissey <francois.bissey@canterbury.ac.nz>
   polybori-0.7.ebuild:
   Make polybori-0.7 use python-2.7. scons blows...
 

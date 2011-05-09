@@ -2,22 +2,22 @@
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
-  04 May 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  04 May 2011; FranÃ§ois Bissey <francois.bissey@canterbury.ac.nz>
   -files/sage-notebook-0.7.5.1-fix-deprecated-module.patch,
   -sage-notebook-0.8.10-r1.ebuild:
   drop old
 
-  13 Apr 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  13 Apr 2011; FranÃ§ois Bissey <francois.bissey@canterbury.ac.nz>
   sage-notebook-0.8.14.ebuild:
   darn the twistd patch also needs rebasing.
 
-  13 Apr 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  13 Apr 2011; FranÃ§ois Bissey <francois.bissey@canterbury.ac.nz>
   sage-notebook-0.8.14.ebuild:
   Remove pid patch from 0.8.14 until it is rebased.
 
 *sage-notebook-0.8.14 (13 Apr 2011)
 
-  13 Apr 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  13 Apr 2011; FranÃ§ois Bissey <francois.bissey@canterbury.ac.nz>
   -sage-notebook-0.8.12.ebuild, +sage-notebook-0.8.14.ebuild:
   bump to 0.8.14 for alpha4
 

@@ -2,7 +2,7 @@
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
-  20 Mar 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  20 Mar 2011; FranÃ§ois Bissey <francois.bissey@canterbury.ac.nz>
   pari-2.4.3.ebuild, pari-2.4.3-r1.ebuild:
   x11-libs/fltk SLOTMOVE 1.1 -> 1 adjust dependencies accordingly
 

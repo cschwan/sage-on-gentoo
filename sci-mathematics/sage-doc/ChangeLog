@@ -2,34 +2,34 @@
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
-  04 May 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  04 May 2011; FranÃ§ois Bissey <francois.bissey@canterbury.ac.nz>
   -sage-doc-4.6.1.ebuild:
   drop old
 
-  26 Apr 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  26 Apr 2011; FranÃ§ois Bissey <francois.bissey@canterbury.ac.nz>
   -files/sage-doc-scipy-0.8.patch, -files/sage-doc-cvxopt-1.1.2.patch:
   prune more patches
 
 *sage-doc-4.7_rc0 (26 Apr 2011)
 
-  26 Apr 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  26 Apr 2011; FranÃ§ois Bissey <francois.bissey@canterbury.ac.nz>
   -sage-doc-4.7_alpha5.ebuild, +sage-doc-4.7_rc0.ebuild:
   rc0
 
 *sage-doc-4.7_alpha5 (20 Apr 2011)
 
-  20 Apr 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  20 Apr 2011; FranÃ§ois Bissey <francois.bissey@canterbury.ac.nz>
   -sage-doc-4.7_alpha4.ebuild, +sage-doc-4.7_alpha5.ebuild:
   alpha5
 
-  13 Apr 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  13 Apr 2011; FranÃ§ois Bissey <francois.bissey@canterbury.ac.nz>
   -files/trac_10039_ppl-doc.patch, -sage-doc-4.7_alpha3.ebuild,
   +sage-doc-4.7_alpha4.ebuild, metadata.xml:
   Remove experimental flag from metadata
 
 *sage-doc-4.7_alpha4 (13 Apr 2011)
 
-  13 Apr 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  13 Apr 2011; FranÃ§ois Bissey <francois.bissey@canterbury.ac.nz>
   -files/trac_10039_ppl-doc.patch, -sage-doc-4.7_alpha3.ebuild,
   +sage-doc-4.7_alpha4.ebuild:
   alpha4
