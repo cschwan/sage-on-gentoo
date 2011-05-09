@@ -1,8 +1,8 @@
-# Copyright 1999-2010 Gentoo Foundation
+# Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
-EAPI="3"
+EAPI="4"
 
 inherit autotools-utils
 
@@ -26,7 +26,8 @@ DOCS=( ChangeLog NEWS README README.lib TODO )
 src_prepare() {
 	# TODO: report problem to upstream
 	if use openmp ; then
-		sed -i "s:libecm_la_LIBADD = :libecm_la_LIBADD = -lgomp :" Makefile.am
+		sed -i "s:libecm_la_LIBADD = :libecm_la_LIBADD = -lgomp :" Makefile.am \
+			|| die "failed to fix Makefile.am"
 	fi
 
 	eautoreconf
