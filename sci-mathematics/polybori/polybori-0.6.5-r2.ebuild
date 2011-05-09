@@ -24,7 +24,7 @@ CDEPEND=">=dev-libs/boost-1.34.1[python]
 	dev-python/ipython
 	gd? ( media-libs/gd )"
 DEPEND="${CDEPEND}
-	>=sci-libs/m4ri-20090512
+	<=sci-libs/m4ri-20100701
 	doc? (
 		dev-tex/tex4ht
 		app-doc/doxygen
