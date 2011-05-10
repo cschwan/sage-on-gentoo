@@ -59,6 +59,9 @@ src_prepare() {
 	sed -i "s:DevelInstPath('lib'):DevelInstPath('$(get_libdir)'):g" \
 		SConstruct || die "failed patch library path"
 
+	# remove automatic -O3
+	sed -i "s:, \"-O3\",:,:" SConstruct
+
 	# patch discused in trac #10797 to be fixed in a later version
 	epatch "${FILESDIR}"/pbori_routines_misc.h.patch
 }

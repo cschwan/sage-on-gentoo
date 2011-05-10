@@ -2,6 +2,10 @@
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  10 May 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  polybori-0.7.ebuild:
+  Remove -O3 from the provided CFLAGS
+
   09 May 2011; Christopher Schwan <cschwan@students.uni-mainz.de>
   polybori-0.6.5-r2.ebuild:
   Fix dependency on m4ri - polybori does not build with version 20100817
