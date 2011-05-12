@@ -119,7 +119,7 @@ src_install() {
 		|| die "failed to remove static libraries"
 
 	# fixing flags.conf
-	sed -i "s:${ED}::" ${ED}/usr/share/polybori/flags.conf || die
+	sed -i "s:${D}::" ${ED}/usr/share/polybori/flags.conf || die
 
 	# fixing install names on OS X
 	if [[ ${CHOST} == *-darwin* ]] ; then
