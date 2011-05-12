@@ -3,16 +3,25 @@
 # $Header: $
 
   12 May 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  +files/polybori-m4ri20100817.patch, polybori-0.7.1.ebuild:
+  Make the patch likeable to patch [original is hg patch without git
+  compatibility]
+
+  12 May 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  +files/polybori-m4ri20100817.patch, polybori-0.7.1.ebuild:
+  Add new upstream patch for m4ri-20100817
+
+  12 May 2011; François Bissey <francois.bissey@canterbury.ac.nz>
   polybori-0.7.1.ebuild:
   let's not chop the prefix in flags.conf
 
 *polybori-0.7.1 (12 May 2011)
 
-  12 May 2011; Fran�ois Bissey <francois.bissey@canterbury.ac.nz>
+  12 May 2011; François Bissey <francois.bissey@canterbury.ac.nz>
   +polybori-0.7.1.ebuild, +files/polybori-0.7.1-m4ri-twopow.patch:
   Bump to 0.7.1 with compatibility fix for latest m4ri, new stuff for macos
 
-  10 May 2011; Fran�ois Bissey <francois.bissey@canterbury.ac.nz>
+  10 May 2011; François Bissey <francois.bissey@canterbury.ac.nz>
   polybori-0.7.ebuild:
   Remove -O3 from the provided CFLAGS
 

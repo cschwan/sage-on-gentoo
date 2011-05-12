@@ -61,6 +61,7 @@ src_prepare() {
 
 	# patch for compatibility with >=m4ri-20100817
 	epatch "${FILESDIR}"/${PN}-0.7.1-m4ri-twopow.patch
+	epatch "${FILESDIR}"/${PN}-m4ri20100817.patch
 }
 
 src_compile(){

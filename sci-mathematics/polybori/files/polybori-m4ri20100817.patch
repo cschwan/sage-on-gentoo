@@ -1,0 +1,23 @@
+--- PyPolyBoRi/main_wrapper.cc.orig	2011-05-13 11:04:19.612849272 +1200
++++ PyPolyBoRi/main_wrapper.cc	2011-05-13 11:08:42.808771384 +1200
+@@ -22,8 +22,7 @@
+ #ifdef HAVE_M4RI
+ #define PACKED 1
+ extern "C"{
+-#include "m4ri/packedmatrix.h"
+-#include "m4ri/grayflex.h"
++#include "m4ri/m4ri.h"
+ }
+ 
+ #endif
+--- groebner/src/fglm.cc.orig	2011-05-13 11:09:13.628005761 +1200
++++ groebner/src/fglm.cc	2011-05-13 11:09:26.711256224 +1200
+@@ -10,7 +10,7 @@
+ #include "nf.h"
+ #include "interpolate.h"
+ extern "C" {
+-#include <m4ri/packedmatrix.h>
++#include <m4ri/m4ri.h>
+ }
+ 
+ using namespace std;
