@@ -3,6 +3,10 @@
 # $Header: $
 
   12 May 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  polybori-0.7.1.ebuild:
+  One last change for flags.conf on prefix
+
+  12 May 2011; François Bissey <francois.bissey@canterbury.ac.nz>
   +files/polybori-m4ri20100817.patch, polybori-0.7.1.ebuild:
   Make the patch likeable to patch [original is hg patch without git
   compatibility]
