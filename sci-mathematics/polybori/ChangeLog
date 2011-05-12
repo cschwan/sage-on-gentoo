@@ -2,6 +2,12 @@
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*polybori-0.7.1 (12 May 2011)
+
+  12 May 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  +polybori-0.7.1.ebuild, +files/polybori-0.7.1-m4ri-twopow.patch:
+  Bump to 0.7.1 with compatibility fix for latest m4ri, new stuff for macos
+
   10 May 2011; François Bissey <francois.bissey@canterbury.ac.nz>
   polybori-0.7.ebuild:
   Remove -O3 from the provided CFLAGS

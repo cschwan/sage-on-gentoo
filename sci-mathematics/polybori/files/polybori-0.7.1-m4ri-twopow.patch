@@ -1,0 +1,23 @@
+--- groebner/src/nf.cc.orig	2011-05-12 14:53:31.949112092 +1200
++++ groebner/src/nf.cc	2011-05-12 14:56:24.295445897 +1200
+@@ -63,7 +63,7 @@
+ 
+ static int log2_floor(int n){
+     int i;
+-    for(i=0;TWOPOW(i)<=n;i++){}
++    for(i=0;__M4RI_TWOPOW(i)<=n;i++){}
+     return i-1;
+ }
+ static int optimal_k_for_multiplication(int a,int b,int c,const GroebnerStrategy& strat){
+--- groebner/src/nf.h.orig	2011-05-12 14:54:01.387463660 +1200
++++ groebner/src/nf.h	2011-05-12 14:57:39.935192192 +1200
+@@ -13,6 +13,9 @@
+ #if HAVE_M4RI
+ extern "C"{
+ #include "m4ri/m4ri.h"
++#ifndef __M4RI_TWOPOW
++#define __M4RI_TWOPOW TWOPOW
++#endif
+ }
+ #endif
+ #ifndef PBORI_GB_NF_H
