@@ -395,44 +395,6 @@ diff --git a/sage/gsl/probability_distribution.pyx b/sage/gsl/probability_distri
      """
  
  
-diff --git a/sage/interfaces/maxima.py b/sage/interfaces/maxima.py
---- a/sage/interfaces/maxima.py
-+++ b/sage/interfaces/maxima.py
-@@ -128,7 +128,7 @@
- 
-     sage: a = maxima('(1 + sqrt(2))^5')
-     sage: float(a)
--    82.012193308819747
-+    82.01219330881975
-     sage: a.numer()
-     82.01219330881975
- 
-diff --git a/sage/interfaces/maxima_abstract.py b/sage/interfaces/maxima_abstract.py
---- a/sage/interfaces/maxima_abstract.py
-+++ b/sage/interfaces/maxima_abstract.py
-@@ -627,7 +627,7 @@
-             sage: t(2)
-              sin(2)
-             sage: float(t(2))
--            0.90929742682568171
-+            0.9092974268256817
-             sage: loads(t.dumps())
-             gamma(x)*sin(x)
-         """
-@@ -1592,11 +1592,11 @@
-         EXAMPLES::
-         
-             sage: float(maxima("3.14"))
--            3.1400000000000001
-+            3.14
-             sage: float(maxima("1.7e+17"))
-             1.7e+17
-             sage: float(maxima("1.7e-17"))
--            1.6999999999999999e-17
-+            1.7e-17
-         """
-         try:
-             return float(repr(self.numer()))
 diff --git a/sage/interfaces/r.py b/sage/interfaces/r.py
 --- a/sage/interfaces/r.py
 +++ b/sage/interfaces/r.py

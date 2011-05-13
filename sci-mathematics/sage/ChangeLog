@@ -3,6 +3,10 @@
 # $Header: $
 
   13 May 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  files/trac_9958-fixing_numericalnoise-part1.patch:
+  removing maximalib dependent patch
+
+  13 May 2011; François Bissey <francois.bissey@canterbury.ac.nz>
   +files/trac_9958-fix-groebner.patch, +files/trac_9958-fix-list_index.patch,
   +files/trac_9958-fix-pureAssertError.patch,
   +files/trac_9958-fixing_colorspy.patch,
