@@ -122,13 +122,28 @@ src_install() {
 	# fixing flags.conf
 	sed -i "s:${D}:\/:" ${ED}/usr/share/polybori/flags.conf || die
 
-	# fixing install names on OS X
+	# FIXME: Dynamic libraries now work on linux but are broken on OS X
 	if [[ ${CHOST} == *-darwin* ]] ; then
-		cd "${ED}"/usr/$(get_libdir)
-		for d in *.dylib ; do
-			ebegin "  correcting install_name of ${d}"
-			install_name_tool -id "${EPREFIX}/usr/$(get_libdir)/${d}" "${d}"
-			eend $?
-		done
+		# Removing dynamic libraries keeping only static objects
+		rm "${ED}"/usr/$(get_libdir)/lib*.dylib \
+			|| die "failed to remove static libraries"
+	else
+		# we only need shared objects elsewhere
+		rm "${ED}"/usr/$(get_libdir)/lib*.a \
+		|| die "failed to remove static libraries"
 	fi
+
+	# fixing flags.conf
+	sed -i "s:${D}:\/:" ${ED}/usr/share/polybori/flags.conf || die
+
+	# fixing install names on OS X
+	#if [[ ${CHOST} == *-darwin* ]] ; then
+	#	cd "${ED}"/usr/$(get_libdir)
+	#	for d in *.dylib ; do
+	#		ebegin "  correcting install_name of ${d}"
+	#		install_name_tool -id "${EPREFIX}/usr/$(get_libdir)/${d}" "${d}"
+	#		eend $?
+	#	done
+	#fi
+	# fixing install names on OS X
 }
