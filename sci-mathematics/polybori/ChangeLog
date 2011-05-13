@@ -4,6 +4,10 @@
 
   13 May 2011; François Bissey <francois.bissey@canterbury.ac.nz>
   polybori-0.7.1.ebuild:
+  Fixed double delete of .a files
+
+  13 May 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  polybori-0.7.1.ebuild:
   still no go with dynlib on macos
 
   12 May 2011; François Bissey <francois.bissey@canterbury.ac.nz>

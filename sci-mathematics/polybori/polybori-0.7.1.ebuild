@@ -116,8 +116,8 @@ src_install() {
 	fi
 
 	# we only need shared objects elsewhere
-	rm "${ED}"/usr/$(get_libdir)/lib*.a \
-		|| die "failed to remove static libraries"
+	#rm "${ED}"/usr/$(get_libdir)/lib*.a \
+	#	|| die "failed to remove static libraries"
 
 	# fixing flags.conf
 	sed -i "s:${D}:\/:" ${ED}/usr/share/polybori/flags.conf || die
