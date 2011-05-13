@@ -2,6 +2,10 @@
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  13 May 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  pari-2.4.4.ebuild, +files/pari-2.4.4-mp.c.patch:
+  Fix patch for pari-2.4.4
+
 *pari-2.4.4 (13 May 2011)
 
   13 May 2011; François Bissey <francois.bissey@canterbury.ac.nz>

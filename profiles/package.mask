@@ -7,7 +7,7 @@
 >=sci-mathematics/sage-extcode-4.7_alpha1
 =sci-mathematics/sage-notebook-0.8.12
 >=sci-mathematics/polybori-0.7
-# for sage-4.7.1
+# for sage-4.7.1+ only
 >=sci-mathematics/pari-2.4.4
 # Ongoing work there, do not touch before it has been properly tested.
 =sci-chemistry/jmol-12.0.30

@@ -50,7 +50,7 @@ src_prepare() {
 	# Patch doc makefile for parallel make.
 	epatch "${FILESDIR}/${PN}"-2.4.3-DOC_MAKE.patch
 	# sage error handling patch
-	epatch "${FILESDIR}/${PN}"-2.4.3-errhandling.patch
+	epatch "${FILESDIR}/${PN}"-2.4.4-mp.c.patch
 
 	# disable default building of docs during install
 	sed -i \
