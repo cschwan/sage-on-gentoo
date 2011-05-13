@@ -1,0 +1,61 @@
+# HG changeset patch
+# User Francois Bissey <francois.bissey@canterbury.ac.nz>
+# Date 1303958403 -43200
+# Node ID fe473e0c06b8ca2a0b592665f7ca04be9c81922a
+# Parent  57b3ef5598f1e89a7b396fe97befa20dd5891229
+#9958 various mixed fix
+
+diff --git a/sage/misc/lazy_import.pyx b/sage/misc/lazy_import.pyx
+--- a/sage/misc/lazy_import.pyx
++++ b/sage/misc/lazy_import.pyx
+@@ -351,7 +351,7 @@
+             sage: type(version_info)
+             <type 'sage.misc.lazy_import.LazyImport'>
+             sage: iter(version_info)
+-            <tupleiterator object at ...>
++            <iterator object at ...>
+         """
+         return iter(self._get_object())
+     
+diff --git a/sage/rings/polynomial/polynomial_rational_flint.pyx b/sage/rings/polynomial/polynomial_rational_flint.pyx
+--- a/sage/rings/polynomial/polynomial_rational_flint.pyx
++++ b/sage/rings/polynomial/polynomial_rational_flint.pyx
+@@ -992,7 +992,7 @@
+             sage: (1 + t)^(2^63)
+             Traceback (most recent call last):
+             ...
+-            OverflowError: long int too large to convert to int
++            OverflowError: Python int too large to convert to C long
+         """
+         cdef long n
+         cdef Polynomial_rational_flint res
+diff --git a/sage/rings/real_mpfr.pyx b/sage/rings/real_mpfr.pyx
+--- a/sage/rings/real_mpfr.pyx
++++ b/sage/rings/real_mpfr.pyx
+@@ -2447,7 +2447,7 @@
+         EXAMPLES::
+ 
+             sage: RR(pi).__float__()     
+-            3.1415926535897931
++            3.141592653589793
+             sage: type(RR(pi).__float__())
+             <type 'float'>
+         """
+@@ -2511,7 +2511,7 @@
+         EXAMPLES::
+ 
+             sage: RR(pi).__complex__()   
+-            (3.1415926535897931+0j)
++            (3.141592653589793+0j)
+             sage: type(RR(pi).__complex__())
+             <type 'complex'>
+         """
+@@ -5155,7 +5155,7 @@
+             sage: f(2^75)
+             Traceback (most recent call last):
+             ...
+-            OverflowError: long int too large to convert to int
++            OverflowError: Python int too large to convert to C long
+         
+         ::
+         

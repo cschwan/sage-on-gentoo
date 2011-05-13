@@ -1,0 +1,52 @@
+# HG changeset patch
+# User Francois Bissey <francois.bissey@canterbury.ac.nz>
+# Date 1303957998 -43200
+# Node ID 57b3ef5598f1e89a7b396fe97befa20dd5891229
+# Parent  782a2d778ea9443d6019bc8892774e3e93a1080c
+#9958 fixing pure assertion errors
+
+diff --git a/sage/categories/enumerated_sets.py b/sage/categories/enumerated_sets.py
+--- a/sage/categories/enumerated_sets.py
++++ b/sage/categories/enumerated_sets.py
+@@ -574,7 +574,7 @@
+                 sage: CC._test_enumerated_set_contains()
+                 Traceback (most recent call last):
+                 ...
+-                AssertionError
++                AssertionError: False is not True
+             """
+             tester = self._tester(**options)
+             i = 0
+diff --git a/sage/categories/primer.py b/sage/categories/primer.py
+--- a/sage/categories/primer.py
++++ b/sage/categories/primer.py
+@@ -506,7 +506,7 @@
+       File ".../sage/categories/semigroups.py", line ..., in _test_associativity
+         tester.assert_((x * y) * z == x * (y * z))
+       ...
+-    AssertionError
++    AssertionError: False is not True
+ 
+ 
+ Wrapup:
+diff --git a/sage/structure/sage_object.pyx b/sage/structure/sage_object.pyx
+--- a/sage/structure/sage_object.pyx
++++ b/sage/structure/sage_object.pyx
+@@ -273,7 +273,7 @@
+             sage: CC._test_category()
+             Traceback (most recent call last):
+             ...
+-            AssertionError
++            AssertionError: False is not True
+         """
+         from sage.categories.category import Category
+         from sage.categories.objects import Objects
+@@ -312,7 +312,7 @@
+             sage: tester.assert_(1 == 0)
+             Traceback (most recent call last):
+             ...
+-            AssertionError
++            AssertionError: False is not True
+             sage: tester.assert_(1 == 0, "this is expected to fail")
+             Traceback (most recent call last):
+             ...

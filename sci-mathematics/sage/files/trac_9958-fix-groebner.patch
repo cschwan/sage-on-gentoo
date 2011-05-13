@@ -1,0 +1,19 @@
+# HG changeset patch
+# User Francois Bissey <francois.bissey@canterbury.ac.nz>
+# Date 1304381080 -43200
+# Node ID 0c979775501f08c58a140ab1336d21dff455c386
+# Parent  b05b566573ca5c7982803e5282ab4607193f98b4
+#9958 adjustment to groebner strategy
+
+diff --git a/sage/libs/singular/groebner_strategy.pyx b/sage/libs/singular/groebner_strategy.pyx
+--- a/sage/libs/singular/groebner_strategy.pyx
++++ b/sage/libs/singular/groebner_strategy.pyx
+@@ -128,7 +128,7 @@
+             for j in range(self._strat.sl+1)[::-1]:
+                 pNorm(self._strat.S[j])
+ 
+-        id_Delete(&i, R._ring)
++        #id_Delete(&i, R._ring)
+         kTest(self._strat)
+ 
+     def __dealloc__(self):

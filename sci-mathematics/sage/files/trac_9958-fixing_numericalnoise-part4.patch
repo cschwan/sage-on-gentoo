@@ -1,0 +1,82 @@
+# HG changeset patch
+# User Francois Bissey <francois.bissey@canterbury.ac.nz>
+# Date 1303947692 -43200
+# Node ID 12bee39094fcfcd2816f72ab80640fd03b674136
+# Parent  3b92588cf32615f3a1627fa5fd237699d526ead2
+#9958 fixing numerical noise part 4 - the forgotten one
+
+diff --git a/sage/categories/examples/semigroups.py b/sage/categories/examples/semigroups.py
+--- a/sage/categories/examples/semigroups.py
++++ b/sage/categories/examples/semigroups.py
+@@ -30,7 +30,7 @@
+     This is the semigroup that contains all sorts of objects::
+ 
+         sage: S.some_elements()
+-        [3, 42, 'a', 3.3999999999999999, 'raton laveur']
++        [3, 42, 'a', 3.4, 'raton laveur']
+ 
+     with product rule given by $a \times b = a$ for all $a, b$::
+ 
+@@ -124,7 +124,7 @@
+         EXAMPLES::
+ 
+             sage: Semigroups().example().some_elements()
+-            [3, 42, 'a', 3.3999999999999999, 'raton laveur']
++            [3, 42, 'a', 3.4, 'raton laveur']
+ 
+         """
+         return [self(i) for i in [3, 42, "a", 3.4, "raton laveur"]]
+diff --git a/sage/categories/examples/semigroups_cython.pyx b/sage/categories/examples/semigroups_cython.pyx
+--- a/sage/categories/examples/semigroups_cython.pyx
++++ b/sage/categories/examples/semigroups_cython.pyx
+@@ -193,7 +193,7 @@
+     This is the semigroup which contains all sort of objects::
+ 
+         sage: S.some_elements()
+-        [3, 42, 'a', 3.3999999999999999, 'raton laveur']
++        [3, 42, 'a', 3.4, 'raton laveur']
+ 
+     with product rule is given by $a \times b = a$ for all $a,b$. ::
+ 
+diff --git a/sage/misc/randstate.pyx b/sage/misc/randstate.pyx
+--- a/sage/misc/randstate.pyx
++++ b/sage/misc/randstate.pyx
+@@ -255,10 +255,10 @@
+     sage: with seed(1):
+     ...       rtest();
+     ...       rtest();
+-    (978, 0.184109262667515, -3*x^2 - 1/12, (4,5), [ 0, 1, 1, 0, 0 ], 1161603091, 60359, 0.83350776541997362)  # 32-bit
+-    (138, -0.247578366457583, 2*x - 24, (), [ 1, 1, 1, 0, 1 ], 1966097838, 10234, 0.0033332230808060803)       # 32-bit
+-    (978, 0.184109262667515, -3*x^2 - 1/12, (4,5), [ 0, 1, 1, 0, 0 ], 807447831, 60359, 0.83350776541997362)   # 64-bit
+-    (138, -0.247578366457583, 2*x - 24, (), [ 1, 1, 1, 0, 1 ], 1010791326, 10234, 0.0033332230808060803)       # 64-bit
++    (978, 0.184109262667515, -3*x^2 - 1/12, (4,5), [ 0, 1, 1, 0, 0 ], 1161603091, 60359, 0.8335077654199736)  # 32-bit
++    (138, -0.247578366457583, 2*x - 24, (), [ 1, 1, 1, 0, 1 ], 1966097838, 10234, 0.0033332230808060803)      # 32-bit
++    (978, 0.184109262667515, -3*x^2 - 1/12, (4,5), [ 0, 1, 1, 0, 0 ], 807447831, 60359, 0.8335077654199736)   # 64-bit
++    (138, -0.247578366457583, 2*x - 24, (), [ 1, 1, 1, 0, 1 ], 1010791326, 10234, 0.0033332230808060803)      # 64-bit
+     sage: r2m == rtest()
+     True
+ 
+diff --git a/sage/symbolic/constants.py b/sage/symbolic/constants.py
+--- a/sage/symbolic/constants.py
++++ b/sage/symbolic/constants.py
+@@ -1107,7 +1107,7 @@
+     EXAMPLES::
+     
+         sage: float(twinprime)
+-        0.66016181584686962
++        0.6601618158468696
+         sage: twinprime.n(digits=60)
+         0.660161815846869573927812110014555778432623360284733413319448
+ 
+diff --git a/sage/symbolic/expression.pyx b/sage/symbolic/expression.pyx
+--- a/sage/symbolic/expression.pyx
++++ b/sage/symbolic/expression.pyx
+@@ -5434,7 +5434,7 @@
+             sage: maxima('atan2(-0.7,-0.6)')
+             -2.279422598922567
+             sage: float(SR(0).arctan2(-0.6))
+-            3.1415926535897931
++            3.141592653589793
+             sage: maxima('atan2(0,-0.6)')
+             3.141592653589793
+             sage: float(SR(0).arctan2(0.6))

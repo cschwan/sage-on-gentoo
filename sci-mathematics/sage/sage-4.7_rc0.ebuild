@@ -277,6 +277,17 @@ src_prepare() {
 	epatch "${FILESDIR}"/trac_11244_reenable_deprecationwarnings_in_python27.patch
 	epatch "${FILESDIR}"/trac_11244_fix_combinatpartition_warnings.patch
 	epatch "${FILESDIR}"/trac_11244_fixmoredeprecationswarnings.patch
+	# fixing pure numerical noise
+	epatch "${FILESDIR}"/trac_9958-fixing_numericalnoise-part1.patch
+	epatch "${FILESDIR}"/trac_9958-fixing_numericalnoise-part2.patch
+	epatch "${FILESDIR}"/trac_9958-fixing_numericalnoise-part3.patch
+	epatch "${FILESDIR}"/trac_9958-fixing_numericalnoise-part4.patch
+	# other fixes
+	epatch "${FILESDIR}"/trac_9958-sage_unittest.patch
+	epatch "${FILESDIR}"/trac_9958-fix-list_index.patch
+	epatch "${FILESDIR}"/trac_9958-fix-pureAssertError.patch
+	epatch "${FILESDIR}"/trac_9958-mixedfix.patch
+	epatch "${FILESDIR}"/trac_9958-fixing_colorspy.patch
 
 	epatch "${FILESDIR}"/${PN}-4.6.2-gfan-0.5.patch
 

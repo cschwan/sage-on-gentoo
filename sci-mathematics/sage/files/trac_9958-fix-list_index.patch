@@ -1,0 +1,38 @@
+# HG changeset patch
+# User Francois Bissey <francois.bissey@canterbury.ac.nz>
+# Date 1303957653 -43200
+# Node ID 782a2d778ea9443d6019bc8892774e3e93a1080c
+# Parent  767af29c56c0476219fff2eaae7aadcc8616b53d
+#9958 fixing list index
+
+diff --git a/sage/sets/finite_set_map_cy.pyx b/sage/sets/finite_set_map_cy.pyx
+--- a/sage/sets/finite_set_map_cy.pyx
++++ b/sage/sets/finite_set_map_cy.pyx
+@@ -491,13 +491,13 @@
+             ...       fs3.setimage("z", 2)
+             Traceback (most recent call last):
+             ...
+-            ValueError: list.index(x): x not in list
++            ValueError: 'z' is not in list
+ 
+             sage: with fs.clone() as fs3:
+             ...       fs3.setimage(1, 4)
+             Traceback (most recent call last):
+             ...
+-            ValueError: list.index(x): x not in list
++            ValueError: 1 is not in list
+         """
+         parent = self._parent
+         return self._setitem(parent._rank_domain(i), parent._rank_codomain(j))
+diff --git a/sage/structure/list_clone.pyx b/sage/structure/list_clone.pyx
+--- a/sage/structure/list_clone.pyx
++++ b/sage/structure/list_clone.pyx
+@@ -719,7 +719,7 @@
+             sage: c.index(5)
+             Traceback (most recent call last):
+             ...
+-            ValueError: list.index(x): x not in list
++            ValueError: 5 is not in list
+         """
+         if start is None: 
+             return self._list.index(x)

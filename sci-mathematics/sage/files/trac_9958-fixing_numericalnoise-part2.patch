@@ -1,0 +1,718 @@
+# HG changeset patch
+# User Francois Bissey <francois.bissey@canterbury.ac.nz>
+# Date 1303879618 -43200
+# Node ID b3d675577f472b8ae6014c06c926f0f4bb598f8d
+# Parent  8be9360958bf6e982b9ce4578023af3430aa018a
+#9958 fixing numerical noise part 2
+
+diff --git a/sage/calculus/calculus.py b/sage/calculus/calculus.py
+--- a/sage/calculus/calculus.py
++++ b/sage/calculus/calculus.py
+@@ -221,7 +221,7 @@
+     sage: n(z,200)
+     4.6467837624329358733826155674904591885104869874232887508703
+     sage: float(z)
+-    4.6467837624329356
++    4.646783762432936
+ 
+ We test pickling::
+ 
+@@ -642,7 +642,7 @@
+ 
+         sage: f(x) = exp(-sqrt(x))
+         sage: f.nintegral(x, 0, 1)
+-        (0.52848223531423055, 4.163...e-11, 231, 0)
++        (0.5284822353142306, 4.163...e-11, 231, 0)
+ 
+     We can also use the ``numerical_integral`` function,
+     which calls the GSL C library.
+@@ -650,7 +650,7 @@
+     ::
+ 
+         sage: numerical_integral(f, 0, 1)
+-        (0.52848223225314706, 6.83928460...e-07)
++        (0.528482232253147, 6.83928460...e-07)
+ 
+     Note that in exotic cases where floating point evaluation of the
+     expression leads to the wrong value, then the output can be
+@@ -677,7 +677,7 @@
+     Now numerically integrating, we see why the answer is wrong::
+ 
+         sage: f.nintegrate(x,0,1)
+-        (-480.00000000000006, 5.3290705182007538e-12, 21, 0)
++        (-480.00000000000006, 5.329070518200754e-12, 21, 0)
+ 
+     It is just because every floating point evaluation of return -480.0
+     in floating point.
+diff --git a/sage/calculus/test_sympy.py b/sage/calculus/test_sympy.py
+--- a/sage/calculus/test_sympy.py
++++ b/sage/calculus/test_sympy.py
+@@ -21,7 +21,7 @@
+     sage: pi^2
+     pi^2
+     sage: float(pi)
+-    3.1415926535897931
++    3.141592653589793
+     sage: RealField(200)(pi)
+     3.1415926535897932384626433832795028841971693993751058209749
+     sage: float(pi + exp(1))
+diff --git a/sage/combinat/e_one_star.py b/sage/combinat/e_one_star.py
+--- a/sage/combinat/e_one_star.py
++++ b/sage/combinat/e_one_star.py
+@@ -883,9 +883,9 @@
+             sage: p = Patch([Face((0,0,0),t,color) for t in [1,2,3]])
+             sage: p.repaint([(0.9, 0.9, 0.9), (0.65,0.65,0.65), (0.4,0.4,0.4)])
+             sage: for f in p: f.color()
+-            RGB color (0.9000..., 0.9000..., 0.9000...)
+-            RGB color (0.6500..., 0.6500..., 0.6500...)
+-            RGB color (0.4000..., 0.4000..., 0.4000...)
++            RGB color (0.9, 0.9, 0.9)
++            RGB color (0.65, 0.65, 0.65)
++            RGB color (0.4, 0.4, 0.4)
+ 
+         Using a dictionary to color faces according to their type::
+ 
+diff --git a/sage/libs/mpmath/ext_impl.pyx b/sage/libs/mpmath/ext_impl.pyx
+--- a/sage/libs/mpmath/ext_impl.pyx
++++ b/sage/libs/mpmath/ext_impl.pyx
+@@ -1411,7 +1411,7 @@
+         sage: from sage.libs.mpmath.ext_impl import exp_fixed
+         sage: y = exp_fixed(1<<53, 53)
+         sage: float(y) / 2^53
+-        2.7182818284590442
++        2.718281828459044
+ 
+     """
+     cdef Integer v
+diff --git a/sage/libs/mwrank/interface.py b/sage/libs/mwrank/interface.py
+--- a/sage/libs/mwrank/interface.py
++++ b/sage/libs/mwrank/interface.py
+@@ -699,10 +699,10 @@
+ 
+             sage: E = mwrank_EllipticCurve([0, 0, 0, -1002231243161, 0])
+             sage: E.silverman_bound()
+-            18.295452104682472
++            18.29545210468247
+             sage: E = mwrank_EllipticCurve([0,0,1,-7,6])
+             sage: E.silverman_bound()
+-            6.2848333699724028
++            6.284833369972403
+         """
+         return self.__curve.silverman_bound()
+ 
+@@ -1022,7 +1022,7 @@
+             
+             sage: E = mwrank_EllipticCurve([0,0,1,-7,6])
+             sage: E.regulator()
+-            0.41714355875838399
++            0.417143558758384
+         """
+         return self.__mw.regulator()
+ 
+diff --git a/sage/libs/mwrank/mwrank.pyx b/sage/libs/mwrank/mwrank.pyx
+--- a/sage/libs/mwrank/mwrank.pyx
++++ b/sage/libs/mwrank/mwrank.pyx
+@@ -1262,7 +1262,7 @@
+             sage: D2.getbasis()
+             '[[1:-1:1], [-2:3:1], [-14:25:8]]'
+             sage: D2.regulator()
+-            0.41714355875838399
++            0.417143558758384
+         """
+         sig_on()
+         return float(string_sigoff(two_descent_regulator(self.x)))
+diff --git a/sage/libs/pari/gen.pyx b/sage/libs/pari/gen.pyx
+--- a/sage/libs/pari/gen.pyx
++++ b/sage/libs/pari/gen.pyx
+@@ -1763,9 +1763,9 @@
+             sage: g = pari(-1.0)^(1/5); g
+             0.809016994374947 + 0.587785252292473*I
+             sage: g.__complex__()
+-            (0.80901699437494745+0.58778525229247314j)
++            (0.8090169943749475+0.5877852522924731j)
+             sage: complex(g)            
+-            (0.80901699437494745+0.58778525229247314j)
++            (0.8090169943749475+0.5877852522924731j)
+         
+         ::
+         
+diff --git a/sage/numerical/optimize.py b/sage/numerical/optimize.py
+--- a/sage/numerical/optimize.py
++++ b/sage/numerical/optimize.py
+@@ -44,7 +44,7 @@
+         sage: R.<x> = QQ[]
+         sage: f = (x+17)*(x-3)*(x-1/8)^3
+         sage: find_root(f, 0,4)
+-        2.9999999999999951
++        2.999999999999995
+         sage: find_root(f, 0,1)  # note -- precision of answer isn't very good on some machines.
+         0.124999...
+         sage: find_root(f, -20,-10)
+diff --git a/sage/plot/axes.py b/sage/plot/axes.py
+--- a/sage/plot/axes.py
++++ b/sage/plot/axes.py
+@@ -75,7 +75,7 @@
+         sage: A = Axes()
+         doctest:...: DeprecationWarning: The axes module is deprecated; Sage now uses matplotlib constructs for the axes and gridlines.  This module will be removed from a future version of Sage.
+         sage: A._tasteful_ticks(2^(-20*10),2^(-20*1))
+-        ([1.9999999999999999e-07,  3.9999999999999998e-07,  5.9999999999999997e-07,  7.9999999999999996e-07], 1.9999999999999999e-07, 1.9999999999999999e-07)
++        ([2e-07,  4e-07,  6e-07,  8e-07], 2e-07, 2e-07)
+         """
+         minval, maxval = float(minval), float(maxval)
+         absmin, absmax = abs(minval), abs(maxval)
+diff --git a/sage/plot/misc.py b/sage/plot/misc.py
+--- a/sage/plot/misc.py
++++ b/sage/plot/misc.py
+@@ -68,7 +68,7 @@
+         sage: sage.plot.misc.setup_for_eval_on_grid([x+y], [(x,-1,1),(y,-2,2)])
+         ((<sage.ext...>,), [(-1.0, 1.0, 2.0), (-2.0, 2.0, 4.0)])
+         sage: sage.plot.misc.setup_for_eval_on_grid(x+y, [(x,-1,1),(y,-1,1)], plot_points=[4,9])
+-        (<sage.ext...>, [(-1.0, 1.0, 0.66666666666666663), (-1.0, 1.0, 0.25)])
++        (<sage.ext...>, [(-1.0, 1.0, 0.6666666666666666), (-1.0, 1.0, 0.25)])
+         sage: sage.plot.misc.setup_for_eval_on_grid(x+y, [(x,-1,1),(y,-1,1)], plot_points=[4,9,10])
+         Traceback (most recent call last):
+         ...
+diff --git a/sage/plot/plot.py b/sage/plot/plot.py
+--- a/sage/plot/plot.py
++++ b/sage/plot/plot.py
+@@ -984,7 +984,7 @@
+         
+             sage: p = plot(cos, (-3,3))
+             sage: p.axes_width()
+-            0.80000000000000004
++            0.8
+             sage: p.axes_width(10)
+             sage: p.axes_width()
+             10.0
+@@ -3932,9 +3932,9 @@
+         doctest:...: DeprecationWarning: sage.plot.plot.setup_for_eval_on_grid is deprecated.  Please use sage.plot.misc.setup_for_eval_on_grid; note that that function has slightly different calling and return conventions which make it more generally applicable
+         ([<sage.ext... object at ...>],
+          0.5,
+-         0.31415926535897931,
++         0.3141592653589793,
+          (0.0, 5.0),
+-         (0.0, 3.1415926535897931))
++         (0.0, 3.141592653589793))
+ 
+     We always plot at least two points; one at the beginning and one at the end of the ranges.
+ 
+@@ -4022,7 +4022,7 @@
+         sage: adaptive_refinement(sin, (0,0), (pi,0), adaptive_tolerance=0.01, adaptive_recursion=0)
+         []
+         sage: adaptive_refinement(sin, (0,0), (pi,0), adaptive_tolerance=0.01)
+-        [(0.125*pi, 0.38268343236508978), (0.1875*pi, 0.55557023301960218), (0.25*pi, 0.70710678118654746), (0.3125*pi, 0.83146961230254524), (0.375*pi, 0.92387953251128674), (0.4375*pi, 0.98078528040323043), (0.5*pi, 1.0), (0.5625*pi, 0.98078528040323043), (0.625*pi, 0.92387953251128674), (0.6875*pi, 0.83146961230254546), (0.75*pi, 0.70710678118654757), (0.8125*pi, 0.55557023301960218), (0.875*pi, 0.38268343236508989)]
++        [(0.125*pi, 0.3826834323650898), (0.1875*pi, 0.5555702330196022), (0.25*pi, 0.7071067811865475), (0.3125*pi, 0.8314696123025452), (0.375*pi, 0.9238795325112867), (0.4375*pi, 0.9807852804032304), (0.5*pi, 1.0), (0.5625*pi, 0.9807852804032304), (0.625*pi, 0.9238795325112867), (0.6875*pi, 0.8314696123025455), (0.75*pi, 0.7071067811865476), (0.8125*pi, 0.5555702330196022), (0.875*pi, 0.3826834323650899)]
+ 
+     This shows that lowering adaptive_tolerance and raising
+     adaptive_recursion both increase the number of subdivision
+@@ -4109,29 +4109,29 @@
+ 
+         sage: from sage.plot.plot import generate_plot_points
+         sage: generate_plot_points(sin, (0, pi), plot_points=2, adaptive_recursion=0)
+-        [(0.0, 0.0), (3.1415926535897931, 1.2246...e-16)]
++        [(0.0, 0.0), (3.141592653589793, 1.2246...e-16)]
+ 
+         sage: from sage.plot.plot import generate_plot_points
+         sage: generate_plot_points(lambda x: x^2, (0, 6), plot_points=2, adaptive_recursion=0, initial_points = [1,2,3])
+         [(0.0, 0.0), (1.0, 1.0), (2.0, 4.0), (3.0, 9.0), (6.0, 36.0)]
+ 
+         sage: generate_plot_points(sin(x).function(x), (-pi, pi), randomize=False)
+-        [(-3.1415926535897931, -1.2246...e-16), (-2.748893571891069,
+-        -0.3826834323650898...), (-2.3561944901923448, -0.707106781186547...),
++        [(-3.141592653589793, -1.2246...e-16), (-2.748893571891069,
++        -0.3826834323650899), (-2.356194490192345, -0.707106781186547...),
+         (-2.1598449493429825, -0.831469612302545...), (-1.9634954084936207,
+-        -0.92387953251128674), (-1.7671458676442586, -0.98078528040323043),
++        -0.9238795325112867), (-1.7671458676442586, -0.9807852804032304),
+         (-1.5707963267948966, -1.0), (-1.3744467859455345,
+-        -0.98078528040323043), (-1.1780972450961724, -0.92387953251128674),
+-        (-0.98174770424681035, -0.831469612302545...), (-0.78539816339744828,
+-        -0.707106781186547...), (-0.39269908169872414, -0.38268343236508978),
+-        (0.0, 0.0), (0.39269908169872414, 0.38268343236508978),
+-        (0.78539816339744828, 0.707106781186547...), (0.98174770424681035,
+-        0.831469612302545...), (1.1780972450961724, 0.92387953251128674),
+-        (1.3744467859455345, 0.98078528040323043), (1.5707963267948966, 1.0),
+-        (1.7671458676442586, 0.98078528040323043), (1.9634954084936207,
+-        0.92387953251128674), (2.1598449493429825, 0.831469612302545...),
+-        (2.3561944901923448, 0.707106781186547...), (2.748893571891069,
+-        0.3826834323650898...), (3.1415926535897931, 1.2246...e-16)]
++        -0.9807852804032304), (-1.1780972450961724, -0.9238795325112867),
++        (-0.9817477042468103, -0.831469612302545...), (-0.7853981633974483,
++        -0.707106781186547...), (-0.39269908169872414, -0.3826834323650898),
++        (0.0, 0.0), (0.39269908169872414, 0.3826834323650898),
++        (0.7853981633974483, 0.707106781186547...), (0.9817477042468103,
++        0.831469612302545...), (1.1780972450961724, 0.9238795325112867),
++        (1.3744467859455345, 0.9807852804032304), (1.5707963267948966, 1.0),
++        (1.7671458676442586, 0.9807852804032304), (1.9634954084936207,
++        0.9238795325112867), (2.1598449493429825, 0.831469612302545...),
++        (2.356194490192345, 0.707106781186547...), (2.748893571891069,
++        0.3826834323650899), (3.141592653589793, 1.2246...e-16)]
+ 
+     This shows that lowering adaptive_tolerance and raising
+     adaptive_recursion both increase the number of subdivision points.
+diff --git a/sage/plot/plot3d/base.pyx b/sage/plot/plot3d/base.pyx
+--- a/sage/plot/plot3d/base.pyx
++++ b/sage/plot/plot3d/base.pyx
+@@ -1484,8 +1484,8 @@
+             sage: G.scale(4).bounding_box()
+             ((-2.0, -2.0, -2.0), (2.0, 2.0, 2.0))
+             sage: G.rotateZ(pi/4).bounding_box()
+-            ((-0.70710678118654746, -0.70710678118654746, -0.5),
+-             (0.70710678118654746, 0.70710678118654746, 0.5))
++            ((-0.7071067811865475, -0.7071067811865475, -0.5),
++             (0.7071067811865475, 0.7071067811865475, 0.5))
+         """
+         try:
+             return self._bounding_box
+diff --git a/sage/plot/plot3d/index_face_set.pyx b/sage/plot/plot3d/index_face_set.pyx
+--- a/sage/plot/plot3d/index_face_set.pyx
++++ b/sage/plot/plot3d/index_face_set.pyx
+@@ -511,7 +511,7 @@
+             sage: x,y=var('x,y')
+             sage: p=plot3d(sqrt(sin(x)*sin(y)), (x,0,2*pi),(y,0,2*pi))
+             sage: p.bounding_box()
+-            ((0.0, 0.0, -0.0), (6.2831853071795862, 6.2831853071795862, 0.9991889981715697))
++            ((0.0, 0.0, -0.0), (6.283185307179586, 6.283185307179586, 0.9991889981715697))
+         """
+         if self.vcount == 0:
+             return ((0,0,0),(0,0,0))
+diff --git a/sage/plot/plot3d/parametric_surface.pyx b/sage/plot/plot3d/parametric_surface.pyx
+--- a/sage/plot/plot3d/parametric_surface.pyx
++++ b/sage/plot/plot3d/parametric_surface.pyx
+@@ -309,7 +309,7 @@
+             sage: from sage.plot.plot3d.parametric_surface import MobiusStrip
+             sage: M = MobiusStrip(7,3,2)
+             sage: M.bounding_box()
+-            ((-10.0, -7.53907349250478..., -2.9940801852848145), (10.0, 7.5390734925047846, 2.9940801852848145))
++            ((-10.0, -7.53907349250478..., -2.9940801852848145), (10.0, 7.53907349250478..., 2.9940801852848145))
+         """
+         # We must triangulate before computing the bounding box; otherwise
+         # we'll get an empty bounding box, as the bounding box is computed
+diff --git a/sage/plot/plot3d/shapes.pyx b/sage/plot/plot3d/shapes.pyx
+--- a/sage/plot/plot3d/shapes.pyx
++++ b/sage/plot/plot3d/shapes.pyx
+@@ -746,7 +746,7 @@
+             sage: from sage.plot.plot3d.shapes import Sphere
+             sage: Sphere(1).get_grid(100)
+             ([-10.0, ..., 0.0, ..., 10.0],
+-             [0.0, ..., 3.1415926535897931, ..., 0.0])
++             [0.0, ..., 3.141592653589793, ..., 0.0])
+         """
+         cdef int K, u_res, v_res
+         u_res = min(max(int(M_PI*self.radius/ds), 6), 20)
+@@ -811,8 +811,8 @@
+         
+             sage: from sage.plot.plot3d.shapes import Torus
+             sage: Torus(2, 1).get_grid(100)
+-            ([0.0, -1.047..., -3.1415926535897931, ..., 0.0], 
+-             [0.0, 1.047..., 3.1415926535897931, ..., 0.0])
++            ([0.0, -1.047..., -3.141592653589793, ..., 0.0], 
++             [0.0, 1.047..., 3.141592653589793, ..., 0.0])
+         """
+         cdef int k, u_divs, v_divs
+         u_divs = min(max(int(4*M_PI * self.R/ds), 6), 37)
+diff --git a/sage/plot/plot3d/shapes2.py b/sage/plot/plot3d/shapes2.py
+--- a/sage/plot/plot3d/shapes2.py
++++ b/sage/plot/plot3d/shapes2.py
+@@ -811,7 +811,7 @@
+             sage: from sage.plot.plot3d.shapes2 import Line
+             sage: L = Line([(i,i^2-1,-2*ln(i)) for i in [10,20,30]])
+             sage: L.bounding_box()
+-            ((10.0, 99.0, -6.8023947633243109), (30.0, 899.0, -4.6051701859880918))
++            ((10.0, 99.0, -6.802394763324311), (30.0, 899.0, -4.605170185988092))
+         """
+         try:
+             return self.__bounding_box
+diff --git a/sage/rings/complex_number.pyx b/sage/rings/complex_number.pyx
+--- a/sage/rings/complex_number.pyx
++++ b/sage/rings/complex_number.pyx
+@@ -853,7 +853,7 @@
+             sage: a.__abs__()
+             2.23606797749979
+             sage: float(sqrt(2^2 + 1^1))
+-            2.2360679774997898
++            2.23606797749979
+         
+         ::
+         
+diff --git a/sage/rings/contfrac.py b/sage/rings/contfrac.py
+--- a/sage/rings/contfrac.py
++++ b/sage/rings/contfrac.py
+@@ -631,7 +631,7 @@
+             sage: a = CFF(-17/389); a
+             [-1, 1, 21, 1, 7, 2]
+             sage: float(a)
+-            -0.043701799485861177
++            -0.04370179948586118
+         """
+         return float(self._rational_())
+ 
+@@ -747,7 +747,7 @@
+             sage: b.value()
+             4508361/9825745
+             sage: float(b.value()^2 - a)
+-            -5.4514925256726876e-16
++            -5.451492525672688e-16
+             sage: b = a.sqrt(prec=100); b
+             [0, 2, 5, 1, 1, 2, 1, 16, 1, 2, 1, 1, 5, 4, 5, 1, 1, 2, 1, 16, 1, 2, 1, 1, 5, 4, 5, 1, 1, 2, 1, 16, 1, 2, 1, 1, 5]
+             sage: b^2
+diff --git a/sage/rings/integer.pyx b/sage/rings/integer.pyx
+--- a/sage/rings/integer.pyx
++++ b/sage/rings/integer.pyx
+@@ -2954,7 +2954,7 @@
+             sage: n = Integer(17); float(n)
+             17.0
+             sage: n = Integer(902834098234908209348209834092834098); float(n)
+-            9.0283409823490813e+35
++            9.028340982349081e+35
+             sage: n = Integer(-57); float(n)
+             -57.0
+             sage: n.__float__()
+diff --git a/sage/rings/number_field/totallyreal.pyx b/sage/rings/number_field/totallyreal.pyx
+--- a/sage/rings/number_field/totallyreal.pyx
++++ b/sage/rings/number_field/totallyreal.pyx
+@@ -157,7 +157,7 @@
+     EXAMPLES::
+     
+         sage: [sage.rings.number_field.totallyreal.odlyzko_bound_totallyreal(n) for n in range(1,5)]
+-        [1.0, 2.2229999999999999, 3.6099999999999999, 5.0670000000000002]
++        [1.0, 2.223, 3.61, 5.067]
+ 
+     AUTHORS:
+     
+diff --git a/sage/rings/polynomial/real_roots.pyx b/sage/rings/polynomial/real_roots.pyx
+--- a/sage/rings/polynomial/real_roots.pyx
++++ b/sage/rings/polynomial/real_roots.pyx
+@@ -1807,7 +1807,7 @@
+ 
+         sage: from sage.rings.polynomial.real_roots import *
+         sage: max_abs_doublevec(vector(RDF, [0.1, -0.767, 0.3, 0.693]))
+-        0.76700000000000002
++        0.767
+     """
+     cdef numpy.ndarray[double, ndim=1] cd = c._vector_numpy
+ 
+diff --git a/sage/rings/qqbar.py b/sage/rings/qqbar.py
+--- a/sage/rings/qqbar.py
++++ b/sage/rings/qqbar.py
+@@ -452,9 +452,9 @@
+     ...               return None
+     ...       return map(convert_test, all_vals)
+     sage: convert_test_all(float)
+-    [42.0, 3.1428571428571432, 1.6180339887498949, -13.0, 1.6181818181818182, -2.6457513110645907, None]
++    [42.0, 3.1428571428571432, 1.618033988749895, -13.0, 1.6181818181818182, -2.6457513110645907, None]
+     sage: convert_test_all(complex)
+-    [(42+0j), (3.1428571428571432+0j), (1.6180339887498949+0j), (-13+0j), (1.6181818181818182+0j), (-2.6457513110645907+0j), (0.30901699437494745+0.95105651629515364j)]
++    [(42+0j), (3.1428571428571432+0j), (1.618033988749895+0j), (-13+0j), (1.6181818181818182+0j), (-2.6457513110645907+0j), (0.30901699437494745+0.9510565162951536j)]
+     sage: convert_test_all(RDF)
+     [42.0, 3.14285714286, 1.61803398875, -13.0, 1.61818181818, -2.64575131106, None]
+     sage: convert_test_all(CDF)
+@@ -3111,7 +3111,7 @@
+         EXAMPLES::
+ 
+             sage: QQbar(sqrt(2)).__float__()
+-            1.4142135623730949
++            1.414213562373095
+             sage: float(QQbar(-22/7))
+             -3.1428571428571432
+             sage: float(QQbar.zeta(3))
+@@ -3128,7 +3128,7 @@
+         EXAMPLES::
+ 
+             sage: QQbar(sqrt(2)).__complex__()
+-            (1.4142135623730949+0j)
++            (1.414213562373095+0j)
+             sage: complex(QQbar.zeta(3))
+             (-0.5+0.8660254037844386j)
+         """
+@@ -3770,9 +3770,9 @@
+         EXAMPLES::
+ 
+             sage: AA(golden_ratio).__float__()
+-            1.6180339887498949
++            1.618033988749895
+             sage: float(AA(sqrt(11)))
+-            3.3166247903553998
++            3.3166247903554
+         """
+         return float(RR(self))
+ 
+diff --git a/sage/rings/quotient_ring_element.py b/sage/rings/quotient_ring_element.py
+--- a/sage/rings/quotient_ring_element.py
++++ b/sage/rings/quotient_ring_element.py
+@@ -494,7 +494,7 @@
+             sage: R.<x,y> = QQ[]; S.<a,b> = R.quo(x^2 + y^2); type(a)
+             <class 'sage.rings.quotient_ring_element.QuotientRingElement'>
+             sage: float(S(2/3))
+-            0.66666666666666663
++            0.6666666666666666
+             sage: float(a)
+             Traceback (most recent call last):
+             ...
+diff --git a/sage/rings/real_lazy.pyx b/sage/rings/real_lazy.pyx
+--- a/sage/rings/real_lazy.pyx
++++ b/sage/rings/real_lazy.pyx
+@@ -1202,7 +1202,7 @@
+             sage: from sage.rings.real_lazy import LazyConstant
+             sage: a = LazyConstant(RLF, 'pi')
+             sage: float(a)
+-            3.1415926535897931
++            3.141592653589793
+         """
+         interval_field = self._parent.interval_field()
+         return <double>self.eval(interval_field._middle_field())
+diff --git a/sage/structure/coerce_dict.pyx b/sage/structure/coerce_dict.pyx
+--- a/sage/structure/coerce_dict.pyx
++++ b/sage/structure/coerce_dict.pyx
+@@ -51,7 +51,7 @@
+         sage: len(L)
+         1
+         sage: L.stats()             # min, avg, max (bucket length)
+-        (0, 0.032258064516129031, 1)
++        (0, 0.03225806451612903, 1)
+         sage: L.bucket_lens()       # random layout
+         [0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+         sage: for i in range(1000):
+diff --git a/sage/symbolic/constants.py b/sage/symbolic/constants.py
+--- a/sage/symbolic/constants.py
++++ b/sage/symbolic/constants.py
+@@ -546,7 +546,7 @@
+         EXAMPLES::
+         
+             sage: float(pi)
+-            3.1415926535897931
++            3.141592653589793
+         """
+         return math.pi
+ 
+@@ -737,7 +737,7 @@
+         sage: grm + grm
+         sqrt(5)+1
+         sage: float(grm + grm)
+-        3.2360679774997898
++        3.23606797749979
+     """
+     def __init__(self, name='golden_ratio'):
+         """
+@@ -769,9 +769,9 @@
+         EXAMPLES::
+         
+             sage: float(golden_ratio)
+-            1.6180339887498949
++            1.618033988749895
+             sage: golden_ratio.__float__()
+-            1.6180339887498949
++            1.618033988749895
+         """
+         return float(0.5)*(float(1.0)+math.sqrt(float(5.0)))
+ 
+@@ -832,7 +832,7 @@
+         sage: log2
+         log2
+         sage: float(log2)
+-        0.69314718055994529
++        0.6931471805599453
+         sage: RR(log2)
+         0.693147180559945
+         sage: R = RealField(200); R
+@@ -871,9 +871,9 @@
+         EXAMPLES::
+         
+             sage: float(log2)
+-            0.69314718055994529
++            0.6931471805599453
+             sage: log2.__float__()
+-            0.69314718055994529
++            0.6931471805599453
+         """
+         return math.log(2) 
+ 
+@@ -948,7 +948,7 @@
+         EXAMPLES::
+ 
+             sage: float(euler_gamma)
+-            0.57721566490153287
++            0.5772156649015329
+         """
+         return 0.57721566490153286060651209008
+ 
+@@ -1027,7 +1027,7 @@
+         EXAMPLES::
+         
+             sage: float(catalan)
+-            0.91596559417721901
++            0.915965594177219
+         """
+         return 0.91596559417721901505460351493252
+ 
+@@ -1140,7 +1140,7 @@
+         EXAMPLES::
+ 
+             sage: float(twinprime)
+-            0.66016181584686962
++            0.6601618158468696
+         """
+         return 0.66016181584686957392781211001
+ 
+diff --git a/sage/symbolic/expression.pyx b/sage/symbolic/expression.pyx
+--- a/sage/symbolic/expression.pyx
++++ b/sage/symbolic/expression.pyx
+@@ -943,7 +943,7 @@
+             sage: float(SR(12))
+             12.0
+             sage: float(SR(2/3))
+-            0.66666666666666663
++            0.6666666666666666
+             sage: float(sqrt(SR(2)))
+             1.4142135623730951
+             sage: float(x^2 + 1)
+@@ -2366,7 +2366,7 @@
+             sage: cmp(sin(SR(2)), sin(SR(1)))
+             1
+             sage: float(sin(SR(2)))
+-            0.90929742682568171
++            0.9092974268256817
+             sage: float(sin(SR(1)))
+             0.8414709848078965
+         """
+@@ -2439,7 +2439,7 @@
+             sage: int(2)^x
+             2^x
+             sage: float(2.3)^(x^3 - x^2 + 1/3)
+-            2.2999999999999998^(x^3 - x^2 + 1/3)
++            2.3^(x^3 - x^2 + 1/3)
+             sage: complex(1,3)^(sqrt(2))
+             (1+3j)^sqrt(2)
+         """
+@@ -5422,7 +5422,7 @@
+             sage: maxima('atan2(0.7,0.6)')
+             .862170054667226...
+             sage: float(SR(0.7).arctan2(-0.6))
+-            2.2794225989225669
++            2.279422598922567
+             sage: maxima('atan2(0.7,-0.6)')
+             2.279422598922567
+             sage: float(SR(-0.7).arctan2(0.6))
+@@ -5430,7 +5430,7 @@
+             sage: maxima('atan2(-0.7,0.6)')
+             -.862170054667226...
+             sage: float(SR(-0.7).arctan2(-0.6))
+-            -2.2794225989225669
++            -2.279422598922567
+             sage: maxima('atan2(-0.7,-0.6)')
+             -2.279422598922567
+             sage: float(SR(0).arctan2(-0.6))
+@@ -5890,7 +5890,7 @@
+             sage: SR(0.5).log().exp()
+             0.500000000000000
+             sage: math.log(0.5)
+-            -0.69314718055994529
++            -0.6931471805599453
+             sage: plot(lambda x: SR(x).log(), 0.1,10)
+ 
+         To prevent automatic evaluation use the ``hold`` argument::
+@@ -7726,7 +7726,7 @@
+         An example with a square root::
+         
+             sage: f = 1 + x + sqrt(x+2); f.find_root(-2,10)
+-            -1.6180339887498949
++            -1.618033988749895
+         
+         Some examples that Ted Kosan came up with::
+         
+diff --git a/sage/symbolic/function.pyx b/sage/symbolic/function.pyx
+--- a/sage/symbolic/function.pyx
++++ b/sage/symbolic/function.pyx
+@@ -180,7 +180,7 @@
+             sage: cot(0.5) #indirect doctest
+             1.83048772171245
+             sage: cot(complex(1,2))
+-            (0.032797755533752602-0.98432922645819...j)
++            (0.0327977555337526-0.98432922645819...j)
+         """
+         if isinstance(x, (int, long)):
+             return None
+@@ -299,7 +299,7 @@
+             sage: arctan(1)
+             1/4*pi
+             sage: arctan(float(1))
+-            0.78539816339744828
++            0.7853981633974483
+ 
+         Precision of the result depends on the precision of the input::
+ 
+@@ -554,7 +554,7 @@
+             sage: ff.is_pure_c()
+             False
+             sage: ff(1.5)
+-            0.96610514647531076
++            0.9661051464753108
+             sage: erf(1.5)
+             0.966105146475311
+         """
+diff --git a/sage/symbolic/integration/integral.py b/sage/symbolic/integration/integral.py
+--- a/sage/symbolic/integration/integral.py
++++ b/sage/symbolic/integration/integral.py
+@@ -503,7 +503,7 @@
+         sage: res.subs(y=2).n()
+         1.46383232641443
+         sage: nres = numerical_integral(f.subs(y=.5), 0.0001414, 1.); nres
+-        (-0.66951170887280698, 7.7686781108547113e-15)
++        (-0.669511708872807, 7.768678110854711e-15)
+         sage: res.subs(y=.5).n()
+         -0.669511708872807
+ 
+diff --git a/sage/symbolic/pynac.pyx b/sage/symbolic/pynac.pyx
+--- a/sage/symbolic/pynac.pyx
++++ b/sage/symbolic/pynac.pyx
+@@ -1103,7 +1103,7 @@
+     TESTS::
+ 
+         sage: sin(float(2)) #indirect doctest
+-        0.90929742682568171
++        0.9092974268256817
+         sage: sin(2.)
+         0.909297426825682
+         sage: sin(2.*I)
+@@ -1124,7 +1124,7 @@
+     """
+     TESTS::
+         sage: cos(float(2)) #indirect doctest
+-        -0.41614683654714241
++        -0.4161468365471424
+         sage: cos(2.)
+         -0.416146836547142
+         sage: cos(2.*I)
+@@ -1241,7 +1241,7 @@
+         sage: py_log(float(0))
+         -inf
+         sage: py_log(float(-1))
+-        3.1415926535897931j
++        3.141592653589793j
+         sage: py_log(int(1))
+         0.0
+         sage: py_log(long(1))
+diff --git a/sage/symbolic/random_tests.py b/sage/symbolic/random_tests.py
+--- a/sage/symbolic/random_tests.py
++++ b/sage/symbolic/random_tests.py
+@@ -83,7 +83,7 @@
+         sage: B = [(1, 'B1'), (2, 'B2'), (2, 'B3')]
+         sage: top = [(50, A, 'Group A'), (50, B, 'Group B')]
+         sage: normalize_prob_list(top)
+-        [(0.250000000000000, 'A1', 'Group A'), (0.250000000000000, 'A2', 'Group A'), (0.10000000000000001, 'B1', 'Group B'), (0.20000000000000001, 'B2', 'Group B'), (0.20000000000000001, 'B3', 'Group B')]
++        [(0.250000000000000, 'A1', 'Group A'), (0.250000000000000, 'A2', 'Group A'), (0.1, 'B1', 'Group B'), (0.2, 'B2', 'Group B'), (0.2, 'B3', 'Group B')]
+     """
+     if len(pl) == 0:
+         return pl
+diff --git a/sage/symbolic/relation.py b/sage/symbolic/relation.py
+--- a/sage/symbolic/relation.py
++++ b/sage/symbolic/relation.py
+@@ -154,7 +154,7 @@
+     sage: (x == sin(x)).find_root(-2,2)
+     0.0
+     sage: (x^5 + 3*x + 2 == 0).find_root(-2,2,x)
+-    -0.63283452024215225
++    -0.6328345202421523
+     sage: (cos(x) == sin(x)).find_root(10,20)
+     19.634954084936208
+ 

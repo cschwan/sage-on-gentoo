@@ -2,6 +2,19 @@
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  13 May 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  +files/trac_9958-fix-groebner.patch, +files/trac_9958-fix-list_index.patch,
+  +files/trac_9958-fix-pureAssertError.patch,
+  +files/trac_9958-fixing_colorspy.patch,
+  +files/trac_9958-fixing_numericalnoise-part1.patch,
+  +files/trac_9958-fixing_numericalnoise-part2.patch,
+  +files/trac_9958-fixing_numericalnoise-part3.patch,
+  +files/trac_9958-fixing_numericalnoise-part4.patch,
+  +files/trac_9958-sage_unittest.patch, sage-4.7_rc0.ebuild,
+  +files/trac_9958-mixedfix.patch:
+  Importing the python-2.7 doctest patches so it is not so gloomy when running
+  doctests on 4.7.rc0+
+
   05 May 2011; François Bissey <francois.bissey@canterbury.ac.nz>
   +files/trac_10493-cython-0.14.1.patch:
   restore cython patch
