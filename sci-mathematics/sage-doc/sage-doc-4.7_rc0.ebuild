@@ -31,6 +31,12 @@ RDEPEND=">=dev-python/sphinx-1.0.4"
 
 S="${WORKDIR}/${MY_P}/doc"
 
+src_prepare() {
+	# Numerical noise fix for python-2.7
+	cd ..
+	epatch "${FILESDIR}"/trac_9958-fixing_numericalnoise-part3.patch
+}
+
 src_install() {
 	# install missing directories to satisfy builder.py test
 	dodir /usr/share/sage/devel/sage-main/doc/output/doctrees/en/tutorial || die
