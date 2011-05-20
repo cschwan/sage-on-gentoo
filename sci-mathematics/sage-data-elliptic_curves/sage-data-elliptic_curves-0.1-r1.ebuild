@@ -1,8 +1,8 @@
-# Copyright 1999-2010 Gentoo Foundation
+# Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
-EAPI="3"
+EAPI="4"
 
 MY_P="elliptic_curves-${PV}"
 SAGE_P="sage-4.6"
@@ -27,6 +27,6 @@ src_install() {
 	rm ellcurves/spkg-install || die "failed to remove useless stuff"
 
 	insinto /usr/share/sage/data
-	doins -r cremona_mini/src/cremona_mini || die
-	doins -r ellcurves || die
+	doins -r cremona_mini/src/cremona_mini
+	doins -r ellcurves
 }
