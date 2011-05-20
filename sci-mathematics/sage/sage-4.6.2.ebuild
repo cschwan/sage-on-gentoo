@@ -383,15 +383,17 @@ pkg_postinst() {
 	einfo "There are also some packages of the 'Optional' set (which consists"
 	einfo "of the these: http://sagemath.org/packages/optional/) available"
 	einfo "which may be installed with portage as usual."
-	einfo ""
 
 	if use testsuite ; then
 
+	einfo ""
 	einfo "You have installed Sage's testsuite. In order to test Sage run the"
 	einfo "following command in a directory where Sage may write to, e.g.:"
 	einfo ""
 	einfo "  cd \$(mktemp -d) && sage -testall"
 	einfo ""
+	einfo "After testing has finished, NO FILES SHOULD BE LEFT in this"
+	einfo "directory. If this is not the case, please send us a bug report."
 	einfo "Parallel doctesting is also possible (replace '8' with an adequate"
 	einfo "number of processes):"
 	einfo ""
