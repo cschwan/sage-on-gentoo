@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
-EAPI="3"
+EAPI="4"
 
 inherit eutils versionator elisp-common
 
@@ -35,18 +35,18 @@ src_prepare(){
 
 src_compile() {
 	# do not use default target - pre-strips the binaries
-	emake CFLAGS="${CFLAGS}" LDFLAGS="${LDFLAGS}" compile || die
+	emake CFLAGS="${CFLAGS}" LDFLAGS="${LDFLAGS}" compile
 }
 
 src_install() {
-	dodoc README description* || die
+	dodoc README description*
 
 	insinto /usr/share/${PN}
-	doins -r doc grp lib pkg prim small trans tst sysinfo.gap || die
+	doins -r doc grp lib pkg prim small trans tst sysinfo.gap
 
-	source sysinfo.gap
+	source sysinfo.gap || die "failed to read architecture"
 	exeinto /usr/libexec/${PN}
-	doexe bin/${GAParch}/gap || die
+	doexe bin/${GAParch}/gap
 
 	sed -e "s:@gapdir@:${EPREFIX}/usr/share/${PN}:" \
 		-e "s:@target@-@CC@:${EPREFIX}/usr/libexec/${PN}:" \
@@ -55,29 +55,29 @@ src_install() {
 		gap.shi > gap || die "patching failed"
 
 	exeinto /usr/bin
-	doexe gap || die
+	doexe gap
 
 	if use emacs ; then
 		elisp-site-file-install etc/emacs/gap-mode.el
 		elisp-site-file-install etc/emacs/gap-process.el
 		elisp-site-file-install "${FILESDIR}"/64gap-gentoo.el
-		dodoc etc/emacs/gap-mode.doc || die
+		dodoc etc/emacs/gap-mode.doc
 	fi
 
 	if use vim-syntax ; then
 		insinto /usr/share/vim/vimfiles/syntax
-		doins etc/gap.vim || die
+		doins etc/gap.vim
 		insinto /usr/share/vim/vimfiles/indent
-		newins etc/gap_indent.vim gap.vim || die
+		newins etc/gap_indent.vim gap.vim
 
 		insinto /usr/share/vim/vimfiles/plugin
-		newins etc/debug.vim debug_gap.vim || die
-		dodoc etc/README.vim-utils etc/debugvim.txt || die
+		newins etc/debug.vim debug_gap.vim
+		dodoc etc/README.vim-utils etc/debugvim.txt
 	fi
 }
 
 src_test() {
-	emake teststandard || die
+	emake teststandard
 }
 
 pkg_postinst() {

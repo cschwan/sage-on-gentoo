@@ -2,6 +2,10 @@
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  20 May 2011; Christopher Schwan <cschwan@students.uni-mainz.de>
+  gap-4.4.12-r2.ebuild:
+  Migrate to EAPI 4
+
 *gap-4.4.12-r2 (09 Feb 2011)
 
   09 Feb 2011; François Bissey <francois.bissey@canterbury.ac.nz> -gap-4.4.12-r1.ebuild,
