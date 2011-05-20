@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
-EAPI="3"
+EAPI="4"
 
 inherit eutils multilib
 
@@ -18,6 +18,8 @@ SLOT="0"
 KEYWORDS="~amd64 ~x86 ~amd64-linux ~x86-linux"
 IUSE="pari -pari24"
 
+REQUIRED_USE="pari? ( !pari24 )"
+
 # TODO: depend on pari[gmp] ?
 DEPEND="pari24? ( sci-mathematics/pari:3 )
 	pari? ( !pari24? ( sci-mathematics/pari:0 ) )"
@@ -30,29 +32,22 @@ S="${WORKDIR}/${MY_P}/src"
 
 # TODO: Support for openmp ?
 # TODO: Get pari to generate a configuration file to use here
-pkg_setup() {
-	if (use pari) && (use pari24) ; then
-		ewarn "You ask for both pari and pari-2.4 usage."
-		ewarn "They cannot be used at the same time."
-		ewarn "pari-2.4 will be used now."
-	fi
-}
-
 src_prepare() {
 	# patch for proper installation routine, flag respect and crufty linking flag removal.
 	epatch "${FILESDIR}"/${P}-makefile.patch
 
 	# patches with relative paths will fail in the future
-	cd ..
+	cd .. || die "failed to change directory"
 	epatch "${FILESDIR}"/${PN}-1.23-gcc-4.6-fix.patch
-	cd src
+	cd src || die "failed to change directory"
 
 	# macos patch
 	sed -i "s:-dynamiclib:-dynamiclib -install_name ${EPREFIX}/usr/$(get_libdir)/libLfunction.dylib:g" \
 		Makefile || die "failed to fix macos dylib"
 
 	# patch for pari-2.4 this pari-2.3 safe.
-	sed -i "s:lgeti:(long)cgeti:g" Lcommandline_elliptic.cc || die "sed for lgeti failed"
+	sed -i "s:lgeti:(long)cgeti:g" Lcommandline_elliptic.cc \
+		|| die "sed for lgeti failed"
 
 	# patch pari's location in a prefix safe way.
 	sed -i \
@@ -73,8 +68,12 @@ src_prepare() {
 	fi
 }
 
-src_install() {
-	emake DESTDIR="${ED}"/usr LIB_DIR=$(get_libdir) install || die
+src_compile() {
+	emake CC=$(tc-getCXX)
+}
 
-	dodoc ../README || die
+src_install() {
+	emake DESTDIR="${ED}"/usr LIB_DIR=$(get_libdir) install
+
+	dodoc ../README
 }
