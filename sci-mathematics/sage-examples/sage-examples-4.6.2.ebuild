@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
-EAPI="3"
+EAPI="4"
 
 inherit versionator
 
@@ -33,6 +33,6 @@ src_prepare() {
 
 src_install() {
 	insinto /usr/share/sage/examples
-	doins -r * || die
-	fperms a+x /usr/share/sage/examples/test_all || die
+	doins -r *
+	fperms a+x /usr/share/sage/examples/test_all
 }
