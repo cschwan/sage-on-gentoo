@@ -1,8 +1,8 @@
-# Copyright 1999-2010 Gentoo Foundation
+# Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
-EAPI="3"
+EAPI="4"
 
 inherit toolchain-funcs
 
@@ -29,6 +29,6 @@ src_compile() {
 }
 
 src_install() {
-	dobin optimal || die
-	dodoc README || die
+	dobin optimal
+	dodoc README
 }
