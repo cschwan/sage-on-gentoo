@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
-EAPI="3"
+EAPI="4"
 
 inherit eutils toolchain-funcs versionator
 
@@ -131,50 +131,50 @@ src_install() {
 
 	# core scripts which are needed in every case
 	dobin sage sage-banner sage-cleaner sage-env sage-eval sage-ipython \
-		sage-maxima.lisp sage-native-execute sage-run sage-sage || die
+		sage-maxima.lisp sage-native-execute sage-run sage-sage
 
 	if use testsuite ; then
 		# DOCTESTING helper scripts
-		dobin sage-doctest sage-maketest sage-ptest sage-starts sage-test || die
+		dobin sage-doctest sage-maketest sage-ptest sage-starts sage-test
 	fi
 
 	# COMMAND helper scripts
-	dobin sage-cython sage-notebook* sage-python || die
+	dobin sage-cython sage-notebook* sage-python
 
 	# additonal helper scripts
-	dobin sage-grep sage-grepdoc sage-preparse sage-startuptime.py || die
+	dobin sage-grep sage-grepdoc sage-preparse sage-startuptime.py
 
 	if use debug ; then
 		# GNU DEBUGGER helper schripts
-		dobin sage-gdb sage-gdb-ipython sage-gdb-commands || die
+		dobin sage-gdb sage-gdb-ipython sage-gdb-commands
 
 		# VALGRIND helper scripts
 		dobin sage-cachegrind sage-callgrind sage-massif sage-omega \
-			sage-valgrind || die
+			sage-valgrind
 	fi
 
 	# install file for sage/misc/inline_fortran.py
-	dobin sage-g77_shared || die
+	dobin sage-g77_shared
 
 	insinto /usr/bin
-	doins *doctest.py ipy_profile_sage.py || die
+	doins *doctest.py ipy_profile_sage.py
 
 	insinto /usr/share/sage
-	doins -r "${IPYTHON_S}"/ipython || die
+	doins -r "${IPYTHON_S}"/ipython
 
-	doenvd "${T}"/99sage || die
+	doenvd "${T}"/99sage
 
 	# install devel directories and link
-	dodir /usr/share/sage/devel/sage-main || die
-	dosym /usr/share/sage/devel/sage-main /usr/share/sage/devel/sage || die
+	dodir /usr/share/sage/devel/sage-main
+	dosym /usr/share/sage/devel/sage-main /usr/share/sage/devel/sage
 
 	if use X ; then
 		# unpack icon
 		cp "${FILESDIR}"/sage.svg.bz2 "${T}" || die "failed to copy icon"
 		bzip2 -d "${T}"/sage.svg.bz2 || die "failed to unzip icon"
 
-		doicon "${T}"/sage.svg || die
-		domenu "${T}"/sage-sage.desktop || die
+		doicon "${T}"/sage.svg
+		domenu "${T}"/sage-sage.desktop
 	fi
 }
 
