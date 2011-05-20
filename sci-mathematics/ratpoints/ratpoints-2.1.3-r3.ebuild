@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
-EAPI="3"
+EAPI="4"
 
 inherit base flag-o-matic multilib toolchain-funcs
 
@@ -34,6 +34,7 @@ fi
 
 pkg_setup() {
 	append-cflags -fPIC
+
 	if use x86-macos ; then
 		append-cflags -fnested-functions
 	fi
