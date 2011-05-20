@@ -1,8 +1,8 @@
-# Copyright 1999-2010 Gentoo Foundation
+# Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
-EAPI="3"
+EAPI="4"
 
 inherit eutils toolchain-funcs versionator
 
@@ -35,6 +35,6 @@ src_compile() {
 }
 
 src_install() {
-	dobin ${PN} || die "installation failed!"
-	dodoc README RELEASE.NOTES WARNING || die
+	dobin ${PN}
+	dodoc README RELEASE.NOTES WARNING
 }

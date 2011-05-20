@@ -1,6 +1,10 @@
 # ChangeLog for sci-mathematics/genus2reduction
-# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
+
+  20 May 2011; Christopher Schwan <cschwan@students.uni-mainz.de>
+  genus2reduction-0.3_p8.ebuild:
+  Migrate to EAPI 4
 
   09 Nov 2010; François Bissey <f.r.bissey@massey.ac.nz>
   -genus2reduction-0.3_p6.ebuild, -files/genus2reduction-0.3.p2.patch:
