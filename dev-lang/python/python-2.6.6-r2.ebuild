@@ -1,6 +1,6 @@
 # Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/python-2.6.6-r2.ebuild,v 1.9 2011/04/13 15:09:24 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/python-2.6.6-r2.ebuild,v 1.10 2011/05/17 15:14:43 arfrever Exp $
 
 EAPI="2"
 WANT_AUTOMAKE="none"
@@ -297,8 +297,9 @@ src_install() {
 		doins -r "${S}/Tools" || die "doins failed"
 	fi
 
-	newinitd "${FILESDIR}/pydoc.init" pydoc-${SLOT} || die "newinitd failed"
 	newconfd "${FILESDIR}/pydoc.conf" pydoc-${SLOT} || die "newconfd failed"
+	newinitd "${FILESDIR}/pydoc.init" pydoc-${SLOT} || die "newinitd failed"
+	sed -e "s:@PYDOC@:pydoc${SLOT}:" -i "${ED}etc/init.d/pydoc-${SLOT}" || die "sed failed"
 
 	# Do not install empty directory.
 	rmdir "${ED}$(python_get_libdir)/lib-old"
