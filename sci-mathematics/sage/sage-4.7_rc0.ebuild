@@ -279,7 +279,7 @@ src_prepare() {
 	epatch "${FILESDIR}"/trac_11244_fixmoredeprecationswarnings.patch
 	# fixing pure numerical noise
 	epatch "${FILESDIR}"/trac_9958-fixing_numericalnoise-part1.patch
-	epatch "${FILESDIR}"/trac_9958-fixing_numericalnoise-part2.patch
+	epatch "${FILESDIR}"/trac_9958-fixing_numericalnoise-part2-4.7.patch
 	epatch "${FILESDIR}"/trac_9958-fixing_numericalnoise-part3.patch
 	epatch "${FILESDIR}"/trac_9958-fixing_numericalnoise-part4.patch
 	# other fixes
