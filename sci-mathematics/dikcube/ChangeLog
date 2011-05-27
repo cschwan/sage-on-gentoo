@@ -2,6 +2,12 @@
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*dikcube-20070912_p16 (27 May 2011)
+
+  27 May 2011; Christopher Schwan <cschwan@students.uni-mainz.de>
+  +dikcube-20070912_p16.ebuild:
+  Version bump
+
   08 May 2011; Christopher Schwan <cschwan@students.uni-mainz.de>
   dikcube-20070912_p12.ebuild:
   Migrate to EAPI 4
