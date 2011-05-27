@@ -18,7 +18,7 @@ SRC_URI="http://sage.math.washington.edu/home/release/${MY_P}/${MY_P}/spkg/stand
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64 ~x86 ~amd64-linux ~x86-linux ~x86-macos"
-IUSE="examples mpc latex testsuite -maximalib"
+IUSE="examples mpc latex testsuite"
 
 RESTRICT="mirror"
 
@@ -58,8 +58,7 @@ CDEPEND="dev-libs/gmp
 	mpc? ( dev-libs/mpc )"
 
 DEPEND="${CDEPEND}
-	=dev-python/cython-0.14.1
-	maximalib? ( dev-vcs/mercurial )"
+	=dev-python/cython-0.14.1"
 
 RDEPEND="${CDEPEND}
 	>=dev-lang/R-2.10.1
@@ -118,12 +117,6 @@ pkg_setup() {
 	# Sage now will only works with python 2.7.*
 	python_set_active_version 2.7
 	python_pkg_setup
-
-	if use maximalib ; then
-		einfo "You have enabled the maximalib useflag. This is a flag to help test"
-		einfo "and develop a new interface to sage."
-		einfo "See trac #7377"
-	fi
 }
 
 src_prepare() {
@@ -140,20 +133,6 @@ src_prepare() {
 
 	# Fix startup issue and python-2.6.5 problem
 	append-flags -fno-strict-aliasing
-
-	if use maximalib ; then
-		# call maxima as a library
-		hg import -f "${FILESDIR}"/trac_7377-abstract-maxima_p2.patch
-		hg import -f "${FILESDIR}"/trac_7377-maximalib_p2.patch
-		hg import -f "${FILESDIR}"/trac_7377-fastcalculus_p2.patch
-		hg import -f "${FILESDIR}"/trac_7377-better-ask-error_p2.patch
-		hg import -f "${FILESDIR}"/trac_7377-split_and_refactor-p3.patch
-		hg import -f "${FILESDIR}"/trac_7377-lazy-maxlib.p2.patch
-		hg import -f "${FILESDIR}"/trac_7377-floatcast.patch
-		hg import -f "${FILESDIR}"/trac_7377-unicode_to_ecl-p1.patch
-		hg import -f "${FILESDIR}"/trac_7377-assumptions-p3.patch
-		hg import -f "${FILESDIR}"/trac_7377-doctests-p3.patch
-	fi
 
 	epatch "${FILESDIR}"/${PN}-4.6.1-exp-site-packages.patch
 
@@ -335,11 +314,7 @@ src_prepare() {
 		sage/combinat/words/morphism.py || die "failed to patch path for save"
 
 	# replace SAGE_ROOT/local with SAGE_LOCAL
-	if use maximalib ; then
-		epatch "${FILESDIR}"/${PN}-4.6-fix-SAGE_LOCAL-maximalib.patch
-	else
-		epatch "${FILESDIR}"/${PN}-4.6-fix-SAGE_LOCAL.patch
-	fi
+	epatch "${FILESDIR}"/${PN}-4.6-fix-SAGE_LOCAL.patch
 
 	# patch path for saving sessions
 	sed -i "s:save_session('tmp_f', :save_session(tmp_f, :g" \

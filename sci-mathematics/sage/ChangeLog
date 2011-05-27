@@ -2,6 +2,10 @@
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  27 May 2011; Christopher Schwan <cschwan@students.uni-mainz.de>
+  sage-4.7.ebuild:
+  Removed maximalib patches
+
 *sage-4.7 (27 May 2011)
 
   27 May 2011; Christopher Schwan <cschwan@students.uni-mainz.de>
