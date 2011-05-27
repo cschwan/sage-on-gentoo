@@ -2,6 +2,17 @@
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  27 May 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  -files/trac_7377-abstract-maxima_p2.patch,
+  -files/trac_7377-assumptions-p3.patch,
+  -files/trac_7377-better-ask-error_p2.patch,
+  -files/trac_7377-doctests-p3.patch, -files/trac_7377-fastcalculus_p2.patch,
+  -files/trac_7377-floatcast.patch, -files/trac_7377-lazy-maxlib.p2.patch,
+  -files/trac_7377-maximalib_p2.patch,
+  -files/trac_7377-unicode_to_ecl-p1.patch, -sage-4.7_rc0.ebuild,
+  -files/trac_7377-split_and_refactor-p3.patch, metadata.xml:
+  Drop 4.7_rc
+
   27 May 2011; Christopher Schwan <cschwan@students.uni-mainz.de>
   sage-4.7.ebuild:
   Removed maximalib patches

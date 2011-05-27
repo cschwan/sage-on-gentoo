@@ -10,7 +10,7 @@ PYTHON_MODNAME="sagenb"
 inherit distutils eutils
 
 MY_P="sagenb-${PV}"
-SAGE_P="sage-4.7.alpha4"
+SAGE_P="sage-4.7"
 
 DESCRIPTION="The Sage Notebook is a web-based graphical user interface for mathematical software"
 HOMEPAGE="http://www.sagemath.org"
