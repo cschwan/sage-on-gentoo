@@ -1,13 +1,10 @@
-# preparing 4.7
->=sci-mathematics/sage-4.7_alpha1
->=sci-mathematics/sage-clib-4.7_alpha1
->=sci-mathematics/sage-baselayout-4.7_alpha1
->=sci-mathematics/sage-doc-4.7_alpha1
->=sci-mathematics/sage-examples-4.7_alpha1
->=sci-mathematics/sage-extcode-4.7_alpha1
-=sci-mathematics/sage-notebook-0.8.12
->=sci-mathematics/polybori-0.7
-# for sage-4.7.1+ only
+# preparing 4.7.1
+>=sci-mathematics/sage-4.7.1_alpha0
+>=sci-mathematics/sage-clib-4.7.1_alpha0
+>=sci-mathematics/sage-baselayout-4.7.1_alpha0
+>=sci-mathematics/sage-doc-4.7.1_alpha0
+>=sci-mathematics/sage-examples-4.7.1_alpha0
+>=sci-mathematics/sage-extcode-4.7.1_alpha0
 >=sci-mathematics/pari-2.4.4
 >=sci-libs/pynac-0.2.2
 # Ongoing work there, do not touch before it has been properly tested.
