@@ -99,7 +99,7 @@ RDEPEND="${CDEPEND}
 	>=sci-mathematics/sage-doc-${PV}
 	~sci-mathematics/sage-extcode-${PV}
 	~sci-mathematics/sage-notebook-0.8.14
-	|| ( 
+	|| (
 		~sci-mathematics/singular-3.1.1.4[-libsingular]
 		>=sci-mathematics/singular-3.1.2
 	)
@@ -308,10 +308,6 @@ src_prepare() {
 
 	# fix qepcad paths
 	epatch "${FILESDIR}"/${PN}-4.5.1-fix-qepcad-path.patch
-
-	# fix save path (for testing only)
-	sed -i "s:save(w,'test'):save(w,tmp_filename('test')):g" \
-		sage/combinat/words/morphism.py || die "failed to patch path for save"
 
 	# replace SAGE_ROOT/local with SAGE_LOCAL
 	epatch "${FILESDIR}"/${PN}-4.6-fix-SAGE_LOCAL.patch

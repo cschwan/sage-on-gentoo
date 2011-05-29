@@ -2,6 +2,10 @@
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  29 May 2011; Christopher Schwan <cschwan@students.uni-mainz.de>
+  sage-4.7.ebuild:
+  Removed useless sed command
+
   27 May 2011; François Bissey <francois.bissey@canterbury.ac.nz>
   -files/trac_7377-abstract-maxima_p2.patch,
   -files/trac_7377-assumptions-p3.patch,
