@@ -2,6 +2,19 @@
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*sage-4.7.1_alpha1 (29 May 2011)
+
+  29 May 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  +files/11373.patch, +files/trac_10764-fix-gen_interpreters_doctest.patch,
+  +files/sage-4.7.1-fix-SAGE_LOCAL.patch,
+  +files/trac_10764-fix_deprecation_warning.patch,
+  +files/trac_11376-build_setuppy.patch,
+  +files/trac_11377-build_module_listpy.patch,
+  +files/trac_9958-build_misc_cythonpy.patch, +sage-4.7.1_alpha1.ebuild,
+  +files/trac_9958-fixing_numericalnoise-part2.patch,
+  +files/sage-4.7.1-site-packages.patch, -files/trac_9958-fix-groebner.patch:
+  4.7.1.alpha1
+
   29 May 2011; Christopher Schwan <cschwan@students.uni-mainz.de>
   sage-4.7.ebuild:
   Removed useless sed command

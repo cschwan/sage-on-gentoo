@@ -1,0 +1,70 @@
+# HG changeset patch
+# User Francois Bissey <francois.bissey@canterbury.ac.nz>
+# Date 1306209063 -43200
+# Node ID 057ac5d4dbeeb6e65bf9b9c52326ef8fe6cf781c
+# Parent  a4e3cf10da309b0e18e56c8d8caaaad7fdd8b053
+#9958 some changes in misc/cython.py - It could be argued that only the doctest changes are necessary.
+
+diff --git a/sage/misc/cython.py b/sage/misc/cython.py
+--- a/sage/misc/cython.py
++++ b/sage/misc/cython.py
+@@ -16,7 +16,7 @@
+ 
+ import os, sys
+ 
+-from misc import SPYX_TMP, SAGE_ROOT
++from misc import SPYX_TMP, SAGE_ROOT, SAGE_LOCAL
+ from sage.misc.misc import UNAME
+ 
+ def cblas():
+@@ -43,10 +43,10 @@
+     else:
+         return 'atlas'
+ 
+-include_dirs = ['%s/local/include/csage/'%SAGE_ROOT,
+-                '%s/local/include/'%SAGE_ROOT,  \
+-                '%s/local/include/python%s/'%(SAGE_ROOT, sys.version[:3]), \
+-                '%s/local/lib/python%s/site-packages/numpy/core/include'%(SAGE_ROOT, sys.version[:3]), \
++include_dirs = ['%s/include/csage/'%SAGE_LOCAL,
++                '%s/include/'%SAGE_LOCAL,  \
++                '%s/include/python%s/'%(SAGE_LOCAL, sys.version[:3]), \
++                '%s/lib/python%s/site-packages/numpy/core/include'%(SAGE_LOCAL, sys.version[:3]), \
+                 '%s/devel/sage/sage/ext/'%SAGE_ROOT, \
+                 '%s/devel/sage/'%SAGE_ROOT, \
+                 '%s/devel/sage/sage/gsl/'%SAGE_ROOT]
+@@ -156,13 +156,13 @@
+         'jcntl',
+         'rankntl',
+         'gsl',
+-        '...blas',
+-        ...,
++        '...blas'...,
+         'ntl',
+         'csage'],
+         ['.../local/include/csage/',
+         '.../local/include/',
+-        '.../local/include/python2.6/',
++        '.../local/include/python2.7/',
++        '.../local/lib/python2.7/site-packages/numpy/core/include',
+         '.../devel/sage/sage/ext/',
+         '.../devel/sage/',
+         '.../devel/sage/sage/gsl/'],
+@@ -179,7 +179,7 @@
+         'pari',
+         'm',
+         'curvesntl', 'g0nntl', 'jcntl', 'rankntl',
+-        'gsl', '...blas', ...,
++        'gsl', '...blas'...,
+         'ntl',
+         'csage']
+         sage: libs[1:] == sage.misc.cython.standard_libs
+@@ -189,7 +189,8 @@
+         ['bar',
+         '.../local/include/csage/',
+         '.../local/include/',
+-        '.../local/include/python2.6/',
++        '.../local/include/python2.7/',
++        '.../local/lib/python2.7/site-packages/numpy/core/include',
+         '.../devel/sage/sage/ext/',
+         '.../devel/sage/',
+         '.../devel/sage/sage/gsl/']

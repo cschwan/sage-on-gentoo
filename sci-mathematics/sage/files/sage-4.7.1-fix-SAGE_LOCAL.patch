@@ -1,0 +1,113 @@
+--- sage/misc/cython.py.orig	2010-10-01 17:31:00.000000000 -0500
++++ sage/misc/cython.py	2010-10-01 17:36:02.000000000 -0500
+@@ -323,7 +323,7 @@
+     sys.exit(1)
+ else:
+     SAGE_ROOT  = os.environ['SAGE_ROOT']
+-    SAGE_LOCAL = SAGE_ROOT + '/local/'
++    SAGE_LOCAL = os.environ['SAGE_LOCAL']
+ 
+ extra_link_args =  ['-L' + SAGE_LOCAL + '/lib']
+ extra_compile_args = ['-w','-O2']
+--- sage/misc/misc.py.orig	2010-09-30 17:13:15.000000000 -0500
++++ sage/misc/misc.py	2010-09-30 17:19:17.000000000 -0500
+@@ -40,7 +40,7 @@
+ from banner import version, banner
+ 
+ SAGE_ROOT = os.environ["SAGE_ROOT"]
+-SAGE_LOCAL = SAGE_ROOT + '/local/'
++SAGE_LOCAL = os.environ["SAGE_LOCAL"]
+ SAGE_DOC = os.environ["SAGE_DOC"]
+ HOSTNAME = socket.gethostname().replace('-','_').replace('/','_').replace('\\','_')
+ 
+@@ -123,7 +123,7 @@
+ 
+ 
+ def delete_tmpfiles():
+-    # !!!If you change this, see also SAGE_ROOT/local/bin/sage-doctest!!!
++    # !!!If you change this, see also SAGE_LOCAL/bin/sage-doctest!!!
+     import shutil
+     try:
+         if os.path.exists(SAGE_TMP):
+@@ -1888,7 +1888,7 @@
+     r"""
+     Return a string describing the current branch and that the library
+     is being loaded. This is called by the
+-    ``SAGE_ROOT/local/bin/sage-sage`` script.
++    ``SAGE_LOCAL/bin/sage-sage`` script.
+     
+     INPUT:
+     
+--- sage/interfaces/maxima.py.orig	2010-09-30 20:46:50.000000000 -0500
++++ sage/interfaces/maxima.py	2010-09-30 20:48:17.000000000 -0500
+@@ -461,7 +461,7 @@
+ ##import sage.rings.all
+ import sage.rings.complex_number
+ 
+-from sage.misc.misc import DOT_SAGE, SAGE_ROOT
++from sage.misc.misc import DOT_SAGE, SAGE_LOCAL
+ 
+ from sage.misc.multireplace import multiple_replace
+ 
+@@ -497,7 +497,7 @@
+         # setting inchar and outchar..
+         eval_using_file_cutoff = 256
+         self.__eval_using_file_cutoff = eval_using_file_cutoff
+-        STARTUP = '%s/local/bin/sage-maxima.lisp'%SAGE_ROOT
++        STARTUP = '%s/bin/sage-maxima.lisp'%SAGE_LOCAL
+         
+         # We set maxima's configuration directory to $DOT_SAGE/maxima
+         # This avoids that sage's maxima inadvertently loads
+ 
+--- sage/server/trac/trac.py.orig	2010-10-01 17:54:16.000000000 -0500
++++ sage/server/trac/trac.py	2010-10-01 17:57:01.000000000 -0500
+@@ -120,7 +120,7 @@
+         print "    cd %s" % os.path.abspath(os.path.join(directory, 'conf'))
+         print "    htdigest passwd %s <username>" % address
+         print "\nTo grant full admin permissions to a user:"
+-        print "    %s %s permission add <username> TRAC_ADMIN" % (os.path.join(SAGE_ROOT, 'local/bin/trac-admin'), os.path.abspath(directory))
++        print "    %s %s permission add <username> TRAC_ADMIN" % (os.path.join(SAGE_LOCAL, '/bin/trac-admin'), os.path.abspath(directory))
+         print "\nThen restart the trac server."
+         print "*" * 80
+         open(passwd,'w').close()
+--- sage/quadratic_forms/quadratic_form__automorphisms.py.orig	2010-09-30 18:22:43.000000000 -0500
++++ sage/quadratic_forms/quadratic_form__automorphisms.py	2010-09-30 18:24:03.000000000 -0500
+@@ -10,7 +10,7 @@
+ from sage.modules.free_module_element import vector
+ from sage.rings.arith import GCD
+ from sage.misc.sage_eval import sage_eval
+-from sage.misc.misc import SAGE_ROOT
++from sage.misc.misc import SAGE_LOCAL
+ 
+ import tempfile, os
+ from random import random
+@@ -452,7 +452,7 @@
+     #os.system("less " + F.name)
+ 
+     ## Call the Souvigner automorphism code
+-    souvigner_auto_path = SAGE_ROOT + "/local/bin/Souvigner_AUTO"                 ## FIX THIS LATER!!!
++    souvigner_auto_path = SAGE_LOCAL + "/bin/Souvigner_AUTO"                 ## FIX THIS LATER!!!
+     G1 = tempfile.NamedTemporaryFile(prefix='tmp_auto_ouput', suffix=".txt")
+     #print "Output filename = ", G1.name
+     os.system(souvigner_auto_path + " '" +  F.name + "' > '" + G1.name +"'")
+--- sage/quadratic_forms/quadratic_form__equivalence_testing.py.orig	2010-09-30 18:22:54.000000000 -0500
++++ sage/quadratic_forms/quadratic_form__equivalence_testing.py	2010-09-30 18:24:39.000000000 -0500
+@@ -11,7 +11,7 @@
+ from quadratic_form__genus import CS_genus_symbol_list
+ 
+ 
+-from sage.misc.misc import SAGE_ROOT
++from sage.misc.misc import SAGE_LOCAL
+ 
+ import tempfile, os
+ 
+@@ -78,7 +78,7 @@
+     #os.system("less " + F.name)
+ 
+     ## Call the Souvigner automorphism code
+-    souvigner_isom_path = SAGE_ROOT + "/local/bin/Souvigner_ISOM" 
++    souvigner_isom_path = SAGE_LOCAL + "/bin/Souvigner_ISOM" 
+     G1 = tempfile.NamedTemporaryFile(prefix='tmp_isom_ouput', suffix=".txt")
+     #print "Output filename = ", G1.name
+     #print  "Executing the shell command:   " + souvigner_isom_path + " '" +  F.name + "' > '" + G1.name + "'"
+

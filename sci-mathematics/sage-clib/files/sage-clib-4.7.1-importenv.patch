@@ -1,0 +1,25 @@
+--- SConstruct.orig	2010-07-17 21:13:02.159103740 +1200
++++ SConstruct	2010-07-17 21:17:05.675102167 +1200
+@@ -105,12 +105,16 @@
+ ## The other two options control the way the linker creates a namespace
+ ## for the dynamic library; check the man page for ld on a mac to see
+ ## the details.
+-if os.environ['SAGE64']=="yes":
+-    # We want the debug and optimization flags, since debug symbols are so useful, etc.
+-    print "64 bit mode"
+-    env.Append( CFLAGS="-O2 -g -m64" )
+-    env.Append( CXXFLAGS="-O2 -g -m64" )
+-    env.Append( LINKFLAGS="-m64" )
++#if os.environ['SAGE64']=="yes":
++#    # We want the debug and optimization flags, since debug symbols are so useful, etc.
++#    print "64 bit mode"
++#    env.Append( CFLAGS="-O2 -g -m64" )
++#    env.Append( CXXFLAGS="-O2 -g -m64" )
++#    env.Append( LINKFLAGS="-m64" )
++
++env['CFLAGS'] = os.environ['CFLAGS']
++env['CXXFLAGS'] = os.environ['CXXFLAGS']
++env['LINKFLAGS'] = os.environ['LDFLAGS']+' -Wl,-soname,libcsage.so'
+ 
+ if env['PLATFORM']=="darwin":
+     env.Append( LINKFLAGS=" -single_module -flat_namespace -undefined dynamic_lookup" )
