@@ -40,6 +40,10 @@ pkg_setup() {
 	# This version of polybori is to be used with sage-4.7 which will be python-2.7
 	python_set_active_version 2.7
 	python_pkg_setup
+
+	if use sage ; then
+		export DOT_SAGE="${S}"
+	fi
 }
 
 src_prepare() {
