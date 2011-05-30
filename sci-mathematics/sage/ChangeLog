@@ -3,6 +3,11 @@
 # $Header: $
 
   30 May 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-4.7.ebuild, files/trac_9958-fixing_numericalnoise-part1.patch,
+  +files/trac_9958-fixing_numericalnoise-part1-4.7.patch:
+  more patch difference between 4.7 and 4.7.1.alpha
+
+  30 May 2011; François Bissey <francois.bissey@canterbury.ac.nz>
   sage-4.7.ebuild, files/trac_11244_fixmoredeprecationswarnings.patch,
   +files/trac_11244_fixmoredeprecationswarnings-4.7.patch:
   update patches for 4.7.1.alpha1

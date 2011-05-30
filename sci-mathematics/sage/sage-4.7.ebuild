@@ -261,7 +261,7 @@ src_prepare() {
 	epatch "${FILESDIR}"/trac_11244_fix_combinatpartition_warnings.patch
 	epatch "${FILESDIR}"/trac_11244_fixmoredeprecationswarnings-4.7.patch
 	# fixing pure numerical noise
-	epatch "${FILESDIR}"/trac_9958-fixing_numericalnoise-part1.patch
+	epatch "${FILESDIR}"/trac_9958-fixing_numericalnoise-part1-4.7.patch
 	epatch "${FILESDIR}"/trac_9958-fixing_numericalnoise-part2-4.7.patch
 	epatch "${FILESDIR}"/trac_9958-fixing_numericalnoise-part3.patch
 	epatch "${FILESDIR}"/trac_9958-fixing_numericalnoise-part4.patch
