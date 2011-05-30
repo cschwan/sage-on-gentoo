@@ -2,6 +2,11 @@
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  30 May 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-4.7.ebuild, files/trac_11244_fixmoredeprecationswarnings.patch,
+  +files/trac_11244_fixmoredeprecationswarnings-4.7.patch:
+  update patches for 4.7.1.alpha1
+
 *sage-4.7.1_alpha1 (29 May 2011)
 
   29 May 2011; François Bissey <francois.bissey@canterbury.ac.nz>

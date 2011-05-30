@@ -1,9 +1,10 @@
 # HG changeset patch
 # User Francois Bissey <francois.bissey@canterbury.ac.nz>
-# Date 1305759178 -43200
-# Node ID f4d90fd5493d56fd18c39aeed61915c21008c62c
-# Parent  502d88d966cb338774726af2a7963ca393aae4e2
-#11244 fix more deprecation warnings. Enable in matrix/constructor.py.
+# Date 1303730515 -43200
+# Node ID c2bb48ff87bc31a401554197aa00ba13fed6cf5c
+# Parent  9418a12e694afd8af736d4892d1a66a7d6145641
+#11244 fix more deprecation warnings. Enable in matrix/constructor.py and remove duplicates in graphs/base/graph_backends.py
+and groups/perm_gps/permgroup.py
 
 diff --git a/sage/graphs/base/graph_backends.py b/sage/graphs/base/graph_backends.py
 --- a/sage/graphs/base/graph_backends.py
@@ -34,6 +35,18 @@ diff --git a/sage/graphs/base/graph_backends.py b/sage/graphs/base/graph_backend
          deprecation("Your digraph object is saved in an old format since networkx "+
                      "was updated to 1.0.1. You can re-save your digraph by typing "+
                      "digraph.save(filename) to make this warning go away.")
+diff --git a/sage/groups/perm_gps/permgroup.py b/sage/groups/perm_gps/permgroup.py
+--- a/sage/groups/perm_gps/permgroup.py
++++ b/sage/groups/perm_gps/permgroup.py
+@@ -1451,8 +1451,6 @@
+             doctest:...: DeprecationWarning: quotient_group() is deprecated; use quotient() instead.
+             Permutation Group with generators [(1,2)]
+         """
+-        import warnings
+-        warnings.warn('quotient_group() is deprecated; use quotient() instead.', DeprecationWarning, stacklevel=2)
+         from sage.misc.misc import deprecation
+         deprecation('quotient_group() is deprecated; use quotient() instead.')
+ 
 diff --git a/sage/matrix/constructor.py b/sage/matrix/constructor.py
 --- a/sage/matrix/constructor.py
 +++ b/sage/matrix/constructor.py

@@ -259,7 +259,7 @@ src_prepare() {
 	# deprecation warnings re-enabled
 	epatch "${FILESDIR}"/trac_11244_reenable_deprecationwarnings_in_python27.patch
 	epatch "${FILESDIR}"/trac_11244_fix_combinatpartition_warnings.patch
-	epatch "${FILESDIR}"/trac_11244_fixmoredeprecationswarnings.patch
+	epatch "${FILESDIR}"/trac_11244_fixmoredeprecationswarnings-4.7.patch
 	# fixing pure numerical noise
 	epatch "${FILESDIR}"/trac_9958-fixing_numericalnoise-part1.patch
 	epatch "${FILESDIR}"/trac_9958-fixing_numericalnoise-part2-4.7.patch
