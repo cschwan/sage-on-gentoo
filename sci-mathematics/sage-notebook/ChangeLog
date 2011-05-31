@@ -2,6 +2,16 @@
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*sage-notebook-0.8.16 (31 May 2011)
+*sage-notebook-0.8.14-r1 (31 May 2011)
+
+  31 May 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  -sage-notebook-0.8.14.ebuild, +sage-notebook-0.8.14-r1.ebuild,
+  +sage-notebook-0.8.16.ebuild,
+  +files/sage-notebook-0.8.16-twistd-python-version.patch:
+  Update the twistd patch for sage-4.7+, revbump 0.8.14 for users of multiple
+  python stack
+
   27 May 2011; François Bissey <francois.bissey@canterbury.ac.nz>
   sage-notebook-0.8.14.ebuild:
   move SRC_URI to 4.7

@@ -1,0 +1,18 @@
+--- sagenb/notebook/run_notebook.py.orig	2011-05-31 16:25:42.528116589 +1200
++++ sagenb/notebook/run_notebook.py	2011-05-31 16:27:23.626293656 +1200
+@@ -412,7 +412,14 @@
+         config.close()
+ 
+         ## Start up twisted
+-        cmd = 'twistd --pidfile="%s" -ny "%s"' % (pidfile, conf)
++        # Gentoo twistd executable detection: run a matching version of twistd
++        # if it exists, falling back to plain twistd.
++        exe = 'twistd'
++        for try_exe in [ ('/usr/bin/twistd-%d.%d' % tuple(sys.version_info[0:2])) ]:
++            if os.path.exists(try_exe):
++                exe = try_exe
++                break
++        cmd = '%s --pidfile="%s" -ny "%s"' % (exe, pidfile, conf)
+         if not quiet:
+             print_open_msg('localhost' if not interface else interface,
+                            port, secure=secure)

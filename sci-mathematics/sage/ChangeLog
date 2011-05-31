@@ -2,6 +2,10 @@
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  31 May 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-4.7.1_alpha1.ebuild:
+  update dep on sagenb for 4.7.1.alpha1
+
   30 May 2011; François Bissey <francois.bissey@canterbury.ac.nz>
   sage-4.7.ebuild, files/trac_9958-fixing_numericalnoise-part1.patch,
   +files/trac_9958-fixing_numericalnoise-part1-4.7.patch:

@@ -10,7 +10,7 @@ PYTHON_MODNAME="sagenb"
 inherit distutils eutils
 
 MY_P="sagenb-${PV}"
-SAGE_P="sage-4.7"
+SAGE_P="sage-4.7.1.alpha1"
 
 DESCRIPTION="The Sage Notebook is a web-based graphical user interface for mathematical software"
 HOMEPAGE="http://www.sagemath.org"
@@ -68,8 +68,8 @@ src_prepare() {
 	# Ticket: #10131
 	# epatch "${FILESDIR}"/${PN}-0.8.2-add-pidfile-option.patch
 
-	# https://github.com/cschwan/sage-on-gentoo/pull/48
-	# epatch "${FILESDIR}"/${PN}-0.8-twistd-python-version.patch
+	# revised 0.8.14+
+	epatch "${FILESDIR}"/${PN}-0.8.16-twistd-python-version.patch
 
 	distutils_src_prepare
 }

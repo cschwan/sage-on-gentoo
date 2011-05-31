@@ -98,7 +98,7 @@ RDEPEND="${CDEPEND}
 	~sci-mathematics/sage-data-polytopes_db-20100210
 	>=sci-mathematics/sage-doc-${PV}
 	~sci-mathematics/sage-extcode-4.7
-	~sci-mathematics/sage-notebook-0.8.14
+	~sci-mathematics/sage-notebook-0.8.16
 	|| (
 	  ~sci-mathematics/singular-3.1.1.4[-libsingular] 
 	  >=sci-mathematics/singular-3.1.2 
