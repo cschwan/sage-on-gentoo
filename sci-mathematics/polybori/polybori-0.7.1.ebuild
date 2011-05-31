@@ -6,12 +6,12 @@ EAPI="3"
 
 PYTHON_DEPEND="2:2.7"
 
-inherit eutils flag-o-matic multilib python scons-utils versionator
+inherit eutils flag-o-matic multilib python scons-utils toolchain-funcs versionator
 
 DESCRIPTION="Polynomials over Boolean Rings"
 HOMEPAGE="http://polybori.sourceforge.net/"
 SRC_URI="mirror://sourceforge/${PN}/${PN}/${PV}/${P}.tar.gz"
-#http://sourceforge.net/projects/polybori/files/polybori/0.7.1/polybori-0.7.1.tar.gz/download
+
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64 ~x86 ~amd64-linux ~x86-linux ~x86-macos"
@@ -80,6 +80,8 @@ src_compile(){
 
 	# store all parameters for scons in a bash array
 	myesconsargs=(
+		CC=$(tc-getCC)
+		CXX=$(tc-getCXX)
 		CFLAGS=${CFLAGS}
 		CXXFLAGS=${CXXFLAGS}
 		LINKFLAGS=${LDFLAGS}
@@ -124,7 +126,7 @@ src_install() {
 	#	|| die "failed to remove static libraries"
 
 	# fixing flags.conf
-	sed -i "s:${D}:\/:" ${ED}/usr/share/polybori/flags.conf || die
+	sed -i "s:${D}:\/:" "${ED}"/usr/share/polybori/flags.conf || die
 
 	# FIXME: Dynamic libraries now work on linux but are broken on OS X
 	if [[ ${CHOST} == *-darwin* ]] ; then
@@ -136,9 +138,6 @@ src_install() {
 		rm "${ED}"/usr/$(get_libdir)/lib*.a \
 		|| die "failed to remove static libraries"
 	fi
-
-	# fixing flags.conf
-	sed -i "s:${D}:\/:" ${ED}/usr/share/polybori/flags.conf || die
 
 	# fixing install names on OS X
 	#if [[ ${CHOST} == *-darwin* ]] ; then

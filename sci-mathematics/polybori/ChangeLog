@@ -2,6 +2,10 @@
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  31 May 2011; Christopher Schwan <cschwan@students.uni-mainz.de>
+  polybori-0.7.1.ebuild:
+  Fix compiler names and removed useless sed
+
   31 May 2011; François Bissey <francois.bissey@canterbury.ac.nz>
   -polybori-0.7.ebuild:
   drop 0.7, superseded by 0.7.1 which is a better ebuild
