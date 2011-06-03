@@ -3,6 +3,11 @@
 # $Header: $
 
   03 Jun 2011; Martin von Gagern (MvG) <Martin.vGagern@gmx.net>
+  +files/trac_11339-groebner_strategy_deallocate.patch, sage-4.7.ebuild,
+  sage-4.7.1_alpha1.ebuild:
+  Avoid SEGFAULT do to illegal use of __deallocate__ cython method.
+
+  03 Jun 2011; Martin von Gagern (MvG) <Martin.vGagern@gmx.net>
   sage-4.7.ebuild, sage-4.7.1_alpha1.ebuild:
   Apply user patches.
 

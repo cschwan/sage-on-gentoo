@@ -100,8 +100,8 @@ RDEPEND="${CDEPEND}
 	~sci-mathematics/sage-extcode-4.7
 	~sci-mathematics/sage-notebook-0.8.16
 	|| (
-	  ~sci-mathematics/singular-3.1.1.4[-libsingular] 
-	  >=sci-mathematics/singular-3.1.2 
+	  ~sci-mathematics/singular-3.1.1.4[-libsingular]
+	  >=sci-mathematics/singular-3.1.2
 	)
 	>=sci-mathematics/sympow-1.018.1_p8[pari24]
 	examples? ( ~sci-mathematics/sage-examples-4.7 )
@@ -253,6 +253,8 @@ src_prepare() {
 	############################################################################
 	# Fixes to Sage itself
 	############################################################################
+
+	epatch "${FILESDIR}"/trac_11339-groebner_strategy_deallocate.patch
 
 	epatch "${FILESDIR}"/${PN}-4.6.2-gfan-0.5.patch
 
