@@ -19,14 +19,13 @@ start() {
 		--background \
 		--stdout ~sage/sagenb.log \
 		--stderr ~sage/sagenb.err \
-		--pidfile ~sage/sagenb.pid \
+		--pidfile ~sage/.sage/sage_notebook.sagenb/twistd.pid \
 		--user sage \
 		--exec /usr/bin/sage \
 		-- -notebook \
 		accounts=${accounts-False} \
 		interface=${interface-localhost} \
 		open_viewer=False \
-		pidfile=/var/lib/sage/sagenb.pid \
 		port=${port-8000} \
 		require_login=${require_login-True} \
 		secure=${secure-False} \
@@ -36,7 +35,10 @@ start() {
 
 stop() {
 	ebegin "Stopping Sage's Notebook server"
-	start-stop-daemon --stop --pidfile ~sage/sagenb.pid --user sage
+	start-stop-daemon \
+		--stop \
+		--pidfile ~sage/.sage/sage_notebook.sagenb/twistd.pid \
+		--user sage
 	eend $? "Failed to stop Sage's Notebook server"
 }
 
