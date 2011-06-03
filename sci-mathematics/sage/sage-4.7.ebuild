@@ -338,6 +338,9 @@ src_prepare() {
 			|| die "failed to enable dev-libs/mpc"
 	fi
 
+	# apply patches from /etc/portage/patches
+	epatch_user
+
 	# do not forget to run distutils
 	distutils_src_prepare
 }
