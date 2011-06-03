@@ -271,6 +271,7 @@ src_prepare() {
 	epatch "${FILESDIR}"/trac_9958-fix-pureAssertError.patch
 	epatch "${FILESDIR}"/trac_9958-mixedfix.patch
 	epatch "${FILESDIR}"/trac_9958-fixing_colorspy.patch
+	epatch "${FILESDIR}"/trac_11339-groebner_strategy_deallocate.patch
 
 	epatch "${FILESDIR}"/${PN}-4.6.2-gfan-0.5.patch
 
