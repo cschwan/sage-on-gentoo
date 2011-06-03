@@ -2,6 +2,10 @@
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  03 Jun 2011; Martin von Gagern (MvG) <Martin.vGagern@gmx.net>
+  sage-4.7.ebuild, sage-4.7.1_alpha1.ebuild:
+  Apply user patches.
+
   31 May 2011; François Bissey <francois.bissey@canterbury.ac.nz>
   sage-4.7.1_alpha1.ebuild:
   update dep on sagenb for 4.7.1.alpha1
