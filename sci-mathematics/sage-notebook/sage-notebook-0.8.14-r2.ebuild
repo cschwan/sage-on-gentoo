@@ -10,7 +10,7 @@ PYTHON_MODNAME="sagenb"
 inherit distutils eutils
 
 MY_P="sagenb-${PV}"
-SAGE_P="sage-4.7.1.alpha1"
+SAGE_P="sage-4.7"
 
 DESCRIPTION="The Sage Notebook is a web-based graphical user interface for mathematical software"
 HOMEPAGE="http://www.sagemath.org"
@@ -61,11 +61,11 @@ src_prepare() {
 	# We would need to rebuild it from the provided sources.
 	rm -rf sagenb/data/sage3d || die "failed sage3d"
 
-	# change notebook path to prevent sage from writing to /opt/sage
+	# change notebook path to prevent sage from writing to /usr/share/sage
 	sed -i "s:load_notebook('notebook-test\.sagenb'):load_notebook(tmp_dir()+'.sagenb'):" \
 		sagenb/notebook/twist.py || die "failed to change notebook path"
 
-	# revised 0.8.14+
+	# https://github.com/cschwan/sage-on-gentoo/pull/48
 	epatch "${FILESDIR}"/${PN}-0.8.16-twistd-python-version.patch
 
 	# https://github.com/cschwan/sage-on-gentoo/issues/63
