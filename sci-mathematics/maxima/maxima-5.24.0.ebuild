@@ -116,6 +116,7 @@ src_prepare() {
 
 	# bug #343331
 	rm share/Makefile.in || die
+	rm src/Makefile.in || die
 	eautoreconf
 }
 
