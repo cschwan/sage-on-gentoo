@@ -71,7 +71,6 @@ RDEPEND="${CDEPEND}
 	~dev-python/networkx-1.2
 	~dev-python/pexpect-2.0
 	>=dev-python/pycrypto-2.1.0
-	>=dev-python/python-gnutls-1.1.4
 	>=dev-python/rpy-2.0.6
 	>=dev-python/sphinx-1.0.4
 	dev-python/sqlalchemy

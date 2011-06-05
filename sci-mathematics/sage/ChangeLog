@@ -2,6 +2,11 @@
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  05 Jun 2011; Christopher Schwan <cschwan@students.uni-mainz.de>
+  sage-4.7.ebuild, sage-4.7.1_alpha1.ebuild:
+  Removed superfluous dependency on python-gnutls (should have been in
+  sage-notebook instead) and fixed whitespace
+
   03 Jun 2011; Martin von Gagern (MvG) <Martin.vGagern@gmx.net>
   +files/trac_11339-groebner_strategy_deallocate.patch, sage-4.7.ebuild,
   sage-4.7.1_alpha1.ebuild:
