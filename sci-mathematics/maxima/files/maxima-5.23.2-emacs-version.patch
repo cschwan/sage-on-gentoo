@@ -1,7 +1,0 @@
-diff -r -U1 maxima-5.23.1.orig//interfaces/emacs/emaxima/maxima.el maxima-5.23.1//interfaces/emacs/emaxima/maxima.el
---- maxima-5.23.1.orig//interfaces/emacs/emaxima/maxima.el	2010-12-05 08:05:58.000000000 +0600
-+++ maxima-5.23.1//interfaces/emacs/emaxima/maxima.el	2011-01-16 20:12:16.000000000 +0600
-@@ -2105,2 +2105,3 @@
-      (not maxima-running-xemacs)
-+     (<= emacs-major-version 21)
-      (or
