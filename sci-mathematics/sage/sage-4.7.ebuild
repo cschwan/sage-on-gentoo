@@ -27,7 +27,7 @@ CDEPEND="dev-libs/gmp
 	>=dev-libs/ntl-5.5.2
 	>=dev-libs/ppl-0.11.2
 	>=dev-lisp/ecls-11.1.1-r1[-unicode]
-	>=dev-python/numpy-1.5.1
+	~dev-python/numpy-1.5.1
 	>=sci-mathematics/eclib-20100711[pari24]
 	>=sci-mathematics/ecm-6.2.1
 	>=sci-libs/flint-1.5.0[ntl]
