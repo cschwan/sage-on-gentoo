@@ -11,8 +11,8 @@ inherit autotools-utils python
 SAGE_P="sage-4.7.1.alpha1"
 
 DESCRIPTION="A modified version of GiNaC that replaces the dependency on CLN by Python"
-HOMEPAGE="http://pynac.sagemath.org/"
-SRC_URI="http://sage.math.washington.edu/home/release/${SAGE_P}/${SAGE_P}/spkg/standard/${P}.spkg -> ${P}.tar.bz2"
+HOMEPAGE="http://pynac.sagemath.org/ https://bitbucket.org/burcin/pynac/overview"
+SRC_URI="https://bitbucket.org/burcin/pynac/get/${P}.tar.bz2"
 
 LICENSE="GPL-2"
 SLOT="0"
@@ -24,7 +24,7 @@ RESTRICT="mirror"
 DEPEND="dev-util/pkgconfig"
 RDEPEND=""
 
-S="${WORKDIR}/${P}/src"
+S="${WORKDIR}"/burcin-pynac-38aed066e8be
 
 DOCS=( AUTHORS NEWS README )
 
@@ -32,4 +32,8 @@ pkg_setup() {
 	# This version will use python-2.7
 	python_set_active_version 2.7
 	python_pkg_setup
+}
+
+src_prepare() {
+	AT_M4DIR=m4 eautoreconf
 }
