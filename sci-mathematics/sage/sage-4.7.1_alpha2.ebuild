@@ -33,7 +33,7 @@ CDEPEND="dev-libs/gmp
 	>=sci-libs/flint-1.5.0[ntl]
 	>=sci-libs/fplll-3.0.12
 	=sci-libs/givaro-3.2*
-	>=sci-libs/gsl-1.14
+	>=sci-libs/gsl-1.15
 	>=sci-libs/iml-1.0.1
 	>=sci-libs/libcliquer-1.2_p7
 	>=sci-libs/linbox-1.1.6[sage]
@@ -87,7 +87,7 @@ RDEPEND="${CDEPEND}
 	>=sci-mathematics/cu2-20060223
 	>=sci-mathematics/cubex-20060128
 	>=sci-mathematics/dikcube-20070912_p12
-	>=sci-mathematics/maxima-5.23.2[ecls]
+	>=sci-mathematics/maxima-5.24.0-r1[ecls]
 	>=sci-mathematics/mcube-20051209
 	>=sci-mathematics/optimal-20040603
 	>=sci-mathematics/palp-1.1
@@ -144,11 +144,8 @@ src_prepare() {
 	epatch "${FILESDIR}"/trac_9958-fixing_colorspy.patch
 	epatch "${FILESDIR}"/trac_9958-build_misc_cythonpy.patch
 	# build system patches
-	epatch "${FILESDIR}"/11373.patch
 	epatch "${FILESDIR}"/trac_11377-build_module_listpy.patch
 	epatch "${FILESDIR}"/trac_11376-build_setuppy.patch
-	# tentative patch for Groebner strategy
-	# epatch "${FILESDIR}"/trac_11339-fix-groebner.patch
 	# make sure we use cython-2.7 for consistency
 	sed -i "s:python \`which cython\`:cython-2.7:" setup.py
 

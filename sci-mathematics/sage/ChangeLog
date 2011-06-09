@@ -2,6 +2,16 @@
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  09 Jun 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  -sage-4.7.1_alpha1.ebuild, +sage-4.7.1_alpha2.ebuild:
+  TODO fix the test broken by maxima-5.24.0-r1
+
+*sage-4.7.1_alpha2 (09 Jun 2011)
+
+  09 Jun 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  -sage-4.7.1_alpha1.ebuild, +sage-4.7.1_alpha2.ebuild:
+  4.7.1.alpha2
+
   07 Jun 2011; François Bissey <francois.bissey@canterbury.ac.nz>
   sage-4.6.2.ebuild, sage-4.7.ebuild, sage-4.7.1_alpha1.ebuild:
   Adjust numpy dep as suggested by Marc Vinyals

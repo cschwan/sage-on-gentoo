@@ -2,6 +2,12 @@
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*sage-clib-4.7.1_alpha2 (09 Jun 2011)
+
+  09 Jun 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  -sage-clib-4.7.1_alpha1.ebuild, +sage-clib-4.7.1_alpha2.ebuild:
+  4.7.1.alpha2
+
 *sage-clib-4.7.1_alpha1 (29 May 2011)
 
   29 May 2011; François Bissey <francois.bissey@canterbury.ac.nz>
