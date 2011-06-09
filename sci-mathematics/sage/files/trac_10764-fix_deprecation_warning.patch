@@ -35,17 +35,3 @@ diff --git a/sage/ext/gen_interpreters.py b/sage/ext/gen_interpreters.py
              cdef extern from "Python.h":
                  void Py_DECREF(PyObject *o)
                  void Py_INCREF(PyObject *o)
-diff --git a/sage/rings/polynomial/polynomial_real_mpfr_dense.pyx b/sage/rings/polynomial/polynomial_real_mpfr_dense.pyx
---- a/sage/rings/polynomial/polynomial_real_mpfr_dense.pyx
-+++ b/sage/rings/polynomial/polynomial_real_mpfr_dense.pyx
-@@ -4,8 +4,8 @@
- include "../../ext/stdsage.pxi"
- include "../../ext/interrupt.pxi"
- 
--from python_int cimport PyInt_AS_LONG
--from python_float cimport PyFloat_AS_DOUBLE
-+from cpython cimport PyInt_AS_LONG
-+from cpython cimport PyFloat_AS_DOUBLE
- 
- from sage.structure.parent cimport Parent
- from polynomial_element cimport Polynomial

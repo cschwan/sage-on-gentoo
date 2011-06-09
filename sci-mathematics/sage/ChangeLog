@@ -3,6 +3,10 @@
 # $Header: $
 
   09 Jun 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  files/trac_10764-fix_deprecation_warning.patch:
+  update trac10764 patch for alpha2
+
+  09 Jun 2011; François Bissey <francois.bissey@canterbury.ac.nz>
   -sage-4.7.1_alpha1.ebuild, +sage-4.7.1_alpha2.ebuild:
   TODO fix the test broken by maxima-5.24.0-r1
 
