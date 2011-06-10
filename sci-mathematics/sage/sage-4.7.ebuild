@@ -33,7 +33,7 @@ CDEPEND="dev-libs/gmp
 	>=sci-libs/flint-1.5.0[ntl]
 	>=sci-libs/fplll-3.0.12
 	=sci-libs/givaro-3.2*
-	>=sci-libs/gsl-1.14
+	>=sci-libs/gsl-1.15
 	>=sci-libs/iml-1.0.1
 	>=sci-libs/libcliquer-1.2_p7
 	>=sci-libs/linbox-1.1.6[sage]
@@ -273,6 +273,8 @@ src_prepare() {
 	epatch "${FILESDIR}"/trac_11339-groebner_strategy_deallocate.patch
 
 	epatch "${FILESDIR}"/${PN}-4.6.2-gfan-0.5.patch
+	# doctest fix for gsl-1.15
+	epatch "${FILESDIR}"/trac_11357-fix_gsl_doctest.patch
 
 	# gmp-5 compatibility - works with gmp-4.3 as well
 	sed -i "s:__GMP_BITS_PER_MP_LIMB:GMP_LIMB_BITS:g" sage/rings/integer.pyx \

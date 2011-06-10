@@ -1,0 +1,31 @@
+# HG changeset patch
+# User Francois Bissey <francois.bissey@canterbury.ac.nz>
+# Date 1306178915 -43200
+# Node ID 8e7bcef0b735b597c1dde9695368709bdb53557e
+# Parent  ac0d5940a819950c7fb782949c019c8cdb885323
+#11357 fix doctest broken by gsl-1.15. The corrections in question are really two bugs in sage as well.
+
+diff --git a/sage/gsl/interpolation.pyx b/sage/gsl/interpolation.pyx
+--- a/sage/gsl/interpolation.pyx
++++ b/sage/gsl/interpolation.pyx
+@@ -20,7 +20,7 @@
+     This is the example in the GSL documentation.
+         sage: v = [(i + sin(i)/2, i+cos(i^2)) for i in range(10)]
+         sage: s = spline(v)
+-        sage: show(point(v) + plot(s,0,11, hue=.8))    
++        sage: show(point(v) + plot(s,0,9, hue=.8))    
+     """
+     def __init__(self, v=[]):
+         self.v = list(v)
+diff --git a/sage/gsl/probability_distribution.pyx b/sage/gsl/probability_distribution.pyx
+--- a/sage/gsl/probability_distribution.pyx
++++ b/sage/gsl/probability_distribution.pyx
+@@ -385,7 +385,7 @@
+         sage: T.get_random_element() # random
+         0.103230507883
+         sage: T.distribution_function(0)
+-        0.0
++        +infinity
+         sage: T.cum_distribution_function(1)
+         0.682689492137
+         sage: T.cum_distribution_function_inv(.5)

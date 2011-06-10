@@ -2,6 +2,10 @@
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  10 Jun 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  +files/trac_11357-fix_gsl_doctest.patch, sage-4.6.2.ebuild, sage-4.7.ebuild:
+  bump dep to gsl-1.15
+
   09 Jun 2011; François Bissey <francois.bissey@canterbury.ac.nz>
   files/trac_10764-fix_deprecation_warning.patch:
   update trac10764 patch for alpha2
