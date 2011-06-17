@@ -1,0 +1,11 @@
+--- sagetex.dtx.orig	2011-06-17 15:27:14.333845008 +1200
++++ sagetex.dtx	2011-06-17 15:27:21.948599493 +1200
+@@ -146,8 +146,6 @@
+ %</driver>
+ % \fi
+ %
+-% \CheckSum{563}
+-%
+ % \CharacterTable
+ %  {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
+ %   Lower-case    \a\b\c\d\e\f\g\h\i\j\k\l\m\n\o\p\q\r\s\t\u\v\w\x\y\z

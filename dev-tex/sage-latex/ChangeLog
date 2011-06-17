@@ -2,6 +2,14 @@
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*sage-latex-2.3.1 (17 Jun 2011)
+
+  17 Jun 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  +sage-latex-2.3.1.ebuild, +files/sage-latex-2.3.1-chksum.patch,
+  +files/sage-latex-2.3.1-install-python-files-only.patch:
+  Revbump to 2.3.1. Switch to bitbucket sources, this requires generation of
+  docs.
+
   14 Apr 2011; François Bissey <francois.bissey@canterbury.ac.nz>
   sage-latex-2.2.5-r2.ebuild:
   Make sage-latex support multiple python
