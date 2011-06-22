@@ -143,6 +143,9 @@ src_prepare() {
 	epatch "${FILESDIR}"/trac_9958-mixedfix.patch
 	epatch "${FILESDIR}"/trac_9958-fixing_colorspy.patch
 	epatch "${FILESDIR}"/trac_9958-build_misc_cythonpy.patch
+	# fix groebner strategy trac 11339
+	epatch "${FILESDIR}"/trac_11339_refcount_singular_rings.patch
+	epatch "${FILESDIR}"/trac_11339_refcount_singular_polynomials.patch.bz2
 	# build system patches
 	epatch "${FILESDIR}"/trac_11377-build_module_listpy.patch
 	epatch "${FILESDIR}"/trac_11376-build_setuppy.patch
@@ -249,8 +252,6 @@ src_prepare() {
 	############################################################################
 	# Fixes to Sage itself
 	############################################################################
-
-	epatch "${FILESDIR}"/trac_11339-groebner_strategy_deallocate.patch
 
 	epatch "${FILESDIR}"/${PN}-4.6.2-gfan-0.5.patch
 

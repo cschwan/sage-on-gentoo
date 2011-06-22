@@ -2,6 +2,22 @@
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  22 Jun 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  +files/trac_11339_refcount_singular_polynomials.patch.bz2,
+  +files/trac_11339_refcount_singular_rings.patch,
+  -files/trac_11339-groebner_strategy_deallocate.patch, -sage-4.7.ebuild,
+  +sage-4.7-r1.ebuild, sage-4.7.1_alpha2.ebuild:
+  compress the big patch
+
+*sage-4.7-r1 (22 Jun 2011)
+
+  22 Jun 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  +files/trac_11339_refcount_singular_polynomials.patch,
+  +files/trac_11339_refcount_singular_rings.patch,
+  -files/trac_11339-groebner_strategy_deallocate.patch, -sage-4.7.ebuild,
+  +sage-4.7-r1.ebuild, sage-4.7.1_alpha2.ebuild:
+  Uses Volker's latest fix for groebner strategy
+
   10 Jun 2011; François Bissey <francois.bissey@canterbury.ac.nz>
   +files/trac_11357-fix_gsl_doctest.patch, sage-4.6.2.ebuild, sage-4.7.ebuild:
   bump dep to gsl-1.15
