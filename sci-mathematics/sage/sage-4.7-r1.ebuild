@@ -270,9 +270,8 @@ src_prepare() {
 	epatch "${FILESDIR}"/trac_9958-fix-pureAssertError.patch
 	epatch "${FILESDIR}"/trac_9958-mixedfix.patch
 	epatch "${FILESDIR}"/trac_9958-fixing_colorspy.patch
-	# fix groebner strategy trac 11339
-	epatch "${FILESDIR}"/trac_11339_refcount_singular_rings.patch
-	epatch "${FILESDIR}"/trac_11339_refcount_singular_polynomials.patch.bz2
+	# fix groebner strategy trac 11339 using old work around
+	epatch "${FILESDIR}"/trac_11339-groebner_strategy_deallocate.patch
 
 	epatch "${FILESDIR}"/${PN}-4.6.2-gfan-0.5.patch
 	# doctest fix for gsl-1.15

@@ -2,6 +2,10 @@
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  23 Jun 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  +files/trac_11339-groebner_strategy_deallocate.patch, sage-4.7-r1.ebuild:
+  Revert to old patch in 4.7-r1
+
   22 Jun 2011; François Bissey <francois.bissey@canterbury.ac.nz>
   +files/trac_11339_refcount_singular_polynomials.patch.bz2,
   +files/trac_11339_refcount_singular_rings.patch,
