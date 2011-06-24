@@ -3,6 +3,18 @@
 # $Header: $
 
   24 Jun 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  files/trac_9958-fixing_numericalnoise-part2.patch, -sage-4.7.1_alpha2.ebuild,
+  +sage-4.7.1_alpha3.ebuild:
+  adjust sagenb dep
+
+*sage-4.7.1_alpha3 (24 Jun 2011)
+
+  24 Jun 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  files/trac_9958-fixing_numericalnoise-part2.patch, -sage-4.7.1_alpha2.ebuild,
+  +sage-4.7.1_alpha3.ebuild:
+  bump to 4.7.1.alpha3 adjust numerical noise patch 2
+
+  24 Jun 2011; François Bissey <francois.bissey@canterbury.ac.nz>
   files/trac_11339_refcount_singular_polynomials.patch.bz2:
   update Volker's patch
 
