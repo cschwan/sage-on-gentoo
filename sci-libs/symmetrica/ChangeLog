@@ -2,6 +2,11 @@
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  24 Jun 2011; Christopher Schwan <cschwan@students.uni-mainz.de>
+  symmetrica-2.0-r2.ebuild:
+  Export correct PREFIX variable to make Gentoo Prefix work. Thanks to
+  maldun for reporting this issue (bug #372857).
+
   07 May 2011; Christopher Schwan <cschwan@students.uni-mainz.de>
   symmetrica-2.0.ebuild, symmetrica-2.0-r2.ebuild:
   Migrate to EAPI 4

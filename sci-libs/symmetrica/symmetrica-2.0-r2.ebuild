@@ -58,6 +58,7 @@ src_compile() {
 }
 
 src_install() {
+	export PREFIX="${EPREFIX}"/usr
 	export LIBDIR=$(get_libdir)
 
 	default_src_install
