@@ -4,7 +4,7 @@
 
 EAPI="4"
 
-inherit autotools-utils
+inherit autotools-utils flag-o-matic
 
 MY_P="lib${P}"
 
@@ -29,6 +29,10 @@ AUTOTOOLS_IN_SOURCE_BUILD="1"
 DOCS=( AUTHORS NEWS README )
 
 src_prepare() {
+	# -O3 hangs up the compiler. See issue #66 at
+	# https://github.com/cschwan/sage-on-gentoo/issues/66
+	replace-flags -O3 -O2
+
 	autotools-utils_src_prepare
 
 	# Replace deprecated gmp functions which are removed with mpir-1.3.0
