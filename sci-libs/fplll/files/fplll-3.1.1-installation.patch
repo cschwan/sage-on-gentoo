@@ -1,0 +1,18 @@
+--- src/Makefile.am.orig	2011-06-24 08:59:32.000000000 +0000
++++ src/Makefile.am	2011-06-24 08:59:41.875004510 +0000
+@@ -57,12 +57,12 @@
+ install-data-hook:
+ 	echo "#include <fplll/fplll.h>" > "$(srcdir)/fplll.h.root"
+ 	echo "using namespace fplll;" >> "$(srcdir)/fplll.h.root"
+-	$(INSTALL) -m 644 "$(srcdir)/fplll.h.root" "$(includedir)/fplll.h"
++	$(INSTALL_DATA) "$(srcdir)/fplll.h.root" "$(DESTDIR)$(includedir)/fplll.h"
+ 	rm -f "$(srcdir)/fplll.h.root"
+ 
+ uninstall-hook:
+-	(test -d "$(includedir)/fplll" && rmdir "$(includedir)/fplll") || true
+-	rm -f "$(includedir)/fplll.h"
++	(test -d "$(DESTDIR)$(includedir)/fplll" && rmdir "$(DESTDIR)$(includedir)/fplll") || true
++	rm -f "$(DESTDIR)$(includedir)/fplll.h"
+ 
+ dbg: fplll_dbg latticegen_dbg
+ 
