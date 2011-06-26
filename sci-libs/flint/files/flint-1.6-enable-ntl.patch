@@ -1,0 +1,33 @@
+--- makefile.new	2011-06-26 11:00:20.993178308 +0000
++++ makefile	2011-06-26 11:00:14.903178304 +0000
+@@ -102,7 +102,8 @@
+ 	poly.o \
+ 	sieve.o \
+ 	linear_algebra.o \
+-	block_lanczos.o
++	block_lanczos.o \
++	NTL-interface.o
+ 
+ QS: mpQS
+ 
+@@ -139,16 +140,16 @@
+ library: $(FLINT_LIB)
+ 
+ libflint.dylib: $(FLINTOBJ)
+-	$(CC) -single_module -fPIC -dynamiclib -o libflint.dylib $(FLINTOBJ) $(LIBS)
++	$(CC) -single_module -fPIC -dynamiclib -o libflint.dylib $(FLINTOBJ) $(LIBS2)
+ 
+ libflint.dylib64: $(FLINTOBJ)
+-	$(CC) -m64 -single_module -fPIC -dynamiclib -o libflint.dylib $(FLINTOBJ) $(LIBS)
++	$(CC) -m64 -single_module -fPIC -dynamiclib -o libflint.dylib $(FLINTOBJ) $(LIBS2)
+ 
+ libflint.dll: $(FLINTOBJ)
+-	$(CC) -fPIC -shared -o libflint.dll $(FLINTOBJ) $(LIBS)
++	$(CC) -fPIC -shared -o libflint.dll $(FLINTOBJ) $(LIBS2)
+ 
+ libflint.so: $(FLINTOBJ)
+-	$(CC) -fPIC -shared -Wl,-soname,libflint.so -o libflint.so $(FLINTOBJ) $(LIBS)
++	$(CC) -fPIC -shared -Wl,-soname,libflint.so -o libflint.so $(FLINTOBJ) $(LIBS2)
+ 
+ ##### Object files
+ 

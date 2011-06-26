@@ -2,6 +2,13 @@
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*flint-1.6 (26 Jun 2011)
+
+  26 Jun 2011; Christopher Schwan <cschwan@students.uni-mainz.de>
+  +flint-1.6.ebuild, +files/flint-1.6-enable-ntl.patch,
+  +files/flint-1.6-makefile.patch:
+  Version bump
+
   26 Jun 2011; Christopher Schwan <cschwan@students.uni-mainz.de>
   flint-1.5.2.ebuild:
   Replaced wrong "doins" with "dodoc"
