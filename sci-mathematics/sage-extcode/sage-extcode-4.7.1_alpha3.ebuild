@@ -4,8 +4,10 @@
 
 EAPI="4"
 
-SAGE_P="sage-${PV}"
-MY_P="extcode-${PV}"
+inherit versionator
+
+SAGE_P="sage-$(replace_version_separator 3 '.')"
+MY_P="extcode-$(replace_version_separator 3 '.')"
 
 DESCRIPTION="Extcode for Sage"
 HOMEPAGE="http://www.sagemath.org"
