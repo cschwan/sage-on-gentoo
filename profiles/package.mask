@@ -14,3 +14,5 @@
 >=dev-lang/R-2.12.0
 # Inroduce a number of doctest failures - liekly harmless
 >=sci-libs/mpfi-1.5
+#building problems reported against latest fplll
+=sci-libs/fplll-3.1.1
