@@ -77,6 +77,6 @@ src_install() {
 	fi
 
 	if use doc ; then
-		doins doc/*.pdf
+		dodoc doc/*.pdf
 	fi
 }

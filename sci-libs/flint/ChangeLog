@@ -2,6 +2,10 @@
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  26 Jun 2011; Christopher Schwan <cschwan@students.uni-mainz.de>
+  flint-1.5.2.ebuild:
+  Replaced wrong "doins" with "dodoc"
+
   06 May 2011; Christopher Schwan <cschwan@students.uni-mainz.de> ChangeLog:
   Migrate to EAPI 4
 
