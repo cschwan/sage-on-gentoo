@@ -30,8 +30,8 @@ DEPEND="~dev-python/pexpect-2.0
 	>=dev-python/jinja-2.5.5
 	>=dev-python/docutils-0.5"
 RDEPEND="${DEPEND}
-	java? ( ~sci-chemistry/jmol-11.6.16
-		~sci-chemistry/jmol-applet-11.6.16 )"
+	java? ( sci-chemistry/jmol
+		sci-chemistry/jmol-applet )"
 
 S="${WORKDIR}/${MY_P}/src/sagenb"
 
