@@ -2,18 +2,18 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
-EAPI="3"
+EAPI=1
 WEBAPP_OPTIONAL="yes"
 
-inherit eutils webapp java-pkg-2 java-ant-2
-MY_P="Jmol-${PV}"
+inherit eutils java-pkg-2 java-ant-2 webapp
+
+MY_P=Jmol
 
 DESCRIPTION="Jmol is a java molecular viever for 3-D chemical structures."
-SRC_URI="mirror://sourceforge/${PN}/Jmol/Version%2012.0/Version%2012.0.30/${MY_P}-full.tar.gz"
+SRC_URI="mirror://sourceforge/${PN}/${MY_P}-${PV}-full.tar.gz"
 HOMEPAGE="http://jmol.sourceforge.net/"
 KEYWORDS="~amd64 ~x86 ~amd64-linux ~x86-linux"
 LICENSE="LGPL-2.1"
-RESTRICT="mirror"
 
 IUSE="client-only vhosts"
 
@@ -32,14 +32,22 @@ DEPEND=">=virtual/jdk-1.4
 	${COMMON_DEP}"
 
 pkg_setup() {
+
 	if ! use client-only ; then
 		webapp_pkg_setup || die "Failed to setup webapp"
 	fi
 
 	java-pkg-2_pkg_setup
+
 }
 
-src_prepare() {
+src_unpack() {
+
+	unpack ${A}
+	cd "${S}"
+	epatch "${FILESDIR}"/${PV}/${PN}-nointl.patch
+	epatch "${FILESDIR}"/${PV}/${PN}-manifest.patch
+
 	mkdir "${S}"/selfSignedCertificate || die "Failed to create Cert directory."
 	cp "${FILESDIR}"/selfSignedCertificate.store "${S}"/selfSignedCertificate/ \
 		|| die "Failed to install Cert file."
@@ -58,7 +66,6 @@ src_prepare() {
 	java-pkg_jar-from itext iText.jar itext-1.4.5.jar
 	java-pkg_jar-from jmol-acme jmol-acme.jar Acme.jar
 	java-pkg_jar-from commons-cli-1 commons-cli.jar commons-cli-1.0.jar
-	java-pkg_jar-from junit junit.jar junit.jar
 
 	mkdir -p "${S}/build/appjars" || die
 }
@@ -69,7 +76,6 @@ src_compile() {
 }
 
 src_install() {
-	MY_HTDOCSDIR="${MY_APPROOT}/${PN}"/htdocs
 
 	java-pkg_dojar build/Jmol.jar
 	dohtml -r  build/doc/* || die "Failed to install html docs."
@@ -100,13 +106,17 @@ src_install() {
 }
 
 pkg_postinst() {
+
 	if ! use client-only ; then
 		webapp_pkg_postinst || die "webapp_pkg_postinst failed"
 	fi
+
 }
 
 pkg_prerm() {
+
 	if ! use client-only ; then
 		webapp_pkg_prerm || die "webapp_pkg_prerm failed"
 	fi
+
 }
