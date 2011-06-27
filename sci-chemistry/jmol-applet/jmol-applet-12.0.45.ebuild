@@ -1,4 +1,4 @@
-# Copyright 1999-2010 Gentoo Foundation
+# Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
@@ -36,6 +36,9 @@ pkg_setup() {
 }
 
 src_prepare() {
+	epatch "${FILESDIR}"/${PV}/${MY_PN}-nointl.patch
+	epatch "${FILESDIR}"/${PV}/${MY_PN}-manifest.patch
+
 	mkdir "${S}"/selfSignedCertificate || die "Failed to create Cert directory."
 	cp "${FILESDIR}"/selfSignedCertificate.store "${S}"/selfSignedCertificate/ \
 		|| die "Failed to install Cert file."
