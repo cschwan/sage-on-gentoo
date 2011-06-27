@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
-EAPI=1
+EAPI=3
 WEBAPP_OPTIONAL="yes"
 
 inherit eutils java-pkg-2 java-ant-2 webapp
@@ -41,10 +41,7 @@ pkg_setup() {
 
 }
 
-src_unpack() {
-
-	unpack ${A}
-	cd "${S}"
+src_prepare() {
 	epatch "${FILESDIR}"/${PV}/${PN}-nointl.patch
 	epatch "${FILESDIR}"/${PV}/${PN}-manifest.patch
 
