@@ -7,9 +7,10 @@
 >=sci-libs/pynac-0.2.2
 >=sci-mathematics/sage-notebook-0.8.16
 =dev-tex/sage-latex-2.3.1
-# Not compatible with sage
+# not compatible with sage
 >=dev-lang/R-2.12.0
-# Inroduce a number of doctest failures - liekly harmless
+>=sci-libs/m4ri-20110613
+# introduces a number of doctest failures - liekly harmless
 >=sci-libs/mpfi-1.5
-#building problems reported against latest fplll
+# building problems reported against latest fplll
 =sci-libs/fplll-3.1.1
