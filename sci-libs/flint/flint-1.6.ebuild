@@ -35,7 +35,8 @@ src_prepare() {
 		fmpz_poly.c zmod_poly.h fmpz.h fmpz.c F_mpz.h F_mpz.c \
 		|| die "failed to patch zn_poly header inclusions"
 
-	# 
+	# fix CFLAGS, CXXFLAGS, LDFLAGS use, remove usage of internal zn_poly and
+	# compile ntl stuff with CXXFLAGS instead of CFLAGS
 	epatch "${FILESDIR}"/${PN}-1.6-makefile.patch
 
 	# build ntl interface into libflint

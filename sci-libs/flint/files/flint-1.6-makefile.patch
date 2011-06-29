@@ -1,26 +1,26 @@
 --- makefile.orig	2010-12-24 03:45:11.000000000 +0000
-+++ makefile	2011-06-26 11:00:20.993178308 +0000
-@@ -20,27 +20,21 @@
++++ makefile	2011-06-29 08:50:01.551000920 +0000
+@@ -20,27 +20,20 @@
  	CXX = g++
  endif
  
 -LIBS = -L$(FLINT_GMP_LIB_DIR) $(FLINT_LINK_OPTIONS) -lmpfr -lmpir -lpthread -lm
-+ifeq ($(MAKECMDGOALS),library)
-+	CXX += -fPIC
-+endif
- 
+-
 -LIBS2 = -L$(FLINT_GMP_LIB_DIR) -L$(FLINT_NTL_LIB_DIR) $(FLINT_LINK_OPTIONS) -lntl -lmpfr -lmpir -lpthread -lm 
-+LIBS = -lmpfr -lgmp -lpthread -lm -lzn_poly
- 
+-
 -ifndef FLINT_NTL_INCLUDE_DIR
 -	INCS = -I$(FLINT_GMP_INCLUDE_DIR) -I$(FLINT_MPFR_INCLUDE_DIR) 
 -else
 -	INCS = -I$(FLINT_GMP_INCLUDE_DIR) -I$(FLINT_NTL_INCLUDE_DIR) -I$(FLINT_MPFR_INCLUDE_DIR)
--endif
-+LIBS2 = -lntl -lmpfr -lgmp -lpthread -lm -lzn_poly
++ifeq ($(MAKECMDGOALS),library)
++	CXX += -fPIC
+ endif
  
 -CFLAGS = $(INCS) $(FLINT_TUNE) -g -O2
 -CFLAGS2 = $(INCS) $(FLINT_TUNE) -fopenmp -O2
++LIBS = $(LDFLAGS) -lmpfr -lgmp -lpthread -lm -lzn_poly
++LIBS2 = $(LDFLAGS) -lntl -lmpfr -lgmp -lpthread -lm -lzn_poly
++
 +CFLAGS ?= $(FLINT_TUNE) -g -O2
 +CXXFLAGS ?= $(CFLAGS)
 +CFLAGS2 = $(FLINT_TUNE) -fopenmp -O2
@@ -36,7 +36,7 @@
  	mpz_extras.h \
  	F_mpn_mul-tuning.h \
  	ZmodF.h \
-@@ -78,23 +72,6 @@
+@@ -78,23 +71,6 @@
  ####### library object files
  
  FLINTOBJ = \
@@ -60,7 +60,7 @@
  	mpn_extras.o \
  	mpz_extras.o \
  	memory-manager.o \
-@@ -171,60 +148,7 @@
+@@ -171,60 +147,7 @@
  	$(CC) -fPIC -shared -o libflint.dll $(FLINTOBJ) $(LIBS)
  
  libflint.so: $(FLINTOBJ)
@@ -122,7 +122,7 @@
  
  ##### Object files
  
-@@ -295,7 +219,7 @@
+@@ -295,7 +218,7 @@
  	$(CC) $(CFLAGS) -c F_mpz_mod_poly.c -o F_mpz_mod_poly.o
  
  NTL-interface.o: NTL-interface.cpp $(HEADERS)
@@ -131,7 +131,7 @@
  
  theta.o: theta.c $(HEADERS)
  	$(CC) $(CFLAGS) -c theta.c -o theta.o
-@@ -378,7 +302,7 @@
+@@ -378,7 +301,7 @@
  	$(CC) $(CFLAGS) -c F_mpz_mod_poly-test.c -o F_mpz_mod_poly-test.o
  
  NTL-interface-test.o: NTL-interface-test.cpp
@@ -140,7 +140,7 @@
  
  ####### test program targets
  
-@@ -443,7 +367,7 @@
+@@ -443,7 +366,7 @@
  	$(CC) $(CFLAGS) F_mpz_mod_poly-test.o test-support.o -o F_mpz_mod_poly-test $(FLINTOBJ) $(LIBS)
  
  NTL-interface-test: NTL-interface.o NTL-interface-test.o test-support.o $(FLINTOBJ) $(HEADERS)
@@ -149,7 +149,7 @@
  
  ####### tuning program object files
  
-@@ -516,7 +440,7 @@
+@@ -516,7 +439,7 @@
  
  NTL-profile-tables.o: NTL-profile.c $(HEADERS)
  	$(FLINT_PY) make-profile-tables.py NTL
@@ -158,7 +158,7 @@
  
  zmod_poly-profile-tables.o: zmod_poly-profile.c $(HEADERS)
  	$(FLINT_PY) make-profile-tables.py zmod_poly
-@@ -558,7 +482,7 @@
+@@ -558,7 +481,7 @@
  	$(CC) $(CFLAGS) -o kara-profile kara-profile.c profiler.o test-support.o $(FLINTOBJ) $(LIBS)
  
  NTL-profile: NTL-profile.c test-support.o NTL-profile-tables.o $(PROFOBJ)
