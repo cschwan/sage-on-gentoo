@@ -15,19 +15,19 @@
  
  libflint.dylib: $(FLINTOBJ)
 -	$(CC) -single_module -fPIC -dynamiclib -o libflint.dylib $(FLINTOBJ) $(LIBS)
-+	$(CC) -single_module -fPIC -dynamiclib -o libflint.dylib $(FLINTOBJ) $(LIBS2)
++	$(CXX) -single_module -fPIC -dynamiclib -o libflint.dylib $(FLINTOBJ) $(LIBS2)
  
  libflint.dylib64: $(FLINTOBJ)
 -	$(CC) -m64 -single_module -fPIC -dynamiclib -o libflint.dylib $(FLINTOBJ) $(LIBS)
-+	$(CC) -m64 -single_module -fPIC -dynamiclib -o libflint.dylib $(FLINTOBJ) $(LIBS2)
++	$(CXX) -m64 -single_module -fPIC -dynamiclib -o libflint.dylib $(FLINTOBJ) $(LIBS2)
  
  libflint.dll: $(FLINTOBJ)
 -	$(CC) -fPIC -shared -o libflint.dll $(FLINTOBJ) $(LIBS)
-+	$(CC) -fPIC -shared -o libflint.dll $(FLINTOBJ) $(LIBS2)
++	$(CXX) -fPIC -shared -o libflint.dll $(FLINTOBJ) $(LIBS2)
  
  libflint.so: $(FLINTOBJ)
 -	$(CC) -fPIC -shared -Wl,-soname,libflint.so -o libflint.so $(FLINTOBJ) $(LIBS)
-+	$(CC) -fPIC -shared -Wl,-soname,libflint.so -o libflint.so $(FLINTOBJ) $(LIBS2)
++	$(CXX) -fPIC -shared -Wl,-soname,libflint.so -o libflint.so $(FLINTOBJ) $(LIBS2)
  
  ##### Object files
  
