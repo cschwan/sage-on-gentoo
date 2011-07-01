@@ -1,33 +1,28 @@
---- makefile.new	2011-06-29 08:50:01.000000000 +0000
-+++ makefile	2011-06-29 08:53:06.686001054 +0000
-@@ -101,7 +101,8 @@
- 	poly.o \
- 	sieve.o \
- 	linear_algebra.o \
--	block_lanczos.o
-+	block_lanczos.o \
-+	NTL-interface.o
+--- makefile.orig	2011-07-02 10:42:08.076386261 +1200
++++ makefile	2011-07-02 10:44:25.884385998 +1200
+@@ -137,17 +137,17 @@
  
- QS: mpQS
- 
-@@ -138,16 +139,16 @@
  library: $(FLINT_LIB)
  
- libflint.dylib: $(FLINTOBJ)
+-libflint.dylib: $(FLINTOBJ)
 -	$(CC) -single_module -fPIC -dynamiclib -o libflint.dylib $(FLINTOBJ) $(LIBS)
-+	$(CXX) -single_module -fPIC -dynamiclib -o libflint.dylib $(FLINTOBJ) $(LIBS2)
++libflint.dylib: $(FLINTOBJ) NTL-interface.o
++	$(CXX) -single_module -fPIC -dynamiclib -o libflint.dylib $(FLINTOBJ) NTL-interface.o $(LIBS2)
  
- libflint.dylib64: $(FLINTOBJ)
+-libflint.dylib64: $(FLINTOBJ)
 -	$(CC) -m64 -single_module -fPIC -dynamiclib -o libflint.dylib $(FLINTOBJ) $(LIBS)
-+	$(CXX) -m64 -single_module -fPIC -dynamiclib -o libflint.dylib $(FLINTOBJ) $(LIBS2)
++libflint.dylib64: $(FLINTOBJ) NTL-interface.o
++	$(CXX) -m64 -single_module -fPIC -dynamiclib -o libflint.dylib $(FLINTOBJ) NTL-interface.o $(LIBS2)
  
- libflint.dll: $(FLINTOBJ)
+-libflint.dll: $(FLINTOBJ)
 -	$(CC) -fPIC -shared -o libflint.dll $(FLINTOBJ) $(LIBS)
-+	$(CXX) -fPIC -shared -o libflint.dll $(FLINTOBJ) $(LIBS2)
++libflint.dll: $(FLINTOBJ) NTL-interface.o
++	$(CXX) -fPIC -shared -o libflint.dll $(FLINTOBJ) NTL-interface.o $(LIBS2)
  
- libflint.so: $(FLINTOBJ)
+-libflint.so: $(FLINTOBJ)
 -	$(CC) -fPIC -shared -Wl,-soname,libflint.so -o libflint.so $(FLINTOBJ) $(LIBS)
-+	$(CXX) -fPIC -shared -Wl,-soname,libflint.so -o libflint.so $(FLINTOBJ) $(LIBS2)
++libflint.so: $(FLINTOBJ) NTL-interface.o
++	$(CXX) -fPIC -shared -Wl,-soname,libflint.so -o libflint.so $(FLINTOBJ) NTL-interface.o $(LIBS2)
  
  ##### Object files
  
