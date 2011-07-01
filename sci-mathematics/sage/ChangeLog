@@ -2,6 +2,12 @@
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  01 Jul 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  +files/trac_11560-sympy_deprecated-each_char.patch,
+  +files/trac_11560-sympy_lexicographic_ordering.patch,
+  sage-4.7.1_alpha3.ebuild:
+  make 4.7.1_alpha to use sympy-0.7.0
+
   26 Jun 2011; François Bissey <francois.bissey@canterbury.ac.nz>
   sage-4.7.1_alpha3.ebuild:
   4.7.1_alpha3 depends on latest extcode for new pickle jar.

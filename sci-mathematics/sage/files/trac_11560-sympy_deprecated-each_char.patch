@@ -1,0 +1,19 @@
+# HG changeset patch
+# User Francois Bissey <francois.bissey@canterbury.ac.nz>
+# Date 1309486412 -43200
+# Node ID 9de71d86089cec0482b645281954de37e08f170e
+# Parent  d0099fa1effb838486f4e30dd58461808c99d7ba
+trac 11560 remove deprecated each_char from sympy expression.
+
+diff --git a/sage/symbolic/expression_conversions.py b/sage/symbolic/expression_conversions.py
+--- a/sage/symbolic/expression_conversions.py
++++ b/sage/symbolic/expression_conversions.py
+@@ -619,7 +619,7 @@
+             <class 'sympy.core.symbol.Symbol'>
+         """
+         import sympy
+-        return sympy.symbols(repr(ex), each_char=False)
++        return sympy.symbols(repr(ex))
+ 
+     def composition(self, ex, operator):
+         """

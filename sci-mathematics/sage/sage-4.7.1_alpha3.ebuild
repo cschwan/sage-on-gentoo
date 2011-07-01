@@ -74,7 +74,7 @@ RDEPEND="${CDEPEND}
 	>=dev-python/rpy-2.0.6
 	>=dev-python/sphinx-1.0.4
 	dev-python/sqlalchemy
-	~dev-python/sympy-0.6.6
+	~dev-python/sympy-0.7.0
 	>=media-gfx/tachyon-0.98
 	~net-zope/zodb-3.9.7
 	>=sci-libs/cddlib-094f-r2
@@ -253,7 +253,12 @@ src_prepare() {
 	# Fixes to Sage itself
 	############################################################################
 
+	# update to gfan-0.5 (breaks test) trac 11395)
 	epatch "${FILESDIR}"/${PN}-4.6.2-gfan-0.5.patch
+
+	# update to sympy-0.7.0 trac 11560
+	epatch "${FILESDIR}"/trac_11560-sympy_lexicographic_ordering.patch
+	epatch "${FILESDIR}"/trac_11560-sympy_deprecated-each_char.patch
 
 	# fix some cython warnings
 	epatch "${FILESDIR}"/trac_10764-fix_deprecation_warning.patch
