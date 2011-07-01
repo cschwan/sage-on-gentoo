@@ -25,7 +25,7 @@ diff --git a/sage/symbolic/expression_conversions.py b/sage/symbolic/expression_
          sage: f = exp(x^2) - arcsin(pi+x)/y
          sage: f._sympy_()
 -        -asin(pi + x)/y + exp(x**2)
-+        exp(x**2) - asin(pi + x)/y
++        exp(x**2) - asin(x + pi)/y
          sage: _._sage_()
          -arcsin(pi + x)/y + e^(x^2)
  
