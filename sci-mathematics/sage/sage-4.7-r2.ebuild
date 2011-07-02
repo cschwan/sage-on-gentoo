@@ -4,12 +4,12 @@
 
 EAPI="3"
 
-PYTHON_DEPEND="2:2.6:2.6"
+PYTHON_DEPEND="2:2.7:2.7"
 PYTHON_USE_WITH="readline sage sqlite"
 
-inherit distutils eutils flag-o-matic python
+inherit distutils eutils flag-o-matic python versionator
 
-MY_P="sage-${PV}"
+MY_P="sage-$(replace_version_separator 2 '.')"
 
 DESCRIPTION="Math software for algebra, geometry, number theory, cryptography and numerical computation"
 HOMEPAGE="http://www.sagemath.org"
@@ -25,8 +25,9 @@ RESTRICT="mirror"
 CDEPEND="dev-libs/gmp
 	>=dev-libs/mpfr-2.4.2
 	>=dev-libs/ntl-5.5.2
-	>=dev-lisp/ecls-11.1.1[-unicode]
-	=dev-python/numpy-1.5.0-r3
+	>=dev-libs/ppl-0.11.2
+	>=dev-lisp/ecls-11.1.1-r1[-unicode]
+	~dev-python/numpy-1.5.1
 	>=sci-mathematics/eclib-20100711[pari24]
 	>=sci-mathematics/ecm-6.2.1
 	>=sci-libs/flint-1.5.0[ntl]
@@ -38,13 +39,13 @@ CDEPEND="dev-libs/gmp
 	>=sci-libs/linbox-1.1.6[sage]
 	>=sci-libs/m4ri-20100701
 	>=sci-libs/mpfi-1.4
-	=sci-libs/pynac-0.2.1
+	=sci-libs/pynac-0.2.1-r1
 	>=sci-libs/symmetrica-2.0
 	>=sci-libs/zn_poly-0.9
-	>=sci-mathematics/glpk-4.43
+	>=sci-mathematics/glpk-4.44
 	>=sci-mathematics/lcalc-1.23[pari24]
 	>=sci-mathematics/pari-2.4.3-r1[data,gmp,sage]
-	>=sci-mathematics/polybori-0.6.5-r2[sage]
+	>=sci-mathematics/polybori-0.7[sage]
 	>=sci-mathematics/ratpoints-2.1.3
 	~sci-mathematics/sage-baselayout-${PV}[testsuite=]
 	~sci-mathematics/sage-clib-${PV}
@@ -70,15 +71,14 @@ RDEPEND="${CDEPEND}
 	~dev-python/networkx-1.2
 	~dev-python/pexpect-2.0
 	>=dev-python/pycrypto-2.1.0
-	>=dev-python/python-gnutls-1.1.4
 	>=dev-python/rpy-2.0.6
 	>=dev-python/sphinx-1.0.4
 	dev-python/sqlalchemy
-	~dev-python/sympy-0.6.6
+	~dev-python/sympy-0.7.0
 	>=media-gfx/tachyon-0.98
 	~net-zope/zodb-3.9.7
 	>=sci-libs/cddlib-094f-r2
-	=sci-libs/scipy-0.8*
+	=sci-libs/scipy-0.9*
 	>=sci-mathematics/flintqs-20070817_p5
 	>=sci-mathematics/gap-4.4.12
 	>=sci-mathematics/gap-guava-3.4
@@ -86,7 +86,7 @@ RDEPEND="${CDEPEND}
 	>=sci-mathematics/gfan-0.5
 	>=sci-mathematics/cu2-20060223
 	>=sci-mathematics/cubex-20060128
-	>=sci-mathematics/dikcube-20070912_p12
+	>=sci-mathematics/dikcube-20070912_p16
 	>=sci-mathematics/maxima-5.23.2[ecls]
 	>=sci-mathematics/mcube-20051209
 	>=sci-mathematics/optimal-20040603
@@ -97,8 +97,11 @@ RDEPEND="${CDEPEND}
 	~sci-mathematics/sage-data-polytopes_db-20100210
 	>=sci-mathematics/sage-doc-${PV}
 	~sci-mathematics/sage-extcode-${PV}
-	~sci-mathematics/sage-notebook-0.8.11
-	|| ( ~sci-mathematics/singular-3.1.1.4[-libsingular] >=sci-mathematics/singular-3.1.2 )
+	~sci-mathematics/sage-notebook-0.8.14
+	|| (
+		~sci-mathematics/singular-3.1.1.4[-libsingular]
+		>=sci-mathematics/singular-3.1.2
+	)
 	>=sci-mathematics/sympow-1.018.1_p8[pari24]
 	examples? ( ~sci-mathematics/sage-examples-${PV} )
 	testsuite? (
@@ -110,8 +113,8 @@ RDEPEND="${CDEPEND}
 S="${WORKDIR}/${MY_P}"
 
 pkg_setup() {
-	# Sage only works with python 2.6.*
-	python_set_active_version 2.6
+	# Sage now will only works with python 2.7.*
+	python_set_active_version 2.7
 	python_pkg_setup
 }
 
@@ -130,28 +133,11 @@ src_prepare() {
 	# Fix startup issue and python-2.6.5 problem
 	append-flags -fno-strict-aliasing
 
-	# upstream patch first before any corrections
-	# all of the following are to be included in sage-4.7
-	# trac #10766 #10773 upgrade to ecls-11.1.1/maxima-5.23.2
-	epatch "${FILESDIR}"/trac_10766-fix_doctest.patch
-	epatch "${FILESDIR}"/trac_10766-fix_symbolic_integration_integral.patch
-	epatch "${FILESDIR}"/trac_10773-fix_maxima_version.patch
-	epatch "${FILESDIR}"/mpmath_update_fixed_4.6.1.patch.bz2
-	epatch "${FILESDIR}"/truediv_fix.patch
-	# fix some cython path trac 10233
-	epatch "${FILESDIR}"/trac_10233_fix_cython_include_path.patch.bz2
-	# use cython-0.14.1
-	epatch "${FILESDIR}"/trac_10493-cython-0.14.1.patch
-
 	epatch "${FILESDIR}"/${PN}-4.6.1-exp-site-packages.patch
 
-	epatch "${FILESDIR}"/${PN}-4.6.2-gfan-0.5.patch
-	# doctest fix for gsl-1.15
-	epatch "${FILESDIR}"/trac_11357-fix_gsl_doctest.patch
-
 	# add pari24 and gmp to everything.
-	sed -i "s:\['stdc++', 'ntl'\]:\['stdc++', 'ntl','pari24','gmp'\]:g" setup.py \
-		|| die "failed to add pari24 and gmp everywhere"
+	sed -i "s:\['stdc++', 'ntl'\]:\['stdc++', 'ntl','pari24','gmp'\]:g" \
+		setup.py || die "failed to add pari24 and gmp everywhere"
 
 	# use pari24 instead of plain pari
 	sed -e "s:'pari':'pari24':g" \
@@ -159,22 +145,20 @@ src_prepare() {
 		sage/misc/cython.py \
 		|| die "failed to convert to pari24"
 
-	sed -i "s:\"pari\":\"pari24\":" module_list.py || die "failed to convert to pari24"
+	sed -i "s:\"pari\":\"pari24\":" module_list.py \
+		|| die "failed to convert to pari24"
 
-	sed -e "s:pari\/:pari24\/:g" \
-		-i sage/ext/interpreters/wrapper_cdf.pxd \
-		sage/matrix/matrix_integer_dense.pyx \
-		sage/matrix/matrix_rational_dense.pyx \
-		sage/libs/pari/gen.pyx \
-		|| die "failed to convert pxd/pyx to pari24"
-
-	# additional pari/pari24 include patches
+	# pari/pari24 include patches
 	sed -e "s:pari\/:pari24\/:g" \
 		-i sage/libs/pari/pari_err.h \
 		   sage/libs/pari/decl.pxi \
 		   sage/libs/pari/misc.h \
+		   sage/libs/pari/gen.pyx \
 		   sage/ext/gen_interpreters.py \
-		   || die "failed to patch additional pari/pari24 includes"
+		   sage/ext/interpreters/wrapper_cdf.pxd \
+		   sage/matrix/matrix_integer_dense.pyx \
+		   sage/matrix/matrix_rational_dense.pyx \
+		   || die "failed to patch pari/pari24 includes"
 
 	sed -i "s:cdef extern from \"pari\/:cdef extern from \"pari24\/:g" \
 		sage/rings/fast_arith.pyx \
@@ -265,6 +249,37 @@ src_prepare() {
 	sed -i "s:type.__cmp__:cmp:" sage/combinat/iet/strata.py \
 		|| die "failed to patch strata.py"
 
+	# other patch for python-2.7
+	epatch "${FILESDIR}"/trac_11236-test_eq_for_python_2_7-nt.patch
+	# Change python iclude in setup.py
+	sed -i "s:python2.6:python2.7:g" setup.py
+	# make sure we use cython-2.7 for consistency
+	sed -i "s:python \`which cython\`:cython-2.7:" setup.py
+	# deprecation warnings re-enabled
+	epatch "${FILESDIR}"/trac_11244_reenable_deprecationwarnings_in_python27.patch
+	epatch "${FILESDIR}"/trac_11244_fix_combinatpartition_warnings.patch
+	epatch "${FILESDIR}"/trac_11244_fixmoredeprecationswarnings-4.7.patch
+	# fixing pure numerical noise
+	epatch "${FILESDIR}"/trac_9958-fixing_numericalnoise-part1-4.7.patch
+	epatch "${FILESDIR}"/trac_9958-fixing_numericalnoise-part2-4.7.patch
+	epatch "${FILESDIR}"/trac_9958-fixing_numericalnoise-part3.patch
+	epatch "${FILESDIR}"/trac_9958-fixing_numericalnoise-part4.patch
+	# other fixes
+	epatch "${FILESDIR}"/trac_9958-sage_unittest.patch
+	epatch "${FILESDIR}"/trac_9958-fix-list_index.patch
+	epatch "${FILESDIR}"/trac_9958-fix-pureAssertError.patch
+	epatch "${FILESDIR}"/trac_9958-mixedfix.patch
+	epatch "${FILESDIR}"/trac_9958-fixing_colorspy.patch
+	# fix groebner strategy trac 11339 using old work around
+	epatch "${FILESDIR}"/trac_11339-groebner_strategy_deallocate.patch
+
+	epatch "${FILESDIR}"/${PN}-4.6.2-gfan-0.5.patch
+	# doctest fix for gsl-1.15
+	epatch "${FILESDIR}"/trac_11357-fix_gsl_doctest.patch
+	# update to sympy-0.7.0 trac 11560
+	epatch "${FILESDIR}"/trac_11560-sympy_lexicographic_ordering.patch
+	epatch "${FILESDIR}"/trac_11560-sympy_deprecated-each_char.patch
+
 	# gmp-5 compatibility - works with gmp-4.3 as well
 	sed -i "s:__GMP_BITS_PER_MP_LIMB:GMP_LIMB_BITS:g" sage/rings/integer.pyx \
 		|| die "failed to patch for gmp-5"
@@ -278,12 +293,6 @@ src_prepare() {
 	# Uses singular internal copy of the factory header
 	sed -i "s:factory.h:singular/factory.h:" sage/libs/singular/singular-cdefs.pxi \
 		|| die "failed to patch factory header"""
-
-	# use delaunay from matplotlib (see ticket #6946)
-	epatch "${FILESDIR}"/${PN}-4.3.3-delaunay-from-matplotlib.patch
-
-	# use arpack from scipy (see also scipy ticket #231)
-	epatch "${FILESDIR}"/${PN}-4.3.3-arpack-from-scipy.patch
 
 	# Fix portage QA warning. Potentially prevent some leaking.
 	epatch "${FILESDIR}"/${PN}-4.4.2-flint.patch
@@ -305,10 +314,6 @@ src_prepare() {
 
 	# fix qepcad paths
 	epatch "${FILESDIR}"/${PN}-4.5.1-fix-qepcad-path.patch
-
-	# fix save path (for testing only)
-	sed -i "s:save(w,'test'):save(w,tmp_filename('test')):g" \
-		sage/combinat/words/morphism.py || die "failed to patch path for save"
 
 	# replace SAGE_ROOT/local with SAGE_LOCAL
 	epatch "${FILESDIR}"/${PN}-4.6-fix-SAGE_LOCAL.patch
@@ -338,6 +343,9 @@ src_prepare() {
 		sed -i "s:is_package_installed('mpc'):True:g" module_list.py \
 			|| die "failed to enable dev-libs/mpc"
 	fi
+
+	# apply patches from /etc/portage/patches
+	epatch_user
 
 	# do not forget to run distutils
 	distutils_src_prepare
