@@ -2,6 +2,18 @@
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  03 Jul 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  -files/11373.patch, -files/trac_10233_fix_cython_include_path.patch.bz2,
+  -files/trac_10493-cython-0.14.1.patch,
+  -files/sage-4.3.3-arpack-from-scipy.patch,
+  -files/sage-4.3.3-delaunay-from-matplotlib.patch,
+  -files/sage-4.6-fix-SAGE_LOCAL-maximalib.patch,
+  -files/mpmath_update_fixed_4.6.1.patch.bz2,
+  -files/trac_10766-fix_doctest.patch,
+  -files/trac_10766-fix_symbolic_integration_integral.patch,
+  -files/trac_10773-fix_maxima_version.patch, -files/truediv_fix.patch:
+  purge old patches used in sage-4.6.2 only
+
   03 Jul 2011; Christopher Schwan <cschwan@students.uni-mainz.de>
   -sage-4.6.2-r1.ebuild:
   Drop old
