@@ -2,6 +2,10 @@
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  03 Jul 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-4.7.1_alpha3.ebuild:
+  update maxima-ecl sed to work properly again.
+
 *sage-4.7-r2 (02 Jul 2011)
 *sage-4.6.2-r1 (02 Jul 2011)
 

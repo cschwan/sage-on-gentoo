@@ -270,9 +270,8 @@ src_prepare() {
 
 	# run maxima with ecl
 	sed -i \
-		-e "s:maxima-noreadline:maxima -l ecl:g" \
 		-e "s:maxima --very-quiet:maxima -l ecl --very-quiet:g" \
-		sage/interfaces/maxima.py || die "failed to patch maxima commands"
+		sage/interfaces/maxima_abstract.py || die "failed to patch maxima commands"
 
 	# Uses singular internal copy of the factory header
 	sed -i "s:factory.h:singular/factory.h:" sage/libs/singular/singular-cdefs.pxi \
