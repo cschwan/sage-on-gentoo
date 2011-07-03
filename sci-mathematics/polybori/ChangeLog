@@ -2,6 +2,18 @@
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  03 Jul 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  -files/polybori-0.6.4-save-flags.patch, -polybori-0.6.5-r2.ebuild,
+  -files/polybori-0.6.5-fix-another-SIGSEGV.patch,
+  -files/polybori-0.6.5-fix-double-free-error.patch,
+  -files/polybori-0.6.5-sconstruct-macos.patch,
+  -files/polybori-0.7-save-flags.patch, -files/pbori_routines_misc.h.patch:
+  purge patches for old polybori
+
+  03 Jul 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  -polybori-0.6.5-r2.ebuild:
+  remove old python-2.6 polybori
+
   31 May 2011; Christopher Schwan <cschwan@students.uni-mainz.de>
   polybori-0.7.1.ebuild:
   Fix compiler names and removed useless sed
