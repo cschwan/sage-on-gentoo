@@ -30,8 +30,8 @@ DEPEND="~dev-python/pexpect-2.0
 	>=dev-python/jinja-2.5.5
 	>=dev-python/docutils-0.5"
 RDEPEND="${DEPEND}
-	java? ( sci-chemistry/jmol
-		sci-chemistry/jmol-applet )"
+	java? ( >=sci-chemistry/jmol-12.0.45
+		>=sci-chemistry/jmol-applet-12.0.45 )"
 
 S="${WORKDIR}/${MY_P}/src/sagenb"
 
@@ -42,6 +42,10 @@ pkg_setup() {
 }
 
 src_prepare() {
+	# patch for latest jmol-12.0.45 trac 9238
+	epatch "${FILESDIR}"/trac_9238_interactive_js.patch
+	epatch "${FILESDIR}"/trac_9238_jmol_lib_async.patch
+
 	epatch "${FILESDIR}"/${PN}-0.8-nojava.patch
 
 	rm -rf sagenb/data/jmol || die "failed to remove jmol"
