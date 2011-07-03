@@ -2,6 +2,13 @@
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/dev-lang/python/ChangeLog,v 1.538 2011/06/27 09:19:45 djc Exp $
 
+  03 Jul 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  -files/python-config-2.4-r1, -files/python-2.4.4-test-cross.patch,
+  -files/python-2.5-cross-printf.patch, -python-2.6.5-r3.ebuild,
+  -python-2.6.6-r2.ebuild, -python-2.6.7.ebuild,
+  -files/python-2.6-chflags-cross.patch, -files/python-2.6-test-cross.patch:
+  Remove python 2.6
+
   27 Jun 2011; Dirkjan Ochtman <djc@gentoo.org> python-2.7.2.ebuild,
   python-3.2.ebuild:
   Bump required autoconf version to 2.65 (bug 372461).
