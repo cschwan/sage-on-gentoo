@@ -39,7 +39,7 @@ CDEPEND="dev-libs/gmp
 	>=sci-libs/linbox-1.1.6[sage]
 	>=sci-libs/m4ri-20100701
 	>=sci-libs/mpfi-1.4
-	=sci-libs/pynac-0.2.2
+	=sci-libs/pynac-0.2.3
 	>=sci-libs/symmetrica-2.0
 	>=sci-libs/zn_poly-0.9
 	>=sci-mathematics/glpk-4.43
@@ -147,7 +147,6 @@ src_prepare() {
 	epatch "${FILESDIR}"/trac_11339_refcount_singular_rings.patch
 	epatch "${FILESDIR}"/trac_11339_refcount_singular_polynomials.patch.bz2
 	# build system patches
-	epatch "${FILESDIR}"/trac_11377-build_module_listpy.patch
 	epatch "${FILESDIR}"/trac_11376-build_setuppy.patch
 	# make sure we use cython-2.7 for consistency
 	sed -i "s:python \`which cython\`:cython-2.7:" setup.py

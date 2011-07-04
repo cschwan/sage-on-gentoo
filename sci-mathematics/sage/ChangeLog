@@ -2,6 +2,13 @@
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*sage-4.7.1_alpha4 (04 Jul 2011)
+
+  04 Jul 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  -files/trac_11377-build_module_listpy.patch, -sage-4.7.1_alpha3.ebuild,
+  +sage-4.7.1_alpha4.ebuild:
+  bump to 4.7.1_alpha4: sage
+
   03 Jul 2011; François Bissey <francois.bissey@canterbury.ac.nz>
   -files/11373.patch, -files/trac_10233_fix_cython_include_path.patch.bz2,
   -files/trac_10493-cython-0.14.1.patch,
