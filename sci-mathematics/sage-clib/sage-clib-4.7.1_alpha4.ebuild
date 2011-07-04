@@ -22,19 +22,19 @@ RESTRICT="mirror"
 
 CDEPEND="dev-libs/gmp[-nocxx]
 	>=dev-libs/ntl-5.5.2
-	=sci-libs/pynac-0.2.2
+	=sci-libs/pynac-0.2.3
 	>=sci-mathematics/pari-2.4.3-r1
 	>=sci-mathematics/polybori-0.7[sage]"
 DEPEND="${CDEPEND}
-        dev-util/scons"
+	dev-util/scons"
 RDEPEND="${CDEPEND}"
 RESTRICT_PYTHON_ABIS="2.[456] 3.*"
 
 S="${WORKDIR}/${MY_P}/c_lib"
 
 pkg_setup() {
-    python_set_active_version 2.7
-    python_pkg_setup
+	python_set_active_version 2.7
+	python_pkg_setup
 }
 
 src_prepare() {
@@ -51,7 +51,7 @@ src_prepare() {
 
 	# Use pari-2.4
 	sed -i "s:pari/:pari24/:" include/convert.h || die "failed to use pari2.4 headers"
-	
+
 	# Use pari2.4 in SConstruct
 	sed -i \
 		-e "s:pari:pari24:" \
