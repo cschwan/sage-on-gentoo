@@ -4,6 +4,10 @@
 
   05 Jul 2011; François Bissey <francois.bissey@canterbury.ac.nz>
   sage-4.7.1_alpha4.ebuild:
+  found maxima-noreadline again
+
+  05 Jul 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-4.7.1_alpha4.ebuild:
   adjust sagenb dependency for alpha4
 
 *sage-4.7.1_alpha4 (04 Jul 2011)

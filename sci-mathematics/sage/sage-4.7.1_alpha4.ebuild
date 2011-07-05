@@ -269,6 +269,9 @@ src_prepare() {
 
 	# run maxima with ecl
 	sed -i \
+		-e "s:maxima-noreadline:maxima -l ecl:g" \
+		sage/interfaces/maxima.py || die "failed to patch maxima commands"
+	sed -i \
 		-e "s:maxima --very-quiet:maxima -l ecl --very-quiet:g" \
 		sage/interfaces/maxima_abstract.py || die "failed to patch maxima commands"
 
