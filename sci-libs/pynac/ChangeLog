@@ -2,6 +2,10 @@
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  05 Jul 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  -pynac-0.2.2.ebuild:
+  remove shortlived pynac-0.2.2
+
   03 Jul 2011; François Bissey <francois.bissey@canterbury.ac.nz>
   -pynac-0.2.1.ebuild:
   remove python-2.6 pynac
