@@ -2,6 +2,12 @@
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*sage-notebook-0.8.19 (05 Jul 2011)
+
+  05 Jul 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  -sage-notebook-0.8.18.ebuild, +sage-notebook-0.8.19.ebuild:
+  bump to 0.8.19 for 4.7.1_alpha4
+
   03 Jul 2011; François Bissey <francois.bissey@canterbury.ac.nz>
   -files/sage-notebook-0.8.2-add-pidfile-option.patch,
   -sage-notebook-0.8.14-r1.ebuild:
