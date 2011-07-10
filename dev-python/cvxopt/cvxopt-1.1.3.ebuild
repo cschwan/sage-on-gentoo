@@ -37,12 +37,12 @@ src_prepare(){
 	BLAS=\'$(pkg-config --libs-only-l blas | sed \
 		-e 's/^-l//' \
 		-e "s/ -l/\',\'/g" \
-		-e 's/,.pthread//g' \
+		-e 's/.,.pthread//g' \
 		-e "s:  ::")\'
 	LAPACK=\'$(pkg-config --libs-only-l lapack | sed \
 		-e 's/^-l//' \
 		-e "s/ -l/\',\'/g" \
-		-e 's/,.pthread//g' \
+		-e 's/.,.pthread//g' \
 		-e "s:  ::")\'
 
 	sed -i \
