@@ -123,7 +123,7 @@ src_prepare() {
 	local cblaslibs=\'$(pkg-config --libs-only-l cblas | sed \
 		-e 's/^-l//' \
 		-e "s/ -l/\',\'/g" \
-		-e 's/,.pthread//g' \
+		-e 's/.,.pthread//g' \
 		-e "s:  ::")\'
 
 	############################################################################

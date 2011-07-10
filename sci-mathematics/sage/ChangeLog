@@ -2,6 +2,10 @@
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  10 Jul 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-4.7-r2.ebuild, sage-4.7.1_alpha4.ebuild:
+  Apply Martin's fix for blas from cvxopt when pthread is used.
+
   05 Jul 2011; François Bissey <francois.bissey@canterbury.ac.nz>
   sage-4.7.1_alpha4.ebuild:
   found maxima-noreadline again
