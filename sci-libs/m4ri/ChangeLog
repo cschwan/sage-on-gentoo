@@ -2,6 +2,12 @@
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*m4ri-99999999 (10 Jul 2011)
+
+  10 Jul 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  +m4ri-99999999.ebuild:
+  add hot ebuild of m4ri - for testing purpose only
+
 *m4ri-20110613 (28 Jun 2011)
 
   28 Jun 2011; Christopher Schwan <cschwan@students.uni-mainz.de>
