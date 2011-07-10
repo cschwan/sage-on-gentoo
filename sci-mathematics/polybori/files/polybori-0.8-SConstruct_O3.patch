@@ -1,0 +1,11 @@
+--- SConstruct.orig	2011-06-15 08:35:56.684600996 +1200
++++ SConstruct	2011-06-15 14:48:14.114600996 +1200
+@@ -182,8 +182,6 @@
+              "-O3 -std=c++98 -ftemplate-depth-100",
+              converter = Split)
+ else:
+-    opts.Add('CCFLAGS', "C/C++ compiler flags", 
+-             "-O3", converter = Split)
+     opts.Add('CFLAGS', "C compiler flags", "-std=c99",
+              converter = Split)
+     opts.Add('CXXFLAGS', "C++ compiler flags", 
