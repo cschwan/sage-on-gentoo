@@ -81,7 +81,6 @@ RDEPEND="${CDEPEND}
 	=sci-libs/scipy-0.9*
 	>=sci-mathematics/flintqs-20070817_p5
 	>=sci-mathematics/gap-4.4.12
-	>=sci-mathematics/gap-guava-3.4
 	>=sci-mathematics/genus2reduction-0.3_p8
 	>=sci-mathematics/gfan-0.5
 	>=sci-mathematics/cu2-20060223
