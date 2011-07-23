@@ -18,7 +18,7 @@ cp -r /usr/portage/dev-lang/python dev-lang/
 for dst in dev-lang/python/*.ebuild; do
 	# filter ebuilds we dont need
 	case "${dst}" in
-		dev-lang/python/python-2.[67]*.ebuild)
+		dev-lang/python/python-2.[7]*.ebuild)
 			# keep this ebuild
 			lastKeptEbuild="${dst}"
 			;;
@@ -57,6 +57,12 @@ for dst in dev-lang/python/*.ebuild; do
 	# add keywords for prefix
 	ekeyword ~amd64-linux "${dst}" &> /dev/null
 	ekeyword ~x86-linux "${dst}" &> /dev/null
+done
+
+for i in dev-lang/python/files/*; do
+	if ! grep -qF "/$(basename "$i")" dev-lang/python/*.ebuild; then
+		rm "$i"
+	fi
 done
 
 # add description for sage USE flag
