@@ -1,6 +1,6 @@
 # Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/python-2.7.2.ebuild,v 1.2 2011/06/27 09:19:45 djc Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/python-2.7.2-r1.ebuild,v 1.1 2011/07/23 00:53:21 neurogeek Exp $
 
 EAPI="2"
 WANT_AUTOMAKE="none"
@@ -330,6 +330,11 @@ src_install() {
 
 	newconfd "${FILESDIR}/pydoc.conf" pydoc-${SLOT} || die "newconfd failed"
 	newinitd "${FILESDIR}/pydoc.init" pydoc-${SLOT} || die "newinitd failed"
+
+	#Linux-3 compat. Bug #374579 (upstream issue12571)
+	cp -r "${ED}$(python_get_libdir)/plat-linux2" \
+			"${ED}$(python_get_libdir)/plat-linux3" || die "copy plat-linux failed"
+
 	sed \
 		-e "s:@PYDOC_PORT_VARIABLE@:PYDOC${SLOT/./_}_PORT:" \
 		-e "s:@PYDOC@:pydoc${SLOT}:" \
