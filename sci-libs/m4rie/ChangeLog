@@ -1,0 +1,10 @@
+# ChangeLog for sci-libs/m4rie
+# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
+# $Header: $
+
+*m4rie-20110715 (24 Jul 2011)
+
+  24 Jul 2011; Christopher Schwan <cschwan@students.uni-mainz.de>
+  +m4rie-20110715.ebuild:
+  Initial version bump
+
