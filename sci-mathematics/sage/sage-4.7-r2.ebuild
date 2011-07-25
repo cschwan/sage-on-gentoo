@@ -112,6 +112,17 @@ RDEPEND="${CDEPEND}
 S="${WORKDIR}/${MY_P}"
 
 pkg_setup() {
+	# TODO: put the following check into pkg_pretend once we may use EAPI 4 with
+	# the python eclass
+	if ( eselect blas show ; eselect lapack show ) | grep -q "atlas" ; then
+
+	ewarn "You are about to compile Sage with ATLAS blas/lapack libraries. We"
+	ewarn "discourage the use of atlas because of several small problems seen"
+	ewarn "with version 3.9.23 in Sage's doctests. This is probably not a"
+	ewarn "problem for everyday use of Sage but we have warned you!"
+
+	fi
+
 	# Sage now will only works with python 2.7.*
 	python_set_active_version 2.7
 	python_pkg_setup
