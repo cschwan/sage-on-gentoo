@@ -77,6 +77,16 @@ QUICK INSTALLATION GUIDE
    you can not proceed with this step (because of circular dependencies, missing
    USE-flags, and so on) please report this behavior.
 
+   NOTE also, that we do _not_ recommend to use the ATLAS (sci-libs/blas-alas
+   and/or sci-libs/lapack-atlas) blas/lapack implementation since we experienced
+   some failures with it:
+
+   - https://github.com/cschwan/sage-on-gentoo/issues/3
+   - https://github.com/cschwan/sage-on-gentoo/issues/6
+
+   However, this should not pose a problem since the default choice is the
+   reference implementation.
+
 5. *UPDATE YOUR LOCAL OVERLAY*:
    To update your local copy of sage-on-gentoo simply type:
 
