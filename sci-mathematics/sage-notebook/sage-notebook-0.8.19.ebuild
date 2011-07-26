@@ -45,6 +45,7 @@ src_prepare() {
 	# patch for latest jmol-12.0.45 trac 9238
 	epatch "${FILESDIR}"/trac_9238_interactive_js.patch
 	epatch "${FILESDIR}"/trac_9238_jmol_lib_async.patch
+	epatch "${FILESDIR}"/trac_9238_script_extension.patch
 
 	epatch "${FILESDIR}"/${PN}-0.8-nojava.patch
 

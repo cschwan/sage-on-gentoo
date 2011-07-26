@@ -1,0 +1,21 @@
+# HG changeset patch
+# User Jonathan Gutow <gutow@uwosh.edu>
+# Date 1301771712 18000
+# Node ID fefa2e1f05e394164d7dab8439752c7c94863661
+# Parent  87a437e8e19c2a2bdcabfb342d788b4db954ba27
+Trac_9238_script_extension_fix
+
+diff -r 87a437e8e19c -r fefa2e1f05e3 sage/plot/plot3d/base.pyx
+--- a/sage/plot/plot3d/base.pyx	Tue Mar 29 09:29:49 2011 -0400
++++ b/sage/plot/plot3d/base.pyx	Sat Apr 02 14:15:12 2011 -0500
+@@ -1116,7 +1116,9 @@
+             viewer_app = os.path.join(sage.misc.misc.SAGE_LOCAL, "bin/jmol")
+ 
+             # We need a script to load the file
+-            f = open(filename + '.jmol', 'w')
++            if not EMBEDDED_MODE: 
++                ext = "spt"#.spt is script extension
++            f = open(filename + '.%s'%ext, 'w')
+             f.write('set defaultdirectory "%s"\n' % archive_name)
+             f.write('script SCRIPT\n')
+             f.close()
