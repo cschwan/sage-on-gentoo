@@ -2,6 +2,10 @@
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  26 Jul 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-4.7-r2.ebuild, sage-4.7.1_rc0.ebuild:
+  request png use flag for tachyon
+
   25 Jul 2011; Christopher Schwan <cschwan@students.uni-mainz.de>
   sage-4.7-r2.ebuild, sage-4.7.1_rc0.ebuild:
   Added warning discouraging the use of ATLAS
