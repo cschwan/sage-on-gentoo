@@ -2,6 +2,10 @@
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  26 Jul 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  polybori-9999.ebuild:
+  nudge polybori-9999 for OS X
+
 *polybori-9999 (10 Jul 2011)
 
   10 Jul 2011; François Bissey <francois.bissey@canterbury.ac.nz>

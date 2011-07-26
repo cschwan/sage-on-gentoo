@@ -103,8 +103,9 @@ src_compile(){
 			SHLINKFLAGS="${LDFLAGS} -dynamiclib"
 			HAVE_PYTHON_EXTENSION=False
 			EXTERNAL_PYTHON_EXTENSION=True
-			SHLIBVERSIONING=False
 		)
+# 			SHLIBVERSIONING=False
+# 		)
 	fi
 
 	escons "${myesconsargs[@]}" prepare-install prepare-devel || die
