@@ -4,6 +4,10 @@
 
   26 Jul 2011; François Bissey <francois.bissey@canterbury.ac.nz>
   polybori-9999.ebuild:
+  polybori-9999 now works on OS X, trying dylib with sage is next in line.
+
+  26 Jul 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  polybori-9999.ebuild:
   nudge polybori-9999 for OS X
 
 *polybori-9999 (10 Jul 2011)

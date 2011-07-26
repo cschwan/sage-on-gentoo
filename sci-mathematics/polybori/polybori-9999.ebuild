@@ -100,12 +100,10 @@ src_compile(){
 	if [[ ${CHOST} == *-darwin* ]] ; then
 		myesconsargs+=(
 			FORCE_HASH_MAP=True
-			SHLINKFLAGS="${LDFLAGS} -dynamiclib"
 			HAVE_PYTHON_EXTENSION=False
 			EXTERNAL_PYTHON_EXTENSION=True
+			SHLIBVERSIONING=False
 		)
-# 			SHLIBVERSIONING=False
-# 		)
 	fi
 
 	escons "${myesconsargs[@]}" prepare-install prepare-devel || die
@@ -121,31 +119,30 @@ src_install() {
 	fi
 
 	# we only need shared objects elsewhere
-	#rm "${ED}"/usr/$(get_libdir)/lib*.a \
-	#	|| die "failed to remove static libraries"
+	rm "${ED}"/usr/$(get_libdir)/lib*.a \
+		|| die "failed to remove static libraries"
 
 	# fixing flags.conf
 	sed -i "s:${D}:\/:" "${ED}"/usr/share/polybori/flags.conf || die
 
 	# FIXME: Dynamic libraries now work on linux but are broken on OS X
-	if [[ ${CHOST} == *-darwin* ]] ; then
-		# Removing dynamic libraries keeping only static objects
-		rm "${ED}"/usr/$(get_libdir)/lib*.dylib \
-			|| die "failed to remove static libraries"
-	else
-		# we only need shared objects elsewhere
-		rm "${ED}"/usr/$(get_libdir)/lib*.a \
-		|| die "failed to remove static libraries"
-	fi
+# 	if [[ ${CHOST} == *-darwin* ]] ; then
+# 		# Removing dynamic libraries keeping only static objects
+# 		rm "${ED}"/usr/$(get_libdir)/lib*.dylib \
+# 			|| die "failed to remove static libraries"
+# 	else
+# 		# we only need shared objects elsewhere
+# 		rm "${ED}"/usr/$(get_libdir)/lib*.a \
+# 		|| die "failed to remove static libraries"
+# 	fi
 
 	# fixing install names on OS X
-	#if [[ ${CHOST} == *-darwin* ]] ; then
-	#	cd "${ED}"/usr/$(get_libdir)
-	#	for d in *.dylib ; do
-	#		ebegin "  correcting install_name of ${d}"
-	#		install_name_tool -id "${EPREFIX}/usr/$(get_libdir)/${d}" "${d}"
-	#		eend $?
-	#	done
-	#fi
-	# fixing install names on OS X
+	if [[ ${CHOST} == *-darwin* ]] ; then
+		cd "${ED}"/usr/$(get_libdir)
+		for d in *.dylib ; do
+			ebegin "  correcting install_name of ${d}"
+			install_name_tool -id "${EPREFIX}/usr/$(get_libdir)/${d}" "${d}"
+			eend $?
+		done
+	fi
 }
