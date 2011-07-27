@@ -2,6 +2,10 @@
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  27 Jul 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  +files/trac_9238_script_extension.patch, sage-4.7.1_rc0.ebuild:
+  patch for jmol-12.0.45 - now in the right place
+
   26 Jul 2011; François Bissey <francois.bissey@canterbury.ac.nz>
   sage-4.7-r2.ebuild, sage-4.7.1_rc0.ebuild:
   request png use flag for tachyon

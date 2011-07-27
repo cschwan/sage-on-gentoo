@@ -265,6 +265,9 @@ src_prepare() {
 	# update to gfan-0.5 (breaks test) trac 11395)
 	epatch "${FILESDIR}"/${PN}-4.6.2-gfan-0.5.patch
 
+	# patch for jmol-12.0.45
+	epatch "${FILESDIR}"/trac_9238_script_extension.patch
+
 	# update to sympy-0.7.0 trac 11560
 	epatch "${FILESDIR}"/trac_11560-sympy_lexicographic_ordering.patch
 	epatch "${FILESDIR}"/trac_11560-sympy_deprecated-each_char.patch
