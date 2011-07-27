@@ -11,7 +11,7 @@ MY_P="${P}.beta"
 DESCRIPTION="A software package for computer-aided number theory"
 HOMEPAGE="http://pari.math.u-bordeaux.fr/"
 SRC_COM="http://pari.math.u-bordeaux.fr/pub/${PN}"
-SRC_URI="http://pari.math.u-bordeaux.fr/pub/pari/testing/${MY_P}.tar.gz
+SRC_URI="http://pari.math.u-bordeaux.fr/pub/pari/testing/OLD/${MY_P}.tar.gz
 	data? (	${SRC_COM}/packages/elldata.tgz
 			${SRC_COM}/packages/galdata.tgz
 			${SRC_COM}/packages/seadata.tgz
