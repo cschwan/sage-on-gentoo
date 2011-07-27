@@ -7,8 +7,8 @@ EAPI="4"
 inherit eutils flag-o-matic multilib toolchain-funcs
 
 DESCRIPTION="A library for polynomial arithmetic"
-HOMEPAGE="http://www.cims.nyu.edu/~harvey/code/zn_poly/"
-SRC_URI="http://www.cims.nyu.edu/~harvey/code/zn_poly/releases/${P}.tar.gz"
+HOMEPAGE="http://web.maths.unsw.edu.au/~davidharvey/code/zn_poly/"
+SRC_URI="http://web.maths.unsw.edu.au/~davidharvey/code/zn_poly/releases/${P}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
