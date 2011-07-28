@@ -1,0 +1,17 @@
+--- Jmol.js.orig	2011-07-28 11:16:42.000000000 -0500
++++ Jmol.js	2011-07-28 11:16:36.000000000 -0500
+@@ -658,11 +658,11 @@
+   isBrowserCompliant = hasGetElementById;
+   // known exceptions (old browsers):
+   if (browser == "opera" && browserVersion <= 7.54 && os == "mac" 
+-      || browser == "webkit" && browserVersion < 125.12
+-      || browser == "msie" && os == "mac" 
++      || browser == "webkit" && browserVersion < 125.12
++      || browser == "msie" && os == "mac" 
+       || browser == "konqueror" && browserVersion <= 3.3
+     ) {
+-    isBrowserCompliant = false;
++       isBrowserCompliant = false;
+   }
+ 
+   // possibly more checks in the future for this

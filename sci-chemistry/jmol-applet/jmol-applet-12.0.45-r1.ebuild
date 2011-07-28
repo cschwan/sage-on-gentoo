@@ -39,6 +39,10 @@ src_prepare() {
 	epatch "${FILESDIR}"/${PV}/${MY_PN}-nointl.patch
 	epatch "${FILESDIR}"/${PV}/${MY_PN}-manifest.patch
 
+	# Jmol.js-12.0.45 patch thanks to Steve
+	edos2unix Jmol.js
+	epatch "${FILESDIR}"/${PN}-Jmol.js-12.0.45-unix.patch
+
 	mkdir "${S}"/selfSignedCertificate || die "Failed to create Cert directory."
 	cp "${FILESDIR}"/selfSignedCertificate.store "${S}"/selfSignedCertificate/ \
 		|| die "Failed to install Cert file."
