@@ -6,24 +6,25 @@ EAPI="3"
 SUPPORT_PYTHON_ABIS="1"
 RESTRICT_PYTHON_ABIS="*-jython"
 
-inherit distutils eutils
+inherit distutils eutils versionator
 
-MY_PN="Cython"
-MY_P="${MY_PN}-${PV/_/}"
+MY_P="${PN}-$(replace_version_separator 3 '.')"
 
 DESCRIPTION="The Cython compiler for writing C extensions for the Python language"
 HOMEPAGE="http://www.cython.org/ http://pypi.python.org/pypi/Cython"
-SRC_URI="http://www.cython.org/release/${MY_P}.tar.gz"
+SRC_URI="http://sage.math.washington.edu/home/release/sage-4.7/sage-4.7/spkg/standard/${MY_P}.spkg -> ${MY_P}.tar.bz2"
 
 LICENSE="Apache-2.0"
 SLOT="0"
 KEYWORDS="amd64 ~arm hppa ~ia64 ppc ppc64 ~sparc x86 ~x86-fbsd ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~x64-solaris ~x86-solaris"
 IUSE="doc examples"
 
+RESTRICT="mirror"
+
 DEPEND=""
 RDEPEND=""
 
-S="${WORKDIR}/${MY_P}"
+S="${WORKDIR}/${MY_P}/src"
 
 PYTHON_CFLAGS=("2.* + -fno-strict-aliasing")
 
