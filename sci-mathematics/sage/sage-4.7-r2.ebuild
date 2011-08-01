@@ -58,7 +58,7 @@ CDEPEND="dev-libs/gmp
 	mpc? ( dev-libs/mpc )"
 
 DEPEND="${CDEPEND}
-	=dev-python/cython-0.14.1"
+	=dev-python/cython-0.14.1-r1"
 
 RDEPEND="${CDEPEND}
 	>=dev-lang/R-2.10.1
