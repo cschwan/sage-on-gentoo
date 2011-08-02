@@ -2,6 +2,14 @@
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/dev-python/sympy/ChangeLog,v 1.10 2010/04/16 01:47:31 arfrever Exp $
 
+*sympy-0.7.1 (02 Aug 2011)
+
+  02 Aug 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  -sympy-0.7.0.ebuild, -files/sympy-0.7.0-NegInfinity.patch,
+  +sympy-0.7.1.ebuild, +files/sympy-0.7.1-mpmath.patch:
+  bump to sympy 0.7.1 ahead of the main tree. Get this: no pyglet or mpmath
+  inside.
+
   03 Jul 2011; François Bissey <francois.bissey@canterbury.ac.nz>
   -sympy-0.6.6.ebuild, -files/sympy-0.6.6-sphinx.patch,
   -files/sympy-0.6.7-python-2.7.patch:
