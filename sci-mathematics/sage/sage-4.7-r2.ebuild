@@ -74,7 +74,7 @@ RDEPEND="${CDEPEND}
 	>=dev-python/rpy-2.0.6
 	>=dev-python/sphinx-1.0.4
 	dev-python/sqlalchemy
-	~dev-python/sympy-0.7.0
+	~dev-python/sympy-0.7.1
 	>=media-gfx/tachyon-0.98[png]
 	~net-zope/zodb-3.9.7
 	>=sci-libs/cddlib-094f-r2
