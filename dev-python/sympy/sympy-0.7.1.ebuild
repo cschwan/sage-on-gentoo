@@ -84,7 +84,7 @@ src_prepare() {
 }
 
 src_compile() {
-	distutils_src_compile
+	PYTHONPATH="." distutils_src_compile
 
 	if use doc; then
 		cd doc
