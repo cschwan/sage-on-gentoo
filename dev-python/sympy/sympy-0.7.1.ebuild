@@ -47,11 +47,9 @@ pkg_setup() {
 src_prepare() {
 	# Remove mpmath
 	rm -rf sympy/mpmath/*
-	sed \
-		-e "s:import sympy.mpmath:import mpmath:" \
-		-e "s:from sympy import mpmath:import mpmath:" \
-		-e "s:from sympy.mpmath:from mpmath:" \
-		-i \
+	sed -i \
+		-e "s:sympy\.mpmath:mpmath:g" \
+		-e "s:from sympy import mpmath:import mpmath:g" \
 			sympy/core/function.py \
 			sympy/core/numbers.py \
 			sympy/core/tests/test_sets.py \
@@ -64,14 +62,12 @@ src_prepare() {
 			sympy/external/tests/test_numpy.py \
 			sympy/functions/combinatorial/numbers.py \
 			sympy/functions/special/bessel.py \
-			sympy/functions/special/tests/test_bessel.py \
 			sympy/functions/special/gamma_functions.py \
 			sympy/ntheory/partitions_.py \
 			sympy/physics/quantum/constants.py \
 			sympy/polys/domains/groundtypes.py \
 			sympy/polys/numberfields.py \
 			sympy/polys/rootoftools.py \
-			sympy/polys/polytools.py \
 			sympy/polys/polytools.py \
 			sympy/printing/repr.py \
 			sympy/printing/str.py \
@@ -81,7 +77,9 @@ src_prepare() {
 			sympy/solvers/tests/test_numeric.py \
 			sympy/statistics/distributions.py \
 			sympy/statistics/tests/test_statistics.py \
-			sympy/utilities/tests/test_lambdify.py
+			sympy/utilities/lambdify.py \
+			sympy/utilities/tests/test_lambdify.py \
+		|| die "failed to patch mpmath imports"
 	epatch "${FILESDIR}/${PN}"-0.7.1-mpmath.patch
 }
 
