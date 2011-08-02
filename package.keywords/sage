@@ -13,7 +13,7 @@ dev-python/mpmath
 dev-python/pexpect
 dev-python/python-gnutls
 dev-python/rpy
-=dev-python/sympy-0.7.0
+=dev-python/sympy-0.7.1
 dev-python/twisted-web2
 dev-tex/sage-latex
 dev-tex/tkz-berge
