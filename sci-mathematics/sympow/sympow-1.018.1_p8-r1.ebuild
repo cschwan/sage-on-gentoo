@@ -21,8 +21,8 @@ IUSE="pari24"
 RESTRICT="mirror"
 
 DEPEND=""
-RDEPEND="pari24? ( sci-mathematics/pari:3 )
-	!pari24? ( sci-mathematics/pari:0 )"
+RDEPEND="pari24? ( =sci-mathematics/pari-2.4.3-r1 )
+	!pari24? ( >=sci-mathematics/pari-2.5.0 )"
 
 S="${WORKDIR}/${MY_P}/src"
 
