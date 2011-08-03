@@ -21,8 +21,8 @@ IUSE="pari -pari24"
 REQUIRED_USE="pari? ( !pari24 )"
 
 # TODO: depend on pari[gmp] ?
-DEPEND="pari24? ( sci-mathematics/pari:3 )
-	pari? ( !pari24? ( sci-mathematics/pari:0 ) )"
+DEPEND="pari24? ( =sci-mathematics/pari-2.4.3-r1 )
+	pari? ( !pari24? ( ~sci-mathematics/pari-2.3.5 ) )"
 RDEPEND="${DEPEND}"
 
 # testing does not work because archive missed test program!
