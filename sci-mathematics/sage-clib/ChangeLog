@@ -2,6 +2,10 @@
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  03 Aug 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-clib-4.7.ebuild, sage-clib-4.7.1_rc0.ebuild:
+  fixing pari dependencies in the current sage-clib
+
 *sage-clib-4.7.1_rc0 (15 Jul 2011)
 
   15 Jul 2011; François Bissey <francois.bissey@canterbury.ac.nz>
