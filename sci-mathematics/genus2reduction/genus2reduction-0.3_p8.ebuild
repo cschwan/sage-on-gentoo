@@ -20,7 +20,7 @@ IUSE=""
 
 RESTRICT="mirror"
 
-RDEPEND="sci-mathematics/pari:3"
+RDEPEND="=sci-mathematics/pari-2.4.3-r1"
 DEPEND="${RDEPEND}"
 
 S="${WORKDIR}/${MY_P}/src"
