@@ -21,8 +21,8 @@ IUSE="-pari24"
 RESTRICT="mirror"
 
 RDEPEND="dev-libs/gmp
-	pari24? ( sci-mathematics/pari:3 )
-	!pari24? ( >=sci-mathematics/pari-2.3.3:0 )
+	pari24? ( =sci-mathematics/pari-2.4.3-r1 )
+	!pari24? ( >=sci-mathematics/pari-2.5.0 )
 	>=dev-libs/ntl-5.4.2"
 DEPEND="${RDEPEND}"
 
