@@ -1,15 +1,13 @@
-# preparing 4.7.1
->=sci-mathematics/sage-4.7.1_alpha0
->=sci-mathematics/sage-clib-4.7.1_alpha0
->=sci-mathematics/sage-baselayout-4.7.1_alpha0
->=sci-mathematics/sage-doc-4.7.1_alpha0
->=sci-libs/pynac-0.2.2
->=sci-mathematics/sage-notebook-0.8.16
+# preparing 4.7.2
+>=sci-mathematics/sage-4.7.2_alpha0
+>=sci-mathematics/sage-clib-4.7.2_alpha0
+>=sci-mathematics/sage-baselayout-4.7.2_alpha0
+>=sci-mathematics/sage-doc-4.7.2_alpha0
 =dev-tex/sage-latex-2.3.1
 # not compatible with sage
 >=dev-lang/R-2.12.0
 >=sci-libs/m4ri-20110613
-# introduces a number of doctest failures - liekly harmless
+# introduces a number of doctest failures - likely harmless
 >=sci-libs/mpfi-1.5
 # building problems reported against latest fplll
 >=sci-libs/fplll-3.1.1
