@@ -238,7 +238,7 @@ src_prepare() {
 		setup.py || die "failed to patch interpreters path"
 
 	# Do not overlink to cblas, this enable the gslcblas trick to solve issue 3
-	sed -i "s:'iml', 'gmp', 'm', 'pari24', BLAS, BLAS2:'iml', 'gmp', 'm', 'pari24':" \
+	sed -i "s:'iml', 'pari24', 'm', 'gmp', BLAS, BLAS2:'iml', 'gmp', 'm', 'pari24':" \
 		module_list.py || die "failed to patch module_list.py for iml"
 
 	# fix include paths and CBLAS/ATLAS
