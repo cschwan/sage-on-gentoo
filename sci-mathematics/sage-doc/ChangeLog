@@ -2,6 +2,12 @@
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*sage-doc-4.7.1 (17 Aug 2011)
+
+  17 Aug 2011; Christopher Schwan <cschwan@students.uni-mainz.de>
+  -sage-doc-4.7.1_rc0.ebuild, +sage-doc-4.7.1.ebuild:
+  Remove old and add new ebuild
+
 *sage-doc-4.7.1_rc0 (15 Jul 2011)
 
   15 Jul 2011; François Bissey <francois.bissey@canterbury.ac.nz>
