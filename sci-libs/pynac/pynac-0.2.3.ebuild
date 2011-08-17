@@ -22,7 +22,7 @@ RESTRICT="mirror"
 DEPEND="dev-util/pkgconfig"
 RDEPEND=""
 
-S="${WORKDIR}"/burcin-pynac-1ad314a6d88e
+S="${WORKDIR}/burcin-pynac-${P}"
 
 DOCS=( AUTHORS NEWS README )
 
@@ -33,5 +33,5 @@ pkg_setup() {
 }
 
 src_prepare() {
-	AT_M4DIR=m4 eautoreconf
+	eautoreconf
 }
