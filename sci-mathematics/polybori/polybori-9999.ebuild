@@ -59,7 +59,7 @@ src_prepare() {
 	rm -r M4RI || die "failed to remove internal copy of m4ri"
 
 	# make polybori conform to multilib-strict
-	sed -i "s:DevelInstPath('lib'):DevelInstPath('$(get_libdir)'):g" \
+	sed -i "s:DEVEL_PREFIX/lib:DEVEL_PREFIX/$(get_libdir):g" \
 		SConstruct || die "failed patch library path"
 
 	# remove automatic -O3
@@ -117,6 +117,10 @@ src_install() {
 		rm -rf "${ED}"/usr/share/polybori/doc \
 			|| die "failed to remove useless documentation"
 	fi
+
+	# we only need shared objects elsewhere
+	rm "${ED}"/usr/$(get_libdir)/lib*.a \
+		|| die "failed to remove static libraries"
 
 	# fixing flags.conf
 	sed -i "s:${D}:\/:" "${ED}"/usr/share/polybori/flags.conf || die

@@ -4,6 +4,10 @@
 
   18 Aug 2011; François Bissey <francois.bissey@canterbury.ac.nz>
   polybori-9999.ebuild:
+  Actually still shipping static but installation target changed
+
+  18 Aug 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  polybori-9999.ebuild:
   By default no more static libraries in 0.8_rc3
 
   26 Jul 2011; François Bissey <francois.bissey@canterbury.ac.nz>
