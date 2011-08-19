@@ -2,6 +2,11 @@
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  19 Aug 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  polybori-9999.ebuild:
+  More correction for OS X, upstream may do something about this particular
+  item.
+
   18 Aug 2011; François Bissey <francois.bissey@canterbury.ac.nz>
   polybori-9999.ebuild:
   Actually still shipping static but installation target changed

@@ -144,5 +144,7 @@ src_install() {
 			install_name_tool -id "${EPREFIX}/usr/$(get_libdir)/${d}" "${d}"
 			eend $?
 		done
+		install_name_tool -change libpolybori/libpolybori.dylib \
+			"${EPREFIX}/usr/$(get_libdir)/libpolybori.dylib" libpolybori_groebner.dylib
 	fi
 }
