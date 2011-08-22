@@ -2,6 +2,12 @@
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*lcalc-1.23-r4 (22 Aug 2011)
+
+  22 Aug 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  +lcalc-1.23-r4.ebuild, +files/lcalc-1.23-pari-2.5.patch:
+  get a pari-2.5 enabled lcalc
+
   03 Aug 2011; François Bissey <francois.bissey@canterbury.ac.nz>
   lcalc-1.23-r3.ebuild:
   adjusting pari dependencies
