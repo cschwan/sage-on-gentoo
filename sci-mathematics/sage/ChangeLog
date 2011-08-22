@@ -2,6 +2,15 @@
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*sage-4.7.2_alpha1 (22 Aug 2011)
+
+  22 Aug 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  +files/11130-sagelib-simon.patch, +files/11130_reviewer32.patch,
+  +files/11130_sagelib.patch, +sage-4.7.2_alpha1.ebuild,
+  +files/11130_sagelib32.patch, +files/sage-4.7.2-site-packages.patch,
+  +files/trac_11130-doctest-poly.patch:
+  4.7.2.alpha1
+
   22 Aug 2011; François Bissey <francois.bissey@canterbury.ac.nz>
   sage-4.7-r2.ebuild, sage-4.7.1.ebuild:
   Locking pari-2.4 lcalc version

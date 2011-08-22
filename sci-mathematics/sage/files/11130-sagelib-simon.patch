@@ -1,0 +1,158 @@
+# HG changeset patch
+# User John Cremona <john.cremona@gmail.com>
+# Date 1305822334 -3600
+# Node ID 402a9b27da6434a3eaa931503bf375c16a52fe53
+# Parent  714a9ee90148b5734d5601f4be9e7dc892c060f1
+#11130: fix doctests for simon_two_descent
+
+diff -r 714a9ee90148 -r 402a9b27da64 sage/schemes/elliptic_curves/ell_number_field.py
+--- a/sage/schemes/elliptic_curves/ell_number_field.py	Wed Apr 27 22:40:54 2011 +0100
++++ b/sage/schemes/elliptic_curves/ell_number_field.py	Thu May 19 17:25:34 2011 +0100
+@@ -237,12 +237,19 @@
+             A = 0
+             B = Mod(1, y^2 + 7)
+             C = Mod(y, y^2 + 7)
+-            LS2gen = [Mod(Mod(-5, y^2 + 7)*x^2 + Mod(-3*y, y^2 + 7)*x + Mod(8, y^2 + 7), x^3 + Mod(1, y^2 + 7)*x + Mod(y, y^2 + 7)), Mod(Mod(1, y^2 + 7)*x^2 + Mod(1/2*y + 1/2, y^2 + 7)*x - 1, x^3 + Mod(1, y^2 + 7)*x + Mod(y, y^2 + 7))]
++            LS2gen = [Mod(Mod(-5, y^2 + 7)*x^2 + Mod(-3*y, y^2 + 7)*x + Mod(8, y^2 + 7), x^3 + Mod(1, y^2 + 7)*x + Mod(y, y^2 + 7)), Mod(Mod(1, y^2 + 7)*x^2 + Mod(1/2*y - 1/2, y^2 + 7)*x - 1, x^3 + Mod(1, y^2 + 7)*x + Mod(y, y^2 + 7))]
+             #LS2gen = 2
+-            Recherche de points triviaux sur la courbe
++            Recherche de points triviaux sur la courbe 
+             points triviaux sur la courbe = [[1, 1, 0], [Mod(1/2*y + 3/2, y^2 + 7), Mod(-y - 2, y^2 + 7), 1]]
+             zc = Mod(Mod(-5, y^2 + 7)*x^2 + Mod(-3*y, y^2 + 7)*x + Mod(8, y^2 + 7), x^3 + Mod(1, y^2 + 7)*x + Mod(y, y^2 + 7))
+             symbole de Hilbert (Mod(2, y^2 + 7),Mod(-5, y^2 + 7)) = -1
++            zc = Mod(Mod(1, y^2 + 7)*x^2 + Mod(1/2*y - 1/2, y^2 + 7)*x + Mod(-1, y^2 + 7), x^3 + Mod(1, y^2 + 7)*x + Mod(y, y^2 + 7))
++            symbole de Hilbert (Mod(-2*y + 2, y^2 + 7),Mod(1, y^2 + 7)) = 0
++            sol de Legendre = [1, 0, 1]~
++            zc*z1^2 = Mod(Mod(2*y - 2, y^2 + 7)*x + Mod(2*y + 10, y^2 + 7), x^3 + Mod(1, y^2 + 7)*x + Mod(y, y^2 + 7))
++            quartique : (-1/2*y + 1/2)*Y^2 = x^4 + (-3*y - 15)*x^2 + (-8*y - 16)*x + (-11/2*y - 15/2)
++            reduite: Y^2 = (-1/2*y + 1/2)*x^4 - 4*x^3 + (-3*y + 3)*x^2 + (2*y - 2)*x + (1/2*y + 3/2)
++            non ELS en [2, [0, 1]~, 1, 1, [1, 1]~]
+             zc = Mod(Mod(1, y^2 + 7)*x^2 + Mod(1/2*y + 1/2, y^2 + 7)*x + Mod(-1, y^2 + 7), x^3 + Mod(1, y^2 + 7)*x + Mod(y, y^2 + 7))
+             vient du point trivial [Mod(1/2*y + 3/2, y^2 + 7), Mod(-y - 2, y^2 + 7), 1]
+             m1 = 1
+diff -r 714a9ee90148 -r 402a9b27da64 sage/schemes/elliptic_curves/ell_rational_field.py
+--- a/sage/schemes/elliptic_curves/ell_rational_field.py	Wed Apr 27 22:40:54 2011 +0100
++++ b/sage/schemes/elliptic_curves/ell_rational_field.py	Thu May 19 17:25:34 2011 +0100
+@@ -1369,7 +1369,7 @@
+             raise ValueError, "algorithm %s not defined"%algorithm
+ 
+ 
+-    def simon_two_descent(self, verbose=0, lim1=5, lim3=50, limtriv=10, maxprob=20, limbigprime=30):
++    def simon_two_descent(self, verbose=0, lim1=5, lim3=50, limtriv=10, maxprob=20, limbigprime=30, store_gens=True):
+         r"""
+         Computes a lower bound for the rank of the Mordell-Weil group `E(Q)`,
+         the rank of the 2-Selmer group, and a list of independent points on
+@@ -1396,6 +1396,9 @@
+            between small and large prime numbers. Use probabilistic tests for
+            large primes. If 0, don't any probabilistic tests.
+         
++        - ``store_gens`` - (default: True) if True and if the rank has
++           been determined precisely, the set of points returned by
++           the descent function is satuarated and stored.      
+         
+         OUTPUT:
+         
+@@ -1431,11 +1434,11 @@
+             sage: E = EllipticCurve('389a1')
+             sage: set_random_seed(0)
+             sage: E.simon_two_descent()
+-            (2, 2, [(1 : 0 : 1), (-11/9 : -55/27 : 1)])
++            (2, 2, [(0 : -1 : 1), (1 : 0 : 1)])
+             sage: E = EllipticCurve('5077a1')
+             sage: set_random_seed(0)
+             sage: E.simon_two_descent()
+-            (3, 3, [(1 : 0 : 1), (0 : 2 : 1), (2 : -1 : 1)])
++            (3, 3, [(0 : 2 : 1), (1 : -1 : 1), (2 : 0 : 1)])
+         
+         In this example Simon's program does not find any points, though it
+         does correctly compute the rank of the 2-Selmer group.
+@@ -1459,24 +1462,24 @@
+             sage: E = EllipticCurve([0, 0, 1, -79, 342])
+             sage: set_random_seed(0)
+             sage: E.simon_two_descent()
+-            (5, 5, [(5 : 8 : 1), (4 : 9 : 1), (3 : 11 : 1), (-1 : 20 : 1), (-6 : -25 : 1)])
++            (5, 5, [(-6 : -25 : 1), (-1 : 20 : 1), (3 : 11 : 1), (4 : 9 : 1), (5 : 8 : 1)])
+             sage: E = EllipticCurve([1, 1, 0, -2582, 48720])
+             sage: set_random_seed(0)
+-            sage: r, s, G = E.simon_two_descent(); r,s
++            sage: r, s, G = E.simon_two_descent(store_gens=False); r,s
+             (6, 6)
+             sage: E = EllipticCurve([0, 0, 0, -10012, 346900])
+             sage: set_random_seed(0)
+-            sage: r, s, G = E.simon_two_descent(); r,s
++            sage: r, s, G = E.simon_two_descent(store_gens=False); r,s
+             (7, 7)
+             sage: E = EllipticCurve([0, 0, 1, -23737, 960366])    
+             sage: set_random_seed(0)
+-            sage: r, s, G = E.simon_two_descent(); r,s
++            sage: r, s, G = E.simon_two_descent(store_gens=False); r,s
+             (8, 8)
+ 
+         Example from trac 10832::
+             sage: E = EllipticCurve([1,0,0,-6664,86543])
+             sage: E.simon_two_descent()
+-            (2, 3, [(173 : 1943 : 1), (-73 : -394 : 1), (323/4 : 1891/8 : 1)])
++            (2, 3, [(-73 : -394 : 1), (323/4 : 1891/8 : 1)])
+             sage: E.rank()
+             2
+             sage: E.gens()
+@@ -1485,15 +1488,23 @@
+         """
+         t = simon_two_descent(self, verbose=verbose, lim1=lim1, lim3=lim3, limtriv=limtriv,
+                               maxprob=maxprob, limbigprime=limbigprime)
++        if t=='fail':
++            raise RuntimeError, 'Run-time error in simon_two_descent.'
++        if verbose>0:
++            print "simon_two_descent returns ",t
+         rank_low_bd = rings.Integer(t[0])
+         two_selmer_rank = rings.Integer(t[1])
+         gens_mod_two = [self(P) for P in t[2]]
+-        if rank_low_bd == two_selmer_rank - self.two_torsion_rank():
+-            gens = [P for P in gens_mod_two if P.has_infinite_order()]
+-            gens = self.saturation(gens)[0]
+-            self.__gens[True] = gens
+-            self.__gens[True].sort()
+-            self.__rank[True] = len(self.__gens[True])
++        if store_gens:
++            if rank_low_bd == two_selmer_rank - self.two_torsion_rank():
++                if verbose>0:
++                    print "Rank determined successfully, saturating..."
++                gens = [P for P in gens_mod_two if P.has_infinite_order()]
++                gens = self.saturation(gens)[0]
++                gens.sort()
++                self.__gens[True] = gens
++                self.__rank[True] = len(gens)
++                gens_mod_two = gens
+         return rank_low_bd, two_selmer_rank, gens_mod_two
+ 
+     two_descent_simon = simon_two_descent
+@@ -1600,7 +1611,7 @@
+             4
+             sage: EllipticCurve([0, 0, 1, -79, 342]).rank(proof=False)  # long time -- but under a minute
+             5
+-            sage: EllipticCurve([0, 0, 1, -79, 342]).simon_two_descent()[0]  # much faster -- almost instant. 
++            sage: EllipticCurve([0, 0, 1, -79, 342]).simon_two_descent(store_gens=0)[0]  # much faster -- almost instant. 
+             5
+         
+         Examples with denominators in defining equations::
+@@ -1672,7 +1683,7 @@
+                     print "curve then trying this command again.  You could also try rank"
+                     print "with only_use_mwrank=False."
+                     del E.__mwrank_curve
+-                    raise RuntimeError, 'Rank not provably correct.'
++                    raise RuntimeError, 'Rank not provably correct.' 
+                 else:
+                     misc.verbose("Warning -- rank not proven correct", level=1)
+             self.__rank[proof] = r
+diff -r 714a9ee90148 -r 402a9b27da64 sage/schemes/elliptic_curves/gp_simon.py
+--- a/sage/schemes/elliptic_curves/gp_simon.py	Wed Apr 27 22:40:54 2011 +0100
++++ b/sage/schemes/elliptic_curves/gp_simon.py	Thu May 19 17:25:34 2011 +0100
+@@ -103,6 +103,8 @@
+     if verbose > 0:
+         print s
+     v = gp.eval('ans')
++    if v=='ans': # then the call to ellrank() or bnfellrank() failed
++        return 'fail'
+     if verbose >= 2:
+         print "v = ", v
+     # pari represents field elements as Mod(poly, defining-poly)

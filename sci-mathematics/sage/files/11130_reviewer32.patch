@@ -1,0 +1,49 @@
+# HG changeset patch
+# User Jeroen Demeyer <jdemeyer@cage.ugent.be>
+# Date 1306309961 -7200
+# Node ID 0e667982059cdcfa2e6415d1b9cf13459e18fc27
+# Parent  e1565d53c0df043c351451478e004181560a66c5
+Fix additional 32-bit doctest failures
+
+diff -r e1565d53c0df -r 0e667982059c sage/schemes/elliptic_curves/ell_number_field.py
+--- a/sage/schemes/elliptic_curves/ell_number_field.py	Tue May 31 17:10:02 2011 +0200
++++ b/sage/schemes/elliptic_curves/ell_number_field.py	Wed May 25 09:52:41 2011 +0200
+@@ -1202,8 +1202,7 @@
+             sage: K.<a>=NumberField(x^2-5)
+             sage: E=EllipticCurve([20, 225, 750, 625*a + 6875, 31250*a + 46875])
+             sage: bad_primes = E.discriminant().support(); bad_primes
+-            [Fractional ideal  (a), Fractional ideal (7/2*a - 81/2), Fractional ideal (-a - 52), Fractional ideal (2)]  # 32-bit
+-            [Fractional ideal (-a), Fractional ideal (7/2*a - 81/2), Fractional ideal (-a - 52), Fractional ideal (2)]  # 64-bit
++            [Fractional ideal (-a), Fractional ideal (7/2*a - 81/2), Fractional ideal (-a - 52), Fractional ideal (2)]
+             sage: [E.kodaira_symbol(P) for P in bad_primes]
+             [I0, I1, I1, II]
+             sage: K.<a> = QuadraticField(-11)
+diff -r e1565d53c0df -r 0e667982059c sage/schemes/elliptic_curves/gp_simon.py
+--- a/sage/schemes/elliptic_curves/gp_simon.py	Tue May 31 17:10:02 2011 +0200
++++ b/sage/schemes/elliptic_curves/gp_simon.py	Wed May 25 09:52:41 2011 +0200
+@@ -46,18 +46,21 @@
+     """
+     Interface to Simon's gp script for two-descent.
+ 
+-    NOTE:
++    .. NOTE::
++
+        Users should instead run E.simon_two_descent()
+ 
+-    EXAMPLES:
++    EXAMPLES::
++
+         sage: import sage.schemes.elliptic_curves.gp_simon
+         sage: E=EllipticCurve('389a1')
+         sage: sage.schemes.elliptic_curves.gp_simon.simon_two_descent(E)
+         [2, 2, [(1 : 0 : 1), (-11/9 : -55/27 : 1)]]
+         sage: E.simon_two_descent()
+-        (2, 2, [(1 : 0 : 1), (-11/9 : -55/27 : 1)])
++        (2, 2, [(0 : -1 : 1), (1 : 0 : 1)])
+     
+-    TESTS:
++    TESTS::
++
+         sage: E = EllipticCurve('37a1').change_ring(QuadraticField(-11,'x'))
+         sage: E.simon_two_descent()
+         (1, 1, [(-1 : 0 : 1)])

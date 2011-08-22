@@ -1,0 +1,30 @@
+# HG changeset patch
+# User John Cremona <john.cremona@gmail.com>
+# Date 1305822260 -3600
+# Node ID 2ffa8fce46a180396090859a1c08bea17ba1c1d7
+# Parent  0bea93f1b4a3de2013157eec8ece8abf7fcac47e
+Small patch to ellQ.gp to work OK with pari 2.4.4
+
+diff -r 0bea93f1b4a3 -r 2ffa8fce46a1 pari/simon/ellQ.gp
+--- a/pari/simon/ellQ.gp	Tue Apr 19 15:17:43 2011 +0000
++++ b/pari/simon/ellQ.gp	Thu May 19 17:24:20 2011 +0100
+@@ -753,10 +753,15 @@
+   M = round( M*10^(default(realprecision)-10) );
+   U = qflll(M,4);
+   U = concat(U[1],U[2]);
+-  limgoodrelations = 0;
+-  while( limgoodrelations+1 <= d 
+-    && vecmax(abs(U[,limgoodrelations+1])) < 20, limgoodrelations++);
+-  U = vecextract(U,1<<limgoodrelations-1);
++if( DEBUGLEVEL_ell >= 4, print("    change of basis proposed by LLL = ",U));
++\\ the columns of U that have very small coefficients
++\\ are either exact relations or reductions (coeff <= 20)
++\\ the other ones are irrelevant.
++    extra = 0;
++    for( i = 1, d,
++      if( vecmax(abs(U[,i])) > 20, extra += 1<<(i-1))
++    );
++    U = vecextract(U,1<<d-1-extra);
+   U = completebasis(U);
+ if( DEBUGLEVEL_ell >= 4, print("changement de base = ",U));
+  

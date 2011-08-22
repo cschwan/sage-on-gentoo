@@ -2,6 +2,14 @@
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*sage-baselayout-4.7.2_alpha1 (22 Aug 2011)
+
+  22 Aug 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  +sage-baselayout-4.7.2_alpha1.ebuild,
+  +files/sage-baselayout-4.7.2-gentooify-startup-script.patch,
+  +files/gprc.expect:
+  4.7.2.alpha1
+
 *sage-baselayout-4.7.1 (17 Aug 2011)
 
   17 Aug 2011; Christopher Schwan <cschwan@students.uni-mainz.de>
