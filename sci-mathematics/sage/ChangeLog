@@ -2,6 +2,10 @@
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  22 Aug 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-4.7-r2.ebuild, sage-4.7.1.ebuild:
+  Locking pari-2.4 lcalc version
+
 *sage-4.7.1 (17 Aug 2011)
 
   17 Aug 2011; Christopher Schwan <cschwan@students.uni-mainz.de>
