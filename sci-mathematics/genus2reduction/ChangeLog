@@ -2,6 +2,13 @@
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*genus2reduction-0.3_p8-r1 (22 Aug 2011)
+
+  22 Aug 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  +genus2reduction-0.3_p8-r1.ebuild, +files/genus2reduction-0.3.p8-pari.patch:
+  revbump to use pari-2.5. Because it is an executable only it can be used with
+  a sage compiled with pari-2.4 
+
   03 Aug 2011; François Bissey <francois.bissey@canterbury.ac.nz>
   genus2reduction-0.3_p8.ebuild:
   fixing the version of pari used in 0.3_p8
