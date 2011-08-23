@@ -9,7 +9,7 @@
 >=sci-mathematics/genus2reduction-0.3_p8-r1
 # linbox 1.1.7 upgrade
 >=sci-libs/givaro-3.3
->=sci-libs/linbox-1.17
+>=sci-libs/linbox-1.1.7
 # not compatible with sage
 >=dev-lang/R-2.12.0
 >=sci-libs/m4ri-20110613
