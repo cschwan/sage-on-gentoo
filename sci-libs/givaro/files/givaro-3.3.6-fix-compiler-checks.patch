@@ -1,0 +1,25 @@
+--- configure.ac.orig	2011-04-13 14:14:07.000000000 +0000
++++ configure.ac	2011-08-23 06:42:06.903872168 +0000
+@@ -50,20 +50,8 @@
+ : ${CXXFLAGS=""}
+ 
+ #set CXX
+-AC_PROG_CC([gcc icc])
+-AC_PROG_CXX([g++ icpc icc])
+-
+-if  test "x${CXX}" = "xicpc" -o "x${CXX}" = "xicc"  ; then
+-	DEBUG_CFLAGS="${DEBUG_CFLAGS} -Wcheck"
+-   # DEBUG_CFLAGS="-fast"
+-else
+-	if test "x${CXX}" = "xg++"  ; then
+-		DEBUG_CFLAGS="${DEBUG_CFLAGS} -Wextra -Wno-unused-parameter"
+-	else
+-		AC_MSG_ERROR([please set environment variable 'CXX' to 'g++' or 'icpc']) ;
+-	fi
+-fi
+-
++AC_PROG_CC
++AC_PROG_CXX
+ 
+ DEFAULT_CFLAGS="${DEFAULT_CFLAGS} ${DEBUG_CFLAGS}"
+ TESTS_CFLAGS="${TESTS_CFLAGS} ${DEBUG_CFLAGS}"
