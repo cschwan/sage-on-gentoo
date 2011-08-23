@@ -2,6 +2,12 @@
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*linbox-1.1.7 (23 Aug 2011)
+
+  23 Aug 2011; Christopher Schwan <cschwan@students.uni-mainz.de>
+  +linbox-1.1.7.ebuild, +files/linbox-1.1.7-fix-missing-std-namespace.patch:
+  Version bump
+
   02 Jun 2011; Christopher Schwan <cschwan@students.uni-mainz.de>
   files/linbox-1.1.6-fix-config.patch:
   Fixed patch enabling documentation. Thanks to Brice Boyer for reporting

@@ -1,0 +1,279 @@
+--- linbox/algorithms/bbcharpoly.h.orig	2011-08-23 04:51:57.000000000 +0000
++++ linbox/algorithms/bbcharpoly.h	2011-08-23 07:34:08.155874422 +0000
+@@ -57,9 +57,9 @@
+  		typedef GivPolynomialRing<Field>::Element FieldPoly;
+  		// Set of factors-multiplicities sorted by degree
+  		typedef FactorMult<FieldPoly,IntPoly> FM;
+- 		typedef multimap<unsigned long,FM*> FactPoly;
++ 		typedef std::multimap<unsigned long,FM*> FactPoly;
+ 		typedef typename FactPoly::iterator FactPolyIterator;
+-		multimap<FM*,bool> leadingBlocks;
++		std::multimap<FM*,bool> leadingBlocks;
+ 		//typename multimap<FM*,bool>::iterator lead_it; 
+  		FactPoly factCharPoly;
+  		size_t n = A.coldim();
+@@ -74,8 +74,8 @@
+  			return P = intMinPoly;
+ 		}
+  		/* Factorization over the integers */
+- 		vector<IntPoly*> intFactors;    
+- 		vector<unsigned long> exp;
++ 		std::vector<IntPoly*> intFactors;    
++ 		std::vector<unsigned long> exp;
+  		IPD.factor (intFactors, exp, intMinPoly);
+ 		size_t factnum = intFactors.size();
+ 
+@@ -99,7 +99,7 @@
+ 					typename IntPoly::template rebind<Field>() (*tmp2p, *tmp2, F);
+ 
+ 					FFM = new FM (tmp2p, tmp2, 0, depend);
+-					factCharPoly.insert (pair<size_t, FM*> (deg, FFM));
++					factCharPoly.insert (std::pair<size_t, FM*> (deg, FFM));
+ 					factnum++;
+ 					depend = FFM;
+ 					deg += intFactors[i]->size()-1;
+@@ -110,13 +110,13 @@
+ 				factnum--;
+ 				FFM->multiplicity = 1; // The last factor is present in minpoly
+ 				goal -= deg-intFactors[i]->size()+1;
+-				leadingBlocks.insert (pair<FM*,bool>(FFM,false));
++				leadingBlocks.insert (std::pair<FM*,bool>(FFM,false));
+ 			} else {
+ 				FieldPoly* fp=new FieldPoly(intFactors[i]->size());
+ 				typename IntPoly::template rebind<Field>() (*fp, *(intFactors[i]), F);
+ 				FFM = new FM (fp,intFactors[i],1,NULL);
+-				factCharPoly.insert (pair<size_t, FM* > (intFactors[i]->size()-1, FFM));
+-				leadingBlocks.insert (pair<FM*,bool>(FFM,false));
++				factCharPoly.insert (std::pair<size_t, FM* > (intFactors[i]->size()-1, FFM));
++				leadingBlocks.insert (std::pair<FM*,bool>(FFM,false));
+ 				goal -= deg;
+ 			}
+ 		}
+@@ -157,7 +157,7 @@
+ 		// Set of factors-multiplicities sorted by degree
+ 		typedef std::multimap<unsigned long,FactorMult<Polynomial>* > FactPoly;
+ 		typedef typename FactPoly::iterator FactPolyIterator;
+-		multimap<FactorMult<Polynomial>*,bool> leadingBlocks;
++		std::multimap<FactorMult<Polynomial>*,bool> leadingBlocks;
+ 		//typename multimap<FactorMult<Polynomial>*,bool>::iterator lead_it; 
+ 
+ 		Field F = A.field();
+@@ -194,7 +194,7 @@
+ 					FFM = new FactorMult<Polynomial> (tmp2, tmp2, 0, depend);
+ 					//	std::cerr<<"Inserting new factor (exp>1) : "<<(*tmp2)<<std::endl;
+ 
+-					factCharPoly.insert (pair<size_t, FactorMult<Polynomial>*> (deg, FFM));
++					factCharPoly.insert (std::pair<size_t, FactorMult<Polynomial>*> (deg, FFM));
+ 					factnum++;
+ 					depend = FFM;
+ 					deg += factors[i]->size()-1;
+@@ -205,12 +205,12 @@
+ 				factnum--;
+ 				FFM->multiplicity = 1; // The last factor is present in minpoly
+ 				goal -= deg-factors[i]->size()+1;
+-				leadingBlocks.insert (pair<FactorMult<Polynomial>*,bool>(FFM,false));
++				leadingBlocks.insert (std::pair<FactorMult<Polynomial>*,bool>(FFM,false));
+ 			} else {
+ 				FFM = new FactorMult<Polynomial> (factors[i],factors[i],1,NULL);
+ 				//std::cerr<<"Inserting new factor : "<<*factors[i]<<std::endl;
+-				factCharPoly.insert (pair<size_t, FactorMult<Polynomial>* > (factors[i]->size()-1, FFM));
+-				leadingBlocks.insert (pair<FactorMult<Polynomial>*,bool>(FFM,false));
++				factCharPoly.insert (std::pair<size_t, FactorMult<Polynomial>* > (factors[i]->size()-1, FFM));
++				leadingBlocks.insert (std::pair<FactorMult<Polynomial>*,bool>(FFM,false));
+ 				goal -= deg;
+ 			}
+ 		}
+@@ -289,8 +289,8 @@
+ 	};
+ 
+ 	template < class FieldPoly,class IntPoly>
+-	void trials( list<vector<FactorMult<FieldPoly,IntPoly> > >& sols, const int goal,
+-		     vector<FactorMult<FieldPoly,IntPoly> >& ufv, const int i0 )
++	void trials( std::list<std::vector<FactorMult<FieldPoly,IntPoly> > >& sols, const int goal,
++		     std::vector<FactorMult<FieldPoly,IntPoly> >& ufv, const int i0 )
+ 	{
+ 		if ( !goal ){
+ 			sols.push_back( ufv);
+@@ -310,11 +310,11 @@
+ 				 int goal,
+ 				 const Method::Blackbox &M)
+ 	{
+-		typedef multimap<unsigned long, FactorMult<FieldPoly,IntPoly>* > FactPoly;
++		typedef std::multimap<unsigned long, FactorMult<FieldPoly,IntPoly>* > FactPoly;
+ 		typedef typename Blackbox::Field Field;
+ 		typedef GivPolynomialRing<Field, Dense> PolyDom;
+ 		typename FactPoly::iterator itf = factCharPoly.begin();
+-		typename multimap<FactorMult<FieldPoly,IntPoly>*,bool>::iterator lead_it; 
++		typename std::multimap<FactorMult<FieldPoly,IntPoly>*,bool>::iterator lead_it; 
+ 		Field F = A.field();
+ 		PolyDom PD(F);
+ 		size_t factnum = factCharPoly.size();
+@@ -417,9 +417,9 @@
+ 			for (size_t  i = 0; i < factnum; ++i, itf++){
+ 				unknownFact[i] = *itf->second;
+ 			}
+-			std::list<vector<FactorMult<FieldPoly,IntPoly> > > sols;
++			std::list<std::vector<FactorMult<FieldPoly,IntPoly> > > sols;
+ 			trials (sols, goal,unknownFact, 0);
+-			typename list<vector<FactorMult<FieldPoly,IntPoly> > >::iterator uf_it = sols.begin();
++			typename std::list<std::vector<FactorMult<FieldPoly,IntPoly> > >::iterator uf_it = sols.begin();
+ 
+ 			if (sols.size()>1){
+ 				// Evaluation of P in random gamma
+@@ -463,7 +463,7 @@
+ 					uf_it++;
+ 				}
+ 				if (uf_it == sols.end())
+-					std::cerr<<"FAIL:: No solutions found in recursive seach"<<endl;
++					std::cerr<<"FAIL:: No solutions found in recursive seach"<<std::endl;
+ 			} // At this point, uf_it points on the good solution
+ 			// update with the good multiplicities
+ 			typename FactPoly::iterator it_f = firstUnknowFactor;
+--- linbox/algorithms/cia.h.orig	2011-08-23 04:51:57.000000000 +0000
++++ linbox/algorithms/cia.h	2011-08-23 07:13:52.820873544 +0000
+@@ -48,8 +48,8 @@
+ 		minpoly (intMinPoly, A, RingCategories::IntegerTag(), M);
+ 		
+ 		/* Factorization over the integers */
+-		vector<IntPoly*> intFactors;    
+-		vector<unsigned long> mult;
++		std::vector<IntPoly*> intFactors;    
++		std::vector<unsigned long> mult;
+ 		IPD.factor (intFactors, mult, intMinPoly);
+ 		size_t nf = intFactors.size();
+ 
+--- linbox/algorithms/det-rational.h.orig	2011-08-23 04:51:57.000000000 +0000
++++ linbox/algorithms/det-rational.h	2011-08-23 07:16:27.524873656 +0000
+@@ -208,7 +208,7 @@
+ }
+ 
+ //switch: LIF
+-vector<typename PID_integer::Element> v(A.rowdim()), r(A.rowdim());
++std::vector<typename PID_integer::Element> v(A.rowdim()), r(A.rowdim());
+ ++genprime;
+ for(size_t i=0; i < v.size(); ++i) {
+ 	v[i] = rand() % (*genprime) ;
+@@ -225,11 +225,11 @@
+ 	//cout << "lif " << flush;
+ 	RationalSolver < PID_integer , Modular<double>, RandomPrimeIterator, DixonTraits > RSolver;
+ 	LastInvariantFactor < PID_integer ,RationalSolver < PID_integer, Modular<double>, RandomPrimeIterator, DixonTraits > >  LIF(RSolver);
+-	vector<Integer> r_num2 (Atilde. coldim());
++	std::vector<Integer> r_num2 (Atilde. coldim());
+ t1.clear();
+ t1.start();	
+ 	if (LIF.lastInvariantFactor1(lif, r_num2, Atilde)==0) {
+-		cerr << "error in LIF\n" << flush;
++		std::cerr << "error in LIF\n" << std::flush;
+ 	        dd = 0;
+ 	}
+ t1.stop();
+--- linbox/algorithms/rational-cra2.h.orig	2011-08-23 04:51:57.000000000 +0000
++++ linbox/algorithms/rational-cra2.h	2011-08-23 07:06:06.636873208 +0000
+@@ -115,7 +115,7 @@
+ 			++genprime;
+ 			++coprime;
+  	                if (coprime > maxnoncoprime) {
+-		                cout << "you are running out of primes. " << maxnoncoprime << " coprime primes found";
++		                std::cout << "you are running out of primes. " << maxnoncoprime << " coprime primes found";
+ 		                Integer res; return Builder_.result(res);
+ 		        }
+ 		}
+@@ -174,7 +174,7 @@
+ 			++genprime;
+ 			++coprime;
+  	                if (coprime > maxnoncoprime) {
+-		                cout << "you are running out of primes. " << maxnoncoprime << " coprime primes found";
++		                std::cout << "you are running out of primes. " << maxnoncoprime << " coprime primes found";
+ 		                //Integer res; return Builder_.result(res);
+ 				return false;
+ 		        }
+@@ -235,7 +235,7 @@
+ 		        	++genprime;
+                 		++coprime;
+ 				if (coprime > maxnoncoprime) {
+-					cout << "you are running out of primes. " << maxnoncoprime << " coprime primes found";
++					std::cout << "you are running out of primes. " << maxnoncoprime << " coprime primes found";
+ 					return num;
+ 				}
+ 			}
+@@ -321,7 +321,7 @@
+ 		        ++genprime;
+                 	++coprime;
+ 			if (coprime > maxnoncoprime) {
+-				cout << "you are running out of primes. " << maxnoncoprime << " coprime primes found";
++				std::cout << "you are running out of primes. " << maxnoncoprime << " coprime primes found";
+ 			        return false;
+ 				//return Builder_.result(res);
+ 			}
+--- linbox/algorithms/rational-reconstruction-base.h.orig	2011-08-23 04:51:57.000000000 +0000
++++ linbox/algorithms/rational-reconstruction-base.h	2011-08-23 06:58:39.410872887 +0000
+@@ -261,7 +261,7 @@
+ 		div_counter=0; mul_counter=0; gcd_counter=0;
+ 	}
+ 
+-	void write(ostream& is) {
++	void write(std::ostream& is) {
+ 		is << div_counter << " divisions\n";
+ 		is << mul_counter << " multiplications\n";
+ 		is << gcd_counter << " gcds\n";
+@@ -285,7 +285,7 @@
+ 
+ 	virtual ~RReconstructionBase() {}
+ 
+-	void write(ostream& is) const {
++	void write(std::ostream& is) const {
+ 		C.write(is);
+ 	}
+ };
+--- linbox/algorithms/rational-reconstruction.h.orig	2011-08-23 04:51:57.000000000 +0000
++++ linbox/algorithms/rational-reconstruction.h	2011-08-23 06:59:43.216872931 +0000
+@@ -1122,7 +1122,7 @@
+ 					}
+ 				}
+ 				else {
+-					cout << "ERROR in reconstruction ?\n" << flush;
++					std::cout << "ERROR in reconstruction ?\n" << std::flush;
+ 				}
+ 		
+ 			}
+--- interfaces/sage/linbox-sage.C.orig	2011-08-23 07:30:43.000000000 +0000
++++ interfaces/sage/linbox-sage.C	2011-08-23 07:30:59.474874286 +0000
+@@ -570,7 +570,7 @@
+ typedef unsigned int mod_int;
+ typedef Modular<unsigned int> GFp;
+ typedef GFp::Element  Element;
+-typedef std::vector <pair <size_t, Element> > SparseSeqVectorGFp;
++typedef std::vector <std::pair <size_t, Element> > SparseSeqVectorGFp;
+ typedef SparseMatrix<GFp, SparseSeqVectorGFp> SparseMatrixGFp;
+ 
+ static SparseMatrixGFp linbox_new_modn_sparse_matrix(mod_int modulus, size_t numrows, size_t numcols, void *rows) {
+@@ -587,10 +587,10 @@
+   return M;
+ }
+ 
+-static vector<Element> linbox_new_modn_sparse_vector(mod_int modulus, size_t len, void *_vec) {
++static std::vector<Element> linbox_new_modn_sparse_vector(mod_int modulus, size_t len, void *_vec) {
+   GFp F(modulus);
+ 
+-  vector<GFp::Element> A(len);
++  std::vector<GFp::Element> A(len);
+   
+   if (_vec==NULL) {
+     return A;
+@@ -629,13 +629,13 @@
+   return M_rank;
+ }
+ 
+-vector<mod_int> linbox_modn_sparse_matrix_solve(mod_int p, size_t numrows, size_t numcols,
++std::vector<mod_int> linbox_modn_sparse_matrix_solve(mod_int p, size_t numrows, size_t numcols,
+ 						void *_a, void *b, int method) {
+   // solve ax = b, for x, a matrix, b vector, x vector
+   GFp F(p);
+ 
+-  vector<mod_int> X( numrows);
+-  vector<mod_int> B( linbox_new_modn_sparse_vector(p, numcols, b));
++  std::vector<mod_int> X( numrows);
++  std::vector<mod_int> B( linbox_new_modn_sparse_vector(p, numcols, b));
+ 
+   SparseMatrixGFp A(linbox_new_modn_sparse_matrix(p, numrows, numcols, _a));
+ 
