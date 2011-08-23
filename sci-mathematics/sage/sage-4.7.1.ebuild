@@ -357,7 +357,9 @@ src_configure() {
 src_install() {
 	distutils_src_install
 
-	if use testsuite ; then
+	# TODO: fix problems with introspection
+# 	if use testsuite ; then
+	if true ; then
 		# install testable sources and sources needed for testing
 		find sage ! \( -name "*.py" -o -name "*.pyx" -o -name "*.pxd" -o \
 			-name "*.pxi" \) -type f -delete \

@@ -2,6 +2,10 @@
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  23 Aug 2011; Christopher Schwan <cschwan@students.uni-mainz.de>
+  sage-4.7.1.ebuild, sage-4.7.2_alpha1.ebuild:
+  Temporary fix for the USE=-testsuite problem
+
 *sage-4.7.2_alpha1 (22 Aug 2011)
 
   22 Aug 2011; François Bissey <francois.bissey@canterbury.ac.nz>
