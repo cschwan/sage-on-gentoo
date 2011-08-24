@@ -100,8 +100,6 @@ src_compile(){
 	if [[ ${CHOST} == *-darwin* ]] ; then
 		myesconsargs+=(
 			FORCE_HASH_MAP=True
-			HAVE_PYTHON_EXTENSION=False
-			EXTERNAL_PYTHON_EXTENSION=True
 			SHLIBVERSIONING=False
 		)
 	fi
@@ -144,7 +142,7 @@ src_install() {
 			install_name_tool -id "${EPREFIX}/usr/$(get_libdir)/${d}" "${d}"
 			eend $?
 		done
-		install_name_tool -change libpolybori/libpolybori.dylib \
+		install_name_tool -change libpolybori.dylib \
 			"${EPREFIX}/usr/$(get_libdir)/libpolybori.dylib" libpolybori_groebner.dylib
 	fi
 }
