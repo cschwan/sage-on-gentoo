@@ -96,7 +96,7 @@ RDEPEND="${CDEPEND}
 	~sci-mathematics/sage-data-polytopes_db-20100210
 	>=sci-mathematics/sage-doc-${PV}
 	~sci-mathematics/sage-extcode-${PV}
-	~sci-mathematics/sage-notebook-0.8.20
+	~sci-mathematics/sage-notebook-0.8.21
 	|| (
 	  ~sci-mathematics/singular-3.1.1.4[-libsingular]
 	  >=sci-mathematics/singular-3.1.2
@@ -135,6 +135,9 @@ src_prepare() {
 		-e "s/ -l/\',\'/g" \
 		-e 's/.,.pthread//g' \
 		-e "s:  ::")\'
+
+	# patch to eliminate the sourcing of cython sources
+	epatch "${FILESDIR}"/trac11734_sage_wraps_no_sourceread_lambda.patch
 
 	# patches for pari-2.5.0
 	epatch "${FILESDIR}"/11130_sagelib.patch
@@ -331,9 +334,7 @@ src_configure() {
 src_install() {
 	distutils_src_install
 
-	# TODO: fix problems with introspection
-# 	if use testsuite ; then
-	if true ; then
+ 	if use testsuite ; then
 		# install testable sources and sources needed for testing
 		find sage ! \( -name "*.py" -o -name "*.pyx" -o -name "*.pxd" -o \
 			-name "*.pxi" \) -type f -delete \

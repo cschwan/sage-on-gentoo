@@ -1,0 +1,19 @@
+exporting patch:
+# HG changeset patch
+# User Julian Rüth <julian.rueth@gmail.com>
+Trac 11734: lambda fix for 11734
+
+diff --git a/sage/misc/decorators.py b/sage/misc/decorators.py
+index 702de97..829ec2e 100644
+--- a/sage/misc/decorators.py
++++ b/sage/misc/decorators.py
+@@ -122,8 +122,7 @@ def sage_wraps(wrapped, assigned = WRAPPER_ASSIGNMENTS, updated = WRAPPER_UPDATE
+         #The attribute _sage_argspec_() is read by Sphinx if present and used
+         #as the argspec of the function instead of using reflection. 
+         from sageinspect import sage_getargspec
+-        argspec = sage_getargspec(wrapped)
+-        wrapper._sage_argspec_ = lambda: argspec
++        wrapper._sage_argspec_ = lambda: sage_getargspec(wrapped)
+         return wrapper
+     return f
+ 

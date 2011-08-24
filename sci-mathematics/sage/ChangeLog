@@ -2,6 +2,13 @@
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*sage-4.7.2_alpha2 (24 Aug 2011)
+
+  24 Aug 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  +files/trac11734_sage_wraps_no_sourceread_lambda.patch,
+  -sage-4.7.2_alpha1.ebuild, +sage-4.7.2_alpha2.ebuild:
+  bump to 4.7.2.alpha2 + cython source patch
+
   23 Aug 2011; Christopher Schwan <cschwan@students.uni-mainz.de>
   sage-4.7.1.ebuild, sage-4.7.2_alpha1.ebuild:
   Temporary fix for the USE=-testsuite problem
