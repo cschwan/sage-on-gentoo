@@ -1,6 +1,18 @@
 # ChangeLog for dev-lang/python
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/ChangeLog,v 1.540 2011/07/24 15:06:30 neurogeek Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/ChangeLog,v 1.543 2011/08/23 19:03:37 neurogeek Exp $
+
+  23 Aug 2011; Jesus Rivero <neurogeek@gentoo.org> python-3.2-r2.ebuild,
+  +files/python-3.2-soname_typo.patch:
+  Applied patch from upstream, wrt bug #376303. Fixed License
+
+  07 Aug 2011; Naohiro Aota <naota@gentoo.org> python-2.6.7-r2.ebuild,
+  python-2.7.2-r2.ebuild, python-3.1.4-r2.ebuild, python-3.2-r2.ebuild:
+  Move more linux3 compat hack into kernel_linux check. Bug #374579
+
+  05 Aug 2011; Naohiro Aota <naota@gentoo.org> python-2.6.7-r2.ebuild,
+  python-2.7.2-r2.ebuild, python-3.1.4-r2.ebuild, python-3.2-r2.ebuild:
+  Move linux3 compat hack into kernel_linux check. Bug #374579
 
 *python-3.2-r2 (24 Jul 2011)
 *python-3.1.4-r2 (24 Jul 2011)
