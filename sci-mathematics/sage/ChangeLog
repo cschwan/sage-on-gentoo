@@ -2,6 +2,10 @@
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  25 Aug 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  +files/bug11339a.patch, sage-4.7.2_alpha2.ebuild:
+  use Martin original 11339 patch in 4.7.2.alpha2
+
 *sage-4.7.2_alpha2 (24 Aug 2011)
 
   24 Aug 2011; François Bissey <francois.bissey@canterbury.ac.nz>

@@ -1,0 +1,72 @@
+Work around ticket #11339.
+2011-06-03 Martin von Gagern
+http://trac.sagemath.org/sage_trac/ticket/11339
+
+diff -r ce324e28c333 sage/libs/singular/groebner_strategy.pxd
+--- a/sage/libs/singular/groebner_strategy.pxd
++++ b/sage/libs/singular/groebner_strategy.pxd
+@@ -1,3 +1,4 @@
++from cpython.ref cimport PyObject
+ from sage.libs.singular.decl cimport skStrategy
+ 
+ from sage.rings.polynomial.multi_polynomial_libsingular cimport MPolynomialRing_libsingular, MPolynomial_libsingular
+@@ -7,6 +8,7 @@
+ cdef class GroebnerStrategy(SageObject):
+     cdef skStrategy *_strat
+     cdef MPolynomialRing_libsingular _parent
++    cdef PyObject *_parent_for_dealloc
+     cdef object _ideal
+ 
+     cpdef MPolynomial_libsingular normal_form(self, MPolynomial_libsingular p)
+diff -r ce324e28c333 sage/libs/singular/groebner_strategy.pyx
+--- a/sage/libs/singular/groebner_strategy.pyx
++++ b/sage/libs/singular/groebner_strategy.pyx
+@@ -20,6 +20,7 @@
+ cdef extern from "":
+     int unlikely(int)
+     int likely(int)
++from cpython.ref cimport (PyObject, Py_XINCREF, Py_XDECREF)
+ 
+ from sage.libs.singular.decl cimport ideal, ring, poly, currRing
+ from sage.libs.singular.decl cimport rChangeCurrRing
+@@ -100,6 +101,9 @@
+ 
+         cdef MPolynomialRing_libsingular R = <MPolynomialRing_libsingular>L.ring()
+         self._parent = R
++        Py_XDECREF(self._parent_for_dealloc)
++        self._parent_for_dealloc = <PyObject*>R
++        Py_XINCREF(self._parent_for_dealloc)
+ 
+         if not R.term_order().is_global():
+             raise NotImplementedError("The local case is not implemented yet.")
+@@ -142,7 +146,10 @@
+             sage: del strat
+         """
+         cdef ring *oldRing = NULL
++        cdef MPolynomialRing_libsingular parent
+         if self._strat:
++            parent = (
++                <MPolynomialRing_libsingular>self._parent_for_dealloc)
+             omfree(self._strat.sevS)
+             omfree(self._strat.ecartS)
+             omfree(self._strat.T)
+@@ -152,15 +159,16 @@
+             omfree(self._strat.L)
+             omfree(self._strat.B)
+             omfree(self._strat.fromQ)
+-            id_Delete(&self._strat.Shdl, self._parent._ring)
++            id_Delete(&self._strat.Shdl, parent._ring)
+ 
+-            if self._parent._ring != currRing:
++            if parent._ring != currRing:
+                 oldRing = currRing
+-                rChangeCurrRing(self._parent._ring)
++                rChangeCurrRing(parent._ring)
+                 delete_skStrategy(self._strat)
+                 rChangeCurrRing(oldRing)
+             else:
+                 delete_skStrategy(self._strat)
++        Py_XDECREF(self._parent_for_dealloc)
+ 
+     def _repr_(self):
+         """

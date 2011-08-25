@@ -159,8 +159,9 @@ src_prepare() {
 	epatch "${FILESDIR}"/trac_9958-mixedfix.patch
 	epatch "${FILESDIR}"/trac_9958-fixing_colorspy.patch
 	# fix groebner strategy trac 11339
-	epatch "${FILESDIR}"/trac_11339_refcount_singular_rings.patch
-	epatch "${FILESDIR}"/trac_11339_refcount_singular_polynomials.patch.bz2
+	#epatch "${FILESDIR}"/trac_11339_refcount_singular_rings.patch
+	#epatch "${FILESDIR}"/trac_11339_refcount_singular_polynomials.patch.bz2
+	epatch "${FILESDIR}"/bug11339a.patch
 	# make sure we use cython-2.7 for consistency
 	sed -i "s:python \`which cython\`:cython-2.7:" setup.py
 
@@ -334,7 +335,7 @@ src_configure() {
 src_install() {
 	distutils_src_install
 
- 	if use testsuite ; then
+	if use testsuite ; then
 		# install testable sources and sources needed for testing
 		find sage ! \( -name "*.py" -o -name "*.pyx" -o -name "*.pxd" -o \
 			-name "*.pxi" \) -type f -delete \
