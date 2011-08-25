@@ -2,6 +2,13 @@
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*sage-4.7.1-r1 (25 Aug 2011)
+
+  25 Aug 2011; Christopher Schwan <cschwan@students.uni-mainz.de>
+  +sage-4.7.1-r1.ebuild:
+  Import patch from 4.7.2_alpha2 to 4.7.1-r1 fix and restore behavior
+  of USE=testsuite
+
   25 Aug 2011; François Bissey <francois.bissey@canterbury.ac.nz>
   +files/bug11339a.patch, sage-4.7.2_alpha2.ebuild:
   use Martin original 11339 patch in 4.7.2.alpha2
