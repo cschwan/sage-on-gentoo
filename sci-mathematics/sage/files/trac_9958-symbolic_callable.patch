@@ -1,0 +1,43 @@
+# HG changeset patch
+# User Francois Bissey <francois.bissey@canterbury.ac.nz>
+# Date 1314328647 -43200
+# Node ID 9c49ab2fb2a88cc85a4c9560ddc1017899b87b7d
+# Parent  1df61ab2208c3e1762540fadc0852c70c0408a77
+trac 9958 fix error message in sage/symbolic/callable.py
+
+diff --git a/sage/symbolic/callable.py b/sage/symbolic/callable.py
+--- a/sage/symbolic/callable.py
++++ b/sage/symbolic/callable.py
+@@ -38,27 +38,27 @@
+     sage: f(1)=2
+     Traceback (most recent call last):
+     ...
+-    SyntaxError: can't assign to function call ...
++    SyntaxError: can't assign to function call
+ 
+     sage: f(x,1)=2
+     Traceback (most recent call last):
+     ...
+-    SyntaxError: can't assign to function call ...
++    SyntaxError: can't assign to function call
+ 
+     sage: f(1,2)=3
+     Traceback (most recent call last):
+     ...
+-    SyntaxError: can't assign to function call ...
++    SyntaxError: can't assign to function call
+ 
+     sage: f(1,2)=x
+     Traceback (most recent call last):
+     ...
+-    SyntaxError: can't assign to function call ...
++    SyntaxError: can't assign to function call
+ 
+     sage: f(x,2)=x
+     Traceback (most recent call last):
+     ...
+-    SyntaxError: can't assign to function call ...
++    SyntaxError: can't assign to function call
+ """
+ 
+ from sage.symbolic.ring import SymbolicRing, SR, ParentWithBase

@@ -158,6 +158,9 @@ src_prepare() {
 	epatch "${FILESDIR}"/trac_9958-fix-pureAssertError.patch
 	epatch "${FILESDIR}"/trac_9958-mixedfix.patch
 	epatch "${FILESDIR}"/trac_9958-fixing_colorspy.patch
+	epatch "${FILESDIR}"/trac_9958-e_one_star.patch
+	epatch "${FILESDIR}"/trac_9958-finite_crystals.patch
+	epatch "${FILESDIR}"/trac_9958-symbolic_callable.patch
 	# fix groebner strategy trac 11339
 	#epatch "${FILESDIR}"/trac_11339_refcount_singular_rings.patch
 	#epatch "${FILESDIR}"/trac_11339_refcount_singular_polynomials.patch.bz2

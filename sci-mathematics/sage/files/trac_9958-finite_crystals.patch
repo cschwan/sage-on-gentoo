@@ -1,0 +1,19 @@
+# HG changeset patch
+# User Francois Bissey <francois.bissey@canterbury.ac.nz>
+# Date 1314328794 -43200
+# Node ID c9da40477f89d9a250d5fa495509e1f11768d607
+# Parent  9c49ab2fb2a88cc85a4c9560ddc1017899b87b7d
+trac 9958 fix error message in categories/finite_crystals.py
+
+diff --git a/sage/categories/finite_crystals.py b/sage/categories/finite_crystals.py
+--- a/sage/categories/finite_crystals.py
++++ b/sage/categories/finite_crystals.py
+@@ -111,7 +111,7 @@
+                 sage: B._test_stembridge_local_axioms()
+                 Traceback (most recent call last):
+                 ...
+-                AssertionError
++                AssertionError: None
+             """
+             tester = self._tester(**options)
+             goodness=True

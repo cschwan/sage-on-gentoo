@@ -1,0 +1,23 @@
+# HG changeset patch
+# User Francois Bissey <francois.bissey@canterbury.ac.nz>
+# Date 1314328276 -43200
+# Node ID 1df61ab2208c3e1762540fadc0852c70c0408a77
+# Parent  a48af224839e4eb2555175d15d703ecd81d0b4c1
+trac #9958 fix numerical noise in e_one_star.py
+
+diff --git a/sage/combinat/e_one_star.py b/sage/combinat/e_one_star.py
+--- a/sage/combinat/e_one_star.py
++++ b/sage/combinat/e_one_star.py
+@@ -1085,9 +1085,9 @@
+             sage: P = Patch([Face((0,0,0),t,color) for t in [1,2,3]])
+             sage: P.repaint([(0.9, 0.9, 0.9), (0.65,0.65,0.65), (0.4,0.4,0.4)])
+             sage: for f in P: f.color()
+-            RGB color (0.9000..., 0.9000..., 0.9000...)
+-            RGB color (0.6500..., 0.6500..., 0.6500...)
+-            RGB color (0.4000..., 0.4000..., 0.4000...)
++            RGB color (0.9, 0.9, 0.9)
++            RGB color (0.65, 0.65, 0.65)
++            RGB color (0.4, 0.4, 0.4)
+ 
+         Using a dictionary to color faces according to their type::
+ 
