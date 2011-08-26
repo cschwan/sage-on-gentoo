@@ -1,5 +1,5 @@
 #dev-lang/R
-dev-libs/mpfr
+#dev-libs/mpfr
 =dev-libs/ppl-0.11.2
 dev-lisp/ecls
 dev-python/cvxopt
