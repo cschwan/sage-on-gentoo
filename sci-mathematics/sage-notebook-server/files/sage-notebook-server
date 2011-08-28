@@ -35,16 +35,26 @@ start() {
 	# standard output
 	if [ ! -f "${user_home}"/.sage/sage_notebook.sagenb/users.pickle ] ; then
 		eend 1 "Did not find user database - configure Sage's Notebook first:"
-		einfo "1. Configure the ${RC_SVCNAME}'s configuration file in: "
-		einfo "     /etc/conf.d/${RC_SVCNAME}.conf"
-		einfo "2. Switch to the user specified in the configuration file above."
-		einfo "   Based on your current settings this is done by:"
-		einfo "     su ${user}"
-		einfo "3. Run the Notebook with the commands specified in the"
-		einfo "   configuration file. Based on your current settings this would"
-		einfo "   be:"
+
+		echo
+		einfo "- Configure the ${RC_SVCNAME}'s configuration file in: "
 		einfo ""
-		einfo "   sage ${command_args[@]}"
+		einfo "    /etc/conf.d/${RC_SVCNAME}.conf"
+		einfo ""
+		einfo "- Make sure you superuser and run the Notebook with the options"
+		einfo "  you specified in the configuration file. Based on your current"
+		einfo "  settings this would be:"
+		einfo ""
+		einfo "     su sage -c \"sage ${command_args[@]}\""
+		einfo ""
+		einfo "  Follow Sage's instructions and exit it after twistd is started"
+		einfo "  by pressing Ctrl+C."
+		einfo "- A multiuser server will require additional setup. Visit the"
+		einfo "  following URL for details:"
+		einfo ""
+		einfo "    http://sagemath.org/doc/reference/sagenb/notebook/notebook_object.html"
+		echo
+
 		return 1
 	fi
 
@@ -63,9 +73,6 @@ start() {
 
 stop() {
 	ebegin "Stopping Sage's Notebook server"
-	start-stop-daemon \
-		--stop \
-		--pidfile "${pidfile}" \
-		--user ${user}
+	start-stop-daemon --stop --pidfile "${pidfile}" --user ${user}
 	eend $? "Failed to stop Sage's Notebook server"
 }

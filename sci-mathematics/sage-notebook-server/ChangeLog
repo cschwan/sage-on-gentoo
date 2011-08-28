@@ -2,6 +2,13 @@
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*sage-notebook-server-1-r1 (28 Aug 2011)
+
+  28 Aug 2011; Christopher Schwan <cschwan@students.uni-mainz.de>
+  +sage-notebook-server-1-r1.ebuild:
+  Removed ssl dependency which belonged to sage-notebook. Adjusted
+  startup script according comments from Sebastian Luther.
+
 *sage-notebook-server-1 (28 Aug 2011)
 
   28 Aug 2011; Christopher Schwan <cschwan@students.uni-mainz.de>
