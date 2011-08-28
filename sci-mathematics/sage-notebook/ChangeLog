@@ -2,6 +2,12 @@
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  28 Aug 2011; Christopher Schwan <cschwan@students.uni-mainz.de>
+  sage-notebook-0.8.14-r2.ebuild, sage-notebook-0.8.19.ebuild,
+  sage-notebook-0.8.21.ebuild:
+  Add missing dependency. certtool (gnutls) is needed when starting
+  the notebook with secure connection
+
 *sage-notebook-0.8.21 (24 Aug 2011)
 
   24 Aug 2011; François Bissey <francois.bissey@canterbury.ac.nz>

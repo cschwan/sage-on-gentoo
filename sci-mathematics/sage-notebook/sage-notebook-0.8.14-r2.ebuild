@@ -19,7 +19,7 @@ SRC_URI="http://sage.math.washington.edu/home/release/${SAGE_P}/${SAGE_P}/spkg/s
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64 ~x86 ~amd64-linux ~x86-linux"
-IUSE="java"
+IUSE="java ssl"
 
 RESTRICT="mirror"
 
@@ -31,7 +31,8 @@ DEPEND="~dev-python/pexpect-2.0
 	>=dev-python/docutils-0.5"
 RDEPEND="${DEPEND}
 	java? ( ~sci-chemistry/jmol-11.6.16
-		~sci-chemistry/jmol-applet-11.6.16 )"
+		~sci-chemistry/jmol-applet-11.6.16 )
+	ssl? ( net-libs/gnutls )"
 
 S="${WORKDIR}/${MY_P}/src/sagenb"
 
