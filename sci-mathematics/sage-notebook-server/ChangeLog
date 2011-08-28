@@ -2,6 +2,11 @@
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  28 Aug 2011; Christopher Schwan <cschwan@students.uni-mainz.de>
+  sage-notebook-server-9999.ebuild, files/sage-notebook-server,
+  files/sage-notebook-server.conf:
+  Anhanced startup script and configuration file
+
   03 Jun 2011; Christopher Schwan <cschwan@students.uni-mainz.de>
   files/sage-notebook-server:
   Updated ebuild to make it work with the newest (0.8.14) notebook

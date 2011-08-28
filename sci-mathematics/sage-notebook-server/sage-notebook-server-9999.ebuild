@@ -1,8 +1,8 @@
-# Copyright 1999-2010 Gentoo Foundation
+# Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
-EAPI="3"
+EAPI="4"
 
 inherit eutils
 
@@ -13,27 +13,31 @@ SRC_URI=""
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64 ~x86 ~amd64-linux ~x86-linux"
-IUSE=""
+IUSE="ssl"
 
-RDEPEND="sci-mathematics/sage"
+RDEPEND="sci-mathematics/sage-notebook
+	ssl? ( net-libs/gnutls )"
+
+S="${WORKDIR}"
 
 pkg_setup() {
 	enewgroup sage
-	enewuser sage -1 /bin/bash /var/lib/sage sage || die
+	enewuser sage -1 /bin/bash /var/lib/sage sage
 }
 
 src_prepare() {
-	mkdir conf.d || die
-	mkdir init.d || die
+	mkdir conf.d || die "failed to create directory"
+	mkdir init.d || die "failed to create directory"
 	cp "${FILESDIR}"/${PN} init.d/${PN} || die "failed to copy file"
 	cp "${FILESDIR}"/${PN}.conf conf.d/${PN} || die "failed to copy file"
+
+	if use ssl ; then
+		sed -i "s:secure=\"False\":secure=\"True\":" conf.d/${PN} \
+			|| die "failed to adjust configuration file"
+	fi
 }
 
 src_install() {
-	doinitd init.d/${PN} || die
-	doconfd conf.d/${PN} || die
-}
-
-pkg_postinst() {
-	ewarn "WARNING: The startup script isnt fully tested - use at your own risk"
+	doinitd init.d/${PN}
+	doconfd conf.d/${PN}
 }
