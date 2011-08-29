@@ -1,0 +1,33 @@
+# HG changeset patch
+# User Nils Bruin <nbruin@sfu.ca>
+# Date 1314633199 25200
+# Node ID 3593836f8f6b9bdb0a79ff694307b46f244c064e
+# Parent  2a2abbcad325ccca9399981ceddf5897eb467e64
+Trac #11752: Do not instantiate a separate ECL thread to handle signals
+patch contributed by Paulo César Pereira de Andrade
+
+diff --git a/sage/libs/ecl.pxd b/sage/libs/ecl.pxd
+--- a/sage/libs/ecl.pxd
++++ b/sage/libs/ecl.pxd
+@@ -38,6 +38,10 @@ cdef extern from "ecl/ecl.h":
+         ECL_OPT_TRAP_SIGINT,
+         ECL_OPT_TRAP_SIGILL,
+         ECL_OPT_TRAP_SIGBUS,
++        ECL_OPT_TRAP_SIGPIPE,
++        ECL_OPT_TRAP_INTERRUPT_SIGNAL,
++        ECL_OPT_SIGNAL_HANDLING_THREAD,
++        ECL_OPT_SIGNAL_QUEUE_SIZE,
+         ECL_OPT_BOOTED,
+         ECL_OPT_BIND_STACK_SIZE,
+         ECL_OPT_BIND_STACK_SAFETY_AREA,
+diff --git a/sage/libs/ecl.pyx b/sage/libs/ecl.pyx
+--- a/sage/libs/ecl.pyx
++++ b/sage/libs/ecl.pyx
+@@ -175,6 +175,7 @@ def init_ecl():
+         sigaction(i, NULL, &sage_action[i])
+  
+     #initialize ECL
++    ecl_set_option(ECL_OPT_SIGNAL_HANDLING_THREAD, 0)
+     cl_boot(1, argv)
+ 
+     #save signal handler from ECL

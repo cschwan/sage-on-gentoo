@@ -2,6 +2,13 @@
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*sage-4.7.1-r2 (29 Aug 2011)
+
+  29 Aug 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  +files/11752_ecl-nothread.patch, -sage-4.7.1.ebuild, -sage-4.7.1-r1.ebuild,
+  +sage-4.7.1-r2.ebuild, sage-4.7.2_alpha2.ebuild:
+  Add patch for ecls threads
+
   26 Aug 2011; François Bissey <francois.bissey@canterbury.ac.nz>
   +files/trac_9958-e_one_star.patch, +files/trac_9958-finite_crystals.patch,
   +files/trac_9958-symbolic_callable.patch, sage-4.7.2_alpha2.ebuild:

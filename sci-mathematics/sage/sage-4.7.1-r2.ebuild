@@ -138,6 +138,8 @@ src_prepare() {
 
 	# patch to eliminate the sourcing of cython sources
 	epatch "${FILESDIR}"/trac11734_sage_wraps_no_sourceread_lambda.patch
+	# patch to deal with ecl threads trac 11752
+	epatch "${FILESDIR}"/11752_ecl-nothread.patch
 
 	# patches for python-2.7
 	# deprecation warnings re-enabled
