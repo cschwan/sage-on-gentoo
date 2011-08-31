@@ -14,17 +14,17 @@ LICENSE="GPL-2 LGPL-2.1"
 SLOT="0"
 KEYWORDS="~x86-macos"
 
-IUSE="doc java jpeg lapack minimal nls perl png readline threads tk X cairo"
+IUSE="doc java jpeg minimal nls perl png readline threads tk X cairo"
 
 # common depends
 CDEPEND="dev-libs/libpcre
 	app-arch/bzip2
 	virtual/blas
 	app-text/ghostscript-gpl
+	virtual/lapack
 	cairo? ( x11-libs/cairo[X]
 		|| ( >=x11-libs/pango-1.20[X] <x11-libs/pango-1.20 ) )
 	jpeg? ( virtual/jpeg )
-	lapack? ( virtual/lapack )
 	perl? ( dev-lang/perl )
 	png? ( media-libs/libpng )
 	readline? ( sys-libs/readline )
@@ -78,7 +78,7 @@ src_prepare() {
 	fi
 	use perl && \
 		export PERL5LIB="${S}/share/perl:${PERL5LIB:+:}${PERL5LIB}"
-		
+
 	# Fix for darwin (OS X)
 	sed -e 's:-install_name libR.dylib:-install_name ${libdir}/R/lib/libR.dylib:' \
 		-e 's:-install_name libRlapack.dylib:-install_name ${libdir}/R/lib/libRlapack.dylib:' \
@@ -101,7 +101,7 @@ src_configure() {
 		--with-system-bzlib \
 		--with-system-pcre \
 		--with-blas="$(pkg-config --libs blas)" \
-		--docdir=${EPREFIX}/usr/share/doc/${PF} \
+		--docdir="${EPREFIX}"/usr/share/doc/${PF} \
 		rdocdir=${EPREFIX}/usr/share/doc/${PF} \
 		$(use_enable nls) \
 		$(use_enable threads) \
@@ -157,9 +157,9 @@ src_install() {
 	EOF
 	doenvd 99R || die "doenvd failed"
 	dobashcompletion "${WORKDIR}"/R.bash_completion
-	
+
 	# fix install_name for all .so objects still shipped on macos
-	for d in $(find ${D} -name *.so)  ; do
+	for d in $(find "${D}" -name *.so)  ; do
 		ebegin "  correcting install_name of ${d}"
 		install_name_tool -id "${d#${D}}" "${d}"
 		eend $?

@@ -2,6 +2,10 @@
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  31 Aug 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  R-2.10.1-r1.ebuild:
+  Force the use of external lapack over internal - avoid installname hell.
+
   12 Jan 2011; François Bissey <f.r.bissey@massey.ac.nz> R-2.10.1-r1.ebuild:
   Finished R porting to macos
 
