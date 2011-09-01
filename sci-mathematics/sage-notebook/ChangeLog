@@ -2,6 +2,11 @@
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  01 Sep 2011; Christopher Schwan <cschwan@students.uni-mainz.de>
+  sage-notebook-0.8.14-r2.ebuild, sage-notebook-0.8.19.ebuild,
+  sage-notebook-0.8.21.ebuild, metadata.xml:
+  Make USE=java default and document functionality in metadata.xml
+
   28 Aug 2011; Christopher Schwan <cschwan@students.uni-mainz.de>
   sage-notebook-0.8.14-r2.ebuild, sage-notebook-0.8.19.ebuild,
   sage-notebook-0.8.21.ebuild:

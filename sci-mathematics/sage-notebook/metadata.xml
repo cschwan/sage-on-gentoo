@@ -5,4 +5,7 @@
 	<maintainer>
 		<email>sci@gentoo.org</email>
 	</maintainer>
+	<use>
+		<flag name='java'>Enable JMol for 3D-printing in the notebook</flag>
+	</use>
 </pkgmetadata>
