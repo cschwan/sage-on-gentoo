@@ -105,16 +105,15 @@ QUICK INSTALLATION GUIDE
 SAGE ON GENTOO PREFIX
 =====================
 
-What is Gentoo Prefix? In one sentence, a Prefix enables you to install Gentoo
-on different OS (e.g Linux, FreeBSD, MacOS, Solaris and even Windows). Thus, you
-may be able to run Sage on Gentoo e.g. on a Debian Linux. For a complete
-introduction into Gentoo Prefix and how to set it up visit
+A Prefix enables you to install Gentoo on different OS (e.g Linux, FreeBSD,
+MacOS, Solaris and even Windows). Thus, you may be able to run Sage on Gentoo
+e.g. on a Debian Linux. For a complete introduction into Gentoo Prefix and how
+to set it up visit
 
   http://www.gentoo.org/proj/en/gentoo-alt/prefix/
 
-To setup sage-on-gentoo in a Prefix simply follow the steps described in the
-quick installation guide (note that the sage-on-prefix overlay is no longer
-needed).
+After having a working Prefix you may setup sage-on-gentoo in a Prefix by
+following the quick installation guide.
 
 Currently, we support every Linux running with x86 or amd64 instruction sets, in
 particular the following architectures:
