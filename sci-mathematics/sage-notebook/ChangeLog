@@ -2,6 +2,15 @@
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*sage-notebook-0.8.21-r1 (02 Sep 2011)
+*sage-notebook-0.8.19-r1 (02 Sep 2011)
+
+  02 Sep 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  -files/trac_9238_jmol_lib_async.patch, -sage-notebook-0.8.19.ebuild,
+  +sage-notebook-0.8.19-r1.ebuild, -sage-notebook-0.8.21.ebuild,
+  +sage-notebook-0.8.21-r1.ebuild:
+  remove offending async patch
+
   01 Sep 2011; Christopher Schwan <cschwan@students.uni-mainz.de>
   sage-notebook-0.8.14-r2.ebuild, sage-notebook-0.8.19.ebuild,
   sage-notebook-0.8.21.ebuild, metadata.xml:

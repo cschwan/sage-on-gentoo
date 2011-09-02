@@ -10,7 +10,7 @@ PYTHON_MODNAME="sagenb"
 inherit distutils eutils
 
 MY_P="sagenb-${PV}"
-SAGE_P="sage-4.7.1.alpha4"
+SAGE_P="sage-4.7.2.alpha2"
 
 DESCRIPTION="The Sage Notebook is a web-based graphical user interface for mathematical software"
 HOMEPAGE="http://www.sagemath.org"
@@ -45,7 +45,6 @@ pkg_setup() {
 src_prepare() {
 	# patch for latest jmol-12.0.45 trac 9238
 	epatch "${FILESDIR}"/trac_9238_interactive_js.patch
-	epatch "${FILESDIR}"/trac_9238_jmol_lib_async.patch
 
 	epatch "${FILESDIR}"/${PN}-0.8-nojava.patch
 
