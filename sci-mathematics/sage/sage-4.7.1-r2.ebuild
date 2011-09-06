@@ -107,7 +107,13 @@ RDEPEND="${CDEPEND}
 		~sci-mathematics/sage-doc-${PV}[html]
 		~sci-mathematics/sage-examples-4.7
 	)
-	latex? ( ~dev-tex/sage-latex-2.2.5 )"
+	latex? (
+		~dev-tex/sage-latex-2.2.5
+		|| (
+			app-text/dvipng[truetype]
+			media-gfx/imagemagick[png]
+		)
+	)"
 
 S="${WORKDIR}/${MY_P}"
 

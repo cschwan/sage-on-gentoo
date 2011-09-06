@@ -2,6 +2,10 @@
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  06 Sep 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-4.7-r2.ebuild, sage-4.7.1-r2.ebuild, sage-4.7.2_alpha2.ebuild:
+  add dependencies for sage-latex
+
 *sage-4.7.1-r2 (29 Aug 2011)
 
   29 Aug 2011; François Bissey <francois.bissey@canterbury.ac.nz>
