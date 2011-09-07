@@ -2,6 +2,11 @@
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  07 Sep 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  polybori-9999.ebuild:
+  Update hot ebuild, Alexandre has been very good to us and most of our fixes
+  are gone.
+
   24 Aug 2011; François Bissey <francois.bissey@canterbury.ac.nz>
   polybori-9999.ebuild:
   more work on polybori-9999

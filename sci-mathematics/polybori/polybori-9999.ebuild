@@ -57,13 +57,6 @@ src_prepare() {
 
 	# make sure external m4ri is used
 	rm -r M4RI || die "failed to remove internal copy of m4ri"
-
-	# make polybori conform to multilib-strict
-	sed -i "s:DEVEL_PREFIX/lib:DEVEL_PREFIX/$(get_libdir):g" \
-		SConstruct || die "failed patch library path"
-
-	# remove automatic -O3
-	epatch "${FILESDIR}"/${PN}-0.8-SConstruct_O3.patch
 }
 
 src_compile(){
@@ -81,6 +74,7 @@ src_compile(){
 		CC=$(tc-getCC)
 		CXX=$(tc-getCXX)
 		CFLAGS=${CFLAGS}
+		CCFLAGS=""
 		CXXFLAGS=${CXXFLAGS}
 		LINKFLAGS=${LDFLAGS}
 		HAVE_HEVEA=False
@@ -90,8 +84,10 @@ src_compile(){
 		$(use_scons doc HAVE_PYDOC)
 		MANDIR="${ED}"/usr/share/man
 		PREFIX="${ED}"/usr
+		DEVEL_LIB_PREFIX="${ED}"/usr/$(get_libdir)
 		PYINSTALLPREFIX="${ED}"$(python_get_sitedir)
 		INSTALLDIR="${ED}"/usr/share/polybori
+		INSTALL_NAME_DIR="${EPREFIX}"/usr/$(get_libdir)/
 		CONFFILE="${ED}"/usr/share/polybori/flags.conf
 	)
 
@@ -133,16 +129,4 @@ src_install() {
 # 		rm "${ED}"/usr/$(get_libdir)/lib*.a \
 # 		|| die "failed to remove static libraries"
 # 	fi
-
-	# fixing install names on OS X
-	if [[ ${CHOST} == *-darwin* ]] ; then
-		cd "${ED}"/usr/$(get_libdir)
-		for d in *.dylib ; do
-			ebegin "  correcting install_name of ${d}"
-			install_name_tool -id "${EPREFIX}/usr/$(get_libdir)/${d}" "${d}"
-			eend $?
-		done
-		install_name_tool -change libpolybori.dylib \
-			"${EPREFIX}/usr/$(get_libdir)/libpolybori.dylib" libpolybori_groebner.dylib
-	fi
 }
