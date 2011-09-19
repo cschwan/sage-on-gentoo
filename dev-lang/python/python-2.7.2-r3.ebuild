@@ -1,6 +1,6 @@
 # Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/python-2.7.1-r2.ebuild,v 1.1 2011/05/17 15:19:21 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/python-2.7.2-r3.ebuild,v 1.1 2011/09/16 13:34:12 djc Exp $
 
 EAPI="2"
 WANT_AUTOMAKE="none"
@@ -17,7 +17,7 @@ else
 	MY_P="Python-${MY_PV}"
 fi
 
-PATCHSET_REVISION="2"
+PATCHSET_REVISION="0"
 
 DESCRIPTION="Python is an interpreted, interactive, object-oriented programming language."
 HOMEPAGE="http://www.python.org/"
@@ -28,7 +28,7 @@ else
 		mirror://gentoo/python-gentoo-patches-${MY_PV}$([[ "${PATCHSET_REVISION}" != "0" ]] && echo "-r${PATCHSET_REVISION}").tar.bz2"
 fi
 
-LICENSE="PSF-2.2"
+LICENSE="PSF-2"
 SLOT="2.7"
 PYTHON_ABI="${SLOT}"
 KEYWORDS="~alpha ~amd64 ~arm ~hppa ~ia64 ~m68k ~mips ~ppc ~ppc64 ~s390 ~sh ~sparc ~x86 ~sparc-fbsd ~x86-fbsd ~amd64-linux ~x86-linux"
@@ -56,11 +56,15 @@ RDEPEND=">=app-admin/eselect-python-20091230
 			)
 			sqlite? ( >=dev-db/sqlite-3.3.8:3[extensions] )
 			ssl? ( dev-libs/openssl )
-			tk? ( >=dev-lang/tk-8.0 )
+			tk? (
+				>=dev-lang/tk-8.0
+				dev-tcltk/blt
+			)
 			xml? ( >=dev-libs/expat-2 )
 		)
 		!!<sys-apps/portage-2.1.9"
-DEPEND="${RDEPEND}
+DEPEND=">=sys-devel/autoconf-2.65
+		${RDEPEND}
 		$([[ "${PV}" == *_pre* ]] && echo "=${CATEGORY}/${PN}-${PV%%.*}*")
 		dev-util/pkgconfig
 		$([[ "${PV}" =~ ^[[:digit:]]+\.[[:digit:]]+_pre ]] && echo "doc? ( dev-python/sphinx )")
@@ -77,9 +81,15 @@ pkg_setup() {
 	python_pkg_setup
 
 	if use berkdb; then
-		ewarn "\"bsddb\" module is out-of-date and no longer maintained inside dev-lang/python. It has"
-		ewarn "been additionally removed in Python 3. You should use external, still maintained \"bsddb3\""
-		ewarn "module provided by dev-python/bsddb3 which supports both Python 2 and Python 3."
+		ewarn "\"bsddb\" module is out-of-date and no longer maintained inside dev-lang/python."
+		ewarn "\"bsddb\" and \"dbhash\" modules have been additionally removed in Python 3."
+		ewarn "You should use external, still maintained \"bsddb3\" module provided by dev-python/bsddb3,"
+		ewarn "which supports both Python 2 and Python 3."
+	else
+		if has_version "=${CATEGORY}/${PN}-${PV%%.*}*[berkdb]"; then
+			ewarn "You are migrating from =${CATEGORY}/${PN}-${PV%%.*}*[berkdb] to =${CATEGORY}/${PN}-${PV%%.*}*[-berkdb]."
+			ewarn "You might need to migrate your databases."
+		fi
 	fi
 }
 
@@ -126,6 +136,7 @@ src_prepare() {
 	fi
 
 	EPATCH_EXCLUDE="${excluded_patches}" EPATCH_SUFFIX="patch" epatch "${patchset_dir}"
+	epatch "${FILESDIR}/linux2.patch"
 
 	if use sage; then
 		# patch pickle for sage http://bugs.python.org/issue7689
@@ -145,11 +156,9 @@ src_prepare() {
 		Modules/getpath.c \
 		setup.py || die "sed failed to replace @@GENTOO_LIBDIR@@"
 
-	# Support versions of Autoconf other than 2.65.
-	sed -e "/version_required(2\.65)/d" -i configure.in || die "sed failed"
-
-	if [[ "${PV}" == *_pre* ]]; then
-		sed -e "s/\(-DSVNVERSION=\).*\( -o\)/\1\\\\\"${ESVN_REVISION}\\\\\"\2/" -i Makefile.pre.in || die "sed failed"
+	#Linux-3 compat. Bug #374579 (upstream issue12571)
+	if use kernel_linux; then
+		cp -r "${S}/Lib/plat-linux2" "${S}/Lib/plat-linux3" || die "copy plat-linux failed"
 	fi
 
 	eautoreconf
@@ -307,10 +316,10 @@ src_install() {
 	rm -f "${ED}usr/bin/smtpd.py"
 
 	if use build; then
-		rm -fr "${ED}usr/bin/idle${SLOT}" "${ED}$(python_get_libdir)/"{bsddb,idlelib,lib-tk,sqlite3,test}
+		rm -fr "${ED}usr/bin/idle${SLOT}" "${ED}$(python_get_libdir)/"{bsddb,dbhash.py,idlelib,lib-tk,sqlite3,test}
 	else
 		use elibc_uclibc && rm -fr "${ED}$(python_get_libdir)/"{bsddb/test,test}
-		use berkdb || rm -fr "${ED}$(python_get_libdir)/"{bsddb,test/test_bsddb*}
+		use berkdb || rm -fr "${ED}$(python_get_libdir)/"{bsddb,dbhash.py,test/test_bsddb*}
 		use sqlite || rm -fr "${ED}$(python_get_libdir)/"{sqlite3,test/test_sqlite*}
 		use tk || rm -fr "${ED}usr/bin/idle${SLOT}" "${ED}$(python_get_libdir)/"{idlelib,lib-tk}
 	fi
@@ -327,10 +336,21 @@ src_install() {
 
 	newconfd "${FILESDIR}/pydoc.conf" pydoc-${SLOT} || die "newconfd failed"
 	newinitd "${FILESDIR}/pydoc.init" pydoc-${SLOT} || die "newinitd failed"
-	sed -e "s:@PYDOC@:pydoc${SLOT}:" -i "${ED}etc/init.d/pydoc-${SLOT}" || die "sed failed"
 
-	# Do not install empty directory.
-	rmdir "${ED}$(python_get_libdir)/lib-old"
+	if use kernel_linux; then
+		if [ -d "${ED}$(python_get_libdir)/plat-linux2" ];then
+			cp -r "${ED}$(python_get_libdir)/plat-linux2" \
+				"${ED}$(python_get_libdir)/plat-linux3" || die "copy plat-linux failed"
+		else
+			cp -r "${ED}$(python_get_libdir)/plat-linux3" \
+				"${ED}$(python_get_libdir)/plat-linux2" || die "copy plat-linux failed"
+		fi
+	fi
+
+	sed \
+		-e "s:@PYDOC_PORT_VARIABLE@:PYDOC${SLOT/./_}_PORT:" \
+		-e "s:@PYDOC@:pydoc${SLOT}:" \
+		-i "${ED}etc/conf.d/pydoc-${SLOT}" "${ED}etc/init.d/pydoc-${SLOT}" || die "sed failed"
 }
 
 pkg_preinst() {
