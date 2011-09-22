@@ -40,6 +40,7 @@ pkg_setup() {
 	# Sage now will only works with python 2.7.*
 	python_set_active_version 2.7
 	python_pkg_setup
+	export DOT_SAGE="${S}"
 }
 
 src_prepare() {
@@ -73,4 +74,8 @@ src_prepare() {
 	epatch "${FILESDIR}"/${PN}-0.8.14-fix-secure-connection.patch
 
 	distutils_src_prepare
+}
+
+src_test() {
+	PYTHONPATH="." default_src_test
 }
