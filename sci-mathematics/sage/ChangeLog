@@ -2,6 +2,10 @@
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  25 Sep 2011; Christopher Schwan <cschwan@students.uni-mainz.de>
+  sage-4.7-r2.ebuild, sage-4.7.1-r2.ebuild, sage-4.7.2_alpha2.ebuild:
+  Restrict testing for the time being
+
   09 Sep 2011; François Bissey <francois.bissey@canterbury.ac.nz>
   sage-4.7.2_alpha2.ebuild:
   fix issue 85 for now.
