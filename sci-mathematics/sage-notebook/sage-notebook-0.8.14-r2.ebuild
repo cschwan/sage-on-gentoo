@@ -30,7 +30,7 @@ CDEPEND="~dev-python/pexpect-2.0
 	>=dev-python/jinja-2.5.5
 	>=dev-python/docutils-0.5"
 DEPEND="${CDEPEND}
-	test? ( sci-mathematics/sage-baselayout[testsuite] )"
+	test? ( sci-mathematics/sage[testsuite] )"
 RDEPEND="${CDEPEND}
 	sci-mathematics/sage
 	java? ( ~sci-chemistry/jmol-11.6.16
