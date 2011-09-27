@@ -2,6 +2,12 @@
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  27 Sep 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-4.7.2_alpha2.ebuild,
+  +files/trac_11339_refcount_singular_rings-4.7.2.patch,
+  +files/trac_11339_refcount_singular_polynomials-4.7.2.patch.bz2:
+  Update trac 11339 patches for 4.7.2.alpha2
+
   25 Sep 2011; Christopher Schwan <cschwan@students.uni-mainz.de>
   sage-4.7-r2.ebuild, sage-4.7.1-r2.ebuild, sage-4.7.2_alpha2.ebuild:
   Post depend on the notebook to prevent circular dependencies

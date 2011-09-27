@@ -76,7 +76,7 @@ RDEPEND="${CDEPEND}
 	dev-python/sqlalchemy
 	~dev-python/sympy-0.7.1
 	>=media-gfx/tachyon-0.98[png]
-	~net-zope/zodb-3.9.7
+	net-zope/zodb
 	>=sci-libs/cddlib-094f-r2
 	=sci-libs/scipy-0.9*
 	>=sci-mathematics/flintqs-20070817_p5
@@ -170,9 +170,9 @@ src_prepare() {
 	epatch "${FILESDIR}"/trac_9958-finite_crystals.patch
 	epatch "${FILESDIR}"/trac_9958-symbolic_callable.patch
 	# fix groebner strategy trac 11339
-	#epatch "${FILESDIR}"/trac_11339_refcount_singular_rings.patch
-	#epatch "${FILESDIR}"/trac_11339_refcount_singular_polynomials.patch.bz2
-	epatch "${FILESDIR}"/bug11339a.patch
+	epatch "${FILESDIR}"/trac_11339_refcount_singular_rings-4.7.2.patch
+	epatch "${FILESDIR}"/trac_11339_refcount_singular_polynomials-4.7.2.patch.bz2
+	#epatch "${FILESDIR}"/bug11339a.patch
 	# make sure we use cython-2.7 for consistency
 	sed -i "s:python \`which cython\`:cython-2.7:" setup.py
 
