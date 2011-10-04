@@ -30,7 +30,10 @@ pkg_setup() {
 }
 
 src_configure() {
-	myeconfargs=( $(use_enable openmp) )
+	myeconfargs=(
+		$(use_enable debug)
+		$(use_enable openmp)
+	)
 
 	autotools-utils_src_configure
 }
