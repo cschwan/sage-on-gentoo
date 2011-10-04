@@ -2,6 +2,14 @@
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*polybori-0.7.1-r1 (04 Oct 2011)
+
+  04 Oct 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  -polybori-0.7.1.ebuild, +polybori-0.7.1-r1.ebuild,
+  +files/polybori-0.7.1-jinja2.patch, +files/polybori-0.7.1-m4ri_sse2.patch,
+  +files/polybori-header.patch:
+  bump 0.7.1 to include various upstream fixes already in sage.
+
   07 Sep 2011; François Bissey <francois.bissey@canterbury.ac.nz>
   polybori-9999.ebuild:
   Update hot ebuild, Alexandre has been very good to us and most of our fixes

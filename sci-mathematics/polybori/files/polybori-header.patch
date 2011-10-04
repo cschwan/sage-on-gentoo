@@ -1,0 +1,20 @@
+--- polybori/include/COrderedIter.h.orig	2011-10-05 12:02:06.639964362 +1300
++++ polybori/include/COrderedIter.h	2011-10-05 12:10:18.231582172 +1300
+@@ -12,6 +12,8 @@
+ **/
+ //*****************************************************************************
+ 
++#ifndef COrderedIter_h_
++#define COrderedIter_h_
+ 
+ // include basic definitions
+ #include "pbori_defs.h"
+@@ -27,8 +29,6 @@
+ #include "CStackSelector.h"
+ #include "CTermGenerator.h"
+ 
+-#ifndef COrderedIter_h_
+-#define COrderedIter_h_
+ 
+ BEGIN_NAMESPACE_PBORI
+ 
