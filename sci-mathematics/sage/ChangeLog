@@ -2,6 +2,16 @@
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  04 Oct 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  -sage-4.7.2_alpha2.ebuild, +sage-4.7.2_alpha3.ebuild:
+  bump dep on sagenb
+
+*sage-4.7.2_alpha3 (02 Oct 2011)
+
+  02 Oct 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  -sage-4.7.2_alpha2.ebuild, +sage-4.7.2_alpha3.ebuild:
+  4.7.2.alpha3
+
   27 Sep 2011; François Bissey <francois.bissey@canterbury.ac.nz>
   sage-4.7.2_alpha2.ebuild,
   +files/trac_11339_refcount_singular_rings-4.7.2.patch,

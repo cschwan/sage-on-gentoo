@@ -2,6 +2,12 @@
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*sage-doc-4.7.2_alpha3 (04 Oct 2011)
+
+  04 Oct 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  -sage-doc-4.7.2_alpha2.ebuild, +sage-doc-4.7.2_alpha3.ebuild:
+  4.7.2.alpha3
+
 *sage-doc-4.7.2_alpha2 (24 Aug 2011)
 
   24 Aug 2011; François Bissey <francois.bissey@canterbury.ac.nz>

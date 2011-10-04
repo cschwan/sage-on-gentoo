@@ -1,5 +1,5 @@
---- sage-sage.orig	2011-05-18 16:01:57.691244198 +1200
-+++ sage-sage	2011-05-18 16:04:09.390694975 +1200
+--- sage-sage.orig	2011-10-03 00:29:58.491672376 +1300
++++ sage-sage	2011-10-03 00:50:37.346124406 +1300
 @@ -35,10 +35,6 @@
      echo "                           -only-optional <tag1,...,tagn>  -- only run tests"
      echo "                            including one of the #optional tags"
@@ -79,7 +79,7 @@
      echo "  -grep <string>      -- grep through all the Sage library code for string"
      echo "  -grepdoc <string>   -- grep through all the Sage documentation for string"
  
-@@ -176,15 +134,8 @@
+@@ -176,16 +134,8 @@
      ####  1.......................26..................................................78
      ####  |.....................--.|...................................................|
      echo "Making Sage packages or distributions:"
@@ -88,14 +88,15 @@
 -    echo "  -crap sage-ver.tar  -- detect suspicious garbage in sage source tarball"
 -   #echo "  -ldist VER          -- build a library Sage distribution (for install into"
 -   #echo "                         existing Python)"
-     echo "  -log                -- add entry to <SAGE_ROOT>/changelog.txt"
-     echo "  -merge              -- run Sage's automatic merge and test script"
--    echo "  -pkg <dir>          -- create Sage package dir.spkg from a given directory"
--    echo "  -pkg_nc <dir>       -- as -pkg, but do not compress the package"
-     echo "  -sdist VER          -- build a source distribution of Sage"
+-    echo "  -log                -- add entry to <SAGE_ROOT>/changelog.txt"
+-    echo "  -merge              -- run Sage's automatic merge and test script"
+     echo "  -pkg <dir>          -- create Sage package dir.spkg from a given directory"
+     echo "  -pkg_nc <dir>       -- as -pkg, but do not compress the package"
+-    echo "  -sdist VER          -- build a source distribution of Sage"
  
      echo
-@@ -213,21 +164,6 @@
+     ####  1.......................26..................................................78
+@@ -213,21 +163,6 @@
      exit 0
  }
  
@@ -117,7 +118,7 @@
  # Sage startup script passes some funny options, which are
  # best ignored.
  if [ $# -eq 3 ]; then
-@@ -257,14 +193,7 @@
+@@ -257,14 +192,7 @@
          cat "$SAGE_LOCAL/bin/sage-banner"
      fi
  
@@ -133,7 +134,7 @@
      IPYTHONDIR="$DOT_SAGE/ipython" && export IPYTHONDIR
      IPYTHONRC="ipythonrc" && export IPYTHONRC
      if [ ! -d "$IPYTHONDIR" ]; then
-@@ -351,13 +280,6 @@
+@@ -351,13 +279,6 @@
      exit $?
  fi
  
@@ -147,53 +148,10 @@
  if [ "$1" = '-gap' -o "$1" = '--gap' ]; then
      cd "$CUR"
      shift
-@@ -368,14 +290,14 @@
- if [ "$1" = '-gp'  -o "$1" = '--gp' ]; then
-     cd "$CUR"
-     shift
--    "$SAGE_LOCAL/bin/gp" "$@"
-+    "$SAGE_LOCAL/bin/gp" "$@"
+@@ -534,60 +455,10 @@
      exit $?
  fi
  
- if [ "$1" = '-singular'  -o "$1" = '--singular' ]; then
-     cd "$CUR"
-     shift
--    "$SAGE_LOCAL/bin/singular" "$@"
-+    "$SAGE_LOCAL/bin/Singular" "$@"
-     exit $?
- fi
- 
-@@ -407,13 +329,6 @@
-     exit $?
- fi
- 
--if [ "$1" = '-fixdoctests' -o "$1" = '--fixdoctests' ]; then
--    cd "$CUR"
--    shift
--    sage-fixdoctests "$@"
--    exit $?
--fi
--
- if [ "$1" = '-maxima'  -o "$1" = '--maxima' ]; then
-     cd "$CUR"
-     shift
-@@ -534,72 +449,10 @@
-     exit $?
- fi
- 
--if [ "$1" = '-hgmerge'  -o "$1" = '--hgmerge' ]; then
--    ## NEED in Sage Environment under OS X
--    unset LIBRARY_PATH
--    unset LD_LIBRARY_PATH
--    unset DYLD_LIBRARY_PATH
--
--    cd "$CUR"
--    shift
--    hgmerge "$@"
--    exit $?
--fi
--
 -if [ "$1" = '-merge' ]; then
 -    cd "$CUR"
 -    shift
@@ -251,7 +209,7 @@
  if [ "$1" = "-notebook"  -o "$1" = '--notebook' -o "$1" = '-n' ]; then
     cd "$CUR"
     shift
-@@ -608,14 +461,6 @@
+@@ -596,14 +467,6 @@
     exit $?
  fi
  
@@ -266,7 +224,7 @@
  if [ "$1" = "-inotebook"  -o "$1" = '--inotebook' ]; then
     cd "$CUR"
     shift
-@@ -624,18 +469,6 @@
+@@ -612,18 +475,6 @@
     exit $?
  fi
  
@@ -285,7 +243,7 @@
  if [ "$1" = '-grep' -o "$1" = "--grep" ]; then
     sage_setup
     shift
-@@ -658,81 +491,7 @@
+@@ -646,81 +497,7 @@
     exit $?
  fi
  
@@ -368,7 +326,7 @@
     if ! [  -f  "$DOT_SAGE"/init.sage ]; then
        echo >&2 "init.sage does not exist ... creating"
        touch "$DOT_SAGE"/init.sage
-@@ -743,11 +502,7 @@
+@@ -731,11 +508,7 @@
     exit $?
  fi
  
@@ -381,7 +339,7 @@
     sage-starts
     if ! [  -f  "$DOT_SAGE"/init.sage ]; then
        echo >&2 "init.sage does not exist ... creating"
-@@ -758,16 +513,6 @@
+@@ -746,16 +519,6 @@
     exit $?
  fi
  
@@ -398,7 +356,7 @@
  if [ "$1" = '-testall' -o "$1" = "--testall" ]; then
     shift
     sage-maketest "$@"
-@@ -783,178 +528,14 @@
+@@ -771,71 +534,6 @@
     exit $?
  fi
  
@@ -461,42 +419,19 @@
 -   install " " "$@"
 -fi
 -
- if [ "$1" = '-f' ]; then
-    shift
-    echo "Force installing $@"
+-if [ "$1" = '-f' ]; then
+-   shift
+-   echo "Force installing $@"
 -   install -f "$@"
 -fi
 -
--if [ "$1" = '-pkg' -o "$1" = '-spkg' -o "$1" = "--pkg" -o "$1" = "--spkg" ]; then
--   cd "$CUR"
--   shift
--   for PKG in "$@"
--   do
--      echo "Creating Sage package $PKG"
--      sage-pkg "$PKG"
--      if [ $? -ne 0 ]; then
--         exit 1
-+   if [ $# -lt 1 ]; then
-+       echo "Currently installed packages:"
-       fi
--   done
--   exit $?
+ if [ "$1" = '-pkg' -o "$1" = '-spkg' -o "$1" = "--pkg" -o "$1" = "--spkg" ]; then
+    cd "$CUR"
+    shift
+@@ -864,85 +562,6 @@
+    exit $?
  fi
  
--if [ "$1" = '-pkg_nc' -o "$1" = "--pkg_nc" ]; then
--   cd "$CUR"
--   shift
--   for PKG in "$@"
--   do
--      echo "Creating Sage package $PKG with no compression"
--      sage-pkg --nocompress "$PKG"
--      if [ $? -ne 0 ]; then
--         exit 1
--      fi
--   done
--   exit $?
--fi
--
 -if [ "$1" = '-sdist' -o "$1" = "--sdist" ]; then
 -   if [ $# -ne 2 ]; then
 -       echo >&2 "** MISSING VERSION NUMBER! **"
@@ -579,7 +514,7 @@
  if [ "$1" = '-gdb' -o "$1" = "--gdb" ]; then
      sage_setup
      sage-gdb
-@@ -1016,10 +597,6 @@
+@@ -1004,10 +623,6 @@
  
  if [ $# -ge 1 ]; then
     T=`echo "$1" | sed -e "s/.*\.//"`
@@ -588,5 +523,5 @@
 -       exit $?
 -   fi
     cd "$SAGE_LOCAL/bin/"
+    SAGE_BANNER="no" sage_setup 
     sage-run "$CUR" "$@"
-    exit $?

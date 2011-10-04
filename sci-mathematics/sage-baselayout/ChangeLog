@@ -2,6 +2,14 @@
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*sage-baselayout-4.7.2_alpha3 (04 Oct 2011)
+
+  04 Oct 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  -sage-baselayout-4.7.2_alpha2.ebuild, +sage-baselayout-4.7.2_alpha3.ebuild,
+  +files/sage-baselayout-4.7.2-fix-SAGE_LOCAL.patch,
+  files/sage-baselayout-4.7.2-gentooify-startup-script.patch:
+  update patches for 4.7.2.alpha3
+
 *sage-baselayout-4.7.2_alpha2 (24 Aug 2011)
 
   24 Aug 2011; François Bissey <francois.bissey@canterbury.ac.nz>

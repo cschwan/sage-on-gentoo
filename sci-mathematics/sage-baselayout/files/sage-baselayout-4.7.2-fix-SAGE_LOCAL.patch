@@ -1,0 +1,113 @@
+--- sage-doctest.orig	2010-08-28 07:15:14.712263003 +0000
++++ sage-doctest	2010-08-28 07:18:13.490262999 +0000
+@@ -90,11 +90,8 @@
+ # Set environment variables
+ ######################################################    
+ SAGE_ROOT = os.environ["SAGE_ROOT"]
+-LD = os.environ["LD_LIBRARY_PATH"]
+-os.environ["LD_LIBRARY_PATH"] = os.path.join(SAGE_ROOT, 'local',
+-                                             'lib') + ":" + LD
+-os.environ["PYTHONPATH"] = os.path.join(SAGE_ROOT, 'local', 'lib', 'python',
+-                                        'site-packages')
++SAGE_LOCAL = os.environ["SAGE_LOCAL"]
++
+ if os.environ.has_key('SAGE_PATH'):
+     os.environ["PYTHONPATH"] = os.environ["PYTHONPATH"] + ':' + os.environ['SAGE_PATH']
+ 
+@@ -173,7 +170,7 @@
+     # 1-253: number of failed doctests
+     # 254: >= 254 doctests failed
+     # 255: exception raised by doctesting framework
+-    dict = { 'DIR'             : repr(os.path.join(SAGE_ROOT, 'local', 'bin')),
++    dict = { 'DIR'             : repr(os.path.join(SAGE_LOCAL, 'bin')),
+              'FILENAME'        : repr(filename),
+              'OUTPUT_FILENAME' : repr(filename + '.timeit.sobj'),
+              'TIMEIT'          : do_timeit, # global
+--- sage-ipython.orig	2010-08-28 07:15:34.881262819 +0000
++++ sage-ipython	2010-08-28 07:18:13.491263001 +0000
+@@ -35,7 +35,7 @@
+ 
+ 
+ 
+-sage_commands = os.listdir(os.environ['SAGE_ROOT']+"/local/bin/")
++sage_commands = os.listdir(os.environ['SAGE_LOCAL']+"/bin/")
+ DARWIN_SYSTEM = os.uname()[0]=='Darwin'
+ 
+ def sage_system(self, cmd):
+--- sage-maketest.orig	2010-08-28 07:16:12.800263001 +0000
++++ sage-maketest	2010-08-28 07:18:13.492263003 +0000
+@@ -7,7 +7,7 @@
+ SAGE_TEST_LOG="$SAGE_TESTDIR/test.log"
+ cd "$SAGE_TESTDIR"
+ 
+-cat "$SAGE_ROOT/local/bin/sage-banner" > "$SAGE_TEST_LOG"
++cat "$SAGE_LOCAL/bin/sage-banner" > "$SAGE_TEST_LOG"
+ echo `date` >> "$SAGE_TEST_LOG"
+ 
+ if [ -d $SAGE_ROOT/examples ]; then
+--- sage-notebook-insecure.orig	2010-08-28 07:16:53.763263109 +0000
++++ sage-notebook-insecure	2010-08-28 07:18:13.493263003 +0000
+@@ -2,7 +2,7 @@
+ 
+ import os, sys, socket
+ 
+-print open(os.environ['SAGE_ROOT'] + '/local/bin/sage-banner').read()
++print open(os.environ['SAGE_LOCAL'] + '/bin/sage-banner').read()
+ 
+ print "Please wait while the Sage Notebook server starts..."
+ 
+--- sage-notebook.orig	2010-08-28 07:16:46.458262876 +0000
++++ sage-notebook	2010-08-28 07:18:13.492263003 +0000
+@@ -2,7 +2,7 @@
+ 
+ import os, sys, socket
+ 
+-print open(os.environ['SAGE_ROOT'] + '/local/bin/sage-banner').read()
++print open(os.environ['SAGE_LOCAL'] + '/bin/sage-banner').read()
+ 
+ print "Please wait while the Sage Notebook server starts..."
+ 
+--- sage-test.orig	2010-08-28 07:16:27.469262928 +0000
++++ sage-test	2010-08-28 07:18:13.492263003 +0000
+@@ -42,7 +42,8 @@
+ 
+ 
+ SAGE_ROOT = os.environ['SAGE_ROOT']
+-SAGE_SITE = os.path.realpath(os.path.join(os.environ['SAGE_LOCAL'],
++SAGE_LOCAL = os.environ['SAGE_LOCAL']
++SAGE_SITE = os.path.realpath(os.path.join(SAGE_LOCAL,
+                                           'lib', 'python', 'site-packages'))
+ 
+ if 'SAGE_TESTDIR' not in os.environ:
+@@ -80,7 +81,7 @@
+     t = time.time()
+     if skip(F):
+         return 0
+-    s = os.path.join(SAGE_ROOT, 'local', 'bin', 'sage-%s' % cmd) + ' "%s"' % F
++    s = os.path.join(SAGE_LOCAL, 'bin', 'sage-%s' % cmd) + ' "%s"' % F
+     err = call(s, shell=True)
+ 
+     # Check the process exit code that sage-doctest returns
+--- sage-ptest.orig	2011-10-03 00:54:48.530048592 +1300
++++ sage-ptest	2011-10-03 00:58:38.449270142 +1300
+@@ -13,8 +13,9 @@
+ import socket
+ import stat
+ 
+-SAGE_ROOT = os.path.realpath(os.environ['SAGE_ROOT'])
+-SAGE_SITE = os.path.realpath(os.path.join(os.environ['SAGE_LOCAL'],
++SAGE_ROOT = os.path.realpath(os.environ['SAGE_ROOT'])
++SAGE_LOCAL = os.path.realpath(os.environ['SAGE_LOCAL'])
++SAGE_SITE = os.path.realpath(os.path.join(SAGE_LOCAL,
+                                           'lib', 'python', 'site-packages'))
+ BUILD_DIR = os.path.realpath(os.path.join(SAGE_ROOT, 'devel', 'sage', 'build'))
+ 
+@@ -124,7 +125,7 @@
+     filestr = os.path.split(F)[1]
+     for i in range(0,numiteration):
+         os.chdir(os.path.dirname(F))
+-        command = os.path.join(SAGE_ROOT, 'local', 'bin', 'sage-%s' % cmd)
++        command = os.path.join(SAGE_LOCAL, 'bin', 'sage-%s' % cmd)
+         # FIXME: Why call bash here? (Also, we use 'shell=True' below anyway.)
+         s = 'bash -c "%s %s > %s" ' % (command, filestr, outfile.name)
+         try:

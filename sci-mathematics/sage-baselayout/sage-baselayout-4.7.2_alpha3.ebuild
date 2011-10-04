@@ -91,7 +91,7 @@ src_prepare() {
 	epatch "${FILESDIR}"/${PN}-4.5.1-remove-sage-location.patch
 
 	# replace ${SAGE_ROOT}/local with ${SAGE_LOCAL}
-	epatch "${FILESDIR}"/${PN}-4.5.2-fix-SAGE_LOCAL.patch
+	epatch "${FILESDIR}"/${PN}-4.7.2-fix-SAGE_LOCAL.patch
 
 	# solve sage-notebook start-up problems (after patching them)
 	mv sage-notebook sage-notebook-real

@@ -37,7 +37,7 @@ CDEPEND="dev-libs/gmp
 	>=sci-libs/iml-1.0.1
 	>=sci-libs/libcliquer-1.2_p7
 	>=sci-libs/linbox-1.1.6[sage]
-	>=sci-libs/m4ri-20100701
+	>=sci-libs/m4ri-20110715
 	>=sci-libs/mpfi-1.4
 	=sci-libs/pynac-0.2.3
 	>=sci-libs/symmetrica-2.0
@@ -91,7 +91,7 @@ RDEPEND="${CDEPEND}
 	>=sci-mathematics/optimal-20040603
 	>=sci-mathematics/palp-1.1
 	~sci-mathematics/sage-data-conway_polynomials-0.2
-	~sci-mathematics/sage-data-elliptic_curves-0.1
+	~sci-mathematics/sage-data-elliptic_curves-0.3
 	~sci-mathematics/sage-data-graphs-20070722_p1
 	~sci-mathematics/sage-data-polytopes_db-20100210
 	>=sci-mathematics/sage-doc-${PV}
@@ -113,7 +113,7 @@ RDEPEND="${CDEPEND}
 			media-gfx/imagemagick[png]
 		)
 	)"
-PDEPEND="~sci-mathematics/sage-notebook-0.8.21"
+PDEPEND="~sci-mathematics/sage-notebook-0.8.22"
 
 S="${WORKDIR}/${MY_P}"
 
@@ -142,11 +142,6 @@ src_prepare() {
 		-e 's/.,.pthread//g' \
 		-e "s:  ::")\'
 
-	# patch to eliminate the sourcing of cython sources
-	epatch "${FILESDIR}"/trac11734_sage_wraps_no_sourceread_lambda.patch
-	# patch to deal with ecl threads trac 11752
-	epatch "${FILESDIR}"/11752_ecl-nothread.patch
-
 	# patches for pari-2.5.0
 	epatch "${FILESDIR}"/11130_sagelib.patch
 	epatch "${FILESDIR}"/trac_11130-doctest-poly.patch
@@ -172,7 +167,6 @@ src_prepare() {
 	# fix groebner strategy trac 11339
 	epatch "${FILESDIR}"/trac_11339_refcount_singular_rings-4.7.2.patch
 	epatch "${FILESDIR}"/trac_11339_refcount_singular_polynomials-4.7.2.patch.bz2
-	#epatch "${FILESDIR}"/bug11339a.patch
 	# make sure we use cython-2.7 for consistency
 	sed -i "s:python \`which cython\`:cython-2.7:" setup.py
 
