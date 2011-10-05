@@ -2,6 +2,10 @@
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  05 Oct 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  polybori-0.7.1-r1.ebuild:
+  Remove m4ri_sse2 patch for now. More harm than help.
+
   04 Oct 2011; François Bissey <francois.bissey@canterbury.ac.nz>
   polybori-0.7.1-r1.ebuild:
   fix really stupid typo
