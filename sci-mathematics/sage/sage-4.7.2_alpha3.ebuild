@@ -321,6 +321,10 @@ src_prepare() {
 			|| die "failed to enable dev-libs/mpc"
 	fi
 
+	# disable cbc to avoid trouble for now
+	sed -i "s:is_package_installed('cbc'):False:g" module_list.py \
+		|| die "failed to disable cbc"
+
 	# apply patches from /etc/portage/patches
 	epatch_user
 
