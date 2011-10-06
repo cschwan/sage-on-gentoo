@@ -4,6 +4,10 @@
 
   06 Oct 2011; François Bissey <francois.bissey@canterbury.ac.nz>
   sage-4.7.2_alpha3.ebuild:
+  correct typo
+
+  06 Oct 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-4.7.2_alpha3.ebuild:
   Install library headers for the testsuite
 
   06 Oct 2011; François Bissey <francois.bissey@canterbury.ac.nz>

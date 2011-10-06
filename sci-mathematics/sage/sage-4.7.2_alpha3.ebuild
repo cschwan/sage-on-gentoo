@@ -348,7 +348,7 @@ src_install() {
 	if use testsuite ; then
 		# install testable sources and sources needed for testing
 		find sage ! \( -name "*.py" -o -name "*.pyx" -o -name "*.pxd" -o \
-			-name "*.pxi" -o name "*.h" \) -type f -delete \
+			-name "*.pxi" -o -name "*.h" \) -type f -delete \
 			|| die "failed to remove non-testable sources"
 
 		insinto /usr/share/sage/devel/sage-main
