@@ -3,9 +3,10 @@ dev-lang/python:2.7         readline sqlite sage
 dev-libs/boost              python
 dev-lisp/ecls               -unicode
 dev-python/cvxopt           glpk
+dev-python/numpy            lapack
 dev-python/gdmodule         png
 media-libs/gd               jpeg png
-media-gfx/tachyon	    png
+media-gfx/tachyon           png
 sci-libs/flint              ntl
 sci-libs/linbox             sage
 sci-mathematics/maxima      ecls
