@@ -18,3 +18,7 @@
 >=sci-libs/mpfi-1.5
 # building problems reported against latest fplll
 >=sci-libs/fplll-3.1.1
+#unmasking zodb-3.9.7 for now
+-net-zope/zodb
+=net-zope/zodb-3.10.3
+
