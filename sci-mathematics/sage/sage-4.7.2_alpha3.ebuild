@@ -344,10 +344,11 @@ src_configure() {
 src_install() {
 	distutils_src_install
 
+	# FIXME: shoudl we add the .c and .cc files that weren't generated from cython files?
 	if use testsuite ; then
 		# install testable sources and sources needed for testing
 		find sage ! \( -name "*.py" -o -name "*.pyx" -o -name "*.pxd" -o \
-			-name "*.pxi" \) -type f -delete \
+			-name "*.pxi" -o name "*.h" \) -type f -delete \
 			|| die "failed to remove non-testable sources"
 
 		insinto /usr/share/sage/devel/sage-main
