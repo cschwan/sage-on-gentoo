@@ -129,7 +129,7 @@
 -    fi
 -
 -    cd "$SAGE_ROOT/local/bin"
-+    cd "$SAGE_ROOT/bin"
++    cd "$SAGE_LOCAL/bin"
      IPYTHONDIR="$DOT_SAGE/ipython" && export IPYTHONDIR
      IPYTHONRC="ipythonrc" && export IPYTHONRC
      if [ ! -d "$IPYTHONDIR" ]; then

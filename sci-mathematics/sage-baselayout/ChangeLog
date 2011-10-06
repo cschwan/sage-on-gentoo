@@ -4,6 +4,10 @@
 
   06 Oct 2011; François Bissey <francois.bissey@canterbury.ac.nz>
   files/sage-baselayout-4.7.2-gentooify-startup-script.patch:
+  more correction to the patch
+
+  06 Oct 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  files/sage-baselayout-4.7.2-gentooify-startup-script.patch:
   now a proper patch
 
   06 Oct 2011; François Bissey <francois.bissey@canterbury.ac.nz>
