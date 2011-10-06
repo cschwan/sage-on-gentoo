@@ -2,6 +2,10 @@
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  06 Oct 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  files/sage-baselayout-4.7.2-gentooify-startup-script.patch:
+  update gentoify patch for 4.7.2
+
 *sage-baselayout-4.7.2_alpha3 (04 Oct 2011)
 
   04 Oct 2011; François Bissey <francois.bissey@canterbury.ac.nz>
