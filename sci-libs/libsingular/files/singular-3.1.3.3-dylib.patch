@@ -1,0 +1,11 @@
+--- Singular/Makefile.in.orig	2011-10-12 16:35:51.764675916 +1300
++++ Singular/Makefile.in	2011-10-12 16:36:31.937957723 +1300
+@@ -384,7 +384,7 @@
+ 
+ libsingular: mod2.h Makefile version.h $(WIN_LIBS) scanner.cc  ${OBJS} \
+          iparith.o libparse.cc claptmpl.o mpsr_Tok.o $(DL_LIBS) 
+-	$(LIBSINGULAR_LD) ${SLDFLAGS} ${LIBSINGULAR_FLAGS} -o libsingular.${SO_SUFFIX} \
++	$(LIBSINGULAR_LD) ${SLDFLAGS} ${LIBSINGULAR_FLAGS} -install_name @GENTOO_PORTAGE_EPREFIX@/usr/@LIB_DIR@/libsingular.${SO_SUFFIX} -o libsingular.${SO_SUFFIX} \
+ 	iparith.o mpsr_Tok.o claptmpl.o \
+ 	${OBJS} -lkernel -L../kernel -L../factory -L../libfac -L${libdir} ${LIBSINGULAR_LIBS}
+ 

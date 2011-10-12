@@ -48,30 +48,25 @@ src_prepare () {
 	epatch "${FILESDIR}"/${PN_PATCH}-3.1.0-gentoo.patch
 	if  [[ ${CHOST} == *-darwin* ]] ; then
 		# really a placeholder until I figure out the patch for that one.
-		epatch "${FILESDIR}"/${PN_PATCH}-3.1.1.3-dylib.patch
+		epatch "${FILESDIR}"/${PN_PATCH}-3.1.3.3-dylib.patch
 		eprefixify Singular/Makefile.in
 		sed -i -e "s|@LIB_DIR@|$(get_libdir)|g" Singular/Makefile.in
 		sed -i -e "s:::"
 	else
-		epatch "${FILESDIR}"/${PN_PATCH}-3.1.1.3-soname.patch
+		epatch "${FILESDIR}"/${PN_PATCH}-3.1.3.3-soname.patch
 	fi
-	epatch "${FILESDIR}"/${PN_PATCH}-3.1.1.4-parallelmake.patch
+	epatch "${FILESDIR}"/${PN_PATCH}-3.1.3.3-Minor.h.patch
 
-	# fix for certain CFLAGS - see bug #362563
-	epatch "${FILESDIR}"/${PN}-3.1.1.4-fix-ntl.patch
-
-	# TODO: remove ntl directory (?) - use system ntl
-# 	rm -rf ntl || die
+	if  [[ ${CHOST} == *-darwin* ]] ; then
+		epatch "${FILESDIR}"/${PN_PATCH}-3.1.3.3-os_x_ppc.patch
+	fi
+	rm -rf ntl
 
 	eprefixify kernel/feResource.cc
 	if use prefix ; then
 		sed -i -e "s:-lkernel -L../kernel -L../factory -L../libfac:-lkernel -L../kernel -L../factory -L../libfac -L${EPREFIX}/usr/$(get_libdir):" \
 			Singular/Makefile.in
 	fi
-
-	sed -i \
-		-e "/CXXFLAGS/ s/--no-exceptions//g" \
-		"${S}"/Singular/configure.in || die
 
 	SOSUFFIX=$(get_version_component_range 1-3)
 	sed -i \
@@ -111,7 +106,7 @@ src_compile() {
 	cd "${S}"/kernel && emake install || die "making kernel failed"
 
 	cd "${S}"
-	emake libsingular || die "emake libsingular failed"
+#	emake libsingular || die "emake libsingular failed"
 }
 
 src_test() {
