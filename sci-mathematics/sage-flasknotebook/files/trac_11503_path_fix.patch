@@ -1,0 +1,20 @@
+# HG changeset patch
+# User Jonathan Gutow <gutow@uwosh.edu>
+# Date 1308240961 25200
+# Node ID 9c86d0306d8b5a1a10f7015bb40a27e57d2b7d2a
+# Parent  2de1ac9f84ee821b197bdf8563178d9206fe49a8
+trac 11503 - flask path fix for Jmol move
+
+diff -r 2de1ac9f84ee -r 9c86d0306d8b flask_version/base.py
+--- a/flask_version/base.py	Tue Jun 14 18:05:39 2011 -0700
++++ b/flask_version/base.py	Thu Jun 16 09:16:01 2011 -0700
+@@ -24,7 +24,8 @@
+         self.add_static_path('/javascript', DATA)
+         self.add_static_path('/static', DATA)
+         self.add_static_path('/java', DATA)
+-        import mimetypes
++        self.add_static_path('/java/jmol', os.path.join(os.environ["SAGE_ROOT"],"local","share","jmol"))
++	import mimetypes
+         mimetypes.add_type('text/plain','.jmol')
+ 
+         

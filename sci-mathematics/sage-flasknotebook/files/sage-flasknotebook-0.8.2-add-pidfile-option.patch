@@ -1,0 +1,56 @@
+--- sagenb/notebook/notebook_object.py.orig	2010-07-05 09:48:26.000000000 +0000
++++ sagenb/notebook/notebook_object.py	2010-09-02 08:17:47.223242363 +0000
+@@ -197,6 +197,12 @@
+           is in seconds, and ``-u`` which is a positive
+           integer. Example: ulimit="-v 400000 -t 30"
+ 
++        - ``pidfile`` string (initial default: None), if given sets
++          the location where twistd's PID file should be saved, the
++          default is ``.sage/sage_notebook.sagenb/twistd.pid``, in
++          your home directory. This file contains twistd's process
++          ID and is useful when running the notebook as a daemon.
++
+     .. note:: 
+ 
+        The values of ``server_pool`` and ``ulimit`` default to what
+--- sagenb/notebook/run_notebook.py.orig	2010-07-05 09:48:26.000000000 +0000
++++ sagenb/notebook/run_notebook.py	2010-09-02 08:14:34.472242028 +0000
+@@ -141,7 +141,8 @@
+              fork = False,
+              quiet = False,
+ 
+-             subnets = None):
++             subnets = None,
++             pidfile = None):
+     cwd = os.getcwd()
+     # For backwards compatible, we still allow the address to be set
+     # instead of the interface argument
+@@ -217,7 +218,7 @@
+     nb.save()
+     del nb
+ 
+-    def run(port, subnets):
++    def run(port, subnets, pidfile):
+         ## Create the config file
+         if secure:
+             if not os.path.exists(private_pem) or not os.path.exists(public_pem):
+@@ -356,7 +357,9 @@
+ 
+         config.close()                     
+ 
+-        pidfile = os.path.join(directory, 'twistd.pid')
++        if pidfile is None:
++            pidfile = os.path.join(directory, 'twistd.pid')
++
+         cmd = 'twistd --pidfile="%s" -ny "%s"' % (pidfile, os.path.join(directory, 'twistedconf.tac'))
+ 
+         # Check if a Twistd PID exists in the given directory
+@@ -402,7 +405,7 @@
+     port = find_next_available_port(interface, port, port_tries)
+     if open_viewer:
+         "Open viewer automatically isn't fully implemented.  You have to manually open your web browser to the above URL."
+-    return run(port, subnets)
++    return run(port, subnets, pidfile)
+ 
+ 
+ 

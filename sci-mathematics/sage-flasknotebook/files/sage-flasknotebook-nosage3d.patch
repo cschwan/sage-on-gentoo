@@ -1,0 +1,11 @@
+--- setup.py.orig	2011-09-15 11:29:25.000000000 -0500
++++ setup.py	2011-09-15 11:29:43.000000000 -0500
+@@ -53,8 +53,6 @@
+                      'sagenb.testing.tests',
+                      'sagenb.testing.selenium'
+                      ],
+-      scripts      = [ 'sagenb/data/sage3d/sage3d',
+-                     ],
+       package_data = {'sagenb':
+                           all_files('sagenb/data', 'sagenb/') +
+                           all_files('sagenb/translations', 'sagenb/')

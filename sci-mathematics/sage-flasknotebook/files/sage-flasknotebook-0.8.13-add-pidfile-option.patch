@@ -1,0 +1,51 @@
+--- src/sagenb/sagenb/notebook/notebook_object.py.orig	2011-03-29 09:42:41.000000000 -0500
++++ src/sagenb/sagenb/notebook/notebook_object.py	2011-03-29 10:09:34.000000000 -0500
+@@ -197,6 +197,12 @@
+           is in seconds, and ``-u`` which is a positive
+           integer. Example: ulimit="-v 400000 -t 30"
+ 
++        - ``pidfile`` string (initial default: None), if given sets
++          the location where twistd's PID file should be saved, the
++          default is ``.sage/sage_notebook.sagenb/twistd.pid``, in
++          your home directory. This file contains twistd's process
++          ID and is useful when running the notebook as a daemon.
++
+     .. note:: 
+ 
+        The values of ``server_pool`` and ``ulimit`` default to what
+--- src/sagenb/sagenb/notebook/run_notebook.py.orig	2011-03-29 09:46:08.000000000 -0500
++++ src/sagenb/sagenb/notebook/run_notebook.py	2011-03-29 10:03:31.000000000 -0500
+@@ -167,7 +167,8 @@
+              fork          = False,
+              quiet         = False,
+ 
+-             subnets       = None):
++             subnets       = None,
++             pidfile       = None):
+     cwd = os.getcwd()
+     # For backwards compatible, we still allow the address to be set
+     # instead of the interface argument
+@@ -245,10 +246,12 @@
+     nb.save()
+     del nb
+ 
+-    def run(port, subnets):
++    def run(port, subnets, pidfile):
+         # Is a server already running? Check if a Twistd PID exists in
+         # the given directory.
+-        pidfile = os.path.join(directory, 'twistd.pid')
++	if pidfile is None:
++	    pidfile = os.path.join(directory, 'twistd.pid')
++
+         if platformType != 'win32':
+             from twisted.scripts._twistd_unix import checkPID
+             try:
+@@ -443,7 +446,7 @@
+     port = find_next_available_port(interface, port, port_tries)
+     if open_viewer:
+         "Open viewer automatically isn't fully implemented.  You have to manually open your web browser to the above URL."
+-    return run(port, subnets)
++    return run(port, subnets, pidfile)
+ 
+ 
+ def get_admin_passwd():
