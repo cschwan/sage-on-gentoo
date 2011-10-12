@@ -22,3 +22,10 @@
 >=sci-libs/fplll-3.1.1
 #unmasking zodb-3.9.7 for now
 -net-zope/zodb
+>=net-zope/zodb-3.10.0
+-net-zope/zope-event
+-net-zope/zc-lockfile
+-net-zope/zdaemon
+-net-zope/zconfig
+-net-zope/zope-proxy
+-net-zope/transaction
