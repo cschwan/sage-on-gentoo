@@ -3,6 +3,10 @@
 # $Header: $
 
   23 Oct 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-4.7.1-r2.ebuild:
+  soften the singular dependency in 4.7.1 for bug 387869
+
+  23 Oct 2011; François Bissey <francois.bissey@canterbury.ac.nz>
   +files/11130-4.7.2.alpha3.patch, +files/11130-sagelib-simon-v2.patch,
   -files/11130-sagelib-simon.patch, -files/11130_sagelib32.patch,
   files/11130_reviewer32.patch, files/11130_sagelib.patch,
