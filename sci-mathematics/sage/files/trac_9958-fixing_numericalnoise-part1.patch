@@ -312,15 +312,6 @@ diff --git a/sage/functions/trig.py b/sage/functions/trig.py
 diff --git a/sage/geometry/polyhedra.py b/sage/geometry/polyhedra.py
 --- a/sage/geometry/polyhedra.py
 +++ b/sage/geometry/polyhedra.py
-@@ -4946,7 +4946,7 @@
-         sage: proj = ProjectionFuncStereographic([1.1,1.1,1.1])
-         sage: ppoints = [proj(vector(x)) for x in cube]
-         sage: ppoints[0]
--        (0.0, 0.0)
-+        (-1.92296268638e-15, -1.92296268638e-15)
-     """
-     def __init__(self, projection_point):
-         """
 @@ -5612,7 +5612,7 @@
              sage: proj = p.projection()
              sage: filled_poly = proj.render_fill_2d()

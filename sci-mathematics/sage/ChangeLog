@@ -2,6 +2,24 @@
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  23 Oct 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  +files/11130-4.7.2.alpha3.patch, +files/11130-sagelib-simon-v2.patch,
+  -files/11130-sagelib-simon.patch, -files/11130_sagelib32.patch,
+  files/11130_reviewer32.patch, files/11130_sagelib.patch,
+  files/trac_9958-fixing_numericalnoise-part1.patch, -sage-4.7.2_alpha3.ebuild,
+  +sage-4.7.2_rc0.ebuild:
+  dependency clean up.
+
+*sage-4.7.2_rc0 (23 Oct 2011)
+
+  23 Oct 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  +files/11130-4.7.2.alpha3.patch, +files/11130-sagelib-simon-v2.patch,
+  -files/11130-sagelib-simon.patch, -files/11130_sagelib32.patch,
+  files/11130_reviewer32.patch, files/11130_sagelib.patch,
+  files/trac_9958-fixing_numericalnoise-part1.patch, -sage-4.7.2_alpha3.ebuild,
+  +sage-4.7.2_rc0.ebuild:
+  4.7.2_rc0
+
   12 Oct 2011; François Bissey <francois.bissey@canterbury.ac.nz>
   sage-4.7-r2.ebuild, sage-4.7.1-r2.ebuild, sage-4.7.2_alpha3.ebuild:
   adjust singular version.

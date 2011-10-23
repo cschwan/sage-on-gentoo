@@ -26,7 +26,7 @@ RDEPEND="${DEPEND}"
 S="${WORKDIR}/${MY_P}"
 
 src_prepare() {
-	epatch "${FILESDIR}"/11130-extcode-simon.patch
+	epatch "${FILESDIR}"/11130-extcode-v2.patch
 
 	find . -name "*pyc" -type f -delete \
 		|| die "failed to remove precompiled files"

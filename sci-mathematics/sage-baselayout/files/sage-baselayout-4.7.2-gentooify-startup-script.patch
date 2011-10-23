@@ -1,5 +1,5 @@
---- sage-sage.orig	2011-10-06 15:14:43.042597243 +1300
-+++ sage-sage	2011-10-06 15:27:23.249275181 +1300
+--- sage-sage.orig	2011-10-23 14:13:36.050386804 +1300
++++ sage-sage	2011-10-23 14:27:03.225974670 +1300
 @@ -35,10 +35,6 @@
      echo "                           -only-optional <tag1,...,tagn>  -- only run tests"
      echo "                            including one of the #optional tags"
@@ -161,7 +161,7 @@
  if [ "$1" = '-maxima'  -o "$1" = '--maxima' ]; then
      cd "$CUR"
      shift
-@@ -534,60 +449,10 @@
+@@ -536,60 +451,10 @@
      exit $?
  fi
  
@@ -222,7 +222,7 @@
  if [ "$1" = "-notebook"  -o "$1" = '--notebook' -o "$1" = '-n' ]; then
     cd "$CUR"
     shift
-@@ -596,14 +461,6 @@
+@@ -598,14 +463,6 @@
     exit $?
  fi
  
@@ -237,7 +237,7 @@
  if [ "$1" = "-inotebook"  -o "$1" = '--inotebook' ]; then
     cd "$CUR"
     shift
-@@ -612,18 +469,6 @@
+@@ -614,18 +471,6 @@
     exit $?
  fi
  
@@ -256,7 +256,7 @@
  if [ "$1" = '-grep' -o "$1" = "--grep" ]; then
     sage_setup
     shift
-@@ -646,81 +491,7 @@
+@@ -648,81 +493,7 @@
     exit $?
  fi
  
@@ -339,7 +339,7 @@
     if ! [  -f  "$DOT_SAGE"/init.sage ]; then
        echo >&2 "init.sage does not exist ... creating"
        touch "$DOT_SAGE"/init.sage
-@@ -731,11 +502,7 @@
+@@ -733,11 +504,7 @@
     exit $?
  fi
  
@@ -352,7 +352,7 @@
     sage-starts
     if ! [  -f  "$DOT_SAGE"/init.sage ]; then
        echo >&2 "init.sage does not exist ... creating"
-@@ -746,16 +513,6 @@
+@@ -748,16 +515,6 @@
     exit $?
  fi
  
@@ -369,7 +369,7 @@
  if [ "$1" = '-testall' -o "$1" = "--testall" ]; then
     shift
     sage-maketest "$@"
-@@ -771,69 +528,12 @@
+@@ -773,71 +530,12 @@
     exit $?
  fi
  
@@ -391,22 +391,24 @@
 -   fi
 -   for PKG in "$@"
 -   do
--       echo "Calling sage-spkg on $PKG"
--       PKG_NAME=`echo "$PKG" | sed -e "s/\.spkg$//"`
--       PKG_NAME=`basename "$PKG_NAME"`
--       case $PKG in
--	   /*)
--	       sage-spkg $OPT "$PKG" 2>&1 | (trap "" SIGINT; tee -a ../install.log "$SAGE_LOGS/$PKG_NAME".log)
--	   ;;
--	   *)
--	       sage-spkg $OPT "$CUR/$PKG" 2>&1 | (trap "" SIGINT; tee -a ../install.log "$SAGE_LOGS/$PKG_NAME".log)
--	   ;;
--       esac
--
--       if [ $? -ne 0 ]; then
--          exit 1
--       fi
--       shift
+-	echo "Calling sage-spkg on '$PKG'"
+-	PKG_NAME=`echo "$PKG" | sed -e "s/\.spkg$//"`
+-	PKG_NAME=`basename "$PKG_NAME"`
+-	case "$PKG" in
+-	    /*) PKG_PATH="$PKG";;
+-	    *) PKG_PATH="$CUR/$PKG";;
+-	esac
+-	# Could use ./pipestatus here, but using an absolute path is safer:
+-	# (We'll have to change it anyway in case 'pipestatus' one day moves.)
+-	"$SAGE_ROOT"/spkg/pipestatus \
+-	    "sage-spkg $OPT '$PKG_PATH' 2>&1" \
+-	    "(trap '' SIGINT; tee -a '$SAGE_ROOT'/install.log '$SAGE_LOGS/$PKG_NAME'.log)"
+-	# Do not try to install further packages (if any) if one failed:
+-	if [[ $? -ne 0 ]]; then
+-	    echo >&2 "Error: Failed to install package '$PKG_NAME'."
+-	    exit 1
+-	fi
+-	shift
 -   done
 -   exit $?
 -}
@@ -442,7 +444,7 @@
  fi
  
  if [ "$1" = '-pkg' -o "$1" = '-spkg' -o "$1" = "--pkg" -o "$1" = "--spkg" ]; then
-@@ -850,99 +550,6 @@
+@@ -854,99 +552,6 @@
     exit $?
  fi
  
@@ -542,7 +544,7 @@
  if [ "$1" = '-gdb' -o "$1" = "--gdb" ]; then
      sage_setup
      sage-gdb
-@@ -1004,10 +611,6 @@
+@@ -1008,10 +613,6 @@
  
  if [ $# -ge 1 ]; then
     T=`echo "$1" | sed -e "s/.*\.//"`

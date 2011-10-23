@@ -1,0 +1,20 @@
+# HG changeset patch
+# User Jeroen Demeyer <jdemeyer@cage.ugent.be>
+# Date 1317713212 -7200
+# Node ID 91c73706b4cd54971740aea2b87ec0acd339882f
+# Parent  a762cd517829bfc7e3af09bc16268edb6cdfe3b5
+Fix doctest for sage-4.7.2.alpha3
+
+diff --git a/sage/rings/number_field/order.py b/sage/rings/number_field/order.py
+--- a/sage/rings/number_field/order.py
++++ b/sage/rings/number_field/order.py
+@@ -237,7 +237,8 @@
+             sage: k.<a> = NumberField(x^2 + 5077); G = k.class_group(); G
+             Class group of order 22 with structure C22 of Number Field in a with defining polynomial x^2 + 5077
+             sage: G.0
+-            Fractional ideal class (11, a + 7)
++            Fractional ideal class (11, a + 7)   # 32-bit
++            Fractional ideal class (23, a + 12)  # 64-bit
+             sage: Ok = k.maximal_order(); Ok
+             Maximal Order in Number Field in a with defining polynomial x^2 + 5077
+             sage: Ok * (11, a + 7)

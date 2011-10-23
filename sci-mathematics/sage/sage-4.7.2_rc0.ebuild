@@ -18,7 +18,7 @@ SRC_URI="http://sage.math.washington.edu/home/release/${MY_P}/${MY_P}/spkg/stand
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64 ~x86 ~amd64-linux ~x86-linux ~x86-macos"
-IUSE="examples mpc latex testsuite"
+IUSE="mpc latex testsuite"
 
 RESTRICT="mirror test"
 
@@ -37,7 +37,7 @@ CDEPEND="dev-libs/gmp
 	>=sci-libs/iml-1.0.1
 	>=sci-libs/libcliquer-1.2_p7
 	>=sci-libs/linbox-1.1.6[sage]
-	>=sci-libs/m4ri-20110715
+	>=sci-libs/m4ri-20111004
 	>=sci-libs/mpfi-1.4
 	=sci-libs/pynac-0.2.3
 	>=sci-libs/symmetrica-2.0
@@ -49,7 +49,7 @@ CDEPEND="dev-libs/gmp
 	>=sci-mathematics/ratpoints-2.1.3
 	~sci-mathematics/sage-baselayout-${PV}[testsuite=]
 	~sci-mathematics/sage-clib-${PV}
-	~sci-libs/libsingular-3.1.1.4
+	~sci-libs/libsingular-3.1.3.3
 	media-libs/gd[jpeg,png]
 	media-libs/libpng
 	>=sys-libs/readline-6.0
@@ -64,7 +64,7 @@ RDEPEND="${CDEPEND}
 	>=dev-lang/R-2.10.1
 	>=dev-python/cvxopt-1.1.3[glpk]
 	>=dev-python/gdmodule-0.56-r2[png]
-	>=dev-python/ipython-0.9.1
+	>=dev-python/ipython-0.10.2
 	>=dev-python/jinja-2.1.1
 	>=dev-python/matplotlib-1.0.0
 	>=dev-python/mpmath-0.16
@@ -91,18 +91,14 @@ RDEPEND="${CDEPEND}
 	>=sci-mathematics/optimal-20040603
 	>=sci-mathematics/palp-1.1
 	~sci-mathematics/sage-data-conway_polynomials-0.2
-	~sci-mathematics/sage-data-elliptic_curves-0.3
+	~sci-mathematics/sage-data-elliptic_curves-0.1
 	~sci-mathematics/sage-data-graphs-20070722_p1
 	~sci-mathematics/sage-data-polytopes_db-20100210
 	>=sci-mathematics/sage-doc-${PV}
 	~sci-mathematics/sage-extcode-${PV}
-	~sci-mathematics/singular-3.1.2
+	~sci-mathematics/singular-3.1.3.3
 	>=sci-mathematics/sympow-1.018.1_p8-r1[-pari24]
-	examples? ( ~sci-mathematics/sage-examples-4.7 )
-	testsuite? (
-		~sci-mathematics/sage-doc-${PV}[html]
-		~sci-mathematics/sage-examples-4.7
-	)
+	testsuite? ( ~sci-mathematics/sage-doc-${PV}[html] )
 	latex? (
 		~dev-tex/sage-latex-2.2.5
 		|| (
@@ -110,7 +106,8 @@ RDEPEND="${CDEPEND}
 			media-gfx/imagemagick[png]
 		)
 	)"
-PDEPEND="~sci-mathematics/sage-notebook-0.8.22"
+
+PDEPEND="~sci-mathematics/sage-notebook-0.8.23"
 
 S="${WORKDIR}/${MY_P}"
 
@@ -141,10 +138,9 @@ src_prepare() {
 
 	# patches for pari-2.5.0
 	epatch "${FILESDIR}"/11130_sagelib.patch
-	epatch "${FILESDIR}"/trac_11130-doctest-poly.patch
-	epatch "${FILESDIR}"/11130_sagelib32.patch
-	epatch "${FILESDIR}"/11130-sagelib-simon.patch
+	epatch "${FILESDIR}"/11130-sagelib-simon-v2.patch
 	epatch "${FILESDIR}"/11130_reviewer32.patch
+	epatch "${FILESDIR}"/11130-4.7.2.alpha3.patch
 
 	# patches for python-2.7
 	# fixing pure numerical noise
@@ -161,9 +157,6 @@ src_prepare() {
 	epatch "${FILESDIR}"/trac_9958-e_one_star.patch
 	epatch "${FILESDIR}"/trac_9958-finite_crystals.patch
 	epatch "${FILESDIR}"/trac_9958-symbolic_callable.patch
-	# fix groebner strategy trac 11339
-	epatch "${FILESDIR}"/trac_11339_refcount_singular_rings-4.7.2.patch
-	epatch "${FILESDIR}"/trac_11339_refcount_singular_polynomials-4.7.2.patch.bz2
 	# make sure we use cython-2.7 for consistency
 	sed -i "s:python \`which cython\`:cython-2.7:" setup.py
 
