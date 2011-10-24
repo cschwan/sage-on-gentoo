@@ -266,7 +266,7 @@ src_prepare() {
 		sage/interfaces/maxima_abstract.py || die "failed to patch maxima commands"
 
 	# Uses singular internal copy of the factory header
-	sed -i "s:factory.h:singular/factory.h:" sage/libs/singular/singular-cdefs.pxi \
+	sed -i "s:factory/factory.h:singular/factory.h:" sage/libs/singular/singular-cdefs.pxi \
 		|| die "failed to patch factory header"""
 
 	# Fix portage QA warning. Potentially prevent some leaking.

@@ -2,6 +2,10 @@
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  24 Oct 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-4.7.2_rc0.ebuild:
+  correct factory headers from new singular.
+
   23 Oct 2011; François Bissey <francois.bissey@canterbury.ac.nz>
   sage-4.7.1-r2.ebuild:
   soften the singular dependency in 4.7.1 for bug 387869
