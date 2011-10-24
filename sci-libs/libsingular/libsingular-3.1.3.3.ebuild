@@ -136,10 +136,10 @@ src_install () {
 	# collide with factory or need it to use libsingular.
 	sed -e "s:factory.h:singular/factory.h:" \
 		-i singular/clapconv.h singular/fglm.h singular/mod2.h || die
-	sed -e "s:cf_gmp.h:singular/cf_gmp.h:" \
+	sed -e "s:factory/cf_gmp.h:singular/cf_gmp.h:" \
 		-i singular/si_gmp.h factory.h || die
-	sed -e "s:factoryconf.h:singular/factoryconf.h:" \
-		-e "s:templates:singular/templates:g" \
+	sed -e "s:factory/factoryconf.h:singular/factoryconf.h:" \
+		-e "s:tfactory/emplates:singular/templates:g" \
 		-i factory.h || die
 	doins libsingular.h mylimits.h
 	insinto /usr/include/singular
