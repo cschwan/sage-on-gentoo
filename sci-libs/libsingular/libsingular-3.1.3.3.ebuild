@@ -149,7 +149,10 @@ src_install () {
 		-i templates/ftmpl_list.cc templates/ftmpl_factor.cc || die
 	sed -e "s:factoryconf.h:singular/factoryconf.h:" \
 		-e "s:factory.h:singular/factory.h:" \
-		-i templates/ftmpl_list.cc
+		-i templates/ftmpl_list.cc templates/ftmpl_inst.cc || die
+	sed -e "s:templates/ftmpl:singular/templates/ftmpl:" \
+		-i templates/ftmpl_inst.cc || die
+
 	doins libsingular.h mylimits.h omalloc.h
 	insinto /usr/include/singular
 	doins singular/*
