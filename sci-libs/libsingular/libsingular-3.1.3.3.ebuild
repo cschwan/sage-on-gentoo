@@ -139,7 +139,7 @@ src_install () {
 	sed -e "s:factory/cf_gmp.h:singular/cf_gmp.h:" \
 		-i singular/si_gmp.h factory.h || die
 	sed -e "s:factory/factoryconf.h:singular/factoryconf.h:" \
-		-e "s:tfactory/emplates:singular/templates:g" \
+		-e "s:factory/templates:singular/templates:g" \
 		-i factory.h || die
 	doins libsingular.h mylimits.h
 	insinto /usr/include/singular
