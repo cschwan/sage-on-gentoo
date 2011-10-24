@@ -142,12 +142,15 @@ src_install () {
 		-e "s:factory/templates:singular/templates:g" \
 		-i factory.h || die
 	sed -e "s:factory/factoryconf.h:singular/factoryconf.h:" \
-		-i templates/* || die
+		-i templates/ftmpl_functions.h templates/ftmpl_list.h \
+			templates/ftmpl_factor.h templates/ftmpl_matrix.h \
+			templates/ftmpl_array.h || die
 	sed -e "s:factory/templates:singular/templates:" \
-		-e "s:factoryconf.h:singular/factoryconf.h:" \
+		-i templates/ftmpl_list.cc templates/ftmpl_factor.cc || die
+	sed -e "s:factoryconf.h:singular/factoryconf.h:" \
 		-e "s:factory.h:singular/factory.h:" \
 		-i templates/ftmpl_list.cc
-	doins libsingular.h mylimits.h
+	doins libsingular.h mylimits.h omalloc.h
 	insinto /usr/include/singular
 	doins singular/*
 	doins factory.h factoryconf.h cf_gmp.h
