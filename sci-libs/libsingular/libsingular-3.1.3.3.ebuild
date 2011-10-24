@@ -141,6 +141,12 @@ src_install () {
 	sed -e "s:factory/factoryconf.h:singular/factoryconf.h:" \
 		-e "s:factory/templates:singular/templates:g" \
 		-i factory.h || die
+	sed -e "s:factory/factoryconf.h:singular/factoryconf.h:" \
+		-i templates/* || die
+	sed -e "s:factory/templates:singular/templates:" \
+		-e "s:factoryconf.h:singular/factoryconf.h:" \
+		-e "s:factory.h:singular/factory.h:" \
+		-i templates/ftmpl_list.cc
 	doins libsingular.h mylimits.h
 	insinto /usr/include/singular
 	doins singular/*
