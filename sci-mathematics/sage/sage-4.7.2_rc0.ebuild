@@ -226,7 +226,7 @@ src_prepare() {
 		module_list.py || die "failed to patch module_list.py for ATLAS"
 
 	# Add -DNDEBUG to objects linking to libsingular
-	sed -i "s:'singular'\],:'singular'\],extra_compile_args = \['-DNDEBUG'\],:g" \
+	sed -i "s:'singular', SAGE_INC + 'factory'\],:'singular'\],extra_compile_args = \['-DNDEBUG'\],:g" \
 		module_list.py || die "failed to add -DNDEBUG with libsingular"
 
 	# TODO: why does Sage fail with linbox commentator ?
