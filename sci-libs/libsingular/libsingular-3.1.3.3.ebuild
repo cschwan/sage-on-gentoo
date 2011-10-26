@@ -39,7 +39,7 @@ DEPEND="${RDEPEND}
 S="${WORKDIR}"/${MY_PN}-${MY_DIR}
 
 pkg_setup() {
-	append-flags -fPIC
+	append-flags -fPIC -DLIBSINGULAR
 	append-ldflags -fPIC
 	tc-export CC CPP CXX
 }
@@ -96,6 +96,7 @@ src_configure() {
 		--enable-libfac \
 		--enable-IntegerProgramming \
 		--enable-Singular \
+		--with-malloc=system \
 		$(use_with boost Boost) || die "configure failed"
 }
 
