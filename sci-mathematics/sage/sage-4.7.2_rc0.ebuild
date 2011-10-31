@@ -188,6 +188,9 @@ src_prepare() {
 	sed -i "s:'%s/sage/sage/ext'%SAGE_DEVEL:'sage/ext':g" \
 		setup.py || die "failed to patch extensions path"
 
+	# fix misc/dist.py
+	epatch "${FILESDIR}"/${PN}-4.7.2-dist.py.patch
+
 	# fix png library name
 	sed -i "s:png12:$(libpng-config --libs | cut -dl -f2):g" \
 		module_list.py || die "failed to patch png library name"

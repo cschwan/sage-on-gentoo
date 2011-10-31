@@ -2,6 +2,10 @@
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  31 Oct 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-4.7.2_rc0.ebuild, +files/sage-4.7.2-dist.py.patch:
+  Get SAGE_BIN properly defined in dist.py
+
   26 Oct 2011; François Bissey <francois.bissey@canterbury.ac.nz>
   sage-4.7.2_rc0.ebuild:
   modify the sed line for libsingular in module_list.py to reflect upstream

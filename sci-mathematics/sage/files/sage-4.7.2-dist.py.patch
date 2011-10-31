@@ -1,0 +1,22 @@
+--- sage/misc/dist.py.orig	2011-10-31 15:56:00.762282357 +1300
++++ sage/misc/dist.py	2011-10-31 15:57:06.819302120 +1300
+@@ -96,8 +96,8 @@
+ 
+     from sage.misc.sage_ostools import have_program
+     script_created = False
+-    SAGE_ROOT = os.environ['SAGE_ROOT']
+-    SAGE_BIN = os.path.join(SAGE_ROOT, 'local', 'bin')
++    SAGE_LOCAL = os.environ['SAGE_LOCAL']
++    SAGE_BIN = os.path.join(SAGE_LOCAL, 'bin')
+     # See if 'directory' is already in PATH, and then remove
+     # SAGE_ROOT/local/bin from PATH so that we can later check whether
+     # cmd is available outside of Sage.
+@@ -107,7 +107,7 @@
+     PATH = os.pathsep.join([d for d in PATH if not
+                             os.path.samefile(d, SAGE_BIN)])
+     for cmd in ['gap', 'gp', 'hg', 'ipython', 'maxima',
+-              'mwrank', 'R', 'singular', 'M2', 'kash']:
++              'mwrank', 'R', 'Singular', 'M2', 'kash']:
+         print "Checking that Sage has the command '%s' installed" % cmd
+         # Check to see if Sage includes cmd.
+         cmd_inside_sage = have_program(cmd, path=SAGE_BIN)
