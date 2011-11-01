@@ -1,5 +1,5 @@
---- sage-sage.orig	2011-10-23 14:13:36.050386804 +1300
-+++ sage-sage	2011-10-23 14:27:03.225974670 +1300
+--- sage-sage.orig	2011-10-23 06:33:21.000000000 +1300
++++ sage-sage	2011-11-02 10:29:33.251482342 +1300
 @@ -35,10 +35,6 @@
      echo "                           -only-optional <tag1,...,tagn>  -- only run tests"
      echo "                            including one of the #optional tags"
@@ -147,6 +147,15 @@
  if [ "$1" = '-gap' -o "$1" = '--gap' ]; then
      cd "$CUR"
      shift
+@@ -375,7 +297,7 @@
+ if [ "$1" = '-singular'  -o "$1" = '--singular' ]; then
+     cd "$CUR"
+     shift
+-    "$SAGE_LOCAL/bin/singular" "$@"
++    "$SAGE_LOCAL/bin/Singular" "$@"
+     exit $?
+ fi
+ 
 @@ -407,13 +329,6 @@
      exit $?
  fi
