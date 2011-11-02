@@ -157,6 +157,7 @@ src_prepare() {
 	epatch "${FILESDIR}"/trac_9958-e_one_star.patch
 	epatch "${FILESDIR}"/trac_9958-finite_crystals.patch
 	epatch "${FILESDIR}"/trac_9958-symbolic_callable.patch
+	epatch "${FILESDIR}"/trac_9958_junk_valueerror.patch
 	# make sure we use cython-2.7 for consistency
 	sed -i "s:python \`which cython\`:cython-2.7:" setup.py
 

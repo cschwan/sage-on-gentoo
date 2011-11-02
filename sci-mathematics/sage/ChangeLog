@@ -2,6 +2,10 @@
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  02 Nov 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  +files/trac_9958_junk_valueerror.patch, sage-4.7.2_rc0.ebuild:
+  Add a new patch for python-2.7
+
   01 Nov 2011; François Bissey <francois.bissey@canterbury.ac.nz>
   files/trac_9958-fix-pureAssertError.patch,
   files/trac_9958-sage_unittest.patch:

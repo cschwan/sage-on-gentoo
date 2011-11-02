@@ -1,0 +1,19 @@
+# HG changeset patch
+# User Francois Bissey <francois.bissey@canterbury.ac.nz>
+# Date 1320273176 -46800
+# Node ID 2e2e57633995f1f349c70ab39278f4fb6275dac2
+# Parent  b849119db7c277303f820cf80b25959b923fae89
+fix message for junk ValueError
+
+diff --git a/sage/matrix/matrix_double_dense.pyx b/sage/matrix/matrix_double_dense.pyx
+--- a/sage/matrix/matrix_double_dense.pyx
++++ b/sage/matrix/matrix_double_dense.pyx
+@@ -1046,7 +1046,7 @@
+             sage: A.singular_values(eps='junk')
+             Traceback (most recent call last):
+             ...
+-            ValueError: invalid literal for float(): junk
++            ValueError: could not convert string to float: junk
+ 
+         REFERENCES:
+ 
