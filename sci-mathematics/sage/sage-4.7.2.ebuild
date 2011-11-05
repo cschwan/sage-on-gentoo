@@ -95,12 +95,13 @@ RDEPEND="${CDEPEND}
 	~sci-mathematics/sage-data-graphs-20070722_p1
 	~sci-mathematics/sage-data-polytopes_db-20100210
 	>=sci-mathematics/sage-doc-${PV}
+	!sci-mathematics/sage-examples
 	~sci-mathematics/sage-extcode-${PV}
 	~sci-mathematics/singular-3.1.3.3
 	>=sci-mathematics/sympow-1.018.1_p8-r1[-pari24]
 	testsuite? ( ~sci-mathematics/sage-doc-${PV}[html] )
 	latex? (
-		~dev-tex/sage-latex-2.2.5
+		~dev-tex/sage-latex-2.3.1
 		|| (
 			app-text/dvipng[truetype]
 			media-gfx/imagemagick[png]
