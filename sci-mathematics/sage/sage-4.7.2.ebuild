@@ -216,10 +216,6 @@ src_prepare() {
 	sed -i "s:SAGE_DEVEL + '/sage/sage/ext/interpreters':'sage/ext/interpreters':g" \
 		setup.py || die "failed to patch interpreters path"
 
-	# Do not overlink to cblas, this enable the gslcblas trick to solve issue 3
-	sed -i "s:'iml', 'gmp', 'm', 'pari', BLAS, BLAS2:'iml', 'gmp', 'm', 'pari':" \
-		module_list.py || die "failed to patch module_list.py for iml"
-
 	# fix include paths and CBLAS/ATLAS
 	sed -i \
 		-e "s:'%s/include/csage'%SAGE_LOCAL:'${EPREFIX}/usr/include/csage':g" \
