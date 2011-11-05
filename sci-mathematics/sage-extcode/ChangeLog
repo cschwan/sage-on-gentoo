@@ -2,6 +2,12 @@
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*sage-extcode-4.7.2 (05 Nov 2011)
+
+  05 Nov 2011; Christopher Schwan <cschwan@students.uni-mainz.de>
+  -sage-extcode-4.7.2_rc0.ebuild, +sage-extcode-4.7.2.ebuild:
+  Version bump
+
 *sage-extcode-4.7.2_rc0 (23 Oct 2011)
 
   23 Oct 2011; François Bissey <francois.bissey@canterbury.ac.nz>
