@@ -2,6 +2,10 @@
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  06 Nov 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-latex-2.3.1.ebuild:
+  fix S 
+
 *sage-latex-2.3.1 (17 Jun 2011)
 
   17 Jun 2011; François Bissey <francois.bissey@canterbury.ac.nz>

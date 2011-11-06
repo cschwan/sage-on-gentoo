@@ -26,7 +26,7 @@ RESTRICT="mirror"
 DEPEND="sci-mathematics/sage"
 RDEPEND="dev-tex/pgf"
 
-S="${WORKDIR}/ddrake-sagetex-0a20c641d96e"
+S="${WORKDIR}/ddrake-sagetex-v2.3.1"
 
 pkg_setup() {
 	export DOT_SAGE="${S}"
