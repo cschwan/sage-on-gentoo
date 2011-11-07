@@ -135,6 +135,10 @@ src_install () {
 	cd "${S}"/build/include
 	# Move factory.h and cf_gmp.h in the singular folder so we don't either
 	# collide with factory or need it to use libsingular.
+	sed -e "s:factory.h:singular/factory.h:" \
+		-i singular/clapconv.h singular/fglm.h || die
+	sed -e "s:factory/cf_gmp.h:singular/cf_gmp.h:" \
+		-i factory.h || die
 	sed -e "s:factory/factoryconf.h:singular/factoryconf.h:" \
 		-e "s:factory/templates:singular/templates:g" \
 		-i factory.h || die
@@ -144,8 +148,9 @@ src_install () {
 			templates/ftmpl_array.h || die
 	sed -e "s:factory/templates:singular/templates:" \
 		-i templates/ftmpl_list.cc templates/ftmpl_factor.cc || die
-	sed -e "s:factory.h:singular/factory.h:" \
-		-i templates/ftmpl_list.cc templates/ftmpl_inst.cc || die
+	sed -e "s:factoryconf.h:singular/factoryconf.h:" \
+		-e "s:factory.h:singular/factory.h:" \
+		-i templates/ftmpl_inst.cc || die
 	sed -e "s:templates/ftmpl:singular/templates/ftmpl:" \
 		-i templates/ftmpl_inst.cc || die
 
