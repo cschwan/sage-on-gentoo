@@ -2,6 +2,10 @@
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  10 Nov 2011; Christopher Schwan <cschwan@students.uni-mainz.de>
+  sage-latex-2.2.5-r2.ebuild, sage-latex-2.3.1.ebuild:
+  Migrate to EAPI Migrate to EAPI 44
+
   06 Nov 2011; François Bissey <francois.bissey@canterbury.ac.nz>
   sage-latex-2.3.1.ebuild:
   fix S 

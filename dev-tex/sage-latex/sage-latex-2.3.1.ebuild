@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
-EAPI="3"
+EAPI="4"
 
 PYTHON_DEPEND="2:2.6:2.7"
 SUPPORT_PYTHON_ABIS="1"
@@ -30,6 +30,8 @@ S="${WORKDIR}/ddrake-sagetex-v2.3.1"
 
 pkg_setup() {
 	export DOT_SAGE="${S}"
+
+	python_pkg_setup
 }
 
 src_prepare() {
@@ -48,7 +50,7 @@ src_compile() {
 
 src_install() {
 	if use examples ; then
-		dodoc example.tex || die
+		dodoc example.tex
 	fi
 
 	rm example.tex tkz-* || die "failed to remove example and tkz sty files"
