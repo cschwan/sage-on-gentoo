@@ -1,6 +1,6 @@
---- setup.py.orig	2011-06-17 12:20:44.278095147 +1200
-+++ setup.py	2011-06-17 12:21:55.540530496 +1200
-@@ -10,19 +10,8 @@
+--- setup.py.orig	2011-11-13 07:22:00.742695902 +1300
++++ setup.py	2011-11-13 07:26:00.979228729 +1300
+@@ -10,22 +10,8 @@
        url='http://bitbucket.org/ddrake/sagetex/',
        license='GPLv2+',
        py_modules=['sagetex'],
@@ -11,15 +11,19 @@
 -         'tkz-arith.sty',
 -         'CONTRIBUTORS',
 -         'extractsagecode.py',
-+      data_files = [('share/texmf/tex/latex/sage-latex',
-+        ['extractsagecode.py',
-          'makestatic.py',
+-         'makestatic.py',
 -         'scripts.dtx',
 -         'remote-sagetex.dtx',
++      data_files = [('share/texmf/tex/latex/sage-latex',
++        ['extractsagecode.py',
++         'makestatic.py',
           'remote-sagetex.py',
 -         'py-and-sty.dtx',
 -         'sagetex.dtx',
 -         'sagetex.ins',
 -         'sagetexparse.py',
--         'sagetex.sty'])])
+-         'sagetex.sty']),
+-      ('share/doc/sagetex', [
+-         'sagetex.pdf',
+-         'example.pdf'])])
 +         'sagetexparse.py'])])

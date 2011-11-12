@@ -14,7 +14,7 @@ MY_P="sagetex-${PV}"
 
 DESCRIPTION="SageTeX package allows to embed code from the Sage mathematics software suite into LaTeX documents"
 HOMEPAGE="http://www.sagemath.org https://bitbucket.org/ddrake/sagetex/overview"
-SRC_URI="https://bitbucket.org/ddrake/sagetex/get/v2.3.1.tar.bz2 -> ${MY_P}.tar.bz2"
+SRC_URI="http://sage.math.washington.edu/home/release/sage-4.7.2/sage-4.7.2/spkg/standard/${MY_P}.spkg -> ${MY_P}.tar.bz2"
 
 LICENSE="GPL-2"
 SLOT="0"
@@ -26,18 +26,14 @@ RESTRICT="mirror"
 DEPEND="sci-mathematics/sage"
 RDEPEND="dev-tex/pgf"
 
-S="${WORKDIR}/ddrake-sagetex-v2.3.1"
-
-pkg_setup() {
-	export DOT_SAGE="${S}"
-
-	python_pkg_setup
-}
+S="${WORKDIR}/${MY_P}/src"
 
 src_prepare() {
 	# LaTeX file are installed by eclass functions
 	epatch "${FILESDIR}"/${P}-install-python-files-only.patch
-	epatch "${FILESDIR}"/${P}-chksum.patch
+
+	# Don't regenerate the documentation
+	rm *.dtx
 
 	distutils_src_prepare
 }
@@ -45,12 +41,11 @@ src_prepare() {
 src_compile() {
 	latex-package_src_compile
 	distutils_src_compile
-	emake example.pdf sagetex.pdf
 }
 
 src_install() {
 	if use examples ; then
-		dodoc example.tex
+		dodoc example.tex || die
 	fi
 
 	rm example.tex tkz-* || die "failed to remove example and tkz sty files"
