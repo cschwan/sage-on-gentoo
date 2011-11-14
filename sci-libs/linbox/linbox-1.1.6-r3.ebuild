@@ -22,7 +22,7 @@ RESTRICT="mirror
 	sage? ( test )"
 
 # FIXME: using external expat breaks the tests.
-CDEPEND="dev-libs/gmp[-nocxx]
+CDEPEND="|| ( dev-libs/gmp[cxx] dev-libs/gmp[-nocxx] )
 	=sci-libs/givaro-3.2*
 	virtual/cblas
 	ntl? ( dev-libs/ntl )"

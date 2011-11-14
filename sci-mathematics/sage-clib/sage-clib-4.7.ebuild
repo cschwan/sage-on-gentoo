@@ -20,7 +20,7 @@ IUSE=""
 
 RESTRICT="mirror"
 
-DEPEND="dev-libs/gmp[-nocxx]
+DEPEND="|| ( dev-libs/gmp[cxx] dev-libs/gmp[-nocxx] )
 	>=dev-libs/ntl-5.5.2
 	=sci-libs/pynac-0.2.1-r1
 	=sci-mathematics/pari-2.4.3-r1
