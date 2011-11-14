@@ -2,6 +2,10 @@
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  14 Nov 2011; Martin von Gagern (MvG) <Martin.vGagern@gmx.net>
+  sage-clib-4.7.ebuild, sage-clib-4.7.1.ebuild, sage-clib-4.7.2.ebuild:
+  Convert gmp[-nocxx] to gmp[cxx]
+
 *sage-clib-4.7.2 (05 Nov 2011)
 
   05 Nov 2011; Christopher Schwan <cschwan@students.uni-mainz.de>
