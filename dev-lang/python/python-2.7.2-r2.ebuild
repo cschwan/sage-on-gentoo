@@ -1,6 +1,6 @@
 # Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/python-2.7.2-r2.ebuild,v 1.4 2011/08/27 21:09:43 neurogeek Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/python-2.7.2-r2.ebuild,v 1.5 2011/10/31 04:02:01 vapier Exp $
 
 EAPI="2"
 WANT_AUTOMAKE="none"
@@ -155,10 +155,8 @@ src_prepare() {
 		Modules/getpath.c \
 		setup.py || die "sed failed to replace @@GENTOO_LIBDIR@@"
 
-	#Linux-3 compat. Bug #374579 (upstream issue12571)
-	if use kernel_linux; then
-		cp -r "${S}/Lib/plat-linux2" "${S}/Lib/plat-linux3" || die "copy plat-linux failed"
-	fi
+	# Linux-3 compat. Bug #374579 (upstream issue12571)
+	cp -r "${S}/Lib/plat-linux2" "${S}/Lib/plat-linux3" || die
 
 	eautoreconf
 }
