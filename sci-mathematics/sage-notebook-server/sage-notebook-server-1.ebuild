@@ -4,7 +4,7 @@
 
 EAPI="4"
 
-inherit eutils
+inherit user
 
 DESCRIPTION="Startup scripts for Sage's Notebook server"
 HOMEPAGE="http://sagemath.org/"

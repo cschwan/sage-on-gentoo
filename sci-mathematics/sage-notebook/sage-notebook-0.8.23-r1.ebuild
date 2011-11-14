@@ -2,12 +2,12 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
-EAPI="3"
+EAPI="4"
 
 PYTHON_DEPEND="2:2.7"
 PYTHON_MODNAME="sagenb"
 
-inherit distutils eutils
+inherit distutils eutils user
 
 MY_P="sagenb-${PV}"
 SAGE_P="sage-4.7.2"
@@ -19,7 +19,7 @@ SRC_URI="http://sage.math.washington.edu/home/release/${SAGE_P}/${SAGE_P}/spkg/s
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64 ~x86 ~amd64-linux ~x86-linux"
-IUSE="+java ssl"
+IUSE="+java server ssl"
 
 RESTRICT="mirror"
 
@@ -44,6 +44,12 @@ pkg_setup() {
 	python_set_active_version 2.7
 	python_pkg_setup
 	export DOT_SAGE="${S}"
+
+	# create user to run the server
+	if use server ; then
+		enewgroup sage
+		enewuser sage -1 /bin/bash /var/lib/sage sage
+	fi
 }
 
 src_prepare() {
@@ -79,7 +85,23 @@ src_prepare() {
 	# https://github.com/cschwan/sage-on-gentoo/issues/63
 	epatch "${FILESDIR}"/${PN}-0.8.14-fix-secure-connection.patch
 
+	mkdir conf.d || die "failed to create directory"
+	mkdir init.d || die "failed to create directory"
+
+	cp "${FILESDIR}"/${PN} init.d/${PN} || die "failed to copy file"
+	cp "${FILESDIR}"/${PN}.conf conf.d/${PN} || die "failed to copy file"
+
 	distutils_src_prepare
+}
+
+src_install() {
+	# install runscript+configuration file to run the notebook as a daemon
+	if use server ; then
+		doinitd init.d/${PN}
+		doconfd conf.d/${PN}
+	fi
+
+	distutils_src_install
 }
 
 src_test() {

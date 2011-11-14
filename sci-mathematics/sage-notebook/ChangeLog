@@ -2,6 +2,18 @@
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  14 Nov 2011; Christopher Schwan <cschwan@students.uni-mainz.de>
+  sage-notebook-0.8.23-r1.ebuild:
+  sage-notebook-0.8.23-r1.ebuild manifest
+
+*sage-notebook-0.8.23-r1 (14 Nov 2011)
+
+  14 Nov 2011; Christopher Schwan <cschwan@students.uni-mainz.de>
+  sage-notebook-0.8.23.ebuild, +sage-notebook-0.8.23-r1.ebuild,
+  +files/sage-notebook, +files/sage-notebook.conf, metadata.xml:
+  Correct SRC_URI from 4.7.2_rc0 to 4.7.2, migrate to EAPI 4 and merge
+  sage-notebook-server into this ebuild
+
 *sage-notebook-0.8.23 (23 Oct 2011)
 
   23 Oct 2011; François Bissey <francois.bissey@canterbury.ac.nz>
