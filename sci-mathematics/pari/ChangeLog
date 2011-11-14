@@ -2,6 +2,9 @@
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  11 Oct 2011; Christopher Schwan <cschwan@students.uni-mainz.de> Manifest:
+  Upstream changed elldata.tgz - regenerate Manifest
+
   28 Jul 2011; François Bissey <francois.bissey@canterbury.ac.nz>
   -pari-2.4.4.ebuild, -files/pari-2.4.4-mp.c.patch:
   2.4.4 won't ever be used, we'll be moving to 2.5.0 instead. Get ready for the

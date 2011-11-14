@@ -1,19 +1,26 @@
-# preparing 4.7.2
->=sci-mathematics/sage-4.7.2_alpha0
->=sci-mathematics/sage-clib-4.7.2_alpha0
->=sci-mathematics/sage-baselayout-4.7.2_alpha0
->=sci-mathematics/sage-doc-4.7.2_alpha0
->=sci-mathematics/sage-notebook-0.8.20
->=sci-mathematics/lcalc-1.23-r4
-=dev-tex/sage-latex-2.3.1
->=sci-mathematics/genus2reduction-0.3_p8-r1
+# preparing 4.8
+>=sci-mathematics/sage-4.8_alpha0
+>=sci-mathematics/sage-clib-4.8_alpha0
+>=sci-mathematics/sage-baselayout-4.8_alpha0
+>=sci-mathematics/sage-doc-4.8_alpha0
+>=sci-mathematics/sage-notebook-0.8.24
 # linbox 1.1.7 upgrade
 >=sci-libs/givaro-3.3
 >=sci-libs/linbox-1.1.7
 # not compatible with sage
 >=dev-lang/R-2.12.0
->=sci-libs/m4ri-20110613
+=sci-libs/m4ri-99999999
+>=sci-libs/m4rie-20110715
 # introduces a number of doctest failures - likely harmless
 >=sci-libs/mpfi-1.5
 # building problems reported against latest fplll
 >=sci-libs/fplll-3.1.1
+#unmasking zodb-3.9.7 for now
+-net-zope/zodb
+>=net-zope/zodb-3.10.0
+-net-zope/zope-event
+-net-zope/zc-lockfile
+-net-zope/zdaemon
+-net-zope/zconfig
+-net-zope/zope-proxy
+-net-zope/transaction

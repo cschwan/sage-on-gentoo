@@ -1,0 +1,551 @@
+# HG changeset patch
+# User Jonathan H. Gutow <gutow@uwosh.edu
+# Date 1301272263 18000
+# Node ID dc9aae4faac7a86d66058bb2f557d9e433b2614f
+# Parent  1f6311a9060b14b23dcc36597650962b66eb870a
+trac 9238: fixes to asynchronous load of lots of Jmols and workaround for Safari bug (memory leak?)
+
+diff -r 1f6311a9060b -r dc9aae4faac7 sagenb/data/sage/js/jmol_lib.js
+--- a/sagenb/data/sage/js/jmol_lib.js	Tue Mar 22 14:18:57 2011 -0500
++++ b/sagenb/data/sage/js/jmol_lib.js	Sun Mar 27 19:31:03 2011 -0500
+@@ -57,9 +57,9 @@
+ var jmol_count = 0;
+ 
+ var jmolStatus = {
+-    maxLiveAllowed: 5,
++    maxLiveAllowed: 4,
+     numLive: 0,
+-    jmolArray: new Array(),//-1 deleted, 0 awake, 1 sleeping, 2 loading.
++    jmolArray: new Array(),//-2 loading failed, -1 deleted, 0 awake, 1 sleeping, 2 loading, 3 waiting to load.
+     urls: new Array(),
+     defaultdirectory: new Array(),
+     widths: new Array(),
+@@ -69,6 +69,7 @@
+     pictureStrs: new Array(),
+     stateScripts: new Array(),
+     cntrls: new Array(),
++    attempts: new Array(),
+     }
+ 
+ //Some default constants
+@@ -82,6 +83,19 @@
+ captionStr = ''; //empty no caption
+ controlStr = ' '; //could put special controls here.  Must not be empty for default controls to appear, that is why it is a space.
+ 
++function jmol_checkbrowserOS(){
++    jmolStatus.os = _jmol.os;
++    jmolStatus.browser=_jmol.browser;
++    if (_jmol.os=="mac"){
++        if (_jmol.browser=="mozilla"){
++            alert("You are using a Firefox/Mozilla browser on MacOS.  Many people experience inconsistent behavior of the 3-D viewer or no images using this combination.  It is recommended that you use Chrome (or another webkit browser) instead.");
++        }
++        if (navigator.userAgent.toLowerCase().indexOf('chrome') > -1){
++            jmolStatus.browser="chrome";
++        }
++    }
++    }
++
+ function jmol_pulldown(theform) {
+     /*
+     This is called when the user selects a menu item.  This just
+@@ -99,7 +113,6 @@
+         }else {
+         result = jmolScriptWait("spin off", n);
+         }
+-    storeDefaultDir(n);
+     jmolUpdateState(n);
+     }
+ 
+@@ -111,20 +124,17 @@
+         scriptStr = ''+type+' '+whichsurface+' off;';
+         result = jmolScriptWait(scriptStr, n);
+         }
+-    storeDefaultDir(n);
+     jmolUpdateState(n);
+     }
+ 
+ function do_jmolScriptWait(scriptStr, n){
+     result = jmolScriptWait(scriptStr,n);
+-    storeDefaultDir(n);
+     jmolUpdateState(n);
+     }
+ 
+ function jmolSurfColor(color,surface,n){
+     scriptStr = 'color $'+surface+' '+color;
+     result = jmolScriptWait(scriptStr,n);
+-    storeDefaultDir(n);
+     jmolUpdateState(n);
+     }
+ 
+@@ -137,22 +147,24 @@
+     }
+ 
+ function jmolUpdateState(n){
++    //make sure the default directory is correct
++//    jmolScript('x=defaultdirectory;data "directory @x";');<--this is done on launch of the applet.
++    jmolStatus.defaultdirectory[n] = jmolEvaluate("x",n);
+     var divID = 'jmolStateDiv'+n;
+-    var stateStr ="#a comment to guarrantee one line";
++    var stateStr ="#a comment to guarrantee one line\n";
+     stateStr+= jmolGetPropertyAsString("stateInfo", "", n);
+     re_modelinline = /data "model list"(.|\n|\r)*end "model list"/;
+-    var modelStr = (stateStr.match(re_modelinline))[0];
+-    modelStr = modelStr.replace(/\r\n/g,'|').replace(/\r/g, '|').replace(/\n/g,'|').replace(/\|\|/g, '|');
++    if(stateStr.match(re_modelinline)){//If we didn't get a good response we'll ignore and get later
++        var modelStr = (stateStr.match(re_modelinline))[0];
++        modelStr = modelStr.replace(/\r\n/g,'|').replace(/\r/g, '|').replace(/\n/g,'|').replace(/\|\|/g, '|');
+ //    modelStr = 'fix between here '+modelStr+' and here';
+-    stateStr = stateStr.replace(re_modelinline, modelStr);
+-    re_endofline = /\n/g;
+-    re_doublequote = /"/g;
+-    get_element(divID).innerHTML = '<div style="overflow:scroll;max-height:400px;">set '+ jmolStatus.defaultdirectory[n] +';<br>'+stateStr.replace(re_endofline,'<br>')+'</div>';
+-    jmolStatus.stateScripts[n] = 'set '+ jmolStatus.defaultdirectory[n] +';\n'+stateStr;
+-    }
+-
+-function storeDefaultDir(n) {
+-    result = jmolScript('set MessageCallback "jmolMessageHandler"; show defaultdirectory; delay 1;',n);
++        stateStr = stateStr.replace(re_modelinline, modelStr);
++        re_endofline = /\n/g;
++        re_doublequote = /"/g;
++        get_element(divID).innerHTML = '<div style="overflow:scroll;max-height:400px;">set defaultdirectory=\"'+ jmolStatus.defaultdirectory[n] +'\";<br>'+stateStr.replace(re_endofline,'<br>')+'</div>';
++        jmolStatus.stateScripts[n] = 'set defaultdirectory=\"'+ jmolStatus.defaultdirectory[n] +'\";\n'+stateStr;
++        jmolStatus.defaultdirectory[n]="done";//update finished.
++        }
+     }
+ 
+ var jmolLastDefaultDir = '';
+@@ -163,13 +175,28 @@
+     var javaScriptStr = ''+messageStr;
+     var appletname = ""+applet;
+     var messagenum = ""+number;
+-    if (javaScriptStr.search(re_defaultdirectory)!=-1){
+-        jmolLastDefaultDir = javaScriptStr;
+-        appletN = appletname[appletname.search(re_jmolApplet),(appletname.length-1)];
+-        jmolStatus.defaultdirectory[appletN]= javaScriptStr;
++    var appletN = appletname.substring(10);
++//    if (javaScriptStr.search(re_defaultdirectory)!=-1){
++//        jmolLastDefaultDir = javaScriptStr;
++//        jmolStatus.defaultdirectory[appletN]= javaScriptStr;
++//        }
++    if (jmolStatus.jmolArray[appletN]==2) {//finishing load process
++        setTimeout('jmolUpdateState('+appletN+')',300);
+         }
+    }
++   
++function jmolAppletReady_jmolUpdateState(n){
++    jmolUpdateState(n);
++//    setTimeout('jmolAppletLive('+n+')',300);
++   }
+ 
++function jmol_numLiveUpdate(){
++    var liveCount = 0;
++    for (i=0;i < jmolStatus.jmolArray.length; i++){ //reset the number of live Jmols
++        if (jmolStatus.jmolArray[i]==0) {liveCount = liveCount+1;}
++        }
++    jmolStatus.numLive = liveCount;
++    }
+ 
+ function jmolCntrlPanels(whichActive,cntrlPanels){ //The default definition for a group of jmolCntrlPanels
+     this.whichActive = whichActive; //array index for the active, front, panel
+@@ -182,13 +209,17 @@
+     panelID = 'size_jmol'+n;
+     tabID = 'tab_'+panelID;
+     //size control
+-    panelHTML ='3-D display size: <select class="jmol" title ="Select a size" onchange="jmol_pulldown(this);">';
+-    panelHTML += '<option value = "jmolResizeApplet('+miniature+','+n+');"> Miniature ('+miniature+'px)</option>';
+-    panelHTML += '<option  value = "jmolResizeApplet('+small+','+n+');"> Small ('+small+'px)</option>';
+-    panelHTML += '<option selected = "" value = "jmolResizeApplet('+medium+','+n+');"> Medium ('+medium+'px)</option>';
+-    panelHTML += '<option value = "jmolResizeApplet('+large+','+n+');"> Large ('+large+'px)</option>';
+-    panelHTML += '</';
+-    panelHTML += 'select><br/>';
++    if(_jmol.os=="mac" && _jmol.browser=="mozilla"){
++        panelHTML ='';
++        }else{
++        panelHTML ='3-D display size: <select class="jmol" title ="Select a size" onchange="jmol_pulldown(this);">';
++        panelHTML += '<option value = "jmolResizeApplet('+miniature+','+n+');"> Miniature ('+miniature+'px)</option>';
++        panelHTML += '<option  value = "jmolResizeApplet('+small+','+n+');"> Small ('+small+'px)</option>';
++        panelHTML += '<option selected = "" value = "jmolResizeApplet('+medium+','+n+');"> Medium ('+medium+'px)</option>';
++        panelHTML += '<option value = "jmolResizeApplet('+large+','+n+');"> Large ('+large+'px)</option>';
++        panelHTML += '</';
++        panelHTML += 'select><br/>';
++        }
+     panelHTML +='<ul><li><a href="javascript:void(jmol_popup(\''+n+'\'))">Arbitrarily resizable in own window</a></li>';
+     //static image to save
+     panelHTML +='<li><a href="javascript:void(jmol_image('+n+'))">Get static image to save</a></li>';
+@@ -225,55 +256,102 @@
+     }
+ 
+ function jmol_applet(size, url, cell_num, functionnames) { //makes a new applet. Presently ignoring size, kept for backwards compatibility
++    var appletID = jmol_count;
++    if (jmol_count==0){//time to start the jmolQueueWatcher to manage multiple Jmol launches.
++        jmolQueue = setInterval('jmolQueueWatcher();',1500);
++        }
++    jmol_count = jmol_count + 1;
++    jmolStatus.jmolArray[appletID] = 3; //queued to load.
+     size = medium; //overriding value from server.  Probably should accept server value.
+     jmolSetDocument(false);
+     //Where am I?  Need to know in cases where I need to write directly to this cell.  Not used initially.
+     cell_ID = 'cell_output_html_'+cell_num;
+     //write everything to the cell using cell writer so that it will appear next time the cell is opened.
+-    cntrlPanels = makeCntrlPanels(url, jmol_count, functionnames);
+-    controlStr = makeControlStr(url, jmol_count, cntrlPanels);
+-    str = newJmolTableStr(jmolStatus, size, size, url, wakeMessage, sleepMessage, captionStr, controlStr);
++    cntrlPanels = makeCntrlPanels(url, appletID, functionnames);
++    controlStr = makeControlStr(url, appletID, cntrlPanels);
++    str = newJmolTableStr(appletID, size, size, url, wakeMessage, sleepMessage, captionStr, controlStr);
+     //add debugging div
+     //str += '<div id="JmolDebug">Jmol Debugging goes here</div>';
+-    //sleep some if necessary
+-    limitlive(jmol_count, jmolStatus);
+     //now we can start the new one
+     cell_writer.write(str);
+     var scriptStr = 'script "'+url+'"; isosurface fullylit; pmesh o* fullylit; set antialiasdisplay on;';
+-    scriptStr += 'set MessageCallback "jmolMessageHandler"; show defaultdirectory; delay 1; javascript "jmolAppletLive('+ jmol_count +');jmolUpdateState('+ jmol_count +');";';
++    scriptStr +='x=defaultdirectory; data "directory @x";';
++    scriptStr += 'set MessageCallback "jmolMessageHandler"; show defaultdirectory;';
+     jmolSetAppletColor("white");
++    if (appletID==0){
++        jmol_checkbrowserOS();
++        }
+     //we will still set all the data for this applet so that other asynchronously created applets do not grab its ID.
+-    jmolStatus.urls[jmol_count]=url;
+-    jmolStatus.widths[jmol_count] = size;
+-    jmolStatus.heights[jmol_count]= size;
+-    jmolStatus.numLive = jmolStatus.numLive+1;
+-    jmolStatus.jmolArray[jmol_count] = 2; //it's now  "loading".
+-    jmolStatus.controlStrs[jmol_count] = controlStr;
+-    jmolStatus.captionStrs[jmol_count] = captionStr;
+-    jmolStatus.cntrls[jmol_count]=cntrlPanels;
+-    jmol_count += 1;
+-    //Now we wait for the server by calling a function that waits if the div is not yet written.
+-    launchNewJmol(size,scriptStr,(jmol_count-1));
++    jmolStatus.urls[appletID]=url;
++    jmolStatus.widths[appletID] = size;
++    jmolStatus.heights[appletID]= size;
++    //    jmolStatus.numLive = jmolStatus.numLive+1;
++    jmolStatus.controlStrs[appletID] = controlStr;
++    jmolStatus.captionStrs[appletID] = captionStr;
++    jmolStatus.cntrls[appletID]=cntrlPanels;
++//Now we wait for the server by calling a function that waits if the div is not yet written.
++//    launchNewJmol(size,scriptStr,appletID);
+     return str;
+     }
+ 
+-function launchNewJmol(size,scriptStr,n){
+-        if (!get_element("Jmol"+ n)){
+-            var launchStr = 'launchNewJmol('+size+',\''+scriptStr+'\','+n+')';
+-//            alert("Waiting for Jmol"+n+" div.");
+-            setTimeout(launchStr, 500);
+-        }else{
+-            get_element("Jmol"+ n).innerHTML = jmolApplet([size, size], scriptStr, n);
+-//            jmolStatus.jmolArray[n]=0; //it's done loading and is "live".
++function jmolQueueWatcher(){
++    //this function should be started on a 1500 ms interval as soon as the first Jmol applet is called for.
++    //This controls launch of applet timing and order when multiple Jmols are trying to launch. Necessary
++    //for the asynchronous launching caused by openning an old worksheet with lots of Jmols.
++    //Check for Jmols in the launching state (should be one or none)
++    jmol_numLiveUpdate();
++    numAppletsAtStart =jmolStatus.jmolArray.length;//may change during checks...ignore new additions 
++    loading = -1;
++    for (n=0;n<numAppletsAtStart;n++){
++        if(jmolStatus.jmolArray[n]==2){loading=n;};
++        }
++    if(loading>=0){//we found a loading applet
++        jmolStatus.attempts[loading]+=1; //update number of checks for load completion.
++        if(jmolStatus.defaultdirectory[loading]=="done"){//Applet is ready.
++            jmolAppletLive(loading);
++            }else{ //Applet not ready. How many checks have we done?
++            if(jmolStatus.attempts[loading]==10){
++                alert("Jmol Applet #"+loading+" is having trouble loading.  Will retry once.");
++                var scriptStr = 'x=defaultdirectory; data "directory @x";';
++                scriptStr += 'set MessageCallback "jmolMessageHandler"; show defaultdirectory;';
++                jmolScript(scriptStr);
++                }
++            if(jmolStatus.attempts[loading]==20){
++                alert("Second attempt to finish launch of Jmol Applet #"+loading+" failed.  Recommend reevaluating the cell manually.");
++                jmolStatus.jmolArray[loading]=-2; //launch failed.
++                }
++            }
++        }else{//no loading applets. Search for queued applet.
++        queued = -1;
++        for (n=0;n<numAppletsAtStart;n++){
++            if(jmolStatus.jmolArray[n]==3){queued=n;};//will use the last one we find
++            }
++        if(queued>=0){//we found a queued applet and can start its launch.
++            //alert("About to launch applet #"+queued);
++            var scriptStr = 'script "'+jmolStatus.urls[queued]+'"; isosurface fullylit; pmesh o* fullylit;';
++            scriptStr +='set antialiasdisplay on;x=defaultdirectory; data "directory @x";';
++            scriptStr += 'set MessageCallback "jmolMessageHandler"; show defaultdirectory;'; 
++            //alert("About to look for the div to put it in");
++            if (get_element("Jmol"+ queued) ){//the div is ready
++                //sleep some if necessary
++                //alert("Found div.  About to enter LimitLive.");
++                limitlive(queued, jmolStatus);
++                //alert("left LimitLive");
++                jmolStatus.attempts[queued]=0; //no checks on load completion yet.
++                jmolStatus.jmolArray[queued]=2; //now it is loading
++                get_element("Jmol"+ queued).innerHTML = jmolApplet([jmolStatus.widths[queued], jmolStatus.heights[queued]], scriptStr, queued);
++                }                 
++            }
+         }
+     }
+ 
+ function jmolAppletLive(n){//called after an applet is loaded to say set state to live
+ 	jmolStatus.jmolArray[n]=0;
++    jmol_numLiveUpdate();
+     }
+-function newJmolTableStr(jmolStatus, width, height, url, wakeMessage, sleepMessage, captionStr, controlStr){
++
++function newJmolTableStr(n, width, height, url, wakeMessage, sleepMessage, captionStr, controlStr){
+     //if captionStr or controlStr is the empty string, '', then the caption or the controls  respectively will not be shown.
+-    n = jmolStatus.jmolArray.length;
+     Id = 'Jmol'+n;
+     tableId = 'Jmol_Table_'+Id;
+     tableStr = '<table id="'+tableId+'" border="1"><tr><td id="'+tableId+'_cell_0_0">';
+@@ -284,7 +362,6 @@
+     tableStr += 'Loading Jmol 3-D viewer...</div>';  
+ 	    tableStr+='</td>';
+     if (controlStr!=''){
+-	    //tempCntrlStr = '<a href="javascript:void(wakeJmol('+n+',jmolStatus))">'+ wakeMessage +'</a>';
+ 	    tempCntrlStr ='<button onClick="javascript:void(sleepJmol('+n+',jmolStatus))">'+sleepMessage+'</button>';
+         tempCntrlStr += '<button onClick="javascript:void(jmol_help())">Help for Jmol 3-D viewer</button>'+controlStr;
+         tableStr += '<td id="'+tableId+'_cell_0_1" style="display:none;">'+tempCntrlStr+'</td>';
+@@ -346,7 +423,7 @@
+ //    for (i in scriptArray){
+ //        dispStr +=scriptArray[i]+'<br/>';
+ //        }
+-    dispStr +='<table  border="1"><tr><td>Function</td><td>Color</td><td>Translucency</td><td>On?</td><td>Mesh Color</td><td>Mesh on?</td></tr>';
++    dispStr +='<table  border="1"><tr><td>Function</td><td>Color</td><td>On?</td><td>Translucency</td><td>Mesh Color</td><td>Mesh on?</td></tr>';
+     for (i in surfaceArray){
+ //        dispStr +='Surface #'+i+'<br/>';
+         dispStr +='<tr>';
+@@ -359,6 +436,13 @@
+         var scriptStr = 'color $'+surfaceArray[i].ID+' $COLOR$';
+         var boxIdStr = 'colorBox_'+n+'_'+i;
+         dispStr +='<td>'+JmolColorPickerBoxStr(scriptStr,surfaceArray[i].color,boxIdStr,n)+'</td>';
++//        dispStr +='Visibility:' +surfaceArray[i].visibility+'<br/>';
++        var checkedStr = 'checked = "true"';
++        re_off = /off/i;
++        if (surfaceArray[i].visibility.match(re_off)){
++            checkedStr = '';
++            }
++        dispStr +='<td><input class="worksheet" type="checkbox" '+checkedStr+' onchange="jmol_show_element(this.checked,\''+surfaceArray[i].ID+'\',\''+surfaceArray[i].type+'\','+n+');" title="Show function"/></td>';
+ //        dispStr +='Fill State:' +surfaceArray[i].fillState+'<br/>';
+         dispStr +='<td><select class="jmol" title ="Select transparency" onchange="jmolSurfColor(this.value,\''+surfaceArray[i].ID+'\','+n+');">';
+         dispStr +='<option selected="" value ="'+surfaceArray[i].fillState+'">Default</option>';
+@@ -374,13 +458,6 @@
+         dispStr +='<option value = "'+ fillState +'">translucent 128</option>';
+         dispStr +='</';
+         dispStr += 'select></td>';
+-//        dispStr +='Visibility:' +surfaceArray[i].visibility+'<br/>';
+-        var checkedStr = 'checked = "true"';
+-        re_off = /off/i;
+-        if (surfaceArray[i].visibility.match(re_off)){
+-            checkedStr = '';
+-            }
+-        dispStr +='<td><input class="worksheet" type="checkbox" '+checkedStr+' onchange="jmol_show_element(this.checked,\''+surfaceArray[i].ID+'\',\''+surfaceArray[i].type+'\','+n+');" title="Show function"/></td>';
+ //        dispStr +='Mesh ID:' +surfaceArray[i].mesh_ID+'<br/>';
+ //        dispStr +='Mesh Color:' +surfaceArray[i].meshColor+'<br/>';
+         if (surfaceArray[i].mesh_ID ==''){//we don't have a mesh so  need to make one
+@@ -395,7 +472,6 @@
+             surfaceArray[i].meshColor = '[x000000]';
+             surfaceArray[i].mesh_visibility = 'off';
+             //we've changed the state, so save
+-            storeDefaultDir(n);
+             jmolUpdateState(n); 
+             }
+         scriptStr = 'color $'+surfaceArray[i].mesh_ID+' $COLOR$';
+@@ -693,18 +769,21 @@
+ 
+ function sleepJmol(n,jmolStatus) {
+     if(jmolStatus.jmolArray[n]==0){//it's awake, so put to sleep
+-	//get a picture to replace the applet
+-	jmolStatus.pictureStrs[n] = get_jmol_image(n, jmolStatus);
++        //alert('applet #'+n+' is awake.');
++    	//get a picture to replace the applet
++    	jmolStatus.pictureStrs[n] = get_jmol_image(n, jmolStatus);
++    	//alert('got image from applet.');
+         //make sure the state is up-to-date
+         jmolUpdateState(n);
++        //alert("Have got the picture and updated the state before sleeping #"+n);
+         //Different browsers pass different versions of null and undefined.
+-	if(jmolStatus.pictureStrs[n]=="null"||jmolStatus.pictureStrs[n]==""||jmolStatus.pictureStrs[n]==undefined||jmolStatus.pictureStrs[n]==null||jmolStatus.pictureStrs[n]=="undefined"){//don't have a picture put up text instead
+-	    get_element("Jmol"+n).innerHTML = 'Sleeping...<br/>Static plot unavailable. <br/>  Click Wake Up to get live plot.';
+-	    }else{
+-	    var imageID = 'Jmol_Image'+n;
+-	    //The below does not work with Safari, doesn't show alternate text when no image data.
+-	    var imageStr = '<image id='+imageID+' alt="If no plot appears here click Wake Up" src="data:image/jpeg;base64, ' + jmolStatus.pictureStrs[n] + '">';
+-	    get_element("Jmol"+n).innerHTML = 'Sleeping...<button onClick="javascript:void(wakeJmol('+n+',jmolStatus))">Make Interactive</button><br/>'+imageStr;
++        if(jmolStatus.pictureStrs[n]=="null"||jmolStatus.pictureStrs[n]==""||jmolStatus.pictureStrs[n]==undefined||jmolStatus.pictureStrs[n]==null||jmolStatus.pictureStrs[n]=="undefined"){//don't have a picture put up text instead
++            get_element("Jmol"+n).innerHTML = 'Sleeping...<br/>Static plot unavailable. <br/>  <button onClick="javascript:void(wakeJmol('+n+',jmolStatus))">Make Interactive</button> to get live plot.';
++	        }else{
++	        var imageID = 'Jmol_Image'+n;
++	        //The below does not work with Safari, doesn't show alternate text when no image data.
++	        var imageStr = '<image id='+imageID+' alt="If no plot appears here click Wake Up" src="data:image/jpeg;base64, ' + jmolStatus.pictureStrs[n] + '">';
++	        get_element("Jmol"+n).innerHTML = 'Sleeping...<button onClick="javascript:void(wakeJmol('+n+',jmolStatus))">Make Interactive</button><br/>'+imageStr;
+            }
+        	jmolStatus.jmolArray[n]=1; //we've turned it off
+         //make sure the controls that only work with live Jmol are hidden
+@@ -712,7 +791,7 @@
+         get_element(cellID).setAttribute("style","display: none;");
+         var togname = '#Adv_but_Jmol'+n;
+         $(togname).toggle();        
+-	    jmolStatus.numLive = jmolStatus.numLive-1;
++	    jmol_numLiveUpdate();
+        }
+     }
+ 
+@@ -727,12 +806,11 @@
+         re_linebreak = /<br>/gi;
+ //        scriptStr = get_element("jmolStateDiv"+n).innerHTML.replace(re_linebreak,'\n');
+         var scriptStr = jmolStatus.stateScripts[n];
+-//to avoid a problem with testing of numbers in Jmol.js  quote the appletID #
+ 	var nquote = n;
+ 	get_element("Jmol"+ nquote).innerHTML = jmolApplet([width,height], scriptStr, nquote);
+ 	if (jmolStatus.jmolArray[n]!=0){//it wasn't on, if it was we've just done a reset so don't need to update status
+ 		jmolStatus.jmolArray[n]=0; //we've turned it on
+-		jmolStatus.numLive = jmolStatus.numLive+1;
++		jmol_numLiveUpdate();
+         var togname = '#Adv_but_Jmol'+n;
+         $(togname).toggle();        
+ 		}
+@@ -744,34 +822,22 @@
+ 	//will attempt to shut down a Jmol as far away as possible.
+ 	//needs to be more sophisticated about updating jmolStatus because
+ 	//applets may have been removed without updating. 
+-    j = 0;
+-    loading= false;
+-    while (j<jmolStatus.jmolArray.length){
+-        if(jmolStatus.jmolArray[j]==2){
+-            loading = true;           
++	while (jmolStatus.numLive >= jmolStatus.maxLiveAllowed) {
++        //search only from zero
++        k=0;
++        while (jmolStatus.jmolArray[k]!=0){
++            k = k +1;
+             }
+-        j=j+1;
+-        }
+-    if (loading){ //if any are still loading we wait
+-        var launchStr = 'limitlive('+nWake+',jmolStatus)';
+-//        alert("Waiting for Jmol"+n+" div.");
+-        setTimeout(launchStr, 1000); }else{
+-	    while (jmolStatus.numLive >= jmolStatus.maxLiveAllowed) {
+-	    	//search only from zero
+-	    	k=0;
+-    		while (jmolStatus.jmolArray[k]!=0){
+-    			k = k +1;
+-    			}
+-    		//search only from max
+-    		i = jmolStatus.jmolArray.length-1;
+-    		while (jmolStatus.jmolArray[i]!=0){
+-    				i = i -1;
+-    			}
+-    		if (Math.abs(nWake-i) > Math.abs(nWake-k)){
+-    			nSleep = i;}else{
+-    			nSleep = k;}
+-    		sleepJmol(nSleep, jmolStatus);
+-		}
++        //search only from max
++        i = jmolStatus.jmolArray.length-1;
++        while (jmolStatus.jmolArray[i]!=0){
++            i = i -1;
++            }
++        if (Math.abs(nWake-i) > Math.abs(nWake-k)){
++            nSleep = i;}else{
++            nSleep = k;}
++        //alert("About to sleep applet#"+nSleep);
++        sleepJmol(nSleep, jmolStatus);
+         }
+ 	}
+ 
+@@ -793,32 +859,35 @@
+             //each time a page is opened.
+         }
+     }
+-    for ( i = 0; i < liveCount; i++){ //reset the number of live Jmols
+-        if (jmolStatus.jmolArray[i]!=0) {liveCount = liveCount-1;}
+-    }
+-    jmolStatus.numLive = liveCount;
++    jmol_numLiveUpdate();
+ }
+ 
+ function jmol_image(jmol_count) {
+-  var myImage = jmolGetPropertyAsString("image","",jmol_count)
+-  mywindow = window.open("","Jmol Image","menubar=no,width=600,height=600,toolbar=no");
+-  s = '<HTML><TITLE>Jmol Image</TITLE><BODY>';
+-  s += '<img src="data:image/jpeg;base64,' + myImage + '">';
+-  s += '<p>To save this image, you can try right-clicking on the image to copy it or save it to a file, or you may be able to just drag the image to your desktop.</p>';
+-  s += '</BODY></HTML>';
+-  mywindow.document.write(s);
+-}
++    var myImage = jmolGetPropertyAsString("image","",jmol_count);
++    mywindow = window.open("","Jmol Image","menubar=no,width=600,height=600,toolbar=no");
++    s = '<HTML><TITLE>Jmol Image</TITLE><BODY>';
++    s += '<img src="data:image/jpeg;base64,' + myImage + '">';
++    s += '<p>To save this image, you can try right-clicking on the image to copy it or save it to a file, or you may be able to just drag the image to your desktop.</p>';
++    s += '</BODY></HTML>';
++    mywindow.document.write(s);
++    }
+ 
+ 
+ function get_jmol_image(n, jmolStatus){
+     var pictureStr="";
+     if(jmolStatus.jmolArray[n] == 0) {//it's live
+-	pictureStr = jmolGetPropertyAsString("image","",n);
++        if(jmolStatus.jmolArray.length < 10 ||jmolStatus.os!='mac'||jmolStatus.browser!='webkit'){
++            pictureStr = jmolGetPropertyAsString("image","",n);
++        }else{
++            alert('More than 9 Jmols have been launched on the worksheet since it was last openned. Unable to get a static image from Jmol#'+n+' You might want to try Chrome as this problem does not exist with Chrome on MacOS.');
+         }
++    }
+     return(pictureStr);
+     }
+ 
+ function jmol_popup(n) {
++    //first make sure we have the current state
++    jmolUpdateState(n);
+     win = window.open ("", "jmol viewer", "width=600,height=600,resizable=1,statusbar=0");
+     win.document.body.innerHTML = "";
+     win.document.title = "Sage 3d Viewer";
+@@ -827,12 +896,23 @@
+ //    scriptStr = 'script "'+url+'"; isosurface fullylit; pmesh o* fullylit; set antialiasdisplay on;';
+     re_linebreak = /<br>/gi;
+     var scriptStr = get_element("jmolStateDiv"+n).innerHTML;
+-    scriptStr = scriptStr.replace(re_linebreak,'\n')
++    scriptStr = scriptStr.replace(re_linebreak,'\n');
+     scriptStr = jmolStatus.stateScripts[n];//comment out to use the script in jmolStateDiv.
++    //sleep all the applets before openning the big window.
++    jmol_sleepall();
+     jmolApplet("100%", scriptStr, n);
+     win.focus();
+ }
+ 
++function jmol_sleepall(){
++    var j = 0;
++    while (j < jmolStatus.jmolArray.length){
++        if (jmolStatus.jmolArray[j]==0){//it is awake and needs to be put to sleep
++            sleepJmol(j, jmolStatus);
++            }
++        j = j+1;
++        }
++    }
+ function jmol_help(){
+     win = window.open("/java/jmol/appletweb/JmolHelp.html","Jmol Help","width=400, height=600");
+     win.focus();
+@@ -1012,7 +1092,6 @@
+         var rgbCodes = colorStr.replace(/rgb/i,'').replace('(','[').replace(')',']');
+         var scriptStr = JmolColorPickerBoxes[boxNum].scriptStr.replace('$COLOR$', rgbCodes);
+         jmolScript(scriptStr,JmolColorPickerBoxes[boxNum].appletID);
+-        storeDefaultDir(JmolColorPickerBoxes[boxNum].appletID);
+         jmolUpdateState(JmolColorPickerBoxes[boxNum].appletID);
+     }
+ //    tempStr += '<br/>The picked color is: '+colorStr+'.<br/>'+pickerDiv.id;  
+@@ -1069,7 +1148,6 @@
+     var rgbCodes = pickedColor.replace(/rgb/i,'').replace('(','[').replace(')',']');
+     var scriptStr = JmolColorPickerBoxes[boxNum].scriptStr.replace('$COLOR$', rgbCodes);
+     jmolScript(scriptStr,JmolColorPickerBoxes[boxNum].appletID);
+-    storeDefaultDir(JmolColorPickerBoxes[boxNum].appletID);
+     jmolUpdateState(JmolColorPickerBoxes[boxNum].appletID);
+ }
+ 

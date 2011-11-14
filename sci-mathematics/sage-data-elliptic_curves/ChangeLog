@@ -2,6 +2,13 @@
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*sage-data-elliptic_curves-0.3 (03 Oct 2011)
+
+  03 Oct 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  +sage-data-elliptic_curves-0.3.ebuild:
+  bump to 0.3 - major changes, had to downgrade EAPI to 3 because of python
+  eclass???
+
   20 May 2011; Christopher Schwan <cschwan@students.uni-mainz.de>
   sage-data-elliptic_curves-0.1-r1.ebuild:
   Migrate to EAPI 4

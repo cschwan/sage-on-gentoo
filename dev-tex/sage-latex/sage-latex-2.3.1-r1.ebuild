@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
-EAPI="3"
+EAPI="4"
 
 PYTHON_DEPEND="2:2.6:2.7"
 SUPPORT_PYTHON_ABIS="1"
@@ -14,7 +14,7 @@ MY_P="sagetex-${PV}"
 
 DESCRIPTION="SageTeX package allows to embed code from the Sage mathematics software suite into LaTeX documents"
 HOMEPAGE="http://www.sagemath.org https://bitbucket.org/ddrake/sagetex/overview"
-SRC_URI="https://bitbucket.org/ddrake/sagetex/get/v2.3.1.tar.bz2 -> ${MY_P}.tar.bz2"
+SRC_URI="http://sage.math.washington.edu/home/release/sage-4.7.2/sage-4.7.2/spkg/standard/${MY_P}.spkg -> ${MY_P}.tar.bz2"
 
 LICENSE="GPL-2"
 SLOT="0"
@@ -26,16 +26,14 @@ RESTRICT="mirror"
 DEPEND="sci-mathematics/sage"
 RDEPEND="dev-tex/pgf"
 
-S="${WORKDIR}/ddrake-sagetex-0a20c641d96e"
-
-pkg_setup() {
-	export DOT_SAGE="${S}"
-}
+S="${WORKDIR}/${MY_P}/src"
 
 src_prepare() {
 	# LaTeX file are installed by eclass functions
 	epatch "${FILESDIR}"/${P}-install-python-files-only.patch
-	epatch "${FILESDIR}"/${P}-chksum.patch
+
+	# Don't regenerate the documentation
+	rm *.dtx
 
 	distutils_src_prepare
 }
@@ -43,7 +41,6 @@ src_prepare() {
 src_compile() {
 	latex-package_src_compile
 	distutils_src_compile
-	emake example.pdf sagetex.pdf
 }
 
 src_install() {

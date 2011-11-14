@@ -53,6 +53,12 @@ src_prepare() {
 			|| die "cp failed"
 	fi
 
+	# fix some headers (backport)
+	epatch "${FILESDIR}"/${PN}-header.patch
+	# use jinja2 (upstream fix)
+	epatch "${FILESDIR}"/${PN}-0.7.1-jinja2.patch
+	# detect sse2 from m4ri-20110715+
+	#epatch "${FILESDIR}"/${PN}-0.7.1-m4ri_sse2.patch
 	# make sure external m4ri is used
 	rm -r M4RI || die "failed to remove internal copy of m4ri"
 

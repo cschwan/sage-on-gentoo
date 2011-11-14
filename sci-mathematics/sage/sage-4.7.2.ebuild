@@ -18,9 +18,9 @@ SRC_URI="http://sage.math.washington.edu/home/release/${MY_P}/${MY_P}/spkg/stand
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64 ~x86 ~amd64-linux ~x86-linux ~x86-macos"
-IUSE="examples mpc latex testsuite"
+IUSE="mpc latex testsuite"
 
-RESTRICT="mirror"
+RESTRICT="mirror test"
 
 CDEPEND="dev-libs/gmp
 	>=dev-libs/mpfr-2.4.2
@@ -37,7 +37,7 @@ CDEPEND="dev-libs/gmp
 	>=sci-libs/iml-1.0.1
 	>=sci-libs/libcliquer-1.2_p7
 	>=sci-libs/linbox-1.1.6[sage]
-	>=sci-libs/m4ri-20100701
+	>=sci-libs/m4ri-20111004
 	>=sci-libs/mpfi-1.4
 	=sci-libs/pynac-0.2.3
 	>=sci-libs/symmetrica-2.0
@@ -49,7 +49,7 @@ CDEPEND="dev-libs/gmp
 	>=sci-mathematics/ratpoints-2.1.3
 	~sci-mathematics/sage-baselayout-${PV}[testsuite=]
 	~sci-mathematics/sage-clib-${PV}
-	~sci-libs/libsingular-3.1.1.4
+	~sci-libs/libsingular-3.1.3.3
 	media-libs/gd[jpeg,png]
 	media-libs/libpng
 	>=sys-libs/readline-6.0
@@ -64,7 +64,7 @@ RDEPEND="${CDEPEND}
 	>=dev-lang/R-2.10.1
 	>=dev-python/cvxopt-1.1.3[glpk]
 	>=dev-python/gdmodule-0.56-r2[png]
-	>=dev-python/ipython-0.9.1
+	>=dev-python/ipython-0.10.2
 	>=dev-python/jinja-2.1.1
 	>=dev-python/matplotlib-1.0.0
 	>=dev-python/mpmath-0.16
@@ -76,7 +76,7 @@ RDEPEND="${CDEPEND}
 	dev-python/sqlalchemy
 	~dev-python/sympy-0.7.1
 	>=media-gfx/tachyon-0.98[png]
-	~net-zope/zodb-3.9.7
+	net-zope/zodb
 	>=sci-libs/cddlib-094f-r2
 	=sci-libs/scipy-0.9*
 	>=sci-mathematics/flintqs-20070817_p5
@@ -95,25 +95,20 @@ RDEPEND="${CDEPEND}
 	~sci-mathematics/sage-data-graphs-20070722_p1
 	~sci-mathematics/sage-data-polytopes_db-20100210
 	>=sci-mathematics/sage-doc-${PV}
+	!sci-mathematics/sage-examples
 	~sci-mathematics/sage-extcode-${PV}
-	~sci-mathematics/sage-notebook-0.8.21
-	|| (
-	  ~sci-mathematics/singular-3.1.1.4[-libsingular]
-	  >=sci-mathematics/singular-3.1.2
-	)
+	~sci-mathematics/singular-3.1.3.3
 	>=sci-mathematics/sympow-1.018.1_p8-r1[-pari24]
-	examples? ( ~sci-mathematics/sage-examples-4.7 )
-	testsuite? (
-		~sci-mathematics/sage-doc-${PV}[html]
-		~sci-mathematics/sage-examples-4.7
-	)
+	testsuite? ( ~sci-mathematics/sage-doc-${PV}[html] )
 	latex? (
-		~dev-tex/sage-latex-2.2.5
+		~dev-tex/sage-latex-2.3.1
 		|| (
 			app-text/dvipng[truetype]
 			media-gfx/imagemagick[png]
 		)
 	)"
+
+PDEPEND="~sci-mathematics/sage-notebook-0.8.23"
 
 S="${WORKDIR}/${MY_P}"
 
@@ -142,17 +137,11 @@ src_prepare() {
 		-e 's/.,.pthread//g' \
 		-e "s:  ::")\'
 
-	# patch to eliminate the sourcing of cython sources
-	epatch "${FILESDIR}"/trac11734_sage_wraps_no_sourceread_lambda.patch
-	# patch to deal with ecl threads trac 11752
-	epatch "${FILESDIR}"/11752_ecl-nothread.patch
-
 	# patches for pari-2.5.0
 	epatch "${FILESDIR}"/11130_sagelib.patch
-	epatch "${FILESDIR}"/trac_11130-doctest-poly.patch
-	epatch "${FILESDIR}"/11130_sagelib32.patch
-	epatch "${FILESDIR}"/11130-sagelib-simon.patch
+	epatch "${FILESDIR}"/11130-sagelib-simon-v2.patch
 	epatch "${FILESDIR}"/11130_reviewer32.patch
+	epatch "${FILESDIR}"/11130-4.7.2.alpha3.patch
 
 	# patches for python-2.7
 	# fixing pure numerical noise
@@ -169,10 +158,8 @@ src_prepare() {
 	epatch "${FILESDIR}"/trac_9958-e_one_star.patch
 	epatch "${FILESDIR}"/trac_9958-finite_crystals.patch
 	epatch "${FILESDIR}"/trac_9958-symbolic_callable.patch
-	# fix groebner strategy trac 11339
-	#epatch "${FILESDIR}"/trac_11339_refcount_singular_rings.patch
-	#epatch "${FILESDIR}"/trac_11339_refcount_singular_polynomials.patch.bz2
-	epatch "${FILESDIR}"/bug11339a.patch
+	epatch "${FILESDIR}"/trac_9958_junk_valueerror.patch
+	epatch "${FILESDIR}"/trac_9958_enumerate64bit.patch
 	# make sure we use cython-2.7 for consistency
 	sed -i "s:python \`which cython\`:cython-2.7:" setup.py
 
@@ -204,6 +191,9 @@ src_prepare() {
 	sed -i "s:'%s/sage/sage/ext'%SAGE_DEVEL:'sage/ext':g" \
 		setup.py || die "failed to patch extensions path"
 
+	# fix misc/dist.py
+	epatch "${FILESDIR}"/${PN}-4.7.2-dist.py.patch
+
 	# fix png library name
 	sed -i "s:png12:$(libpng-config --libs | cut -dl -f2):g" \
 		module_list.py || die "failed to patch png library name"
@@ -226,10 +216,6 @@ src_prepare() {
 	sed -i "s:SAGE_DEVEL + '/sage/sage/ext/interpreters':'sage/ext/interpreters':g" \
 		setup.py || die "failed to patch interpreters path"
 
-	# Do not overlink to cblas, this enable the gslcblas trick to solve issue 3
-	sed -i "s:'iml', 'gmp', 'm', 'pari', BLAS, BLAS2:'iml', 'gmp', 'm', 'pari':" \
-		module_list.py || die "failed to patch module_list.py for iml"
-
 	# fix include paths and CBLAS/ATLAS
 	sed -i \
 		-e "s:'%s/include/csage'%SAGE_LOCAL:'${EPREFIX}/usr/include/csage':g" \
@@ -242,7 +228,7 @@ src_prepare() {
 		module_list.py || die "failed to patch module_list.py for ATLAS"
 
 	# Add -DNDEBUG to objects linking to libsingular
-	sed -i "s:'singular'\],:'singular'\],extra_compile_args = \['-DNDEBUG'\],:g" \
+	sed -i "s:'singular', SAGE_INC + 'factory'\],:'singular'\],extra_compile_args = \['-DNDEBUG'\],:g" \
 		module_list.py || die "failed to add -DNDEBUG with libsingular"
 
 	# TODO: why does Sage fail with linbox commentator ?
@@ -282,7 +268,7 @@ src_prepare() {
 		sage/interfaces/maxima_abstract.py || die "failed to patch maxima commands"
 
 	# Uses singular internal copy of the factory header
-	sed -i "s:factory.h:singular/factory.h:" sage/libs/singular/singular-cdefs.pxi \
+	sed -i "s:factory/factory.h:singular/factory.h:" sage/libs/singular/singular-cdefs.pxi \
 		|| die "failed to patch factory header"""
 
 	# Fix portage QA warning. Potentially prevent some leaking.
@@ -353,7 +339,10 @@ src_install() {
 	if use testsuite ; then
 		# install testable sources and sources needed for testing
 		find sage ! \( -name "*.py" -o -name "*.pyx" -o -name "*.pxd" -o \
-			-name "*.pxi" \) -type f -delete \
+			-name "*.pxi" -o -name "*.h" \
+			-o -name "*fmpq_poly.c" \
+			-o -name "*matrix_rational_dense_linbox.cpp" \
+			-o -name "*wrap.cc" \) -type f -delete \
 			|| die "failed to remove non-testable sources"
 
 		insinto /usr/share/sage/devel/sage-main

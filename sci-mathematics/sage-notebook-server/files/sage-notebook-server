@@ -1,39 +1,48 @@
 #!/sbin/runscript
 
-# Default values for variables defined in sage-notebook-server.conf
-: ${user:=sage}
+user_home=$(eval cd ~${user:=sage} && pwd)
+
+# set default values
 : ${accounts:=False}
+: ${directory:="${user_home}"/.sage/sage_notebook.sagenb}
 : ${interface-localhost}
 : ${port:=8000}
-: ${secure:=False}
 : ${require_login:=True}
-: ${accounts:=False}
+: ${secure:=False}
 : ${timeout:=0}
+: ${ulimit:=None}
+: ${user:=sage}
 
-user_home=$(eval cd ~${user} && pwd)
-pidfile="${user_home}"/.sage/sage_notebook.sagenb/twistd.pid
+: ${stdout:="${user_home}"/sagenb.log}
+: ${stderr:="${user_home}"/sagenb.err}
+
+# resolve any tildes 'directory' might contain
+directory=$(eval cd ${directory} && pwd)
+
+# pidfile is hardcoded into Sage's source files
+pidfile="${directory}"/twistd.pid
+
 command_args=( 
 	-notebook
 	accounts=${accounts}
+	directory=${directory}
 	interface=${interface}
 	open_viewer=False
 	port=${port}
 	require_login=${require_login}
 	secure=${secure}
 	timeout=${timeout}
+	ulimit=${ulimit}
 )
-
-: ${stdout:="${user_home}"/sagenb.log}
-: ${stderr:="${user_home}"/sagenb.err}
 
 depend() {
 	need net
 }
 
 start() {
-	# TODO: Add addtional code to detect different startup failures based on
+	# TODO: Add additional code to detect different startup failures based on
 	# standard output
-	if [ ! -f "${user_home}"/.sage/sage_notebook.sagenb/users.pickle ] ; then
+	if [ ! -f "${directory}"/users.pickle ] ; then
 		eend 1 "Did not find user database - configure Sage's Notebook first:"
 
 		echo
@@ -41,7 +50,7 @@ start() {
 		einfo ""
 		einfo "    /etc/conf.d/${RC_SVCNAME}.conf"
 		einfo ""
-		einfo "- Make sure you superuser and run the Notebook with the options"
+		einfo "- Switch to the superuser and run the Notebook with the options"
 		einfo "  you specified in the configuration file. Based on your current"
 		einfo "  settings this would be:"
 		einfo ""
@@ -69,6 +78,10 @@ start() {
 		--exec /usr/bin/sage \
 		-- "${command_args[@]}"
 	eend $? "Failed to start Sage's Notebook server"
+
+	if ! ewaitfile 10 "${pidfile}" ; then
+		eerror "Server did not properly start; check errorfile for more information"
+	fi
 }
 
 stop() {

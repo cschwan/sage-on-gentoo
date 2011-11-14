@@ -18,16 +18,18 @@ SRC_URI="http://sage.math.washington.edu/home/release/${SAGE_P}/${SAGE_P}/spkg/s
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64 ~x86 ~amd64-linux ~x86-linux"
-IUSE="debug testsuite X"
+IUSE="debug testsuite X tools"
 
 RESTRICT="mirror"
 
 DEPEND="!=sci-mathematics/pari-2.4.3-r1"
 if  [[ ${CHOST} == *-darwin* ]] ; then
 	RDEPEND="${DEPEND}
+		tools? ( dev-vcs/mercurial )
 		debug? ( sys-devel/gdb-apple )"
 else
 	RDEPEND="${DEPEND}
+		tools? ( dev-vcs/mercurial )
 		debug? ( sys-devel/gdb )"
 fi
 
@@ -91,7 +93,7 @@ src_prepare() {
 	epatch "${FILESDIR}"/${PN}-4.5.1-remove-sage-location.patch
 
 	# replace ${SAGE_ROOT}/local with ${SAGE_LOCAL}
-	epatch "${FILESDIR}"/${PN}-4.5.2-fix-SAGE_LOCAL.patch
+	epatch "${FILESDIR}"/${PN}-4.7.2-fix-SAGE_LOCAL.patch
 
 	# solve sage-notebook start-up problems (after patching them)
 	mv sage-notebook sage-notebook-real
@@ -136,6 +138,11 @@ src_install() {
 	if use testsuite ; then
 		# DOCTESTING helper scripts
 		dobin sage-doctest sage-maketest sage-ptest sage-starts sage-test || die
+	fi
+
+	if use tools ; then
+		# install some of sage tools for spkg development
+		dobin sage-pkg
 	fi
 
 	# COMMAND helper scripts

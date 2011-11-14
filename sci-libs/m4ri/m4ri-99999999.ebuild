@@ -43,6 +43,7 @@ src_configure() {
 	# cachetune option is not available, because it kills (at least my) X when I
 	# switch from yakuake to desktop
 	myeconfargs=(
+		$(use_enable debug)
 		$(use_enable openmp)
 		$(use_enable sse2)
 	)

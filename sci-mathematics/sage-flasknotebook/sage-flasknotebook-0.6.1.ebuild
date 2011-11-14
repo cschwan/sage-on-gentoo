@@ -4,51 +4,50 @@
 
 EAPI="3"
 
-PYTHON_DEPEND="2:2.7"
-PYTHON_MODNAME="sagenb"
+PYTHON_DEPEND="2:2.6"
+PYTHON_MODNAME="sagenb flask_version"
 
-inherit distutils eutils
+inherit distutils eutils mercurial python
 
-MY_P="sagenb-${PV}"
-SAGE_P="sage-4.7.2.alpha2"
-
-DESCRIPTION="The Sage Notebook is a web-based graphical user interface for mathematical software"
+DESCRIPTION="The Sage Notebook graphical user interface using Flask"
 HOMEPAGE="http://www.sagemath.org"
-SRC_URI="http://sage.math.washington.edu/home/release/${SAGE_P}/${SAGE_P}/spkg/standard/${MY_P}.spkg -> ${P}.tar.bz2"
+EHG_REPO_URI="http://rkirov-flask.googlecode.com/hg/"
 
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64 ~x86 ~amd64-linux ~x86-linux"
-IUSE="+java ssl"
+IUSE="java"
 
 RESTRICT="mirror"
 
-DEPEND="~dev-python/pexpect-2.0
-	>=dev-python/twisted-9.0
+DEPEND=">=dev-python/twisted-9.0
 	>=dev-python/twisted-mail-9.0
 	>=dev-python/twisted-web2-8.1.0
 	>=dev-python/jinja-2.5.5
-	>=dev-python/docutils-0.5"
+	>=dev-python/docutils-0.5
+	>=dev-python/flask-autoindex-0.3.0
+	>=dev-python/flask-openid-1.0.1"
 RDEPEND="${DEPEND}
-	java? ( >=sci-chemistry/jmol-12.0.45
-		>=sci-chemistry/jmol-applet-12.0.45 )
-	ssl? ( net-libs/gnutls )"
-
-S="${WORKDIR}/${MY_P}/src/sagenb"
+	!sci-mathematics/sage-notebook
+	java? ( ~sci-chemistry/jmol-11.6.16
+		~sci-chemistry/jmol-applet-11.6.16 )"
 
 pkg_setup() {
-	# Sage now will only works with python 2.7.*
+	# Sage only works with python 2.6.*
 	python_set_active_version 2.7
 	python_pkg_setup
 }
 
 src_prepare() {
-	# patch for latest jmol-12.0.45 trac 9238
-	epatch "${FILESDIR}"/trac_9238_interactive_js.patch
-
 	epatch "${FILESDIR}"/${PN}-0.8-nojava.patch
 
 	rm -rf sagenb/data/jmol || die "failed to remove jmol"
+
+	epatch "${FILESDIR}"/${PN}-setup.py.patch
+
+	sed -i \
+		"s:os.path.join(os.environ\['SAGE_ROOT'\], 'devel', 'sagenb', 'flask_version'):os.path.join('${EPREFIX}$(python_get_sitedir)', 'flask_version'):g" \
+		sagenb/notebook/run_notebook.py || die "failed to patch for flask_version path"
 
 	sed -i \
 		-e "s:jmolInitialize(\"/java/jmol\");jmolSetCallback(\"menuFile\",\"/java/jmol/appletweb/SageMenu.mnu\"):jmolInitialize(\"/java\",1):g" \
@@ -68,12 +67,6 @@ src_prepare() {
 	# change notebook path to prevent sage from writing to /opt/sage
 	sed -i "s:load_notebook('notebook-test\.sagenb'):load_notebook(tmp_dir()+'.sagenb'):" \
 		sagenb/notebook/twist.py || die "failed to change notebook path"
-
-	# revised 0.8.14+
-	epatch "${FILESDIR}"/${PN}-0.8.16-twistd-python-version.patch
-
-	# https://github.com/cschwan/sage-on-gentoo/issues/63
-	epatch "${FILESDIR}"/${PN}-0.8.14-fix-secure-connection.patch
 
 	distutils_src_prepare
 }

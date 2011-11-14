@@ -1,0 +1,24 @@
+# HG changeset patch
+# User Francois Bissey <francois.bissey@canterbury.ac.nz>
+# Date 1320286243 -46800
+# Node ID d9fc8f79c08061fefd6e4a709ddff2b8354d835a
+# Parent  2e2e57633995f1f349c70ab39278f4fb6275dac2
+trac 9958: fix enumeration order on 64bit system with python-2.7
+
+diff --git a/sage/combinat/words/nfactor_enumerable_word.py b/sage/combinat/words/nfactor_enumerable_word.py
+--- a/sage/combinat/words/nfactor_enumerable_word.py
++++ b/sage/combinat/words/nfactor_enumerable_word.py
+@@ -18,9 +18,11 @@
+     sage: w = Word([4,5,6])^7
+     sage: it = w.factor_iterator(4)
+     sage: it.next()
+-    word: 6456
++    word: 6456 # 32-bit
++    word: 5645 # 64-bit
+     sage: it.next()
+-    word: 5645
++    word: 5645 # 32-bit
++    word: 6456 # 64-bit
+     sage: it.next()
+     word: 4564
+     sage: it.next()

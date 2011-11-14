@@ -23,13 +23,16 @@ IUSE="+java ssl"
 
 RESTRICT="mirror"
 
-DEPEND="~dev-python/pexpect-2.0
+CDEPEND="~dev-python/pexpect-2.0
 	>=dev-python/twisted-9.0
 	>=dev-python/twisted-mail-9.0
 	>=dev-python/twisted-web2-8.1.0
 	>=dev-python/jinja-2.5.5
 	>=dev-python/docutils-0.5"
-RDEPEND="${DEPEND}
+DEPEND="${CDEPEND}
+	test? ( sci-mathematics/sage[testsuite] )"
+RDEPEND="${CDEPEND}
+	sci-mathematics/sage
 	java? ( ~sci-chemistry/jmol-11.6.16
 		~sci-chemistry/jmol-applet-11.6.16 )
 	ssl? ( net-libs/gnutls )"
@@ -40,6 +43,7 @@ pkg_setup() {
 	# Sage now will only works with python 2.7.*
 	python_set_active_version 2.7
 	python_pkg_setup
+	export DOT_SAGE="${S}"
 }
 
 src_prepare() {
@@ -73,4 +77,8 @@ src_prepare() {
 	epatch "${FILESDIR}"/${PN}-0.8.14-fix-secure-connection.patch
 
 	distutils_src_prepare
+}
+
+src_test() {
+	PYTHONPATH="." default_src_test
 }

@@ -1,0 +1,35 @@
+--- sagenb/notebook/run_notebook.py.orig	2011-09-15 18:11:45.000000000 -0500
++++ sagenb/notebook/run_notebook.py	2011-09-15 18:20:23.000000000 -0500
+@@ -10,15 +10,8 @@
+ #                  http://www.gnu.org/licenses/
+ #############################################################################
+ 
+-try:
+-    # If Sage is installed, then we have gnutls, etc., and GPL'd code,
+-    # so we prefer GNUtls.
+-    import sage.misc.misc
+-    protocol = 'tls'
+-except ImportError:
+-    # We are not in the presence of Sage, so we probably have SSL,
+-    # which is better anyways.
+-    protocol = 'ssl'
++# newer versions of twisted do not support tls
++protocol = 'ssl'
+ 
+ # System libraries
+ import getpass
+@@ -83,14 +76,6 @@
+ 
+ signal.signal(signal.SIGINT, my_sigint)
+ 
+-## Disable client-side certificate request for gnutls
+-try:
+-    import gnutls.connection
+-    gnutls.connection.CERT_REQUEST = 0
+-except (OSError, ImportError):
+-    print "Note: GNUTLS not available."
+-
+-
+ ## Authentication framework (ported from Knooboo)
+ from twisted.web2 import log, server, channel
+ from twisted.cred import portal, checkers, credentials

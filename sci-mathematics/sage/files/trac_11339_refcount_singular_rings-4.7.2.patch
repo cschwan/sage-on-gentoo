@@ -1,0 +1,376 @@
+# HG changeset patch
+# User Volker Braun <vbraun@stp.dias.ie>
+# Date 1308487956 -3600
+# Node ID dca107e84dc194d9dae39c5e7e5e24c684dcda34
+# Parent  a48af224839e4eb2555175d15d703ecd81d0b4c1
+Trac #11339: Refcount singular rings
+
+This patch introduces the necessary framework to refcount Singular rings.
+
+diff --git a/sage/libs/singular/groebner_strategy.pxd b/sage/libs/singular/groebner_strategy.pxd
+--- a/sage/libs/singular/groebner_strategy.pxd
++++ b/sage/libs/singular/groebner_strategy.pxd
+@@ -1,11 +1,13 @@
+-from sage.libs.singular.decl cimport skStrategy
++from sage.libs.singular.decl cimport skStrategy, ring
+ 
+-from sage.rings.polynomial.multi_polynomial_libsingular cimport MPolynomialRing_libsingular, MPolynomial_libsingular
++from sage.rings.polynomial.multi_polynomial_libsingular cimport \
++    MPolynomialRing_libsingular, MPolynomial_libsingular
+ from sage.structure.sage_object cimport SageObject
+ 
+ 
+ cdef class GroebnerStrategy(SageObject):
+     cdef skStrategy *_strat
++    cdef ring *_parent_ring
+     cdef MPolynomialRing_libsingular _parent
+     cdef object _ideal
+ 
+diff --git a/sage/libs/singular/groebner_strategy.pyx b/sage/libs/singular/groebner_strategy.pyx
+--- a/sage/libs/singular/groebner_strategy.pyx
++++ b/sage/libs/singular/groebner_strategy.pyx
+@@ -27,6 +27,8 @@
+ from sage.libs.singular.decl cimport initEcartBBA, enterSBba, initBuchMoraCrit, initS, pNorm, id_Delete, kTest
+ from sage.libs.singular.decl cimport omfree, redNF, p_Copy, redtailBba
+ 
++from sage.libs.singular.ring cimport singular_ring_reference, singular_ring_delete
++
+ from sage.rings.polynomial.multi_polynomial_ideal import MPolynomialIdeal
+ from sage.rings.polynomial.multi_polynomial_ideal_libsingular cimport sage_ideal_to_singular_ideal
+ from sage.rings.polynomial.multi_polynomial_libsingular cimport MPolynomial_libsingular, MPolynomialRing_libsingular, new_MP
+@@ -42,7 +44,7 @@
+ 
+     Uses Singular via libSINGULAR
+     """
+-    def __init__(self, L):
++    def __cinit__(self, L):
+         """
+         Create a new :class:`GroebnerStrategy` object for the
+         generators of the ideal ``L``.
+@@ -100,6 +102,7 @@
+ 
+         cdef MPolynomialRing_libsingular R = <MPolynomialRing_libsingular>L.ring()
+         self._parent = R
++        self._parent_ring = singular_ring_reference(R._ring)
+ 
+         if not R.term_order().is_global():
+             raise NotImplementedError("The local case is not implemented yet.")
+@@ -141,6 +144,8 @@
+             sage: strat = GroebnerStrategy(I)
+             sage: del strat
+         """
++        # WARNING: the Cython class self._parent is no longer accessible!
++        # see http://trac.sagemath.org/sage_trac/ticket/11339
+         cdef ring *oldRing = NULL
+         if self._strat:
+             omfree(self._strat.sevS)
+@@ -152,15 +157,16 @@
+             omfree(self._strat.L)
+             omfree(self._strat.B)
+             omfree(self._strat.fromQ)
+-            id_Delete(&self._strat.Shdl, self._parent._ring)
++            id_Delete(&self._strat.Shdl, self._parent_ring)
+ 
+-            if self._parent._ring != currRing:
++            if self._parent_ring != currRing:
+                 oldRing = currRing
+-                rChangeCurrRing(self._parent._ring)
++                rChangeCurrRing(self._parent_ring)
+                 delete_skStrategy(self._strat)
+                 rChangeCurrRing(oldRing)
+             else:
+                 delete_skStrategy(self._strat)
++        singular_ring_delete(self._parent_ring)
+ 
+     def _repr_(self):
+         """
+diff --git a/sage/libs/singular/ring.pxd b/sage/libs/singular/ring.pxd
+--- a/sage/libs/singular/ring.pxd
++++ b/sage/libs/singular/ring.pxd
+@@ -14,8 +14,42 @@
+ 
+ from sage.libs.singular.decl cimport ring
+ 
++
++# To work with singular rings, you need to balance singular_ring_new with
++# singular_ring_delete or singular_ring_reference with
++# singular_ring_delete. That is, either use one of the two patterns:
++#
++# cdef class myclass_new():
++#     cdef ring* myring;
++#     cdef __cinit__():
++#         self.myring = singular_ring_new(...)
++#     cdef __dealloc__():
++#         singular_ring_delete(self.myring)
++#
++# cdef class myclass_reference():
++#     cdef ring* refring;
++#     cdef __cinit__(ring* some_ring):
++#         self.refring = singular_ring_reference(some_ring)
++#     cdef __dealloc__():
++#         singular_ring_delete(self.refring)
++#
++# You must not refer to Python/Cython classes in the Cython
++# destructor, the following is INVALID:
++#
++# cdef class myclass_invalid():
++#     cdef Parent parent;
++#     cdef __cinit__(Parent p):
++#         self.parent = p
++#     cdef __dealloc__():
++#         do_something_with(self.parent.ring)   # segfault
++
++
++
+ # create a new singular ring
+ cdef ring *singular_ring_new(base_ring, n, names, term_order) except NULL
+ 
+-# carefully delete a ring
+-cdef void singular_ring_delete(ring *ring)
++# reference an existing ring
++cdef ring *singular_ring_reference(ring *existing_ring) except NULL
++
++# carefully delete a ring once its refcount is zero
++cdef void singular_ring_delete(ring *doomed)
+diff --git a/sage/libs/singular/ring.pyx b/sage/libs/singular/ring.pyx
+--- a/sage/libs/singular/ring.pyx
++++ b/sage/libs/singular/ring.pyx
+@@ -55,6 +55,8 @@
+     "Ws": ringorder_Ws,
+ }
+ 
++
++#############################################################################
+ cdef ring *singular_ring_new(base_ring, n, names, term_order) except NULL:
+     """
+     Create a new Singular ring over the ``base_ring`` in ``n``
+@@ -292,8 +294,181 @@
+     _ring.ShortOut = 0
+ 
+     rChangeCurrRing(_ring)
++    
++    wrapped_ring = wrap_ring(_ring)
++    if wrapped_ring in ring_refcount_dict:
++        raise ValueError('newly created ring already in dictionary??')
++    ring_refcount_dict[wrapped_ring] = 1
+     return _ring
+ 
++
++#############################################################################
++ring_refcount_dict = {}
++
++
++cdef class ring_wrapper_Py(object):
++    r"""
++    Python object wrapping the ring pointer.
++
++    This is useful to store ring pointers in Python containers.
++
++    You must not construct instances of this class yourself, use
++    :func:`wrap_ring` instead.
++
++    EXAMPLES::
++
++        sage: from sage.libs.singular.ring import ring_wrapper_Py
++        sage: ring_wrapper_Py
++        <type 'sage.libs.singular.ring.ring_wrapper_Py'>
++    """
++
++    cdef ring* _ring
++
++    def __cinit__(self):
++        """
++        The Cython constructor.
++        
++        EXAMPLES::
++        
++            sage: from sage.libs.singular.ring import ring_wrapper_Py
++            sage: t = ring_wrapper_Py(); t
++            The ring pointer 0x0
++            sage: TestSuite(t).run()
++        """
++        self._ring = NULL
++
++    def __hash__(self):
++        """
++        Return a hash value so that instances can be used as dictionary keys.
++
++        OUTPUT:
++        
++        Integer.
++        
++        EXAMPLES::
++
++            sage: from sage.libs.singular.ring import ring_wrapper_Py
++            sage: t = ring_wrapper_Py()
++            sage: t.__hash__()
++            0
++        """
++        return <long>(self._ring)
++
++    def __repr__(self):
++        """
++        Return a string representation.
++
++        OUTPUT: 
++
++        String.
++
++        EXAMPLES::
++
++            sage: from sage.libs.singular.ring import ring_wrapper_Py
++            sage: t = ring_wrapper_Py()
++            sage: t
++            The ring pointer 0x0
++            sage: t.__repr__()
++            'The ring pointer 0x0'
++        """
++        return 'The ring pointer '+hex(self.__hash__())
++
++    def __cmp__(ring_wrapper_Py left, ring_wrapper_Py right):
++        """
++        Compare ``left`` and ``right`` so that instances can be used as dictionary keys.
++        
++        INPUT:
++
++        - ``right`` -- a :class:`ring_wrapper_Py`
++        
++        OUTPUT:
++
++        -1, 0, or +1 depending on whether ``left`` and ``right`` are
++         less than, equal, or greather than.
++
++        EXAMPLES::
++
++            sage: from sage.libs.singular.ring import ring_wrapper_Py
++            sage: t = ring_wrapper_Py()
++            sage: t.__cmp__(t)
++            0
++        """
++        if left._ring < right._ring:
++            return -1
++        if left._ring > right._ring:
++            return +1
++        return 0
++
++
++cdef wrap_ring(ring* R):
++    """
++    Wrap a C ring pointer into a Python object.
++
++    INPUT:
++
++    - ``R`` -- a singular ring (a C datastructure).
++
++    OUTPUT:
++
++    A Python object :class:`ring_wrapper_Py` wrapping the C pointer.
++    """
++    cdef ring_wrapper_Py W = ring_wrapper_Py()
++    W._ring = R
++    return W
++
++
++cdef ring *singular_ring_reference(ring *existing_ring) except NULL:
++    """
++    Refcount the ring ``existing_ring``.
++
++    INPUT:
++
++    - ``existing_ring`` -- an existing Singular ring.
++    
++    OUTPUT:
++
++    The same ring with its refcount increased. After calling this
++    function `n` times, you need to call :func:`singular_ring_delete`
++    `n+1` times to actually deallocate the ring.
++
++    EXAMPLE::
++
++        sage: import gc
++        sage: from sage.rings.polynomial.multi_polynomial_libsingular import MPolynomialRing_libsingular
++        sage: from sage.libs.singular.groebner_strategy import GroebnerStrategy
++        sage: from sage.libs.singular.ring import ring_refcount_dict
++        sage: n = len(ring_refcount_dict)
++        sage: prev_rings = set(ring_refcount_dict.keys())
++        sage: P = MPolynomialRing_libsingular(GF(541), 2, ('x', 'y'), TermOrder('degrevlex', 2))
++        sage: ring_ptr = set(ring_refcount_dict.keys()).difference(prev_rings).pop()
++        sage: ring_ptr  # random output
++        The ring pointer 0x7f78a646b8d0
++        sage: ring_refcount_dict[ring_ptr]
++        4
++
++        sage: strat = GroebnerStrategy(Ideal([P.gen(0) + P.gen(1)]))
++        sage: ring_refcount_dict[ring_ptr]
++        6
++        
++        sage: del strat
++        sage: _ = gc.collect()
++        sage: ring_refcount_dict[ring_ptr]
++        4
++
++        sage: del P
++        sage: _ = gc.collect()
++        sage: ring_ptr in ring_refcount_dict
++        False
++    """
++    if existing_ring==NULL:
++        raise ValueError('singular_ring_reference(ring*) called with NULL pointer.')
++    cdef object r = wrap_ring(existing_ring)
++    refcount = ring_refcount_dict.pop(r)
++    ring_refcount_dict[r] = refcount+1
++    return existing_ring
++
++
++#############################################################################
+ cdef void singular_ring_delete(ring *doomed):
+     """
+     Carefully deallocate the ring, without changing "currRing" (since
+@@ -320,13 +495,27 @@
+         sage: del R3
+         sage: _ = gc.collect()
+     """
+-    cdef ring *oldRing = NULL
+-    if currRing != doomed:
+-        oldRing = currRing
++    if doomed==NULL:
++        print 'singular_ring_delete(ring*) called with NULL pointer.'
++        # this function is typically called in __deallocate__, so we can't raise an exception
++        import traceback
++        traceback.print_stack()
++
++    if not ring_refcount_dict:  # arbitrary finalization order when we shut Sage down
++        return
++
++    cdef ring_wrapper_Py r = wrap_ring(doomed)
++    refcount = ring_refcount_dict.pop(r)
++    if refcount > 1:
++        ring_refcount_dict[r] = refcount-1
++        return
++
++    cdef ring *oldRing = currRing
++    if currRing == doomed:
++        rDelete(doomed)
++        currRing = <ring*>NULL
++    else:
+         rChangeCurrRing(doomed)
+         rDelete(doomed)
+         rChangeCurrRing(oldRing)
+-    else:
+-        (&currRing)[0] = NULL
+-        rDelete(doomed)
+    
+diff --git a/sage/libs/singular/singular-cdefs.pxi b/sage/libs/singular/singular-cdefs.pxi
+--- a/sage/libs/singular/singular-cdefs.pxi
++++ b/sage/libs/singular/singular-cdefs.pxi
+@@ -716,6 +716,10 @@
+     
+     number *nlInit2(int i, int j)
+ 
++    # simplify rational number (cancel common factors)
++    
++    number *nlNormalize(number *)
++
+     # copy a number
+ 
+     number *nlCopy(number *)

@@ -2,6 +2,109 @@
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*sage-4.7.2 (05 Nov 2011)
+
+  05 Nov 2011; Christopher Schwan <cschwan@students.uni-mainz.de>
+  -sage-4.7.2_rc0.ebuild, +sage-4.7.2.ebuild:
+  Version bump. Soft block sage-examples which is no longer needed and
+  upgrade dependency on sage-latex
+
+  03 Nov 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  +files/trac_9958_enumerate64bit.patch, sage-4.7.2_rc0.ebuild:
+  One more patch for python-2.7
+
+  02 Nov 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  +files/trac_9958_junk_valueerror.patch, sage-4.7.2_rc0.ebuild:
+  Add a new patch for python-2.7
+
+  01 Nov 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  files/trac_9958-fix-pureAssertError.patch,
+  files/trac_9958-sage_unittest.patch:
+  Update patches for python-2.7.2
+
+  31 Oct 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-4.7.2_rc0.ebuild, +files/sage-4.7.2-dist.py.patch:
+  Get SAGE_BIN properly defined in dist.py
+
+  26 Oct 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-4.7.2_rc0.ebuild:
+  modify the sed line for libsingular in module_list.py to reflect upstream
+  changes.
+
+  24 Oct 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-4.7.2_rc0.ebuild:
+  correct factory headers from new singular.
+
+  23 Oct 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-4.7.1-r2.ebuild:
+  soften the singular dependency in 4.7.1 for bug 387869
+
+  23 Oct 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  +files/11130-4.7.2.alpha3.patch, +files/11130-sagelib-simon-v2.patch,
+  -files/11130-sagelib-simon.patch, -files/11130_sagelib32.patch,
+  files/11130_reviewer32.patch, files/11130_sagelib.patch,
+  files/trac_9958-fixing_numericalnoise-part1.patch, -sage-4.7.2_alpha3.ebuild,
+  +sage-4.7.2_rc0.ebuild:
+  dependency clean up.
+
+*sage-4.7.2_rc0 (23 Oct 2011)
+
+  23 Oct 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  +files/11130-4.7.2.alpha3.patch, +files/11130-sagelib-simon-v2.patch,
+  -files/11130-sagelib-simon.patch, -files/11130_sagelib32.patch,
+  files/11130_reviewer32.patch, files/11130_sagelib.patch,
+  files/trac_9958-fixing_numericalnoise-part1.patch, -sage-4.7.2_alpha3.ebuild,
+  +sage-4.7.2_rc0.ebuild:
+  4.7.2_rc0
+
+  12 Oct 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-4.7-r2.ebuild, sage-4.7.1-r2.ebuild, sage-4.7.2_alpha3.ebuild:
+  adjust singular version.
+
+  07 Oct 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-4.7.2_alpha3.ebuild:
+  Add more non-cython generated files for the testsuite.
+
+  06 Oct 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-4.7.2_alpha3.ebuild:
+  correct typo
+
+  06 Oct 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-4.7.2_alpha3.ebuild:
+  Install library headers for the testsuite
+
+  06 Oct 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-4.7.2_alpha3.ebuild:
+  remove install_package hack
+
+  05 Oct 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-4.7.2_alpha3.ebuild:
+  disable cbc completely as "is_package_installed" seem to be broken.
+
+  04 Oct 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  -sage-4.7.2_alpha2.ebuild, +sage-4.7.2_alpha3.ebuild:
+  bump dep on sagenb
+
+*sage-4.7.2_alpha3 (02 Oct 2011)
+
+  02 Oct 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  -sage-4.7.2_alpha2.ebuild, +sage-4.7.2_alpha3.ebuild:
+  4.7.2.alpha3
+
+  27 Sep 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-4.7.2_alpha2.ebuild,
+  +files/trac_11339_refcount_singular_rings-4.7.2.patch,
+  +files/trac_11339_refcount_singular_polynomials-4.7.2.patch.bz2:
+  Update trac 11339 patches for 4.7.2.alpha2
+
+  25 Sep 2011; Christopher Schwan <cschwan@students.uni-mainz.de>
+  sage-4.7-r2.ebuild, sage-4.7.1-r2.ebuild, sage-4.7.2_alpha2.ebuild:
+  Post depend on the notebook to prevent circular dependencies
+
+  25 Sep 2011; Christopher Schwan <cschwan@students.uni-mainz.de>
+  sage-4.7-r2.ebuild, sage-4.7.1-r2.ebuild, sage-4.7.2_alpha2.ebuild:
+  Restrict testing for the time being
+
   09 Sep 2011; François Bissey <francois.bissey@canterbury.ac.nz>
   sage-4.7.2_alpha2.ebuild:
   fix issue 85 for now.

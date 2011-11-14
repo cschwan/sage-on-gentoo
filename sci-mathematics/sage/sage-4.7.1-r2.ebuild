@@ -20,7 +20,7 @@ SLOT="0"
 KEYWORDS="~amd64 ~x86 ~amd64-linux ~x86-linux ~x86-macos"
 IUSE="examples mpc latex testsuite"
 
-RESTRICT="mirror"
+RESTRICT="mirror test"
 
 CDEPEND="dev-libs/gmp
 	>=dev-libs/mpfr-2.4.2
@@ -96,11 +96,7 @@ RDEPEND="${CDEPEND}
 	~sci-mathematics/sage-data-polytopes_db-20100210
 	>=sci-mathematics/sage-doc-${PV}
 	~sci-mathematics/sage-extcode-${PV}
-	~sci-mathematics/sage-notebook-0.8.19
-	|| (
-	  ~sci-mathematics/singular-3.1.1.4[-libsingular]
-	  >=sci-mathematics/singular-3.1.2
-	)
+	>=sci-mathematics/singular-3.1.2
 	>=sci-mathematics/sympow-1.018.1_p8[pari24]
 	examples? ( ~sci-mathematics/sage-examples-4.7 )
 	testsuite? (
@@ -114,6 +110,7 @@ RDEPEND="${CDEPEND}
 			media-gfx/imagemagick[png]
 		)
 	)"
+PDEPEND="~sci-mathematics/sage-notebook-0.8.19"
 
 S="${WORKDIR}/${MY_P}"
 

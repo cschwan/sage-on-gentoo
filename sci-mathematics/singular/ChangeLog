@@ -2,6 +2,26 @@
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  24 Oct 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  singular-3.1.3.3.ebuild:
+  correct singular share source
+
+  12 Oct 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  -files/singular-3.1.0-glibc-2.10.patch, -files/singular-3.1.1.3-soname.patch,
+  -singular-3.1.1.4-r1.ebuild, -files/singular-3.1.1.4-parallelmake.patch,
+  +singular-3.1.3.3.ebuild, +files/singular-3.1.3.3-Minor.h.patch,
+  +files/singular-3.1.3.3-os_x_ppc.patch, metadata.xml:
+  libsingular useflag is gone too
+
+*singular-3.1.3.3 (12 Oct 2011)
+
+  12 Oct 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  -files/singular-3.1.0-glibc-2.10.patch, -files/singular-3.1.1.3-soname.patch,
+  -singular-3.1.1.4-r1.ebuild, -files/singular-3.1.1.4-parallelmake.patch,
+  +singular-3.1.3.3.ebuild, +files/singular-3.1.3.3-Minor.h.patch,
+  +files/singular-3.1.3.3-os_x_ppc.patch:
+  Drop old. Main tree version should work. Get latest for upcoming 4.7.2.
+
   09 Jan 2011; François Bissey <f.r.bissey@massey.ac.nz>
   singular-3.1.1.4-r1.ebuild:
   config change for better prefix support (hopefully)

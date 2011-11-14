@@ -31,7 +31,6 @@ RDEPEND="dev-libs/gmp
 DEPEND="${RDEPEND}
 	dev-lang/perl
 	boost? ( dev-libs/boost )
-	!sci-mathematics/singular[libsingular]
 	test? (
 		dev-util/cmake
 		dev-util/cppunit

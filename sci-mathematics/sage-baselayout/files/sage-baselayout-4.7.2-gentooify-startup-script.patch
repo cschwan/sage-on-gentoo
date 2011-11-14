@@ -1,5 +1,5 @@
---- sage-sage.orig	2011-05-18 16:01:57.691244198 +1200
-+++ sage-sage	2011-05-18 16:04:09.390694975 +1200
+--- sage-sage.orig	2011-10-23 06:33:21.000000000 +1300
++++ sage-sage	2011-11-02 10:29:33.251482342 +1300
 @@ -35,10 +35,6 @@
      echo "                           -only-optional <tag1,...,tagn>  -- only run tests"
      echo "                            including one of the #optional tags"
@@ -147,15 +147,7 @@
  if [ "$1" = '-gap' -o "$1" = '--gap' ]; then
      cd "$CUR"
      shift
-@@ -368,14 +290,14 @@
- if [ "$1" = '-gp'  -o "$1" = '--gp' ]; then
-     cd "$CUR"
-     shift
--    "$SAGE_LOCAL/bin/gp" "$@"
-+    "$SAGE_LOCAL/bin/gp" "$@"
-     exit $?
- fi
- 
+@@ -375,7 +297,7 @@
  if [ "$1" = '-singular'  -o "$1" = '--singular' ]; then
      cd "$CUR"
      shift
@@ -178,22 +170,10 @@
  if [ "$1" = '-maxima'  -o "$1" = '--maxima' ]; then
      cd "$CUR"
      shift
-@@ -534,72 +449,10 @@
+@@ -536,60 +451,10 @@
      exit $?
  fi
  
--if [ "$1" = '-hgmerge'  -o "$1" = '--hgmerge' ]; then
--    ## NEED in Sage Environment under OS X
--    unset LIBRARY_PATH
--    unset LD_LIBRARY_PATH
--    unset DYLD_LIBRARY_PATH
--
--    cd "$CUR"
--    shift
--    hgmerge "$@"
--    exit $?
--fi
--
 -if [ "$1" = '-merge' ]; then
 -    cd "$CUR"
 -    shift
@@ -251,7 +231,7 @@
  if [ "$1" = "-notebook"  -o "$1" = '--notebook' -o "$1" = '-n' ]; then
     cd "$CUR"
     shift
-@@ -608,14 +461,6 @@
+@@ -598,14 +463,6 @@
     exit $?
  fi
  
@@ -266,7 +246,7 @@
  if [ "$1" = "-inotebook"  -o "$1" = '--inotebook' ]; then
     cd "$CUR"
     shift
-@@ -624,18 +469,6 @@
+@@ -614,18 +471,6 @@
     exit $?
  fi
  
@@ -285,7 +265,7 @@
  if [ "$1" = '-grep' -o "$1" = "--grep" ]; then
     sage_setup
     shift
-@@ -658,81 +491,7 @@
+@@ -648,81 +493,7 @@
     exit $?
  fi
  
@@ -368,7 +348,7 @@
     if ! [  -f  "$DOT_SAGE"/init.sage ]; then
        echo >&2 "init.sage does not exist ... creating"
        touch "$DOT_SAGE"/init.sage
-@@ -743,11 +502,7 @@
+@@ -733,11 +504,7 @@
     exit $?
  fi
  
@@ -381,7 +361,7 @@
     sage-starts
     if ! [  -f  "$DOT_SAGE"/init.sage ]; then
        echo >&2 "init.sage does not exist ... creating"
-@@ -758,16 +513,6 @@
+@@ -748,16 +515,6 @@
     exit $?
  fi
  
@@ -398,7 +378,7 @@
  if [ "$1" = '-testall' -o "$1" = "--testall" ]; then
     shift
     sage-maketest "$@"
-@@ -783,178 +528,14 @@
+@@ -773,71 +530,12 @@
     exit $?
  fi
  
@@ -420,22 +400,24 @@
 -   fi
 -   for PKG in "$@"
 -   do
--       echo "Calling sage-spkg on $PKG"
--       PKG_NAME=`echo "$PKG" | sed -e "s/\.spkg$//"`
--       PKG_NAME=`basename "$PKG_NAME"`
--       case $PKG in
--	   /*)
--	       sage-spkg $OPT "$PKG" 2>&1 | (trap "" SIGINT; tee -a ../install.log "$SAGE_LOGS/$PKG_NAME".log)
--	   ;;
--	   *)
--	       sage-spkg $OPT "$CUR/$PKG" 2>&1 | (trap "" SIGINT; tee -a ../install.log "$SAGE_LOGS/$PKG_NAME".log)
--	   ;;
--       esac
--
--       if [ $? -ne 0 ]; then
--          exit 1
--       fi
--       shift
+-	echo "Calling sage-spkg on '$PKG'"
+-	PKG_NAME=`echo "$PKG" | sed -e "s/\.spkg$//"`
+-	PKG_NAME=`basename "$PKG_NAME"`
+-	case "$PKG" in
+-	    /*) PKG_PATH="$PKG";;
+-	    *) PKG_PATH="$CUR/$PKG";;
+-	esac
+-	# Could use ./pipestatus here, but using an absolute path is safer:
+-	# (We'll have to change it anyway in case 'pipestatus' one day moves.)
+-	"$SAGE_ROOT"/spkg/pipestatus \
+-	    "sage-spkg $OPT '$PKG_PATH' 2>&1" \
+-	    "(trap '' SIGINT; tee -a '$SAGE_ROOT'/install.log '$SAGE_LOGS/$PKG_NAME'.log)"
+-	# Do not try to install further packages (if any) if one failed:
+-	if [[ $? -ne 0 ]]; then
+-	    echo >&2 "Error: Failed to install package '$PKG_NAME'."
+-	    exit 1
+-	fi
+-	shift
 -   done
 -   exit $?
 -}
@@ -465,22 +447,14 @@
     shift
     echo "Force installing $@"
 -   install -f "$@"
--fi
--
--if [ "$1" = '-pkg' -o "$1" = '-spkg' -o "$1" = "--pkg" -o "$1" = "--spkg" ]; then
--   cd "$CUR"
--   shift
--   for PKG in "$@"
--   do
--      echo "Creating Sage package $PKG"
--      sage-pkg "$PKG"
--      if [ $? -ne 0 ]; then
--         exit 1
 +   if [ $# -lt 1 ]; then
-+       echo "Currently installed packages:"
-       fi
--   done
--   exit $?
++      echo "Currently installed packages:"
++   fi
+ fi
+ 
+ if [ "$1" = '-pkg' -o "$1" = '-spkg' -o "$1" = "--pkg" -o "$1" = "--spkg" ]; then
+@@ -854,99 +552,6 @@
+    exit $?
  fi
  
 -if [ "$1" = '-pkg_nc' -o "$1" = "--pkg_nc" ]; then
@@ -579,7 +553,7 @@
  if [ "$1" = '-gdb' -o "$1" = "--gdb" ]; then
      sage_setup
      sage-gdb
-@@ -1016,10 +597,6 @@
+@@ -1008,10 +613,6 @@
  
  if [ $# -ge 1 ]; then
     T=`echo "$1" | sed -e "s/.*\.//"`
@@ -588,5 +562,5 @@
 -       exit $?
 -   fi
     cd "$SAGE_LOCAL/bin/"
+    SAGE_BANNER="no" sage_setup 
     sage-run "$CUR" "$@"
-    exit $?

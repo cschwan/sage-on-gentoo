@@ -13,7 +13,7 @@ diff --git a/sage/categories/enumerated_sets.py b/sage/categories/enumerated_set
                  Traceback (most recent call last):
                  ...
 -                AssertionError
-+                AssertionError: False is not True
++                AssertionError: False is not true
              """
              tester = self._tester(**options)
              i = 0
@@ -25,7 +25,7 @@ diff --git a/sage/categories/primer.py b/sage/categories/primer.py
          tester.assert_((x * y) * z == x * (y * z))
        ...
 -    AssertionError
-+    AssertionError: False is not True
++    AssertionError: False is not true
  
  
  Wrapup:
@@ -37,7 +37,7 @@ diff --git a/sage/structure/sage_object.pyx b/sage/structure/sage_object.pyx
              Traceback (most recent call last):
              ...
 -            AssertionError
-+            AssertionError: False is not True
++            AssertionError: False is not true
          """
          from sage.categories.category import Category
          from sage.categories.objects import Objects
@@ -46,7 +46,7 @@ diff --git a/sage/structure/sage_object.pyx b/sage/structure/sage_object.pyx
              Traceback (most recent call last):
              ...
 -            AssertionError
-+            AssertionError: False is not True
++            AssertionError: False is not true
              sage: tester.assert_(1 == 0, "this is expected to fail")
              Traceback (most recent call last):
              ...
