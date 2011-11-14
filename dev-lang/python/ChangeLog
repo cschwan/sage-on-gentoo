@@ -1,11 +1,14 @@
 # ChangeLog for dev-lang/python
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/ChangeLog,v 1.554 2011/10/27 15:58:07 chainsaw Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/ChangeLog,v 1.557 2011/10/31 04:02:01 vapier Exp $
 
-  27 Oct 2011; François Bissey <francois.bissey@canterbury.ac.nz>
-  python-2.7.1-r1.ebuild, python-2.7.2-r3.ebuild, files/pydoc.conf,
-  files/pydoc.init, metadata.xml:
-  updating python ebuilds
+  31 Oct 2011; Mike Frysinger <vapier@gentoo.org> python-2.6.7-r2.ebuild,
+  python-2.7.2-r2.ebuild, python-2.7.2-r3.ebuild, python-3.1.4-r2.ebuild,
+  python-3.1.4-r3.ebuild, python-3.2-r2.ebuild, python-3.2.2.ebuild:
+  Drop unnecessary USE=kernel_linux check in plat-linux3 setup.
+
+  30 Oct 2011; Raúl Porcel <armin76@gentoo.org> python-2.7.2-r3.ebuild:
+  alpha/ia64/s390/sh/sparc stable wrt #387849
 
   27 Oct 2011; Tony Vroon <chainsaw@gentoo.org> python-2.7.2-r3.ebuild,
   python-3.1.4-r3.ebuild:
