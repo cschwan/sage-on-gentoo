@@ -1,4 +1,4 @@
-# Copyright 1999-2010 Gentoo Foundation
+# Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
@@ -6,9 +6,7 @@ inherit latex-package
 
 DESCRIPTION="tkz-graph is a set of convenient macros for drawing graphs"
 HOMEPAGE="http://altermundus.com/pages/graph.html"
-SRC_URI="http://altermundus.com/downloads/packages/${PN}.sty"
-
-# TODO: could not find a license
+SRC_URI="http://www.ctan.org/tex-archive/macros/latex/contrib/tkz/${PN}/latex${PN}.sty"
 
 LICENSE="LPPL-1.3 GPL-3"
 SLOT="0"

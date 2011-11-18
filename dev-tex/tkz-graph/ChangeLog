@@ -1,6 +1,10 @@
 # ChangeLog for dev-tex/tkz-graph
-# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
+
+  18 Nov 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  tkz-graph-2.7d.ebuild:
+  Source have moved to CTAN
 
   08 Sep 2010; François Bissey <f.r.bissey@massey.ac.nz> metadata.xml:
   Fix metadata
