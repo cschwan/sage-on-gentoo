@@ -1,6 +1,10 @@
 # ChangeLog for dev-tex/tkz-berge
-# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
+
+  18 Nov 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  tkz-berge-2.8.ebuild:
+  sources have moved to ctan
 
   08 Sep 2010; François Bissey <f.r.bissey@massey.ac.nz> metadata.xml:
   Fix metadata

@@ -1,15 +1,13 @@
-# Copyright 1999-2010 Gentoo Foundation
+# Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
 inherit latex-package
 
-DESCRIPTION="tkz-berge is a collection of some useful macros if you want to draw some classic graphs of the graph theory or to make others graphs"
+DESCRIPTION="A collection of useful macros to draw some classic graphs of the graph theory or others graphs"
 HOMEPAGE="http://altermundus.com/pages/graphtheory.html"
-SRC_URI="http://altermundus.com/downloads/packages/tkz-arith.sty
-	http://altermundus.com/downloads/packages/${PN}.sty"
-
-# TODO: no license found
+SRC_URI="http://www.ctan.org/tex-archive/macros/latex/contrib/tkz/${PN}/latex/tkz-arith.sty
+	http://www.ctan.org/tex-archive/macros/latex/contrib/tkz/${PN}/latex/${PN}.sty"
 
 LICENSE="LPPL-1.3 GPL-3"
 SLOT="0"
