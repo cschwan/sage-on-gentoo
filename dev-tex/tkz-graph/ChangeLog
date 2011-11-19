@@ -2,6 +2,10 @@
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  19 Nov 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  tkz-graph-2.7d.ebuild:
+  correct typo
+
   18 Nov 2011; François Bissey <francois.bissey@canterbury.ac.nz>
   tkz-graph-2.7d.ebuild:
   Source have moved to CTAN
