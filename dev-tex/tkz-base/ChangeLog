@@ -1,0 +1,10 @@
+# ChangeLog for dev-tex/tkz-base
+# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
+# $Header: $
+
+*tkz-base-1.16c (20 Nov 2011)
+
+  20 Nov 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  +tkz-base-1.16c.ebuild, +metadata.xml:
+  Initial commit
+
