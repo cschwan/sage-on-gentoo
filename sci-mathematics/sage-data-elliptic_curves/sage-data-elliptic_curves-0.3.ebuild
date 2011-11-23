@@ -10,7 +10,7 @@ PYTHON_USE_WITH="sqlite"
 inherit python
 
 MY_P="elliptic_curves-${PV}"
-SAGE_P="sage-4.7.2.alpha3"
+SAGE_P="sage-4.8.alpha2"
 
 DESCRIPTION="Sage's elliptic curves databases"
 HOMEPAGE="http://www.sagemath.org"
@@ -33,11 +33,9 @@ pkg_setup() {
 	python_pkg_setup
 }
 
-
-
 src_install() {
 	cd "${S}"/cremona_mini
 	SAGE_DATA="${ED}/usr/share/sage/data" ./spkg-install
-        cd "${S}"/ellcurves
-        SAGE_DATA="${ED}/usr/share/sage/data" ./spkg-install
+	cd "${S}"/ellcurves
+	SAGE_DATA="${ED}/usr/share/sage/data" ./spkg-install
 }
