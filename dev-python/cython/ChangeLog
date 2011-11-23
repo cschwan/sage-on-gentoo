@@ -2,6 +2,13 @@
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/dev-python/cython/ChangeLog,v 1.70 2011/07/08 07:30:21 djc Exp $
 
+*cython-0.15.1 (23 Nov 2011)
+
+  23 Nov 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  +cython-0.15.1.ebuild:
+  Adding cython-0.15.1. tests for numpy support barf out with python-3.1, I
+  expect it is a numpy-1.5.x thing.
+
   01 Aug 2011; François Bissey <francois.bissey@canterbury.ac.nz>
   +cython-0.14.1-r1.ebuild, -cython-0.14.1_p3.ebuild:
   Back to simple -r1 which does work.
