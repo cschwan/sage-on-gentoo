@@ -1,0 +1,10 @@
+# ChangeLog for dev-python/sphinx
+# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
+# $Header: $
+
+*sphinx-1.1.2 (23 Nov 2011)
+
+  23 Nov 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  +sphinx-1.1.2.ebuild, +metadata.xml:
+  Initial commit to the overlay. sage-4.8 will use sphinx-1.1.2
+
