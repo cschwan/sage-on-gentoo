@@ -1,0 +1,28 @@
+--- sage-starts.orig	2011-11-24 15:09:01.679720884 +1300
++++ sage-starts	2011-11-24 15:14:21.391391187 +1300
+@@ -1,24 +1,10 @@
+ #!/usr/bin/env bash
+ 
+-# Run this test from SAGE_ROOT.
+-# If SAGE_ROOT is not defined (this will be the case when called from
+-# the top-level Makefile), assume the current directory is SAGE_ROOT.
+-if [ -n "$SAGE_ROOT" ]; then
+-    cd "$SAGE_ROOT"
+-fi
+-
+ echo
+ echo "Testing that Sage starts..."
+-version=spkg/standard/VERSION.txt
+-echo "[`date +'%Y-%m-%d %H:%M:%S'`] `cat $version 2>/dev/null`" | tee -a start.log
+-spkg/pipestatus "./sage -c \"print 'Yes, Sage starts.'\" 2>&1" "tee -a start.log"
++sage -c \"print 'Yes, Sage starts.'\"
+ 
+ if [ $? -ne 0 ]; then
+     echo >&2 "Sage failed to start up." 
+-    echo >&2 "Please email sage-devel (http://groups.google.com/group/sage-devel)"
+-    echo >&2 "explaining the problem and send the log file"
+-    echo >&2 "  `pwd`/start.log"
+-    echo >&2 "Describe your computer, operating system, etc."
+-    rm local/lib/sage-started.txt 2>/dev/null
+     exit 1
+ fi

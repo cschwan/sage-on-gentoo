@@ -2,6 +2,14 @@
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*sage-baselayout-4.8_alpha2 (28 Nov 2011)
+
+  28 Nov 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  +sage-baselayout-4.8_alpha2.ebuild,
+  +files/sage-baselayout-4.8-gentooify-startup-script.patch,
+  +files/sage-baselayout-4.8-sagestarts.patch:
+  4.8.alpha2
+
 *sage-baselayout-4.7.2-r1 (12 Nov 2011)
 
   12 Nov 2011; François Bissey <francois.bissey@canterbury.ac.nz>
