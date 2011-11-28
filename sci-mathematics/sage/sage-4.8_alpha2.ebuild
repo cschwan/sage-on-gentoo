@@ -18,7 +18,7 @@ SRC_URI="http://sage.math.washington.edu/home/release/${MY_P}/${MY_P}/spkg/stand
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64 ~x86 ~amd64-linux ~x86-linux ~x86-macos"
-IUSE="mpc latex testsuite"
+IUSE="latex testsuite"
 
 RESTRICT="mirror test"
 
@@ -54,8 +54,8 @@ CDEPEND="dev-libs/gmp
 	media-libs/libpng
 	>=sys-libs/readline-6.0
 	sys-libs/zlib
-	virtual/cblas
-	mpc? ( dev-libs/mpc )"
+	virtual/cblas"
+#	mpc? ( dev-libs/mpc )"
 
 DEPEND="${CDEPEND}
 	=dev-python/cython-0.15.1"
@@ -101,7 +101,7 @@ RDEPEND="${CDEPEND}
 	>=sci-mathematics/sympow-1.018.1_p8-r1[-pari24]
 	testsuite? ( ~sci-mathematics/sage-doc-${PV}[html] )
 	latex? (
-		~dev-tex/sage-latex-2.2.5
+		~dev-tex/sage-latex-2.3.1
 		|| (
 			app-text/dvipng[truetype]
 			media-gfx/imagemagick[png]
@@ -302,10 +302,10 @@ src_prepare() {
 		sage/interfaces/singular.py || die "failed to patch singular.hlp path"
 
 	# enable dev-libs/mpc if required
-	if use mpc ; then
-		sed -i "s:is_package_installed('mpc'):True:g" module_list.py \
-			|| die "failed to enable dev-libs/mpc"
-	fi
+	#if use mpc ; then
+	#	sed -i "s:is_package_installed('mpc'):True:g" module_list.py \
+	#		|| die "failed to enable dev-libs/mpc"
+	#fi
 
 	# apply patches from /etc/portage/patches
 	epatch_user

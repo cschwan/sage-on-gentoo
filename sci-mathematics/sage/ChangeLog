@@ -2,6 +2,10 @@
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  28 Nov 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-4.8_alpha2.ebuild:
+  get sage-latex version right and disable mpc (broken) all in 4.8.alpha2
+
 *sage-4.8_alpha2 (28 Nov 2011)
 
   28 Nov 2011; François Bissey <francois.bissey@canterbury.ac.nz>
