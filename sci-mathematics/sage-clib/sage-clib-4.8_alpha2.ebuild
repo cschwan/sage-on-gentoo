@@ -7,7 +7,7 @@ EAPI="3"
 PYTHON_DEPEND="2:2.7:2.7"
 inherit eutils versionator multilib python
 
-MY_P="sage-$(replace_version_separator 3 '.')"
+MY_P="sage-$(replace_version_separator 2 '.')"
 
 DESCRIPTION="Sage's C library"
 HOMEPAGE="http://www.sagemath.org"
@@ -23,8 +23,8 @@ RESTRICT="mirror"
 CDEPEND="dev-libs/gmp[cxx]
 	>=dev-libs/ntl-5.5.2
 	=sci-libs/pynac-0.2.3
-	=sci-mathematics/pari-2.4.3-r1
-	>=sci-mathematics/polybori-0.7[sage]"
+	>=sci-mathematics/pari-2.5.0
+	>=sci-mathematics/polybori-0.7.1[sage]"
 DEPEND="${CDEPEND}
 	dev-util/scons"
 RDEPEND="${CDEPEND}"
@@ -38,7 +38,6 @@ pkg_setup() {
 }
 
 src_prepare() {
-	epatch "${FILESDIR}"/trac_11376-build-sage_clib.patch
 	epatch "${FILESDIR}"/${PN}-4.7.1-importenv.patch
 	epatch "${FILESDIR}"/${PN}-4.5.3-fix-undefined-symbols-warning.patch
 
@@ -48,14 +47,6 @@ src_prepare() {
 		sed -i "s:-Wl,-soname,libcsage.so:-install_name ${EPREFIX}/usr/$(get_libdir)/libcsage.dylib:" \
 			SConstruct
 	fi
-
-	# Use pari-2.4
-	sed -i "s:pari/:pari24/:" include/convert.h || die "failed to use pari2.4 headers"
-
-	# Use pari2.4 in SConstruct
-	sed -i \
-		-e "s:pari:pari24:" \
-		SConstruct || die "failed to patch SConstruct"
 }
 
 src_compile() {

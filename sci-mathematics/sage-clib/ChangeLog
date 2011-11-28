@@ -2,6 +2,17 @@
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  28 Nov 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-clib-4.7.ebuild, sage-clib-4.7.1.ebuild, sage-clib-4.7.2.ebuild,
+  +sage-clib-4.8_alpha2.ebuild:
+  remove gmp[nocxx] to make repoman happy
+
+*sage-clib-4.8_alpha2 (28 Nov 2011)
+
+  28 Nov 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  +sage-clib-4.8_alpha2.ebuild:
+  4.8.alpha2
+
   14 Nov 2011; Martin von Gagern (MvG) <Martin.vGagern@gmx.net>
   sage-clib-4.7.ebuild, sage-clib-4.7.1.ebuild, sage-clib-4.7.2.ebuild:
   Convert gmp[-nocxx] to gmp[cxx]
