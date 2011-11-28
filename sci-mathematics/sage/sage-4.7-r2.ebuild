@@ -36,7 +36,7 @@ CDEPEND="dev-libs/gmp
 	>=sci-libs/gsl-1.15
 	>=sci-libs/iml-1.0.1
 	>=sci-libs/libcliquer-1.2_p7
-	>=sci-libs/linbox-1.1.6[sage]
+	~sci-libs/linbox-1.1.6[sage]
 	>=sci-libs/m4ri-20100701
 	>=sci-libs/mpfi-1.4
 	=sci-libs/pynac-0.2.1-r1
