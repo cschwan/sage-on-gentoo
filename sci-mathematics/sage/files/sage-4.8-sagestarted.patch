@@ -1,0 +1,16 @@
+--- sage/all.py.orig	2011-11-25 12:04:41.214876579 +1300
++++ sage/all.py	2011-11-25 12:06:05.248001738 +1300
+@@ -333,11 +333,11 @@
+ 
+     Check that the file exists when Sage is running::
+ 
+-        sage: started_file = os.path.join(SAGE_ROOT, 'local', 'lib', 'sage-started.txt')
++        sage: started_file = os.path.join(DOT_SAGE, 'sage-started.txt')
+         sage: os.path.isfile(started_file)
+         True
+     """
+-    started_file = os.path.join(SAGE_ROOT, 'local', 'lib', 'sage-started.txt')
++    started_file = os.path.join(DOT_SAGE, 'sage-started.txt')
+     # Do nothing if the file already exists
+     if os.path.isfile(started_file):
+         return

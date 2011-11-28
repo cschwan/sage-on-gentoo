@@ -2,6 +2,13 @@
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*sage-4.8_alpha2 (28 Nov 2011)
+
+  28 Nov 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  +sage-4.8_alpha2.ebuild, +files/sage-4.8-dist.py.patch,
+  +files/trac_12041_replace_getslice.patch, +files/sage-4.8-sagestarted.patch:
+  4.8.alpha2
+
   28 Nov 2011; François Bissey <francois.bissey@canterbury.ac.nz>
   sage-4.7-r2.ebuild, sage-4.7.1-r2.ebuild, sage-4.7.2.ebuild:
   fixing m4ri version dependencies.

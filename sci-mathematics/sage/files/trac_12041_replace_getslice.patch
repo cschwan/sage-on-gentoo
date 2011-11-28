@@ -1,0 +1,239 @@
+# HG changeset patch
+# User André Apitzsch <andre.apitzsch@st.ovgu.de>
+# Date 1321370056 -3600
+# Node ID 3b9bf59fe62d92b353f2cd6ee23be0d16e45c94e
+# Parent  8d81fcf27e1444bfa3778c5fe2cc231c7f84d50a
+trac 12041: replace deprecated getslice
+
+diff --git a/sage/gsl/fft.pyx b/sage/gsl/fft.pyx
+--- a/sage/gsl/fft.pyx
++++ b/sage/gsl/fft.pyx
+@@ -33,11 +33,13 @@
+ 
+ def FastFourierTransform(size, base_ring=None):
+     """
+-    EXAMPLES:
++    EXAMPLES::
+         sage: a = FastFourierTransform(128)
+         sage: for i in range(1, 11):
+         ...    a[i] = 1
+         ...    a[128-i] = 1
++        sage: a[:6:2]
++        [(0.0, 0.0), (1.0, 0.0), (1.0, 0.0)]
+         sage: a.plot().show(ymin=0)
+         sage: a.forward_transform()
+         sage: a.plot().show()
+@@ -75,16 +77,14 @@
+         else:
+             self.data[2*i] = xy
+ 
+-    def __getitem__(self, size_t i):
+-        if i < 0 or i >= self.n:
+-            raise IndexError
+-        cdef int j
+-        j = 2*i
+-        return self.data[2*i], self.data[2*i+1]
+-
+-    def __getslice__(self, Py_ssize_t i, Py_ssize_t j):
+-        # Todo -- make this actually fast. 
+-        return list(self)[i:j]
++    def __getitem__(self, i):
++        if isinstance(i, slice):
++            start, stop, step = i.indices(self.n)
++            return list(self)[start:stop:step]
++        else:
++            if i < 0 or i >= self.n:
++                raise IndexError
++            return self.data[2*i], self.data[2*i+1]
+ 
+     def __repr__(self):
+         return str(list(self))
+diff --git a/sage/gsl/gsl_array.pyx b/sage/gsl/gsl_array.pyx
+--- a/sage/gsl/gsl_array.pyx
++++ b/sage/gsl/gsl_array.pyx
+@@ -3,6 +3,14 @@
+ include '../ext/stdsage.pxi'
+ 
+ cdef class GSLDoubleArray:
++    r"""
++    EXAMPLES::
++        sage: a = WaveletTransform(128,'daubechies',4)
++        sage: for i in range(1, 11):
++        ...    a[i] = 1
++        sage: a[:6:2]
++        [0.0, 1.0, 1.0]
++    """
+     def __init__(self, size_t n, size_t stride = 1, data = None):
+         cdef int i
+ 
+@@ -18,14 +26,10 @@
+ 
+     def  __dealloc__(self):
+         sage_free(self.data)
+-        
++
+     def __len__(self):
+         return self.n
+ 
+-    def __getslice__(self, i, j):
+-        # Todo -- make this actually fast. 
+-        return list(self)[i:j]
+-
+     def __repr__(self):
+         return str(list(self))
+ 
+@@ -35,7 +39,12 @@
+             raise IndexError
+         self.data[i] = x
+ 
+-    def __getitem__(self, size_t i):
+-        if i < 0 or i >= self.n:
+-            raise IndexError
+-        return self.data[i]
++    def __getitem__(self, i):
++        if isinstance(i, slice):
++            start, stop, step = i.indices(len(self))
++            # TODO -- make this actually fast.
++            return list(self)[start:stop:step]
++        else:
++            if i < 0 or i >= self.n:
++                raise IndexError
++            return self.data[i]
+diff --git a/sage/modular/modsym/p1list.pyx b/sage/modular/modsym/p1list.pyx
+--- a/sage/modular/modsym/p1list.pyx
++++ b/sage/modular/modsym/p1list.pyx
+@@ -769,7 +769,7 @@
+ 
+     def __getitem__(self, n):
+         """
+-        Standard indexing function for the class P1List.
++        Standard indexing/slicing function for the class P1List.
+ 
+         EXAMPLES::
+ 
+@@ -780,20 +780,14 @@
+             ...
+             (2, 3),
+             (4, 1)]
+-        """
+-        return self.__list[n]
+-
+-    def __getslice__(self,  Py_ssize_t n,  Py_ssize_t m):
+-        """
+-        Standard slicing function for the class P1List.
+-
+-        EXAMPLES::
+-
+-            sage: L = P1List(8)
+             sage: L[4:8] # indirect doctest
+             [(1, 3), (1, 4), (1, 5), (1, 6)]
+         """
+-        return self.__list[n:m]
++        if isinstance(n, slice):
++            start, stop, step = n.indices(len(self))
++            return self.__list[start:stop:step]
++        else:
++            return self.__list[n]
+ 
+     def __len__(self):
+         """
+diff --git a/sage/rings/laurent_series_ring_element.pyx b/sage/rings/laurent_series_ring_element.pyx
+--- a/sage/rings/laurent_series_ring_element.pyx
++++ b/sage/rings/laurent_series_ring_element.pyx
+@@ -361,14 +361,6 @@
+             -10/3
+             sage: f[-9]
+             0
+-        """
+-        return self.__u[i-self.__n]
+-
+-    def __getslice__(self, i, j):
+-        """
+-        EXAMPLES::
+-        
+-            sage: R.<t> = LaurentSeriesRing(QQ)
+             sage: f = -5/t^(10) + 1/3 + t + t^2 - 10/3*t^3 + O(t^5); f
+             -5*t^-10 + 1/3 + t + t^2 - 10/3*t^3 + O(t^5)
+             sage: f[-10:2]
+@@ -376,10 +368,18 @@
+             sage: f[0:]
+             1/3 + t + t^2 - 10/3*t^3 + O(t^5)
+         """
+-        if j > self.__u.degree():
+-            j = self.__u.degree()
+-        f = self.__u[i-self.__n:j-self.__n]
+-        return LaurentSeries(self._parent, f, self.__n)
++        if isinstance(i, slice):
++            start, stop, step = i.start, i.stop, i.step
++            if start is None:
++                start = 0
++            if step is None:
++                step = 1
++            if stop > self.__u.degree() or stop is None:
++                stop = self.__u.degree()
++            f = self.__u[start-self.__n:stop-self.__n:step]
++            return LaurentSeries(self._parent, f, self.__n)
++        else:
++            return self.__u[i-self.__n]
+ 
+     def __iter__(self):
+         """
+diff --git a/sage/rings/polynomial/polynomial_integer_dense_flint.pyx b/sage/rings/polynomial/polynomial_integer_dense_flint.pyx
+--- a/sage/rings/polynomial/polynomial_integer_dense_flint.pyx
++++ b/sage/rings/polynomial/polynomial_integer_dense_flint.pyx
+@@ -308,7 +308,7 @@
+         return Polynomial_integer_dense_flint, \
+                (self.parent(), self.list(), False, self.is_gen())
+ 
+-    def __getitem__(self, long n):
++    def __getitem__(self, n):
+         r"""
+         Returns coefficient of x^n, or zero if n is negative.
+ 
+@@ -326,19 +326,6 @@
+             0
+             sage: f[-1]
+             0
+-        """
+-        cdef Integer z = PY_NEW(Integer)
+-        if n < 0 or n > fmpz_poly_degree(self.__poly):
+-            return z
+-        else:
+-            fmpz_poly_get_coeff_mpz(z.value, self.__poly, n)
+-            return z
+-
+-    def __getslice__(self, long i, long j):
+-        r"""
+-        EXAMPLES::
+-
+-            sage: R.<x> = PolynomialRing(ZZ)
+             sage: f = 1 + x + 2*x^2 + 3*x^3 + 4*x^4 + 5*x^5
+             sage: f[2:4]
+             3*x^3 + 2*x^2
+@@ -348,11 +335,21 @@
+             5*x^5 + 4*x^4
+         """
+         cdef long k
+-        i = max(0, i)
+-        j = min(j, self.degree()+1)
+-        v = [self[k] for k from i <= k < j]
+-        P = self.parent()
+-        return P([0] * int(i) + v)
++        cdef Integer z = PY_NEW(Integer)
++        if isinstance(n, slice):
++            start = max(0, n.start)
++            stop = n.stop
++            if stop is None or stop > self.degree()+1:
++                stop = self.degree() + 1
++            v = [self[k] for k from start <= k < stop]
++            P = self.parent()
++            return P([0] * int(start) + v)
++        else:
++            if n < 0 or n > fmpz_poly_degree(self.__poly):
++                return z
++            else:
++                fmpz_poly_get_coeff_mpz(z.value, self.__poly, n)
++                return z
+ 
+     def _repr(self, name=None, bint latex=False):
+         """
