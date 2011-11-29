@@ -18,7 +18,7 @@ HOMEPAGE="http://www.singular.uni-kl.de/"
 SRC_COM="http://www.mathematik.uni-kl.de/ftp/pub/Math/${MY_PN}/SOURCES/${MY_DIR}/${MY_PN}"
 SRC_URI="${SRC_COM}-${MY_PV}.tar.gz"
 
-RESTRICT="mirror"
+RESTRICT="mirror test"
 
 LICENSE="GPL-2"
 SLOT="0"
