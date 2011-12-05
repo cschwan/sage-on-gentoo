@@ -2,6 +2,10 @@
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  05 Dec 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-4.8_alpha3.ebuild:
+  adjust linbox dep for 4.8.alpha3
+
 *sage-4.8_alpha3 (05 Dec 2011)
 
   05 Dec 2011; François Bissey <francois.bissey@canterbury.ac.nz>
