@@ -38,6 +38,7 @@ CDEPEND="dev-libs/gmp
 	>=sci-libs/libcliquer-1.2_p7
 	~sci-libs/linbox-1.1.6[sage]
 	~sci-libs/m4ri-20111004
+	~sci-libs/m4rie-20111004
 	>=sci-libs/mpfi-1.4
 	=sci-libs/pynac-0.2.3
 	>=sci-libs/symmetrica-2.0
@@ -52,7 +53,7 @@ CDEPEND="dev-libs/gmp
 	~sci-libs/libsingular-3.1.3.3
 	media-libs/gd[jpeg,png]
 	media-libs/libpng
-	>=sys-libs/readline-6.0
+	>=sys-libs/readline-6.2
 	sys-libs/zlib
 	virtual/cblas"
 #	mpc? ( dev-libs/mpc )"
@@ -108,7 +109,7 @@ RDEPEND="${CDEPEND}
 		)
 	)"
 
-PDEPEND="~sci-mathematics/sage-notebook-0.8.24"
+PDEPEND="~sci-mathematics/sage-notebook-0.8.25"
 
 S="${WORKDIR}/${MY_P}"
 
@@ -139,7 +140,7 @@ src_prepare() {
 
 	# patches for python-2.7
 	# fixing pure numerical noise
-	epatch "${FILESDIR}"/trac_9958-fixing_numericalnoise-part1.patch
+	epatch "${FILESDIR}"/trac_9958-fixing_numericalnoise-part1_p2.patch
 	epatch "${FILESDIR}"/trac_9958-fixing_numericalnoise-part2.patch
 	epatch "${FILESDIR}"/trac_9958-fixing_numericalnoise-part3.patch
 	epatch "${FILESDIR}"/trac_9958-fixing_numericalnoise-part4.patch
@@ -247,7 +248,6 @@ src_prepare() {
 	# fix some cython warnings
 	epatch "${FILESDIR}"/trac_10764-fix_deprecation_warning.patch
 	epatch "${FILESDIR}"/trac_10764-fix-gen_interpreters_doctest.patch
-	epatch "${FILESDIR}"/trac_12041_replace_getslice.patch
 
 	# gmp-5 compatibility - works with gmp-4.3 as well
 	sed -i "s:__GMP_BITS_PER_MP_LIMB:GMP_LIMB_BITS:g" sage/rings/integer.pyx \

@@ -2,6 +2,13 @@
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*sage-4.8_alpha3 (05 Dec 2011)
+
+  05 Dec 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  +files/trac_9958-fixing_numericalnoise-part1_p2.patch,
+  -sage-4.8_alpha2.ebuild, +sage-4.8_alpha3.ebuild:
+  alpha3
+
   28 Nov 2011; François Bissey <francois.bissey@canterbury.ac.nz>
   sage-4.8_alpha2.ebuild:
   get sage-latex version right and disable mpc (broken) all in 4.8.alpha2
