@@ -37,6 +37,7 @@ PATCHES=(
 	"${FILESDIR}"/${P}-nolapack.patch
 	"${FILESDIR}"/${P}-fix-double-installation.patch
 	"${FILESDIR}"/${P}-fix-undefined-symbols.patch
+	"${FILESDIR}"/${P}-modularfloat.patch
 )
 
 # TODO: installation of documentation does not work ?

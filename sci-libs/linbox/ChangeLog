@@ -2,6 +2,17 @@
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  05 Dec 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  linbox-1.1.6-r3.ebuild, +linbox-1.1.6-r4.ebuild,
+  +files/linbox-1.1.6-modularfloat.patch, linbox-1.1.7.ebuild:
+  make repoman happy
+
+*linbox-1.1.6-r4 (05 Dec 2011)
+
+  05 Dec 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  +linbox-1.1.6-r4.ebuild, +files/linbox-1.1.6-modularfloat.patch:
+  bump to add a patch needed for 4.8.alpha3 - this is a backport of 1.1.7
+
   14 Nov 2011; Martin von Gagern (MvG) <Martin.vGagern@gmx.net>
   linbox-1.1.6-r3.ebuild, linbox-1.1.7.ebuild:
   Convert gmp[-nocxx] to gmp[cxx]
