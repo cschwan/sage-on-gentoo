@@ -3,6 +3,10 @@
 # $Header: $
 
   05 Dec 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  files/linbox-1.1.6-modularfloat.patch:
+  touch last patch to put it in line with 1.1.7 content.
+
+  05 Dec 2011; François Bissey <francois.bissey@canterbury.ac.nz>
   linbox-1.1.6-r3.ebuild, +linbox-1.1.6-r4.ebuild,
   +files/linbox-1.1.6-modularfloat.patch, linbox-1.1.7.ebuild:
   make repoman happy
