@@ -4,7 +4,7 @@
 
 EAPI="4"
 
-inherit autotools-utils flag-o-matic
+inherit eutils autotools-utils flag-o-matic
 
 DESCRIPTION="Method of four russian for inversion (M4RI)"
 HOMEPAGE="http://m4ri.sagemath.org/"
@@ -27,6 +27,11 @@ pkg_setup() {
 	if use openmp ; then
 		append-libs -lgomp
 	fi
+}
+
+src_prepare() {
+	# patch headers to allow out of source build
+	epatch "${FILESDIR}"/${P}-trsm.patch
 }
 
 src_configure() {

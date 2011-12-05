@@ -1,0 +1,13 @@
+--- src/trsm.h.orig	2011-12-05 14:19:16.994430975 +1300
++++ src/trsm.h	2011-12-05 14:19:40.151455315 +1300
+@@ -27,8 +27,8 @@
+ *                  http://www.gnu.org/licenses/
+ ******************************************************************************/
+ 
+-#include <gf2e_matrix.h>
+-#include <bitslice.h>
++#include "gf2e_matrix.h"
++#include "bitslice.h"
+ 
+ #define MZED_TRSM_CUTOFF 512
+ 

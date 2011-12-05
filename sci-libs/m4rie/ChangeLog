@@ -2,6 +2,13 @@
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*m4rie-20111004 (05 Dec 2011)
+
+  05 Dec 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  -m4rie-20110715.ebuild, +m4rie-20111004.ebuild,
+  +files/m4rie-20111004-trsm.patch:
+  update for 4.8.alpha3
+
   04 Oct 2011; Christopher Schwan <cschwan@students.uni-mainz.de>
   m4rie-20110715.ebuild:
   Fix implicit USE=debug
