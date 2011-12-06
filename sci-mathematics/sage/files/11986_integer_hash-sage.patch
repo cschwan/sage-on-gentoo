@@ -1,0 +1,52 @@
+# HG changeset patch
+# User Jeroen Demeyer <jdemeyer@cage.ugent.be>
+# Date 1322873283 -3600
+# Node ID ce419c9accb3f3d2ae413df7196ca2047d35dedb
+# Parent  75d367dd794aeec6b2f5f45938ab93f10f63ec71
+Make Integer hash compatible with Python 2.7.2
+
+diff --git a/sage/rings/integer.pyx b/sage/rings/integer.pyx
+--- a/sage/rings/integer.pyx
++++ b/sage/rings/integer.pyx
+@@ -3044,13 +3044,39 @@
+             sage: hash(int(n))
+             -920384
+             sage: n = -920390823904823094890238490238484; n.__hash__()
+-            -873977844         # 32-bit
++            -873977844            # 32-bit
+             6874330978542788722   # 64-bit
+             sage: hash(long(n))
+             -873977844            # 32-bit
+             6874330978542788722   # 64-bit
+ 
+-        These tests come from trac #4957.
++        TESTS::
++
++            sage: hash(0)
++            0
++            sage: hash(-1)
++            -2
++            sage: n = 2^31 + 2^63 + 2^95 + 2^127 + 2^128*(2^32-2)
++            sage: hash(n) == hash(long(n))
++            True
++            sage: hash(n-1) == hash(long(n-1))
++            True
++            sage: hash(-n) == hash(long(-n))
++            True
++            sage: hash(1-n) == hash(long(1-n))
++            True
++            sage: n = 2^63 + 2^127 + 2^191 + 2^255 + 2^256*(2^64-2)
++            sage: hash(n) == hash(long(n))
++            True
++            sage: hash(n-1) == hash(long(n-1))
++            True
++            sage: hash(-n) == hash(long(-n))
++            True
++            sage: hash(1-n) == hash(long(1-n))
++            True
++
++        These tests come from Trac #4957:
++
+             sage: n = 2^31 + 2^13
+             sage: hash(n)
+             -2147475456               # 32-bit

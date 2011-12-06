@@ -145,6 +145,7 @@ src_prepare() {
 	epatch "${FILESDIR}"/trac_9958-fixing_numericalnoise-part2.patch
 	epatch "${FILESDIR}"/trac_9958-fixing_numericalnoise-part3.patch
 	epatch "${FILESDIR}"/trac_9958-fixing_numericalnoise-part4.patch
+	epatch "${FILESDIR}"/trac_9958-fix_transcendental.patch
 	# other fixes
 	epatch "${FILESDIR}"/trac_9958-sage_unittest.patch
 	epatch "${FILESDIR}"/trac_9958-fix-list_index.patch
@@ -156,6 +157,11 @@ src_prepare() {
 	epatch "${FILESDIR}"/trac_9958-symbolic_callable.patch
 	epatch "${FILESDIR}"/trac_9958_junk_valueerror.patch
 	epatch "${FILESDIR}"/trac_9958_enumerate64bit.patch
+	epatch "${FILESDIR}"/trac_9958-gsl_integration.patch
+	epatch "${FILESDIR}"/trac_9958-matrix_mod2e_dense.patch
+	# integer hashing
+	epatch "${FILESDIR}"/11986_integer_hash-sage.patch
+
 	# make sure we use cython-2.7 for consistency
 	sed -i "s:python \`which cython\`:cython-2.7:" setup.py
 
@@ -226,6 +232,9 @@ src_prepare() {
 	# Add -DNDEBUG to objects linking to libsingular
 	sed -i "s:'singular', SAGE_INC + 'factory'\],:'singular'\],extra_compile_args = \['-DNDEBUG'\],:g" \
 		module_list.py || die "failed to add -DNDEBUG with libsingular"
+
+	# Add givaro to matrix_modn_dense_{float,double}
+	epatch "${FILESDIR}"/modn_givaro.patch
 
 	# TODO: why does Sage fail with linbox commentator ?
 

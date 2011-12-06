@@ -1,0 +1,28 @@
+# HG changeset patch
+# User Francois Bissey <francois.bissey@canterbury.ac.nz>
+# Date 1323134638 -46800
+# Node ID a6dff25c1409e926b6b2f1622c77987f08659203
+# Parent  41db85fa4b823a85e53c1cf9d54b7fe2e321c266
+trac 9958: fix numerical noise introduced with m4rie
+
+diff --git a/sage/matrix/matrix_mod2e_dense.pyx b/sage/matrix/matrix_mod2e_dense.pyx
+--- a/sage/matrix/matrix_mod2e_dense.pyx
++++ b/sage/matrix/matrix_mod2e_dense.pyx
+@@ -788,7 +788,7 @@
+             sage: K.<a> = GF(2^4)
+             sage: A = random_matrix(K,1000,1000,density=0.1)
+             sage: float(A.density())
+-            0.099738...
++            0.099739...
+ 
+             sage: A = random_matrix(K,1000,1000,density=1.0)
+             sage: float(A.density())
+@@ -796,7 +796,7 @@
+ 
+             sage: A = random_matrix(K,1000,1000,density=0.5)
+             sage: float(A.density())
+-            0.499759...
++            0.49976...
+ 
+         Note, that the matrix is updated and not zero-ed out before
+         being randomized::
