@@ -196,6 +196,9 @@ src_prepare() {
 	# fix misc/dist.py
 	epatch "${FILESDIR}"/${PN}-4.8-dist.py.patch
 
+	# Add givaro to matrix_modn_dense_{float,double}
+	epatch "${FILESDIR}"/modn_givaro.patch
+
 	# fix png library name
 	sed -i "s:png12:$(libpng-config --libs | cut -dl -f2):g" \
 		module_list.py || die "failed to patch png library name"
@@ -232,9 +235,6 @@ src_prepare() {
 	# Add -DNDEBUG to objects linking to libsingular
 	sed -i "s:'singular', SAGE_INC + 'factory'\],:'singular'\],extra_compile_args = \['-DNDEBUG'\],:g" \
 		module_list.py || die "failed to add -DNDEBUG with libsingular"
-
-	# Add givaro to matrix_modn_dense_{float,double}
-	epatch "${FILESDIR}"/modn_givaro.patch
 
 	# TODO: why does Sage fail with linbox commentator ?
 
