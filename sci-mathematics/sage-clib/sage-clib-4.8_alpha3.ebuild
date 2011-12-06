@@ -40,6 +40,7 @@ pkg_setup() {
 src_prepare() {
 	epatch "${FILESDIR}"/${PN}-4.7.1-importenv.patch
 	epatch "${FILESDIR}"/${PN}-4.5.3-fix-undefined-symbols-warning.patch
+	epatch "${FILESDIR}"/11986_integer_hash-clib.patch
 
 	sed -i "s:mpir.h:gmp.h:" src/memory.c
 
