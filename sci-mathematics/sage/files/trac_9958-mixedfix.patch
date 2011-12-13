@@ -32,7 +32,17 @@ diff --git a/sage/rings/polynomial/polynomial_rational_flint.pyx b/sage/rings/po
 diff --git a/sage/rings/real_mpfr.pyx b/sage/rings/real_mpfr.pyx
 --- a/sage/rings/real_mpfr.pyx
 +++ b/sage/rings/real_mpfr.pyx
-@@ -2447,7 +2447,7 @@
+@@ -190,7 +190,8 @@
+         sage: R = RealField(2147483648)
+         Traceback (most recent call last):
+         ...
+-        OverflowError: ... too large to convert to int
++        OverflowError: ... too large to convert to C long   # 32-bit
++        OverflowError: ... too large to convert to int      # 64-bit
+     """
+     global MY_MPFR_PREC_MAX
+     # We use 2^31-1 as the largest precision, since 2^31 is not representable
+@@ -2449,7 +2450,7 @@
          EXAMPLES::
  
              sage: RR(pi).__float__()     
@@ -41,7 +51,7 @@ diff --git a/sage/rings/real_mpfr.pyx b/sage/rings/real_mpfr.pyx
              sage: type(RR(pi).__float__())
              <type 'float'>
          """
-@@ -2511,7 +2511,7 @@
+@@ -2513,7 +2514,7 @@
          EXAMPLES::
  
              sage: RR(pi).__complex__()   
@@ -50,7 +60,7 @@ diff --git a/sage/rings/real_mpfr.pyx b/sage/rings/real_mpfr.pyx
              sage: type(RR(pi).__complex__())
              <type 'complex'>
          """
-@@ -5155,7 +5155,7 @@
+@@ -5196,7 +5197,7 @@
              sage: f(2^75)
              Traceback (most recent call last):
              ...

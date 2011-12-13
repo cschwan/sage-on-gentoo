@@ -63,7 +63,7 @@ DEPEND="${CDEPEND}
 	=dev-python/cython-0.15.1"
 
 RDEPEND="${CDEPEND}
-	>=dev-lang/R-2.10.1
+	>=dev-lang/R-2.14.0
 	>=dev-python/cvxopt-1.1.3[glpk]
 	>=dev-python/gdmodule-0.56-r2[png]
 	>=dev-python/ipython-0.10.2
@@ -141,11 +141,14 @@ src_prepare() {
 
 	# patches for python-2.7
 	# fixing pure numerical noise
-	epatch "${FILESDIR}"/trac_9958-fixing_numericalnoise-part1_p2.patch
+	epatch "${FILESDIR}"/trac_9958-fixing_numericalnoise-part1_p4.patch
 	epatch "${FILESDIR}"/trac_9958-fixing_numericalnoise-part2.patch
 	epatch "${FILESDIR}"/trac_9958-fixing_numericalnoise-part3.patch
 	epatch "${FILESDIR}"/trac_9958-fixing_numericalnoise-part4.patch
 	epatch "${FILESDIR}"/trac_9958-fix_transcendental.patch
+	epatch "${FILESDIR}"/trac_9958-fix_randstate.patch
+	epatch "${FILESDIR}"/trac_9958-gsl_integration.patch
+	epatch "${FILESDIR}"/trac_9958-matrix_mod2e_dense.patch
 	# other fixes
 	epatch "${FILESDIR}"/trac_9958-sage_unittest.patch
 	epatch "${FILESDIR}"/trac_9958-fix-list_index.patch
@@ -156,11 +159,12 @@ src_prepare() {
 	epatch "${FILESDIR}"/trac_9958-finite_crystals.patch
 	epatch "${FILESDIR}"/trac_9958-symbolic_callable.patch
 	epatch "${FILESDIR}"/trac_9958_junk_valueerror.patch
-	epatch "${FILESDIR}"/trac_9958_enumerate64bit.patch
-	epatch "${FILESDIR}"/trac_9958-gsl_integration.patch
-	epatch "${FILESDIR}"/trac_9958-matrix_mod2e_dense.patch
+	epatch "${FILESDIR}"/trac_9958-nfactor_enumerable_word-randomness.patch
+	epatch "${FILESDIR}"/trac_9958-suffix_trees-variations.patch
 	# integer hashing
 	epatch "${FILESDIR}"/11986_integer_hash-sage.patch
+	# eisenstein patch trac 12124
+	epatch "${FILESDIR}"/12124_eisenstein.patch
 
 	# make sure we use cython-2.7 for consistency
 	sed -i "s:python \`which cython\`:cython-2.7:" setup.py

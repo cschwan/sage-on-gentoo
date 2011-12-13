@@ -1,0 +1,44 @@
+# HG changeset patch
+# User Jeroen Demeyer <jdemeyer@cage.ugent.be>
+# Date 1323204672 -3600
+# Node ID b4879fa6a6cc7d917dfd46f7f46e34a3fb55b95a
+# Parent  e626ea64b466d3d2dfd0e05d06b84fae777b6d5b
+Fix precision of L-series of Eisenstein series
+
+diff --git a/sage/modular/modform/eis_series.py b/sage/modular/modform/eis_series.py
+--- a/sage/modular/modform/eis_series.py
++++ b/sage/modular/modform/eis_series.py
+@@ -340,10 +340,16 @@
+     
+        sage: L = eisenstein_series_lseries(16)
+        sage: L(1)
+-       -0.291657724743873
++       -0.291657724743874
+        sage: L = eisenstein_series_lseries(20)
+        sage: L(2)
+-       -5.02355351645987 
++       -5.02355351645998 
++
++    Now with higher precision::
++
++        sage: L = eisenstein_series_lseries(20, prec=200)
++        sage: L(2)
++        -5.0235535164599797471968418348135050804419155747868718371029
+     """
+     f = eisenstein_series_qexp(weight,prec)
+     from sage.lfunctions.all import Dokchitser
+@@ -353,9 +359,12 @@
+     L = Dokchitser(conductor = 1,
+                    gammaV = [0,1],
+                    weight = j,
+-                   eps = (-1)**Integer((j/2)),
++                   eps = (-1)**Integer(j/2),
+                    poles = [j],
+-                   residues = [(-1)**Integer((j/2))*(float(pi))**(0.5)*bernoulli(j)/j],
++                   # Using a string for residues is a hack but it works well
++                   # since this will make PARI/GP compute sqrt(pi) with the
++                   # right precision.
++                   residues = '[sqrt(Pi)*(%s)]'%((-1)**Integer(j/2)*bernoulli(j)/j),
+                    prec = prec)
+ 
+     s = 'coeff = %s;'%f.list()

@@ -1,0 +1,21 @@
+# HG changeset patch
+# User Francois Bissey <francois.bissey@canterbury.ac.nz>
+# Date 1323555007 -46800
+# Node ID b664eca270ff2d4ab34666f41165d0236c75379b
+# Parent  a11346b311d8cdda0e50bf7bc024a5a7d6a19528
+trac 9958: including more possible dictionaries in suffix_trees
+
+diff --git a/sage/combinat/words/suffix_trees.py b/sage/combinat/words/suffix_trees.py
+--- a/sage/combinat/words/suffix_trees.py
++++ b/sage/combinat/words/suffix_trees.py
+@@ -1320,7 +1320,9 @@
+             sage: from sage.combinat.words.suffix_trees import ImplicitSuffixTree, SuffixTrie
+             sage: W = Words("ab")
+             sage: t = ImplicitSuffixTree(W("aba"))
+-            sage: t.trie_type_dict() == dict([[(0, W("a")), 4], [(0, W("b")), 3], [(3, W("a")), 2], [(4, W("b")), 5], [(5, W("a")), 1]])
++            sage: dicta = dict([[(0, W("a")), 4], [(0, W("b")), 3], [(3, W("a")), 2], [(4, W("b")), 5], [(5, W("a")), 1]])
++            sage: dictb = dict([[(0, W("a")), 3], [(0, W("b")), 5], [(3, W("b")), 4], [(4, W("a")), 1], [(5, W("a")), 2]])
++            sage: (t.trie_type_dict() == dicta) or (t.trie_type_dict() == dictb)
+             True
+         """
+         d = {}
