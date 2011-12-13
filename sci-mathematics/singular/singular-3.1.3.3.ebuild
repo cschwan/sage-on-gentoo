@@ -59,6 +59,8 @@ src_prepare () {
 	epatch "${FILESDIR}"/${PN}-3.1.0-emacs-22.patch
 	epatch "${FILESDIR}"/${PN}-3.0.4.4-nostrip.patch
 	epatch "${FILESDIR}"/${PN}-3.1.3.3-Minor.h.patch
+	# fix parallel make issue reported upstream http://www.singular.uni-kl.de:8002/trac/ticket/395
+	epatch "${FILESDIR}"/${PN}-3.1.3.3.make_parallel.2.patch
 
 	if  [[ ${CHOST} == *-darwin* ]] ; then
 		epatch "${FILESDIR}"/${PN}-3.1.3.3-os_x_ppc.patch
