@@ -14,7 +14,7 @@ MY_P_PDF="sage-${OLDPV}-doc-pdf"
 DESCRIPTION="Documentation, tutorials and help files for Sage"
 HOMEPAGE="http://www.sagemath.org/"
 SRC_URI="http://sage.math.washington.edu/home/release/${MY_P}/${MY_P}/spkg/standard/${MY_P}.spkg -> sage-${PV}.tar.bz2
-	http://www.mathematik.uni-kl.de/ftp/pub/Math/Singular/SOURCES/3-1-1/Singular-3-1-1-4-share.tar.gz
+	http://www.mathematik.uni-kl.de/ftp/pub/Math/Singular/SOURCES/3-1-1/Singular-3-1-3-3-share.tar.gz
 	html? ( http://www.sagemath.org/doc-bz2/${MY_P_HTML}.tar.bz2 -> sage-doc-html-${OLDPV}.tar.bz2 )
 	pdf? ( http://www.sagemath.org/doc-bz2/${MY_P_PDF}.tar.bz2 -> sage-doc-pdf-${OLDPV}.tar.bz2 )"
 
@@ -47,7 +47,7 @@ src_install() {
 	rm -rf output || die "failed to remove useless files"
 	insinto /usr/share/sage/devel/sage-main/doc
 	doins -r * || die
-	doins "${WORKDIR}"/Singular/3-1-1/info/singular.hlp || die
+	doins "${WORKDIR}"/Singular/3-1-3/info/singular.hlp || die
 
 	if use html ; then
 		cd "${WORKDIR}"/${MY_P_HTML}
