@@ -1,5 +1,5 @@
---- sage-sage.orig	2011-11-24 14:35:39.901934600 +1300
-+++ sage-sage	2011-11-24 14:51:29.689801036 +1300
+--- sage-sage.orig	2011-12-14 00:17:11.000000000 +1300
++++ sage-sage	2011-12-14 09:45:31.473193990 +1300
 @@ -36,10 +36,6 @@
      echo "                           -only-optional <tag1,...,tagn>  -- only run tests"
      echo "                            including one of the #optional tags"
@@ -79,7 +79,7 @@
      echo "  -grep <string>      -- grep through all the Sage library code for string"
      echo "  -grepdoc <string>   -- grep through all the Sage documentation for string"
  
-@@ -178,11 +136,6 @@
+@@ -178,17 +136,10 @@
      ####  1.......................26..................................................78
      ####  |.....................--.|...................................................|
      echo "Making Sage packages or distributions:"
@@ -91,7 +91,13 @@
      echo "  -log                -- add entry to <SAGE_ROOT>/changelog.txt"
      echo "  -merge              -- run Sage's automatic merge and test script"
      echo "  -pkg <dir>          -- create Sage package dir.spkg from a given directory"
-@@ -215,21 +168,6 @@
+     echo "  -pkg_nc <dir>       -- as -pkg, but do not compress the package"
+-    echo "  -rsyncdist VER      -- build an rsyncable source distribution of Sage (you"
+-    echo "                         must first run sage -sdist VER for this to work)"
+     echo "  -sdist VER          -- build a source distribution of Sage"
+ 
+     echo
+@@ -217,21 +168,6 @@
      exit 0
  }
  
@@ -113,7 +119,7 @@
  # Sage startup script passes some funny options, which are
  # best ignored.
  if [ $# -eq 3 ]; then
-@@ -259,14 +197,7 @@
+@@ -261,14 +197,7 @@
          cat "$SAGE_LOCAL/bin/sage-banner"
      fi
  
@@ -129,7 +135,7 @@
      IPYTHONDIR="$DOT_SAGE/ipython" && export IPYTHONDIR
      IPYTHONRC="ipythonrc" && export IPYTHONRC
      if [ ! -d "$IPYTHONDIR" ]; then
-@@ -354,13 +285,6 @@
+@@ -356,13 +285,6 @@
      exit $?
  fi
  
@@ -143,7 +149,7 @@
  if [ "$1" = '-gap' -o "$1" = '--gap' ]; then
      cd "$CUR"
      shift
-@@ -378,7 +302,7 @@
+@@ -380,7 +302,7 @@
  if [ "$1" = '-singular'  -o "$1" = '--singular' ]; then
      cd "$CUR"
      shift
@@ -152,7 +158,7 @@
      exit $?
  fi
  
-@@ -417,13 +341,6 @@
+@@ -419,13 +341,6 @@
      exit $?
  fi
  
@@ -166,7 +172,7 @@
  if [ "$1" = '-maxima'  -o "$1" = '--maxima' ]; then
      cd "$CUR"
      shift
-@@ -546,60 +463,10 @@
+@@ -551,60 +466,10 @@
      exit $?
  fi
  
@@ -227,7 +233,7 @@
  if [ "$1" = "-notebook"  -o "$1" = '--notebook' -o "$1" = '-n' ]; then
     cd "$CUR"
     shift
-@@ -608,14 +475,6 @@
+@@ -613,14 +478,6 @@
     exit $?
  fi
  
@@ -242,7 +248,7 @@
  if [ "$1" = "-inotebook"  -o "$1" = '--inotebook' ]; then
     cd "$CUR"
     shift
-@@ -624,18 +483,6 @@
+@@ -629,18 +486,6 @@
     exit $?
  fi
  
@@ -261,7 +267,7 @@
  if [ "$1" = '-grep' -o "$1" = "--grep" ]; then
     sage_setup
     shift
-@@ -658,81 +505,7 @@
+@@ -663,81 +508,7 @@
     exit $?
  fi
  
@@ -344,7 +350,7 @@
     if ! [  -f  "$DOT_SAGE"/init.sage ]; then
        echo >&2 "init.sage does not exist ... creating"
        touch "$DOT_SAGE"/init.sage
-@@ -743,10 +516,7 @@
+@@ -748,10 +519,7 @@
     exit $?
  fi
  
@@ -356,7 +362,7 @@
     if ! [  -f  "$DOT_SAGE"/init.sage ]; then
        echo >&2 "init.sage does not exist ... creating"
        touch "$DOT_SAGE"/init.sage
-@@ -757,16 +527,6 @@
+@@ -762,16 +530,6 @@
     exit $?
  fi
  
@@ -373,7 +379,7 @@
  if [ "$1" = '-testall' -o "$1" = "--testall" ]; then
     shift
     sage-maketest "$@"
-@@ -782,71 +542,12 @@
+@@ -787,71 +545,12 @@
     exit $?
  fi
  
@@ -448,7 +454,7 @@
  fi
  
  if [ "$1" = '-pkg' -o "$1" = '-spkg' -o "$1" = "--pkg" -o "$1" = "--spkg" ]; then
-@@ -877,88 +578,6 @@
+@@ -882,97 +581,6 @@
     exit $?
  fi
  
@@ -458,6 +464,15 @@
 -       exit 1
 -   fi
 -   sage-sdist $2 "$SAGE_ROOT"
+-   exit $?
+-fi
+-
+-if [ "$1" = '-rsyncdist' -o "$1" = "--rsyncdist" ]; then
+-   if [ $# -ne 2 ]; then
+-       echo >&2 "** MISSING VERSION NUMBER! **"
+-       exit 1
+-   fi
+-   sage-rsyncdist $2
 -   exit $?
 -fi
 -
@@ -537,7 +552,7 @@
  if [ "$1" = '-gdb' -o "$1" = "--gdb" ]; then
      sage_setup
      sage-gdb
-@@ -1020,10 +639,6 @@
+@@ -1034,10 +642,6 @@
  
  if [ $# -ge 1 ]; then
     T=`echo "$1" | sed -e "s/.*\.//"`
