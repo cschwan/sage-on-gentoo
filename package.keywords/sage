@@ -41,6 +41,7 @@ sci-libs/m4ri
 sci-libs/mpfi
 sci-libs/pynac
 sci-libs/scipy
+sci-libs/superlu
 sci-libs/symmetrica
 sci-libs/vecmath-objectclub
 sci-libs/zn_poly
