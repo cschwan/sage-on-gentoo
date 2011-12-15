@@ -4,6 +4,10 @@
 
   15 Dec 2011; François Bissey <francois.bissey@canterbury.ac.nz>
   R-2.14.0.ebuild:
+  more tweaking
+
+  15 Dec 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  R-2.14.0.ebuild:
   more R on OS X stuff - not complete yet
 
   15 Dec 2011; François Bissey <francois.bissey@canterbury.ac.nz>
