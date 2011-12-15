@@ -189,6 +189,18 @@ src_install() {
 		dosym libRmath.so.${mv} /usr/$(get_libdir)/libRmath.so
 	fi
 
+	if [[ ${CHOST} == *-darwin* ]] ; then
+		einfo "Working around completely broken build-system(tm)"
+		for d in $(find "${ED}"usr/lib/R/ -name *.dylib) ; do
+			if [[ -f ${d} ]] ; then
+				# fix the "soname"
+				ebegin "  correcting install_name of ${d#${ED}}"
+				install_name_tool -id "/${d#${D}}" "${d}"
+				eend $?
+			fi
+		done
+	fi
+
 	# env file
 	cat > 99R <<-EOF
 		LDPATH=${R_DIR}/lib
