@@ -132,6 +132,7 @@ src_configure() {
 		--with-blas="$(pkg-config --libs blas)" \
 		--docdir="${EPREFIX}/usr/share/doc/${PF}" \
 		rdocdir="${EPREFIX}/usr/share/doc/${PF}" \
+		--enable-R-framework=no \
 		$(use_enable openmp) \
 		$(use_enable nls) \
 		$(use_enable profile R-profiling) \
