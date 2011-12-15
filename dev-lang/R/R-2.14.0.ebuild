@@ -4,7 +4,7 @@
 
 EAPI=4
 
-inherit bash-completion-r1 eutils flag-o-matic fortran-2 versionator
+inherit bash-completion-r1 eutils flag-o-matic fortran-2 versionator autotools
 
 DESCRIPTION="Language and environment for statistical computing and graphics"
 HOMEPAGE="http://www.r-project.org/"
