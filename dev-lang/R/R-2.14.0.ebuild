@@ -142,15 +142,15 @@ src_compile(){
 	emake
 	RMATH_V=0.0.0
 	if [[ ${CHOST} != *-darwin* ]] ; then
-		emake -j1 -C src/nmath/standalone \
-			libRmath_la_LDFLAGS="-install_name ${EPREFIX}/usr/$(get_libdir)/libRmath.dylib" \
-			libRmath_la_LIBADD="\$(LIBM)" \
-			|| die "emake math library failed"
-	else
 		emake -C src/nmath/standalone \
 			libRmath_la_LDFLAGS="-Wl,-soname,libRmath.so.${RMATH_V}" \
 			libRmath_la_LIBADD="\$(LIBM)" \
 			shared $(use static-libs && echo static)
+	else
+		emake -j1 -C src/nmath/standalone \
+			libRmath_la_LDFLAGS="-install_name ${EPREFIX}/usr/$(get_libdir)/libRmath.dylib" \
+			libRmath_la_LIBADD="\$(LIBM)" \
+			|| die "emake math library failed"
 	fi
 	use doc && emake info pdf
 }
