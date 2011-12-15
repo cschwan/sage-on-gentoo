@@ -115,6 +115,7 @@ src_prepare() {
 			-e 's:-install_name libRlapack.dylib:-install_name ${libdir}/R/lib/libRlapack.dylib:' \
 			-e 's:-install_name libRblas.dylib:-install_name ${libdir}/R/lib/libRblas.dylib:' \
 			-e "s:AM_INIT_AUTOMAKE:A_I_A:" \
+			-e "s:SHLIB_EXT=\".so\":SHLIB_EXT=\".dylib\":" \
 			-i configure.ac
 
 	      AT_M4DIR=m4	eautoreconf
