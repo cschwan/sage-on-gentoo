@@ -4,6 +4,10 @@
 
   15 Dec 2011; François Bissey <francois.bissey@canterbury.ac.nz>
   R-2.14.0.ebuild:
+  try more tweaks for OS X
+
+  15 Dec 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  R-2.14.0.ebuild:
   rectify some inversion between OS X and non-OS X
 
 *R-2.14.0 (14 Dec 2011)

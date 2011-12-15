@@ -108,6 +108,17 @@ src_prepare() {
 	fi
 	use perl && \
 		export PERL5LIB="${S}/share/perl:${PERL5LIB:+:}${PERL5LIB}"
+
+	# Fix for darwin (OS X)
+	if [[ ${CHOST} == *-darwin* ]] ; then
+		sed -e 's:-install_name libR.dylib:-install_name ${libdir}/R/lib/libR.dylib:' \
+			-e 's:-install_name libRlapack.dylib:-install_name ${libdir}/R/lib/libRlapack.dylib:' \
+			-e 's:-install_name libRblas.dylib:-install_name ${libdir}/R/lib/libRblas.dylib:' \
+			-e "s:AM_INIT_AUTOMAKE:A_I_A:" \
+			-i configure.ac
+
+	      AT_M4DIR=m4	eautoreconf
+	fi
 }
 
 src_configure() {
@@ -141,16 +152,16 @@ src_compile(){
 	export VARTEXFONTS="${T}/fonts"
 	emake
 	RMATH_V=0.0.0
-	if [[ ${CHOST} != *-darwin* ]] ; then
-		emake -C src/nmath/standalone \
-			libRmath_la_LDFLAGS="-Wl,-soname,libRmath.so.${RMATH_V}" \
-			libRmath_la_LIBADD="\$(LIBM)" \
-			shared $(use static-libs && echo static)
-	else
+	if [[ ${CHOST} == *-darwin* ]] ; then
 		emake -j1 -C src/nmath/standalone \
 			libRmath_la_LDFLAGS="-install_name ${EPREFIX}/usr/$(get_libdir)/libRmath.dylib" \
 			libRmath_la_LIBADD="\$(LIBM)" \
 			|| die "emake math library failed"
+	else
+		emake -C src/nmath/standalone \
+			libRmath_la_LDFLAGS="-Wl,-soname,libRmath.so.${RMATH_V}" \
+			libRmath_la_LIBADD="\$(LIBM)" \
+			shared $(use static-libs && echo static)
 	fi
 	use doc && emake info pdf
 }
