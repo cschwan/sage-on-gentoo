@@ -316,7 +316,7 @@ src_prepare() {
 		sage/interfaces/singular.py || die "failed to patch singular.hlp path"
 
 	# fix the cmdline test using SAGE_ROOT
-	sed -i "s:SAGE_ROOT, \"local\":SAGE_LOCAL:" \
+	sed -i "s:SAGE_ROOT, \"local\":os.environ[\"SAGE_LOCAL\"]:" \
 		sage/tests/cmdline.py
 
 	# enable dev-libs/mpc if required

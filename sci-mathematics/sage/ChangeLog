@@ -4,6 +4,10 @@
 
   16 Dec 2011; François Bissey <francois.bissey@canterbury.ac.nz>
   sage-4.8_alpha4.ebuild:
+  really fix the ipython test
+
+  16 Dec 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-4.8_alpha4.ebuild:
   fix a doctest
 
 *sage-4.8_alpha4 (13 Dec 2011)
