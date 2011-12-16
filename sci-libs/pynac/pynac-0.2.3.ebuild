@@ -22,7 +22,7 @@ RESTRICT="mirror"
 DEPEND="dev-util/pkgconfig"
 RDEPEND=""
 
-S="${WORKDIR}/burcin-pynac-${P}"
+S="${WORKDIR}/burcin-pynac-1ad314a6d88e"
 
 DOCS=( AUTHORS NEWS README )
 
