@@ -315,6 +315,10 @@ src_prepare() {
 	sed -i "s:os.environ\[\"SAGE_LOCAL\"\]+\"/share/singular/\":os.environ\[\"SAGE_DOC\"\]+\"/\":g" \
 		sage/interfaces/singular.py || die "failed to patch singular.hlp path"
 
+	# fix the cmdline test using SAGE_ROOT
+	sed -i "s:SAGE_ROOT, \"local\":SAGE_LOCAL:" \
+		sage/tests/cmdline.py
+
 	# enable dev-libs/mpc if required
 	#if use mpc ; then
 	#	sed -i "s:is_package_installed('mpc'):True:g" module_list.py \
