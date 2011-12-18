@@ -38,7 +38,7 @@ sci-libs/libcliquer
 sci-libs/libsingular
 sci-libs/linbox
 sci-libs/m4ri
-sci-libs/mpfi
+=sci-libs/mpfi-1.4
 sci-libs/pynac
 sci-libs/scipy
 sci-libs/superlu
