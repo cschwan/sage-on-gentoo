@@ -1,0 +1,36 @@
+# HG changeset patch
+# User Francois Bissey <francois.bissey@canterbury.ac.nz>
+# Date 1314658571 -43200
+# Node ID 5b9db562d1492bd26215586e88e6bbe24545ba1e
+# Parent  c9da40477f89d9a250d5fa495509e1f11768d607
+trac 9958: 32/64 bit message differences
+
+diff --git a/sage/libs/cremona/newforms.pyx b/sage/libs/cremona/newforms.pyx
+--- a/sage/libs/cremona/newforms.pyx
++++ b/sage/libs/cremona/newforms.pyx
+@@ -51,9 +51,9 @@
+             sage: from sage.libs.cremona.newforms import ECModularSymbol
+             sage: E = EllipticCurve('858k2')
+             sage: ECModularSymbol(E)
+-            Traceback (most recent call last):                     # 32-bit
+-            ...                                                    # 32-bit
+-            OverflowError: long int too large to convert to int    # 32-bit
++            Traceback (most recent call last):                           # 32-bit
++            ...                                                          # 32-bit
++            OverflowError: Python int too large to convert to C long     # 32-bit
+             Modular symbol with sign 1 over Rational Field attached to Elliptic Curve defined by y^2 + x*y = x^3 + 16353089*x - 335543012233 over Rational Field         # 64-bit
+         """
+         cdef ZZ_c a1, a2, a3, a4, a6, N
+diff --git a/sage/stats/intlist.pyx b/sage/stats/intlist.pyx
+--- a/sage/stats/intlist.pyx
++++ b/sage/stats/intlist.pyx
+@@ -73,7 +73,8 @@
+             sage: stats.IntList([1, 3, 2^32])
+             Traceback (most recent call last):
+             ...
+-            OverflowError: ... too large to convert to int
++            OverflowError: ... too large to convert to C long  # 32-bit
++            OverflowError: ... too large to convert to int     # 64-bit
+         
+         Printing omits entries::
+         

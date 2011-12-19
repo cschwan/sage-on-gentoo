@@ -161,6 +161,7 @@ src_prepare() {
 	epatch "${FILESDIR}"/trac_9958_junk_valueerror.patch
 	epatch "${FILESDIR}"/trac_9958-nfactor_enumerable_word-randomness.patch
 	epatch "${FILESDIR}"/trac_9958-suffix_trees-variations.patch
+	epatch "${FILESDIR}"/trac_9958-32_64bit_messages.patch
 	# integer hashing
 	epatch "${FILESDIR}"/11986_integer_hash-sage.patch
 	# eisenstein patch trac 12124
