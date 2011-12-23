@@ -38,7 +38,10 @@ QUICK INSTALLATION GUIDE
      layman -L
      layman -a sage-on-gentoo
 
-3. *UNMASK AND USE-FLAG EBUILDS*:
+3. *UNMASK EBUILDS*:
+   If you are using Gentoo/unstable or Funtoo (i.e. you have a line like
+   ACCEPT_KEYWORDS=~arch in your /etc/make.conf) you may skip this step.
+
    Before being able to install you will need to unmask the required ebuilds.
    You should use the following file which already contains all required
    entries:
@@ -55,6 +58,7 @@ QUICK INSTALLATION GUIDE
      ln -s <path-to-layman>/sage-on-gentoo/package.keywords/sage \
            /etc/portage/package.keywords/sage
 
+4. *ADD USE-FLAGS FOR EBUILDS*:
    Since Sage's ebuild requires its dependencies to be built with several USE-
    flags we provide a standard package.use file as well:
 
@@ -63,10 +67,17 @@ QUICK INSTALLATION GUIDE
      ln -s <path-to-layman>/sage-on-gentoo/package.use/sage \
            /etc/portage/package.use/sage
 
+   If you are using unstable or Funtoo you may also need the following file:
+
+   ::
+
+     ln -s <path-to-layman>/sage-on-gentoo/package.use/sage-unstable \
+           /etc/portage/package.use/sage-unstable
+
    <path-to-layman> is usually /var/lib/layman (this path used to be
    /usr/local/portage/layman for older version of layman).
 
-4. *INSTALL SAGE*:
+5. *INSTALL SAGE*:
    Type
 
    ::
@@ -87,7 +98,7 @@ QUICK INSTALLATION GUIDE
    However, this should not pose a problem since the default choice is the
    reference implementation.
 
-5. *UPDATE YOUR LOCAL OVERLAY*:
+6. *UPDATE YOUR LOCAL OVERLAY*:
    To update your local copy of sage-on-gentoo simply type:
 
    ::
