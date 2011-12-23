@@ -1,0 +1,4 @@
+# Use in addition to ./sage when running Gentoo unstable
+
+app-text/ghostscript-gpl    cups
+sys-libs/zlib               minizip
