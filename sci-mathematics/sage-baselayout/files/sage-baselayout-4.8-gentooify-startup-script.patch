@@ -1,5 +1,5 @@
---- sage-sage.orig	2011-12-14 00:17:11.000000000 +1300
-+++ sage-sage	2011-12-14 09:45:31.473193990 +1300
+--- sage-sage.orig	2011-12-23 03:00:36.000000000 +1300
++++ sage-sage	2011-12-31 10:59:45.785484374 +1300
 @@ -36,10 +36,6 @@
      echo "                           -only-optional <tag1,...,tagn>  -- only run tests"
      echo "                            including one of the #optional tags"
@@ -59,15 +59,18 @@
      echo "  -fixdoctests <file.py> -- create <file.py>.out that would pass the doctests"
      echo "                            and output a patch"
      echo "  -startuptime        -- display how long each component of Sage takes to"
-@@ -156,8 +120,6 @@
+@@ -156,10 +120,8 @@
      echo "                           -only-optional <tag1,...,tagn>  -- only run tests"
      echo "                            including one of the #optional tags"
      echo "                           -randorder[=seed]  -- randomize order of tests"
 -    echo "  -tnew [...]         -- like -t above, but only tests files modified since"
 -    echo "                         last commit"
      echo "  -tp <N> [...]       -- like -t above, but tests in parallel using N threads"
-     echo "                         with 0 interpreted as minimum(8, cpu_count())"
+-    echo "                         with 0 interpreted as a sensible default"
++    echo "                         with 0 interpreted as minimum(8, cpu_count())"
      echo "  -testall [options]  -- test all source files, docs, and examples.  options"
+     echo "                         like -t"
+ 
 @@ -167,10 +129,6 @@
      ####  1.......................26..................................................78
      ####  |.....................--.|...................................................|
@@ -172,7 +175,7 @@
  if [ "$1" = '-maxima'  -o "$1" = '--maxima' ]; then
      cd "$CUR"
      shift
-@@ -551,60 +466,10 @@
+@@ -551,51 +466,10 @@
      exit $?
  fi
  
@@ -218,22 +221,13 @@
  #####################################################################
  
 -build_sage() {
--    if [ "$SAGE_PBUILD" == "yes" ]; then
--        echo >&2 'Pbuild is currently broken -- defaulting to serial build.'
--        # if [ "$@" ]; then
--        #     ln -snf "$SAGE_ROOT"/devel/sage-"$@" "$SAGE_ROOT"/devel/sage
--        # fi
--        # time python "$SAGE_ROOT"/devel/sage/build.py -b
--        sage-build "$@"
--    else
--        sage-build "$@"
--    fi
+-    sage-build "$@" || exit $?
 -}
 -
  if [ "$1" = "-notebook"  -o "$1" = '--notebook' -o "$1" = '-n' ]; then
     cd "$CUR"
     shift
-@@ -613,14 +478,6 @@
+@@ -604,15 +478,6 @@
     exit $?
  fi
  
@@ -241,14 +235,15 @@
 -    cd "$CUR"
 -    shift
 -    sage-cleaner &>/dev/null &
--    build_sage && sage-notebook "$@"
+-    build_sage
+-    sage-notebook "$@"
 -    exit $?
 -fi
 -
  if [ "$1" = "-inotebook"  -o "$1" = '--inotebook' ]; then
     cd "$CUR"
     shift
-@@ -629,18 +486,6 @@
+@@ -621,18 +486,6 @@
     exit $?
  fi
  
@@ -267,7 +262,7 @@
  if [ "$1" = '-grep' -o "$1" = "--grep" ]; then
     sage_setup
     shift
-@@ -663,81 +508,7 @@
+@@ -655,82 +508,7 @@
     exit $?
  fi
  
@@ -279,7 +274,8 @@
 -
 -if [ "$1" = '-br' -o "$1" = "--br" ]; then
 -    shift
--    build_sage "$@" && sage
+-    build_sage "$@"
+-    sage
 -    exit $?
 -fi
 -
@@ -344,31 +340,31 @@
 -
 -if [ "$1" = '-t' -o "$1" = '-bt' ]; then
 -   if [ "$1" = '-bt' ]; then
--      build_sage || exit $?
+-      build_sage
 -   fi
 +if [ "$1" = '-t' ]; then
     if ! [  -f  "$DOT_SAGE"/init.sage ]; then
        echo >&2 "init.sage does not exist ... creating"
        touch "$DOT_SAGE"/init.sage
-@@ -748,10 +519,7 @@
+@@ -741,10 +519,7 @@
     exit $?
  fi
  
 -if [ "$1" = '-tp' -o "$1" = '-btp' ]; then
 -   if [ "$1" = '-btp' ]; then
--      build_sage || exit $?
+-      build_sage
 -   fi
 +if [ "$1" = '-tp' ]; then
     if ! [  -f  "$DOT_SAGE"/init.sage ]; then
        echo >&2 "init.sage does not exist ... creating"
        touch "$DOT_SAGE"/init.sage
-@@ -762,16 +530,6 @@
+@@ -755,16 +530,6 @@
     exit $?
  fi
  
 -if [ "$1" = '-tnew' -o "$1" = '-btnew' ]; then
 -   if [ "$1" = '-btnew' ]; then
--      build_sage || exit $?
+-      build_sage
 -   fi
 -   cd "$CUR"
 -   shift
@@ -379,7 +375,7 @@
  if [ "$1" = '-testall' -o "$1" = "--testall" ]; then
     shift
     sage-maketest "$@"
-@@ -787,71 +545,12 @@
+@@ -780,71 +545,12 @@
     exit $?
  fi
  
@@ -454,7 +450,7 @@
  fi
  
  if [ "$1" = '-pkg' -o "$1" = '-spkg' -o "$1" = "--pkg" -o "$1" = "--spkg" ]; then
-@@ -882,97 +581,6 @@
+@@ -875,97 +581,6 @@
     exit $?
  fi
  
@@ -552,7 +548,7 @@
  if [ "$1" = '-gdb' -o "$1" = "--gdb" ]; then
      sage_setup
      sage-gdb
-@@ -1034,10 +642,6 @@
+@@ -1027,10 +642,6 @@
  
  if [ $# -ge 1 ]; then
     T=`echo "$1" | sed -e "s/.*\.//"`
