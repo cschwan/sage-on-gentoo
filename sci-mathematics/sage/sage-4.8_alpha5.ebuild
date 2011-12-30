@@ -110,7 +110,7 @@ RDEPEND="${CDEPEND}
 		)
 	)"
 
-PDEPEND="~sci-mathematics/sage-notebook-0.8.25"
+PDEPEND="~sci-mathematics/sage-notebook-0.8.26"
 
 S="${WORKDIR}/${MY_P}"
 
@@ -200,9 +200,6 @@ src_prepare() {
 
 	# fix misc/dist.py
 	epatch "${FILESDIR}"/${PN}-4.8-dist.py.patch
-
-	# Add givaro to matrix_modn_dense_{float,double}
-	epatch "${FILESDIR}"/modn_givaro.patch
 
 	# fix png library name
 	sed -i "s:png12:$(libpng-config --libs | cut -dl -f2):g" \

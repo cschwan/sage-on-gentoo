@@ -2,6 +2,16 @@
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  30 Dec 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  -sage-4.8_alpha4.ebuild, +sage-4.8_alpha5.ebuild, -files/modn_givaro.patch:
+  alpha5 + drop patch included upstream
+
+*sage-4.8_alpha5 (30 Dec 2011)
+
+  30 Dec 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  -sage-4.8_alpha4.ebuild, +sage-4.8_alpha5.ebuild:
+  alpha5
+
   19 Dec 2011; François Bissey <francois.bissey@canterbury.ac.nz>
   sage-4.8_alpha4.ebuild, +files/trac_9958-32_64bit_messages.patch:
   Add a missing python 2.7 patch
