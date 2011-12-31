@@ -2,6 +2,10 @@
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  31 Dec 2011; Martin von Gagern (MvG) <Martin.vGagern@gmx.net>
+  -mpfi-1.5.ebuild:
+  mpfi-1.5 is in main portage tree now.
+
   06 May 2011; Christopher Schwan <cschwan@students.uni-mainz.de>
   mpfi-1.4.ebuild, mpfi-1.5.ebuild:
   Migrate to EAPI 4
