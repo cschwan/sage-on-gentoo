@@ -1,6 +1,28 @@
 # ChangeLog for dev-lang/python
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/ChangeLog,v 1.557 2011/10/31 04:02:01 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/ChangeLog,v 1.563 2011/12/14 23:05:44 floppym Exp $
+
+  14 Dec 2011; Mike Gilbert <floppym@gentoo.org> python-2.5.4-r4.ebuild:
+  Apply linux3 platform workaround. Fixes bug 394143.
+
+  13 Dec 2011; Dirkjan Ochtman <djc@gentoo.org> files/linux2.patch:
+  Prune back linux2.patch to prevent race conditions (bug 394547).
+
+  09 Dec 2011; Mike Frysinger <vapier@gentoo.org> python-3.2.2.ebuild:
+  Replace hardcoded /lib64 searching with /<abi_libdir> paths.
+
+  01 Dec 2011; Dirkjan Ochtman <djc@gentoo.org> python-2.7.2-r3.ebuild,
+  python-3.1.4-r3.ebuild, python-3.2.2.ebuild:
+  Fix autogen problems (bug 355733).
+
+  01 Dec 2011; Dirkjan Ochtman <djc@gentoo.org> -python-2.7.2-r2.ebuild,
+  -python-3.1.4-r2.ebuild, -python-3.2-r2.ebuild:
+  Remove old versions from the tree.
+
+  26 Nov 2011; Mike Gilbert <floppym@gentoo.org> python-2.6.7-r2.ebuild,
+  python-2.7.2-r2.ebuild, python-2.7.2-r3.ebuild, python-3.1.4-r2.ebuild,
+  python-3.1.4-r3.ebuild:
+  Remove reference to snapshots in python overlay.
 
   31 Oct 2011; Mike Frysinger <vapier@gentoo.org> python-2.6.7-r2.ebuild,
   python-2.7.2-r2.ebuild, python-2.7.2-r3.ebuild, python-3.1.4-r2.ebuild,
