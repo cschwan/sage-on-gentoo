@@ -77,7 +77,6 @@ sci-mathematics/sage-examples
 sci-mathematics/sage-extcode
 sci-mathematics/sage-notebook
 sci-mathematics/sage-notebook-server
-=sci-mathematics/singular-3.1.3.3*
 sci-mathematics/sympow
 ##########################
 # optional dependencies
