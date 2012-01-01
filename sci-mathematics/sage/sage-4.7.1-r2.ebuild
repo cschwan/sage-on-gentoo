@@ -98,6 +98,7 @@ RDEPEND="${CDEPEND}
 	~sci-mathematics/sage-extcode-${PV}
 	>=sci-mathematics/singular-3.1.2
 	>=sci-mathematics/sympow-1.018.1_p8[pari24]
+	>=sys-libs/glibc-2.13-r4
 	examples? ( ~sci-mathematics/sage-examples-4.7 )
 	testsuite? (
 		~sci-mathematics/sage-doc-${PV}[html]
