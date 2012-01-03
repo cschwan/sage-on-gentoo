@@ -1,5 +1,5 @@
---- sage-sage.orig	2011-12-23 03:00:36.000000000 +1300
-+++ sage-sage	2011-12-31 10:59:45.785484374 +1300
+--- sage-sage.orig	2012-01-01 19:30:02.000000000 +1300
++++ sage-sage	2012-01-04 11:22:22.895001751 +1300
 @@ -36,10 +36,6 @@
      echo "                           -only-optional <tag1,...,tagn>  -- only run tests"
      echo "                            including one of the #optional tags"
@@ -71,7 +71,7 @@
      echo "  -testall [options]  -- test all source files, docs, and examples.  options"
      echo "                         like -t"
  
-@@ -167,10 +129,6 @@
+@@ -167,26 +129,17 @@
      ####  1.......................26..................................................78
      ####  |.....................--.|...................................................|
      echo "Documentation:"
@@ -79,10 +79,10 @@
 -    echo "  -coverageall        -- give summary info about doctest coverage of all"
 -    echo "                         files in the Sage library"
 -    echo "  -docbuild [lang/]<document> <html|pdf|...> -- Build the Sage documentation"
-     echo "  -grep <string>      -- grep through all the Sage library code for string"
-     echo "  -grepdoc <string>   -- grep through all the Sage documentation for string"
++    echo "  -grep <string>      -- grep through all the Sage library code for string"
++    echo "  -grepdoc <string>   -- grep through all the Sage documentation for string"
  
-@@ -178,17 +136,10 @@
+     echo
      ####  1.......................26..................................................78
      ####  |.....................--.|...................................................|
      echo "Making Sage packages or distributions:"
@@ -100,7 +100,7 @@
      echo "  -sdist VER          -- build a source distribution of Sage"
  
      echo
-@@ -217,21 +168,6 @@
+@@ -215,21 +168,6 @@
      exit 0
  }
  
@@ -122,7 +122,7 @@
  # Sage startup script passes some funny options, which are
  # best ignored.
  if [ $# -eq 3 ]; then
-@@ -261,14 +197,7 @@
+@@ -259,14 +197,7 @@
          cat "$SAGE_LOCAL/bin/sage-banner"
      fi
  
@@ -138,7 +138,7 @@
      IPYTHONDIR="$DOT_SAGE/ipython" && export IPYTHONDIR
      IPYTHONRC="ipythonrc" && export IPYTHONRC
      if [ ! -d "$IPYTHONDIR" ]; then
-@@ -356,13 +285,6 @@
+@@ -354,13 +285,6 @@
      exit $?
  fi
  
@@ -152,7 +152,7 @@
  if [ "$1" = '-gap' -o "$1" = '--gap' ]; then
      cd "$CUR"
      shift
-@@ -380,7 +302,7 @@
+@@ -378,7 +302,7 @@
  if [ "$1" = '-singular'  -o "$1" = '--singular' ]; then
      cd "$CUR"
      shift
@@ -161,7 +161,7 @@
      exit $?
  fi
  
-@@ -419,13 +341,6 @@
+@@ -417,13 +341,6 @@
      exit $?
  fi
  
@@ -175,7 +175,7 @@
  if [ "$1" = '-maxima'  -o "$1" = '--maxima' ]; then
      cd "$CUR"
      shift
-@@ -551,51 +466,10 @@
+@@ -549,51 +466,10 @@
      exit $?
  fi
  
@@ -227,7 +227,7 @@
  if [ "$1" = "-notebook"  -o "$1" = '--notebook' -o "$1" = '-n' ]; then
     cd "$CUR"
     shift
-@@ -604,15 +478,6 @@
+@@ -602,15 +478,6 @@
     exit $?
  fi
  
@@ -243,26 +243,31 @@
  if [ "$1" = "-inotebook"  -o "$1" = '--inotebook' ]; then
     cd "$CUR"
     shift
-@@ -621,18 +486,6 @@
+@@ -619,15 +486,17 @@
     exit $?
  fi
  
 -if [ "$1" = "-wiki"  -o "$1" = '--wiki' ]; then
 -   cd "$CUR"
--   shift
++if [ "$1" = '-grep' -o "$1" = "--grep" ]; then
++   sage_setup
+    shift
 -   sage-wiki "$@"
 -   exit $?
--fi
--
++   sage-grep "$@"
++   exit 0
+ fi
+ 
 -if [ "$1" = "-log" -o "$1" = "--log" ]; then
 -   sage-log
--   exit 0
--fi
--
- if [ "$1" = '-grep' -o "$1" = "--grep" ]; then
-    sage_setup
-    shift
-@@ -655,82 +508,7 @@
++if [ "$1" = '-grepdoc' -o "$1" = "--grepdoc" ]; then
++   sage_setup
++   shift
++   sage-grepdoc "$@"
+    exit 0
+ fi
+ 
+@@ -639,82 +508,7 @@
     exit $?
  fi
  
@@ -346,7 +351,7 @@
     if ! [  -f  "$DOT_SAGE"/init.sage ]; then
        echo >&2 "init.sage does not exist ... creating"
        touch "$DOT_SAGE"/init.sage
-@@ -741,10 +519,7 @@
+@@ -725,10 +519,7 @@
     exit $?
  fi
  
@@ -358,7 +363,7 @@
     if ! [  -f  "$DOT_SAGE"/init.sage ]; then
        echo >&2 "init.sage does not exist ... creating"
        touch "$DOT_SAGE"/init.sage
-@@ -755,16 +530,6 @@
+@@ -739,16 +530,6 @@
     exit $?
  fi
  
@@ -375,7 +380,7 @@
  if [ "$1" = '-testall' -o "$1" = "--testall" ]; then
     shift
     sage-maketest "$@"
-@@ -780,71 +545,12 @@
+@@ -764,71 +545,12 @@
     exit $?
  fi
  
@@ -450,7 +455,7 @@
  fi
  
  if [ "$1" = '-pkg' -o "$1" = '-spkg' -o "$1" = "--pkg" -o "$1" = "--spkg" ]; then
-@@ -875,97 +581,6 @@
+@@ -859,97 +581,6 @@
     exit $?
  fi
  
@@ -548,7 +553,7 @@
  if [ "$1" = '-gdb' -o "$1" = "--gdb" ]; then
      sage_setup
      sage-gdb
-@@ -1027,10 +642,6 @@
+@@ -1011,10 +642,6 @@
  
  if [ $# -ge 1 ]; then
     T=`echo "$1" | sed -e "s/.*\.//"`
