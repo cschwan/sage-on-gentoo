@@ -1,4 +1,4 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
@@ -98,7 +98,7 @@ RDEPEND="${CDEPEND}
 	~sci-mathematics/sage-extcode-${PV}
 	>=sci-mathematics/singular-3.1.2
 	>=sci-mathematics/sympow-1.018.1_p8[pari24]
-	>=sys-libs/glibc-2.13-r4
+	!prefix? ( >=sys-libs/glibc-2.13-r4 )
 	examples? ( ~sci-mathematics/sage-examples-4.7 )
 	testsuite? (
 		~sci-mathematics/sage-doc-${PV}[html]
