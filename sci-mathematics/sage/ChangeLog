@@ -2,6 +2,13 @@
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*sage-4.8_alpha6 (04 Jan 2012)
+
+  04 Jan 2012; François Bissey <francois.bissey@canterbury.ac.nz>
+  -files/12124_eisenstein.patch, -sage-4.8_alpha5.ebuild,
+  +sage-4.8_alpha6.ebuild:
+  alpha6
+
   03 Jan 2012; François Bissey <francois.bissey@canterbury.ac.nz>
   sage-4.7-r2.ebuild, sage-4.7.1-r2.ebuild, sage-4.7.2.ebuild,
   sage-4.8_alpha5.ebuild:

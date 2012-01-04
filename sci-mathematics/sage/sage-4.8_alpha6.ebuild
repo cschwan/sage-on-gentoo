@@ -165,8 +165,6 @@ src_prepare() {
 	epatch "${FILESDIR}"/trac_9958-32_64bit_messages.patch
 	# integer hashing
 	epatch "${FILESDIR}"/11986_integer_hash-sage.patch
-	# eisenstein patch trac 12124
-	epatch "${FILESDIR}"/12124_eisenstein.patch
 
 	# make sure we use cython-2.7 for consistency
 	sed -i "s:python \`which cython\`:cython-2.7:" setup.py
