@@ -149,7 +149,7 @@ src_install() {
 	dobin sage-cython sage-notebook* sage-python || die
 
 	# additonal helper scripts
-	dobin sage-grep sage-grepdoc sage-preparse sage-startuptime.py || die
+	dobin sage-preparse sage-startuptime.py || die
 
 	if use debug ; then
 		# GNU DEBUGGER helper schripts

@@ -2,6 +2,10 @@
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  04 Jan 2012; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-baselayout-4.8_alpha6.ebuild:
+  sage-grep* is no more
+
 *sage-baselayout-4.8_alpha6 (03 Jan 2012)
 
   03 Jan 2012; François Bissey <francois.bissey@canterbury.ac.nz>
