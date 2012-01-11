@@ -100,7 +100,9 @@ RDEPEND="${CDEPEND}
 	~sci-mathematics/singular-3.1.3.3
 	>=sci-mathematics/sympow-1.018.1_p8-r1[-pari24]
 	!prefix? ( >=sys-libs/glibc-2.13-r4 )
-	testsuite? ( ~sci-mathematics/sage-doc-${PV}[html] )
+	testsuite? ( ~sci-mathematics/sage-doc-${PV}[html] )"
+
+PDEPEND="~sci-mathematics/sage-notebook-0.8.23
 	latex? (
 		~dev-tex/sage-latex-2.3.1
 		|| (
@@ -109,7 +111,6 @@ RDEPEND="${CDEPEND}
 		)
 	)"
 
-PDEPEND="~sci-mathematics/sage-notebook-0.8.23"
 
 S="${WORKDIR}/${MY_P}"
 
