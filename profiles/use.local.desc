@@ -1,0 +1,26 @@
+# This file is deprecated as per GLEP 56 in favor of metadata.xml. Please add
+# your descriptions to your package's metadata.xml ONLY.
+# * generated automatically using egencache *
+
+dev-lang/python:sage - Apply fix for issue7689 required by sage.
+dev-lang/python:threads - Enable threading support. (DON'T DISABLE THIS UNLESS YOU KNOW WHAT YOU'RE DOING)
+dev-lang/python:wide-unicode - Enable wide Unicode implementation which uses 4-byte Unicode characters. Switching of this USE flag changes ABI of Python and requires reinstallation of many Python modules. (DON'T DISABLE THIS UNLESS YOU KNOW WHAT YOU'RE DOING)
+dev-lang/python:wininst - Install Windows executables required to create an executable installer for MS Windows.
+dev-python/cvxopt:glpk - Use GNU Linear Programming Kit
+sci-chemistry/jmol:client-only - Install the viewer only, no applet files for httpd
+sci-libs/flint:qs - Compiles support for quadratic sieve algorithm
+sci-libs/libsingular:boost - Compile against external boost headers (dev-libs/boost)
+sci-mathematics/ecm:shellcmd - Enable shell command execution
+sci-mathematics/lcalc:pari - Use pari for elliptic curve routines. This enables '-e' option
+sci-mathematics/pari:data - Add additional data (elldata, galdata, seadata, nftables)
+sci-mathematics/polybori:gd - Build with media-libs/gd
+sci-mathematics/polybori:sage - Replace the standard python interface by sage's python interface for easy integration in sage.
+sci-mathematics/sage:mpc - Enables the dev-libs/mpc extension for multiprecision complex arithmetic
+sci-mathematics/sage:testsuite - If activated installs Sage's sources into /usr/share/sage/devel/sage to enable testing
+sci-mathematics/sage-baselayout:X - Installs icon and desktop file
+sci-mathematics/sage-baselayout:testsuite - If activated installs scripts to enable testing of Sage
+sci-mathematics/sage-baselayout:tools - Install some tools for sage development
+sci-mathematics/sage-doc:html - Install HTML documentation
+sci-mathematics/sage-doc:pdf - Install the pdf version of the documentation.
+sci-mathematics/sage-notebook:java - Enable JMol for 3D-printing in the notebook
+sci-mathematics/sage-notebook:server - Install scripts and user to run the notebook as a daemon
