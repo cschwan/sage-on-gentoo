@@ -1,4 +1,4 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
@@ -23,7 +23,7 @@ IUSE="examples"
 
 RESTRICT="mirror"
 
-DEPEND="sci-mathematics/sage"
+DEPEND=""
 RDEPEND="dev-tex/pgf"
 
 S="${WORKDIR}/${MY_P}/src"

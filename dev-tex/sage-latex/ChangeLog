@@ -1,6 +1,12 @@
 # ChangeLog for dev-tex/sage-latex
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
+
+  16 Jan 2012; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-latex-2.3.1-r1.ebuild:
+  remove build dependency on sage. It was added when trying to build from
+  bitbucket sources which required a runing sage. 
+  It didn't work properly so we are back to not depending on sage.
 
 *sage-latex-2.3.1-r1 (12 Nov 2011)
 
