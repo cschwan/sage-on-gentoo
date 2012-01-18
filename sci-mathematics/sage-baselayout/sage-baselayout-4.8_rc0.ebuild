@@ -126,6 +126,10 @@ src_prepare() {
 	sed -i "s:\$SAGE_ROOT/local:\$SAGE_LOCAL:g" sage-gdb sage-gdb-ipython \
 		sage-cachegrind sage-callgrind sage-massif sage-omega sage-valgrind \
 		|| die "failed to patch GNU Debugger scripts"
+
+	# replace MAKE by MAKEOPTS in sage-num-threads.py
+	sed -i "s:os.environ\[\"MAKE\"\]:os.environ\[\"MAKEOPTS\"\]:g" \
+		sage-num-threads.py
 }
 
 src_install() {
@@ -133,7 +137,7 @@ src_install() {
 
 	# core scripts which are needed in every case
 	dobin sage sage-banner sage-cleaner sage-env sage-eval sage-ipython \
-		sage-maxima.lisp sage-native-execute sage-run sage-sage || die
+		sage-maxima.lisp sage-native-execute sage-run sage-sage sage-num-threads.py || die
 
 	if use testsuite ; then
 		# DOCTESTING helper scripts
