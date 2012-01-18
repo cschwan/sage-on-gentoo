@@ -3,6 +3,16 @@
 # $Header: $
 
   18 Jan 2012; François Bissey <francois.bissey@canterbury.ac.nz>
+  -files/sage-4.6.1-exp-site-packages.patch,
+  -files/sage-4.6-fix-SAGE_LOCAL.patch,
+  -files/trac_11244_fixmoredeprecationswarnings-4.7.patch,
+  -files/trac_11339-groebner_strategy_deallocate.patch,
+  -files/trac_11357-fix_gsl_doctest.patch, -sage-4.7-r2.ebuild,
+  -files/trac_9958-fixing_numericalnoise-part1-4.7.patch,
+  -files/trac_9958-fixing_numericalnoise-part2-4.7.patch:
+  removing 4.7
+
+  18 Jan 2012; François Bissey <francois.bissey@canterbury.ac.nz>
   sage-4.7-r2.ebuild, sage-4.7.1-r2.ebuild, sage-4.7.2.ebuild,
   sage-4.8_alpha6.ebuild:
   Allowing scipy-0.10
