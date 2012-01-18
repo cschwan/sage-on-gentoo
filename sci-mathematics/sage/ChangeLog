@@ -3,6 +3,19 @@
 # $Header: $
 
   18 Jan 2012; François Bissey <francois.bissey@canterbury.ac.nz>
+  +files/9958_combinat.patch.bz2, +files/9958_exceptions.patch.bz2,
+  -files/trac_9958-fix_transcendental.patch, sage-4.8_alpha6.ebuild,
+  +files/9958_float_printing.patch.bz2, +files/9958_misc.patch.bz2,
+  -files/trac_9958-fix_randstate.patch,
+  -files/trac_9958-fixing_numericalnoise-part1_p4.patch,
+  -files/trac_9958-gsl_integration.patch,
+  -files/trac_9958-matrix_mod2e_dense.patch,
+  -files/trac_9958-32_64bit_messages.patch,
+  -files/trac_9958-nfactor_enumerable_word-randomness.patch,
+  -files/trac_9958-suffix_trees-variations.patch:
+  switching to consolidated patches for 4.8
+
+  18 Jan 2012; François Bissey <francois.bissey@canterbury.ac.nz>
   -files/sage-4.6.1-exp-site-packages.patch,
   -files/sage-4.6-fix-SAGE_LOCAL.patch,
   -files/trac_11244_fixmoredeprecationswarnings-4.7.patch,

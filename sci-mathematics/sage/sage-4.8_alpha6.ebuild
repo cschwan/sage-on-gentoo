@@ -141,28 +141,10 @@ src_prepare() {
 		-e "s:  ::")\'
 
 	# patches for python-2.7
-	# fixing pure numerical noise
-	epatch "${FILESDIR}"/trac_9958-fixing_numericalnoise-part1_p4.patch
-	epatch "${FILESDIR}"/trac_9958-fixing_numericalnoise-part2.patch
-	epatch "${FILESDIR}"/trac_9958-fixing_numericalnoise-part3.patch
-	epatch "${FILESDIR}"/trac_9958-fixing_numericalnoise-part4.patch
-	epatch "${FILESDIR}"/trac_9958-fix_transcendental.patch
-	epatch "${FILESDIR}"/trac_9958-fix_randstate.patch
-	epatch "${FILESDIR}"/trac_9958-gsl_integration.patch
-	epatch "${FILESDIR}"/trac_9958-matrix_mod2e_dense.patch
-	# other fixes
-	epatch "${FILESDIR}"/trac_9958-sage_unittest.patch
-	epatch "${FILESDIR}"/trac_9958-fix-list_index.patch
-	epatch "${FILESDIR}"/trac_9958-fix-pureAssertError.patch
-	epatch "${FILESDIR}"/trac_9958-mixedfix.patch
-	epatch "${FILESDIR}"/trac_9958-fixing_colorspy.patch
-	epatch "${FILESDIR}"/trac_9958-e_one_star.patch
-	epatch "${FILESDIR}"/trac_9958-finite_crystals.patch
-	epatch "${FILESDIR}"/trac_9958-symbolic_callable.patch
-	epatch "${FILESDIR}"/trac_9958_junk_valueerror.patch
-	epatch "${FILESDIR}"/trac_9958-nfactor_enumerable_word-randomness.patch
-	epatch "${FILESDIR}"/trac_9958-suffix_trees-variations.patch
-	epatch "${FILESDIR}"/trac_9958-32_64bit_messages.patch
+	epatch "${FILESDIR}"/9958_float_printing.patch.bz2
+	epatch "${FILESDIR}"/9958_exceptions.patch.bz2
+	epatch "${FILESDIR}"/9958_combinat.patch.bz2
+	epatch "${FILESDIR}"/9958_misc.patch.bz2
 	# integer hashing
 	epatch "${FILESDIR}"/11986_integer_hash-sage.patch
 
