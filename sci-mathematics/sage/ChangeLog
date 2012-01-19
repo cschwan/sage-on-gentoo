@@ -2,6 +2,10 @@
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  19 Jan 2012; François Bissey <francois.bissey@canterbury.ac.nz>
+  +files/trac_12171a.patch, +files/trac_12171b.patch, sage-4.8_rc0.ebuild:
+  use mpfi-1.5 in sage-4.8
+
 *sage-4.8_rc0 (19 Jan 2012)
 
   19 Jan 2012; François Bissey <francois.bissey@canterbury.ac.nz>

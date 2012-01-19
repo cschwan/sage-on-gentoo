@@ -40,7 +40,7 @@ CDEPEND="dev-libs/gmp
 	!=sci-libs/linbox-1.1.7
 	~sci-libs/m4ri-20111004
 	~sci-libs/m4rie-20111004
-	>=sci-libs/mpfi-1.4
+	>=sci-libs/mpfi-1.5
 	=sci-libs/pynac-0.2.3
 	>=sci-libs/symmetrica-2.0
 	>=sci-libs/zn_poly-0.9
@@ -234,6 +234,10 @@ src_prepare() {
 
 	# update to gfan-0.5 (breaks test) trac 11395)
 	epatch "${FILESDIR}"/${PN}-4.6.2-gfan-0.5.patch
+
+	# update to mpfi 1.5.x trac 
+	epatch "${FILESDIR}"/trac_12171a.patch
+	epatch "${FILESDIR}"/trac_12171b.patch
 
 	# patch for jmol-12.0.45
 	epatch "${FILESDIR}"/trac_9238_script_extension.patch

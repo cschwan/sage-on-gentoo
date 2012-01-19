@@ -1,0 +1,84 @@
+# HG changeset patch
+# User Paul Zimmermann <zimmerma@loria.fr>
+# Date 1324547422 -3600
+# Node ID 000c24e2984a4baf54bc0f70e1bd129109e43fd9
+# Parent  9e29a3d84c48c399daaf3920bcb8b17273a0e876
+#12171: partial patch to fix issues when upgrading to MPFI 1.5.0
+
+diff --git a/sage/rings/qqbar.py b/sage/rings/qqbar.py
+--- a/sage/rings/qqbar.py
++++ b/sage/rings/qqbar.py
+@@ -4000,14 +4000,18 @@
+             -2.00000000000000
+             sage: (-x).real_exact(RealField(53, rnd='RNDZ'))
+             -2.00000000000000
+-            sage: (x-2).real_exact(RR)
+-            0.000000000000000
+-            sage: (x-2).real_exact(RealField(53, rnd='RNDD'))
+-            0.000000000000000
+-            sage: (x-2).real_exact(RealField(53, rnd='RNDU'))
+-            0.000000000000000
+-            sage: (x-2).real_exact(RealField(53, rnd='RNDZ'))
+-            0.000000000000000
++            sage: y = (x-2).real_exact(RR).abs()
++            sage: y == 0.0 or y == -0.0 # the sign of 0.0 is not significant in MPFI
++            True
++            sage: y = (x-2).real_exact(RealField(53, rnd='RNDD'))
++            sage: y == 0.0 or y == -0.0 # same as above
++            True
++            sage: y = (x-2).real_exact(RealField(53, rnd='RNDU'))
++            sage: y == 0.0 or y == -0.0 # idem
++            True
++            sage: y = (x-2).real_exact(RealField(53, rnd='RNDZ'))
++            sage: y == 0.0 or y == -0.0 # ibidem
++            True
+             sage: y = AA(2).sqrt()
+             sage: y.real_exact(RR)
+             1.41421356237310
+diff --git a/sage/rings/real_mpfi.pyx b/sage/rings/real_mpfi.pyx
+--- a/sage/rings/real_mpfi.pyx
++++ b/sage/rings/real_mpfi.pyx
+@@ -1079,12 +1079,12 @@
+             sage: b = R('393.39203845902384098234098230948209384028340')
+             sage: cmp(loads(dumps(b)), b)
+             0
+-            sage: b = R(1)/R(0); b
+-            [+infinity .. +infinity]
++            sage: b = R(1)/R(0); b # R(0) has no particular sign, thus 1/R(0) covers the whole reals
++            [-infinity .. +infinity]
+             sage: loads(dumps(b)) == b
+             True
+-            sage: b = R(-1)/R(0); b
+-            [-infinity .. -infinity]
++            sage: b = R(-1)/R(0); b # same as above
++            [-infinity .. +infinity]
+             sage: loads(dumps(b)) == b
+             True
+             sage: b = R('[2 .. 3]'); b.str(error_digits=1)
+@@ -2361,8 +2361,8 @@
+             sage: R = RealIntervalField()
+             sage: R(1)/R(3)
+             0.3333333333333334?
+-            sage: R(1)/R(0)
+-            [+infinity .. +infinity]
++            sage: R(1)/R(0) # since R(0) has no sign, gives the whole reals
++            [-infinity .. +infinity]
+             sage: R(1)/R(-1, 1)
+             [-infinity .. +infinity]
+         
+@@ -3218,12 +3218,11 @@
+         
+         EXAMPLES::
+         
+-            sage: RIF(-1, 1).min(0).endpoints()
+-            (-1.00000000000000, 0.000000000000000)
++            sage: a=RIF(-1, 1).min(0).endpoints()
++            sage: a[0] == -1.0 and a[1].abs() == 0.0 # in MPFI, the sign of 0.0 is not specified
++            True
+             sage: RIF(-1, 1).min(pi).endpoints()
+             (-1.00000000000000, 1.00000000000000)
+-            sage: RIF(-1, 1).min(0).endpoints()
+-            (-1.00000000000000, 0.000000000000000)
+             sage: RIF(-1, 1).min(RIF(-100, 100)).endpoints()
+             (-100.000000000000, 1.00000000000000)
+             sage: RIF(-1, 1).min(RIF(-100, 0)).endpoints()

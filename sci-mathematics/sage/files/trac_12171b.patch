@@ -1,0 +1,28 @@
+# HG changeset patch
+# User Paul Zimmermann <zimmerma@loria.fr>
+# Date 1325326475 -3600
+# Node ID b24f82f266ee938b12fd5229696429c5487c98b2
+# Parent  000c24e2984a4baf54bc0f70e1bd129109e43fd9
+#12171: second patch to fix two b == loads(dumps(b)) tests
+(the semantics of == is special for intervals, thus we have to compare
+separately the lower and upper bounds)
+
+diff --git a/sage/rings/real_mpfi.pyx b/sage/rings/real_mpfi.pyx
+--- a/sage/rings/real_mpfi.pyx
++++ b/sage/rings/real_mpfi.pyx
+@@ -1081,11 +1081,13 @@
+             0
+             sage: b = R(1)/R(0); b # R(0) has no particular sign, thus 1/R(0) covers the whole reals
+             [-infinity .. +infinity]
+-            sage: loads(dumps(b)) == b
++            sage: c = loads(dumps(b))
++            sage: (c.lower(), c.upper()) == (b.lower(), b.upper())
+             True
+             sage: b = R(-1)/R(0); b # same as above
+             [-infinity .. +infinity]
+-            sage: loads(dumps(b)) == b
++            sage: c = loads(dumps(b))
++            sage: (c.lower(), c.upper()) == (b.lower(), b.upper())
+             True
+             sage: b = R('[2 .. 3]'); b.str(error_digits=1)
+             '2.5?5'
