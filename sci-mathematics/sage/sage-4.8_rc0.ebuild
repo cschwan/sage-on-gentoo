@@ -317,8 +317,8 @@ src_configure() {
 	export SAGE_VERSION=${PV}
 	export DOT_SAGE="${S}"
 
-	export MAKE=${MAKEOPTS}
-
+	local sage_num_threads_array=(`sage-num-threads.py 2>/dev/null || echo 1 2 1`)
+	export SAGE_NUM_THREADS=${sage_num_threads_array[0]}
 	# files are not built unless they are touched
 	find sage -name "*pyx" -exec touch '{}' \; \
 		|| die "failed to touch *pyx files"
