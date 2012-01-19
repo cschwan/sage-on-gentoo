@@ -2,6 +2,12 @@
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*sage-clib-4.8_rc0 (19 Jan 2012)
+
+  19 Jan 2012; François Bissey <francois.bissey@canterbury.ac.nz>
+  -sage-clib-4.8_alpha6.ebuild, +sage-clib-4.8_rc0.ebuild:
+  4.8_rc0: clib
+
   18 Jan 2012; François Bissey <francois.bissey@canterbury.ac.nz>
   -files/sage-clib-4.6-importenv.patch, -sage-clib-4.7.ebuild:
   removing 4.7
