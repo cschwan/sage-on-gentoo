@@ -1,4 +1,4 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
@@ -37,7 +37,6 @@ src_prepare() {
 		sed -i "s: tests::g" configure.ac || die "failed to patch configure.ac"
 	fi
 
-	eautoreconf
 	autotools-utils_src_prepare
 }
 
