@@ -1,10 +1,10 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
 EAPI="4"
 
-inherit eutils autotools-utils flag-o-matic
+inherit autotools-utils eutils flag-o-matic
 
 DESCRIPTION="Method of four russian for inversion (M4RI)"
 HOMEPAGE="http://m4ri.sagemath.org/"
@@ -22,16 +22,13 @@ DEPEND="openmp? ( >=sys-devel/gcc-4.2[openmp] )
 	~sci-libs/m4ri-${PV}[openmp?]"
 RDEPEND="~sci-libs/m4ri-${PV}[openmp?]"
 
+PATCHES=( "${FILESDIR}"/${P}-trsm.patch )
+
 pkg_setup() {
 	# TODO: there should be a better way to fix this
 	if use openmp ; then
 		append-libs -lgomp
 	fi
-}
-
-src_prepare() {
-	# patch headers to allow out of source build
-	epatch "${FILESDIR}"/${P}-trsm.patch
 }
 
 src_configure() {
