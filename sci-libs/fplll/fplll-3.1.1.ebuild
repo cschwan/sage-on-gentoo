@@ -1,4 +1,4 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
@@ -28,13 +28,14 @@ S="${WORKDIR}/${MY_P}"
 DOCS=( AUTHORS NEWS README )
 PATCHES=( "${FILESDIR}"/${PN}-3.1.1-installation.patch )
 
-src_prepare() {
+pkg_setup() {
 	# -O3 hangs up the compiler. See issue #66 at
 	# https://github.com/cschwan/sage-on-gentoo/issues/66
 	replace-flags -O3 -O2
+}
 
+src_prepare() {
 	autotools-utils_src_prepare
-	eautoreconf
 
 	# Replace deprecated gmp functions which are removed with mpir-1.3.0
 	sed -i "s:mpz_div_2exp:mpz_tdiv_q_2exp:g" src/nr.cpp src/util.h \
