@@ -1,9 +1,9 @@
-#dev-lang/R
+dev-lang/R
 #dev-libs/mpfr
 =dev-libs/ppl-0.11.2
 dev-lisp/ecls
 dev-python/cvxopt
-#dev-python/cython
+dev-python/cython
 #dev-python/docutils
 dev-python/gdmodule
 dev-python/matplotlib
@@ -11,8 +11,8 @@ dev-python/mpmath
 =dev-python/networkx-1.2
 =dev-python/numpy-1.5.0-r3
 dev-python/pexpect
-dev-python/python-gnutls
 dev-python/rpy
+dev-python/sphinx
 =dev-python/sympy-0.7.1
 dev-python/twisted-web2
 dev-tex/sage-latex
@@ -38,7 +38,8 @@ sci-libs/libcliquer
 sci-libs/libsingular
 sci-libs/linbox
 sci-libs/m4ri
-=sci-libs/mpfi-1.4
+sci-libs/m4rie
+sci-libs/mpfi
 sci-libs/pynac
 sci-libs/scipy
 sci-libs/superlu
