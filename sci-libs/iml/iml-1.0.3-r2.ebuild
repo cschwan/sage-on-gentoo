@@ -1,4 +1,4 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
@@ -20,17 +20,13 @@ RESTRICT="mirror"
 DEPEND="virtual/cblas"
 RDEPEND="${DEPEND}"
 
+AT_M4DIR="config"
 DOCS=( AUTHORS ChangeLog README )
 PATCHES=(
 	"${FILESDIR}"/${P}-use-any-cblas-implementation.patch
 	"${FILESDIR}"/${P}-fix-undefined-symbol.patch
 	"${FILESDIR}"/${P}-repl_removal.patch
 )
-
-src_prepare() {
-	autotools-utils_src_prepare
-	AT_M4DIR=config eautoreconf
-}
 
 src_configure() {
 	myeconfargs=(
