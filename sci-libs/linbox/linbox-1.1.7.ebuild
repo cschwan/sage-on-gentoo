@@ -1,4 +1,4 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
@@ -30,6 +30,7 @@ DEPEND="${CDEPEND}
 	dev-util/pkgconfig"
 RDEPEND="${CDEPEND}"
 
+AT_M4DIR="macros"
 AUTOTOOLS_IN_SOURCE_BUILD="1"
 DOCS=( ChangeLog README NEWS TODO )
 PATCHES=(
@@ -48,8 +49,6 @@ src_prepare() {
 		# disable commentator; this is needed for sage
 		epatch "${FILESDIR}"/${PN}-1.1.6-disable-commentator.patch
 	fi
-
-	AT_M4DIR=macros eautoreconf
 }
 
 src_configure() {
