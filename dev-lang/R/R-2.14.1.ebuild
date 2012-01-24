@@ -101,7 +101,7 @@ src_prepare() {
 			-i configure.ac
 
 		sed "s:-Wl,-soname=libRmath.so:-install_name ${EPREFIX}/usr/$(get_libdir)/libRmath.dylib:" \
-			src/nmath/standalone/Makefile.in
+			-i src/nmath/standalone/Makefile.in
 	fi
 
 	AT_M4DIR=m4 eaclocal
