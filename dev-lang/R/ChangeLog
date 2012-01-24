@@ -1,6 +1,13 @@
 # ChangeLog for dev-lang/R
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
+
+*R-2.14.1 (24 Jan 2012)
+
+  24 Jan 2012; François Bissey <francois.bissey@canterbury.ac.nz>
+  -R-2.14.0.ebuild, +R-2.14.1.ebuild, +files/R-2.14.1-rmath-shared.patch,
+  +files/R-2.14.1-tiff.patch:
+  bump to 2.14.1
 
   15 Dec 2011; François Bissey <francois.bissey@canterbury.ac.nz>
   R-2.14.0.ebuild:

@@ -1,0 +1,47 @@
+Add a --with-tiff to avoid broken implicit dependencies
+Patch by Sebastien Fabbro
+
+--- configure.ac.orig	2012-01-02 17:01:24.000000000 +0000
++++ configure.ac	2012-01-02 17:04:21.000000000 +0000
+@@ -396,6 +396,10 @@
+ [AS_HELP_STRING([--with-jpeglib],[use jpeglib library (if available) @<:@yes@:>@])],
+ [R_ARG_USE(jpeglib)],
+ [use_jpeglib=yes])
++AC_ARG_WITH([tiff],
++[AS_HELP_STRING([--with-libtiff],[use libtiff library (if available) @<:@yes@:>@])],
++[R_ARG_USE(libtiff)],
++[use_libtiff=yes])
+ AC_ARG_WITH([system-zlib],
+ [AS_HELP_STRING([--with-system-zlib],[use system zlib library (if available) @<:@no@:>@])],
+ [R_ARG_USE_SYSTEM(zlib)],
+--- m4/R.m4.orig	2012-01-02 17:05:22.000000000 +0000
++++ m4/R.m4	2012-01-02 17:08:08.000000000 +0000
+@@ -2005,16 +2005,18 @@
+ 	      [Define if you have the PNG headers and libraries.])
+   fi
+ fi
+-AC_CHECK_HEADERS(tiffio.h)
+-# may need to resolve jpeg routines
+-AC_CHECK_LIB(tiff, TIFFOpen, [have_tiff=yes], [have_tiff=no], [${BITMAP_LIBS}])
+-if test "x${ac_cv_header_tiffio_h}" = xyes ; then
+-  if test "x${have_tiff}" = xyes; then
+-    AC_DEFINE(HAVE_TIFF, 1, [Define this if libtiff is available.])
+-    BITMAP_LIBS="-ltiff ${BITMAP_LIBS}"
+-  else
+-    have_tiff=no
+-  fi
++if test "${use_libtiff}" = yes; then
++   AC_CHECK_HEADERS(tiffio.h)
++   # may need to resolve jpeg routines
++   AC_CHECK_LIB(tiff, TIFFOpen, [have_tiff=yes], [have_tiff=no], [${BITMAP_LIBS}])
++   if test "x${ac_cv_header_tiffio_h}" = xyes ; then
++     if test "x${have_tiff}" = xyes; then
++      AC_DEFINE(HAVE_TIFF, 1, [Define this if libtiff is available.])
++      BITMAP_LIBS="-ltiff ${BITMAP_LIBS}"
++     else
++	have_tiff=no
++     fi
++   fi
+ fi
+ AC_SUBST(BITMAP_LIBS)
+ ])# R_BITMAPS
