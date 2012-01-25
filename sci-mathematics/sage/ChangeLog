@@ -3,6 +3,10 @@
 # $Header: $
 
   25 Jan 2012; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-4.8.ebuild:
+  remove sage-examples
+
+  25 Jan 2012; François Bissey <francois.bissey@canterbury.ac.nz>
   -files/11130-4.7.2.alpha3.patch, -files/11130-sagelib-simon-v2.patch,
   -files/11130_reviewer32.patch, -files/11130_sagelib.patch,
   -files/11752_ecl-nothread.patch, -files/bug11339a.patch,
