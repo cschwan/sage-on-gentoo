@@ -1,6 +1,10 @@
 # ChangeLog for sci-mathematics/genus2reduction
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
+
+  25 Jan 2012; François Bissey <francois.bissey@canterbury.ac.nz>
+  -genus2reduction-0.3_p8.ebuild, -files/genus2reduction-0.3.p8.patch:
+  drop old
 
 *genus2reduction-0.3_p8-r1 (22 Aug 2011)
 
