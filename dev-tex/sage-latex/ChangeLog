@@ -2,6 +2,11 @@
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  25 Jan 2012; François Bissey <francois.bissey@canterbury.ac.nz>
+  -sage-latex-2.2.5-r2.ebuild,
+  -files/sage-latex-2.2.5-install-python-files-only.patch:
+  drop old
+
   16 Jan 2012; François Bissey <francois.bissey@canterbury.ac.nz>
   sage-latex-2.3.1-r1.ebuild:
   remove build dependency on sage. It was added when trying to build from
