@@ -2,6 +2,15 @@
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  25 Jan 2012; François Bissey <francois.bissey@canterbury.ac.nz>
+  -files/sage-baselayout-4.5.1-remove-sage-location.patch,
+  -files/sage-baselayout-4.5.2-fix-SAGE_LOCAL.patch,
+  -sage-baselayout-4.7.1.ebuild,
+  -files/sage-baselayout-4.7.1-gentooify-startup-script.patch,
+  -sage-baselayout-4.7.2-r1.ebuild,
+  -files/sage-baselayout-4.7.2-gentooify-startup-script.patch:
+  drop 4.7.1 and 4.7.2
+
 *sage-baselayout-4.8 (21 Jan 2012)
 
   21 Jan 2012; Christopher Schwan <cschwan@students.uni-mainz.de>
