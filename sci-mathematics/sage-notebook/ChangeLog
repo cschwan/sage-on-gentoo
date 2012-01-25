@@ -2,6 +2,10 @@
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  25 Jan 2012; François Bissey <francois.bissey@canterbury.ac.nz>
+  -sage-notebook-0.8.19-r1.ebuild, -sage-notebook-0.8.23-r1.ebuild:
+  drop old
+
   18 Jan 2012; François Bissey <francois.bissey@canterbury.ac.nz>
   -sage-notebook-0.8.14-r2.ebuild, -sage-notebook-0.8.23.ebuild,
   -files/sage-notebook-0.8-twistd-python-version.patch:
