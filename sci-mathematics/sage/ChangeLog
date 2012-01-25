@@ -2,6 +2,41 @@
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  25 Jan 2012; François Bissey <francois.bissey@canterbury.ac.nz>
+  -files/11130-4.7.2.alpha3.patch, -files/11130-sagelib-simon-v2.patch,
+  -files/11130_reviewer32.patch, -files/11130_sagelib.patch,
+  -files/11752_ecl-nothread.patch, -files/bug11339a.patch,
+  -files/sage-4.7.1-site-packages.patch, -files/sage-4.7.2-dist.py.patch,
+  -files/trac11734_sage_wraps_no_sourceread_lambda.patch,
+  -files/trac_11130-doctest-poly.patch,
+  -files/trac_11236-test_eq_for_python_2_7-nt.patch,
+  -files/trac_11244_fix_combinatpartition_warnings.patch,
+  -files/trac_11244_fixmoredeprecationswarnings.patch,
+  -files/trac_11244_reenable_deprecationwarnings_in_python27.patch,
+  -files/trac_11339_refcount_singular_polynomials-4.7.2.patch.bz2,
+  -files/trac_11339_refcount_singular_polynomials.patch.bz2,
+  -files/trac_11339_refcount_singular_rings-4.7.2.patch,
+  -files/trac_11339_refcount_singular_rings.patch,
+  -files/trac_11376-build_setuppy.patch,
+  -files/trac_11560-sympy_deprecated-each_char.patch,
+  -files/trac_11560-sympy_lexicographic_ordering.patch,
+  -files/trac_12041_replace_getslice.patch,
+  -files/trac_9958-build_misc_cythonpy.patch,
+  -files/trac_9958-e_one_star.patch, -files/trac_9958-finite_crystals.patch,
+  -files/trac_9958-fix-list_index.patch,
+  -files/trac_9958-fix-pureAssertError.patch,
+  -files/trac_9958-fixing_colorspy.patch,
+  -files/trac_9958-fixing_numericalnoise-part1.patch,
+  -files/trac_9958-fixing_numericalnoise-part2.patch,
+  -files/trac_9958-fixing_numericalnoise-part3.patch,
+  -files/trac_9958-fixing_numericalnoise-part4.patch,
+  -files/trac_9958-mixedfix.patch, -files/trac_9958-sage_unittest.patch,
+  -files/trac_9958-symbolic_callable.patch,
+  -files/trac_9958_enumerate64bit.patch,
+  -files/trac_9958_junk_valueerror.patch, -sage-4.7.1-r2.ebuild,
+  -sage-4.7.2.ebuild:
+  drop 4.7.1 and 4.7.2
+
 *sage-4.8 (21 Jan 2012)
 
   21 Jan 2012; Christopher Schwan <cschwan@students.uni-mainz.de>
