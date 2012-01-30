@@ -20,6 +20,7 @@ RESTRICT="mirror"
 DEPEND="virtual/cblas"
 RDEPEND="${DEPEND}"
 
+AUTOTOOLS_AUTORECONF=yes
 AT_M4DIR="config"
 DOCS=( AUTHORS ChangeLog README )
 PATCHES=(

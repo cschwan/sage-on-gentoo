@@ -2,6 +2,11 @@
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  30 Jan 2012; Christopher Schwan <cschwan@students.uni-mainz.de>
+  iml-1.0.3-r2.ebuild:
+  Add AUTOTOOLS_AUTORECONF=yes to fix bug #116. Thanks to yaront for
+  report.
+
   21 Jan 2012; Christopher Schwan <cschwan@students.uni-mainz.de>
   iml-1.0.3-r2.ebuild:
   Modify according to new autotools-utils eclass behavior
