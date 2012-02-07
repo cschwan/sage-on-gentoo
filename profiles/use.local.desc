@@ -12,7 +12,6 @@ sci-libs/flint:qs - Compiles support for quadratic sieve algorithm
 sci-libs/libsingular:boost - Compile against external boost headers (dev-libs/boost)
 sci-mathematics/ecm:shellcmd - Enable shell command execution
 sci-mathematics/lcalc:pari - Use pari for elliptic curve routines. This enables '-e' option
-sci-mathematics/pari:data - Add additional data (elldata, galdata, seadata, nftables)
 sci-mathematics/polybori:gd - Build with media-libs/gd
 sci-mathematics/polybori:sage - Replace the standard python interface by sage's python interface for easy integration in sage.
 sci-mathematics/sage:mpc - Enables the dev-libs/mpc extension for multiprecision complex arithmetic
