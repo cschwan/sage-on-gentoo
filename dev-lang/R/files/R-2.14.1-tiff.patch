@@ -1,4 +1,4 @@
-Add a --with-tiff to avoid broken implicit dependencies
+Add a --with-libtiff to avoid broken implicit dependencies
 Patch by Sebastien Fabbro
 
 --- configure.ac.orig	2012-01-02 17:01:24.000000000 +0000
@@ -7,7 +7,7 @@ Patch by Sebastien Fabbro
  [AS_HELP_STRING([--with-jpeglib],[use jpeglib library (if available) @<:@yes@:>@])],
  [R_ARG_USE(jpeglib)],
  [use_jpeglib=yes])
-+AC_ARG_WITH([tiff],
++AC_ARG_WITH([libtiff],
 +[AS_HELP_STRING([--with-libtiff],[use libtiff library (if available) @<:@yes@:>@])],
 +[R_ARG_USE(libtiff)],
 +[use_libtiff=yes])
