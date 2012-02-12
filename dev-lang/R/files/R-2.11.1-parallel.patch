@@ -1,3 +1,8 @@
+Fix ocasional failure with parallel install (bug #322965)
+Patch by Sebastien Fabbro
+
+https://bugs.r-project.org/bugzilla3/show_bug.cgi?id=14505
+
 --- src/include/Makefile.in.orig	2010-06-15 18:18:54.000000000 +0000
 +++ src/include/Makefile.in	2010-06-15 18:19:48.000000000 +0000
 @@ -81,7 +81,7 @@

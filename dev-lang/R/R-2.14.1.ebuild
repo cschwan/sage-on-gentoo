@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/R/R-2.14.1.ebuild,v 1.1 2012/01/02 19:47:54 bicatali Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/R/R-2.14.1.ebuild,v 1.3 2012/02/09 17:35:24 bicatali Exp $
 
 EAPI=4
 
@@ -13,7 +13,7 @@ SRC_URI="mirror://cran/src/base/R-2/${P}.tar.gz
 
 LICENSE="|| ( GPL-2 GPL-3 ) LGPL-2.1"
 SLOT="0"
-KEYWORDS="~alpha ~amd64 ~hppa ~ia64 ~ppc ~ppc64 ~sparc ~x86 ~x86-fbsd ~x86-macos ~x64-macos"
+KEYWORDS="~alpha ~amd64 ~hppa ~ia64 ~ppc ~ppc64 ~sparc ~x86 ~x86-fbsd ~x64-macos ~x86-macos"
 IUSE="bash-completion cairo doc icu java jpeg lapack minimal nls openmp perl png profile readline static-libs tiff tk X"
 REQUIRED_USE="png? ( || ( cairo X ) ) jpeg? ( || ( cairo X ) ) tiff? ( || ( cairo X ) )"
 
@@ -64,7 +64,8 @@ src_prepare() {
 		"${FILESDIR}"/${PN}-2.12.1-ldflags.patch \
 		"${FILESDIR}"/${PN}-2.13.1-zlib_header_fix.patch \
 		"${FILESDIR}"/${PN}-2.14.1-tiff.patch \
-		"${FILESDIR}"/${PN}-2.14.1-rmath-shared.patch
+		"${FILESDIR}"/${PN}-2.14.1-rmath-shared.patch \
+		"${FILESDIR}"/${PN}-2.14.1-pcre830.patch
 
 	# fix packages.html for doc (bug #205103)
 	sed -i \
