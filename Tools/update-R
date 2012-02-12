@@ -1,0 +1,103 @@
+#!/bin/bash
+
+# exit on error
+set -e
+
+# change to root of sage tree
+cd "$(dirname $0)/.."
+
+echo "using overlay at $(pwd)"
+
+# remove old files
+find dev-lang/R -type f -delete
+
+# copy new files
+cp -r /usr/portage/dev-lang/R dev-lang/
+
+# remove R ebuilds we do not need and patch everything else
+for dst in dev-lang/R/*.ebuild; do
+	# filter ebuilds we dont need
+	case "${dst}" in
+		dev-lang/R/R-2.14*.ebuild)
+			# keep this ebuild
+			lastKeptEbuild="${dst}"
+			;;
+		*)
+			rm "${dst}"
+			continue
+			;;
+	esac
+
+	# patch ebuilds to include pickle patch
+	patch --quiet --no-backup-if-mismatch -l "${dst}" <<-'EOF'
+		--- dev-lang/R/R-2.14.1.ebuild r1.1
+		+++ dev-lang/R/R-2.14.1.ebuild f88d4e023fd61176
+		@@ -90,6 +90,20 @@
+		 	fi
+		 	use perl && \
+		 		export PERL5LIB="${S}/share/perl:${PERL5LIB:+:}${PERL5LIB}"
+		+
+		+	# Fix for darwin (OS X)
+		+	if [[ ${CHOST} == *-darwin* ]] ; then
+		+		sed -e 's:-install_name libR.dylib:-install_name ${libdir}/R/lib/libR.dylib:' \
+		+			-e 's:-install_name libRlapack.dylib:-install_name ${libdir}/R/lib/libRlapack.dylib:' \
+		+			-e 's:-install_name libRblas.dylib:-install_name ${libdir}/R/lib/libRblas.dylib:' \
+		+			-e "s:AM_INIT_AUTOMAKE:A_I_A:" \
+		+			-e "s:SHLIB_EXT=\".so:SHLIB_EXT=\".dylib:" \
+		+			-i configure.ac
+		+
+		+		sed "s:-Wl,-soname=libRmath.so:-install_name ${EPREFIX}/usr/$(get_libdir)/libRmath.dylib:" \
+		+			-i src/nmath/standalone/Makefile.in
+		+	fi
+		+
+		 	AT_M4DIR=m4 eaclocal
+		 	eautoconf
+		 }
+		@@ -105,6 +119,7 @@
+		 		--with-blas="$(pkg-config --libs blas)" \
+		 		--docdir="${EPREFIX}/usr/share/doc/${PF}" \
+		 		rdocdir="${EPREFIX}/usr/share/doc/${PF}" \
+		+		--enable-R-framework=no \
+		 		$(use_enable nls) \
+		 		$(use_enable openmp) \
+		 		$(use_enable profile R-profiling) \
+		@@ -139,6 +154,18 @@
+		 		dosym ../manual /usr/share/doc/${PF}/html/manual
+		 	fi
+		 
+		+	if [[ ${CHOST} == *-darwin* ]] ; then
+		+		einfo "Working around completely broken build-system(tm)"
+		+		for d in $(find "${ED}"usr/lib/R/ -name *.dylib) ; do
+		+			if [[ -f ${d} ]] ; then
+		+				# fix the "soname"
+		+				ebegin "  correcting install_name of ${d#${ED}}"
+		+				install_name_tool -id "/${d#${D}}" "${d}"
+		+				eend $?
+		+			fi
+		+		done
+		+	fi
+		+
+		 	cat > 99R <<-EOF
+		 		LDPATH=${R_DIR}/lib
+		 		R_HOME=${R_DIR}
+		@@ -152,5 +179,4 @@
+		 		einfo "Re-initializing java paths for ${P}"
+		 		R CMD javareconf
+		 	fi
+		-	bash-completion-r1_pkg_postinst
+		 }
+	EOF
+
+	# add keywords for prefix
+	ekeyword ~x86-macos "${dst}" &> /dev/null
+	ekeyword ~x64-macos "${dst}" &> /dev/null
+done
+
+for i in dev-lang/R/files/*; do
+	if ! grep -qF "/$(basename "$i")" dev-lang/R/*.ebuild; then
+		rm "$i"
+	fi
+done
+
+# regenerate manifest file
+ebuild "${lastKeptEbuild}" manifest &> /dev/null
