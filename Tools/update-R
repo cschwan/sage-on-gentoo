@@ -88,7 +88,9 @@ for dst in dev-lang/R/*.ebuild; do
 done
 
 for i in dev-lang/R/files/*; do
-	if ! grep -qF "/$(basename "$i")" dev-lang/R/*.ebuild; then
+	j="$(basename "$i")"
+	if ! grep -qF "/\${PN}${j#R}" dev-lang/R/*.ebuild && \
+	   ! grep -qF "/${j}" dev-lang/R/*.ebuild; then
 		rm "$i"
 	fi
 done
