@@ -80,12 +80,6 @@ for dst in dev-lang/R/*.ebuild; do
 		 	cat > 99R <<-EOF
 		 		LDPATH=${R_DIR}/lib
 		 		R_HOME=${R_DIR}
-		@@ -152,5 +179,4 @@
-		 		einfo "Re-initializing java paths for ${P}"
-		 		R CMD javareconf
-		 	fi
-		-	bash-completion-r1_pkg_postinst
-		 }
 	EOF
 
 	# add keywords for prefix
