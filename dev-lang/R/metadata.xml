@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
 <pkgmetadata>
-<herd>sci-mathematics</herd>
-<longdescription lang="en">
+	<herd>sci-mathematics</herd>
+	<longdescription lang="en">
   R is GNU S, a system for statistical computation and graphics. It
   consists of a language plus a run-time environment with graphics, a
   debugger, access to certain system functions, and the ability to run
