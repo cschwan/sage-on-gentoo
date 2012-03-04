@@ -1,4 +1,4 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
@@ -43,6 +43,14 @@ pkg_setup() {
 
 	if use sage ; then
 		export DOT_SAGE="${S}"
+	fi
+
+	if [[ $(eselect --brief boost show) == *1_48* ]] ; then
+		ewarn "You have eselected boost 1.48. This version of polybori has been"
+		ewarn "reported has failling to build against this particular version of boost"
+		ewarn "If your build fail eselect another boost slot."
+		ewarn "If your build succeed we'd like to hear from you at:"
+		ewarn "https://github.com/cschwan/sage-on-gentoo/issues/126"
 	fi
 }
 
