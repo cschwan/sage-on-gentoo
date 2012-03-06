@@ -2,6 +2,13 @@
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*linbox-1.1.6-r5 (06 Mar 2012)
+
+  06 Mar 2012; François Bissey <francois.bissey@canterbury.ac.nz>
+  -linbox-1.1.6-r4.ebuild, +linbox-1.1.6-r5.ebuild,
+  files/linbox-1.1.6-disable-commentator.patch:
+  Update the commentator patch to latest sage patch. Much cleaner.
+
   25 Jan 2012; François Bissey <francois.bissey@canterbury.ac.nz>
   -linbox-1.1.6-r3.ebuild:
   drop old

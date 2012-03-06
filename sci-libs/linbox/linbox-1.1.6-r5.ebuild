@@ -4,7 +4,7 @@
 
 EAPI="4"
 
-inherit autotools-utils toolchain-funcs eutils
+inherit autotools-utils toolchain-funcs eutils flag-o-matic
 
 DESCRIPTION="LinBox is a C++ template library for linear algebra computation over integers and over finite fields"
 HOMEPAGE="http://linalg.org/"
@@ -39,15 +39,14 @@ PATCHES=(
 	"${FILESDIR}"/${P}-fix-double-installation.patch
 	"${FILESDIR}"/${P}-fix-undefined-symbols.patch
 	"${FILESDIR}"/${P}-modularfloat.patch
+	"${FILESDIR}"/${P}-disable-commentator.patch
 )
 
 # TODO: installation of documentation does not work ?
-src_prepare() {
-	autotools-utils_src_prepare
 
+pkg_setup(){
 	if use sage ; then
-		# disable commentator; this is needed for sage
-		epatch "${FILESDIR}"/${P}-disable-commentator.patch
+		append-cppflags -DDISABLE_COMMENTATOR
 	fi
 }
 
