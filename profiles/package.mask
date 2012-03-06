@@ -7,6 +7,7 @@
 >=sci-mathematics/sage-extcode-5.0_alpha0
 >=sci-mathematics/pari-2.5.1
 >=sci-mathematics/polybori-0.8.0
+>=sci-mathematics/palp-2.0
 # linbox 1.1.7 upgrade
 >=sci-libs/givaro-3.3
 >=sci-libs/linbox-1.1.7
