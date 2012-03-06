@@ -1,4 +1,4 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
@@ -26,4 +26,6 @@ RDEPEND=""
 
 src_prepare() {
 	epatch "${FILESDIR}"/${P}-fix-misc-bugs.patch
+	# backport from pexepect-2.3 needed for sage-5.0+
+	epatch "${FILESDIR}"/${P}-env.patch
 }
