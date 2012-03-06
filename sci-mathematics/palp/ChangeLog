@@ -2,6 +2,10 @@
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  06 Mar 2012; François Bissey <francois.bissey@canterbury.ac.nz>
+  palp-2.0.ebuild, -files/palp-2.0-POLY_Dmax.patch:
+  do something closer to Volker's apporach
+
 *palp-2.0 (06 Mar 2012)
 
   06 Mar 2012; François Bissey <francois.bissey@canterbury.ac.nz>

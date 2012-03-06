@@ -23,8 +23,7 @@ RDEPEND="${DEPEND}"
 S="${WORKDIR}/${PN}"
 
 PATCHES=( "${FILESDIR}"/${PN}-2.0-gnumakefile.patch
-	"${FILESDIR}"/${PN}-2.0-nonestedfunctions.patch
-	"${FILESDIR}"/${PN}-2.0-POLY_Dmax.patch )
+	"${FILESDIR}"/${PN}-2.0-nonestedfunctions.patch )
 
 pkg_setup() {
 	tc-export CC
@@ -38,6 +37,8 @@ src_prepare(){
 	for x in ${Dmax}; do
 		mkdir ${WORKDIR}/build_"${x}"
 		cp "${S}"/* "${WORKDIR}/build_${x}"/
+		cd "${WORKDIR}/build_${x}"
+		sed -i "s:^#define\s*POLY_Dmax.*:#define POLY_Dmax ${x}:" Global.h
 	done
 }
 
@@ -46,7 +47,6 @@ src_compile(){
 	for x in ${Dmax}; do
 		einfo "compiling for dimension ${x}"
 		cd "${WORKDIR}/build_${x}"
-		export CPPFLAGS="-DPOLY_Dmax=${x}"
 		emake
 	done
 }
