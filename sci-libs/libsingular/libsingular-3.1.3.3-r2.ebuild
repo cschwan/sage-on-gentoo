@@ -1,4 +1,4 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
@@ -136,23 +136,25 @@ src_install () {
 	# Move factory.h and cf_gmp.h in the singular folder so we don't either
 	# collide with factory or need it to use libsingular.
 	sed -e "s:factory.h:singular/factory.h:" \
-		-i singular/clapconv.h singular/fglm.h || die
+		-i singular/clapconv.h singular/fglm.h
 	sed -e "s:factory/cf_gmp.h:singular/cf_gmp.h:" \
-		-i factory.h || die
+		-i factory.h
+	sed -e "s:cf_gmp.h:singular/cf_gmp.h:" \
+		-i singular/si_gmp.h
 	sed -e "s:factory/factoryconf.h:singular/factoryconf.h:" \
 		-e "s:factory/templates:singular/templates:g" \
-		-i factory.h || die
+		-i factory.h
 	sed -e "s:factory/factoryconf.h:singular/factoryconf.h:" \
 		-i templates/ftmpl_functions.h templates/ftmpl_list.h \
 			templates/ftmpl_factor.h templates/ftmpl_matrix.h \
-			templates/ftmpl_array.h || die
+			templates/ftmpl_array.h
 	sed -e "s:factory/templates:singular/templates:" \
-		-i templates/ftmpl_list.cc templates/ftmpl_factor.cc || die
+		-i templates/ftmpl_list.cc templates/ftmpl_factor.cc
 	sed -e "s:factoryconf.h:singular/factoryconf.h:" \
 		-e "s:factory.h:singular/factory.h:" \
-		-i templates/ftmpl_inst.cc || die
+		-i templates/ftmpl_inst.cc
 	sed -e "s:templates/ftmpl:singular/templates/ftmpl:" \
-		-i templates/ftmpl_inst.cc || die
+		-i templates/ftmpl_inst.cc
 
 	doins libsingular.h mylimits.h omalloc.h
 	insinto /usr/include/singular
