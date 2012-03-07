@@ -2,6 +2,10 @@
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  07 Mar 2012; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-clib-5.0_beta7.ebuild:
+  adjust polybori dependency
+
 *sage-clib-5.0_beta7 (06 Mar 2012)
 
   06 Mar 2012; François Bissey <francois.bissey@canterbury.ac.nz>
