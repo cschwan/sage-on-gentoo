@@ -2,6 +2,12 @@
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*sage-5.0_beta7 (07 Mar 2012)
+
+  07 Mar 2012; François Bissey <francois.bissey@canterbury.ac.nz>
+  +sage-5.0_beta7.ebuild, +files/sage-5.0-fix-SAGE_LOCAL.patch:
+  5.0-beta7
+
   27 Jan 2012; François Bissey <francois.bissey@canterbury.ac.nz>
   sage-4.8.ebuild:
   enforce ipython-0.10.2
