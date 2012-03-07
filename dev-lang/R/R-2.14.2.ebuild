@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/R/R-2.14.1.ebuild,v 1.4 2012/02/27 02:55:58 bicatali Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/R/R-2.14.2.ebuild,v 1.1 2012/03/05 17:23:05 calchan Exp $
 
 EAPI=4
 
@@ -21,6 +21,7 @@ CDEPEND="app-arch/bzip2
 	app-text/ghostscript-gpl
 	dev-libs/libpcre
 	virtual/blas
+	virtual/fortran
 	cairo? ( x11-libs/cairo[X] x11-libs/pango )
 	icu? ( dev-libs/icu )
 	jpeg? ( virtual/jpeg )
@@ -65,8 +66,9 @@ src_prepare() {
 		"${FILESDIR}"/${PN}-2.13.1-zlib_header_fix.patch \
 		"${FILESDIR}"/${PN}-2.14.1-tiff.patch \
 		"${FILESDIR}"/${PN}-2.14.1-rmath-shared.patch \
-		"${FILESDIR}"/${PN}-2.14.1-pcre830.patch \
-		"${FILESDIR}"/${PN}-2.14.1-warnings-buffer-overflow.patch
+		"${FILESDIR}"/${PN}-2.14.1-warnings-buffer-overflow.patch \
+		"${FILESDIR}"/${PN}-2.14.2-library-writability.patch \
+		"${FILESDIR}"/${PN}-2.14.2-prune-package-update.patch
 
 	# fix packages.html for doc (bug #205103)
 	sed -i \

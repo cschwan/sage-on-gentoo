@@ -1,6 +1,18 @@
 # ChangeLog for dev-lang/R
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/R/ChangeLog,v 1.194 2012/02/09 17:35:24 bicatali Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/R/ChangeLog,v 1.196 2012/03/05 17:23:05 calchan Exp $
+
+*R-2.14.2 (05 Mar 2012)
+
+  05 Mar 2012; Denis Dupeyron <calchan@gentoo.org> +R-2.14.2.ebuild,
+  +files/R-2.14.2-library-writability.patch,
+  +files/R-2.14.2-prune-package-update.patch, metadata.xml:
+  Version bump. Add patches to fix handling of library writability and package
+  updates.
+
+  27 Feb 2012; Sébastien Fabbro <bicatali@gentoo.org> R-2.14.1.ebuild,
+  +files/R-2.14.1-warnings-buffer-overflow.patch:
+  Fixed crash caused by too many warnings, bug #405463, thanks Sebastian Luther
 
   09 Feb 2012; Sébastien Fabbro <bicatali@gentoo.org> R-2.14.1.ebuild,
   +files/R-2.14.1-pcre830.patch:
