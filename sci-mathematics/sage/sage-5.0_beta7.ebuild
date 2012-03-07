@@ -47,7 +47,7 @@ CDEPEND="dev-libs/gmp
 	>=sci-mathematics/glpk-4.43
 	>=sci-mathematics/lcalc-1.23-r4[pari]
 	>=sci-mathematics/pari-2.5.1[data,gmp]
-	>=sci-mathematics/polybori-0.8.0[sage]
+	~sci-mathematics/polybori-0.8.0[sage]
 	>=sci-mathematics/ratpoints-2.1.3
 	~sci-mathematics/sage-baselayout-${PV}[testsuite=]
 	~sci-mathematics/sage-clib-${PV}
@@ -110,7 +110,7 @@ RDEPEND="${CDEPEND}
 		)
 	)"
 
-PDEPEND="~sci-mathematics/sage-notebook-0.8.26"
+PDEPEND="~sci-mathematics/sage-notebook-0.8.27"
 
 S="${WORKDIR}/${MY_P}"
 
