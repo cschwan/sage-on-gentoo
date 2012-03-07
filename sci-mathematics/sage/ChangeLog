@@ -3,6 +3,10 @@
 # $Header: $
 
   07 Mar 2012; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-5.0_beta7.ebuild, +files/sage-5.0-plural.patch:
+  trac 4539 correction
+
+  07 Mar 2012; François Bissey <francois.bissey@canterbury.ac.nz>
   sage-5.0_beta7.ebuild:
   adjust some deps.
 

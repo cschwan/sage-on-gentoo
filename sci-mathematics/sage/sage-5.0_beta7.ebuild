@@ -139,6 +139,9 @@ src_prepare() {
 		-e 's/.,.pthread//g' \
 		-e "s:  ::")\'
 
+	# patch to module_list.py because of trac 4539
+	epatch "${FILESDIR}"/${PN}-5.0-plural.patch
+
 	# make sure we use cython-2.7 for consistency
 	sed -i "s:python \`which cython\`:cython-2.7:" setup.py
 
