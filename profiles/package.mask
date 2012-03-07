@@ -3,7 +3,7 @@
 >=sci-mathematics/sage-clib-5.0_alpha0
 >=sci-mathematics/sage-baselayout-5.0_alpha0
 >=sci-mathematics/sage-doc-5.0_alpha0
-#>=sci-mathematics/sage-notebook-0.8.24
+>=sci-mathematics/sage-notebook-0.8.27
 >=sci-mathematics/sage-extcode-5.0_alpha0
 >=sci-mathematics/pari-2.5.1
 >=sci-mathematics/polybori-0.8.0
@@ -12,10 +12,7 @@
 >=sci-libs/givaro-3.3
 >=sci-libs/linbox-1.1.7
 # not compatible with sage
-#>=dev-lang/R-2.12.0
 =sci-libs/m4ri-99999999
-# introduces a number of doctest failures - likely harmless
-#>=sci-libs/mpfi-1.5
 # building problems reported against latest fplll
 >=sci-libs/fplll-3.1.1
 #masking zodb-3.10+ for now
