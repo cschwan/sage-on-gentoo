@@ -2,6 +2,10 @@
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  08 Mar 2012; François Bissey <francois.bissey@canterbury.ac.nz>
+  +files/PyPolyBoRi.py-0.8.0, polybori-0.8.0.ebuild:
+  use the correct PyPolyBoRi.py for sage-5.0
+
   04 Mar 2012; François Bissey <francois.bissey@canterbury.ac.nz>
   polybori-0.7.1-r1.ebuild:
   Adding check for boost 1.48

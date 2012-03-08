@@ -41,16 +41,12 @@ pkg_setup() {
 	if use sage ; then
 		export DOT_SAGE="${S}"
 	fi
-
-	ewarn "This version of polybori is not compatible with any current release of sage"
-	ewarn "It is only provided to ease testing for future release"
-	ewarn "see http://trac.sagemath.org/sage_trac/ticket/11575 for current 0.8 plans"
 }
 
 src_prepare() {
 	if use sage ; then
 		# TODO: This should not be done; find a better solution
-		cp "${FILESDIR}"/PyPolyBoRi.py pyroot/polybori/PyPolyBoRi.py \
+		cp "${FILESDIR}"/PyPolyBoRi.py-0.8.0 pyroot/polybori/PyPolyBoRi.py \
 			|| die "cp failed"
 	fi
 
