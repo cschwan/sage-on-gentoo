@@ -155,63 +155,63 @@ src_prepare() {
 	epatch "${FILESDIR}"/${PN}-4.7.2-site-packages.patch
 
 	# add pari and gmp to everything.
-	sed -i "s:\['stdc++', 'ntl'\]:\['stdc++', 'ntl','pari','gmp'\]:g" setup.py \
-		|| die "failed to add pari and gmp everywhere"
+	sed -i "s:\['stdc++', 'ntl'\]:\['stdc++', 'ntl','pari','gmp'\]:g" setup.py
 
 	sed -e "s:%s/local/etc/gprc.expect'%SAGE_ROOT:${EPREFIX}/etc/gprc.expect':" \
-		-i sage/interfaces/gp.py || die "failed to patch interfaces/gp.py"
+		-i sage/interfaces/gp.py
 
 	# use already installed csage
 	rm -rf c_lib || die "failed to remove c library directory"
 
 	# patch SAGE_LOCAL
 	sed -i "s:SAGE_LOCAL = SAGE_ROOT + '/local':SAGE_LOCAL = os.environ['SAGE_LOCAL']:g" \
-		setup.py || die "failed to patch SAGE_LOCAL"
+		setup.py
 	sed -i "s:SAGE_LOCAL = SAGE_ROOT + '/local':SAGE_LOCAL = os.environ['SAGE_LOCAL']:g" \
-		module_list.py || die "failed to patch SAGE_LOCAL"
+		module_list.py
 
 	sed -i "s:'%s/sage/sage/ext'%SAGE_DEVEL:'sage/ext':g" \
-		setup.py || die "failed to patch extensions path"
+		setup.py
 
 	# fix misc/dist.py
 	epatch "${FILESDIR}"/${PN}-4.8-dist.py.patch
 
 	# fix png library name
 	sed -i "s:png12:$(libpng-config --libs | cut -dl -f2):g" \
-		module_list.py || die "failed to patch png library name"
+		module_list.py
 
 	# fix numpy path (final quote removed to catch numpy_include_dirs and numpy_depends)
 	sed -i "s:SAGE_LOCAL + '/lib/python/site-packages/numpy/core/include:'${EPREFIX}$(python_get_sitedir)/numpy/core/include:g" \
-		module_list.py || die "failed to patch path for numpy include directory"
+		module_list.py
 
 	# fix cython path
 	sed -i \
 		-e "s:SAGE_LOCAL + '/lib/python/site-packages/Cython/Includes/':'${EPREFIX}$(python_get_sitedir)/Cython/Includes/':g" \
 		-e "s:SAGE_LOCAL + '/lib/python/site-packages/Cython/Includes/Deprecated/':'${EPREFIX}$(python_get_sitedir)/Cython/Includes/Deprecated/':g" \
-		setup.py || die "failed to patch path for cython include directory"
+		setup.py
 
 	# fix lcalc path
-	sed -i "s:SAGE_INC + \"lcalc:SAGE_INC + \"Lfunction:g" module_list.py \
-		|| die "failed to patch path for lcalc include directory"
+	sed -i "s:SAGE_INC + \"lcalc:SAGE_INC + \"Lfunction:g" module_list.py
 
 	# rebuild in place
 	sed -i "s:SAGE_DEVEL + '/sage/sage/ext/interpreters':'sage/ext/interpreters':g" \
-		setup.py || die "failed to patch interpreters path"
+		setup.py
 
 	# fix include paths and CBLAS/ATLAS
 	sed -i \
 		-e "s:'%s/include/csage'%SAGE_LOCAL:'${EPREFIX}/usr/include/csage':g" \
 		-e "s:'%s/sage/sage/ext'%SAGE_DEVEL:'sage/ext':g" \
-		setup.py || die "failed to patch include paths"
+		setup.py
 
 	sed -i \
 		-e "s:BLAS, BLAS2:${cblaslibs}:g" \
 		-e "s:,BLAS:,${cblaslibs}:g" \
-		module_list.py || die "failed to patch module_list.py for ATLAS"
+		module_list.py
 
-	# Add -DNDEBUG to objects linking to libsingular
+	# Add -DNDEBUG to objects linking to libsingular and use factory headers from singular.
+	sed -i "s:SAGE_INC + 'singular'\],:SAGE_INC + 'singular'\],extra_compile_args = \['-DNDEBUG'\],:g" \
+		module_list.py
 	sed -i "s:'singular', SAGE_INC + 'factory'\],:'singular'\],extra_compile_args = \['-DNDEBUG'\],:g" \
-		module_list.py || die "failed to add -DNDEBUG with libsingular"
+		module_list.py
 
 	# TODO: why does Sage fail with linbox commentator ?
 
@@ -239,32 +239,30 @@ src_prepare() {
 	# run maxima with ecl
 	sed -i \
 		-e "s:maxima-noreadline:maxima -l ecl:g" \
-		sage/interfaces/maxima.py || die "failed to patch maxima commands"
+		sage/interfaces/maxima.py
 	sed -i \
 		-e "s:maxima --very-quiet:maxima -l ecl --very-quiet:g" \
-		sage/interfaces/maxima_abstract.py || die "failed to patch maxima commands"
+		sage/interfaces/maxima_abstract.py
 
 	# Uses singular internal copy of the factory header
-	sed -i "s:factory/factory.h:singular/factory.h:" sage/libs/singular/singular-cdefs.pxi \
-		|| die "failed to patch factory header"""
+	sed -i "s:factory/factory.h:singular/factory.h:" sage/libs/singular/singular-cdefs.pxi
 
 	# Fix portage QA warning. Potentially prevent some leaking.
 	epatch "${FILESDIR}"/${PN}-4.4.2-flint.patch
 
-	sed -i "s:cblas(), atlas():${cblaslibs}:" sage/misc/cython.py \
-		|| die "failed to patch cython.py for ATLAS"
+	sed -i "s:cblas(), atlas():${cblaslibs}:" sage/misc/cython.py
 
 	# patch for glpk
 	sed -i \
 		-e "s:\.\./\.\./\.\./\.\./devel/sage/sage:..:g" \
 		-e "s:\.\./\.\./\.\./local/include/::g" \
-		sage/numerical/backends/glpk_backend.pxd || die "failed to patch glpk backend"
+		sage/numerical/backends/glpk_backend.pxd
 
 	# Ticket #5155:
 
 	# save gap_stamp to directory where sage is able to write
 	sed -i "s:GAP_STAMP = '%s/local/bin/gap_stamp'%SAGE_ROOT:GAP_STAMP = '%s/gap_stamp'%DOT_SAGE:g" \
-		sage/interfaces/gap.py || die "patch to gap interface"
+		sage/interfaces/gap.py
 
 	# fix qepcad paths
 	epatch "${FILESDIR}"/${PN}-4.5.1-fix-qepcad-path.patch
@@ -274,15 +272,15 @@ src_prepare() {
 
 	# patch path for saving sessions
 	sed -i "s:save_session('tmp_f', :save_session(tmp_f, :g" \
-		sage/misc/session.pyx || die "failed to patch session path"
+		sage/misc/session.pyx
 
 	# patch lie library path
 	sed -i "s:open(SAGE_LOCAL + 'lib/lie/INFO\.0'):open(SAGE_LOCAL + '/share/lie/INFO.0'):g" \
-		sage/interfaces/lie.py || die "failed to patch lie library path"
+		sage/interfaces/lie.py
 
 	# Patch to singular info file shipped with sage-doc
 	sed -i "s:os.environ\[\"SAGE_LOCAL\"\]+\"/share/singular/\":os.environ\[\"SAGE_DOC\"\]+\"/\":g" \
-		sage/interfaces/singular.py || die "failed to patch singular.hlp path"
+		sage/interfaces/singular.py
 
 	# fix the cmdline test using SAGE_ROOT
 	sed -i "s:SAGE_ROOT, \"local\":os.environ[\"SAGE_LOCAL\"]:" \
@@ -290,8 +288,7 @@ src_prepare() {
 
 	# enable dev-libs/mpc if required
 	if use mpc ; then
-		sed -i "s:is_package_installed('mpc'):True:g" module_list.py \
-			|| die "failed to enable dev-libs/mpc"
+		sed -i "s:is_package_installed('mpc'):True:g" module_list.py
 	fi
 
 	# apply patches from /etc/portage/patches
