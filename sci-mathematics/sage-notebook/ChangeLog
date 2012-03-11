@@ -2,6 +2,14 @@
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*sage-notebook-0.8.27-r1 (11 Mar 2012)
+*sage-notebook-0.8.26-r1 (11 Mar 2012)
+
+  11 Mar 2012; Christopher Schwan <cschwan@students.uni-mainz.de>
+  +sage-notebook-0.8.26-r1.ebuild, +sage-notebook-0.8.27-r1.ebuild,
+  files/sage-notebook, files/sage-notebook.conf:
+  Fix problems with rc-script reported by user few
+
 *sage-notebook-0.8.27 (06 Mar 2012)
 
   06 Mar 2012; François Bissey <francois.bissey@canterbury.ac.nz>

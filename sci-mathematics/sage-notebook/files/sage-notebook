@@ -6,6 +6,7 @@ user_home=$(eval cd ~${user:=sage} && pwd)
 : ${accounts:=False}
 : ${directory:="${user_home}"/.sage/sage_notebook.sagenb}
 : ${interface-localhost}
+: ${pidtimeout:=20}
 : ${port:=8000}
 : ${require_login:=True}
 : ${secure:=False}
@@ -15,12 +16,6 @@ user_home=$(eval cd ~${user:=sage} && pwd)
 
 : ${stdout:="${user_home}"/sagenb.log}
 : ${stderr:="${user_home}"/sagenb.err}
-
-# resolve any tildes 'directory' might contain
-directory=$(eval cd ${directory} && pwd)
-
-# pidfile is hardcoded into Sage's source files
-pidfile="${directory}"/twistd.pid
 
 command_args=( 
 	-notebook
@@ -35,6 +30,12 @@ command_args=(
 	ulimit=${ulimit}
 )
 
+# resolve any tildes 'directory' might contain and fail silently
+directory=$(eval cd ${directory} 2>/dev/null && pwd)
+
+# pidfile is hardcoded into Sage's source files
+pidfile="${directory}"/twistd.pid
+
 depend() {
 	need net
 }
@@ -42,13 +43,13 @@ depend() {
 start() {
 	# TODO: Add additional code to detect different startup failures based on
 	# standard output
-	if [ ! -f "${directory}"/users.pickle ] ; then
+	if [ -z "${directory}" ] || [ ! -f "${directory}"/users.pickle ] ; then
 		eend 1 "Did not find user database - configure Sage's Notebook first:"
 
 		echo
 		einfo "- Configure the ${RC_SVCNAME}'s configuration file in: "
 		einfo ""
-		einfo "    /etc/conf.d/${RC_SVCNAME}.conf"
+		einfo "    /etc/conf.d/${RC_SVCNAME}"
 		einfo ""
 		einfo "- Switch to the superuser and run the Notebook with the options"
 		einfo "  you specified in the configuration file. Based on your current"
@@ -79,7 +80,7 @@ start() {
 		-- "${command_args[@]}"
 	eend $? "Failed to start Sage's Notebook server"
 
-	if ! ewaitfile 10 "${pidfile}" ; then
+	if ! ewaitfile ${pidtimeout} "${pidfile}" ; then
 		eerror "Server did not properly start; check errorfile for more information"
 	fi
 }
