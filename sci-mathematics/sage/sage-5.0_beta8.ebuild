@@ -56,8 +56,8 @@ CDEPEND="dev-libs/gmp
 	media-libs/libpng
 	>=sys-libs/readline-6.2
 	sys-libs/zlib
-	virtual/cblas"
-#	mpc? ( dev-libs/mpc )"
+	virtual/cblas
+	mpc? ( dev-libs/mpc )"
 
 DEPEND="${CDEPEND}
 	=dev-python/cython-0.15.1"
@@ -88,7 +88,7 @@ RDEPEND="${CDEPEND}
 	>=sci-mathematics/cu2-20060223
 	>=sci-mathematics/cubex-20060128
 	>=sci-mathematics/dikcube-20070912_p12
-	>=sci-mathematics/maxima-5.24.0[ecls]
+	>=sci-mathematics/maxima-5.26.0[ecls]
 	>=sci-mathematics/mcube-20051209
 	>=sci-mathematics/optimal-20040603
 	>=sci-mathematics/palp-2.0
