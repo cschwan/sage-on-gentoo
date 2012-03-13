@@ -24,7 +24,7 @@ CDEPEND="dev-libs/gmp[cxx]
 	>=dev-libs/ntl-5.5.2
 	=sci-libs/pynac-0.2.3
 	>=sci-mathematics/pari-2.5.0
-	>=sci-mathematics/polybori-0.7.1[sage]"
+	~sci-mathematics/polybori-0.7.1[sage]"
 DEPEND="${CDEPEND}
 	dev-util/scons"
 RDEPEND="${CDEPEND}"
