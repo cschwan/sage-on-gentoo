@@ -88,14 +88,14 @@ src_prepare() {
 	cat > sage-notebook <<-EOF
 		#!/bin/bash
 
-		source ${EPREFIX}/usr/bin/sage-env
+		source ${EPREFIX}/etc/sage-env
 		${EPREFIX}/usr/bin/sage-notebook-real "\$@"
 	EOF
 
 	cat > sage-notebook-insecure <<-EOF
 		#!/bin/bash
 
-		source ${EPREFIX}/usr/bin/sage-env
+		source ${EPREFIX}/etc/sage-env
 		${EPREFIX}/usr/bin/sage-notebook-insecure-real "\$@"
 	EOF
 
@@ -126,14 +126,14 @@ src_install() {
 	# TODO: patch sage-core and remove sage-native-execute ?
 
 	# core scripts which are needed in every case
-	dobin sage-cleaner sage-env sage-eval sage-ipython \
+	dobin sage-cleaner sage-banner sage-eval sage-ipython \
 		sage-maxima.lisp sage-native-execute sage-run sage-num-threads.py || die
 
 	dobin "${IPYTHON_S}"/spkg/bin/sage
 
-	# install sage-banner under /etc
+	# install sage-env under /etc
 	insinto /etc
-	doins sage-banner
+	doins sage-env
 
 	if use testsuite ; then
 		# DOCTESTING helper scripts

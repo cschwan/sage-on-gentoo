@@ -2,6 +2,13 @@
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*sage-baselayout-5.0_beta8-r1 (14 Mar 2012)
+
+  14 Mar 2012; François Bissey <francois.bissey@canterbury.ac.nz>
+  -sage-baselayout-5.0_beta8.ebuild, +sage-baselayout-5.0_beta8-r1.ebuild,
+  files/sage-baselayout-5.0-gentooify-startup-script.patch:
+  exchange sage-env and sage-banner in etc. fix singular call.
+
 *sage-baselayout-5.0_beta8 (13 Mar 2012)
 
   13 Mar 2012; François Bissey <francois.bissey@canterbury.ac.nz>

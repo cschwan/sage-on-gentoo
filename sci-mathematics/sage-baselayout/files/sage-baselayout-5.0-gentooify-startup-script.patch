@@ -1,5 +1,5 @@
---- spkg/bin/sage.orig	2012-03-07 11:17:36.353149329 +1300
-+++ spkg/bin/sage	2012-03-07 11:55:01.039994941 +1300
+--- spkg/bin/sage.orig	2012-03-14 01:35:16.000000000 +1300
++++ spkg/bin/sage	2012-03-14 15:04:38.910173435 +1300
 @@ -2,7 +2,7 @@
  
  usage() {
@@ -133,16 +133,16 @@
  # Do NOT redirect stderr and stdout to /dev/null,
  # since sage-env might print important error messages:
 -. spkg/bin/sage-env
-+. bin/sage-env
++. ../etc/sage-env
  if [ $? -ne 0 ]; then
 -   echo >&2 "Error setting environment variables by sourcing '$SAGE_ROOT/spkg/bin/sage-env';"
 -   echo >&2 "possibly contact sage-devel (see http://groups.google.com/group/sage-devel)."
-+   echo >&2 "Error setting environment variables by sourcing '$SAGE_LOCAL/bin/sage-env';"
++   echo >&2 "Error setting environment variables by sourcing '$SAGE_LOCAL/../etc/sage-env';"
 +   echo >&2 "possibly contact sage-on-gentoo team."
     exit 1
  fi
  
-@@ -255,23 +200,16 @@
+@@ -255,7 +200,7 @@
  fi
  
  
@@ -151,33 +151,22 @@
  LOGOPT=""
  
  sage_setup() {
-     # Display the startup banner
-     if [ "$SAGE_BANNER" != "no" ]; then
--        cat "$SAGE_LOCAL/bin/sage-banner"
--    fi
--
+@@ -264,14 +209,7 @@
+         cat "$SAGE_LOCAL/bin/sage-banner"
+     fi
+ 
 -    # Check to see if the whole Sage install tree has moved.
 -    # If so, change various hardcoded paths.
 -    "$SAGE_ROOT/local/bin/"sage-location
 -    if [ $? -ne 0 ]; then
 -        exit 1
-+        cat "$SAGE_LOCAL/../etc/sage-banner"
-     fi
- 
+-    fi
+-
 -    cd "$SAGE_ROOT/local/bin"
 +    cd "$SAGE_LOCAL/bin"
      IPYTHONDIR="$DOT_SAGE/ipython" && export IPYTHONDIR
      IPYTHONRC="ipythonrc" && export IPYTHONRC
      if [ ! -d "$IPYTHONDIR" ]; then
-@@ -333,7 +271,7 @@
- 
- if [ "$1" = '-v' -o "$1" = '-version' -o "$1" = '--version' ]; then
-     sed -n -e '/Version/s/^[ |]\{1,\}//;/Version/s/[ |]\{1,\}$//p' \
--        "$SAGE_LOCAL"/bin/sage-banner
-+        "$SAGE_LOCAL"/../etc/sage-banner
-     exit $?
- fi
- 
 @@ -358,13 +296,6 @@
      exit $?
  fi
@@ -192,6 +181,15 @@
  if [ "$1" = '-gap' -o "$1" = '--gap' ]; then
      cd "$CUR"
      shift
+@@ -382,7 +313,7 @@
+ if [ "$1" = '-singular'  -o "$1" = '--singular' ]; then
+     cd "$CUR"
+     shift
+-    "$SAGE_LOCAL/bin/singular" "$@"
++    "$SAGE_LOCAL/bin/Singular" "$@"
+     exit $?
+ fi
+ 
 @@ -421,13 +352,6 @@
      exit $?
  fi
