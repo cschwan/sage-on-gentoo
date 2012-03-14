@@ -2,6 +2,10 @@
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  14 Mar 2012; François Bissey <francois.bissey@canterbury.ac.nz>
+  ratpoints-2.1.3-r3.ebuild:
+  extending macos support
+
   25 Jan 2012; François Bissey <francois.bissey@canterbury.ac.nz>
   -ratpoints-2.1.3-r1.ebuild:
   drop old
