@@ -2,6 +2,10 @@
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  14 Mar 2012; François Bissey <francois.bissey@canterbury.ac.nz>
+  files/sage-baselayout-5.0-gentooify-startup-script.patch:
+  fix patch
+
 *sage-baselayout-5.0_beta8-r1 (14 Mar 2012)
 
   14 Mar 2012; François Bissey <francois.bissey@canterbury.ac.nz>

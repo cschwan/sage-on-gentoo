@@ -1,14 +1,5 @@
 --- spkg/bin/sage.orig	2012-03-14 01:35:16.000000000 +1300
 +++ spkg/bin/sage	2012-03-14 15:04:38.910173435 +1300
-@@ -2,7 +2,7 @@
- 
- usage() {
-     echo "----------------------------------------------------------------------"
--    grep -i version "$SAGE_LOCAL/bin/sage-banner"
-+    grep -i version "$SAGE_LOCAL/../etc/sage-banner"
-     echo "----------------------------------------------------------------------"
-     echo
-     ####  1.......................26..................................................78
 @@ -36,10 +36,6 @@
      echo "                           -only-optional <tag1,...,tagn>  -- only run tests"
      echo "                            including one of the #optional tags"
