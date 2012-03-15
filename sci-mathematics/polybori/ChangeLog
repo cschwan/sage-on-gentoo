@@ -2,6 +2,14 @@
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*polybori-0.7.1-r2 (15 Mar 2012)
+
+  15 Mar 2012; François Bissey <francois.bissey@canterbury.ac.nz>
+  +polybori-0.7.1-r2.ebuild, +files/polybori-0.7.1-build-0.8-backport.patch,
+  +files/polybori-0.7.1-environ.patch, +files/polybori-0.7.1-gd_libs.patch,
+  +files/polybori-0.7.1-local-paths.patch:
+  BAckporting lmnd stuff in 0.7.1-r2. Needs testing with 4.8
+
 *polybori-0.8.0-r1 (08 Mar 2012)
 
   08 Mar 2012; François Bissey <francois.bissey@canterbury.ac.nz>

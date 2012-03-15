@@ -1,0 +1,27 @@
+--- SConstruct.orig	2011-10-18 00:19:45.000000000 +0200
++++ SConstruct	2011-10-18 00:23:11.000000000 +0200
+@@ -555,7 +555,7 @@
+ 
+         env.Prepend(CPPPATH=[PBPath('include'), GBPath('include')])
+         env.Append(CPPDEFINES=["PACKED","HAVE_M4RI"])
+-        env.Append(LIBPATH=["polybori","groebner"])
++        env.Prepend(LIBPATH=["polybori","groebner"])
+         env.Prepend(LIBS = ["m"])
+ 
+ 
+@@ -696,13 +696,13 @@
+ 
+ cudd_headers = [ CuddPath(fname) for fname in ['obj/cuddObj.hh', 'util/util.h',
+                                                'cudd/cuddInt.h'] ] 
+-env.Append(CPPPATH = [ CuddPath(fdir) for fdir in ['obj', 'util'] ])
++env.Prepend(CPPPATH = [ CuddPath(fdir) for fdir in ['obj', 'util'] ])
+ 
+ def shared_object(o):
+     return env.SharedObject(o)
+     
+ for fdir in Split("cudd mtr st epd"):
+-    env.Append( CPPPATH=[CuddPath(fdir)] )
++    env.Prepend(CPPPATH=[CuddPath(fdir)] )
+     cudd_resources += glob(CuddPath(fdir, fdir + '*.c'))
+     cudd_headers += [ CuddPath(fdir, fdir +'.h') ]
+ 

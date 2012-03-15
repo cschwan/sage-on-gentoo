@@ -1,0 +1,38 @@
+--- SConstruct.orig	2011-10-18 00:32:38.000000000 +0200
++++ SConstruct	2011-10-18 00:33:41.000000000 +0200
+@@ -117,7 +117,7 @@
+     def DefaultBuild(arg):
+         return arg
+ 
+-defaultenv = Environment()
++defaultenv = Environment(ENV = os.environ)
+ 
+ # See also: http://trac.sagemath.org/sage_trac/ticket/9872 and #6437
+ def detect_linker(env):
+@@ -309,7 +309,7 @@
+ 
+ if defaultenv['PLATFORM'] == "sunos":  # forcing gcc, keeping linker
+     def is_gcc():
+-        compilerenv = Environment(options = opts)
++        compilerenv = Environment(ENV = os.environ, options = opts)
+         return compilerenv['CC']  == 'gcc'
+     
+     if is_gcc():
+@@ -318,7 +318,7 @@
+             if arg in tools:
+                 tools.remove(arg)
+         tools +=  [ 'gcc', 'g++', 'ar']
+-        defaultenv = Environment(tools=tools)
++        defaultenv = Environment(ENV = os.environ, tools=tools)
+ 
+ for var in Split("""CCCOM CXXCOM SHCCCOM SHCXXCOM SHLINKCOM LINKCOM LINK SHLINK
+ SHLIBPREFIX LIBPREFIX SHLIBSUFFIX LIBSUFFIX PLATFORM"""):
+@@ -353,7 +353,7 @@
+         pass
+ 
+ 
+-env = Environment(ENV = getenv, options = opts, tools = tools, toolpath = '.')
++env = Environment(ENV = os.environ, options = opts, tools = tools, toolpath = '.')
+ 
+ if 'dump' in COMMAND_LINE_TARGETS:
+   print env.Dump()
