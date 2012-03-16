@@ -17,3 +17,6 @@
 >=sci-libs/fplll-3.1.1
 #masking zodb-3.10+ for now
 >=net-zope/zodb-3.10.0
+#For testing
+~sci-mathematics/singular-3.1.4
+~sci-libs/libsingular-3.1.4
