@@ -3,6 +3,10 @@
 # $Header: /var/cvsroot/gentoo-x86/media-gfx/tachyon/ChangeLog,v 1.5 2012/03/12 13:05:10 alexxy Exp $
 
   16 Mar 2012; François Bissey <francois.bissey@canterbury.ac.nz>
+  tachyon-0.98.9-r2.ebuild:
+  add ~ppc-macos keyword
+
+  16 Mar 2012; François Bissey <francois.bissey@canterbury.ac.nz>
   +files/0.98.9-ldflags.patch, +tachyon-0.98.9-r2.ebuild, +metadata.xml:
   for macos prefix
 

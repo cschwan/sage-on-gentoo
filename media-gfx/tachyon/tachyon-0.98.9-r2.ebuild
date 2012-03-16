@@ -12,7 +12,7 @@ SRC_URI="http://jedi.ks.uiuc.edu/~johns/raytracer/files/${PV}/${P}.tar.gz"
 
 LICENSE="BSD"
 SLOT="0"
-KEYWORDS="~amd64 ~ppc ~x86 ~x86-macos ~x64-macos"
+KEYWORDS="~amd64 ~ppc ~x86 ~ppc-macos ~x86-macos ~x64-macos"
 IUSE="doc examples jpeg mpi opengl png threads"
 
 CDEPEND="jpeg? ( virtual/jpeg )
