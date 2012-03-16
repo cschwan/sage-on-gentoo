@@ -2,6 +2,16 @@
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  16 Mar 2012; François Bissey <francois.bissey@canterbury.ac.nz>
+  +files/singular-3.1.3.2-python.patch,
+  +files/singular-3.1.3.3-install_name.patch, singular-3.1.4.ebuild:
+  Adopt some more lmnd patch. python needs some more work to get right the
+  portage way.
+
+  16 Mar 2012; François Bissey <francois.bissey@canterbury.ac.nz>
+  +files/singular-3.1.3.2-python.patch, singular-3.1.4.ebuild:
+  Backporting some lmnd patch to include python support
+
 *singular-3.1.4 (16 Mar 2012)
 
   16 Mar 2012; François Bissey <francois.bissey@canterbury.ac.nz>
