@@ -1,0 +1,12 @@
+# ChangeLog for sci-mathematics/singular
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: $
+
+*singular-3.1.4 (16 Mar 2012)
+
+  16 Mar 2012; François Bissey <francois.bissey@canterbury.ac.nz>
+  +files/60singular-gentoo.el, +files/singular-3.0.4.4-nostrip.patch,
+  +files/singular-3.1.0-emacs-22.patch, +files/singular-3.1.0-gentoo.patch,
+  +files/singular-3.1.3.3-Minor.h.patch, +singular-3.1.4.ebuild, +metadata.xml:
+  The return of singular in s-o-g
+
