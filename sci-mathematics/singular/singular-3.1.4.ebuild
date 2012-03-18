@@ -5,6 +5,8 @@
 EAPI="3"
 WANT_AUTOCONF="2.1" # Upstream ticket 240 -> wontfix
 
+PYTHON_DEPEND="python? 2"
+
 # Upstream does not care about tests.
 RESTRICT="test"
 
@@ -36,8 +38,7 @@ RDEPEND="dev-libs/gmp
 DEPEND="${RDEPEND}
 	dev-lang/perl
 	boost? ( dev-libs/boost )
-	readline? ( sys-libs/readline )
-	python? ( dev-lang/python:2.7 )"
+	readline? ( sys-libs/readline )"
 
 S="${WORKDIR}"/${MY_PN}-${MY_DIR}
 SITEFILE=60${PN}-gentoo.el
@@ -53,7 +54,7 @@ pkg_setup() {
 	fi
 
 	if use python; then
-		python_set_active_version 2.7
+		python_set_active_version 2
 		python_pkg_setup
 	fi
 }
