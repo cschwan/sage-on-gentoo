@@ -2,6 +2,10 @@
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  20 Mar 2012; François Bissey <francois.bissey@canterbury.ac.nz>
+  polybori-0.7.1-r2.ebuild, polybori-0.8.0-r1.ebuild:
+  Some clean up, remove warnings were not needed etc..
+
 *polybori-0.7.1-r2 (15 Mar 2012)
 
   15 Mar 2012; François Bissey <francois.bissey@canterbury.ac.nz>

@@ -37,24 +37,13 @@ USE_SCONS_TRUE="True"
 USE_SCONS_FALSE="False"
 
 pkg_setup() {
-	# This version of polybori is to be used with sage-4.7 which will be python-2.7
 	python_set_active_version 2.7
 	python_pkg_setup
 
-	if use sage ; then
-		export DOT_SAGE="${S}"
-	fi
+	export DOT_SAGE="${S}"
 
 	if [[ ${CHOST} == *-darwin* ]] ; then
 		append-flags -fno-strict-aliasing
-	fi
-
-	if [[ $(eselect --brief boost show) == *1_48* ]] ; then
-		ewarn "You have eselected boost 1.48. This version of polybori has been"
-		ewarn "reported has failling to build against this particular version of boost"
-		ewarn "If your build fail eselect another boost slot."
-		ewarn "If your build succeed we'd like to hear from you at:"
-		ewarn "https://github.com/cschwan/sage-on-gentoo/issues/126"
 	fi
 }
 
@@ -125,5 +114,5 @@ src_install() {
 	fi
 
 	# fixing flags.conf
-	sed -i "s:${D}:\/:" "${ED}"/usr/share/polybori/flags.conf || die
+	sed -i "s:${D}:\/:" "${ED}"/usr/share/polybori/flags.conf
 }

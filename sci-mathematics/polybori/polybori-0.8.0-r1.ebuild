@@ -38,14 +38,11 @@ pkg_setup() {
 	python_set_active_version 2.7
 	python_pkg_setup
 
-	if use sage ; then
-		export DOT_SAGE="${S}"
-	fi
+	export DOT_SAGE="${S}"
 }
 
 src_prepare() {
 	if use sage ; then
-		# TODO: This should not be done; find a better solution
 		cp "${FILESDIR}"/PyPolyBoRi.py-0.8.0 pyroot/polybori/PyPolyBoRi.py \
 			|| die "cp failed"
 	fi
@@ -112,7 +109,7 @@ src_install() {
 		|| die "failed to remove static libraries"
 
 	# fixing flags.conf
-	sed -i "s:${D}:\/:" "${ED}"/usr/share/polybori/flags.conf || die
+	sed -i "s:${D}:\/:" "${ED}"/usr/share/polybori/flags.conf
 
 	# FIXME: Dynamic libraries now work on linux but are broken on OS X
 # 	if [[ ${CHOST} == *-darwin* ]] ; then
