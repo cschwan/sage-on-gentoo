@@ -64,7 +64,7 @@ src_prepare () {
 	epatch "${FILESDIR}"/${PN}-3.1.0-emacs-22.patch
 	epatch "${FILESDIR}"/${PN}-3.0.4.4-nostrip.patch
 	epatch "${FILESDIR}"/${PN}-3.1.3.3-Minor.h.patch
-	epatch "${FILESDIR}"/${PN}-3.1.3.2-python.patch
+	use python && epatch "${FILESDIR}"/${PN}-3.1.3.2-python.patch
 
 	if  [[ ${CHOST} == *-darwin* ]] ; then
 		epatch "${FILESDIR}"/${PN}-3.1.3.3-install_name.patch

@@ -2,6 +2,11 @@
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  21 Mar 2012; François Bissey <francois.bissey@canterbury.ac.nz>
+  singular-3.1.4.ebuild:
+  make python patch conditional to python. Otherwise compilation breaks with
+  USE=-python
+
   18 Mar 2012; François Bissey <francois.bissey@canterbury.ac.nz>
   singular-3.1.4.ebuild:
   proper python settings
