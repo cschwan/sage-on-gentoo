@@ -42,10 +42,10 @@ src_prepare() {
 	cat > sage-env <<-EOF
 		#!/bin/bash
 
-		SAGE_ROOT="${EPREFIX}/usr/share/sage"
-		SAGE_LOCAL="${EPREFIX}/usr/"
-		SAGE_DATA="${EPREFIX}/usr/share/sage/data"
-		SAGE_DOC="${EPREFIX}/usr/share/sage/devel/sage/doc"
+		export SAGE_ROOT="${EPREFIX}/usr/share/sage"
+		export SAGE_LOCAL="${EPREFIX}/usr/"
+		export SAGE_DATA="${EPREFIX}/usr/share/sage/data"
+		export SAGE_DOC="${EPREFIX}/usr/share/sage/devel/sage/doc"
 
 		if [[ -z \${DOT_SAGE} ]]; then
 			export DOT_SAGE="\${HOME}/.sage"

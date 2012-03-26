@@ -3,6 +3,10 @@
 # $Header: $
 
   26 Mar 2012; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-baselayout-5.0_beta10.ebuild:
+  add the forgotten export
+
+  26 Mar 2012; François Bissey <francois.bissey@canterbury.ac.nz>
   files/sage-baselayout-5.0-gentooify-startup-script.patch:
   fix an error in patch
 
