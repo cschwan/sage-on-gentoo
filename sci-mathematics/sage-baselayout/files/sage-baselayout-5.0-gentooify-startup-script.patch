@@ -1,5 +1,5 @@
---- spkg/bin/sage.orig	2012-03-14 01:35:16.000000000 +1300
-+++ spkg/bin/sage	2012-03-14 15:04:38.910173435 +1300
+--- spkg/bin/sage	2012-03-24 11:30:56.000000000 +1300
++++ spkg/bin/sage.new	2012-03-26 15:55:44.657782870 +1300
 @@ -36,10 +36,6 @@
      echo "                           -only-optional <tag1,...,tagn>  -- only run tests"
      echo "                            including one of the #optional tags"
@@ -195,66 +195,126 @@
  if [ "$1" = '-maxima'  -o "$1" = '--maxima' ]; then
      cd "$CUR"
      shift
-@@ -477,58 +401,6 @@
+@@ -477,118 +401,6 @@
      exit $?
  fi
  
 -if [ "$1" = '-sh'  -o "$1" = '--sh' ]; then
 -    # AUTHORS:
--    #   Carl Witty and William Stein: initial version
--    #   Craig Citro: add options for not loading profile
+-    # - Carl Witty and William Stein: initial version
+-    # - Craig Citro: add options for not loading profile
+-    # - Martin Albrecht: fix zshell prompt (#11866)
+-    # - John Palmieri: shorten the prompts, and don't print messages if
+-    #   there are more arguments to 'sage -sh' (#11790)
 -    cd "$CUR"
 -    shift
--    echo ""
--    echo "Starting subshell with Sage environment variables set."
--    echo "Be sure to exit when you are done and do not do anything"
--    echo "with other copies of Sage!"
--    echo ""
--    SHELL_NAME=`basename $SHELL`
--    echo "Bypassing shell configuration files ..."
--    echo
+-    # If $SHELL is unset, default to bash
+-    if [ -z "$SHELL" ]; then
+-        export SHELL=bash
+-    fi
 -    # We must start a new shell with no .profile or .bashrc files
 -    # processed, so that we know our path is correct
--    PS1="SAGE_ROOT=${SAGE_ROOT}\n(sage subshell) \h:\W \u\$ "
--    case $SHELL_NAME in
+-    SHELL_NAME=`basename "$SHELL"`
+-    # Check for SAGE_SHPROMPT.  If defined, use for the prompt.  If
+-    # not, check for already-defined $PS1, and if defined use that.
+-    # $PS1 should only be available if it is defined in
+-    # $DOT_SAGE/sagerc.
+-    if [ -n "$SAGE_SHPROMPT" ]; then
+-        oldPS1=$SAGE_SHPROMPT
+-    elif [ -n "$PS1" ]; then
+-        oldPS1=$PS1
+-    fi
+-    # Set the default prompt.  If available, use reverse video to
+-    # highlight the string "(sage-sh)".
+-    if tput rev &>/dev/null; then
+-        color_prompt=yes
+-    fi
+-    case "$SHELL_NAME" in
 -        bash)
--            SHELL_OPTS=" --norc"
+-            SHELL_OPTS="--norc"
+-            if [ "$color_prompt" = yes ]; then
+-                PS1="\[$(tput rev)\](sage-sh)\[$(tput sgr0)\] \u@\h:\W\$ "
+-            else
+-                PS1="(sage-sh) \u@\h:\w\$ "
+-            fi
+-            export PS1
 -            ;;
 -        csh)
--            SHELL_OPTS=" -f"
+-            # csh doesn't seem to allow the specification of a different
+-            # .cshrc file, and the prompt can only be set in this file, so
+-            # don't bother changing the prompt.
+-            SHELL_OPTS="-f"
 -            ;;
 -        ksh)
--            SHELL_OPTS=" -p"
+-            SHELL_OPTS="-p"
+-            if [ "$color_prompt" = yes ] ; then
+-                PS1="$(tput rev)(sage-sh)$(tput sgr0) $USER@`hostname -s`:\${PWD##*/}$ "
+-            else
+-                PS1="(sage-sh) $USER@`hostname -s`:\${PWD##*/}$ "
+-            fi
+-            export PS1
 -            ;;
 -        sh)
--            SHELL_OPTS=" --norc"
+-            # We don't really know which shell "sh" is (it could be
+-            # bash, but this is not guaranteed), so we don't set
+-            # SHELL_OPTS.
+-            if [ "$color_prompt" = yes ] ; then
+-                PS1="$(tput rev)(sage-sh)$(tput sgr0) $USER@`hostname -s`:\${PWD##*/}$ "
+-            else
+-                PS1="(sage-sh) $USER@`hostname -s`:\${PWD}$ "
+-            fi
+-            export PS1
 -            ;;
 -        tcsh)
--            SHELL_OPTS=" -f"
+-            # tcsh doesn't seem to allow the specification of a different
+-            # .tcshrc file, and the prompt can only be set in this file, so
+-            # don't bother changing the prompt.
+-            SHELL_OPTS="-f"
 -            ;;
 -        zsh)
--PS1="SAGE_ROOT=${SAGE_ROOT}
--(sage subshell) %m:%~ %n$ "
--            SHELL_OPTS=" -f -d"
+-            PS1="%S(sage-sh)%s %n@%m:%~$ "
+-            SHELL_OPTS="-f -d"
+-            export PS1
 -            ;;
 -        *)
--            echo >&2 "Unknown shell: $SHELL!"
--            echo >&2 "Exiting Sage."
--            exit 1
+-            export PS1='(sage-sh) $ '
+-            ;;
 -    esac
--    export PS1
--
--    $SHELL_NAME $SHELL_OPTS "$@"
--
--    status=$?
--    echo "Exited Sage subshell."
+-    if [ -n "$oldPS1" ]; then
+-        PS1="$oldPS1"
+-        export PS1
+-    fi
+-    if [ $# -eq 0 ]; then
+-        # No arguments, so print informative message...
+-        echo >&2
+-        echo >&2 "Starting subshell with Sage environment variables set.  Don't forget"
+-        echo >&2 "to exit when you are done.  Beware:"
+-        echo >&2 " * Do not do anything with other copies of Sage on your system."
+-        echo >&2 " * Do not use this for installing Sage packages using \"sage -i\" or for"
+-        echo >&2 "   running \"make\" at Sage's root directory.  These should be done"
+-        echo >&2 "   outside the Sage shell."
+-        echo >&2
+-        if [ -n "$SHELL_OPTS" ]; then
+-            echo >&2 "Bypassing shell configuration files..."
+-            echo >&2
+-        fi
+-        echo >&2 "Note: SAGE_ROOT=$SAGE_ROOT"
+-        "$SHELL" $SHELL_OPTS "$@"
+-        status=$?
+-        echo "Exited Sage subshell." 1>&2
+-    else
+-        exec "$SHELL" $SHELL_OPTS "$@"
+-        # If 'exec' returns, an error occurred:
+-        status=$?
+-        echo >&2 "Fatal error: 'exec \"$SHELL\" \"$@\"' failed!"
+-    fi
 -    exit $status
 -fi
 -
  if [ "$1" = '-gdb-ipython'  -o "$1" = '--gdb-ipython' ]; then
      cd "$CUR"
      shift
-@@ -553,51 +425,10 @@
+@@ -613,51 +425,10 @@
      exit $?
  fi
  
@@ -306,7 +366,7 @@
  if [ "$1" = "-notebook"  -o "$1" = '--notebook' -o "$1" = '-n' ]; then
     cd "$CUR"
     shift
-@@ -606,15 +437,6 @@
+@@ -666,15 +437,6 @@
     exit $?
  fi
  
@@ -322,7 +382,7 @@
  if [ "$1" = "-inotebook"  -o "$1" = '--inotebook' ]; then
     cd "$CUR"
     shift
-@@ -623,18 +445,6 @@
+@@ -683,18 +445,6 @@
     exit $?
  fi
  
@@ -341,7 +401,7 @@
  if [ "$1" = '-grep' -o "$1" = "--grep" -o "$1" = "-search_src" -o "$1" = "--search_src" ]; then
     SAGE_BANNER="no"
     sage_setup
-@@ -659,82 +469,7 @@
+@@ -719,82 +469,7 @@
     exit $?
  fi
  
@@ -425,7 +485,7 @@
     if ! [  -f  "$DOT_SAGE"/init.sage ]; then
        echo >&2 "init.sage does not exist ... creating"
        touch "$DOT_SAGE"/init.sage
-@@ -745,10 +480,7 @@
+@@ -805,10 +480,7 @@
     exit $?
  fi
  
@@ -437,7 +497,7 @@
     if ! [  -f  "$DOT_SAGE"/init.sage ]; then
        echo >&2 "init.sage does not exist ... creating"
        touch "$DOT_SAGE"/init.sage
-@@ -759,16 +491,6 @@
+@@ -819,16 +491,6 @@
     exit $?
  fi
  
@@ -454,13 +514,12 @@
  if [ "$1" = '-testall' -o "$1" = "--testall" ]; then
     shift
     sage-maketest "$@"
-@@ -785,78 +507,11 @@
+@@ -845,70 +507,11 @@
     exit $?
  fi
  
 -install() {
--    cd "$SAGE_ROOT/spkg"
--    SAGE_LOGS="$SAGE_ROOT/spkg/logs"
+-    cd "$CUR"
 -    mkdir -p "$SAGE_LOGS"
 -    for PKG in "$@"
 -    do
@@ -478,23 +537,16 @@
 -        echo "Calling sage-spkg on '$PKG'"
 -        PKG_NAME=`echo "$PKG" | sed -e "s/\.spkg$//"`
 -        PKG_NAME=`basename "$PKG_NAME"`
--        case "$PKG" in
--            /*) PKG_PATH="$PKG";;
--            *) PKG_PATH="$CUR/$PKG";;
--        esac
--        # Could use ./pipestatus here, but using an absolute path is safer:
--        # (We'll have to change it anyway in case 'pipestatus' one day moves.)
+-
 -        "$SAGE_ROOT"/spkg/pipestatus \
--            "sage-spkg $OPTF $OPTS '$PKG_PATH' 2>&1" \
--            "(trap '' SIGINT; tee -a '$SAGE_ROOT'/install.log '$SAGE_LOGS/$PKG_NAME'.log)"
--        # Do not try to install further packages (if any) if one failed:
+-            "sage-spkg $OPTF $OPTS '$PKG' 2>&1" \
+-            "(trap '' SIGINT; tee -a '$SAGE_ROOT/install.log' '$SAGE_LOGS/$PKG_NAME.log')"
+-        # Do not try to install further packages if one failed
 -        if [ $? -ne 0 ]; then
--            echo >&2 "Error: Failed to install package '$PKG_NAME'."
 -            exit 1
 -        fi
--        shift
 -    done
--    exit $?
+-    exit 0
 -}
 -
 -if [ "$1" = '-optional' -o "$1" = "--optional" ]; then
@@ -534,7 +586,7 @@
  fi
  
  if [ "$1" = '-pkg' -o "$1" = '-spkg' -o "$1" = "--pkg" -o "$1" = "--spkg" ]; then
-@@ -887,99 +542,6 @@
+@@ -939,99 +542,6 @@
     exit $?
  fi
  
@@ -634,7 +686,7 @@
  if [ "$1" = '-gdb' -o "$1" = "--gdb" ]; then
      sage_setup
      sage-gdb
-@@ -1041,10 +603,6 @@
+@@ -1093,10 +603,6 @@
  
  if [ $# -ge 1 ]; then
     T=`echo "$1" | sed -e "s/.*\.//"`

@@ -42,6 +42,11 @@ src_prepare() {
 	cat > sage-env <<-EOF
 		#!/bin/bash
 
+		SAGE_ROOT="${EPREFIX}/usr/share/sage"
+		SAGE_LOCAL="${EPREFIX}/usr/"
+		SAGE_DATA="${EPREFIX}/usr/share/sage/data"
+		SAGE_DOC="${EPREFIX}/usr/share/sage/devel/sage/doc"
+
 		if [[ -z \${DOT_SAGE} ]]; then
 			export DOT_SAGE="\${HOME}/.sage"
 		fi
@@ -50,14 +55,6 @@ src_prepare() {
 		export SAGE_TESTDIR="\${DOT_SAGE}/tmp"
 		export SAGE_SERVER="http://www.sagemath.org/"
 		export EPYTHON=python2.7
-	EOF
-
-	# These variables must be globally available (e.g. for sympy)
-	cat > "${T}"/99sage <<-EOF
-		SAGE_ROOT="${EPREFIX}/usr/share/sage"
-		SAGE_LOCAL="${EPREFIX}/usr/"
-		SAGE_DATA="${EPREFIX}/usr/share/sage/data"
-		SAGE_DOC="${EPREFIX}/usr/share/sage/devel/sage/doc"
 	EOF
 
 	# make .desktop file
@@ -169,8 +166,6 @@ src_install() {
 	insinto /usr/share/sage
 	doins -r "${IPYTHON_S}"/ipython || die
 
-	doenvd "${T}"/99sage || die
-
 	insinto /etc
 	doins "${FILESDIR}"/gprc.expect
 
@@ -189,11 +184,10 @@ src_install() {
 }
 
 pkg_postinst() {
-	einfo "${PN} has installed a file into /etc/env.d - if you"
-	einfo "have installed it for the very first time update your environment"
-	einfo "with:"
+	einfo "If you upgraded from a previous ${PN} a file into /etc/env.d has been removed."
+	einfo "In this case you need to update your environment with:"
 	einfo ""
 	einfo "  env-update && source /etc/profile"
 	einfo ""
-	einfo "or logoff and logon to your shell, otherwise Sage will fail to start"
+	einfo "or logoff and logon to your shell, otherwise Sage may fail to start"
 }
