@@ -47,7 +47,7 @@ CDEPEND="dev-libs/gmp
 	>=sci-mathematics/glpk-4.43
 	>=sci-mathematics/lcalc-1.23-r4[pari]
 	>=sci-mathematics/pari-2.5.1[data,gmp]
-	~sci-mathematics/polybori-0.8.0[sage]
+	~sci-mathematics/polybori-0.8.1
 	>=sci-mathematics/ratpoints-2.1.3
 	~sci-mathematics/sage-baselayout-${PV}[testsuite=]
 	~sci-mathematics/sage-clib-${PV}
@@ -93,9 +93,9 @@ RDEPEND="${CDEPEND}
 	>=sci-mathematics/optimal-20040603
 	>=sci-mathematics/palp-2.0
 	~sci-mathematics/sage-data-conway_polynomials-0.2
-	~sci-mathematics/sage-data-elliptic_curves-0.3
-	~sci-mathematics/sage-data-graphs-20070722_p1
-	~sci-mathematics/sage-data-polytopes_db-20100210
+	~sci-mathematics/sage-data-elliptic_curves-0.5
+	~sci-mathematics/sage-data-graphs-20070722_p2
+	~sci-mathematics/sage-data-polytopes_db-20100210_p1
 	>=sci-mathematics/sage-doc-${PV}
 	~sci-mathematics/sage-extcode-${PV}
 	~sci-mathematics/singular-3.1.3.3
