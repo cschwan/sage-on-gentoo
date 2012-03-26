@@ -6,16 +6,20 @@ EAPI="3"
 
 PYTHON_DEPEND="2:2.7"
 
-inherit eutils flag-o-matic multilib python scons-utils toolchain-funcs
+inherit base eutils flag-o-matic multilib python scons-utils toolchain-funcs
 
 DESCRIPTION="Polynomials over Boolean Rings"
 HOMEPAGE="http://polybori.sourceforge.net/"
-SRC_URI="mirror://sourceforge/${PN}/${PN}/${PV}/${P}.tar.gz"
+
+PSUFFIX=""
+PVSUFFIX="${PSUFFIX/rc*/rc}"
+
+SRC_URI="mirror://sourceforge/${PN}/${PN}/${PV}${PVSUFFIX}/${P}${PSUFFIX}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64 ~x86 ~amd64-linux ~x86-linux ~x86-macos"
-IUSE="doc gd sage"
+IUSE="doc gd"
 
 # polybori does not have a working set of tests
 RESTRICT="mirror test"
@@ -33,22 +37,21 @@ RDEPEND="${CDEPEND}"
 
 USE_SCONS_TRUE="True"
 USE_SCONS_FALSE="False"
+PATCHES=( "${FILESDIR}/gbcore.py.patch"
+	"${FILESDIR}/ipbori.patch"
+	"${FILESDIR}/nf.h.patch" )
 
 pkg_setup() {
 	python_set_active_version 2.7
 	python_pkg_setup
-
 	export DOT_SAGE="${S}"
 }
 
 src_prepare() {
-	if use sage ; then
-		cp "${FILESDIR}"/PyPolyBoRi.py-0.8.0 pyroot/polybori/PyPolyBoRi.py \
-			|| die "cp failed"
-	fi
-
 	# make sure external m4ri is used
 	rm -r M4RI || die "failed to remove internal copy of m4ri"
+
+	base_src_prepare
 }
 
 src_compile(){
@@ -109,16 +112,5 @@ src_install() {
 		|| die "failed to remove static libraries"
 
 	# fixing flags.conf
-	sed -i "s:${D}:\/:" "${ED}"/usr/share/polybori/flags.conf
-
-	# FIXME: Dynamic libraries now work on linux but are broken on OS X
-# 	if [[ ${CHOST} == *-darwin* ]] ; then
-# 		# Removing dynamic libraries keeping only static objects
-# 		rm "${ED}"/usr/$(get_libdir)/lib*.dylib \
-# 			|| die "failed to remove static libraries"
-# 	else
-# 		# we only need shared objects elsewhere
-# 		rm "${ED}"/usr/$(get_libdir)/lib*.a \
-# 		|| die "failed to remove static libraries"
-# 	fi
+	sed -i "s:${D}:\/:" "${ED}"/usr/share/polybori/flags.conf || die
 }
