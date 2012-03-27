@@ -4,6 +4,10 @@
 
   27 Mar 2012; François Bissey <francois.bissey@canterbury.ac.nz>
   sage-5.0_beta10.ebuild:
+  fix typo
+
+  27 Mar 2012; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-5.0_beta10.ebuild:
   fix a few path
 
 *sage-5.0_beta10 (26 Mar 2012)

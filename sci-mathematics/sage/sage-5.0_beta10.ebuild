@@ -293,7 +293,7 @@ src_prepare() {
 
 	# fix all paths using SAGE_ROOT or other
 	# polymake
-	sed -i "s:%s/local/polymake/bin/'%os.environ\['SAGE_ROOT'\]:%/bin/'%os.environ\['SAGE_LOCAL'\]:" \
+	sed -i "s:%s/local/polymake/bin/'%os.environ\['SAGE_ROOT'\]:%s/bin/'%os.environ\['SAGE_LOCAL'\]:" \
 		sage/geometry/polytope.py
 	# kash-bin documentation
 	sed -i "s:%s/local/lib/kash/html\"%os.environ\['SAGE_ROOT'\]:${EPREFIX}/opt/kash3/html:" \
