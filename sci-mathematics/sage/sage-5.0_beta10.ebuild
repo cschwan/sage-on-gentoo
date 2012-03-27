@@ -291,6 +291,19 @@ src_prepare() {
 		sed -i "s:is_package_installed('mpc'):True:g" module_list.py
 	fi
 
+	# fix all paths using SAGE_ROOT or other
+	# polymake
+	sed -i "s:%s/local/polymake/bin/'%os.environ\['SAGE_ROOT'\]:%/bin/'%os.environ\['SAGE_LOCAL'\]:" \
+		sage/geometry/polytope.py
+	# kash-bin documentation
+	sed -i "s:%s/local/lib/kash/html\"%os.environ\['SAGE_ROOT'\]:${EPREFIX}/opt/kash3/html:" \
+		sage/interfaces/kash.py
+	# sandpile.py
+	sed \
+		-e "s:SAGE_ROOT+'/local/bin/':SAGE_LOCAL+'/bin':g" \
+		-e "s:SAGE_ROOT = os.environ\['SAGE_ROOT'\]:SAGE_LOCAL = os.environ\['SAGE_LOCAL'\]:" \
+		-i sage/sandpiles/sandpile.py
+
 	# apply patches from /etc/portage/patches
 	epatch_user
 
