@@ -4,7 +4,7 @@
 
 EAPI="3"
 
-inherit eutils toolchain-funcs versionator
+inherit eutils toolchain-funcs versionator prefix
 
 SAGE_P="sage-$(replace_version_separator 2 '.')"
 MY_P="sage_scripts-$(replace_version_separator 2 '.')"
@@ -117,6 +117,7 @@ src_prepare() {
 	# remove developer- and unsupported options
 	cd "${ROOT_S}"
 	epatch "${FILESDIR}"/${PN}-5.0-gentooify-startup-script.patch
+	eprefixify spkg/bin/sage
 }
 
 src_install() {

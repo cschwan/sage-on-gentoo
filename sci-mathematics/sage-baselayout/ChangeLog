@@ -2,6 +2,13 @@
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*sage-baselayout-5.0_beta10-r1 (27 Mar 2012)
+
+  27 Mar 2012; François Bissey <francois.bissey@canterbury.ac.nz>
+  -sage-baselayout-5.0_beta10.ebuild, +sage-baselayout-5.0_beta10-r1.ebuild,
+  files/sage-baselayout-5.0-gentooify-startup-script.patch:
+  setting of the environment wasn't robust enough.
+
   27 Mar 2012; François Bissey <francois.bissey@canterbury.ac.nz>
   sage-baselayout-5.0_beta10.ebuild:
   add licence an readme files
