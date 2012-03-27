@@ -34,7 +34,7 @@ else
 fi
 
 S="${WORKDIR}/${MY_P}"
-IPYTHON_S="${WORKDIR}/${SAGEROOT}"
+ROOT_S="${WORKDIR}/${SAGEROOT}"
 
 # TODO: scripts into /usr/libexec ?
 src_prepare() {
@@ -115,7 +115,7 @@ src_prepare() {
 		sage-num-threads.py
 
 	# remove developer- and unsupported options
-	cd "${IPYTHON_S}"
+	cd "${ROOT_S}"
 	epatch "${FILESDIR}"/${PN}-5.0-gentooify-startup-script.patch
 }
 
@@ -126,7 +126,7 @@ src_install() {
 	dobin sage-cleaner sage-banner sage-eval sage-ipython \
 		sage-maxima.lisp sage-native-execute sage-run sage-num-threads.py || die
 
-	dobin "${IPYTHON_S}"/spkg/bin/sage
+	dobin "${ROOT_S}"/spkg/bin/sage
 
 	# install sage-env under /etc
 	insinto /etc
@@ -164,7 +164,8 @@ src_install() {
 	doins *doctest.py ipy_profile_sage.py || die
 
 	insinto /usr/share/sage
-	doins -r "${IPYTHON_S}"/ipython || die
+	doins -r "${ROOT_S}"/ipython || die
+	doins "${ROOT_S}"/COPYING.txt "${ROOT_S}"/README.txt
 
 	insinto /etc
 	doins "${FILESDIR}"/gprc.expect
