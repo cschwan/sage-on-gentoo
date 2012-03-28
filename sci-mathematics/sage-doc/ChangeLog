@@ -2,6 +2,10 @@
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  28 Mar 2012; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-doc-5.0_beta10.ebuild:
+  add some more directories for builder.py
+
 *sage-doc-5.0_beta10 (26 Mar 2012)
 
   26 Mar 2012; François Bissey <francois.bissey@canterbury.ac.nz>

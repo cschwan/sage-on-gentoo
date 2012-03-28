@@ -36,6 +36,8 @@ src_install() {
 	dodir /usr/share/sage/devel/sage-main/doc/output/doctrees/en/tutorial
 	dodir /usr/share/sage/devel/sage-main/doc/en/tutorial/templates
 	dodir /usr/share/sage/devel/sage-main/doc/en/tutorial/static
+	dodir /usr/share/sage/devel/sage-main/doc/en/reference/templates
+	dodir /usr/share/sage/devel/sage-main/doc/en/reference/static
 
 	# TODO: check if all of these files are needed
 	rm -rf output || die "failed to remove useless files"
