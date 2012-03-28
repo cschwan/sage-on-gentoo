@@ -1,4 +1,4 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
@@ -6,6 +6,7 @@ EAPI="4"
 
 PYTHON_DEPEND="2:2.7"
 PYTHON_MODNAME="sagenb"
+PYTHON_USE_WITH_OPT="ssl"
 
 inherit distutils eutils user
 
@@ -34,8 +35,7 @@ DEPEND="${CDEPEND}
 RDEPEND="${CDEPEND}
 	sci-mathematics/sage
 	java? ( >=sci-chemistry/jmol-12.0.45
-		>=sci-chemistry/jmol-applet-12.0.45 )
-	ssl? ( net-libs/gnutls )"
+		>=sci-chemistry/jmol-applet-12.0.45 )"
 
 S="${WORKDIR}/${MY_P}/src/sagenb"
 
