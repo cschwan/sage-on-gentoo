@@ -2,6 +2,14 @@
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*sage-data-elliptic_curves-0.5-r1 (28 Mar 2012)
+
+  28 Mar 2012; François Bissey <francois.bissey@canterbury.ac.nz>
+  -sage-data-elliptic_curves-0.5.ebuild,
+  +sage-data-elliptic_curves-0.5-r1.ebuild, +files/permission.patch:
+  Add the fix from ticket 12763 for permissions. It will all disappear in the
+  next beta.
+
 *sage-data-elliptic_curves-0.5 (26 Mar 2012)
 
   26 Mar 2012; François Bissey <francois.bissey@canterbury.ac.nz>
