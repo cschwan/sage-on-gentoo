@@ -41,7 +41,7 @@ CDEPEND="dev-libs/gmp
 	~sci-libs/m4ri-20111004
 	~sci-libs/m4rie-20111004
 	>=sci-libs/mpfi-1.5
-	=sci-libs/pynac-0.2.3
+	~sci-libs/pynac-0.2.3
 	>=sci-libs/symmetrica-2.0
 	>=sci-libs/zn_poly-0.9
 	>=sci-mathematics/glpk-4.43
@@ -60,7 +60,7 @@ CDEPEND="dev-libs/gmp
 	mpc? ( dev-libs/mpc )"
 
 DEPEND="${CDEPEND}
-	=dev-python/cython-0.15.1"
+	~dev-python/cython-0.15.1"
 
 RDEPEND="${CDEPEND}
 	>=dev-lang/R-2.14.0
