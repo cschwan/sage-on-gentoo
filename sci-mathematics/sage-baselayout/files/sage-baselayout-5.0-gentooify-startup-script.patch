@@ -1,5 +1,5 @@
---- spkg/bin/sage.orig	2012-03-24 11:30:56.000000000 +1300
-+++ spkg/bin/sage	2012-03-28 10:07:18.530832119 +1300
+--- spkg/bin/sage	2012-04-09 04:08:35.000000000 +1200
++++ spkg/bin/sage.new	2012-04-11 10:41:13.823166820 +1200
 @@ -1,5 +1,16 @@
  #!/usr/bin/env bash
  
@@ -45,18 +45,22 @@
      echo "  -singular [...]     -- run Sage's singular with given arguments"
      echo "  -sqlite3 [...]      -- run Sage's sqlite3 with given arguments"
      echo "  -twistd [...]       -- run Twisted server"
-@@ -111,40 +115,8 @@
+@@ -111,44 +115,8 @@
      echo
      ####  1.......................26..................................................78
      ####  |.....................--.|...................................................|
 -    echo "Installing packages and upgrading:"
 -    echo "  -experimental       -- list all experimental packages that can be installed"
--    echo "  -f [packages]       -- force build of the given Sage package (even if it is"
--    echo "                         already installed)"
--    echo "  -f -s [packages]    -- like -f but do not delete the spkg/build directories"
--    echo "  -i [packages]       -- install the given Sage packages"
--    echo "                         if no packages given, print a list of all installed"
--    echo "  -i -s [packages]    -- like -i but do not delete the spkg/build directories"
+-    echo "  -f [opts] [packages]-- shortcut for -i -f: force build of the given Sage"
+-    echo "                         packages"
+-    echo "  -i [opts] [packages]-- install the given Sage packages (unless they are"
+-    echo "                         already installed); if no packages are given, print"
+-    echo "                         a list of all installed packages.  Options:"
+-    echo "                           -c -- run the packages' test suites"
+-    echo "                           -f -- force build: install the packages even"
+-    echo "                                 if they are already installed"
+-    echo "                           -s -- do not delete the spkg/build directories"
+-    echo "                                 after a successful build"
 -    echo "  -optional           -- list all optional packages that can be installed"
 -    echo "  -standard           -- list all standard packages that can be installed"
 -   #echo "  -update             -- download latest non-optional Sage packages (do not build them)"
@@ -86,7 +90,7 @@
      echo "  -startuptime        -- display how long each component of Sage takes to"
      echo "                         start up"
      echo "  -t [options] <files|dir>"
-@@ -156,8 +128,6 @@
+@@ -160,8 +128,6 @@
      echo "                           -only-optional <tag1,...,tagn>  -- only run tests"
      echo "                            including one of the #optional tags"
      echo "                           -randorder[=seed]  -- randomize order of tests"
@@ -95,7 +99,7 @@
      echo "  -tp <N> [...]       -- like -t above, but tests in parallel using N threads"
      echo "                         with 0 interpreted as a sensible default"
      echo "  -testall [options]  -- test all source files, docs, and examples.  options"
-@@ -167,10 +137,6 @@
+@@ -171,10 +137,6 @@
      ####  1.......................26..................................................78
      ####  |.....................--.|...................................................|
      echo "Documentation:"
@@ -106,7 +110,7 @@
      echo "  -search_src <string> -- search through all the Sage library code for string"
      echo "  -search_doc <string> -- search through the Sage documentation for string"
      echo "  -grep <string>      -- same as -search_src"
-@@ -180,18 +146,8 @@
+@@ -184,18 +146,8 @@
      ####  1.......................26..................................................78
      ####  |.....................--.|...................................................|
      echo "Making Sage packages or distributions:"
@@ -125,7 +129,7 @@
  
      echo
      ####  1.......................26..................................................78
-@@ -220,20 +176,11 @@
+@@ -224,20 +176,11 @@
  }
  
  # Save the current directory, so we can change back after startup
@@ -149,7 +153,7 @@
  
  # Sage startup script passes some funny options, which are
  # best ignored.
-@@ -255,7 +202,7 @@
+@@ -259,7 +202,7 @@
  fi
  
  
@@ -158,7 +162,7 @@
  LOGOPT=""
  
  sage_setup() {
-@@ -264,14 +211,7 @@
+@@ -268,14 +211,7 @@
          cat "$SAGE_LOCAL/bin/sage-banner"
      fi
  
@@ -174,7 +178,7 @@
      IPYTHONDIR="$DOT_SAGE/ipython" && export IPYTHONDIR
      IPYTHONRC="ipythonrc" && export IPYTHONRC
      if [ ! -d "$IPYTHONDIR" ]; then
-@@ -358,13 +298,6 @@
+@@ -362,13 +298,6 @@
      exit $?
  fi
  
@@ -188,7 +192,7 @@
  if [ "$1" = '-gap' -o "$1" = '--gap' ]; then
      cd "$CUR"
      shift
-@@ -382,7 +315,7 @@
+@@ -386,7 +315,7 @@
  if [ "$1" = '-singular'  -o "$1" = '--singular' ]; then
      cd "$CUR"
      shift
@@ -197,7 +201,7 @@
      exit $?
  fi
  
-@@ -421,13 +354,6 @@
+@@ -425,13 +354,6 @@
      exit $?
  fi
  
@@ -211,7 +215,7 @@
  if [ "$1" = '-maxima'  -o "$1" = '--maxima' ]; then
      cd "$CUR"
      shift
-@@ -477,118 +403,6 @@
+@@ -481,118 +403,6 @@
      exit $?
  fi
  
@@ -330,7 +334,7 @@
  if [ "$1" = '-gdb-ipython'  -o "$1" = '--gdb-ipython' ]; then
      cd "$CUR"
      shift
-@@ -613,51 +427,10 @@
+@@ -617,51 +427,10 @@
      exit $?
  fi
  
@@ -382,7 +386,7 @@
  if [ "$1" = "-notebook"  -o "$1" = '--notebook' -o "$1" = '-n' ]; then
     cd "$CUR"
     shift
-@@ -666,15 +439,6 @@
+@@ -670,15 +439,6 @@
     exit $?
  fi
  
@@ -398,17 +402,10 @@
  if [ "$1" = "-inotebook"  -o "$1" = '--inotebook' ]; then
     cd "$CUR"
     shift
-@@ -683,18 +447,6 @@
+@@ -687,11 +447,6 @@
     exit $?
  fi
  
--if [ "$1" = "-wiki"  -o "$1" = '--wiki' ]; then
--   cd "$CUR"
--   shift
--   sage-wiki "$@"
--   exit $?
--fi
--
 -if [ "$1" = "-log" -o "$1" = "--log" ]; then
 -   sage-log
 -   exit 0
@@ -417,7 +414,7 @@
  if [ "$1" = '-grep' -o "$1" = "--grep" -o "$1" = "-search_src" -o "$1" = "--search_src" ]; then
     SAGE_BANNER="no"
     sage_setup
-@@ -719,82 +471,7 @@
+@@ -716,82 +471,7 @@
     exit $?
  fi
  
@@ -501,7 +498,7 @@
     if ! [  -f  "$DOT_SAGE"/init.sage ]; then
        echo >&2 "init.sage does not exist ... creating"
        touch "$DOT_SAGE"/init.sage
-@@ -805,10 +482,7 @@
+@@ -802,10 +482,7 @@
     exit $?
  fi
  
@@ -513,7 +510,7 @@
     if ! [  -f  "$DOT_SAGE"/init.sage ]; then
        echo >&2 "init.sage does not exist ... creating"
        touch "$DOT_SAGE"/init.sage
-@@ -819,16 +493,6 @@
+@@ -816,16 +493,6 @@
     exit $?
  fi
  
@@ -530,7 +527,7 @@
  if [ "$1" = '-testall' -o "$1" = "--testall" ]; then
     shift
     sage-maketest "$@"
-@@ -845,70 +509,11 @@
+@@ -842,74 +509,11 @@
     exit $?
  fi
  
@@ -548,6 +545,10 @@
 -                continue;;
 -            -s) OPTS="-s"
 -                continue;;
+-            -c) OPTC="-c"
+-                continue;;
+-            --check) OPTC="-c"
+-                continue;;
 -        esac
 -
 -        echo "Calling sage-spkg on '$PKG'"
@@ -555,7 +556,7 @@
 -        PKG_NAME=`basename "$PKG_NAME"`
 -
 -        "$SAGE_ROOT"/spkg/pipestatus \
--            "sage-spkg $OPTF $OPTS '$PKG' 2>&1" \
+-            "sage-spkg $OPTF $OPTS $OPTC '$PKG' 2>&1" \
 -            "(trap '' SIGINT; tee -a '$SAGE_ROOT/install.log' '$SAGE_LOGS/$PKG_NAME.log')"
 -        # Do not try to install further packages if one failed
 -        if [ $? -ne 0 ]; then
@@ -602,7 +603,7 @@
  fi
  
  if [ "$1" = '-pkg' -o "$1" = '-spkg' -o "$1" = "--pkg" -o "$1" = "--spkg" ]; then
-@@ -939,99 +544,6 @@
+@@ -940,99 +544,6 @@
     exit $?
  fi
  
@@ -702,7 +703,7 @@
  if [ "$1" = '-gdb' -o "$1" = "--gdb" ]; then
      sage_setup
      sage-gdb
-@@ -1093,10 +605,6 @@
+@@ -1094,10 +605,6 @@
  
  if [ $# -ge 1 ]; then
     T=`echo "$1" | sed -e "s/.*\.//"`

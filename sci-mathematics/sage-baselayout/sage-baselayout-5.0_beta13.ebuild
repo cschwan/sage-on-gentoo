@@ -166,7 +166,7 @@ src_install() {
 
 	insinto /usr/share/sage
 	doins -r "${ROOT_S}"/ipython || die
-	doins "${ROOT_S}"/COPYING.txt "${ROOT_S}"/README.txt
+	doins "${ROOT_S}"/COPYING.txt
 
 	insinto /etc
 	doins "${FILESDIR}"/gprc.expect
