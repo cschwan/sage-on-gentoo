@@ -7,10 +7,10 @@ EAPI="3"
 PYTHON_DEPEND="2:2.7:2.7"
 PYTHON_USE_WITH="sqlite"
 
-inherit python eutils
+inherit python
 
 MY_P="elliptic_curves-${PV}"
-SAGE_P="sage-5.0.beta10"
+SAGE_P="sage-5.0.beta13"
 
 DESCRIPTION="Sage's elliptic curves databases"
 HOMEPAGE="http://www.sagemath.org"
@@ -31,10 +31,6 @@ S="${WORKDIR}/${MY_P}"
 pkg_setup() {
 	python_set_active_version 2.7
 	python_pkg_setup
-}
-
-src_prepare(){
-	epatch "${FILESDIR}"/permission.patch
 }
 
 src_install() {
