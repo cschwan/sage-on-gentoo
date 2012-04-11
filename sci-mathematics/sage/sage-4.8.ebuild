@@ -57,7 +57,6 @@ CDEPEND="dev-libs/gmp
 	>=sys-libs/readline-6.2
 	sys-libs/zlib
 	virtual/cblas"
-#	mpc? ( dev-libs/mpc )"
 
 DEPEND="${CDEPEND}
 	~dev-python/cython-0.15.1"
@@ -300,12 +299,6 @@ src_prepare() {
 	# fix the cmdline test using SAGE_ROOT
 	sed -i "s:SAGE_ROOT, \"local\":os.environ[\"SAGE_LOCAL\"]:" \
 		sage/tests/cmdline.py
-
-	# enable dev-libs/mpc if required
-	#if use mpc ; then
-	#	sed -i "s:is_package_installed('mpc'):True:g" module_list.py \
-	#		|| die "failed to enable dev-libs/mpc"
-	#fi
 
 	# apply patches from /etc/portage/patches
 	epatch_user

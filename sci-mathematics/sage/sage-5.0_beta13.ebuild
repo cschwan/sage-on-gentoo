@@ -18,7 +18,7 @@ SRC_URI="http://sage.math.washington.edu/home/release/${MY_P}/${MY_P}/spkg/stand
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64 ~x86 ~amd64-linux ~x86-linux ~x86-macos"
-IUSE="mpc latex testsuite"
+IUSE="latex testsuite"
 
 RESTRICT="mirror test"
 
@@ -57,7 +57,7 @@ CDEPEND="dev-libs/gmp
 	>=sys-libs/readline-6.2
 	sys-libs/zlib
 	virtual/cblas
-	mpc? ( dev-libs/mpc )"
+	dev-libs/mpc"
 
 DEPEND="${CDEPEND}
 	~dev-python/cython-0.15.1"
@@ -93,7 +93,7 @@ RDEPEND="${CDEPEND}
 	>=sci-mathematics/optimal-20040603
 	>=sci-mathematics/palp-2.0
 	~sci-mathematics/sage-data-conway_polynomials-0.2
-	~sci-mathematics/sage-data-elliptic_curves-0.5
+	~sci-mathematics/sage-data-elliptic_curves-0.6
 	~sci-mathematics/sage-data-graphs-20070722_p2
 	~sci-mathematics/sage-data-polytopes_db-20100210_p1
 	>=sci-mathematics/sage-doc-${PV}
@@ -110,7 +110,7 @@ RDEPEND="${CDEPEND}
 		)
 	)"
 
-PDEPEND="~sci-mathematics/sage-notebook-0.8.27"
+PDEPEND="~sci-mathematics/sage-notebook-0.8.29"
 
 S="${WORKDIR}/${MY_P}"
 
@@ -141,6 +141,8 @@ src_prepare() {
 
 	# patch to module_list.py because of trac 4539
 	epatch "${FILESDIR}"/${PN}-5.0-plural.patch
+	# fix a stupid include path to devel
+	epatch "${FILESDIR}"/${PN}-5.0-degree-sequence.patch
 
 	# make sure we use cython-2.7 for consistency
 	sed -i "s:python \`which cython\`:cython-2.7:" setup.py
@@ -285,11 +287,6 @@ src_prepare() {
 	# fix the cmdline test using SAGE_ROOT
 	sed -i "s:SAGE_ROOT, \"local\":os.environ[\"SAGE_LOCAL\"]:" \
 		sage/tests/cmdline.py
-
-	# enable dev-libs/mpc if required
-	if use mpc ; then
-		sed -i "s:is_package_installed('mpc'):True:g" module_list.py
-	fi
 
 	# fix all paths using SAGE_ROOT or other
 	# polymake
