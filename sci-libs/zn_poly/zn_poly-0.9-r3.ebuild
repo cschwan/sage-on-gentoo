@@ -19,15 +19,12 @@ RESTRICT="mirror"
 
 CDEPEND=">=dev-libs/gmp-4.2.4"
 DEPEND="${CDEPEND}
-	dev-lang/python"
+	=dev-lang/python-2*"
 RDEPEND="${CDEPEND}"
 
 src_prepare() {
 	# both flint and zn_poly typedef "ulong" - fix it
 	epatch "${FILESDIR}"/${P}-flint-hack.patch
-
-	# fix python2
-	epatch "${FILESDIR}"/${P}-python2.patch
 
 	# fix for multilib-strict
 	sed -i "s:%s/lib:%s/$(get_libdir):g" makemakefile.py \
@@ -40,6 +37,10 @@ src_prepare() {
 	# fix install_name for macos
 	sed -i "s:-dynamiclib:-dynamiclib -install_name ${EPREFIX}/usr/$(get_libdir)/libzn_poly.dylib:g" \
 		makemakefile.py || die "failed to fix macos dylib"
+	
+	# fix python2 in configure
+	sed -i s:python:python2:g \
+		configure || die "failed to fix python2 in configure"
 }
 
 # TODO: support flint instead of gmp option ?
