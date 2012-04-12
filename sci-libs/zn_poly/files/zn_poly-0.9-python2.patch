@@ -1,0 +1,14 @@
+diff --git a/configure.orig b/configure
+index 23f4f23..7cef524 100755
+--- a/configure.orig
++++ b/configure
+@@ -7,7 +7,7 @@
+ 
+ if test $# -ne 0
+ then
+-   python makemakefile.py "$@" > makefile
++   python2 makemakefile.py "$@" > makefile
+ else
+-   python makemakefile.py > makefile
++   python2 makemakefile.py > makefile
+ fi

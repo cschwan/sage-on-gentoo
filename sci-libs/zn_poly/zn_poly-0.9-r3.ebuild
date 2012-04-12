@@ -26,6 +26,9 @@ src_prepare() {
 	# both flint and zn_poly typedef "ulong" - fix it
 	epatch "${FILESDIR}"/${P}-flint-hack.patch
 
+	# fix python2
+	epatch "${FILESDIR}"/${P}-python2.patch
+
 	# fix for multilib-strict
 	sed -i "s:%s/lib:%s/$(get_libdir):g" makemakefile.py \
 		|| die "failed to patch for multilib-strict"
