@@ -1,4 +1,4 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
@@ -37,7 +37,7 @@ src_prepare() {
 	# fix install_name for macos
 	sed -i "s:-dynamiclib:-dynamiclib -install_name ${EPREFIX}/usr/$(get_libdir)/libzn_poly.dylib:g" \
 		makemakefile.py || die "failed to fix macos dylib"
-	
+
 	# fix python2 in configure
 	sed -i s:python:python2:g \
 		configure || die "failed to fix python2 in configure"

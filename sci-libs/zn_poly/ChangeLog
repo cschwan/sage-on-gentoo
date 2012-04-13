@@ -1,6 +1,10 @@
 # ChangeLog for sci-libs/zn_poly
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
+
+  13 Apr 2012; François Bissey <francois.bissey@canterbury.ac.nz>
+  zn_poly-0.9-r3.ebuild:
+  QA, not checked with repoman and missing manifest
 
   27 Jul 2011; Christopher Schwan <cschwan@students.uni-mainz.de>
   zn_poly-0.9-r3.ebuild:
