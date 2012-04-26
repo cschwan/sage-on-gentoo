@@ -5,7 +5,7 @@
 EAPI="3"
 
 PYTHON_DEPEND="2:2.7:2.7"
-PYTHON_USE_WITH="readline sage sqlite"
+PYTHON_USE_WITH="readline sqlite"
 
 inherit distutils eutils flag-o-matic python versionator
 
