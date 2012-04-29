@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
-EAPI="3"
+EAPI="4"
 
 PYTHON_DEPEND="2:2.7:2.7"
 PYTHON_USE_WITH="readline sqlite"
@@ -114,9 +114,7 @@ PDEPEND="~sci-mathematics/sage-notebook-0.8.29"
 
 S="${WORKDIR}/${MY_P}"
 
-pkg_setup() {
-	# TODO: put the following check into pkg_pretend once we may use EAPI 4 with
-	# the python eclass
+pkg_pretend() {
 	if ( eselect blas show ; eselect lapack show ) | grep -q "atlas" ; then
 
 	ewarn "You are about to compile Sage with ATLAS blas/lapack libraries. We"
@@ -125,7 +123,9 @@ pkg_setup() {
 	ewarn "problem for everyday use of Sage but we have warned you!"
 
 	fi
+}
 
+pkg_setup() {
 	# Sage now will only works with python 2.7.*
 	python_set_active_version 2.7
 	python_pkg_setup
@@ -203,6 +203,10 @@ src_prepare() {
 		-e "s:'%s/include/csage'%SAGE_LOCAL:'${EPREFIX}/usr/include/csage':g" \
 		-e "s:'%s/sage/sage/ext'%SAGE_DEVEL:'sage/ext':g" \
 		setup.py
+
+	# fix installation phase for >=python-2.7.3
+	sed -i "s:min(len(command_list),:min(max(len(command_list),1),:" setup.py \
+		|| die "failed to patch setup.py"
 
 	sed -i \
 		-e "s:BLAS, BLAS2:${cblaslibs}:g" \
@@ -314,10 +318,24 @@ src_configure() {
 	export SAGE_VERSION=${PV}
 	export DOT_SAGE="${S}"
 
-	local sage_num_threads_array=(
-		$(sage-num-threads.py 2>/dev/null || echo 1 2 1)
+	# parse MAKEOPTS and extract the number of jobs (from dev-libs/boost)
+	local jobs=$(echo " ${MAKEOPTS} " | sed \
+		-e 's/ --jobs[= ]/ -j /g' \
+		-e 's/ -j \([1-9][0-9]*\)/ -j\1/g' \
+		-e 's/ -j\>/ -j1/g' | \
+		( while read -d ' ' j; do
+			if [[ "${j#-j}" = "$j" ]]; then
+				continue
+			fi
+			jobs="${j#-j}"
+			done
+			echo ${jobs} )
 	)
-	export SAGE_NUM_THREADS=${sage_num_threads_array[0]}
+	if [[ "${jobs}" != "" ]]; then
+		export SAGE_NUM_THREADS="${jobs}"
+	else
+		export SAGE_NUM_THREADS=1
+	fi
 
 	# files are not built unless they are touched
 	find sage -name "*pyx" -exec touch '{}' \; \
