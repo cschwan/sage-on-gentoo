@@ -295,7 +295,7 @@ src_prepare() {
 	# fix all paths using SAGE_ROOT or other
 	# sageinspect failure when running mpmath/sympy
 	# We will need a better strategy at some point but upstream may make interesting changes
-	sed -i "s:SAGE_ROOT = os.environ\[\"SAGE_ROOT\"\]:SAGE_ROOT =${EPREFIX}/usr/share/sage:" \
+	sed -i "s:SAGE_ROOT = os.environ\[\"SAGE_ROOT\"\]:SAGE_ROOT = \'${EPREFIX}/usr/share/sage\':" \
 		sage/misc/sageinspect.py
 	# polymake
 	sed -i "s:%s/local/polymake/bin/'%os.environ\['SAGE_ROOT'\]:%s/bin/'%os.environ\['SAGE_LOCAL'\]:" \
