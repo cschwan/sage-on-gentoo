@@ -41,6 +41,7 @@ PATCHES=(
 	"${FILESDIR}"/${P}-fix-undefined-symbols.patch
 	"${FILESDIR}"/${P}-modularfloat.patch
 	"${FILESDIR}"/${P}-disable-commentator.patch
+	"${FILESDIR}"/${P}-sage-interface.patch
 )
 
 # TODO: installation of documentation does not work ?

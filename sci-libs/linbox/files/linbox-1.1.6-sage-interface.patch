@@ -1,0 +1,13 @@
+--- interfaces/sage/linbox-sage.h.orig	2012-05-01 11:19:36.898317049 +1200
++++ interfaces/sage/linbox-sage.h	2012-05-01 11:20:31.649347322 +1200
+@@ -31,7 +31,9 @@
+ #endif
+ 
+ #include<stddef.h>
+-typedef size_t mod_int; 
++
++#include <stdint.h>
++typedef uint_fast64_t mod_int;
+ 
+ #include <cstdlib>
+ #include <vector>
