@@ -4,6 +4,10 @@
 
   30 Apr 2012; François Bissey <francois.bissey@canterbury.ac.nz>
   sage-5.0_beta14.ebuild:
+  bump dep on linbox in beta14
+
+  30 Apr 2012; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-5.0_beta14.ebuild:
   misc.py needs touching as well
 
   30 Apr 2012; François Bissey <francois.bissey@canterbury.ac.nz>
