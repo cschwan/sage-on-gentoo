@@ -2,6 +2,12 @@
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*sage-4.8-r1 (08 May 2012)
+
+  08 May 2012; Christopher Schwan <cschwan@students.uni-mainz.de>
+  -sage-4.8.ebuild, +sage-4.8-r1.ebuild:
+  New revision to make changes come into effect
+
   30 Apr 2012; François Bissey <francois.bissey@canterbury.ac.nz>
   sage-5.0_beta14.ebuild:
   bump dep on linbox in beta14
