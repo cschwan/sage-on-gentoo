@@ -29,8 +29,8 @@ CDEPEND="dev-libs/gmp
 	>=dev-lisp/ecls-11.1.1-r1[-unicode]
 	~dev-python/numpy-1.5.1
 	>=sci-mathematics/eclib-20100711[-pari24]
-	>=sci-mathematics/ecm-6.2.1
-	>=sci-libs/flint-1.5.0[ntl]
+	>=sci-mathematics/ecm-6.3
+	>=sci-libs/flint-1.5.2[ntl]
 	>=sci-libs/fplll-3.0.12
 	=sci-libs/givaro-3.2*
 	>=sci-libs/gsl-1.15
@@ -44,7 +44,7 @@ CDEPEND="dev-libs/gmp
 	~sci-libs/pynac-0.2.3
 	>=sci-libs/symmetrica-2.0
 	>=sci-libs/zn_poly-0.9
-	>=sci-mathematics/glpk-4.43
+	>=sci-mathematics/glpk-4.44
 	>=sci-mathematics/lcalc-1.23-r4[pari]
 	>=sci-mathematics/pari-2.5.1[data,gmp]
 	~sci-mathematics/polybori-0.8.1
@@ -64,20 +64,20 @@ DEPEND="${CDEPEND}
 
 RDEPEND="${CDEPEND}
 	>=dev-lang/R-2.14.0
-	>=dev-python/cvxopt-1.1.3[glpk]
+	>=dev-python/cvxopt-1.1.4[glpk]
 	>=dev-python/gdmodule-0.56-r2[png]
 	~dev-python/ipython-0.10.2
-	>=dev-python/jinja-2.1.1
+	>=dev-python/jinja-2.5.5
 	>=dev-python/matplotlib-1.1.0
-	>=dev-python/mpmath-0.16
+	>=dev-python/mpmath-0.17
 	~dev-python/networkx-1.2
 	~dev-python/pexpect-2.0
 	>=dev-python/pycrypto-2.1.0
-	>=dev-python/rpy-2.0.6
+	>=dev-python/rpy-2.0.8
 	>=dev-python/sphinx-1.1.2
 	dev-python/sqlalchemy
 	~dev-python/sympy-0.7.1
-	>=media-gfx/tachyon-0.98[png]
+	>=media-gfx/tachyon-0.98.9[png]
 	net-zope/zodb
 	>=sci-libs/cddlib-094f-r2
 	>=sci-libs/scipy-0.9
@@ -103,7 +103,7 @@ RDEPEND="${CDEPEND}
 	!prefix? ( >=sys-libs/glibc-2.13-r4 )
 	testsuite? ( ~sci-mathematics/sage-doc-${PV}[html] )
 	latex? (
-		~dev-tex/sage-latex-2.3.1
+		~dev-tex/sage-latex-2.3.3_p2
 		|| (
 			app-text/dvipng[truetype]
 			media-gfx/imagemagick[png]
