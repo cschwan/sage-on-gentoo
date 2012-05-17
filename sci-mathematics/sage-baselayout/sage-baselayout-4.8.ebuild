@@ -22,7 +22,6 @@ IUSE="debug testsuite X tools"
 
 RESTRICT="mirror"
 
-DEPEND="!=sci-mathematics/pari-2.4.3-r1"
 if  [[ ${CHOST} == *-darwin* ]] ; then
 	RDEPEND="${DEPEND}
 		tools? ( dev-vcs/mercurial )
