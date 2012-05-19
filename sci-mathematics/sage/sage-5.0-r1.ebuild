@@ -365,6 +365,8 @@ src_install() {
 }
 
 pkg_postinst() {
+	distutils_pkg_postinst
+
 	einfo "If you use Sage's browser interface ('Sage Notebook') and experience"
 	einfo "an 'Internal Server Error' you should append the following line to"
 	einfo "your ~/.bashrc (replace firefox with your favorite browser and note"
