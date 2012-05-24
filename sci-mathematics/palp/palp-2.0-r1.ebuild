@@ -20,8 +20,6 @@ RESTRICT="mirror"
 DEPEND=""
 RDEPEND="${DEPEND}"
 
-S="${WORKDIR}/${PN}"
-
 PATCHES=( "${FILESDIR}"/${PN}-2.0-gnumakefile.patch
 	"${FILESDIR}"/${PN}-2.0-nonestedfunctions.patch )
 
