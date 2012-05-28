@@ -2,6 +2,10 @@
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  28 May 2012; Christopher Schwan <cschwan@students.uni-mainz.de>
+  +files/polybori-0.8.0-base-lookup.patch, polybori-0.8.1-r0.ebuild:
+  Fix GCC-4.7 bug, thanks to Jauhien Piatlicki for report
+
 *polybori-0.8.1-r0 (26 Mar 2012)
 
   26 Mar 2012; François Bissey <francois.bissey@canterbury.ac.nz>

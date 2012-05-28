@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
-EAPI="3"
+EAPI="4"
 
 PYTHON_DEPEND="2:2.7"
 
@@ -37,9 +37,13 @@ RDEPEND="${CDEPEND}"
 
 USE_SCONS_TRUE="True"
 USE_SCONS_FALSE="False"
-PATCHES=( "${FILESDIR}/gbcore.py.patch"
-	"${FILESDIR}/ipbori.patch"
-	"${FILESDIR}/nf.h.patch" )
+
+PATCHES=(
+	"${FILESDIR}"/gbcore.py.patch
+	"${FILESDIR}"/ipbori.patch
+	"${FILESDIR}"/nf.h.patch
+	"${FILESDIR}"/${PN}-0.8.0-base-lookup.patch
+)
 
 pkg_setup() {
 	python_set_active_version 2.7
