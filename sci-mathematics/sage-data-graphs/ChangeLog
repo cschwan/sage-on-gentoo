@@ -2,6 +2,10 @@
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  31 May 2012; Christopher Schwan <cschwan@students.uni-mainz.de>
+  -sage-data-graphs-20070722_p1-r1.ebuild, sage-data-graphs-20070722_p2.ebuild:
+  Fix SRC_URI, remove old
+
 *sage-data-graphs-20070722_p2 (26 Mar 2012)
 
   26 Mar 2012; François Bissey <francois.bissey@canterbury.ac.nz>

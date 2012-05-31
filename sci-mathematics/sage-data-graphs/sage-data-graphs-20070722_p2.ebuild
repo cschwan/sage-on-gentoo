@@ -7,7 +7,7 @@ EAPI="4"
 inherit versionator
 
 MY_P="graphs-$(replace_version_separator 1 '.')"
-SAGE_P="sage-5.0.beta10"
+SAGE_P="sage-5.0"
 
 DESCRIPTION="Sage's graph database"
 HOMEPAGE="http://www.sagemath.org"
