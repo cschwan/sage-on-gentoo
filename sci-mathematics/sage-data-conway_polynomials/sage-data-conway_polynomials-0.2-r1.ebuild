@@ -1,11 +1,11 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
 EAPI="4"
 
 MY_P="conway_polynomials-${PV}"
-SAGE_P="sage-4.6"
+SAGE_P="sage-5.0"
 
 DESCRIPTION="Sage's conway polynomial database"
 HOMEPAGE="http://www.sagemath.org"
