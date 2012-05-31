@@ -1,4 +1,4 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
@@ -7,7 +7,7 @@ EAPI="4"
 inherit eutils versionator
 
 MY_P="$(replace_version_separator 4 '.' ${P})"
-SAGE_P="sage-4.6"
+SAGE_P="sage-5.0"
 
 DESCRIPTION="Computes special values of symmetric power elliptic curve L-functions"
 HOMEPAGE="http://www.sagemath.org"
@@ -16,18 +16,20 @@ SRC_URI="http://sage.math.washington.edu/home/release/${SAGE_P}/${SAGE_P}/spkg/s
 LICENSE="BSD"
 SLOT="0"
 KEYWORDS="~amd64 ~x86 ~amd64-linux ~x86-linux"
-IUSE="pari24"
+IUSE=""
 
 RESTRICT="mirror"
 
 DEPEND=""
-RDEPEND="pari24? ( =sci-mathematics/pari-2.4.3-r1 )
-	!pari24? ( >=sci-mathematics/pari-2.5.0 )"
+RDEPEND=">=sci-mathematics/pari-2.5.0"
 
 S="${WORKDIR}/${MY_P}/src"
 
 src_prepare() {
 	local sharedir="${EPREFIX}"/usr/share/sympow
+
+	epatch ../patches/execlp.patch
+	epatch ../patches/fpu.patch
 
 	# fix paths for gp scripts
 	sed -i "s:standard\([123]\).gp:${sharedir}/standard\1.gp:g" generate.c \
@@ -37,13 +39,7 @@ src_prepare() {
 	sed -i "s:\.\./sympow:sympow:g" generate.c \
 		|| die "failed to patch call to binary"
 
-	if use pari24 ; then
-		sed -e "s:whichexe gp:whichexe gp-2.4:" \
-			-e "s:find gp:find gp-2.4:" \
-			-i Configure || die "failed to convert to pari24 usage"
-	fi
-
-	# must come after "if use pari24 ..."
+	# now this:
 	sed -i "s:whichexe :which :g" Configure \
 		|| die "failed to patch Configure script"
 

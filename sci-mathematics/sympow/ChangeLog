@@ -1,6 +1,12 @@
 # ChangeLog for sci-mathematics/sympow
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
+
+*sympow-1.018.1_p11 (31 May 2012)
+
+  31 May 2012; Christopher Schwan <cschwan@students.uni-mainz.de>
+  -sympow-1.018.1_p8-r1.ebuild, +sympow-1.018.1_p11.ebuild:
+  Update SRC_URI and version bump
 
   03 Aug 2011; François Bissey <francois.bissey@canterbury.ac.nz>
   sympow-1.018.1_p8-r1.ebuild:
