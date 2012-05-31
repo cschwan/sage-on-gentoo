@@ -1,13 +1,13 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
-EAPI="3"
+EAPI="4"
 
 inherit eutils versionator
 
 MY_P="${PN}-$(replace_version_separator 1 '.')"
-SAGE_P="sage-4.6"
+SAGE_P="sage-5.0"
 
 DESCRIPTION="William Hart's GPL'd highly optimized multi-polynomial quadratic sieve for integer factorization"
 HOMEPAGE="http://www.sagemath.org/"
