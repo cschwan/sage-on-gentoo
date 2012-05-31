@@ -28,7 +28,7 @@ CDEPEND="dev-libs/gmp
 	>=dev-libs/ppl-0.11.2
 	>=dev-lisp/ecls-11.1.1-r1[-unicode]
 	~dev-python/numpy-1.5.1
-	>=sci-mathematics/eclib-20100711[-pari24]
+	>=sci-mathematics/eclib-20100711_p0
 	>=sci-mathematics/ecm-6.3
 	>=sci-libs/flint-1.5.2[ntl]
 	>=sci-libs/fplll-3.0.12
@@ -81,13 +81,13 @@ RDEPEND="${CDEPEND}
 	net-zope/zodb
 	>=sci-libs/cddlib-094f-r2
 	>=sci-libs/scipy-0.9
-	>=sci-mathematics/flintqs-20070817_p5
+	>=sci-mathematics/flintqs-20070817_p6
 	>=sci-mathematics/gap-4.4.12
 	>=sci-mathematics/genus2reduction-0.3_p8-r1
 	~sci-mathematics/gfan-0.5
 	>=sci-mathematics/cu2-20060223
 	>=sci-mathematics/cubex-20060128
-	>=sci-mathematics/dikcube-20070912_p12
+	>=sci-mathematics/dikcube-20070912_p18
 	~sci-mathematics/maxima-5.26.0[ecls]
 	>=sci-mathematics/mcube-20051209
 	>=sci-mathematics/optimal-20040603
@@ -99,7 +99,7 @@ RDEPEND="${CDEPEND}
 	>=sci-mathematics/sage-doc-${PV}
 	~sci-mathematics/sage-extcode-${PV}
 	~sci-mathematics/singular-3.1.3.3
-	>=sci-mathematics/sympow-1.018.1_p8-r1[-pari24]
+	>=sci-mathematics/sympow-1.018.1_p11
 	!prefix? ( >=sys-libs/glibc-2.13-r4 )
 	testsuite? ( ~sci-mathematics/sage-doc-${PV}[html] )
 	latex? (

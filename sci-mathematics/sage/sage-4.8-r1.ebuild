@@ -28,7 +28,7 @@ CDEPEND="dev-libs/gmp
 	>=dev-libs/ppl-0.11.2
 	>=dev-lisp/ecls-11.1.1-r1[-unicode]
 	~dev-python/numpy-1.5.1
-	>=sci-mathematics/eclib-20100711[-pari24]
+	>=sci-mathematics/eclib-20100711
 	>=sci-mathematics/ecm-6.2.1
 	>=sci-libs/flint-1.5.0[ntl]
 	>=sci-libs/fplll-3.0.12
@@ -93,12 +93,12 @@ RDEPEND="${CDEPEND}
 	>=sci-mathematics/palp-1.1
 	~sci-mathematics/sage-data-conway_polynomials-0.2
 	~sci-mathematics/sage-data-elliptic_curves-0.3
-	~sci-mathematics/sage-data-graphs-20070722_p1
-	~sci-mathematics/sage-data-polytopes_db-20100210
+	~sci-mathematics/sage-data-graphs-20070722_p2
+	~sci-mathematics/sage-data-polytopes_db-20100210_p1
 	>=sci-mathematics/sage-doc-${PV}
 	~sci-mathematics/sage-extcode-${PV}
 	~sci-mathematics/singular-3.1.3.3
-	>=sci-mathematics/sympow-1.018.1_p8-r1[-pari24]
+	>=sci-mathematics/sympow-1.018.1_p8-r1
 	!prefix? ( >=sys-libs/glibc-2.13-r4 )
 	testsuite? ( ~sci-mathematics/sage-doc-${PV}[html] )
 	latex? (
