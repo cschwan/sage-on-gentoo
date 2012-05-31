@@ -1,4 +1,4 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
@@ -7,7 +7,7 @@ EAPI="4"
 inherit eutils toolchain-funcs versionator
 
 MY_P="${PN}-$(replace_version_separator 2 '.')"
-SAGE_P="sage-4.6"
+SAGE_P="sage-5.0"
 
 DESCRIPTION="Conductor and Reduction Types for Genus 2 Curves"
 HOMEPAGE="http://www.math.u-bordeaux.fr/~liu/G2R/"
