@@ -1,4 +1,4 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
@@ -7,7 +7,7 @@ EAPI="4"
 inherit eutils flag-o-matic toolchain-funcs versionator multilib
 
 MY_P="cliquer-$(replace_version_separator 2 '.')"
-SAGE_P="sage-4.6"
+SAGE_P="sage-5.0"
 
 DESCRIPTION="Cliquer is a set of C routines for finding cliques in an arbitrary weighted graph"
 HOMEPAGE="http://users.tkk.fi/pat/cliquer.html"
@@ -30,8 +30,8 @@ pkg_setup() {
 }
 
 src_prepare() {
-	# overwrite Makefile
-	cp ../patch/Makefile . || die "failed to copy Makefile"
+	# patch Makefile
+	epatch ../patches/Makefile.patch
 
 	# fix QA Notice: [..] runtime text relocations
 	append-cflags -fPIC
