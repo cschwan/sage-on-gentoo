@@ -1,0 +1,200 @@
+--- src/kernel/integer/givintnumtheo.inl
++++ src/kernel/integer/givintnumtheo.inl
+@@ -22,8 +22,8 @@
+ // =================================================================== //
+ template<class RandIter>
+ typename IntNumTheoDom<RandIter>::Rep& IntNumTheoDom<RandIter>::phi(Rep& res, const Rep& n) const {
+-    if (isleq(n,1)) return res=n;
+-    if (isleq(n,3)) return sub(res,n,this->one);
++    if (this->isleq(n,1)) return res=n;
++    if (this->isleq(n,3)) return this->sub(res,n,this->one);
+     std::list<Rep> Lf;
+     Father_t::set(Lf,n);
+     //return phi (res,Lf,n);
+@@ -34,11 +34,11 @@
+ template<class RandIter>
+ template< template<class, class> class Container, template<class> class Alloc>
+  typename IntNumTheoDom<RandIter>::Rep& IntNumTheoDom<RandIter>::phi(Rep& res, const Container<Rep, Alloc<Rep> >& Lf, const Rep& n) const {
+-    if (isleq(n,1)) return res=n;
+-    if (isleq(n,3)) return sub(res,n,this->one);
++    if (this->isleq(n,1)) return res=n;
++    if (this->isleq(n,3)) return this->sub(res,n,this->one);
+     res = n; Rep t,m;
+     for(typename Container<Rep, Alloc<Rep> >::const_iterator f=Lf.begin(); f!=Lf.end(); ++f) 
+-        mul(res, divexact(t,res,*f), sub(m, *f, this->one));
++        this->mul(res, this->divexact(t,res,*f), this->sub(m, *f, this->one));
+     return res;
+ }
+ 
+@@ -85,7 +85,7 @@
+         // n must be in {2,4,p^m,2p^m} where p is an odd prime
+         // else infinite loop
+ 
+-    if (isleq(n,4)) return sub(A,n,this->one);
++    if (isleq(n,4)) return this->sub(A,n,this->one);
+     if (isZero(mod(A,n,4))) return A=this->zero;
+     Rep p,ismod2, q, no2, root; 
+     if (isZero(mod(ismod2,n,2))) divexact(no2,n,2); else no2=n;
+@@ -139,7 +139,7 @@
+     while (! found) {
+        do {
+             this->random(this->_g, A, p);
+-            addin( modin(A,sub(tmp,p,7)) , 7);
++            addin( modin(A,this->sub(tmp,p,7)) , 7);
+         } while ( ! isOne(gcd(tmp,A,p)) );
+         found = ++runs;
+         for(f=Lf.begin();(f!=Lf.end() && found);f++)
+@@ -303,7 +303,7 @@
+ typename IntNumTheoDom<RandIter>::Rep& IntNumTheoDom<RandIter>::prim_root_of_prime(Rep& A, const Rep& n) const { 
+     
+     std::vector<Rep> Lf;
+-    Rep phin; sub(phin,n,this->one);
++    Rep phin; this->sub(phin,n,this->one);
+     Father_t::set(Lf,phin);
+     return prim_root_of_prime(A, Lf, phin, n);
+ }
+@@ -407,8 +407,8 @@
+ typename IntNumTheoDom<RandIter>::Rep& IntNumTheoDom<RandIter>::lowest_prim_root(Rep& A, const Rep& n) const {
+         // n must be in {2,4,p^m,2p^m} where p is an odd prime
+         // else returns zero
+-    if (isleq(n,4)) return sub(A,n,this->one);
+-    if (isZero(mod(A,n,4))) return A=this->zero;
++    if (this->isleq(n,4)) return this->sub(A,n,this->one);
++    if (isZero(this->mod(A,n,4))) return A=this->zero;
+     Rep phin, tmp; 
+     phi(phin,n);
+     std::list<Rep> Lf;
+@@ -417,15 +417,15 @@
+     for(f=Lf.begin();f!=Lf.end();++f)
+             this->div(*f,phin,*f);
+     int found=0;
+-    for(A = 2;(isleq(A,n) && (! found));addin(A,1)) {
++    for(A = 2;(this->isleq(A,n) && (! found));this->addin(A,1)) {
+         if (isOne(gcd(tmp,A,n))) {
+             found = 1;
+             for(f=Lf.begin();(f!=Lf.end() && found);f++)
+                 found = (! isOne( this->powmod(tmp,A,*f,n)) );
+         }
+     }
+-    if (isleq(A,n))
+-        return subin(A,1);
++    if (this->isleq(A,n))
++        return this->subin(A,1);
+     else
+         return A=this->zero; 
+ }
+@@ -490,7 +490,7 @@
+ 
+ template<class RandIter>
+ typename IntNumTheoDom<RandIter>::Rep& IntNumTheoDom<RandIter>::prim_inv(Rep& A, const Rep& n) const {
+-    if (isleq(n,4)) return sub(A,n,this->one);
++    if (isleq(n,4)) return this->sub(A,n,this->one);
+     if (areEqual(n,8)) return init(A,3);
+     return prim_base(A, n);
+ }
+@@ -542,7 +542,7 @@
+         return dom_power(z, p, e-2, *this);
+     } else {
+         Rep tmp;
+-        return mulin( dom_power(z, p, e-1, *this), sub(tmp, p, this->one) );
++        return mulin( dom_power(z, p, e-1, *this), this->sub(tmp, p, this->one) );
+     }
+ }
+ 
+@@ -555,7 +555,7 @@
+         return dom_power(z, p, e-2, *this);
+     } else {
+         Rep tmp;
+-        return mulin( dom_power(z, p, e-1, *this), sub(tmp, p, this->one) );
++        return mulin( dom_power(z, p, e-1, *this), this->sub(tmp, p, this->one) );
+     }
+ }
+ 
+
+
+--- src/library/poly1/givpoly1factor.inl
++++ src/library/poly1/givpoly1factor.inl
+@@ -205,17 +205,17 @@
+         // Square free ?
+    typename Domain::Element _one;
+    _domain.init(_one,1UL); 
+-   Rep W,D; this->gcd(W,diff(D,P),P);
++   Rep W,D; this->gcd(W,this->diff(D,P),P);
+     Degree d, dP;
+-    if (degree(d,W) > 0) return 0;
++    if (this->degree(d,W) > 0) return 0;
+         // Distinct degree free ?
+-    Rep Unit, G1; init(Unit, Degree(1), _one);
++    Rep Unit, G1; this->init(Unit, Degree(1), _one);
+     W.copy(Unit);
+-    degree(dP,P); Degree dPo = (dP/2);
++    this->degree(dP,P); Degree dPo = (dP/2);
+     for(Degree dp = 1; dp <= dPo; ++dp) {
+         this->powmod(W, D.copy(W), MOD, P);
+-        this->gcd (G1, sub(D,W,Unit), P) ;
+-        if ( degree(d,G1) > 0 ) return 0;
++        this->gcd (G1, this->sub(D,W,Unit), P) ;
++        if ( this->degree(d,G1) > 0 ) return 0;
+     }
+     return 1;
+ }
+
+
+--- src/library/poly1/givpoly1proot.inl
++++ src/library/poly1/givpoly1proot.inl
+@@ -102,9 +102,9 @@
+ // ---------------------------------------------------------------
+ template<class Domain, class Tag, class RandIter >
+ inline typename Poly1FactorDom<Domain,Tag, RandIter>::Element& Poly1FactorDom<Domain,Tag, RandIter>::ixe_irreducible (Element& R, Degree n) const {
+-    init(R, n, _domain.one);
++    this->init(R, n, _domain.one);
+     Element IXE;
+-    init(IXE,Degree(1),_domain.one);
++    this->init(IXE,Degree(1),_domain.one);
+     Residu_t MOD = _domain.residu();
+ 
+         // Search for an irreducible BINOMIAL : X^n + a
+@@ -234,13 +234,13 @@
+ template<class Domain, class Tag, class RandIter>
+ bool Poly1FactorDom<Domain,Tag, RandIter>::is_prim_root( const Rep& P, const Rep& F)  const {
+     bool isproot = 0;
+-    Rep A, G; mod(A,P,F);
++    Rep A, G; this->mod(A,P,F);
+     Degree d;
+-    if ( degree(d, this->gcd(G,A,F)) == 0) {
++    if ( this->degree(d, this->gcd(G,A,F)) == 0) {
+         Residu_t MOD = _domain.residu();
+         IntFactorDom<> FD;
+         IntFactorDom<>::Element IMOD( MOD ), q, qp;
+-        degree(d,F);
++        this->degree(d,F);
+ //         FD.pow(q ,IMOD, d.value());
+ //         FD.sub(qp, q, FD.one);
+         FD.subin( FD.pow(qp ,IMOD, d.value()) , FD.one);
+@@ -291,14 +291,14 @@
+ 
+ template<class Domain, class Tag, class RandIter >
+ inline typename Poly1FactorDom<Domain,Tag, RandIter>::Rep& Poly1FactorDom<Domain,Tag, RandIter>::give_prim_root(Rep& R, const Rep& F)  const {
+-    Degree n; degree(n,F);
++    Degree n; this->degree(n,F);
+     Residu_t MOD = _domain.residu();
+ //    this->write(std::cout << "Give Pr: ", F) << std::endl;
+     
+     
+         // Search for a primitive BINOMIAL : X^i + a
+     for(Degree di=1;di<n;++di) {
+-        init(R, di, _domain.one);
++        this->init(R, di, _domain.one);
+ //         for(Residu_t a=MOD; a--; ) {
+         for(Residu_t a=0; a<MOD;++a ) {
+             _domain.assign(R[0],a);
+@@ -308,7 +308,7 @@
+     }
+         // Search for a primitive TRINOMIAL : X^i + b*X^j + a
+     for(Degree di=2;di<n;++di) {
+-        init(R, di, _domain.one);
++        this->init(R, di, _domain.one);
+         for(Degree dj=1;dj<di;++dj)
+ //             for(Residu_t b=MOD; b--;) {
+             for(Residu_t b=0; b<MOD;++b) {
+
