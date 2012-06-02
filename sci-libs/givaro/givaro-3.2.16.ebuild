@@ -1,4 +1,4 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
@@ -22,3 +22,7 @@ DEPEND="${RDEPEND}"
 
 AUTOTOOLS_IN_SOURCE_BUILD="1"
 DOCS=( AUTHORS ChangeLog )
+
+PATCHES=(
+	"${FILESDIR}"/${P}-gcc.patch
+)
