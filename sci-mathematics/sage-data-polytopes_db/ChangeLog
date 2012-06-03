@@ -2,6 +2,13 @@
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*sage-data-polytopes_db-20100210_p1-r1 (03 Jun 2012)
+
+  03 Jun 2012; Christopher Schwan <cschwan@students.uni-mainz.de>
+  -sage-data-polytopes_db-20100210_p1.ebuild,
+  +sage-data-polytopes_db-20100210_p1-r1.ebuild:
+  Fix Manifest - upstream changed tarball, thx HaraldZealot
+
   31 May 2012; Christopher Schwan <cschwan@students.uni-mainz.de>
   -sage-data-polytopes_db-20100210-r1.ebuild,
   sage-data-polytopes_db-20100210_p1.ebuild:
