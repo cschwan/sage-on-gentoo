@@ -2,6 +2,10 @@
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  02 Jun 2012; Jauhien Piatlicki <piatlicki@gmail.com> givaro-3.2.16.ebuild,
+  +files/givaro-3.2.16-gcc.patch:
+  Add gcc-4.7 fix for sci-libs/givaro-3.2.16 (issue #135)
+
   21 Jan 2012; Christopher Schwan <cschwan@students.uni-mainz.de>
   givaro-3.3.6.ebuild:
   Modify according to new autotools-utils eclass behavior
