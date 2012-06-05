@@ -11,7 +11,7 @@ PYTHON_USE_WITH_OPT="ssl"
 inherit distutils eutils user
 
 MY_P="sagenb-${PV}"
-SAGE_P="sage-4.8.alpha5"
+SAGE_P="sage-5.0.beta13"
 
 DESCRIPTION="The Sage Notebook is a web-based graphical user interface for mathematical software"
 HOMEPAGE="http://www.sagemath.org"
@@ -34,8 +34,8 @@ DEPEND="${CDEPEND}
 	test? ( sci-mathematics/sage[testsuite] )"
 RDEPEND="${CDEPEND}
 	sci-mathematics/sage
-	java? ( >=sci-chemistry/jmol-12.0.45
-		>=sci-chemistry/jmol-applet-12.0.45 )"
+	java? ( ~sci-chemistry/jmol-12.0.45
+		~sci-chemistry/jmol-applet-12.0.45 )"
 
 S="${WORKDIR}/${MY_P}/src/sagenb"
 

@@ -2,6 +2,15 @@
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*sage-notebook-0.8.29-r1 (05 Jun 2012)
+*sage-notebook-0.8.26-r2 (05 Jun 2012)
+
+  05 Jun 2012; François Bissey <francois.bissey@canterbury.ac.nz>
+  -sage-notebook-0.8.26.ebuild, -sage-notebook-0.8.26-r1.ebuild,
+  +sage-notebook-0.8.26-r2.ebuild, -sage-notebook-0.8.29.ebuild,
+  +sage-notebook-0.8.29-r1.ebuild:
+  bump to enforce jmol-12.0.45, remove old.
+
 *sage-notebook-0.8.29 (11 Apr 2012)
 
   11 Apr 2012; François Bissey <francois.bissey@canterbury.ac.nz>

@@ -34,8 +34,8 @@ DEPEND="${CDEPEND}
 	test? ( sci-mathematics/sage[testsuite] )"
 RDEPEND="${CDEPEND}
 	sci-mathematics/sage
-	java? ( >=sci-chemistry/jmol-12.0.45
-		>=sci-chemistry/jmol-applet-12.0.45 )"
+	java? ( ~sci-chemistry/jmol-12.0.45
+		~sci-chemistry/jmol-applet-12.0.45 )"
 
 S="${WORKDIR}/${MY_P}/src/sagenb"
 
