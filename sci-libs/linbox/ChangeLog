@@ -2,6 +2,10 @@
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  09 Jun 2012; Jauhien Piatlicki (jauhien) piatlicki@gmail.com
+  linbox-1.1.6-r7.ebuild, +files/linbox-1.1.6-gcc.patch:
+  Add gcc-4.7 fix for sci-libs/linbox-1.1.6-r7 (issue #135)
+
 *linbox-1.1.6-r7 (30 Apr 2012)
 
   30 Apr 2012; François Bissey <francois.bissey@canterbury.ac.nz>
