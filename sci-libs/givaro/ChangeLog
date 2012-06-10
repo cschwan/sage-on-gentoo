@@ -2,13 +2,10 @@
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
-  09 Jun 2012; Jauhien Piatlicki (jauhien) piatlicki@gmail.com
+  09 Jun 2012; Jauhien Piatlicki <piatlicki@gmail.com>
   files/givaro-3.2.16-gcc.patch:
-
-
   Add gcc-4.7 fix for sci-libs/givaro-3.2.16 needed for sci-libs/linbox (issue
   #135)
-
 
   02 Jun 2012; Jauhien Piatlicki <piatlicki@gmail.com> givaro-3.2.16.ebuild,
   +files/givaro-3.2.16-gcc.patch:
