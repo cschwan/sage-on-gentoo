@@ -35,6 +35,7 @@ AUTOTOOLS_IN_SOURCE_BUILD="1"
 AUTOTOOLS_AUTORECONF="1"
 DOCS=( ChangeLog README NEWS TODO )
 PATCHES=(
+	"${FILESDIR}"/${P}-gcc.patch
 	"${FILESDIR}"/${P}-fix-config.patch
 	"${FILESDIR}"/${P}-nolapack.patch
 	"${FILESDIR}"/${P}-fix-double-installation.patch
