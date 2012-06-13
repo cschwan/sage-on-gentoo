@@ -1,7 +1,7 @@
-dev-lang/python:2.7         readline sqlite sage
+dev-lang/python:2.7         readline sqlite
 dev-libs/boost              python
 dev-lisp/ecls               -unicode
-dev-python/cvxopt           glpk -dsdp
+dev-python/cvxopt           glpk
 dev-python/cython	    -numpy
 dev-python/numpy            lapack
 dev-python/gdmodule         png
@@ -10,12 +10,8 @@ media-gfx/tachyon           png
 sci-libs/flint              ntl
 sci-libs/linbox             sage
 sci-mathematics/maxima      ecls
-sci-mathematics/eclib       -pari24
-sci-mathematics/lcalc       pari -pari24
-sci-mathematics/pari        data gmp sage
-sci-mathematics/polybori    sage
-sci-mathematics/singular    -libsingular
-sci-mathematics/sympow      -pari24
+sci-mathematics/lcalc       pari
+sci-mathematics/pari        data gmp
 #dev-lang/R                  lapack
 #sci-libs/linbox             ntl
 #sci-mathematics/glpk        gmp
