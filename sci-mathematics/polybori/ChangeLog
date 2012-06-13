@@ -3,6 +3,16 @@
 # $Header: $
 
   13 Jun 2012; François Bissey <francois.bissey@canterbury.ac.nz>
+  -polybori-0.7.1-r2.ebuild, -files/polybori-0.7.1-build-0.8-backport.patch,
+  -files/polybori-0.7.1-environ.patch, -files/polybori-0.7.1-gd_libs.patch,
+  -files/polybori-0.7.1-jinja2.patch, -files/polybori-0.7.1-local-paths.patch,
+  -files/polybori-0.7.1-m4ri-twopow.patch,
+  -files/polybori-0.7.1-m4ri_sse2.patch, -files/PyPolyBoRi.py-0.8.0,
+  -files/polybori-m4ri20100817.patch, -files/polybori-0.8-SConstruct_O3.patch,
+  -files/PyPolyBoRi.py, -files/polybori-header.patch:
+  drop old
+
+  13 Jun 2012; François Bissey <francois.bissey@canterbury.ac.nz>
   -polybori-0.7.1-r1.ebuild:
   drop old
 
