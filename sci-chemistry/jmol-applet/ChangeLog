@@ -1,6 +1,10 @@
 # ChangeLog for sci-chemistry/jmol-applet
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
+
+  13 Jun 2012; François Bissey <francois.bissey@canterbury.ac.nz>
+  -jmol-applet-11.6.16.ebuild:
+  drop old
 
 *jmol-applet-12.0.45-r1 (28 Jul 2011)
 
