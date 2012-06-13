@@ -11,7 +11,7 @@ PYTHON_USE_WITH_OPT="ssl"
 inherit distutils eutils user
 
 MY_P="sagenb-${PV}"
-SAGE_P="sage-5.0.beta13"
+SAGE_P="sage-5.0"
 
 DESCRIPTION="The Sage Notebook is a web-based graphical user interface for mathematical software"
 HOMEPAGE="http://www.sagemath.org"
