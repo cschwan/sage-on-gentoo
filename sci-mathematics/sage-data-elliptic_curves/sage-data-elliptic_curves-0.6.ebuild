@@ -10,7 +10,7 @@ PYTHON_USE_WITH="sqlite"
 inherit python
 
 MY_P="elliptic_curves-${PV}"
-SAGE_P="sage-5.0.beta13"
+SAGE_P="sage-5.0"
 
 DESCRIPTION="Sage's elliptic curves databases"
 HOMEPAGE="http://www.sagemath.org"
