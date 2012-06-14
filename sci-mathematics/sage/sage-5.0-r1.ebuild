@@ -101,7 +101,7 @@ RDEPEND="${CDEPEND}
 	~sci-mathematics/singular-3.1.3.3
 	>=sci-mathematics/sympow-1.018.1_p11
 	!prefix? ( >=sys-libs/glibc-2.13-r4 )
-	testsuite? ( ~sci-mathematics/sage-doc-${PV}[html] )
+	testsuite? ( >=sci-mathematics/sage-doc-${PV}[html] )
 	latex? (
 		~dev-tex/sage-latex-2.3.3_p2
 		|| (
