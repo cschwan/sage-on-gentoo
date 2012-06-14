@@ -29,6 +29,7 @@ net-zope/zope-event
 net-zope/zope-proxy
 sci-libs/blas-atlas
 sci-libs/cddlib
+sci-libs/dsdp
 sci-libs/flint
 sci-libs/fplll
 =sci-libs/givaro-3.2.16
