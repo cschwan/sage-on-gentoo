@@ -2,6 +2,12 @@
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*sage-clib-5.0.1 (15 Jun 2012)
+
+  15 Jun 2012; François Bissey <francois.bissey@canterbury.ac.nz>
+  -sage-clib-5.0.ebuild, +sage-clib-5.0.1.ebuild:
+  5.0.1
+
   13 Jun 2012; François Bissey <francois.bissey@canterbury.ac.nz>
   -files/11986_integer_hash-clib.patch, -sage-clib-4.8.ebuild:
   remove old
