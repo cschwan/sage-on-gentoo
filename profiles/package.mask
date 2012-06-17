@@ -5,6 +5,7 @@
 >=sci-mathematics/sage-doc-5.1_alpha0
 >=sci-mathematics/sage-notebook-0.8.30
 >=sci-mathematics/sage-extcode-5.1_alpha0
+~sci-mathematics/eclib-20120428
 # linbox 1.1.7 upgrade
 >=sci-libs/givaro-3.3
 >=sci-libs/linbox-1.1.7
