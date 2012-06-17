@@ -2,6 +2,13 @@
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*sage-5.0.1-r1 (17 Jun 2012)
+
+  17 Jun 2012; François Bissey <francois.bissey@canterbury.ac.nz>
+  -files/trac_9238_script_extension.patch, -sage-5.0.1.ebuild,
+  +sage-5.0.1-r1.ebuild:
+  drop jmol patch for now
+
 *sage-5.0.1 (15 Jun 2012)
 
   15 Jun 2012; François Bissey <francois.bissey@canterbury.ac.nz>
