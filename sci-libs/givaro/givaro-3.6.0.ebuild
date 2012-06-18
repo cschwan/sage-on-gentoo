@@ -17,7 +17,7 @@ IUSE="static-libs"
 
 RESTRICT="mirror"
 
-RDEPEND=">=dev-libs/gmp-3.1.1"
+RDEPEND=">=dev-libs/gmp-4.0[cxx]"
 DEPEND="${RDEPEND}"
 
 AUTOTOOLS_IN_SOURCE_BUILD="1"
