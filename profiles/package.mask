@@ -7,9 +7,11 @@
 >=sci-mathematics/sage-extcode-5.1_alpha0
 ~sci-mathematics/eclib-20120428
 >=sci-mathematics/sage-data-graphs-20120404
+>=sci-libs/pynac-0.2.4
 # linbox 1.1.7 upgrade
 >=sci-libs/givaro-3.3
 >=sci-libs/linbox-1.1.7
+>=sci-libs/fflas-ffpack-1.6.0
 # not compatible with sage
 =sci-libs/m4ri-99999999
 # building problems reported against latest fplll
