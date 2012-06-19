@@ -11,7 +11,7 @@ PYTHON_USE_WITH_OPT="ssl"
 inherit distutils eutils user
 
 MY_P="sagenb-${PV}"
-SAGE_P="sage-5.0"
+SAGE_P="sage-5.0.1"
 
 DESCRIPTION="The Sage Notebook is a web-based graphical user interface for mathematical software"
 HOMEPAGE="http://www.sagemath.org"
@@ -53,9 +53,6 @@ pkg_setup() {
 }
 
 src_prepare() {
-	# patch for latest jmol-12.0.45 trac 9238
-	epatch "${FILESDIR}"/trac_9238_interactive_js.patch
-
 	epatch "${FILESDIR}"/${PN}-0.8-nojava.patch
 
 	rm -rf sagenb/data/jmol || die "failed to remove jmol"
