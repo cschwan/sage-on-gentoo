@@ -12,6 +12,8 @@
 >=sci-libs/givaro-3.3
 >=sci-libs/linbox-1.1.7
 >=sci-libs/fflas-ffpack-1.6.0
+>=sci-libs/m4ri-20120613
+>=sci-libs/m4rie-20120613
 # not compatible with sage
 =sci-libs/m4ri-99999999
 # building problems reported against latest fplll
