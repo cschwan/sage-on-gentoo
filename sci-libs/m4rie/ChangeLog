@@ -2,6 +2,12 @@
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*m4rie-20120613 (19 Jun 2012)
+
+  19 Jun 2012; François Bissey <francois.bissey@canterbury.ac.nz>
+  +m4rie-20120613.ebuild:
+  bump m4rie
+
   21 Jan 2012; Christopher Schwan <cschwan@students.uni-mainz.de>
   m4rie-20111004.ebuild:
   Modify according to new autotools-utils eclass behavior
