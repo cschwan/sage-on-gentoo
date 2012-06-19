@@ -235,6 +235,9 @@ src_prepare() {
 	# update to gfan-0.5 (breaks test) trac 11395)
 	epatch "${FILESDIR}"/${PN}-4.6.2-gfan-0.5.patch
 
+	# patch for jmol-12.0.45
+	epatch "${FILESDIR}"/trac_9238_script_extension.patch
+
 	# fix some cython warnings
 	epatch "${FILESDIR}"/trac_10764-fix_deprecation_warning.patch
 	epatch "${FILESDIR}"/trac_10764-fix-gen_interpreters_doctest.patch
