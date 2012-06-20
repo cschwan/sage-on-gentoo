@@ -5,7 +5,7 @@
      but upper case ``C++`` has resulted in an error::
  
 -        sage: from sage.all import SAGE_ROOT
-+        sage: from sage.all import SAGE_LOCAL
++        sage: from sage.misc.misc import SAGE_LOCAL
          sage: code = [                     
          ... "#clang C++",
 -        ... "#cinclude %s/local/include/singular %s/local/include/factory"%(SAGE_ROOT,SAGE_ROOT),

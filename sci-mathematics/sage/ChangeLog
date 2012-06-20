@@ -3,6 +3,10 @@
 # $Header: $
 
   20 Jun 2012; François Bissey <francois.bissey@canterbury.ac.nz>
+  files/sage-5.1-fix-SAGE_LOCAL.patch:
+  finally nailed it.
+
+  20 Jun 2012; François Bissey <francois.bissey@canterbury.ac.nz>
   sage-5.1_beta5.ebuild, +files/sage-5.1-fix-SAGE_LOCAL.patch:
   better cython.py fix
 
