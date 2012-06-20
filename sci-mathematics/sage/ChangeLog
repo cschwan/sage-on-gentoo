@@ -4,6 +4,10 @@
 
   20 Jun 2012; François Bissey <francois.bissey@canterbury.ac.nz>
   sage-5.1_beta5.ebuild:
+  add a possible test fix (SAGE_ROOT/SAGE_LOCAL + singular/factory headers) 
+
+  20 Jun 2012; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-5.1_beta5.ebuild:
   dep on latest pari ebuild
 
 *sage-5.1_beta5 (20 Jun 2012)

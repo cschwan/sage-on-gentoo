@@ -270,6 +270,8 @@ src_prepare() {
 
 	# replace SAGE_ROOT/local with SAGE_LOCAL
 	epatch "${FILESDIR}"/${PN}-5.0-fix-SAGE_LOCAL.patch
+	sed -i "s:cinclude %s/local/include/singular %s/local/include/factory\"%(SAGE_ROOT,SAGE_ROOT):cinclude %s/include/singular\"%(SAGE_LOCAL):" \
+		sage/misc/cython.py
 
 	# patch path for saving sessions
 	sed -i "s:save_session('tmp_f', :save_session(tmp_f, :g" \
