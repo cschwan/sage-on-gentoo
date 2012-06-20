@@ -16,7 +16,7 @@ SRC_URI="http://sage.math.washington.edu/home/release/${SAGE_P}/${SAGE_P}/spkg/s
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64 ~x86 ~amd64-linux ~x86-linux ~x86-macos"
-IUSE=""
+IUSE="static-libs"
 
 RESTRICT="mirror"
 
@@ -33,5 +33,7 @@ src_prepare() {
 }
 
 src_configure() {
+	local myeconfargs=(--disable-allprogs)
+
 	autotools-utils_src_configure
 }

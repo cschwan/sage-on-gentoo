@@ -2,6 +2,10 @@
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  20 Jun 2012; François Bissey <francois.bissey@canterbury.ac.nz>
+  eclib-20120428.ebuild:
+  some adjustments, get static/shared libs working and only install mwrank
+
 *eclib-20120428 (17 Jun 2012)
 
   17 Jun 2012; François Bissey <francois.bissey@canterbury.ac.nz>
