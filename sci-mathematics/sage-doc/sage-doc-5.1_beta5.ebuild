@@ -30,7 +30,7 @@ RESTRICT="mirror"
 DEPEND=""
 RDEPEND=">=dev-python/sphinx-1.1.2"
 
-S="${WORKDIR}/${MY_P}/doc"
+S="${WORKDIR}/${MY_PV}/doc"
 
 src_install() {
 	# install missing directories to satisfy builder.py test
