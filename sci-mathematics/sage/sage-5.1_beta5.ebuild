@@ -269,9 +269,7 @@ src_prepare() {
 	epatch "${FILESDIR}"/${PN}-4.5.1-fix-qepcad-path.patch
 
 	# replace SAGE_ROOT/local with SAGE_LOCAL
-	epatch "${FILESDIR}"/${PN}-5.0-fix-SAGE_LOCAL.patch
-	sed -i "s:cinclude %s/local/include/singular %s/local/include/factory\"%(SAGE_ROOT,SAGE_ROOT):cinclude %s/include/singular\"%(SAGE_LOCAL):" \
-		sage/misc/cython.py
+	epatch "${FILESDIR}"/${PN}-5.1-fix-SAGE_LOCAL.patch
 
 	# patch path for saving sessions
 	sed -i "s:save_session('tmp_f', :save_session(tmp_f, :g" \
@@ -290,11 +288,6 @@ src_prepare() {
 		sage/tests/cmdline.py
 
 	# fix all paths using SAGE_ROOT or other
-	# sageinspect failure when running mpmath/sympy
-	# We will need a better strategy at some point but upstream may make interesting changes
-	sed -i "s:SAGE_ROOT = os.environ\[\"SAGE_ROOT\"\]:SAGE_ROOT = \'${EPREFIX}/usr/share/sage\':" \
-		sage/misc/sageinspect.py \
-		sage/misc/misc.py
 	# polymake
 	sed -i "s:%s/local/polymake/bin/'%os.environ\['SAGE_ROOT'\]:%s/bin/'%os.environ\['SAGE_LOCAL'\]:" \
 		sage/geometry/polytope.py
