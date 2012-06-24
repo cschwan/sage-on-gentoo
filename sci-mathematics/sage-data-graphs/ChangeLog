@@ -2,6 +2,10 @@
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  24 Jun 2012; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-data-graphs-20120404_p3.ebuild:
+  update source and manifest
+
 *sage-data-graphs-20120404_p3 (17 Jun 2012)
 
   17 Jun 2012; François Bissey <francois.bissey@canterbury.ac.nz>
