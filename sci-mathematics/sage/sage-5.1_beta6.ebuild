@@ -69,7 +69,7 @@ RDEPEND="${CDEPEND}
 	>=dev-python/jinja-2.5.5
 	>=dev-python/matplotlib-1.1.0
 	>=dev-python/mpmath-0.17
-	~dev-python/networkx-1.2
+	~dev-python/networkx-1.6
 	~dev-python/pexpect-2.0
 	>=dev-python/pycrypto-2.1.0
 	>=dev-python/rpy-2.0.8
@@ -222,6 +222,9 @@ src_prepare() {
 
 	# eliminate the creation and test of the sagestarted.txt file, trac 11926 (11926_sage.patch)
 	epatch "${FILESDIR}"/${PN}-5.1-sagestarted.patch
+
+	# upgrade to networkx 1.6 trac 12806
+	epatch "${FILESDIR}"/${PN}-5.1-networkx1.6.patch
 
 	# issue 85 a test crashes earlier than vanilla
 	sed -i "s|sage: x = dlx_solver(rows)|sage: x = dlx_solver(rows) # not tested|" \
