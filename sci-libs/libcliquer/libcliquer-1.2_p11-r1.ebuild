@@ -38,7 +38,7 @@ src_prepare() {
 
 	# replace variable with flags fixing QA warnings
 	if  [[ ${CHOST} == *-darwin* ]] ; then
-		sed -i "s:\$(SAGESOFLAGS) -o libcliquer.so:-dynamiclib -install_name ${EPREFIX}/usr/$(get_libdir)/libcliquer.dylib -o libcliquer.dylib:g" Makefile \
+		sed -i "s:\$(SAGESOFLAGS) -o \$\@:-dynamiclib -install_name ${EPREFIX}/usr/$(get_libdir)/libcliquer.dylib -o libcliquer.dylib:g" Makefile \
 			|| die "failed to add flags for linking shared library"
 	else
 		sed -i "s:\$(SAGESOFLAGS):-shared -Wl,-soname,libcliquer.so:g" Makefile \
