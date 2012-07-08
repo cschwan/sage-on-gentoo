@@ -65,7 +65,7 @@
 -libratpoints.a: sift.o init.o sturm.o find_points.o
 -	ar rs libratpoints.a sift.o init.o sturm.o find_points.o
 +libratpoints.so: sift.o init.o sturm.o find_points.o
-+	$(CC) -shared -Wl,-soname,libratpoints.so -lm -o libratpoints.so sift.o init.o sturm.o find_points.o
++	$(CC) -shared -Wl,-soname,libratpoints.so -o libratpoints.so sift.o init.o sturm.o find_points.o -lm
  
 -ratpoints: libratpoints.a main.c ratpoints.h
 +ratpoints: libratpoints.so main.c ratpoints.h

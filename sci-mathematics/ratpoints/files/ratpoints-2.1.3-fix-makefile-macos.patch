@@ -65,7 +65,7 @@
 -libratpoints.a: sift.o init.o sturm.o find_points.o
 -	ar rs libratpoints.a sift.o init.o sturm.o find_points.o
 +libratpoints.dylib: sift.o init.o sturm.o find_points.o
-+	$(CC) -dynamiclib $(LDFLAGS) -lgmp -lm -o libratpoints.dylib -install_name $(EPREFIX)/usr/$(LIB_DIR)/libratpoints.dylib sift.o init.o sturm.o find_points.o
++	$(CC) -dynamiclib $(LDFLAGS) -o libratpoints.dylib -install_name $(EPREFIX)/usr/$(LIB_DIR)/libratpoints.dylib sift.o init.o sturm.o find_points.o -lgmp -lm
  
 -ratpoints: libratpoints.a main.c ratpoints.h
 +ratpoints: libratpoints.dylib main.c ratpoints.h
