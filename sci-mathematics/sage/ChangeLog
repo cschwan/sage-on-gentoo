@@ -2,6 +2,14 @@
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  11 Jul 2012; François Bissey <francois.bissey@canterbury.ac.nz>
+  +files/sage-5.1-variables.patch, +files/trac11395-fix_tutorial.patch,
+  +files/trac_11395_update_gfan_to_0.5.patch, sage-5.1_beta6.ebuild:
+  Get the patches from trac 11395 for gfan-0.5 in. Do some preliminary work on
+  sage variables to avoid problems with 
+  sympy/mpmath - this is temporary will working on a better solution with
+  upstream.
+
 *sage-5.1_beta6 (26 Jun 2012)
 
   26 Jun 2012; François Bissey <francois.bissey@canterbury.ac.nz>

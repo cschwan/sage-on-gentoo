@@ -7,7 +7,7 @@ EAPI="4"
 PYTHON_DEPEND="2:2.7:2.7"
 PYTHON_USE_WITH="readline sqlite"
 
-inherit distutils eutils flag-o-matic python versionator
+inherit prefix distutils eutils flag-o-matic python versionator
 
 MY_P="sage-$(replace_version_separator 2 '.')"
 
@@ -26,7 +26,7 @@ CDEPEND="dev-libs/gmp
 	>=dev-libs/mpfr-3.1.0
 	>=dev-libs/ntl-5.5.2
 	>=dev-libs/ppl-0.11.2
-	>=dev-lisp/ecls-11.1.1-r1[-unicode]
+	>=dev-lisp/ecls-11.1.1-r1
 	~dev-python/numpy-1.5.1
 	~sci-mathematics/eclib-20120428
 	>=sci-mathematics/ecm-6.3
@@ -226,12 +226,16 @@ src_prepare() {
 	# upgrade to networkx 1.6 trac 12806
 	epatch "${FILESDIR}"/${PN}-5.1-networkx1.6.patch
 
+	# trac 12985 can ecls compiled with unicode support
+	#epatch "${FILESDIR}"/trac12985-ecl-unicode.patch
+
 	# issue 85 a test crashes earlier than vanilla
 	sed -i "s|sage: x = dlx_solver(rows)|sage: x = dlx_solver(rows) # not tested|" \
 		sage/combinat/tiling.py
 
 	# update to gfan-0.5 (breaks test) trac 11395)
-	epatch "${FILESDIR}"/${PN}-4.6.2-gfan-0.5.patch
+	epatch "${FILESDIR}"/trac_11395_update_gfan_to_0.5.patch
+	epatch "${FILESDIR}"/trac11395-fix_tutorial.patch
 
 	# patch for jmol-12.0.45
 	epatch "${FILESDIR}"/trac_9238_script_extension.patch
@@ -302,6 +306,10 @@ src_prepare() {
 		-e "s:SAGE_ROOT+'/local/bin/':SAGE_LOCAL+'/bin':g" \
 		-e "s:SAGE_ROOT = os.environ\['SAGE_ROOT'\]:SAGE_LOCAL = os.environ\['SAGE_LOCAL'\]:" \
 		-i sage/sandpiles/sandpile.py
+
+	# SAGE variables temporary fixes
+	epatch "${FILESDIR}"/${PN}-5.1-variables.patch
+	eprefixify sage/misc/misc.py
 
 	# apply patches from /etc/portage/patches
 	epatch_user
