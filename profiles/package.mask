@@ -1,13 +1,10 @@
-# preparing 5.1
->=sci-mathematics/sage-5.1_alpha0
->=sci-mathematics/sage-clib-5.1_alpha0
->=sci-mathematics/sage-baselayout-5.1_alpha0
->=sci-mathematics/sage-doc-5.1_alpha0
+# preparing 5.2
+>=sci-mathematics/sage-5.2_alpha0
+>=sci-mathematics/sage-clib-5.2_alpha0
+>=sci-mathematics/sage-baselayout-5.2_alpha0
+>=sci-mathematics/sage-doc-5.2_alpha0
 >=sci-mathematics/sage-notebook-0.8.30
->=sci-mathematics/sage-extcode-5.1_alpha0
-~sci-mathematics/eclib-20120428
->=sci-mathematics/sage-data-graphs-20120404
->=sci-libs/pynac-0.2.4
+>=sci-mathematics/sage-extcode-5.2_alpha0
 # linbox 1.1.7 upgrade
 >=sci-libs/givaro-3.3
 >=sci-libs/linbox-1.1.7

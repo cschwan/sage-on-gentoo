@@ -9,7 +9,7 @@ dev-python/cython
 dev-python/gdmodule
 dev-python/matplotlib
 dev-python/mpmath
-=dev-python/networkx-1.2
+=dev-python/networkx-1.6
 =dev-python/numpy-1.5.0-r3
 dev-python/pexpect
 dev-python/rpy
