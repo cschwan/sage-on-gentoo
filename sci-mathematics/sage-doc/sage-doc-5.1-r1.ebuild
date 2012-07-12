@@ -31,6 +31,10 @@ RDEPEND=">=dev-python/sphinx-1.1.2"
 
 S="${WORKDIR}/sage-${MY_PV}/doc"
 
+src_prepare() {
+	epatch "${FILESDIR}"/trac11395-fix_tutorial.patch
+}
+
 src_install() {
 	# install missing directories to satisfy builder.py test
 	dodir /usr/share/sage/devel/sage-main/doc/output/doctrees/en/tutorial
