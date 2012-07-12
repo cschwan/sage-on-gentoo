@@ -6,9 +6,8 @@ EAPI="4"
 
 inherit eutils versionator
 
+MY_PV="5.1"
 MY_P="sage-$(replace_version_separator 2 '.')"
-#MY_P="sage-5.0"
-MY_PV="5.0.1"
 MY_P_HTML="sage-${MY_PV}-doc-html"
 MY_P_PDF="sage-${MY_PV}-doc-pdf"
 
