@@ -28,6 +28,7 @@ CDEPEND="dev-libs/gmp
 	>=dev-libs/ppl-0.11.2
 	>=dev-lisp/ecls-11.1.1-r1
 	~dev-python/numpy-1.5.1
+	~dev-python/cython-0.15.1
 	~sci-mathematics/eclib-20120428
 	>=sci-mathematics/ecm-6.3
 	>=sci-libs/flint-1.5.2[ntl]
@@ -58,8 +59,7 @@ CDEPEND="dev-libs/gmp
 	virtual/cblas
 	dev-libs/mpc"
 
-DEPEND="${CDEPEND}
-	~dev-python/cython-0.15.1"
+DEPEND="${CDEPEND}"
 
 RDEPEND="${CDEPEND}
 	>=dev-lang/R-2.14.0
@@ -351,18 +351,16 @@ src_configure() {
 src_install() {
 	distutils_src_install
 
-	if use testsuite ; then
-		# install testable sources and sources needed for testing
-		find sage ! \( -name "*.py" -o -name "*.pyx" -o -name "*.pxd" -o \
-			-name "*.pxi" -o -name "*.h" \
-			-o -name "*fmpq_poly.c" \
-			-o -name "*matrix_rational_dense_linbox.cpp" \
-			-o -name "*wrap.cc" \) -type f -delete \
-			|| die "failed to remove non-testable sources"
+	# install sources needed for testing and compiling of cython files and spyx files
+	find sage ! \( -name "*.py" -o -name "*.pyx" -o -name "*.pxd" -o \
+		-name "*.pxi" -o -name "*.h" \
+		-o -name "*fmpq_poly.c" \
+		-o -name "*matrix_rational_dense_linbox.cpp" \
+		-o -name "*wrap.cc" \) -type f -delete \
+		|| die "failed to remove non-testable sources"
 
-		insinto /usr/share/sage/devel/sage-main
-		doins -r sage || die
-	fi
+	insinto /usr/share/sage/devel/sage-main
+	doins -r sage || die
 }
 
 pkg_postinst() {
