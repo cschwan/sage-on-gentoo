@@ -2,6 +2,14 @@
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  15 Jul 2012; Olivier Huber <oli.huber@gmail.com> givaro-3.2.16.ebuild,
+  +files/givaro-3.2.16-gcc47.patch:
+  Add fix for =givaro-3.2.16, needed for ~sci-libs/linbox-1.1.6
+
+  15 Jul 2012; <xhub@gentoo.org> givaro-3.2.16.ebuild,
+  +files/givaro-3.2.16-gcc47.patch:
+  Add fix for =givaro-3.2.16, needed for ~sci-libs/linbox-1.1.6
+
   18 Jun 2012; François Bissey <francois.bissey@canterbury.ac.nz>
   givaro-3.7.0.ebuild:
   keywording for macos

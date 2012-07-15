@@ -1,0 +1,96 @@
+--- ./interfaces/driver/lb-blackbox-functor.h.orig	2011-10-28 02:48:13.000000000 -0600
++++ ./interfaces/driver/lb-blackbox-functor.h	2012-01-09 16:34:50.101676361 -0700
+@@ -52,7 +52,7 @@ public:
+  * Macro for automatic code generation *
+  ***************************************/
+ #define LB_BLACKBOX_VISIT(B)				\
+-	void visit(const B &d){apply(d);}
++	void visit(const B &d){this->apply(d);}
+ 
+ 
+ /**********************************************************************************
+--- ./interfaces/driver/lb-domain-functor.h.orig	2011-10-28 02:48:13.000000000 -0600
++++ ./interfaces/driver/lb-domain-functor.h	2012-01-09 16:34:50.102676447 -0700
+@@ -51,7 +51,7 @@ public:
+  * Macro for automatic code generation *
+  ***************************************/
+ #define LB_DOMAIN_VISIT(D)				\
+-	void visit(const DomainEnvelope<D> &d){apply(d);}
++	void visit(const DomainEnvelope<D> &d){this->apply(d);}
+ 
+ 
+ /*******************************************************************************
+--- ./interfaces/driver/lb-vector-functor.h.orig	2011-10-28 02:48:13.000000000 -0600
++++ ./interfaces/driver/lb-vector-functor.h	2012-01-09 16:34:50.104676614 -0700
+@@ -53,7 +53,7 @@ public:
+  * Macro for automatic code generation *
+  ***************************************/
+ #define LB_VECTOR_VISIT(B)				\
+-	void visit(const B &d){apply(d);}
++	void visit(const B &d){this->apply(d);}
+ 
+ 
+ /**********************************************************************************
+--- ./linbox/algorithms/blackbox-container-symmetric.h.orig	2011-10-28 02:48:12.000000000 -0600
++++ ./linbox/algorithms/blackbox-container-symmetric.h	2012-01-09 16:34:50.105676693 -0700
+@@ -43,10 +43,10 @@ namespace LinBox
+ 	template<class Vector>
+ 	BlackboxContainerSymmetric (const Blackbox *D, const Field &F, const Vector &u0)
+ 		: BlackboxContainerBase<Field, _Blackbox> (D, F)
+-		{ init (u0, u0); }
++		{ this->init (u0, u0); }
+ 	BlackboxContainerSymmetric (const Blackbox *D, const Field &F, RandIter &g)
+ 		: BlackboxContainerBase<Field, _Blackbox> (D, F)
+-		{ this->init (g); }
++		{ this->init (g); }
+ 
+     protected:
+ 
+--- ./linbox/util/formats/matrix-market.h.orig	2011-10-28 02:48:12.000000000 -0600
++++ ./linbox/util/formats/matrix-market.h	2012-01-09 16:34:50.108676918 -0700
+@@ -150,7 +150,7 @@ namespace LinBox
+ 		--j;
+ 		if( i < 0 || i >= this->_m || j < 0 || j >= this->_n )
+ 			return BAD_FORMAT;
+-		if( symmetric && (i != j) ) saveTriple(j,i,v);
++		if( symmetric && (i != j) ) this->saveTriple(j,i,v);
+ 
+ 		return GOOD;
+ 	}
+--- ./linbox/algorithms/cra-full-multip.h.orig	2008-06-14 03:20:53.000000000 +0200
++++ ./linbox/algorithms/cra-full-multip.h	2012-07-14 16:37:52.974386269 +0200
+@@ -141,7 +141,7 @@
+ 					// It is the only shelf of the radix 
+ 					// We normalize the result and output it
+ 					for( ; t0_it != d.end(); ++t0_it, ++t_it)
+-						normalize(*t0_it = *t_it, *t_it, _mod_it->operator()());
++						this->normalize(*t0_it = *t_it, *t_it, _mod_it->operator()());
+ 					RadixPrimeProd_.resize(1);
+ 					return d;
+ 				} else {
+@@ -174,7 +174,7 @@
+                                 for(t0_it = d.begin();t0_it != d.end(); ++t0_it) {
+                                     *t0_it %= Product();
+                                     Integer tmp(*t0_it);
+-                                    normalize(*t0_it, tmp, Product());
++                                    this->normalize(*t0_it, tmp, Product());
+                                 }
+                                 
+ 			}
+--- ./linbox/blackbox/companion.h~	2008-06-14 03:20:47.000000000 +0200
++++ ./linbox/blackbox/companion.h	2012-07-14 17:16:03.020756749 +0200
+@@ -27,12 +27,12 @@
+ 	{	size_t n = P.size() - 1;
+ 		const size_t indexbase = 1;
+ 		typename Field::Element one; F.init(one, 1);
+-	 	for (size_t i = 1; i < n; ++i) addEntry(one, i+indexbase, i-1+indexbase); 
++	 	for (size_t i = 1; i < n; ++i) this->addEntry(one, i+indexbase, i-1+indexbase);
+ 	 	for (size_t i = 0; i < n; ++i)
+ 		{	typename Field::Element x;
+ 			F.init(x, 0);
+ 			F.neg(x, P[i]); 
+-			addEntry(x, i+indexbase, n-1+indexbase); 
++			this->addEntry(x, i+indexbase, n-1+indexbase);
+ 		}
+ 	}// Companion cstor
+  
