@@ -25,4 +25,5 @@ DOCS=( AUTHORS ChangeLog )
 
 PATCHES=(
 	"${FILESDIR}"/${P}-gcc.patch
+	"${FILESDIR}"/${P}-gcc47.patch
 )

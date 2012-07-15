@@ -1,0 +1,20 @@
+--- src/kernel/integer/givintnumtheo.inl.orig	2012-07-14 17:40:23.020504242 +0200
++++ src/kernel/integer/givintnumtheo.inl	2012-07-14 17:40:10.140665262 +0200
+@@ -439,7 +439,7 @@
+     std::list<Rep> Lf;
+     Father_t::set(Lf,phin);
+     typename std::list<Rep>::iterator f=Lf.begin();
+-    Rep A; mod(A,p,n);
++    Rep A; this->mod(A,p,n);
+     if (isOne(gcd(tmp,A,n))) {
+         found = true;
+         for(;(f!=Lf.end() && found);f++) {
+@@ -460,7 +460,7 @@
+ template<class RandIter>
+ typename IntNumTheoDom<RandIter>::Rep& IntNumTheoDom<RandIter>::order(Rep& g, const Rep& p, const Rep& n) const {
+         // returns 0 if failed
+-    Rep A; mod(A,p,n);
++    Rep A; this->mod(A,p,n);
+     if (isZero(A))
+ 	return g = this->zero;
+     if (isOne(A))

@@ -43,6 +43,7 @@ PATCHES=(
 	"${FILESDIR}"/${P}-modularfloat.patch
 	"${FILESDIR}"/${P}-disable-commentator.patch
 	"${FILESDIR}"/${P}-sage-interface.patch
+	"${FILESDIR}"/${P}-gcc47.patch
 )
 
 # TODO: installation of documentation does not work ?
