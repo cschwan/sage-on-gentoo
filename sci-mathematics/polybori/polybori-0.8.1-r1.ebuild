@@ -11,17 +11,20 @@ inherit base eutils flag-o-matic multilib python scons-utils toolchain-funcs
 DESCRIPTION="Polynomials over Boolean Rings"
 HOMEPAGE="http://polybori.sourceforge.net/"
 
-SRC_URI="mirror://sourceforge/${PN}/${PN}/${PV/_rc*/rc}/${P/_rc/rc}.tar.gz"
+PSUFFIX=""
+PVSUFFIX="${PSUFFIX/rc*/rc}"
+
+SRC_URI="mirror://sourceforge/${PN}/${PN}/${PV}${PVSUFFIX}/${P}${PSUFFIX}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64 ~x86 ~amd64-linux ~x86-linux ~x86-macos"
 IUSE="doc gd"
 
-# of course polybori has a working set of tests
-RESTRICT="mirror"
+# polybori does not have a working set of tests
+RESTRICT="mirror test"
 
-CDEPEND=">=dev-libs/boost-1.34.1[python]
+CDEPEND=">=dev-libs/boost-1.48.0[python]
 	dev-python/ipython
 	gd? ( media-libs/gd )"
 DEPEND="${CDEPEND}
@@ -32,12 +35,14 @@ DEPEND="${CDEPEND}
 	)"
 RDEPEND="${CDEPEND}"
 
-S="${WORKDIR}/${PN}-${PV/_rc*/}"
-
 USE_SCONS_TRUE="True"
 USE_SCONS_FALSE="False"
 
 PATCHES=(
+	"${FILESDIR}"/gbcore.py.patch
+	"${FILESDIR}"/ipbori.patch
+	"${FILESDIR}"/nf.h.patch
+	"${FILESDIR}"/${PN}-0.8.0-base-lookup.patch
 )
 
 pkg_setup() {
@@ -51,6 +56,10 @@ src_prepare() {
 	rm -r M4RI || die "failed to remove internal copy of m4ri"
 
 	base_src_prepare
+
+	# fix boost_python linking for boost-1.48+ see
+	# http://archives.gentoo.org/gentoo-dev/msg_ab39d8366b714ecacfc7fa64cd48ad00.xml
+	sed -i "s:boost_python:boost_python-${PYTHON_ABI}:" SConstruct || die "failed to fix boost_python"
 }
 
 src_compile(){
@@ -95,10 +104,6 @@ src_compile(){
 	fi
 
 	escons "${myesconsargs[@]}" prepare-install prepare-devel || die
-}
-
-src_test() {
-	ipbori/ipbori -t  || die "PolyBoRi's self-testing feature failed"
 }
 
 src_install() {

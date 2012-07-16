@@ -2,6 +2,14 @@
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*polybori-0.8.2 (16 Jul 2012)
+*polybori-0.8.1-r1 (16 Jul 2012)
+
+  16 Jul 2012; François Bissey <francois.bissey@canterbury.ac.nz>
+  -polybori-0.8.1-r0.ebuild, +polybori-0.8.1-r1.ebuild,
+  -polybori-0.8.2_rc3-r0.ebuild, +polybori-0.8.2.ebuild:
+  getting 0.8.2 and fixing boost_python linking 
+
 *polybori-0.8.2_rc3-r0 (08 Jul 2012)
 
   08 Jul 2012; François Bissey <francois.bissey@canterbury.ac.nz>
