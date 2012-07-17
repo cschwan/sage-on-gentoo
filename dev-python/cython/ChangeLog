@@ -2,6 +2,12 @@
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/dev-python/cython/ChangeLog,v 1.78 2012/04/28 17:41:42 floppym Exp $
 
+*cython-0.17_pre (17 Jul 2012)
+
+  17 Jul 2012; François Bissey <francois.bissey@canterbury.ac.nz>
+  +cython-0.17_pre.ebuild:
+  quick and dirty unreleased cython-0.17pre from sage spkg
+
   28 Apr 2012; Mike Gilbert <floppym@gentoo.org> cython-0.16.ebuild:
   No need for eutils.
 
