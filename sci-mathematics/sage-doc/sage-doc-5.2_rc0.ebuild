@@ -29,11 +29,7 @@ RESTRICT="mirror"
 DEPEND=""
 RDEPEND=">=dev-python/sphinx-1.1.2"
 
-S="${WORKDIR}/sage-${MY_PV}/doc"
-
-src_prepare() {
-	epatch "${FILESDIR}"/trac11395-fix_tutorial.patch
-}
+S="${WORKDIR}/${MY_P}/doc"
 
 src_install() {
 	# install missing directories to satisfy builder.py test
