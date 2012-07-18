@@ -3,7 +3,7 @@
 >=sci-mathematics/sage-clib-5.2_alpha0
 >=sci-mathematics/sage-baselayout-5.2_alpha0
 >=sci-mathematics/sage-doc-5.2_alpha0
->=sci-mathematics/sage-notebook-0.8.30
+>=sci-mathematics/sage-notebook-0.9.0
 >=sci-mathematics/sage-extcode-5.2_alpha0
 >=dev-python/cython-0.17_pre
 # linbox 1.1.7 upgrade
