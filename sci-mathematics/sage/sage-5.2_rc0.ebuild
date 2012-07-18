@@ -17,7 +17,7 @@ SRC_URI="http://sage.math.washington.edu/home/release/${MY_P}/${MY_P}/spkg/stand
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~x86 ~amd64-linux ~x86-linux ~x86-macos"
+KEYWORDS="~amd64 ~x86 ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~x64-macos"
 IUSE="latex testsuite"
 
 RESTRICT="mirror test"
@@ -193,6 +193,9 @@ src_prepare() {
 
 	# fix lcalc path
 	sed -i "s:SAGE_INC + \"lcalc:SAGE_INC + \"Lfunction:g" module_list.py
+
+	# build the lrcalc module
+	sed -i "s:is_package_installed('lrcalc'):True:g" module_list.py
 
 	# rebuild in place
 	sed -i "s:SAGE_DEVEL + '/sage/sage/ext/interpreters':'sage/ext/interpreters':g" \
