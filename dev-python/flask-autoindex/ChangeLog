@@ -1,0 +1,10 @@
+# ChangeLog for dev-python/flask-autoindex
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: $
+
+*flask-autoindex-0.4.1 (18 Jul 2012)
+
+  18 Jul 2012; François Bissey <francois.bissey@canterbury.ac.nz>
+  -flask-autoindex-0.3.0.ebuild, +flask-autoindex-0.4.1.ebuild:
+  flask-autoindex for sagenb 0.9.0
+

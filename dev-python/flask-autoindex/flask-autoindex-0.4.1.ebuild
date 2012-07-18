@@ -1,4 +1,4 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
@@ -9,7 +9,7 @@ RESTRICT_PYTHON_ABIS="3."
 
 inherit distutils
 
-MY_PN="sublee-flask-autoindex-b052bfa"
+MY_PN="sublee-flask-autoindex-f903e48"
 MY_P="${MY_PN}-${PV}"
 
 DESCRIPTION="A mod_autoindex for Flask"
@@ -21,7 +21,7 @@ SLOT="0"
 KEYWORDS="~amd64 ~x86-linux"
 IUSE=""
 
-RDEPEND=">=dev-python/flask-0.6
+RDEPEND=">=dev-python/flask-0.8
 	dev-python/flask-silk"
 DEPEND="${RDEPEND}"
 
