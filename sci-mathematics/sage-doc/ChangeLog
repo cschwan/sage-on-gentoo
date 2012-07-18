@@ -4,6 +4,10 @@
 
   18 Jul 2012; François Bissey <francois.bissey@canterbury.ac.nz>
   sage-doc-5.2_rc0.ebuild:
+  readd gfan 0.5 fix in tutorial
+
+  18 Jul 2012; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-doc-5.2_rc0.ebuild:
   fix problem in 5.2rc0
 
 *sage-doc-5.2_rc0 (18 Jul 2012)
