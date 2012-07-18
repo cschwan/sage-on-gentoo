@@ -1,4 +1,4 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
@@ -14,9 +14,9 @@ MY_P="${MY_PN}-${PV}"
 
 DESCRIPTION="Adds silk icons to your Flask application or module, or extension"
 HOMEPAGE="http://github.com/sublee/flask-silk"
-SRC_URI="http://pypi.python.org/packages/source/F/${MY_PN}/${MY_P}.tar.gz"
+SRC_URI="mirror://pypi/F/${MY_PN}/${MY_P}.tar.gz"
 
-LICENSE="OSI Approved, BSD"
+LICENSE="BSD"
 SLOT="0"
 KEYWORDS="~amd64 ~x86-linux"
 IUSE=""
