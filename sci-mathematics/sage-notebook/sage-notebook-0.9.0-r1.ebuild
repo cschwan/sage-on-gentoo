@@ -26,6 +26,7 @@ RESTRICT="mirror"
 CDEPEND="~dev-python/pexpect-2.0
 	>=dev-python/twisted-12.0
 	>=dev-python/twisted-mail-12.0
+	>=dev-python/twisted-web-12.0
 	!dev-python/twisted-web2
 	>=dev-python/jinja-2.5.5
 	>=dev-python/docutils-0.5
@@ -56,6 +57,17 @@ pkg_setup() {
 }
 
 src_prepare() {
+	# ship flask_version and not sage3d
+	epatch "${FILESDIR}"/${PN}-0.9.0-setup,py.patch
+
+	# find flask_version in the right place
+	sed -i \
+		"s:os.path.join(os.environ\['SAGE_ROOT'\], 'devel', 'sagenb', 'flask_version'):os.path.join('${EPREFIX}$(python_get_sitedir)', 'flask_version'):g" \
+		sagenb/notebook/run_notebook.py || die "failed to patch for flask_version path"
+
+	# remove sage3d
+	rm -rf sagenb/data/sage3d || die "failed to remove sage3d"
+
 	mkdir conf.d || die "failed to create directory"
 	mkdir init.d || die "failed to create directory"
 
