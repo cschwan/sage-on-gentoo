@@ -1,6 +1,6 @@
 dev-lang/python:2.7
 dev-lang/R
-~dev-libs/mpfr-3.1.0
+~dev-libs/mpfr-3.1.0 **
 =dev-libs/ppl-0.11.2
 dev-lisp/ecls
 dev-python/cvxopt
@@ -56,7 +56,7 @@ sci-mathematics/ecm
 sci-mathematics/flintqs
 sci-mathematics/gap
 sci-mathematics/genus2reduction
-sci-mathematics/gfan
+sci-mathematics/gfan **
 sci-mathematics/glpk
 sci-mathematics/lcalc
 sci-mathematics/maxima

@@ -12,6 +12,7 @@ sci-libs/linbox             sage
 sci-mathematics/maxima      ecls
 sci-mathematics/lcalc       pari
 sci-mathematics/pari        data gmp
+sys-libs/zlib               minizip
 #dev-lang/R                  lapack
 #sci-libs/linbox             ntl
 #sci-mathematics/glpk        gmp
