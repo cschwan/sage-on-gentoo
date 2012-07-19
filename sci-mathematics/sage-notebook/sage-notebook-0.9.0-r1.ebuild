@@ -58,7 +58,7 @@ pkg_setup() {
 
 src_prepare() {
 	# ship flask_version and not sage3d
-	epatch "${FILESDIR}"/${PN}-0.9.0-setup,py.patch
+	epatch "${FILESDIR}"/${PN}-0.9.0-setup.py.patch
 
 	# find flask_version in the right place
 	sed -i \
