@@ -8,21 +8,24 @@ RESTRICT_PYTHON_ABIS="*-jython 2.7-pypy-*"
 
 inherit distutils eutils
 
+MY_PN="Cython"
+MY_P="${MY_PN}-${PV/_/}"
+
 DESCRIPTION="Compiler for writing C extensions for the Python language"
 HOMEPAGE="http://www.cython.org/ http://pypi.python.org/pypi/Cython"
-SRC_URI="http://sage.math.washington.edu/home/release/sage-5.2.rc0/sage-5.2.rc0/spkg/standard/cython-0.17pre.spkg -> ${P}.tar.bz2"
+SRC_URI="http://www.cython.org/release/${MY_P}.tar.gz"
 
 LICENSE="Apache-2.0"
 SLOT="0"
 KEYWORDS="~amd64 ~arm ~hppa ~ia64 ~ppc ~ppc64 ~sparc ~x86 ~x86-fbsd ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~x64-solaris ~x86-solaris"
-IUSE=""
+IUSE="doc examples numpy"
 
-RESTRICT="mirror"
+RESTRICT="mirror test"
 
-DEPEND=""
+DEPEND="numpy? ( >=dev-python/numpy-1.6.1-r1 )"
 RDEPEND="${DEPEND}"
 
-S="${WORKDIR}/cython-0.17pre/src"
+S="${WORKDIR}/${MY_PN}-${PV%_*}pre"
 
 PYTHON_CFLAGS=("2.* + -fno-strict-aliasing")
 
@@ -39,4 +42,14 @@ src_test() {
 src_install() {
 	distutils_src_install
 	python_generate_wrapper_scripts -E -f -q "${ED}usr/bin/cython"
+
+	if use doc; then
+		# "-A c" is for ignoring of "Doc/primes.c".
+		dohtml -A c -r Doc/* || die "Installation of documentation failed"
+	fi
+
+	if use examples; then
+		insinto /usr/share/doc/${PF}/examples
+		doins -r Demos/* || die "Installation of examples failed"
+	fi
 }
