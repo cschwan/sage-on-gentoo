@@ -2,6 +2,12 @@
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*sage-notebook-0.9.1 (31 Jul 2012)
+
+  31 Jul 2012; François Bissey <francois.bissey@canterbury.ac.nz>
+  -sage-notebook-0.9.0-r1.ebuild, +sage-notebook-0.9.1.ebuild:
+  bump for version used in sage-5.2 final
+
   19 Jul 2012; François Bissey <francois.bissey@canterbury.ac.nz>
   sage-notebook-0.9.0-r1.ebuild:
   typo

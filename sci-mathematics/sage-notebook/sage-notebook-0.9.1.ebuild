@@ -13,7 +13,7 @@ inherit distutils eutils user
 MY_PN="sagemath-sagenb"
 
 DESCRIPTION="The Sage Notebook is a web-based graphical user interface for mathematical software"
-HOMEPAGE="http://www.nb.sagemath.org"
+HOMEPAGE="http://nb.sagemath.org"
 SRC_URI="https://github.com/sagemath/sagenb/tarball/${PV} -> ${P}.tar.gz"
 
 LICENSE="GPL-2"
@@ -40,7 +40,7 @@ RDEPEND="${CDEPEND}
 	java? ( ~sci-chemistry/jmol-12.2.27 )"
 
 # github release tag
-TAG=1f1d0c2
+TAG=911669c
 S="${WORKDIR}/${MY_PN}-${TAG}"
 
 pkg_setup() {
