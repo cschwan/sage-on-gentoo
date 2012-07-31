@@ -110,7 +110,7 @@ RDEPEND="${CDEPEND}
 		)
 	)"
 
-PDEPEND="~sci-mathematics/sage-notebook-0.9.0"
+PDEPEND="~sci-mathematics/sage-notebook-0.9.1"
 
 S="${WORKDIR}/${MY_P}"
 
