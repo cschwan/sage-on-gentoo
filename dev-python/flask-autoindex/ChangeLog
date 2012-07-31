@@ -2,6 +2,10 @@
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  31 Jul 2012; François Bissey <francois.bissey@canterbury.ac.nz>
+  flask-autoindex-0.4.1.ebuild:
+  keywording
+
 *flask-autoindex-0.4.1 (18 Jul 2012)
 
   18 Jul 2012; François Bissey <francois.bissey@canterbury.ac.nz>

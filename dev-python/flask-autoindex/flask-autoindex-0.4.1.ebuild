@@ -18,7 +18,7 @@ SRC_URI="http://github.com/sublee/flask-autoindex/zipball/master#egg=flask-autoi
 
 LICENSE="BSD"
 SLOT="0"
-KEYWORDS="~amd64 ~x86-linux"
+KEYWORDS="~x86 ~amd64 ~x86-linux ~amd64-linux ~ppc-macos ~x86-macos ~x64-macos"
 IUSE=""
 
 RDEPEND=">=dev-python/flask-0.8
