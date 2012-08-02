@@ -2,6 +2,11 @@
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  02 Aug 2012; François Bissey <francois.bissey@canterbury.ac.nz>
+  -files/sage-4.6.2-gfan-0.5.patch, -files/sage-4.8-sagestarted.patch,
+  -sage-5.0.1-r2.ebuild, -files/sage-5.0-fix-SAGE_LOCAL.patch:
+  drop 5.0.1
+
 *sage-5.2-r1 (31 Jul 2012)
 
   31 Jul 2012; François Bissey <francois.bissey@canterbury.ac.nz>
