@@ -2,6 +2,10 @@
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/media-gfx/tachyon/ChangeLog,v 1.5 2012/03/12 13:05:10 alexxy Exp $
 
+  02 Aug 2012; François Bissey <francois.bissey@canterbury.ac.nz>
+  tachyon-0.98.9-r2.ebuild:
+  migration
+
   16 Mar 2012; François Bissey <francois.bissey@canterbury.ac.nz>
   tachyon-0.98.9-r2.ebuild:
   add ~ppc-macos keyword

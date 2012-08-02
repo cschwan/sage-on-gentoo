@@ -20,7 +20,7 @@ CDEPEND="jpeg? ( virtual/jpeg )
 	opengl? ( virtual/opengl )
 	png? ( media-libs/libpng )"
 DEPEND="${CDEPEND}
-	dev-util/pkgconfig"
+	virtual/pkgconfig"
 RDEPEND="${CDEPEND}"
 
 REQUIRED_USE="^^ ( opengl mpi )"
