@@ -2,6 +2,10 @@
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  02 Aug 2012; François Bissey <francois.bissey@canterbury.ac.nz>
+  m4rie-20120613.ebuild:
+  clean up for 5.3
+
 *m4rie-20120613 (19 Jun 2012)
 
   19 Jun 2012; François Bissey <francois.bissey@canterbury.ac.nz>
