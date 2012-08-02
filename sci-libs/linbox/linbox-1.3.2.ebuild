@@ -34,7 +34,7 @@ CDEPEND="dev-libs/gmp[cxx]
 	sci-libs/m4ri
 	sci-libs/m4rie"
 DEPEND="${CDEPEND}
-	dev-util/pkgconfig"
+	virtual/pkgconfig"
 RDEPEND="${CDEPEND}"
 
 AT_M4DIR="macros"

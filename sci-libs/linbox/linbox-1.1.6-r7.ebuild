@@ -27,7 +27,7 @@ CDEPEND="dev-libs/gmp[cxx]
 	virtual/cblas
 	ntl? ( dev-libs/ntl )"
 DEPEND="${CDEPEND}
-	dev-util/pkgconfig"
+	virtual/pkgconfig"
 RDEPEND="${CDEPEND}"
 
 AT_M4DIR="macros"
