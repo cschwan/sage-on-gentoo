@@ -2,6 +2,15 @@
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  02 Aug 2012; François Bissey <francois.bissey@canterbury.ac.nz>
+  -eclib-20100711_p0.ebuild, -files/eclib-20100711_p0-g0n_makefile.patch.bz2,
+  -files/eclib-20100711_p0-makefile.dynamic.patch.bz2,
+  -files/eclib-20100711_p0-makefile.patch.bz2,
+  -files/eclib-20100711_p0-procs_makefile.patch.bz2,
+  -files/eclib-20100711_p0-qcurves_makefile.patch.bz2,
+  -files/eclib-20100711_p0-qrank_makefile.patch.bz2:
+  drop old
+
   24 Jun 2012; François Bissey <francois.bissey@canterbury.ac.nz>
   eclib-20120428.ebuild:
   changing sources to update manifest
