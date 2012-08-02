@@ -19,7 +19,7 @@ IUSE="static-libs"
 
 RESTRICT="mirror"
 
-DEPEND="dev-util/pkgconfig"
+DEPEND="virtual/pkgconfig"
 RDEPEND=""
 
 S="${WORKDIR}/burcin-pynac-f50fb4810d97"
