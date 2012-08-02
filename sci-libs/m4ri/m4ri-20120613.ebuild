@@ -8,18 +8,21 @@ inherit autotools-utils flag-o-matic
 
 DESCRIPTION="Method of four russian for inversion (M4RI)"
 HOMEPAGE="http://m4ri.sagemath.org/"
-SRC_URI="http://sage.math.washington.edu/home/malb/spkgs/libm4ri-20120613.spkg -> ${P}.tar.bz2"
+SAGE_V="sage-5.3.beta0"
+SRC_URI="http://sage.math.washington.edu/home/release/${SAGE_V}/${SAGE_V}/spkg/standard/lib${P}.spkg -> ${P}.tar.bz2"
 
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64 ~ppc64 ~x86 ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~x64-macos"
 IUSE="debug openmp sse2 static-libs"
-S="${WORKDIR}/libm4ri-20120613/src"
+S="${WORKDIR}/lib${P}/src"
 
 RESTRICT="mirror"
 
-DEPEND="openmp? ( >=sys-devel/gcc-4.2[openmp] )"
-RDEPEND=""
+DEPEND="media-libs/libpng
+	virtual/pkgconfig
+	openmp? ( >=sys-devel/gcc-4.2[openmp] )"
+RDEPEND="media-libs/libpng"
 
 DOCS=( AUTHORS README )
 
