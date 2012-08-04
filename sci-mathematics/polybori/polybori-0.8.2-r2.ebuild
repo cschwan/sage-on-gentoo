@@ -23,9 +23,9 @@ RESTRICT="mirror"
 
 CDEPEND=">=dev-libs/boost-1.48.0[python]
 	dev-python/ipython
+	>=sci-libs/m4ri-20090512
 	gd? ( media-libs/gd )"
 DEPEND="${CDEPEND}
-	>=sci-libs/m4ri-20090512
 	doc? (
 		dev-tex/tex4ht
 		app-doc/doxygen
@@ -40,6 +40,7 @@ USE_SCONS_FALSE="False"
 PATCHES=(
 	"${FILESDIR}"/${PN}-0.8.2-python.patch
 	"${FILESDIR}"/${PN}-0.8.2-boost-mt.patch
+	"${FILESDIR}"/${PN}-0.8.2-otool.patch
 )
 
 pkg_setup() {

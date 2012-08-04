@@ -1,0 +1,22 @@
+# HG changeset patch
+# User Alexander Dreyer <adreyer@gmx.de>
+# Date 1343117729 -7200
+# Node ID 2e4e1fa2d4decd554489d427e286c4807fe3c909
+# Parent  bba2f09adf6d9961ca1d7054495f1f39454542c2
+Fix otool arguments
+
+diff -r bba2f09adf6d9961ca1d7054495f1f39454542c2 -r 2e4e1fa2d4decd554489d427e286c4807fe3c909 SConstruct
+--- a/SConstruct	Mon Jul 23 14:23:33 2012 +0200
++++ b/SConstruct	Tue Jul 24 10:15:29 2012 +0200
+@@ -1175,8 +1175,8 @@
+     
+     if env['PLATFORM']=="darwin":
+             def fix_install_name(target, source, env):
+-                names = ' '.join([str(elt) for elt in dylibs])
+-                names = Split(shell_output('otool', '-D', names))[1::2]
++                names = [str(elt) for elt in dylibs]
++                names = Split(shell_output('otool', '-D', *names))[1::2]
+                 for name in names:
+                     newname = "@loader_path/" + \
+                         env.relpath(InstPyPath("polybori/dynamic"),
+
