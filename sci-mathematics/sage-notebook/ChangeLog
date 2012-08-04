@@ -2,6 +2,14 @@
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*sage-notebook-0.9.1-r1 (04 Aug 2012)
+
+  04 Aug 2012; François Bissey <francois.bissey@canterbury.ac.nz>
+  +sage-notebook-0.9.1-r1.ebuild, +files/sage-notebook-0.9.1-base-jmol.patch,
+  +files/sage-notebook-0.9.1-notebook.patch,
+  +files/sage-notebook-0.9.1-sageinspect.patch:
+  fixing os.environ call and jmol?
+
 *sage-notebook-0.9.1 (31 Jul 2012)
 
   31 Jul 2012; François Bissey <francois.bissey@canterbury.ac.nz>
