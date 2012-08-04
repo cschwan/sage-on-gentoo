@@ -13,7 +13,7 @@ PV2="${PV1}p${PV2}"
 
 DESCRIPTION="System for computational discrete algebra"
 HOMEPAGE="http://www.gap-system.org/"
-SRC_URI="ftp://ftp.gap-system.org/pub/gap/gap4/tar.bz2/${PN}${PV2}.tar.bz2"
+SRC_URI="ftp://ftp.gap-system.org/pub/gap/gap44/tar.bz2/${PN}${PV2}.tar.bz2"
 
 LICENSE="GPL-2"
 SLOT="0"
