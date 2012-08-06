@@ -104,6 +104,7 @@ src_compile(){
 }
 
 src_test() {
+	export PBORI_NOSAGE=1
 	ipbori/ipbori -t  || die "PolyBoRi's self-testing feature failed"
 }
 
