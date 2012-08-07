@@ -1,4 +1,4 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
@@ -10,7 +10,7 @@ MY_PN="${PN}-full"
 
 DESCRIPTION="CHomP computes topological invariants of a collection of n-dimensional cubes"
 HOMEPAGE="http://chomp.rutgers.edu/"
-SRC_URI="http://chomp.rutgers.edu/download/${MY_PN}.tar.gz"
+SRC_URI="http://chomp.rutgers.edu/download/${MY_PN}.tar.gz -> ${P}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
