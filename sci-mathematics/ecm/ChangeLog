@@ -1,6 +1,13 @@
 # ChangeLog for sci-mathematics/ecm
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
+
+*ecm-6.4.2 (07 Aug 2012)
+
+  07 Aug 2012; François Bissey <francois.bissey@canterbury.ac.nz>
+  -files/ecm-6.2.3-execstack.patch, +ecm-6.4.2.ebuild:
+  remove old unused patch. add new ecm, enable asm-redc as recommended by
+  upstream now.
 
   08 May 2011; Christopher Schwan <cschwan@students.uni-mainz.de>
   ecm-6.3-r1.ebuild:
