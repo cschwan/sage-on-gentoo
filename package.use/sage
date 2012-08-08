@@ -1,6 +1,5 @@
 dev-lang/python:2.7         readline sqlite
 dev-libs/boost              python
-dev-lisp/ecls               -unicode
 dev-python/cvxopt           glpk
 dev-python/cython	    -numpy
 dev-python/numpy            lapack
