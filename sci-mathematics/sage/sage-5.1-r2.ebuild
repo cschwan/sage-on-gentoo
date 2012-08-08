@@ -17,19 +17,18 @@ SRC_URI="http://sage.math.washington.edu/home/release/${MY_P}/${MY_P}/spkg/stand
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~x86 ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~x64-macos"
+KEYWORDS="~amd64 ~x86 ~amd64-linux ~x86-linux ~x86-macos"
 IUSE="latex testsuite"
 
 RESTRICT="mirror test"
 
 CDEPEND="dev-libs/gmp
 	>=dev-libs/mpfr-3.1.0
-	dev-libs/mpc
 	>=dev-libs/ntl-5.5.2
 	>=dev-libs/ppl-0.11.2
 	>=dev-lisp/ecls-11.1.1-r1
 	~dev-python/numpy-1.5.1
-	~dev-python/cython-0.17_pre
+	~dev-python/cython-0.15.1
 	~sci-mathematics/eclib-20120428
 	>=sci-mathematics/ecm-6.3
 	>=sci-libs/flint-1.5.2[ntl]
@@ -47,9 +46,8 @@ CDEPEND="dev-libs/gmp
 	>=sci-libs/zn_poly-0.9
 	>=sci-mathematics/glpk-4.44
 	>=sci-mathematics/lcalc-1.23-r4[pari]
-	sci-mathematics/lrcalc
 	>=sci-mathematics/pari-2.5.1-r1[data,gmp]
-	~sci-mathematics/polybori-0.8.2
+	~sci-mathematics/polybori-0.8.1
 	>=sci-mathematics/ratpoints-2.1.3
 	~sci-mathematics/sage-baselayout-${PV}[testsuite=]
 	~sci-mathematics/sage-clib-${PV}
@@ -58,7 +56,8 @@ CDEPEND="dev-libs/gmp
 	media-libs/libpng
 	>=sys-libs/readline-6.2
 	sys-libs/zlib
-	virtual/cblas"
+	virtual/cblas
+	dev-libs/mpc"
 
 DEPEND="${CDEPEND}"
 
@@ -110,7 +109,7 @@ RDEPEND="${CDEPEND}
 		)
 	)"
 
-PDEPEND="~sci-mathematics/sage-notebook-0.9.1"
+PDEPEND="~sci-mathematics/sage-notebook-0.8.29"
 
 S="${WORKDIR}/${MY_P}"
 
@@ -194,9 +193,6 @@ src_prepare() {
 	# fix lcalc path
 	sed -i "s:SAGE_INC + \"lcalc:SAGE_INC + \"Lfunction:g" module_list.py
 
-	# build the lrcalc module
-	sed -i "s:is_package_installed('lrcalc'):True:g" module_list.py
-
 	# rebuild in place
 	sed -i "s:SAGE_DEVEL + '/sage/sage/ext/interpreters':'sage/ext/interpreters':g" \
 		setup.py
@@ -227,13 +223,26 @@ src_prepare() {
 	# eliminate the creation and test of the sagestarted.txt file, trac 11926 (11926_sage.patch)
 	epatch "${FILESDIR}"/${PN}-5.1-sagestarted.patch
 
+	# upgrade to networkx 1.6 trac 12806
+	epatch "${FILESDIR}"/${PN}-5.1-networkx1.6.patch
+
+	# trac 12985 can ecls compiled with unicode support
+	#epatch "${FILESDIR}"/trac12985-ecl-unicode.patch
+
 	# issue 85 a test crashes earlier than vanilla
 	sed -i "s|sage: x = dlx_solver(rows)|sage: x = dlx_solver(rows) # not tested|" \
 		sage/combinat/tiling.py
 
-	# update to gfan-0.5 trac 11395
+	# update to gfan-0.5 (breaks test) trac 11395)
 	epatch "${FILESDIR}"/trac_11395_update_gfan_to_0.5.patch
 	epatch "${FILESDIR}"/trac11395-fix_tutorial.patch
+
+	# patch for jmol-12.0.45
+	epatch "${FILESDIR}"/trac_9238_script_extension.patch
+
+	# fix some cython warnings
+	epatch "${FILESDIR}"/trac_10764-fix_deprecation_warning.patch
+	epatch "${FILESDIR}"/trac_10764-fix-gen_interpreters_doctest.patch
 
 	# run maxima with ecl
 	sed -i \
@@ -242,6 +251,9 @@ src_prepare() {
 	sed -i \
 		-e "s:maxima --very-quiet:maxima -l ecl --very-quiet:g" \
 		sage/interfaces/maxima_abstract.py
+
+	# speaking ecl - patching so we can allow ecl with unicode hopefully in 5.3
+	epatch "${FILESDIR}"/trac12985-unicode.patch
 
 	# Uses singular internal copy of the factory header
 	sed -i "s:factory/factory.h:singular/factory.h:" sage/libs/singular/singular-cdefs.pxi

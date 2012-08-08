@@ -2,6 +2,14 @@
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*sage-5.2-r2 (08 Aug 2012)
+*sage-5.1-r2 (08 Aug 2012)
+
+  08 Aug 2012; François Bissey <francois.bissey@canterbury.ac.nz>
+  +files/trac12985-unicode.patch, -sage-5.1-r1.ebuild, +sage-5.1-r2.ebuild,
+  -sage-5.2-r1.ebuild, +sage-5.2-r2.ebuild:
+  Enable the of ecl with unicode.
+
   02 Aug 2012; François Bissey <francois.bissey@canterbury.ac.nz>
   -files/sage-4.6.2-gfan-0.5.patch, -files/sage-4.8-sagestarted.patch,
   -sage-5.0.1-r2.ebuild, -files/sage-5.0-fix-SAGE_LOCAL.patch:
