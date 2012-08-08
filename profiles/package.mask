@@ -4,6 +4,7 @@
 >=sci-mathematics/sage-baselayout-5.3_alpha0
 >=sci-mathematics/sage-doc-5.3_alpha0
 >=sci-mathematics/sage-extcode-5.3_alpha0
+>=sci-mathematics/pari-2.5.2
 # linbox 1.1.7 upgrade
 >=sci-libs/givaro-3.3
 >=sci-libs/linbox-1.1.7
