@@ -48,7 +48,7 @@ CDEPEND="dev-libs/gmp
 	>=sci-mathematics/glpk-4.44
 	>=sci-mathematics/lcalc-1.23-r4[pari]
 	sci-mathematics/lrcalc
-	>=sci-mathematics/pari-2.5.1-r1[data,gmp]
+	~sci-mathematics/pari-2.5.1[data,gmp]
 	~sci-mathematics/polybori-0.8.2
 	>=sci-mathematics/ratpoints-2.1.3
 	~sci-mathematics/sage-baselayout-${PV}[testsuite=]
