@@ -1,3 +1,4 @@
+dev-java/asm:2
 dev-lang/python:2.7
 dev-lang/R
 ~dev-libs/mpfr-3.1.0 **
