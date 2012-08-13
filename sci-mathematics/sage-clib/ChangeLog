@@ -2,6 +2,10 @@
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  13 Aug 2012; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-clib-5.1.ebuild, sage-clib-5.2.ebuild:
+  pinning pari
+
   02 Aug 2012; François Bissey <francois.bissey@canterbury.ac.nz>
   -sage-clib-5.0.1.ebuild:
   drop old

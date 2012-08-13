@@ -25,7 +25,7 @@ RESTRICT="mirror"
 CDEPEND="dev-libs/gmp[cxx]
 	>=dev-libs/ntl-5.5.2
 	~sci-libs/pynac-0.2.4
-	>=sci-mathematics/pari-2.5.1-r1
+	~sci-mathematics/pari-2.5.1
 	~sci-mathematics/polybori-0.8.2"
 DEPEND="${CDEPEND}
 	dev-util/scons"
