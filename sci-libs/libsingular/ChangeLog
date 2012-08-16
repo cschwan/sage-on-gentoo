@@ -2,6 +2,15 @@
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*libsingular-3.1.5 (16 Aug 2012)
+
+  16 Aug 2012; François Bissey <francois.bissey@canterbury.ac.nz>
+  +files/singular-3.1.5-NTLnegate.patch, +files/singular_trac_439.patch,
+  +files/singular_trac_440.patch, +files/singular_trac_441.patch,
+  +files/singular_trac_443.patch, +libsingular-3.1.5.ebuild:
+  initial ebuild for libsingular 3.1.5 needs work, see
+  http://trac.sagemath.org/sage_trac/ticket/13237#comment:63
+
 *libsingular-3.1.4 (16 Mar 2012)
 
   16 Mar 2012; François Bissey <francois.bissey@canterbury.ac.nz>
