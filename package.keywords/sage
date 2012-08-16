@@ -45,7 +45,7 @@ sci-libs/cddlib
 sci-libs/dsdp
 sci-libs/flint
 sci-libs/fplll
-=sci-libs/givaro-3.2.16
+=sci-libs/givaro-3.2.16*
 =sci-libs/gsl-1.15
 sci-libs/iml
 sci-libs/lapack-atlas
