@@ -24,6 +24,5 @@ AUTOTOOLS_IN_SOURCE_BUILD="1"
 DOCS=( AUTHORS ChangeLog )
 
 PATCHES=(
-	"${FILESDIR}"/${P}-gcc.patch
 	"${FILESDIR}"/${P}-gcc47.patch
 )
