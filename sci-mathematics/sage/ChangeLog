@@ -2,6 +2,10 @@
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  17 Aug 2012; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-5.3_beta2.ebuild:
+  dep on mpc
+
 *sage-5.3_beta2 (17 Aug 2012)
 
   17 Aug 2012; François Bissey <francois.bissey@canterbury.ac.nz>

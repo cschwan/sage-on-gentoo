@@ -24,7 +24,7 @@ RESTRICT="mirror test"
 
 CDEPEND="dev-libs/gmp
 	>=dev-libs/mpfr-3.1.0
-	dev-libs/mpc
+	>=dev-libs/mpc-1.0
 	>=dev-libs/ntl-5.5.2
 	>=dev-libs/ppl-0.11.2
 	>=dev-lisp/ecls-11.1.1-r1
