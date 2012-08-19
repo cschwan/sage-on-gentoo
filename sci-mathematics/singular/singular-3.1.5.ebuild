@@ -2,8 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/sci-mathematics/singular/singular-3.1.4-r1.ebuild,v 1.4 2012/06/23 10:50:20 xarthisius Exp $
 
-EAPI="3"
-#WANT_AUTOCONF="2.1" # Upstream ticket 240 -> wontfix
+EAPI=4
 
 PYTHON_DEPEND="python? 2"
 
@@ -15,14 +14,13 @@ inherit autotools eutils elisp-common flag-o-matic multilib prefix python versio
 MY_PN=Singular
 MY_PV=$(replace_all_version_separators -)
 MY_DIR=$(get_version_component_range 1-3 ${MY_PV})
-# There 'share' tarball does not get updated on every release
+# Note: Upstream's share tarball may not get updated on every release
 MY_SHARE_DIR="3-1-5"
 MY_PV_SHARE="${MY_PV}"
 
 DESCRIPTION="Computer algebra system for polynomial computations"
 HOMEPAGE="http://www.singular.uni-kl.de/"
 SRC_COM="http://www.mathematik.uni-kl.de/ftp/pub/Math/${MY_PN}/SOURCES/"
-# Share stuff did not see a new version:
 SRC_URI="${SRC_COM}${MY_DIR}/${MY_PN}-${MY_PV}.tar.gz
 		 ${SRC_COM}${MY_SHARE_DIR}/Singular-${MY_PV_SHARE}-share.tar.gz"
 
@@ -33,12 +31,12 @@ IUSE="boost doc emacs examples python +readline test"
 
 RDEPEND="dev-libs/gmp
 	>=dev-libs/ntl-5.5.1
-	emacs? ( >=virtual/emacs-22 )"
+	emacs? ( >=virtual/emacs-22 )
+	readline? ( sys-libs/readline )"
 
 DEPEND="${RDEPEND}
 	dev-lang/perl
-	boost? ( dev-libs/boost )
-	readline? ( sys-libs/readline )"
+	boost? ( dev-libs/boost )"
 
 S="${WORKDIR}"/${MY_PN}-${MY_DIR}
 SITEFILE=60${PN}-gentoo.el
@@ -123,54 +121,50 @@ src_configure() {
 		$(use_with python python embed) \
 		$(use_with boost Boost) \
 		$(use_enable emacs) \
-		$(use_with readline) || die "configure failed"
+		$(use_with readline)
 }
 
 src_compile() {
-	emake || die "emake failed"
+	emake
 
 	if use emacs; then
 		cd "${WORKDIR}"/${MY_PN}/${MY_SHARE_DIR}/emacs/
-		elisp-compile *.el || die "elisp-compile failed"
+		elisp-compile *.el
 	fi
 }
 
 src_test() {
 	# Tests fail to link -lsingular, upstream ticket #243
-	emake test || die "tests failed"
+	emake test
 }
 
 src_install () {
 	dodoc README
 	# execs and libraries
 	cd "${S}"/build/bin
-	dobin ${MY_PN}* gen_test change_cost solve_IP toric_ideal LLL \
-		|| die "failed to install binaries"
+	dobin ${MY_PN}* gen_test change_cost solve_IP toric_ideal LLL
 	insinto /usr/$(get_libdir)/${PN}
-	doins *.so || die "failed to install libraries"
+	doins *.so
 
-	dosym ${MY_PN}-${MY_DIR} /usr/bin/${MY_PN} \
-		|| die "failed to create symbolic link"
+	dosym ${MY_PN}-${MY_DIR} /usr/bin/${MY_PN}
 
 	# stuff from the share tar ball
 	cd "${WORKDIR}"/${MY_PN}/${MY_SHARE_DIR}
 	insinto /usr/share/${PN}
-	doins -r LIB  || die "failed to install lib files"
+	doins -r LIB
 	if use examples; then
 		insinto /usr/share/doc/${PF}
-		doins -r examples || die "failed to install examples"
+		doins -r examples
 	fi
 	if use doc; then
-		dohtml -r html/* || die "failed to install html docs"
+		dohtml -r html/*
 		insinto /usr/share/${PN}
-		doins doc/singular.idx || die "failed to install idx file"
+		doins doc/singular.idx
 		cp info/${PN}.hlp info/${PN}.info &&
-		doinfo info/${PN}.info \
-			|| die "failed to install info files"
+		doinfo info/${PN}.info
 	fi
 	if use emacs; then
-		elisp-install ${PN} emacs/*.el emacs/*.elc emacs/.emacs* \
-			|| die "elisp-install failed"
+		elisp-install ${PN} emacs/*.el emacs/*.elc emacs/.emacs*
 		elisp-site-file-install "${FILESDIR}/${SITEFILE}"
 	fi
 }
