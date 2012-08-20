@@ -2,6 +2,13 @@
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*givaro-3.2.16-r2 (20 Aug 2012)
+
+  20 Aug 2012; Jauhien Piatlicki (jauhien) <piatlicki@gmail.com>
+  -givaro-3.2.16-r1.ebuild, +givaro-3.2.16-r2.ebuild,
+  files/givaro-3.2.16-gcc47.patch:
+  fix for issue #162
+
 *givaro-3.2.16-r1 (16 Aug 2012)
 
   16 Aug 2012; Jauhien Piatlicki (jauhien) <piatlicki@gmail.com>
