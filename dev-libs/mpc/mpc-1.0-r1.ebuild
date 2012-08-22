@@ -31,3 +31,11 @@ src_install() {
 	use static-libs || rm "${ED:-${D}}"/usr/lib*/libmpc.la
 	dodoc ChangeLog NEWS README TODO
 }
+
+pkg_preinst() {
+	preserve_old_lib /usr/$(get_libdir)/libmpc.so.2
+}
+
+pkg_postinst() {
+	preserve_old_lib_notify /usr/$(get_libdir)/libmpc.so.2
+}
