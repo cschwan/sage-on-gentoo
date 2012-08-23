@@ -37,7 +37,8 @@ DEPEND="${CDEPEND}
 	test? ( sci-mathematics/sage[testsuite] )"
 RDEPEND="${CDEPEND}
 	sci-mathematics/sage
-	java? ( ~sci-chemistry/jmol-12.2.27 )"
+	java? ( ~sci-chemistry/jmol-12.2.27
+		~sci-chemistry/jmol-applet-12.2.27 )"
 
 # github release tag
 TAG=911669c
@@ -61,12 +62,18 @@ src_prepare() {
 	epatch "${FILESDIR}"/${PN}-0.9.0-setup.py.patch
 
 	# find flask_version in the right place
-	sed -i \
-		"s:os.path.join(os.environ\['SAGE_ROOT'\], 'devel', 'sagenb', 'flask_version'):os.path.join('${EPREFIX}$(python_get_sitedir)', 'flask_version'):g" \
-		sagenb/notebook/run_notebook.py || die "failed to patch for flask_version path"
+	sed -i "s:import base:import flask_version.base:" sagenb/notebook/run_notebook.py || die "failed to patch for flask_version path"
 
 	# remove sage3d
 	rm -rf sagenb/data/sage3d || die "failed to remove sage3d"
+
+	# find jmol
+	epatch "${FILESDIR}"/${PN}-0.9.1-base-jmol.patch
+	sed -i "s:jmol/appletweb/Jmol.js:jmol/Jmol.js:g" sagenb/data/sage/html/notebook/base.html
+
+	# fix SAGE_ROOT
+	epatch "${FILESDIR}"/${PN}-0.9.1-sageinspect.patch
+	epatch "${FILESDIR}"/${PN}-0.9.1-notebook.patch
 
 	mkdir conf.d || die "failed to create directory"
 	mkdir init.d || die "failed to create directory"
