@@ -64,7 +64,7 @@ DEPEND="${CDEPEND}"
 
 RDEPEND="${CDEPEND}
 	>=dev-lang/R-2.14.0
-	>=dev-python/cvxopt-1.1.4[glpk]
+	>=dev-python/cvxopt-1.1.5[glpk]
 	>=dev-python/gdmodule-0.56-r2[png]
 	~dev-python/ipython-0.10.2
 	>=dev-python/jinja-2.5.5
