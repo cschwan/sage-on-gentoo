@@ -1,6 +1,7 @@
 dev-java/asm:2
 dev-lang/python:2.7
 dev-lang/R
+dev-libs/mpc
 ~dev-libs/mpfr-3.1.0 **
 =dev-libs/ppl-0.11.2
 ~dev-lisp/ecls-11.1.1
@@ -77,7 +78,7 @@ sci-mathematics/maxima
 sci-mathematics/mcube
 sci-mathematics/optimal
 sci-mathematics/palp
-~sci-mathematics/pari-2.5.1
+~sci-mathematics/pari-2.5.2
 sci-mathematics/pari-data
 sci-mathematics/polybori
 sci-mathematics/ratpoints
