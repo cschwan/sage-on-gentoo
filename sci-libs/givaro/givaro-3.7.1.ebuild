@@ -8,7 +8,9 @@ inherit autotools-utils
 
 DESCRIPTION="Givaro is a C++ library for arithmetic and algebraic computations"
 HOMEPAGE="http://ljk.imag.fr/CASYS/LOGICIELS/givaro/"
-SRC_URI="http://forge.imag.fr/frs/download.php/207/${P}.tar.gz"
+# the label change with each realase check it before pushing a new ebuild
+LABEL=250
+SRC_URI="http://forge.imag.fr/frs/download.php/${LABEL}/${P}.tar.gz"
 
 LICENSE="CeCILL-B"
 SLOT="0"
