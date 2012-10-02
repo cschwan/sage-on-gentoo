@@ -2,6 +2,12 @@
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*sage-clib-5.4_rc0 (02 Oct 2012)
+
+  02 Oct 2012; François Bissey <francois.bissey@canterbury.ac.nz>
+  +sage-clib-5.4_rc0.ebuild:
+  5.4.rc0
+
   11 Sep 2012; Christopher Schwan <cschwan@students.uni-mainz.de>
   -sage-clib-5.3_beta2.ebuild, +sage-clib-5.3.ebuild:
   Version bump
