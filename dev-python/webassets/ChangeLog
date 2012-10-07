@@ -1,0 +1,16 @@
+# ChangeLog for dev-python/webassets
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: $
+
+*webassets-0.7.1 (07 Oct 2012)
+
+  07 Oct 2012; François Bissey <francois.bissey@canterbury.ac.nz>
+  +webassets-0.7.1.ebuild, +metadata.xml:
+  corrected package name
+
+*webasset-0.7.1 (07 Oct 2012)
+
+  07 Oct 2012; François Bissey <francois.bissey@canterbury.ac.nz>
+  +webasset-0.7.1.ebuild, +metadata.xml:
+  Imitial import for sagenb 0.10.2+
+
