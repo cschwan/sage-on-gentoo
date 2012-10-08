@@ -202,8 +202,6 @@ src_prepare() {
 		module_list.py
 
 	# Add -DNDEBUG to objects linking to libsingular and use factory headers from singular.
-	sed -i "s:SAGE_INC + 'singular'\],:SAGE_INC + 'singular'\],extra_compile_args = \['-DNDEBUG'\],:g" \
-		module_list.py
 	sed -i "s:'singular', SAGE_INC + 'factory'\],:'singular'\],extra_compile_args = \['-DNDEBUG'\],:g" \
 		module_list.py
 
@@ -252,21 +250,23 @@ src_prepare() {
 	# Ticket #5155:
 
 	# save gap_stamp to directory where sage is able to write
-	sed -i "s:GAP_STAMP = '%s/local/bin/gap_stamp'%SAGE_ROOT:GAP_STAMP = '%s/gap_stamp'%DOT_SAGE:g" \
+	sed -i "s:GAP_STAMP = SAGE_EXTCODE:GAP_STAMP = '%s/gap_stamp'%DOT_SAGE:g" \
 		sage/interfaces/gap.py
 
 	# fix qepcad paths
-	epatch "${FILESDIR}"/${PN}-4.5.1-fix-qepcad-path.patch
+	epatch "${FILESDIR}"/${PN}-5.4-fix-qepcad-path.patch
 
-	# replace SAGE_ROOT/local with SAGE_LOCAL
-	epatch "${FILESDIR}"/${PN}-5.1-fix-SAGE_LOCAL.patch
+	# replace SAGE_ROOT/local with SAGE_LOCAL and fix variables
+	epatch "${FILESDIR}"/${PN}-5.4-fix-SAGE_LOCAL.patch
+	epatch "${FILESDIR}"/${PN}-5.4-misc.patch
+	eprefixify sage/misc/misc.py
 
 	# patch path for saving sessions
 	sed -i "s:save_session('tmp_f', :save_session(tmp_f, :g" \
 		sage/misc/session.pyx
 
 	# patch lie library path
-	sed -i "s:open(SAGE_LOCAL + 'lib/lie/INFO\.0'):open(SAGE_LOCAL + '/share/lie/INFO.0'):g" \
+	sed -i -e "s:/lib/LiE/:/share/lie/:" \
 		sage/interfaces/lie.py
 
 	# Patch to singular info file shipped with sage-doc
@@ -290,9 +290,8 @@ src_prepare() {
 		-e "s:SAGE_ROOT = os.environ\['SAGE_ROOT'\]:SAGE_LOCAL = os.environ\['SAGE_LOCAL'\]:" \
 		-i sage/sandpiles/sandpile.py
 
-	# SAGE variables temporary fixes
-	epatch "${FILESDIR}"/${PN}-5.1-variables.patch
-	eprefixify sage/misc/misc.py
+	# Final SAGE_ROOT elimination
+	epatch "${FILESDIR}"/${PN}-5.4-SAGE_ROOT.patch
 
 	# apply patches from /etc/portage/patches
 	epatch_user

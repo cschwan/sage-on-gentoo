@@ -1,0 +1,47 @@
+--- sage/misc/misc.py.orig	2012-10-08 15:27:41.972668986 +1300
++++ sage/misc/misc.py	2012-10-08 15:31:45.242320333 +1300
+@@ -40,11 +40,11 @@
+ 
+ from banner import version, banner
+ 
+-SAGE_ROOT = os.environ["SAGE_ROOT"]
+-SAGE_LOCAL = os.environ["SAGE_LOCAL"]
+-SAGE_DOC = os.environ["SAGE_DOC"]
+-SAGE_SHARE = os.environ["SAGE_SHARE"]
+-SAGE_EXTCODE = os.environ["SAGE_EXTCODE"]
++SAGE_ROOT = "@GENTOO_PORTAGE_EPREFIX@/usr/share/sage"
++SAGE_LOCAL = "@GENTOO_PORTAGE_EPREFIX@/usr/"
++SAGE_DOC = "@GENTOO_PORTAGE_EPREFIX@/usr/share/sage/devel/sage/doc"
++SAGE_SHARE = "@GENTOO_PORTAGE_EPREFIX@/usr/share/sage"
++SAGE_EXTCODE = "@GENTOO_PORTAGE_EPREFIX@/usr/share/sage/ext"
+ HOSTNAME = socket.gethostname().replace('-','_').replace('/','_').replace('\\','_')
+ 
+ LOCAL_IDENTIFIER = '%s.%s'%(HOSTNAME , os.getpid())
+@@ -82,9 +82,6 @@
+ except KeyError:
+     SAGE_URL = "http://sage.math.washington.edu/sage/"     # default server
+     
+-LOGFILE = "%s/log/sage_log"%SAGE_ROOT
+-
+-
+ try:
+     DOT_SAGE = os.environ['DOT_SAGE']
+ except KeyError:
+@@ -93,6 +90,8 @@
+     except KeyError:
+         DOT_SAGE = '%s/.sage/'%SAGE_ROOT
+ 
++LOGFILE = "%s/log/sage_log"%DOT_SAGE
++
+ UNAME=os.uname()[0]
+ if ' ' in DOT_SAGE:
+     if UNAME[:6] == 'CYGWIN':
+@@ -2122,7 +2121,7 @@
+     r"""
+     Return a string describing the current branch and that the library
+     is being loaded.  This function is called in the
+-    ``SAGE_ROOT/local/bin/ipy_profile_sage.py`` script.
++    ``SAGE_LOCAL/bin/ipy_profile_sage.py`` script.
+     
+     INPUT:
+     
