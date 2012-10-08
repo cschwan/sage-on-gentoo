@@ -152,7 +152,8 @@ src_install () {
 			templates/ftmpl_factor.h templates/ftmpl_matrix.h \
 			templates/ftmpl_array.h
 	sed -e "s:factory/templates:singular/templates:" \
-		-i templates/ftmpl_list.cc templates/ftmpl_factor.cc
+		-i templates/ftmpl_list.cc templates/ftmpl_factor.cc \
+			templates/ftmpl_matrix.cc templates/ftmpl_array.cc
 	sed -e "s:factoryconf.h:singular/factoryconf.h:" \
 		-e "s:factory.h:singular/factory.h:" \
 		-i templates/ftmpl_inst.cc
