@@ -9,12 +9,14 @@ RESTRICT_PYTHON_ABIS="3."
 
 inherit distutils
 
-MY_PN="sublee-flask-autoindex-f903e48"
+MY_PN="sublee-flask-autoindex"
+# This changes every releases on github
+GHTAG=f903e48
 MY_P="${MY_PN}-${PV}"
 
 DESCRIPTION="A mod_autoindex for Flask"
 HOMEPAGE="http://github.com/sublee/flask-autoindex"
-SRC_URI="http://github.com/sublee/flask-autoindex/zipball/master#egg=flask-autoindex-dev -> ${MY_P}.zip"
+SRC_URI="http://github.com/sublee/flask-autoindex/tarball/f903e487faf1969c24d9d14ace366288954c69a0 -> ${P}.tar.gz"
 
 LICENSE="BSD"
 SLOT="0"
@@ -25,4 +27,4 @@ RDEPEND=">=dev-python/flask-0.8
 	dev-python/flask-silk"
 DEPEND="${RDEPEND}"
 
-S="${WORKDIR}/${MY_PN}"
+S="${WORKDIR}/${MY_PN}-${GHTAG}"
