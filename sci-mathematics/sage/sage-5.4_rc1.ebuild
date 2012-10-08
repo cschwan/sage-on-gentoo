@@ -202,8 +202,9 @@ src_prepare() {
 		module_list.py
 
 	# Add -DNDEBUG to objects linking to libsingular and use factory headers from singular.
-	sed -i "s:'singular', SAGE_INC + 'factory'\],:'singular'\],extra_compile_args = \['-DNDEBUG'\],:g" \
+	sed -i "s:'singular', SAGE_INC + 'factory'\],:'singular'\],:g" \
 		module_list.py
+	epatch "${FILESDIR}"/sage-5.4-singular_extra.patch
 
 	# TODO: why does Sage fail with linbox commentator ?
 
@@ -264,6 +265,9 @@ src_prepare() {
 	# patch path for saving sessions
 	sed -i "s:save_session('tmp_f', :save_session(tmp_f, :g" \
 		sage/misc/session.pyx
+
+	# make is_installed always return false
+	epatch "${FILESDIR}"/${PN}-5.4-package.patch
 
 	# patch lie library path
 	sed -i -e "s:/lib/LiE/:/share/lie/:" \
