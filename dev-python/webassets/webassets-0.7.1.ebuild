@@ -5,7 +5,7 @@
 EAPI="3"
 PYTHON_DEPEND="2"
 SUPPORT_PYTHON_ABIS="1"
-RESTRICT_PYTHON_ABIS="3."
+RESTRICT_PYTHON_ABIS="3.*"
 
 inherit distutils
 
@@ -26,3 +26,7 @@ RDEPEND=""
 DEPEND="dev-python/sphinx"
 
 S="${WORKDIR}/${MY_PN}-${GHTAG}"
+
+pkg_setup() {
+	python_pkg_setup
+}
