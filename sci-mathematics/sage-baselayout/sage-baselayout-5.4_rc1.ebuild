@@ -156,9 +156,6 @@ src_install() {
 			sage-valgrind
 	fi
 
-	# install file for sage/misc/inline_fortran.py
-	dobin sage-g77_shared
-
 	insinto /usr/bin
 	doins *doctest.py ipy_profile_sage.py
 
