@@ -7,7 +7,7 @@
 -              include_dirs = [SAGE_ROOT +'/local/include/singular'],
 -              depends = [SAGE_ROOT + "/local/include/libsingular.h"],
 +              include_dirs = [SAGE_INC +'singular'],
-+              depends = [singular_depends],
++              depends = singular_depends,
                extra_compile_args = givaro_extra_compile_args),
  
      Extension('sage.rings.polynomial.multi_polynomial_libsingular',

@@ -75,7 +75,7 @@
 @@ -1611,7 +1611,7 @@
                language="c++",
                include_dirs = [SAGE_INC +'singular'],
-               depends = [singular_depends],
+               depends = singular_depends,
 -              extra_compile_args = givaro_extra_compile_args),
 +              extra_compile_args = givaro_extra_compile_args + ['-DNDEBUG']),
  
