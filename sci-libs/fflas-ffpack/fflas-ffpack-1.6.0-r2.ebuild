@@ -27,3 +27,11 @@ AUTOTOOLS_AUTORECONF="1"
 PATCHES=(
 	"${FILESDIR}/${P}-blaslapack-3.patch"
 	)
+
+src_configure() {
+	myeconfargs=(
+		--enable-optimization
+	)
+
+	autotools-utils_src_configure
+}
