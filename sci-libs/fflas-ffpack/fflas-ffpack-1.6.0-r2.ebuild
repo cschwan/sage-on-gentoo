@@ -25,5 +25,5 @@ RDEPEND="${DEPEND}"
 
 AUTOTOOLS_AUTORECONF="1"
 PATCHES=(
-	"${FILESDIR}/${P}-blaslapack-2.patch"
+	"${FILESDIR}/${P}-blaslapack-3.patch"
 	)

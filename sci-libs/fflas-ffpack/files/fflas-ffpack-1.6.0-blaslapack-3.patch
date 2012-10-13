@@ -50,10 +50,10 @@
 +    AC_SUBST(BLAS_FOUND)
 +    AC_SUBST(BLAS_PATH)])
 +
-+PKG_CHECK_MODULES([LAPACK], [lapack],[
-+    AC_DEFINE(HAVE_LAPACK,1,[Define if LAPACK is installed])
-+    AC_SUBST(LAPACK_LIBS)
-+    AC_SUBST(LAPACK_CFLAGS)])
++#PKG_CHECK_MODULES([LAPACK], [lapack],[
++#    AC_DEFINE(HAVE_LAPACK,1,[Define if LAPACK is installed])
++#    AC_SUBST(LAPACK_LIBS)
++#    AC_SUBST(LAPACK_CFLAGS)])
  
  # AM_CONDITIONAL(FFLASFFPACK_HAVE_BLAS,  test "x$BLAS_FOUND" != "xfalse")
  
