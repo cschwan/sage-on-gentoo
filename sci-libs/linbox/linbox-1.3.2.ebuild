@@ -4,7 +4,7 @@
 
 EAPI="4"
 
-inherit autotools-utils toolchain-funcs eutils
+inherit autotools-utils toolchain-funcs eutils flag-o-matic
 
 DESCRIPTION="LinBox is a C++ template library for linear algebra computation over integers and over finite fields"
 HOMEPAGE="http://linalg.org/"
@@ -43,6 +43,10 @@ DOCS=( ChangeLog README NEWS TODO )
 
 # TODO: installation of documentation does not work ?
 
+pkg_setup() {
+	append-ldflags -lmpfr
+}
+
 src_configure() {
 	# FIXME: using external expat breaks the tests and various other components
 	# TODO: documentation does not work
@@ -51,6 +55,7 @@ src_configure() {
 	myeconfargs=(
 		--enable-optimization
 		--with-default="${EPREFIX}"/usr
+		--with-iml=no
 		$(use_enable sage)
 	)
 
