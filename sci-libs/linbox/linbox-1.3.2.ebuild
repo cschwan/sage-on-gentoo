@@ -37,14 +37,23 @@ DEPEND="${CDEPEND}
 	virtual/pkgconfig"
 RDEPEND="${CDEPEND}"
 
-AT_M4DIR="macros"
 AUTOTOOLS_IN_SOURCE_BUILD="1"
+AUTOTOOLS_AUTORECONF="1"
+AT_M4DIR="macros"
 DOCS=( ChangeLog README NEWS TODO )
 
 # TODO: installation of documentation does not work ?
 
-pkg_setup() {
-	append-ldflags -lmpfr
+src_prepare() {
+	sed \
+		-e "s:LB_CHECK_IML:#LB_CHECK_IML:" \
+		-e "s:LB_CHECK_M4RI:#LB_CHECK_M4RI:" \
+		-e "s:LB_CHECK_M4RIE:#LB_CHECK_M4RIE:" \
+		-e "s:LB_CHECK_MPFR:#LB_CHECK_MPFR:" \
+		-e "s:LB_CHECK_FPLLL:#LB_CHECK_FPLLL:" \
+		-i configure.ac
+
+	autotools-utils_src_prepare
 }
 
 src_configure() {
@@ -55,7 +64,6 @@ src_configure() {
 	myeconfargs=(
 		--enable-optimization
 		--with-default="${EPREFIX}"/usr
-		--with-iml=no
 		$(use_enable sage)
 	)
 
