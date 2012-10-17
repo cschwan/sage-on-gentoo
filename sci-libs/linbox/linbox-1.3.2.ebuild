@@ -38,22 +38,14 @@ DEPEND="${CDEPEND}
 RDEPEND="${CDEPEND}"
 
 AUTOTOOLS_IN_SOURCE_BUILD="1"
-AUTOTOOLS_AUTORECONF="1"
-AT_M4DIR="macros"
+#AUTOTOOLS_AUTORECONF="1"
+#AT_M4DIR="macros"
 DOCS=( ChangeLog README NEWS TODO )
 
 # TODO: installation of documentation does not work ?
 
-src_prepare() {
-	sed \
-		-e "s:LB_CHECK_M4RI:#LB_CHECK_M4RI:" \
-		-e "s:LB_CHECK_M4RIE:#LB_CHECK_M4RIE:" \
-		-e "s:LB_CHECK_FPLLL:#LB_CHECK_FPLLL:" \
-		-i configure.ac
-
-	append-libs "iml"
-
-	autotools-utils_src_prepare
+pkg_setup() {
+	append-libs "mpfr" "iml"
 }
 
 src_configure() {
@@ -65,7 +57,7 @@ src_configure() {
 		--enable-optimization
 		--with-default="${EPREFIX}"/usr
 		--with-mpfr="${EPREFIX}"/usr
-		--with-iml="${EPREFIX}"/usr
+		--with-iml=="${EPREFIX}"/usr
 		$(use_enable sage)
 	)
 

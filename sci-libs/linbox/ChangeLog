@@ -4,6 +4,10 @@
 
   17 Oct 2012; François Bissey <francois.bissey@canterbury.ac.nz>
   linbox-1.3.2.ebuild:
+  one more for the road
+
+  17 Oct 2012; François Bissey <francois.bissey@canterbury.ac.nz>
+  linbox-1.3.2.ebuild:
   resolve mpfr and iml
 
   17 Oct 2012; François Bissey <francois.bissey@canterbury.ac.nz>
