@@ -2,6 +2,13 @@
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*fflas-ffpack-1.6.0-r3 (18 Oct 2012)
+
+  18 Oct 2012; François Bissey <francois.bissey@canterbury.ac.nz>
+  -fflas-ffpack-1.6.0-r2.ebuild, +fflas-ffpack-1.6.0-r3.ebuild,
+  files/fflas-ffpack-1.6.0-blaslapack-3.patch:
+  in source build otherwise optimization breaks
+
   13 Oct 2012; François Bissey <francois.bissey@canterbury.ac.nz>
   fflas-ffpack-1.6.0-r2.ebuild:
   configure with optimization

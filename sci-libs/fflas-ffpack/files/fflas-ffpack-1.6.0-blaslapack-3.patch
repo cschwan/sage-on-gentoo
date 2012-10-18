@@ -42,7 +42,7 @@
 +    AC_DEFINE(HAVE_BLAS,1,[Define if BLAS is installed])
 +    AC_DEFINE(HAVE_CBLAS,1,[Define if C interface to BLAS is installed])
 +    BLAS_FOUND=true
-+    BLAS_PATH =`pkg-config cblas --variable=prefix`
++    BLAS_PATH ="`pkg-config cblas --variable=prefix`"
 +    HAVE_BLAS=yes
 +    AC_SUBST(BLAS_LIBS)  
 +    AC_SUBST(BLAS_CFLAGS)
