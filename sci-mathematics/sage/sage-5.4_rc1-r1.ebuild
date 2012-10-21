@@ -206,6 +206,10 @@ src_prepare() {
 		module_list.py
 	epatch "${FILESDIR}"/sage-5.4-singular_extra.patch
 
+	# Add -DNDEBUG to objects linking to givaro. It solves problems with linbox.
+	sed -i "s:-D__STDC_LIMIT_MACROS:-D__STDC_LIMIT_MACROS -DNDEBUG:g" \
+		module_list.py
+
 	# TODO: why does Sage fail with linbox commentator ?
 
 	############################################################################
