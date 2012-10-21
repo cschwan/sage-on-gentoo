@@ -4,6 +4,10 @@
 
   21 Oct 2012; François Bissey <francois.bissey@canterbury.ac.nz>
   sage-5.4_rc1-r1.ebuild:
+  last change uncovered a singular not linked to the new givaro
+
+  21 Oct 2012; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-5.4_rc1-r1.ebuild:
   streamline DNDEBUG
 
 *sage-5.4_rc1-r1 (21 Oct 2012)
