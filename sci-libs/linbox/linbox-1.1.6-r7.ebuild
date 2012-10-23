@@ -13,7 +13,7 @@ SRC_URI="http://linalg.org/${P}.tar.gz"
 LICENSE="LGPL-2.1"
 SLOT="0"
 KEYWORDS="~amd64 ~x86 ~amd64-linux ~x86-linux"
-IUSE="ntl sage static-libs"
+IUSE="sage static-libs"
 
 # TODO: support examples ?
 
@@ -25,7 +25,7 @@ RESTRICT="mirror
 CDEPEND="dev-libs/gmp[cxx]
 	=sci-libs/givaro-3.2*
 	virtual/cblas
-	ntl? ( dev-libs/ntl )"
+	sage? ( dev-libs/ntl )"
 DEPEND="${CDEPEND}
 	virtual/pkgconfig"
 RDEPEND="${CDEPEND}"
@@ -63,9 +63,12 @@ src_configure() {
 		--enable-optimization
 		--with-blas="$("$(tc-getPKG_CONFIG)" --libs cblas)"
 		--with-default="${EPREFIX}"/usr
-		--with-ntl="${EPREFIX}"/usr
 		$(use_enable sage)
 	)
+
+	if use sage; then
+		myeconfargs+=(--with-ntl="${EPREFIX}"/usr)
+	fi
 
 	autotools-utils_src_configure
 }

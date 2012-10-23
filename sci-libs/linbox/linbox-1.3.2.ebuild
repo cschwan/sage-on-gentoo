@@ -13,7 +13,7 @@ SRC_URI="http://linalg.org/${P}.tar.gz"
 LICENSE="LGPL-2.1"
 SLOT="0"
 KEYWORDS="~amd64 ~x86 ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~x64-macos"
-IUSE="ntl sage static-libs"
+IUSE="sage static-libs"
 
 # TODO: support examples ?
 
@@ -27,19 +27,14 @@ CDEPEND="dev-libs/gmp[cxx]
 	>=sci-libs/givaro-3.7.0
 	~sci-libs/fflas-ffpack-1.6.0
 	virtual/cblas
-	ntl? ( dev-libs/ntl )
+	sage? ( dev-libs/ntl )
 	sci-libs/iml
-	dev-libs/mpfr
-	sci-libs/fplll
-	sci-libs/m4ri
-	sci-libs/m4rie"
+	dev-libs/mpfr"
 DEPEND="${CDEPEND}
 	virtual/pkgconfig"
 RDEPEND="${CDEPEND}"
 
 AUTOTOOLS_IN_SOURCE_BUILD="1"
-#AUTOTOOLS_AUTORECONF="1"
-#AT_M4DIR="macros"
 DOCS=( ChangeLog README NEWS TODO )
 
 # TODO: installation of documentation does not work ?
@@ -57,11 +52,10 @@ src_configure() {
 		--enable-optimization
 		--with-default="${EPREFIX}"/usr
 		--with-mpfr="${EPREFIX}"/usr
-		--with-iml=="${EPREFIX}"/usr
 		$(use_enable sage)
 	)
 
-	if use ntl ; then
+	if use sage ; then
 		myeconfargs+=(--with-ntl="${EPREFIX}"/usr)
 	else
 		myeconfargs+=(--with-ntl=no)
