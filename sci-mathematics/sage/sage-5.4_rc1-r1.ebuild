@@ -204,9 +204,8 @@ src_prepare() {
 	# Add -DNDEBUG to objects linking to libsingular and use factory headers from singular.
 	sed -i "s:'singular', SAGE_INC + 'factory'\],:'singular'\],:g" \
 		module_list.py
-	epatch "${FILESDIR}"/sage-5.4-singular_extra.patch
-
-	# Add -DNDEBUG to objects linking to givaro. It solves problems with linbox.
+	#epatch "${FILESDIR}"/sage-5.4-singular_extra.patch
+	# We add -DNDEBUG to objects linking to givaro. It solves problems with linbox and singular.
 	sed -i "s:-D__STDC_LIMIT_MACROS:-D__STDC_LIMIT_MACROS', '-DNDEBUG:g" \
 		module_list.py
 
