@@ -48,7 +48,7 @@ CDEPEND="dev-libs/gmp
 	>=sci-mathematics/glpk-4.44
 	>=sci-mathematics/lcalc-1.23-r4[pari]
 	sci-mathematics/lrcalc
-	~sci-mathematics/pari-2.5.2[data,gmp]
+	~sci-mathematics/pari-2.5.3[data,gmp]
 	~sci-mathematics/polybori-0.8.2
 	>=sci-mathematics/ratpoints-2.1.3
 	~sci-mathematics/sage-baselayout-${PV}[testsuite=]
@@ -204,7 +204,6 @@ src_prepare() {
 	# Add -DNDEBUG to objects linking to libsingular and use factory headers from singular.
 	sed -i "s:'singular', SAGE_INC + 'factory'\],:'singular'\],:g" \
 		module_list.py
-	#epatch "${FILESDIR}"/sage-5.4-singular_extra.patch
 	# We add -DNDEBUG to objects linking to givaro. It solves problems with linbox and singular.
 	sed -i "s:-D__STDC_LIMIT_MACROS:-D__STDC_LIMIT_MACROS', '-DNDEBUG:g" \
 		module_list.py
