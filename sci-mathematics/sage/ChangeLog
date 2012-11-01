@@ -2,6 +2,10 @@
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  01 Nov 2012; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-5.4_rc3.ebuild:
+  sympy 0.7.2 mostly works so enabling.
+
 *sage-5.4_rc3 (01 Nov 2012)
 
   01 Nov 2012; François Bissey <francois.bissey@canterbury.ac.nz>
