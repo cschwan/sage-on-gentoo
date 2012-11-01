@@ -1,8 +1,8 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sci-mathematics/pari/pari-2.5.1.ebuild,v 1.1 2012/03/06 17:06:06 bicatali Exp $
+# $Header: $
 
-EAPI="4"
+EAPI=4
 
 inherit eutils flag-o-matic toolchain-funcs multilib
 
@@ -12,19 +12,18 @@ SRC_URI="http://pari.math.u-bordeaux.fr/pub/${PN}/unix/${P}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~alpha ~amd64 ~hppa ~mips ~ppc ~ppc64 ~sparc ~x86 ~x86-fbsd ~amd64-linux ~x86-linux ~x86-macos ~x86-solaris"
-IUSE="doc data fltk gmp X"
+KEYWORDS="~alpha ~amd64 ~hppa ~mips ~ppc ~ppc64 ~sparc ~x86 ~amd64-linux ~x86-fbsd ~x86-linux ~x86-macos ~x86-solaris"
+IUSE="data doc fltk gmp qt4 X"
 
 RDEPEND="sys-libs/readline
+	data? ( sci-mathematics/pari-data )
+	doc? ( X? ( x11-misc/xdg-utils ) )
 	fltk? ( x11-libs/fltk:1 )
 	gmp? ( dev-libs/gmp )
-	X? ( x11-libs/libX11 )
-	doc? ( X? ( x11-misc/xdg-utils ) )
-	data? ( sci-mathematics/pari-data )"
+	qt4? ( x11-libs/qt-gui:4 )
+	X? ( x11-libs/libX11 )"
 DEPEND="${RDEPEND}
 	doc? ( virtual/latex-base )"
-
-SITEFILE=50${PN}-gentoo.el
 
 get_compile_dir() {
 	pushd "${S}/config" > /dev/null
@@ -35,17 +34,16 @@ get_compile_dir() {
 }
 
 src_prepare() {
-	epatch "${FILESDIR}/${PN}"-2.3.2-strip.patch
-	epatch "${FILESDIR}/${PN}"-2.3.2-ppc-powerpc-arch-fix.patch
+	epatch "${FILESDIR}"/${PN}-2.3.2-strip.patch
+	epatch "${FILESDIR}"/${PN}-2.3.2-ppc-powerpc-arch-fix.patch
 	# fix parallel make
-	epatch "${FILESDIR}/${PN}"-2.5.0-doc-make.patch
+	epatch "${FILESDIR}"/${PN}-2.5.0-doc-make.patch
 	# sage error handling patch
-	epatch "${FILESDIR}/${PN}"-2.5.0-mp.c.patch
+	epatch "${FILESDIR}"/${PN}-2.5.0-mp.c.patch
 	# OS X: add -install_name to the linker option
-	epatch "${FILESDIR}/${PN}"-2.5.0-macos.patch
-	# upstream pari patches
-	epatch "${FILESDIR}/${PN}"_1302.patch
-	epatch "${FILESDIR}/${PN}"_1304.patch
+	epatch "${FILESDIR}"/${PN}-2.5.0-macos.patch
+	# fix automagic
+	epatch "${FILESDIR}"/${PN}-2.5.1-no-automagic.patch
 
 	# disable default building of docs during install
 	sed -i \
@@ -62,11 +60,12 @@ src_prepare() {
 		-e 's:"acroread":"xdg-open":' \
 		doc/gphelp.in || die "Failed to fix doc dir"
 
-	sed -i "s:/usr:${EPREFIX}/usr:g" config/get_X11 \
+	sed -i "s:/\(usr\|lib64\):${EPREFIX}/\1:g" \
+		config/get_{Qt,X11,include_path,libpth} \
 		|| die "Failed to fix get_X11"
 
 	# usersch3.tex is generated
-	rm -f doc/usersch3.tex || die "failed to remove generated file"
+	rm doc/usersch3.tex || die "failed to remove generated file"
 }
 
 src_configure() {
@@ -79,13 +78,6 @@ src_configure() {
 		append-flags -O2
 	fi
 
-	local myconfig
-	if use gmp ; then
-		myconfig="--with-gmp=${EPREFIX}/usr"
-	else
-		myconfig="--with-gmp=no"
-	fi
-
 	# sysdatadir installs a pari.cfg stuff which is informative only
 	./Configure \
 		--prefix="${EPREFIX}"/usr \
@@ -95,7 +87,9 @@ src_configure() {
 		--mandir="${EPREFIX}"/usr/share/man/man1 \
 		--with-readline="${EPREFIX}"/usr \
 		--with-ncurses-lib="${EPREFIX}"/usr/$(get_libdir) \
-		$myconfig \
+		$(use_with fltk) \
+		$(use_with gmp) \
+		$(use_with qt4 qt) \
 		|| die "./Configure failed"
 }
 
@@ -106,7 +100,6 @@ src_compile() {
 
 	local installdir=$(get_compile_dir)
 	cd "${installdir}" || die "failed to change directory"
-
 	# upstream set -fno-strict-aliasing.
 	# aliasing is a known issue on amd64, work on x86 by sheer luck
 	emake ${mymake} \

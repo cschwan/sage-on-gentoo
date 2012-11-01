@@ -2,6 +2,14 @@
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/sci-mathematics/pari/ChangeLog,v 1.87 2012/03/06 17:06:06 bicatali Exp $
 
+*pari-2.5.3 (01 Nov 2012)
+
+  01 Nov 2012; François Bissey <francois.bissey@canterbury.ac.nz>
+  -files/50pari-gentoo.el, -files/pari-2.5.2-prefix.patch,
+  -files/pari_1302.patch, -files/pari_1304.patch, -pari-2.5.1-r1.ebuild,
+  -pari-2.5.2-r1.ebuild, +pari-2.5.3.ebuild:
+  bump to 2.5.3 purge older versions and patch and rebase on main tree.
+
   30 Aug 2012; François Bissey <francois.bissey@canterbury.ac.nz>
   +files/pari-2.5.1-no-automagic.patch:
   add missing patch
