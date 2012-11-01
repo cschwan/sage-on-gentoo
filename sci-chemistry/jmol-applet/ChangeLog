@@ -2,6 +2,13 @@
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*jmol-applet-12.3.27 (01 Nov 2012)
+
+  01 Nov 2012; François Bissey <francois.bissey@canterbury.ac.nz>
+  +jmol-applet-12.3.27.ebuild, +files/jmol-applet-Jmol.js-12.3.27-unix.patch,
+  +files/jmol-add-help.patch:
+  Import Steve's jmol-applet
+
 *jmol-applet-12.2.27 (04 Aug 2012)
 
   04 Aug 2012; François Bissey <francois.bissey@canterbury.ac.nz>
