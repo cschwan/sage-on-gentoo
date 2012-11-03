@@ -2,6 +2,15 @@
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*sage-5.4_rc3-r1 (03 Nov 2012)
+
+  03 Nov 2012; François Bissey <francois.bissey@canterbury.ac.nz>
+  -sage-5.4_rc3.ebuild, +sage-5.4_rc3-r1.ebuild,
+  -files/sage-5.4-SAGE_ROOT.patch, -files/sage-5.4-fix-SAGE_LOCAL.patch,
+  -files/sage-5.4-fix-qepcad-path.patch, -files/sage-5.4-misc.patch,
+  +files/sage-5.4-variables.patch.bz2:
+  Fix sage-5.4 - big changes also solve issue #151
+
   01 Nov 2012; François Bissey <francois.bissey@canterbury.ac.nz>
   sage-5.4_rc3.ebuild:
   sympy 0.7.2 mostly works so enabling.
