@@ -18,7 +18,8 @@ SRC_URI="https://github.com/sagemath/sagenb/tarball/${PV} -> ${P}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~x86 ~amd64-linux ~x86-linux"
+#KEYWORDS="~amd64 ~x86 ~amd64-linux ~x86-linux"
+KEYWORDS=""
 IUSE="+java server ssl"
 
 RESTRICT="mirror"
