@@ -18,8 +18,7 @@ SRC_URI="https://github.com/sagemath/sagenb/tarball/${PV} -> ${P}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
-#KEYWORDS="~amd64 ~x86 ~amd64-linux ~x86-linux"
-KEYWORDS=""
+KEYWORDS="~amd64 ~x86 ~amd64-linux ~x86-linux"
 IUSE="+java server ssl"
 
 RESTRICT="mirror"
@@ -39,8 +38,8 @@ DEPEND="${CDEPEND}
 	test? ( sci-mathematics/sage[testsuite] )"
 RDEPEND="${CDEPEND}
 	sci-mathematics/sage
-	java? ( ~sci-chemistry/jmol-12.3.27
-		~sci-chemistry/jmol-applet-12.3.27 )"
+	java? ( ~sci-chemistry/jmol-12.3.14
+		~sci-chemistry/jmol-applet-12.3.14 )"
 
 # github release tag
 TAG=dbabb90

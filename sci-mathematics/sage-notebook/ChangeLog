@@ -3,6 +3,10 @@
 # $Header: $
 
   05 Nov 2012; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-notebook-0.10.2-r1.ebuild:
+  enabling 0.10.2-r1 with jmol-12.3.14
+
+  05 Nov 2012; François Bissey <francois.bissey@canterbury.ac.nz>
   sage-notebook-0.10.2.ebuild, sage-notebook-0.10.2-r1.ebuild:
   apply openid patch to 0.10.2
 
