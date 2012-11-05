@@ -8,6 +8,7 @@ WEBAPP_OPTIONAL="yes"
 inherit eutils webapp java-pkg-2 java-ant-2
 
 MY_P="Jmol"
+MY_PN="jmol"
 
 DESCRIPTION="Jmol is a java molecular viever for 3-D chemical structures."
 SRC_URI="
@@ -41,7 +42,7 @@ pkg_setup() {
 
 src_prepare() {
 	edos2unix build.xml
-	epatch "${FILESDIR}"/${P}-nointl.patch
+	epatch "${FILESDIR}"/${MY_PN}-12.3.27-nointl.patch
 
 	rm -v "${S}"/*.jar "${S}"/plugin-jars/*.jar || die
 	cd "${S}/jars"
@@ -57,8 +58,9 @@ src_prepare() {
 	java-pkg_jar-from itext iText.jar itext-1.4.5.jar
 	java-pkg_jar-from jmol-acme jmol-acme.jar Acme.jar
 	java-pkg_jar-from commons-cli-1 commons-cli.jar commons-cli-1.0.jar
-	java-pkg_jar-from naga
+	java-pkg_jar-from naga naga.jar naga-2_1-r42.jar
 	java-pkg_jar-from saxon-6.5 saxon.jar
+	java-pkg_jar-from junit junit.jar junit.jar
 
 	mkdir -p "${S}/build/appjars" || die
 }
