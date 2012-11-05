@@ -2,6 +2,14 @@
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*sage-notebook-0.9.1-r4 (05 Nov 2012)
+
+  05 Nov 2012; François Bissey <francois.bissey@canterbury.ac.nz>
+  -sage-notebook-0.9.1-r3.ebuild, +sage-notebook-0.9.1-r4.ebuild,
+  +files/sage-notebook-0.9.1-base.patch,
+  -files/sage-notebook-0.9.1-base-jmol.patch:
+  bump for compatibility with flask_openid-1.1
+
   03 Nov 2012; François Bissey <francois.bissey@canterbury.ac.nz>
   sage-notebook-0.10.2-r1.ebuild:
   put 0.10.2-r1 in hard mask
