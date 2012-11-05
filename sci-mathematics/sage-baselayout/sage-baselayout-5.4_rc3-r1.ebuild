@@ -111,6 +111,9 @@ src_prepare() {
 	sed -i "s:os.environ\[\"MAKE\"\]:os.environ\[\"MAKEOPTS\"\]:g" \
 		sage-num-threads.py
 
+	# Set the fortran compiler in sage-inline-fortran
+	sed -i "s:sage_fortran:$(tc-getFC):" sage-inline-fortran
+
 	# remove developer- and unsupported options
 	cd "${ROOT_S}"
 	epatch "${FILESDIR}"/${PN}-5.4-gentooify-startup-script.patch.bz2
@@ -121,7 +124,7 @@ src_install() {
 	# TODO: patch sage-core and remove sage-native-execute ?
 
 	# core scripts which are needed in every case
-	dobin sage-cleaner sage-banner sage-eval sage-ipython \
+	dobin sage-cleaner sage-banner sage-eval sage-ipython sage-inline-fortran \
 		sage-maxima.lisp sage-native-execute sage-run sage-num-threads.py \
 		sage-rst2txt sage-rst2sws
 
