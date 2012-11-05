@@ -68,8 +68,8 @@ src_prepare() {
 	# remove sage3d
 	rm -rf sagenb/data/sage3d || die "failed to remove sage3d"
 
-	# find jmol
-	epatch "${FILESDIR}"/${PN}-0.9.1-base-jmol.patch
+	# find jmol and various openid
+	epatch "${FILESDIR}"/${PN}-0.9.1-base.patch
 	sed -i "s:jmol/appletweb/Jmol.js:jmol/Jmol.js:g" sagenb/data/sage/html/notebook/base.html
 
 	# fix SAGE_ROOT
