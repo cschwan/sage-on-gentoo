@@ -2,6 +2,13 @@
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*sage-5.4_rc3-r3 (05 Nov 2012)
+
+  05 Nov 2012; François Bissey <francois.bissey@canterbury.ac.nz>
+  -sage-5.4_rc3-r2.ebuild, +sage-5.4_rc3-r3.ebuild,
+  +files/remove-testjavapath-to-python.patch:
+  apply the patch to remove the call to the java testing script
+
 *sage-5.4_rc3-r2 (05 Nov 2012)
 
   05 Nov 2012; François Bissey <francois.bissey@canterbury.ac.nz>

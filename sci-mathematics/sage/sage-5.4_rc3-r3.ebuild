@@ -271,6 +271,9 @@ src_prepare() {
 	sed -i "s:save_session('tmp_f', :save_session(tmp_f, :g" \
 		sage/misc/session.pyx
 
+	# remove the need for the external "testjava.sh" script
+	epatch "${FILESDIR}"/remove-testjavapath-to-python.patch
+
 	# make is_installed always return false
 	epatch "${FILESDIR}"/${PN}-5.4-package.patch
 
