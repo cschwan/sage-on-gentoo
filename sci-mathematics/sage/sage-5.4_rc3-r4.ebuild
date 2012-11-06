@@ -7,7 +7,7 @@ EAPI="4"
 PYTHON_DEPEND="2:2.7:2.7"
 PYTHON_USE_WITH="readline sqlite"
 
-inherit distutils eutils flag-o-matic python versionator
+inherit distutils eutils flag-o-matic python toolchain-funcs versionator
 
 MY_P="sage-$(replace_version_separator 2 '.')"
 
@@ -273,6 +273,10 @@ src_prepare() {
 
 	# remove the need for the external "testjava.sh" script
 	epatch "${FILESDIR}"/remove-testjavapath-to-python.patch
+
+	# Make sage-inline-fortran useless by having better fortran settings
+	sed -i "s:--f77exec=sage-inline-fortran --f90exec=sage-inline-fortran:--f77exec=$(tc-getF77) --f90exec=$(tc-getFC):" \
+		sage/misc/inline_fortran.py
 
 	# make is_installed always return false
 	epatch "${FILESDIR}"/${PN}-5.4-package.patch

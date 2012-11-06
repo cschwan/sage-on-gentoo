@@ -2,6 +2,12 @@
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*sage-5.4_rc3-r4 (06 Nov 2012)
+
+  06 Nov 2012; François Bissey <francois.bissey@canterbury.ac.nz>
+  -sage-5.4_rc3-r3.ebuild, +sage-5.4_rc3-r4.ebuild:
+  better handling of inline fortran from sage
+
 *sage-5.4_rc3-r3 (05 Nov 2012)
 
   05 Nov 2012; François Bissey <francois.bissey@canterbury.ac.nz>
