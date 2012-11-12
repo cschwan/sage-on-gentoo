@@ -6,8 +6,11 @@ EAPI="4"
 
 PYTHON_DEPEND="2:2.7:2.7"
 PYTHON_USE_WITH="readline sqlite"
+# PYTHON_COMPAT=( python2_7 )
+# PYTHON_REQ_USE="readline,sqlite"
 
 inherit distutils eutils flag-o-matic python toolchain-funcs versionator
+# inherit distutils-r1 eutils flag-o-matic toolchain-funcs versionator
 
 MY_P="sage-$(replace_version_separator 2 '.')"
 
@@ -292,6 +295,7 @@ src_prepare() {
 	epatch_user
 
 	# do not forget to run distutils
+# 	distutils-r1_src_prepare
 	distutils_src_prepare
 }
 
@@ -323,9 +327,13 @@ src_configure() {
 	# files are not built unless they are touched
 	find sage -name "*pyx" -exec touch '{}' \; \
 		|| die "failed to touch *pyx files"
+
+# 	distutils-r1_src_configure
+	distutils_src_configure
 }
 
 src_install() {
+# 	distutils-r1_src_install
 	distutils_src_install
 
 	# install sources needed for testing and compiling of cython files and spyx files
@@ -341,6 +349,7 @@ src_install() {
 }
 
 pkg_postinst() {
+# 	distutils-r1_pkg_postinst
 	distutils_pkg_postinst
 
 	einfo "If you use Sage's browser interface ('Sage Notebook') and experience"
