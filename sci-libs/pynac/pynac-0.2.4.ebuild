@@ -10,7 +10,7 @@ inherit autotools-utils python
 
 DESCRIPTION="A modified version of GiNaC that replaces the dependency on CLN by Python"
 HOMEPAGE="http://pynac.sagemath.org/ https://bitbucket.org/burcin/pynac/overview"
-SRC_URI="https://bitbucket.org/burcin/pynac/get/${P}.tar.bz2"
+SRC_URI="http://hg.pynac.org/pynac/get/${P}.tar.bz2"
 
 LICENSE="GPL-2"
 SLOT="0"
@@ -22,7 +22,7 @@ RESTRICT="mirror"
 DEPEND="virtual/pkgconfig"
 RDEPEND=""
 
-S="${WORKDIR}/burcin-pynac-f50fb4810d97"
+S="${WORKDIR}/pynac-pynac-f50fb4810d97"
 
 DOCS=( AUTHORS NEWS README )
 
