@@ -78,8 +78,8 @@ src_prepare() {
 	mkdir conf.d || die "failed to create directory"
 	mkdir init.d || die "failed to create directory"
 
-	cp "${FILESDIR}"/${PN} init.d/${PN} || die "failed to copy file"
-	cp "${FILESDIR}"/${PN}.conf conf.d/${PN} || die "failed to copy file"
+	cp "${FILESDIR}"/${PN}-0.10.2 init.d/${PN} || die "failed to copy file"
+	cp "${FILESDIR}"/${PN}.conf-0.10.2 conf.d/${PN} || die "failed to copy file"
 
 	# correct the location of JmolHelp.html if include in jmol-applet[sage]
 #	sed -i s:\/java\/jmol\/appletweb:\/java\/jmol:g sagenb/data/sage/js/jmol_lib.js

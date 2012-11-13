@@ -2,6 +2,13 @@
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*sage-notebook-0.10.2-r2 (13 Nov 2012)
+
+  13 Nov 2012; François Bissey <francois.bissey@canterbury.ac.nz>
+  +files/sage-notebook-0.10.2, +files/sage-notebook.conf-0.10.2,
+  -sage-notebook-0.10.2-r1.ebuild, +sage-notebook-0.10.2-r2.ebuild:
+  Changes to server configuration
+
   05 Nov 2012; François Bissey <francois.bissey@canterbury.ac.nz>
   sage-notebook-0.10.2-r1.ebuild:
   enabling 0.10.2-r1 with jmol-12.3.14
