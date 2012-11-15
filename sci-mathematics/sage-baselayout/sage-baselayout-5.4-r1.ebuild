@@ -113,7 +113,7 @@ src_prepare() {
 
 	# remove developer- and unsupported options
 	cd "${ROOT_S}"
-	epatch "${FILESDIR}"/${PN}-5.4-gentooify-startup-script.patch.bz2
+	epatch "${FILESDIR}"/${PN}-5.4-gentooify-startup-script-2.patch.bz2
 	eprefixify spkg/bin/sage
 }
 
