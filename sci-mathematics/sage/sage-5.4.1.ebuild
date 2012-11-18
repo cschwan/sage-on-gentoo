@@ -83,7 +83,7 @@ RDEPEND="${CDEPEND}
 	>=media-gfx/tachyon-0.98.9[png]
 	net-zope/zodb
 	>=sci-libs/cddlib-094f-r2
-	>=sci-libs/scipy-0.9
+	>=sci-libs/scipy-0.11.0
 	>=sci-mathematics/flintqs-20070817_p6
 	>=sci-mathematics/gap-4.4.12
 	>=sci-mathematics/genus2reduction-0.3_p8-r1
