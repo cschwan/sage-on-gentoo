@@ -31,45 +31,46 @@ QUICK INSTALLATION GUIDE
      http://www.gentoo.org/proj/en/overlays/userguide.xml
 
 2. *ADD OUR OVERLAY*:
-   Update your layman list and add this overlay with:
-
-   ::
+   Update your layman list and add this overlay with::
 
      layman -L
      layman -a sage-on-gentoo
 
+.. note:: Steps 3 and 4 may not be fully or at all necessary on your system. You
+          might want to try skipping to step 5 first, and if it doesn't work,
+          coming back and doing steps 3 and 4.
+
 3. *UNMASK EBUILDS*:
-   If you are using Gentoo/unstable or Funtoo (i.e. you have a line like
-   ACCEPT_KEYWORDS=~arch in your /etc/make.conf) you may skip this step.
+   Before being able to install you may need to unmask the required ebuilds. If
+   you are using Gentoo/unstable or Funtoo (i.e. you have a line like
+   ``ACCEPT_KEYWORDS=~arch`` in your /etc/portage/make.conf) you can at least
+   skip the ``keywords`` entries, but the ``unmask`` entries may still be
+   relevant. You can make use of the following files, which already contain all
+   required entries::
 
-   Before being able to install you will need to unmask the required ebuilds.
-   You should use the following file which already contains all required
-   entries:
+     sage-on-gentoo/package.unmask/sage
+     sage-on-gentoo/package.keywords/sage
 
-   ::
+   To use these files permanently, place symbolic links to those files into your
+   ``/etc/portage/package.unmask`` and ``/etc/portage/package.keywords/``
+   directories, respectively::
 
-     sage-on-gentoo/packages.keywords/sage
-
-   For permanent unmasking place a symbolic link to that file into your
-   /etc/portage/package.keywords/ directory:
-
-   ::
-
+     ln -s <path-to-layman>/sage-on-gentoo/package.unmask/sage \
+           /etc/portage/package.unmask/sage
      ln -s <path-to-layman>/sage-on-gentoo/package.keywords/sage \
            /etc/portage/package.keywords/sage
 
+   Otherwise, simply copy them into the respective directories for a one-time
+   fix.
+
 4. *ADD USE-FLAGS FOR EBUILDS*:
    Since Sage's ebuild requires its dependencies to be built with several USE-
-   flags we provide a standard package.use file as well:
-
-   ::
+   flags we provide a standard package.use file as well::
 
      ln -s <path-to-layman>/sage-on-gentoo/package.use/sage \
            /etc/portage/package.use/sage
 
-   If you are using unstable or Funtoo you may also need the following file:
-
-   ::
+   If you are using unstable or Funtoo you may also need the following file::
 
      ln -s <path-to-layman>/sage-on-gentoo/package.use/sage-unstable \
            /etc/portage/package.use/sage-unstable
@@ -78,9 +79,7 @@ QUICK INSTALLATION GUIDE
    /usr/local/portage/layman for older version of layman).
 
 5. *INSTALL SAGE*:
-   Type
-
-   ::
+   Type ::
 
      emerge -va sage
 
@@ -99,15 +98,11 @@ QUICK INSTALLATION GUIDE
    reference implementation.
 
 6. *UPDATE YOUR LOCAL OVERLAY*:
-   To update your local copy of sage-on-gentoo simply type:
-
-   ::
+   To update your local copy of sage-on-gentoo simply type::
 
      layman -S
 
-   After that you may run
-
-   ::
+   After that you may run ::
 
      emerge -vuDNa world
 
