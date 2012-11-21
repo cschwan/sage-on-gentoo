@@ -2,6 +2,14 @@
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  21 Nov 2012; François Bissey <francois.bissey@canterbury.ac.nz>
+  -files/12.0.45/jmol-manifest.patch, -files/jmol-11.6.16-manifest.patch,
+  -files/jmol-11.6.16-nointl.patch, -jmol-applet-12.0.45-r1.ebuild,
+  -files/jmol-applet-Jmol.js-12.0.45-unix.patch,
+  -files/12.0.45/jmol-nointl.patch, -jmol-applet-12.2.27.ebuild,
+  -files/jmol-12.2.27-nointl.patch:
+  purge old
+
 *jmol-applet-12.3.14 (05 Nov 2012)
 
   05 Nov 2012; François Bissey <francois.bissey@canterbury.ac.nz>
