@@ -2,6 +2,16 @@
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  21 Nov 2012; François Bissey <francois.bissey@canterbury.ac.nz>
+  -files/sage-4.5.1-fix-qepcad-path.patch, -files/sage-4.8-dist.py.patch,
+  -sage-5.1-r2.ebuild, -files/sage-5.1-variables.patch,
+  -files/trac_10764-fix_deprecation_warning.patch,
+  -files/sage-5.0-plural.patch, -files/sage-5.1-fix-SAGE_LOCAL.patch,
+  -files/sage-5.1-networkx1.6.patch, -files/sage-5.1-sagestarted.patch,
+  -sage-5.2-r2.ebuild, -files/trac_10764-fix-gen_interpreters_doctest.patch,
+  -sage-5.3.ebuild, -files/trac_9238_script_extension.patch:
+  Purge old
+
 *sage-5.4.1 (18 Nov 2012)
 
   18 Nov 2012; François Bissey <francois.bissey@canterbury.ac.nz>
