@@ -2,6 +2,10 @@
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  21 Nov 2012; François Bissey <francois.bissey@canterbury.ac.nz>
+  -sage-data-polytopes_db-20100210_p1-r1.ebuild:
+  purge old
+
 *sage-data-polytopes_db-20100210_p2 (02 Oct 2012)
 
   02 Oct 2012; François Bissey <francois.bissey@canterbury.ac.nz>
