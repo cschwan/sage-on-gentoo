@@ -2,6 +2,10 @@
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  21 Nov 2012; François Bissey <francois.bissey@canterbury.ac.nz>
+  -m4rie-20111004.ebuild, -files/m4rie-20111004-trsm.patch:
+  purge old
+
   02 Aug 2012; François Bissey <francois.bissey@canterbury.ac.nz>
   m4rie-20120613.ebuild:
   clean up for 5.3
