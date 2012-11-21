@@ -2,6 +2,10 @@
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  21 Nov 2012; François Bissey <francois.bissey@canterbury.ac.nz>
+  -sage-extcode-5.1.ebuild, -sage-extcode-5.2.ebuild, -sage-extcode-5.3.ebuild:
+  purge old
+
 *sage-extcode-5.4.1 (18 Nov 2012)
 
   18 Nov 2012; François Bissey <francois.bissey@canterbury.ac.nz>
