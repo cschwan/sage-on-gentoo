@@ -2,6 +2,11 @@
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  21 Nov 2012; François Bissey <francois.bissey@canterbury.ac.nz>
+  -files/polybori-0.8.0-base-lookup.patch, -polybori-0.8.1-r1.ebuild,
+  -files/gbcore.py.patch, -files/ipbori.patch, -files/nf.h.patch:
+  purge old
+
 *polybori-0.8.2-r3 (07 Aug 2012)
 
   07 Aug 2012; François Bissey <francois.bissey@canterbury.ac.nz>
