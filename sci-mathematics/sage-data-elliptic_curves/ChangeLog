@@ -2,6 +2,10 @@
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  21 Nov 2012; François Bissey <francois.bissey@canterbury.ac.nz>
+  -sage-data-elliptic_curves-0.6.ebuild:
+  purge old
+
 *sage-data-elliptic_curves-0.7 (02 Oct 2012)
 
   02 Oct 2012; François Bissey <francois.bissey@canterbury.ac.nz>
