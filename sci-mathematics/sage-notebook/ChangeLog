@@ -2,6 +2,15 @@
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  21 Nov 2012; François Bissey <francois.bissey@canterbury.ac.nz>
+  -files/sage-notebook-0.8.14-fix-secure-connection.patch,
+  -files/sage-notebook-0.8.16-twistd-python-version.patch,
+  -sage-notebook-0.8.29-r2.ebuild, -files/sage-notebook-0.8-nojava.patch,
+  -files/sage-notebook-0.9.0-setup.py.patch, -sage-notebook-0.9.1-r4.ebuild,
+  -files/sage-notebook-0.9.1-sageinspect.patch, -sage-notebook-0.10.2.ebuild,
+  -files/sage-notebook, -files/sage-notebook.conf:
+  purge old
+
 *sage-notebook-0.10.2-r2 (13 Nov 2012)
 
   13 Nov 2012; François Bissey <francois.bissey@canterbury.ac.nz>
