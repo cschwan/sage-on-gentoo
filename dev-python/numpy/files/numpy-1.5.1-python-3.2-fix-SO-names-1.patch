@@ -1,0 +1,68 @@
+From ee0831a821744c2d013724456700573918b4ca37 Mon Sep 17 00:00:00 2001
+From: rgommers <ralf.gommers@googlemail.com>
+Date: Wed, 2 Mar 2011 15:57:33 +0800
+Subject: [PATCH] BUG: fix up shared library extension, which changed in
+ Python 3.2. Closes #1749.
+
+---
+ numpy/distutils/fcompiler/__init__.py |    5 ++++-
+ numpy/distutils/system_info.py        |    6 +++++-
+ numpy/tests/test_ctypeslib.py         |    4 ++++
+ 3 files changed, 13 insertions(+), 2 deletions(-)
+
+diff --git a/numpy/distutils/fcompiler/__init__.py b/numpy/distutils/fcompiler/__init__.py
+index 397b36c..d240045 100644
+--- a/numpy/distutils/fcompiler/__init__.py
++++ b/numpy/distutils/fcompiler/__init__.py
+@@ -27,7 +27,7 @@
+ 
+ from numpy.compat import open_latin1
+ 
+-from distutils.sysconfig import get_config_var, get_python_lib
++from distutils.sysconfig import get_config_var, get_config_vars, get_python_lib
+ from distutils.fancy_getopt import FancyGetopt
+ from distutils.errors import DistutilsModuleError, \
+      DistutilsExecError, CompileError, LinkError, DistutilsPlatformError
+@@ -196,6 +196,9 @@ class FCompiler(CCompiler):
+     src_extensions = ['.for','.ftn','.f77','.f','.f90','.f95','.F','.F90']
+     obj_extension = ".o"
+     shared_lib_extension = get_config_var('SO')  # or .dll
++    # fix long extension for Python >=3.2, see PEP 3149.
++    if 'SOABI' in get_config_vars():
++        shared_lib_extension = shared_lib_extension.replace('.'+get_config_var('SOABI'), '', 1)
+     static_lib_extension = ".a"  # or .lib
+     static_lib_format = "lib%s%s" # or %s%s
+     shared_lib_format = "%s%s"
+diff --git a/numpy/distutils/system_info.py b/numpy/distutils/system_info.py
+index 7cc33eb..7d13799 100644
+--- a/numpy/distutils/system_info.py
++++ b/numpy/distutils/system_info.py
+@@ -211,6 +211,10 @@ def libpaths(paths,bits):
+ default_src_dirs = filter(os.path.isdir, default_src_dirs)
+ 
+ so_ext = distutils.sysconfig.get_config_vars('SO')[0] or ''
++# fix long extension for Python >=3.2, see PEP 3149.
++if 'SOABI' in distutils.sysconfig.get_config_vars():
++    so_ext = so_ext.replace('.'+distutils.sysconfig.get_config_var('SOABI'), '', 1)
++
+ 
+ def get_standard_file(fname):
+     """Returns a list of files named 'fname' from
+diff --git a/numpy/tests/test_ctypeslib.py b/numpy/tests/test_ctypeslib.py
+index 832ce68..78403df 100644
+--- a/numpy/tests/test_ctypeslib.py
++++ b/numpy/tests/test_ctypeslib.py
+@@ -31,6 +31,10 @@ def test_basic2(self):
+             try:
+                 from distutils import sysconfig
+                 so = sysconfig.get_config_var('SO')
++                # fix long extension for Python >=3.2, see PEP 3149.
++                if 'SOABI' in sysconfig.get_config_vars():
++                    so = so.replace('.'+sysconfig.get_config_var('SOABI'), '', 1)
++
+                 cdll = load_library('multiarray%s' % so,
+                                     np.core.multiarray.__file__)
+             except ImportError:
+-- 
+1.7.10
+
