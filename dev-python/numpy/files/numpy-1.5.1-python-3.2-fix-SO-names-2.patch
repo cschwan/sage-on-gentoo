@@ -1,0 +1,245 @@
+From 9a287ba152e26ec0c9a1d658a3532f61e9291faa Mon Sep 17 00:00:00 2001
+From: rgommers <ralf.gommers@googlemail.com>
+Date: Sun, 19 Jun 2011 11:49:13 +0200
+Subject: [PATCH] BUG: deal with shared lib extension in a single place. Fix
+ ctypes.load_library.
+
+This is related to PEP 3149, tags in shared library extensions.  Only applies
+to Linux (for now).  See also #1749.
+---
+ numpy/ctypeslib.py                    |   11 ++++++-
+ numpy/distutils/fcompiler/__init__.py |   11 +++----
+ numpy/distutils/misc_util.py          |   54 +++++++++++++++++++++++++--------
+ numpy/distutils/system_info.py        |    9 ++----
+ numpy/tests/test_ctypeslib.py         |    8 ++---
+ 5 files changed, 62 insertions(+), 31 deletions(-)
+
+diff --git a/numpy/ctypeslib.py b/numpy/ctypeslib.py
+index 2caca3f..f3d42ab 100644
+--- a/numpy/ctypeslib.py
++++ b/numpy/ctypeslib.py
+@@ -55,6 +55,7 @@
+ import sys, os
+ from numpy import integer, ndarray, dtype as _dtype, deprecate, array
+ from numpy.core.multiarray import _flagdict, flagsobj
++from numpy.distutils.misc_util import get_shared_lib_extension
+ 
+ try:
+     import ctypes
+@@ -97,7 +98,15 @@ def load_library(libname, loader_path):
+             # Try to load library with platform-specific name, otherwise
+             # default to libname.[so|pyd].  Sometimes, these files are built
+             # erroneously on non-linux platforms.
+-            libname_ext = ['%s.so' % libname, '%s.pyd' % libname]
++            so_ext = get_shared_lib_extension()
++            libname_ext = [libname + so_ext]
++            if sys.version[:3] >= '3.2':
++                # For Python >= 3.2 a tag may be added to lib extension
++                # (platform dependent).  If we find such a tag, try both with
++                # and without it.
++                so_ext2 = get_shared_lib_extension(is_python_ext=True)
++                if not so_ext2 == so_ext:
++                    libname_ext.insert(0, libname + so_ext2)
+             if sys.platform == 'win32':
+                 libname_ext.insert(0, '%s.dll' % libname)
+             elif sys.platform == 'darwin':
+diff --git a/numpy/distutils/fcompiler/__init__.py b/numpy/distutils/fcompiler/__init__.py
+index d240045..69d9d68 100644
+--- a/numpy/distutils/fcompiler/__init__.py
++++ b/numpy/distutils/fcompiler/__init__.py
+@@ -27,7 +27,7 @@
+ 
+ from numpy.compat import open_latin1
+ 
+-from distutils.sysconfig import get_config_var, get_config_vars, get_python_lib
++from distutils.sysconfig import get_python_lib
+ from distutils.fancy_getopt import FancyGetopt
+ from distutils.errors import DistutilsModuleError, \
+      DistutilsExecError, CompileError, LinkError, DistutilsPlatformError
+@@ -35,7 +35,8 @@
+ 
+ from numpy.distutils.ccompiler import CCompiler, gen_lib_options
+ from numpy.distutils import log
+-from numpy.distutils.misc_util import is_string, all_strings, is_sequence, make_temp_file
++from numpy.distutils.misc_util import is_string, all_strings, is_sequence, \
++    make_temp_file, get_shared_lib_extension
+ from numpy.distutils.environment import EnvironmentConfig
+ from numpy.distutils.exec_command import find_executable
+ from numpy.distutils.compat import get_exception
+@@ -195,10 +196,8 @@ class FCompiler(CCompiler):
+ 
+     src_extensions = ['.for','.ftn','.f77','.f','.f90','.f95','.F','.F90']
+     obj_extension = ".o"
+-    shared_lib_extension = get_config_var('SO')  # or .dll
+-    # fix long extension for Python >=3.2, see PEP 3149.
+-    if 'SOABI' in get_config_vars():
+-        shared_lib_extension = shared_lib_extension.replace('.'+get_config_var('SOABI'), '', 1)
++
++    shared_lib_extension = get_shared_lib_extension()
+     static_lib_extension = ".a"  # or .lib
+     static_lib_format = "lib%s%s" # or %s%s
+     shared_lib_format = "%s%s"
+diff --git a/numpy/distutils/misc_util.py b/numpy/distutils/misc_util.py
+index bf180cd..53ef873 100644
+--- a/numpy/distutils/misc_util.py
++++ b/numpy/distutils/misc_util.py
+@@ -9,6 +9,7 @@
+ import subprocess
+ import shutil
+ 
++import distutils
+ from distutils.errors import DistutilsError
+ 
+ try:
+@@ -583,6 +584,35 @@ def get_lib_source_files(lib):
+             filenames.append(d)
+     return filenames
+ 
++def get_shared_lib_extension(is_python_ext=False):
++    """Return the correct file extension for shared libraries.
++
++    Parameters
++    ----------
++    is_python_ext : bool, optional
++        Whether the shared library is a Python extension.  Default is False.
++
++    Returns
++    -------
++    so_ext : str
++        The shared library extension.
++
++    Notes
++    -----
++    For Python shared libs, `so_ext` will typically be '.so' on Linux and OS X,
++    and '.pyd' on Windows.  For Python >= 3.2 `so_ext` has a tag prepended on
++    POSIX systems according to PEP 3149.  For Python 3.2 this is implemented on
++    Linux, but not on OS X.
++
++    """
++    so_ext = distutils.sysconfig.get_config_var('SO') or ''
++    # fix long extension for Python >=3.2, see PEP 3149.
++    if (not is_python_ext) and 'SOABI' in distutils.sysconfig.get_config_vars():
++        # Does nothing unless SOABI config var exists
++        so_ext = so_ext.replace('.' + distutils.sysconfig.get_config_var('SOABI'), '', 1)
++
++    return so_ext
++
+ def get_data_files(data):
+     if is_string(data):
+         return [data]
+@@ -772,7 +802,7 @@ def __init__(self,
+     def todict(self):
+         """
+         Return a dictionary compatible with the keyword arguments of distutils
+-        setup function. 
++        setup function.
+ 
+         Examples
+         --------
+@@ -947,8 +977,8 @@ def get_subpackage(self,subpackage_name,
+     def add_subpackage(self,subpackage_name,
+                        subpackage_path=None,
+                        standalone = False):
+-        """Add a sub-package to the current Configuration instance. 
+-        
++        """Add a sub-package to the current Configuration instance.
++
+         This is useful in a setup.py script for adding sub-packages to a
+         package.
+ 
+@@ -994,7 +1024,7 @@ def add_data_dir(self,data_path):
+         installed (and distributed). The data_path can be either a relative
+         path-name, or an absolute path-name, or a 2-tuple where the first
+         argument shows where in the install directory the data directory
+-        should be installed to. 
++        should be installed to.
+ 
+         Parameters
+         ----------
+@@ -1389,7 +1419,7 @@ def add_extension(self,name,sources,**kw):
+         Notes
+         -----
+         The self.paths(...) method is applied to all lists that may contain
+-        paths. 
++        paths.
+         """
+         ext_args = copy.copy(kw)
+         ext_args['name'] = dot_join(self.name,name)
+@@ -1889,8 +1919,8 @@ def get_version(self, version_file=None, version_variable=None):
+         """Try to get version string of a package.
+ 
+         Return a version string of the current package or None if the version
+-        information could not be detected. 
+-        
++        information could not be detected.
++
+         Notes
+         -----
+         This method scans files named
+@@ -1956,8 +1986,8 @@ def get_version(self, version_file=None, version_variable=None):
+ 
+     def make_svn_version_py(self, delete=True):
+         """Appends a data function to the data_files list that will generate
+-        __svn_version__.py file to the current package directory. 
+-        
++        __svn_version__.py file to the current package directory.
++
+         Generate package __svn_version__.py file from SVN revision number,
+         it will be removed after python exits but will be available
+         when sdist, etc commands are executed.
+diff --git a/numpy/distutils/system_info.py b/numpy/distutils/system_info.py
+index 667ca82..6dedf59 100644
+--- a/numpy/distutils/system_info.py
++++ b/numpy/distutils/system_info.py
+@@ -128,7 +128,8 @@
+ 
+ from numpy.distutils.exec_command import \
+     find_executable, exec_command, get_pythonexe
+-from numpy.distutils.misc_util import is_sequence, is_string
++from numpy.distutils.misc_util import is_sequence, is_string, \
++                                      get_shared_lib_extension
+ from numpy.distutils.command.config import config as cmd_config
+ from numpy.distutils.compat import get_exception
+ 
+@@ -210,11 +211,7 @@ def libpaths(paths,bits):
+ default_include_dirs = filter(os.path.isdir, default_include_dirs)
+ default_src_dirs = filter(os.path.isdir, default_src_dirs)
+ 
+-so_ext = distutils.sysconfig.get_config_vars('SO')[0] or ''
+-# fix long extension for Python >=3.2, see PEP 3149.
+-if 'SOABI' in distutils.sysconfig.get_config_vars():
+-    so_ext = so_ext.replace('.'+distutils.sysconfig.get_config_var('SOABI'), '', 1)
+-
++so_ext = get_shared_lib_extension()
+ 
+ def get_standard_file(fname):
+     """Returns a list of files named 'fname' from
+diff --git a/numpy/tests/test_ctypeslib.py b/numpy/tests/test_ctypeslib.py
+index 78403df..dfe7e90 100644
+--- a/numpy/tests/test_ctypeslib.py
++++ b/numpy/tests/test_ctypeslib.py
+@@ -2,6 +2,7 @@
+ 
+ import numpy as np
+ from numpy.ctypeslib import ndpointer, load_library
++from numpy.distutils.misc_util import get_shared_lib_extension
+ from numpy.testing import *
+ 
+ try:
+@@ -29,12 +30,7 @@ def test_basic2(self):
+         (including extension) does not work."""
+         try:
+             try:
+-                from distutils import sysconfig
+-                so = sysconfig.get_config_var('SO')
+-                # fix long extension for Python >=3.2, see PEP 3149.
+-                if 'SOABI' in sysconfig.get_config_vars():
+-                    so = so.replace('.'+sysconfig.get_config_var('SOABI'), '', 1)
+-
++                so = get_shared_lib_extension(is_python_ext=True)
+                 cdll = load_library('multiarray%s' % so,
+                                     np.core.multiarray.__file__)
+             except ImportError:
+-- 
+1.7.10
+

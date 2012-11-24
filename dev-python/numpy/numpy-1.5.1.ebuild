@@ -72,6 +72,10 @@ src_prepare() {
 	epatch "${FILESDIR}/${PN}-1.3.0-fenv-freebsd.patch" # Bug #279487
 	epatch "${FILESDIR}/${PN}-1.4.0-interix.patch"
 	epatch "${FILESDIR}/${P}-python-3.2.patch"
+	# fix so names issue with py3k, see
+	# http://projects.scipy.org/numpy/ticket/1749
+	epatch "${FILESDIR}/${P}-python-3.2-fix-SO-names-1.patch"
+	epatch "${FILESDIR}/${P}-python-3.2-fix-SO-names-2.patch"
 
 	# Gentoo patch for ATLAS library names
 	sed -i \
