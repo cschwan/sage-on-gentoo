@@ -2,6 +2,10 @@
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  26 Nov 2012; François Bissey <francois.bissey@canterbury.ac.nz>
+  files/sage-notebook.conf-0.10.2:
+  minor change to configuration
+
   21 Nov 2012; François Bissey <francois.bissey@canterbury.ac.nz>
   -files/sage-notebook-0.8.14-fix-secure-connection.patch,
   -files/sage-notebook-0.8.16-twistd-python-version.patch,
