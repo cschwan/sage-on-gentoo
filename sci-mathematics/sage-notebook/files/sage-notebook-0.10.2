@@ -17,6 +17,9 @@ user_home=$(eval cd ~${user:=sage} && pwd)
 : ${stdout:="${user_home}"/sagenb.log}
 : ${stderr:="${user_home}"/sagenb.err}
 
+# resolve any tildes 'directory' might contain and fail silently
+directory=$(eval cd ${directory} 2>/dev/null && pwd)
+
 command_args=( 
 	-notebook
 	accounts=${accounts}
@@ -28,9 +31,6 @@ command_args=(
 	timeout=${timeout}
 	ulimit=${ulimit}
 )
-
-# resolve any tildes 'directory' might contain and fail silently
-directory=$(eval cd ${directory} 2>/dev/null && pwd)
 
 # pidfile is hardcoded into Sage's source files
 pidfile="${directory}"/sagenb.pid
