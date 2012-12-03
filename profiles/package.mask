@@ -6,7 +6,5 @@
 >=sci-mathematics/sage-extcode-5.5_alpha0
 # building problems reported against latest fplll
 >=sci-libs/fplll-3.1.1
-# prepare for numpy-1.7.0
->=dev-python/numpy-1.7.0_beta2
 # masking zodb-3.10+ for now
 >=net-zope/zodb-3.10.0
