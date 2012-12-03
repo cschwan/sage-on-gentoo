@@ -2,6 +2,10 @@
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  03 Dec 2012; François Bissey <francois.bissey@canterbury.ac.nz>
+  -sage-5.4.1-r1.ebuild:
+  remove old
+
 *sage-5.4.1-r2 (03 Dec 2012)
 
   03 Dec 2012; François Bissey <francois.bissey@canterbury.ac.nz>
