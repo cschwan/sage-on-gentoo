@@ -2,6 +2,13 @@
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*sage-5.4.1-r1 (03 Dec 2012)
+
+  03 Dec 2012; François Bissey <francois.bissey@canterbury.ac.nz>
+  -sage-5.4.1.ebuild, +sage-5.4.1-r1.ebuild,
+  files/sage-5.4-variables.patch.bz2:
+  revision of sage variables patch
+
   21 Nov 2012; François Bissey <francois.bissey@canterbury.ac.nz>
   -files/sage-4.5.1-fix-qepcad-path.patch, -files/sage-4.8-dist.py.patch,
   -sage-5.1-r2.ebuild, -files/sage-5.1-variables.patch,
