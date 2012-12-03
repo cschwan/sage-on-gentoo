@@ -2,6 +2,13 @@
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*sage-5.4.1-r2 (03 Dec 2012)
+
+  03 Dec 2012; François Bissey <francois.bissey@canterbury.ac.nz>
+  +files/numpy-1.7.patch, +files/trac_13740_final_fixes.patch,
+  +sage-5.4.1-r2.ebuild, metadata.xml:
+  Lots of things: upgrade cython used, allow numpy 1.7.0 lock matplotlib
+
 *sage-5.4.1-r1 (03 Dec 2012)
 
   03 Dec 2012; François Bissey <francois.bissey@canterbury.ac.nz>

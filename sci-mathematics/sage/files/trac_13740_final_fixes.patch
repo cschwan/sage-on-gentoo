@@ -1,0 +1,117 @@
+# HG changeset patch
+# User Volker Braun <vbraun.name@gmail.com>
+# Date 1353618219 0
+# Node ID e90b810bffdb0cafb9184ac85a1379237420fa5a
+# Parent  cb579f8447e5bacc747da8612d72a66f4c5e4878
+The new Cython 0.17.2 is more strict about what can be inline.
+
+diff --git a/sage/libs/singular/polynomial.pxd b/sage/libs/singular/polynomial.pxd
+--- a/sage/libs/singular/polynomial.pxd
++++ b/sage/libs/singular/polynomial.pxd
+@@ -32,5 +32,5 @@
+ cdef object singular_polynomial_str_with_changed_varnames(poly *p, ring *r, object varnames)
+ cdef long singular_polynomial_deg(poly *p, poly *x, ring *r)
+ 
+-cdef inline int singular_polynomial_length_bounded(poly *p, int bound)
++cdef int singular_polynomial_length_bounded(poly *p, int bound)
+ cdef int singular_vector_maximal_component(poly *v, ring *r) except -1
+diff --git a/sage/libs/singular/polynomial.pyx b/sage/libs/singular/polynomial.pyx
+--- a/sage/libs/singular/polynomial.pyx
++++ b/sage/libs/singular/polynomial.pyx
+@@ -493,7 +493,7 @@
+         p = pNext(p)
+     return deg
+ 
+-cdef inline int singular_polynomial_length_bounded(poly *p, int bound):
++cdef int singular_polynomial_length_bounded(poly *p, int bound):
+     """
+     Return the number of monomials in ``p`` but stop counting at
+     ``bound``.
+diff --git a/sage/libs/singular/singular.pxd b/sage/libs/singular/singular.pxd
+--- a/sage/libs/singular/singular.pxd
++++ b/sage/libs/singular/singular.pxd
+@@ -53,7 +53,7 @@
+ # Initialisation
+ # ==============
+ 
+-cdef inline int overflow_check(long e, ring *_ring) except -1
++cdef int overflow_check(long e, ring *_ring) except -1
+ 
+ cdef init_libsingular()
+ cdef inline unsigned long get_max_exponent_size()
+diff --git a/sage/libs/singular/singular.pyx b/sage/libs/singular/singular.pyx
+--- a/sage/libs/singular/singular.pyx
++++ b/sage/libs/singular/singular.pyx
+@@ -629,7 +629,7 @@
+ # Our attempt at avoiding exponent overflows.
+ cdef unsigned int max_exponent_size
+ 
+-cdef inline int overflow_check(long e, ring *_ring) except -1:
++cdef int overflow_check(long e, ring *_ring) except -1:
+     """
+     Raises an ``OverflowError`` if e is > ``max_exponent_size``,
+     or if it is not acceptable for Singular as exponent of the
+diff --git a/sage/structure/list_clone.pxd b/sage/structure/list_clone.pxd
+--- a/sage/structure/list_clone.pxd
++++ b/sage/structure/list_clone.pxd
+@@ -8,31 +8,36 @@
+ from sage.structure.element cimport Element
+ 
+ 
++# Cython-0.17.2 disallows inline cpdef in non-final classes
++# This restriction will be lifted at one point, then we can set
++# some of the methods to be inline again, that is,
++# revert the patch form http://trac.sagemath.org/13740
++
+ cdef class ClonableElement(Element):
+     cdef bint _is_immutable
+     cdef bint _needs_check
+     cdef long int  _hash
+ 
+-    cpdef inline bint _require_mutable(self) except -2
+-    cpdef inline bint is_mutable(self)
+-    cpdef inline bint is_immutable(self)
+-    cpdef inline set_immutable(self)
++    cpdef bint _require_mutable(self) except -2
++    cpdef bint is_mutable(self)
++    cpdef bint is_immutable(self)
++    cpdef set_immutable(self)
+ 
+-    cpdef inline _set_mutable(self)
++    cpdef _set_mutable(self)
+ 
+-    cpdef inline ClonableElement clone(self, bint check=?)
+-    cpdef inline ClonableElement __enter__(self)
+-    cpdef inline bint __exit__(self, typ, value, tracback) except -2
++    cpdef ClonableElement clone(self, bint check=?)
++    cpdef ClonableElement __enter__(self)
++    cpdef bint __exit__(self, typ, value, tracback) except -2
+ 
+ cdef class ClonableArray(ClonableElement):
+     cdef list _list
+ 
+-    cpdef inline list _get_list(self)
+-    cpdef inline _set_list(self, list lst)
++    cpdef list _get_list(self)
++    cpdef _set_list(self, list lst)
+     cpdef ClonableArray __copy__(self)
+     cpdef check(self)
+-    cpdef inline object _getitem(self, int key)
+-    cpdef inline _setitem(self, int key, value)
++    cpdef object _getitem(self, int key)
++    cpdef _setitem(self, int key, value)
+     cpdef int index(self, key, start=*, stop=*) except -1
+     cpdef int count(self, key) except -1
+     cpdef long int _hash_(self) except 0
+@@ -51,8 +56,8 @@
+     cpdef _alloc_(self, int size)
+     cpdef ClonableIntArray __copy__(self)
+     cpdef check(self)
+-    cpdef inline object _getitem(self, int key)
+-    cpdef inline _setitem(self, int item, value)
++    cpdef object _getitem(self, int key)
++    cpdef _setitem(self, int item, value)
+     cpdef int index(self, int item) except -1
+     cpdef long int _hash_(self) except 0
+-    cpdef inline list list(self)
++    cpdef list list(self)
