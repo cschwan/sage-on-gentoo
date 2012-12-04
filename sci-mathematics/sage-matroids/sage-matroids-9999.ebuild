@@ -61,10 +61,10 @@ src_install() {
 	distutils_src_install
 
 	# install sources needed for testing and compiling of cython files and spyx files
-	find sage ! \( -name "*.py" -o -name "*.pyx" -o -name "*.pxd" -o \
+	find sage/matroids ! \( -name "*.py" -o -name "*.pyx" -o -name "*.pxd" -o \
 		-name "*.pxi" -o -name "*.h" \) -type f -delete \
 		|| die "failed to remove non-testable sources"
 
-	insinto /usr/share/sage/devel/sage-main
+	insinto /usr/share/sage/devel/sage-main/matroids
 	doins -r sage || die
 }
