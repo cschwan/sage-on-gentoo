@@ -55,3 +55,16 @@ src_configure() {
 	find sage -name "*pyx" -exec touch '{}' \; \
 		|| die "failed to touch *pyx files"
 }
+
+src_install() {
+# 	distutils-r1_src_install
+	distutils_src_install
+
+	# install sources needed for testing and compiling of cython files and spyx files
+	find sage ! \( -name "*.py" -o -name "*.pyx" -o -name "*.pxd" -o \
+		-name "*.pxi" -o -name "*.h" \) -type f -delete \
+		|| die "failed to remove non-testable sources"
+
+	insinto /usr/share/sage/devel/sage-main
+	doins -r sage || die
+}

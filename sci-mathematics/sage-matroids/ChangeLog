@@ -2,6 +2,11 @@
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  04 Dec 2012; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-matroids-9999.ebuild:
+  Add source to SAGE_DEVEL which may make things testable with the rest of
+  sage.
+
 *sage-matroids-9999 (04 Dec 2012)
 
   04 Dec 2012; François Bissey <francois.bissey@canterbury.ac.nz>
