@@ -65,6 +65,6 @@ src_install() {
 		-name "*.pxi" -o -name "*.h" \) -type f -delete \
 		|| die "failed to remove non-testable sources"
 
-	insinto /usr/share/sage/devel/sage-main/sage/matroids
+	insinto /usr/share/sage/devel/sage-main/sage
 	doins -r sage/matroids || die
 }
