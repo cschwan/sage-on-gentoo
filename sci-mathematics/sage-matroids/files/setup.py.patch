@@ -1,0 +1,79 @@
+--- setup.py.orig	2012-12-04 13:22:13.753096294 +1300
++++ setup.py	2012-12-04 14:45:02.040271361 +1300
+@@ -16,7 +16,6 @@
+ #########################################################
+ 
+ from module_list import ext_modules
+-#import sage.ext.gen_interpreters
+ import warnings
+ 
+ #########################################################
+@@ -33,7 +32,7 @@
+     sys.exit(1)
+ else:
+     SAGE_ROOT  = os.environ['SAGE_ROOT']
+-    SAGE_LOCAL = SAGE_ROOT + '/local'
++    SAGE_LOCAL = os.environ['SAGE_LOCAL']
+     SAGE_DEVEL = SAGE_ROOT + '/devel'
+     SAGE_INC   = SAGE_LOCAL + '/include/'
+ 
+@@ -42,12 +41,6 @@
+ else:
+     SAGE_VERSION = os.environ['SAGE_VERSION']
+ 
+-INCLUDES = ['.'] + ['%s/%s/'%(SAGE_ROOT,x) for x in
+-            ['local/include/csage', 'local/include', 'local/include/python2.7',
+-             'devel/sage/sage/ext', 'devel/sage', 'devel/sage/sage/gsl']]
+-
+-incstr = ''.join(map(lambda x: ' -I'+x, INCLUDES))
+-
+ try:
+     compile_result_dir = os.environ['XML_RESULTS']
+     keep_going = True
+@@ -55,26 +48,25 @@
+     compile_result_dir = None
+     keep_going = False
+ 
+-SITE_PACKAGES = '%s/lib/python%s/site-packages/'%(SAGE_LOCAL,platform.python_version().rsplit('.', 1)[0])
+-if not os.path.exists(SITE_PACKAGES):
+-    raise RuntimeError, "Unable to find site-packages directory (see setup.py file in sage python code)."
++SITE_PACKAGES = 'build'
+ 
+ if not os.path.exists('build/sage'):
+     os.makedirs('build/sage')
+ 
+-sage_link = SITE_PACKAGES + '/sage'
+-if not os.path.islink(sage_link) or not os.path.exists(sage_link):
+-    os.system('rm -rf "%s"'%sage_link)
+-    os.system('cd %s; ln -sf ../../../../devel/sage/build/sage .'%SITE_PACKAGES)
+-
+ # search for dependencies and add to gcc -I<path>
+-include_dirs = INCLUDES # ['%s/include'%SAGE_LOCAL,
+-#                 '%s/include/csage'%SAGE_LOCAL,
+-#                 '%s/sage/sage/ext'%SAGE_DEVEL]
++include_dirs = ['%s/include'%SAGE_LOCAL,
++                '%s/include/csage'%SAGE_LOCAL,
++                '%s/sage/sage/ext'%SAGE_DEVEL,
++                '%s/sage/sage/gsl'%SAGE_DEVEL,
++                '%s/sage'%SAGE_DEVEL,]
+ 
+ # search for dependencies only
+ extra_include_dirs = [ '%s/include/python%s'%(SAGE_LOCAL,platform.python_version().rsplit('.', 1)[0]) ]
+ 
++INCLUDES = include_dirs + extra_include_dirs
++
++incstr = ''.join(map(lambda x: ' -I'+x, INCLUDES))
++
+ extra_compile_args = [ ]
+ extra_link_args = [ ]
+ 
+@@ -738,8 +730,7 @@
+             cplus = ''
+ 
+         # call cython, abort if it failed
+-        cmd = "python `which cython` %s --disable-function-redefinition --embed-positions --directive cdivision=True,autotestdict=False,fast_getattr=True %s -o %s %s"%(cplus, incstr, outfile, f) #TODO: changed os.getcwd() into incstr; removed leading -I
+-#        cmd = "python `which cython` %s %s -o %s %s"%(cplus, incstr, outfile, f) #TODO: changed os.getcwd() into incstr; removed leading -I
++        cmd = "python `which cython` %s --old-style-globals --embed-positions --directive cdivision=True,autotestdict=False,fast_getattr=True %s -o %s %s"%(cplus, incstr, outfile, f)
+         r = run_command(cmd)
+         if r:
+             return r

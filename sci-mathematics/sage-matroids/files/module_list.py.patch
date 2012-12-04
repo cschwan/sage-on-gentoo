@@ -1,0 +1,38 @@
+--- module_list.py.orig	2012-12-04 13:46:45.059122803 +1300
++++ module_list.py	2012-12-04 14:07:55.851926101 +1300
+@@ -1,6 +1,6 @@
+ #!/usr/bin/env python
+ 
+-import os, sys
++import os, sys, platform
+ from distutils.core import setup
+ from distutils.extension import Extension
+ 
+@@ -18,9 +18,17 @@
+     SAGE_DEVEL = SAGE_ROOT + '/devel'
+     SAGE_INC = SAGE_LOCAL + '/include/'
+ 
+-INCLUDES = ['.'] + ['%s/%s/'%(SAGE_ROOT,x) for x in
+-            ['local/include/csage', 'local/include', 'local/include/python2.7',
+-             'devel/sage/sage/ext', 'devel/sage', 'devel/sage/sage/gsl']]
++# search for dependencies and add to gcc -I<path>
++include_dirs = ['%s/include'%SAGE_LOCAL,
++                '%s/include/csage'%SAGE_LOCAL,
++                '%s/sage/sage/ext'%SAGE_DEVEL,
++                '%s/sage/sage/gsl'%SAGE_DEVEL]
++
++# search for dependencies only
++extra_include_dirs = [ '%s/include/python%s'%(SAGE_LOCAL,platform.python_version().rsplit('.', 1)[0]) ]
++
++
++INCLUDES = include_dirs + extra_include_dirs
+ 
+ #############################################################
+ ### List of modules
+@@ -65,4 +73,4 @@
+                 include_dirs=INCLUDES),
+ 
+     
+-    ]
+\ No newline at end of file
++    ]
