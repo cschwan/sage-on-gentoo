@@ -345,7 +345,6 @@ src_configure() {
 		|| die "failed to touch *pyx files"
 
 # 	distutils-r1_src_configure
-	distutils_src_configure
 }
 
 src_install() {
