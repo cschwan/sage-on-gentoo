@@ -252,11 +252,6 @@ src_prepare() {
 	sed -i "s|sage: x = dlx_solver(rows)|sage: x = dlx_solver(rows) # not tested|" \
 		sage/combinat/tiling.py
 
-	# numpy-1.7.0 support
-	if use numpy1.7; then
-		epatch "${FILESDIR}"/numpy-1.7.patch
-	fi
-
 	# update to gfan-0.5 trac 11395
 	epatch "${FILESDIR}"/trac_11395_update_gfan_to_0.5.patch
 	epatch "${FILESDIR}"/trac11395-fix_tutorial.patch

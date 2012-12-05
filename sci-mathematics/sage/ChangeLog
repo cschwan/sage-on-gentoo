@@ -2,6 +2,10 @@
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  05 Dec 2012; François Bissey <francois.bissey@canterbury.ac.nz>
+  -files/numpy-1.7.patch, sage-5.4.1-r2.ebuild:
+  turm out the numpy 1.7 is unnecessary
+
   04 Dec 2012; François Bissey <francois.bissey@canterbury.ac.nz>
   sage-5.4.1-r2.ebuild:
   remove non-existent helper
