@@ -78,6 +78,7 @@ src_prepare() {
 	# http://projects.scipy.org/numpy/ticket/1749
 	epatch "${FILESDIR}/${P}-python-3.2-fix-SO-names-1.patch"
 	epatch "${FILESDIR}/${P}-python-3.2-fix-SO-names-2.patch"
+	epatch "${FILESDIR}/${P}-python-3.2-fix-SO-names-3.patch"
 
 
 	# Gentoo patch for ATLAS library names
