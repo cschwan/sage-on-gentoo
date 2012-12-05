@@ -1,0 +1,34 @@
+From 23b724476f5f442b233077f0c4bb06b1e6a0af00 Mon Sep 17 00:00:00 2001
+From: Ralf Gommers <ralf.gommers@googlemail.com>
+Date: Fri, 15 Jul 2011 09:08:06 +0200
+Subject: [PATCH] BUG: defer numpy.distutils import in ctypeslib.
+
+Numpy.distutils was imported together with numpy due to the change in commit
+025c8c77; this is unwanted.
+---
+ numpy/ctypeslib.py |    2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/numpy/ctypeslib.py b/numpy/ctypeslib.py
+index f3d42ab..367b08f 100644
+--- a/numpy/ctypeslib.py
++++ b/numpy/ctypeslib.py
+@@ -55,7 +55,6 @@
+ import sys, os
+ from numpy import integer, ndarray, dtype as _dtype, deprecate, array
+ from numpy.core.multiarray import _flagdict, flagsobj
+-from numpy.distutils.misc_util import get_shared_lib_extension
+ 
+ try:
+     import ctypes
+@@ -98,6 +97,7 @@ def load_library(libname, loader_path):
+             # Try to load library with platform-specific name, otherwise
+             # default to libname.[so|pyd].  Sometimes, these files are built
+             # erroneously on non-linux platforms.
++            from numpy.distutils.misc_util import get_shared_lib_extension
+             so_ext = get_shared_lib_extension()
+             libname_ext = [libname + so_ext]
+             if sys.version[:3] >= '3.2':
+-- 
+1.7.10
+
