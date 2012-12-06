@@ -302,6 +302,9 @@ src_prepare() {
 	# patching for variables
 	epatch "${FILESDIR}"/${PN}-5.4-variables.patch.bz2
 
+	# allow sage-matroids to be used if installed
+	epatch "${FILESDIR}"/${PN}-matroids.patch
+
 	# apply patches from /etc/portage/patches
 	epatch_user
 
