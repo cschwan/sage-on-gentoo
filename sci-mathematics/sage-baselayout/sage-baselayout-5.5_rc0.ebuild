@@ -142,7 +142,7 @@ src_install() {
 	fi
 
 	# COMMAND helper scripts
-	dobin sage-cython sage-notebook* sage-python
+	dobin sage-cython sage-notebook* sage-python sage-run-cython
 
 	# additonal helper scripts
 	dobin sage-preparse sage-startuptime.py

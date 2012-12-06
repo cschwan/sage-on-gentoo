@@ -2,6 +2,10 @@
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  06 Dec 2012; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-baselayout-5.5_rc0.ebuild:
+  Add the run-cython script
+
 *sage-baselayout-5.5_rc0 (06 Dec 2012)
 
   06 Dec 2012; François Bissey <francois.bissey@canterbury.ac.nz>
