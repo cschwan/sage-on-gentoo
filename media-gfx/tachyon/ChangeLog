@@ -1,6 +1,10 @@
 # ChangeLog for media-gfx/tachyon
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/tachyon/ChangeLog,v 1.5 2012/03/12 13:05:10 alexxy Exp $
+# $Header: $
+
+  07 Dec 2012; Christopher Schwan <cschwan@students.uni-mainz.de>
+  tachyon-0.98.9-r2.ebuild:
+  Sync with portage and fix bug #444008
 
   02 Aug 2012; François Bissey <francois.bissey@canterbury.ac.nz>
   tachyon-0.98.9-r2.ebuild:
