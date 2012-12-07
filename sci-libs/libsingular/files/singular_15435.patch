@@ -1,0 +1,135 @@
+diff --git a/kernel/ring.h b/kernel/ring.h
+--- a/kernel/ring.h
++++ b/kernel/ring.h
+@@ -409,14 +409,14 @@
+ #define rHasLocalOrMixedOrdering(R) ((R)->OrdSgn==-1)
+ #define rHasLocalOrMixedOrdering_currRing() (pOrdSgn==-1)
+-BOOLEAN rOrd_is_Totaldegree_Ordering(ring r =currRing);
++BOOLEAN rOrd_is_Totaldegree_Ordering(const ring r =currRing);
+ 
+ /// return TRUE if p_SetComp requires p_Setm
+-BOOLEAN rOrd_SetCompRequiresSetm(ring r);
+-rOrderType_t    rGetOrderType(ring r);
++BOOLEAN rOrd_SetCompRequiresSetm(const ring r);
++rOrderType_t    rGetOrderType(const ring r);
+ 
+ /// returns TRUE if var(i) belongs to p-block
+-BOOLEAN rIsPolyVar(int i, ring r = currRing);
+-
+-static inline BOOLEAN rOrd_is_Comp_dp(ring r)
++BOOLEAN rIsPolyVar(int i, const ring r = currRing);
++
++static inline BOOLEAN rOrd_is_Comp_dp(const ring r)
+ {
+   return ((r->order[0] == ringorder_c || r->order[0] == ringorder_C) &&
+diff --git a/kernel/ring.cc b/kernel/ring.cc
+--- a/kernel/ring.cc
++++ b/kernel/ring.cc
+@@ -1899,5 +1899,5 @@
+ }
+ 
+-rOrderType_t rGetOrderType(ring r)
++rOrderType_t rGetOrderType(const ring r)
+ {
+   // check for simple ordering
+@@ -2017,5 +2017,5 @@
+ }
+ 
+-BOOLEAN rHasSimpleOrderAA(ring r)
++BOOLEAN rHasSimpleOrderAA(const ring r)
+ {
+   if (r->order[0] == ringorder_unspec) return TRUE;
+@@ -2048,5 +2048,5 @@
+ 
+ // return TRUE if p_SetComp requires p_Setm
+-BOOLEAN rOrd_SetCompRequiresSetm(ring r)
++BOOLEAN rOrd_SetCompRequiresSetm(const ring r)
+ {
+   if (r->typ != NULL)
+@@ -2062,6 +2062,19 @@
+ }
+ 
++BOOLEAN rHasModuleOrder(const ring r)
++{
++  int i=0;
++  loop
++  {
++    if ((r->order[i]==ringorder_c)
++    || (r->order[i]==ringorder_C))
++      return TRUE;
++    if (r->order[i]==0) return FALSE;
++    i++;
++  }
++  return FALSE; /*never reached */
++}
+ // return TRUE if p->exp[r->pOrdIndex] holds total degree of p */
+-BOOLEAN rOrd_is_Totaldegree_Ordering(ring r)
++BOOLEAN rOrd_is_Totaldegree_Ordering(const ring r)
+ {
+   // Hmm.... what about Syz orderings?
+@@ -2070,5 +2083,5 @@
+            (rOrder_is_DegOrdering((rRingOrder_t)r->order[0]) ||
+             rOrder_is_DegOrdering(( rRingOrder_t)r->order[1]))) ||
+-           (rHasSimpleOrderAA(r) &&
++           (rHasSimpleOrderAA(r) && rHasModuleOrder(r) &&
+             (rOrder_is_DegOrdering((rRingOrder_t)r->order[1]) ||
+              rOrder_is_DegOrdering((rRingOrder_t)r->order[2])))));
+@@ -2085,5 +2098,5 @@
+ }
+ 
+-BOOLEAN rIsPolyVar(int v, ring r)
++BOOLEAN rIsPolyVar(int v, const ring r)
+ {
+   int  i=0;
+diff --git a/kernel/gring.cc b/kernel/gring.cc
+--- a/kernel/gring.cc
++++ b/kernel/gring.cc
+@@ -35,7 +35,4 @@
+ #include <kernel/p_Mult_q.h>
+ #include <kernel/pInline1.h>
+-
+-// dirty tricks:
+-#include <kernel/p_MemAdd.h>
+ 
+ #include <kernel/gring.h>
+@@ -461,6 +458,4 @@
+ }
+ 
+-
+-
+ poly gnc_mm_Mult_nn(int *F0, int *G0, const ring r)
+ /* destroys nothing, no coeffs and exps */
+@@ -470,5 +465,4 @@
+   int iF,jG,iG;
+   int rN=r->N;
+-  int ExpSize=(((rN+1)*sizeof(int)+sizeof(long)-1)/sizeof(long))*sizeof(long);
+ 
+   int *F=(int *)omAlloc0((rN+1)*sizeof(int));
+@@ -479,5 +473,5 @@
+   memcpy(G, G0,(rN+1)*sizeof(int));
+   //  pExpVectorCopy(G,G0);
+-  F[0]=0; /* important for p_MemAdd */
++  F[0]=0;
+   G[0]=0;
+ 
+@@ -503,8 +497,7 @@
+     /* i.e. no mixed exp_num , MERGE case */
+   {
+-    p_MemAdd_LengthGeneral(F, G, ExpSize/sizeof(long));
++    { for(int ii=rN;ii>0;ii--) F[ii]+=G[ii]; }
+     p_SetExpV(out,F,r);
+     p_Setm(out,r);
+-    //    omFreeSize((ADDRESS)F,ExpSize);
+     freeT(F,rN);
+     freeT(G,rN);
+@@ -565,9 +558,8 @@
+       cff=totcff;
+     }
+-    p_MemAdd_LengthGeneral(F, G, ExpSize/sizeof(long));
++    { for(int ii=rN;ii>0;ii--) F[ii]+=G[ii]; }
+     p_SetExpV(out,F,r);
+     p_Setm(out,r);
+     p_SetCoeff(out,cff,r);
+-    //    p_MemAdd_NegWeightAdjust(p, r); ??? do we need this?
+     freeT(F,rN);
+     freeT(G,rN);

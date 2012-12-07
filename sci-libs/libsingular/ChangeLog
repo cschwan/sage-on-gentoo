@@ -2,6 +2,14 @@
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*libsingular-3.1.5-r1 (07 Dec 2012)
+
+  07 Dec 2012; François Bissey <francois.bissey@canterbury.ac.nz>
+  +files/singular_15435.patch,
+  +files/singular_part_of_changeset_baadc0f7.patch, -libsingular-3.1.5.ebuild,
+  +libsingular-3.1.5-r1.ebuild:
+  add patches from trac 13731
+
   21 Nov 2012; François Bissey <francois.bissey@canterbury.ac.nz>
   -libsingular-3.1.3.3-r2.ebuild, -files/singular-3.1.3.3-os_x_ppc.patch,
   -libsingular-3.1.4.ebuild:

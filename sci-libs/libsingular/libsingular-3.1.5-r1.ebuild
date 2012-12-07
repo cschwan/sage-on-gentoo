@@ -51,6 +51,8 @@ src_prepare () {
 	epatch "${FILESDIR}"/${PN_PATCH}_trac_440.patch
 	epatch "${FILESDIR}"/${PN_PATCH}_trac_441.patch
 	epatch "${FILESDIR}"/${PN_PATCH}_trac_443.patch
+	epatch "${FILESDIR}"/${PN_PATCH}_15435.patch
+	epatch "${FILESDIR}"/${PN_PATCH}_part_of_changeset_baadc0f7.patch
 	if  [[ ${CHOST} == *-darwin* ]] ; then
 		# really a placeholder until I figure out the patch for that one.
 		epatch "${FILESDIR}"/${PN_PATCH}-3.1.3.3-dylib.patch
