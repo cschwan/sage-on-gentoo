@@ -21,7 +21,7 @@ SRC_URI="http://sage.math.washington.edu/home/release/${MY_P}/${MY_P}/spkg/stand
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64 ~x86 ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~x64-macos"
-IUSE="latex numpy1.7 testsuite"
+IUSE="latex numpy17 testsuite"
 
 RESTRICT="mirror test"
 
@@ -31,8 +31,8 @@ CDEPEND="dev-libs/gmp
 	>=dev-libs/ntl-5.5.2
 	>=dev-libs/ppl-0.11.2
 	>=dev-lisp/ecls-11.1.1-r1
-	numpy1.7? ( >=dev-python/numpy-1.7.0_beta2 )
-	!numpy1.7? ( ~dev-python/numpy-1.5.1 )
+	numpy17? ( >=dev-python/numpy-1.7.0_beta2 )
+	!numpy17? ( ~dev-python/numpy-1.5.1 )
 	~dev-python/cython-0.17.2
 	~sci-mathematics/eclib-20120428
 	>=sci-mathematics/ecm-6.3
@@ -124,7 +124,7 @@ pkg_setup() {
 	python_set_active_version 2.7
 	python_pkg_setup
 	# warn if numpy 1.7 is used
-	if use numpy1.7; then
+	if use numpy17; then
 		ewarn "you have enabled the use of numpy1.7, this is unsupported upstream"
 		ewarn "it will generate lots of noise and an oddity here and there."
 		ewarn "see http://trac.sagemath.org/sage_trac/ticket/11334 for details"

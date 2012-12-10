@@ -10,7 +10,7 @@
 			If activated installs Sage's sources into
 			/usr/share/sage/devel/sage to enable testing
 		</flag>
-		<flag name='numpy1.7'>
+		<flag name='numpy17'>
 			Use the beta of numpy 1.7 and associated patches
 		</flag>
 	</use>

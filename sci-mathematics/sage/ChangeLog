@@ -2,6 +2,10 @@
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  10 Dec 2012; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-5.4.1-r2.ebuild, sage-5.5_rc0.ebuild, metadata.xml:
+  change useflag to numpy17 no dots please
+
 *sage-5.5_rc0 (06 Dec 2012)
 
   06 Dec 2012; François Bissey <francois.bissey@canterbury.ac.nz>
