@@ -4,13 +4,11 @@
 
 EAPI=4
 
-PYTHON_DEPEND="*::3.2"
-SUPPORT_PYTHON_ABIS="1"
-RESTRICT_PYTHON_ABIS="3.3 *-jython *-pypy-*"
+PYTHON_COMPAT=( python{2_5,2_6,2_7,3_1,3_2} )
 
 FORTRAN_NEEDED=lapack
 
-inherit distutils eutils flag-o-matic fortran-2 toolchain-funcs versionator
+inherit distutils-r1 multilib eutils flag-o-matic fortran-2 toolchain-funcs versionator
 
 DOC_P="${PN}-1.6.0"
 GITTAG="c4c169c7cb32075386bd03463a908035c655784b"
@@ -31,25 +29,30 @@ KEYWORDS="~alpha ~amd64 ~arm ~hppa ~ia64 ~mips ~ppc ~ppc64 ~s390 ~sh ~sparc ~x86
 IUSE="doc lapack test"
 
 RDEPEND="
-	dev-python/setuptools
+	${PYTHON_DEPS}
+	dev-python/setuptools[${PYTHON_USEDEP}]
 	lapack? ( virtual/cblas virtual/lapack )"
 DEPEND="${RDEPEND}
 	doc? ( app-arch/unzip )
 	lapack? ( virtual/pkgconfig )
-	test? ( >=dev-python/nose-0.10 )"
+	test? ( >=dev-python/nose-0.10[${PYTHON_USEDEP}] )"
 
 PYTHON_CFLAGS=("* + -fno-strict-aliasing")
 
 # Build system installs f2py${Python_version} scripts.
 PYTHON_NONVERSIONED_EXECUTABLES=("/usr/bin/f2py[[:digit:]]+\.[[:digit:]]+")
 
-DOCS="COMPATIBILITY DEV_README.txt THANKS.txt"
+PATCHES=(
+	# ATLAS patch
+	"${FILESDIR}"/${PN}-1.7.0-atlas.patch
+	)
+
+DOCS=( COMPATIBILITY DEV_README.txt THANKS.txt )
 
 S="${WORKDIR}/${MY_P}"
 
 pkg_setup() {
 	fortran-2_pkg_setup
-	python_pkg_setup
 
 	# See progress in http://projects.scipy.org/scipy/numpy/ticket/573
 	# with the subtle difference that we don't want to break Darwin where
@@ -93,8 +96,6 @@ pc_libs() {
 }
 
 src_prepare() {
-	epatch "${FILESDIR}"/${PN}-1.7.0-atlas.patch
-
 	if use lapack; then
 		append-ldflags "$(pkg-config --libs-only-other cblas lapack)"
 		local libdir="${EPREFIX}"/usr/$(get_libdir)
@@ -114,10 +115,11 @@ src_prepare() {
 	fi
 
 	export CC="$(tc-getCC) ${CFLAGS}"
+	distutils-r1_python_prepare_all
 }
 
 src_compile() {
-	distutils_src_compile ${NUMPY_FCONFIG}
+	distutils-r1_src_compile ${NUMPY_FCONFIG}
 }
 
 src_test() {
@@ -130,16 +132,16 @@ src_test() {
 		popd > /dev/null
 		rm -fr test-${PYTHON_ABI}
 	}
-	python_execute_function testing
+	python_foreach_impl testing
 }
 
 src_install() {
-	distutils_src_install ${NUMPY_FCONFIG}
+	distutils-r1_src_install ${NUMPY_FCONFIG}
 
 	delete_txt() {
 		rm -f "${ED}"$(python_get_sitedir)/numpy/*.txt
 	}
-	python_execute_function -q delete_txt
+	python_foreach_impl delete_txt
 
 	docinto f2py
 	dodoc numpy/f2py/docs/*.txt
@@ -147,7 +149,7 @@ src_install() {
 
 	if use doc; then
 		insinto /usr/share/doc/${PF}
-		doins -r "${WORKDIR}"/html
-		doins  "${DISTDIR}"/${DOC_P}*pdf
+		doins -r "${WORKDIR}"/html || die
+		doins  "${DISTDIR}"/${NP}*pdf || die
 	fi
 }
