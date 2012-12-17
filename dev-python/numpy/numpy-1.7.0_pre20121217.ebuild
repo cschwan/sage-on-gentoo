@@ -13,12 +13,12 @@ FORTRAN_NEEDED=lapack
 inherit distutils eutils flag-o-matic fortran-2 toolchain-funcs versionator
 
 DOC_P="${PN}-1.6.0"
-MY_PV="1.7.0b2"
-MY_P="${PN}-${MY_PV}"
+GITTAG="c4c169c7cb32075386bd03463a908035c655784b"
+MY_P="${PN}-${GITTAG}"
 
 DESCRIPTION="Fast array and numerical python library"
 HOMEPAGE="http://numpy.scipy.org/ http://pypi.python.org/pypi/numpy"
-SRC_URI="mirror://sourceforge/numpy/${MY_P}.tar.gz
+SRC_URI="https://github.com/numpy/numpy/archive/${GITTAG}.tar.gz -> ${MY_P}.tar.gz
 	doc? (
 		http://docs.scipy.org/doc/${DOC_P}/numpy-html.zip -> ${DOC_P}-html.zip
 		http://docs.scipy.org/doc/${DOC_P}/numpy-ref.pdf -> ${DOC_P}-ref.pdf
@@ -70,7 +70,7 @@ pkg_setup() {
 }
 
 src_unpack() {
-	unpack ${PN}-${MY_PV}.tar.gz
+	unpack ${MY_P}.tar.gz
 	if use doc; then
 		unzip -qo "${DISTDIR}"/${DOC_P}-html.zip -d html || die
 	fi
@@ -94,8 +94,6 @@ pc_libs() {
 
 src_prepare() {
 	epatch "${FILESDIR}"/${PN}-1.7.0-atlas.patch
-	epatch "${FILESDIR}"/${PN}-1.7.0-common.c.patch
-	epatch "${FILESDIR}"/${PN}-1.7.0-ctors.c.patch
 
 	if use lapack; then
 		append-ldflags "$(pkg-config --libs-only-other cblas lapack)"

@@ -2,6 +2,13 @@
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/dev-python/numpy/ChangeLog,v 1.157 2012/05/04 15:12:15 patrick Exp $
 
+*numpy-1.7.0_pre20121217 (17 Dec 2012)
+
+  17 Dec 2012; François Bissey <francois.bissey@canterbury.ac.nz>
+  -numpy-1.7.0_beta2.ebuild, +numpy-1.7.0_pre20121217.ebuild,
+  -files/numpy-1.7.0-common.c.patch, -files/numpy-1.7.0-ctors.c.patch:
+  bump to a fresh git snapshot
+
 *numpy-1.7.0_beta2 (03 Dec 2012)
 
   03 Dec 2012; François Bissey <francois.bissey@canterbury.ac.nz>
