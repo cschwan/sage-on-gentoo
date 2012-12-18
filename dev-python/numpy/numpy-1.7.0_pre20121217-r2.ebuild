@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-python/numpy/numpy-1.6.2.ebuild,v 1.6 2012/10/16 18:38:04 jlec Exp $
 
-EAPI=4
+EAPI=5
 
 PYTHON_COMPAT=( python{2_5,2_6,2_7,3_1,3_2} )
 
@@ -29,7 +29,6 @@ KEYWORDS="~alpha ~amd64 ~arm ~hppa ~ia64 ~mips ~ppc ~ppc64 ~s390 ~sh ~sparc ~x86
 IUSE="doc lapack test"
 
 RDEPEND="
-	${PYTHON_DEPS}
 	dev-python/setuptools[${PYTHON_USEDEP}]
 	lapack? ( virtual/cblas virtual/lapack )"
 DEPEND="${RDEPEND}
@@ -95,7 +94,7 @@ pc_libs() {
 		-e 's/^-l//' -e 's/[ ]*-l/,/g'
 }
 
-src_prepare() {
+python_prepare_all() {
 	if use lapack; then
 		append-ldflags "$(pkg-config --libs-only-other cblas lapack)"
 		local libdir="${EPREFIX}"/usr/$(get_libdir)
@@ -118,8 +117,16 @@ src_prepare() {
 	distutils-r1_python_prepare_all
 }
 
-src_compile() {
-	distutils-r1_src_compile ${NUMPY_FCONFIG}
+python_configure_all(){
+	# only one fortran to link with:
+	# linking with cblas and lapack library will force
+	# autodetecting and linking to all available fortran compilers
+	if use lapack; then
+		append-fflags -fPIC
+		mydistutilsargs=( config_fc --noopt --noarch )
+		# workaround bug 335908
+		[[ $(tc-getFC) == *gfortran* ]] && mydistutilsargs+=( --fcompiler=gnu95 )
+	fi
 }
 
 src_test() {
@@ -135,14 +142,13 @@ src_test() {
 	python_foreach_impl testing
 }
 
-src_install() {
-	distutils-r1_src_install ${NUMPY_FCONFIG}
+python_install(){
+	distutils-r1_python_install
 
-	delete_txt() {
-		rm -f "${ED}"$(python_get_sitedir)/numpy/*.txt
-	}
-	python_foreach_impl delete_txt
+	rm -f "${ED}"$(python_get_sitedir)/numpy/*.txt
+}
 
+python_install_all(){
 	docinto f2py
 	dodoc numpy/f2py/docs/*.txt
 	doman numpy/f2py/f2py.1
