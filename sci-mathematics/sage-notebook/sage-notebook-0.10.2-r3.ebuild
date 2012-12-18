@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
-EAPI="4"
+EAPI="5"
 
 PYTHON_COMPAT=( python2_7 )
 python_moduleroot="sagenb"
@@ -19,7 +19,7 @@ SRC_URI="https://github.com/sagemath/sagenb/tarball/${PV} -> ${P}.tar.gz"
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64 ~x86 ~amd64-linux ~x86-linux"
-IUSE="+java server"
+IUSE="+java server test"
 
 RESTRICT="mirror test"
 
