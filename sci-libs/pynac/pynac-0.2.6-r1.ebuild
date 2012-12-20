@@ -19,7 +19,8 @@ IUSE="static-libs"
 
 RESTRICT="mirror"
 
-DEPEND="virtual/pkgconfig"
+DEPEND="virtual/pkgconfig
+	${PYTHON_DEPS}"
 RDEPEND=""
 
 AUTOTOOLS_AUTORECONF=yes
