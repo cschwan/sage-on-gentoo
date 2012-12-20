@@ -6,7 +6,7 @@ EAPI="5"
 
 PYTHON_COMPAT=( python2_7 )
 
-inherit autotools-utils python-single-r1 vcs-snapshot
+inherit autotools-utils python-r1 vcs-snapshot
 
 DESCRIPTION="A modified version of GiNaC that replaces the dependency on CLN by Python"
 HOMEPAGE="http://pynac.sagemath.org/ https://bitbucket.org/burcin/pynac/overview"
