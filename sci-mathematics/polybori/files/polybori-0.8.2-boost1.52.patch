@@ -1,0 +1,78 @@
+# HG changeset patch
+# User Michael Brickenstein <brickenstein@mfo.de>
+# Date 1355745969 -3600
+# Node ID faeba020c16527325fcd4ffeb45f3e6f6fe59dd2
+# Parent  e0498e6f2d8fb3d9b119443b230a94a90af7db10
+fixed boost::python::range disambiguity by explicitly using namespace
+
+diff -r e0498e6f2d8fb3d9b119443b230a94a90af7db10 -r faeba020c16527325fcd4ffeb45f3e6f6fe59dd2 PyPolyBoRi/Poly_wrapper.cc
+--- a/PyPolyBoRi/Poly_wrapper.cc	Tue Dec 04 13:57:03 2012 +0100
++++ b/PyPolyBoRi/Poly_wrapper.cc	Mon Dec 17 13:06:09 2012 +0100
+@@ -77,7 +77,7 @@
+   .def("stable_hash", &BoolePolynomial::stableHash, "Reproducible hash code")
+   .def("__len__", &BoolePolynomial::length, "Number of terms")
+   .def("terms", 
+-       range(&BoolePolynomial::orderedBegin, &BoolePolynomial::orderedEnd))
++       boost::python::range(&BoolePolynomial::orderedBegin, &BoolePolynomial::orderedEnd))
+   .def("__pow__",poly_power)
+   //.def(self+=self)
+   //.def(self-=self)
+diff -r e0498e6f2d8fb3d9b119443b230a94a90af7db10 -r faeba020c16527325fcd4ffeb45f3e6f6fe59dd2 PyPolyBoRi/main_wrapper.cc
+--- a/PyPolyBoRi/main_wrapper.cc	Tue Dec 04 13:57:03 2012 +0100
++++ b/PyPolyBoRi/main_wrapper.cc	Mon Dec 17 13:06:09 2012 +0100
+@@ -183,7 +183,7 @@
+     .def("get_order_code", get_order_code)
+     .def("append_block", append_block,
+       "Append integer, which marks the index of the start of the next block (for block orderings)")
+-    .def("blocks", range(ring_block_begin, ring_block_end));
++    .def("blocks", boost::python::range(ring_block_begin, ring_block_end));
+   
+ 
+   boost::python::class_<BooleConstant>("BooleConstant", 
+@@ -196,7 +196,7 @@
+     .def(self*self)
+     .def("__str__", streamable_as_str<BooleConstant>)
+     .def("__repr__", streamable_as_str<BooleConstant>)
+-    .def("variables", range(&BooleConstant::variableBegin, &BooleConstant::variableEnd))
++    .def("variables", boost::python::range(&BooleConstant::variableBegin, &BooleConstant::variableEnd))
+     .def("deg", &BooleConstant::deg)
+     .def("is_one", &BooleConstant::isOne)
+     .def("is_zero", &BooleConstant::isZero)
+diff -r e0498e6f2d8fb3d9b119443b230a94a90af7db10 -r faeba020c16527325fcd4ffeb45f3e6f6fe59dd2 PyPolyBoRi/monomial_wrapper.cc
+--- a/PyPolyBoRi/monomial_wrapper.cc	Tue Dec 04 13:57:03 2012 +0100
++++ b/PyPolyBoRi/monomial_wrapper.cc	Mon Dec 17 13:06:09 2012 +0100
+@@ -63,7 +63,7 @@
+   .def(init<const BooleMonomial &>())
+   .def(init<const BooleVariable &>())
+   .def("is_one", &BooleMonomial::isOne)
+-  .def("variables", range(&BooleMonomial::variableBegin, &BooleMonomial::variableEnd))
++  .def("variables", boost::python::range(&BooleMonomial::variableBegin, &BooleMonomial::variableEnd))
+   //.def("__iter__", boost::python::iterator<BooleMonomial>())
+   .def("__hash__", &BooleMonomial::hash, "Fast hash code, based on the \
+ pointer to the underlying ZDD node. \nIt may vary from runtime to runtime.")
+diff -r e0498e6f2d8fb3d9b119443b230a94a90af7db10 -r faeba020c16527325fcd4ffeb45f3e6f6fe59dd2 PyPolyBoRi/set_wrapper.cc
+--- a/PyPolyBoRi/set_wrapper.cc	Tue Dec 04 13:57:03 2012 +0100
++++ b/PyPolyBoRi/set_wrapper.cc	Mon Dec 17 13:06:09 2012 +0100
+@@ -49,8 +49,8 @@
+     .def("__repr__", streamable_as_str<BooleSet>)
+     .def("__str__", streamable_as_str<BooleSet>)
+     .def("__len__", &BooleSet::length)
+-    .def("__iter__", range(&BooleSet::begin, &BooleSet::end))
+-    .def("__reversed__", range(&BooleSet::rbegin, &BooleSet::rend))
++    .def("__iter__", boost::python::range(&BooleSet::begin, &BooleSet::end))
++    .def("__reversed__", boost::python::range(&BooleSet::rbegin, &BooleSet::rend))
+     .def("__hash__", &BooleSet::hash, "Fast hash code, based on the \
+ pointer to the underlying ZDD node. \nIt may vary from runtime to runtime.")
+     .def("stable_hash", &BooleSet::stableHash, "Reproducible hash code")
+diff -r e0498e6f2d8fb3d9b119443b230a94a90af7db10 -r faeba020c16527325fcd4ffeb45f3e6f6fe59dd2 PyPolyBoRi/strategy_wrapper.cc
+--- a/PyPolyBoRi/strategy_wrapper.cc	Tue Dec 04 13:57:03 2012 +0100
++++ b/PyPolyBoRi/strategy_wrapper.cc	Mon Dec 17 13:06:09 2012 +0100
+@@ -264,7 +264,7 @@
+   .def("next_spoly", &GroebnerStrategy::nextSpoly)
+   .def("some_spolys_in_next_degree", someNextDegreeSpolys)
+   .def("__len__",nGenerators)
+-  .def("__iter__",range(stratbegin, stratend))
++  .def("__iter__", boost::python::range(stratbegin, stratend))
+   .def("__getitem__", get_ith_gen)
+   .def("__getitem__", get_gen_by_lead)
+   
