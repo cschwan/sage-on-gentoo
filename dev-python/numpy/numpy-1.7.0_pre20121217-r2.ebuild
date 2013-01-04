@@ -1,4 +1,4 @@
-# Copyright 1999-2012 Gentoo Foundation
+# Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-python/numpy/numpy-1.6.2.ebuild,v 1.6 2012/10/16 18:38:04 jlec Exp $
 
@@ -27,6 +27,8 @@ LICENSE="BSD"
 SLOT="0"
 KEYWORDS="~alpha ~amd64 ~arm ~hppa ~ia64 ~mips ~ppc ~ppc64 ~s390 ~sh ~sparc ~x86 ~amd64-fbsd ~x86-fbsd ~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~sparc-solaris ~x64-solaris ~x86-solaris"
 IUSE="doc lapack test"
+
+RESTRICT="test"
 
 RDEPEND="
 	dev-python/setuptools[${PYTHON_USEDEP}]
@@ -127,19 +129,6 @@ python_configure_all(){
 		# workaround bug 335908
 		[[ $(tc-getFC) == *gfortran* ]] && mydistutilsargs+=( --fcompiler=gnu95 )
 	fi
-}
-
-src_test() {
-	testing() {
-		"$(PYTHON)" setup.py ${NUMPY_FCONFIG} build -b "build-${PYTHON_ABI}" install \
-			--home="${S}/test-${PYTHON_ABI}" --no-compile || die "install test failed"
-		pushd "${S}/test-${PYTHON_ABI}/"lib* > /dev/null
-		PYTHONPATH=python "$(PYTHON)" -c "import numpy; numpy.test()" 2>&1 | tee test.log
-		grep -Eq "^(ERROR|FAIL):" test.log && return 1
-		popd > /dev/null
-		rm -fr test-${PYTHON_ABI}
-	}
-	python_foreach_impl testing
 }
 
 python_install(){
