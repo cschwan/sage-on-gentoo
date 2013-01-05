@@ -1,4 +1,4 @@
-# Copyright 1999-2012 Gentoo Foundation
+# Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
@@ -33,7 +33,7 @@ CDEPEND="dev-libs/gmp
 	>=dev-lisp/ecls-11.1.1-r1
 	numpy17? ( >=dev-python/numpy-1.7.0_beta2 )
 	!numpy17? ( ~dev-python/numpy-1.5.1 )
-	~dev-python/cython-0.17.2
+	~dev-python/cython-0.17.4
 	~sci-mathematics/eclib-20120428
 	>=sci-mathematics/ecm-6.3
 	>=sci-libs/flint-1.5.2[ntl]
@@ -83,7 +83,6 @@ RDEPEND="${CDEPEND}
 	dev-python/sqlalchemy
 	>=dev-python/sympy-0.7.1
 	>=media-gfx/tachyon-0.98.9[png]
-	net-zope/zodb
 	>=sci-libs/cddlib-094f-r2
 	>=sci-libs/scipy-0.11.0
 	>=sci-mathematics/flintqs-20070817_p6
@@ -97,7 +96,6 @@ RDEPEND="${CDEPEND}
 	>=sci-mathematics/mcube-20051209
 	>=sci-mathematics/optimal-20040603
 	>=sci-mathematics/palp-2.1
-	~sci-mathematics/sage-data-conway_polynomials-0.3
 	~sci-mathematics/sage-data-elliptic_curves-0.7
 	~sci-mathematics/sage-data-graphs-20120404_p4
 	~sci-mathematics/sage-data-polytopes_db-20100210_p2
@@ -115,7 +113,8 @@ RDEPEND="${CDEPEND}
 		)
 	)"
 
-PDEPEND="~sci-mathematics/sage-notebook-0.10.2[${PYTHON_USEDEP}]"
+PDEPEND="~sci-mathematics/sage-notebook-0.10.2[${PYTHON_USEDEP}]
+	~sci-mathematics/sage-data-conway_polynomials-0.4"
 
 S="${WORKDIR}/${MY_P}"
 
@@ -249,13 +248,14 @@ src_prepare() {
 		
 	EOF
 
+	# getting rid of zodb for conway
+	epatch "${FILESDIR}"/trac12205.patch
+	rm sage/databases/db.py sage/databases/compressed_storage.py
+	sed -i "s:import sage.databases.db::" sage/databases/stein_watkins.py
+
 	# issue 85 a test crashes earlier than vanilla
 	sed -i "s|sage: x = dlx_solver(rows)|sage: x = dlx_solver(rows) # not tested|" \
 		sage/combinat/tiling.py
-
-	# update to gfan-0.5 trac 11395
-	epatch "${FILESDIR}"/trac_11395_update_gfan_to_0.5.patch
-	epatch "${FILESDIR}"/trac11395-fix_tutorial.patch
 
 	# run maxima with ecl
 	sed -i \
