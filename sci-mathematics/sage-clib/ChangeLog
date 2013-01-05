@@ -1,6 +1,11 @@
 # ChangeLog for sci-mathematics/sage-clib
-# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# Copyright 1999-2013 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
+
+  05 Jan 2013; François Bissey <francois.bissey@canterbury.ac.nz>
+  -sage-clib-5.4.1.ebuild, -sage-clib-5.4.1-r1.ebuild,
+  -sage-clib-5.5_rc0.ebuild, -sage-clib-5.5_rc0-r1.ebuild:
+  drop old
 
 *sage-clib-5.5 (27 Dec 2012)
 
