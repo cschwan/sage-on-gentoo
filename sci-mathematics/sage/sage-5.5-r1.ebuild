@@ -96,7 +96,6 @@ RDEPEND="${CDEPEND}
 	>=sci-mathematics/mcube-20051209
 	>=sci-mathematics/optimal-20040603
 	>=sci-mathematics/palp-2.1
-	~sci-mathematics/sage-data-conway_polynomials-0.4
 	~sci-mathematics/sage-data-elliptic_curves-0.7
 	~sci-mathematics/sage-data-graphs-20120404_p4
 	~sci-mathematics/sage-data-polytopes_db-20100210_p2
@@ -114,7 +113,8 @@ RDEPEND="${CDEPEND}
 		)
 	)"
 
-PDEPEND="~sci-mathematics/sage-notebook-0.10.2[${PYTHON_USEDEP}]"
+PDEPEND="~sci-mathematics/sage-notebook-0.10.2[${PYTHON_USEDEP}]
+	~sci-mathematics/sage-data-conway_polynomials-0.4"
 
 S="${WORKDIR}/${MY_P}"
 
