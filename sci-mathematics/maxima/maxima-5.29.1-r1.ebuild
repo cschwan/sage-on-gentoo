@@ -1,4 +1,4 @@
-# Copyright 1999-2012 Gentoo Foundation
+# Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/sci-mathematics/maxima/maxima-5.29.1.ebuild,v 1.1 2012/12/14 09:55:25 grozin Exp $
 
@@ -17,7 +17,7 @@ KEYWORDS="~amd64 ~ppc ~x86 ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos"
 # Supported lisps (the first one is the default)
 LISPS=(     sbcl cmucl gcl             ecls clozurecl clisp )
 # . - just dev-lisp/<lisp>, <version> - >= dev-lisp/<lisp>-<version>
-MIN_VER=(   .    .     2.6.8_pre[ansi] 10   .         .     )
+MIN_VER=(   .    .     2.6.8_pre[ansi] 12.12.1   .         .     )
 # <lisp> supports readline: . - no, y - yes
 SUPP_RL=(   .    .     y               .    .         y     )
 # . - just --enable-<lisp>, <flag> - --enable-<flag>
@@ -121,6 +121,11 @@ src_prepare() {
 
 	# workaround for the broken sbcl
 	epatch "${FILESDIR}"/${P}-sbcl.patch
+
+	# sage patches
+	epatch "${FILESDIR}"/0001-taylor2-Avoid-blowing-the-stack-when-diff-expand-isn.patch
+	epatch "${FILESDIR}"/maxima_bug_2526.patch
+	epatch "${FILESDIR}"/undoing_true_false_printing_patch.patch
 
 	# bug #343331
 	rm share/Makefile.in || die

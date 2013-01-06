@@ -1,6 +1,14 @@
 # ChangeLog for sci-mathematics/maxima
-# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# Copyright 1999-2013 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/sci-mathematics/maxima/ChangeLog,v 1.102 2012/12/14 09:55:25 grozin Exp $
+
+*maxima-5.29.1-r1 (06 Jan 2013)
+
+  06 Jan 2013; François Bissey <francois.bissey@canterbury.ac.nz>
+  +files/0001-taylor2-Avoid-blowing-the-stack-when-diff-expand-isn.patch,
+  -maxima-5.29.1.ebuild, +maxima-5.29.1-r1.ebuild,
+  +files/maxima_bug_2526.patch, +files/undoing_true_false_printing_patch.patch:
+  Add sage patches, require ecls 12.12.1
 
   17 Dec 2012; François Bissey <francois.bissey@canterbury.ac.nz>
   +files/50maxima-gentoo.el, +maxima-5.29.1.ebuild,
