@@ -1,0 +1,101 @@
+# HG changeset patch
+# User Dmitrii Pasechnik <dimpase@gmail.com>
+# Date 1356952203 -28800
+# Node ID da5a3e148c2eaa262b6ad8dfb0f54dab18949425
+# Parent  d0c0692ebfc09c88785ce82c3ef2f147e448fb18
+doctests for maxima update to version 5.29.1; renaming to_poly_solver (obsolete) to to_poly_solve in maxima_lib.py
+
+diff --git a/sage/functions/exp_integral.py b/sage/functions/exp_integral.py
+--- a/sage/functions/exp_integral.py
++++ b/sage/functions/exp_integral.py
+@@ -1071,8 +1071,8 @@
+         -cosh(1/2) + 1/2*sinh_integral(1/2) + 1
+         sage: integrate(sinh_integral(x), x, 0, 1/2).n() # correct
+         0.125872409703453
+-        sage: integrate(sinh_integral(x), x, 0, 0.5).n() # incorrect!
+-        0.125872409703453 + 1.57079632679490*I
++        sage: integrate(sinh_integral(x), x, 0, 0.5).n() # fixed in maxima 5.29.1 
++        0.125872409703453
+ 
+     ALGORITHM:
+ 
+diff --git a/sage/interfaces/maxima_abstract.py b/sage/interfaces/maxima_abstract.py
+--- a/sage/interfaces/maxima_abstract.py
++++ b/sage/interfaces/maxima_abstract.py
+@@ -420,7 +420,7 @@
+         EXAMPLES::
+         
+             sage: maxima.version()
+-            '5.26.0'
++            '5.29.1'
+         """
+         return maxima_version()
+ 
+@@ -2352,7 +2352,7 @@
+     
+         sage: from sage.interfaces.maxima_abstract import maxima_version
+         sage: maxima_version()
+-        '5.26.0'
++        '5.29.1'
+     """
+     return os.popen('maxima --version').read().split()[-1]
+ 
+@@ -2364,7 +2364,7 @@
+     
+         sage: from sage.interfaces.maxima_abstract import maxima_console
+         sage: maxima_console()                    # not tested
+-        Maxima 5.26.0 http://maxima.sourceforge.net
++        Maxima 5.29.1 http://maxima.sourceforge.net
+         ...
+     """
+     os.system('maxima')
+diff --git a/sage/interfaces/maxima_lib.py b/sage/interfaces/maxima_lib.py
+--- a/sage/interfaces/maxima_lib.py
++++ b/sage/interfaces/maxima_lib.py
+@@ -139,7 +139,7 @@
+ # display2d -- no ascii art output
+ # keepfloat -- don't automatically convert floats to rationals
+ init_code = ['display2d : false', 'domain : complex', 'keepfloat : true',
+-            'load(to_poly_solver)', 'load(simplify_sum)',
++            'load(to_poly_solve)', 'load(simplify_sum)',
+             'load(abs_integrate)']
+ 
+ # Turn off the prompt labels, since computing them *very
+diff --git a/sage/misc/functional.py b/sage/misc/functional.py
+--- a/sage/misc/functional.py
++++ b/sage/misc/functional.py
+@@ -719,12 +719,17 @@
+         2
+ 
+     Another symbolic integral, from :trac:`11238`, that used to return
+-    zero incorrectly::
++    zero incorrectly; with maxima 5.26.0 one gets 1/2*sqrt(pi)*e^(1/4), 
++    whereas with 5.29.1 the expression is less pleasant, but still 
++    has the same value::
+ 
+         sage: f = exp(-x) * sinh(sqrt(x))
+-        sage: integrate(f, x, 0, Infinity)
++        sage: t = integrate(f, x, 0, Infinity); t            # long time
++        -1/4*((erf(1) - 1)*sqrt(pi) - sqrt(pi) + 2*e^(-1) - 2)*e^(1/4) + 1/4*((erf(1) - 1)*sqrt(pi) + sqrt(pi) + 2*e^(-1) - 2)*e^(1/4)
++        sage: t.simplify_exp()
+         1/2*sqrt(pi)*e^(1/4)
+ 
++
+     """
+     if hasattr(x, 'integral'):
+         return x.integral(*args, **kwds)
+diff --git a/sage/symbolic/integration/integral.py b/sage/symbolic/integration/integral.py
+--- a/sage/symbolic/integration/integral.py
++++ b/sage/symbolic/integration/integral.py
+@@ -670,6 +670,11 @@
+         sage: integral(1/x^2, x, -infinity, -1, algorithm='sympy')
+         1
+ 
++    Check that :trac:`11737` is fixed::
++
++        sage: N(integrate(sin(x^2)/(x^2), x, 1, infinity))
++        0.285736646322858
++
+     """
+     expression, v, a, b = _normalize_integral_input(expression, v, a, b)
+     if algorithm is not None:

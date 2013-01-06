@@ -1,0 +1,19 @@
+# HG changeset patch
+# User Jean-Pierre Flori <jean-pierre.flor@ssi.gouv.fr>
+# Date 1345472215 -7200
+# Node ID 6a58adc5dc244112419d59818af8597bb4f84128
+# Parent  0d38df1a4a6b8e4029e7d3fb6994ddb02d31154d
+#13324: Upgrade ECL to version 12.7.1
+
+diff --git a/sage/libs/ecl.pyx b/sage/libs/ecl.pyx
+--- a/sage/libs/ecl.pyx
++++ b/sage/libs/ecl.pyx
+@@ -247,7 +247,7 @@
+         sage: inf_loop()
+         Traceback (most recent call last):
+         ...
+-        RuntimeError: ECL says: Console interrupt
++        RuntimeError: ECL says: Console interrupt.
+     """
+     ecl_sig_on()
+     cl_funcall(2,safe_eval_clobj,form)
