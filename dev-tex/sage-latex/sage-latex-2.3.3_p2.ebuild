@@ -1,14 +1,12 @@
-# Copyright 1999-2012 Gentoo Foundation
+# Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
-EAPI="4"
+EAPI="5"
 
-PYTHON_DEPEND="2:2.6:2.7"
-SUPPORT_PYTHON_ABIS="1"
-RESTRICT_PYTHON_ABIS="3.*"
+PYTHON_COMPAT=( python2_7 )
 
-inherit distutils latex-package versionator
+inherit distutils-r1 latex-package versionator
 
 MY_P="sagetex-$(replace_version_separator 3 '.')"
 
@@ -26,7 +24,7 @@ RESTRICT="mirror"
 DEPEND=""
 RDEPEND="dev-tex/pgf"
 
-S="${WORKDIR}/${MY_P}/src"
+S="${WORKDIR}"/${MY_P}/src
 
 src_prepare() {
 	# LaTeX file are installed by eclass functions
@@ -35,12 +33,12 @@ src_prepare() {
 	# Don't regenerate the documentation
 	rm *.dtx
 
-	distutils_src_prepare
+	distutils-r1_src_prepare
 }
 
 src_compile() {
 	latex-package_src_compile
-	distutils_src_compile
+	distutils-r1_src_compile
 }
 
 src_install() {
@@ -51,7 +49,7 @@ src_install() {
 	rm example.tex || die "failed to remove example file"
 
 	latex-package_src_install
-	distutils_src_install
+	distutils-r1_src_install
 }
 
 pkg_install() {
