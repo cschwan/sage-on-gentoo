@@ -1,13 +1,13 @@
-# Copyright 1999-2012 Gentoo Foundation
+# Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
-EAPI="4"
+EAPI="5"
 
 inherit eutils flag-o-matic versionator
 
 MY_P="rubiks-$(replace_version_separator 1 '.')"
-SAGE_P="sage-5.0"
+SAGE_P="sage-5.5"
 
 # TODO: Homepage ?
 DESCRIPTION="Dik T. Winter's rubik's cube solver and related tools"
