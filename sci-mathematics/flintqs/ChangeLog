@@ -1,6 +1,12 @@
 # ChangeLog for sci-mathematics/flintqs
-# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# Copyright 1999-2013 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
+
+*flintqs-20070817_p8 (07 Jan 2013)
+
+  07 Jan 2013; Christopher Schwan <cschwan@students.uni-mainz.de>
+  -flintqs-20070817_p6.ebuild, +flintqs-20070817_p8.ebuild:
+  Version bump
 
 *flintqs-20070817_p6 (31 May 2012)
 

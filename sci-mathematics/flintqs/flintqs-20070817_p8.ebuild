@@ -1,13 +1,13 @@
-# Copyright 1999-2012 Gentoo Foundation
+# Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
-EAPI="4"
+EAPI="5"
 
 inherit eutils versionator
 
 MY_P="${PN}-$(replace_version_separator 1 '.')"
-SAGE_P="sage-5.0"
+SAGE_P="sage-5.5"
 
 DESCRIPTION="William Hart's GPL'd highly optimized multi-polynomial quadratic sieve for integer factorization"
 HOMEPAGE="http://www.sagemath.org/"
@@ -23,17 +23,16 @@ RESTRICT="mirror"
 DEPEND=""
 RDEPEND="${DEPEND}"
 
-S="${WORKDIR}/${MY_P}/src"
+S="${WORKDIR}"/${MY_P}/src
 
 src_prepare() {
 	epatch "${FILESDIR}"/${PN}-lanczos.patch
 }
 
 src_compile() {
-	emake CXXFLAGS="${CXXFLAGS}" CXXFLAGS2="${CXXFLAGS}" \
-		LIBS="-lgmp ${LDFLAGS}" || die
+	emake CXXFLAGS="${CXXFLAGS}" CXXFLAGS2="${CXXFLAGS}" LIBS="-lgmp ${LDFLAGS}"
 }
 
 src_install() {
-	dobin QuadraticSieve || die
+	dobin QuadraticSieve
 }
