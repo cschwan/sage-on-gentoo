@@ -1,6 +1,6 @@
-# Copyright 1999-2012 Gentoo Foundation
+# Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/numpy/numpy-1.6.2.ebuild,v 1.6 2012/10/16 18:38:04 jlec Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/numpy/numpy-1.6.2.ebuild,v 1.14 2012/12/29 17:45:46 armin76 Exp $
 
 EAPI=4
 
@@ -12,13 +12,13 @@ FORTRAN_NEEDED=lapack
 
 inherit distutils eutils flag-o-matic fortran-2 toolchain-funcs versionator
 
-DOC_P="${PN}-1.6.0"
-GITTAG="c4c169c7cb32075386bd03463a908035c655784b"
-MY_P="${PN}-${GITTAG}"
+DOC_P="${PN}-dev"
+MY_P="${PN}-1.7.0rc1"
+S="${WORKDIR}/${MY_P}"
 
 DESCRIPTION="Fast array and numerical python library"
 HOMEPAGE="http://numpy.scipy.org/ http://pypi.python.org/pypi/numpy"
-SRC_URI="https://github.com/numpy/numpy/archive/${GITTAG}.tar.gz -> ${MY_P}.tar.gz
+SRC_URI="mirror://sourceforge/numpy/${MY_P}.tar.gz
 	doc? (
 		http://docs.scipy.org/doc/${DOC_P}/numpy-html.zip -> ${DOC_P}-html.zip
 		http://docs.scipy.org/doc/${DOC_P}/numpy-ref.pdf -> ${DOC_P}-ref.pdf
@@ -44,8 +44,6 @@ PYTHON_CFLAGS=("* + -fno-strict-aliasing")
 PYTHON_NONVERSIONED_EXECUTABLES=("/usr/bin/f2py[[:digit:]]+\.[[:digit:]]+")
 
 DOCS="COMPATIBILITY DEV_README.txt THANKS.txt"
-
-S="${WORKDIR}/${MY_P}"
 
 pkg_setup() {
 	fortran-2_pkg_setup
