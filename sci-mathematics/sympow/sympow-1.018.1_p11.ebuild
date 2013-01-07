@@ -1,13 +1,13 @@
-# Copyright 1999-2012 Gentoo Foundation
+# Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
-EAPI="4"
+EAPI="5"
 
 inherit eutils versionator
 
 MY_P="$(replace_version_separator 4 '.' ${P})"
-SAGE_P="sage-5.0"
+SAGE_P="sage-5.5"
 
 DESCRIPTION="Computes special values of symmetric power elliptic curve L-functions"
 HOMEPAGE="http://www.sagemath.org"
@@ -23,7 +23,7 @@ RESTRICT="mirror"
 DEPEND=""
 RDEPEND=">=sci-mathematics/pari-2.5.0"
 
-S="${WORKDIR}/${MY_P}/src"
+S="${WORKDIR}"/${MY_P}/src
 
 src_prepare() {
 	local sharedir="${EPREFIX}"/usr/share/sympow
