@@ -1,0 +1,4 @@
+314c314
+< 		throw LinBoxFailure("You cannot do this");
+---
+> 		throw LinBoxFailure(__func__, __FILE__, __LINE__,"You cannot do this");
