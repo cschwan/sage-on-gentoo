@@ -9,10 +9,11 @@ PYTHON_COMPAT=( python2_7 )
 inherit distutils-r1 latex-package versionator
 
 MY_P="sagetex-$(replace_version_separator 3 '.')"
+SAGE_P="sage-5.5"
 
 DESCRIPTION="SageTeX package allows to embed code from the Sage mathematics software suite into LaTeX documents"
 HOMEPAGE="http://www.sagemath.org https://bitbucket.org/ddrake/sagetex/overview"
-SRC_URI="http://sage.math.washington.edu/home/release/sage-5.0/sage-5.0/spkg/standard/${MY_P}.spkg -> ${MY_P}.tar.bz2"
+SRC_URI="http://sage.math.washington.edu/home/release/${SAGE_P}/${SAGE_P}/spkg/standard/${MY_P}.spkg -> ${MY_P}.tar.bz2"
 
 LICENSE="GPL-2"
 SLOT="0"
