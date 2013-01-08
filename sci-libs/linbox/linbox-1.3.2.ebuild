@@ -37,7 +37,7 @@ DEPEND="${CDEPEND}
 	virtual/pkgconfig"
 RDEPEND="${CDEPEND}"
 
-PATCHES=( "${FILESDIR}/${P}clang-fix.patch" )
+PATCHES=( "${FILESDIR}/${P}-clang-fix.patch" )
 AUTOTOOLS_IN_SOURCE_BUILD="1"
 DOCS=( ChangeLog README NEWS TODO )
 
