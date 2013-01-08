@@ -12,8 +12,8 @@ FORTRAN_NEEDED=lapack
 
 inherit distutils eutils flag-o-matic fortran-2 toolchain-funcs versionator
 
-DOC_P="${PN}-dev"
-MY_P="${PN}-1.6.2"
+DOC_P="${PN}-1.6.0"
+MY_P="${PN}-1.7.0rc1"
 S="${WORKDIR}/${MY_P}"
 
 DESCRIPTION="Fast array and numerical python library"
