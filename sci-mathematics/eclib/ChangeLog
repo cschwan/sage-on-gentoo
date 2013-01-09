@@ -1,6 +1,10 @@
 # ChangeLog for sci-mathematics/eclib
-# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# Copyright 1999-2013 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
+
+  09 Jan 2013; François Bissey <francois.bissey@canterbury.ac.nz>
+  eclib-20120428.ebuild:
+  update SRC_URI
 
   02 Aug 2012; François Bissey <francois.bissey@canterbury.ac.nz>
   -eclib-20100711_p0.ebuild, -files/eclib-20100711_p0-g0n_makefile.patch.bz2,
