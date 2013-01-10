@@ -4,6 +4,7 @@
 >=sci-mathematics/sage-baselayout-5.5.1_alpha0
 >=sci-mathematics/sage-doc-5.5.1_alpha0
 >=sci-mathematics/sage-extcode-5.5.1_alpha0
+>=sci-mathematics/gap-4.5.7
 # building problems reported against latest fplll
 >=sci-libs/fplll-3.1.1
 # masking zodb-3.10+ for now
