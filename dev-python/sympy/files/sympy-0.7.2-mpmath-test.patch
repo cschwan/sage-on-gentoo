@@ -1,0 +1,10 @@
+--- sympy/solvers/solvers.py.orig	2013-01-11 22:22:13.666616771 +1300
++++ sympy/solvers/solvers.py	2013-01-11 22:22:48.016660731 +1300
+@@ -1992,6 +1992,7 @@
+ 
+     >>> from sympy import Symbol, nsolve
+     >>> import sympy
++    >>> import mpmath
+     >>> mpmath.mp.dps = 15
+     >>> x1 = Symbol('x1')
+     >>> x2 = Symbol('x2')

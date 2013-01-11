@@ -1,0 +1,12 @@
+--- sympy/functions/special/hyper.py.orig	2013-01-10 23:01:19.101022248 +1300
++++ sympy/functions/special/hyper.py	2013-01-10 23:02:33.301136024 +1300
+@@ -572,7 +572,8 @@
+         # (carefully so as not to loose the branch information), and evaluate
+         # G(z'**(1/r)) = G(z'**n) = G(z).
+         from sympy.functions import exp_polar, ceiling
+-        from sympy import mpmath, Expr
++        import mpmath
++        from sympy import Expr
+         z = self.argument
+         znum = self.argument._eval_evalf(prec)
+         if znum.has(exp_polar):

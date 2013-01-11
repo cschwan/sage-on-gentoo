@@ -1,0 +1,12 @@
+# ChangeLog for dev-python/sympy
+# Copyright 1999-2013 Gentoo Foundation; Distributed under the GPL v2
+# $Header: $
+
+*sympy-0.7.2-r1 (11 Jan 2013)
+
+  11 Jan 2013; François Bissey <francois.bissey@canterbury.ac.nz>
+  +sympy-0.7.2-r1.ebuild, +files/sympy-0.7.2-mpmath.patch,
+  +files/sympy-0.7.2-mpmath-import.patch, +files/sympy-0.7.2-mpmath-test.patch,
+  +metadata.xml:
+  Importing a scrubbed sympy-0.7.2
+
