@@ -1,6 +1,13 @@
 # ChangeLog for dev-python/pexpect
-# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# Copyright 1999-2013 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
+
+*pexpect-2.4-r2 (12 Jan 2013)
+*pexpect-2.0-r2 (12 Jan 2013)
+
+  12 Jan 2013; François Bissey <francois.bissey@canterbury.ac.nz>
+  +pexpect-2.0-r2.ebuild, +pexpect-2.4-r2.ebuild:
+  port pexpect to new python eclass
 
 *pexpect-2.0-r1 (06 Mar 2012)
 
