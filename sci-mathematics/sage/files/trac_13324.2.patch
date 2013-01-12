@@ -1,0 +1,495 @@
+# HG changeset patch
+# User Jean-Pierre Flori <jean-pierre.flor@ssi.gouv.fr>
+# Date 1357915175 -3600
+# Node ID 0604c555d0b87563b42b26feedcbecea66e91f95
+# Parent  1692da232d539de230f5745d982f2720264bb855
+#13324: Cleanup lisp.py and remove problematic \n from synchronize
+
+diff --git a/sage/interfaces/lisp.py b/sage/interfaces/lisp.py
+--- a/sage/interfaces/lisp.py
++++ b/sage/interfaces/lisp.py
+@@ -1,7 +1,8 @@
+ r"""
+ Lisp Interface
+ 
+-EXAMPLES:
++EXAMPLES::
++
+     sage: lisp.eval('(* 4 5)')
+     '20'
+     sage: a = lisp(3); b = lisp(5)
+@@ -23,7 +24,8 @@
+     '8'
+ 
+ One can define functions and the interface supports object-oriented
+-notation for calling them:
++notation for calling them::
++
+     sage: lisp.eval('(defun factorial (n) (if (= n 1) 1 (* n (factorial (- n 1)))))')
+     'FACTORIAL'
+     sage: lisp('(factorial 10)')
+@@ -61,7 +63,8 @@
+                  server=None,
+                  server_tmpdir=None):
+         """
+-        EXAMPLES:
++        EXAMPLES::
++
+             sage: lisp == loads(dumps(lisp))
+             True
+         """
+@@ -72,7 +75,7 @@
+ 
+                         # This is regexp of the input prompt.  If you can change
+                         # it to be very obfuscated that would be better.   Even
+-                        # better is to use sequence numbers. 
++                        # better is to use sequence numbers.
+                         prompt = '> ',
+ 
+                         # This is the command that starts up your program
+@@ -95,20 +98,23 @@
+                         logfile=logfile,
+ 
+                         # If an input is longer than this number of characters, then
+-                        # try to switch to outputting to a file. 
++                        # try to switch to outputting to a file.
+                         eval_using_file_cutoff=1024)
+-        
++
+         self.__seq = 0
+         self.__in_seq = 1
+ 
+     def eval(self, code, strip=True, **kwds):
+         """
+-        EXAMPLES:
++        EXAMPLES::
++
+             sage: lisp.eval('(+ 2 2)')
+             '4'
+ 
+         TEST:
+-            # Verify that it works when input == output
++
++        Verify that it works when input == output::
++
+             sage: lisp.eval('2')
+             '2'
+         """
+@@ -138,7 +144,8 @@
+ 
+     def _an_element_impl(self):
+         """
+-        EXAMPLES:
++        EXAMPLES::
++
+             sage: lisp._an_element_impl()
+             0
+         """
+@@ -148,13 +155,16 @@
+         """
+         Set the variable var to the given value.
+ 
+-        EXAMPLES:
++        EXAMPLES::
++
+             sage: lisp.set('x', '2')
+             sage: lisp.get('x')
+             '2'
+ 
+-       TEST:
+-            # it must also be possible to eval the variable by name
++        TEST:
++
++        It must also be possible to eval the variable by name::
++
+             sage: lisp.eval('x')
+             '2'
+         """
+@@ -165,7 +175,8 @@
+ 
+     def get(self, var):
+         """
+-        EXAMPLES:
++        EXAMPLES::
++
+             sage: lisp.set('x', '2')
+             sage: lisp.get('x')
+             '2'
+@@ -175,7 +186,8 @@
+ 
+     def _start(self, *args, **kwds):
+         """
+-        EXAMPLES:
++        EXAMPLES::
++
+             sage: l = Lisp()
+             sage: l.is_running()
+             False
+@@ -193,14 +205,15 @@
+             E = self._expect
+         r = random.randrange(2147483647)
+         s = str(r+1)
+-        cmd = "(+ 1 %s)\n"%r
++        cmd = "(+ 1 %s)"%r
+         E.sendline(cmd)
+         E.expect(s)
+         E.expect(self._prompt)
+ 
+     def _repr_(self):
+         """
+-        EXAMPLES:
++        EXAMPLES::
++
+             sage: lisp
+             Lisp Interpreter
+         """
+@@ -208,16 +221,17 @@
+ 
+     def __reduce__(self):
+         """
+-        EXAMPLES:
++        EXAMPLES::
++
+             sage: lisp.__reduce__()
+             (<function reduce_load_Lisp at 0x...>, ())
+-
+         """
+         return reduce_load_Lisp, tuple([])
+-    
++
+     def _function_class(self):
+         """
+-        EXAMPLES:
++        EXAMPLES::
++
+             sage: lisp._function_class()
+             <class 'sage.interfaces.lisp.LispFunction'>
+          """
+@@ -225,7 +239,8 @@
+ 
+     def _quit_string(self):
+         """
+-        EXAMPLES:
++        EXAMPLES::
++
+             sage: lisp._quit_string()
+             '(quit);'
+ 
+@@ -236,10 +251,11 @@
+             False
+         """
+         return '(quit);'
+-    
++
+     def _read_in_file_command(self, filename):
+         """
+-        EXAMPLES:
++        EXAMPLES::
++
+             sage: lisp._read_in_file_command(tmp_filename())
+             Traceback (most recent call last):
+             ...
+@@ -249,7 +265,8 @@
+ 
+     def trait_names(self):
+         """
+-        EXAMPLES:
++        EXAMPLES::
++
+             sage: lisp.trait_names()
+             Traceback (most recent call last):
+             ...
+@@ -257,22 +274,24 @@
+ 
+         """
+         raise NotImplementedError
+-        
++
+     def kill(self, var):
+         """
+-        EXAMPLES:
++        EXAMPLES::
++
+             sage: lisp.kill('x')
+             Traceback (most recent call last):
+             ...
+             NotImplementedError
+         """
+         raise NotImplementedError
+-        
++
+     def console(self):
+         """
+         Spawn a new Lisp command-line session.
+ 
+-        EXAMPLES:
++        EXAMPLES::
++
+             sage: lisp.console() #not tested
+             ECL (Embeddable Common-Lisp) ...
+             Copyright (C) 1984 Taiichi Yuasa and Masami Hagiya
+@@ -284,35 +303,35 @@
+             ...
+         """
+         lisp_console()
+-        
+ 
+     def version(self):
+         """
+         Returns the version of Lisp being used.
+ 
+-        EXAMPLES:
++        EXAMPLES::
++
+             sage: lisp.version()
+             'Version information is given by lisp.console().'
+-
+         """
+ #        import subprocess
+ #        p = subprocess.Popen('ecl --version', shell=True, stdin=subprocess.PIPE,
+ #                             stdout = subprocess.PIPE, stderr=subprocess.PIPE)
+ #        return AsciiArtString(p.stdout.read())
+         return "Version information is given by lisp.console()."
+-    
++
+     def _object_class(self):
+         """
+-        EXAMPLES:
++        EXAMPLES::
++
+             sage: lisp._object_class()
+             <class 'sage.interfaces.lisp.LispElement'>
+-
+         """
+         return LispElement
+ 
+     def _function_class(self):
+         """
+-        EXAMPLES:
++        EXAMPLES::
++
+             sage: lisp._function_class()
+             <class 'sage.interfaces.lisp.LispFunction'>
+         """
+@@ -320,7 +339,8 @@
+ 
+     def _function_element_class(self):
+         """
+-        EXAMPLES:
++        EXAMPLES::
++
+             sage: lisp._function_element_class()
+             <class 'sage.interfaces.lisp.LispFunctionElement'>
+         """
+@@ -328,7 +348,8 @@
+ 
+     def _true_symbol(self):
+         """
+-        EXAMPLES:
++        EXAMPLES::
++
+             sage: lisp._true_symbol()
+             'T'
+         """
+@@ -336,7 +357,8 @@
+ 
+     def _false_symbol(self):
+         """
+-        EXAMPLES:
++        EXAMPLES::
++
+             sage: lisp._false_symbol()
+             'NIL'
+         """
+@@ -348,7 +370,8 @@
+         equality testing in Lisp does not use infix notation and cannot be
+         done the same way as in the other interfaces.
+ 
+-        EXAMPLES:
++        EXAMPLES::
++
+             sage: lisp._equality_symbol()
+             Traceback (most recent call last):
+             ...
+@@ -359,20 +382,22 @@
+ 
+     def help(self, command):
+         """
+-        EXAMPLES:
++        EXAMPLES::
++
+             sage: lisp.help('setq')
+             Traceback (most recent call last):
+             ...
+             NotImplementedError
+         """
+-        raise NotImplementedError    
++        raise NotImplementedError
+ 
+     def function_call(self, function, args=None, kwds=None):
+         """
+         Calls the Lisp function with given args and kwds.
+         For Lisp functions, the kwds are ignored.
+-        
+-        EXAMPLES:
++
++        EXAMPLES::
++
+             sage: lisp.function_call('sin', ['2'])
+             0.9092974
+             sage: lisp.sin(2)
+@@ -385,7 +410,8 @@
+ class LispElement(ExpectElement):
+     def __cmp__(self, other):
+         """
+-        EXAMPLES:
++        EXAMPLES::
++
+             sage: one = lisp(1); two = lisp(2)
+             sage: one == one
+             True
+@@ -411,10 +437,11 @@
+             return -1
+         else:
+             return 1
+-            
++
+     def bool(self):
+         """
+-        EXAMPLES:
++        EXAMPLES::
++
+             sage: lisp(2).bool()
+             True
+             sage: lisp(0).bool()
+@@ -426,47 +453,52 @@
+ 
+     def _add_(self, right):
+         """
+-        EXAMPLES:
++        EXAMPLES::
++
+             sage: a = lisp(1); b = lisp(2)
+             sage: a + b
+             3
+         """
+-        P = self._check_valid()        
++        P = self._check_valid()
+         return P.new('(+ %s %s)'%(self._name, right._name))
+-        
++
+     def _sub_(self, right):
+         """
+-        EXAMPLES:
++        EXAMPLES::
++
+             sage: a = lisp(1); b = lisp(2)
+             sage: a - b
+             -1
+         """
+-        P = self._check_valid()        
++        P = self._check_valid()
+         return P.new('(- %s %s)'%(self._name, right._name))
+ 
+     def _mul_(self, right):
+         """
+-        EXAMPLES:
++        EXAMPLES::
++
+             sage: a = lisp(1); b = lisp(2)
+             sage: a * b
+             2
+         """
+-        P = self._check_valid()        
++        P = self._check_valid()
+         return P.new('(* %s %s)'%(self._name, right._name))
+ 
+     def _div_(self, right):
+         """
+-        EXAMPLES:
++        EXAMPLES::
++
+             sage: a = lisp(1); b = lisp(2)
+             sage: a / b
+             1/2
+         """
+-        P = self._check_valid()        
++        P = self._check_valid()
+         return P.new('(/ %s %s)'%(self._name, right._name))
+ 
+     def __pow__(self, n):
+         """
+-        EXAMPLES:
++        EXAMPLES::
++
+             sage: a = lisp(3)
+             sage: a^3
+             27
+@@ -476,7 +508,8 @@
+ class LispFunctionElement(FunctionElement):
+     def _sage_doc_(self):
+         """
+-        EXAMPLES:
++        EXAMPLES::
++
+             sage: two = lisp(2)
+             sage: two.sin._sage_doc_()
+             Traceback (most recent call last):
+@@ -485,12 +518,13 @@
+         """
+         M = self._obj.parent()
+         return M.help(self._name)
+-        
+-    
++
++
+ class LispFunction(ExpectFunction):
+     def _sage_doc_(self):
+         """
+-        EXAMPLES:
++        EXAMPLES::
++
+             sage: lisp.sin._sage_doc_()
+             Traceback (most recent call last):
+             ...
+@@ -498,12 +532,12 @@
+         """
+         M = self._parent
+         return M.help(self._name)
+-        
+ 
+ 
+ def is_LispElement(x):
+     """
+-    EXAMPLES:
++    EXAMPLES::
++
+         sage: from sage.interfaces.lisp import is_LispElement
+         sage: is_LispElement(lisp(2))
+         True
+@@ -517,7 +551,8 @@
+ 
+ def reduce_load_Lisp():
+     """
+-    EXAMPLES:
++    EXAMPLES::
++
+         sage: from sage.interfaces.lisp import reduce_load_Lisp
+         sage: reduce_load_Lisp()
+         Lisp Interpreter
+@@ -529,7 +564,8 @@
+     """
+     Spawn a new Lisp command-line session.
+ 
+-    EXAMPLES:
++    EXAMPLES::
++
+         sage: lisp.console() #not tested
+         ECL (Embeddable Common-Lisp) ...
+         Copyright (C) 1984 Taiichi Yuasa and Masami Hagiya
+@@ -541,5 +577,3 @@
+         ...
+     """
+     os.system('ecl')
+-
+-
