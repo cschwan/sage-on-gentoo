@@ -7,5 +7,7 @@
 >=sci-mathematics/gap-4.5.7
 # building problems reported against latest fplll
 >=sci-libs/fplll-3.1.1
-# masking zodb-3.10+ for now
->=net-zope/zodb-3.10.0
+# moving to the new python eclass
+=dev-python/sympy-0.7.2-r2
+=dev-python/pexpect-2.0-r2
+=dev-python/pexpect-2.4-r2
