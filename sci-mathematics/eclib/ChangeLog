@@ -2,6 +2,12 @@
 # Copyright 1999-2013 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*eclib-20120830 (13 Jan 2013)
+
+  13 Jan 2013; François Bissey <francois.bissey@canterbury.ac.nz>
+  +eclib-20120830.ebuild:
+  bump for sage 5.6
+
   09 Jan 2013; François Bissey <francois.bissey@canterbury.ac.nz>
   eclib-20120428.ebuild:
   update SRC_URI
