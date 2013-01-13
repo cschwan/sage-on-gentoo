@@ -19,11 +19,9 @@ IUSE="doc examples"
 DEPEND=""
 RDEPEND=""
 
-python_prepare_all(){
-	epatch "${FILESDIR}"/${PN}.py-isdir_bug_fix.patch
-
-	distutils-r1_python_prepare_all
-}
+PATCHES=(
+	"${FILESDIR}"/${PN}.py-isdir_bug_fix.patch
+	)
 
 python_install_all() {
 	use doc && local HTML_DOCS=( doc/. )

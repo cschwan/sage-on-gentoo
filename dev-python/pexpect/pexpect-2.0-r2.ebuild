@@ -21,10 +21,7 @@ RESTRICT="mirror"
 DEPEND=""
 RDEPEND=""
 
-python_prepare_all() {
-	epatch "${FILESDIR}"/${P}-fix-misc-bugs.patch
-	# backport from pexepect-2.3 needed for sage-5.0+
-	epatch "${FILESDIR}"/${P}-env.patch
-
-	distutils-r1_python_prepare_all
-}
+PATCHES=(
+	"${FILESDIR}"/${P}-fix-misc-bugs.patch
+	"${FILESDIR}"/${P}-env.patch
+	)
