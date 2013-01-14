@@ -66,7 +66,7 @@ src_install(){
 	insinto /usr/$(get_libdir)/${PN}
 	doins -r *
 
-	newexe bin/gap.sh /usr/bin/gap
+	newbin bin/gap.sh gap
 
 	local MUST_BE_EXECUTABLE_FOR_LATER_COMPILING=(
 		config.status
