@@ -1,12 +1,12 @@
 # Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/numpy/numpy-1.6.2.ebuild,v 1.14 2012/12/29 17:45:46 armin76 Exp $
+# $Header: $
 
 EAPI=4
 
-PYTHON_DEPEND="*::3.2"
+PYTHON_DEPEND="*::3.3"
 SUPPORT_PYTHON_ABIS="1"
-RESTRICT_PYTHON_ABIS="3.3 *-jython *-pypy-*"
+RESTRICT_PYTHON_ABIS="*-jython *-pypy-*"
 
 FORTRAN_NEEDED=lapack
 
