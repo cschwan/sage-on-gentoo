@@ -1,0 +1,20 @@
+# HG changeset patch
+# User Francois Bissey <francois.bissey@canterbury.ac.nz>
+# Date 1358126333 -46800
+# Node ID 5aed19d013d171b31268225cd262f76e0c12d543
+# Parent  a163652b02a9d49fea0ac784aaa935159e12cc00
+Gentoo variables patch: additions for sage-5.6
+
+diff --git a/sage/sets/set_from_iterator.py b/sage/sets/set_from_iterator.py
+--- a/sage/sets/set_from_iterator.py
++++ b/sage/sets/set_from_iterator.py
+@@ -449,8 +449,7 @@
+             except IOError:
+                 sourcelines = None
+             if sourcelines is not None:
+-                import os
+-                SAGE_ROOT = os.environ['SAGE_ROOT']
++                from sage.misc.variables import SAGE_ROOT
+                 filename = sage_getfile(f)
+                 # The following is a heuristics to get
+                 # the file name of the cached function
