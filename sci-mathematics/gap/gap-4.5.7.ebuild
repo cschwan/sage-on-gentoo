@@ -44,6 +44,9 @@ S="${WORKDIR}/${PN}${PV1}"
 src_prepare(){
 	rm -rf pkg
 
+	sed -i "s:gapdir=\`pwd\`:gapdir=${EPREFIX}/usr/$(get_libdir)/${PN}:" \
+		configure.in
+
 	autotools-utils_src_prepare
 }
 
