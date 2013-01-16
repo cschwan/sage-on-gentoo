@@ -71,6 +71,8 @@ src_install(){
 
 	newbin bin/gap.sh gap
 
+	source sysinfo.gap
+
 	local MUST_BE_EXECUTABLE_FOR_LATER_COMPILING=(
 		config.status
 		configure
@@ -86,6 +88,9 @@ src_install(){
 	for i in ${MUST_BE_EXECUTABLE_FOR_LATER_COMPILING}; do
 		fperms 755 /usr/$(get_libdir)/${PN}/$i
 	done
+	# Make the real gap program executable again after install
+	einfo "making /usr/$(get_libdir)/${PN}/bin/${GAParch_system}/gap executable"
+	fperms 755 /usr/$(get_libdir)/${PN}/bin/${GAParch_system}/gap
 }
 
 pkg_postinst() {
