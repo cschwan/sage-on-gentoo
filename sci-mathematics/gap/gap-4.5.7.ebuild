@@ -42,8 +42,6 @@ AUTOTOOLS_IN_SOURCE_BUILD=1
 S="${WORKDIR}/${PN}${PV1}"
 
 src_prepare(){
-	rm -rf pkg
-
 	sed -i "s:gapdir=\`pwd\`:gapdir=${EPREFIX}/usr/$(get_libdir)/${PN}:" \
 		configure.in
 

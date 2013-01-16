@@ -4,6 +4,10 @@
 
   16 Jan 2013; François Bissey <francois.bissey@canterbury.ac.nz>
   gap-4.5.7.ebuild:
+  do not remove packages
+
+  16 Jan 2013; François Bissey <francois.bissey@canterbury.ac.nz>
+  gap-4.5.7.ebuild:
   found the typo
 
   15 Jan 2013; François Bissey <francois.bissey@canterbury.ac.nz>
