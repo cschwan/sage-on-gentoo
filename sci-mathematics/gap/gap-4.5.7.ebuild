@@ -34,6 +34,7 @@ PATCHES=(
 	"${FILESDIR}/${P}"-siginterrupt.patch
 	"${FILESDIR}/${P}"-writeandcheck.patch
 	"${FILESDIR}/${P}"-testall.patch
+	"${FILESDIR}/${P}"-Makefile.patch
 	)
 
 AUTOTOOLS_AUTORECONF=1
@@ -42,6 +43,10 @@ AUTOTOOLS_IN_SOURCE_BUILD=1
 S="${WORKDIR}/${PN}${PV1}"
 
 src_prepare(){
+	# remove useless stuff
+	rm -r bin/*
+	rm extern/gmp*
+
 	sed -i "s:gapdir=\`pwd\`:gapdir=${EPREFIX}/usr/$(get_libdir)/${PN}:" \
 		configure.in
 
@@ -56,11 +61,12 @@ src_configure(){
 		)
 
 	autotools-utils_src_configure
+	emake config
 }
 
 src_compile(){
 	# No parallel make possible at this stage.
-	emake -j1
+	emake
 }
 
 src_install(){
@@ -82,6 +88,10 @@ src_install(){
 		cnf/install-sh
 		etc/install-tools.sh
 		tst/remake.sh
+		pkg/io/configure
+		pkg/orb/configure
+		pkg/edim/configure
+		pkg/Browse/configure
 		)
 	for i in ${MUST_BE_EXECUTABLE_FOR_LATER_COMPILING}; do
 		fperms 755 /usr/$(get_libdir)/${PN}/$i

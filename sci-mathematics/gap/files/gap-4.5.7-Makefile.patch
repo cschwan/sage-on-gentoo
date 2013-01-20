@@ -1,0 +1,74 @@
+--- Makefile.in.orig	2013-01-19 23:11:38.063918140 +1300
++++ Makefile.in	2013-01-19 23:40:24.503180294 +1300
+@@ -88,25 +88,21 @@
+ 	  echo "There is no config with name: "$(CONFIGNAME); \
+ 	fi;
+ 
+-config: bin/$(GAPARCH)/configure  bin/$(GAPARCH)/Makefile bin/$(GAPARCH)/extern/Makefile 
++config: bin/$(GAPARCH)/configure  bin/$(GAPARCH)/Makefile
+ 
+ bin/$(GAPARCH)/configure: cnf/configure.out 
+ 	mkdir -p bin/$(GAPARCH)
+ 	@rm -f bin/$(GAPARCH)/configure
+ 	cp cnf/configure.out bin/$(GAPARCH)/configure
+ 
+-bin/$(GAPARCH)/Makefile bin/$(GAPARCH)/extern/Makefile : bin/$(GAPARCH)/configure cnf/config.hin cnf/gac.in extern/Makefile.in cnf/Makegap.in
+-	mkdir -p bin/$(GAPARCH)/extern
++bin/$(GAPARCH)/Makefile : bin/$(GAPARCH)/configure cnf/config.hin cnf/gac.in cnf/Makegap.in
+ 	( cd bin/$(GAPARCH) ; CC='$(CC)' ABI='$(ABI)' ABI_CFLAGS='$(ABI_CFLAGS)' GMP_LIBS='$(GMP_LIBS)' GMP_CFLAGS='$(GMP_CFLAGS)' CONFIGNAME='$(CONFIGNAME)' USE_GMP='$(USE_GMP)' GAPARCH='$(GAPARCH)' ./configure --target=@target@ @gp_configure_options@ )
+ 
+-extern: config
+-	( cd bin/$(GAPARCH)/extern ; $(MAKE) TARGET='$(TARGET)' BASECC='$(BASECC)' ABI='$(ABI)' ABI_CFLAGS='$(ABI_CFLAGS)' CC='$(CC)' GMP_VER='$(GMP_VER)' MAKE_GMP='$(MAKE_GMP)' CONFIGNAME='$(CONFIGNAME)' )
+-
+-compile: extern
++compile: config
+ 	( cd bin/$(GAPARCH); $(MAKE) ABI='$(ABI)' CC='$(CC)' GMP_VER='$(GMP_VER)' GMP_CFLAGS='$(GMP_CFLAGS)' GMP_LIBS='$(GMP_LIBS)' CONFIGNAME='$(CONFIGNAME)' )
+ 	chmod +x bin/gap-$(CONFIGNAME).sh
+ 
+-static: extern
++static: config
+ 	( cd bin/$(GAPARCH) ; $(MAKE) static CC='$(CC)' ABI='$(ABI)' )
+ 	chmod +x bin/gap-$(CONFIGNAME).sh
+ 	( cd bin/$(GAPARCH) ; strip gap@EXEEXT@)
+@@ -127,7 +123,7 @@
+ 
+ clean: clean_$(CLEANME)
+ 
+-clean_$(CLEANME): clean_gap_$(CLEANME) clean_gmp_$(CLEANME)
++clean_$(CLEANME): clean_gap_$(CLEANME)
+ 	rm -rf bin/$(GAPARCH)
+ 
+ 
+@@ -154,17 +150,6 @@
+ 	fi)
+ 	rm -f Makefile-$(CONFIGNAME)
+ 
+-clean_gmp: clean_gmp_$(CLEANME)
+-
+-clean_gmp_$(CLEANME):
+-	if test -d bin/$(GAPARCH)/extern/gmp-$(GMP_VER); then \
+-	 rm -rf bin/$(GAPARCH)/extern/gmp-$(GMP_VER); fi
+-	if test -h bin/$(GAPARCH)/extern/gmp; then \
+-	 rm -f bin/$(GAPARCH)/extern/gmp; fi
+-	if test -d extern/gmp-$(GMP_VER); then \
+-	 (cd extern/gmp-$(GMP_VER); rm -f LASTBUILD.*; \
+-	  if test -r Makefile; then make distclean; fi ); fi
+-
+ distclean:
+ 	while test -e Makefile; do make clean; done
+ 
+@@ -374,7 +359,7 @@
+             SetAssertionLevel( 2 ); RunDevUpdateTests();' | $(TESTGAP) > \
+             `date -u +dev/log/testupdates2_%Y-%m-%d-%H-%M` )
+             
+-cygwin:	extern
++cygwin:	config
+ 	( cd bin/$(GAPARCH) ; $(MAKE) gapdll ABI='$(ABI)' CC='$(CC)' GMP_VER='$(GMP_VER)' GMP_CFLAGS='$(GMP_CFLAGS)' GMP_LIBS='$(GMP_LIBS)' CONFIGNAME='$(CONFIGNAME)' )
+ 	chmod +x bin/gap-$(CONFIGNAME).sh
+ 	chmod +x bin/*.bat
+@@ -398,4 +383,4 @@
+ packages:
+ 	./makepkgs
+ 
+-.PHONY: clean clean_$(CLEANME) clean_gap clean_gap_$(CLEANME) clean_gmp clean_gmp_$(CLEANME) compile config cygwin default distclean extern manuals packages rebuild removewin setconfig static strip testinstall testinstall.g testmanuals testpackages testpackagesload testpackagesvars teststandard teststandardrenormalize winbinp
++.PHONY: clean clean_$(CLEANME) clean_gap clean_gap_$(CLEANME) clean_gmp clean_gmp_$(CLEANME) compile config cygwin default distclean manuals packages rebuild removewin setconfig static strip testinstall testinstall.g testmanuals testpackages testpackagesload testpackagesvars teststandard teststandardrenormalize winbinp
