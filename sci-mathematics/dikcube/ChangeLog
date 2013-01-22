@@ -2,6 +2,10 @@
 # Copyright 1999-2013 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  22 Jan 2013; Christopher Schwan <cschwan@students.uni-mainz.de>
+  dikcube-20070912_p18.ebuild:
+  Migrate to sagemath mirror
+
   17 Jan 2013; Christopher Schwan <cschwan@students.uni-mainz.de>
   -dikcube-20070912_p12.ebuild:
   Remove old ebuild
@@ -45,4 +49,3 @@
   +dikcube-20070912_p10.ebuild,
   +files/dikcube-20070912_p10-fix-missing-includes.patch, +metadata.xml:
   Initial import
-
