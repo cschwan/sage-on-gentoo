@@ -2,6 +2,10 @@
 # Copyright 1999-2013 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  22 Jan 2013; Christopher Schwan <cschwan@students.uni-mainz.de>
+  eclib-20120428.ebuild, eclib-20120830.ebuild:
+  Migrate to sagemath mirror
+
 *eclib-20120830 (13 Jan 2013)
 
   13 Jan 2013; François Bissey <francois.bissey@canterbury.ac.nz>
@@ -188,4 +192,3 @@
   20 Nov 2009; Christopher Schwan <cschwan@students.uni-mainz.de>
   +sage-eclib-20080310.7.ebuild, +metadata.xml:
   Initial import
-
