@@ -1,6 +1,10 @@
 # ChangeLog for sci-mathematics/sage-data-polytopes_db
-# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# Copyright 1999-2013 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
+
+  22 Jan 2013; Christopher Schwan <cschwan@students.uni-mainz.de>
+  sage-data-polytopes_db-20100210_p2.ebuild:
+  Migrate to sagemath mirror
 
   21 Nov 2012; François Bissey <francois.bissey@canterbury.ac.nz>
   -sage-data-polytopes_db-20100210_p1-r1.ebuild:
@@ -52,4 +56,3 @@
   27 Jun 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
   +sage-data-polytopes_db-20100210.ebuild, +metadata.xml:
   Initial import - ebuild replaces parts of sage-data
-

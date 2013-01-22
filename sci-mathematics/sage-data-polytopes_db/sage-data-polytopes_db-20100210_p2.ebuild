@@ -1,17 +1,16 @@
-# Copyright 1999-2012 Gentoo Foundation
+# Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
-EAPI="4"
+EAPI="5"
 
 inherit versionator
 
 MY_P="polytopes_db-$(replace_version_separator 1 '.')"
-SAGE_P="sage-5.4.rc0"
 
 DESCRIPTION="Sage's polytopes database"
 HOMEPAGE="http://www.sagemath.org"
-SRC_URI="http://sage.math.washington.edu/home/release/${SAGE_P}/${SAGE_P}/spkg/standard/${MY_P}.spkg -> ${P}.tar.bz2"
+SRC_URI="mirror://sagemath/${MY_P}.spkg -> ${P}.tar.bz2"
 
 LICENSE="GPL-2"
 SLOT="0"
@@ -21,9 +20,9 @@ IUSE=""
 RESTRICT="mirror"
 
 DEPEND=""
-RDEPEND="${DEPEND}"
+RDEPEND=""
 
-S="${WORKDIR}/${MY_P}/src"
+S="${WORKDIR}"/${MY_P}/src
 
 src_install() {
 	insinto /usr/share/sage/reflexive_polytopes
