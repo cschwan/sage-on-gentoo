@@ -7,11 +7,10 @@ EAPI="5"
 inherit eutils toolchain-funcs versionator
 
 MY_P="${PN}-$(replace_version_separator 2 '.')"
-SAGE_P="sage-5.5"
 
 DESCRIPTION="Conductor and Reduction Types for Genus 2 Curves"
 HOMEPAGE="http://www.math.u-bordeaux.fr/~liu/G2R/"
-SRC_URI="http://sage.math.washington.edu/home/release/${SAGE_P}/${SAGE_P}/spkg/standard/${MY_P}.spkg -> ${P}.tar.bz2"
+SRC_URI="mirror://sagemath/${MY_P}.spkg -> ${P}.tar.bz2"
 
 LICENSE="GPL-2"
 SLOT="0"
