@@ -1,15 +1,14 @@
-# Copyright 1999-2012 Gentoo Foundation
+# Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
-EAPI="4"
+EAPI="5"
 
 inherit autotools-utils eutils flag-o-matic
 
 DESCRIPTION="Method of four russian for inversion (M4RI)"
 HOMEPAGE="http://m4ri.sagemath.org/"
-SAGE_V="sage-5.3.beta0"
-SRC_URI="sage.math.washington.edu/home/release/${SAGE_V}/${SAGE_V}/spkg/standard/lib${P}.spkg -> ${P}.tar.bz2"
+SRC_URI="mirror://sagemath/lib${P}.spkg -> ${P}.tar.bz2"
 
 LICENSE="GPL-2"
 SLOT="0"
@@ -22,6 +21,7 @@ RESTRICT="mirror test"
 DEPEND="openmp? ( >=sys-devel/gcc-4.2[openmp] )
 	~sci-libs/m4ri-${PV}[openmp?]"
 RDEPEND="~sci-libs/m4ri-${PV}[openmp?]"
+
 S="${WORKDIR}"/lib${P}/src
 
 pkg_setup() {
