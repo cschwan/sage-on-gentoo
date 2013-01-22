@@ -1,8 +1,8 @@
-# Copyright 1999-2012 Gentoo Foundation
+# Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
-EAPI="3"
+EAPI="5"
 
 PYTHON_DEPEND="2:2.7:2.7"
 PYTHON_USE_WITH="sqlite"
@@ -10,11 +10,10 @@ PYTHON_USE_WITH="sqlite"
 inherit python
 
 MY_P="elliptic_curves-${PV}"
-SAGE_P="sage-5.4.rc0"
 
 DESCRIPTION="Sage's elliptic curves databases"
 HOMEPAGE="http://www.sagemath.org"
-SRC_URI="http://sage.math.washington.edu/home/release/${SAGE_P}/${SAGE_P}/spkg/standard/${MY_P}.spkg -> ${P}.tar.bz2"
+SRC_URI="mirror://sagemath/${MY_P}.spkg -> ${P}.tar.bz2"
 
 LICENSE="GPL-2"
 SLOT="0"
@@ -24,9 +23,9 @@ IUSE=""
 RESTRICT="mirror"
 
 DEPEND=""
-RDEPEND="${DEPEND}"
+RDEPEND=""
 
-S="${WORKDIR}/${MY_P}"
+S="${WORKDIR}"/${MY_P}
 
 pkg_setup() {
 	python_set_active_version 2.7
