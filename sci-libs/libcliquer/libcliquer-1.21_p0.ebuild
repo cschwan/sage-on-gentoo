@@ -1,17 +1,16 @@
-# Copyright 1999-2012 Gentoo Foundation
+# Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
-EAPI="4"
+EAPI="5"
 
 inherit eutils flag-o-matic toolchain-funcs versionator multilib
 
 MY_P="cliquer-$(replace_version_separator 2 '.')"
-SAGE_P="sage-5.5.rc0"
 
 DESCRIPTION="Cliquer is a set of C routines for finding cliques in an arbitrary weighted graph"
 HOMEPAGE="http://users.tkk.fi/pat/cliquer.html"
-SRC_URI="http://sage.math.washington.edu/home/release/${SAGE_P}/${SAGE_P}/spkg/standard/${MY_P}.spkg -> ${P}.tar.bz2"
+SRC_URI="mirror://sagemath/${MY_P}.spkg -> ${P}.tar.bz2"
 
 LICENSE="GPL-2"
 SLOT="0"
@@ -23,7 +22,7 @@ RESTRICT="mirror"
 DEPEND=""
 RDEPEND="${DEPEND}"
 
-S="${WORKDIR}/${MY_P}/src"
+S="${WORKDIR}"/${MY_P}/src
 
 pkg_setup() {
 	tc-export CC

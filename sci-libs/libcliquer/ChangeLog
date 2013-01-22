@@ -2,6 +2,10 @@
 # Copyright 1999-2013 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  22 Jan 2013; Christopher Schwan <cschwan@students.uni-mainz.de>
+  libcliquer-1.21_p0.ebuild:
+  Migrate to sagemath mirror
+
   17 Jan 2013; Christopher Schwan <cschwan@students.uni-mainz.de>
   -libcliquer-1.2_p11-r1.ebuild:
   Remove outdated ebuild
@@ -117,4 +121,3 @@
   19 Nov 2009; Christopher Schwan <cschwan@students.uni-mainz.de>
   +sage-cliquer-1.2.2.ebuild, +files/sage-cliquer-1.2.2-remove-main.patch:
   Initial import. Derived from (now deleted) sci-mathematics/cliquer
-
