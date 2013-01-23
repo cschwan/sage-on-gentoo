@@ -2,6 +2,10 @@
 # Copyright 1999-2013 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  23 Jan 2013; Christopher Schwan <cschwan@students.uni-mainz.de>
+  sage-baselayout-5.5.ebuild, sage-baselayout-5.6_rc1.ebuild:
+  Migrate to sagemath mirror
+
 *sage-baselayout-5.6_rc1 (20 Jan 2013)
 
   20 Jan 2013; François Bissey <francois.bissey@canterbury.ac.nz>
@@ -735,4 +739,3 @@
   +files/sage-baselayout-4.5.1-remove-useless-options.patch,
   +files/sage-baselayout-4.5-remove-sage-location.patch, +metadata.xml:
   Initial import
-

@@ -6,14 +6,13 @@ EAPI="5"
 
 inherit eutils prefix versionator
 
-SAGE_P="sage-$(replace_version_separator 2 '.')"
 MY_P="sage_scripts-$(replace_version_separator 2 '.')"
 SAGEROOT="sage_root-$(replace_version_separator 2 '.')"
 
 DESCRIPTION="Sage baselayout files"
 HOMEPAGE="http://www.sagemath.org"
-SRC_URI="http://sage.math.washington.edu/home/release/${SAGE_P}/${SAGE_P}/spkg/standard/${MY_P}.spkg -> ${P}.tar.bz2
-	http://sage.math.washington.edu/home/release/${SAGE_P}/${SAGE_P}/spkg/standard/${SAGEROOT}.spkg -> ${SAGEROOT}.tar.bz2"
+SRC_URI="mirror://sagemath/${MY_P}.spkg -> ${P}.tar.bz2
+	mirror://sagemath/${SAGEROOT}.spkg -> ${SAGEROOT}.tar.bz2"
 
 LICENSE="GPL-2"
 SLOT="0"
