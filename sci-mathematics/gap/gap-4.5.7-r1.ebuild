@@ -46,6 +46,8 @@ src_prepare(){
 	# remove useless stuff
 	rm -r bin/*
 	rm extern/gmp*
+	# the xgap pkg is absolutely toxic to sage
+	rm -r pkg/xgap
 
 	sed -i "s:gapdir=\`pwd\`:gapdir=${EPREFIX}/usr/$(get_libdir)/${PN}:" \
 		configure.in
