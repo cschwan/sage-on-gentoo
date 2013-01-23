@@ -2,6 +2,10 @@
 # Copyright 1999-2013 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  23 Jan 2013; Christopher Schwan <cschwan@students.uni-mainz.de>
+  sage-clib-5.5.ebuild, sage-clib-5.6_rc1.ebuild:
+  Migrate to sagemath mirror
+
 *sage-clib-5.6_rc1 (20 Jan 2013)
 
   20 Jan 2013; François Bissey <francois.bissey@canterbury.ac.nz>
@@ -724,4 +728,3 @@
   15 Jan 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
   +sage-clib-4.3.ebuild, +metadata.xml:
   Initial import
-

@@ -1,4 +1,4 @@
-# Copyright 1999-2012 Gentoo Foundation
+# Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
@@ -10,7 +10,7 @@ MY_P="sage-$(replace_version_separator 2 '.')"
 
 DESCRIPTION="Sage's C library"
 HOMEPAGE="http://www.sagemath.org"
-SRC_URI="http://sage.math.washington.edu/home/release/${MY_P}/${MY_P}/spkg/standard/${MY_P}.spkg -> sage-${PV}.tar.bz2"
+SRC_URI="mirror://sagemath/${MY_P}.spkg -> sage-${PV}.tar.bz2"
 
 LICENSE="GPL-2"
 SLOT="0"
@@ -26,7 +26,7 @@ DEPEND="dev-libs/gmp[cxx]
 	~sci-mathematics/polybori-0.8.2"
 RDEPEND="${DEPEND}"
 
-S="${WORKDIR}/${MY_P}/c_lib"
+S="${WORKDIR}"/${MY_P}/c_lib
 
 src_prepare() {
 	epatch "${FILESDIR}"/${PN}-4.7.1-importenv.patch
