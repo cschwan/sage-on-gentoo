@@ -13,7 +13,7 @@ SRC_URI="http://wstein.org/home/ohanar/spkgs/conway_polynomials-0.4.spkg -> ${P}
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~x86 ~amd64-linux ~x86-linux"
+KEYWORDS="~amd64 ~x86 ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~x64-macos"
 IUSE=""
 
 RESTRICT="mirror"
@@ -23,10 +23,12 @@ RDEPEND="${DEPEND}"
 
 S="${WORKDIR}"/${MY_P}
 
-DOT_SAGE="${S}"
-
 src_prepare() {
-	sed -i "s:join(SAGE_SHARE,:join(\'${ED}/usr/share/sage\',:g" spkg-install
+	sed \
+		-e "s:from sage.all:from sage.structure.sage_object:g" \
+		-e "/from sage.misc.misc import SAGE_SHARE/d" \
+		-e "s:join(SAGE_SHARE,:join(\'${ED}usr/share/sage\',:g" \
+		-i spkg-install
 }
 
 src_install() {
