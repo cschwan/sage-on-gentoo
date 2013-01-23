@@ -2,6 +2,10 @@
 # Copyright 1999-2013 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  23 Jan 2013; Christopher Schwan <cschwan@students.uni-mainz.de>
+  sage-extcode-5.5.ebuild, sage-extcode-5.6_rc1.ebuild:
+  Migrate to sagemath mirror
+
 *sage-extcode-5.6_rc1 (20 Jan 2013)
 
   20 Jan 2013; François Bissey <francois.bissey@canterbury.ac.nz>
@@ -606,4 +610,3 @@
   19 Dec 2009; Christopher Schwan <cschwan@students.uni-mainz.de>
   +sage-extcode-4.2.1.ebuild, +metadata.xml:
   Initial import
-
