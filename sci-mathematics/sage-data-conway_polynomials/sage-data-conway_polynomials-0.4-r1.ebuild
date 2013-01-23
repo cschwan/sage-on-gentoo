@@ -28,6 +28,7 @@ src_prepare() {
 		-e "s:from sage.all:from sage.structure.sage_object:g" \
 		-e "/from sage.misc.misc import SAGE_SHARE/d" \
 		-e "s:join(SAGE_SHARE,:join(\'${ED}usr/share/sage\',:g" \
+		-e "/print p/d" \
 		-i spkg-install
 }
 
