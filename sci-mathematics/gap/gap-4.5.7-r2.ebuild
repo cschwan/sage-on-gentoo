@@ -19,11 +19,11 @@ SRC_URI="ftp://ftp.gap-system.org/pub/gap/gap4/tar.bz2/${PN}${PV2}${PVSTAMP}.tar
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64 ~x86 ~amd64-linux ~x86-linux"
-IUSE="emacs vim-syntax readline"
+IUSE="+gmp emacs vim-syntax readline"
 
 RESTRICT="mirror"
 
-DEPEND="dev-libs/gmp
+DEPEND="gmp? ( dev-libs/gmp )
 	readline? ( sys-libs/readline )"
 RDEPEND="${DEPEND}
 	emacs? ( virtual/emacs )
@@ -57,10 +57,15 @@ src_prepare(){
 
 src_configure(){
 	local myeconfargs=(
-		--with-gmp=system
 		$(use_with readline)
 		ABI=""
 		)
+
+	if (use gmp); then
+		myeconfargs+=(--with-gmp=system)
+	else
+		myeconfargs+=(--with-gmp=no)
+	fi
 
 	autotools-utils_src_configure
 	emake config
