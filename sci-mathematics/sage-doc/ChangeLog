@@ -2,6 +2,12 @@
 # Copyright 1999-2013 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*sage-doc-5.6 (27 Jan 2013)
+
+  27 Jan 2013; Christopher Schwan <cschwan@students.uni-mainz.de>
+  +sage-doc-5.6.ebuild, -sage-doc-5.6_rc1.ebuild:
+  Version bump, remove rc1 ebuild
+
   23 Jan 2013; Christopher Schwan <cschwan@students.uni-mainz.de>
   sage-doc-5.5.ebuild, sage-doc-5.6_rc1.ebuild:
   Migrate to sagemath mirror
