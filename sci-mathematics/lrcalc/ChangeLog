@@ -1,10 +1,15 @@
 # ChangeLog for sci-mathematics/lrcalc
-# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# Copyright 1999-2013 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
+
+*lrcalc-1.1.6_beta1 (27 Jan 2013)
+
+  27 Jan 2013; Christopher Schwan <cschwan@students.uni-mainz.de>
+  +lrcalc-1.1.6_beta1.ebuild, lrcalc-1.1.6_beta_p0.ebuild:
+  Version bump
 
 *lrcalc-1.1.6_beta_p0 (28 Jun 2012)
 
   28 Jun 2012; François Bissey <francois.bissey@canterbury.ac.nz>
   +lrcalc-1.1.6_beta_p0.ebuild, +metadata.xml:
   Initial import of lrcalc -optional in 5.0/5.1 and to be standard in 5.2 
-

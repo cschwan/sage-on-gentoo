@@ -10,7 +10,7 @@ MY_PV="$(delete_version_separator 3 $(replace_version_separator 4 '.'))"
 
 DESCRIPTION="Littlewood-Richardson Calculator"
 HOMEPAGE="http://www.math.rutgers.edu/~asbuch/lrcalc/"
-SRC_URI="http://sage.math.washington.edu/home/palmieri/SPKG/${PN}-${MY_PV}.spkg -> ${P}.tar.bz2"
+SRC_URI="mirror://sagemath/${PN}-${MY_PV}.spkg -> ${P}.tar.bz2"
 
 LICENSE="GPL-2"
 SLOT="0"
