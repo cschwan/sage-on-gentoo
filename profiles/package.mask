@@ -1,11 +1,9 @@
-# preparing 5.5.1
->=sci-mathematics/sage-5.5.1_alpha0
->=sci-mathematics/sage-clib-5.5.1_alpha0
->=sci-mathematics/sage-baselayout-5.5.1_alpha0
->=sci-mathematics/sage-doc-5.5.1_alpha0
->=sci-mathematics/sage-extcode-5.5.1_alpha0
->=sci-mathematics/gap-4.5.7
->=sci-mathematics/eclib-20120830
+# preparing 5.6.1
+>=sci-mathematics/sage-5.6.1_alpha0
+>=sci-mathematics/sage-clib-5.6.1_alpha0
+>=sci-mathematics/sage-baselayout-5.6.1_alpha0
+>=sci-mathematics/sage-doc-5.6.1_alpha0
+>=sci-mathematics/sage-extcode-5.6.1_alpha0
 # building problems reported against latest fplll
 >=sci-libs/fplll-3.1.1
 # moving to the new python eclass
