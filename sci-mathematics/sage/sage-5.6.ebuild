@@ -45,13 +45,13 @@ CDEPEND="dev-libs/gmp
 	~sci-libs/linbox-1.3.2[sage]
 	~sci-libs/m4ri-20120613
 	~sci-libs/m4rie-20120613
-	>=sci-libs/mpfi-1.5
+	>=sci-libs/mpfi-1.5.1
 	>=sci-libs/pynac-0.2.5[${PYTHON_USEDEP}]
 	>=sci-libs/symmetrica-2.0
 	>=sci-libs/zn_poly-0.9
 	>=sci-mathematics/glpk-4.44
 	>=sci-mathematics/lcalc-1.23-r4[pari]
-	sci-mathematics/lrcalc
+	>=sci-mathematics/lrcalc-1.1.6_beta1
 	~sci-mathematics/pari-2.5.3[data,gmp]
 	~sci-mathematics/polybori-0.8.2
 	>=sci-mathematics/ratpoints-2.1.3
@@ -80,7 +80,7 @@ RDEPEND="${CDEPEND}
 	>=dev-python/pycrypto-2.1.0
 	>=dev-python/rpy-2.0.8
 	>=dev-python/sphinx-1.1.2
-	dev-python/sqlalchemy
+	>=dev-python/sqlalchemy-0.5.8
 	>=dev-python/sympy-0.7.1
 	>=media-gfx/tachyon-0.98.9[png]
 	>=sci-libs/cddlib-094f-r2
