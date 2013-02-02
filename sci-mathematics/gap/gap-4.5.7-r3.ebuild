@@ -82,6 +82,8 @@ src_install(){
 
 	newbin bin/gap.sh gap
 
+	dosym "${EPREFIX}/usr/$(get_libdir)/${PN}/sysinfo.gap" /etc/sysinfo.gap
+
 	source sysinfo.gap
 
 	local MUST_BE_EXECUTABLE_FOR_LATER_COMPILING=(
