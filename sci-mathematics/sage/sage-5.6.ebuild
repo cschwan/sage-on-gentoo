@@ -135,7 +135,7 @@ src_prepare() {
 		-e 's/^-l//' \
 		-e "s/ -l/\',\'/g" \
 		-e 's/.,.pthread//g' \
-		-e "s:  ::")\'
+		-e "s: ::g")\'
 
 	# patch to module_list.py because of trac 4539
 	epatch "${FILESDIR}"/${PN}-5.4-plural.patch
