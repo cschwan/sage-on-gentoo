@@ -1,4 +1,4 @@
-# Copyright 1999-2012 Gentoo Foundation
+# Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
@@ -28,8 +28,8 @@ CDEPEND="~dev-python/pexpect-2.0
 	>=dev-python/twisted-mail-12.0
 	>=dev-python/twisted-web-12.0
 	!dev-python/twisted-web2
-	>=dev-python/jinja-2.5.5
-	>=dev-python/docutils-0.5
+	>=dev-python/jinja-2.5.5[${PYTHON_USEDEP}]
+	>=dev-python/docutils-0.5[${PYTHON_USEDEP}]
 	>=dev-python/flask-autoindex-0.4.1[${PYTHON_USEDEP}]
 	>=dev-python/flask-openid-1.0.1
 	>=dev-python/flask-babel-0.8

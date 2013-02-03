@@ -1,6 +1,10 @@
 # ChangeLog for sci-mathematics/sage-notebook
-# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# Copyright 1999-2013 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
+
+  03 Feb 2013; Christopher Schwan <cschwan@students.uni-mainz.de>
+  sage-notebook-0.10.2-r3.ebuild:
+  Update dependencies on python packages
 
   18 Dec 2012; François Bissey <francois.bissey@canterbury.ac.nz>
   sage-notebook-0.10.2-r3.ebuild:
@@ -580,4 +584,3 @@
   05 Jan 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
   +sage-notebook-0.4.8.ebuild, +metadata.xml:
   Initial import
-
