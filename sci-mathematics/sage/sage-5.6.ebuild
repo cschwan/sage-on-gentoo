@@ -71,7 +71,7 @@ RDEPEND="${CDEPEND}
 	>=dev-python/cvxopt-1.1.5[glpk]
 	>=dev-python/gdmodule-0.56-r2[png]
 	~dev-python/ipython-0.10.2
-	>=dev-python/jinja-2.5.5
+	>=dev-python/jinja-2.5.5[${PYTHON_USEDEP}]
 	>=dev-python/matplotlib-1.1.0
 	<dev-python/matplotlib-1.2.0
 	>=dev-python/mpmath-0.17
@@ -79,7 +79,7 @@ RDEPEND="${CDEPEND}
 	~dev-python/pexpect-2.0
 	>=dev-python/pycrypto-2.1.0
 	>=dev-python/rpy-2.0.8
-	>=dev-python/sphinx-1.1.2
+	>=dev-python/sphinx-1.1.2[${PYTHON_USEDEP}]
 	>=dev-python/sqlalchemy-0.5.8
 	>=dev-python/sympy-0.7.1
 	>=media-gfx/tachyon-0.98.9[png]
