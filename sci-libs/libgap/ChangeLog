@@ -1,0 +1,5 @@
+*libgap-4.5.7 (04 Feb 2013)
+
+  04 Feb 2013; François Bissey <francois.bissey@canterbury.ac.nz>
+  +libgap-4.5.7.ebuild, +metadata.xml:
+  New ebuild for libgap to be used in sage 5.7
