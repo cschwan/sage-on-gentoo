@@ -82,7 +82,7 @@ src_install(){
 
 	newbin bin/gap.sh gap
 
-	dosym "${EPREFIX}/usr/$(get_libdir)/${PN}/sysinfo.gap" /etc/sysinfo.gap
+	dosym /usr/$(get_libdir)/${PN}/sysinfo.gap /etc/sysinfo.gap
 
 	source sysinfo.gap
 
