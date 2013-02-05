@@ -79,7 +79,7 @@ QUICK INSTALLATION GUIDE
    /usr/local/portage/layman for older version of layman).
 
 5. *INSTALL SAGE*:
-   Type ::
+   Type::
 
      emerge -va sage
 
@@ -102,7 +102,11 @@ QUICK INSTALLATION GUIDE
 
      layman -S
 
-   After that you may run ::
+   Do not forget to update the main portage tree as well::
+
+     emerge --sync
+
+   After that you may run::
 
      emerge -vuDNa world
 
