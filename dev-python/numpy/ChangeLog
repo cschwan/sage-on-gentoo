@@ -2,6 +2,12 @@
 # Copyright 1999-2013 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/dev-python/numpy/ChangeLog,v 1.157 2012/05/04 15:12:15 patrick Exp $
 
+*numpy-1.7.0_rc2 (07 Feb 2013)
+
+  07 Feb 2013; François Bissey <francois.bissey@canterbury.ac.nz>
+  +numpy-1.7.0_rc2.ebuild:
+  new numpy 1.7.0rc2 is in.
+
   14 Jan 2013; François Bissey <francois.bissey@canterbury.ac.nz>
   numpy-1.7.0_rc1.ebuild:
   allow python 3.3
@@ -694,4 +700,3 @@
 
   07 Feb 2006; Alastair Tse <liquidx@gentoo.org> +numpy-0.9.4.ebuild:
   initial ebuild thanks to Alok Singhal (#119305)
-
