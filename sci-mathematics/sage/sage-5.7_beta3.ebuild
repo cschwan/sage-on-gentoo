@@ -114,7 +114,7 @@ RDEPEND="${CDEPEND}
 		)
 	)"
 
-PDEPEND="~sci-mathematics/sage-notebook-0.10.2[${PYTHON_USEDEP}]
+PDEPEND="~sci-mathematics/sage-notebook-0.10.4[${PYTHON_USEDEP}]
 	~sci-mathematics/sage-data-conway_polynomials-0.4"
 
 S="${WORKDIR}"/${MY_P}
