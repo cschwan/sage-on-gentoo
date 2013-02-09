@@ -122,7 +122,7 @@ src_install() {
 	# TODO: patch sage-core and remove sage-native-execute ?
 
 	# core scripts which are needed in every case
-	dobin sage-cleaner sage-banner sage-eval sage-ipython \
+	dobin sage-cleaner sage-eval sage-ipython \
 		sage-maxima.lisp sage-native-execute sage-run sage-num-threads.py \
 		sage-rst2txt sage-rst2sws
 
@@ -130,7 +130,7 @@ src_install() {
 
 	# install sage-env under /etc
 	insinto /etc
-	doins sage-env
+	doins sage-env sage-banner
 
 	if use testsuite ; then
 		# DOCTESTING helper scripts
