@@ -2,6 +2,13 @@
 # Copyright 1999-2013 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*sage-baselayout-5.7_beta3 (09 Feb 2013)
+
+  09 Feb 2013; François Bissey <francois.bissey@canterbury.ac.nz>
+  +files/sage-baselayout-5.7-fix-SAGE_LOCAL.patch,
+  +sage-baselayout-5.7_beta3.ebuild:
+  5.7beta3: baselayout
+
 *sage-baselayout-5.6 (27 Jan 2013)
 
   27 Jan 2013; Christopher Schwan <cschwan@students.uni-mainz.de>
