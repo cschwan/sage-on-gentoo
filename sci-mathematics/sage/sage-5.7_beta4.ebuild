@@ -58,7 +58,7 @@ CDEPEND="dev-libs/gmp
 	>=sci-mathematics/ratpoints-2.1.3
 	~sci-mathematics/sage-baselayout-${PV}[testsuite=]
 	~sci-mathematics/sage-clib-${PV}
-	~sci-libs/libsingular-3.1.5
+	>=sci-libs/libsingular-3.1.5-r2
 	media-libs/gd[jpeg,png]
 	media-libs/libpng
 	>=sys-libs/readline-6.2
