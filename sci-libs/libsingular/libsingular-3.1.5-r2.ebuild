@@ -1,4 +1,4 @@
-# Copyright 1999-2012 Gentoo Foundation
+# Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
@@ -161,11 +161,13 @@ src_install () {
 		-i templates/ftmpl_inst.cc
 	sed -e "s:templates/ftmpl:singular/templates/ftmpl:" \
 		-i templates/ftmpl_inst.cc
+	sed -e "s:factory/factory.h:singular/factory.h:" \
+		-i "${S}"/libfac/factor.h
 
 	doins libsingular.h mylimits.h omalloc.h
 	insinto /usr/include/singular
 	doins singular/*
-	doins factory.h factoryconf.h cf_gmp.h
+	doins factory.h factoryconf.h cf_gmp.h "${S}"/libfac/factor.h
 	insinto /usr/include/singular/templates
 	doins templates/*
 }
