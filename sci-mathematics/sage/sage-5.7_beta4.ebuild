@@ -275,6 +275,9 @@ src_prepare() {
 	# patching for variables
 	epatch "${PATCHDIR}"/${PN}-5.7-variables.patch
 
+	# patching libs/gap/util.pyx so we don't get noise from missing SAGE_LOCAL/gap/latest
+	epatch "${FILESDIR}"/${PN}-5.7-libgap.patch
+
 	# allow sage-matroids to be used if installed
 	epatch "${FILESDIR}"/${PN}-matroids.patch
 
