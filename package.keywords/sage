@@ -43,7 +43,7 @@ sci-libs/m4ri
 sci-libs/m4rie
 sci-libs/mpfi
 sci-libs/pynac
-~sci-libs/scipy-0.11.0
+=sci-libs/scipy-0.11.0
 sci-libs/superlu
 sci-libs/symmetrica
 sci-libs/vecmath-objectclub
