@@ -2,6 +2,10 @@
 # Copyright 1999-2013 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  11 Feb 2013; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-5.7_beta4.ebuild:
+  go python-r1 with more dependencies.
+
   10 Feb 2013; François Bissey <francois.bissey@canterbury.ac.nz>
   +files/sage-5.7-libgap.patch, sage-5.7_beta4.ebuild:
   Do not test lib/gap/latest please.
