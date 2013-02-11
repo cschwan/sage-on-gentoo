@@ -77,7 +77,7 @@ RDEPEND="${CDEPEND}
 	<dev-python/matplotlib-1.2.0
 	>=dev-python/mpmath-0.17
 	~dev-python/networkx-1.6
-	~dev-python/pexpect-2.0
+	~dev-python/pexpect-2.0[${PYTHON_USEDEP}]
 	>=dev-python/pycrypto-2.1.0
 	>=dev-python/rpy-2.0.8
 	>=dev-python/sphinx-1.1.2[${PYTHON_USEDEP}]

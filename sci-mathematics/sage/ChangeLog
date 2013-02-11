@@ -4,6 +4,10 @@
 
   11 Feb 2013; François Bissey <francois.bissey@canterbury.ac.nz>
   sage-5.7_beta4.ebuild:
+  One more (pexpect)
+
+  11 Feb 2013; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-5.7_beta4.ebuild:
   go python-r1 with more dependencies.
 
   10 Feb 2013; François Bissey <francois.bissey@canterbury.ac.nz>
