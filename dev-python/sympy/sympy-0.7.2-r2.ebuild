@@ -19,8 +19,8 @@ IUSE="doc examples gtk imaging ipython latex mathml opengl pdf png pyglet test t
 
 RDEPEND="
 	mathml? (
-		dev-libs/libxml2:2[python,${PYTHON_USEDEP}]
-		dev-libs/libxslt[python,${PYTHON_USEDEP}]
+		dev-libs/libxml2:2[python]
+		dev-libs/libxslt[python]
 		gtk? ( x11-libs/gtkmathview[gtk] ) )
 	latex? (
 		virtual/latex-base
@@ -29,13 +29,13 @@ RDEPEND="
 		pdf? ( app-text/ghostscript-gpl ) )
 	texmacs? ( app-office/texmacs )
 	ipython? ( dev-python/ipython )
-	opengl? ( dev-python/pyopengl[${PYTHON_USEDEP}] )
-	imaging? ( dev-python/imaging )
+	opengl? ( dev-python/pyopengl )
+	imaging? ( dev-python/imaging[${PYTHON_USEDEP}] )
 	pyglet? ( dev-python/pyglet )
 	>=dev-python/pexpect-2.0[${PYTHON_USEDEP}]
 	~dev-python/mpmath-0.17"
 DEPEND="${RDEPEND}
-	doc? ( dev-python/sphinx )
+	doc? ( dev-python/sphinx[${PYTHON_USEDEP}] )
 	test? ( dev-python/pytest[${PYTHON_USEDEP}] )"
 
 pkg_setup() {
