@@ -4,6 +4,10 @@
 
   11 Feb 2013; François Bissey <francois.bissey@canterbury.ac.nz>
   sage-notebook-0.10.4.ebuild:
+  OK no depending python-r1 pexpect, I had forgotten to mask the new notebook.
+
+  11 Feb 2013; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-notebook-0.10.4.ebuild:
   cosmetic change, doesn't like python-r1 pexpect for unknown reason so it will
   temporarily broken.
 
