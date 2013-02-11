@@ -1,19 +1,17 @@
 # Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/numpy/numpy-1.6.2-r2.ebuild,v 1.2 2013/02/10 11:55:23 mgorny Exp $
 
-EAPI=4
+EAPI=5
 
-PYTHON_DEPEND="*::3.3"
-SUPPORT_PYTHON_ABIS="1"
-RESTRICT_PYTHON_ABIS="*-jython *-pypy-*"
+PYTHON_COMPAT=( python{2_5,2_6,2_7,3_1,3_2} )
 
 FORTRAN_NEEDED=lapack
 
-inherit distutils eutils flag-o-matic fortran-2 toolchain-funcs versionator
+inherit distutils-r1 eutils flag-o-matic fortran-2 multilib toolchain-funcs versionator
 
 DOC_P="${PN}-1.6.0"
-MY_P="${PN}-1.7.0rc1"
+MY_P="${PN}-1.7.0rc2"
 S="${WORKDIR}/${MY_P}"
 
 DESCRIPTION="Fast array and numerical python library"
@@ -31,41 +29,15 @@ KEYWORDS="~alpha ~amd64 ~arm ~hppa ~ia64 ~mips ~ppc ~ppc64 ~s390 ~sh ~sparc ~x86
 IUSE="doc lapack test"
 
 RDEPEND="
-	dev-python/setuptools
+	dev-python/setuptools[${PYTHON_USEDEP}]
 	lapack? ( virtual/cblas virtual/lapack )"
 DEPEND="${RDEPEND}
 	doc? ( app-arch/unzip )
 	lapack? ( virtual/pkgconfig )
-	test? ( >=dev-python/nose-0.10 )"
+	test? ( >=dev-python/nose-0.10[${PYTHON_USEDEP}] )"
 
-PYTHON_CFLAGS=("* + -fno-strict-aliasing")
-
-# Build system installs f2py${Python_version} scripts.
-PYTHON_NONVERSIONED_EXECUTABLES=("/usr/bin/f2py[[:digit:]]+\.[[:digit:]]+")
-
-DOCS="COMPATIBILITY DEV_README.txt THANKS.txt"
-
-pkg_setup() {
-	fortran-2_pkg_setup
-	python_pkg_setup
-
-	# See progress in http://projects.scipy.org/scipy/numpy/ticket/573
-	# with the subtle difference that we don't want to break Darwin where
-	# -shared is not a valid linker argument
-	if [[ ${CHOST} != *-darwin* ]]; then
-		append-ldflags -shared
-	fi
-
-	# only one fortran to link with:
-	# linking with cblas and lapack library will force
-	# autodetecting and linking to all available fortran compilers
-	if use lapack; then
-		append-fflags -fPIC
-		NUMPY_FCONFIG="config_fc --noopt --noarch"
-		# workaround bug 335908
-		[[ $(tc-getFC) == *gfortran* ]] && NUMPY_FCONFIG+=" --fcompiler=gnu95"
-	fi
-}
+# Uses distutils.command.config.
+DISTUTILS_IN_SOURCE_BUILD=1
 
 src_unpack() {
 	unpack ${MY_P}.tar.gz
@@ -90,7 +62,7 @@ pc_libs() {
 		-e 's/^-l//' -e 's/[ ]*-l/,/g'
 }
 
-src_prepare() {
+python_prepare_all() {
 	epatch "${FILESDIR}"/${PN}-1.7.0-atlas.patch
 
 	if use lapack; then
@@ -112,32 +84,56 @@ src_prepare() {
 	fi
 
 	export CC="$(tc-getCC) ${CFLAGS}"
+
+	append-flags -fno-strict-aliasing
+
+	# See progress in http://projects.scipy.org/scipy/numpy/ticket/573
+	# with the subtle difference that we don't want to break Darwin where
+	# -shared is not a valid linker argument
+	if [[ ${CHOST} != *-darwin* ]]; then
+		append-ldflags -shared
+	fi
+
+	# only one fortran to link with:
+	# linking with cblas and lapack library will force
+	# autodetecting and linking to all available fortran compilers
+	if use lapack; then
+		append-fflags -fPIC
+		NUMPY_FCONFIG="config_fc --noopt --noarch"
+		# workaround bug 335908
+		[[ $(tc-getFC) == *gfortran* ]] && NUMPY_FCONFIG+=" --fcompiler=gnu95"
+	fi
+
+	# don't version f2py, we will handle it.
+	sed -i -e '/f2py_exe/s:+os\.path.*$::' numpy/f2py/setup.py || die
+
+	distutils-r1_python_prepare_all
 }
 
-src_compile() {
-	distutils_src_compile ${NUMPY_FCONFIG}
+python_compile() {
+	distutils-r1_python_compile ${NUMPY_FCONFIG}
 }
 
-src_test() {
-	testing() {
-		"$(PYTHON)" setup.py ${NUMPY_FCONFIG} build -b "build-${PYTHON_ABI}" install \
-			--home="${S}/test-${PYTHON_ABI}" --no-compile || die "install test failed"
-		pushd "${S}/test-${PYTHON_ABI}/"lib* > /dev/null
-		PYTHONPATH=python "$(PYTHON)" -c "import numpy; numpy.test()" 2>&1 | tee test.log
-		grep -Eq "^(ERROR|FAIL):" test.log && return 1
-		popd > /dev/null
-		rm -fr test-${PYTHON_ABI}
-	}
-	python_execute_function testing
+python_test() {
+	distutils_install_for_testing ${NUMPY_FCONFIG}
+
+	cd "${TMPDIR}" || die
+	"${PYTHON}" -c "
+import numpy, sys
+r = numpy.test()
+sys.exit(0 if r.wasSuccessful() else 1)" || die "Tests fail with ${EPYTHON}"
 }
 
-src_install() {
-	distutils_src_install ${NUMPY_FCONFIG}
+python_install() {
+	distutils-r1_python_install ${NUMPY_FCONFIG}
 
-	delete_txt() {
-		rm -f "${ED}"$(python_get_sitedir)/numpy/*.txt
-	}
-	python_execute_function -q delete_txt
+	rm -f "${D}"$(python_get_sitedir)/numpy/*.txt
+}
+
+python_install_all() {
+	distutils-r1_python_install_all
+
+	dodoc COMPATIBILITY DEV_README.txt THANKS.txt
 
 	docinto f2py
 	dodoc numpy/f2py/docs/*.txt
@@ -146,6 +142,6 @@ src_install() {
 	if use doc; then
 		insinto /usr/share/doc/${PF}
 		doins -r "${WORKDIR}"/html
-		doins  "${DISTDIR}"/${DOC_P}*pdf
+		doins "${DISTDIR}"/${DOC_P}*pdf
 	fi
 }
