@@ -10,8 +10,6 @@ PYTHON_REQ_USE="ssl"
 
 inherit distutils-r1 eutils user vcs-snapshot
 
-MY_PN="sagemath-sagenb"
-
 DESCRIPTION="The Sage Notebook is a web-based graphical user interface for mathematical software"
 HOMEPAGE="http://nb.sagemath.org"
 SRC_URI="https://github.com/sagemath/sagenb/tarball/${PV} -> ${P}.tar.gz"

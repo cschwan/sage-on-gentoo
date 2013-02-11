@@ -2,6 +2,11 @@
 # Copyright 1999-2013 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  11 Feb 2013; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-notebook-0.10.4.ebuild:
+  cosmetic change, doesn't like python-r1 pexpect for unknown reason so it will
+  temporarily broken.
+
 *sage-notebook-0.10.4 (06 Feb 2013)
 
   06 Feb 2013; François Bissey <francois.bissey@canterbury.ac.nz>
