@@ -14,7 +14,7 @@ PVSTAMP="_2012_12_14-17_45"
 
 DESCRIPTION="System for computational discrete algebra"
 HOMEPAGE="http://www.gap-system.org/"
-SRC_URI="ftp://ftp.gap-system.org/pub/gap/gap4/tar.bz2/${PN}${PV2}${PVSTAMP}.tar.bz2"
+SRC_URI="ftp://ftp.gap-system.org/pub/gap/gap45/tar.bz2/${PN}${PV2}${PVSTAMP}.tar.bz2"
 
 LICENSE="GPL-2"
 SLOT="0"
