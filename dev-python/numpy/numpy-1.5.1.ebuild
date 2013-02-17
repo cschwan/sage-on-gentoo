@@ -1,4 +1,4 @@
-# Copyright 1999-2012 Gentoo Foundation
+# Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-python/numpy/numpy-1.5.1.ebuild,v 1.23 2012/10/16 18:38:04 jlec Exp $
 
@@ -79,7 +79,6 @@ src_prepare() {
 	epatch "${FILESDIR}/${P}-python-3.2-fix-SO-names-1.patch"
 	epatch "${FILESDIR}/${P}-python-3.2-fix-SO-names-2.patch"
 	epatch "${FILESDIR}/${P}-python-3.2-fix-SO-names-3.patch"
-
 
 	# Gentoo patch for ATLAS library names
 	sed -i \
