@@ -1,6 +1,10 @@
 # ChangeLog for sci-mathematics/lcalc
-# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# Copyright 1999-2013 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
+
+  17 Feb 2013; François Bissey <francois.bissey@canterbury.ac.nz>
+  lcalc-1.23-r4.ebuild:
+  macos keywording
 
   25 Jan 2012; François Bissey <francois.bissey@canterbury.ac.nz>
   -lcalc-1.23-r3.ebuild:
@@ -115,4 +119,3 @@
   +files/linbox-1.1.6-fix-doc.patch, +lcalc-1.23.ebuild,
   +files/lcalc-1.23-Makefile.patch:
   Initial import. Ebuild is based on Francois' one
-
