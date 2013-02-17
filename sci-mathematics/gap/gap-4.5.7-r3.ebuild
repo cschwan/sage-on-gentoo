@@ -18,7 +18,7 @@ SRC_URI="ftp://ftp.gap-system.org/pub/gap/gap45/tar.bz2/${PN}${PV2}${PVSTAMP}.ta
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~x86 ~amd64-linux ~x86-linux"
+KEYWORDS="~amd64 ~x86 ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~x64-macos"
 IUSE="+gmp emacs vim-syntax readline"
 
 RESTRICT="mirror"
