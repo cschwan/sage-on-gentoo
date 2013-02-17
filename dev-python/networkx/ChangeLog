@@ -1,6 +1,10 @@
 # ChangeLog for dev-python/networkx
-# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# Copyright 1999-2013 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
+
+  17 Feb 2013; François Bissey <francois.bissey@canterbury.ac.nz>
+  networkx-1.6.ebuild:
+  macos keywording
 
   21 Nov 2012; François Bissey <francois.bissey@canterbury.ac.nz>
   -networkx-1.2.ebuild:
@@ -11,4 +15,3 @@
   06 Feb 2011; François Bissey <francois.bissey@canterbury.ac.nz>
   +networkx-1.2.ebuild, +metadata.xml:
   Importing into the overlay because it left the tree.
-
