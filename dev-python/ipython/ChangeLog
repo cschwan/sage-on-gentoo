@@ -1,6 +1,61 @@
 # ChangeLog for dev-python/ipython
-# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/ipython/ChangeLog,v 1.91 2012/04/24 17:07:42 bicatali Exp $
+# Copyright 1999-2013 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-python/ipython/ChangeLog,v 1.104 2013/02/11 15:59:01 mgorny Exp $
+
+*ipython-0.13.1-r1 (11 Feb 2013)
+
+  11 Feb 2013; Michał Górny <mgorny@gentoo.org> +ipython-0.13.1-r1.ebuild:
+  Migrate to distutils-r1.
+
+  31 Dec 2012; Michał Górny <mgorny@gentoo.org> ipython-0.12-r1.ebuild,
+  ipython-0.12.1.ebuild, ipython-0.13.1.ebuild, ipython-0.13.ebuild:
+  Use virtual/pyparsing.
+
+  29 Oct 2012; Michał Górny <mgorny@gentoo.org> ipython-0.12-r1.ebuild,
+  ipython-0.12.1.ebuild, ipython-0.13.1.ebuild, ipython-0.13.ebuild:
+  Use virtual for argparse.
+
+  29 Oct 2012; Patrick Lauer <patrick@gentoo.org> ipython-0.13.1.ebuild:
+  Reverting fix that doesn't fix
+
+  29 Oct 2012; Patrick Lauer <patrick@gentoo.org> ipython-0.13.1.ebuild:
+  Fixing useflag madness
+
+*ipython-0.13.1 (27 Oct 2012)
+
+  27 Oct 2012; Patrick McLean <chutzpah@gentoo.org> +ipython-0.13.1.ebuild:
+  Version bump.
+
+  26 Aug 2012; Raúl Porcel <armin76@gentoo.org> ipython-0.10.ebuild,
+  ipython-0.10.1.ebuild, ipython-0.10.2.ebuild:
+  Drop ia64/s390 keywords
+
+  17 Aug 2012; Sébastien Fabbro <bicatali@gentoo.org>
+  +files/ipython-0.13-umlaut.patch, ipython-0.13.ebuild:
+  fix decode error for LANG=C, bug #431316, thanks travlr
+
+*ipython-0.13 (30 Jul 2012)
+
+  30 Jul 2012; Sébastien Fabbro <bicatali@gentoo.org> +ipython-0.13.ebuild,
+  metadata.xml:
+  Version bump
+
+  28 Jun 2012; Justin Lecher <jlec@gentoo.org> ipython-0.12-r1.ebuild,
+  ipython-0.12.1.ebuild, metadata.xml:
+  Restrict pypy, as it has no USE=readline
+
+  27 Jun 2012; Kacper Kowalik <xarthisius@gentoo.org> ipython-0.12-r1.ebuild,
+  ipython-0.12.1.ebuild:
+  PYTHON_USE_WITH are no longer conditional wrt #423647 by Paweł Rumian
+  <gorkypl@gmail.com>
+
+  27 Jun 2012; Kacper Kowalik <xarthisius@gentoo.org> ipython-0.12-r1.ebuild,
+  ipython-0.12.1.ebuild:
+  Add missing PYTHON_DEPEND, use proper PYTHON_USE_WITH wrt #423647 by Paweł
+  Rumian <gorkypl@gmail.com>
+
+  06 Jun 2012; Benda Xu <heroxbd@gentoo.org> ipython-0.12.1.ebuild:
+  keyword ~amd64-linux and ~x86-linux
 
 *ipython-0.12.1 (24 Apr 2012)
 
@@ -391,4 +446,3 @@
 
   13 Jun 2003; Alastair Tse <liquidx@gentoo.org> ipython-0.4.0.ebuild:
   New Package. Ebuild Submitted by John Landahl <john@landahl.org>.
-

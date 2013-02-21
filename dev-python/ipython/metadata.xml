@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
 <pkgmetadata>
-<herd>python</herd>
-<longdescription>
+	<herd>python</herd>
+	<longdescription>
 IPython provides a replacement for the interactive Python interpreter with
 extra functionality.
 
@@ -22,8 +22,8 @@ Main features:
 * Easily embeddable in other Python programs.
 * Integrated access to the pdb debugger and the Python profiler.
 </longdescription>
-<longdescription lang="ja">
-対話的に利用する場合にPythonインタープリタから、より機能が豊富なIPythonへ置き換>える事ができます。
+	<longdescription lang="ja">
+対話的に利用する場合にPythonインタープリタから、より機能が豊富なIPythonへ置き換&gt;える事ができます。
 
 主機能：
 * 内包的オブジェクトの分析。
@@ -41,8 +41,9 @@ Main features:
 * pdbデバッガとprofilerへの統合アクセス。
 </longdescription>
 <use>
-  <flag name='matplotlib'>Add support for <pkg>dev-python/matplotlib</pkg></flag>
-  <flag name='mongodb'>Enable support for MongoDB via <pkg>dev-python/pymongo</pkg></flag>
+  <flag name="matplotlib">Add support for <pkg>dev-python/matplotlib</pkg></flag>
+  <flag name="mongodb">Enable support for MongoDB via <pkg>dev-python/pymongo</pkg></flag>
   <flag name="notebook">Install requirements for the web notebook based on <pkg>www-servers/tornado</pkg></flag>
+  <flag name="octave">Enable octave bridge via <pkg>dev-python/oct2py</pkg></flag>
 </use>
 </pkgmetadata>

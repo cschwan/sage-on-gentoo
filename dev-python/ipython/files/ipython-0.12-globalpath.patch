@@ -1,0 +1,16 @@
+--- IPython/quarantine/ipy_gnuglobal.py.orig	2012-01-10 20:16:35.153515474 +0000
++++ IPython/quarantine/ipy_gnuglobal.py	2012-01-10 20:18:30.196504374 +0000
+@@ -7,10 +7,11 @@
+ 
+ from IPython.core import ipapi
+ ip = ipapi.get()
+-import os
++import os 
++import sys
+ 
+ # alter to your liking
+-global_bin = 'd:/opt/global/bin/global'
++global_bin = os.path.join(sys.prefix,'bin','global')
+ 
+ def global_f(self,cmdline):
+     simple = 0
