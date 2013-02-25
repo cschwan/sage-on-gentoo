@@ -75,11 +75,11 @@ RDEPEND="${CDEPEND}
 	>=dev-python/jinja-2.5.5[${PYTHON_USEDEP}]
 	>=dev-python/matplotlib-1.1.0
 	<dev-python/matplotlib-1.2.0
-	>=dev-python/mpmath-0.17
+	>=dev-python/mpmath-0.17[${PYTHON_USEDEP}]
 	~dev-python/networkx-1.6
 	~dev-python/pexpect-2.0[${PYTHON_USEDEP}]
 	>=dev-python/pycrypto-2.1.0
-	>=dev-python/rpy-2.0.8
+	>=dev-python/rpy-2.0.8[${PYTHON_USEDEP}]
 	>=dev-python/sphinx-1.1.2[${PYTHON_USEDEP}]
 	>=dev-python/sqlalchemy-0.5.8
 	>=dev-python/sympy-0.7.1[${PYTHON_USEDEP}]
@@ -240,6 +240,9 @@ src_prepare() {
 	sed -i \
 		-e "s:maxima --very-quiet:maxima -l ecl --very-quiet:g" \
 		sage/interfaces/maxima_abstract.py
+
+	# fixes doctest
+	sed -i "s:\.\.\./local/share/pari:.../share/pari:g" sage/interfaces/gp.py
 
 	# speaking ecl - patching so we can allow ecl with unicode
 	epatch "${FILESDIR}"/trac12985-unicode.patch
