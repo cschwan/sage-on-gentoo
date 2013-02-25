@@ -1,7 +1,7 @@
-dev-lang/python:2.7         readline sqlite
+dev-lang/python             readline sqlite
 dev-libs/boost              python
 dev-python/cvxopt           glpk
-dev-python/cython	    -numpy
+dev-python/cython           -numpy
 dev-python/mpmath           -gmp
 dev-python/numpy            lapack
 dev-python/gdmodule         png
