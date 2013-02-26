@@ -1,0 +1,19 @@
+--- sagenb/notebook/run_notebook.py.orig	2013-02-26 15:10:09.746749000 +1300
++++ sagenb/notebook/run_notebook.py	2013-02-26 15:11:33.378878073 +1300
+@@ -46,15 +46,12 @@
+ # Flask #
+ #########
+ import os, sys, random
+-flask_dir = os.path.join(os.environ['SAGE_ROOT'], 'devel', 'sagenb', 'flask_version')
+-sys.path.append(flask_dir)
+-import base as flask_base
++import flask_version.base as flask_base
+ opts={}
+ startup_token = '{0:x}'.format(random.randint(0, 2**128))
+ if %(automatic_login)s:
+     opts['startup_token'] = startup_token
+ flask_app = flask_base.create_app(%(notebook_opts)s, **opts)
+-sys.path.remove(flask_dir)
+ 
+ def save_notebook(notebook):
+     print "Quitting all running worksheets..."

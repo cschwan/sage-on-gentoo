@@ -53,15 +53,14 @@ src_prepare() {
 	# ship flask_version and not sage3d
 	epatch "${FILESDIR}"/${PN}-0.10.2-setup.py.patch
 
-	# find flask_version in the right place
-	sed -i "s:import base:import flask_version.base:" \
-		sagenb/notebook/run_notebook.py \
-		|| die "failed to patch for flask_version path"
-
 	# remove sage3d
 	rm -rf sagenb/data/sage3d || die "failed to remove sage3d"
 
+	# fix flask_version/base's location
+	epatch "${FILESDIR}"/${PN}-0.10.4-run_notebook.patch
+
 	# find jmol
+	epatch "${FILESDIR}"/${PN}-0.10.4-base.patch
 	sed -i "s:jmol/appletweb/Jmol.js:jmol/Jmol.js:g" \
 		sagenb/data/sage/html/notebook/base.html
 

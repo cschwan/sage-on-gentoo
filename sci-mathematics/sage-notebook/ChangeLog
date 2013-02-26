@@ -2,6 +2,14 @@
 # Copyright 1999-2013 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*sage-notebook-0.10.4-r1 (26 Feb 2013)
+
+  26 Feb 2013; François Bissey <francois.bissey@canterbury.ac.nz>
+  +files/sage-notebook-0.10.4-base.patch,
+  +files/sage-notebook-0.10.4-run_notebook.patch,
+  +sage-notebook-0.10.4-r1.ebuild, -sage-notebook-0.10.4.ebuild:
+  Patching for jmol and genral uglyness of run_notebook.
+
   11 Feb 2013; François Bissey <francois.bissey@canterbury.ac.nz>
   sage-notebook-0.10.4.ebuild:
   OK no depending python-r1 pexpect, I had forgotten to mask the new notebook.
