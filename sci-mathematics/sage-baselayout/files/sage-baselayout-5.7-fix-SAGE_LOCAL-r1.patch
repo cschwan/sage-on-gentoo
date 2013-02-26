@@ -1,0 +1,198 @@
+# HG changeset patch
+# User Francois Bissey <francois.bissey@canterbury.ac.nz>
+# Date 1361839300 -46800
+# Node ID b01d1a4bf49f331d72af0f8b829b9a2a860f0982
+# Parent  64caf251ec2553c2b06273961f81fe727103b2ec
+SAGE_LOCAL and SAGE_ROOT paths fixes
+
+diff --git a/sage-cachegrind b/sage-cachegrind
+--- a/sage-cachegrind
++++ b/sage-cachegrind
+@@ -1,7 +1,7 @@
+ #!/usr/bin/env bash
+ 
+ # We reuse the gdb pythonstartup script.
+-PYTHONSTARTUP=$SAGE_ROOT/local/bin/sage-ipython
++PYTHONSTARTUP=$SAGE_LOCAL/bin/sage-ipython
+ export PYTHONSTARTUP
+ echo $PYTHONSTARTUP
+ if [ ! -d "$DOT_SAGE/valgrind" ]; then
+diff --git a/sage-doctest b/sage-doctest
+--- a/sage-doctest
++++ b/sage-doctest
+@@ -90,11 +90,8 @@
+ # Set environment variables
+ ######################################################    
+ SAGE_ROOT = os.environ["SAGE_ROOT"]
+-LD = os.environ["LD_LIBRARY_PATH"]
+-os.environ["LD_LIBRARY_PATH"] = os.path.join(SAGE_ROOT, 'local',
+-                                             'lib') + ":" + LD
+-os.environ["PYTHONPATH"] = os.path.join(SAGE_ROOT, 'local', 'lib', 'python',
+-                                        'site-packages')
++SAGE_LOCAL = os.environ["SAGE_LOCAL"]
++
+ if os.environ.has_key('SAGE_PATH'):
+     os.environ["PYTHONPATH"] = os.environ["PYTHONPATH"] + ':' + os.environ['SAGE_PATH']
+ 
+@@ -107,7 +104,7 @@
+     SAGE_MEMCHECK_FLAGS = os.environ['SAGE_MEMCHECK_FLAGS']
+     print SAGE_MEMCHECK_FLAGS
+ except:
+-    suppfile = os.path.join('$SAGE_LOCAL', 'lib', 'valgrind', 'sage.supp')
++    suppfile = os.path.join(SAGE_LOCAL, 'lib', 'valgrind', 'sage.supp')
+     SAGE_MEMCHECK_FLAGS = " --leak-resolution=high %s --leak-check=full --num-callers=25 --suppressions=%s " % (logfile % 'memcheck.%p', suppfile)
+ 
+ try:
+@@ -173,7 +170,7 @@
+     # 1-253: number of failed doctests
+     # 254: >= 254 doctests failed
+     # 255: exception raised by doctesting framework
+-    dict = { 'DIR'             : repr(os.path.join(SAGE_ROOT, 'local', 'bin')),
++    dict = { 'DIR'             : repr(os.path.join(SAGE_LOCAL, 'bin')),
+              'FILENAME'        : repr(filename),
+              'OUTPUT_FILENAME' : repr(filename + '.timeit.sobj'),
+              'TIMEIT'          : do_timeit, # global
+diff --git a/sage-maketest b/sage-maketest
+--- a/sage-maketest
++++ b/sage-maketest
+@@ -7,7 +7,7 @@
+ SAGE_TEST_LOG="$SAGE_TESTDIR/test.log"
+ cd "$SAGE_TESTDIR"
+ 
+-cat "$SAGE_ROOT/local/bin/sage-banner" > "$SAGE_TEST_LOG"
++cat @GENTOO_PORTAGE_PREFIX@/etc/sage-banner > "$SAGE_TEST_LOG"
+ echo `date` >> "$SAGE_TEST_LOG"
+ 
+ # Run doctests on documentation and library, which end with a summary
+@@ -16,7 +16,7 @@
+ # whose names consist of two lowercase letters: those should match the
+ # various languages.
+ 
+-"$SAGE_ROOT"/sage -t --sagenb "$@" \
++sage -t --sagenb "$@" \
+     "$SAGE_ROOT"/devel/sage/doc/common \
+     "$SAGE_ROOT"/devel/sage/doc/[a-z][a-z] \
+     "$SAGE_ROOT"/devel/sage/sage 2>&1 | tee -a "$SAGE_TEST_LOG"
+diff --git a/sage-massif b/sage-massif
+--- a/sage-massif
++++ b/sage-massif
+@@ -1,7 +1,7 @@
+ #!/usr/bin/env bash
+ 
+ # We reuse the gdb pythonstartup script.
+-PYTHONSTARTUP=$SAGE_ROOT/local/bin/sage-ipython
++PYTHONSTARTUP=$SAGE_LOCAL/bin/sage-ipython
+ export PYTHONSTARTUP
+ echo $PYTHONSTARTUP
+ if [ ! -d "$DOT_SAGE/valgrind" ]; then
+diff --git a/sage-notebook b/sage-notebook
+--- a/sage-notebook
++++ b/sage-notebook
+@@ -2,7 +2,7 @@
+ 
+ import os, sys, socket
+ 
+-print open(os.environ['SAGE_ROOT'] + '/local/bin/sage-banner').read()
++print open('@GENTOO_PORTAGE_EPREFIX@/etc/sage-banner').read()
+ 
+ print "Please wait while the Sage Notebook server starts..."
+ 
+diff --git a/sage-notebook-insecure b/sage-notebook-insecure
+--- a/sage-notebook-insecure
++++ b/sage-notebook-insecure
+@@ -2,7 +2,7 @@
+ 
+ import os, sys, socket
+ 
+-print open(os.environ['SAGE_ROOT'] + '/local/bin/sage-banner').read()
++print open('@GENTOO_PORTAGE_EPREFIX@/etc/sage-banner').read()
+ 
+ print "Please wait while the Sage Notebook server starts..."
+ 
+diff --git a/sage-omega b/sage-omega
+--- a/sage-omega
++++ b/sage-omega
+@@ -1,7 +1,7 @@
+ #!/usr/bin/env bash
+ 
+ # We reuse the gdb pythonstartup script.
+-PYTHONSTARTUP=$SAGE_ROOT/local/bin/sage-ipython
++PYTHONSTARTUP=$SAGE_LOCAL/bin/sage-ipython
+ export PYTHONSTARTUP
+ echo $PYTHONSTARTUP
+ if [ ! -d "$DOT_SAGE/valgrind" ]; then
+diff --git a/sage-ptest b/sage-ptest
+--- a/sage-ptest
++++ b/sage-ptest
+@@ -27,6 +27,7 @@
+ import socket
+ import stat
+ import re
++import sysconfig
+ 
+ def usage():
+     print """Usage: sage -tp N <options> <files>
+@@ -49,8 +50,8 @@
+     exit(1)
+ 
+ SAGE_ROOT = os.path.realpath(os.environ['SAGE_ROOT'])
+-SAGE_SITE = os.path.realpath(os.path.join(os.environ['SAGE_LOCAL'],
+-                                          'lib', 'python', 'site-packages'))
++SAGE_LOCAL = os.path.realpath(os.environ['SAGE_LOCAL'])
++SAGE_SITE = os.path.realpath(sysconfig.get_path('platlib'))
+ BUILD_DIR = os.path.realpath(os.path.join(SAGE_ROOT, 'devel', 'sage', 'build'))
+ 
+ try:
+@@ -172,7 +173,7 @@
+     filestr = os.path.split(F)[1]
+     for i in range(0,numiteration):
+         os.chdir(os.path.dirname(F))
+-        command = os.path.join(SAGE_ROOT, 'local', 'bin', 'sage-%s' % cmd)
++        command = os.path.join(SAGE_LOCAL, 'bin', 'sage-%s' % cmd)
+         # FIXME: Why call bash here? (Also, we use 'shell=True' below anyway.)
+         s = 'bash -c "%s %s > %s" ' % (command, filestr, outfile.name)
+         try:
+diff --git a/sage-test b/sage-test
+--- a/sage-test
++++ b/sage-test
+@@ -6,7 +6,7 @@
+ 
+ ####################################################################
+ 
+-import os, signal, sys, time
++import os, signal, sys, time, syscong
+ 
+ 
+ argv = sys.argv
+@@ -19,8 +19,8 @@
+ from os.path import abspath
+ 
+ SAGE_ROOT = os.environ['SAGE_ROOT']
+-SAGE_SITE = os.path.realpath(os.path.join(os.environ['SAGE_LOCAL'],
+-                                          'lib', 'python', 'site-packages'))
++SAGE_LOCAL = os.environ['SAGE_LOCAL']
++SAGE_SITE = os.path.realpath(sysconfig.get_path('platlib'))
+ 
+ try:
+     XML_RESULTS = os.environ['XML_RESULTS']
+@@ -81,7 +81,7 @@
+     t = time.time()
+     if skip(F):
+         return 0
+-    s = os.path.join(SAGE_ROOT, 'local', 'bin', 'sage-%s' % cmd) + ' "%s"' % F
++    s = os.path.join(SAGE_LOCAL, 'bin', 'sage-%s' % cmd) + ' "%s"' % F
+     err = call(s, shell=True)
+ 
+     # Check the process exit code that sage-doctest returns
+diff --git a/sage-valgrind b/sage-valgrind
+--- a/sage-valgrind
++++ b/sage-valgrind
+@@ -1,7 +1,7 @@
+ #!/usr/bin/env bash
+ 
+ # We reuse the gdb pythonstartup script.
+-PYTHONSTARTUP=$SAGE_ROOT/local/bin/sage-ipython
++PYTHONSTARTUP=$SAGE_LOCAL/bin/sage-ipython
+ export PYTHONSTARTUP
+ echo $PYTHONSTARTUP
+ if [ ! -d "$DOT_SAGE/valgrind" ]; then
