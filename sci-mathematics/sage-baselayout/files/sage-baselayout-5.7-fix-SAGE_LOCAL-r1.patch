@@ -160,7 +160,7 @@ diff --git a/sage-test b/sage-test
  ####################################################################
  
 -import os, signal, sys, time
-+import os, signal, sys, time, syscong
++import os, signal, sys, time, sysconfig
  
  
  argv = sys.argv
