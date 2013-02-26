@@ -78,6 +78,24 @@ src_prepare() {
 	epatch "${FILESDIR}"/${PN}-5.7-fix-SAGE_LOCAL-r1.patch
 	eprefixify sage-notebook sage-notebook-insecure
 
+	# solve sage-notebook start-up problems (after patching them)
+	mv sage-notebook sage-notebook-real
+	mv sage-notebook-insecure sage-notebook-insecure-real
+
+	cat > sage-notebook <<-EOF
+		#!/bin/bash
+
+		source ${EPREFIX}/etc/sage-env
+		${EPREFIX}/usr/bin/sage-notebook-real "\$@"
+	EOF
+
+	cat > sage-notebook-insecure <<-EOF
+		#!/bin/bash
+
+		source ${EPREFIX}/etc/sage-env
+		${EPREFIX}/usr/bin/sage-notebook-insecure-real "\$@"
+	EOF
+
 	# TODO: if USE=debug/testsuite, remove corresponding options
 
 	# replace MAKE by MAKEOPTS in sage-num-threads.py

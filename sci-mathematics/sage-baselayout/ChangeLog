@@ -2,6 +2,10 @@
 # Copyright 1999-2013 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  26 Feb 2013; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-baselayout-5.7-r1.ebuild:
+  Unfortunately we need at least DOT_SAGE in the environment for the notebook
+
 *sage-baselayout-5.7-r1 (26 Feb 2013)
 
   26 Feb 2013; François Bissey <francois.bissey@canterbury.ac.nz>
