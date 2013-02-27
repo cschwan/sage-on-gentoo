@@ -4,6 +4,10 @@
 
   27 Feb 2013; François Bissey <francois.bissey@canterbury.ac.nz>
   files/setup.py.patch:
+  more surgery
+
+  27 Feb 2013; François Bissey <francois.bissey@canterbury.ac.nz>
+  files/setup.py.patch:
   blind surgery on sage-matroids' patch
 
   04 Dec 2012; François Bissey <francois.bissey@canterbury.ac.nz>
