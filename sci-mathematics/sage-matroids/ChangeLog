@@ -1,6 +1,10 @@
 # ChangeLog for sci-mathematics/sage-matroids
-# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# Copyright 1999-2013 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
+
+  27 Feb 2013; François Bissey <francois.bissey@canterbury.ac.nz>
+  files/setup.py.patch:
+  blind surgery on sage-matroids' patch
 
   04 Dec 2012; François Bissey <francois.bissey@canterbury.ac.nz>
   sage-matroids-9999.ebuild:
@@ -25,4 +29,3 @@
   +sage-matroids-9999.ebuild, +files/module_list.py.patch,
   +files/setup.py.patch, +metadata.xml:
   Initial import - request from Thomas Kahle
-
