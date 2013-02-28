@@ -71,7 +71,7 @@ RDEPEND="${CDEPEND}
 	>=dev-lang/R-2.14.0
 	>=dev-python/cvxopt-1.1.5[glpk]
 	>=dev-python/gdmodule-0.56-r2[png]
-	~dev-python/ipython-0.13.1
+	=dev-python/ipython-0.13.1
 	>=dev-python/jinja-2.5.5[${PYTHON_USEDEP}]
 	>=dev-python/matplotlib-1.1.0
 	<dev-python/matplotlib-1.2.0
