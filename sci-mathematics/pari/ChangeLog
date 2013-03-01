@@ -2,6 +2,13 @@
 # Copyright 1999-2013 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/sci-mathematics/pari/ChangeLog,v 1.87 2012/03/06 17:06:06 bicatali Exp $
 
+*pari-2.5.3-r2 (01 Mar 2013)
+
+  01 Mar 2013; François Bissey <francois.bissey@canterbury.ac.nz>
+  +files/pari-2.5.3-polred.patch, +pari-2.5.3-r2.ebuild:
+  Latest pari patch included in sage. It is huge so will put them in a tarball
+  on lmona.de soonish.
+
 *pari-2.5.3-r1 (14 Jan 2013)
 
   14 Jan 2013; François Bissey <francois.bissey@canterbury.ac.nz>
