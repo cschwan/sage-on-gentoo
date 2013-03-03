@@ -20,7 +20,7 @@ RDEPEND="sys-libs/readline
 	doc? ( X? ( x11-misc/xdg-utils ) )
 	fltk? ( x11-libs/fltk:1 )
 	gmp? ( dev-libs/gmp )
-	qt4? ( x11-libs/qt-gui:4 )
+	qt4? ( dev-qt/qtgui:4 )
 	X? ( x11-libs/libX11 )"
 DEPEND="${RDEPEND}
 	doc? ( virtual/latex-base )"
