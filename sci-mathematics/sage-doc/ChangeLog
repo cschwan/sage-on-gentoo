@@ -2,6 +2,12 @@
 # Copyright 1999-2013 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*sage-doc-5.8_beta2 (06 Mar 2013)
+
+  06 Mar 2013; François Bissey <francois.bissey@canterbury.ac.nz>
+  +sage-doc-5.8_beta2.ebuild, metadata.xml:
+  5.8 beta2: doc + fix metadata.xml
+
 *sage-doc-5.7-r1 (25 Feb 2013)
 
   25 Feb 2013; Christopher Schwan <cschwan@students.uni-mainz.de>
