@@ -74,10 +74,9 @@ src_prepare() {
 		Terminal=true
 	EOF
 
-	# TODO: do not remove scons and M2
-
 	# replace ${SAGE_ROOT}/local with ${SAGE_LOCAL}
-	epatch "${FILESDIR}"/${PN}-5.7-fix-SAGE_LOCAL.patch
+	epatch "${FILESDIR}"/${PN}-5.7-fix-SAGE_LOCAL-r1.patch
+	eprefixify sage-notebook sage-notebook-insecure
 
 	# solve sage-notebook start-up problems (after patching them)
 	mv sage-notebook sage-notebook-real
@@ -97,16 +96,7 @@ src_prepare() {
 		${EPREFIX}/usr/bin/sage-notebook-insecure-real "\$@"
 	EOF
 
-	# sage startup script is placed into /usr/bin
-	sed -i "s:\"\$SAGE_ROOT\"/sage:\"\$SAGE_LOCAL\"/bin/sage:g" \
-		sage-maketest || die "failed to patch path for Sage's startup script"
-
 	# TODO: if USE=debug/testsuite, remove corresponding options
-
-	# replace $SAGE_ROOT/local with $SAGE_LOCAL
-	sed -i "s:\$SAGE_ROOT/local:\$SAGE_LOCAL:g" \
-		sage-cachegrind sage-callgrind sage-massif sage-omega sage-valgrind \
-		|| die "failed to patch GNU Debugger scripts"
 
 	# replace MAKE by MAKEOPTS in sage-num-threads.py
 	sed -i "s:os.environ\[\"MAKE\"\]:os.environ\[\"MAKEOPTS\"\]:g" \
