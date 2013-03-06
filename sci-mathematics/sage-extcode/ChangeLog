@@ -2,6 +2,12 @@
 # Copyright 1999-2013 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*sage-extcode-5.8_beta2 (06 Mar 2013)
+
+  06 Mar 2013; François Bissey <francois.bissey@canterbury.ac.nz>
+  +sage-extcode-5.8_beta2.ebuild:
+  extcode: 5.8 beta2
+
 *sage-extcode-5.7 (25 Feb 2013)
 
   25 Feb 2013; Christopher Schwan <cschwan@students.uni-mainz.de>
