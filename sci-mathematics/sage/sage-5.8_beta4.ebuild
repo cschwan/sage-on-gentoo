@@ -135,8 +135,6 @@ src_prepare() {
 
 	# patch to module_list.py because of trac 4539
 	epatch "${FILESDIR}"/${PN}-5.4-plural.patch
-	# fix a stupid include path to devel
-	epatch "${FILESDIR}"/${PN}-5.0-degree-sequence.patch
 
 	############################################################################
 	# Fixes to Sage's build system
