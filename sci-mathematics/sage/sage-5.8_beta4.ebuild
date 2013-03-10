@@ -47,7 +47,7 @@ CDEPEND="dev-libs/gmp
 	~sci-libs/m4ri-20120613
 	~sci-libs/m4rie-20120613
 	>=sci-libs/mpfi-1.5.1
-	>=sci-libs/pynac-0.2.5[${PYTHON_USEDEP}]
+	>=sci-libs/pynac-0.2.6[${PYTHON_USEDEP}]
 	>=sci-libs/symmetrica-2.0
 	>=sci-libs/zn_poly-0.9
 	>=sci-mathematics/glpk-4.44
@@ -272,6 +272,9 @@ src_prepare() {
 	# patch lie library path
 	sed -i -e "s:/lib/LiE/:/share/lie/:" \
 		sage/interfaces/lie.py
+
+	# patch for pynac 0.2.6, trac 13262, trac 13729
+	epatch "${PATCHDIR}"/trac13262_update_doctests.patch
 
 	# patching for variables
 	epatch "${PATCHDIR}"/${PN}-5.7-variables.patch

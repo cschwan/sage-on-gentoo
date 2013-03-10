@@ -1,0 +1,43 @@
+# HG changeset patch
+# User Sebastien Gouezel <sebastien.gouezel@univ-rennes1.fr>
+# Date 1342469054 -7200
+# Node ID bee4ec49085a659076bf798af6684b43b9445dbc
+# Parent  e9f1521444edad5a826d36a1a0ad88dfb5a27def
+Trac 13262: Update doctests after pynac bug correction
+
+diff --git a/sage/symbolic/expression.pyx b/sage/symbolic/expression.pyx
+--- a/sage/symbolic/expression.pyx
++++ b/sage/symbolic/expression.pyx
+@@ -617,7 +617,7 @@
+             sage: latex((x^pi)^e)
+             {\left(x^{\pi}\right)}^{e}
+             sage: latex((x^(pi+1))^e)
+-            {\left(x^{{\left(\pi + 1\right)}}\right)}^{e}
++            {\left(x^{\pi + 1}\right)}^{e}
+             sage: a,b,c = var('a b c')
+             sage: latex(a^(b^c))
+             a^{\left(b^{c}\right)}
+@@ -689,6 +689,11 @@
+             sage: ratio = i/2* x^2/a
+             sage: latex(ratio)
+             \frac{i \, x^{2}}{2 \, a}
++
++        Parenthesis in powers, #13262::
++
++            sage: latex(1+x^(2/3)+x^(-2/3))
++            x^{\frac{2}{3}} + \frac{1}{x^{\frac{2}{3}}} + 1
+         """
+         return self._parent._latex_element_(self)
+ 
+diff --git a/sage/symbolic/relation.py b/sage/symbolic/relation.py
+--- a/sage/symbolic/relation.py
++++ b/sage/symbolic/relation.py
+@@ -245,7 +245,7 @@
+ LaTeX output::
+ 
+     sage: latex(x^(3/5) >= pi)
+-    x^{\left(\frac{3}{5}\right)} \geq \pi
++    x^{\frac{3}{5}} \geq \pi
+ 
+ 
+ More Examples
