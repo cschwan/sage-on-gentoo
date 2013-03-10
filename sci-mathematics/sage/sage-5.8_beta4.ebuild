@@ -274,7 +274,7 @@ src_prepare() {
 		sage/interfaces/lie.py
 
 	# patch for pynac 0.2.6, trac 13262, trac 13729
-	epatch "${PATCHDIR}"/trac13262_update_doctests.patch
+	epatch "${FILESDIR}"/trac13262_update_doctests.patch
 
 	# patching for variables
 	epatch "${PATCHDIR}"/${PN}-5.7-variables.patch

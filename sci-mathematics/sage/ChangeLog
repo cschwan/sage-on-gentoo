@@ -3,6 +3,10 @@
 # $Header: $
 
   10 Mar 2013; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-5.8_beta4.ebuild:
+  Fix patch path. Copy paste can be bad for you.
+
+  10 Mar 2013; François Bissey <francois.bissey@canterbury.ac.nz>
   +files/trac13262_update_doctests.patch, sage-5.8_beta4.ebuild:
   default to pynac 0.2.6 in sage 5.8
 
