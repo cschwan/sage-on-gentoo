@@ -2,6 +2,13 @@
 # Copyright 1999-2013 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*gap-4.5.7-r4 (11 Mar 2013)
+
+  11 Mar 2013; François Bissey <francois.bissey@canterbury.ac.nz>
+  +gap-4.5.7-r4.ebuild, -gap-4.5.7-r3.ebuild:
+  Split gap source. Only install most pkgs with -minimal. May be moved to
+  separate ebuild later.
+
   17 Feb 2013; François Bissey <francois.bissey@canterbury.ac.nz>
   gap-4.5.7-r3.ebuild:
   macos keywording

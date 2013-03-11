@@ -14,12 +14,13 @@ PVSTAMP="_2012_12_14-17_45"
 
 DESCRIPTION="System for computational discrete algebra"
 HOMEPAGE="http://www.gap-system.org/"
-SRC_URI="ftp://ftp.gap-system.org/pub/gap/gap45/tar.bz2/${PN}${PV2}${PVSTAMP}.tar.bz2"
+SRC_URI="mirror://sagemath/gap-4.5.7-minimal.tar.bz2
+	!minimal? ( mirror://sagemath/gap-4.5.7-extrapkg.tar.bz2 )"
 
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64 ~x86 ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~x64-macos"
-IUSE="+gmp emacs vim-syntax readline"
+IUSE="+gmp emacs vim-syntax readline +minimal"
 
 RESTRICT="mirror"
 
@@ -46,8 +47,6 @@ src_prepare(){
 	# remove useless stuff
 	rm -r bin/*
 	rm extern/gmp*
-	# the xgap pkg is absolutely toxic to sage
-	rm -r pkg/xgap
 
 	sed -i "s:gapdir=\`pwd\`:gapdir=${EPREFIX}/usr/$(get_libdir)/${PN}:" \
 		configure.in
@@ -69,11 +68,6 @@ src_configure(){
 
 	autotools-utils_src_configure
 	emake config
-}
-
-src_compile(){
-	# No parallel make possible at this stage.
-	emake
 }
 
 src_install(){
