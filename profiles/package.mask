@@ -8,3 +8,5 @@
 >=sci-libs/fplll-3.1.1
 # python-r1 ipython is not ready for deployment.
 =dev-python/ipython-0.13.1-r1
+# split gap is not ready for prime time.
+=sci-mathematics/gap-4.5.7-r4
