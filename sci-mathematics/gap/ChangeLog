@@ -2,6 +2,12 @@
 # Copyright 1999-2013 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*gap-4.5.7-r3 (12 Mar 2013)
+
+  12 Mar 2013; François Bissey <francois.bissey@canterbury.ac.nz>
+  +gap-4.5.7-r3.ebuild:
+  Restore gap 4.5.7-r3
+
 *gap-4.5.7-r4 (11 Mar 2013)
 
   11 Mar 2013; François Bissey <francois.bissey@canterbury.ac.nz>
