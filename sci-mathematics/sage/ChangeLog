@@ -2,6 +2,12 @@
 # Copyright 1999-2013 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  15 Mar 2013; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-5.5-r4.ebuild, sage-5.6.ebuild, sage-5.7-r1.ebuild,
+  sage-5.8_beta4.ebuild:
+  Make sage block gmpy. These two cannot safely cohabit at the present time.
+  Complain if  want it back and know how to deal with it.
+
   10 Mar 2013; François Bissey <francois.bissey@canterbury.ac.nz>
   sage-5.8_beta4.ebuild:
   Fix patch path. Copy paste can be bad for you.

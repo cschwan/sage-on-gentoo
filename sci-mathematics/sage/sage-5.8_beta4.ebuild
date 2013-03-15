@@ -65,7 +65,8 @@ CDEPEND="dev-libs/gmp
 	sys-libs/zlib
 	virtual/cblas"
 
-DEPEND="${CDEPEND}"
+DEPEND="${CDEPEND}
+	!dev-python/gmpy"
 
 RDEPEND="${CDEPEND}
 	>=dev-lang/R-2.14.0
