@@ -2,6 +2,12 @@
 # Copyright 1999-2013 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*sage-clib-5.8_rc0 (17 Mar 2013)
+
+  17 Mar 2013; François Bissey <francois.bissey@canterbury.ac.nz>
+  +sage-clib-5.8_rc0.ebuild, -sage-clib-5.8_beta4.ebuild:
+  5.8.rc0: clib
+
   10 Mar 2013; François Bissey <francois.bissey@canterbury.ac.nz>
   sage-clib-5.8_beta4.ebuild:
   Defaulting to pynac 0.2.6 in sage 5.8
