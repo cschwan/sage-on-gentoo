@@ -46,6 +46,9 @@ src_install() {
 	dodir /usr/share/sage/devel/sage-main/doc/en/reference/templates
 	dodir /usr/share/sage/devel/sage-main/doc/en/reference/static
 
+	# fix issue 197
+	touch en/__init__.py
+
 	# TODO: check if all of these files are needed
 	rm -rf output || die "failed to remove useless files"
 	insinto /usr/share/sage/devel/sage-main/doc
