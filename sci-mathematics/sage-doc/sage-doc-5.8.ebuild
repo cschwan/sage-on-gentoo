@@ -6,8 +6,8 @@ EAPI="5"
 
 inherit eutils versionator
 
-#MY_PV="${PV}"
-MY_PV="5.7"
+MY_PV="${PV}"
+#MY_PV="5.8"
 MY_P="sage-$(replace_version_separator 2 '.')"
 MY_P_HTML="sage-${MY_PV}-doc-html"
 MY_P_PDF="sage-${MY_PV}-doc-pdf"
@@ -45,9 +45,6 @@ src_install() {
 	dodir /usr/share/sage/devel/sage-main/doc/en/tutorial/static
 	dodir /usr/share/sage/devel/sage-main/doc/en/reference/templates
 	dodir /usr/share/sage/devel/sage-main/doc/en/reference/static
-
-	# fix issue 197
-	touch en/__init__.py
 
 	# TODO: check if all of these files are needed
 	rm -rf output || die "failed to remove useless files"
