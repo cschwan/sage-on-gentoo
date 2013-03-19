@@ -19,10 +19,12 @@ dev-python/mpmath
 =dev-python/networkx-1.6
 ~dev-python/numpy-1.7.0
 ~dev-python/pexpect-2.0
+dev-python/pycrypto
 dev-python/pyzmq
 dev-python/rpy
 dev-python/simplegeneric
 dev-python/speaklater
+dev-python/sqlalchemy
 ~dev-python/sympy-0.7.2
 dev-python/twisted-names
 dev-python/twisted
