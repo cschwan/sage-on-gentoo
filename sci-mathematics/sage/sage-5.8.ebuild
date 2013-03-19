@@ -286,6 +286,9 @@ src_prepare() {
 	# allow sage-matroids to be used if installed
 	epatch "${FILESDIR}"/${PN}-matroids.patch
 
+	# fix doctest that fails with newer sqlite because of reordering
+	epatch "${FILESDIR}"/${PN}-5.8-fix-cremona-doctest.patch
+
 	# do not forget to run distutils
 	distutils-r1_src_prepare
 }
