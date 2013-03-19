@@ -57,6 +57,8 @@ src_install() {
 
 	if use html ; then
 		cd "${WORKDIR}"/${MY_P_HTML}
+		# issue 197 again - Not sure it is needed for pdf
+		touch en/__init__.py
 		insinto /usr/share/sage/devel/sage-main/doc/output/html
 		doins -r *
 	fi
