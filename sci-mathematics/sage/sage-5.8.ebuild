@@ -240,9 +240,6 @@ src_prepare() {
 		-e "s:maxima --very-quiet:maxima -l ecl --very-quiet:g" \
 		sage/interfaces/maxima_abstract.py
 
-	# fixes doctest
-	sed -i "s:\.\.\./local/share/pari:.../share/pari:g" sage/interfaces/gp.py
-
 	# speaking ecl - patching so we can allow ecl with unicode
 	epatch "${FILESDIR}"/trac12985-unicode.patch
 
@@ -274,9 +271,6 @@ src_prepare() {
 	sed -i -e "s:/lib/LiE/:/share/lie/:" \
 		sage/interfaces/lie.py
 
-	# patch for pynac 0.2.6, trac 13262, trac 13729
-	epatch "${FILESDIR}"/trac13262_update_doctests.patch
-
 	# patching for variables
 	epatch "${PATCHDIR}"/${PN}-5.7-variables.patch
 
@@ -290,6 +284,12 @@ src_prepare() {
 	# Fixes to doctests
 	############################################################################
 
+	# remove 'local' part
+	sed -i "s:\.\.\./local/share/pari:.../share/pari:g" sage/interfaces/gp.py
+
+	# patch for pynac 0.2.6, trac 13262, trac 13729
+	epatch "${FILESDIR}"/trac13262_update_doctests.patch
+
 	# introduce consistent ordering that does not break if sqlite is upgraded
 	epatch "${FILESDIR}"/${PN}-5.8-fix-cremona-doctest.patch
 
@@ -298,6 +298,9 @@ src_prepare() {
 
 	# only do a very basic R version string test
 	epatch "${FILESDIR}"/${PN}-5.8-fix-r-doctest.patch
+
+	# trac 11334: Update numpy to 1.7.0 - doctest patches
+	epatch "${FILESDIR}"/${PN}-5.8-fix-numpy-doctests.patch
 
 	# do not forget to run distutils
 	distutils-r1_src_prepare

@@ -3,6 +3,11 @@
 # $Header: $
 
   20 Mar 2013; Christopher Schwan <cschwan@students.uni-mainz.de>
+  +files/trac_11334-dtype_object.patch, +files/trac_11334-typecodes.patch,
+  sage-5.8.ebuild:
+  Add doctest patches for numpy-1.7.0
+
+  20 Mar 2013; Christopher Schwan <cschwan@students.uni-mainz.de>
   +files/sage-5.8-fix-cython-doctest.patch, +files/sage-5.8-fix-r-doctest.patch,
   sage-5.8.ebuild:
   Fix two small doctests
