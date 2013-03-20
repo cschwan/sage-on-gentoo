@@ -1,0 +1,19 @@
+--- sage/misc/cython.py.orig	2013-01-21 21:15:21.000000000 +0000
++++ sage/misc/cython.py	2013-03-20 10:12:58.067943019 +0000
+@@ -206,7 +206,6 @@
+         'ec',
+         'gsl',
+         '...blas',
+-        ...,
+         'ntl',
+         'csage'],
+         ['.../include/csage',
+@@ -229,7 +228,7 @@
+         'pari',
+         'm',
+         'ec',
+-        'gsl', '...blas', ...,
++        'gsl', '...blas',
+         'ntl',
+         'csage']
+         sage: libs[1:] == sage.misc.cython.standard_libs

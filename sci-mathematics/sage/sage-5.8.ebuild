@@ -286,8 +286,18 @@ src_prepare() {
 	# allow sage-matroids to be used if installed
 	epatch "${FILESDIR}"/${PN}-matroids.patch
 
-	# fix doctest that fails with newer sqlite because of reordering
+	############################################################################
+	# Fixes to doctests
+	############################################################################
+
+	# introduce consistent ordering that does not break if sqlite is upgraded
 	epatch "${FILESDIR}"/${PN}-5.8-fix-cremona-doctest.patch
+
+	# remove strings of libraries that we do not link to
+	epatch "${FILESDIR}"/${PN}-5.8-fix-cython-doctest.patch
+
+	# only do a very basic R version string test
+	epatch "${FILESDIR}"/${PN}-5.8-fix-r-doctest.patch
 
 	# do not forget to run distutils
 	distutils-r1_src_prepare

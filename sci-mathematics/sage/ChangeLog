@@ -2,6 +2,11 @@
 # Copyright 1999-2013 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  20 Mar 2013; Christopher Schwan <cschwan@students.uni-mainz.de>
+  +files/sage-5.8-fix-cython-doctest.patch, +files/sage-5.8-fix-r-doctest.patch,
+  sage-5.8.ebuild:
+  Fix two small doctests
+
   19 Mar 2013; Christopher Schwan <cschwan@students.uni-mainz.de>
   sage-5.8.ebuild:
   Depend python-r1 versions of cvxopt, pycrypto and sqlalchemy

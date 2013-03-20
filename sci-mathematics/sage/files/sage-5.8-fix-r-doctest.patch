@@ -1,0 +1,20 @@
+--- sage/interfaces/r.py.orig	2013-03-15 08:39:23.000000000 +0000
++++ sage/interfaces/r.py	2013-03-20 10:24:50.995932682 +0000
+@@ -553,7 +553,7 @@
+         EXAMPLES::
+ 
+             sage: r.version()
+-            ((2, 15, 2), 'R version 2.15.2 (2012-10-26)')
++            ((..., ..., ...), 'R version ... (...)')
+         """
+         major_re = re.compile('^major\s*(\d.*?)$', re.M)
+         minor_re = re.compile('^minor\s*(\d.*?)$', re.M)
+@@ -2047,7 +2047,7 @@
+     EXAMPLES::
+ 
+         sage: r.version()
+-        ((2, 15, 2), 'R version 2.15.2 (2012-10-26)')
++        ((..., ..., ...), 'R version ... (...)')
+     """
+     return r.version()
+ 
