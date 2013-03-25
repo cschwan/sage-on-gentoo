@@ -1,3 +1,9 @@
+*libgap-4.5.7_p2 (25 Mar 2013)
+
+  25 Mar 2013; François Bissey <francois.bissey@canterbury.ac.nz>
+  +libgap-4.5.7_p2.ebuild:
+  Bump to latest 4.5.7, forwarded QA upstream.
+
 *libgap-4.5.7 (04 Feb 2013)
 
   04 Feb 2013; François Bissey <francois.bissey@canterbury.ac.nz>
