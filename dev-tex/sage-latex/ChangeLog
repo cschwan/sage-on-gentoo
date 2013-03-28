@@ -2,6 +2,13 @@
 # Copyright 1999-2013 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*sage-latex-2.3.4 (28 Mar 2013)
+
+  28 Mar 2013; François Bissey <francois.bissey@canterbury.ac.nz>
+  +files/sage-latex-2.3.4-install-python-files-only.patch,
+  +sage-latex-2.3.4.ebuild:
+  bump sage-latex will be default in sage 5.9
+
   22 Jan 2013; Christopher Schwan <cschwan@students.uni-mainz.de>
   sage-latex-2.3.3_p2.ebuild:
   Migrate to sagemath mirror
