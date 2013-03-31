@@ -2,6 +2,13 @@
 # Copyright 1999-2013 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*sage-5.9_beta2 (31 Mar 2013)
+
+  31 Mar 2013; François Bissey <francois.bissey@canterbury.ac.nz>
+  +files/sage-5.9-env.patch, +files/sage-5.9-libgap.patch,
+  +sage-5.9_beta2.ebuild:
+  5.9beta2: sage - it builds, I don't know if it runs.
+
   31 Mar 2013; Christopher Schwan <cschwan@students.uni-mainz.de>
   +files/sage-5.8-fix-cmdline-doctest.patch, sage-5.8.ebuild:
   Fix cmdline doctest

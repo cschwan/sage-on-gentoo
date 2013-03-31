@@ -1,0 +1,22 @@
+# HG changeset patch
+# User Francois Bissey <francois.bissey@canterbury.ac.nz>
+# Date 1364724451 -46800
+# Node ID 35d991d70b6628b069208e1bb85b6c0039d26bc6
+# Parent  aa1ed8fd83e0ad4cfad16c339843aaafba4a9991
+Cut the stuff we don't need for checking the gap install. It furthermore would make our
+life difficult (lib/lib64).
+
+diff --git a/sage/libs/gap/util.pyx b/sage/libs/gap/util.pyx
+--- a/sage/libs/gap/util.pyx
++++ b/sage/libs/gap/util.pyx
+@@ -158,10 +158,6 @@
+         '/home/vbraun/opt/sage-5.3.rc0/local/gap/latest'
+     """
+     import os.path
+-    gapdir = os.path.join(SAGE_LOCAL, 'gap', 'latest')
+-    if os.path.exists(gapdir):
+-        return gapdir
+-    print 'The gap-4.5.5.spkg (or later) seems to be not installed!'
+     gap_sh = open(os.path.join(SAGE_LOCAL, 'bin', 'gap')).read().splitlines()
+     gapdir = filter(lambda dir:dir.strip().startswith('GAP_DIR'), gap_sh)[0]
+     gapdir = gapdir.split('"')[1]
