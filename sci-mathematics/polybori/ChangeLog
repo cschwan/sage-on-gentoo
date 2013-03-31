@@ -1,6 +1,12 @@
 # ChangeLog for sci-mathematics/polybori
-# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# Copyright 1999-2013 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
+
+*polybori-0.8.3 (31 Mar 2013)
+
+  31 Mar 2013; François Bissey <francois.bissey@canterbury.ac.nz>
+  +polybori-0.8.3.ebuild:
+  polybori bump for sage 5.9
 
 *polybori-0.8.2-r4 (21 Dec 2012)
 
@@ -345,4 +351,3 @@
   22 Nov 2009; François Bissey <f.r.bissey@massey.ac.nz>
   +polybori-0.6.3.ebuild, +files/PyPolyBoRi.py, +metadata.xml:
   Initial import
-
