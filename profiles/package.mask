@@ -4,6 +4,7 @@
 >=sci-mathematics/sage-baselayout-5.8.1_alpha0
 >=sci-mathematics/sage-doc-5.8.1_alpha0
 >=sci-mathematics/sage-extcode-5.8.1_alpha0
+>=sci-mathematics/polybori-0.8.3
 # building problems reported against latest fplll
 >=sci-libs/fplll-3.1.1
 # python-r1 ipython is not ready for deployment.
