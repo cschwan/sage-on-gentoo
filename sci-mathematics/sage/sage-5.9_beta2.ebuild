@@ -255,6 +255,9 @@ src_prepare() {
 	# trac 11334: Update numpy to 1.7.0 - doctest patches
 	epatch "${FILESDIR}"/${PN}-5.8-fix-numpy-doctests.patch
 
+	# removes doctests checking for cmdline switches we removed
+	epatch "${FILESDIR}"/${PN}-5.8-fix-cmdline-doctest.patch
+
 	# do not forget to run distutils
 	distutils-r1_src_prepare
 }
