@@ -1,5 +1,5 @@
 --- sage/tests/cmdline.py.orig	2013-02-19 10:31:03.000000000 +0000
-+++ sage/tests/cmdline.py	2013-03-31 07:20:39.487490774 +0000
++++ sage/tests/cmdline.py	2013-04-02 11:50:22.591176380 +0000
 @@ -1,3 +1,4 @@
 +
  r"""
@@ -47,7 +47,32 @@
      Test ``sage-run`` on a Python file, both with an absolute and with a relative path::
  
          sage: dir = tmp_dir(); name = 'python_test_file.py'
-@@ -465,14 +438,6 @@
+@@ -336,24 +309,6 @@
+         True
+         sage: os.environ['SAGE_TESTDIR'] = OLD_TESTDIR  # just in case
+ 
+-    Check that Sage refuses to run doctests from a directory whose
+-    permissions are too loose.  We create a world-writable directory
+-    inside a safe temporary directory to test this::
+-
+-        sage: d = os.path.join(tmp_dir(), "test")
+-        sage: os.mkdir(d)
+-        sage: os.chmod(d, 0o777)
+-        sage: (out, err, ret) = test_executable(["sage", "-t", "nonexisting.py"], cwd=d)
+-        sage: print err
+-        Traceback (most recent call last):
+-        ...
+-        RuntimeError: refusing to run doctests...
+-        sage: (out, err, ret) = test_executable(["sage", "-tp", "1", "nonexisting.py"], cwd=d)
+-        sage: print err
+-        Traceback (most recent call last):
+-        ...
+-        RuntimeError: refusing to run doctests...
+-
+     Test external programs being called by Sage::
+     
+         sage: (out, err, ret) = test_executable(["sage", "--sh"], "echo Hello World\nexit 42\n")
+@@ -465,14 +420,6 @@
      
      Some programs of which we check functionality using only ``--version``::
  

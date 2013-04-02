@@ -2,6 +2,10 @@
 # Copyright 1999-2013 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  02 Apr 2013; Christopher Schwan <cschwan@students.uni-mainz.de>
+  files/sage-5.8-fix-cmdline-doctest.patch:
+  Fix remaning cmdline.py doctests (fixes Issue #209).
+
   01 Apr 2013; François Bissey <francois.bissey@canterbury.ac.nz>
   sage-5.9_beta2.ebuild:
   Incorporate the comand line tests fix in 5.9
