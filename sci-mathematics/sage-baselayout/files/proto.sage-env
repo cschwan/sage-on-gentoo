@@ -7,14 +7,14 @@ export SAGE_SHARE="@GENTOO_PORTAGE_EPREFIX@/usr/share/sage"
 export SAGE_DOC="@GENTOO_PORTAGE_EPREFIX@/usr/share/sage/devel/sage/doc"
 export SAGE_EXTCODE="@GENTOO_PORTAGE_EPREFIX@/usr/share/sage/ext"
 
-if [[ -z \${DOT_SAGE} ]]; then
-	export DOT_SAGE="\${HOME}/.sage"
+if [[ -z ${DOT_SAGE} ]]; then
+	export DOT_SAGE="${HOME}/.sage"
 fi
 
 if [ "$SAGE_STARTUP_FILE" = "" ]; then
-	export SAGE_STARTUP_FILE="\${DOT_SAGE}/init.sage"
+	export SAGE_STARTUP_FILE="${DOT_SAGE}/init.sage"
 fi
-export SAGE_TESTDIR="\${DOT_SAGE}/tmp"
+export SAGE_TESTDIR="${DOT_SAGE}/tmp"
 export SAGE_SERVER="http://www.sagemath.org/"
 
 if [ -z "$SAGE_RC_FILE" ]; then
