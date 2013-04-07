@@ -16,7 +16,8 @@ MY_P="sage-$(replace_version_separator 2 '.')"
 
 DESCRIPTION="Math software for algebra, geometry, number theory, cryptography and numerical computation"
 HOMEPAGE="http://www.sagemath.org"
-SRC_URI="mirror://sagemath/${MY_P}.spkg -> ${P}.tar.bz2"
+SRC_URI="mirror://sagemath/${MY_P}.spkg -> ${P}.tar.bz2
+	mirror://sagemath/patches/numpy-1.7-patch.tar.bz2"
 
 LICENSE="GPL-2"
 SLOT="0"
@@ -53,7 +54,7 @@ CDEPEND="dev-libs/gmp
 	>=sci-mathematics/lcalc-1.23-r4[pari]
 	>=sci-mathematics/lrcalc-1.1.6_beta1
 	>=sci-mathematics/pari-2.5.3-r2[data,gmp]
-	~sci-mathematics/polybori-0.8.2
+	>=sci-mathematics/polybori-0.8.3
 	>=sci-mathematics/ratpoints-2.1.3
 	~sci-mathematics/sage-baselayout-${PV}[testsuite=]
 	~sci-mathematics/sage-clib-${PV}
@@ -156,12 +157,6 @@ src_prepare() {
 	sed -i "s:SAGE_LOCAL + '/lib/python/site-packages/numpy/core/include:'$(python_get_sitedir)/numpy/core/include:g" \
 		module_list.py
 
-	# fix cython path
-	sed -i \
-		-e "s:SAGE_LOCAL + '/lib/python/site-packages/Cython/Includes/':'$(python_get_sitedir)/Cython/Includes/':g" \
-		-e "s:SAGE_LOCAL + '/lib/python/site-packages/Cython/Includes/Deprecated/':'$(python_get_sitedir)/Cython/Includes/Deprecated/':g" \
-		setup.py
-
 	# fix lcalc path
 	sed -i "s:SAGE_INC + \"libLfunction:SAGE_INC + \"Lfunction:g" module_list.py
 
@@ -253,7 +248,7 @@ src_prepare() {
 	epatch "${FILESDIR}"/${PN}-5.8-fix-r-doctest.patch
 
 	# trac 11334: Update numpy to 1.7.0 - doctest patches
-	epatch "${FILESDIR}"/${PN}-5.8-fix-numpy-doctests.patch
+	epatch "${WORKDIR}"/numpy-1.7.patch
 
 	# removes doctests checking for cmdline switches we removed (see also #209)
 	epatch "${FILESDIR}"/${PN}-5.8-fix-cmdline-doctest.patch

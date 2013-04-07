@@ -2,6 +2,12 @@
 # Copyright 1999-2013 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*sage-5.9_beta4 (07 Apr 2013)
+
+  07 Apr 2013; François Bissey <francois.bissey@canterbury.ac.nz>
+  +sage-5.9_beta4.ebuild, -sage-5.9_beta2-r1.ebuild, files/sage-5.9-env.patch:
+  5.9beta4: sage
+
 *sage-5.5-r5 (07 Apr 2013)
 *sage-5.6-r1 (07 Apr 2013)
 *sage-5.7-r2 (07 Apr 2013)
