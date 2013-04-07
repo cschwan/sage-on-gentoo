@@ -2,6 +2,12 @@
 # Copyright 1999-2013 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*sage-baselayout-5.9_beta4 (07 Apr 2013)
+
+  07 Apr 2013; François Bissey <francois.bissey@canterbury.ac.nz>
+  +sage-baselayout-5.9_beta4.ebuild, -sage-baselayout-5.9_beta2.ebuild:
+  5.9beta4 baselayout
+
   02 Apr 2013; François Bissey <francois.bissey@canterbury.ac.nz>
   files/proto.sage-env:
   fixing "\" in proto.sage-env - I thought I had removed them but didn't.
