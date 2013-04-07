@@ -2,6 +2,20 @@
 # Copyright 1999-2013 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*sage-5.5-r5 (07 Apr 2013)
+*sage-5.6-r1 (07 Apr 2013)
+*sage-5.7-r2 (07 Apr 2013)
+*sage-5.8-r1 (07 Apr 2013)
+*sage-5.9_beta2-r1 (07 Apr 2013)
+
+  07 Apr 2013; Christopher Schwan <cschwan@students.uni-mainz.de>
+  +sage-5.5-r5.ebuild, +sage-5.6-r1.ebuild, +sage-5.7-r2.ebuild,
+  +sage-5.8-r1.ebuild, +sage-5.9_beta2-r1.ebuild, -sage-5.5-r4.ebuild,
+  -sage-5.6.ebuild, -sage-5.7-r1.ebuild, -sage-5.8.ebuild,
+  -sage-5.9_beta2.ebuild:
+  Use subslot operator for dependency on libpng as discussed on
+  http://thread.gmane.org/gmane.linux.gentoo.devel/84866
+
   02 Apr 2013; Christopher Schwan <cschwan@students.uni-mainz.de>
   files/sage-5.8-fix-cmdline-doctest.patch:
   Fix remaning cmdline.py doctests (fixes Issue #209).

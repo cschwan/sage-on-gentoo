@@ -60,7 +60,7 @@ CDEPEND="dev-libs/gmp
 	~sci-mathematics/sage-clib-${PV}
 	>=sci-libs/libsingular-3.1.5-r2
 	media-libs/gd[jpeg,png]
-	media-libs/libpng
+	media-libs/libpng:0=
 	>=sys-libs/readline-6.2
 	sys-libs/zlib
 	virtual/cblas"
