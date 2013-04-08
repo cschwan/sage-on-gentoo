@@ -4,6 +4,10 @@
 
   08 Apr 2013; François Bissey <francois.bissey@canterbury.ac.nz>
   sage-5.9_beta4.ebuild:
+  Fix missing slash.
+
+  08 Apr 2013; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-5.9_beta4.ebuild:
   Fix the location of singular.hlp in sage 5.9
 
 *sage-5.9_beta4 (07 Apr 2013)
