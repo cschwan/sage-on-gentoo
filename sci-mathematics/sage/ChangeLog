@@ -4,6 +4,12 @@
 
   08 Apr 2013; François Bissey <francois.bissey@canterbury.ac.nz>
   sage-5.9_beta4.ebuild:
+  Fix, gprc.expect location (experimental), there may be more fallout from
+  sage/env.py, I had put a lot of stuff in the patch that didn't  make sense
+  upstream.
+
+  08 Apr 2013; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-5.9_beta4.ebuild:
   Fix missing slash.
 
   08 Apr 2013; François Bissey <francois.bissey@canterbury.ac.nz>
