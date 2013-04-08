@@ -233,7 +233,7 @@ src_prepare() {
 		sage/interfaces/singular.py
 
 	# Get gprc.expect from the right place
-	sed -i "s:SAGE_LOCAL, 'etc', 'gprc.expect':'${EPREFIX}','etc','gprc.expect':" \
+	sed -i "s:SAGE_LOCAL, 'etc', 'gprc.expect':'${EPREFIX}/etc','gprc.expect':" \
 		sage/interfaces/gp.py
 
 	# allow sage-matroids to be used if installed
