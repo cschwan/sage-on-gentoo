@@ -228,6 +228,10 @@ src_prepare() {
 	# patching libs/gap/util.pyx so we don't get noise from missing SAGE_LOCAL/gap/latest
 	epatch "${FILESDIR}"/${PN}-5.9-libgap.patch
 
+	# Getting the singular documentation from the right place
+	sed -i "s:os.environ\[\"SAGE_LOCAL\"\]+\"/share/singular/\":sage.env.SAGE_DOC:" \
+		sage/interfaces/singular.py
+
 	# allow sage-matroids to be used if installed
 	epatch "${FILESDIR}"/${PN}-matroids.patch
 

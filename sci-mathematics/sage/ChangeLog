@@ -2,6 +2,10 @@
 # Copyright 1999-2013 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  08 Apr 2013; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-5.9_beta4.ebuild:
+  Fix the location of singular.hlp in sage 5.9
+
 *sage-5.9_beta4 (07 Apr 2013)
 
   07 Apr 2013; François Bissey <francois.bissey@canterbury.ac.nz>
