@@ -305,7 +305,8 @@ src_install() {
 		-name "*.pxi" -o -name "*.h" \
 		-o -name "*fmpq_poly.c" \
 		-o -name "*matrix_rational_dense_linbox.cpp" \
-		-o -name "*wrap.cc" \) -type f -delete \
+		-o -name "*wrap.cc" \
+		-o -name "*.rst" \) -type f -delete \
 		|| die "failed to remove non-testable sources"
 
 	insinto /usr/share/sage/devel/sage-main
