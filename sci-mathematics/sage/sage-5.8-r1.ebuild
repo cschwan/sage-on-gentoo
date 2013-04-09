@@ -56,7 +56,7 @@ CDEPEND="dev-libs/gmp
 	>=sci-mathematics/pari-2.5.3-r2[data,gmp]
 	~sci-mathematics/polybori-0.8.2
 	>=sci-mathematics/ratpoints-2.1.3
-	~sci-mathematics/sage-baselayout-${PV}[testsuite=]
+	~sci-mathematics/sage-baselayout-${PV}[testsuite=,${PYTHON_USEDEP}]
 	~sci-mathematics/sage-clib-${PV}
 	>=sci-libs/libsingular-3.1.5-r2
 	media-libs/gd[jpeg,png]

@@ -2,6 +2,10 @@
 # Copyright 1999-2013 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  09 Apr 2013; Christopher Schwan <cschwan@students.uni-mainz.de>
+  sage-5.8-r1.ebuild, sage-5.9_beta4.ebuild:
+  Add PYTHON_USEDEP for sage-baselayout
+
   08 Apr 2013; François Bissey <francois.bissey@canterbury.ac.nz>
   sage-5.9_beta4.ebuild:
   Add more files for doctesting in sage 5.9
