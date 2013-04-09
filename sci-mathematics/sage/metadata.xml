@@ -13,5 +13,11 @@
 		<flag name='numpy17'>
 			Use the beta of numpy 1.7 and associated patches
 		</flag>
+		<flag name='lrs'>
+			Enable the use of sci-libs/lrslib in sage
+		</flag>
+		<flag name='nauty'>
+			Enable the use of sci-mathematics/nauty in sage
+		</flag>
 	</use>
 </pkgmetadata>

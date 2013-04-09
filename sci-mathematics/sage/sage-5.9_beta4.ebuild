@@ -22,7 +22,7 @@ SRC_URI="mirror://sagemath/${MY_P}.spkg -> ${P}.tar.bz2
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64 ~x86 ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~x64-macos"
-IUSE="latex testsuite"
+IUSE="latex testsuite lrs nauty"
 
 RESTRICT="mirror test"
 
@@ -113,7 +113,9 @@ RDEPEND="${CDEPEND}
 			app-text/dvipng[truetype]
 			media-gfx/imagemagick[png]
 		)
-	)"
+	)
+	lrs? ( sci-libs/lrslib )
+	nauty? ( sci-mathematics/nauty )"
 
 PDEPEND="~sci-mathematics/sage-notebook-0.10.4[${PYTHON_USEDEP}]
 	~sci-mathematics/sage-data-conway_polynomials-0.4"
@@ -137,6 +139,19 @@ src_prepare() {
 	# patch to module_list.py because of trac 4539
 	epatch "${FILESDIR}"/${PN}-5.4-plural.patch
 
+	# Remove sage's package management system
+	epatch "${FILESDIR}"/${PN}-5.9-package.patch
+
+	if use lrs; then
+		sed -i "s:if True:if False:" \
+			sage/geometry/polyhedron/base.py
+	fi
+
+	if use nauty; then
+		sed -i "s:if True:if False:" \
+			sage/graphs/graph_generators.py
+	fi
+
 	############################################################################
 	# Fixes to Sage's build system
 	############################################################################
@@ -159,9 +174,6 @@ src_prepare() {
 
 	# fix lcalc path
 	sed -i "s:SAGE_INC + \"libLfunction:SAGE_INC + \"Lfunction:g" module_list.py
-
-	# build the lrcalc module
-	sed -i "s:is_package_installed('lrcalc'):True:g" module_list.py
 
 	# fix CBLAS/ATLAS
 	sed -i \
@@ -217,9 +229,6 @@ src_prepare() {
 	# Make sage-inline-fortran useless by having better fortran settings
 	sed -i "s:--f77exec=sage-inline-fortran --f90exec=sage-inline-fortran:--f77exec=$(tc-getF77) --f90exec=$(tc-getFC):" \
 		sage/misc/inline_fortran.py
-
-	# make is_installed always return false
-	epatch "${FILESDIR}"/${PN}-5.4-package.patch
 
 	# patch lie library path
 	sed -i -e "s:/lib/LiE/:/share/lie/:" \
