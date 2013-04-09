@@ -1,7 +1,7 @@
 # HG changeset patch
 # User Francois Bissey <francois.bissey@canterbury.ac.nz>
-# Date 1365505769 -43200
-# Node ID 7dad49ea89da05afca2e022dcfba29e37fa372ec
+# Date 1365547622 -43200
+# Node ID a185fe57da29f6a2421c4214efb753e09e77a5d6
 # Parent  0399181d5e5197389d2ec99b14ed43e02c016ab0
 Removing package management from sage
 
@@ -146,6 +146,26 @@ diff --git a/sage/groups/perm_gps/permgroup.py b/sage/groups/perm_gps/permgroup.
              raise RuntimeError, "You must install the optional gap_packages package."
          load_hap()
          from sage.rings.arith import is_prime
+diff --git a/sage/interfaces/ecm.py b/sage/interfaces/ecm.py
+--- a/sage/interfaces/ecm.py
++++ b/sage/interfaces/ecm.py
+@@ -16,8 +16,6 @@
+ 
+ import cleaner
+ 
+-import sage.misc.package
+-
+ def nothing():
+     pass
+ 
+@@ -112,7 +110,6 @@
+             ou = x.stderr.read() + '\n' + x.stdout.read()
+         if 'command not found' in ou:
+             err = ou + '\n' + 'You must install GMP-ECM.\n'
+-            err += sage.misc.package.package_mesg('ecm-6.1.3')
+             raise RuntimeError, err
+         return ou
+ 
 diff --git a/sage/misc/all.py b/sage/misc/all.py
 --- a/sage/misc/all.py
 +++ b/sage/misc/all.py

@@ -3,6 +3,10 @@
 # $Header: $
 
   09 Apr 2013; François Bissey <francois.bissey@canterbury.ac.nz>
+  files/sage-5.9-package.patch:
+  issue #211 more work to remove package.py
+
+  09 Apr 2013; François Bissey <francois.bissey@canterbury.ac.nz>
   +files/sage-5.9-package.patch, metadata.xml, sage-5.9_beta4.ebuild:
   Work on issue #211 some patch may need re-organisation, will likely need
   rebasing in 5.9rc0.
