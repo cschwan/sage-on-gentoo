@@ -271,6 +271,9 @@ src_prepare() {
 	# only do a very basic R version string test
 	epatch "${FILESDIR}"/${PN}-5.8-fix-r-doctest.patch
 
+	# do not test safe python stuff from trac 13579
+	epatch "${FILESDIR}"/${PN}-5.9-safepython.patch
+
 	# trac 11334: Update numpy to 1.7.0 - doctest patches
 	epatch "${WORKDIR}"/numpy-1.7.patch
 
