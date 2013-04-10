@@ -17,6 +17,7 @@ MY_P="sage-$(replace_version_separator 2 '.')"
 DESCRIPTION="Math software for algebra, geometry, number theory, cryptography and numerical computation"
 HOMEPAGE="http://www.sagemath.org"
 SRC_URI="mirror://sagemath/${MY_P}.spkg -> ${P}.tar.bz2
+	mirror://sagemath/patches/${PN}-5.9-neutering.tar.bz2
 	mirror://sagemath/patches/numpy-1.7-patch.tar.bz2"
 
 LICENSE="GPL-2"
@@ -140,7 +141,13 @@ src_prepare() {
 	epatch "${FILESDIR}"/${PN}-5.4-plural.patch
 
 	# Remove sage's package management system
-	epatch "${FILESDIR}"/${PN}-5.9-package.patch
+	epatch "${WORKDIR}"/patches/${PN}-5.9-package.patch
+
+	# Remove sage's mercurial capabilities
+	epatch "${WORKDIR}"/patches/${PN}-5.9-hg.patch
+
+	# Remove sage cmdline tests related to these
+	epatch "${WORKDIR}"/patches/${PN}-5.9-cmdline.patch
 
 	if use lrs; then
 		sed -i "s:if True:if False:" \
@@ -266,9 +273,6 @@ src_prepare() {
 
 	# trac 11334: Update numpy to 1.7.0 - doctest patches
 	epatch "${WORKDIR}"/numpy-1.7.patch
-
-	# removes doctests checking for cmdline switches we removed (see also #209)
-	epatch "${FILESDIR}"/${PN}-5.8-fix-cmdline-doctest.patch
 
 	# do not forget to run distutils
 	distutils-r1_src_prepare
