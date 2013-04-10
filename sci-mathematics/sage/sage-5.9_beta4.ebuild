@@ -264,7 +264,7 @@ src_prepare() {
 
 	# fix all.py
 	epatch "${FILESDIR}"/${PN}-5.9-all.py
-	sed -i "s:\"lib\":\"$(get_libdir)\":" sage/all.py
+	sed -i "s:\"lib\",\"python\":\"$(get_libdir)\",\"python2.7\":" sage/all.py
 
 	# introduce consistent ordering that does not break if sqlite is upgraded
 	epatch "${FILESDIR}"/${PN}-5.8-fix-cremona-doctest.patch
