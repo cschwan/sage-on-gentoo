@@ -10,7 +10,7 @@ PYTHON_REQ_USE="readline,sqlite"
 # disable parallel build - Sage has its own method (see src_configure)
 DISTUTILS_NO_PARALLEL_BUILD="1"
 
-inherit distutils-r1 eutils flag-o-matic toolchain-funcs versionator prefix
+inherit distutils-r1 eutils flag-o-matic multilib prefix toolchain-funcs versionator
 
 MY_P="sage-$(replace_version_separator 2 '.')"
 
@@ -261,6 +261,10 @@ src_prepare() {
 
 	# remove 'local' part
 	sed -i "s:\.\.\./local/share/pari:.../share/pari:g" sage/interfaces/gp.py
+
+	# fix all.py
+	epatch "${FILESDIR}"/${PN}-5.9-all.py
+	sed -i "s:\"lib\":\"$(get_libdir)\":" sage/all.py
 
 	# introduce consistent ordering that does not break if sqlite is upgraded
 	epatch "${FILESDIR}"/${PN}-5.8-fix-cremona-doctest.patch

@@ -3,6 +3,10 @@
 # $Header: $
 
   10 Apr 2013; François Bissey <francois.bissey@canterbury.ac.nz>
+  +files/sage-5.9-all.py, sage-5.9_beta4.ebuild:
+  fixes for all.py in 5.9
+
+  10 Apr 2013; François Bissey <francois.bissey@canterbury.ac.nz>
   +files/sage-5.9-safepython.patch, sage-5.9_beta4.ebuild:
   Fix for safe python checks.
 
