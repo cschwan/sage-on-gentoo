@@ -136,7 +136,7 @@ src_install() {
 		# GNU DEBUGGER helper schripts
 		python_foreach_impl python_doscript sage-CSI
 		insinto /usr/bin
-		doins sage-CSI-helper.py
+		doins sage-CSI-helper.py sage-gdb-commands
 
 		# VALGRIND helper scripts
 		dobin sage-cachegrind sage-callgrind sage-massif sage-omega \

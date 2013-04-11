@@ -2,6 +2,13 @@
 # Copyright 1999-2013 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*sage-baselayout-5.9_beta4-r2 (11 Apr 2013)
+
+  11 Apr 2013; François Bissey <francois.bissey@canterbury.ac.nz>
+  +sage-baselayout-5.9_beta4-r2.ebuild, -sage-baselayout-5.9_beta4-r1.ebuild,
+  -sage-baselayout-5.9_beta4.ebuild:
+  Add a missing file to run sage under gdb
+
 *sage-baselayout-5.8-r1 (09 Apr 2013)
 *sage-baselayout-5.9_beta4-r1 (09 Apr 2013)
 
