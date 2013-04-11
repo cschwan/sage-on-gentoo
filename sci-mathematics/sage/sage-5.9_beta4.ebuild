@@ -120,11 +120,7 @@ PDEPEND="~sci-mathematics/sage-notebook-0.10.4[${PYTHON_USEDEP}]
 
 S="${WORKDIR}"/${MY_P}
 
-pkg_setup() {
-	python_export python2_7 EPYTHON
-}
-
-src_prepare() {
+python_prepare() {
 	# ATLAS independence
 	local cblaslibs=\'$(pkg-config --libs-only-l cblas | sed \
 		-e 's/^-l//' \
@@ -276,12 +272,9 @@ src_prepare() {
 
 	# trac 11334: Update numpy to 1.7.0 - doctest patches
 	epatch "${WORKDIR}"/numpy-1.7.patch
-
-	# do not forget to run distutils
-	distutils-r1_src_prepare
 }
 
-src_configure() {
+python_configure() {
 	export SAGE_LOCAL="${EPREFIX}"/usr/
 	export SAGE_ROOT="${EPREFIX}"/usr/share/sage
 	export SAGE_SRC="${S}"
@@ -309,12 +302,10 @@ src_configure() {
 	# files are not built unless they are touched
 	find sage -name "*pyx" -exec touch '{}' \; \
 		|| die "failed to touch *pyx files"
-
-	distutils-r1_src_configure
 }
 
-src_install() {
-	distutils-r1_src_install
+python_install_all() {
+	distutils-r1_python_install_all
 
 	# install sources needed for testing/compiling of cython/spyx files
 	find sage ! \( -name "*.py" -o -name "*.pyx" -o -name "*.pxd" -o \
