@@ -10,7 +10,7 @@ PYTHON_REQ_USE="readline,sqlite"
 # disable parallel build - Sage has its own method (see src_configure)
 DISTUTILS_NO_PARALLEL_BUILD="1"
 
-inherit distutils-r1 eutils flag-o-matic multilib prefix toolchain-funcs versionator
+inherit distutils-r1 eutils flag-o-matic multilib multiprocessing prefix toolchain-funcs versionator
 
 MY_P="sage-$(replace_version_separator 2 '.')"
 
@@ -279,25 +279,7 @@ python_configure() {
 	export SAGE_ROOT="${EPREFIX}"/usr/share/sage
 	export SAGE_SRC="${S}"
 	export SAGE_VERSION=${PV}
-
-	# parse MAKEOPTS and extract the number of jobs (from dev-libs/boost)
-	local jobs=$(echo " ${MAKEOPTS} " | sed \
-		-e 's/ --jobs[= ]/ -j /g' \
-		-e 's/ -j \([1-9][0-9]*\)/ -j\1/g' \
-		-e 's/ -j\>/ -j1/g' | \
-		( while read -d ' ' j; do
-			if [[ "${j#-j}" = "$j" ]]; then
-				continue
-			fi
-			jobs="${j#-j}"
-			done
-			echo ${jobs} )
-	)
-	if [[ "${jobs}" != "" ]]; then
-		export SAGE_NUM_THREADS="${jobs}"
-	else
-		export SAGE_NUM_THREADS=1
-	fi
+	export SAGE_NUM_THREADS=$(makeopts_jobs)
 
 	# files are not built unless they are touched
 	find sage -name "*pyx" -exec touch '{}' \; \

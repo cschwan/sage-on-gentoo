@@ -4,6 +4,10 @@
 
   11 Apr 2013; Christopher Schwan <cschwan@students.uni-mainz.de>
   sage-5.9_beta4.ebuild:
+  Use makeopts_jobs instead custom script
+
+  11 Apr 2013; Christopher Schwan <cschwan@students.uni-mainz.de>
+  sage-5.9_beta4.ebuild:
   Use pseudo phase functions instead of real ones
 
   11 Apr 2013; Christopher Schwan <cschwan@students.uni-mainz.de>
