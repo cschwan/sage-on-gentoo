@@ -209,6 +209,9 @@ src_prepare() {
 	sed -i "s:factory/factory.h:singular/factory.h:" \
 		sage/libs/singular/singular-cdefs.pxi
 
+	# Fix portage QA warning. Potentially prevent some leaking.
+	epatch "${FILESDIR}"/${PN}-4.4.2-flint.patch
+
 	sed -i "s:cblas(), atlas():${cblaslibs}:" sage/misc/cython.py
 
 	# TODO: should be a patch

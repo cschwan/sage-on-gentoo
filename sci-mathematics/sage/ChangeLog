@@ -4,6 +4,10 @@
 
   11 Apr 2013; Christopher Schwan <cschwan@students.uni-mainz.de>
   sage-5.9_beta4.ebuild:
+  Add patch that was accidentally removed
+
+  11 Apr 2013; Christopher Schwan <cschwan@students.uni-mainz.de>
+  sage-5.9_beta4.ebuild:
   Make 'src_prepare' python version agnostic again
 
   10 Apr 2013; François Bissey <francois.bissey@canterbury.ac.nz>
