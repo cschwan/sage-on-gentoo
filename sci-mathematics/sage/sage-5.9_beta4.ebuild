@@ -110,10 +110,7 @@ RDEPEND="${CDEPEND}
 	testsuite? ( >=sci-mathematics/sage-doc-${PV}[html] )
 	latex? (
 		~dev-tex/sage-latex-2.3.3_p2
-		|| (
-			app-text/dvipng[truetype]
-			media-gfx/imagemagick[png]
-		)
+		|| ( app-text/dvipng[truetype] media-gfx/imagemagick[png] )
 	)
 	lrs? ( sci-libs/lrslib )
 	nauty? ( sci-mathematics/nauty )"
@@ -123,7 +120,6 @@ PDEPEND="~sci-mathematics/sage-notebook-0.10.4[${PYTHON_USEDEP}]
 
 S="${WORKDIR}"/${MY_P}
 
-PATCHDIR="${WORKDIR}/patches"
 
 pkg_setup() {
 	python_export python2_7 EPYTHON
@@ -150,13 +146,11 @@ src_prepare() {
 	epatch "${WORKDIR}"/patches/${PN}-5.9-cmdline.patch
 
 	if use lrs; then
-		sed -i "s:if True:if False:" \
-			sage/geometry/polyhedron/base.py
+		sed -i "s:if True:if False:" sage/geometry/polyhedron/base.py
 	fi
 
 	if use nauty; then
-		sed -i "s:if True:if False:" \
-			sage/graphs/graph_generators.py
+		sed -i "s:if True:if False:" sage/graphs/graph_generators.py
 	fi
 
 	############################################################################
@@ -172,8 +166,7 @@ src_prepare() {
 	rm -rf c_lib || die "failed to remove c library directory"
 
 	# fix png library name
-	sed -i "s:png12:$(libpng-config --libs | cut -dl -f2):g" \
-		module_list.py
+	sed -i "s:png12:$(libpng-config --libs | cut -dl -f2):g" module_list.py
 
 	# fix numpy path (final quote removed to catch numpy_include_dirs and numpy_depends)
 	sed -i "s:SAGE_LOCAL + '/lib/python/site-packages/numpy/core/include:'$(python_get_sitedir)/numpy/core/include:g" \
@@ -195,8 +188,6 @@ src_prepare() {
 	sed -i "s:-D__STDC_LIMIT_MACROS:-D__STDC_LIMIT_MACROS', '-DNDEBUG:g" \
 		module_list.py
 
-	# TODO: why does Sage fail with linbox commentator ?
-
 	############################################################################
 	# Fixes to Sage itself
 	############################################################################
@@ -205,25 +196,23 @@ src_prepare() {
 	epatch "${FILESDIR}"/sage-5.9-env.patch
 	eprefixify sage/env.py
 
+	# TODO: should be a patch
 	# run maxima with ecl
-	sed -i \
-		-e "s:maxima-noreadline:maxima -l ecl:g" \
-		sage/interfaces/maxima.py
-	sed -i \
-		-e "s:maxima --very-quiet:maxima -l ecl --very-quiet:g" \
+	sed -i "s:maxima-noreadline:maxima -l ecl:g" sage/interfaces/maxima.py
+	sed -i "s:maxima --very-quiet:maxima -l ecl --very-quiet:g" \
 		sage/interfaces/maxima_abstract.py
 
 	# speaking ecl - patching so we can allow ecl with unicode
 	epatch "${FILESDIR}"/trac12985-unicode.patch
 
+	# TODO: should be a patch
 	# Uses singular internal copy of the factory header
-	sed -i "s:factory/factory.h:singular/factory.h:" sage/libs/singular/singular-cdefs.pxi
-
-	# Fix portage QA warning. Potentially prevent some leaking.
-	epatch "${FILESDIR}"/${PN}-4.4.2-flint.patch
+	sed -i "s:factory/factory.h:singular/factory.h:" \
+		sage/libs/singular/singular-cdefs.pxi
 
 	sed -i "s:cblas(), atlas():${cblaslibs}:" sage/misc/cython.py
 
+	# TODO: should be a patch
 	# patch for glpk
 	sed -i \
 		-e "s:\.\./\.\./\.\./\.\./devel/sage/sage:..:g" \
@@ -234,20 +223,24 @@ src_prepare() {
 	epatch "${FILESDIR}"/remove-testjavapath-to-python.patch
 
 	# Make sage-inline-fortran useless by having better fortran settings
-	sed -i "s:--f77exec=sage-inline-fortran --f90exec=sage-inline-fortran:--f77exec=$(tc-getF77) --f90exec=$(tc-getFC):" \
+	sed -i \
+		-e "s:--f77exec=sage-inline-fortran:--f77exec=$(tc-getF77):g" \
+		-e "s:--f90exec=sage-inline-fortran:--f90exec=$(tc-getFC):g" \
 		sage/misc/inline_fortran.py
 
+	# TODO: should be a patch
 	# patch lie library path
-	sed -i -e "s:/lib/LiE/:/share/lie/:" \
-		sage/interfaces/lie.py
+	sed -i -e "s:/lib/LiE/:/share/lie/:" sage/interfaces/lie.py
 
 	# patching libs/gap/util.pyx so we don't get noise from missing SAGE_LOCAL/gap/latest
 	epatch "${FILESDIR}"/${PN}-5.9-libgap.patch
 
+	# TODO: should be a patch
 	# Getting the singular documentation from the right place
 	sed -i "s:os.environ\[\"SAGE_LOCAL\"\]+\"/share/singular/\":sage.env.SAGE_DOC + \"/\":" \
 		sage/interfaces/singular.py
 
+	# TODO: should be a patch + eprefixy
 	# Get gprc.expect from the right place
 	sed -i "s:SAGE_LOCAL, 'etc', 'gprc.expect':'${EPREFIX}/etc','gprc.expect':" \
 		sage/interfaces/gp.py
@@ -259,6 +252,7 @@ src_prepare() {
 	# Fixes to doctests
 	############################################################################
 
+	# TODO: should be a patch
 	# remove 'local' part
 	sed -i "s:\.\.\./local/share/pari:.../share/pari:g" sage/interfaces/gp.py
 
