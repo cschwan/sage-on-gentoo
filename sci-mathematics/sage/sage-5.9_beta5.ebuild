@@ -128,9 +128,6 @@ python_prepare() {
 		-e 's/.,.pthread//g' \
 		-e "s: ::g")\'
 
-	# patch to module_list.py because of trac 4539
-	epatch "${FILESDIR}"/${PN}-5.4-plural.patch
-
 	# Remove sage's package management system
 	epatch "${WORKDIR}"/patches/${PN}-5.9-package.patch
 
@@ -168,7 +165,7 @@ python_prepare() {
 		module_list.py
 
 	# fix lcalc path
-	sed -i "s:SAGE_INC + \"libLfunction:SAGE_INC + \"Lfunction:g" module_list.py
+	sed -i "s:SAGE_INC + \"/libLfunction:SAGE_INC + \"/Lfunction:g" module_list.py
 
 	# fix CBLAS/ATLAS
 	sed -i \
@@ -177,8 +174,7 @@ python_prepare() {
 		module_list.py
 
 	# Add -DNDEBUG to objects linking to libsingular and use factory headers from singular.
-	sed -i "s:'singular', SAGE_INC + 'factory'\],:'singular'\],:g" \
-		module_list.py
+	sed -i "s:, SAGE_INC + '/factory'::g" module_list.py
 	# We add -DNDEBUG to objects linking to givaro. It solves problems with linbox and singular.
 	sed -i "s:-D__STDC_LIMIT_MACROS:-D__STDC_LIMIT_MACROS', '-DNDEBUG:g" \
 		module_list.py
