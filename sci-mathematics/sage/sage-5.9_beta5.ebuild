@@ -266,6 +266,12 @@ python_prepare() {
 	# do not test safe python stuff from trac 13579
 	epatch "${FILESDIR}"/${PN}-5.9-safepython.patch
 
+	# remove version information of GLPK
+	epatch "${FILESDIR}"/${PN}-5.9-fix-mip-doctest.patch
+
+	# 'sage' is not in SAGE_ROOT, but in PATH
+	epatch "${FILESDIR}"/${PN}-5.9-fix-ostools-doctest.patch
+
 	# trac 11334: Update numpy to 1.7.0 - doctest patches
 	epatch "${WORKDIR}"/numpy-1.7.patch
 }
