@@ -21,13 +21,18 @@ DEPEND=">=dev-libs/gmp-5.0.2
 RDEPEND="${DEPEND}"
 
 S="${WORKDIR}/${MY_P}"/src
+AUTOTOOLS_AUTORECONF=yes
+PATCHES=(
+	"${FILESDIR}/${PN}"-4.5.7-printf.patch
+	"${FILESDIR}/${PN}"-4.5.7-libm.patch
+)
 
 src_prepare(){
-	epatch "${FILESDIR}/${PN}"-4.5.7-printf.patch
-
 	sed -e "s:src/compiled.h:compiled.h:" \
 		-i src/c_random.c src/compiler.c src/c_type1.c \
 		src/c_oper1.c src/c_meths1.c src/c_filt1.c
+
+	autotools-utils_src_prepare
 }
 
 src_configure(){

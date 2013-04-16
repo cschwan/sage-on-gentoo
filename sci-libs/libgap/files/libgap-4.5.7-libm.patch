@@ -1,0 +1,12 @@
+--- configure.ac.orig	2013-04-16 23:00:03.623956031 +1200
++++ configure.ac	2013-04-16 23:01:14.573237625 +1200
+@@ -89,6 +89,9 @@
+ AC_CHECK_HEADERS([termio.h termios.h unistd.h signal.h stdio.h libc.h sys/times.h sys/wait.h])
+ AC_CHECK_HEADERS([vfork.h dirent.h errno.h setjmp.h])
+ 
++# Check for libm
++AC_CHECK_LIB([m],[cos])
++
+ AC_FUNC_VFORK
+ AC_FUNC_FORK
+ AC_FUNC_MALLOC

@@ -1,3 +1,11 @@
+*libgap-4.5.7-r1 (16 Apr 2013)
+*libgap-4.5.7_p2-r1 (16 Apr 2013)
+
+  16 Apr 2013; François Bissey <francois.bissey@canterbury.ac.nz>
+  +files/libgap-4.5.7-libm.patch, +libgap-4.5.7-r1.ebuild,
+  +libgap-4.5.7_p2-r1.ebuild, -libgap-4.5.7.ebuild, -libgap-4.5.7_p2.ebuild:
+  Resolve libm symbols in libgap
+
   26 Mar 2013; François Bissey <francois.bissey@canterbury.ac.nz>
   +files/libgap-4.5.7-printf.patch, libgap-4.5.7.ebuild, libgap-4.5.7_p2.ebuild:
   include upstream patch to libgap 4.5.7 I am hopeful it will be in 4.6.2
