@@ -2,6 +2,10 @@
 # Copyright 1999-2013 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  16 Apr 2013; François Bissey <francois.bissey@canterbury.ac.nz>
+  polybori-0.8.3.ebuild:
+  polybori 0.8.3 clean up and trying to get it correct on OS X
+
 *polybori-0.8.3 (31 Mar 2013)
 
   31 Mar 2013; François Bissey <francois.bissey@canterbury.ac.nz>

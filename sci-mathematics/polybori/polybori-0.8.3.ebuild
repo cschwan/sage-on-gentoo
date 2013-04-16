@@ -82,11 +82,9 @@ src_compile(){
 	)
 
 	# extra configuration for macos
-	# FIXME: don't know how to deal properly with versionned libraries with install_name so dropping it.
 	if [[ ${CHOST} == *-darwin* ]] ; then
 		myesconsargs+=(
 			FORCE_HASH_MAP=True
-			SHLIBVERSIONING=False
 		)
 	fi
 
@@ -110,7 +108,4 @@ src_install() {
 	# we only need shared objects elsewhere
 	rm "${ED}"/usr/$(get_libdir)/lib*.a \
 		|| die "failed to remove static libraries"
-
-	# fixing flags.conf
-	sed -i "s:${D}:\/:" "${ED}"/usr/share/polybori/flags.conf || die
 }
