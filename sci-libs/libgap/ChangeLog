@@ -1,3 +1,9 @@
+  17 Apr 2013; François Bissey <francois.bissey@canterbury.ac.nz>
+  libgap-4.5.7-r1.ebuild, libgap-4.5.7_p2-r1.ebuild:
+  Build libgap in source. If out of sources the config.h already present in
+  sources will be used. If we remove this config.h and build  out of sources it
+  fails. So it is not ready to build out of sources.
+
 *libgap-4.5.7-r1 (16 Apr 2013)
 *libgap-4.5.7_p2-r1 (16 Apr 2013)
 

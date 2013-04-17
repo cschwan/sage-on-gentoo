@@ -22,6 +22,7 @@ RDEPEND="${DEPEND}"
 
 S="${WORKDIR}/${MY_P}"/src
 AUTOTOOLS_AUTORECONF=yes
+AUTOTOOLS_IN_SOURCE_BUILD=1
 PATCHES=(
 	"${FILESDIR}/${PN}"-4.5.7-printf.patch
 	"${FILESDIR}/${PN}"-4.5.7-libm.patch
