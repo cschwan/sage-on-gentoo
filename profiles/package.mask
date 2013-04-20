@@ -11,3 +11,5 @@
 =dev-python/ipython-0.13.1-r1
 # split gap is not ready for prime time.
 =sci-mathematics/gap-4.5.7-r4
+# preparing ecm for removal. I only keep it in case it solves some OS X problems
+sci-mathematics/ecm

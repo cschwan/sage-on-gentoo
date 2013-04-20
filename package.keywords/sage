@@ -61,7 +61,7 @@ sci-mathematics/cu2
 sci-mathematics/cubex
 sci-mathematics/dikcube
 sci-mathematics/eclib
-sci-mathematics/ecm
+sci-mathematics/gmp-ecm
 sci-mathematics/flintqs
 sci-mathematics/gap
 sci-mathematics/genus2reduction
