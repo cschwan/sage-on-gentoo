@@ -34,8 +34,8 @@ CDEPEND="dev-libs/gmp
 	numpy17? ( >=dev-python/numpy-1.7.0_beta2 )
 	!numpy17? ( ~dev-python/numpy-1.5.1 )
 	>=dev-python/cython-0.17.4
-	~sci-mathematics/eclib-20120428
-	>=sci-mathematics/ecm-6.3
+	~sci-mathematics/eclib-20120830
+	>=sci-mathematics/gmp-ecm-6.3
 	>=sci-libs/flint-1.5.2[ntl]
 	~sci-libs/fplll-3.0.12
 	~sci-libs/givaro-3.7.1
@@ -45,13 +45,13 @@ CDEPEND="dev-libs/gmp
 	~sci-libs/linbox-1.3.2[sage]
 	~sci-libs/m4ri-20120613
 	~sci-libs/m4rie-20120613
-	>=sci-libs/mpfi-1.5
-	~sci-libs/pynac-0.2.5[${PYTHON_USEDEP}]
+	>=sci-libs/mpfi-1.5.1
+	>=sci-libs/pynac-0.2.5[${PYTHON_USEDEP}]
 	>=sci-libs/symmetrica-2.0
 	>=sci-libs/zn_poly-0.9
 	>=sci-mathematics/glpk-4.44
 	>=sci-mathematics/lcalc-1.23-r4[pari]
-	sci-mathematics/lrcalc
+	>=sci-mathematics/lrcalc-1.1.6_beta1
 	~sci-mathematics/pari-2.5.3[data,gmp]
 	~sci-mathematics/polybori-0.8.2
 	>=sci-mathematics/ratpoints-2.1.3
@@ -72,7 +72,7 @@ RDEPEND="${CDEPEND}
 	>=dev-python/cvxopt-1.1.5[glpk]
 	>=dev-python/gdmodule-0.56-r2[png]
 	~dev-python/ipython-0.10.2
-	>=dev-python/jinja-2.5.5
+	>=dev-python/jinja-2.5.5[${PYTHON_USEDEP}]
 	>=dev-python/matplotlib-1.1.0
 	<dev-python/matplotlib-1.2.0
 	>=dev-python/mpmath-0.17
@@ -80,14 +80,14 @@ RDEPEND="${CDEPEND}
 	~dev-python/pexpect-2.0
 	>=dev-python/pycrypto-2.1.0
 	>=dev-python/rpy-2.0.8
-	>=dev-python/sphinx-1.1.2
-	dev-python/sqlalchemy
+	>=dev-python/sphinx-1.1.2[${PYTHON_USEDEP}]
+	>=dev-python/sqlalchemy-0.5.8
 	>=dev-python/sympy-0.7.1
 	>=media-gfx/tachyon-0.98.9[png]
 	>=sci-libs/cddlib-094f-r2
 	>=sci-libs/scipy-0.11.0
 	>=sci-mathematics/flintqs-20070817_p8
-	>=sci-mathematics/gap-4.4.12
+	>=sci-mathematics/gap-4.5.7
 	>=sci-mathematics/genus2reduction-0.3_p8-r1
 	~sci-mathematics/gfan-0.5
 	>=sci-mathematics/cu2-20060223
@@ -136,15 +136,12 @@ src_prepare() {
 		-e 's/^-l//' \
 		-e "s/ -l/\',\'/g" \
 		-e 's/.,.pthread//g' \
-		-e "s: ::")\'
+		-e "s: ::g")\'
 
 	# patch to module_list.py because of trac 4539
 	epatch "${FILESDIR}"/${PN}-5.4-plural.patch
 	# fix a stupid include path to devel
 	epatch "${FILESDIR}"/${PN}-5.0-degree-sequence.patch
-
-	# make sure we use cython-2.7 for consistency
-	sed -i "s:python \`which cython\`:cython-2.7:" setup.py
 
 	############################################################################
 	# Fixes to Sage's build system
@@ -154,9 +151,6 @@ src_prepare() {
 	append-flags -fno-strict-aliasing
 
 	epatch "${FILESDIR}"/${PN}-4.7.2-site-packages.patch
-
-	# add pari and gmp to everything.
-	sed -i "s:\['stdc++', 'ntl'\]:\['stdc++', 'ntl','pari','gmp'\]:g" setup.py
 
 	# use already installed csage
 	rm -rf c_lib || die "failed to remove c library directory"
@@ -179,7 +173,6 @@ src_prepare() {
 	sed -i "s:SAGE_LOCAL + '/lib/python/site-packages/numpy/core/include:'$(python_get_sitedir)/numpy/core/include:g" \
 		module_list.py
 
-	# TODO: should not need ${EPREFIX} before python_get_sitedir
 	# fix cython path
 	sed -i \
 		-e "s:SAGE_LOCAL + '/lib/python/site-packages/Cython/Includes/':'$(python_get_sitedir)/Cython/Includes/':g" \
@@ -213,10 +206,6 @@ src_prepare() {
 	# We add -DNDEBUG to objects linking to givaro. It solves problems with linbox and singular.
 	sed -i "s:-D__STDC_LIMIT_MACROS:-D__STDC_LIMIT_MACROS', '-DNDEBUG:g" \
 		module_list.py
-
-	#cython 0.17.2 upgrade
-	# TODO: remove in sage 5.6
-	epatch "${FILESDIR}"/trac_13740_final_fixes.patch
 
 	# TODO: why does Sage fail with linbox commentator ?
 
@@ -255,13 +244,8 @@ src_prepare() {
 	rm sage/databases/db.py sage/databases/compressed_storage.py
 	sed -i "s:import sage.databases.db::" sage/databases/stein_watkins.py
 
-	# issue 85 a test crashes earlier than vanilla
-	# TODO: remove in 5.6 trac 13882
-	sed -i "s|sage: x = dlx_solver(rows)|sage: x = dlx_solver(rows) # not tested|" \
-		sage/combinat/tiling.py
-
 	# upgrading ecls/maxima 
-	# TODO: remove in 5.6 or 5.7?
+	# TODO: remove in 5.7
 	epatch "${FILESDIR}"/trac_13324.patch
 	epatch "${FILESDIR}"/trac_13324.2.patch
 	epatch "${FILESDIR}"/maxima-5.29.1-doctests.patch
@@ -311,6 +295,7 @@ src_prepare() {
 
 	# patching for variables
 	epatch "${FILESDIR}"/${PN}-5.4-variables.patch.bz2
+	epatch "${FILESDIR}"/${PN}-5.6-variables.patch
 
 	# allow sage-matroids to be used if installed
 	epatch "${FILESDIR}"/${PN}-matroids.patch

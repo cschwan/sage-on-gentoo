@@ -2,6 +2,19 @@
 # Copyright 1999-2013 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*sage-5.5-r6 (20 Apr 2013)
+*sage-5.6-r2 (20 Apr 2013)
+*sage-5.7-r3 (20 Apr 2013)
+*sage-5.8-r2 (20 Apr 2013)
+*sage-5.9_beta5-r1 (20 Apr 2013)
+
+  20 Apr 2013; François Bissey <francois.bissey@canterbury.ac.nz>
+  +sage-5.5-r6.ebuild, +sage-5.6-r2.ebuild, +sage-5.7-r3.ebuild,
+  +sage-5.8-r2.ebuild, +sage-5.9_beta5-r1.ebuild, -sage-5.5-r5.ebuild,
+  -sage-5.6-r1.ebuild, -sage-5.7-r2.ebuild, -sage-5.8-r1.ebuild,
+  -sage-5.9_beta5.ebuild:
+  depend on gmp-ecm from the main tree rather than ecm from the overlay.
+
   15 Apr 2013; Christopher Schwan <cschwan@students.uni-mainz.de>
   +files/sage-5.9-fix-mip-doctest.patch,
   +files/sage-5.9-fix-ostools-doctest.patch, sage-5.9_beta5.ebuild:
