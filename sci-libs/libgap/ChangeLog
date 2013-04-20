@@ -1,3 +1,7 @@
+  20 Apr 2013; François Bissey <francois.bissey@canterbury.ac.nz>
+  libgap-4.5.7-r1.ebuild, libgap-4.5.7_p2-r1.ebuild:
+  Restricting tests in libgap
+
   17 Apr 2013; François Bissey <francois.bissey@canterbury.ac.nz>
   libgap-4.5.7-r1.ebuild, libgap-4.5.7_p2-r1.ebuild:
   Build libgap in source. If out of sources the config.h already present in

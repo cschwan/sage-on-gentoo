@@ -16,6 +16,8 @@ SLOT="0"
 KEYWORDS="~x86 ~amd64 ~ppc-macos ~x86-macos ~x64-macos"
 IUSE="static-libs"
 
+RESTRICT="test"
+
 DEPEND=">=dev-libs/gmp-5.0.2
 	~sci-mathematics/gap-${PV}"
 RDEPEND="${DEPEND}"
