@@ -2,6 +2,11 @@
 # Copyright 1999-2013 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  20 Apr 2013; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-5.5-r6.ebuild, sage-5.6-r2.ebuild, sage-5.7-r3.ebuild,
+  sage-5.8-r2.ebuild, sage-5.9_beta5-r1.ebuild:
+  sage allergic to gmp-ecm compiled with openmp.
+
 *sage-5.5-r6 (20 Apr 2013)
 *sage-5.6-r2 (20 Apr 2013)
 *sage-5.7-r3 (20 Apr 2013)
