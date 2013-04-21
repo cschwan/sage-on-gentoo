@@ -9,6 +9,7 @@ media-libs/gd               jpeg png
 media-gfx/tachyon           png
 sci-libs/flint              ntl
 sci-libs/linbox             sage
+sci-mathematics/gmp-ecm     -openmp
 sci-mathematics/maxima      ecls
 sci-mathematics/lcalc       pari
 sci-mathematics/pari        data gmp
