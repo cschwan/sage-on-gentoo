@@ -36,6 +36,7 @@ src_prepare() {
 }
 
 src_configure() {
+	append-ldflags "-Wl,-z,noexecstack"
 	use gwnum && local myconf="--with-gwnum="${EPREFIX}"/usr/$(get_libdir)"
 	# --enable-shellcmd is broken
 	econf \
@@ -46,7 +47,6 @@ src_configure() {
 }
 
 src_compile() {
-	append-ldflags "-Wl,-z,noexecstack"
 	if use custom-tune; then
 		local myarch=`uname -m`
 		if [[ ${myarch} == i386 ]] ; then

@@ -4,6 +4,10 @@
 
   23 Apr 2013; François Bissey <francois.bissey@canterbury.ac.nz>
   gmp-ecm-6.4.4-r1.ebuild:
+  Fix the no exec stack in gmp-ecm
+
+  23 Apr 2013; François Bissey <francois.bissey@canterbury.ac.nz>
+  gmp-ecm-6.4.4-r1.ebuild:
   Better handling of tunning - cross fingers
 
   10 Mar 2013; Patrick Lauer <patrick@gentoo.org> gmp-ecm-6.4.4-r1.ebuild:
