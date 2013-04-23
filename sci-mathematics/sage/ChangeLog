@@ -2,6 +2,10 @@
 # Copyright 1999-2013 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  23 Apr 2013; François Bissey <francois.bissey@canterbury.ac.nz>
+  files/sage-5.9-env.patch:
+  Fix issue #218 have to be careful with os.join.path
+
   20 Apr 2013; François Bissey <francois.bissey@canterbury.ac.nz>
   sage-5.5-r6.ebuild, sage-5.6-r2.ebuild, sage-5.7-r3.ebuild,
   sage-5.8-r2.ebuild, sage-5.9_beta5-r1.ebuild:
