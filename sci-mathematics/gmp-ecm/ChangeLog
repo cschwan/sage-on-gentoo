@@ -2,6 +2,10 @@
 # Copyright 1999-2013 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/sci-mathematics/gmp-ecm/ChangeLog,v 1.11 2013/03/10 09:02:26 patrick Exp $
 
+  23 Apr 2013; François Bissey <francois.bissey@canterbury.ac.nz>
+  gmp-ecm-6.4.4-r1.ebuild:
+  Better handling of tunning - cross fingers
+
   10 Mar 2013; Patrick Lauer <patrick@gentoo.org> gmp-ecm-6.4.4-r1.ebuild:
   Fixing configure
 

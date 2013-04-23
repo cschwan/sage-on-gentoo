@@ -48,15 +48,19 @@ src_configure() {
 src_compile() {
 	append-ldflags "-Wl,-z,noexecstack"
 	if use custom-tune; then
-		use amd64 && cd x86_64
-		use x86 && cd pentium4
+		local myarch=`uname -m`
+		if [[ ${myarch} == i386 ]] ; then
+			myarch=pentium4
+		fi
+		pushd ${myarch} > /dev/null || die
 		emake
-		cd .. && make bench_mulredc || die
+		popd > /dev/null || die
+		emake bench_mulredc || die
 		sed -i -e 's:#define TUNE_MULREDC_TABLE://#define TUNE_MULREDC_TABLE:g' `readlink ecm-params.h` || die
 		sed -i -e 's:#define TUNE_SQRREDC_TABLE://#define TUNE_SQRREDC_TABLE:g' `readlink ecm-params.h` || die
 		./bench_mulredc | tail -n 4 >> `readlink ecm-params.h` || die
 	fi
-	default
+	emake
 }
 
 src_install() {
