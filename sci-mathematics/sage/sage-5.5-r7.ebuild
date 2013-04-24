@@ -10,19 +10,18 @@ PYTHON_REQ_USE="readline,sqlite"
 # disable parallel build - Sage has its own method (see src_configure)
 DISTUTILS_NO_PARALLEL_BUILD="1"
 
-inherit distutils-r1 eutils flag-o-matic toolchain-funcs versionator
+inherit distutils-r1 eutils flag-o-matic multilib toolchain-funcs versionator
 
 MY_P="sage-$(replace_version_separator 2 '.')"
 
 DESCRIPTION="Math software for algebra, geometry, number theory, cryptography and numerical computation"
 HOMEPAGE="http://www.sagemath.org"
-SRC_URI="mirror://sagemath/${MY_P}.spkg -> ${P}.tar.bz2
-	mirror://sagemath/patches/sage-5.7_patches.tar.bz2"
+SRC_URI="mirror://sagemath/${MY_P}.spkg -> ${P}.tar.bz2"
 
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64 ~x86 ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~x64-macos"
-IUSE="latex testsuite"
+IUSE="latex numpy17 testsuite"
 
 RESTRICT="mirror test"
 
@@ -32,9 +31,10 @@ CDEPEND="dev-libs/gmp
 	>=dev-libs/ntl-5.5.2
 	>=dev-libs/ppl-0.11.2
 	>=dev-lisp/ecls-12.12.1
-	>=dev-python/numpy-1.7.0_rc2[${PYTHON_USEDEP}]
-	>=dev-python/cython-0.17.4[${PYTHON_USEDEP}]
-	~sci-mathematics/eclib-20120830
+	numpy17? ( >=dev-python/numpy-1.7.0_beta2 )
+	!numpy17? ( ~dev-python/numpy-1.5.1 )
+	>=dev-python/cython-0.17.4
+	~sci-mathematics/eclib-20120428
 	>=sci-mathematics/gmp-ecm-6.3[-openmp]
 	>=sci-libs/flint-1.5.2[ntl]
 	~sci-libs/fplll-3.0.12
@@ -42,23 +42,22 @@ CDEPEND="dev-libs/gmp
 	>=sci-libs/gsl-1.15
 	>=sci-libs/iml-1.0.1
 	>=sci-libs/libcliquer-1.21_p0
-	>=sci-libs/libgap-4.5.7
 	~sci-libs/linbox-1.3.2[sage]
 	~sci-libs/m4ri-20120613
 	~sci-libs/m4rie-20120613
-	>=sci-libs/mpfi-1.5.1
-	>=sci-libs/pynac-0.2.6[${PYTHON_USEDEP}]
+	>=sci-libs/mpfi-1.5
+	~sci-libs/pynac-0.2.5[${PYTHON_USEDEP}]
 	>=sci-libs/symmetrica-2.0
 	>=sci-libs/zn_poly-0.9
 	>=sci-mathematics/glpk-4.44
 	>=sci-mathematics/lcalc-1.23-r4[pari]
-	>=sci-mathematics/lrcalc-1.1.6_beta1
-	>=sci-mathematics/pari-2.5.3-r2[data,gmp]
+	sci-mathematics/lrcalc
+	~sci-mathematics/pari-2.5.3[data,gmp]
 	~sci-mathematics/polybori-0.8.2
 	>=sci-mathematics/ratpoints-2.1.3
-	~sci-mathematics/sage-baselayout-${PV}[testsuite=,${PYTHON_USEDEP}]
+	~sci-mathematics/sage-baselayout-${PV}[testsuite=]
 	~sci-mathematics/sage-clib-${PV}
-	>=sci-libs/libsingular-3.1.5-r2
+	~sci-libs/libsingular-3.1.5
 	media-libs/gd[jpeg,png]
 	media-libs/libpng:0=
 	>=sys-libs/readline-6.2
@@ -70,25 +69,25 @@ DEPEND="${CDEPEND}
 
 RDEPEND="${CDEPEND}
 	>=dev-lang/R-2.14.0
-	>=dev-python/cvxopt-1.1.5[glpk,${PYTHON_USEDEP}]
+	>=dev-python/cvxopt-1.1.5[glpk]
 	>=dev-python/gdmodule-0.56-r2[png]
-	=dev-python/ipython-0.13.1
-	>=dev-python/jinja-2.5.5[${PYTHON_USEDEP}]
+	~dev-python/ipython-0.10.2
+	>=dev-python/jinja-2.5.5
 	>=dev-python/matplotlib-1.1.0
 	<dev-python/matplotlib-1.2.0
-	>=dev-python/mpmath-0.17[${PYTHON_USEDEP}]
+	>=dev-python/mpmath-0.17
 	~dev-python/networkx-1.6
-	~dev-python/pexpect-2.0[${PYTHON_USEDEP}]
-	>=dev-python/pycrypto-2.1.0[${PYTHON_USEDEP}]
-	>=dev-python/rpy-2.0.8[${PYTHON_USEDEP}]
-	>=dev-python/sphinx-1.1.2[${PYTHON_USEDEP}]
-	>=dev-python/sqlalchemy-0.5.8[${PYTHON_USEDEP}]
-	>=dev-python/sympy-0.7.1[${PYTHON_USEDEP}]
+	~dev-python/pexpect-2.0
+	>=dev-python/pycrypto-2.1.0
+	>=dev-python/rpy-2.0.8
+	>=dev-python/sphinx-1.1.2
+	dev-python/sqlalchemy
+	>=dev-python/sympy-0.7.1
 	>=media-gfx/tachyon-0.98.9[png]
 	>=sci-libs/cddlib-094f-r2
-	>=sci-libs/scipy-0.11.0[${PYTHON_USEDEP}]
+	>=sci-libs/scipy-0.11.0
 	>=sci-mathematics/flintqs-20070817_p8
-	>=sci-mathematics/gap-4.5.7
+	>=sci-mathematics/gap-4.4.12
 	>=sci-mathematics/genus2reduction-0.3_p8-r1
 	~sci-mathematics/gfan-0.5
 	>=sci-mathematics/cu2-20060223
@@ -115,15 +114,20 @@ RDEPEND="${CDEPEND}
 		)
 	)"
 
-PDEPEND="~sci-mathematics/sage-notebook-0.10.4[${PYTHON_USEDEP}]
+PDEPEND="~sci-mathematics/sage-notebook-0.10.2[${PYTHON_USEDEP}]
 	~sci-mathematics/sage-data-conway_polynomials-0.4"
 
 S="${WORKDIR}"/${MY_P}
 
-PATCHDIR="${WORKDIR}/patches"
-
 pkg_setup() {
 	python_export python2_7 EPYTHON
+
+	# warn if numpy 1.7 is used
+	if use numpy17; then
+		ewarn "you have enabled the use of numpy1.7, this is unsupported upstream"
+		ewarn "it will generate lots of noise and an oddity here and there."
+		ewarn "see http://trac.sagemath.org/sage_trac/ticket/11334 for details"
+	fi
 }
 
 src_prepare() {
@@ -132,10 +136,15 @@ src_prepare() {
 		-e 's/^-l//' \
 		-e "s/ -l/\',\'/g" \
 		-e 's/.,.pthread//g' \
-		-e "s: ::g")\'
+		-e "s: ::")\'
 
 	# patch to module_list.py because of trac 4539
 	epatch "${FILESDIR}"/${PN}-5.4-plural.patch
+	# fix a stupid include path to devel
+	epatch "${FILESDIR}"/${PN}-5.0-degree-sequence.patch
+
+	# make sure we use cython-2.7 for consistency
+	sed -i "s:python \`which cython\`:cython-2.7:" setup.py
 
 	############################################################################
 	# Fixes to Sage's build system
@@ -145,6 +154,9 @@ src_prepare() {
 	append-flags -fno-strict-aliasing
 
 	epatch "${FILESDIR}"/${PN}-4.7.2-site-packages.patch
+
+	# add pari and gmp to everything.
+	sed -i "s:\['stdc++', 'ntl'\]:\['stdc++', 'ntl','pari','gmp'\]:g" setup.py
 
 	# use already installed csage
 	rm -rf c_lib || die "failed to remove c library directory"
@@ -162,10 +174,12 @@ src_prepare() {
 	sed -i "s:png12:$(libpng-config --libs | cut -dl -f2):g" \
 		module_list.py
 
+	# TODO: should not need ${EPREFIX} before python_get_sitedir
 	# fix numpy path (final quote removed to catch numpy_include_dirs and numpy_depends)
 	sed -i "s:SAGE_LOCAL + '/lib/python/site-packages/numpy/core/include:'$(python_get_sitedir)/numpy/core/include:g" \
 		module_list.py
 
+	# TODO: should not need ${EPREFIX} before python_get_sitedir
 	# fix cython path
 	sed -i \
 		-e "s:SAGE_LOCAL + '/lib/python/site-packages/Cython/Includes/':'$(python_get_sitedir)/Cython/Includes/':g" \
@@ -200,6 +214,10 @@ src_prepare() {
 	sed -i "s:-D__STDC_LIMIT_MACROS:-D__STDC_LIMIT_MACROS', '-DNDEBUG:g" \
 		module_list.py
 
+	#cython 0.17.2 upgrade
+	# TODO: remove in sage 5.6
+	epatch "${FILESDIR}"/trac_13740_final_fixes.patch
+
 	# TODO: why does Sage fail with linbox commentator ?
 
 	############################################################################
@@ -232,6 +250,22 @@ src_prepare() {
 		
 	EOF
 
+	# getting rid of zodb for conway
+	epatch "${FILESDIR}"/trac12205.patch
+	rm sage/databases/db.py sage/databases/compressed_storage.py
+	sed -i "s:import sage.databases.db::" sage/databases/stein_watkins.py
+
+	# issue 85 a test crashes earlier than vanilla
+	# TODO: remove in 5.6 trac 13882
+	sed -i "s|sage: x = dlx_solver(rows)|sage: x = dlx_solver(rows) # not tested|" \
+		sage/combinat/tiling.py
+
+	# upgrading ecls/maxima 
+	# TODO: remove in 5.6 or 5.7?
+	epatch "${FILESDIR}"/trac_13324.patch
+	epatch "${FILESDIR}"/trac_13324.2.patch
+	epatch "${FILESDIR}"/maxima-5.29.1-doctests.patch
+
 	# run maxima with ecl
 	sed -i \
 		-e "s:maxima-noreadline:maxima -l ecl:g" \
@@ -257,6 +291,10 @@ src_prepare() {
 		-e "s:\.\./\.\./\.\./local/include/::g" \
 		sage/numerical/backends/glpk_backend.pxd
 
+	# patch path for saving sessions
+	sed -i "s:save_session('tmp_f', :save_session(tmp_f, :g" \
+		sage/misc/session.pyx
+
 	# remove the need for the external "testjava.sh" script
 	epatch "${FILESDIR}"/remove-testjavapath-to-python.patch
 
@@ -272,38 +310,12 @@ src_prepare() {
 		sage/interfaces/lie.py
 
 	# patching for variables
-	epatch "${PATCHDIR}"/${PN}-5.7-variables.patch
-
-	# patching libs/gap/util.pyx so we don't get noise from missing SAGE_LOCAL/gap/latest
-	epatch "${FILESDIR}"/${PN}-5.7-libgap.patch
+	epatch "${FILESDIR}"/${PN}-5.4-variables.patch.bz2
+	# fix library path of libsingular
+	sed -i "s:lib/libsingular:$(get_libdir)/libsingular:" sage/libs/singular/singular.pyx
 
 	# allow sage-matroids to be used if installed
 	epatch "${FILESDIR}"/${PN}-matroids.patch
-
-	############################################################################
-	# Fixes to doctests
-	############################################################################
-
-	# remove 'local' part
-	sed -i "s:\.\.\./local/share/pari:.../share/pari:g" sage/interfaces/gp.py
-
-	# patch for pynac 0.2.6, trac 13262, trac 13729
-	epatch "${FILESDIR}"/trac13262_update_doctests.patch
-
-	# introduce consistent ordering that does not break if sqlite is upgraded
-	epatch "${FILESDIR}"/${PN}-5.8-fix-cremona-doctest.patch
-
-	# remove strings of libraries that we do not link to
-	epatch "${FILESDIR}"/${PN}-5.8-fix-cython-doctest.patch
-
-	# only do a very basic R version string test
-	epatch "${FILESDIR}"/${PN}-5.8-fix-r-doctest.patch
-
-	# trac 11334: Update numpy to 1.7.0 - doctest patches
-	epatch "${FILESDIR}"/${PN}-5.8-fix-numpy-doctests.patch
-
-	# removes doctests checking for cmdline switches we removed (see also #209)
-	epatch "${FILESDIR}"/${PN}-5.8-fix-cmdline-doctest.patch
 
 	# do not forget to run distutils
 	distutils-r1_src_prepare

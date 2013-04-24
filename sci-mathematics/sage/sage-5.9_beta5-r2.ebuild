@@ -10,18 +10,20 @@ PYTHON_REQ_USE="readline,sqlite"
 # disable parallel build - Sage has its own method (see src_configure)
 DISTUTILS_NO_PARALLEL_BUILD="1"
 
-inherit distutils-r1 eutils flag-o-matic toolchain-funcs versionator
+inherit distutils-r1 eutils flag-o-matic multilib multiprocessing prefix toolchain-funcs versionator
 
 MY_P="sage-$(replace_version_separator 2 '.')"
 
 DESCRIPTION="Math software for algebra, geometry, number theory, cryptography and numerical computation"
 HOMEPAGE="http://www.sagemath.org"
-SRC_URI="mirror://sagemath/${MY_P}.spkg -> ${P}.tar.bz2"
+SRC_URI="mirror://sagemath/${MY_P}.spkg -> ${P}.tar.bz2
+	mirror://sagemath/patches/${PN}-5.9-neutering.tar.bz2
+	mirror://sagemath/patches/numpy-1.7-patch.tar.bz2"
 
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64 ~x86 ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~x64-macos"
-IUSE="latex numpy17 testsuite"
+IUSE="latex testsuite lrs nauty"
 
 RESTRICT="mirror test"
 
@@ -31,9 +33,8 @@ CDEPEND="dev-libs/gmp
 	>=dev-libs/ntl-5.5.2
 	>=dev-libs/ppl-0.11.2
 	>=dev-lisp/ecls-12.12.1
-	numpy17? ( >=dev-python/numpy-1.7.0_beta2 )
-	!numpy17? ( ~dev-python/numpy-1.5.1 )
-	>=dev-python/cython-0.17.4
+	>=dev-python/numpy-1.7.0_rc2[${PYTHON_USEDEP}]
+	>=dev-python/cython-0.17.4[${PYTHON_USEDEP}]
 	~sci-mathematics/eclib-20120830
 	>=sci-mathematics/gmp-ecm-6.3[-openmp]
 	>=sci-libs/flint-1.5.2[ntl]
@@ -42,22 +43,23 @@ CDEPEND="dev-libs/gmp
 	>=sci-libs/gsl-1.15
 	>=sci-libs/iml-1.0.1
 	>=sci-libs/libcliquer-1.21_p0
+	>=sci-libs/libgap-4.5.7
 	~sci-libs/linbox-1.3.2[sage]
 	~sci-libs/m4ri-20120613
 	~sci-libs/m4rie-20120613
 	>=sci-libs/mpfi-1.5.1
-	>=sci-libs/pynac-0.2.5[${PYTHON_USEDEP}]
+	>=sci-libs/pynac-0.2.6[${PYTHON_USEDEP}]
 	>=sci-libs/symmetrica-2.0
 	>=sci-libs/zn_poly-0.9
 	>=sci-mathematics/glpk-4.44
 	>=sci-mathematics/lcalc-1.23-r4[pari]
 	>=sci-mathematics/lrcalc-1.1.6_beta1
-	~sci-mathematics/pari-2.5.3[data,gmp]
-	~sci-mathematics/polybori-0.8.2
+	>=sci-mathematics/pari-2.5.3-r2[data,gmp]
+	>=sci-mathematics/polybori-0.8.3
 	>=sci-mathematics/ratpoints-2.1.3
-	~sci-mathematics/sage-baselayout-${PV}[testsuite=]
+	~sci-mathematics/sage-baselayout-${PV}[testsuite=,${PYTHON_USEDEP}]
 	~sci-mathematics/sage-clib-${PV}
-	~sci-libs/libsingular-3.1.5
+	>=sci-libs/libsingular-3.1.5-r2
 	media-libs/gd[jpeg,png]
 	media-libs/libpng:0=
 	>=sys-libs/readline-6.2
@@ -69,23 +71,23 @@ DEPEND="${CDEPEND}
 
 RDEPEND="${CDEPEND}
 	>=dev-lang/R-2.14.0
-	>=dev-python/cvxopt-1.1.5[glpk]
+	>=dev-python/cvxopt-1.1.5[glpk,${PYTHON_USEDEP}]
 	>=dev-python/gdmodule-0.56-r2[png]
-	~dev-python/ipython-0.10.2
+	=dev-python/ipython-0.13.1
 	>=dev-python/jinja-2.5.5[${PYTHON_USEDEP}]
 	>=dev-python/matplotlib-1.1.0
 	<dev-python/matplotlib-1.2.0
-	>=dev-python/mpmath-0.17
+	>=dev-python/mpmath-0.17[${PYTHON_USEDEP}]
 	~dev-python/networkx-1.6
-	~dev-python/pexpect-2.0
-	>=dev-python/pycrypto-2.1.0
-	>=dev-python/rpy-2.0.8
+	~dev-python/pexpect-2.0[${PYTHON_USEDEP}]
+	>=dev-python/pycrypto-2.1.0[${PYTHON_USEDEP}]
+	>=dev-python/rpy-2.0.8[${PYTHON_USEDEP}]
 	>=dev-python/sphinx-1.1.2[${PYTHON_USEDEP}]
-	>=dev-python/sqlalchemy-0.5.8
-	>=dev-python/sympy-0.7.1
+	>=dev-python/sqlalchemy-0.5.8[${PYTHON_USEDEP}]
+	>=dev-python/sympy-0.7.1[${PYTHON_USEDEP}]
 	>=media-gfx/tachyon-0.98.9[png]
 	>=sci-libs/cddlib-094f-r2
-	>=sci-libs/scipy-0.11.0
+	>=sci-libs/scipy-0.11.0[${PYTHON_USEDEP}]
 	>=sci-mathematics/flintqs-20070817_p8
 	>=sci-mathematics/gap-4.5.7
 	>=sci-mathematics/genus2reduction-0.3_p8-r1
@@ -108,29 +110,17 @@ RDEPEND="${CDEPEND}
 	testsuite? ( >=sci-mathematics/sage-doc-${PV}[html] )
 	latex? (
 		~dev-tex/sage-latex-2.3.3_p2
-		|| (
-			app-text/dvipng[truetype]
-			media-gfx/imagemagick[png]
-		)
-	)"
+		|| ( app-text/dvipng[truetype] media-gfx/imagemagick[png] )
+	)
+	lrs? ( sci-libs/lrslib )
+	nauty? ( sci-mathematics/nauty )"
 
-PDEPEND="~sci-mathematics/sage-notebook-0.10.2[${PYTHON_USEDEP}]
+PDEPEND="~sci-mathematics/sage-notebook-0.10.4[${PYTHON_USEDEP}]
 	~sci-mathematics/sage-data-conway_polynomials-0.4"
 
 S="${WORKDIR}"/${MY_P}
 
-pkg_setup() {
-	python_export python2_7 EPYTHON
-
-	# warn if numpy 1.7 is used
-	if use numpy17; then
-		ewarn "you have enabled the use of numpy1.7, this is unsupported upstream"
-		ewarn "it will generate lots of noise and an oddity here and there."
-		ewarn "see http://trac.sagemath.org/sage_trac/ticket/11334 for details"
-	fi
-}
-
-src_prepare() {
+python_prepare() {
 	# ATLAS independence
 	local cblaslibs=\'$(pkg-config --libs-only-l cblas | sed \
 		-e 's/^-l//' \
@@ -138,10 +128,22 @@ src_prepare() {
 		-e 's/.,.pthread//g' \
 		-e "s: ::g")\'
 
-	# patch to module_list.py because of trac 4539
-	epatch "${FILESDIR}"/${PN}-5.4-plural.patch
-	# fix a stupid include path to devel
-	epatch "${FILESDIR}"/${PN}-5.0-degree-sequence.patch
+	# Remove sage's package management system
+	epatch "${WORKDIR}"/patches/${PN}-5.9-package.patch
+
+	# Remove sage's mercurial capabilities
+	epatch "${WORKDIR}"/patches/${PN}-5.9-hg.patch
+
+	# Remove sage cmdline tests related to these
+	epatch "${WORKDIR}"/patches/${PN}-5.9-cmdline.patch
+
+	if use lrs; then
+		sed -i "s:if True:if False:" sage/geometry/polyhedron/base.py
+	fi
+
+	if use nauty; then
+		sed -i "s:if True:if False:" sage/graphs/graph_generators.py
+	fi
 
 	############################################################################
 	# Fixes to Sage's build system
@@ -155,196 +157,151 @@ src_prepare() {
 	# use already installed csage
 	rm -rf c_lib || die "failed to remove c library directory"
 
-	# patch SAGE_LOCAL
-	sed -i "s:SAGE_LOCAL = SAGE_ROOT + '/local':SAGE_LOCAL = os.environ['SAGE_LOCAL']:g" \
-		setup.py
-	sed -i "s:SAGE_LOCAL = SAGE_ROOT + '/local':SAGE_LOCAL = os.environ['SAGE_LOCAL']:g" \
-		module_list.py
-
-	sed -i "s:'%s/sage/sage/ext'%SAGE_DEVEL:'sage/ext':g" \
-		setup.py
-
 	# fix png library name
-	sed -i "s:png12:$(libpng-config --libs | cut -dl -f2):g" \
-		module_list.py
+	sed -i "s:png12:$(libpng-config --libs | cut -dl -f2):g" module_list.py
 
-	# TODO: should not need ${EPREFIX} before python_get_sitedir
 	# fix numpy path (final quote removed to catch numpy_include_dirs and numpy_depends)
 	sed -i "s:SAGE_LOCAL + '/lib/python/site-packages/numpy/core/include:'$(python_get_sitedir)/numpy/core/include:g" \
 		module_list.py
 
-	# fix cython path
-	sed -i \
-		-e "s:SAGE_LOCAL + '/lib/python/site-packages/Cython/Includes/':'$(python_get_sitedir)/Cython/Includes/':g" \
-		-e "s:SAGE_LOCAL + '/lib/python/site-packages/Cython/Includes/Deprecated/':'$(python_get_sitedir)/Cython/Includes/Deprecated/':g" \
-		setup.py
-
 	# fix lcalc path
-	sed -i "s:SAGE_INC + \"lcalc:SAGE_INC + \"Lfunction:g" module_list.py
+	sed -i "s:SAGE_INC + \"/libLfunction:SAGE_INC + \"/Lfunction:g" module_list.py
 
-	# build the lrcalc module
-	sed -i "s:is_package_installed('lrcalc'):True:g" module_list.py
-
-	# rebuild in place
-	sed -i "s:SAGE_DEVEL + '/sage/sage/ext/interpreters':'sage/ext/interpreters':g" \
-		setup.py
-
-	# fix include paths and CBLAS/ATLAS
-	sed -i \
-		-e "s:'%s/include/csage'%SAGE_LOCAL:'${EPREFIX}/usr/include/csage':g" \
-		-e "s:'%s/sage/sage/ext'%SAGE_DEVEL:'sage/ext':g" \
-		setup.py
-
+	# fix CBLAS/ATLAS
 	sed -i \
 		-e "s:BLAS, BLAS2:${cblaslibs}:g" \
 		-e "s:,BLAS:,${cblaslibs}:g" \
 		module_list.py
 
 	# Add -DNDEBUG to objects linking to libsingular and use factory headers from singular.
-	sed -i "s:'singular', SAGE_INC + 'factory'\],:'singular'\],:g" \
-		module_list.py
+	sed -i "s:, SAGE_INC + '/factory'::g" module_list.py
 	# We add -DNDEBUG to objects linking to givaro. It solves problems with linbox and singular.
 	sed -i "s:-D__STDC_LIMIT_MACROS:-D__STDC_LIMIT_MACROS', '-DNDEBUG:g" \
 		module_list.py
-
-	# TODO: why does Sage fail with linbox commentator ?
 
 	############################################################################
 	# Fixes to Sage itself
 	############################################################################
 
-	cat > sage/misc/variables.py <<-EOF
-		"""
-		Sage variables for Gentoo
+	# sage on gentoo env.py
+	epatch "${FILESDIR}"/sage-5.9-env.patch
+	eprefixify sage/env.py
 
-		AUTHORS:
-		Francois Bissey
-		
-		This is automatically generated by an ebuild. Edit at your own risk.
-		
-		"""
-		import os
-		
-		SAGE_ROOT="${EPREFIX}/usr/share/sage"
-		SAGE_LOCAL="${EPREFIX}/usr/"
-		SAGE_DATA="${EPREFIX}/usr/share/sage"
-		SAGE_SHARE="${EPREFIX}/usr/share/sage"
-		SAGE_DOC="${EPREFIX}/usr/share/sage/devel/sage/doc"
-		SAGE_EXTCODE="${EPREFIX}/usr/share/sage/ext"
-		
-		try:
-		    DOT_SAGE = os.environ['DOT_SAGE']
-		except KeyError:
-		    DOT_SAGE = '%s/.sage/'%os.environ['HOME']
-		
-	EOF
+	# fix library path of libsingular
+	sed -i "s:os.environ\[\'SAGE_LOCAL\'\]+\"/lib:${EPREFIX}/usr/$(get_libdir):" \
+		sage/libs/singular/singular.pyx
 
-	# getting rid of zodb for conway
-	epatch "${FILESDIR}"/trac12205.patch
-	rm sage/databases/db.py sage/databases/compressed_storage.py
-	sed -i "s:import sage.databases.db::" sage/databases/stein_watkins.py
-
-	# upgrading ecls/maxima 
-	# TODO: remove in 5.7
-	epatch "${FILESDIR}"/trac_13324.patch
-	epatch "${FILESDIR}"/trac_13324.2.patch
-	epatch "${FILESDIR}"/maxima-5.29.1-doctests.patch
-
+	# TODO: should be a patch
 	# run maxima with ecl
-	sed -i \
-		-e "s:maxima-noreadline:maxima -l ecl:g" \
-		sage/interfaces/maxima.py
-	sed -i \
-		-e "s:maxima --very-quiet:maxima -l ecl --very-quiet:g" \
+	sed -i "s:maxima-noreadline:maxima -l ecl:g" sage/interfaces/maxima.py
+	sed -i "s:maxima --very-quiet:maxima -l ecl --very-quiet:g" \
 		sage/interfaces/maxima_abstract.py
 
 	# speaking ecl - patching so we can allow ecl with unicode
 	epatch "${FILESDIR}"/trac12985-unicode.patch
 
+	# TODO: should be a patch
 	# Uses singular internal copy of the factory header
-	sed -i "s:factory/factory.h:singular/factory.h:" sage/libs/singular/singular-cdefs.pxi
+	sed -i "s:factory/factory.h:singular/factory.h:" \
+		sage/libs/singular/singular-cdefs.pxi
 
 	# Fix portage QA warning. Potentially prevent some leaking.
 	epatch "${FILESDIR}"/${PN}-4.4.2-flint.patch
 
 	sed -i "s:cblas(), atlas():${cblaslibs}:" sage/misc/cython.py
 
+	# TODO: should be a patch
 	# patch for glpk
 	sed -i \
 		-e "s:\.\./\.\./\.\./\.\./devel/sage/sage:..:g" \
 		-e "s:\.\./\.\./\.\./local/include/::g" \
 		sage/numerical/backends/glpk_backend.pxd
 
-	# patch path for saving sessions
-	sed -i "s:save_session('tmp_f', :save_session(tmp_f, :g" \
-		sage/misc/session.pyx
-
 	# remove the need for the external "testjava.sh" script
 	epatch "${FILESDIR}"/remove-testjavapath-to-python.patch
 
 	# Make sage-inline-fortran useless by having better fortran settings
-	sed -i "s:--f77exec=sage-inline-fortran --f90exec=sage-inline-fortran:--f77exec=$(tc-getF77) --f90exec=$(tc-getFC):" \
+	sed -i \
+		-e "s:--f77exec=sage-inline-fortran:--f77exec=$(tc-getF77):g" \
+		-e "s:--f90exec=sage-inline-fortran:--f90exec=$(tc-getFC):g" \
 		sage/misc/inline_fortran.py
 
-	# make is_installed always return false
-	epatch "${FILESDIR}"/${PN}-5.4-package.patch
-
+	# TODO: should be a patch
 	# patch lie library path
-	sed -i -e "s:/lib/LiE/:/share/lie/:" \
-		sage/interfaces/lie.py
+	sed -i -e "s:/lib/LiE/:/share/lie/:" sage/interfaces/lie.py
 
-	# patching for variables
-	epatch "${FILESDIR}"/${PN}-5.4-variables.patch.bz2
-	epatch "${FILESDIR}"/${PN}-5.6-variables.patch
+	# patching libs/gap/util.pyx so we don't get noise from missing SAGE_LOCAL/gap/latest
+	epatch "${FILESDIR}"/${PN}-5.9-libgap.patch
+
+	# TODO: should be a patch
+	# Getting the singular documentation from the right place
+	sed -i "s:os.environ\[\"SAGE_LOCAL\"\]+\"/share/singular/\":sage.env.SAGE_DOC + \"/\":" \
+		sage/interfaces/singular.py
+
+	# TODO: should be a patch + eprefixy
+	# Get gprc.expect from the right place
+	sed -i "s:SAGE_LOCAL, 'etc', 'gprc.expect':'${EPREFIX}/etc','gprc.expect':" \
+		sage/interfaces/gp.py
 
 	# allow sage-matroids to be used if installed
 	epatch "${FILESDIR}"/${PN}-matroids.patch
 
-	# do not forget to run distutils
-	distutils-r1_src_prepare
+	############################################################################
+	# Fixes to doctests
+	############################################################################
+
+	# TODO: should be a patch
+	# remove 'local' part
+	sed -i "s:\.\.\./local/share/pari:.../share/pari:g" sage/interfaces/gp.py
+
+	# fix all.py
+	epatch "${FILESDIR}"/${PN}-5.9-all.py
+	sed -i "s:\"lib\",\"python\":\"$(get_libdir)\",\"${EPYTHON}\":" sage/all.py
+
+	# introduce consistent ordering that does not break if sqlite is upgraded
+	epatch "${FILESDIR}"/${PN}-5.8-fix-cremona-doctest.patch
+
+	# remove strings of libraries that we do not link to
+	epatch "${FILESDIR}"/${PN}-5.8-fix-cython-doctest.patch
+
+	# only do a very basic R version string test
+	epatch "${FILESDIR}"/${PN}-5.8-fix-r-doctest.patch
+
+	# do not test safe python stuff from trac 13579
+	epatch "${FILESDIR}"/${PN}-5.9-safepython.patch
+
+	# remove version information of GLPK
+	epatch "${FILESDIR}"/${PN}-5.9-fix-mip-doctest.patch
+
+	# 'sage' is not in SAGE_ROOT, but in PATH
+	epatch "${FILESDIR}"/${PN}-5.9-fix-ostools-doctest.patch
+
+	# trac 11334: Update numpy to 1.7.0 - doctest patches
+	epatch "${WORKDIR}"/numpy-1.7.patch
 }
 
-src_configure() {
+python_configure() {
 	export SAGE_LOCAL="${EPREFIX}"/usr/
 	export SAGE_ROOT="${EPREFIX}"/usr/share/sage
+	export SAGE_SRC="${S}"
 	export SAGE_VERSION=${PV}
-	export DOT_SAGE="${S}"
-
-	# parse MAKEOPTS and extract the number of jobs (from dev-libs/boost)
-	local jobs=$(echo " ${MAKEOPTS} " | sed \
-		-e 's/ --jobs[= ]/ -j /g' \
-		-e 's/ -j \([1-9][0-9]*\)/ -j\1/g' \
-		-e 's/ -j\>/ -j1/g' | \
-		( while read -d ' ' j; do
-			if [[ "${j#-j}" = "$j" ]]; then
-				continue
-			fi
-			jobs="${j#-j}"
-			done
-			echo ${jobs} )
-	)
-	if [[ "${jobs}" != "" ]]; then
-		export SAGE_NUM_THREADS="${jobs}"
-	else
-		export SAGE_NUM_THREADS=1
-	fi
+	export SAGE_NUM_THREADS=$(makeopts_jobs)
 
 	# files are not built unless they are touched
 	find sage -name "*pyx" -exec touch '{}' \; \
 		|| die "failed to touch *pyx files"
-
-	distutils-r1_src_configure
 }
 
-src_install() {
-	distutils-r1_src_install
+python_install_all() {
+	distutils-r1_python_install_all
 
 	# install sources needed for testing/compiling of cython/spyx files
 	find sage ! \( -name "*.py" -o -name "*.pyx" -o -name "*.pxd" -o \
 		-name "*.pxi" -o -name "*.h" \
 		-o -name "*fmpq_poly.c" \
 		-o -name "*matrix_rational_dense_linbox.cpp" \
-		-o -name "*wrap.cc" \) -type f -delete \
+		-o -name "*wrap.cc" \
+		-o -name "*.rst" \) -type f -delete \
 		|| die "failed to remove non-testable sources"
 
 	insinto /usr/share/sage/devel/sage-main
@@ -370,21 +327,15 @@ pkg_postinst() {
 	if use testsuite ; then
 
 	einfo ""
-	einfo "You have installed Sage's testsuite. In order to test Sage run the"
-	einfo "following command in a directory where Sage may write to, e.g.:"
+	einfo "To test Sage run the following command:"
 	einfo ""
-	einfo "  cd \$(mktemp -d) && sage -testall"
+	einfo "  sage -tp 4 --all"
 	einfo ""
-	einfo "After testing has finished, NO FILES SHOULD BE LEFT in this"
-	einfo "directory. If this is not the case, please send us a bug report."
-	einfo "Parallel doctesting is also possible (replace '8' with an adequate"
-	einfo "number of processes):"
-	einfo ""
-	einfo "  cd \$(mktemp -d) && sage -tp 8 -sagenb \\"
-	einfo "      ${EPREFIX}/usr/share/sage/devel/sage-main/"
-	einfo ""
-	einfo "Note that testing Sage may take more than 4 hours. If you want to"
-	einfo "check your results look at the list of known failures:"
+	einfo "Replace the '4' with an adequate number of processes that are run in"
+	einfo "parallel."
+	einfo "Note that testing Sage may take more than an hour depending on your"
+	einfo "processor. If you want to check your results look at the list of"
+	einfo "known failures:"
 	einfo ""
 	einfo "  http://github.com/cschwan/sage-on-gentoo/wiki/Known-test-failures"
 
