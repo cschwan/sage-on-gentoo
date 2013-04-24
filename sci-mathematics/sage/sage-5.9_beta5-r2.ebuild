@@ -188,7 +188,7 @@ python_prepare() {
 	eprefixify sage/env.py
 
 	# fix library path of libsingular
-	sed -i "s:os.environ\[\'SAGE_LOCAL\'\]+\"/lib:${EPREFIX}/usr/$(get_libdir):" \
+	sed -i "s:os.environ\['SAGE_LOCAL'\]+\"/lib:\"${EPREFIX}/usr/$(get_libdir):" \
 		sage/libs/singular/singular.pyx
 
 	# TODO: should be a patch
