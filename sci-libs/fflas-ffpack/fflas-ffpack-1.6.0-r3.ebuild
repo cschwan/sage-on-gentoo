@@ -27,6 +27,7 @@ AUTOTOOLS_AUTORECONF="1"
 AUTOTOOLS_IN_SOURCE_BUILD="1"
 PATCHES=(
 	"${FILESDIR}/${P}-blaslapack-3.patch"
+	"${FILESDIR}/${P}-automake-1.13.patch"
 	)
 
 src_configure() {
