@@ -1,0 +1,10 @@
+--- configure.ac	2013-04-26 20:55:59.589534824 +0200
++++ configure.ac	2013-04-26 20:56:11.126465976 +0200
+@@ -3,7 +3,7 @@
+ AC_PREREQ(2.59)
+ AC_INIT(IML, 1.0.3)
+ AC_CONFIG_AUX_DIR(config)
+-AM_CONFIG_HEADER(config.h:config-h.in)
++AC_CONFIG_HEADERS(config.h:config-h.in)
+ AC_CONFIG_SRCDIR([src/RNSop.c])
+ AM_INIT_AUTOMAKE
