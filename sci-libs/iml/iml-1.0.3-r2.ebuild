@@ -27,6 +27,7 @@ PATCHES=(
 	"${FILESDIR}"/${P}-use-any-cblas-implementation.patch
 	"${FILESDIR}"/${P}-fix-undefined-symbol.patch
 	"${FILESDIR}"/${P}-repl_removal.patch
+	"${FILESDIR}"/${P}-automake-1.13.patch
 )
 
 src_configure() {
