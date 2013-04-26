@@ -36,7 +36,9 @@ src_prepare() {
 }
 
 src_configure() {
-	append-ldflags "-Wl,-z,noexecstack"
+	if [[ ${CHOST} == *-linux* ]] ; then
+		append-ldflags "-Wl,-z,noexecstack"
+	fi
 	use gwnum && local myconf="--with-gwnum="${EPREFIX}"/usr/$(get_libdir)"
 	# --enable-shellcmd is broken
 	econf \

@@ -2,6 +2,10 @@
 # Copyright 1999-2013 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/sci-mathematics/gmp-ecm/ChangeLog,v 1.11 2013/03/10 09:02:26 patrick Exp $
 
+  26 Apr 2013; François Bissey <francois.bissey@canterbury.ac.nz>
+  gmp-ecm-6.4.4-r2.ebuild:
+  use -z,noexecstack only on linux
+
 *gmp-ecm-6.4.4-r2 (26 Apr 2013)
 
   26 Apr 2013; François Bissey <francois.bissey@canterbury.ac.nz>
