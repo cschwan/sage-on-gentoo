@@ -1,0 +1,54 @@
+# Copyright 1999-2013 Gentoo Foundation
+# Distributed under the terms of the GNU General Public License v2
+# $Header: $
+
+EAPI=5
+
+inherit autotools eutils flag-o-matic multilib
+
+DESCRIPTION="Elliptic Curve Method for Integer Factorization"
+HOMEPAGE="http://ecm.gforge.inria.fr/"
+SRC_URI="https://gforge.inria.fr/frs/download.php/32159/${P}.tar.gz"
+
+LICENSE="GPL-3 LGPL-3"
+SLOT="0"
+KEYWORDS="~amd64 ~x86"
+IUSE="+blas +custom-tune gwnum -openmp static-libs test"
+
+DEPEND="
+	dev-libs/gmp
+	!sci-mathematics/ecm
+	blas? ( sci-libs/gsl )
+	gwnum? ( sci-mathematics/gwnum )
+	openmp? ( sys-devel/gcc[openmp] )"
+RDEPEND="${DEPEND}"
+
+# can't be both enabled
+REQUIRED_USE="gwnum? ( !openmp )"
+
+S=${WORKDIR}/ecm-${PV}
+
+MAKEOPTS+=" -j1"
+
+src_prepare() {
+	sed -e '/libecm_la_LIBADD/s:$: -lgmp:g' -i Makefile.am || die
+	eautoreconf
+}
+
+src_configure() {
+	append-ldflags "-Wl,-z,noexecstack"
+	use gwnum && local myconf="--with-gwnum="${EPREFIX}"/usr/$(get_libdir)"
+	# --enable-shellcmd is broken
+	econf \
+		--enable-shared \
+		$(use_enable static-libs static) \
+		$(use_enable openmp) \
+		$(use_enable custom-tune asm-redc) \
+		${myconf}
+}
+
+src_install() {
+	default
+	mkdir -p "${ED}/usr/include/${PN}/"
+	cp "${S}"/*.h "${ED}/usr/include/${PN}" || die "Failed to copy headers" # needed by other apps like YAFU
+}
