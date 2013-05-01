@@ -34,7 +34,7 @@ CDEPEND="dev-libs/gmp
 	>=dev-libs/ppl-0.11.2
 	>=dev-lisp/ecls-12.12.1
 	>=dev-python/numpy-1.7.0_rc2[${PYTHON_USEDEP}]
-	>=dev-python/cython-0.17.4[${PYTHON_USEDEP}]
+	>=dev-python/cython-0.19[${PYTHON_USEDEP}]
 	~sci-mathematics/eclib-20120830
 	>=sci-mathematics/gmp-ecm-6.3[-openmp]
 	>=sci-libs/flint-1.5.2[ntl]
@@ -73,10 +73,9 @@ RDEPEND="${CDEPEND}
 	>=dev-lang/R-2.14.0
 	>=dev-python/cvxopt-1.1.5[glpk,${PYTHON_USEDEP}]
 	>=dev-python/gdmodule-0.56-r2[png]
-	=dev-python/ipython-0.13.1
+	~dev-python/ipython-0.13.1[${PYTHON_USEDEP}]
 	>=dev-python/jinja-2.5.5[${PYTHON_USEDEP}]
-	>=dev-python/matplotlib-1.1.0
-	<dev-python/matplotlib-1.2.0
+	>=dev-python/matplotlib-1.2.1[${PYTHON_USEDEP}]
 	>=dev-python/mpmath-0.17[${PYTHON_USEDEP}]
 	~dev-python/networkx-1.6
 	~dev-python/pexpect-2.0[${PYTHON_USEDEP}]
@@ -278,6 +277,9 @@ python_prepare() {
 
 	# trac 11334: Update numpy to 1.7.0 - doctest patches
 	epatch "${WORKDIR}"/numpy-1.7.patch
+
+	# trac 13693: update matplotlib to 1.2.1 - doctest patches
+	epatch "${FILESDIR}"/trac_13693-part1.patch
 }
 
 python_configure() {
