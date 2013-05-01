@@ -1,0 +1,8 @@
+# Copyright 1999-2013 Gentoo Foundation
+# Distributed under the terms of the GNU General Public License v2
+# $Header:
+
+# François Bissey <francois.bissey@canterbury.ac.nz> (01 May 2013)
+# gmp-ecm tuning is not supported on i386-darwin which is the underlying 
+# target on macos-x86. This leads to false positive in configure.
+sci-mathematics/gmp-ecm custom-tune
