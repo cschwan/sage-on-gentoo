@@ -12,7 +12,7 @@ SRC_URI="https://gforge.inria.fr/frs/download.php/32159/${P}.tar.gz"
 
 LICENSE="GPL-3 LGPL-3"
 SLOT="0"
-KEYWORDS="~amd64 ~x86"
+KEYWORDS="~amd64 ~x86 ~x86-macos ~ppc-macos ~x64-macos"
 IUSE="+blas +custom-tune gwnum -openmp static-libs test"
 
 DEPEND="
@@ -24,7 +24,8 @@ DEPEND="
 RDEPEND="${DEPEND}"
 
 # can't be both enabled
-REQUIRED_USE="gwnum? ( !openmp )"
+REQUIRED_USE="gwnum? ( !openmp )
+	x86-macos? ( !custom-tune )"
 
 S=${WORKDIR}/ecm-${PV}
 
