@@ -13,5 +13,3 @@
 =sci-mathematics/gap-4.5.7-r4
 # preparing ecm for removal. I only keep it in case it solves some OS X problems
 sci-mathematics/ecm
-# experimenting with asm-redc on x86 [not _64]
-=sci-mathematics/gmp-ecm-6.4.4-r2
