@@ -15,7 +15,7 @@ DESCRIPTION="Sage baselayout files"
 HOMEPAGE="http://www.sagemath.org"
 SRC_URI="mirror://sagemath/${MY_P}.spkg -> ${P}.tar.bz2
 	mirror://sagemath/${SAGEROOT}.spkg -> ${SAGEROOT}.tar.bz2
-	mirror://sagemath/patches/${PN}-5.9-patch.tar.bz2
+	mirror://sagemath/patches/${PN}-5.9-patch_r1.tar.bz2
 	mirror://sagemath/patches/sage-icon.tar.bz2"
 
 LICENSE="GPL-2"
