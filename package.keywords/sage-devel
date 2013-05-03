@@ -3,7 +3,7 @@ dev-java/asm:2
 dev-lang/R
 dev-libs/mpc
 =dev-libs/ppl-0.11.2
-~dev-lisp/ecls-12.12.1
+~dev-lisp/ecls-12.12.1::sage-on-gentoo
 dev-python/blinker
 dev-python/cvxopt
 dev-python/cython
@@ -72,7 +72,7 @@ sci-mathematics/genus2reduction
 sci-mathematics/glpk
 sci-mathematics/lcalc
 sci-mathematics/lrcalc
-sci-mathematics/maxima
+~sci-mathematics/maxima-5.29.1::sage-on-gentoo
 sci-mathematics/mcube
 sci-mathematics/optimal
 sci-mathematics/palp
