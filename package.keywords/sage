@@ -7,6 +7,7 @@ dev-libs/mpc
 dev-python/blinker
 dev-python/cvxopt
 dev-python/cython
+dev-python/python-dateutil
 dev-python/decorator
 dev-python/flask
 dev-python/flask-autoindex
@@ -15,14 +16,17 @@ dev-python/flask-openid
 dev-python/flask-silk
 dev-python/gdmodule
 ~dev-python/ipython-0.13.1
+dev-python/matplotlib
 dev-python/mpmath
 =dev-python/networkx-1.6
 ~dev-python/numpy-1.7.0
 ~dev-python/pexpect-2.0
 dev-python/pycrypto
+dev-python/pytz
 dev-python/pyzmq
 dev-python/rpy
 dev-python/simplegeneric
+dev-python/six
 dev-python/speaklater
 dev-python/sqlalchemy
 ~dev-python/sympy-0.7.2

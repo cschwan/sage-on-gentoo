@@ -1,14 +1,12 @@
-# preparing 5.8.1
->=sci-mathematics/sage-5.8.1_alpha0
->=sci-mathematics/sage-clib-5.8.1_alpha0
->=sci-mathematics/sage-baselayout-5.8.1_alpha0
->=sci-mathematics/sage-doc-5.8.1_alpha0
->=sci-mathematics/sage-extcode-5.8.1_alpha0
->=sci-mathematics/polybori-0.8.3
+# preparing 5.10
+>=sci-mathematics/sage-5.10_alpha0
+>=sci-mathematics/sage-clib-5.10_alpha0
+>=sci-mathematics/sage-baselayout-5.10_alpha0
+>=sci-mathematics/sage-doc-5.10_alpha0
+>=sci-mathematics/sage-extcode-5.10_alpha0
 # building problems reported against latest fplll
 >=sci-libs/fplll-3.1.1
 # python-r1 ipython is not ready for deployment.
-=dev-python/ipython-0.13.1-r1
 # split gap is not ready for prime time.
 =sci-mathematics/gap-4.5.7-r4
 # preparing ecm for removal. I only keep it in case it solves some OS X problems
