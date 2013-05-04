@@ -119,6 +119,11 @@ PDEPEND="~sci-mathematics/sage-notebook-0.10.4[${PYTHON_USEDEP}]
 
 S="${WORKDIR}"/${MY_P}
 
+pkg_setup() {
+	# needed since Ticket #14460
+	tc-export CC
+}
+
 python_prepare() {
 	# ATLAS independence
 	local cblaslibs=\'$(pkg-config --libs-only-l cblas | sed \
