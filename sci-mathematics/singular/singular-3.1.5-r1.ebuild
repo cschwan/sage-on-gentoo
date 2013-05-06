@@ -1,15 +1,15 @@
-# Copyright 1999-2012 Gentoo Foundation
+# Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/sci-mathematics/singular/singular-3.1.4-r1.ebuild,v 1.4 2012/06/23 10:50:20 xarthisius Exp $
 
-EAPI=4
+EAPI=5
 
-PYTHON_DEPEND="python? 2"
+PYTHON_COMPAT=(python{2_6,2_7})
 
 # Upstream does not care about tests.
 RESTRICT="test"
 
-inherit autotools eutils elisp-common flag-o-matic multilib prefix python versionator
+inherit autotools eutils elisp-common flag-o-matic multilib prefix python-single-r1 versionator
 
 MY_PN=Singular
 MY_PV=$(replace_all_version_separators -)
@@ -52,8 +52,7 @@ pkg_setup() {
 	fi
 
 	if use python; then
-		python_set_active_version 2
-		python_pkg_setup
+		python-single-r1_pkg_setup
 	fi
 }
 
@@ -147,6 +146,7 @@ src_install () {
 	doins *.so
 
 	dosym ${MY_PN}-${MY_DIR} /usr/bin/${MY_PN}
+	dosym ${MY_PN}-${MY_DIR} /usr/bin/${PN}
 
 	# stuff from the share tar ball
 	cd "${WORKDIR}"/${MY_PN}/${MY_SHARE_DIR}
