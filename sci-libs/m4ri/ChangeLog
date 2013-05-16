@@ -2,6 +2,12 @@
 # Copyright 1999-2013 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*m4ri-20130416 (16 May 2013)
+
+  16 May 2013; François Bissey <francois.bissey@canterbury.ac.nz>
+  +m4ri-20130416.ebuild:
+  bump m4ri for 5.10. Better not use it for previous release.
+
   22 Jan 2013; Christopher Schwan <cschwan@students.uni-mainz.de>
   m4ri-20120613.ebuild:
   Migrate to sagemath mirror
