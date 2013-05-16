@@ -33,7 +33,7 @@ CDEPEND="dev-libs/gmp
 	=dev-lisp/ecls-12.12.1
 	numpy17? ( >=dev-python/numpy-1.7.0_beta2 )
 	!numpy17? ( ~dev-python/numpy-1.5.1 )
-	>=dev-python/cython-0.17.4
+	~dev-python/cython-0.18
 	~sci-mathematics/eclib-20120830
 	>=sci-mathematics/gmp-ecm-6.3[-openmp]
 	>=sci-libs/flint-1.5.2[ntl]
