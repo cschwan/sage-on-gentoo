@@ -2,6 +2,12 @@
 # Copyright 1999-2013 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/dev-python/cython/ChangeLog,v 1.93 2013/02/16 22:07:28 mgorny Exp $
 
+*cython-0.19.1 (16 May 2013)
+
+  16 May 2013; François Bissey <francois.bissey@canterbury.ac.nz>
+  +cython-0.19.1.ebuild:
+  Bump for sage 5.10. Do not use for sage 5.9 and under.
+
   16 Feb 2013; Michał Górny <mgorny@gentoo.org> cython-0.18-r1.ebuild:
   Enable py3.3.
 
