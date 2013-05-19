@@ -6,6 +6,7 @@ export SAGE_DATA="@GENTOO_PORTAGE_EPREFIX@/usr/share/sage"
 export SAGE_SHARE="@GENTOO_PORTAGE_EPREFIX@/usr/share/sage"
 export SAGE_DOC="@GENTOO_PORTAGE_EPREFIX@/usr/share/sage/devel/sage/doc"
 export SAGE_EXTCODE="@GENTOO_PORTAGE_EPREFIX@/usr/share/sage/ext"
+export SAGE_SRC="@GENTOO_PORTAGE_EPREFIX@/usr/share/sage/devel/sage"
 
 if [[ -z ${DOT_SAGE} ]]; then
 	export DOT_SAGE="${HOME}/.sage"
