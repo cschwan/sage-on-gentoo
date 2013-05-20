@@ -1,0 +1,169 @@
+--- makefile.orig	2010-12-24 03:45:11.000000000 +0000
++++ makefile	2011-06-29 08:50:01.551000920 +0000
+@@ -20,27 +20,20 @@
+ 	CXX = g++
+ endif
+ 
+-LIBS = -L$(FLINT_GMP_LIB_DIR) $(FLINT_LINK_OPTIONS) -lmpfr -lmpir -lpthread -lm
+-
+-LIBS2 = -L$(FLINT_GMP_LIB_DIR) -L$(FLINT_NTL_LIB_DIR) $(FLINT_LINK_OPTIONS) -lntl -lmpfr -lmpir -lpthread -lm 
+-
+-ifndef FLINT_NTL_INCLUDE_DIR
+-	INCS = -I$(FLINT_GMP_INCLUDE_DIR) -I$(FLINT_MPFR_INCLUDE_DIR) 
+-else
+-	INCS = -I$(FLINT_GMP_INCLUDE_DIR) -I$(FLINT_NTL_INCLUDE_DIR) -I$(FLINT_MPFR_INCLUDE_DIR)
++ifeq ($(MAKECMDGOALS),library)
++	CXX += -fPIC
+ endif
+ 
+-CFLAGS = $(INCS) $(FLINT_TUNE) -g -O2
+-CFLAGS2 = $(INCS) $(FLINT_TUNE) -fopenmp -O2
++LIBS = $(LDFLAGS) -lmpfr -lgmp -lpthread -lm -lzn_poly
++LIBS2 = $(LDFLAGS) -lntl -lmpfr -lgmp -lpthread -lm -lzn_poly
++
++CFLAGS ?= $(FLINT_TUNE) -g -O2
++CXXFLAGS ?= $(CFLAGS)
++CFLAGS2 = $(FLINT_TUNE) -fopenmp -O2
+ 
+ RM = rm -f
+ 
+ HEADERS = \
+-	zn_poly/src/zn_poly.h \
+-	zn_poly/src/wide_arith.h \
+-	zn_poly/src/support.h \
+-	zn_poly/src/profiler.h \
+-	zn_poly/src/zn_poly_internal.h \
+ 	mpz_extras.h \
+ 	F_mpn_mul-tuning.h \
+ 	ZmodF.h \
+@@ -78,23 +71,6 @@
+ ####### library object files
+ 
+ FLINTOBJ = \
+-	zn_mod.o \
+-	misc.o \
+-	mul_ks.o \
+-	pack.o \
+-	mul.o \
+-	mulmid.o \
+-	mulmid_ks.o \
+-	ks_support.o \
+-	mpn_mulmid.o \
+-	nuss.o \
+-	pmf.o \
+-	pmfvec_fft.o \
+-	tuning.o \
+-	mul_fft.o \
+-	mul_fft_dft.o \
+-	array.o \
+-	invert.o \
+ 	mpn_extras.o \
+ 	mpz_extras.o \
+ 	memory-manager.o \
+@@ -171,60 +147,7 @@
+ 	$(CC) -fPIC -shared -o libflint.dll $(FLINTOBJ) $(LIBS)
+ 
+ libflint.so: $(FLINTOBJ)
+-	$(CC) -fPIC -shared -o libflint.so $(FLINTOBJ) $(LIBS)
+-
+-##### zn_poly object files
+-
+-zn_mod.o: zn_poly/src/zn_mod.c $(HEADERS)
+-	$(CC) $(CFLAGS) -DNDEBUG -o zn_mod.o -c zn_poly/src/zn_mod.c
+-	
+-misc.o: zn_poly/src/misc.c $(HEADERS)
+-	$(CC) $(CFLAGS) -DNDEBUG -o misc.o -c zn_poly/src/misc.c
+-
+-ks_support.o: zn_poly/src/ks_support.c $(HEADERS)
+-	$(CC) $(CFLAGS) -DNDEBUG -o ks_support.o -c zn_poly/src/ks_support.c
+-
+-mul_ks.o: zn_poly/src/mul_ks.c $(HEADERS)
+-	$(CC) $(CFLAGS) -DNDEBUG -o mul_ks.o -c zn_poly/src/mul_ks.c
+-
+-pack.o: zn_poly/src/pack.c $(HEADERS)
+-	$(CC) $(CFLAGS) -DNDEBUG -o pack.o -c zn_poly/src/pack.c
+-
+-nuss.o: zn_poly/src/nuss.c $(HEADERS)
+-	$(CC) $(CFLAGS) -DNDEBUG -o nuss.o -c zn_poly/src/nuss.c
+-
+-mul.o: zn_poly/src/mul.c $(HEADERS)
+-	$(CC) $(CFLAGS) -DNDEBUG -o mul.o -c zn_poly/src/mul.c
+-
+-mulmid.o: zn_poly/src/mulmid.c $(HEADERS)
+-	$(CC) $(CFLAGS) -DNDEBUG -o mulmid.o -c zn_poly/src/mulmid.c
+-
+-mpn_mulmid.o: zn_poly/src/mpn_mulmid.c $(HEADERS)
+-	$(CC) $(CFLAGS) -DNDEBUG -o mpn_mulmid.o -c zn_poly/src/mpn_mulmid.c
+-
+-mulmid_ks.o: zn_poly/src/mulmid_ks.c $(HEADERS)
+-	$(CC) $(CFLAGS) -DNDEBUG -o mulmid_ks.o -c zn_poly/src/mulmid_ks.c
+-
+-pmf.o: zn_poly/src/pmf.c $(HEADERS)
+-	$(CC) $(CFLAGS) -DNDEBUG -o pmf.o -c zn_poly/src/pmf.c
+-
+-pmfvec_fft.o: zn_poly/src/pmfvec_fft.c $(HEADERS)
+-	$(CC) $(CFLAGS) -DNDEBUG -o pmfvec_fft.o -c zn_poly/src/pmfvec_fft.c
+-
+-tuning.o: zn_poly/src/tuning.c $(HEADERS)
+-	$(CC) $(CFLAGS) -DNDEBUG -o tuning.o -c zn_poly/src/tuning.c
+-
+-mul_fft.o: zn_poly/src/mul_fft.c $(HEADERS)
+-	$(CC) $(CFLAGS) -DNDEBUG -o mul_fft.o -c zn_poly/src/mul_fft.c
+-
+-mul_fft_dft.o: zn_poly/src/mul_fft_dft.c $(HEADERS)
+-	$(CC) $(CFLAGS) -DNDEBUG -o mul_fft_dft.o -c zn_poly/src/mul_fft_dft.c
+-
+-array.o: zn_poly/src/array.c $(HEADERS)
+-	$(CC) $(CFLAGS) -DNDEBUG -o array.o -c zn_poly/src/array.c
+-
+-invert.o: zn_poly/src/invert.c $(HEADERS)
+-	$(CC) $(CFLAGS) -DNDEBUG -o invert.o -c zn_poly/src/invert.c
++	$(CC) -fPIC -shared -Wl,-soname,libflint.so -o libflint.so $(FLINTOBJ) $(LIBS)
+ 
+ ##### Object files
+ 
+@@ -295,7 +218,7 @@
+ 	$(CC) $(CFLAGS) -c F_mpz_mod_poly.c -o F_mpz_mod_poly.o
+ 
+ NTL-interface.o: NTL-interface.cpp $(HEADERS)
+-	$(CXX) $(CFLAGS) -c NTL-interface.cpp -o NTL-interface.o
++	$(CXX) $(CXXFLAGS) -c NTL-interface.cpp -o NTL-interface.o
+ 
+ theta.o: theta.c $(HEADERS)
+ 	$(CC) $(CFLAGS) -c theta.c -o theta.o
+@@ -378,7 +301,7 @@
+ 	$(CC) $(CFLAGS) -c F_mpz_mod_poly-test.c -o F_mpz_mod_poly-test.o
+ 
+ NTL-interface-test.o: NTL-interface-test.cpp
+-	$(CXX) $(CFLAGS) -c NTL-interface-test.cpp -o NTL-interface-test.o
++	$(CXX) $(CXXFLAGS) -c NTL-interface-test.cpp -o NTL-interface-test.o
+ 
+ ####### test program targets
+ 
+@@ -443,7 +366,7 @@
+ 	$(CC) $(CFLAGS) F_mpz_mod_poly-test.o test-support.o -o F_mpz_mod_poly-test $(FLINTOBJ) $(LIBS)
+ 
+ NTL-interface-test: NTL-interface.o NTL-interface-test.o test-support.o $(FLINTOBJ) $(HEADERS)
+-	$(CXX) $(CFLAGS) NTL-interface-test.o NTL-interface.o test-support.o $(FLINTOBJ) -o NTL-interface-test $(LIBS2)
++	$(CXX) $(CXXFLAGS) NTL-interface-test.o NTL-interface.o test-support.o $(FLINTOBJ) -o NTL-interface-test $(LIBS2)
+ 
+ ####### tuning program object files
+ 
+@@ -516,7 +439,7 @@
+ 
+ NTL-profile-tables.o: NTL-profile.c $(HEADERS)
+ 	$(FLINT_PY) make-profile-tables.py NTL
+-	$(CXX) $(CFLAGS) -c NTL-profile-tables.c -o NTL-profile-tables.o
++	$(CXX) $(CXXFLAGS) -c NTL-profile-tables.c -o NTL-profile-tables.o
+ 
+ zmod_poly-profile-tables.o: zmod_poly-profile.c $(HEADERS)
+ 	$(FLINT_PY) make-profile-tables.py zmod_poly
+@@ -558,7 +481,7 @@
+ 	$(CC) $(CFLAGS) -o kara-profile kara-profile.c profiler.o test-support.o $(FLINTOBJ) $(LIBS)
+ 
+ NTL-profile: NTL-profile.c test-support.o NTL-profile-tables.o $(PROFOBJ)
+-	$(CXX) $(CFLAGS) -o NTL-profile NTL-profile.c NTL-profile-tables.o test-support.o $(PROFOBJ) $(LIB) -lntl
++	$(CXX) $(CXXFLAGS) -o NTL-profile NTL-profile.c NTL-profile-tables.o test-support.o $(PROFOBJ) $(LIB) -lntl
+ 
+ zmod_poly-profile: zmod_poly-profile.o zmod_poly-profile-tables.o $(PROFOBJ)
+ 	$(CC) $(CFLAGS) -o zmod_poly-profile zmod_poly-profile.o zmod_poly-profile-tables.o $(PROFOBJ) $(LIBS)

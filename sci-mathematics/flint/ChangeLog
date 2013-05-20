@@ -1,0 +1,102 @@
+# ChangeLog for sci-libs/flint
+# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
+# $Header: $
+
+  01 Jul 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  files/flint-1.6-enable-ntl.patch:
+  Correct flint-1.6-enable-ntl.patch to not break tests.
+
+  29 Jun 2011; Christopher Schwan <cschwan@students.uni-mainz.de>
+  flint-1.6.ebuild, files/flint-1.6-enable-ntl.patch,
+  files/flint-1.6-makefile.patch:
+  Respect LDFLAGS
+
+  29 Jun 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  files/flint-1.6-enable-ntl.patch:
+  use CXX instead of CC when using ntl!
+
+*flint-1.6 (26 Jun 2011)
+
+  26 Jun 2011; Christopher Schwan <cschwan@students.uni-mainz.de>
+  +flint-1.6.ebuild, +files/flint-1.6-enable-ntl.patch,
+  +files/flint-1.6-makefile.patch:
+  Version bump
+
+  26 Jun 2011; Christopher Schwan <cschwan@students.uni-mainz.de>
+  flint-1.5.2.ebuild:
+  Replaced wrong "doins" with "dodoc"
+
+  06 May 2011; Christopher Schwan <cschwan@students.uni-mainz.de> ChangeLog:
+  Migrate to EAPI 4
+
+  23 Feb 2011; François Bissey <francois.bissey@canterbury.ac.nz>
+  flint-1.5.2.ebuild:
+  Fix flags for tests.
+
+  17 Jan 2011; François Bissey <f.r.bissey@massey.ac.nz>
+  files/flint-1.5.1-without-zn_poly.patch, flint-1.5.2.ebuild,
+  files/flint-1.5.2-enable-ntl.patch:
+  Various change prompted by the macos work
+
+  07 Jan 2011; François Bissey <f.r.bissey@massey.ac.nz> flint-1.5.2.ebuild:
+  cleaner ebuild with multilib
+
+  07 Jan 2011; François Bissey <f.r.bissey@massey.ac.nz> flint-1.5.2.ebuild:
+  Make changes for macos support
+
+  17 Dec 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
+  flint-1.5.2.ebuild, -files/flint-1.5.2-use-mpir-instead-of-gmp.patch:
+  Removed mpir support
+
+  02 Oct 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
+  -flint-1.5.1-makefile.patch:
+  Removed old patches, fixed RDEPEND and cleaned up ebuild
+
+  08 Sep 2010; François Bissey <f.r.bissey@massey.ac.nz> metadata.xml:
+  Fix metadata
+
+  03 Aug 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
+  -flint-1.5.1.ebuild:
+  Removed old version
+
+  11 Jul 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
+  flint-1.5.2.ebuild:
+  EAPI=3-ified flint
+
+*flint-1.5.2 (25 Apr 2010)
+
+  25 Apr 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
+  +flint-1.5.2.ebuild, +files/flint-1.5.2-enable-ntl.patch,
+  +files/flint-1.5.2-makefile.patch,
+  +files/flint-1.5.2-use-mpir-instead-of-gmp.patch:
+  Revision bump. Includes useflag to compile with mpir
+
+  26 Mar 2010; François Bissey <f.r.bissey@massey.ac.nz>
+  flint-1.5.1.ebuild:
+  keywording ~ppc
+
+*flint-1.5.1 (09 Jan 2010)
+
+  09 Jan 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
+  +flint-1.5.1.ebuild:
+  Version bump
+
+  12 Dec 2009; Christopher Schwan <cschwan@students.uni-mainz.de>
+  flint-1.5.0.ebuild, +files/flint-1.5.0-enable-ntl.patch,
+  files/flint-1.5.0-without-zn_poly.patch:
+  Fixed USE=ntl
+
+  11 Dec 2009; Christopher Schwan <cschwan@students.uni-mainz.de>
+  flint-1.5.0.ebuild, +files/flint-1.5.0-without-zn_poly.patch:
+  Changed packge to use portage version of zn_poly, simplified openmp
+  check and written some comments
+
+  10 Nov 2009; Christopher Schwan <cschwan@students.uni-mainz.de>
+  flint-1.5.0.ebuild:
+  Replaced the previous ebuild with that provided by Francois Bissey.
+
+*flint-1.5.0 (06 Nov 2009)
+
+  06 Nov 2009; Christopher Schwan <cschwan@stamaonline.de> +flint-1.5.0.ebuild:
+  Initial import
+
