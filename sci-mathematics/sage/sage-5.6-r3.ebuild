@@ -36,7 +36,7 @@ CDEPEND="dev-libs/gmp
 	~dev-python/cython-0.18
 	~sci-mathematics/eclib-20120830
 	>=sci-mathematics/gmp-ecm-6.3[-openmp]
-	>=sci-libs/flint-1.5.2[ntl]
+	<=sci-mathematics/flint-2[ntl]
 	~sci-libs/fplll-3.0.12
 	~sci-libs/givaro-3.7.1
 	>=sci-libs/gsl-1.15

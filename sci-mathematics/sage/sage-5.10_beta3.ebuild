@@ -37,7 +37,6 @@ CDEPEND="dev-libs/gmp
 	~sci-mathematics/eclib-20120830
 	>=sci-mathematics/gmp-ecm-6.4.4[-openmp]
 	>=sci-mathematics/flint-2.3
-	!sci-libs/flint
 	~sci-libs/fplll-3.0.12
 	~sci-libs/givaro-3.7.1
 	>=sci-libs/gsl-1.15
