@@ -8,7 +8,7 @@ dev-lang/python:wide-unicode - Enable wide Unicode implementation which uses 4-b
 dev-lang/python:wininst - Install Windows executables required to create an executable installer for MS Windows.
 dev-python/cvxopt:glpk - Use GNU Linear Programming Kit
 sci-chemistry/jmol:client-only - Install the viewer only, no applet files for httpd
-sci-libs/flint:qs - Compiles support for quadratic sieve algorithm
+sci-mathematics/flint:qs - Compiles support for quadratic sieve algorithm
 sci-libs/libsingular:boost - Compile against external boost headers (dev-libs/boost)
 sci-mathematics/ecm:shellcmd - Enable shell command execution
 sci-mathematics/lcalc:pari - Use pari for elliptic curve routines. This enables '-e' option

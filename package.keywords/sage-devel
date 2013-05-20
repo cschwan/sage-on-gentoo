@@ -43,7 +43,7 @@ media-gfx/tachyon
 sci-libs/cddlib
 sci-libs/dsdp
 sci-libs/fflas-ffpack
-sci-libs/flint
+sci-mathematics/flint
 sci-libs/fplll
 ~sci-libs/givaro-3.7.1
 =sci-libs/gsl-1.15

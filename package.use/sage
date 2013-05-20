@@ -7,7 +7,7 @@ dev-python/numpy            lapack
 dev-python/gdmodule         png
 media-libs/gd               jpeg png
 media-gfx/tachyon           png
-sci-libs/flint              ntl
+sci-mathematics/flint              ntl
 sci-libs/linbox             sage
 sci-mathematics/gmp-ecm     -openmp
 sci-mathematics/maxima      ecls
