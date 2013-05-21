@@ -217,7 +217,8 @@ python_prepare() {
 	sed -i \
 		-e "s:\.\./\.\./\.\./\.\./devel/sage/sage:..:g" \
 		-e "s:\.\./\.\./\.\./local/include/::g" \
-		sage/numerical/backends/glpk_backend.pxd
+		sage/numerical/backends/glpk_backend.pxd \
+		sage/numerical/backends/glpk_graph_backend.pxd
 
 	# remove the need for the external "testjava.sh" script
 	epatch "${FILESDIR}"/remove-testjavapath-to-python.patch
