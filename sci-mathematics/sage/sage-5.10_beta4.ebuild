@@ -184,8 +184,6 @@ python_prepare() {
 	sed -i "s:-D__STDC_LIMIT_MACROS:-D__STDC_LIMIT_MACROS', '-DNDEBUG:g" \
 		module_list.py
 
-	sed -i "s:FLINT:flint:" module_list.py
-
 	############################################################################
 	# Fixes to Sage itself
 	############################################################################
