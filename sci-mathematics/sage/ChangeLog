@@ -4,6 +4,10 @@
 
   21 May 2013; François Bissey <francois.bissey@canterbury.ac.nz>
   sage-5.10_beta3.ebuild:
+  fix flint headers in module_list.py while waiting for upstream fix.
+
+  21 May 2013; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-5.10_beta3.ebuild:
   fix problem caused by ticket 13698
 
   20 May 2013; François Bissey <francois.bissey@canterbury.ac.nz>
