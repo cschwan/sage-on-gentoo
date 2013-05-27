@@ -2,6 +2,12 @@
 # Copyright 1999-2013 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*sage-doc-5.10_beta5 (27 May 2013)
+
+  27 May 2013; François Bissey <francois.bissey@canterbury.ac.nz>
+  +sage-doc-5.10_beta5.ebuild, -sage-doc-5.10_beta4.ebuild:
+  5.10.beta5 doc
+
 *sage-doc-5.10_beta4 (21 May 2013)
 
   21 May 2013; François Bissey <francois.bissey@canterbury.ac.nz>
