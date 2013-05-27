@@ -29,6 +29,8 @@ DEPEND="${RDEPEND}
 
 S="${WORKDIR}/${MY_PN}-${PV%_*}"
 
+PATCHES=( "${FILESDIR}"/build_dir.patch )
+
 python_compile() {
 	if [[ ${EPYTHON} == python2* ]]; then
 		local CFLAGS CXXFLAGS

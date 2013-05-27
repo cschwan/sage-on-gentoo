@@ -2,6 +2,12 @@
 # Copyright 1999-2013 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/dev-python/cython/ChangeLog,v 1.93 2013/02/16 22:07:28 mgorny Exp $
 
+*cython-0.19.1-r1 (27 May 2013)
+
+  27 May 2013; François Bissey <francois.bissey@canterbury.ac.nz>
+  +cython-0.19.1-r1.ebuild, +files/build_dir.patch, -cython-0.19.1.ebuild:
+  add an extra cythonizing patch (trac 14570)
+
 *cython-0.19.1 (16 May 2013)
 
   16 May 2013; François Bissey <francois.bissey@canterbury.ac.nz>
