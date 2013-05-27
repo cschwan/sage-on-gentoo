@@ -198,8 +198,8 @@ python_prepare() {
 
 	# TODO: should be a patch
 	# run maxima with ecl
-	sed -i "s:maxima-noreadline:maxima -l ecl:g" sage/interfaces/maxima.py
-	sed -i "s:maxima --very-quiet:maxima -l ecl --very-quiet:g" \
+	sed -i "s:'maxima :'maxima -l ecl :g" \
+		sage/interfaces/maxima.py \
 		sage/interfaces/maxima_abstract.py
 
 	# speaking ecl - patching so we can allow ecl with unicode
@@ -211,14 +211,6 @@ python_prepare() {
 		sage/libs/singular/singular-cdefs.pxi
 
 	sed -i "s:cblas(), atlas():${cblaslibs}:" sage/misc/cython.py
-
-	# TODO: should be a patch
-	# patch for glpk
-	sed -i \
-		-e "s:\.\./\.\./\.\./\.\./devel/sage/sage:..:g" \
-		-e "s:\.\./\.\./\.\./local/include/::g" \
-		sage/numerical/backends/glpk_backend.pxd \
-		sage/numerical/backends/glpk_graph_backend.pxd
 
 	# remove the need for the external "testjava.sh" script
 	epatch "${FILESDIR}"/remove-testjavapath-to-python.patch
@@ -261,9 +253,6 @@ python_prepare() {
 	epatch "${FILESDIR}"/${PN}-5.9-all.py
 	sed -i "s:\"lib\",\"python\":\"$(get_libdir)\",\"${EPYTHON}\":" sage/all.py
 
-	# introduce consistent ordering that does not break if sqlite is upgraded
-	epatch "${FILESDIR}"/${PN}-5.8-fix-cremona-doctest.patch
-
 	# remove strings of libraries that we do not link to
 	epatch "${FILESDIR}"/${PN}-5.8-fix-cython-doctest.patch
 
@@ -298,7 +287,6 @@ python_install_all() {
 	# install sources needed for testing/compiling of cython/spyx files
 	find sage ! \( -name "*.py" -o -name "*.pyx" -o -name "*.pxd" -o \
 		-name "*.pxi" -o -name "*.h" \
-		-o -name "*fmpq_poly.c" \
 		-o -name "*matrix_rational_dense_linbox.cpp" \
 		-o -name "*wrap.cc" \
 		-o -name "*.rst" \) -type f -delete \
