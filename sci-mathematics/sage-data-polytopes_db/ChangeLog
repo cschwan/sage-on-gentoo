@@ -2,6 +2,12 @@
 # Copyright 1999-2013 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*sage-data-polytopes_db-20120220 (29 May 2013)
+
+  29 May 2013; François Bissey <francois.bissey@canterbury.ac.nz>
+  +sage-data-polytopes_db-20120220.ebuild:
+  bump for 5.10
+
   22 Jan 2013; Christopher Schwan <cschwan@students.uni-mainz.de>
   sage-data-polytopes_db-20100210_p2.ebuild:
   Migrate to sagemath mirror
