@@ -99,7 +99,7 @@ RDEPEND="${CDEPEND}
 	>=sci-mathematics/palp-2.1
 	~sci-mathematics/sage-data-elliptic_curves-0.7
 	~sci-mathematics/sage-data-graphs-20120404_p4
-	~sci-mathematics/sage-data-polytopes_db-20100210_p2
+	~sci-mathematics/sage-data-polytopes_db-20120220
 	>=sci-mathematics/sage-doc-${PV}
 	~sci-mathematics/sage-extcode-${PV}
 	~sci-mathematics/singular-3.1.5

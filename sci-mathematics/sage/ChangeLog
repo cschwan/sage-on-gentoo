@@ -3,6 +3,10 @@
 # $Header: $
 
   29 May 2013; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-5.10_beta5.ebuild:
+  5.10: depend on the right polytope_db
+
+  29 May 2013; François Bissey <francois.bissey@canterbury.ac.nz>
   +files/sage-5.10-module_list-depends-3.patch, +files/trac_14656.patch,
   sage-5.10_beta5.ebuild:
   5.10 beta5: it builds!!!!!!!!!!!!! Thanks Steve for his precious input.
