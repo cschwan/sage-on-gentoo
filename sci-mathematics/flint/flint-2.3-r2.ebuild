@@ -29,8 +29,14 @@ pkg_setup(){
 }
 
 src_prepare() {
+	# patching the build system
 	epatch "${FILESDIR}"/flint-2.3-build.patch
+	# multilib fix
 	sed -i "s:/lib:/$(get_libdir):" Makefile.in
+	# compatibility with gmp
+	sed -i "s:__GMP_BITS_PER_MP_LIMB:GMP_LIMB_BITS:" \
+		flint.h \
+		longlong.h
 }
 
 src_configure() {
@@ -57,7 +63,7 @@ src_configure() {
 
 src_install(){
 	default
-	dosym /usr/"$(get_libdir)/${FLINT_LIB}" /usr/"$(get_libdir)/lib${PN}$(get_libname)"
+	dosym ${FLINT_LIB} /usr/$(get_libdir)/lib${PN}$(get_libname)
 }
 
 src_test(){
