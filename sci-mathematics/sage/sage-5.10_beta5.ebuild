@@ -184,6 +184,9 @@ python_prepare() {
 	sed -i "s:-D__STDC_LIMIT_MACROS:-D__STDC_LIMIT_MACROS', '-DNDEBUG:g" \
 		module_list.py
 
+	epatch "${FILESDIR}/${PN}"-5.10-module_list-depends-3.patch
+	epatch "${FILESDIR}"/trac_14656.patch
+
 	############################################################################
 	# Fixes to Sage itself
 	############################################################################
