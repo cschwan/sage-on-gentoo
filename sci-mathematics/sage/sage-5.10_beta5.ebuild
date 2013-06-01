@@ -184,7 +184,7 @@ python_prepare() {
 	sed -i "s:-D__STDC_LIMIT_MACROS:-D__STDC_LIMIT_MACROS', '-DNDEBUG:g" \
 		module_list.py
 
-	epatch "${FILESDIR}/${PN}"-5.10-module_list-depends-3.patch
+	# flint patch resurected
 	epatch "${FILESDIR}"/trac_14656.patch
 
 	############################################################################
@@ -275,7 +275,7 @@ python_prepare() {
 python_configure() {
 	export SAGE_LOCAL="${EPREFIX}"/usr/
 	export SAGE_ROOT="${EPREFIX}"/usr/share/sage
-	export SAGE_SRC="${S}"
+	export SAGE_SRC=`pwd`
 	export SAGE_VERSION=${PV}
 	export SAGE_NUM_THREADS=$(makeopts_jobs)
 
