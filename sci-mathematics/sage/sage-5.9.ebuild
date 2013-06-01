@@ -290,7 +290,7 @@ python_prepare() {
 python_configure() {
 	export SAGE_LOCAL="${EPREFIX}"/usr/
 	export SAGE_ROOT="${EPREFIX}"/usr/share/sage
-	export SAGE_SRC="${S}"
+	export SAGE_SRC=`pwd`
 	export SAGE_VERSION=${PV}
 	export SAGE_NUM_THREADS=$(makeopts_jobs)
 

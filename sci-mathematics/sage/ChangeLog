@@ -3,6 +3,11 @@
 # $Header: $
 
   01 Jun 2013; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-5.9.ebuild:
+  Small change to have the corect behavior in python phases. It is a wonder it
+  didn't break the way  5.10 did. Blame cythonize.
+
+  01 Jun 2013; François Bissey <francois.bissey@canterbury.ac.nz>
   -files/sage-5.10-module_list-depends-3.patch, sage-5.10_beta5.ebuild:
   5.10 beta5 with wrappers properly linked. There is justification to do an
   ebuild for rc0.
