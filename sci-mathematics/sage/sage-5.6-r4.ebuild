@@ -30,7 +30,7 @@ CDEPEND="dev-libs/gmp
 	>=dev-libs/mpc-1.0
 	>=dev-libs/ntl-5.5.2
 	>=dev-libs/ppl-0.11.2
-	=dev-lisp/ecls-12.12.1
+	>=dev-lisp/ecls-12.12.1-r5
 	numpy17? ( >=dev-python/numpy-1.7.0_beta2 )
 	!numpy17? ( ~dev-python/numpy-1.5.1 )
 	~dev-python/cython-0.18
@@ -93,7 +93,7 @@ RDEPEND="${CDEPEND}
 	>=sci-mathematics/cu2-20060223
 	>=sci-mathematics/cubex-20060128
 	>=sci-mathematics/dikcube-20070912_p18
-	~sci-mathematics/maxima-5.29.1[ecls]
+	>=sci-mathematics/maxima-5.29.1-r2[ecls]
 	>=sci-mathematics/mcube-20051209
 	>=sci-mathematics/optimal-20040603
 	>=sci-mathematics/palp-2.1

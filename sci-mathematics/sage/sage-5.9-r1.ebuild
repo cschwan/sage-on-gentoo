@@ -17,7 +17,8 @@ MY_P="sage-$(replace_version_separator 2 '.')"
 DESCRIPTION="Math software for algebra, geometry, number theory, cryptography and numerical computation"
 HOMEPAGE="http://www.sagemath.org"
 SRC_URI="mirror://sagemath/${MY_P}.spkg -> ${P}.tar.bz2
-	mirror://sagemath/patches/${PN}-5.10-neutering.tar.bz2"
+	mirror://sagemath/patches/${PN}-5.9-neutering.tar.bz2
+	mirror://sagemath/patches/numpy-1.7-patch.tar.bz2"
 
 LICENSE="GPL-2"
 SLOT="0"
@@ -32,11 +33,11 @@ CDEPEND="dev-libs/gmp
 	>=dev-libs/ntl-5.5.2
 	>=dev-libs/ppl-0.11.2
 	>=dev-lisp/ecls-12.12.1-r5
-	>=dev-python/numpy-1.7.0[${PYTHON_USEDEP}]
-	~dev-python/cython-0.19.1[${PYTHON_USEDEP}]
+	>=dev-python/numpy-1.7.0_rc2[${PYTHON_USEDEP}]
+	~dev-python/cython-0.19[${PYTHON_USEDEP}]
 	~sci-mathematics/eclib-20120830
-	>=sci-mathematics/gmp-ecm-6.4.4[-openmp]
-	>=sci-mathematics/flint-2.3
+	>=sci-mathematics/gmp-ecm-6.3[-openmp]
+	<=sci-mathematics/flint-2[ntl]
 	~sci-libs/fplll-3.0.12
 	~sci-libs/givaro-3.7.1
 	>=sci-libs/gsl-1.15
@@ -44,8 +45,8 @@ CDEPEND="dev-libs/gmp
 	>=sci-libs/libcliquer-1.21_p0
 	>=sci-libs/libgap-4.5.7
 	~sci-libs/linbox-1.3.2[sage]
-	~sci-libs/m4ri-20130416
-	~sci-libs/m4rie-20130416
+	~sci-libs/m4ri-20120613
+	~sci-libs/m4rie-20120613
 	>=sci-libs/mpfi-1.5.1
 	>=sci-libs/pynac-0.2.6[${PYTHON_USEDEP}]
 	>=sci-libs/symmetrica-2.0
@@ -53,7 +54,7 @@ CDEPEND="dev-libs/gmp
 	>=sci-mathematics/glpk-4.44
 	>=sci-mathematics/lcalc-1.23-r4[pari]
 	>=sci-mathematics/lrcalc-1.1.6_beta1
-	>=sci-mathematics/pari-2.5.4[data,gmp]
+	>=sci-mathematics/pari-2.5.3-r2[data,gmp]
 	>=sci-mathematics/polybori-0.8.3
 	>=sci-mathematics/ratpoints-2.1.3
 	~sci-mathematics/sage-baselayout-${PV}[testsuite=,${PYTHON_USEDEP}]
@@ -99,7 +100,7 @@ RDEPEND="${CDEPEND}
 	>=sci-mathematics/palp-2.1
 	~sci-mathematics/sage-data-elliptic_curves-0.7
 	~sci-mathematics/sage-data-graphs-20120404_p4
-	~sci-mathematics/sage-data-polytopes_db-20120220
+	~sci-mathematics/sage-data-polytopes_db-20100210_p2
 	>=sci-mathematics/sage-doc-${PV}
 	~sci-mathematics/sage-extcode-${PV}
 	~sci-mathematics/singular-3.1.5
@@ -132,15 +133,13 @@ python_prepare() {
 		-e "s: ::g")\'
 
 	# Remove sage's package management system
-	epatch "${WORKDIR}"/patches/${PN}-5.10-package.patch
-	rm sage/misc/package.py
+	epatch "${WORKDIR}"/patches/${PN}-5.9-package.patch
 
 	# Remove sage's mercurial capabilities
-	epatch "${WORKDIR}"/patches/${PN}-5.10-hg.patch
-	rm sage/misc/hg.py
+	epatch "${WORKDIR}"/patches/${PN}-5.9-hg.patch
 
 	# Remove sage cmdline tests related to these
-	epatch "${WORKDIR}"/patches/${PN}-5.10-cmdline.patch
+	epatch "${WORKDIR}"/patches/${PN}-5.9-cmdline.patch
 
 	if use lrs; then
 		sed -i "s:if True:if False:" sage/geometry/polyhedron/base.py
@@ -184,15 +183,12 @@ python_prepare() {
 	sed -i "s:-D__STDC_LIMIT_MACROS:-D__STDC_LIMIT_MACROS', '-DNDEBUG:g" \
 		module_list.py
 
-	# flint patch resurected
-	epatch "${FILESDIR}"/trac_14656.patch
-
 	############################################################################
 	# Fixes to Sage itself
 	############################################################################
 
 	# sage on gentoo env.py
-	epatch "${FILESDIR}"/sage-5.10-env.patch
+	epatch "${FILESDIR}"/sage-5.9-env.patch
 	eprefixify sage/env.py
 
 	# fix library path of libsingular
@@ -201,8 +197,8 @@ python_prepare() {
 
 	# TODO: should be a patch
 	# run maxima with ecl
-	sed -i "s:'maxima :'maxima -l ecl :g" \
-		sage/interfaces/maxima.py \
+	sed -i "s:maxima-noreadline:maxima -l ecl:g" sage/interfaces/maxima.py
+	sed -i "s:maxima --very-quiet:maxima -l ecl --very-quiet:g" \
 		sage/interfaces/maxima_abstract.py
 
 	# speaking ecl - patching so we can allow ecl with unicode
@@ -213,7 +209,17 @@ python_prepare() {
 	sed -i "s:factory/factory.h:singular/factory.h:" \
 		sage/libs/singular/singular-cdefs.pxi
 
+	# Fix portage QA warning. Potentially prevent some leaking.
+	epatch "${FILESDIR}"/${PN}-4.4.2-flint.patch
+
 	sed -i "s:cblas(), atlas():${cblaslibs}:" sage/misc/cython.py
+
+	# TODO: should be a patch
+	# patch for glpk
+	sed -i \
+		-e "s:\.\./\.\./\.\./\.\./devel/sage/sage:..:g" \
+		-e "s:\.\./\.\./\.\./local/include/::g" \
+		sage/numerical/backends/glpk_backend.pxd
 
 	# remove the need for the external "testjava.sh" script
 	epatch "${FILESDIR}"/remove-testjavapath-to-python.patch
@@ -256,6 +262,9 @@ python_prepare() {
 	epatch "${FILESDIR}"/${PN}-5.9-all.py
 	sed -i "s:\"lib\",\"python\":\"$(get_libdir)\",\"${EPYTHON}\":" sage/all.py
 
+	# introduce consistent ordering that does not break if sqlite is upgraded
+	epatch "${FILESDIR}"/${PN}-5.8-fix-cremona-doctest.patch
+
 	# remove strings of libraries that we do not link to
 	epatch "${FILESDIR}"/${PN}-5.8-fix-cython-doctest.patch
 
@@ -270,6 +279,12 @@ python_prepare() {
 
 	# 'sage' is not in SAGE_ROOT, but in PATH
 	epatch "${FILESDIR}"/${PN}-5.9-fix-ostools-doctest.patch
+
+	# trac 11334: Update numpy to 1.7.0 - doctest patches
+	epatch "${WORKDIR}"/numpy-1.7.patch
+
+	# trac 13693: update matplotlib to 1.2.1 - doctest patches
+	epatch "${FILESDIR}"/trac_13693-part1.patch
 }
 
 python_configure() {
@@ -290,6 +305,7 @@ python_install_all() {
 	# install sources needed for testing/compiling of cython/spyx files
 	find sage ! \( -name "*.py" -o -name "*.pyx" -o -name "*.pxd" -o \
 		-name "*.pxi" -o -name "*.h" \
+		-o -name "*fmpq_poly.c" \
 		-o -name "*matrix_rational_dense_linbox.cpp" \
 		-o -name "*wrap.cc" \
 		-o -name "*.rst" \) -type f -delete \

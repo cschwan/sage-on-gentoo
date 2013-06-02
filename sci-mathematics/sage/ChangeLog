@@ -2,6 +2,19 @@
 # Copyright 1999-2013 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*sage-5.5-r8 (02 Jun 2013)
+*sage-5.6-r4 (02 Jun 2013)
+*sage-5.7-r5 (02 Jun 2013)
+*sage-5.8-r4 (02 Jun 2013)
+*sage-5.9-r1 (02 Jun 2013)
+
+  02 Jun 2013; François Bissey <francois.bissey@canterbury.ac.nz>
+  +sage-5.5-r8.ebuild, +sage-5.6-r4.ebuild, +sage-5.7-r5.ebuild,
+  +sage-5.8-r4.ebuild, +sage-5.9-r1.ebuild, -sage-5.5-r7.ebuild,
+  -sage-5.6-r3.ebuild, -sage-5.7-r4.ebuild, -sage-5.8-r3.ebuild,
+  -sage-5.9.ebuild, sage-5.10_beta5.ebuild:
+  Migrate to asdf 3 enabled ecls/maxima
+
   01 Jun 2013; François Bissey <francois.bissey@canterbury.ac.nz>
   sage-5.9.ebuild:
   Small change to have the corect behavior in python phases. It is a wonder it
