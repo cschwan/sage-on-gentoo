@@ -17,7 +17,7 @@ KEYWORDS="~amd64 ~ppc ~x86 ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos"
 # Supported lisps (the first one is the default)
 LISPS=(     sbcl cmucl gcl             ecls clozurecl clisp )
 # . - just dev-lisp/<lisp>, <version> - >= dev-lisp/<lisp>-<version>
-MIN_VER=(   .    .     2.6.8_pre[ansi] 12.12.1   .         .     )
+MIN_VER=(   .    .     2.6.8_pre[ansi] 12.12.1-r5   .         .     )
 # <lisp> supports readline: . - no, y - yes
 SUPP_RL=(   .    .     y               .    .         y     )
 # . - just --enable-<lisp>, <flag> - --enable-<flag>
@@ -187,13 +187,15 @@ src_install() {
 		mkdir ./lisp-cache
 		ecl \
 			-eval '(require `asdf)' \
-			-eval '(setf asdf::*user-cache* (truename "./lisp-cache"))' \
+			-eval '(push "./" asdf:*central-registry*)' \
+			-eval "(asdf:initialize-output-translations \
+				'(:output-translations :disable-cache :inherit-configuration))" \
 			-eval '(load "maxima-build.lisp")' \
-			-eval '(asdf:make-build :maxima :type :fasl :move-here ".")' \
+			-eval '(asdf:make-build :maxima :type :fasl)' \
 			-eval '(quit)'
 		ECLLIB=`ecl -eval "(princ (SI:GET-LIBRARY-PATHNAME))" -eval "(quit)"`
 		insinto "${ECLLIB#${EPREFIX}}"
-		newins maxima.system.fasb maxima.fas
+		newins maxima.fasb maxima.fas
 	fi
 }
 
