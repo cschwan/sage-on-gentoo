@@ -1,0 +1,29 @@
+# HG changeset patch
+# User Volker Braun <vbraun.name@gmail.com>
+# Date 1369662840 -3600
+# Node ID 7a43f558fd23ab304daf742cb739a46184a47ffb
+# Parent  f25013ebffc3a69b1704633c2fc3c64f0f178f82
+Emit Cython debug symbols when building Sage
+
+diff --git a/setup.py b/setup.py
+--- a/setup.py
++++ b/setup.py
+@@ -510,6 +510,7 @@
+ 
+     from Cython.Build import cythonize
+     import Cython.Compiler.Options
++    import Cython.Compiler.Main
+ 
+     # Sage uses these directives (mostly for historical reasons).
+     Cython.Compiler.Options.embed_pos_in_docstring = True
+@@ -521,6 +522,10 @@
+     # enclosing Python scope (e.g. to perform variable injection).
+     Cython.Compiler.Options.old_style_globals = True
+ 
++    if os.environ.get('SAGE_DEBUG', None) != 'no':
++        Cython.Compiler.Main.default_options['gdb_debug'] = True
++        Cython.Compiler.Main.default_options['output_dir'] = 'build'
++
+     force = True
+     version_file = os.path.join(os.path.dirname(__file__), '.cython_version')
+     if os.path.exists(version_file) and open(version_file).read() == Cython.__version__:

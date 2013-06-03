@@ -22,7 +22,7 @@ SRC_URI="mirror://sagemath/${MY_P}.spkg -> ${P}.tar.bz2
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64 ~x86 ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~x64-macos"
-IUSE="latex testsuite lrs nauty"
+IUSE="latex testsuite lrs nauty debug"
 
 RESTRICT="mirror test"
 
@@ -244,6 +244,9 @@ python_prepare() {
 	# allow sage-matroids to be used if installed
 	epatch "${FILESDIR}"/${PN}-matroids.patch
 
+	# build cython debug info if requested, patch to be checked in 5.10_rc1
+	epatch "${FILESDIR}"/trac_14649_cython_debug.patch
+
 	############################################################################
 	# Fixes to doctests
 	############################################################################
@@ -278,6 +281,9 @@ python_configure() {
 	export SAGE_SRC=`pwd`
 	export SAGE_VERSION=${PV}
 	export SAGE_NUM_THREADS=$(makeopts_jobs)
+	if use debug; then
+		export SAGE_DEBUG=1
+	fi
 
 	# files are not built unless they are touched
 	find sage -name "*pyx" -exec touch '{}' \; \
@@ -297,6 +303,10 @@ python_install_all() {
 
 	insinto /usr/share/sage/devel/sage-main
 	doins -r sage
+	if use debug; then
+		cd build
+		doins -r cython_debug
+	fi
 }
 
 pkg_postinst() {

@@ -2,6 +2,10 @@
 # Copyright 1999-2013 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  03 Jun 2013; François Bissey <francois.bissey@canterbury.ac.nz>
+  +files/trac_14649_cython_debug.patch, sage-5.10_beta5.ebuild:
+  Adding cython-debug info in sage 5.10.X
+
 *sage-5.5-r8 (02 Jun 2013)
 *sage-5.6-r4 (02 Jun 2013)
 *sage-5.7-r5 (02 Jun 2013)
