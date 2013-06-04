@@ -69,7 +69,7 @@ src_prepare() {
 		|| die "Failed to fix get_X11"
 
 	# https://bugs.gentoo.org/show_bug.cgi?id=372079 If you link the Qt interface libstdc++ is needed one way or another.
-	sed -i "s:-lQtCore -lQtGui:-lQtCore -lQtGui -lstdc++"
+	sed -i "s:-lQtCore -lQtGui:-lQtCore -lQtGui -lstdc++:" config/get_Qt
 
 	# usersch3.tex is generated
 	rm doc/usersch3.tex || die "failed to remove generated file"
