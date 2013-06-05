@@ -68,15 +68,13 @@ src_prepare() {
 		config/get_{Qt,X11,include_path,libpth} \
 		|| die "Failed to fix get_X11"
 
-	# https://bugs.gentoo.org/show_bug.cgi?id=372079 If you link the Qt interface libstdc++ is needed one way or another.
-	sed -i "s:-lQtCore -lQtGui:-lQtCore -lQtGui -lstdc++:" config/get_Qt
-
 	# usersch3.tex is generated
 	rm doc/usersch3.tex || die "failed to remove generated file"
 }
 
 src_configure() {
 	tc-export CC
+	export CPLUSPLUS=$(tc-getCXX)
 
 	# need to force optimization here, as it breaks without
 	if is-flag -O0; then
@@ -105,13 +103,17 @@ src_compile() {
 		mymake=DLLD\="${EPREFIX}"/usr/bin/gcc\ DLLDFLAGS\=-shared\ -Wl,-soname=\$\(LIBPARI_SONAME\)\ -lm
 	fi
 
+	if use qt4; then
+		mycxxmake=LD\=$(tc-getCXX)
+	fi
+
 	local installdir=$(get_compile_dir)
 	cd "${installdir}" || die "failed to change directory"
 	# upstream set -fno-strict-aliasing.
 	# aliasing is a known issue on amd64, work on x86 by sheer luck
 	emake ${mymake} \
 		CFLAGS="${CFLAGS} -fno-strict-aliasing -DGCC_INLINE -fPIC" lib-dyn
-	emake ${mymake} \
+	emake ${mymake} ${mycxxmake} \
 		CFLAGS="${CFLAGS} -DGCC_INLINE" gp ../gp
 
 	if use doc; then
