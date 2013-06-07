@@ -1,0 +1,14 @@
+diff --git a/src/bare.lsp.in b/src/bare.lsp.in
+index 3c142ce..e97b770 100644
+--- a/src/bare.lsp.in
++++ b/src/bare.lsp.in
+@@ -138,7 +138,7 @@
+     (with-open-file (*standard-output* path
+                      :direction :output :if-exists :supersede
+                      :if-does-not-exist :create)
+-      (print `(defsystem ,name :class asdf::prebuilt-system
++      (print `(defsystem ,name :class ,(find-symbol "PREBUILT-SYSTEM" "ASDF")
+                          :lib ,library
+ 			 :depends-on ,depends-on
+                          :components ((:compiled-file ,(string name)
+
