@@ -2,6 +2,13 @@
 # Copyright 1999-2013 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*sage-5.10_rc1 (07 Jun 2013)
+
+  07 Jun 2013; François Bissey <francois.bissey@canterbury.ac.nz>
+  +sage-5.10_rc1.ebuild, -files/trac_14649_cython_debug.patch,
+  -sage-5.10_beta5.ebuild:
+  5.10rc1 sage - maxima_lib interface still not working.
+
   03 Jun 2013; François Bissey <francois.bissey@canterbury.ac.nz>
   +files/trac_14649_cython_debug.patch, sage-5.10_beta5.ebuild:
   Adding cython-debug info in sage 5.10.X

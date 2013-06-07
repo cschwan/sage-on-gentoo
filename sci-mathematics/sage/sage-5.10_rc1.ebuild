@@ -17,7 +17,7 @@ MY_P="sage-$(replace_version_separator 2 '.')"
 DESCRIPTION="Math software for algebra, geometry, number theory, cryptography and numerical computation"
 HOMEPAGE="http://www.sagemath.org"
 SRC_URI="mirror://sagemath/${MY_P}.spkg -> ${P}.tar.bz2
-	mirror://sagemath/patches/${PN}-5.10-neutering.tar.bz2"
+	mirror://sagemath/patches/${PN}-5.10-neutering-r2.tar.bz2"
 
 LICENSE="GPL-2"
 SLOT="0"
@@ -243,9 +243,6 @@ python_prepare() {
 
 	# allow sage-matroids to be used if installed
 	epatch "${FILESDIR}"/${PN}-matroids.patch
-
-	# build cython debug info if requested, patch to be checked in 5.10_rc1
-	epatch "${FILESDIR}"/trac_14649_cython_debug.patch
 
 	############################################################################
 	# Fixes to doctests
