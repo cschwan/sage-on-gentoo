@@ -2,8 +2,11 @@ app-emacs/imaxima # 1.0-r3 is needed for >=maxima-5.29
 dev-java/asm:2
 dev-lang/R
 dev-libs/mpc
+dev-lisp/asdf
+dev-lisp/uiop
 =dev-libs/ppl-0.11.2
 ~dev-lisp/ecls-12.12.1::sage-on-gentoo
+dev-python/Babel
 dev-python/blinker
 dev-python/cvxopt
 dev-python/cython
@@ -22,6 +25,7 @@ dev-python/mpmath
 ~dev-python/numpy-1.7.0
 ~dev-python/pexpect-2.0
 dev-python/pycrypto
+dev-python/python-openid
 dev-python/pytz
 dev-python/pyzmq
 dev-python/rpy

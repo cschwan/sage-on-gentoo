@@ -1,5 +1,6 @@
 dev-lang/python             readline sqlite
 dev-libs/boost              python
+dev-libs/boehm-gc           threads
 dev-python/cvxopt           glpk
 dev-python/cython           -numpy
 dev-python/mpmath           -gmp
@@ -7,7 +8,7 @@ dev-python/numpy            lapack
 dev-python/gdmodule         png
 media-libs/gd               jpeg png
 media-gfx/tachyon           png
-sci-mathematics/flint              ntl
+sci-mathematics/flint       ntl
 sci-libs/linbox             sage
 sci-mathematics/gmp-ecm     -openmp
 sci-mathematics/maxima      ecls
