@@ -2,6 +2,11 @@
 # Copyright 1999-2013 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/sci-mathematics/maxima/ChangeLog,v 1.102 2012/12/14 09:55:25 grozin Exp $
 
+  14 Jun 2013; François Bissey <francois.bissey@canterbury.ac.nz>
+  -files/ecls-0.patch, -maxima-5.29.1-r2.ebuild, -maxima-5.30.0.ebuild,
+  maxima-5.30.0-r1.ebuild:
+  clean up of non working maxima versions, restore dependencies in maxima 5.30
+
 *maxima-5.29.1-r3 (13 Jun 2013)
 *maxima-5.30.0-r1 (13 Jun 2013)
 
