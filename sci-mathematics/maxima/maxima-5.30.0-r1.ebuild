@@ -72,10 +72,6 @@ done
 unset LISP
 
 RDEPEND="${RDEPEND}
-	!sbcl? ( !cmucl? ( !gcl? ( ecls? (
-		>=dev-lisp/ecls-12.12.1-r5
-		>=dev-lisp/asdf-3.0.1
-	) ) ) )
 	${DEF_DEP}"
 
 DEPEND="${RDEPEND}
