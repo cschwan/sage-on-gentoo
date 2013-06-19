@@ -15,6 +15,11 @@ sci-mathematics/maxima      ecls
 sci-mathematics/lcalc       pari
 sci-mathematics/pari        data gmp
 sys-libs/zlib               minizip
+##################################
+# Avoid conflicts with pillow for the time being
+##################################
+sci-lib/scipy               -python3_2 -python3_3
+dev-python/sympy            -python3_2
 #dev-lang/R                  lapack
 #sci-libs/linbox             ntl
 #sci-mathematics/glpk        gmp
