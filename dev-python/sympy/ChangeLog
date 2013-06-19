@@ -2,6 +2,11 @@
 # Copyright 1999-2013 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  19 Jun 2013; François Bissey <francois.bissey@canterbury.ac.nz>
+  sympy-0.7.2-r3.ebuild:
+  More aligne,ent with main tree. python 3.2 will have to be further checked for
+  mpmath inclusion.
+
 *sympy-0.7.2-r3 (19 Jun 2013)
 
   19 Jun 2013; François Bissey <francois.bissey@canterbury.ac.nz>

@@ -4,14 +4,15 @@
 
 EAPI="5"
 
-PYTHON_COMPAT=( python{2_6,2_7} )
+PYTHON_COMPAT=( python{2_6,2_7,3_2} )
 
 inherit distutils-r1 eutils
 
 DESCRIPTION="Computer algebra system (CAS) in Python"
-HOMEPAGE="http://code.google.com/p/sympy/"
-SRC_URI="http://sympy.googlecode.com/files/${P}.tar.gz"
-
+HOMEPAGE="http://sympy.org/"
+SRC_URI="python_targets_python2_6? ( http://sympy.googlecode.com/files/${P}.tar.gz )
+	python_targets_python2_7? ( http://sympy.googlecode.com/files/${P}.tar.gz )
+	python_targets_python3_2? ( http://sympy.googlecode.com/files/${P}-py3.2.tar.gz )"
 LICENSE="BSD"
 SLOT="0"
 KEYWORDS="~amd64 ~x86 ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~x64-macos"
@@ -38,7 +39,22 @@ DEPEND="${RDEPEND}
 	doc? ( dev-python/sphinx[${PYTHON_USEDEP}] )
 	test? ( dev-python/pytest[${PYTHON_USEDEP}] )"
 
-python_prepare_all() {
+S="${WORKDIR}"
+
+src_unpack() {
+	if use python_targets_python2_6 || use python_targets_python2_7; then
+		mkdir "${WORKDIR}"/python2
+		cd "${WORKDIR}"/python2
+		unpack ${P}.tar.gz
+	fi
+	if use python_targets_python3_2; then
+		mkdir "${WORKDIR}"/python3
+		cd "${WORKDIR}"/python3
+		unpack ${P}-py3.2.tar.gz
+	fi
+}
+
+system_mpmath() {
 	# Remove mpmath
 	rm -rf sympy/mpmath/*
 	sed -i \
@@ -88,18 +104,36 @@ python_prepare_all() {
 	epatch "${FILESDIR}"/${P}-mpmath.patch
 	epatch "${FILESDIR}"/${P}-mpmath-import.patch
 	epatch "${FILESDIR}"/${P}-mpmath-test.patch
+}
 
-	distutils-r1_python_prepare_all
+src_prepare() {
+	if use python_targets_python2_6 || use python_targets_python2_7; then
+		cd "${WORKDIR}"/python2/${P}
+		system_mpmath
+	fi
+	if use python_targets_python3_2; then
+		cd "${WORKDIR}"/python3/${P}
+		system_mpmath
+	fi
 }
 
 python_compile() {
+	case ${EPYTHON} in
+		python2*) cd "${WORKDIR}"/python2/${P};;
+		python3*) cd "${WORKDIR}"/python3/${P};;
+	esac
 	PYTHONPATH="." distutils-r1_python_compile
 }
 
 python_compile_all() {
 	if use doc; then
-		cd doc
-		emake html || die "emake html failed"
+		if use python_targets_python2_6 || use python_targets_python2_7; then
+			cd "${WORKDIR}"/python2/${P}/doc
+			emake html
+		else
+			cd "${WORKDIR}"/python3/${P}/doc
+			emake html
+		fi
 	fi
 }
 
@@ -109,7 +143,28 @@ python_install() {
 	rm -f "${ED}usr/bin/"{doctest,test} || die "rm doctest test failed"
 }
 
+python_test() {
+	case ${EPYTHON} in
+		python2*) cd "${WORKDIR}"/python2/${P};;
+		python3*) cd "${WORKDIR}"/python3/${P};;
+	esac
+	PYTHONPATH="." py.test || ewarn "tests with ${EPYTHON} failed"
+}
+
+python_install() {
+	case ${EPYTHON} in
+		python2*) cd "${WORKDIR}"/python2/${P};;
+		python3*) cd "${WORKDIR}"/python3/${P};;
+	esac
+	PYTHONPATH="." distutils-r1_python_install
+}
+
 python_install_all() {
+	if use python_targets_python2_6 || use python_targets_python2_7; then
+		cd "${WORKDIR}"/python2/${P}
+	else
+		cd "${WORKDIR}"/python3/${P}
+	fi
 	if use doc; then
 		dohtml -r doc/_build/html/*
 	fi
