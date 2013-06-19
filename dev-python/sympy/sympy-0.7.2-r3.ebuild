@@ -28,19 +28,15 @@ RDEPEND="
 		png? ( app-text/dvipng )
 		pdf? ( app-text/ghostscript-gpl ) )
 	texmacs? ( app-office/texmacs )
-	ipython? ( dev-python/ipython )
-	opengl? ( dev-python/pyopengl )
-	imaging? ( dev-python/imaging[${PYTHON_USEDEP}] )
-	pyglet? ( dev-python/pyglet )
-	>=dev-python/pexpect-2.0[${PYTHON_USEDEP}]
-	~dev-python/mpmath-0.17"
+	ipython? ( dev-python/ipython[${PYTHON_USEDEP}] )
+	opengl? ( dev-python/pyopengl[python_targets_python2_6?,python_targets_python2_7?] )
+	imaging? ( virtual/python-imaging[${PYTHON_USEDEP}] )
+	pyglet? ( dev-python/pyglet[python_targets_python2_6?,python_targets_python2_7?] )
+	>=dev-python/pexpect-2.0[python_targets_python2_6?,python_targets_python2_7?]
+	~dev-python/mpmath-0.17[${PYTHON_USEDEP}]"
 DEPEND="${RDEPEND}
 	doc? ( dev-python/sphinx[${PYTHON_USEDEP}] )
 	test? ( dev-python/pytest[${PYTHON_USEDEP}] )"
-
-pkg_setup() {
-	export DOT_SAGE="${S}"
-}
 
 python_prepare_all() {
 	# Remove mpmath
