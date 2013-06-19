@@ -18,7 +18,7 @@ sys-libs/zlib               minizip
 ##################################
 # Avoid conflicts with pillow for the time being
 ##################################
-sci-lib/scipy               -python3_2 -python3_3
+sci-libs/scipy               -python3_2 -python3_3
 dev-python/sympy            -python3_2
 #dev-lang/R                  lapack
 #sci-libs/linbox             ntl
