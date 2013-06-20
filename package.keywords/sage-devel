@@ -10,6 +10,7 @@ dev-python/cython
 ~dev-python/python-dateutil-2.1
 dev-python/decorator
 dev-python/flask
+dev-python/itsdangerous # for flask-0.10.1
 dev-python/flask-autoindex
 dev-python/flask-babel
 dev-python/flask-openid
