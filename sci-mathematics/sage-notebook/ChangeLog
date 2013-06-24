@@ -2,6 +2,16 @@
 # Copyright 1999-2013 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*sage-notebook-0.10.2-r4 (24 Jun 2013)
+*sage-notebook-0.10.4-r4 (24 Jun 2013)
+
+  24 Jun 2013; François Bissey <francois.bissey@canterbury.ac.nz>
+  +files/sage-notebook-0.10.4-flask-0.10.1.patch,
+  +sage-notebook-0.10.2-r4.ebuild, +sage-notebook-0.10.4-r4.ebuild,
+  -sage-notebook-0.10.2-r2.ebuild, -sage-notebook-0.10.2-r3.ebuild,
+  -sage-notebook-0.10.4-r2.ebuild, -sage-notebook-0.10.4-r3.ebuild:
+  Import upstream fix for flask 0.10.1 this is issue #233
+
 *sage-notebook-0.10.4-r3 (10 Jun 2013)
 
   10 Jun 2013; Christopher Schwan <cschwan@students.uni-mainz.de>
