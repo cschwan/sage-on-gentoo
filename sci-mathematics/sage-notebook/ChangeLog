@@ -2,6 +2,12 @@
 # Copyright 1999-2013 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*sage-notebook-0.10.7 (25 Jun 2013)
+
+  25 Jun 2013; François Bissey <francois.bissey@canterbury.ac.nz>
+  +files/sage-notebook-0.10.7-setup.py.patch, +sage-notebook-0.10.7.ebuild:
+  Bump for sage 5.11
+
 *sage-notebook-0.10.2-r4 (24 Jun 2013)
 *sage-notebook-0.10.4-r4 (24 Jun 2013)
 
