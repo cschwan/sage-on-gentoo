@@ -5,6 +5,7 @@
 >=sci-mathematics/sage-doc-5.11_alpha0
 >=sci-mathematics/sage-extcode-5.11_alpha0
 >=sci-libs/pynac-0.3.0
+>=sci-mathematics/gap-4.6.3
 # building problems reported against latest fplll
 >=sci-libs/fplll-3.1.1
 # split gap is not ready for prime time.
