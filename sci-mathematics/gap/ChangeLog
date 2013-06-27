@@ -2,6 +2,12 @@
 # Copyright 1999-2013 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*gap-4.6.4 (27 Jun 2013)
+
+  27 Jun 2013; François Bissey <francois.bissey@canterbury.ac.nz>
+  +files/gap-4.6.4-Makefile.patch, +gap-4.6.4.ebuild, -gap-4.5.7-r4.ebuild:
+  New gap for sage 5.11
+
 *gap-4.5.7-r3 (12 Mar 2013)
 
   12 Mar 2013; François Bissey <francois.bissey@canterbury.ac.nz>
