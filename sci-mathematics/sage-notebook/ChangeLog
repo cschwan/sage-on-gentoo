@@ -2,6 +2,11 @@
 # Copyright 1999-2013 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  28 Jun 2013; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-notebook-0.10.2-r4.ebuild, sage-notebook-0.10.4-r4.ebuild,
+  sage-notebook-0.10.7.1.ebuild:
+  Correct the license in the notebook as per kini's request
+
 *sage-notebook-0.10.7.1 (26 Jun 2013)
 
   26 Jun 2013; François Bissey <francois.bissey@canterbury.ac.nz>
