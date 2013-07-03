@@ -2,6 +2,10 @@
 # Copyright 1999-2013 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  03 Jul 2013; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-5.11_beta3.ebuild:
+  depend on fplll 4.0.4 - silly me forgetting that dependency.
+
 *sage-5.11_beta3 (03 Jul 2013)
 
   03 Jul 2013; François Bissey <francois.bissey@canterbury.ac.nz>
