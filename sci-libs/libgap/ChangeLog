@@ -1,3 +1,9 @@
+*libgap-4.6.4_p0 (03 Jul 2013)
+
+  03 Jul 2013; François Bissey <francois.bissey@canterbury.ac.nz>
+  +libgap-4.6.4_p0.ebuild:
+  libgap 4.6.4 for sage 5.11
+
   20 Apr 2013; François Bissey <francois.bissey@canterbury.ac.nz>
   libgap-4.5.7-r1.ebuild, libgap-4.5.7_p2-r1.ebuild:
   Restricting tests in libgap
