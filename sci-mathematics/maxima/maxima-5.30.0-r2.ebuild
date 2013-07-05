@@ -75,7 +75,7 @@ RDEPEND="${RDEPEND}
 	${DEF_DEP}"
 
 DEPEND="${RDEPEND}
-	sys-apps/texinfo"
+	<sys-apps/texinfo-5.0"
 
 TEXMF="${EPREFIX}"/usr/share/texmf-site
 
@@ -94,7 +94,7 @@ pkg_setup() {
 
 src_prepare() {
 	local n PATCHES v
-	PATCHES=( imaxima-0 rmaxima-0 wish-0 xdg-utils-0 texinfo51 )
+	PATCHES=( imaxima-0 rmaxima-0 wish-0 xdg-utils-0 )
 
 	n=${#PATCHES[*]}
 	for ((n--; n >= 0; n--)); do

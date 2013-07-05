@@ -2,6 +2,13 @@
 # Copyright 1999-2013 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/sci-mathematics/maxima/ChangeLog,v 1.102 2012/12/14 09:55:25 grozin Exp $
 
+*maxima-5.30.0-r2 (05 Jul 2013)
+
+  05 Jul 2013; François Bissey <francois.bissey@canterbury.ac.nz>
+  +maxima-5.30.0-r2.ebuild, -maxima-5.30.0-r1.ebuild, maxima-5.29.1-r3.ebuild:
+  Follow main tree and force texinfo-4
+  https://bugs.gentoo.org/show_bug.cgi?id=473102
+
   16 Jun 2013; François Bissey <francois.bissey@canterbury.ac.nz>
   maxima-5.30.0-r1.ebuild:
   restoring the real right dependencies in maxima 5.30.0

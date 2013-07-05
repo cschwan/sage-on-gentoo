@@ -80,7 +80,7 @@ RDEPEND="${RDEPEND}
 	${DEF_DEP}"
 
 DEPEND="${RDEPEND}
-	sys-apps/texinfo"
+	<sys-apps/texinfo-5.0"
 
 TEXMF="${EPREFIX}"/usr/share/texmf-site
 
@@ -122,9 +122,6 @@ src_prepare() {
 
 	# workaround for the broken sbcl
 	epatch "${FILESDIR}"/${P}-sbcl.patch
-
-	# Fix issues with texinfo 5.1 (#466730)
-	epatch "${FILESDIR}"/texinfo51.patch
 
 	# sage patches
 	epatch "${FILESDIR}"/0001-taylor2-Avoid-blowing-the-stack-when-diff-expand-isn.patch
