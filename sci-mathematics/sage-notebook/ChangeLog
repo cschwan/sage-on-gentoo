@@ -2,6 +2,10 @@
 # Copyright 1999-2013 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  28 Jul 2013; Christopher Schwan <cschwan@students.uni-mainz.de>
+  files/sage-notebook-0.10.2:
+  Fix for Issue #238.
+
 *sage-notebook-0.10.2-r5 (28 Jul 2013)
 *sage-notebook-0.10.4-r5 (28 Jul 2013)
 *sage-notebook-0.10.7.1-r1 (28 Jul 2013)

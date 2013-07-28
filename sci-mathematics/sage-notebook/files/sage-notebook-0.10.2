@@ -17,13 +17,13 @@ user_home=$(eval cd ~${user:=sage} && pwd)
 : ${stdout:="${user_home}"/sagenb.log}
 : ${stderr:="${user_home}"/sagenb.err}
 
-# resolve any tildes 'directory' might contain and fail silently
-directory=$(eval cd ${directory} 2>/dev/null && pwd)
+# resolve any tildes 'directory' might contain
+directory=$(eval echo "${directory}")
 
 command_args=( 
 	-notebook
 	accounts=${accounts}
-	directory=${directory}
+	directory="${directory}"
 	interface=${interface}
 	port=${port}
 	automatic_login=${automatic_login}
@@ -54,7 +54,7 @@ start() {
 		einfo "  you specified in the configuration file. Based on your current"
 		einfo "  settings this would be:"
 		einfo ""
-		einfo "     su sage -c \"sage ${command_args[@]}\""
+		einfo "     su ${user} -c \"sage ${command_args[@]}\""
 		einfo ""
 		einfo "  Follow Sage's instructions and exit it after twistd is started"
 		einfo "  by pressing Ctrl+C."
