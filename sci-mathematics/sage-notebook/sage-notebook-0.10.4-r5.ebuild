@@ -14,7 +14,7 @@ DESCRIPTION="The Sage Notebook is a web-based graphical user interface for mathe
 HOMEPAGE="http://nb.sagemath.org"
 SRC_URI="https://github.com/sagemath/sagenb/tarball/${PV} -> ${P}.tar.gz"
 
-LICENSE="GPL-3+"
+LICENSE="GPL-2+"
 SLOT="0"
 KEYWORDS="~amd64 ~x86 ~amd64-linux ~x86-linux"
 IUSE="+java server test"
@@ -50,15 +50,20 @@ pkg_setup() {
 }
 
 src_prepare() {
-	# do not ship sage3d
-	epatch "${FILESDIR}"/${PN}-0.10.7-setup.py.patch
+	# ship flask_version and not sage3d
+	epatch "${FILESDIR}"/${PN}-0.10.2-setup.py.patch
 
 	# remove sage3d
 	rm -rf sagenb/data/sage3d || die "failed to remove sage3d"
 
+	# fix flask_version/base's location
+	epatch "${FILESDIR}"/${PN}-0.10.4-run_notebook.patch
+
+	# support flask 0.10.1
+	epatch "${FILESDIR}"/${PN}-0.10.4-flask-0.10.1.patch
+
 	# find jmol
-	sed -i "s:\"local\",\"share\",\"jmol\":\"share\",\"jmol-applet\":" \
-		flask_version/base.py
+	epatch "${FILESDIR}"/${PN}-0.10.4-base.patch
 	sed -i "s:jmol/appletweb/Jmol.js:jmol/Jmol.js:g" \
 		sagenb/data/sage/html/notebook/base.html
 
@@ -83,6 +88,9 @@ src_install() {
 	if use server ; then
 		doinitd init.d/${PN}
 		doconfd conf.d/${PN}
+		dodir /var/lib/sage/.matplotlib
+		insinto /var/lib/sage/.matplotlib
+		doins "${FILESDIR}"/matplotlibrc
 	fi
 
 	distutils-r1_src_install

@@ -10,29 +10,27 @@ PYTHON_REQ_USE="ssl"
 
 inherit distutils-r1 eutils user vcs-snapshot
 
-MY_PN="sagemath-sagenb"
-
 DESCRIPTION="The Sage Notebook is a web-based graphical user interface for mathematical software"
 HOMEPAGE="http://nb.sagemath.org"
 SRC_URI="https://github.com/sagemath/sagenb/tarball/${PV} -> ${P}.tar.gz"
 
-LICENSE="GPL-2+"
+LICENSE="GPL-3+"
 SLOT="0"
 KEYWORDS="~amd64 ~x86 ~amd64-linux ~x86-linux"
 IUSE="+java server test"
 
 RESTRICT="mirror test"
 
-CDEPEND="~dev-python/pexpect-2.0
-	>=dev-python/twisted-12.0
-	>=dev-python/twisted-mail-12.0
-	>=dev-python/twisted-web-12.0
+CDEPEND="~dev-python/pexpect-2.0[${PYTHON_USEDEP}]
+	>=dev-python/twisted-12.3.0
+	>=dev-python/twisted-mail-12.3.0
+	>=dev-python/twisted-web-12.3.0
 	!dev-python/twisted-web2
 	>=dev-python/jinja-2.5.5[${PYTHON_USEDEP}]
 	>=dev-python/docutils-0.5[${PYTHON_USEDEP}]
 	>=dev-python/flask-autoindex-0.4.1[${PYTHON_USEDEP}]
-	>=dev-python/flask-openid-1.0.1
-	>=dev-python/flask-babel-0.8
+	>=dev-python/flask-openid-1.1.1[${PYTHON_USEDEP}]
+	>=dev-python/flask-babel-0.8[${PYTHON_USEDEP}]
 	dev-python/webassets[${PYTHON_USEDEP}]"
 DEPEND="${CDEPEND}
 	test? ( sci-mathematics/sage[testsuite,${PYTHON_USEDEP}] )"
@@ -44,8 +42,6 @@ RDEPEND="${CDEPEND}
 pkg_setup() {
 	python_export python2_7 EPYTHON
 
-	export DOT_SAGE="${S}"
-
 	# create user to run the server
 	if use server ; then
 		enewgroup sage
@@ -54,22 +50,15 @@ pkg_setup() {
 }
 
 src_prepare() {
-	# ship flask_version and not sage3d
-	epatch "${FILESDIR}"/${PN}-0.10.2-setup.py.patch
-
-	# find flask_version in the right place
-	sed -i "s:import base:import flask_version.base:" \
-		sagenb/notebook/run_notebook.py \
-		|| die "failed to patch for flask_version path"
-
-	# fix for flask 0.10.1
-	epatch "${FILESDIR}"/${PN}-0.10.4-flask-0.10.1.patch
+	# do not ship sage3d
+	epatch "${FILESDIR}"/${PN}-0.10.7-setup.py.patch
 
 	# remove sage3d
 	rm -rf sagenb/data/sage3d || die "failed to remove sage3d"
 
-	# find jmol and various openid
-	epatch "${FILESDIR}"/${PN}-0.9.1-base.patch
+	# find jmol
+	sed -i "s:\"local\",\"share\",\"jmol\":\"share\",\"jmol-applet\":" \
+		flask_version/base.py
 	sed -i "s:jmol/appletweb/Jmol.js:jmol/Jmol.js:g" \
 		sagenb/data/sage/html/notebook/base.html
 
@@ -94,6 +83,9 @@ src_install() {
 	if use server ; then
 		doinitd init.d/${PN}
 		doconfd conf.d/${PN}
+		dodir /var/lib/sage/.matplotlib
+		insinto /var/lib/sage/.matplotlib
+		doins "${FILESDIR}"/matplotlibrc
 	fi
 
 	distutils-r1_src_install

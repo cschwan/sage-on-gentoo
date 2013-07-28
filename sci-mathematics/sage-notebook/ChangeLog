@@ -2,6 +2,17 @@
 # Copyright 1999-2013 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*sage-notebook-0.10.2-r5 (28 Jul 2013)
+*sage-notebook-0.10.4-r5 (28 Jul 2013)
+*sage-notebook-0.10.7.1-r1 (28 Jul 2013)
+
+  28 Jul 2013; François Bissey <francois.bissey@canterbury.ac.nz>
+  +files/matplotlibrc, +sage-notebook-0.10.2-r5.ebuild,
+  +sage-notebook-0.10.4-r5.ebuild, +sage-notebook-0.10.7.1-r1.ebuild,
+  -sage-notebook-0.10.2-r4.ebuild, -sage-notebook-0.10.4-r4.ebuild,
+  -sage-notebook-0.10.7.1.ebuild:
+  Add a matplotlibrc file to th sage user to deal with issue #240
+
   28 Jun 2013; François Bissey <francois.bissey@canterbury.ac.nz>
   sage-notebook-0.10.2-r4.ebuild, sage-notebook-0.10.4-r4.ebuild,
   sage-notebook-0.10.7.1.ebuild:
