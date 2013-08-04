@@ -36,7 +36,7 @@ dev-python/speaklater
 dev-python/sqlalchemy
 ~dev-python/sympy-0.7.2
 dev-python/twisted-names
-dev-python/twisted
+dev-python/twisted-core
 dev-python/twisted-mail
 dev-python/twisted-web
 dev-python/webassets
