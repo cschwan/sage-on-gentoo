@@ -22,7 +22,7 @@ IUSE="+java server test"
 RESTRICT="mirror test"
 
 CDEPEND="~dev-python/pexpect-2.0[${PYTHON_USEDEP}]
-	>=dev-python/twisted-12.3.0
+	>=dev-python/twisted-core-12.3.0
 	>=dev-python/twisted-mail-12.3.0
 	>=dev-python/twisted-web-12.3.0
 	!dev-python/twisted-web2
