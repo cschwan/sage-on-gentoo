@@ -2,6 +2,12 @@
 # Copyright 1999-2013 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*sage-baselayout-5.11_rc0 (06 Aug 2013)
+
+  06 Aug 2013; François Bissey <francois.bissey@canterbury.ac.nz>
+  +sage-baselayout-5.11_rc0.ebuild, -sage-baselayout-5.11_beta3.ebuild:
+  5.11_rc0 baselayout
+
 *sage-baselayout-5.11_beta3 (03 Jul 2013)
 
   03 Jul 2013; François Bissey <francois.bissey@canterbury.ac.nz>
