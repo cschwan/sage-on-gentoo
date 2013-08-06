@@ -17,7 +17,7 @@ MY_P="sage-$(replace_version_separator 2 '.')"
 DESCRIPTION="Math software for algebra, geometry, number theory, cryptography and numerical computation"
 HOMEPAGE="http://www.sagemath.org"
 SRC_URI="mirror://sagemath/${MY_P}.spkg -> ${P}.tar.bz2
-	mirror://sagemath/patches/${PN}-5.10-neutering-r2.tar.bz2"
+	mirror://sagemath/patches/${PN}-5.11-neutering.tar.bz2"
 
 LICENSE="GPL-2"
 SLOT="0"
@@ -132,7 +132,7 @@ python_prepare() {
 		-e "s: ::g")\'
 
 	# Remove sage's package management system
-	epatch "${WORKDIR}"/patches/${PN}-5.10-package.patch
+	epatch "${WORKDIR}"/patches/${PN}-5.11-package.patch
 	rm sage/misc/package.py
 
 	# Remove sage's mercurial capabilities
@@ -147,7 +147,10 @@ python_prepare() {
 	fi
 
 	if use nauty; then
-		sed -i "s:if True:if False:" sage/graphs/graph_generators.py
+		sed -i "s:if True:if False:" \
+			sage/graphs/graph_generators.py \
+			sage/graphs/digraph_generators.py \
+			sage/graphs/hypergraph_generators.py
 	fi
 
 	############################################################################
