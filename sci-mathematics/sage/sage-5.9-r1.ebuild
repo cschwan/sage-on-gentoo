@@ -191,6 +191,9 @@ python_prepare() {
 	epatch "${FILESDIR}"/sage-5.9-env.patch
 	eprefixify sage/env.py
 
+	# support the use of pillow
+	sed -i "s:import Image:from PIL import Image:" sage/plot/plot3d/base.pyx
+
 	# fix library path of libsingular
 	sed -i "s:os.environ\['SAGE_LOCAL'\]+\"/lib:\"${EPREFIX}/usr/$(get_libdir):" \
 		sage/libs/singular/singular.pyx

@@ -250,6 +250,9 @@ src_prepare() {
 		
 	EOF
 
+	# support the use of pillow
+	sed -i "s:import Image:from PIL import Image:" sage/plot/plot3d/base.pyx
+
 	# getting rid of zodb for conway
 	epatch "${FILESDIR}"/trac12205.patch
 	rm sage/databases/db.py sage/databases/compressed_storage.py

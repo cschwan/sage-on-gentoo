@@ -234,6 +234,9 @@ src_prepare() {
 		
 	EOF
 
+	# support the use of pillow
+	sed -i "s:import Image:from PIL import Image:" sage/plot/plot3d/base.pyx
+
 	# run maxima with ecl
 	sed -i \
 		-e "s:maxima-noreadline:maxima -l ecl:g" \
