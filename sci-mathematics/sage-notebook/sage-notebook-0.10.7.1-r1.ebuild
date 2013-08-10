@@ -22,9 +22,9 @@ IUSE="+java server test"
 RESTRICT="mirror test"
 
 CDEPEND="~dev-python/pexpect-2.0[${PYTHON_USEDEP}]
-	>=dev-python/twisted-core-12.3.0
-	>=dev-python/twisted-mail-12.3.0
-	>=dev-python/twisted-web-12.3.0
+	>=dev-python/twisted-core-12.3.0[${PYTHON_USEDEP}]
+	>=dev-python/twisted-mail-12.3.0[${PYTHON_USEDEP}]
+	>=dev-python/twisted-web-12.3.0[${PYTHON_USEDEP}]
 	!dev-python/twisted-web2
 	>=dev-python/jinja-2.5.5[${PYTHON_USEDEP}]
 	>=dev-python/docutils-0.5[${PYTHON_USEDEP}]
@@ -89,4 +89,10 @@ src_install() {
 	fi
 
 	distutils-r1_src_install
+}
+
+pkg_postinst() {
+	einfo "If you experience the following error when starting a SSL secured notebook:"
+	einfo "  'You must install certtool to use the secure notebook server.'"
+	einfo "install net-libs/gnutls."
 }
