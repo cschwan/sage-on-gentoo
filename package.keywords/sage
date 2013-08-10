@@ -45,6 +45,8 @@ dev-tex/sage-latex
 dev-tex/tkz-berge
 dev-tex/tkz-graph
 media-gfx/tachyon
+net-zope/zope-fixers
+net-zope/zope-interface
 sci-libs/cddlib
 sci-libs/dsdp
 sci-libs/fflas-ffpack
