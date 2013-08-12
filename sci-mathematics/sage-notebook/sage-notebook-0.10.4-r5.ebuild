@@ -30,7 +30,7 @@ CDEPEND="~dev-python/pexpect-2.0[${PYTHON_USEDEP}]
 	>=dev-python/docutils-0.5[${PYTHON_USEDEP}]
 	>=dev-python/flask-autoindex-0.4.1[${PYTHON_USEDEP}]
 	>=dev-python/flask-openid-1.1.1[${PYTHON_USEDEP}]
-	>=dev-python/flask-babel-0.8[${PYTHON_USEDEP}]
+	<dev-python/flask-babel-0.9[${PYTHON_USEDEP}]
 	dev-python/webassets[${PYTHON_USEDEP}]"
 DEPEND="${CDEPEND}
 	test? ( sci-mathematics/sage[testsuite,${PYTHON_USEDEP}] )"

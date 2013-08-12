@@ -2,6 +2,11 @@
 # Copyright 1999-2013 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  12 Aug 2013; Christopher Schwan <cschwan@students.uni-mainz.de>
+  sage-notebook-0.10.2-r5.ebuild, sage-notebook-0.10.4-r5.ebuild,
+  sage-notebook-0.10.7.1-r1.ebuild:
+  Avoid >=flask-babel-0.9 because of API changes
+
   10 Aug 2013; Christopher Schwan <cschwan@students.uni-mainz.de>
   sage-notebook-0.10.4-r5.ebuild, sage-notebook-0.10.7.1-r1.ebuild:
   Update deps on twisted-* (python-r1) and add einfo for certtool
