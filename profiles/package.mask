@@ -1,12 +1,9 @@
-# preparing 5.11
->=sci-mathematics/sage-5.11_alpha0
->=sci-mathematics/sage-clib-5.11_alpha0
->=sci-mathematics/sage-baselayout-5.11_alpha0
->=sci-mathematics/sage-doc-5.11_alpha0
->=sci-mathematics/sage-extcode-5.11_alpha0
->=sci-libs/pynac-0.3.0
->=sci-mathematics/gap-4.6.3
->=sci-libs/libgap-4.6.3
+# preparing 5.12
+>=sci-mathematics/sage-5.12_alpha0
+>=sci-mathematics/sage-clib-5.12_alpha0
+>=sci-mathematics/sage-baselayout-5.12_alpha0
+>=sci-mathematics/sage-doc-5.12_alpha0
+>=sci-mathematics/sage-extcode-5.12_alpha0
 # building problems reported against latest fplll
 >=sci-libs/fplll-3.1.1
 # split gap is not ready for prime time.
