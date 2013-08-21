@@ -2,6 +2,12 @@
 # Copyright 1999-2013 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*sage-5.11 (21 Aug 2013)
+
+  21 Aug 2013; Christopher Schwan <cschwan@students.uni-mainz.de>
+  +sage-5.11.ebuild, -sage-5.11_rc0.ebuild:
+  Version bump
+
   08 Aug 2013; François Bissey <francois.bissey@canterbury.ac.nz>
   sage-5.10-r1.ebuild, sage-5.11_rc0.ebuild, sage-5.5-r8.ebuild,
   sage-5.6-r4.ebuild, sage-5.7-r5.ebuild, sage-5.8-r4.ebuild,
