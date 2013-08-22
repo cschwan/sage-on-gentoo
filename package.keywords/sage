@@ -22,7 +22,7 @@ dev-python/gdmodule
 ~dev-python/ipython-0.13.1
 dev-python/matplotlib
 dev-python/mpmath
-=dev-python/networkx-1.6
+~dev-python/networkx-1.6
 ~dev-python/numpy-1.7.0
 ~dev-python/pexpect-2.0
 dev-python/pycrypto
@@ -53,7 +53,7 @@ sci-libs/fflas-ffpack
 sci-mathematics/flint
 sci-libs/fplll
 ~sci-libs/givaro-3.7.1
-=sci-libs/gsl-1.15
+~sci-libs/gsl-1.15
 sci-libs/iml
 sci-libs/libcliquer
 sci-libs/libgap
