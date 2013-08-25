@@ -4,7 +4,7 @@
 
 EAPI="3"
 
-inherit eutils
+inherit eutils multilib
 
 DESCRIPTION="The Parma Polyhedra Library provides numerical abstractions for analysis of complex systems"
 HOMEPAGE="http://bugseng.com/products/ppl"
@@ -32,12 +32,13 @@ pkg_setup() {
 
 src_configure() {
 	econf \
-		--prefix="${EPREFIX}"/var/lib/sage \
-		--libdir="${EPREFIX}"/var/lib/sage/lib \
+		--libdir="${EPREFIX}"/usr/$(get_libdir)/ppl1 \
+		--includedir="${EPREFIX}"/usr/include/ppl1 \
 		--docdir="${EPREFIX}"/usr/share/doc/${PF} \
-		--datadir="${EPREFIX}"/var/lib/sage/share \
+		--datadir="${EPREFIX}"/usr/share/ppl1 \
 		--disable-debugging \
 		--disable-optimization \
+		--program-suffix=-1.0 \
 		$(use_enable doc documentation) \
 		$(use_enable lpsol ppl_lpsol) \
 		$(use_enable pch) \
