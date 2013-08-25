@@ -14,7 +14,7 @@ diff --git a/module_list.py b/module_list.py
                language="c++",
 -              depends = [SAGE_INC + "/ppl.hh"]),
 +              depends = [SAGE_INC + "ppl1/ppl.hh"],
-+              extra_link_args = ["-Wl,-rpath -Wl," + SAGE_LOCAL + "/lib/ppl1"] +
++              extra_link_args = ["-Wl,-rpath=" + SAGE_LOCAL + "/lib/ppl1"] +
 +                                ["-L" + SAGE_LOCAL + "/lib/ppl1"]),
  
      Extension('sage.libs.ratpoints',
@@ -25,7 +25,7 @@ diff --git a/module_list.py b/module_list.py
                include_dirs = [SAGE_INC, "sage/c_lib/include/"],
 -              libraries=["csage", "stdc++"]),
 +              libraries=["csage", "stdc++"],
-+              extra_link_args = ["-Wl,-rpath -Wl," + SAGE_LOCAL + "/lib/ppl1"] +
++              extra_link_args = ["-Wl,-rpath=" + SAGE_LOCAL + "/lib/ppl1"] +
 +                                ["-L" + SAGE_LOCAL + "/lib/ppl1"]),
  
      Extension("sage.numerical.backends.glpk_graph_backend",

@@ -4,6 +4,10 @@
 
   25 Aug 2013; François Bissey <francois.bissey@canterbury.ac.nz>
   files/sage-5.11-ppl1.patch:
+  More change for ppl
+
+  25 Aug 2013; François Bissey <francois.bissey@canterbury.ac.nz>
+  files/sage-5.11-ppl1.patch:
   link not compile...
 
 *sage-5.11-r1 (25 Aug 2013)
