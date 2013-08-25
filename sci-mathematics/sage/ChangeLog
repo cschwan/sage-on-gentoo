@@ -2,6 +2,12 @@
 # Copyright 1999-2013 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*sage-5.11-r1 (25 Aug 2013)
+
+  25 Aug 2013; François Bissey <francois.bissey@canterbury.ac.nz>
+  +files/sage-5.11-ppl1.patch, +sage-5.11-r1.ebuild:
+  Attempt at using sage-ppl in sage-5.11
+
 *sage-5.11 (21 Aug 2013)
 
   21 Aug 2013; Christopher Schwan <cschwan@students.uni-mainz.de>
