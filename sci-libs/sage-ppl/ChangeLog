@@ -1,0 +1,5 @@
+*sage-ppl-1.0 (25 Aug 2013)
+
+  25 Aug 2013; François Bissey <francois.bissey@canterbury.ac.nz> +metadata.xml,
+  +sage-ppl-1.0.ebuild:
+  Initial version of a separate ppl library for sage.
