@@ -1,35 +1,35 @@
 # HG changeset patch
 # User Francois Bissey <francois.bissey@canterbury.ac.nz>
-# Date 1377469220 -43200
-# Node ID 725e62a4e0c65a9c45c585fc0caa65adbcd8e9c2
+# Date 1377479624 -43200
+# Node ID f3fc7bf8f470182cdfd7cc068083e2deee03e953
 # Parent  8c4989a7e8d20a16ad1c464620ee616c4cde719a
 use sage-ppl
 
 diff --git a/module_list.py b/module_list.py
 --- a/module_list.py
 +++ b/module_list.py
-@@ -696,7 +696,9 @@
+@@ -694,9 +694,11 @@
+     
+     Extension('sage.libs.ppl',
                sources = ['sage/libs/ppl.pyx', 'sage/libs/ppl_shim.cc'],
++              runtime_library_dirs = [SAGE_LOCAL + "/lib/ppl1"],
++              library_dirs = [SAGE_LOCAL + "/lib/ppl1"],
                libraries = ['ppl', 'gmpxx', 'gmp', 'm'], 
                language="c++",
 -              depends = [SAGE_INC + "/ppl.hh"]),
-+              depends = [SAGE_INC + "ppl1/ppl.hh"],
-+              extra_link_args = ["-Wl,-rpath=" + SAGE_LOCAL + "/lib/ppl1"] +
-+                                ["-L" + SAGE_LOCAL + "/lib/ppl1"]),
++              depends = [SAGE_INC + "/ppl1/ppl.hh"]),
  
      Extension('sage.libs.ratpoints',
                sources = ["sage/libs/ratpoints.pyx"],
-@@ -1341,7 +1343,9 @@
+@@ -1341,6 +1343,8 @@
      Extension("sage.numerical.backends.ppl_backend",
                ["sage/numerical/backends/ppl_backend.pyx"],
                include_dirs = [SAGE_INC, "sage/c_lib/include/"],
--              libraries=["csage", "stdc++"]),
-+              libraries=["csage", "stdc++"],
-+              extra_link_args = ["-Wl,-rpath=" + SAGE_LOCAL + "/lib/ppl1"] +
-+                                ["-L" + SAGE_LOCAL + "/lib/ppl1"]),
++              runtime_library_dirs = [SAGE_LOCAL + "/lib/ppl1"],
++              library_dirs = [SAGE_LOCAL + "/lib/ppl1"],
+               libraries=["csage", "stdc++"]),
  
      Extension("sage.numerical.backends.glpk_graph_backend",
-               ["sage/numerical/backends/glpk_graph_backend.pyx"],
 diff --git a/sage/libs/ppl.pyx b/sage/libs/ppl.pyx
 --- a/sage/libs/ppl.pyx
 +++ b/sage/libs/ppl.pyx
