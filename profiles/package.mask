@@ -10,3 +10,6 @@
 =sci-mathematics/gap-4.5.7-r4
 # preparing ecm for removal. I only keep it in case it solves some OS X problems
 sci-mathematics/ecm
+# work inprogress do not use
+sci-libs/sage-ppl
+=sci-mathematics/sage-5.11-r1
