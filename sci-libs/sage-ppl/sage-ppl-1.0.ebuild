@@ -30,6 +30,10 @@ pkg_setup() {
 	fi
 }
 
+src_prepare() {
+	epatch "${FILESDIR}/ppl-fix-gmp-5.1.0.patch" || die "Failed to patch"
+}
+
 src_configure() {
 	econf \
 		--libdir="${EPREFIX}"/usr/$(get_libdir)/ppl1 \
