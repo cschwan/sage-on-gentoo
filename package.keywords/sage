@@ -1,6 +1,7 @@
 app-emacs/imaxima # 1.0-r3 is needed for >=maxima-5.29
 dev-java/asm:2
 dev-lang/R
+dev-libs/boost
 dev-libs/mpc
 dev-lisp/asdf
 dev-lisp/uiop
