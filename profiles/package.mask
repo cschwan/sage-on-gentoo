@@ -10,3 +10,4 @@
 =sci-mathematics/gap-4.5.7-r4
 # preparing ecm for removal. I only keep it in case it solves some OS X problems
 sci-mathematics/ecm
+=sci-mathematics/polybori-0.8.3-r1
