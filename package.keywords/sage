@@ -28,6 +28,7 @@ dev-python/mpmath
 dev-python/pycrypto
 dev-python/python-openid
 dev-python/pytz
+sys-libs/timezone-data
 dev-python/pyzmq
 dev-python/rpy
 dev-python/simplegeneric
