@@ -23,7 +23,7 @@ PY2_USEDEP=$(python_gen_usedep python2*)
 
 CDEPEND="dev-python/decorator[${PYTHON_USEDEP}]
 	dev-python/pexpect[${PY2_USEDEP}]
-	virtual/pyparsing[${PYTHON_USEDEP}]
+	dev-python/pyparsing[${PYTHON_USEDEP}]
 	dev-python/simplegeneric[${PYTHON_USEDEP}]
 	virtual/python-argparse[${PYTHON_USEDEP}]
 	emacs? ( app-emacs/python-mode virtual/emacs )

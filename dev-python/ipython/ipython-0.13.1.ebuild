@@ -25,7 +25,7 @@ IUSE="doc emacs examples matplotlib mongodb notebook octave
 
 CDEPEND="dev-python/decorator
 	dev-python/pexpect
-	virtual/pyparsing
+	dev-python/pyparsing
 	dev-python/simplegeneric
 	virtual/python-argparse
 	emacs? ( app-emacs/python-mode virtual/emacs )
