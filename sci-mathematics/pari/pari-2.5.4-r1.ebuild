@@ -128,7 +128,16 @@ src_test() {
 }
 
 src_install() {
-	default
+	if use qt4; then
+		emake DESTDIR="${D}" LD=$(tc-getCXX) install
+	else
+		emake DESTDIR="${D}" install
+	fi
+	local d
+	for d in README* ChangeLog AUTHORS NEWS TODO CHANGES THANKS BUGS \
+			FAQ CREDITS CHANGELOG ; do
+		[[ -s "${d}" ]] && dodoc "${d}"
+	done
 	dodoc MACHINES COMPAT
 	if use doc; then
 		# install gphelp and the pdf documentations manually.
