@@ -225,7 +225,7 @@ python_prepare() {
 	# remove the need for the external "testjava.sh" script
 	epatch "${FILESDIR}"/remove-testjavapath-to-python.patch
 	# finding JmolData.jar in the right place
-	sed -i "s:\"JmolData.jar:\"lib","JmolData.jar:" sage/interfaces/jmoldata.py
+	sed -i "s:\"jmol\", \"JmolData:\"jmol-applet\", \"JmolData:" sage/interfaces/jmoldata.py
 
 	# Make sage-inline-fortran useless by having better fortran settings
 	sed -i \
