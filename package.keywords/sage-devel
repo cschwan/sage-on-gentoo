@@ -23,6 +23,7 @@ dev-python/mpmath
 ~dev-python/numpy-1.7.0
 ~dev-python/pexpect-2.0
 dev-python/pycrypto
+~dev-python/pyparsing-2.0.1
 ~dev-python/pytz-2012j
 dev-python/pyzmq
 dev-python/rpy
