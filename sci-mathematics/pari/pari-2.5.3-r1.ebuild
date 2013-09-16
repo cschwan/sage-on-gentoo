@@ -102,13 +102,15 @@ src_compile() {
 		mymake=DLLD\="${EPREFIX}"/usr/bin/gcc\ DLLDFLAGS\=-shared\ -Wl,-soname=\$\(LIBPARI_SONAME\)\ -lm
 	fi
 
+	mycxxmake=LD\=$(tc-getCXX)
+
 	local installdir=$(get_compile_dir)
 	cd "${installdir}" || die "failed to change directory"
 	# upstream set -fno-strict-aliasing.
 	# aliasing is a known issue on amd64, work on x86 by sheer luck
 	emake ${mymake} \
 		CFLAGS="${CFLAGS} -fno-strict-aliasing -DGCC_INLINE -fPIC" lib-dyn
-	emake ${mymake} \
+	emake ${mymake} ${mycxxmake} \
 		CFLAGS="${CFLAGS} -DGCC_INLINE" gp ../gp
 
 	if use doc; then
@@ -123,7 +125,7 @@ src_test() {
 }
 
 src_install() {
-	default
+	emake ${mymake} ${mycxxmake} DESTDIR="${D}" install
 	dodoc MACHINES COMPAT
 	if use doc; then
 		# install gphelp and the pdf documentations manually.
