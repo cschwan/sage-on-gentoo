@@ -5,7 +5,7 @@
 >=sci-mathematics/sage-doc-5.12_alpha0
 >=sci-mathematics/sage-extcode-5.12_alpha0
 ~dev-python/sympy-0.7.3
->=dev-python-0.13.2
+>=dev-python/ipython-0.13.2
 # building problems reported against latest fplll
 >=sci-libs/fplll-3.1.1
 # split gap is not ready for prime time.
