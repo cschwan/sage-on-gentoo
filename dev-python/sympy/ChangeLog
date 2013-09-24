@@ -2,6 +2,13 @@
 # Copyright 1999-2013 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*sympy-0.7.3 (24 Sep 2013)
+
+  24 Sep 2013; François Bissey <francois.bissey@canterbury.ac.nz>
+  +files/sympy-0.7.3-mpmathtest.patch, +sympy-0.7.3.ebuild:
+  Bump sympy to 0.7.3 - this release uses internal mpmath as it is several
+  commit ahead of mpmath 0.17
+
   19 Jun 2013; François Bissey <francois.bissey@canterbury.ac.nz>
   sympy-0.7.2-r3.ebuild:
   More aligne,ent with main tree. python 3.2 will have to be further checked for
