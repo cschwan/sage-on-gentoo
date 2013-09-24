@@ -2,6 +2,12 @@
 # Copyright 1999-2013 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*sage-5.12_beta5 (24 Sep 2013)
+
+  24 Sep 2013; François Bissey <francois.bissey@canterbury.ac.nz>
+  +files/sage-5.12-fix-r-doctest.patch, +sage-5.12_beta5.ebuild:
+  5.12 beta5: sage
+
 *sage-5.11-r2 (15 Sep 2013)
 
   15 Sep 2013; François Bissey <francois.bissey@canterbury.ac.nz>

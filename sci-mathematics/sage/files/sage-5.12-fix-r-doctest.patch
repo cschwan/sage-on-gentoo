@@ -1,0 +1,28 @@
+# HG changeset patch
+# User Francois Bissey <francois.bissey@canterbury.ac.nz>
+# Date 1379987346 -43200
+# Node ID 24fdffa761104b87e1a381e4f2cfc60da1a41b0d
+# Parent  887986a93a008399a3d44f5d523885c5569e36d8
+making R doctest version independent for sage-on-gentoo
+
+diff --git a/sage/interfaces/r.py b/sage/interfaces/r.py
+--- a/sage/interfaces/r.py
++++ b/sage/interfaces/r.py
+@@ -553,7 +553,7 @@
+         EXAMPLES::
+ 
+             sage: r.version()
+-            ((2, 15, 2), 'R version 2.15.2 (2012-10-26)')
++            ((..., ..., ...), 'R version ... (...)')
+         """
+         major_re = re.compile('^major\s*(\d.*?)$', re.M)
+         minor_re = re.compile('^minor\s*(\d.*?)$', re.M)
+@@ -2047,7 +2047,7 @@
+     EXAMPLES::
+ 
+         sage: r_version()
+-        ((2, 15, 2), 'R version 2.15.2 (2012-10-26)')
++        ((..., ..., ...), 'R version ... (...)')
+     """
+     return r.version()
+ 
