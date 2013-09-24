@@ -2,6 +2,17 @@
 # Copyright 1999-2013 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*sage-5.10-r2 (24 Sep 2013)
+*sage-5.11-r3 (24 Sep 2013)
+*sage-5.9-r2 (24 Sep 2013)
+
+  24 Sep 2013; François Bissey <francois.bissey@canterbury.ac.nz>
+  +sage-5.10-r2.ebuild, +sage-5.11-r3.ebuild, +sage-5.9-r2.ebuild,
+  -sage-5.10-r1.ebuild, -sage-5.11-r2.ebuild, -sage-5.11.ebuild,
+  -sage-5.9-r1.ebuild, sage-5.12_beta5.ebuild:
+  All sage since 5.9 should be using sage-latex 2.3.4 not 2.3.3_p2. Remove one
+  old ebuild.
+
   24 Sep 2013; François Bissey <francois.bissey@canterbury.ac.nz>
   sage-5.12_beta5.ebuild:
   matroids merged in 5.12 so removing support for external version.

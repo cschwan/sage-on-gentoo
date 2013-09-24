@@ -17,7 +17,7 @@ MY_P="sage-$(replace_version_separator 2 '.')"
 DESCRIPTION="Math software for algebra, geometry, number theory, cryptography and numerical computation"
 HOMEPAGE="http://www.sagemath.org"
 SRC_URI="mirror://sagemath/${MY_P}.spkg -> ${P}.tar.bz2
-	mirror://sagemath/patches/${PN}-5.11-neutering.tar.bz2"
+	mirror://sagemath/patches/${PN}-5.10-neutering-r3.tar.bz2"
 
 LICENSE="GPL-2"
 SLOT="0"
@@ -30,24 +30,24 @@ CDEPEND="dev-libs/gmp
 	>=dev-libs/mpfr-3.1.0
 	>=dev-libs/mpc-1.0
 	>=dev-libs/ntl-5.5.2
-	>=sci-libs/sage-ppl-1.0
+	>=dev-libs/ppl-0.11.2
 	>=dev-lisp/ecls-12.12.1-r5
 	>=dev-python/numpy-1.7.0[${PYTHON_USEDEP}]
 	~dev-python/cython-0.19.1[${PYTHON_USEDEP}]
 	~sci-mathematics/eclib-20120830
 	>=sci-mathematics/gmp-ecm-6.4.4[-openmp]
 	>=sci-mathematics/flint-2.3
-	~sci-libs/fplll-4.0.4
+	~sci-libs/fplll-3.0.12
 	~sci-libs/givaro-3.7.1
 	>=sci-libs/gsl-1.15
 	>=sci-libs/iml-1.0.1
 	>=sci-libs/libcliquer-1.21_p0
-	>=sci-libs/libgap-4.6.4
+	>=sci-libs/libgap-4.5.7
 	~sci-libs/linbox-1.3.2[sage]
 	~sci-libs/m4ri-20130416
 	~sci-libs/m4rie-20130416
 	>=sci-libs/mpfi-1.5.1
-	>=sci-libs/pynac-0.3.0[${PYTHON_USEDEP}]
+	>=sci-libs/pynac-0.2.6[${PYTHON_USEDEP}]
 	>=sci-libs/symmetrica-2.0
 	>=sci-libs/zn_poly-0.9
 	>=sci-mathematics/glpk-4.44
@@ -70,7 +70,7 @@ DEPEND="${CDEPEND}
 
 RDEPEND="${CDEPEND}
 	>=dev-lang/R-2.14.0
-	>=dev-python/cvxopt-1.1.6[glpk,${PYTHON_USEDEP}]
+	>=dev-python/cvxopt-1.1.5[glpk,${PYTHON_USEDEP}]
 	>=dev-python/gdmodule-0.56-r2[png]
 	~dev-python/ipython-0.13.1[${PYTHON_USEDEP}]
 	>=dev-python/jinja-2.5.5[${PYTHON_USEDEP}]
@@ -87,7 +87,7 @@ RDEPEND="${CDEPEND}
 	>=sci-libs/cddlib-094f-r2
 	>=sci-libs/scipy-0.11.0[${PYTHON_USEDEP}]
 	>=sci-mathematics/flintqs-20070817_p8
-	>=sci-mathematics/gap-4.6.4
+	>=sci-mathematics/gap-4.5.7
 	>=sci-mathematics/genus2reduction-0.3_p8-r1
 	~sci-mathematics/gfan-0.5
 	>=sci-mathematics/cu2-20060223
@@ -107,7 +107,7 @@ RDEPEND="${CDEPEND}
 	!prefix? ( >=sys-libs/glibc-2.13-r4 )
 	testsuite? ( >=sci-mathematics/sage-doc-${PV}[html] )
 	latex? (
-		~dev-tex/sage-latex-2.3.3_p2
+		~dev-tex/sage-latex-2.3.4
 		|| ( app-text/dvipng[truetype] media-gfx/imagemagick[png] )
 	)
 	lrs? ( sci-libs/lrslib )
@@ -132,7 +132,7 @@ python_prepare() {
 		-e "s: ::g")\'
 
 	# Remove sage's package management system
-	epatch "${WORKDIR}"/patches/${PN}-5.11-package.patch
+	epatch "${WORKDIR}"/patches/${PN}-5.10-package.patch
 	rm sage/misc/package.py
 
 	# Remove sage's mercurial capabilities
@@ -172,10 +172,6 @@ python_prepare() {
 	sed -i "s:SAGE_LOCAL + '/lib/python/site-packages/numpy/core/include:'$(python_get_sitedir)/numpy/core/include:g" \
 		module_list.py
 
-	# use sage-ppl
-	epatch "${FILESDIR}"/${PN}-5.11-ppl1.patch
-	sed -i "s:lib/ppl1:$(get_libdir)/ppl1:" module_list.py
-
 	# fix lcalc path
 	sed -i "s:SAGE_INC + \"/libLfunction:SAGE_INC + \"/Lfunction:g" module_list.py
 
@@ -190,6 +186,9 @@ python_prepare() {
 	# We add -DNDEBUG to objects linking to givaro. It solves problems with linbox and singular.
 	sed -i "s:-D__STDC_LIMIT_MACROS:-D__STDC_LIMIT_MACROS', '-DNDEBUG:g" \
 		module_list.py
+
+	# flint patch resurected
+	epatch "${FILESDIR}"/trac_14656.patch
 
 	############################################################################
 	# Fixes to Sage itself
@@ -224,8 +223,6 @@ python_prepare() {
 
 	# remove the need for the external "testjava.sh" script
 	epatch "${FILESDIR}"/remove-testjavapath-to-python.patch
-	# finding JmolData.jar in the right place
-	sed -i "s:\"jmol\", \"JmolData:\"jmol-applet\", \"JmolData:" sage/interfaces/jmoldata.py
 
 	# Make sage-inline-fortran useless by having better fortran settings
 	sed -i \

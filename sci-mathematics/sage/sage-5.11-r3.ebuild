@@ -30,7 +30,7 @@ CDEPEND="dev-libs/gmp
 	>=dev-libs/mpfr-3.1.0
 	>=dev-libs/mpc-1.0
 	>=dev-libs/ntl-5.5.2
-	>=dev-libs/ppl-0.11.2
+	>=sci-libs/sage-ppl-1.0
 	>=dev-lisp/ecls-12.12.1-r5
 	>=dev-python/numpy-1.7.0[${PYTHON_USEDEP}]
 	~dev-python/cython-0.19.1[${PYTHON_USEDEP}]
@@ -107,7 +107,7 @@ RDEPEND="${CDEPEND}
 	!prefix? ( >=sys-libs/glibc-2.13-r4 )
 	testsuite? ( >=sci-mathematics/sage-doc-${PV}[html] )
 	latex? (
-		~dev-tex/sage-latex-2.3.3_p2
+		~dev-tex/sage-latex-2.3.4
 		|| ( app-text/dvipng[truetype] media-gfx/imagemagick[png] )
 	)
 	lrs? ( sci-libs/lrslib )
@@ -172,6 +172,10 @@ python_prepare() {
 	sed -i "s:SAGE_LOCAL + '/lib/python/site-packages/numpy/core/include:'$(python_get_sitedir)/numpy/core/include:g" \
 		module_list.py
 
+	# use sage-ppl
+	epatch "${FILESDIR}"/${PN}-5.11-ppl1.patch
+	sed -i "s:lib/ppl1:$(get_libdir)/ppl1:" module_list.py
+
 	# fix lcalc path
 	sed -i "s:SAGE_INC + \"/libLfunction:SAGE_INC + \"/Lfunction:g" module_list.py
 
@@ -220,6 +224,8 @@ python_prepare() {
 
 	# remove the need for the external "testjava.sh" script
 	epatch "${FILESDIR}"/remove-testjavapath-to-python.patch
+	# finding JmolData.jar in the right place
+	sed -i "s:\"jmol\", \"JmolData:\"jmol-applet\", \"JmolData:" sage/interfaces/jmoldata.py
 
 	# Make sage-inline-fortran useless by having better fortran settings
 	sed -i \

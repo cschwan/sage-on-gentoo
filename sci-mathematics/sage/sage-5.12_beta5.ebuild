@@ -108,7 +108,7 @@ RDEPEND="${CDEPEND}
 	!prefix? ( >=sys-libs/glibc-2.13-r4 )
 	testsuite? ( >=sci-mathematics/sage-doc-${PV}[html] )
 	latex? (
-		~dev-tex/sage-latex-2.3.3_p2
+		~dev-tex/sage-latex-2.3.4
 		|| ( app-text/dvipng[truetype] media-gfx/imagemagick[png] )
 	)
 	lrs? ( sci-libs/lrslib )
