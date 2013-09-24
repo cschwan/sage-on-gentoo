@@ -2,6 +2,10 @@
 # Copyright 1999-2013 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  24 Sep 2013; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-5.12_beta5.ebuild:
+  matroids merged in 5.12 so removing support for external version.
+
 *sage-5.12_beta5 (24 Sep 2013)
 
   24 Sep 2013; François Bissey <francois.bissey@canterbury.ac.nz>

@@ -63,7 +63,8 @@ CDEPEND="dev-libs/gmp
 	media-libs/libpng:0=
 	>=sys-libs/readline-6.2
 	sys-libs/zlib
-	virtual/cblas"
+	virtual/cblas
+	!sci-mathematics/sage-matroids"
 
 DEPEND="${CDEPEND}
 	!dev-python/gmpy"
@@ -249,9 +250,6 @@ python_prepare() {
 	# Get gprc.expect from the right place
 	sed -i "s:SAGE_LOCAL, 'etc', 'gprc.expect':'${EPREFIX}/etc','gprc.expect':" \
 		sage/interfaces/gp.py
-
-	# allow sage-matroids to be used if installed
-	epatch "${FILESDIR}"/${PN}-matroids.patch
 
 	############################################################################
 	# Fixes to doctests
