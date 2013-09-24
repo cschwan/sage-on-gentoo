@@ -16,11 +16,11 @@ dev-python/flask-babel
 dev-python/flask-openid
 dev-python/flask-silk
 dev-python/gdmodule
-~dev-python/ipython-0.13.1
+~dev-python/ipython-0.13.2
 dev-python/mpmath
 ~dev-python/matplotlib-1.2.1
 =dev-python/networkx-1.6
-~dev-python/numpy-1.7.0
+dev-python/numpy
 ~dev-python/pexpect-2.0
 dev-python/pycrypto
 ~dev-python/pyparsing-2.0.1
@@ -31,7 +31,7 @@ dev-python/simplegeneric
 ~dev-python/six-1.3.0
 dev-python/speaklater
 dev-python/sqlalchemy
-~dev-python/sympy-0.7.2
+~dev-python/sympy-0.7.3
 dev-python/twisted-names
 dev-python/twisted
 dev-python/twisted-mail
