@@ -213,8 +213,9 @@ python_prepare() {
 		sage/interfaces/maxima.py \
 		sage/interfaces/maxima_abstract.py
 
-	# speaking ecl - patching so we can allow ecl with unicode
-	epatch "${FILESDIR}"/trac12985-unicode.patch
+	# speaking of ecl - patching so we can allow ecl with unicode.
+	epatch "${FILESDIR}"/trac_14636_1.patch
+	epatch "${FILESDIR}"/trac_14636_2.patch
 
 	# TODO: should be a patch
 	# Uses singular internal copy of the factory header

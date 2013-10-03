@@ -1,0 +1,31 @@
+# HG changeset patch
+# User Julien Puydt <julien.puydt@laposte.net>
+# Date 1369677985 -7200
+# Node ID a3f4064a1f3b5078311ad92d567b352d9a90166c
+# Parent  b51043f3dc7f8461e2c1cddee19c902fe4129ea0
+Disable SIGCHLD in ECL, part of #14636
+
+diff --git a/sage/libs/ecl.pxd b/sage/libs/ecl.pxd
+--- a/sage/libs/ecl.pxd
++++ b/sage/libs/ecl.pxd
+@@ -39,6 +39,7 @@
+         ECL_OPT_TRAP_SIGILL,
+         ECL_OPT_TRAP_SIGBUS,
+         ECL_OPT_TRAP_SIGPIPE,
++        ECL_OPT_TRAP_SIGCHLD,
+         ECL_OPT_TRAP_INTERRUPT_SIGNAL,
+         ECL_OPT_SIGNAL_HANDLING_THREAD,
+         ECL_OPT_SIGNAL_QUEUE_SIZE,
+diff --git a/sage/libs/ecl.pyx b/sage/libs/ecl.pyx
+--- a/sage/libs/ecl.pyx
++++ b/sage/libs/ecl.pyx
+@@ -156,6 +156,9 @@
+     if ecl_has_booted:
+         raise RuntimeError, "ECL is already initialized"
+ 
++    # we need it to stop handling SIGCHLD
++    ecl_set_option(ECL_OPT_TRAP_SIGCHLD,0);
++
+     #we keep our own GMP memory functions. ECL should not claim them
+     ecl_set_option(ECL_OPT_SET_GMP_MEMORY_FUNCTIONS,0);
+ 
