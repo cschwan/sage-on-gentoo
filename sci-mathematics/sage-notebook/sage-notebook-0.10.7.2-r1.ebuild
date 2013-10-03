@@ -57,8 +57,7 @@ src_prepare() {
 	rm -rf sagenb/data/sage3d || die "failed to remove sage3d"
 
 	# find jmol
-	sed -i "s:\"local\",\"share\",\"jmol\":\"share\",\"jmol-applet\":" \
-		flask_version/base.py
+	epatch "${FILESDIR}"/${PN}-0.10.7.2-base.patch
 	sed -i "s:jmol/appletweb/Jmol.js:jmol/Jmol.js:g" \
 		sagenb/data/sage/html/notebook/base.html
 

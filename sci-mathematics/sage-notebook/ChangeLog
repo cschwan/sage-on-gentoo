@@ -2,6 +2,14 @@
 # Copyright 1999-2013 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*sage-notebook-0.10.7.2-r1 (03 Oct 2013)
+
+  03 Oct 2013; François Bissey <francois.bissey@canterbury.ac.nz>
+  +files/sage-notebook-0.10.7.2-base.patch, +sage-notebook-0.10.7.2-r1.ebuild,
+  -sage-notebook-0.10.7.2.ebuild:
+  bump to 0.10.7.2-r1 to include a clean patch for location of the jmol-apllet.
+  Thx Steve for pointing out the problems with sed.
+
 *sage-notebook-0.10.7.2 (18 Sep 2013)
 
   18 Sep 2013; François Bissey <francois.bissey@canterbury.ac.nz>
