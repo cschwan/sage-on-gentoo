@@ -1,0 +1,7 @@
+*sage-pexpect-2.0 (03 Oct 2013)
+
+  03 Oct 2013; François Bissey <francois.bissey@canterbury.ac.nz>
+  +files/pexpect-2.0-env.patch, +files/pexpect-2.0-fix-misc-bugs.patch,
+  +files/sage-pexpect-setup.patch, +metadata.xml, +sage-pexpect-2.0.ebuild:
+  creating sage-pexpect: a pexpect slot just for sage. Tweaks welcome before I
+  migrate sage/sagnb to it.
