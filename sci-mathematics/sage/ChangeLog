@@ -2,6 +2,10 @@
 # Copyright 1999-2013 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  04 Oct 2013; François Bissey <francois.bissey@canterbury.ac.nz>
+  -sage-5.5-r8.ebuild:
+  5.5 not mirrored anymore removing
+
   03 Oct 2013; François Bissey <francois.bissey@canterbury.ac.nz>
   +files/trac_14636_1.patch, +files/trac_14636_2.patch, sage-5.12_beta5.ebuild:
   update the ecl+unicode patch in 5.12
