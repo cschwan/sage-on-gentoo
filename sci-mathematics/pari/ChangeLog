@@ -2,6 +2,13 @@
 # Copyright 1999-2013 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/sci-mathematics/pari/ChangeLog,v 1.87 2012/03/06 17:06:06 bicatali Exp $
 
+*pari-2.5.5 (08 Oct 2013)
+
+  08 Oct 2013; François Bissey <francois.bissey@canterbury.ac.nz>
+  +files/pari-2.5.4-slow_determinant.patch, +files/pari-2.5.5-polred.patch,
+  +pari-2.5.5.ebuild:
+  pari bump to appear in 5.13 - probably safe to move from 2.5.4
+
   16 Sep 2013; François Bissey <francois.bissey@canterbury.ac.nz>
   -files/pari-2.5.4-polred.patch, -pari-2.5.4-r1.ebuild, -pari-2.5.4.ebuild,
   pari-2.5.3-r1.ebuild, pari-2.5.3-r2.ebuild:
