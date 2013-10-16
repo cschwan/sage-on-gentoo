@@ -2,6 +2,12 @@
 # Copyright 1999-2013 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*sage-baselayout-5.12 (16 Oct 2013)
+
+  16 Oct 2013; Christopher Schwan <cschwan@students.uni-mainz.de>
+  +sage-baselayout-5.12.ebuild, -sage-baselayout-5.12_beta5.ebuild:
+  Version bump
+
   04 Oct 2013; François Bissey <francois.bissey@canterbury.ac.nz>
   -files/sage-baselayout-5.4-gentooify-startup-script-2.patch.bz2,
   -sage-baselayout-5.5.ebuild:
