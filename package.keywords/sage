@@ -20,6 +20,7 @@ dev-python/flask-openid
 dev-python/flask-silk
 dev-python/gdmodule
 ~dev-python/ipython-0.13.1
+~dev-python/ipython-0.13.2
 dev-python/matplotlib
 dev-python/mpmath
 ~dev-python/networkx-1.6
@@ -37,6 +38,7 @@ dev-python/six
 dev-python/speaklater
 dev-python/sqlalchemy
 ~dev-python/sympy-0.7.2
+~dev-python/sympy-0.7.3
 dev-python/twisted-names
 dev-python/twisted-core
 dev-python/twisted-mail
