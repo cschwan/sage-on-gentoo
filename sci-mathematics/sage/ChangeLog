@@ -6,6 +6,12 @@
   sage-5.12.ebuild:
   Depend on gdmodule and networkx with python deps
 
+  19 Nov 2013; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-5.10-r2.ebuild, sage-5.11-r3.ebuild, sage-5.12.ebuild,
+  sage-5.6-r4.ebuild, sage-5.7-r5.ebuild, sage-5.8-r4.ebuild,
+  sage-5.9-r2.ebuild:
+  For issue #260 pin down gap/libgap versions used by sage.
+
 *sage-5.12 (16 Oct 2013)
 
   16 Oct 2013; Christopher Schwan <cschwan@students.uni-mainz.de>
