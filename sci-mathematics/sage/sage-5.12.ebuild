@@ -72,12 +72,12 @@ DEPEND="${CDEPEND}
 RDEPEND="${CDEPEND}
 	>=dev-lang/R-2.14.0
 	>=dev-python/cvxopt-1.1.6[glpk,${PYTHON_USEDEP}]
-	>=dev-python/gdmodule-0.56-r2[png]
+	>=dev-python/gdmodule-0.56-r2[png,${PYTHON_USEDEP}]
 	~dev-python/ipython-0.13.2[${PYTHON_USEDEP}]
 	>=dev-python/jinja-2.5.5[${PYTHON_USEDEP}]
 	>=dev-python/matplotlib-1.2.1[${PYTHON_USEDEP}]
 	>=dev-python/mpmath-0.17[${PYTHON_USEDEP}]
-	~dev-python/networkx-1.6
+	~dev-python/networkx-1.6[${PYTHON_USEDEP}]
 	~dev-python/pexpect-2.0[${PYTHON_USEDEP}]
 	>=dev-python/pycrypto-2.1.0[${PYTHON_USEDEP}]
 	>=dev-python/rpy-2.0.8[${PYTHON_USEDEP}]
