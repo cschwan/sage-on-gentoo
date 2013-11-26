@@ -19,7 +19,7 @@ IUSE="doc lpsol pch static-libs test"
 S="${WORKDIR}/${MY_P}"
 
 RDEPEND=">=dev-libs/gmp-4.1.3[cxx]
-	lpsol? ( <=sci-mathematics/glpk-4.48 )"
+	lpsol? ( sci-mathematics/glpk )"
 DEPEND="${RDEPEND}
 	sys-devel/m4"
 
@@ -28,10 +28,6 @@ pkg_setup() {
 		ewarn "The PPL testsuite will be run."
 		ewarn "Note that this can take several hours to complete on a fast machine."
 	fi
-}
-
-src_prepare() {
-	epatch "${FILESDIR}/ppl-fix-gmp-5.1.0.patch" || die "Failed to patch"
 }
 
 src_configure() {

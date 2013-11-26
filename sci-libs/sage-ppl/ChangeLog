@@ -1,3 +1,9 @@
+*sage-ppl-1.1 (26 Nov 2013)
+
+  26 Nov 2013; François Bissey <francois.bissey@canterbury.ac.nz>
+  +sage-ppl-1.1.ebuild, sage-ppl-1.0.ebuild:
+  bump sage-ppl. Hopefully solving gmp-5.1.x problems
+
   27 Aug 2013; François Bissey <francois.bissey@canterbury.ac.nz>
   +files/ppl-fix-gmp-5.1.0.patch, sage-ppl-1.0.ebuild:
   Make sage-ppl build with gmp-5.1.0+
