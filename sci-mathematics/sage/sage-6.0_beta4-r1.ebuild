@@ -292,6 +292,16 @@ python_configure() {
 python_install_all() {
 	distutils-r1_python_install_all
 
+	# install sources needed for testing/compiling of cython/spyx files
+	find sage ! \( -name "*.py" -o -name "*.pyx" -o -name "*.pxd" -o \
+		-name "*.pxi" -o -name "*.h" \
+		-o -name "*matrix_rational_dense_linbox.cpp" \
+		-o -name "*wrap.cc" \
+		-o -name "*.rst" \) -type f -delete \
+		|| die "failed to remove non-testable sources"
+
+	insinto /usr/share/sage/src
+	doins -r sage
 	if use debug; then
 		cd build
 		doins -r cython_debug
