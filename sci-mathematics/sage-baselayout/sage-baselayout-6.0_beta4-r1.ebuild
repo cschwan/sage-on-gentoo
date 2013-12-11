@@ -41,7 +41,7 @@ EXTSRC="${WORKDIR}/${MY_P}/src/ext"
 # TODO: scripts into /usr/libexec ?
 src_prepare() {
 	# ship our own version of sage-env
-	cp "${FILESDIR}"/proto.sage-env "${S}"/sage-env
+	cp "${FILESDIR}"/proto.sage-env-6.0 "${S}"/sage-env
 	eprefixify sage-env
 
 	# make .desktop file
