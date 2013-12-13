@@ -2,6 +2,13 @@
 # Copyright 1999-2013 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*sage-doc-6.0_beta4-r2 (13 Dec 2013)
+
+  13 Dec 2013; François Bissey <francois.bissey@canterbury.ac.nz>
+  +files/sage-doc-6.0-misc.patch, +sage-doc-6.0_beta4-r2.ebuild,
+  -sage-doc-6.0_beta4-r1.ebuild:
+  Allow installation of html/pdf in 6.0_beta4. Still lots of breakages.
+
 *sage-doc-6.0_beta4-r1 (11 Dec 2013)
 
   11 Dec 2013; François Bissey <francois.bissey@canterbury.ac.nz>
