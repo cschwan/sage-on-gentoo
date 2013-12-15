@@ -4,6 +4,10 @@
 
   15 Dec 2013; François Bissey <francois.bissey@canterbury.ac.nz>
   sage-5.11-r3.ebuild, sage-5.12.ebuild, sage-6.0_beta4-r3.ebuild:
+  revert gap/gap-lite dependencies
+
+  15 Dec 2013; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-5.11-r3.ebuild, sage-5.12.ebuild, sage-6.0_beta4-r3.ebuild:
   sage can use gap or gap-lite
 
 *sage-6.0_beta4-r3 (15 Dec 2013)
