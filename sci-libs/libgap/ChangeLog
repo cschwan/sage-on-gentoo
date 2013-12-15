@@ -1,5 +1,9 @@
   15 Dec 2013; François Bissey <francois.bissey@canterbury.ac.nz>
   libgap-4.6.4_p0.ebuild:
+  Revert gap/gap-lite stuff
+
+  15 Dec 2013; François Bissey <francois.bissey@canterbury.ac.nz>
+  libgap-4.6.4_p0.ebuild:
   libgap can use either gap or gap-lite
 
 *libgap-4.6.4_p0 (03 Jul 2013)
