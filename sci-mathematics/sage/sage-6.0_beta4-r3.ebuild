@@ -212,7 +212,7 @@ python_prepare() {
 
 	# speaking of ecl - patching so we can allow ecl with unicode.
 	epatch "${FILESDIR}"/trac_14636_1.patch
-	#epatch "${FILESDIR}"/trac_14636_2.patch
+	epatch "${FILESDIR}"/trac_14636_2b.patch
 
 	# TODO: should be a patch
 	# Uses singular internal copy of the factory header
