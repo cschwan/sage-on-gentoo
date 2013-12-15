@@ -20,7 +20,7 @@ IUSE="static-libs"
 RESTRICT="test"
 
 DEPEND=">=dev-libs/gmp-5.0.2
-	~sci-mathematics/gap-${GAP_PV}"
+	|| ( ~sci-mathematics/gap-${GAP_PV} ~sci-mathematics/gap-lite-${GAP_PV} )"
 RDEPEND="${DEPEND}"
 
 S="${WORKDIR}/${MY_P}"/src
