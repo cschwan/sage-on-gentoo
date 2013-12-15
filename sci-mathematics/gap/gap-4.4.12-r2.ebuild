@@ -1,4 +1,4 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
@@ -22,8 +22,9 @@ IUSE="emacs vim-syntax"
 
 RESTRICT="mirror"
 
-DEPEND=""
-RDEPEND="emacs? ( virtual/emacs )
+DEPEND="!sci-mathematics/gap-lite"
+RDEPEND="${DEPEND}
+	emacs? ( virtual/emacs )
 	vim-syntax? ( || ( app-editors/vim app-editors/gvim ) )"
 
 S="${WORKDIR}/${PN}${PV1}"
