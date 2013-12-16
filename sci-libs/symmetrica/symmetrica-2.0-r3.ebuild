@@ -4,7 +4,7 @@
 
 EAPI="4"
 
-inherit eutils multilib toolchain-funcs versionator
+inherit eutils base multilib toolchain-funcs versionator
 
 MY_P="SYM$(replace_all_version_separators '_')"
 
@@ -27,7 +27,15 @@ S="${WORKDIR}"
 
 DOCS=( README )
 
+PATCHES=(
+	"${FILESDIR}/${P}"-banner.patch
+	"${FILESDIR}/${P}"-freeing_errors.patch
+	"${FILESDIR}/${P}"-function_names.patch
+	"${FILESDIR}/${P}"-integersize.patch
+	)
+
 src_prepare() {
+	default
 	# symmetrica by itself is just a bunch of files and a few headers plus
 	# documentation that you can use as you wish in your programs. For sage and
 	# ease of use we make it into a library with the following makefile
@@ -39,13 +47,6 @@ src_prepare() {
 		cp "${FILESDIR}"/makefile "${S}"/makefile \
 			|| die "faile to copy makefile"
 	fi
-
-	# fix macros.h - does not include def.h which results in INT not defined
-	epatch "${FILESDIR}"/${P}-fix-missing-typedef.patch
-
-	# do not display symmetrica's banner
-	sed -i "s:INT no_banner = FALSE:INT no_banner = TRUE:g" de.c \
-		|| die "failed to patch banner away"
 
 	# do not install static library
 	sed -i "s:libsymmetrica\.a ::" makefile \
