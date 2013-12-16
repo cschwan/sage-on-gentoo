@@ -2,6 +2,12 @@
 # Copyright 1999-2013 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*sage-baselayout-6.0_beta4-r3 (16 Dec 2013)
+
+  16 Dec 2013; François Bissey <francois.bissey@canterbury.ac.nz>
+  +sage-baselayout-6.0_beta4-r3.ebuild, -sage-baselayout-6.0_beta4-r2.ebuild:
+  create 2 extra expected directories under extcode
+
 *sage-baselayout-6.0_beta4-r2 (12 Dec 2013)
 
   12 Dec 2013; François Bissey <francois.bissey@canterbury.ac.nz>

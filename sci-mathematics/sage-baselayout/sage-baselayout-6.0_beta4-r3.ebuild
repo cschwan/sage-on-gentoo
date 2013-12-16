@@ -88,6 +88,10 @@ src_prepare() {
 	# remove developer- and unsupported options
 	epatch "${WORKDIR}"/sage-exec-6.0.patch
 	eprefixify sage
+
+	# create expected folders under extcode
+	mkdir -p "${EXTSRC}"/sage
+	mkdir -p "${EXTSRC}"/genus2reduction
 }
 
 src_install() {
