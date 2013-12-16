@@ -303,8 +303,12 @@ python_install_all() {
 	insinto /usr/share/sage/src
 	doins -r sage
 	if use debug; then
-		cd build
+		pushd build
 		doins -r cython_debug
+		popd
+	fi
+	if use testsuite; then
+		doins -r doc
 	fi
 }
 
