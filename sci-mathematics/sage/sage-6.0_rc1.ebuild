@@ -138,6 +138,7 @@ python_prepare() {
 
 	# Remove sage's git capabilities
 	epatch "${WORKDIR}"/patches/${PN}-6.0-hg.patch
+	rm -rf sage/dev
 
 	# Remove sage cmdline tests related to these
 	epatch "${WORKDIR}"/patches/${PN}-6.0-cmdline.patch
