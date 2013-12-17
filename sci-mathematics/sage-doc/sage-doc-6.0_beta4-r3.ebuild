@@ -40,7 +40,7 @@ src_prepare() {
 	default
 
 	# remove documentation about non-existent dev tools
-	rm en/reference/dev/index.rst
+	rm -rf en/reference/dev
 	# remove Makefile
 	rm Makefile
 	# Put singular help file where it is expected
