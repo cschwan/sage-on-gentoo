@@ -272,6 +272,9 @@ python_prepare() {
 
 	# 'sage' is not in SAGE_ROOT, but in PATH
 	epatch "${FILESDIR}"/${PN}-5.9-fix-ostools-doctest.patch
+
+	# change the location of the doc building tools in sage/doctest/control.py
+	epatch "${FILESDIR}"/${PN}-6.0-doc_common.patch
 }
 
 python_configure() {
@@ -306,9 +309,6 @@ python_install_all() {
 		pushd build
 		doins -r cython_debug
 		popd
-	fi
-	if use testsuite; then
-		doins -r doc
 	fi
 }
 
