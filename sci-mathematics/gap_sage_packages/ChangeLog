@@ -1,0 +1,5 @@
+*gap_sage_packages-4.6.4 (17 Dec 2013)
+
+  17 Dec 2013; François Bissey <francois.bissey@canterbury.ac.nz>
+  +gap_sage_packages-4.6.4.ebuild, +metadata.xml:
+  Import gap_sage-package mirroring the gap_package optional spkg

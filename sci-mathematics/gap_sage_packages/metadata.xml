@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<herd>sci</herd>
+	<maintainer>
+		<email>sci@gentoo.org</email>
+	</maintainer>
+	<longdescription lang="en">
+		A collection of packages for gap matching the content of the
+		gap_packages spkg for sage. Packages included are:
+		Alnuth-3.0.0, HAPcryst, Hap1.10, autpgrp, braid-1.2, crime, ctbllib, design,
+		factint, grape, guava-3.12, laguna, polycyclic-2.11, polymaking, sonata and toric1.8.
+	</longdescription>
+</pkgmetadata>
