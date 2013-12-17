@@ -48,12 +48,12 @@ CDEPEND="dev-libs/gmp
 	~sci-libs/m4rie-20130416
 	>=sci-libs/mpfi-1.5.1
 	>=sci-libs/pynac-0.3.0[${PYTHON_USEDEP}]
-	>=sci-libs/symmetrica-2.0
+	>=sci-libs/symmetrica-2.0-r3
 	>=sci-libs/zn_poly-0.9
 	>=sci-mathematics/glpk-4.44
 	>=sci-mathematics/lcalc-1.23-r4[pari]
 	>=sci-mathematics/lrcalc-1.1.6_beta1
-	>=sci-mathematics/pari-2.5.4[data,gmp]
+	>=sci-mathematics/pari-2.5.5-r1[data,gmp]
 	>=sci-mathematics/polybori-0.8.3
 	>=sci-mathematics/ratpoints-2.1.3
 	~sci-mathematics/sage-baselayout-${PV}[testsuite=,${PYTHON_USEDEP}]
