@@ -2,6 +2,11 @@
 # Copyright 1999-2013 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  17 Dec 2013; François Bissey <francois.bissey@canterbury.ac.nz>
+  symmetrica-2.0-r3.ebuild:
+  Apply the patches! That's what happens when you do that stuff with a sick 2
+  year old on your lap.
+
 *symmetrica-2.0-r3 (16 Dec 2013)
 
   16 Dec 2013; François Bissey <francois.bissey@canterbury.ac.nz>

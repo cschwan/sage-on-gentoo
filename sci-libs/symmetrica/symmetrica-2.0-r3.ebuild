@@ -35,7 +35,7 @@ PATCHES=(
 	)
 
 src_prepare() {
-	default
+	base_src_prepare
 	# symmetrica by itself is just a bunch of files and a few headers plus
 	# documentation that you can use as you wish in your programs. For sage and
 	# ease of use we make it into a library with the following makefile
