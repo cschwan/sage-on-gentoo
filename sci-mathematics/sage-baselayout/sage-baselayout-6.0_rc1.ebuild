@@ -13,7 +13,7 @@ MY_P="sage_src-${PV}"
 DESCRIPTION="Sage baselayout files"
 HOMEPAGE="http://www.sagemath.org"
 SRC_URI="mirror://sagemath/sage_src-${PV}.tar.bz2
-	mirror://sagemath/patches/${PN}-6.0-patch.tar.bz2
+	mirror://sagemath/patches/${PN}-6.0-r1-patch.tar.bz2
 	mirror://sagemath/patches/sage-icon.tar.bz2"
 
 LICENSE="GPL-2"
