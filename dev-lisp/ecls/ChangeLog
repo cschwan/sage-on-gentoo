@@ -2,6 +2,10 @@
 # Copyright 1999-2013 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/dev-lisp/ecls/ChangeLog,v 1.44 2012/12/14 07:21:23 grozin Exp $
 
+  19 Dec 2013; François Bissey <francois.bissey@canterbury.ac.nz>
+  ecls-12.12.1-r5.ebuild:
+  keyword macos
+
   07 Jun 2013; François Bissey <francois.bissey@canterbury.ac.nz>
   +files/12.12.1-asdf2.patch, ecls-12.12.1-r5.ebuild:
   sanitizing ecls 12.12.1 with asdf3. This can build maxima.fas. Still doesn't
