@@ -37,7 +37,7 @@ PATCHES=(
 	)
 
 src_prepare() {
-	default
+	base_src_prepare
 
 	# remove documentation about non-existent dev tools
 	rm -rf en/reference/dev
