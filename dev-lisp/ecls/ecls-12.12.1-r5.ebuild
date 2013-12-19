@@ -14,7 +14,7 @@ RESTRICT="mirror"
 
 LICENSE="BSD LGPL-2"
 SLOT="0/${PV}"
-KEYWORDS="~amd64 ~ppc ~sparc ~x86 ~ppc-macos ~x64-macos"
+KEYWORDS="~amd64 ~ppc ~sparc ~x86 ~ppc-macos ~x86-macos ~x64-macos"
 IUSE="debug emacs gengc precisegc sse +threads +unicode X"
 
 CDEPEND="dev-libs/gmp
