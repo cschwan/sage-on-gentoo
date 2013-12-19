@@ -4,6 +4,10 @@
 
   19 Dec 2013; François Bissey <francois.bissey@canterbury.ac.nz>
   iml-1.0.3-r2.ebuild:
+  more macos keywords
+
+  19 Dec 2013; François Bissey <francois.bissey@canterbury.ac.nz>
+  iml-1.0.3-r2.ebuild:
   keyword macos
 
   30 Jan 2012; Christopher Schwan <cschwan@students.uni-mainz.de>
