@@ -4,9 +4,12 @@
 
 EAPI="5"
 
-inherit base versionator
+EGIT_COMMIT="3472a854df051b57d1cb7e4934913f17f1fef820"
+EGIT_REPO_URI="git://github.com/sagemath/sage.git"
+EGIT_SOURCEDIR="${WORKDIR}"
 
-MY_P="sage_src-${PV}"
+inherit base git-2 versionator
+
 # for now no html or pdf
 BPV="5.12"
 MY_P_HTML="sage-${BPV}-doc-html"
@@ -14,8 +17,7 @@ MY_P_PDF="sage-${BPV}-doc-pdf"
 
 DESCRIPTION="Documentation, tutorials and help files for Sage"
 HOMEPAGE="http://www.sagemath.org/"
-SRC_URI="mirror://sagemath/${MY_P}.tar.bz2
-	http://www.mathematik.uni-kl.de/ftp/pub/Math/Singular/SOURCES/3-1-5/Singular-3-1-5-share.tar.gz
+SRC_URI="http://www.mathematik.uni-kl.de/ftp/pub/Math/Singular/SOURCES/3-1-5/Singular-3-1-5-share.tar.gz
 	html? ( mirror://sagemathdoc/${MY_P_HTML}.tar.bz2 -> sage-doc-html-${BPV}.tar.bz2 )
 	pdf? ( mirror://sagemathdoc/${MY_P_PDF}.tar.bz2 -> sage-doc-pdf-${BPV}.tar.bz2 )"
 
@@ -30,11 +32,9 @@ RESTRICT="mirror"
 DEPEND=""
 RDEPEND=">=dev-python/sphinx-1.1.2"
 
-S="${WORKDIR}"/${MY_P}/src/doc
+S="${WORKDIR}/src/doc"
 
-PATCHES=(
-	"${FILESDIR}"/${PN}-6.0-misc.patch
-	)
+PATCHES=( "${FILESDIR}"/${PN}-6.0-misc.patch )
 
 src_prepare() {
 	base_src_prepare
