@@ -4,16 +4,17 @@
 
 EAPI="5"
 
+EGIT_COMMIT="3472a854df051b57d1cb7e4934913f17f1fef820"
+EGIT_REPO_URI="git://github.com/sagemath/sage.git"
+EGIT_SOURCEDIR="${WORKDIR}"
+
 PYTHON_COMPAT=( python2_7 )
 
-inherit eutils prefix python-r1 versionator
-
-MY_P="sage_src-${PV}"
+inherit eutils git-2 prefix python-r1 versionator
 
 DESCRIPTION="Sage baselayout files"
 HOMEPAGE="http://www.sagemath.org"
-SRC_URI="mirror://sagemath/sage_src-${PV}.tar.bz2
-	mirror://sagemath/patches/${PN}-6.0-r1-patch.tar.bz2
+SRC_URI="mirror://sagemath/patches/${PN}-6.0-r1-patch.tar.bz2
 	mirror://sagemath/patches/sage-icon.tar.bz2"
 
 LICENSE="GPL-2"
@@ -35,8 +36,8 @@ else
 		debug? ( sys-devel/gdb )"
 fi
 
-S="${WORKDIR}/${MY_P}/src/bin"
-EXTSRC="${WORKDIR}/${MY_P}/src/ext"
+S="${WORKDIR}/src/bin"
+EXTSRC="${WORKDIR}/src/ext"
 
 # TODO: scripts into /usr/libexec ?
 src_prepare() {
