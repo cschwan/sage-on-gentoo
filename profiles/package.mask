@@ -1,9 +1,9 @@
-# preparing 5.13
->=sci-mathematics/sage-5.13_alpha0
->=sci-mathematics/sage-clib-5.13_alpha0
->=sci-mathematics/sage-baselayout-5.13_alpha0
->=sci-mathematics/sage-doc-5.13_alpha0
->=sci-mathematics/sage-extcode-5.13_alpha0
+# preparing 6.1
+>=sci-mathematics/sage-6.1_alpha0
+>=sci-mathematics/sage-clib-6.1_alpha0
+>=sci-mathematics/sage-baselayout-6.1_alpha0
+>=sci-mathematics/sage-doc-6.1_alpha0
+>=sci-mathematics/sage-extcode-6.1_alpha0
 #~dev-python/sympy-0.7.3
 #>=dev-python/ipython-0.13.2
 # building problems reported against latest fplll
