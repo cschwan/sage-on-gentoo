@@ -4,20 +4,21 @@
 
 EAPI="5"
 
+EGIT_COMMIT="3472a854df051b57d1cb7e4934913f17f1fef820"
+EGIT_REPO_URI="git://github.com/sagemath/sage.git"
+EGIT_SOURCEDIR="${WORKDIR}"
+
 PYTHON_COMPAT=( python2_7 )
 PYTHON_REQ_USE="readline,sqlite"
 
 # disable parallel build - Sage has its own method (see src_configure)
 DISTUTILS_NO_PARALLEL_BUILD="1"
 
-inherit distutils-r1 eutils flag-o-matic multilib multiprocessing prefix toolchain-funcs versionator
-
-MY_P="sage_src-${PV}"
+inherit distutils-r1 eutils flag-o-matic git-2 multilib multiprocessing prefix toolchain-funcs versionator
 
 DESCRIPTION="Math software for algebra, geometry, number theory, cryptography and numerical computation"
 HOMEPAGE="http://www.sagemath.org"
-SRC_URI="mirror://sagemath/${MY_P}.tar.bz2
-	mirror://sagemath/patches/${PN}-6.0-neutering.tar.bz2"
+SRC_URI="mirror://sagemath/patches/${PN}-6.0-neutering.tar.bz2"
 
 LICENSE="GPL-2"
 SLOT="0"
@@ -117,7 +118,7 @@ RDEPEND="${CDEPEND}
 PDEPEND="~sci-mathematics/sage-notebook-0.10.7.2[${PYTHON_USEDEP}]
 	~sci-mathematics/sage-data-conway_polynomials-0.4"
 
-S="${WORKDIR}"/${MY_P}/src
+S="${WORKDIR}/src"
 
 pkg_setup() {
 	# needed since Ticket #14460
