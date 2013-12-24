@@ -4,13 +4,14 @@
 
 EAPI="5"
 
-inherit eutils multilib scons-utils versionator
+EGIT_COMMIT="3472a854df051b57d1cb7e4934913f17f1fef820"
+EGIT_REPO_URI="git://github.com/sagemath/sage.git"
+EGIT_SOURCEDIR="${WORKDIR}"
 
-MY_P="sage_src-${PV}"
+inherit eutils git-2 multilib scons-utils versionator
 
 DESCRIPTION="Sage's C library"
 HOMEPAGE="http://www.sagemath.org"
-SRC_URI="mirror://sagemath/${MY_P}.tar.bz2"
 
 LICENSE="GPL-2"
 SLOT="0"
@@ -26,7 +27,7 @@ DEPEND="dev-libs/gmp[cxx]
 	>=sci-mathematics/polybori-0.8.3"
 RDEPEND="${DEPEND}"
 
-S="${WORKDIR}/${MY_P}/src/c_lib"
+S="${WORKDIR}/src/c_lib"
 
 src_prepare() {
 	epatch "${FILESDIR}"/${PN}-4.7.1-importenv.patch
