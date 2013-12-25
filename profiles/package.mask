@@ -1,9 +1,7 @@
-# preparing 6.1
->=sci-mathematics/sage-6.1_alpha0
->=sci-mathematics/sage-clib-6.1_alpha0
->=sci-mathematics/sage-baselayout-6.1_alpha0
->=sci-mathematics/sage-doc-6.1_alpha0
->=sci-mathematics/sage-extcode-6.1_alpha0
+~sci-mathematics/sage-9999
+~sci-mathematics/sage-clib-9999
+~sci-mathematics/sage-baselayout-9999
+~sci-mathematics/sage-doc-9999
 # preparing ecm for removal. I only keep it in case it solves some OS X problems
 sci-mathematics/ecm
 >=sci-mathematics/gap-4.7.2
