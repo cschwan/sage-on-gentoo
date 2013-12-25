@@ -4,11 +4,15 @@
 
 EAPI="5"
 
-EGIT_COMMIT="3472a854df051b57d1cb7e4934913f17f1fef820"
-EGIT_REPO_URI="git://github.com/sagemath/sage.git"
-EGIT_SOURCEDIR="${WORKDIR}"
+inherit eutils multilib scons-utils versionator
 
-inherit eutils git-2 multilib scons-utils versionator
+if [[ ${PV} = *9999* ]]; then
+	EGIT_REPO_URI="git://github.com/sagemath/sage.git"
+	EGIT_SOURCEDIR="${WORKDIR}/sage-${PV}"
+	inherit git-2
+else
+	SRC_URI="mirror://sagemath/${PV}.tar.gz -> sage-${PV}.tar.gz"
+fi
 
 DESCRIPTION="Sage's C library"
 HOMEPAGE="http://www.sagemath.org"
@@ -27,7 +31,7 @@ DEPEND="dev-libs/gmp[cxx]
 	>=sci-mathematics/polybori-0.8.3"
 RDEPEND="${DEPEND}"
 
-S="${WORKDIR}/src/c_lib"
+S="${WORKDIR}/sage-${PV}/src/c_lib"
 
 src_prepare() {
 	epatch "${FILESDIR}"/${PN}-4.7.1-importenv.patch
