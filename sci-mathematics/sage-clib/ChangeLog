@@ -2,6 +2,12 @@
 # Copyright 1999-2013 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*sage-clib-9999 (25 Dec 2013)
+
+  25 Dec 2013; Christopher Schwan <cschwan@students.uni-mainz.de>
+  +sage-clib-9999.ebuild:
+  Add git ebuild
+
   25 Dec 2013; Christopher Schwan <cschwan@students.uni-mainz.de>
   sage-clib-6.0.ebuild:
   Download tarball instead of git repository
