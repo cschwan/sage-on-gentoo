@@ -17,7 +17,7 @@ IUSE=""
 
 RESTRICT="mirror"
 
-DEPEND="~sci-mathematics/gap-${PV}"
+DEPEND=">=sci-mathematics/gap-${PV}"
 RDEPEND="${DEPEND}"
 
 src_configure(){

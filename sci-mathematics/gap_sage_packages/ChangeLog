@@ -1,3 +1,7 @@
+  26 Dec 2013; François Bissey <francois.bissey@canterbury.ac.nz>
+  gap_sage_packages-4.6.4.ebuild:
+  allow gap_sage_package-4.6.4 to be used by gap 4.7.2
+
 *gap_sage_packages-4.6.4 (17 Dec 2013)
 
   17 Dec 2013; François Bissey <francois.bissey@canterbury.ac.nz>
