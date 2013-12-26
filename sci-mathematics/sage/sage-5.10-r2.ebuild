@@ -76,7 +76,7 @@ RDEPEND="${CDEPEND}
 	>=dev-python/jinja-2.5.5[${PYTHON_USEDEP}]
 	>=dev-python/matplotlib-1.2.1[${PYTHON_USEDEP}]
 	>=dev-python/mpmath-0.17[${PYTHON_USEDEP}]
-	~dev-python/networkx-1.6
+	>=dev-python/networkx-1.6[${PYTHON_USEDEP}]
 	~dev-python/pexpect-2.0[${PYTHON_USEDEP}]
 	>=dev-python/pycrypto-2.1.0[${PYTHON_USEDEP}]
 	>=dev-python/rpy-2.0.8[${PYTHON_USEDEP}]
