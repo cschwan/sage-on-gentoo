@@ -2,6 +2,13 @@
 # Copyright 1999-2013 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*sympy-0.7.4.1 (27 Dec 2013)
+
+  27 Dec 2013; François Bissey <francois.bissey@canterbury.ac.nz>
+  +sympy-0.7.4.1.ebuild, -sympy-0.7.2-r1.ebuild:
+  Bump to latest. tests are fiddly. python3.2 tests not completed. some failures
+  with 2.7. Drop old.
+
 *sympy-0.7.3 (24 Sep 2013)
 
   24 Sep 2013; François Bissey <francois.bissey@canterbury.ac.nz>
