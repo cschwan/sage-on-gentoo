@@ -11,6 +11,7 @@ inherit distutils-r1 multiprocessing base versionator
 
 if [[ ${PV} = *9999* ]]; then
 	EGIT_REPO_URI="git://github.com/sagemath/sage.git"
+	EGIT_BRANCH=develop
 	EGIT_SOURCEDIR="${WORKDIR}/sage-${PV}"
 	inherit git-2
 else
