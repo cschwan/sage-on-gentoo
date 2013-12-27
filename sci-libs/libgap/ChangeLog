@@ -1,3 +1,9 @@
+*libgap-4.7.2 (27 Dec 2013)
+
+  27 Dec 2013; François Bissey <francois.bissey@canterbury.ac.nz>
+  +libgap-4.7.2.ebuild:
+  Get a libgap matching gap
+
   15 Dec 2013; François Bissey <francois.bissey@canterbury.ac.nz>
   libgap-4.6.4_p0.ebuild:
   Revert gap/gap-lite stuff
