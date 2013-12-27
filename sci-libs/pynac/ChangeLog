@@ -2,6 +2,13 @@
 # Copyright 1999-2013 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*pynac-0.3.1 (27 Dec 2013)
+
+  27 Dec 2013; François Bissey <francois.bissey@canterbury.ac.nz>
+  +pynac-0.3.1.ebuild, -pynac-0.2.6.ebuild, pynac-0.2.6-r1.ebuild,
+  pynac-0.3.0.ebuild:
+  bump to 0.3.1 may be in sage 6.1
+
   04 Oct 2013; François Bissey <francois.bissey@canterbury.ac.nz>
   -pynac-0.2.5-r1.ebuild, -pynac-0.2.5.ebuild:
   remove unused pynac

@@ -1,15 +1,15 @@
-# Copyright 1999-2012 Gentoo Foundation
+# Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
-EAPI="3"
+EAPI="5"
 
-PYTHON_DEPEND="2:2.7:2.7"
+PYTHON_COMPAT=( python2_7 )
 
-inherit autotools-utils python
+inherit autotools-utils python-r1 vcs-snapshot
 
 DESCRIPTION="A modified version of GiNaC that replaces the dependency on CLN by Python"
-HOMEPAGE="http://pynac.sagemath.org/ https://bitbucket.org/burcin/pynac/overview"
+HOMEPAGE="http://pynac.sagemath.org/ https://bitbucket.org/pynac/pynac"
 SRC_URI="http://hg.pynac.org/pynac/get/${P}.tar.bz2"
 
 LICENSE="GPL-2"
@@ -19,19 +19,12 @@ IUSE="static-libs"
 
 RESTRICT="mirror"
 
-DEPEND="virtual/pkgconfig"
+DEPEND="virtual/pkgconfig
+	${PYTHON_DEPS}"
 RDEPEND=""
 
-S="${WORKDIR}/pynac-pynac-d178f77211b5"
+AUTOTOOLS_AUTORECONF=yes
 
 DOCS=( AUTHORS NEWS README )
 
-pkg_setup() {
-	# This version will use python-2.7
-	python_set_active_version 2.7
-	python_pkg_setup
-}
-
-src_prepare() {
-	eautoreconf
-}
+myeconfargs=( PYTHON_VERSION="2.7" )

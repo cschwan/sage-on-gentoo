@@ -1,4 +1,4 @@
-# Copyright 1999-2012 Gentoo Foundation
+# Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
@@ -9,7 +9,7 @@ PYTHON_COMPAT=( python2_7 )
 inherit autotools-utils python-r1 vcs-snapshot
 
 DESCRIPTION="A modified version of GiNaC that replaces the dependency on CLN by Python"
-HOMEPAGE="http://pynac.sagemath.org/ https://bitbucket.org/burcin/pynac/overview"
+HOMEPAGE="http://pynac.sagemath.org/ https://bitbucket.org/pynac/pynac"
 SRC_URI="http://hg.pynac.org/pynac/get/${P}.tar.bz2"
 
 LICENSE="GPL-2"
