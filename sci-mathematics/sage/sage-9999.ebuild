@@ -14,6 +14,7 @@ inherit distutils-r1 eutils flag-o-matic multilib multiprocessing prefix toolcha
 
 if [[ ${PV} = *9999* ]]; then
 	EGIT_REPO_URI="git://github.com/sagemath/sage.git"
+	EGIT_BRANCH=develop
 	EGIT_SOURCEDIR="${WORKDIR}/${P}"
 	inherit git-2
 else
