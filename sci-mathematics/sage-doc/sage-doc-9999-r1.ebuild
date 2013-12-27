@@ -7,7 +7,7 @@ EAPI="5"
 PYTHON_COMPAT=( python2_7 )
 DISTUTILS_NO_PARALLEL_BUILD="1"
 
-inherit distutils-r1 multiprocessing base versionator
+inherit base distutils-r1 multiprocessing versionator
 
 if [[ ${PV} = *9999* ]]; then
 	EGIT_REPO_URI="git://github.com/sagemath/sage.git"
@@ -34,9 +34,9 @@ RESTRICT="mirror"
 DEPEND=""
 RDEPEND=">=dev-python/sphinx-1.1.2"
 
-PATCHES=(
-	"${FILESDIR}"/${PN}-6.0-misc.patch
-	)
+S="${WORKDIR}/sage-${PV}/src/doc"
+
+PATCHES=( "${FILESDIR}"/${PN}-6.0-misc.patch )
 
 python_prepare_all() {
 	distutils-r1_python_prepare_all
@@ -58,16 +58,17 @@ python_prepare_all() {
 	mkdir -p en/reference/static
 }
 
-python_compile(){
+python_compile() {
 	export SAGE_DOC="${S}"
 	export SAGE_SRC="${S}"/..
 	export SAGE_NUM_THREADS=$(makeopts_jobs)
+	export SAGE_DOC_MATHJAX=yes
 
 	if use html ; then
-		$PYTHON common/builder.py --no-pdf-links all html
+		${PYTHON} common/builder.py --no-pdf-links all html
 	fi
 	if use pdf ; then
-		$PYTHON common/builder.py all pdf
+		${PYTHON} common/builder.py all pdf
 	fi
 }
 
