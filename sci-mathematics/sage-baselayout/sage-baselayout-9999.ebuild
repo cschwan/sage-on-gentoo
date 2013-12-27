@@ -9,8 +9,9 @@ PYTHON_COMPAT=( python2_7 )
 inherit eutils prefix python-r1 versionator
 
 if [[ ${PV} = *9999* ]]; then
-	EGIT_REPO_URI="git://github.com/sagemath/sage.git"
+	EGIT_REPO_URI="https://github.com/sagemath/sage.git"
 	EGIT_SOURCEDIR="${WORKDIR}/sage-${PV}"
+	EGIT_BRANCH=develop
 	inherit git-2
 else
 	SRC_URI="mirror://sagemath/${PV}.tar.gz -> sage-${PV}.tar.gz"
