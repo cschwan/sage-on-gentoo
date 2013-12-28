@@ -7,7 +7,7 @@ EAPI="5"
 PYTHON_COMPAT=( python2_7 )
 DISTUTILS_NO_PARALLEL_BUILD="1"
 
-inherit base distutils-r1 multiprocessing versionator
+inherit distutils-r1 multiprocessing versionator
 
 if [[ ${PV} = *9999* ]]; then
 	EGIT_REPO_URI="git://github.com/sagemath/sage.git"
@@ -43,8 +43,6 @@ python_prepare_all() {
 
 	# remove documentation about non-existent dev tools
 	rm -rf en/reference/dev
-	# remove Makefile
-	rm Makefile
 	# Put singular help file where it is expected
 	cp "${WORKDIR}"/Singular/3-1-5/info/singular.hlp ./
 
