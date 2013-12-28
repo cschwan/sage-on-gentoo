@@ -71,7 +71,7 @@ src_compile() {
 		MANDIR="${ED}"/usr/share/man
 		PREFIX="${ED}"/usr
 		DEVEL_LIB_PREFIX="${ED}"/usr/$(get_libdir)
-		PYINSTALLPREFIX=$(python_get_sitedir)
+		PYINSTALLPREFIX="${D}"/$(python_get_sitedir)
 		INSTALLDIR="${ED}"/usr/share/polybori
 		INSTALL_NAME_DIR="${EPREFIX}"/usr/$(get_libdir)/
 		CONFFILE="${ED}"/usr/share/polybori/flags.conf
