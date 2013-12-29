@@ -2,6 +2,7 @@
 ~sci-mathematics/sage-clib-9999
 ~sci-mathematics/sage-baselayout-9999
 ~sci-mathematics/sage-doc-9999
+>=sci-libs/pynac-0.3.1
 >=sci-mathematics/sage-notebook-0.10.7.3
 # preparing ecm for removal. I only keep it in case it solves some OS X problems
 sci-mathematics/ecm
