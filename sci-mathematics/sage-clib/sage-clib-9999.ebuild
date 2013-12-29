@@ -11,8 +11,10 @@ if [[ ${PV} = *9999* ]]; then
 	EGIT_BRANCH=develop
 	EGIT_SOURCEDIR="${WORKDIR}/sage-${PV}"
 	inherit git-2
+	KEYWORDS=""
 else
 	SRC_URI="mirror://sagemath/${PV}.tar.gz -> sage-${PV}.tar.gz"
+	KEYWORDS="~amd64 ~x86 ~amd64-linux ~x86-linux ~x86-macos ~ppc-macos ~x64-macos"
 fi
 
 DESCRIPTION="Sage's C library"
@@ -20,7 +22,6 @@ HOMEPAGE="http://www.sagemath.org"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~x86 ~amd64-linux ~x86-linux ~x86-macos ~ppc-macos ~x64-macos"
 IUSE=""
 
 RESTRICT="mirror"
