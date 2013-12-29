@@ -14,8 +14,10 @@ if [[ ${PV} = *9999* ]]; then
 	EGIT_BRANCH=develop
 	EGIT_SOURCEDIR="${WORKDIR}/sage-${PV}"
 	inherit git-2
+	KEYWORDS=""
 else
 	SRC_URI="mirror://sagemath/${PV}.tar.gz -> sage-${PV}.tar.gz"
+	KEYWORDS="~amd64 ~x86 ~amd64-linux ~x86-linux"
 fi
 
 DESCRIPTION="Documentation, tutorials and help files for Sage"
@@ -25,7 +27,6 @@ SRC_URI="${SRC_URI}
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~x86 ~amd64-linux ~x86-linux"
 IUSE="html pdf"
 
 RESTRICT="mirror"
