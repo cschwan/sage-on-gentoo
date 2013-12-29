@@ -2,6 +2,10 @@
 # Copyright 1999-2013 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  29 Dec 2013; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-9999.ebuild:
+  Hard mask 9999 by keyword
+
   27 Dec 2013; François Bissey <francois.bissey@canterbury.ac.nz>
   sage-9999.ebuild:
   switch 9999 to develop branch. The default "master" is stable. "develop" is
