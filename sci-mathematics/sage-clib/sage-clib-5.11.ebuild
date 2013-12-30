@@ -21,7 +21,7 @@ RESTRICT="mirror"
 
 DEPEND="dev-libs/gmp[cxx]
 	>=dev-libs/ntl-5.5.2
-	>=sci-libs/pynac-0.3.0
+	~sci-libs/pynac-0.3.0
 	>=sci-mathematics/pari-2.5.4
 	>=sci-mathematics/polybori-0.8.3"
 RDEPEND="${DEPEND}"
