@@ -47,7 +47,7 @@ CDEPEND="dev-libs/gmp
 	~sci-libs/m4ri-20130416
 	~sci-libs/m4rie-20130416
 	>=sci-libs/mpfi-1.5.1
-	>=sci-libs/pynac-0.2.6[${PYTHON_USEDEP}]
+	~sci-libs/pynac-0.2.6[${PYTHON_USEDEP}]
 	>=sci-libs/symmetrica-2.0
 	>=sci-libs/zn_poly-0.9
 	>=sci-mathematics/glpk-4.44
