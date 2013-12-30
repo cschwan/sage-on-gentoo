@@ -49,6 +49,8 @@ src_prepare() {
 	rm -rf en/reference/dev
 	# remove Makefile
 	rm Makefile
+	# remove useless documentation build system
+	rm -rf common
 	# Put singular help file where it is expected
 	cp "${WORKDIR}"/Singular/3-1-5/info/singular.hlp ./
 
