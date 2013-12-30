@@ -284,6 +284,9 @@ python_prepare() {
 
 	# change the location of the doc building tools in sage/doctest/control.py
 	epatch "${FILESDIR}"/${PN}-6.0-doc_common.patch
+
+	# fix location of the html doc
+	epatch "${FILESDIR}"/${PN}-6.0-sagedoc.patch
 }
 
 python_configure() {

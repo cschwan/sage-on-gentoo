@@ -2,6 +2,12 @@
 # Copyright 1999-2013 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*sage-6.0-r1 (30 Dec 2013)
+
+  30 Dec 2013; François Bissey <francois.bissey@canterbury.ac.nz>
+  +files/sage-6.0-sagedoc.patch, +sage-6.0-r1.ebuild, -sage-6.0.ebuild:
+  Fix doctest for location of html doc
+
   30 Dec 2013; François Bissey <francois.bissey@canterbury.ac.nz>
   sage-5.10-r2.ebuild, sage-5.11-r3.ebuild, sage-5.12.ebuild,
   sage-5.6-r4.ebuild, sage-5.7-r5.ebuild, sage-5.8-r4.ebuild,
