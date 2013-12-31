@@ -50,7 +50,8 @@ src_prepare() {
 	# remove Makefile
 	rm Makefile
 	# remove useless documentation build system
-	rm -rf common
+	rm common/builder.py
+	rm common/custom-sphinx-build.py
 	# Put singular help file where it is expected
 	cp "${WORKDIR}"/Singular/3-1-5/info/singular.hlp ./
 

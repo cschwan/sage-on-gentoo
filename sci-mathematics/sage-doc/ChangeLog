@@ -2,6 +2,13 @@
 # Copyright 1999-2013 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*sage-doc-6.0-r3 (31 Dec 2013)
+
+  31 Dec 2013; François Bissey <francois.bissey@canterbury.ac.nz>
+  +sage-doc-6.0-r3.ebuild, -sage-doc-6.0-r2.ebuild:
+  being a bit more discriminant in the files removed from the build system as
+  there were unintented consequence.
+
 *sage-doc-6.0-r2 (30 Dec 2013)
 
   30 Dec 2013; François Bissey <francois.bissey@canterbury.ac.nz>
