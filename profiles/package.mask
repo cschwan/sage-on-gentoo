@@ -8,3 +8,4 @@
 sci-mathematics/ecm
 >=sci-mathematics/gap-4.7.2
 >=sci-libs/libgap-4.7.2
+>=dev-libs/ntl-6.0
