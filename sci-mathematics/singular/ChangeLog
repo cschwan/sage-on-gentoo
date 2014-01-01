@@ -1,6 +1,12 @@
 # ChangeLog for sci-mathematics/singular
-# Copyright 1999-2013 Gentoo Foundation; Distributed under the GPL v2
+# Copyright 1999-2014 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/sci-mathematics/singular/ChangeLog,v 1.53 2012/06/23 10:50:20 xarthisius Exp $
+
+*singular-3.1.5-r2 (01 Jan 2014)
+
+  01 Jan 2014; François Bissey <francois.bissey@canterbury.ac.nz>
+  +files/pullrequest215.patch, +singular-3.1.5-r2.ebuild:
+  New patch to singular (trac 13770) for sage 5.12, 5.13 and 6.0
 
 *singular-3.1.5-r1 (06 May 2013)
 
