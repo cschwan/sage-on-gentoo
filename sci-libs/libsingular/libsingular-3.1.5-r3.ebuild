@@ -25,7 +25,7 @@ KEYWORDS="~amd64 ~x86 ~amd64-linux ~x86-linux ~x86-macos"
 IUSE="boost debug"
 
 RDEPEND="dev-libs/gmp
-	>=dev-libs/ntl-5.5.1"
+	<dev-libs/ntl-6.0.0"
 
 DEPEND="${RDEPEND}
 	dev-lang/perl

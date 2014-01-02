@@ -25,7 +25,7 @@ KEYWORDS="~amd64 ~x86 ~amd64-linux ~x86-linux ~x86-macos"
 IUSE="boost debug"
 
 RDEPEND="dev-libs/gmp
-	<dev-libs/ntl-6.0.0"
+	>=dev-libs/ntl-5.5.1"
 
 DEPEND="${RDEPEND}
 	dev-lang/perl
@@ -46,13 +46,8 @@ pkg_setup() {
 
 src_prepare () {
 	epatch "${FILESDIR}"/${PN_PATCH}-3.1.0-gentoo.patch
-	epatch "${FILESDIR}"/${PN_PATCH}-3.1.5-NTLnegate.patch
-	epatch "${FILESDIR}"/${PN_PATCH}_trac_439.patch
-	epatch "${FILESDIR}"/${PN_PATCH}_trac_440.patch
-	epatch "${FILESDIR}"/${PN_PATCH}_trac_441.patch
-	epatch "${FILESDIR}"/${PN_PATCH}_trac_443.patch
-	epatch "${FILESDIR}"/${PN_PATCH}_15435.patch
-	epatch "${FILESDIR}"/${PN_PATCH}_part_of_changeset_baadc0f7.patch
+	epatch "${FILESDIR}"/${PN_PATCH}-3.1.6-ntl6compat.patch
+	epatch "${FILESDIR}"/${PN_PATCH}-3.1.6-factory_template_instantiation.patch
 	if  [[ ${CHOST} == *-darwin* ]] ; then
 		# really a placeholder until I figure out the patch for that one.
 		epatch "${FILESDIR}"/${PN_PATCH}-3.1.3.3-dylib.patch
@@ -150,24 +145,15 @@ src_install () {
 		-e "s:factory/templates:singular/templates:g" \
 		-i factory.h
 	sed -e "s:factory/factoryconf.h:singular/factoryconf.h:" \
-		-i templates/ftmpl_functions.h templates/ftmpl_list.h \
-			templates/ftmpl_factor.h templates/ftmpl_matrix.h \
-			templates/ftmpl_array.h
-	sed -e "s:factory/templates:singular/templates:" \
-		-i templates/ftmpl_list.cc templates/ftmpl_factor.cc \
-			templates/ftmpl_matrix.cc templates/ftmpl_array.cc
-	sed -e "s:factoryconf.h:singular/factoryconf.h:" \
-		-e "s:factory.h:singular/factory.h:" \
-		-i templates/ftmpl_inst.cc
-	sed -e "s:templates/ftmpl:singular/templates/ftmpl:" \
-		-i templates/ftmpl_inst.cc
+		-i templates/ftmpl_list.h templates/ftmpl_factor.h \
+			templates/ftmpl_matrix.h templates/ftmpl_array.h
 	sed -e "s:factory/factory.h:singular/factory.h:" \
-		-i "${S}"/libfac/factor.h
+		-i factor.h
 
 	doins libsingular.h mylimits.h omalloc.h
 	insinto /usr/include/singular
 	doins singular/*
-	doins factory.h factoryconf.h cf_gmp.h "${S}"/libfac/factor.h
+	doins factory.h factoryconf.h cf_gmp.h factor.h
 	insinto /usr/include/singular/templates
 	doins templates/*
 }
