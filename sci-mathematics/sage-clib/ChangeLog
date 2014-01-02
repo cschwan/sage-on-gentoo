@@ -1,6 +1,12 @@
 # ChangeLog for sci-mathematics/sage-clib
-# Copyright 1999-2013 Gentoo Foundation; Distributed under the GPL v2
+# Copyright 1999-2014 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
+
+  02 Jan 2014; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-clib-5.10.ebuild, sage-clib-5.11.ebuild, sage-clib-5.6.ebuild,
+  sage-clib-5.7.ebuild, sage-clib-5.8.ebuild, sage-clib-5.9.ebuild,
+  sage-clib-6.0.ebuild, sage-clib-9999.ebuild:
+  Clean up dependendency on ntl (<6.0.0)
 
   30 Dec 2013; François Bissey <francois.bissey@canterbury.ac.nz>
   sage-clib-5.10.ebuild, sage-clib-5.11.ebuild, sage-clib-5.6.ebuild,
