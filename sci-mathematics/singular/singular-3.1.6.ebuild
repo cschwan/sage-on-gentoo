@@ -15,7 +15,7 @@ MY_PN=Singular
 MY_PV=$(replace_all_version_separators -)
 MY_DIR=$(get_version_component_range 1-3 ${MY_PV})
 # Note: Upstream's share tarball may not get updated on every release
-MY_SHARE_DIR="3-1-5"
+MY_SHARE_DIR="3-1-6"
 MY_PV_SHARE="${MY_PV}"
 
 DESCRIPTION="Computer algebra system for polynomial computations"
@@ -30,7 +30,7 @@ KEYWORDS="~amd64 ~ppc ~x86 ~x86-linux ~ppc-macos ~x86-macos ~x64-macos"
 IUSE="boost doc emacs examples python +readline test"
 
 RDEPEND="dev-libs/gmp
-	<dev-libs/ntl-6.0.0
+	>=dev-libs/ntl-5.5.1
 	emacs? ( >=virtual/emacs-22 )
 	readline? ( sys-libs/readline )"
 
@@ -61,12 +61,8 @@ src_prepare () {
 	epatch "${FILESDIR}"/${PN}-3.1.0-emacs-22.patch
 	epatch "${FILESDIR}"/${PN}-3.0.4.4-nostrip.patch
 	epatch "${FILESDIR}"/${PN}-3.1.3.3-Minor.h.patch
-	epatch "${FILESDIR}"/${PN}-3.1.5-NTLnegate.patch
-	epatch "${FILESDIR}"/${PN}_trac_439.patch
-	epatch "${FILESDIR}"/${PN}_trac_440.patch
-	epatch "${FILESDIR}"/${PN}_trac_441.patch
-	epatch "${FILESDIR}"/${PN}_trac_443.patch
-
+	epatch "${FILESDIR}"/${PN}-3.1.6-ntl6compat.patch
+	epatch "${FILESDIR}"/${PN}-3.1.6-factory_template_instantiation.patch
 	use python && epatch "${FILESDIR}"/${PN}-3.1.3.2-python.patch
 
 	if  [[ ${CHOST} == *-darwin* ]] ; then

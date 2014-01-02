@@ -2,6 +2,15 @@
 # Copyright 1999-2014 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/sci-mathematics/singular/ChangeLog,v 1.53 2012/06/23 10:50:20 xarthisius Exp $
 
+*singular-3.1.6 (02 Jan 2014)
+
+  02 Jan 2014; François Bissey <francois.bissey@canterbury.ac.nz>
+  +files/singular-3.1.6-factory_template_instantiation.patch,
+  +files/singular-3.1.6-ntl6compat.patch, +singular-3.1.6.ebuild,
+  singular-3.1.5-r1.ebuild, singular-3.1.5-r2.ebuild:
+  singular 3.1.6 in at last. older version are not patched to use ntl-6 so
+  restrict dep for 3.1.5.
+
 *singular-3.1.5-r2 (01 Jan 2014)
 
   01 Jan 2014; François Bissey <francois.bissey@canterbury.ac.nz>

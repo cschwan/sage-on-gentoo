@@ -30,7 +30,7 @@ KEYWORDS="~amd64 ~ppc ~x86 ~x86-linux ~ppc-macos ~x86-macos ~x64-macos"
 IUSE="boost doc emacs examples python +readline test"
 
 RDEPEND="dev-libs/gmp
-	>=dev-libs/ntl-5.5.1
+	<dev-libs/ntl-6.0.0
 	emacs? ( >=virtual/emacs-22 )
 	readline? ( sys-libs/readline )"
 
