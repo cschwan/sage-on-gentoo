@@ -29,7 +29,7 @@ RESTRICT="mirror test"
 CDEPEND="dev-libs/gmp
 	>=dev-libs/mpfr-3.1.0
 	>=dev-libs/mpc-1.0
-	>=dev-libs/ntl-5.5.2
+	<dev-libs/ntl-6.0.0
 	>=sci-libs/sage-ppl-1.0
 	>=dev-lisp/ecls-12.12.1-r5
 	>=dev-python/numpy-1.7.0[${PYTHON_USEDEP}]
@@ -58,7 +58,7 @@ CDEPEND="dev-libs/gmp
 	>=sci-mathematics/ratpoints-2.1.3
 	~sci-mathematics/sage-baselayout-${PV}[testsuite=,${PYTHON_USEDEP}]
 	~sci-mathematics/sage-clib-${PV}
-	>=sci-libs/libsingular-3.1.5-r3
+	~sci-libs/libsingular-3.1.5
 	media-libs/gd[jpeg,png]
 	media-libs/libpng:0=
 	>=sys-libs/readline-6.2

@@ -1,4 +1,4 @@
-# Copyright 1999-2013 Gentoo Foundation
+# Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
@@ -28,7 +28,7 @@ RESTRICT="mirror test"
 CDEPEND="dev-libs/gmp
 	>=dev-libs/mpfr-3.1.0
 	>=dev-libs/mpc-1.0
-	>=dev-libs/ntl-5.5.2
+	<dev-libs/ntl-6.0.0
 	>=dev-libs/ppl-0.11.2
 	>=dev-lisp/ecls-12.12.1-r5
 	numpy17? ( >=dev-python/numpy-1.7.0_beta2 )
