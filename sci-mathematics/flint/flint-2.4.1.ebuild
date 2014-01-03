@@ -31,8 +31,6 @@ pkg_setup(){
 src_prepare() {
 	# make sure libraries have soname
 	epatch "${FILESDIR}"/${PN}-2.4-makefile.patch
-	# NTL interface test. From ustream commit to be included in 2.4.1
-	epatch "${FILESDIR}"/${P}-ntl_interface_test.patch
 	# multilib fix
 	sed -e "s:\${GMP_DIR}/lib\":\${GMP_DIR}/$(get_libdir)\":" \
 		-e "s:\${MPFR_DIR}/lib\":\${MPFR_DIR}/$(get_libdir)\":" \
