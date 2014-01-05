@@ -38,7 +38,7 @@ src_prepare() {
 		-e "s:\${MPFR_DIR}/lib\":\${MPFR_DIR}/$(get_libdir)\":" \
 		-e "s:\${NTL_DIR}/lib\":\${NTL_DIR}/$(get_libdir)\":" \
 		-i configure
-	sed -i "s:$(DESTDIR)$(PREFIX)/lib:$(DESTDIR)$(PREFIX)/$(get_libdir):g" \
+	sed -i "s:\$(DESTDIR)\$(PREFIX)/lib:\$(DESTDIR)\$(PREFIX)/$(get_libdir):g" \
 		Makefile.in
 }
 

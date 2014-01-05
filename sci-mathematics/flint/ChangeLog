@@ -4,6 +4,10 @@
 
   05 Jan 2014; François Bissey <francois.bissey@canterbury.ac.nz>
   flint-2.4.1.ebuild, flint-2.4.ebuild:
+  Forgotten backslash in sed command.
+
+  05 Jan 2014; François Bissey <francois.bissey@canterbury.ac.nz>
+  flint-2.4.1.ebuild, flint-2.4.ebuild:
   complete multilib fix for install in flint 2.4.*
 
 *flint-2.4.1 (03 Jan 2014)
