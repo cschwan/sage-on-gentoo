@@ -31,11 +31,13 @@ pkg_setup(){
 src_prepare() {
 	# make sure libraries have soname
 	epatch "${FILESDIR}"/${PN}-2.4-makefile.patch
-	# multilib fix
+	# multilib fixes
 	sed -e "s:\${GMP_DIR}/lib\":\${GMP_DIR}/$(get_libdir)\":" \
 		-e "s:\${MPFR_DIR}/lib\":\${MPFR_DIR}/$(get_libdir)\":" \
 		-e "s:\${NTL_DIR}/lib\":\${NTL_DIR}/$(get_libdir)\":" \
 		-i configure
+	sed -i "s:$(DESTDIR)$(PREFIX)/lib:$(DESTDIR)$(PREFIX)/$(get_libdir):g" \
+		Makefile.in
 }
 
 src_configure() {

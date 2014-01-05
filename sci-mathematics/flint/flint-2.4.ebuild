@@ -33,11 +33,13 @@ src_prepare() {
 	epatch "${FILESDIR}"/${PN}-2.4-makefile.patch
 	# NTL interface test. From ustream commit to be included in 2.4.1
 	epatch "${FILESDIR}"/${P}-ntl_interface_test.patch
-	# multilib fix
+	# multilib fixes
 	sed -e "s:\${GMP_DIR}/lib\":\${GMP_DIR}/$(get_libdir)\":" \
 		-e "s:\${MPFR_DIR}/lib\":\${MPFR_DIR}/$(get_libdir)\":" \
 		-e "s:\${NTL_DIR}/lib\":\${NTL_DIR}/$(get_libdir)\":" \
 		-i configure
+	sed -i "s:$(DESTDIR)$(PREFIX)/lib:$(DESTDIR)$(PREFIX)/$(get_libdir):g" \
+		Makefile.in
 }
 
 src_configure() {
