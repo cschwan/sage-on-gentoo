@@ -143,7 +143,7 @@ python_prepare() {
 	# Remove sage's package management system
 	epatch "${WORKDIR}"/patches/${PN}-6.0-package.patch
 	rm sage/misc/package.py
-	# tarc 15443 has been reverted since beta4, next line to go when that ticket is merged.
+	# trac 15443 has been reverted since beta4, next line to go when that ticket is merged.
 	epatch "${FILESDIR}"/${PN}-6.0-ecm-package.patch
 
 	# Remove sage's git capabilities
@@ -205,11 +205,8 @@ python_prepare() {
 	############################################################################
 
 	# sage on gentoo env.py
-	epatch "${FILESDIR}"/sage-6.0-env.patch
+	epatch "${FILESDIR}"/sage-6.1-env.patch
 	eprefixify sage/env.py
-
-	# support the use of pillow
-	sed -i "s:import Image:from PIL import Image:" sage/plot/plot3d/base.pyx
 
 	# fix library path of libsingular
 	sed -i "s:os.environ\['SAGE_LOCAL'\]+\"/lib:\"${EPREFIX}/usr/$(get_libdir):" \
@@ -233,7 +230,7 @@ python_prepare() {
 	sed -i "s:cblas(), atlas():${cblaslibs}:" sage/misc/cython.py
 
 	# remove the need for the external "testjava.sh" script
-	epatch "${FILESDIR}"/remove-testjavapath-to-python.patch
+	epatch "${FILESDIR}"/remove-testjavapath-to-python-6.1.patch
 	# finding JmolData.jar in the right place
 	sed -i "s:\"jmol\", \"JmolData:\"jmol-applet\", \"JmolData:" sage/interfaces/jmoldata.py
 
@@ -254,11 +251,6 @@ python_prepare() {
 	# Getting the singular documentation from the right place
 	sed -i "s:os.environ\[\"SAGE_LOCAL\"\]+\"/share/singular/\":sage.env.SAGE_DOC + \"/\":" \
 		sage/interfaces/singular.py
-
-	# TODO: should be a patch + eprefixy
-	# Get gprc.expect from the right place
-	sed -i "s:SAGE_LOCAL, 'etc', 'gprc.expect':'${EPREFIX}/etc','gprc.expect':" \
-		sage/interfaces/gp.py
 
 	############################################################################
 	# Fixes to doctests

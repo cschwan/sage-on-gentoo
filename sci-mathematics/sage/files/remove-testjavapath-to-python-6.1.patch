@@ -1,0 +1,33 @@
+--- sage/interfaces/jmoldata.py.orig	2014-01-06 22:51:35.972155159 +1300
++++ sage/interfaces/jmoldata.py	2014-01-06 22:53:15.742278052 +1300
+@@ -64,13 +64,23 @@
+             sage_makedirs(jmolscratch)
+         scratchout = os.path.join(jmolscratch,"jmolout.txt")
+         jout=open(scratchout,'w')
+-        testjavapath = os.path.join(SAGE_LOCAL, "share", "jmol", "testjava.sh")
+-        result = subprocess.call([testjavapath],stdout=jout)
+-        jout.close()
+-        if (result == 0):
+-            return (True)
+-        else:
+-            return (False)
++        try:
++            version = subprocess.check_output(['java', '-version'], stderr=subprocess.STDOUT)
++            import re, types
++            java_version = re.search("version.*[1]\.[567]", version)
++            if type(java_version) is types.NoneType:
++                jout.write('Your version of Java is deprecated\nWe support versions 1.5 to 1.7\n')
++                jout.close()
++                result = bool(java_version)
++            else:
++                jout.write('You have a supported version of Java, Exiting\n')
++                jout.close()
++                result = bool(java_version)
++        except (subprocess.CalledProcessError, OSError):
++            jout.write('You do not have Java installed\nWe support versions 1.5 to 1.7\n')
++            jout.close()
++            result = False
++        return result
+ 
+     def export_image(self,
+         targetfile,
