@@ -1,4 +1,4 @@
-# Copyright 1999-2013 Gentoo Foundation
+# Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
@@ -22,7 +22,7 @@ fi
 DESCRIPTION="Sage baselayout files"
 HOMEPAGE="http://www.sagemath.org"
 SRC_URI="${SRC_URI}
-	mirror://sagemath/patches/${PN}-6.0-r1-patch.tar.bz2
+	mirror://sagemath/patches/${PN}-6.1-patch.tar.bz2
 	mirror://sagemath/patches/sage-icon.tar.bz2"
 
 LICENSE="GPL-2"
@@ -94,7 +94,7 @@ src_prepare() {
 		sage-num-threads.py
 
 	# remove developer- and unsupported options
-	epatch "${WORKDIR}"/sage-exec-6.0.patch
+	epatch "${WORKDIR}"/sage-exec-6.1.patch
 	eprefixify sage
 
 	# create expected folders under extcode
