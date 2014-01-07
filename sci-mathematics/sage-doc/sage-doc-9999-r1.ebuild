@@ -63,6 +63,8 @@ python_compile() {
 
 	if use html ; then
 		${PYTHON} common/builder.py --no-pdf-links all html
+		# issue #197
+		touch output/html/en/__init__.py
 	fi
 	if use pdf ; then
 		${PYTHON} common/builder.py all pdf
