@@ -4,6 +4,10 @@
 
   07 Jan 2014; François Bissey <francois.bissey@canterbury.ac.nz>
   sage-9999.ebuild:
+  Incorporate sagedoc doctest fix to 9999
+
+  07 Jan 2014; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-9999.ebuild:
   update the neutering patch for sage 6.1.beta4
 
   06 Jan 2014; François Bissey <francois.bissey@canterbury.ac.nz>
