@@ -26,7 +26,7 @@ fi
 DESCRIPTION="Math software for algebra, geometry, number theory, cryptography and numerical computation"
 HOMEPAGE="http://www.sagemath.org"
 SRC_URI="${SRC_URI}
-	mirror://sagemath/patches/${PN}-6.0-neutering.tar.bz2"
+	mirror://sagemath/patches/${PN}-6.1-neutering.tar.bz2"
 
 LICENSE="GPL-2"
 SLOT="0"
@@ -141,7 +141,7 @@ python_prepare() {
 		-e "s: ::g")\'
 
 	# Remove sage's package management system
-	epatch "${WORKDIR}"/patches/${PN}-6.0-package.patch
+	epatch "${WORKDIR}"/patches/${PN}-6.1-package.patch
 	rm sage/misc/package.py
 	# trac 15443 has been reverted since beta4, next line to go when that ticket is merged.
 	epatch "${FILESDIR}"/${PN}-6.0-ecm-package.patch

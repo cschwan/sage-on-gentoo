@@ -2,6 +2,10 @@
 # Copyright 1999-2014 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  07 Jan 2014; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-9999.ebuild:
+  update the neutering patch for sage 6.1.beta4
+
   06 Jan 2014; François Bissey <francois.bissey@canterbury.ac.nz>
   +files/remove-testjavapath-to-python-6.1.patch, +files/sage-6.1-env.patch,
   sage-9999.ebuild:
