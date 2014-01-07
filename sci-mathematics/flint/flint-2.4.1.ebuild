@@ -58,7 +58,7 @@ src_configure() {
 		--with-gmp="${EPREFIX}"/usr \
 		--with-mpfr="${EPREFIX}"/usr \
 		--with-ntl="${EPREFIX}"/usr \
-		--prefix=/usr \
+		--prefix="${EPREFIX}"/usr \
 		CC=$(tc-getCC) \
 		CXX=$(tc-getCXX) \
 		AR=$(tc-getAR) || die
