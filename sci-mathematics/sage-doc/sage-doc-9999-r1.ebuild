@@ -1,4 +1,4 @@
-# Copyright 1999-2013 Gentoo Foundation
+# Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
@@ -42,8 +42,6 @@ PATCHES=( "${FILESDIR}"/${PN}-6.0-misc.patch )
 python_prepare_all() {
 	distutils-r1_python_prepare_all
 
-	# remove documentation about non-existent dev tools
-	rm -rf en/reference/dev
 	# Put singular help file where it is expected
 	cp "${WORKDIR}"/Singular/3-1-5/info/singular.hlp ./
 
@@ -76,7 +74,8 @@ python_install() {
 	# TODO: check if all of these files are needed
 	insinto /usr/share/doc/sage
 	# not installing doc build system
-	rm -rf common
+	rm common/builder.py
+	rm common/custom-sphinx-build.py
 	doins -r *
 }
 
