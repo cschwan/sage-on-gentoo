@@ -188,6 +188,9 @@ python_prepare() {
 	# fix lcalc path
 	sed -i "s:SAGE_INC + \"/libLfunction:SAGE_INC + \"/Lfunction:g" module_list.py
 
+	# Fix farey_symbol implicit cast
+	epatch "${FILESDIR}"/${PN}-6.1-farey_explicit_cast.patch
+
 	# fix CBLAS/ATLAS
 	sed -i \
 		-e "s:BLAS, BLAS2:${cblaslibs}:g" \

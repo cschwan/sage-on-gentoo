@@ -2,6 +2,10 @@
 # Copyright 1999-2014 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  20 Jan 2014; François Bissey <francois.bissey@canterbury.ac.nz>
+  +files/sage-6.1-farey_explicit_cast.patch, sage-9999.ebuild:
+  Solve issue #271 thanks to Steve Trogdon for the patch
+
   07 Jan 2014; François Bissey <francois.bissey@canterbury.ac.nz>
   sage-9999.ebuild:
   Incorporate sagedoc doctest fix to 9999
