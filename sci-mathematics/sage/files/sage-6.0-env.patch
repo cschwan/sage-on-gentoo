@@ -7,8 +7,8 @@
 -_add_variable_or_fallback('SAGE_ROOT',       None)
 -_add_variable_or_fallback('SAGE_LOCAL',      opj('$SAGE_ROOT', 'local'))
 -_add_variable_or_fallback('SAGE_SHARE',      opj('$SAGE_LOCAL', 'share'))
-+_add_variable_or_fallback('SAGE_ROOT',       opj('@GENTOO_PORTAGE_EPREFIX@', '/usr', 'share', 'sage'))
-+_add_variable_or_fallback('SAGE_LOCAL',      opj('@GENTOO_PORTAGE_EPREFIX@', '/usr'))
++_add_variable_or_fallback('SAGE_ROOT',       opj('@GENTOO_PORTAGE_EPREFIX@/usr', 'share', 'sage'))
++_add_variable_or_fallback('SAGE_LOCAL',      opj('@GENTOO_PORTAGE_EPREFIX@/usr'))
 +_add_variable_or_fallback('SAGE_SHARE',      opj('$SAGE_LOCAL', 'share', 'sage'))
  
  # SAGE_LIB is the site-packages directory if the sage library

@@ -15,8 +15,8 @@ diff --git a/sage/env.py b/sage/env.py
 -        'SAGE_ROOT'        : None,
 -        'SAGE_LOCAL'       : opj('$SAGE_ROOT', 'local'),
 -        'SAGE_SHARE'       : opj('$SAGE_LOCAL', 'share'),
-+        'SAGE_ROOT'        : opj('@GENTOO_PORTAGE_EPREFIX@', '/usr', 'share', 'sage'),
-+        'SAGE_LOCAL'       : opj('@GENTOO_PORTAGE_EPREFIX@', '/usr'),
++        'SAGE_ROOT'        : opj('@GENTOO_PORTAGE_EPREFIX@/usr', 'share', 'sage'),
++        'SAGE_LOCAL'       : opj('@GENTOO_PORTAGE_EPREFIX@/usr'),
 +        'SAGE_SHARE'       : opj('$SAGE_LOCAL', 'share', 'sage'),
          # for backwards compatibility we include SAGE_DATA
          'SAGE_DATA'        : '$SAGE_SHARE',
