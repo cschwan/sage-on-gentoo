@@ -22,7 +22,7 @@ fi
 DESCRIPTION="Sage baselayout files"
 HOMEPAGE="http://www.sagemath.org"
 SRC_URI="${SRC_URI}
-	mirror://sagemath/patches/${PN}-6.1-patch.tar.bz2
+	mirror://sagemath/patches/${PN}-6.1-r1-patch.tar.bz2
 	mirror://sagemath/patches/sage-icon.tar.bz2"
 
 LICENSE="GPL-2"
@@ -66,7 +66,7 @@ src_prepare() {
 	EOF
 
 	# replace ${SAGE_ROOT}/local with ${SAGE_LOCAL}
-	epatch "${WORKDIR}"/${PN}-5.9-fix-SAGE_LOCAL.patch
+	epatch "${WORKDIR}"/${PN}-6.1-fix-SAGE_LOCAL.patch
 	eprefixify sage-notebook sage-notebook-insecure
 
 	# solve sage-notebook start-up problems (after patching them)
