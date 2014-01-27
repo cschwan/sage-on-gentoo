@@ -1,0 +1,5 @@
+*python-pkgconfig-1.1.0 (27 Jan 2014)
+
+  27 Jan 2014; François Bissey <francois.bissey@canterbury.ac.nz> +metadata.xml,
+  +python-pkgconfig-1.1.0.ebuild:
+  Initial import of python interface to pkg-config
