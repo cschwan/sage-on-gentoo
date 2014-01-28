@@ -65,8 +65,8 @@ src_prepare() {
 		Terminal=true
 	EOF
 
-	# replace ${SAGE_ROOT}/local with ${SAGE_LOCAL}
-	epatch "${WORKDIR}"/${PN}-6.1-fix-SAGE_LOCAL.patch
+	# Eliminate SAGE_ROOT, replacing with SAGE_LOCAL if necessary
+	epatch "${WORKDIR}"/${PN}-6.1-sage_root.patch
 	eprefixify sage-notebook sage-notebook-insecure
 
 	# solve sage-notebook start-up problems (after patching them)
