@@ -2,6 +2,10 @@
 # Copyright 1999-2014 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  29 Jan 2014; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-5.12.ebuild, sage-6.0-r1.ebuild, sage-9999.ebuild:
+  Pin down cython version in latest sage to avoid 0.20
+
   24 Jan 2014; François Bissey <francois.bissey@canterbury.ac.nz>
   files/sage-5.10-env.patch, files/sage-5.9-env.patch, files/sage-6.0-env.patch,
   files/sage-6.1-env.patch:
