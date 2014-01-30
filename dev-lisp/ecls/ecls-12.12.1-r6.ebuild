@@ -1,4 +1,4 @@
-# Copyright 1999-2013 Gentoo Foundation
+# Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-lisp/ecls/ecls-12.12.1-r5.ebuild,v 1.1 2013/05/29 13:24:25 grozin Exp $
 
@@ -39,6 +39,8 @@ pkg_setup () {
 
 src_prepare() {
 	epatch "${FILESDIR}"/${PV}-headers-gentoo.patch
+	# bug #496780
+	epatch "${FILESDIR}"/13.5.1-gc74.patch
 	epatch "${FILESDIR}"/${PV}-asdf.patch
 	epatch "${FILESDIR}"/${PV}-asdf2.patch
 	cp "${EPREFIX}"/usr/share/common-lisp/source/asdf/build/asdf.lisp contrib/asdf/ || die
