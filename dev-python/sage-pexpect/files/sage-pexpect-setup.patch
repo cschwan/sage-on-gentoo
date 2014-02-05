@@ -5,10 +5,10 @@
  '''
  from distutils.core import setup
 -setup (name='pexpect',
-+setup (name='sage-pexpect',
++setup (name='sage_pexpect',
      version='2.0',
 -    py_modules=['pexpect'],
-+    py_modules=['sage-pexpect'],
++    py_modules=['sage_pexpect'],
      description='Pexpect is a pure Python Expect. It allows easy control of other applications.',
      author='Noah Spurrier',
      author_email='noah@noah.org',
