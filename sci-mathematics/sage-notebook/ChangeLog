@@ -2,6 +2,13 @@
 # Copyright 1999-2014 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*sage-notebook-0.10.7.2-r2 (05 Feb 2014)
+
+  05 Feb 2014; François Bissey <francois.bissey@canterbury.ac.nz>
+  +files/sage-notebook-pexpect.patch, +sage-notebook-0.10.7.2-r2.ebuild,
+  sage-notebook-0.10.8.2.ebuild:
+  migrating sagenb to pexpect issue #231
+
 *sage-notebook-0.10.8.2 (05 Feb 2014)
 
   05 Feb 2014; François Bissey <francois.bissey@canterbury.ac.nz>

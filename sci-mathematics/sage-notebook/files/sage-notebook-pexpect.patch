@@ -1,0 +1,12 @@
+--- sagenb/notebook/notebook_object.py.orig	2014-02-05 22:33:46.072465666 +1300
++++ sagenb/notebook/notebook_object.py	2014-02-05 22:34:10.097494380 +1300
+@@ -259,7 +259,8 @@
+         True
+         sage: nb.dispose()
+     """
+-    import socket, pexpect
++    import socket
++    import pexpect
+ 
+     if directory is None:
+         directory = tmp_dir = tempfile.mkdtemp()
