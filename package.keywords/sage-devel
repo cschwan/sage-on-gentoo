@@ -22,6 +22,7 @@ dev-python/mpmath
 =dev-python/networkx-1.6
 dev-python/numpy
 ~dev-python/pexpect-2.0
+~dev-python/sage-pexpect-2.0
 dev-python/pycrypto
 ~dev-python/pyparsing-2.0.1
 ~dev-python/pytz-2012j
