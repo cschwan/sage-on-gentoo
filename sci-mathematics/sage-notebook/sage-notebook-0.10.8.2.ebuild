@@ -72,7 +72,7 @@ src_prepare() {
 
 	# migrate to sage-pexpect
 	epatch "${FILESDIR}"/${PN}-pexpect.patch
-	sed -i "s:import pexpect:import sage-pexpect as pexpect:g" \
+	sed -i "s:import pexpect:import sage_pexpect as pexpect:g" \
 		`grep -rl "import pexpect" *`
 
 	# correct the location of JmolHelp.html if include in jmol-applet[sage]
