@@ -2,6 +2,12 @@
 # Copyright 1999-2014 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*sage-6.0-r2 (05 Feb 2014)
+
+  05 Feb 2014; François Bissey <francois.bissey@canterbury.ac.nz>
+  +files/sage-pexpect.patch, +sage-6.0-r2.ebuild, sage-9999.ebuild:
+  Start migration to sage-pexpect issue #231
+
   29 Jan 2014; François Bissey <francois.bissey@canterbury.ac.nz>
   sage-5.12.ebuild, sage-6.0-r1.ebuild, sage-9999.ebuild:
   Pin down cython version in latest sage to avoid 0.20
