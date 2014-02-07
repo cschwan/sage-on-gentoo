@@ -2,6 +2,12 @@
 # Copyright 1999-2014 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*sage-6.1.1-r1 (07 Feb 2014)
+
+  07 Feb 2014; François Bissey <francois.bissey@canterbury.ac.nz>
+  +sage-6.1.1-r1.ebuild, -sage-6.1.1.ebuild:
+  bumping sage-notebook dependency in sage-6.1.1 to close issue #278
+
 *sage-6.1.1 (07 Feb 2014)
 
   07 Feb 2014; Christopher Schwan <cschwan@students.uni-mainz.de>
