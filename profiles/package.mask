@@ -2,9 +2,8 @@
 ~sci-mathematics/sage-clib-9999
 ~sci-mathematics/sage-baselayout-9999
 ~sci-mathematics/sage-doc-9999
-# For sage 6.1 and incompatible with older sage
+# For sage 6.2+ and incompatible with older sage
 >=sci-libs/pynac-0.3.1
->=sci-mathematics/sage-notebook-0.10.7.3
 >=sci-mathematics/gap-4.7.2
 >=sci-libs/libgap-4.7.2
 >=dev-libs/ntl-6.0
