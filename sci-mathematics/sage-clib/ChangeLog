@@ -2,6 +2,12 @@
 # Copyright 1999-2014 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*sage-clib-6.1.1 (07 Feb 2014)
+
+  07 Feb 2014; Christopher Schwan <cschwan@students.uni-mainz.de>
+  +sage-clib-6.1.1.ebuild:
+  Version bump
+
   02 Jan 2014; François Bissey <francois.bissey@canterbury.ac.nz>
   sage-clib-5.10.ebuild, sage-clib-5.11.ebuild, sage-clib-5.6.ebuild,
   sage-clib-5.7.ebuild, sage-clib-5.8.ebuild, sage-clib-5.9.ebuild,
