@@ -2,6 +2,11 @@
 # Copyright 1999-2014 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  07 Feb 2014; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-9999.ebuild:
+  develop is now based on 6.1.1 so bumping notebook dependency. More dependency
+  work needs to go in so don't be shock if it is broken.
+
 *sage-6.1.1-r1 (07 Feb 2014)
 
   07 Feb 2014; François Bissey <francois.bissey@canterbury.ac.nz>

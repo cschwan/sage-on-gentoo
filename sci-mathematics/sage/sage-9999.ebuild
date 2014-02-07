@@ -122,7 +122,7 @@ RDEPEND="${CDEPEND}
 	lrs? ( sci-libs/lrslib )
 	nauty? ( sci-mathematics/nauty )"
 
-PDEPEND="~sci-mathematics/sage-notebook-0.10.7.2[${PYTHON_USEDEP}]
+PDEPEND="~sci-mathematics/sage-notebook-0.10.8.2[${PYTHON_USEDEP}]
 	~sci-mathematics/sage-data-conway_polynomials-0.4"
 
 S="${WORKDIR}/${P}/src"
