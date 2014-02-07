@@ -2,6 +2,12 @@
 # Copyright 1999-2014 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*sage-doc-6.1.1 (07 Feb 2014)
+
+  07 Feb 2014; Christopher Schwan <cschwan@students.uni-mainz.de>
+  +sage-doc-6.1.1.ebuild:
+  Version bump
+
   07 Jan 2014; François Bissey <francois.bissey@canterbury.ac.nz>
   sage-doc-9999-r1.ebuild:
   Reproduce fix for issue #197 in 9999-r1
