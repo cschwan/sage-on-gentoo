@@ -1,0 +1,42 @@
+--- Makefile.orig	2014-02-09 22:51:59.458226406 +1300
++++ Makefile	2014-02-09 22:56:13.408556816 +1300
+@@ -2,13 +2,12 @@
+ ##### Configurable options:
+ 
+ ## Compiler:
+-CC=gcc
+ #CC=cc
+ 
+ ## Compiler flags:
+ 
+ # GCC:  (also -march=pentium etc, for machine-dependent optimizing)
+-CFLAGS=-Wall -O3 -fomit-frame-pointer -funroll-loops
++#CFLAGS=-Wall -O3 -fomit-frame-pointer -funroll-loops
+ 
+ # GCC w/ debugging:
+ #CFLAGS=-Wall -g -DINLINE=
+@@ -23,13 +22,13 @@
+ 
+ # Enable long options for cl (eg. "cl --help"), comment out to disable.
+ # Requires getopt_long(3)  (a GNU extension)
+-LONGOPTS = -DENABLE_LONG_OPTIONS
++#LONGOPTS = -DENABLE_LONG_OPTIONS
+ 
+ 
+ ##### End of configurable options
+ 
+ 
+-all: cl
++all: libcliquer@SHLIB@
+ 
+ 
+ testcases: testcases.o cliquer.o graph.o reorder.o
+@@ -38,6 +37,8 @@
+ cl: cl.o cliquer.o graph.o reorder.o
+ 	$(CC) $(LDFLAGS) -o $@ cl.o cliquer.o graph.o reorder.o
+ 
++libcliquer@SHLIB@: cl.o cliquer.o graph.o reorder.o
++	$(CC) $(LDFLAGS) @SHAREDFLAGS@ -o $@ cl.o cliquer.o graph.o reorder.o
+ 
+ cl.o testcases.o cliquer.o graph.o reorder.o: cliquer.h set.h graph.h misc.h reorder.h Makefile cliquerconf.h
+ 
