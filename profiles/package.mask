@@ -9,5 +9,6 @@
 >=dev-libs/ntl-6.0
 >=sci-libs/libsingular-3.1.6
 >=sci-mathematics/singular-3.1.6
+>=sci-mathematics/eclib-20140128
 # preparing ecm for removal. I only keep it in case it solves some OS X problems
 sci-mathematics/ecm
