@@ -1,0 +1,44 @@
+--- eclib-work/configure.ac	2014-02-10 22:59:20.303053369 +1300
++++ eclib/configure.ac	2014-02-10 23:10:45.109977120 +1300
+@@ -55,6 +55,7 @@
+   ""|yes)
+     PARI_LDFLAGS=""
+     PARI_CFLAGS=""
++    GP="gp"
+     ;;
+   no)
+     AC_MSG_ERROR([Compiling without libpari impossible (but --without-pari given)])
+@@ -62,12 +63,14 @@
+   *)
+     PARI_LDFLAGS="-L${with_pari}/lib"
+     PARI_CFLAGS="-I${with_pari}/include"
++    GP="${with_pari}/bin/gp"
+     ;;
+ esac
+ PARI_LIBS="-lpari"
+ AC_SUBST(PARI_LIBS)
+ AC_SUBST(PARI_CFLAGS)
+ AC_SUBST(PARI_LDFLAGS)
++AC_SUBST(GP)
+ 
+ dnl Find the NTL Library
+ AC_ARG_WITH(ntl,
+@@ -159,6 +162,7 @@
+ 
+ AC_CONFIG_FILES([
+   libsrc/Makefile
++  libsrc/gpslave.cc
+   tests/Makefile
+   progs/Makefile
+   doc/Makefile
+--- eclib-work/libsrc/gpslave.cc	2014-02-10 21:53:07.264816822 +1300
++++ eclib/libsrc/gpslave.cc.in	2014-02-10 22:57:46.048915748 +1300
+@@ -37,7 +37,7 @@
+ {
+   string path_to_gp(getenv("PATH_TO_GP"));
+   if (path_to_gp.str().size()==0) 
+-    gp_path = string("/usr/local/bin/gp");
++    gp_path = string("@GP@");
+   else
+     gp_path = string(path_to_gp)+string("gp");
+   string comm = string("[ -x ") + gp_path + string(" ]");

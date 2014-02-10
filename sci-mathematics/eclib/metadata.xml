@@ -5,4 +5,12 @@
 	<maintainer>
 		<email>sci@gentoo.org</email>
 	</maintainer>
+	<use>
+		<flag name='flint'> 
+			Enable the use of flint for certain operations
+		</flag>
+		<flag name='boost'> 
+			Use boost libraries for threading and parallelism
+		</flag>
+	</use>
 </pkgmetadata>
