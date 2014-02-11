@@ -1,6 +1,13 @@
 # ChangeLog for sci-mathematics/lcalc
-# Copyright 1999-2013 Gentoo Foundation; Distributed under the GPL v2
+# Copyright 1999-2014 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
+
+*lcalc-1.23-r5 (11 Feb 2014)
+
+  11 Feb 2014; François Bissey <francois.bissey@canterbury.ac.nz>
+  +files/lcalc-1.23-init_stack.patch, +lcalc-1.23-r5.ebuild:
+  bump lcalc for sage 6.2. Will work with older sage but break doctests because
+  it doesn't display a warning anymore :)
 
   17 Feb 2013; François Bissey <francois.bissey@canterbury.ac.nz>
   lcalc-1.23-r4.ebuild:
