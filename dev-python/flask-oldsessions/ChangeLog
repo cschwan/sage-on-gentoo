@@ -1,0 +1,5 @@
+*flask-oldsessions-0.10 (11 Feb 2014)
+
+  11 Feb 2014; François Bissey <francois.bissey@canterbury.ac.nz>
+  +flask-oldsessions-0.10.ebuild, +metadata.xml:
+  Import flask-oldsessions for sagenb 0.10.8.2 see issue #280
