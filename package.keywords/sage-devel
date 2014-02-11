@@ -14,6 +14,7 @@ dev-python/itsdangerous # for flask-0.10.1
 dev-python/flask-autoindex
 ~dev-python/flask-babel-0.8
 dev-python/flask-openid
+dev-python/flask-oldsessions
 dev-python/flask-silk
 dev-python/gdmodule
 ~dev-python/ipython-0.13.2
