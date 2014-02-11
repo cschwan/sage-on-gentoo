@@ -118,7 +118,6 @@ src_test() {
 src_install () {
 	dodoc README
 
-	cd "${S}"
 	emake install-libsingular || die "failed to put libsingular in the right location"
 	cd "${S}"/build/lib
 	if  [[ ${CHOST} == *-darwin* ]] ; then
@@ -154,6 +153,8 @@ src_install () {
 	insinto /usr/include/singular
 	doins singular/*
 	doins factory.h factoryconf.h cf_gmp.h factor.h
+	# This file is not copied by singular in the right place
+	doins "${S}"/Singular/sing_dbm.h
 	insinto /usr/include/singular/templates
 	doins templates/*
 }
