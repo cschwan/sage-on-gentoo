@@ -3,6 +3,10 @@
 # $Header: $
 
   11 Feb 2014; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-9999.ebuild:
+  little dependency adjustment to match upstream
+
+  11 Feb 2014; François Bissey <francois.bissey@canterbury.ac.nz>
   +files/sage-blas.patch, sage-9999.ebuild:
   Towards sage 6.2, lots of stuff. The new sage-blas patch probably needs
   adjustment in cython.py but I don't remember what right now.  But this has to
