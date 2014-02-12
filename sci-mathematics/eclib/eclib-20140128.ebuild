@@ -23,8 +23,6 @@ RDEPEND=">=sci-mathematics/pari-2.5.0
 	boost? ( dev-libs/boost[threads] )"
 DEPEND="${RDEPEND}"
 
-AUTOTOOLS_AUTORECONF=1
-
 src_prepare() {
 	# https://github.com/JohnCremona/eclib/issues/3
 	# patch pushed upstream for consideration
@@ -32,6 +30,8 @@ src_prepare() {
 	# https://github.com/JohnCremona/eclib/issues/4
 	epatch "${FILESDIR}"/${P}-gp.patch
 	mv libsrc/gpslave.cc libsrc/gpslave.cc.in
+
+	eautomake
 	autoreconf
 }
 
