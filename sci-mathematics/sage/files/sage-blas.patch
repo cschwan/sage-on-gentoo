@@ -301,7 +301,7 @@
  
  standard_libs = ['mpfr', 'gmp', 'gmpxx', 'stdc++', 'pari', 'm', \
 -                 'ec', 'gsl', cblas(), atlas(), 'ntl', 'csage']
-+                 'ec', 'gsl', 'ntl', 'csage'] + cblas_libs()
++                 'ec', 'gsl'] + cblas_libs() + [ 'ntl', 'csage']
  
  offset = 0
  

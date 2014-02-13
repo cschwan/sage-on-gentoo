@@ -4,6 +4,10 @@
 
   13 Feb 2014; François Bissey <francois.bissey@canterbury.ac.nz>
   files/sage-blas.patch:
+  Trying to be smart with cython.py
+
+  13 Feb 2014; François Bissey <francois.bissey@canterbury.ac.nz>
+  files/sage-blas.patch:
   It was building but not running. OO semantics it would be educational to have
   the emails between me and steve in an issue :)
 
