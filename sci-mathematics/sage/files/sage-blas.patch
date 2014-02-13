@@ -32,8 +32,8 @@
 -    BLAS='gslcblas'
 -    BLAS2='gslcblas'
 -
-+blas_libs=', '.join(pkgconfig.parse('cblas')['libraries'])
-+blas_dir=', '.join(pkgconfig.parse('cblas')['library_dir'])
++blas_libs = list(pkgconfig.parse('cblas')['libraries'])
++blas_dir  = list(pkgconfig.parse('cblas')['library_dir'])
  
  #########################################################
  ### Commonly used definitions
@@ -42,57 +42,57 @@
      Extension('sage.gsl.callback',
                sources = ['sage/gsl/callback.pyx'],
 -              libraries = ['gsl', BLAS, BLAS2],
-+              library_dirs = [ blas_dir ],
-+              libraries = ['gsl', blas_libs],
++              library_dirs = blas_dir,
++              libraries = ['gsl'].extend(blas_libs),
                define_macros=[('GSL_DISABLE_DEPRECATED','1')]),
  
      Extension('sage.gsl.dwt',
                sources = ['sage/gsl/dwt.pyx'],
 -              libraries=['gsl',BLAS],
-+              library_dirs = [ blas_dir ],
-+              libraries=['gsl', blas_libs],
++              library_dirs = blas_dir,
++              libraries=['gsl'].extend(blas_libs),
                define_macros=[('GSL_DISABLE_DEPRECATED','1')]),
  
      Extension('sage.gsl.fft',
                sources = ['sage/gsl/fft.pyx'],
 -              libraries = ['gsl', BLAS, BLAS2],
-+              library_dirs = [ blas_dir ],
-+              libraries = ['gsl', blas_libs],
++              library_dirs = blas_dir,
++              libraries = ['gsl'].extend(blas_libs),
                define_macros=[('GSL_DISABLE_DEPRECATED','1')]),
  
      Extension('sage.gsl.gsl_array',
                sources = ['sage/gsl/gsl_array.pyx'],
 -              libraries=['gsl', BLAS, BLAS2],
-+              library_dirs = [ blas_dir ],
-+              libraries=['gsl', blas_libs],
++              library_dirs = blas_dir,
++              libraries=['gsl'].extend(blas_libs),
                define_macros=[('GSL_DISABLE_DEPRECATED','1')]),
  
      Extension('sage.gsl.integration',
                sources = ['sage/gsl/integration.pyx'],
                define_macros=[('GSL_DISABLE_DEPRECATED','1')],
 -              libraries=['gsl',BLAS, BLAS2]),
-+              library_dirs = [ blas_dir ],
-+              libraries=['gsl', blas_libs]),
++              library_dirs = blas_dir,
++              libraries=['gsl'].extend(blas_libs)),
  
      Extension('sage.gsl.interpolation',
                sources = ['sage/gsl/interpolation.pyx'],
 -              libraries = ['gsl', BLAS, BLAS2],
-+              library_dirs = [ blas_dir ],
-+              libraries = ['gsl', blas_libs],
++              library_dirs = blas_dir,
++              libraries = ['gsl'].extend(blas_libs),
                define_macros=[('GSL_DISABLE_DEPRECATED','1')]),
  
      Extension('sage.gsl.ode',
                sources = ['sage/gsl/ode.pyx'],
 -              libraries=['gsl',BLAS, BLAS2],
-+              library_dirs = [ blas_dir ],
-+              libraries=['gsl', blas_libs],
++              library_dirs = blas_dir,
++              libraries=['gsl'].extend(blas_libs),
                define_macros=[('GSL_DISABLE_DEPRECATED','1')]),
  
      Extension('sage.gsl.probability_distribution',
                sources = ['sage/gsl/probability_distribution.pyx'],
 -              libraries=['gsl', BLAS, BLAS2],
-+              library_dirs = [ blas_dir ],
-+              libraries=['gsl', blas_libs],
++              library_dirs = blas_dir,
++              libraries=['gsl'].extend(blas_libs),
                define_macros=[('GSL_DISABLE_DEPRECATED','1')]),
  
      ################################
@@ -100,12 +100,12 @@
  
      Extension('sage.libs.linbox.linbox',
                sources = ['sage/libs/linbox/linbox.pyx'],
-+              library_dirs = [ blas_dir ],
++              library_dirs = blas_dir,
                # For this to work on cygwin, linboxsage *must* be
                # before ntl.
                libraries = ['linboxsage', 'ntl', 'iml', 'linbox',
 -                           'stdc++', 'givaro', 'mpfr', 'gmp', 'gmpxx', BLAS, BLAS2],
-+                           'stdc++', 'givaro', 'mpfr', 'gmp', 'gmpxx', blas_libs],
++                           'stdc++', 'givaro', 'mpfr', 'gmp', 'gmpxx'].extend(blas_libs),
                language = 'c++',
                extra_compile_args = givaro_extra_compile_args,
                depends = [SAGE_INC + '/givaro/givconfig.h']),
@@ -114,8 +114,8 @@
      Extension('sage.matrix.change_ring',
                sources = ['sage/matrix/change_ring.pyx'],
 -              libraries=[BLAS, BLAS2, 'gmp'],
-+              library_dirs = [ blas_dir ],
-+              libraries=[blas_libs, 'gmp'],
++              library_dirs = blas_dir,
++              libraries=['gmp'].extend(blas_libs),
                include_dirs = numpy_include_dirs),
  
      Extension('sage.matrix.matrix',
@@ -124,8 +124,8 @@
      Extension('sage.matrix.matrix_complex_double_dense',
                sources = ['sage/matrix/matrix_complex_double_dense.pyx'],
 -              libraries=[BLAS, BLAS2],
-+              library_dirs = [ blas_dir ],
-+              libraries=[blas_libs],
++              library_dirs = blas_dir,
++              libraries = blas_libs,
                include_dirs = numpy_include_dirs,
                depends = numpy_depends),
  
@@ -134,8 +134,8 @@
      Extension('sage.matrix.matrix_double_dense',
                sources = ['sage/matrix/matrix_double_dense.pyx'],
 -              libraries=[BLAS, BLAS2],
-+              library_dirs = [ blas_dir ],
-+              libraries=[blas_libs],
++              library_dirs = blas_dir,
++              libraries = blas_libs,
                include_dirs = numpy_include_dirs,
                depends = numpy_depends),
  
@@ -143,10 +143,10 @@
                sources = ['sage/matrix/matrix_integer_dense.pyx'],
                extra_compile_args = m4ri_extra_compile_args,
                depends = [SAGE_INC + '/m4ri/m4ri.h'],
-+              library_dirs = [ blas_dir ],
++              library_dirs = blas_dir,
                # order matters for cygwin!!
 -              libraries = ['iml', 'pari', 'gmp', 'm', BLAS, BLAS2]),
-+              libraries = ['iml', 'pari', 'gmp', 'm', blas_libs]),
++              libraries = ['iml', 'pari', 'gmp', 'm'].extend(blas_libs)),
  
      Extension('sage.matrix.matrix_integer_sparse',
                sources = ['sage/matrix/matrix_integer_sparse.pyx'],
@@ -155,16 +155,16 @@
                sources = ['sage/matrix/matrix_modn_dense_float.pyx'],
                language="c++",
 -              libraries = ['linbox', 'givaro', 'mpfr', 'gmpxx', 'gmp', BLAS, BLAS2],
-+              library_dirs = [ blas_dir ],
-+              libraries = ['linbox', 'givaro', 'mpfr', 'gmpxx', 'gmp', blas_libs],
++              library_dirs = blas_dir,
++              libraries = ['linbox', 'givaro', 'mpfr', 'gmpxx', 'gmp'].extend(blas_libs),
                extra_compile_args = ['-DDISABLE_COMMENTATOR'] + givaro_extra_compile_args),
  
      Extension('sage.matrix.matrix_modn_dense_double',
                sources = ['sage/matrix/matrix_modn_dense_double.pyx'],
                language="c++",
 -              libraries = ['linbox', 'givaro', 'mpfr', 'gmpxx', 'gmp', BLAS, BLAS2],
-+              library_dirs = [ blas_dir ],
-+              libraries = ['linbox', 'givaro', 'mpfr', 'gmpxx', 'gmp', blas_libs],
++              library_dirs = blas_dir,
++              libraries = ['linbox', 'givaro', 'mpfr', 'gmpxx', 'gmp'].extend(blas_libs),
                extra_compile_args = ['-DDISABLE_COMMENTATOR'] + givaro_extra_compile_args),
  
      Extension('sage.matrix.matrix_modn_sparse',
@@ -173,8 +173,8 @@
      Extension('sage.matrix.matrix_real_double_dense',
                sources = ['sage/matrix/matrix_real_double_dense.pyx'],
 -              libraries=[BLAS, BLAS2],
-+              library_dirs = [ blas_dir ],
-+              libraries=[blas_libs],
++              library_dirs = blas_dir,
++              libraries = blas_libs,
                include_dirs = numpy_include_dirs,
                depends = numpy_depends),
  
@@ -183,16 +183,16 @@
      Extension('sage.modules.vector_complex_double_dense',
                ['sage/modules/vector_complex_double_dense.pyx'],
 -              libraries = [BLAS, BLAS2],
-+              library_dirs = [ blas_dir ],
-+              libraries = [blas_libs],
++              library_dirs = blas_dir,
++              libraries = blas_libs,
                include_dirs = numpy_include_dirs,
                depends = numpy_depends),
  
      Extension('sage.modules.vector_double_dense',
                ['sage/modules/vector_double_dense.pyx'],
 -              libraries = [BLAS, BLAS2],
-+              library_dirs = [ blas_dir ],
-+              libraries = [blas_libs],
++              library_dirs = blas_dir,
++              libraries = blas_libs,
                include_dirs = numpy_include_dirs,
                depends = numpy_depends),
  
@@ -201,8 +201,8 @@
      Extension('sage.modules.vector_real_double_dense',
                ['sage/modules/vector_real_double_dense.pyx'],
 -              libraries = [BLAS, BLAS2],
-+              library_dirs = [ blas_dir ],
-+              libraries = [blas_libs],
++              library_dirs = blas_dir,
++              libraries = blas_libs,
                include_dirs = numpy_include_dirs,
                depends = numpy_depends),
  
@@ -211,8 +211,8 @@
                sources = ['sage/rings/complex_double.pyx'],
                extra_compile_args=["-std=c99",  "-D_XPG6"],
 -              libraries = (['gsl', BLAS, BLAS2, 'pari', 'gmp', 'm'])),
-+              library_dirs = [ blas_dir ],
-+              libraries = (['gsl', blas_libs, 'pari', 'gmp', 'm'])),
++              library_dirs = blas_dir,
++              libraries = ['gsl', 'pari', 'gmp', 'm'].extend(blas_libs)),
  
      Extension('sage.rings.complex_interval',
                sources = ['sage/rings/complex_interval.pyx'],
@@ -221,8 +221,8 @@
      Extension('sage.rings.real_double',
                sources = ['sage/rings/real_double.pyx'],
 -              libraries = ['gsl', 'gmp', BLAS, BLAS2],
-+              library_dirs = [ blas_dir ],
-+              libraries = ['gsl', 'gmp', blas_libs],
++              library_dirs = blas_dir,
++              libraries = ['gsl', 'gmp'].extend(blas_libs),
                depends = numpy_depends,
                define_macros=[('GSL_DISABLE_DEPRECATED','1')]),
  
@@ -269,7 +269,7 @@
 -def atlas():
 +    import pkgconfig
 +
-+    return ', '.join(pkgconfig.parse('cblas')['libraries'])
++    return list(pkgconfig.parse('cblas')['libraries'])
 +
 +def cblas_dir():
      """
@@ -292,7 +292,7 @@
 +
 +    import pkgconfig
 +
-+    return ', '.join(pkgconfig.parse('cblas')['library_dir'])
++    return list(pkgconfig.parse('cblas')['library_dir'])
  
  include_dirs = [os.path.join(SAGE_LOCAL,'include','csage'),
                  os.path.join(SAGE_LOCAL,'include'), \
@@ -301,7 +301,7 @@
  
  standard_libs = ['mpfr', 'gmp', 'gmpxx', 'stdc++', 'pari', 'm', \
 -                 'ec', 'gsl', cblas(), atlas(), 'ntl', 'csage']
-+                 'ec', 'gsl', cblas_libs(), 'ntl', 'csage']
++                 'ec', 'gsl', 'ntl', 'csage'].extend(cblas_libs())
  
  offset = 0
  
@@ -346,7 +346,7 @@
      if lang != "c++": # has issues with init_csage()
          s = """\ninclude "interrupt.pxi"  # ctrl-c interrupt block support\ninclude "stdsage.pxi"  # ctrl-c interrupt block support\n""" + s
      args, s = parse_keywords('cargs', s)
-+    libdirs = [cblas_dir()]
++    libdirs = cblas_dir()
      args = ['-w','-O2'] + args
  
 -    return s, libs, inc, lang, additional_source_files, args

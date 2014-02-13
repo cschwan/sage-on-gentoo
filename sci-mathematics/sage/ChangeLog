@@ -2,6 +2,11 @@
 # Copyright 1999-2014 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  13 Feb 2014; François Bissey <francois.bissey@canterbury.ac.nz>
+  files/sage-blas.patch:
+  much better cblas handling in -9999 thanks Steve for testing. Still stuff to
+  patch in cython.py but it should build and run with any cblas now.
+
   11 Feb 2014; François Bissey <francois.bissey@canterbury.ac.nz>
   sage-9999.ebuild:
   little dependency adjustment to match upstream
