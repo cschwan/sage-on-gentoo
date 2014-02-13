@@ -1,0 +1,9 @@
+--- setup.py.orig	2014-02-13 13:07:30.837033913 +1300
++++ setup.py	2014-02-13 13:07:41.628058508 +1300
+@@ -12,6 +12,5 @@
+     packages=['pkgconfig'],
+     description="Interface Python with pkg-config",
+     long_description=open('README.rst').read(),
+-    setup_requires=['nose>=1.0'],
+     test_suite='test',
+ )

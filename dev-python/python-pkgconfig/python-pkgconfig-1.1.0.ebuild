@@ -25,6 +25,8 @@ DEPEND="${RDEPEND}
 
 S="${WORKDIR}/${MY_P}"
 
+PATCHES=( "${FILESDIR}"/${MY_P}-setup.patch )
+
 python_test() {
 	${EPYTHON} test.py
 }
