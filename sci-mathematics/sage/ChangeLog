@@ -4,6 +4,11 @@
 
   13 Feb 2014; François Bissey <francois.bissey@canterbury.ac.nz>
   files/sage-blas.patch:
+  It was building but not running. OO semantics it would be educational to have
+  the emails between me and steve in an issue :)
+
+  13 Feb 2014; François Bissey <francois.bissey@canterbury.ac.nz>
+  files/sage-blas.patch:
   much better cblas handling in -9999 thanks Steve for testing. Still stuff to
   patch in cython.py but it should build and run with any cblas now.
 
