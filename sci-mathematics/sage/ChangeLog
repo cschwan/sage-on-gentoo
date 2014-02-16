@@ -3,6 +3,10 @@
 # $Header: $
 
   16 Feb 2014; François Bissey <francois.bissey@canterbury.ac.nz>
+  -files/sage-6.2-env.py:
+  Remove duplicate file
+
+  16 Feb 2014; François Bissey <francois.bissey@canterbury.ac.nz>
   +files/sage-6.2-env.patch, +files/sage-6.2-env.py, sage-9999.ebuild:
   various small fixes to get 6.2.beta2 to build.
 
