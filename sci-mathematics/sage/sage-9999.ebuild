@@ -173,6 +173,10 @@ python_prepare() {
 	# use already installed csage
 	rm -rf c_lib || die "failed to remove c library directory"
 
+	# use installed clib headers
+	sed -i "s:c_lib/include/memory.h:csage/memory.h:" \
+		sage/libs/pari/pari_instance.pyx
+
 	# fix png library name
 	sed -i "s:png12:$(libpng-config --libs | cut -dl -f2):g" module_list.py
 
@@ -201,7 +205,7 @@ python_prepare() {
 	############################################################################
 
 	# sage on gentoo env.py
-	epatch "${FILESDIR}"/sage-6.1-env.patch
+	epatch "${FILESDIR}"/sage-6.2-env.patch
 	eprefixify sage/env.py
 
 	# fix library path of libsingular
