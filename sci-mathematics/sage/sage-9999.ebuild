@@ -160,7 +160,7 @@ python_prepare() {
 	fi
 
 	# replace pexpect with sage pinned version
-	epatch "${FILESDIR}"/${PN}-pexpect.patch
+	epatch "${FILESDIR}"/${PN}-6.2-pexpect.patch
 	sed -i "s:import pexpect:import sage_pexpect as pexpect:g" \
 		`grep -rl "import pexpect" *`
 	sed -i "s:from pexpect:from sage_pexpect:g" \
