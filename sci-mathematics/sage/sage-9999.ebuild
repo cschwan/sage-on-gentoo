@@ -140,8 +140,6 @@ python_prepare() {
 	# Remove sage's package management system
 	epatch "${WORKDIR}"/patches/${PN}-6.1-package.patch
 	rm sage/misc/package.py
-	# trac 15443 has been reverted since beta4, next line to go when that ticket is merged.
-	epatch "${FILESDIR}"/${PN}-6.0-ecm-package.patch
 
 	# Remove sage's git capabilities
 	epatch "${WORKDIR}"/patches/${PN}-6.2-hg.patch

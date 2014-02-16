@@ -3,6 +3,10 @@
 # $Header: $
 
   16 Feb 2014; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-9999.ebuild:
+  trac 15443 merged in 6.2.beta2 removing related patch
+
+  16 Feb 2014; François Bissey <francois.bissey@canterbury.ac.nz>
   files/sage-blas.patch:
   updating blas patch for 6.2.beta2
 
