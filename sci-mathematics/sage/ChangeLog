@@ -3,6 +3,10 @@
 # $Header: $
 
   16 Feb 2014; François Bissey <francois.bissey@canterbury.ac.nz>
+  files/sage-blas.patch:
+  updating blas patch for 6.2.beta2
+
+  16 Feb 2014; François Bissey <francois.bissey@canterbury.ac.nz>
   sage-6.0-r1.ebuild, sage-6.0-r2.ebuild, sage-6.1.1-r2.ebuild,
   sage-9999.ebuild:
   fix pari dependencies for upcoming sage 6.2

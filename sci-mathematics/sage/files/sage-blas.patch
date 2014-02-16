@@ -249,7 +249,7 @@
 +        sage: sage.misc.cython.cblas_libs() # random -- depends on OS, etc.
          'cblas'
      """
--    if os.environ.has_key('SAGE_CBLAS'):
+-    if 'SAGE_CBLAS' in os.environ:
 -        return os.environ['SAGE_CBLAS']
 -    elif os.path.exists('/usr/lib/libcblas.dylib') or \
 -         os.path.exists('/usr/lib/libcblas.so'):
