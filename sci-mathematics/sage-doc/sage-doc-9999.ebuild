@@ -1,4 +1,4 @@
-# Copyright 1999-2013 Gentoo Foundation
+# Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
@@ -18,7 +18,7 @@ else
 fi
 
 # for now no html or pdf
-BPV="6.0"
+BPV="6.1.1"
 #BPV="${PV}"
 MY_P_HTML="sage-${BPV}-doc-html"
 MY_P_PDF="sage-${BPV}-doc-pdf"
@@ -26,7 +26,7 @@ MY_P_PDF="sage-${BPV}-doc-pdf"
 DESCRIPTION="Documentation, tutorials and help files for Sage"
 HOMEPAGE="http://www.sagemath.org/"
 SRC_URI="${SRC_URI}
-	http://www.mathematik.uni-kl.de/ftp/pub/Math/Singular/SOURCES/3-1-5/Singular-3-1-5-share.tar.gz
+	http://www.mathematik.uni-kl.de/ftp/pub/Math/Singular/SOURCES/3-1-6/Singular-3-1-6-share.tar.gz
 	html? ( mirror://sagemathdoc/${MY_P_HTML}.tar.bz2 -> sage-doc-html-${BPV}.tar.bz2 )
 	pdf? ( mirror://sagemathdoc/${MY_P_PDF}.tar.bz2 -> sage-doc-pdf-${BPV}.tar.bz2 )"
 
@@ -52,7 +52,7 @@ src_prepare() {
 	# remove Makefile
 	rm Makefile
 	# Put singular help file where it is expected
-	cp "${WORKDIR}"/Singular/3-1-5/info/singular.hlp ./
+	cp "${WORKDIR}"/Singular/3-1-6/info/singular.hlp ./
 
 	# fix issue 197
 	touch en/__init__.py
