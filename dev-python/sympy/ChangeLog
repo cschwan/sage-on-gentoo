@@ -1,6 +1,11 @@
 # ChangeLog for dev-python/sympy
-# Copyright 1999-2013 Gentoo Foundation; Distributed under the GPL v2
+# Copyright 1999-2014 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
+
+  21 Feb 2014; François Bissey <francois.bissey@canterbury.ac.nz>
+  -files/sympy-0.7.3-mpmathtest.patch, -sympy-0.7.3.ebuild,
+  -sympy-0.7.4.1.ebuild:
+  Remove main tree duplicates. Will need to check if we need older sympy.
 
 *sympy-0.7.4.1 (27 Dec 2013)
 
