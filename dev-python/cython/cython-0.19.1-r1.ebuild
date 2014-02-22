@@ -1,4 +1,4 @@
-# Copyright 1999-2013 Gentoo Foundation
+# Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
@@ -33,7 +33,8 @@ PATCHES=( "${FILESDIR}"/build_dir.patch )
 
 python_compile() {
 	if [[ ${EPYTHON} == python2* ]]; then
-		local CFLAGS CXXFLAGS
+		local CFLAGS="${CFLAGS}"
+		local CXXFLAGS="${CXXFLAGS}"
 		append-flags -fno-strict-aliasing
 	fi
 
