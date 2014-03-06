@@ -1,0 +1,19 @@
+--- doc/common/multidocs.py.orig	2014-02-28 17:55:08.000000000 -0600
++++ doc/common/multidocs.py	2014-02-28 18:23:21.000000000 -0600
+@@ -151,8 +151,13 @@
+     """
+     from sphinx.search import IndexBuilder, languages
+     # FIXME: find the correct lang
+-    indexer = IndexBuilder(app.env, 'en',
+-                           app.config.html_search_options)
++    sphinx_version=__import__("sphinx").__version__
++    if (sphinx_version < '1.2'):
++        indexer = IndexBuilder(app.env, 'en',
++                               app.config.html_search_options)
++    else:
++        indexer = IndexBuilder(app.env, 'en',
++                               app.config.html_search_options, scoring=None)
+     indexfile = os.path.join(app.outdir, curdoc, 'searchindex.js')
+     try:
+         f = open(indexfile, 'rb')
+

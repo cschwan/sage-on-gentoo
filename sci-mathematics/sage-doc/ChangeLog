@@ -2,6 +2,12 @@
 # Copyright 1999-2014 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  06 Mar 2014; François Bissey <francois.bissey@canterbury.ac.nz>
+  +files/sage-doc-6.2-seealso.patch, +files/sage-doc-6.2-sphinx.patch,
+  +files/sage-doc-dev.patch, files/sage-doc-6.0-misc.patch,
+  sage-doc-9999-r1.ebuild:
+  fixing sage-doc-9999-r1 with Steve's help.
+
   17 Feb 2014; François Bissey <francois.bissey@canterbury.ac.nz>
   sage-doc-9999.ebuild:
   Updating 9999 since 9999-r1 is broken.

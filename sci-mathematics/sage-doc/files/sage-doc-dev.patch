@@ -1,0 +1,11 @@
+--- doc/en/reference/index.rst.orig	2014-02-21 16:44:27.000000000 -0600
++++ doc/en/reference/index.rst	2014-02-21 16:44:35.000000000 -0600
+@@ -124,7 +124,6 @@
+ ---------------------------------------------
+ 
+ * :doc:`Doctesting <doctest/index>`
+-* :doc:`Development Scripts <dev/index>`
+ * :doc:`Interpreter Interfaces <interfaces/index>`
+ * :doc:`C/C++ Library Interfaces <libs/index>`
+ * :doc:`Databases <databases/index>`
+

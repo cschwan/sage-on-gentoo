@@ -35,12 +35,19 @@ RESTRICT="mirror"
 DEPEND=""
 RDEPEND=">=dev-python/sphinx-1.1.2"
 
-S="${WORKDIR}/sage-${PV}/src/doc"
+S="${WORKDIR}/sage-${PV}/src"
 
-PATCHES=( "${FILESDIR}"/${PN}-6.0-misc.patch )
+PATCHES=( "${FILESDIR}"/${PN}-6.0-misc.patch
+	"${FILESDIR}"/${PN}-dev.patch
+	"${FILESDIR}"/${PN}-6.2-seealso.patch
+	"${FILESDIR}"/${PN}-6.2-sphinx.patch )
 
 python_prepare_all() {
 	distutils-r1_python_prepare_all
+
+	cd doc
+	# remove dev tools
+	rm -rf en/reference/dev
 
 	# Put singular help file where it is expected
 	cp "${WORKDIR}"/Singular/3-1-5/info/singular.hlp ./
@@ -56,18 +63,18 @@ python_prepare_all() {
 }
 
 python_compile() {
-	export SAGE_DOC="${S}"
-	export SAGE_SRC="${S}"/..
+	export SAGE_DOC="${S}"/doc
+	export SAGE_SRC="${S}"
 	export SAGE_NUM_THREADS=$(makeopts_jobs)
 	export SAGE_DOC_MATHJAX=yes
 
 	if use html ; then
-		${PYTHON} common/builder.py --no-pdf-links all html
+		${PYTHON} doc/common/builder.py --no-pdf-links all html
 		# issue #197
-		touch output/html/en/__init__.py
+		touch doc/output/html/en/__init__.py
 	fi
 	if use pdf ; then
-		${PYTHON} common/builder.py all pdf
+		${PYTHON} doc/common/builder.py all pdf
 	fi
 }
 
@@ -76,9 +83,9 @@ python_install() {
 	# TODO: check if all of these files are needed
 	insinto /usr/share/doc/sage
 	# not installing doc build system
-	rm common/builder.py
-	rm common/custom-sphinx-build.py
-	doins -r *
+	rm doc/common/builder.py
+	rm doc/common/custom-sphinx-build.py
+	doins -r doc/*
 }
 
 pkg_postinst() {
