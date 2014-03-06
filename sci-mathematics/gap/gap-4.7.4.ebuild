@@ -1,4 +1,4 @@
-# Copyright 1999-2013 Gentoo Foundation
+# Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
@@ -33,7 +33,6 @@ RDEPEND="${DEPEND}
 PATCHES=(
 	"${FILESDIR}"/${PN}-4.5.7-writeandcheck.patch
 	"${FILESDIR}"/${PN}-4.5.7-testall.patch
-	"${FILESDIR}"/${PN}-4.6.4-Makefile.patch
 	)
 
 AUTOTOOLS_AUTORECONF=1
