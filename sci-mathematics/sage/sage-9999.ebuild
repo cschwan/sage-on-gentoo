@@ -185,7 +185,7 @@ python_prepare() {
 		module_list.py
 
 	# use sage-ppl
-	epatch "${FILESDIR}"/${PN}-6.0-ppl1.patch
+	epatch "${FILESDIR}"/${PN}-6.2-ppl1.patch
 	sed -i "s:lib/ppl1:$(get_libdir)/ppl1:" module_list.py
 
 	# fix lcalc path
