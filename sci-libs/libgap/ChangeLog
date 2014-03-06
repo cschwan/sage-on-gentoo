@@ -1,3 +1,9 @@
+*libgap-4.7.4 (06 Mar 2014)
+
+  06 Mar 2014; François Bissey <francois.bissey@canterbury.ac.nz>
+  +libgap-4.7.4.ebuild, -libgap-4.7.2.ebuild:
+  Bump libgap to match gap
+
 *libgap-4.7.2 (27 Dec 2013)
 
   27 Dec 2013; François Bissey <francois.bissey@canterbury.ac.nz>
