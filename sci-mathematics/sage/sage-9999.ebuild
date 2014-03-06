@@ -50,7 +50,7 @@ CDEPEND="dev-libs/gmp
 	>=sci-libs/gsl-1.15
 	>=sci-libs/iml-1.0.1
 	~sci-libs/libcliquer-1.21_p1
-	~sci-libs/libgap-4.6.4_p0
+	~sci-libs/libgap-4.7.4
 	~sci-libs/linbox-1.3.2[sage]
 	~sci-libs/m4ri-20130416
 	~sci-libs/m4rie-20130416
@@ -98,7 +98,7 @@ RDEPEND="${CDEPEND}
 	>=sci-libs/cddlib-094f-r2
 	>=sci-libs/scipy-0.11.0[${PYTHON_USEDEP}]
 	>=sci-mathematics/flintqs-20070817_p8
-	~sci-mathematics/gap-4.6.4
+	~sci-mathematics/gap-4.7.4
 	>=sci-mathematics/genus2reduction-0.3_p8-r1
 	~sci-mathematics/gfan-0.5
 	>=sci-mathematics/cu2-20060223
@@ -199,6 +199,11 @@ python_prepare() {
 	# We add -DNDEBUG to objects linking to givaro. It solves problems with linbox and singular.
 	sed -i "s:-D__STDC_LIMIT_MACROS:-D__STDC_LIMIT_MACROS', '-DNDEBUG:g" \
 		module_list.py
+
+	############################################################################
+	# Fixes to build the documentation with sage-doc-9999
+	############################################################################
+	epatch "${FILESDIR}"/${PN}-doc-6.2-seealso.patch
 
 	############################################################################
 	# Fixes to Sage itself
