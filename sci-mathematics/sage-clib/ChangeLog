@@ -2,6 +2,11 @@
 # Copyright 1999-2014 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  07 Mar 2014; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-clib-9999.ebuild:
+  Bump dependencies for 9999 remove patch that doesn't seem to be needed
+  anymore. Under scrutiny.
+
   11 Feb 2014; François Bissey <francois.bissey@canterbury.ac.nz>
   +files/sage-clib-6.2-SConstruct.patch, sage-clib-9999.ebuild:
   Towards 6.2 in clib. Clean up to mirror upstream change in dependencies. There

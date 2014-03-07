@@ -27,7 +27,7 @@ IUSE=""
 RESTRICT="mirror"
 
 DEPEND="dev-libs/gmp[cxx]
-	<dev-libs/ntl-6.0.0
+	>=dev-libs/ntl-6.0.0
 	>=sci-mathematics/pari-2.5.5"
 RDEPEND="${DEPEND}"
 
@@ -35,7 +35,6 @@ S="${WORKDIR}/sage-${PV}/src/c_lib"
 
 src_prepare() {
 	epatch "${FILESDIR}"/${PN}-6.2-SConstruct.patch
-	epatch "${FILESDIR}"/${PN}-4.5.3-fix-undefined-symbols-warning.patch
 
 	sed -i "s:mpir.h:gmp.h:" src/memory.c || die "failed to patch"
 
