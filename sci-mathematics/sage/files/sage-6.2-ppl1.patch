@@ -22,8 +22,8 @@
                libraries=["csage", "stdc++"]),
  
      Extension("sage.numerical.backends.glpk_graph_backend",
---- sage/libs/ppl.pyx.orig	2014-03-06 14:20:02.000000000 -0600
-+++ sage/libs/ppl.pyx	2014-03-06 14:22:43.000000000 -0600
+--- sage/libs/ppl.pyx.orig	2014-03-06 21:21:03.000000000 -0600
++++ sage/libs/ppl.pyx	2014-03-06 21:22:10.000000000 -0600
 @@ -176,7 +176,7 @@
  
  ####################################################
@@ -70,6 +70,15 @@
      PPL_Generator PPL_line          "Parma_Polyhedra_Library::line"          (PPL_Linear_Expression &e) except +ValueError
      PPL_Generator PPL_ray           "Parma_Polyhedra_Library::ray"           (PPL_Linear_Expression &e) except +ValueError
      PPL_Generator PPL_point         "Parma_Polyhedra_Library::point"         (PPL_Linear_Expression &e, PPL_Coefficient &d) except +ValueError
+@@ -444,7 +444,7 @@
+ 
+ ####################################################
+ # Cython does not support static methods; hack around
+-cdef extern from "ppl.hh":
++cdef extern from "ppl1/ppl.hh":
+ 
+     PPL_Poly_Gen_Relation PPL_Poly_Gen_Relation_nothing  "Parma_Polyhedra_Library::Poly_Gen_Relation::nothing"  ()
+     PPL_Poly_Gen_Relation PPL_Poly_Gen_Relation_subsumes "Parma_Polyhedra_Library::Poly_Gen_Relation::subsumes" ()
 --- sage/libs/ppl_shim.hh.orig	2014-03-06 14:22:57.000000000 -0600
 +++ sage/libs/ppl_shim.hh	2014-03-06 14:23:30.000000000 -0600
 @@ -3,7 +3,7 @@
