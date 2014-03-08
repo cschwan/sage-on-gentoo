@@ -1,6 +1,13 @@
 # ChangeLog for dev-libs/ntl
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
+# Copyright 1999-2014 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/dev-libs/ntl/ChangeLog,v 1.22 2011/02/24 04:56:07 bicatali Exp $
+
+*ntl-6.0.0-r1 (08 Mar 2014)
+
+  08 Mar 2014; François Bissey <francois.bissey@canterbury.ac.nz>
+  +files/ntl-6.0.0-sage-tools.patch, +files/ntl-6.0.0-singular.patch,
+  +ntl-6.0.0-r1.ebuild, -ntl-6.0.0.ebuild:
+  sync with sage patches
 
   24 Feb 2011; Sébastien Fabbro <bicatali@gentoo.org> -ntl-5.3.ebuild,
   -ntl-5.3.2.ebuild, -ntl-5.4-r1.ebuild, -files/ntl-5.4-endless_testrun.patch,

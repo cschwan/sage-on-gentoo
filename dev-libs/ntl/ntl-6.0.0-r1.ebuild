@@ -26,9 +26,9 @@ src_prepare() {
 	sed -i -e "s/make/make ${MAKEOPTS}/g" WizardAux || die
 	cd ..
 	# enable compatibility with singular
-	epatch "$FILESDIR/${PN}-5.5.2-singular.patch"
+	epatch "$FILESDIR/${PN}-6.0.0-singular.patch"
 	# implement a call back framework (submitted upstream)
-	epatch "$FILESDIR/${PN}-5.5.2-sage-tools.patch"
+	epatch "$FILESDIR/${PN}-6.0.0-sage-tools.patch"
 	# sanitize the makefile and allow the building of shared library
 	epatch "$FILESDIR/${PN}-5.5.2-shared.patch"
 	replace-flags -O[3-9] -O2
