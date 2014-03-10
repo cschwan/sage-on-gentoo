@@ -63,6 +63,7 @@ src_prepare () {
 	epatch "${FILESDIR}"/${PN}-3.1.3.3-Minor.h.patch
 	epatch "${FILESDIR}"/${PN}-3.1.6-ntl6compat.patch
 	epatch "${FILESDIR}"/${PN}-3.1.6-factory_template_instantiation.patch
+	epatch "${FILESDIR}"/sage_trac_14295.patch
 	use python && epatch "${FILESDIR}"/${PN}-3.1.3.2-python.patch
 
 	if  [[ ${CHOST} == *-darwin* ]] ; then
@@ -113,6 +114,7 @@ src_configure() {
 		--enable-IntegerProgramming \
 		--enable-Singular \
 		--with-malloc=system \
+		--with-debug \
 		$(use_with python python embed) \
 		$(use_with boost Boost) \
 		$(use_enable emacs) \
