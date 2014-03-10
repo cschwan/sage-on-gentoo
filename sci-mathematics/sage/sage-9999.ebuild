@@ -37,7 +37,7 @@ RESTRICT="mirror test"
 CDEPEND="dev-libs/gmp
 	>=dev-libs/mpfr-3.1.0
 	>=dev-libs/mpc-1.0
-	<dev-libs/ntl-6.0.0
+	>=dev-libs/ntl-6.0.0
 	>=sci-libs/sage-ppl-1.0
 	>=dev-lisp/ecls-12.12.1-r5
 	>=dev-python/numpy-1.7.0[${PYTHON_USEDEP}]
