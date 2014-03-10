@@ -1,10 +1,7 @@
 # Use in addition to ./sage when running Gentoo unstable
 
 app-text/ghostscript-gpl    cups
-sys-libs/zlib               minizip
 ##################################
 # Avoid conflicts with pillow for the time being
 ##################################
-sci-libs/scipy              -python_targets_python3_2 -python_targets_python3_3
-dev-python/sympy            -python_targets_python3_2
 
