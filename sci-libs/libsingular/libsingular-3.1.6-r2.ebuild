@@ -48,6 +48,7 @@ src_prepare () {
 	epatch "${FILESDIR}"/${PN_PATCH}-3.1.0-gentoo.patch
 	epatch "${FILESDIR}"/${PN_PATCH}-3.1.6-ntl6compat.patch
 	epatch "${FILESDIR}"/${PN_PATCH}-3.1.6-factory_template_instantiation.patch
+	epatch "${FILESDIR}"/sage_trac_14295.patch
 	if  [[ ${CHOST} == *-darwin* ]] ; then
 		# really a placeholder until I figure out the patch for that one.
 		epatch "${FILESDIR}"/${PN_PATCH}-3.1.3.3-dylib.patch

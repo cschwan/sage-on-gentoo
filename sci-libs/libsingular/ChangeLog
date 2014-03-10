@@ -2,6 +2,13 @@
 # Copyright 1999-2014 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*libsingular-3.1.6-r2 (10 Mar 2014)
+
+  10 Mar 2014; François Bissey <francois.bissey@canterbury.ac.nz>
+  +files/sage_trac_14295.patch, +libsingular-3.1.6-r2.ebuild,
+  -libsingular-3.1.6-r1.ebuild, files/singular-3.1.6-ntl6compat.patch:
+  Correct ntl6 compatibility patch + new sage patch
+
 *libsingular-3.1.6-r1 (11 Feb 2014)
 
   11 Feb 2014; François Bissey <francois.bissey@canterbury.ac.nz>

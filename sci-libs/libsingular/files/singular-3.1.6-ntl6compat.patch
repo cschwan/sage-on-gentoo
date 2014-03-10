@@ -1,10 +1,9 @@
+[31mddb348e[m -[33m[m update for NTL 6 [32m(5 months ago) [1;34m<Hans Schoenemann>[m
 diff --git a/Singular/claptmpl.cc b/Singular/claptmpl.cc
 index 0fa6109..553afa5 100644
-Index: Singular/claptmpl.cc
-===================================================================
 --- a/Singular/claptmpl.cc
 +++ b/Singular/claptmpl.cc
-@@ -123,3 +123,36 @@ template class std::list<PolyMinorValue>;
+@@ -123,3 +123,38 @@ template class std::list<PolyMinorValue>;
  template class Cache<MinorKey, IntMinorValue>;
  template class Cache<MinorKey, PolyMinorValue>;
  
@@ -15,6 +14,7 @@ Index: Singular/claptmpl.cc
 +#include<NTL/tools.h>
 +#include<NTL/lzz_pE.h>
 +#include<NTL/lzz_pEX.h>
++#include<NTL/lzz_pX.h>
 +#include<NTL/lzz_p.h>
 +#include<NTL/vector.h>
 +#include<NTL/pair.h>
@@ -31,6 +31,7 @@ Index: Singular/claptmpl.cc
 +template class Mat<zz_p>;
 +template class Mat<zz_pE>;
 +template class Mat<ZZ>;
++template class Vec<Pair<zz_pX, long> >;
 +template class Vec<Pair<zz_pEX, long> >;
 +template class Vec<Pair<GF2EX, long> >;
 +template class Vec<Pair<ZZX, long> >;
