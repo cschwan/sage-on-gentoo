@@ -4,6 +4,10 @@
 
   10 Mar 2014; François Bissey <francois.bissey@canterbury.ac.nz>
   sage-9999.ebuild:
+  sage 6.2.beta3 has switched to cython 0.20.1
+
+  10 Mar 2014; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-9999.ebuild:
   sage 6.2.beta3 now wants ntl6+
 
   06 Mar 2014; François Bissey <francois.bissey@canterbury.ac.nz>
