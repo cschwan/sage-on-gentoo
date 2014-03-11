@@ -23,7 +23,7 @@ fi
 DESCRIPTION="Documentation, tutorials and help files for Sage"
 HOMEPAGE="http://www.sagemath.org/"
 SRC_URI="${SRC_URI}
-	http://www.mathematik.uni-kl.de/ftp/pub/Math/Singular/SOURCES/3-1-5/Singular-3-1-5-share.tar.gz"
+	http://www.mathematik.uni-kl.de/ftp/pub/Math/Singular/SOURCES/3-1-6/Singular-3-1-6-share.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
@@ -32,8 +32,8 @@ IUSE="html pdf"
 RESTRICT="mirror"
 
 # TODO: depend on sage-baselayout (creates sage-main directory) ?
-DEPEND=""
-RDEPEND=">=dev-python/sphinx-1.1.2"
+DEPEND="<dev-python/docutils-0.10[${PYTHON_USEDEP}]"
+RDEPEND=">=dev-python/sphinx-1.1.2[${PYTHON_USEDEP}]"
 
 S="${WORKDIR}/sage-${PV}/src"
 
@@ -50,7 +50,7 @@ python_prepare_all() {
 	rm -rf en/reference/dev
 
 	# Put singular help file where it is expected
-	cp "${WORKDIR}"/Singular/3-1-5/info/singular.hlp ./
+	cp "${WORKDIR}"/Singular/3-1-6/info/singular.hlp ./
 
 	# fix issue 197
 	touch en/__init__.py
