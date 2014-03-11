@@ -74,6 +74,7 @@ python_compile() {
 		touch doc/output/html/en/__init__.py
 	fi
 	if use pdf ; then
+		export MAKE=make
 		${PYTHON} doc/common/builder.py all pdf
 	fi
 }
