@@ -24,7 +24,7 @@ dev-python/gdmodule
 ~dev-python/ipython-0.13.2
 dev-python/matplotlib
 dev-python/mpmath
-~dev-python/networkx-1.6
+~dev-python/networkx-1.8.1
 ~dev-python/numpy-1.7.0
 ~dev-python/pexpect-2.0
 ~dev-python/sage-pexpect-2.0
@@ -41,6 +41,7 @@ dev-python/speaklater
 dev-python/sqlalchemy
 ~dev-python/sympy-0.7.2
 ~dev-python/sympy-0.7.3
+~dev-python/sympy-0.7.4.1
 dev-python/twisted-names
 dev-python/twisted-core
 dev-python/twisted-mail
