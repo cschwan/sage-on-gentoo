@@ -1,28 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
 <pkgmetadata>
-	<herd>python</herd>
-	<longdescription>
-IPython provides a replacement for the interactive Python interpreter with
-extra functionality.
-
-Main features:
-* Comprehensive object introspection.
-* Input history, persistent across sessions.
-* Caching of output results during a session with automatically generated
-  references.
-* Readline based name completion.
-* Extensible system of 'magic' commands for controlling the environment and
-  performing many tasks related either to IPython or the operating system.
-* Configuration system with easy switching between different setups (simpler
-  than changing $PYTHONSTARTUP environment variables every time).
-* Session logging and reloading.
-* Extensible syntax processing for special purpose situations.
-* Access to the system shell with user-extensible alias system.
-* Easily embeddable in other Python programs.
-* Integrated access to the pdb debugger and the Python profiler.
+  <herd>python</herd>
+  <longdescription lang="en">
+  IPython provides a replacement for the interactive Python interpreter with
+  extra functionality. Main features:
+  * Comprehensive object introspection.
+  * Input history, persistent across sessions.
+  * Caching of output results during a session with automatically generated
+    references.
+  * Readline based name completion.
+  * Extensible system of 'magic' commands for controlling the environment and
+    performing many tasks related either to IPython or the operating system.
+  * Configuration system with easy switching between different setups (simpler
+    than changing $PYTHONSTARTUP environment variables every time).
+  * Session logging and reloading.
+  * Extensible syntax processing for special purpose situations.
+  * Access to the system shell with user-extensible alias system.
+  * Easily embeddable in other Python programs.
+  * Integrated access to the pdb debugger and the Python profiler.
 </longdescription>
-	<longdescription lang="ja">
+  <longdescription lang="ja">
 対話的に利用する場合にPythonインタープリタから、より機能が豊富なIPythonへ置き換&gt;える事ができます。
 
 主機能：
@@ -40,10 +38,11 @@ Main features:
 * 他のPython言語プログラムを組み込むのが簡単。
 * pdbデバッガとprofilerへの統合アクセス。
 </longdescription>
-<use>
-  <flag name="matplotlib">Add support for <pkg>dev-python/matplotlib</pkg></flag>
-  <flag name="mongodb">Enable support for MongoDB via <pkg>dev-python/pymongo</pkg></flag>
-  <flag name="notebook">Install requirements for the web notebook based on <pkg>www-servers/tornado</pkg></flag>
-  <flag name="octave">Enable octave bridge via <pkg>dev-python/oct2py</pkg></flag>
-</use>
+  <use>
+    <flag name="matplotlib">Add support for <pkg>dev-python/matplotlib</pkg></flag>
+    <flag name="mongodb">Enable support for MongoDB via <pkg>dev-python/pymongo</pkg></flag>
+    <flag name="notebook">Install requirements for the web notebook based on <pkg>www-servers/tornado</pkg></flag>
+    <flag name="nbconvert">Enable support for converting notebooks to various formats using <pkg>app-text/pandoc</pkg></flag>
+    <flag name="octave">Enable octave bridge via <pkg>dev-python/oct2py</pkg></flag>
+  </use>
 </pkgmetadata>

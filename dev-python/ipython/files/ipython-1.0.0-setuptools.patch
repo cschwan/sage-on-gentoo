@@ -1,0 +1,15 @@
+Import setuptools unconditionally to ensure consistent egg-info behavior.
+
+--- a/setup.py
++++ b/setup.py
+@@ -53,9 +53,7 @@
+ 
+ from distutils.core import setup
+ 
+-# On Python 3, we need distribute (new setuptools) to do the 2to3 conversion
+-if PY3:
+-    import setuptools
++import setuptools
+ 
+ # Our own imports
+ from setupbase import target_update
