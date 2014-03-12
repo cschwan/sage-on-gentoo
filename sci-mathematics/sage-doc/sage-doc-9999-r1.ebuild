@@ -33,7 +33,8 @@ RESTRICT="mirror"
 
 # TODO: depend on sage-baselayout (creates sage-main directory) ?
 DEPEND="<dev-python/docutils-0.10[${PYTHON_USEDEP}]"
-RDEPEND=">=dev-python/sphinx-1.1.2[${PYTHON_USEDEP}]"
+RDEPEND="${DEPEND}
+	>=dev-python/sphinx-1.1.2[${PYTHON_USEDEP}]"
 
 S="${WORKDIR}/sage-${PV}/src"
 
@@ -69,13 +70,13 @@ python_compile() {
 	export SAGE_DOC_MATHJAX=yes
 
 	if use html ; then
-		${PYTHON} doc/common/builder.py --no-pdf-links all html
+		${PYTHON} doc/common/builder.py --no-pdf-links all html || die "failed to produce html doc"
 		# issue #197
 		touch doc/output/html/en/__init__.py
 	fi
 	if use pdf ; then
 		export MAKE=make
-		${PYTHON} doc/common/builder.py all pdf
+		${PYTHON} doc/common/builder.py all pdf || die "failed to produce pdf doc"
 	fi
 }
 
