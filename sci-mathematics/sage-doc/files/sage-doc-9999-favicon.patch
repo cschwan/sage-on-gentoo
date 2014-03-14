@@ -1,0 +1,13 @@
+--- src/doc/common/custom-sphinx-build.py.orig  2014-03-13 23:05:26.180421561 -0500
++++ src/doc/common/custom-sphinx-build.py       2014-03-13 23:05:37.428445203 -0500
+@@ -28,7 +28,8 @@
+     re.compile('^looking for now-outdated files... none found'),
+     re.compile('^building \[.*\]: targets for 0 source files that are out of date'),
+     re.compile('^loading pickled environment... done'),
+-    re.compile('^loading cross citations... done \([0-9]* citations\).')
++    re.compile('^loading cross citations... done \([0-9]* citations\).'),
++    re.compile('WARNING: favicon file \'favicon.ico\' does not exist')
+     )
+
+ # replacements: pairs of regular expressions and their replacements,
+

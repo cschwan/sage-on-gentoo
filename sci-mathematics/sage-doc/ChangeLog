@@ -2,6 +2,11 @@
 # Copyright 1999-2014 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  14 Mar 2014; François Bissey <francois.bissey@canterbury.ac.nz>
+  +files/sage-doc-9999-favicon.patch, sage-doc-9999-r1.ebuild:
+  add patch to deal with sphinx 1.2.2 - thanks Steve for the patch all part of
+  issue #210
+
   12 Mar 2014; François Bissey <francois.bissey@canterbury.ac.nz>
   sage-doc-9999-r1.ebuild:
   Enforce docutils <0.10 as rdep too so it doesn't get pulled all the time. Add
