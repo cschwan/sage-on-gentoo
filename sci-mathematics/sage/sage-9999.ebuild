@@ -44,7 +44,7 @@ CDEPEND="dev-libs/gmp
 	>=dev-python/cython-0.20.1[${PYTHON_USEDEP}]
 	~sci-mathematics/eclib-20140128[flint]
 	>=sci-mathematics/gmp-ecm-6.4.4[-openmp]
-	>=sci-mathematics/flint-2.4
+	>=sci-mathematics/flint-2.4.2
 	~sci-libs/fplll-4.0.4
 	~sci-libs/givaro-3.7.1
 	>=sci-libs/gsl-1.15
@@ -85,7 +85,7 @@ RDEPEND="${CDEPEND}
 	>=dev-python/gdmodule-0.56-r2[png,${PYTHON_USEDEP}]
 	~dev-python/ipython-1.2.1[${PYTHON_USEDEP}]
 	>=dev-python/jinja-2.5.5[${PYTHON_USEDEP}]
-	>=dev-python/matplotlib-1.2.1[${PYTHON_USEDEP}]
+	>=dev-python/matplotlib-1.3.1[${PYTHON_USEDEP}]
 	>=dev-python/mpmath-0.18[${PYTHON_USEDEP}]
 	>=dev-python/networkx-1.8[${PYTHON_USEDEP}]
 	~dev-python/sage-pexpect-2.0[${PYTHON_USEDEP}]
@@ -191,19 +191,11 @@ python_prepare() {
 	# fix lcalc path
 	sed -i "s:SAGE_INC + \"/libLfunction:SAGE_INC + \"/Lfunction:g" module_list.py
 
-	# Fix farey_symbol implicit cast
-	epatch "${FILESDIR}"/${PN}-6.1-farey_explicit_cast.patch
-
 	# Add -DNDEBUG to objects linking to libsingular and use factory headers from singular.
 	sed -i "s:, SAGE_INC + '/factory'::g" module_list.py
 	# We add -DNDEBUG to objects linking to givaro. It solves problems with linbox and singular.
 	sed -i "s:-D__STDC_LIMIT_MACROS:-D__STDC_LIMIT_MACROS', '-DNDEBUG:g" \
 		module_list.py
-
-	############################################################################
-	# Fixes to build the documentation with sage-doc-9999
-	############################################################################
-	epatch "${FILESDIR}"/${PN}-doc-6.2-seealso.patch
 
 	############################################################################
 	# Fixes to Sage itself
