@@ -36,8 +36,6 @@ S="${WORKDIR}/sage-${PV}/src/c_lib"
 src_prepare() {
 	epatch "${FILESDIR}"/${PN}-6.2-SConstruct.patch
 
-	sed -i "s:mpir.h:gmp.h:" src/memory.c || die "failed to patch"
-
 	sed -i "s:\$SAGE_LOCAL/lib:\$SAGE_LOCAL/$(get_libdir):" SConstruct
 
 	if [[ ${CHOST} == *-darwin* ]] ; then
