@@ -2,6 +2,10 @@
 # Copyright 1999-2014 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  01 Apr 2014; François Bissey <francois.bissey@canterbury.ac.nz>
+  flint-2.4.3.ebuild:
+  Small QA forgot a space that prevented soname to be set.
+
 *flint-2.4.3 (01 Apr 2014)
 
   01 Apr 2014; François Bissey <francois.bissey@canterbury.ac.nz>

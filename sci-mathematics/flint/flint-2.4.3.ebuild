@@ -47,7 +47,7 @@ src_configure() {
 		sed -i "s:STATIC=1:STATIC=0:" configure
 	fi
 
-	if ![[ ${CHOST} == *-darwin* ]] ; then
+	if ! [[ ${CHOST} == *-darwin* ]] ; then
 		# Darwin install_name cared for
 		# linux type target assumed
 		export EXTRA_SHARED_FLAGS="-Wl,-soname,${FLINT_LIB}"
