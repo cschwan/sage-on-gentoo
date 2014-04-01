@@ -1,0 +1,11 @@
+--- Makefile.in	2014-01-02 23:44:08.401803229 +1300
++++ Makefile.in.orig	2013-12-22 08:59:26.000000000 +1300
+@@ -212,7 +212,7 @@
+ 	$(QUIET_CXX) $(CXX) $(CFLAGS) $(INCS) -c $< -o $@;
+ 
+ build/interfaces/test/t-NTL-interface$(EXEEXT): interfaces/test/t-NTL-interface.cpp
+-	$(QUIET_CXX) $(CXX) $(CFLAGS) $(INCS) $< build/interfaces/NTL-interface.o -o $@ $(LIBS);
++	$(QUIET_CXX) $(CXX) $(CFLAGS) $(INCS) $< build/interfaces/NTL-interface.lo -o $@ $(LIBS);
+ 
+ print-%:
+ 	@echo '$*=$($*)'
