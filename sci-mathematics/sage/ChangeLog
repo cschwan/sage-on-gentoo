@@ -2,6 +2,10 @@
 # Copyright 1999-2014 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  02 Apr 2014; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-9999.ebuild:
+  6.2.beta6 bump: pynac 0.3.2 now in use
+
   23 Mar 2014; François Bissey <francois.bissey@canterbury.ac.nz>
   -files/sage-doc-6.2-seealso.patch, sage-9999.ebuild:
   6.2.beta5 work. the sage-doc seealso patch may need regenerating.
