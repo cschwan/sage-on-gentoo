@@ -1,0 +1,46 @@
+--- build.xml.orig	2013-12-18 22:04:41.000000000 -0600
++++ build.xml	2013-12-18 22:08:22.000000000 -0600
+@@ -30,15 +30,15 @@
+     <property name="dist.dir"           value="dist" />
+     <property name="dist.zip"           value="${dist.dir}/jspecview.zip" />
+     <property name="applet.jar"         value="${build.dir}/jspecview.jar" />
+-	<property name="itext.jar" 			value="${lib.dir}/itext-1.4.5-min.jar" />
++	<property name="itext.jar" 	value="itext-1.4.5-min.jar" />
+ 
+     <path id="jspecviewlib.classpath">
+         <pathelement location="${jsvlib.dir}"/>
+     </path>
+     <path id="jspecview.classpath">
+         <pathelement location="bin"/>
+-        <pathelement location="libs/netscape.jar"/>
+-    	<pathelement location="libs/${itext.jar}"/>
++        <pathelement location="${lib.dir}/netscape.jar"/>
++    	<pathelement location="${lib.dir}/${itext.jar}"/>
+         <path refid="jspecviewlib.classpath"/>
+     </path>
+ 
+@@ -77,7 +77,7 @@
+ 	        </linecontains>
+ 	      </filterchain>
+ 	    </copy>
+-	    <unjar dest="${bin.dir}" src="${itext.jar}"/>
++	    <unjar dest="${bin.dir}" src="${lib.dir}/${itext.jar}"/>
+         <jar destfile="${build.app.dir}/${ant.project.name}.app.${build.number}.jar">
+             <manifest>
+             	<attribute name="Class-Path" value="."/>
+@@ -120,7 +120,7 @@
+ 	<target name="make-signed-applet-jar" depends="make-applet-jar" description="Make signed JSpecView applet jar">
+     <antcall target="revision" />
+         <mkdir dir="${build.applet.dir}"/>
+-	    <unjar dest="${bin.dir}" src="${itext.jar}"/>
++	    <unjar dest="${bin.dir}" src="${lib.dir}/${itext.jar}"/>
+         <jar destfile="${build.applet.dir}/temp.jar">
+             <manifest>
+               <attribute name="Class-Path" value=". netscape.jar"/>
+@@ -168,4 +168,4 @@
+        </delete>
+     </target>
+ 
+-</project>
+\ No newline at end of file
++</project>
