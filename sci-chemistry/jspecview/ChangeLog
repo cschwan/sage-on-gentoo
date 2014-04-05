@@ -1,0 +1,5 @@
+*jspecview-1169-r1 (05 Apr 2014)
+
+  05 Apr 2014; François Bissey <francois.bissey@canterbury.ac.nz>
+  +jspecview-1169-r1.ebuild, +metadata.xml, jspecview-1169.ebuild:
+  Make it into a snapshot, fix all problem reported by repoman.

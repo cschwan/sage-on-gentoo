@@ -4,10 +4,8 @@
 
 EAPI="5"
 
-inherit eutils java-pkg-2 java-ant-2 subversion
+inherit eutils java-pkg-2 java-ant-2
 
-MY_P=""
-MY_PN="JSpecView"
 MY_BUILDVERSION="2.0.10076"
 MY_APPLET_BUILDVERSION="2.0.10077"
 DESCRIPTION="Spectroscopy Viewer"
@@ -15,8 +13,7 @@ DESCRIPTION="Spectroscopy Viewer"
 HOMEPAGE="http://sourceforge.net/projects/jspecview/"
 KEYWORDS="~amd64 ~x86 ~amd64-linux ~x86-linux"
 
-ESVN_REPO_URI="svn://svn.code.sf.net/p/jspecview/svn/dev2"
-ESVN_REVISION="1169"
+SRC_URI="mirror://sagemath/${P}.tar.bz2"
 
 LICENSE="LGPL-2"
 S="${WORKDIR}/${P}"
@@ -39,8 +36,7 @@ pkg_setup() {
 }
 
 src_prepare() {
-
-	cd "${S}/${MY_PN}"
+	cd JSpecView
 	edos2unix build.xml
 	epatch "${FILESDIR}/${P}_build.xml.patch" || die
 
@@ -58,9 +54,10 @@ src_prepare() {
 }
 
 src_compile() {
-	cd "${S}/${MY_PN}Lib"
+	pushd JSpecViewLib
 	eant
-	cd "${S}/${MY_PN}"
+	popd
+	pushd JSpecView
 	eant make-application-jar
 	if use applet; then
 		eant make-signed-applet-jar
@@ -68,9 +65,9 @@ src_compile() {
 }
 
 src_install() {
-	java-pkg_newjar "${S}/${MY_PN}/build/jspecview.app.${MY_BUILDVERSION}.jar" "jspecview.jar"
+	java-pkg_newjar "JSpecView/build/jspecview.app.${MY_BUILDVERSION}.jar" "jspecview.jar"
 	if use applet; then
-		java-pkg_newjar "${S}/${MY_PN}/build/jspecview.applet.${MY_APPLET_BUILDVERSION}.jar" "jspecview-applet.jar"
-		java-pkg_newjar "${S}/${MY_PN}/build/jspecview.applet.signed.${MY_APPLET_BUILDVERSION}.jar" "jspecview-applet-signed.jar"
+		java-pkg_newjar "JSpecView/build/jspecview.applet.${MY_APPLET_BUILDVERSION}.jar" "jspecview-applet.jar"
+		java-pkg_newjar "JSpecView/build/jspecview.applet.signed.${MY_APPLET_BUILDVERSION}.jar" "jspecview-applet-signed.jar"
 	fi
 }
