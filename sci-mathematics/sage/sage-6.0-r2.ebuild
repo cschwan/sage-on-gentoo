@@ -267,7 +267,7 @@ python_prepare() {
 
 	# Make the Octave interface work with a root install
 	# some other interface are likely to be affected
-	sed -i "s:Octave\(script_subdirectory='user'\):Octave\(script_subdirectory=None\):" \
+	sed -i "s:script_subdirectory='user':script_subdirectory=None:" \
 		sage/interfaces/octave.py
 
 	############################################################################

@@ -3,6 +3,10 @@
 # $Header: $
 
   09 Apr 2014; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-6.0-r2.ebuild, sage-6.1.1-r2.ebuild:
+  properly fix issue #289 for sage 6.0 and 6.1.1
+
+  09 Apr 2014; François Bissey <francois.bissey@canterbury.ac.nz>
   -sage-6.0-r1.ebuild, sage-6.0-r2.ebuild, sage-6.1.1-r2.ebuild,
   sage-9999.ebuild:
   Fix accessing octave from sage issue #289
