@@ -265,6 +265,11 @@ python_prepare() {
 	sed -i "s:SAGE_LOCAL, 'etc', 'gprc.expect':'${EPREFIX}/etc','gprc.expect':" \
 		sage/interfaces/gp.py
 
+	# Make the Octave interface work with a root install
+	# some other interface are likely to be affected
+	sed -i "s:Octave\(script_subdirectory='user'\):Octave\(script_subdirectory=None\):" \
+		sage/interfaces/octave.py
+
 	############################################################################
 	# Fixes to doctests
 	############################################################################

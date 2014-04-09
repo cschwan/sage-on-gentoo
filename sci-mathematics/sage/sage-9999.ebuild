@@ -247,6 +247,11 @@ python_prepare() {
 	sed -i "s:os.environ\[\"SAGE_LOCAL\"\]+\"/share/singular/\":sage.env.SAGE_DOC + \"/\":" \
 		sage/interfaces/singular.py
 
+	# Make the Octave interface work with a root install
+	# some other interface are likely to be affected 
+	sed -i "s:script_subdirectory='user':script_subdirectory=None:" \
+		sage/interfaces/octave.py
+
 	############################################################################
 	# Fixes to doctests
 	############################################################################

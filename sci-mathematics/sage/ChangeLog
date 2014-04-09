@@ -2,6 +2,11 @@
 # Copyright 1999-2014 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  09 Apr 2014; François Bissey <francois.bissey@canterbury.ac.nz>
+  -sage-6.0-r1.ebuild, sage-6.0-r2.ebuild, sage-6.1.1-r2.ebuild,
+  sage-9999.ebuild:
+  Fix accessing octave from sage issue #289
+
   02 Apr 2014; François Bissey <francois.bissey@canterbury.ac.nz>
   sage-9999.ebuild:
   6.2.beta6 bump: pynac 0.3.2 now in use
