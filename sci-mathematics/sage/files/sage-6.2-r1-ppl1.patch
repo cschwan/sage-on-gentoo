@@ -19,7 +19,7 @@
                include_dirs = [SAGE_INC, "sage/c_lib/include/"],
 +              runtime_library_dirs = [SAGE_LOCAL + "/lib/ppl1"],
 +              library_dirs = [SAGE_LOCAL + "/lib/ppl1"],
-               libraries=["csage", "stdc++"]),
+               libraries=["stdc++"]),
  
      Extension("sage.numerical.backends.glpk_graph_backend",
 --- sage/libs/ppl.pyx.orig	2014-03-06 21:21:03.000000000 -0600

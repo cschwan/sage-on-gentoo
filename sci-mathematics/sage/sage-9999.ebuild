@@ -26,7 +26,7 @@ fi
 DESCRIPTION="Math software for algebra, geometry, number theory, cryptography and numerical computation"
 HOMEPAGE="http://www.sagemath.org"
 SRC_URI="${SRC_URI}
-	mirror://sagemath/patches/${PN}-6.2-neutering.tar.bz2"
+	mirror://sagemath/patches/${PN}-6.2-r1-neutering.tar.bz2"
 
 LICENSE="GPL-2"
 SLOT="0"
@@ -138,7 +138,7 @@ python_prepare() {
 	epatch "${FILESDIR}"/${PN}-blas.patch
 
 	# Remove sage's package management system
-	epatch "${WORKDIR}"/patches/${PN}-6.1-package.patch
+	epatch "${WORKDIR}"/patches/${PN}-6.2-package.patch
 	rm sage/misc/package.py
 
 	# Remove sage's git capabilities
@@ -185,7 +185,7 @@ python_prepare() {
 		module_list.py
 
 	# use sage-ppl
-	epatch "${FILESDIR}"/${PN}-6.2-ppl1.patch
+	epatch "${FILESDIR}"/${PN}-6.2-r1-ppl1.patch
 	sed -i "s:lib/ppl1:$(get_libdir)/ppl1:" module_list.py
 
 	# fix lcalc path
@@ -202,7 +202,7 @@ python_prepare() {
 	############################################################################
 
 	# sage on gentoo env.py
-	epatch "${FILESDIR}"/sage-6.2-env.patch
+	epatch "${FILESDIR}"/sage-6.2-r1-env.patch
 	eprefixify sage/env.py
 
 	# fix library path of libsingular
