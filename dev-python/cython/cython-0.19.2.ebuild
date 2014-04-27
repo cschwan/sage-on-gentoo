@@ -3,7 +3,7 @@
 # $Header: /var/cvsroot/gentoo-x86/dev-python/cython/cython-0.19.2.ebuild,v 1.2 2014/03/31 21:03:46 mgorny Exp $
 
 EAPI=5
-PYTHON_COMPAT=( python{2_6,2_7,3_2,3_3} pypy pypy2_0 )
+PYTHON_COMPAT=( python{2_6,2_7,3_2,3_3,3_4} pypy pypy2_0 )
 
 inherit distutils-r1 flag-o-matic
 
