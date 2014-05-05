@@ -2,6 +2,14 @@
 # Copyright 1999-2014 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/sci-mathematics/pari/ChangeLog,v 1.87 2012/03/06 17:06:06 bicatali Exp $
 
+*pari-2.7.0 (05 May 2014)
+
+  05 May 2014; François Bissey <francois.bissey@canterbury.ac.nz>
+  +files/pari-2.7.0-doc-make.patch, +files/pari-2.7.0-no-automagic.patch,
+  +files/pari-2.7.0-slow-discriminant.patch, +pari-2.7.0.ebuild:
+  pari 2.7.0 has been for a bit more than a month. patch rebasing and culling
+  where appropriate.
+
 *pari-2.5.5-r2 (16 Feb 2014)
 
   16 Feb 2014; François Bissey <francois.bissey@canterbury.ac.nz>
