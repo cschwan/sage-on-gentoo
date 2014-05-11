@@ -11,7 +11,5 @@
 >=sci-libs/libsingular-3.1.6
 >=sci-mathematics/singular-3.1.6
 >=sci-mathematics/eclib-20140128
-# Looks like sage 6.3 material unless I grab all the relevant patch
->=sci-mathematics/pari-2.7.0
 # preparing ecm for removal. I only keep it in case it solves some OS X problems
 sci-mathematics/ecm
