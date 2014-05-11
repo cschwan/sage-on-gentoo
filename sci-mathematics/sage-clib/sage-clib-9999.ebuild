@@ -28,7 +28,8 @@ RESTRICT="mirror"
 
 DEPEND="dev-libs/gmp[cxx]
 	>=dev-libs/ntl-6.0.0
-	>=sci-mathematics/pari-2.5.5"
+	>=sci-mathematics/pari-2.5.5
+	<sci-mathematics/pari-2.7.0"
 RDEPEND="${DEPEND}"
 
 S="${WORKDIR}/sage-${PV}/src/c_lib"

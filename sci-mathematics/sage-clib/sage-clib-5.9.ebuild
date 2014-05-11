@@ -23,6 +23,7 @@ DEPEND="dev-libs/gmp[cxx]
 	<dev-libs/ntl-6.0.0
 	~sci-libs/pynac-0.2.6
 	>=sci-mathematics/pari-2.5.3-r2
+	<sci-mathematics/pari-2.7.0
 	>=sci-mathematics/polybori-0.8.3"
 RDEPEND="${DEPEND}"
 

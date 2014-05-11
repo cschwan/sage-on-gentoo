@@ -2,6 +2,12 @@
 # Copyright 1999-2014 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  11 May 2014; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-clib-5.10.ebuild, sage-clib-5.11.ebuild, sage-clib-5.8.ebuild,
+  sage-clib-5.9.ebuild, sage-clib-6.0.ebuild, sage-clib-6.1.1.ebuild,
+  sage-clib-9999.ebuild:
+  Naroowing pari version used.
+
   23 Mar 2014; François Bissey <francois.bissey@canterbury.ac.nz>
   sage-clib-9999.ebuild:
   6.2.beta5 is gmp ready.
