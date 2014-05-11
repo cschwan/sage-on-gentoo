@@ -1,4 +1,4 @@
-# Copyright 1999-2013 Gentoo Foundation
+# Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
@@ -19,7 +19,7 @@ IUSE=""
 
 RESTRICT="mirror"
 
-RDEPEND=">=sci-mathematics/pari-2.5.0"
+RDEPEND="=sci-mathematics/pari-2.5*"
 DEPEND="${RDEPEND}"
 
 S="${WORKDIR}"/${MY_P}/src

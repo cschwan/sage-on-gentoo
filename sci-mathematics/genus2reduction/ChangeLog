@@ -1,6 +1,11 @@
 # ChangeLog for sci-mathematics/genus2reduction
-# Copyright 1999-2013 Gentoo Foundation; Distributed under the GPL v2
+# Copyright 1999-2014 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
+
+  11 May 2014; François Bissey <francois.bissey@canterbury.ac.nz>
+  genus2reduction-0.3_p8-r1.ebuild:
+  Fix genus2reduction to pari 2.5. Not that pari 2.7 includes its functionality
+  so there won't be any port to pari 2.7.
 
   17 Feb 2013; François Bissey <francois.bissey@canterbury.ac.nz>
   genus2reduction-0.3_p8-r1.ebuild:
