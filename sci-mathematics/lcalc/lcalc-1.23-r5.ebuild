@@ -19,7 +19,7 @@ KEYWORDS="~amd64 ~x86 ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~x64-macos"
 IUSE="pari"
 
 # TODO: depend on pari[gmp] ?
-DEPEND="pari? ( >=sci-mathematics/pari-2.5.0 )"
+DEPEND="pari? ( =sci-mathematics/pari-2.5* )"
 RDEPEND="${DEPEND}"
 
 # testing does not work because archive missed test program!
