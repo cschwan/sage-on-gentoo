@@ -1,6 +1,10 @@
 # ChangeLog for sci-mathematics/optimal
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
+# Copyright 1999-2014 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
+
+  19 May 2014; François Bissey <francois.bissey@canterbury.ac.nz>
+  optimal-20040603.ebuild:
+  Change SRC_URI and HOMEPAGE to new location.
 
   20 May 2011; Christopher Schwan <cschwan@students.uni-mainz.de>
   optimal-20040603.ebuild:
@@ -14,4 +18,3 @@
   10 Jul 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
   +optimal-20040603.ebuild, +metadata.xml:
   Initial import
-

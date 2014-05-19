@@ -1,4 +1,4 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
@@ -9,8 +9,8 @@ inherit toolchain-funcs
 MY_P="optimal"
 
 DESCRIPTION="An optimal rubik's cube solver using God's Algorithm"
-HOMEPAGE="http://www.math.ucf.edu/~reid/Rubik/optimal_solver.html"
-SRC_URI="http://www.math.ucf.edu/~reid/Rubik/${MY_P}.tar.gz"
+HOMEPAGE="http://www.permutationpuzzles.org/rubik/"
+SRC_URI="http://www.permutationpuzzles.org/rubik/software/${MY_P}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
