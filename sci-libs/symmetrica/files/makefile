@@ -16,6 +16,7 @@ LIBS=-lm
 CC?=gcc
 CFLAGS?=-O1
 FPICFLAG?=-fPIC
+LDFLAGSS?=-O1
 VERSION=2.0
 DIRNAME=symmetrica-$(VERSION)
 TARGETS=libsymmetrica.a sharedlib
@@ -41,8 +42,7 @@ libsymmetrica.a: $(OBJS)
 	ranlib $@
 
 sharedlib: $(SHOBJS)
-	$(CC) $(CFLAGS) $(FPICFLAG) -shared -Wl,-soname,lib$(DIRNAME).so $(LIBS) -o lib$(DIRNAME).so $(SHOBJS)
-	ln -s lib$(DIRNAME).so $@
+	$(CC) $(CFLAGS) $(FPICFLAG) ${LDFLAGS} -shared -Wl,-soname,lib$(DIRNAME).so $(LIBS) -o lib$(DIRNAME).so $(SHOBJS)
 
 install: all
 	mkdir -p $(DESTDIR)$(PREFIX)/$(LIBDIR)
