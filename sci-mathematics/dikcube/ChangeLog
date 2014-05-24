@@ -1,6 +1,14 @@
 # ChangeLog for sci-mathematics/dikcube
-# Copyright 1999-2013 Gentoo Foundation; Distributed under the GPL v2
+# Copyright 1999-2014 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
+
+*dikcube-20070912_p18-r1 (24 May 2014)
+
+  24 May 2014; François Bissey <francois.bissey@canterbury.ac.nz>
+  +dikcube-20070912_p18-r1.ebuild,
+  +files/dikcube-20070912_p10-fix-LDFLAGS.patch, -dikcube-20070912_p18.ebuild:
+  Fix issue #296. There may be further work as I think we have a real upstream
+  now.
 
   22 Jan 2013; Christopher Schwan <cschwan@students.uni-mainz.de>
   dikcube-20070912_p18.ebuild:

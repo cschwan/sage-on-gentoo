@@ -1,4 +1,4 @@
-# Copyright 1999-2013 Gentoo Foundation
+# Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
@@ -27,12 +27,14 @@ S="${WORKDIR}"/${MY_P}/src/dik
 src_prepare() {
 	# fixes a lot of QA warnings
 	epatch "${FILESDIR}"/${PN}-20070912_p10-fix-missing-includes.patch
+	# Respect LDFLAGS
+	epatch "${FILESDIR}"/${PN}-20070912_p10-fix-LDFLAGS.patch
 }
 
 src_compile() {
 	append-cflags -DLARGE_MEM -DVERBOSE
 
-	emake CC="$(tc-getCC)" CFLAGS="${CFLAGS}" all
+	emake CC="$(tc-getCC)" CFLAGS="${CFLAGS}" LDFLAGS="${LDFLAGS}" all
 }
 
 src_install() {

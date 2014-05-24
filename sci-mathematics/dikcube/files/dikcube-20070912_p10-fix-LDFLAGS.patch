@@ -1,0 +1,51 @@
+--- makefile.orig	2014-05-24 19:12:58.281288745 +1200
++++ makefile	2014-05-24 19:25:19.141594193 +1200
+@@ -9,40 +9,40 @@
+ 	globals.o
+ 
+ cube:	$(OBJS)
+-	$(CC) $(CFLAGS) -o dikcube $(OBJS)
++	$(CC) $(CFLAGS) $(LDFLAGS) -o dikcube $(OBJS)
+ 	size dikcube
+ 
+ size222:	size222.o
+-	$(CC) $(CFLAGS) -o size222 size222.o
++	$(CC) $(CFLAGS) $(LDFLAGS) -o size222 size222.o
+ 	size size222
+ 
+ size333c.o:	size333c.c
+ 	$(CC) $(CFLAGS) -DCTWIST -c size333c.c
+ 
+ size333c:	size333c.o
+-	$(CC) $(CFLAGS) -o size333c size333c.o
++	$(CC) $(CFLAGS) $(LDFLAGS) -o size333c size333c.o
+ 	size size333c
+ 
+ sizesquare:	sizesquare.o
+-	$(CC) $(CFLAGS) -o sizesquare sizesquare.o
++	$(CC) $(CFLAGS) $(LDFLAGS) -o sizesquare sizesquare.o
+ 	size sizesquare
+ 
+ sizedom.o:	sizedom.c
+-	$(CC) $(CFLAGS) -DCCPERM -DIPERM -c sizedom.c
++	$(CC) $(CFLAGS)  -DCCPERM -DIPERM -c sizedom.c
+ 
+ sizedom:	sizedom.o
+-	$(CC) $(CFLAGS) -o sizedom sizedom.o
++	$(CC) $(CFLAGS) $(LDFLAGS) -o sizedom sizedom.o
+ 	size sizedom
+ 
+ sizekoc1:	sizekoc1.o
+-	$(CC) $(CFLAGS) -o sizekoc1 sizekoc1.o
++	$(CC) $(CFLAGS) $(LDFLAGS) -o sizekoc1 sizekoc1.o
+ 	size sizekoc1
+ 
+ sizekoc2.o:	sizekoc2.c
+ 	$(CC) $(CFLAGS) -DCCPERM -DIPERM -c sizekoc2.c
+ 
+ sizekoc2:	sizekoc2.o
+-	$(CC) $(CFLAGS) -o sizekoc2 sizekoc2.o
++	$(CC) $(CFLAGS) $(LDFLAGS) -o sizekoc2 sizekoc2.o
+ 	size sizekoc2
+ 
+ all:	cube size222 size333c sizesquare sizedom sizekoc1 sizekoc2
