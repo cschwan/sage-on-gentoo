@@ -1,6 +1,12 @@
 # ChangeLog for sci-mathematics/palp
-# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# Copyright 1999-2014 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
+
+*palp-2.1-r1 (24 May 2014)
+
+  24 May 2014; François Bissey <francois.bissey@canterbury.ac.nz>
+  +palp-2.1-r1.ebuild, -palp-2.1.ebuild, files/palp-2.0-gnumakefile.patch:
+  Edit patch to fix issue #299.
 
   02 Aug 2012; François Bissey <francois.bissey@canterbury.ac.nz>
   -palp-2.0-r1.ebuild, -files/palp-2.0-nonestedfunctions.patch:
@@ -76,4 +82,3 @@
   20 Nov 2009; Christopher Schwan <cschwan@students.uni-mainz.de>
   +palp-1.1.ebuild, +metadata.xml:
   Initial import
-

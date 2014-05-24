@@ -17,23 +17,23 @@
  
  poly:	poly.o $(OBJECTS) LG.o Global.h LG.h
 -	$(CC) $(CFLAGS) -o poly.x poly.o $(OBJECTS) LG.o
-+	$(CC) $(MYCFLAGS) -o poly.x poly.o $(OBJECTS) LG.o
++	$(CC) $(MYCFLAGS) $(LDFLAGS) -o poly.x poly.o $(OBJECTS) LG.o
  
  class:	class.o $(OBJECTS) $(CLASS_OBJ) Global.h Subpoly.h
 -	$(CC) $(CFLAGS) -o class.x class.o $(OBJECTS) $(CLASS_OBJ)
-+	$(CC) $(MYCFLAGS) -o class.x class.o $(OBJECTS) $(CLASS_OBJ)
++	$(CC) $(MYCFLAGS) $(LDFLAGS) -o class.x class.o $(OBJECTS) $(CLASS_OBJ)
  
  cws:    cws.o $(OBJECTS) LG.o Global.h LG.h
 -	$(CC) $(CFLAGS) -o cws.x cws.o $(OBJECTS) LG.o
-+	$(CC) $(MYCFLAGS) -o cws.x cws.o $(OBJECTS) LG.o
++	$(CC) $(MYCFLAGS) $(LDFLAGS) -o cws.x cws.o $(OBJECTS) LG.o
  
  nef:    nef.o $(OBJECTS) $(NEF_OBJ) Global.h 
 -	$(CC) $(CFLAGS) -o nef.x nef.o $(OBJECTS) $(NEF_OBJ)
-+	$(CC) $(MYCFLAGS) -o nef.x nef.o $(OBJECTS) $(NEF_OBJ)
++	$(CC) $(MYCFLAGS) $(LDFLAGS) -o nef.x nef.o $(OBJECTS) $(NEF_OBJ)
  	
  mori:   mori.o  $(OBJECTS) $(MORI_OBJ) LG.o Mori.h 
 -	$(CC) $(CFLAGS) -o mori.x mori.o $(OBJECTS) $(MORI_OBJ) LG.o
-+	$(CC) $(MYCFLAGS) -o mori.x mori.o $(OBJECTS) $(MORI_OBJ) LG.o
++	$(CC) $(MYCFLAGS) $(LDFLAGS) -o mori.x mori.o $(OBJECTS) $(MORI_OBJ) LG.o
  	
  
  
