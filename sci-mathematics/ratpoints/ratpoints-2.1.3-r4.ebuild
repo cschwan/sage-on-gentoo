@@ -1,8 +1,8 @@
-# Copyright 1999-2012 Gentoo Foundation
+# Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
-EAPI="4"
+EAPI="5"
 
 inherit base flag-o-matic multilib toolchain-funcs
 
@@ -20,16 +20,11 @@ RESTRICT="mirror"
 DEPEND=""
 RDEPEND="${DEPEND}"
 
+PATCHES=( "${FILESDIR}"/${PN}-2.1.3-fix-test-program.patch )
 if [[ ${CHOST} == *-darwin* ]] ; then
-	PATCHES=(
-		"${FILESDIR}"/${PN}-2.1.3-fix-makefile-macos.patch
-		"${FILESDIR}"/${PN}-2.1.3-fix-test-program.patch
-	)
+	PATCHES+=( "${FILESDIR}"/${PN}-2.1.3-fix-makefile-macos.patch )
 else
-	PATCHES=(
-		"${FILESDIR}"/${PN}-2.1.3-fix-makefile.patch
-		"${FILESDIR}"/${PN}-2.1.3-fix-test-program.patch
-	)
+	PATCHES+=( "${FILESDIR}"/${PN}-2.1.3-fix-makefile.patch )
 fi
 
 pkg_setup() {
