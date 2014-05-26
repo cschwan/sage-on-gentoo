@@ -32,7 +32,8 @@ IUSE="html pdf"
 RESTRICT="mirror"
 
 # TODO: depend on sage-baselayout (creates sage-main directory) ?
-DEPEND="<dev-python/docutils-0.10[${PYTHON_USEDEP}]"
+DEPEND="<dev-python/docutils-0.10[${PYTHON_USEDEP}]
+	sci-mathematics/sage"
 RDEPEND="${DEPEND}
 	>=dev-python/sphinx-1.1.2[${PYTHON_USEDEP}]"
 
@@ -41,7 +42,7 @@ S="${WORKDIR}/sage-${PV}/src"
 PATCHES=( "${FILESDIR}"/${PN}-6.0-misc.patch
 	"${FILESDIR}"/${PN}-dev.patch
 	"${FILESDIR}"/${PN}-6.2-sphinx.patch
-	"${FILESDIR}"/${P}-favicon.patch )
+	"${FILESDIR}"/${PN}-6.2-favicon.patch )
 
 python_prepare_all() {
 	distutils-r1_python_prepare_all
