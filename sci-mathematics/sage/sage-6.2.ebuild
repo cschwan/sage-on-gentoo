@@ -111,11 +111,9 @@ RDEPEND="${CDEPEND}
 	~sci-mathematics/sage-data-elliptic_curves-0.7
 	~sci-mathematics/sage-data-graphs-20120404_p4
 	~sci-mathematics/sage-data-polytopes_db-20120220
-	>=sci-mathematics/sage-doc-${PV}
 	~sci-mathematics/singular-3.1.6
 	>=sci-mathematics/sympow-1.018.1_p11
 	!prefix? ( >=sys-libs/glibc-2.13-r4 )
-	testsuite? ( >=sci-mathematics/sage-doc-${PV}[html] )
 	latex? (
 		~dev-tex/sage-latex-2.3.4
 		|| ( app-text/dvipng[truetype] media-gfx/imagemagick[png] )
@@ -124,7 +122,9 @@ RDEPEND="${CDEPEND}
 	nauty? ( sci-mathematics/nauty )"
 
 PDEPEND="~sci-mathematics/sage-notebook-0.10.8.2[${PYTHON_USEDEP}]
-	~sci-mathematics/sage-data-conway_polynomials-0.4"
+	~sci-mathematics/sage-data-conway_polynomials-0.4
+	~sci-mathematics/sage-doc-${PV}
+	testsuite? ( ~sci-mathematics/sage-doc-${PV}[html] )"
 
 S="${WORKDIR}/${P}/src"
 
