@@ -4,6 +4,7 @@ dev-lang/R
 dev-libs/mpc
 dev-lisp/asdf
 dev-lisp/uiop
+dev-libs/ntl
 =dev-libs/ppl-0.11.2
 ~dev-lisp/ecls-12.12.1::sage-on-gentoo
 dev-python/Babel
@@ -22,15 +23,18 @@ dev-python/flask-silk
 dev-python/gdmodule
 ~dev-python/ipython-0.13.1
 ~dev-python/ipython-0.13.2
+~dev-python/ipython-1.2.1
 dev-python/matplotlib
 dev-python/mpmath
 ~dev-python/networkx-1.8.1
 ~dev-python/numpy-1.7.0
 ~dev-python/pexpect-2.0
+~dev-python/pexpect-3.2
 ~dev-python/sage-pexpect-2.0
 dev-python/pycrypto
 ~dev-python/pyparsing-2.0.1
 dev-python/python-openid
+dev-python/python-pkgconfig
 dev-python/pytz
 sys-libs/timezone-data
 dev-python/pyzmq
@@ -111,6 +115,7 @@ sci-mathematics/sage-extcode
 sci-mathematics/sage-notebook
 sci-mathematics/sage-notebook-server
 ~sci-mathematics/singular-3.1.5
+~sci-mathematics/singular-3.1.6
 sci-mathematics/sympow
 ##########################
 # optional dependencies
