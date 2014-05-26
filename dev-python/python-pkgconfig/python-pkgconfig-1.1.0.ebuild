@@ -15,7 +15,7 @@ SRC_URI="https://github.com/matze/pkgconfig/archive/v${PV}.tar.gz"
 
 LICENSE="MIT"
 SLOT="0"
-KEYWORDS="~amd64"
+KEYWORDS="~amd64 ~x86 ~ppc-macos ~x86-macos ~x64-macos"
 IUSE="test"
 
 RDEPEND="virtual/pkgconfig"

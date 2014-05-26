@@ -1,3 +1,7 @@
+  26 May 2014; François Bissey <francois.bissey@canterbury.ac.nz>
+  python-pkgconfig-1.1.0.ebuild:
+  Keywording to make repoman happy.
+
   13 Feb 2014; François Bissey <francois.bissey@canterbury.ac.nz>
   +files/pkgconfig-1.1.0-setup.patch, python-pkgconfig-1.1.0.ebuild:
   Allow python-pkgconfig to install if nose is not installed on the system,
