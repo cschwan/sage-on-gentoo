@@ -40,7 +40,7 @@ CDEPEND="dev-libs/gmp
 	>=dev-libs/ntl-6.0.0
 	>=sci-libs/sage-ppl-1.0
 	>=dev-lisp/ecls-12.12.1-r5
-	>=dev-python/numpy-1.7.0[${PYTHON_USEDEP}]
+	>=dev-python/numpy-1.8.1[${PYTHON_USEDEP}]
 	>=dev-python/cython-0.20.1[${PYTHON_USEDEP}]
 	~sci-mathematics/eclib-20140128[flint]
 	>=sci-mathematics/gmp-ecm-6.4.4[-openmp]
@@ -96,7 +96,7 @@ RDEPEND="${CDEPEND}
 	>=dev-python/sympy-0.7.4[${PYTHON_USEDEP}]
 	>=media-gfx/tachyon-0.98.9[png]
 	>=sci-libs/cddlib-094f-r2
-	>=sci-libs/scipy-0.11.0[${PYTHON_USEDEP}]
+	>=sci-libs/scipy-0.14.0[${PYTHON_USEDEP}]
 	>=sci-mathematics/flintqs-20070817_p8
 	~sci-mathematics/gap-4.7.4
 	>=sci-mathematics/genus2reduction-0.3_p8-r1
