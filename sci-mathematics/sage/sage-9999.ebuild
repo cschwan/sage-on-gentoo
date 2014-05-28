@@ -247,6 +247,9 @@ python_prepare() {
 	sed -i "s:os.environ\[\"SAGE_LOCAL\"\]+\"/share/singular/\":sage.env.SAGE_DOC + \"/\":" \
 		sage/interfaces/singular.py
 
+	# Fix for sphinx 1.2+
+	epatch "${FILESDIR}"/${PN}-doc-6.2-seealso.patch
+
 	# Make the Octave interface work with a root install
 	# some other interface are likely to be affected 
 	sed -i "s:script_subdirectory='user':script_subdirectory=None:" \
