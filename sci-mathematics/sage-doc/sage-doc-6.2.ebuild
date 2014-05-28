@@ -41,6 +41,7 @@ S="${WORKDIR}/sage-${PV}/src"
 
 PATCHES=( "${FILESDIR}"/${PN}-6.0-misc.patch
 	"${FILESDIR}"/${PN}-dev.patch
+	"${FILESDIR}"/${PN}-6.2-seealso.patch
 	"${FILESDIR}"/${PN}-6.2-sphinx.patch
 	"${FILESDIR}"/${PN}-6.2-favicon.patch )
 
