@@ -2,6 +2,10 @@
 # Copyright 1999-2014 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  31 May 2014; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-doc-6.2.ebuild, sage-doc-9999-r1.ebuild:
+  sage-doc can use docutils 0.11.
+
   28 May 2014; François Bissey <francois.bissey@canterbury.ac.nz>
   +files/sage-doc-6.2-seealso.patch, sage-doc-6.2.ebuild,
   sage-doc-9999-r1.ebuild:
