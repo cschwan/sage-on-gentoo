@@ -1,6 +1,11 @@
 # ChangeLog for sci-chemistry/jmol-applet
-# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# Copyright 1999-2014 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
+
+*jmol-applet-12.3.14-r1 (03 Jun 2014)
+
+  03 Jun 2014; Stefan Huber <shuber@sthu.org> +jmol-applet-12.3.14-r1.ebuild:
+  jmol-applet: fix installation path
 
   21 Nov 2012; François Bissey <francois.bissey@canterbury.ac.nz>
   -files/12.0.45/jmol-manifest.patch, -files/jmol-11.6.16-manifest.patch,
@@ -142,4 +147,3 @@
   +files/caffeine.xyz, +files/index.html,
   +files/selfSignedCertificate.store, +jmol-11.0.3.ebuild:
   Initial import of jmol-11.0.3.
-
