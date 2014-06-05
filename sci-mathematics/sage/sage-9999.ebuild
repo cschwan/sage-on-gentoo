@@ -26,7 +26,7 @@ fi
 DESCRIPTION="Math software for algebra, geometry, number theory, cryptography and numerical computation"
 HOMEPAGE="http://www.sagemath.org"
 SRC_URI="${SRC_URI}
-	mirror://sagemath/patches/${PN}-6.2-r1-neutering.tar.bz2"
+	mirror://sagemath/patches/${PN}-6.3-neutering.tar.bz2"
 
 LICENSE="GPL-2"
 SLOT="0"
@@ -138,7 +138,7 @@ python_prepare() {
 	epatch "${FILESDIR}"/${PN}-blas.patch
 
 	# Remove sage's package management system
-	epatch "${WORKDIR}"/patches/${PN}-6.2-package.patch
+	epatch "${WORKDIR}"/patches/${PN}-6.3-package.patch
 	rm sage/misc/package.py
 
 	# Remove sage's git capabilities
