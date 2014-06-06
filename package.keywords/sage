@@ -13,6 +13,7 @@ dev-python/cvxopt
 dev-python/cython
 dev-python/python-dateutil
 dev-python/decorator
+dev-python/docutils
 dev-python/flask
 dev-python/itsdangerous # for flask-0.10.1
 dev-python/flask-autoindex

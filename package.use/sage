@@ -23,3 +23,6 @@ sys-libs/zlib               minizip
 # Recomended flags for optional dependency jmol
 ################################################
 sci-chemistry/jmol client-only
+
+# matplotlib
+x11-base/xorg-server        xvfb
