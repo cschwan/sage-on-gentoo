@@ -1,6 +1,11 @@
 # ChangeLog for sci-chemistry/jmol
-# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# Copyright 1999-2014 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
+
+*jmol-12.3.27 (06 Jun 2014)
+
+  06 Jun 2014; Stefan Huber <shuber@sthu.org> +jmol-12.3.27.ebuild:
+  Add jmol-12.3.27, fix issue #302
 
 *jmol-12.3.14 (05 Nov 2012)
 
@@ -119,4 +124,3 @@
   +files/caffeine.xyz, +files/index.html,
   +files/selfSignedCertificate.store, +jmol-11.0.3.ebuild:
   Initial import of jmol-11.0.3.
-
