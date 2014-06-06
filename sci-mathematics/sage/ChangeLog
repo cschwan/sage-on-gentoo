@@ -2,6 +2,10 @@
 # Copyright 1999-2014 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  06 Jun 2014; Christopher Schwan <cschwan@students.uni-mainz.de>
+  sage-6.2.ebuild, sage-9999.ebuild:
+  [sci-mathematics/sage] Updated einfo text
+
   05 Jun 2014; François Bissey <francois.bissey@canterbury.ac.nz>
   sage-9999.ebuild:
   bumpin neutering patch for 6.3.beta3

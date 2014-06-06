@@ -251,7 +251,7 @@ python_prepare() {
 	epatch "${FILESDIR}"/${PN}-doc-6.2-seealso.patch
 
 	# Make the Octave interface work with a root install
-	# some other interface are likely to be affected 
+	# some other interface are likely to be affected
 	sed -i "s:script_subdirectory='user':script_subdirectory=None:" \
 		sage/interfaces/octave.py
 
@@ -337,17 +337,24 @@ pkg_postinst() {
 	if use testsuite ; then
 
 	einfo ""
-	einfo "To test Sage run the following command:"
+	einfo "To test Sage with 4 parallel processes run the following command:"
 	einfo ""
 	einfo "  sage -tp 4 --all"
 	einfo ""
-	einfo "Replace the '4' with an adequate number of processes that are run in"
-	einfo "parallel."
 	einfo "Note that testing Sage may take more than an hour depending on your"
-	einfo "processor. If you want to check your results look at the list of"
-	einfo "known failures:"
-	einfo ""
-	einfo "  http://github.com/cschwan/sage-on-gentoo/wiki/Known-test-failures"
+	einfo "processor(s). You _will_ see failures but many of them are harmless"
+	einfo "such as version mismatches and numerical noise. Since Sage is"
+	einfo "changing constantly we do not maintain an up-to-date list of known"
+	einfo "failures."
 
 	fi
+
+	einfo ""
+	einfo "IF YOU EXPERIENCE PROBLEMS and wish to report them please use the"
+	einfo "overlay's issue tracker at"
+	einfo ""
+	einfo "  https://github.com/cschwan/sage-on-gentoo/issues"
+	einfo ""
+	einfo "There we can react faster than on bugs.gentoo.org where bugs first"
+	einfo "need to be assigned to the right person. Thank you!"
 }
