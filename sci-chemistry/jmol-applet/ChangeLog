@@ -2,6 +2,12 @@
 # Copyright 1999-2014 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*jmol-applet-12.3.27 (06 Jun 2014)
+
+  06 Jun 2014; Stefan Huber <shuber@sthu.org> +jmol-applet-12.3.27.ebuild:
+  Add jmol-{applet}-12.3.27, fix issue #302.  Static image generation in sage-
+  notebook requires jmol-12.3.27 resp. jmol-applet-12.3.27.
+
 *jmol-applet-12.3.14-r1 (03 Jun 2014)
 
   03 Jun 2014; Stefan Huber <shuber@sthu.org> +jmol-applet-12.3.14-r1.ebuild:
