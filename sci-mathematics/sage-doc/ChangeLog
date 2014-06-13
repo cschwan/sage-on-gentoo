@@ -2,6 +2,10 @@
 # Copyright 1999-2014 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  13 Jun 2014; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-doc-6.2.ebuild:
+  Restricting sage-doc-6.2 to <sphinx-1.2.x - no changes for 9999 for now.
+
   31 May 2014; François Bissey <francois.bissey@canterbury.ac.nz>
   sage-doc-6.2.ebuild, sage-doc-9999-r1.ebuild:
   sage-doc can use docutils 0.11.
