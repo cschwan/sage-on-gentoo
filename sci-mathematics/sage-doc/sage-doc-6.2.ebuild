@@ -36,7 +36,7 @@ DEPEND="|| ( <dev-python/docutils-0.10[${PYTHON_USEDEP}] >dev-python/docutils-0.
 	sci-mathematics/sage"
 RDEPEND="${DEPEND}
 	>=dev-python/sphinx-1.1.2[${PYTHON_USEDEP}]
-	<dev-python/sphinx-1.2.0[${PYTHON_USEDEP}]"
+	pdf? ( <dev-python/sphinx-1.2.0[${PYTHON_USEDEP}] )"
 
 S="${WORKDIR}/sage-${PV}/src"
 

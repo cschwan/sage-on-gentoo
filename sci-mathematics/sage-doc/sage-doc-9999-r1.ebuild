@@ -33,7 +33,8 @@ RESTRICT="mirror"
 
 # TODO: depend on sage-baselayout (creates sage-main directory) ?
 DEPEND="|| ( <dev-python/docutils-0.10[${PYTHON_USEDEP}] >dev-python/docutils-0.10[${PYTHON_USEDEP}] )
-	sci-mathematics/sage"
+	sci-mathematics/sage
+	pdf? ( dev-texlive/texlive-langcyrillic )"
 RDEPEND="${DEPEND}
 	>=dev-python/sphinx-1.1.2[${PYTHON_USEDEP}]"
 
