@@ -71,6 +71,7 @@ python_compile() {
 	export SAGE_SRC="${S}"
 	export SAGE_NUM_THREADS=$(makeopts_jobs)
 	export SAGE_DOC_MATHJAX=yes
+	export VARTEXFONTS="${T}"/fonts
 
 	if use html ; then
 		${PYTHON} doc/common/builder.py --no-pdf-links all html || die "failed to produce html doc"

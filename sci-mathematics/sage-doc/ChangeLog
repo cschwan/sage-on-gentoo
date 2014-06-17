@@ -2,6 +2,11 @@
 # Copyright 1999-2014 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  17 Jun 2014; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-doc-6.2.ebuild, sage-doc-9999-r1.ebuild:
+  Fix the folder for temporary fonts. Should solve issue #306 thanks Steve for
+  digging up the final solution.
+
   13 Jun 2014; François Bissey <francois.bissey@canterbury.ac.nz>
   sage-doc-6.2.ebuild, sage-doc-9999-r1.ebuild:
   Be a bit more subtle about the sphinx dependency. It is only a problem for pdf
