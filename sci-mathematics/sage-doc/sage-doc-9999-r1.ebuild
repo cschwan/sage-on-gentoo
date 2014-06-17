@@ -36,7 +36,11 @@ DEPEND="|| ( <dev-python/docutils-0.10[${PYTHON_USEDEP}] >dev-python/docutils-0.
 	sci-mathematics/sage
 	pdf? ( dev-texlive/texlive-langcyrillic )"
 RDEPEND="${DEPEND}
-	>=dev-python/sphinx-1.1.2[${PYTHON_USEDEP}]"
+	>=dev-python/sphinx-1.1.2[${PYTHON_USEDEP}]
+	pdf? ( dev-texlive/texlive-langcyrillic
+		dev-texlive/texlive-langfrench
+		dev-texlive/texlive-langportuguese
+		dev-texlive/texlive-langgerman )"
 
 S="${WORKDIR}/sage-${PV}/src"
 
