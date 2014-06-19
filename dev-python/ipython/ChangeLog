@@ -2,6 +2,13 @@
 # Copyright 1999-2014 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/dev-python/ipython/ChangeLog,v 1.104 2013/02/11 15:59:01 mgorny Exp $
 
+*ipython-2.1.0 (19 Jun 2014)
+
+  19 Jun 2014; François Bissey <francois.bissey@canterbury.ac.nz>
+  +ipython-2.1.0.ebuild:
+  Add our own ipython 2.1.0 from https://bugs.gentoo.org/show_bug.cgi?id=507410
+  for sage 6.3
+
 *ipython-1.2.1 (11 Mar 2014)
 
   11 Mar 2014; François Bissey <francois.bissey@canterbury.ac.nz>
