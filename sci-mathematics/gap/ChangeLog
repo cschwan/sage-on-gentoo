@@ -2,6 +2,12 @@
 # Copyright 1999-2014 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*gap-4.7.5 (19 Jun 2014)
+
+  19 Jun 2014; François Bissey <francois.bissey@canterbury.ac.nz>
+  +gap-4.7.5.ebuild:
+  Bump gap to 4.7.5 for sage 6.3
+
 *gap-4.7.4 (06 Mar 2014)
 
   06 Mar 2014; François Bissey <francois.bissey@canterbury.ac.nz>
