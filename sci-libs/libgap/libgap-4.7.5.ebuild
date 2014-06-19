@@ -9,7 +9,7 @@ inherit autotools-utils versionator
 DESCRIPTION="A cython library interface to gap for sage"
 HOMEPAGE="https://bitbucket.org/vbraun/libgap"
 GAP_PV=$(get_version_component_range 1-3)
-SRC_URI="mirror://bitbucket/vbraun/${PN}/downloads/${P}.tar.gz"
+SRC_URI="http://www.sagemath.org/packages/upstream/${PN}/${P}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"

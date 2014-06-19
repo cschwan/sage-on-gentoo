@@ -1,3 +1,10 @@
+*libgap-4.7.5 (19 Jun 2014)
+
+  19 Jun 2014; François Bissey <francois.bissey@canterbury.ac.nz>
+  +libgap-4.7.5.ebuild, libgap-4.7.4.ebuild:
+  bump to 4.7.5 for upcoming sage 6.3. minor adjustment to SRC_URI in 4.7.4 to
+  keep repoman happy.
+
 *libgap-4.7.4 (06 Mar 2014)
 
   06 Mar 2014; François Bissey <francois.bissey@canterbury.ac.nz>
