@@ -202,7 +202,7 @@ python_prepare() {
 	############################################################################
 
 	# sage on gentoo env.py
-	epatch "${FILESDIR}"/sage-6.2-r1-env.patch
+	epatch "${FILESDIR}"/sage-6.3-env.patch
 	eprefixify sage/env.py
 
 	# fix library path of libsingular
@@ -224,8 +224,6 @@ python_prepare() {
 	sed -i "s:factory/factory.h:singular/factory.h:" \
 		sage/libs/singular/singular-cdefs.pxi
 
-	# remove the need for the external "testjava.sh" script
-	epatch "${FILESDIR}"/remove-testjavapath-to-python-6.1.patch
 	# finding JmolData.jar in the right place
 	sed -i "s:\"jmol\", \"JmolData:\"jmol-applet\", \"JmolData:" sage/interfaces/jmoldata.py
 
@@ -277,7 +275,7 @@ python_prepare() {
 	epatch "${FILESDIR}"/${PN}-5.9-fix-ostools-doctest.patch
 
 	# change the location of the doc building tools in sage/doctest/control.py
-	epatch "${FILESDIR}"/${PN}-6.0-doc_common.patch
+	epatch "${FILESDIR}"/${PN}-6.3-doc_common.patch
 
 	# fix location of the html doc
 	epatch "${FILESDIR}"/${PN}-6.0-sagedoc.patch

@@ -2,6 +2,11 @@
 # Copyright 1999-2014 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  24 Jun 2014; François Bissey <francois.bissey@canterbury.ac.nz>
+  +files/sage-6.3-doc_common.patch, +files/sage-6.3-env.patch, sage-9999.ebuild:
+  Update patch set for 6.3.beta4: new env.py, javatest.sh finally removed
+  upstream, doc_common changed.
+
   23 Jun 2014; François Bissey <francois.bissey@canterbury.ac.nz>
   sage-9999.ebuild:
   sage 6.3 will use ipython 2.1.0 - this version of ipython doesn't support
