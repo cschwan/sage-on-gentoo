@@ -197,6 +197,9 @@ python_prepare() {
 	sed -i "s:-D__STDC_LIMIT_MACROS:-D__STDC_LIMIT_MACROS', '-DNDEBUG:g" \
 		module_list.py
 
+	# Do not clean up the previous install with setup.py
+	epatch "${FILESDIR}"/${PN}-6.3-noclean.patch
+
 	############################################################################
 	# Fixes to Sage itself
 	############################################################################

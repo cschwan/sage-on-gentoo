@@ -1,0 +1,23 @@
+--- setup.py.orig	2014-06-25 11:41:28.093445850 +1200
++++ setup.py	2014-06-25 11:41:49.953492119 +1200
+@@ -556,20 +556,6 @@
+ 
+ 
+ #########################################################
+-### Clean
+-#########################################################
+-
+-print('Cleaning up stale installed files....')
+-t = time.time()
+-from sage_setup.clean import clean_install_dir
+-output_dirs = SITE_PACKAGES + glob.glob(os.path.join(SAGE_SRC, 'build', 'lib*'))
+-for output_dir in output_dirs:
+-    print('- cleaning {0}'.format(output_dir))
+-    clean_install_dir(output_dir, python_packages, python_modules, ext_modules)
+-print('Finished cleaning, time: %.2f seconds.' % (time.time() - t))
+-
+-
+-#########################################################
+ ### Distutils
+ #########################################################
+ 

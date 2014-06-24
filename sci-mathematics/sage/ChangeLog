@@ -3,6 +3,10 @@
 # $Header: $
 
   24 Jun 2014; François Bissey <francois.bissey@canterbury.ac.nz>
+  +files/sage-6.3-noclean.patch, sage-9999.ebuild:
+  Sage should try to clean its own install from within setup.py
+
+  24 Jun 2014; François Bissey <francois.bissey@canterbury.ac.nz>
   +files/sage-6.3-doc_common.patch, +files/sage-6.3-env.patch, sage-9999.ebuild:
   Update patch set for 6.3.beta4: new env.py, javatest.sh finally removed
   upstream, doc_common changed.
