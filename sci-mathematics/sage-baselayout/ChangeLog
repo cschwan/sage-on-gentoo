@@ -2,6 +2,10 @@
 # Copyright 1999-2014 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  24 Jun 2014; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-baselayout-9999.ebuild:
+  update sage-exec patch for latest beta
+
   05 Jun 2014; François Bissey <francois.bissey@canterbury.ac.nz>
   sage-baselayout-9999.ebuild:
   bump patch for 6.3.beta3
