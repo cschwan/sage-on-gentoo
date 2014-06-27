@@ -27,7 +27,7 @@ SRC_URI="${SRC_URI}
 
 LICENSE="GPL-2"
 SLOT="0"
-IUSE="html pdf"
+IUSE="html"
 
 RESTRICT="mirror"
 
@@ -35,12 +35,7 @@ RESTRICT="mirror"
 DEPEND="|| ( <dev-python/docutils-0.10[${PYTHON_USEDEP}] >dev-python/docutils-0.10[${PYTHON_USEDEP}] )
 	sci-mathematics/sage"
 RDEPEND="${DEPEND}
-	>=dev-python/sphinx-1.1.2[${PYTHON_USEDEP}]
-	pdf? ( <dev-python/sphinx-1.2.0[${PYTHON_USEDEP}]
-		dev-texlive/texlive-langcyrillic
-		dev-texlive/texlive-langfrench
-		dev-texlive/texlive-langportuguese
-		dev-texlive/texlive-langgerman )"
+	>=dev-python/sphinx-1.1.2[${PYTHON_USEDEP}]"
 
 S="${WORKDIR}/sage-${PV}/src"
 
@@ -82,10 +77,6 @@ python_compile() {
 		# issue #197
 		touch doc/output/html/en/__init__.py
 	fi
-	if use pdf ; then
-		export MAKE=make
-		${PYTHON} doc/common/builder.py all pdf || die "failed to produce pdf doc"
-	fi
 }
 
 python_install() {
@@ -103,4 +94,12 @@ pkg_postinst() {
 		ewarn "You haven't requested the html documentation."
 		ewarn "The html version of the sage manual won't be available in the sage notebook."
 	fi
+
+	einfo "We no longer support generating the pdf version of the documentation."
+	einfo "Aside from a long list of dependencies it is currently broken with the"
+	einfo "latest version of sphinx. If you want the pdf you can always download"
+	einfo "the version produced upstream at:"
+	einfo "http://sagemath.org/doc-bz2/sage-${PV}-doc-pdf.tar.bz2"
+	einfo "Note that on one occasion it took three weeks for upstream to produce"
+	einfo "their own pdf files."
 }
