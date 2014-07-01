@@ -2,6 +2,13 @@
 # Copyright 1999-2014 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  01 Jul 2014; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-5.10-r2.ebuild, sage-5.11-r3.ebuild, sage-5.12.ebuild,
+  sage-5.9-r2.ebuild, sage-6.0-r2.ebuild, sage-6.1.1-r2.ebuild, sage-6.2.ebuild,
+  sage-9999.ebuild:
+  update polybori 0.8.3 dependency to python-r1 format. Deal with 0.8.2 later
+  (may be).
+
   24 Jun 2014; François Bissey <francois.bissey@canterbury.ac.nz>
   +files/sage-6.3-noclean.patch, sage-9999.ebuild:
   Sage should try to clean its own install from within setup.py

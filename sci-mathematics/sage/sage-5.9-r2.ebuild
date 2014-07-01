@@ -56,7 +56,7 @@ CDEPEND="dev-libs/gmp
 	>=sci-mathematics/lrcalc-1.1.6_beta1
 	>=sci-mathematics/pari-2.5.3-r2[data,gmp]
 	<sci-mathematics/pari-2.7.0
-	>=sci-mathematics/polybori-0.8.3
+	>=sci-mathematics/polybori-0.8.3[${PYTHON_USEDEP}]
 	>=sci-mathematics/ratpoints-2.1.3
 	~sci-mathematics/sage-baselayout-${PV}[testsuite=,${PYTHON_USEDEP}]
 	~sci-mathematics/sage-clib-${PV}
