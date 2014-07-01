@@ -1,6 +1,10 @@
 # ChangeLog for sci-mathematics/cu2
-# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# Copyright 1999-2014 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
+
+  01 Jul 2014; François Bissey <francois.bissey@canterbury.ac.nz>
+  cu2-20060223.ebuild:
+  add x64-macos keyword
 
   28 Mar 2012; François Bissey <francois.bissey@canterbury.ac.nz>
   cu2-20060223.ebuild:
@@ -18,4 +22,3 @@
   10 Jul 2010; Christopher Schwan <cschwan@students.uni-mainz.de>
   +cu2-20060223.ebuild, +metadata.xml:
   Initial import
-
