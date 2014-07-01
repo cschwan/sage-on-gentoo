@@ -2,6 +2,10 @@
 # Copyright 1999-2014 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  01 Jul 2014; François Bissey <francois.bissey@canterbury.ac.nz>
+  libcliquer-1.21_p0.ebuild, libcliquer-1.21_p1.ebuild:
+  keywording x64-macos
+
 *libcliquer-1.21_p1 (09 Feb 2014)
 
   09 Feb 2014; François Bissey <francois.bissey@canterbury.ac.nz>
