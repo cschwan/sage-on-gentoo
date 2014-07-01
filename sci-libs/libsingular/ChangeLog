@@ -2,6 +2,11 @@
 # Copyright 1999-2014 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  01 Jul 2014; François Bissey <francois.bissey@canterbury.ac.nz>
+  libsingular-3.1.5-r2.ebuild, libsingular-3.1.5-r3.ebuild,
+  libsingular-3.1.6-r2.ebuild:
+  keywording x64-macos
+
 *libsingular-3.1.6-r2 (10 Mar 2014)
 
   10 Mar 2014; François Bissey <francois.bissey@canterbury.ac.nz>
