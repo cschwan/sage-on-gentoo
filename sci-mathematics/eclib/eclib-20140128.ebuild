@@ -12,7 +12,7 @@ SRC_URI="mirror://sagemath/${P}.tar.bz2"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~x86 ~amd64-linux ~x86-linux ~x86-macos"
+KEYWORDS="~amd64 ~x86 ~amd64-linux ~x86-linux ~x86-macos ~x64-macos"
 IUSE="static-libs flint boost"
 
 RESTRICT="mirror"
