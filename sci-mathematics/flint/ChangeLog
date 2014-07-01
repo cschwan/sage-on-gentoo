@@ -2,6 +2,15 @@
 # Copyright 1999-2014 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  01 Jul 2014; François Bissey <francois.bissey@canterbury.ac.nz>
+  -files/flint-1.5.1-without-zn_poly.patch, -files/flint-1.5.2-enable-ntl.patch,
+  -files/flint-1.5.2-makefile.patch, -files/flint-2.4-makefile.patch,
+  -files/flint-2.4-ntl_interface_test.patch, -files/flint-2.4.3-makefile.patch,
+  -flint-1.5.2.ebuild, -flint-2.4.1.ebuild, -flint-2.4.2.ebuild,
+  -flint-2.4.3.ebuild, -flint-2.4.ebuild, metadata.xml:
+  Clean up. Only keeping the most potentially useful version not in the main
+  tree.
+
   01 Apr 2014; François Bissey <francois.bissey@canterbury.ac.nz>
   flint-2.4.3.ebuild:
   Small QA forgot a space that prevented soname to be set.
