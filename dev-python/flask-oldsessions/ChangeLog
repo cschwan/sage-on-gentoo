@@ -1,3 +1,7 @@
+  01 Jul 2014; François Bissey <francois.bissey@canterbury.ac.nz>
+  flask-oldsessions-0.10.ebuild:
+  keyword x64-macos
+
   11 Feb 2014; François Bissey <francois.bissey@canterbury.ac.nz>
   flask-oldsessions-0.10.ebuild:
   match sagenb keywords otherwise repoman not happy
