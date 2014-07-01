@@ -2,6 +2,10 @@
 # Copyright 1999-2014 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  01 Jul 2014; François Bissey <francois.bissey@canterbury.ac.nz>
+  symmetrica-2.0-r4.ebuild:
+  keywording x64-macos
+
 *symmetrica-2.0-r4 (24 May 2014)
 
   24 May 2014; François Bissey <francois.bissey@canterbury.ac.nz>
