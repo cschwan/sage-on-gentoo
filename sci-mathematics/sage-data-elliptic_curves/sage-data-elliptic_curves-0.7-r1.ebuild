@@ -4,10 +4,10 @@
 
 EAPI="5"
 
-PYTHON_DEPEND="2:2.7:2.7"
-PYTHON_USE_WITH="sqlite"
+PYTHON_COMPAT=( python2_7 )
+PYTHON_REQ_USE="sqlite"
 
-inherit python
+inherit python-any-r1
 
 MY_P="elliptic_curves-${PV}"
 
@@ -27,11 +27,6 @@ RDEPEND=""
 
 S="${WORKDIR}"/${MY_P}
 
-pkg_setup() {
-	python_set_active_version 2.7
-	python_pkg_setup
-}
-
 src_install() {
-	SAGE_SHARE="${ED}/usr/share/sage" "$(PYTHON)" spkg-install
+	SAGE_SHARE="${ED}/usr/share/sage" "${PYTHON}" spkg-install
 }

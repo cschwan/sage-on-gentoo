@@ -2,6 +2,13 @@
 # Copyright 1999-2014 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*sage-data-elliptic_curves-0.7-r1 (02 Jul 2014)
+
+  02 Jul 2014; François Bissey <francois.bissey@canterbury.ac.nz>
+  +sage-data-elliptic_curves-0.7-r1.ebuild,
+  -sage-data-elliptic_curves-0.7.ebuild:
+  migrated to python-r1
+
   01 Jul 2014; François Bissey <francois.bissey@canterbury.ac.nz>
   sage-data-elliptic_curves-0.7.ebuild:
   Add x64-macos keyword
