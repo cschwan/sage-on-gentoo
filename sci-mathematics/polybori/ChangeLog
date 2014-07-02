@@ -2,6 +2,12 @@
 # Copyright 1999-2014 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*polybori-0.8.3-r2 (02 Jul 2014)
+
+  02 Jul 2014; François Bissey <francois.bissey@canterbury.ac.nz>
+  +polybori-0.8.3-r2.ebuild:
+  Trying to fix issue #308 in a roundabout way
+
   01 Jul 2014; François Bissey <francois.bissey@canterbury.ac.nz>
   -polybori-0.8.2-r2.ebuild, -polybori-0.8.2-r3.ebuild, -polybori-0.8.3.ebuild,
   -polybori-9999.ebuild, metadata.xml, polybori-0.8.3-r1.ebuild:
