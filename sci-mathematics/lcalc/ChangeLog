@@ -2,6 +2,10 @@
 # Copyright 1999-2014 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  06 Jul 2014; Christopher Schwan <cschwan@students.uni-mainz.de>
+  +files/lcalc-1.23-fix-default-argument.patch, lcalc-1.23-r5.ebuild:
+  Tentative fix for Issue #310 and #311
+
   11 May 2014; François Bissey <francois.bissey@canterbury.ac.nz>
   lcalc-1.23-r4.ebuild, lcalc-1.23-r5.ebuild:
   Fixing current lcalc ebuild to pari 2.5. Note that patch for pari 2.7 will be

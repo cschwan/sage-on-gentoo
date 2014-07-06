@@ -37,6 +37,9 @@ src_prepare() {
 	cd .. || die "failed to change directory"
 	epatch "${FILESDIR}"/${PN}-1.23-gcc-4.6-fix.patch
 	epatch "${FILESDIR}"/${PN}-1.23-init_stack.patch
+
+	# fix error that pops up with GCC >= 4.9
+	epatch "${FILESDIR}"/${PN}-1.23-fix-default-argument.patch
 	cd src || die "failed to change directory"
 
 	# macos patch
