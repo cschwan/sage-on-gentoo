@@ -35,7 +35,6 @@ CDEPEND="
 	dev-python/setuptools[${PYTHON_USEDEP}]
 	dev-python/simplegeneric[${PYTHON_USEDEP}]
 	dev-python/pyparsing[${PYTHON_USEDEP}]
-	virtual/python-argparse[${PYTHON_USEDEP}]
 	matplotlib? ( dev-python/matplotlib[${PYTHON_USEDEP}] )
 	mongodb? ( dev-python/pymongo[${PYTHON_USEDEP}] )
 	octave? ( dev-python/oct2py[${PY2_USEDEP}] )

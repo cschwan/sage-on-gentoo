@@ -1,4 +1,4 @@
-# Copyright 1999-2013 Gentoo Foundation
+# Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-python/ipython/ipython-0.13.2.ebuild,v 1.9 2013/09/12 22:29:31 mgorny Exp $
 
@@ -26,7 +26,6 @@ CDEPEND="dev-python/decorator[${PYTHON_USEDEP}]
 	dev-python/setuptools[${PYTHON_USEDEP}]
 	dev-python/simplegeneric[${PYTHON_USEDEP}]
 	dev-python/pyparsing[${PYTHON_USEDEP}]
-	virtual/python-argparse[${PYTHON_USEDEP}]
 	emacs? ( app-emacs/python-mode virtual/emacs )
 	matplotlib? ( dev-python/matplotlib[${PYTHON_USEDEP}] )
 	mongodb? ( dev-python/pymongo[${PY2_USEDEP}] )

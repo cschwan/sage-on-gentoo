@@ -1,4 +1,4 @@
-# Copyright 1999-2013 Gentoo Foundation
+# Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
@@ -25,7 +25,6 @@ CDEPEND="dev-python/decorator[${PYTHON_USEDEP}]
 	dev-python/pexpect[${PY2_USEDEP}]
 	dev-python/pyparsing[${PYTHON_USEDEP}]
 	dev-python/simplegeneric[${PYTHON_USEDEP}]
-	virtual/python-argparse[${PYTHON_USEDEP}]
 	emacs? ( app-emacs/python-mode virtual/emacs )
 	matplotlib? ( dev-python/matplotlib[${PYTHON_USEDEP}] )
 	mongodb? ( dev-python/pymongo[${PY2_USEDEP}] )

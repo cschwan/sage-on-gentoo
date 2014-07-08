@@ -1,4 +1,4 @@
-# Copyright 1999-2013 Gentoo Foundation
+# Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
@@ -27,7 +27,6 @@ CDEPEND="dev-python/decorator
 	dev-python/pexpect
 	dev-python/pyparsing
 	dev-python/simplegeneric
-	virtual/python-argparse
 	emacs? ( app-emacs/python-mode virtual/emacs )
 	matplotlib? ( dev-python/matplotlib )
 	mongodb? ( dev-python/pymongo )
