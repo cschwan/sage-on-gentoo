@@ -3,6 +3,12 @@
 # $Header: /var/cvsroot/gentoo-x86/sci-mathematics/singular/ChangeLog,v 1.53 2012/06/23 10:50:20 xarthisius Exp $
 
   21 Jul 2014; François Bissey <francois.bissey@canterbury.ac.nz>
+  files/singular-3.1.6-flintconfig.patch:
+  Better (smaller) patch set for flint configuration in factory. Upstream
+  somehow relied on automake while it is not used (my conclusion  after a bit of
+  reading). Now to port all this to libsingular.
+
+  21 Jul 2014; François Bissey <francois.bissey@canterbury.ac.nz>
   +files/singular-3.1.6-fix_mpoly_factor_segfault.patch,
   +files/singular-3.1.6-flintconfig.patch, metadata.xml, singular-3.1.6.ebuild:
   Enable singular to build against flint. This was a tough commit: Rebased on
