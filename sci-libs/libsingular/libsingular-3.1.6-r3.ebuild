@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
-EAPI="3"
+EAPI="5"
 
 inherit autotools eutils flag-o-matic multilib prefix versionator
 
@@ -21,19 +21,17 @@ RESTRICT="mirror test"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~x86 ~amd64-linux ~x86-linux ~x86-macos ~x64-macos"
-IUSE="boost debug"
+KEYWORDS="~amd64 ~x86 ~ppc ~amd64-linux ~x86-linux ~x86-macos ~x64-macos"
+IUSE="boost flint debug"
 
-RDEPEND="dev-libs/gmp
-	>=dev-libs/ntl-5.5.1"
+RDEPEND="
+	dev-libs/gmp:0=
+	dev-libs/ntl:0=
+	flint? ( >=sci-mathematics/flint-2.3 )"
 
 DEPEND="${RDEPEND}
 	dev-lang/perl
-	boost? ( dev-libs/boost )
-	test? (
-		dev-util/cmake
-		dev-util/cppunit
-	)"
+	boost? ( dev-libs/boost:0= )"
 
 S="${WORKDIR}"/${MY_PN}-${MY_DIR}
 
@@ -45,10 +43,14 @@ pkg_setup() {
 }
 
 src_prepare () {
-	epatch "${FILESDIR}"/${PN_PATCH}-3.1.0-gentoo.patch
-	epatch "${FILESDIR}"/${PN_PATCH}-3.1.6-ntl6compat.patch
-	epatch "${FILESDIR}"/${PN_PATCH}-3.1.6-factory_template_instantiation.patch
-	epatch "${FILESDIR}"/sage_trac_14295.patch
+	epatch \
+		"${FILESDIR}"/${PN_PATCH}-3.1.0-gentoo.patch \
+		"${FILESDIR}"/${PN_PATCH}-3.1.3.3-Minor.h.patch \
+		"${FILESDIR}"/${PN_PATCH}-3.1.6-ntl6compat.patch \
+		"${FILESDIR}"/${PN_PATCH}-3.1.6-factory_template_instantiation.patch \
+		"${FILESDIR}"/sage_trac_14295.patch \
+		"${FILESDIR}"/${PN_PATCH}-3.1.6-fix_mpoly_factor_segfault.patch \
+		"${FILESDIR}"/${PN_PATCH}-3.1.6-flintconfig.patch
 	if  [[ ${CHOST} == *-darwin* ]] ; then
 		# really a placeholder until I figure out the patch for that one.
 		epatch "${FILESDIR}"/${PN_PATCH}-3.1.3.3-dylib.patch
@@ -58,7 +60,6 @@ src_prepare () {
 	else
 		epatch "${FILESDIR}"/${PN_PATCH}-3.1.3.3-soname.patch
 	fi
-	epatch "${FILESDIR}"/${PN_PATCH}-3.1.3.3-Minor.h.patch
 
 	rm -rf ntl
 
@@ -74,6 +75,8 @@ src_prepare () {
 		"${S}"/Singular/Makefile.in || die
 
 	cd "${S}"/Singular || die "failed to cd into Singular/"
+	eautoconf
+	cd "${S}"/factory || die "failed to cd into factory/"
 	eautoconf
 }
 
@@ -91,13 +94,13 @@ src_configure() {
 		--without-MP \
 		--without-lex \
 		--without-bison \
-		--without-flint \
 		--enable-factory \
 		--enable-libfac \
 		--enable-IntegerProgramming \
 		--enable-Singular \
 		--with-malloc=system \
 		--with-dynamic-kernel \
+		$(use_with flint) \
 		$(use_with boost Boost) || die "configure failed"
 }
 

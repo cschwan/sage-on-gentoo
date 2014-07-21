@@ -9,5 +9,8 @@
 		<flag name='boost'>
 			Compile against external boost headers (<pkg>dev-libs/boost</pkg>)
 		</flag>
+		<flag name='flint'>
+			Use flint-2
+		</flag>
 	</use>
 </pkgmetadata>

@@ -2,6 +2,16 @@
 # Copyright 1999-2014 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*libsingular-3.1.6-r3 (21 Jul 2014)
+
+  21 Jul 2014; François Bissey <francois.bissey@canterbury.ac.nz>
+  +files/singular-3.1.6-fix_mpoly_factor_segfault.patch,
+  +files/singular-3.1.6-flintconfig.patch, +libsingular-3.1.6-r3.ebuild,
+  -libsingular-3.1.6-r2.ebuild, metadata.xml:
+  flint enabled libsingular with a few extra patches from sage. sage 6.3.beta6
+  requires a flint enabled libsingular and will destroy  quite a few patches to
+  module-list.py in the process so be patient, it is coming slowly.
+
   01 Jul 2014; François Bissey <francois.bissey@canterbury.ac.nz>
   libsingular-3.1.5-r2.ebuild, libsingular-3.1.5-r3.ebuild,
   libsingular-3.1.6-r2.ebuild:
