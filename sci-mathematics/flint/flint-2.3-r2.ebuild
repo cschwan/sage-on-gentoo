@@ -1,4 +1,4 @@
-# Copyright 1999-2013 Gentoo Foundation
+# Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
@@ -13,7 +13,7 @@ SRC_URI="http://www.flintlib.org/${P}.tar.gz"
 RESTRICT="mirror"
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~x86 ~ppc-macos ~x86-macos ~x64-macos ~amd64-linux ~x86-linux"
+KEYWORDS="~amd64 ~x86 ~ppc ~ppc-macos ~x86-macos ~x64-macos ~amd64-linux ~x86-linux"
 IUSE="-static"
 
 DEPEND="dev-libs/mpfr
