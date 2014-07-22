@@ -66,7 +66,7 @@ CDEPEND="dev-libs/gmp
 	>=sci-mathematics/ratpoints-2.1.3
 	~sci-mathematics/sage-baselayout-${PV}[testsuite=,${PYTHON_USEDEP}]
 	~sci-mathematics/sage-clib-${PV}
-	~sci-libs/libsingular-3.1.6
+	~sci-libs/libsingular-3.1.6[flint]
 	media-libs/gd[jpeg,png]
 	media-libs/libpng:0=
 	>=sys-libs/readline-6.2
@@ -80,7 +80,7 @@ DEPEND="${CDEPEND}
 	!dev-python/gmpy"
 
 RDEPEND="${CDEPEND}
-	>=dev-lang/R-2.14.0
+	>=dev-lang/R-3.1.0
 	>=dev-python/cvxopt-1.1.6[glpk,${PYTHON_USEDEP}]
 	>=dev-python/gdmodule-0.56-r2[png,${PYTHON_USEDEP}]
 	~dev-python/ipython-2.1.0[${PYTHON_USEDEP}]
@@ -191,9 +191,9 @@ python_prepare() {
 	# fix lcalc path
 	sed -i "s:SAGE_INC + \"/libLfunction:SAGE_INC + \"/Lfunction:g" module_list.py
 
-	# Add -DNDEBUG to objects linking to libsingular and use factory headers from singular.
+	# Add -DNDEBUG to objects linking to libsingular and use factory headers from libsingular.
 	sed -i "s:, SAGE_INC + '/factory'::g" module_list.py
-	# We add -DNDEBUG to objects linking to givaro. It solves problems with linbox and singular.
+	# We add -DNDEBUG to objects linking to givaro. It solves problems with linbox and libsingular.
 	sed -i "s:-D__STDC_LIMIT_MACROS:-D__STDC_LIMIT_MACROS', '-DNDEBUG:g" \
 		module_list.py
 
