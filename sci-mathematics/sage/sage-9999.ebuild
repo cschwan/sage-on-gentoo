@@ -135,7 +135,7 @@ pkg_setup() {
 
 python_prepare() {
 	# ATLAS independence
-	epatch "${FILESDIR}"/${PN}-blas.patch
+	epatch "${FILESDIR}"/${PN}-6.3-blas.patch
 
 	# Remove sage's package management system
 	epatch "${WORKDIR}"/patches/${PN}-6.3-package.patch
@@ -185,17 +185,17 @@ python_prepare() {
 		module_list.py
 
 	# use sage-ppl
-	epatch "${FILESDIR}"/${PN}-6.2-r1-ppl1.patch
+	epatch "${FILESDIR}"/${PN}-6.3-ppl1.patch
 	sed -i "s:lib/ppl1:$(get_libdir)/ppl1:" module_list.py
 
 	# fix lcalc path
 	sed -i "s:SAGE_INC + \"/libLfunction:SAGE_INC + \"/Lfunction:g" module_list.py
 
-	# Add -DNDEBUG to objects linking to libsingular and use factory headers from libsingular.
+	# We add -DNDEBUG to objects linking to givaro and libsingular.
+	epatch "${FILESDIR}"/${PN}-6.3-givaro_singular_extra.patch
+	# Use factory headers from libsingular. 
+	# Apply after the givaro_singular_extra patch otherwise the above patch will fail.
 	sed -i "s:, SAGE_INC + '/factory'::g" module_list.py
-	# We add -DNDEBUG to objects linking to givaro. It solves problems with linbox and libsingular.
-	sed -i "s:-D__STDC_LIMIT_MACROS:-D__STDC_LIMIT_MACROS', '-DNDEBUG:g" \
-		module_list.py
 
 	# Do not clean up the previous install with setup.py
 	epatch "${FILESDIR}"/${PN}-6.3-noclean.patch

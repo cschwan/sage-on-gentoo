@@ -1,0 +1,24 @@
+--- module_list.py.orig	2014-07-23 10:25:19.962020237 +1200
++++ module_list.py	2014-07-23 10:27:41.152127338 +1200
+@@ -738,9 +738,11 @@
+ 
+     Extension('sage.libs.ppl',
+               sources = ['sage/libs/ppl.pyx', 'sage/libs/ppl_shim.cc'],
++              runtime_library_dirs = [SAGE_LOCAL + "/lib/ppl1"],
++              library_dirs = [SAGE_LOCAL + "/lib/ppl1"],
+               libraries = ['ppl', 'gmpxx', 'gmp', 'm'],
+               language="c++",
+-              depends = [SAGE_INC + "/ppl.hh"]),
++              depends = [SAGE_INC + "/ppl1/ppl.hh"]),
+ 
+     Extension('sage.libs.ratpoints',
+               sources = ["sage/libs/ratpoints.pyx"],
+@@ -1404,6 +1406,8 @@
+     Extension("sage.numerical.backends.ppl_backend",
+               ["sage/numerical/backends/ppl_backend.pyx"],
+               include_dirs = [SAGE_INC, "sage/c_lib/include/"],
++              runtime_library_dirs = [SAGE_LOCAL + "/lib/ppl1"],
++              library_dirs = [SAGE_LOCAL + "/lib/ppl1"],
+               libraries=["stdc++"]),
+ 
+     Extension("sage.numerical.backends.glpk_graph_backend",
