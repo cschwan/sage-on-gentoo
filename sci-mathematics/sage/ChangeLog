@@ -3,6 +3,10 @@
 # $Header: $
 
   23 Jul 2014; François Bissey <francois.bissey@canterbury.ac.nz>
+  files/sage-6.3-blas.patch, files/sage-6.3-ppl1.patch, sage-9999.ebuild:
+  Fix the refreshed patches
+
+  23 Jul 2014; François Bissey <francois.bissey@canterbury.ac.nz>
   +files/sage-6.3-blas.patch, +files/sage-6.3-givaro_singular_extra.patch,
   +files/sage-6.3-ppl1.patch, sage-9999.ebuild:
   Refreshing some patch and change the handling of -DNDEBUG to handle the new
