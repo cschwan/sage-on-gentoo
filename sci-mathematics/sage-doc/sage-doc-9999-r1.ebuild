@@ -48,7 +48,8 @@ PATCHES=( "${FILESDIR}"/${PN}-6.0-misc.patch
 	"${FILESDIR}"/${PN}-dev.patch
 	"${FILESDIR}"/${PN}-6.2-seealso.patch
 	"${FILESDIR}"/${PN}-6.2-sphinx.patch
-	"${FILESDIR}"/${PN}-6.2-favicon.patch )
+	"${FILESDIR}"/${PN}-6.2-favicon.patch
+	"${FILESDIR}"/${PN}-6.3-utf8_fr.patch )
 
 python_prepare_all() {
 	distutils-r1_python_prepare_all

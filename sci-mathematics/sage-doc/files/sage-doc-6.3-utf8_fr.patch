@@ -1,0 +1,11 @@
+--- doc/fr/tutorial/tour_coercion.rst.orig	2014-07-25 23:14:08.313812284 +1200
++++ doc/fr/tutorial/tour_coercion.rst	2014-07-25 23:23:34.314151325 +1200
+@@ -148,7 +148,7 @@
+ 
+ Le type ``RingElement`` ne correspond pas parfaitement à la notion
+ mathématique d'élément d'anneau. Par exemple, bien que les matrices carrées
+-appartiennent à un anneau, elles ne sont pas de type ``RingElement`` :
++appartiennent à un anneau, elles ne sont pas de type ``RingElement`` :
+ 
+ ::
+ 
