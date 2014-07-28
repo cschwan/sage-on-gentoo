@@ -131,8 +131,6 @@ S="${WORKDIR}/${P}/src"
 pkg_setup() {
 	# needed since Ticket #14460
 	tc-export CC
-
-	append-flags -DNDEBUG
 }
 
 python_prepare() {
