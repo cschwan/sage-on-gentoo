@@ -2,6 +2,10 @@
 # Copyright 1999-2014 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  28 Jul 2014; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-baselayout-9999.ebuild:
+  Update the sage-exec patch for 6.3. "-combinat" is no more.
+
   24 Jun 2014; François Bissey <francois.bissey@canterbury.ac.nz>
   sage-baselayout-9999.ebuild:
   update sage-exec patch for latest beta
