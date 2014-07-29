@@ -1,0 +1,5 @@
+*sage-data-combinatorial_designs-20140630 (29 Jul 2014)
+
+  29 Jul 2014; François Bissey <francois.bissey@canterbury.ac.nz> +metadata.xml,
+  +sage-data-combinatorial_designs-20140630.ebuild:
+  New data package for sage 6.3
