@@ -267,7 +267,9 @@ python_prepare() {
 
 	# fix all.py
 	epatch "${FILESDIR}"/${PN}-6.0-all.py.patch
-	sed -i "s:\"lib\",\"python\":\"$(get_libdir)\",\"${EPYTHON}\":" sage/all.py
+	sed -i \
+		-e "s:\"lib\",\"python\":\"$(get_libdir)\",\"${EPYTHON}\":" \
+		-e "s:\"bin\":\"lib\",\"python-exec\",\"${EPYTHON}\":" sage/all.py
 
 	# do not test safe python stuff from trac 13579
 	epatch "${FILESDIR}"/${PN}-6.0-safepython.patch
