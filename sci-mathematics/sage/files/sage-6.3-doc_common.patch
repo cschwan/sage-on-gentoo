@@ -1,6 +1,6 @@
---- sage/doctest/control.py.orig	2014-06-25 11:00:15.208708724 +1200
-+++ sage/doctest/control.py	2014-06-25 11:01:14.948825570 +1200
-@@ -457,13 +457,13 @@
+--- sage/doctest/control.py.orig	2014-07-29 13:42:35.869541651 +1200
++++ sage/doctest/control.py	2014-07-29 13:43:42.389644902 +1200
+@@ -415,12 +415,12 @@
              'sagenb'
          """
          opj = os.path.join
@@ -9,11 +9,10 @@
          def all_files():
              from glob import glob
              self.files.append(opj(SAGE_SRC, 'sage'))
-             self.files.append(opj(SAGE_SRC, 'sage_setup'))
 -            self.files.append(opj(SAGE_SRC, 'doc', 'common'))
 -            self.files.extend(glob(opj(SAGE_SRC, 'doc', '[a-z][a-z]')))
 +            self.files.append(opj(SAGE_DOC, 'common'))
 +            self.files.extend(glob(opj(SAGE_DOC, '[a-z][a-z]')))
              self.options.sagenb = True
-         DOT_GIT= opj(SAGE_ROOT, '.git')
-         have_git = os.path.exists(DOT_GIT)
+         if self.options.all:
+             self.log("Doctesting entire Sage library.")
