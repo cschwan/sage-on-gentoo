@@ -88,24 +88,24 @@ RDEPEND="${CDEPEND}
 	>=media-gfx/tachyon-0.98.9[png]
 	>=sci-libs/cddlib-094f-r2
 	>=sci-libs/scipy-0.11.0[${PYTHON_USEDEP}]
-	>=sci-mathematics/flintqs-20070817_p8
+	>=sci-mathematics/flintqs-20070817
 	~sci-mathematics/gap-4.5.7
-	>=sci-mathematics/genus2reduction-0.3_p8-r1
+	>=sci-mathematics/genus2reduction-0.3-r1
 	~sci-mathematics/gfan-0.5
 	>=sci-mathematics/cu2-20060223
 	>=sci-mathematics/cubex-20060128
-	>=sci-mathematics/dikcube-20070912_p18
+	>=sci-mathematics/dikcube-20070912
 	>=sci-mathematics/maxima-5.29.1-r2[ecls]
 	>=sci-mathematics/mcube-20051209
 	>=sci-mathematics/optimal-20040603
 	>=sci-mathematics/palp-2.1
 	~sci-mathematics/sage-data-elliptic_curves-0.7
-	~sci-mathematics/sage-data-graphs-20120404_p4
-	~sci-mathematics/sage-data-polytopes_db-20100210_p2
+	~sci-mathematics/sage-data-graphs-20120404
+	~sci-mathematics/sage-data-polytopes_db-20100210
 	>=sci-mathematics/sage-doc-${PV}
 	~sci-mathematics/sage-extcode-${PV}
 	~sci-mathematics/singular-3.1.5
-	>=sci-mathematics/sympow-1.018.1_p11
+	>=sci-mathematics/sympow-1.018.1
 	!prefix? ( >=sys-libs/glibc-2.13-r4 )
 	testsuite? ( >=sci-mathematics/sage-doc-${PV}[html] )
 	latex? (
