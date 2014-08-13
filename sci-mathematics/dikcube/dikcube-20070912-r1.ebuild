@@ -4,13 +4,13 @@
 
 EAPI="5"
 
-inherit eutils flag-o-matic versionator
+inherit eutils flag-o-matic
 
-MY_P="rubiks-$(replace_version_separator 1 '.')"
+MY_P="rubiks-${PV}"
 
 DESCRIPTION="Dik T. Winter's rubik's cube solver and related tools"
 HOMEPAGE="http://www.sagemath.org"
-SRC_URI="mirror://sagemath/${MY_P}.spkg -> ${P}.tar.bz2"
+SRC_URI="mirror://sagemath/rubiks/${MY_P}.tar.bz2"
 
 LICENSE="MIT"
 SLOT="0"
@@ -22,7 +22,7 @@ RESTRICT="mirror"
 DEPEND=""
 RDEPEND=""
 
-S="${WORKDIR}"/${MY_P}/src/dik
+S="${WORKDIR}"/${MY_P}/dik
 
 src_prepare() {
 	# fixes a lot of QA warnings

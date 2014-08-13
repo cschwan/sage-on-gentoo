@@ -2,6 +2,12 @@
 # Copyright 1999-2014 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*dikcube-20070912-r1 (13 Aug 2014)
+
+  13 Aug 2014; François Bissey <francois.bissey@canterbury.ac.nz>
+  +dikcube-20070912-r1.ebuild, -dikcube-20070912_p18-r1.ebuild:
+  move to sage-upstream repo, sorry for the apparent downgrade
+
 *dikcube-20070912_p18-r1 (24 May 2014)
 
   24 May 2014; François Bissey <francois.bissey@canterbury.ac.nz>
