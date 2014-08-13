@@ -2,6 +2,10 @@
 # Copyright 1999-2014 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  13 Aug 2014; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-data-elliptic_curves-0.7-r1.ebuild:
+  Change the location of the tarball to the sage upstream source
+
 *sage-data-elliptic_curves-0.7-r1 (02 Jul 2014)
 
   02 Jul 2014; François Bissey <francois.bissey@canterbury.ac.nz>
