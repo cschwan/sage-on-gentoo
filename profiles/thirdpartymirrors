@@ -1,2 +1,2 @@
-sagemath http://www.lmona.de/files/sage http://www.lmona.de/files/distfiles http://www.sagemath.org/packages/upstream http://boxen.math.washington.edu/home/release/sage-5.10/sage-5.10/spkg/standard http://boxen.math.washington.edu/home/release/sage-5.11/sage-5.11/spkg/standard http://boxen.math.washington.edu/home/release/sage-5.12/sage-5.12/spkg/standard https://github.com/sagemath/sage/archive
+sagemath http://www.lmona.de/files/sage http://www.lmona.de/files/distfiles http://www.sagemath.org/packages/upstream https://github.com/sagemath/sage/archive
 sagemathdoc http://www.lmona.de/files/sage http://www.sagemath.org/doc-bz2
