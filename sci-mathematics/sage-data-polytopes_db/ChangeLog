@@ -1,6 +1,14 @@
 # ChangeLog for sci-mathematics/sage-data-polytopes_db
-# Copyright 1999-2013 Gentoo Foundation; Distributed under the GPL v2
+# Copyright 1999-2014 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
+
+*sage-data-polytopes_db-20100210 (13 Aug 2014)
+
+  13 Aug 2014; François Bissey <francois.bissey@canterbury.ac.nz>
+  +sage-data-polytopes_db-20100210.ebuild,
+  -sage-data-polytopes_db-20100210_p2.ebuild,
+  sage-data-polytopes_db-20120220.ebuild:
+  moced to new tarball in the sage upstream repo
 
 *sage-data-polytopes_db-20120220 (29 May 2013)
 
