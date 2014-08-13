@@ -1,6 +1,13 @@
 # ChangeLog for sci-mathematics/flintqs
-# Copyright 1999-2013 Gentoo Foundation; Distributed under the GPL v2
+# Copyright 1999-2014 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
+
+*flintqs-20070817 (13 Aug 2014)
+
+  13 Aug 2014; François Bissey <francois.bissey@canterbury.ac.nz>
+  +flintqs-20070817.ebuild, -flintqs-20070817_p8.ebuild:
+  Change SRC_URI and tarball used. Sorry for the apparent downgrade. Corrected
+  missing deps and keyworded x64-macos while  at it.
 
   22 Jan 2013; Christopher Schwan <cschwan@students.uni-mainz.de>
   flintqs-20070817_p8.ebuild:
