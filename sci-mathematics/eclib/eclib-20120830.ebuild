@@ -1,20 +1,18 @@
-# Copyright 1999-2013 Gentoo Foundation
+# Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
 EAPI="5"
 
-inherit eutils versionator autotools-utils
-
-MY_P="${PN}-$(replace_version_separator 1 '.')"
+inherit eutils autotools-utils
 
 DESCRIPTION="Programs for enumerating and computing with elliptic curves defined over the rational numbers."
 HOMEPAGE="http://www.warwick.ac.uk/~masgaj/mwrank/index.html"
-SRC_URI="mirror://sagemath/${MY_P}.spkg -> ${P}.tar.bz2"
+SRC_URI="mirror://sagemath/${PN}/${P}.tar.bz2"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~x86 ~amd64-linux ~x86-linux ~x86-macos"
+KEYWORDS="~amd64 ~x86 ~amd64-linux ~x86-linux ~x86-macos ~x64-macos"
 IUSE="static-libs"
 
 RESTRICT="mirror"
@@ -23,8 +21,6 @@ RDEPEND="dev-libs/gmp
 	>=sci-mathematics/pari-2.5.0
 	>=dev-libs/ntl-5.4.2"
 DEPEND="${RDEPEND}"
-
-S="${WORKDIR}"/${MY_P}/src
 
 src_prepare() {
 	sed -i "s:/usr/local/bin/gp:${EPREFIX}/usr/bin/gp:" \
