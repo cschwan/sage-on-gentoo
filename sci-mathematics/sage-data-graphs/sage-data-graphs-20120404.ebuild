@@ -1,16 +1,15 @@
-# Copyright 1999-2013 Gentoo Foundation
+# Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
 EAPI="5"
 
-inherit versionator
-
-MY_P="graphs-$(replace_version_separator 1 '.')"
+MY_PN="graphs"
+MY_P="${MY_PN}-${PV}"
 
 DESCRIPTION="Sage's graph database"
 HOMEPAGE="http://www.sagemath.org"
-SRC_URI="mirror://sagemath/${MY_P}.spkg -> ${P}.tar.bz2"
+SRC_URI="mirror://sagemath/${MY_PN}/${MY_P}.tar.bz2"
 
 LICENSE="GPL-2"
 SLOT="0"
@@ -22,7 +21,7 @@ RESTRICT="mirror"
 DEPEND=""
 RDEPEND=""
 
-S="${WORKDIR}"/${MY_P}/src
+S="${WORKDIR}"/${MY_P}
 
 src_install() {
 	insinto /usr/share/sage/graphs

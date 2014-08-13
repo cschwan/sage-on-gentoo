@@ -1,6 +1,12 @@
 # ChangeLog for sci-mathematics/sage-data-graphs
-# Copyright 1999-2013 Gentoo Foundation; Distributed under the GPL v2
+# Copyright 1999-2014 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
+
+*sage-data-graphs-20120404 (13 Aug 2014)
+
+  13 Aug 2014; François Bissey <francois.bissey@canterbury.ac.nz>
+  +sage-data-graphs-20120404.ebuild, -sage-data-graphs-20120404_p4.ebuild:
+  Move to new sage-upstream repo, sorry for the downgrade.
 
   22 Jan 2013; Christopher Schwan <cschwan@students.uni-mainz.de>
   sage-data-graphs-20120404_p4.ebuild:
