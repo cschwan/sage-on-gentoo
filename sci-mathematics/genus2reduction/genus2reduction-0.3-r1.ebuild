@@ -4,13 +4,11 @@
 
 EAPI="5"
 
-inherit eutils toolchain-funcs versionator
-
-MY_P="${PN}-$(replace_version_separator 2 '.')"
+inherit eutils toolchain-funcs
 
 DESCRIPTION="Conductor and Reduction Types for Genus 2 Curves"
 HOMEPAGE="http://www.math.u-bordeaux.fr/~liu/G2R/"
-SRC_URI="mirror://sagemath/${MY_P}.spkg -> ${P}.tar.bz2"
+SRC_URI="mirror://sagemath/${PN}/${P}.tar.bz2"
 
 LICENSE="GPL-2"
 SLOT="0"
@@ -22,10 +20,8 @@ RESTRICT="mirror"
 RDEPEND="=sci-mathematics/pari-2.5*"
 DEPEND="${RDEPEND}"
 
-S="${WORKDIR}"/${MY_P}/src
-
 src_prepare() {
-	epatch "${FILESDIR}"/${MY_P}-pari.patch
+	epatch "${FILESDIR}"/${P}-pari.patch
 }
 
 src_compile() {
