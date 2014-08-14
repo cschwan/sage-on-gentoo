@@ -1,6 +1,10 @@
 # ChangeLog for sci-libs/m4rie
-# Copyright 1999-2013 Gentoo Foundation; Distributed under the GPL v2
+# Copyright 1999-2014 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
+
+  14 Aug 2014; François Bissey <francois.bissey@canterbury.ac.nz>
+  m4rie-20120613.ebuild, m4rie-20130416.ebuild:
+  migrated to sageupstream repo
 
 *m4rie-20130416 (16 May 2013)
 
