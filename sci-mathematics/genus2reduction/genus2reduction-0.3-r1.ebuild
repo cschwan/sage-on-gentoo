@@ -8,7 +8,7 @@ inherit eutils toolchain-funcs
 
 DESCRIPTION="Conductor and Reduction Types for Genus 2 Curves"
 HOMEPAGE="http://www.math.u-bordeaux.fr/~liu/G2R/"
-SRC_URI="mirror://sagemath/${PN}/${P}.tar.bz2"
+SRC_URI="mirror://sageupstream/${PN}/${P}.tar.bz2"
 
 LICENSE="GPL-2"
 SLOT="0"
