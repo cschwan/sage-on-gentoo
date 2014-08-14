@@ -2,6 +2,10 @@
 # Copyright 1999-2014 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  14 Aug 2014; François Bissey <francois.bissey@canterbury.ac.nz>
+  sympow-1.018.1.ebuild:
+  change mirror
+
 *sympow-1.018.1 (13 Aug 2014)
 
   13 Aug 2014; François Bissey <francois.bissey@canterbury.ac.nz>
