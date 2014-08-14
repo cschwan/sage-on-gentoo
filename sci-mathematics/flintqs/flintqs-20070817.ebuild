@@ -8,7 +8,7 @@ inherit eutils
 
 DESCRIPTION="William Hart's GPL'd highly optimized multi-polynomial quadratic sieve for integer factorization"
 HOMEPAGE="http://www.sagemath.org/"
-SRC_URI="mirror://sagemath/${PN}/${P}.tar.bz2"
+SRC_URI="mirror://sageupstream/${PN}/${P}.tar.bz2"
 
 LICENSE="GPL-2"
 SLOT="0"
