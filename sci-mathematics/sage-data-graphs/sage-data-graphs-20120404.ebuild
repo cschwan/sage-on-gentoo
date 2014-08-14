@@ -9,7 +9,7 @@ MY_P="${MY_PN}-${PV}"
 
 DESCRIPTION="Sage's graph database"
 HOMEPAGE="http://www.sagemath.org"
-SRC_URI="mirror://sagemath/${MY_PN}/${MY_P}.tar.bz2"
+SRC_URI="mirror://sageupstream/${MY_PN}/${MY_P}.tar.bz2"
 
 LICENSE="GPL-2"
 SLOT="0"
