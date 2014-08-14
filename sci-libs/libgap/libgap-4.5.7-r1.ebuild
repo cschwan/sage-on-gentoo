@@ -1,15 +1,14 @@
-# Copyright 1999-2013 Gentoo Foundation
+# Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
-EAPI=4
+EAPI=5
 
 inherit autotools-utils
 
 DESCRIPTION="A cython library interface to gap for sage"
 HOMEPAGE="https://bitbucket.org/vbraun/libgap"
-MY_P=libgap-"${PV}"
-SRC_URI="mirror://sagemath/${MY_P}.spkg -> ${P}.tar.bz2"
+SRC_URI="mirror://sageupstream/${PN}/${P}.tar.bz2"
 
 LICENSE="GPL-2"
 SLOT="0"
@@ -22,7 +21,6 @@ DEPEND=">=dev-libs/gmp-5.0.2
 	~sci-mathematics/gap-${PV}"
 RDEPEND="${DEPEND}"
 
-S="${WORKDIR}/${MY_P}"/src
 AUTOTOOLS_AUTORECONF=yes
 AUTOTOOLS_IN_SOURCE_BUILD=1
 PATCHES=(
@@ -39,7 +37,6 @@ src_prepare(){
 }
 
 src_configure(){
-
 	source "${EPREFIX}"/etc/sysinfo.gap
 
 	local myeconfargs=(

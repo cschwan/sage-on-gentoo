@@ -1,3 +1,10 @@
+*libgap-4.6.4 (14 Aug 2014)
+
+  14 Aug 2014; François Bissey <francois.bissey@canterbury.ac.nz>
+  +libgap-4.6.4.ebuild, -libgap-4.6.4_p0.ebuild, libgap-4.5.7-r1.ebuild,
+  libgap-4.7.4.ebuild, libgap-4.7.5.ebuild:
+  move most libgap to EAPI 5 and sage upstream repo
+
 *libgap-4.7.5 (19 Jun 2014)
 
   19 Jun 2014; François Bissey <francois.bissey@canterbury.ac.nz>

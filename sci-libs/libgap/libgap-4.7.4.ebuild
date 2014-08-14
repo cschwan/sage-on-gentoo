@@ -2,14 +2,13 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
-EAPI=4
+EAPI=5
 
-inherit autotools-utils versionator
+inherit autotools-utils
 
 DESCRIPTION="A cython library interface to gap for sage"
 HOMEPAGE="https://bitbucket.org/vbraun/libgap"
-GAP_PV=$(get_version_component_range 1-3)
-SRC_URI="mirror://bitbucket/vbraun/${PN}/downloads/${P}.tar.gz"
+SRC_URI="mirror://sageupstream/${PN}/${P}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
@@ -19,7 +18,7 @@ IUSE="static-libs"
 RESTRICT="test"
 
 DEPEND=">=dev-libs/gmp-5.0.2
-	~sci-mathematics/gap-${GAP_PV}"
+	~sci-mathematics/gap-${PV}"
 RDEPEND="${DEPEND}"
 
 AUTOTOOLS_AUTORECONF=yes
@@ -33,7 +32,6 @@ src_prepare(){
 }
 
 src_configure(){
-
 	source "${EPREFIX}"/etc/sysinfo.gap
 
 	local myeconfargs=(
