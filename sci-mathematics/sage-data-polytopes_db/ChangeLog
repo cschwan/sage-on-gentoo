@@ -2,6 +2,11 @@
 # Copyright 1999-2014 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  14 Aug 2014; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-data-polytopes_db-20100210.ebuild,
+  sage-data-polytopes_db-20120220.ebuild:
+  move to the new mirror alias
+
 *sage-data-polytopes_db-20100210 (13 Aug 2014)
 
   13 Aug 2014; François Bissey <francois.bissey@canterbury.ac.nz>
