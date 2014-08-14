@@ -8,7 +8,7 @@ inherit eutils autotools-utils
 
 DESCRIPTION="Programs for enumerating and computing with elliptic curves defined over the rational numbers."
 HOMEPAGE="http://www.warwick.ac.uk/~masgaj/mwrank/index.html"
-SRC_URI="mirror://sagemath/${PN}/${P}.tar.bz2"
+SRC_URI="mirror://sageupstream/${PN}/${P}.tar.bz2"
 
 LICENSE="GPL-2"
 SLOT="0"

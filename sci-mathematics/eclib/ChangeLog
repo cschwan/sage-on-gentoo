@@ -2,6 +2,10 @@
 # Copyright 1999-2014 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  14 Aug 2014; François Bissey <francois.bissey@canterbury.ac.nz>
+  eclib-20120830.ebuild, eclib-20140128.ebuild:
+  change mirror
+
   13 Aug 2014; François Bissey <francois.bissey@canterbury.ac.nz>
   eclib-20120428.ebuild, eclib-20120830.ebuild, eclib-20140128.ebuild:
   Moving to sage-upstream and lmona.de repo
