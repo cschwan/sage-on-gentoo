@@ -58,7 +58,7 @@ CDEPEND="dev-libs/gmp
 	~sci-libs/pynac-0.3.2[${PYTHON_USEDEP}]
 	>=sci-libs/symmetrica-2.0-r3
 	>=sci-libs/zn_poly-0.9
-	>=sci-mathematics/glpk-4.44
+	sci-mathematics/glpk:0=
 	>=sci-mathematics/lcalc-1.23-r5[pari]
 	>=sci-mathematics/lrcalc-1.1.6_beta1
 	=sci-mathematics/pari-2.5.5-r2[data,gmp]

@@ -42,7 +42,7 @@ CDEPEND="dev-libs/gmp
 	>=sci-libs/gsl-1.15
 	>=sci-libs/iml-1.0.1
 	~sci-libs/libcliquer-1.21_p0
-	~sci-libs/libgap-4.6.4_p0
+	~sci-libs/libgap-4.6.4
 	~sci-libs/linbox-1.3.2[sage]
 	~sci-libs/m4ri-20130416
 	~sci-libs/m4rie-20130416
@@ -50,7 +50,7 @@ CDEPEND="dev-libs/gmp
 	~sci-libs/pynac-0.3.0[${PYTHON_USEDEP}]
 	>=sci-libs/symmetrica-2.0
 	>=sci-libs/zn_poly-0.9
-	>=sci-mathematics/glpk-4.44
+	sci-mathematics/glpk:0=
 	>=sci-mathematics/lcalc-1.23-r4[pari]
 	>=sci-mathematics/lrcalc-1.1.6_beta1
 	>=sci-mathematics/pari-2.5.4[data,gmp]
