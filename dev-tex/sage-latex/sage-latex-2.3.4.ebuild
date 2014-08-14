@@ -1,4 +1,4 @@
-# Copyright 1999-2013 Gentoo Foundation
+# Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
@@ -6,17 +6,17 @@ EAPI="5"
 
 PYTHON_COMPAT=( python2_7 )
 
-inherit distutils-r1 latex-package versionator
+inherit distutils-r1 latex-package
 
-MY_P="sagetex-$(replace_version_separator 3 '.')"
-
+MY_PN="sagetex"
+MY_P="${MY_PN}-${PV}"
 DESCRIPTION="SageTeX package allows to embed code from the Sage mathematics software suite into LaTeX documents"
 HOMEPAGE="http://www.sagemath.org https://bitbucket.org/ddrake/sagetex/overview"
-SRC_URI="mirror://sagemath/${MY_P}.spkg -> ${MY_P}.tar.bz2"
+SRC_URI="mirror://sageupstream/${MY_PN}/${MY_P}.tar.bz2"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~x86 ~amd64-linux ~x86-linux"
+KEYWORDS="~amd64 ~x86 ~amd64-linux ~x86-linux ~x86-macos ~x64-macos"
 IUSE="examples"
 
 RESTRICT="mirror"
@@ -24,7 +24,7 @@ RESTRICT="mirror"
 DEPEND=""
 RDEPEND="dev-tex/pgf"
 
-S="${WORKDIR}"/${MY_P}/src
+S="${WORKDIR}"/${MY_P}
 
 src_prepare() {
 	# LaTeX file are installed by eclass functions
