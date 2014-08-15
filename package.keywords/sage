@@ -23,6 +23,7 @@ dev-python/flask-oldsessions
 dev-python/flask-silk
 dev-python/gdmodule
 ~dev-python/ipython-1.2.1
+~dev-python/ipython-2.1.0
 dev-python/ipython::sage-on-gentoo
 dev-python/matplotlib
 dev-python/mpmath
