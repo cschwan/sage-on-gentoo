@@ -2,9 +2,6 @@
 ~sci-mathematics/sage-clib-9999
 ~sci-mathematics/sage-baselayout-9999
 ~sci-mathematics/sage-doc-9999
-# sage 6.3
->=sci-mathematics/gap-4.7.5
->=sci-libs/libgap-4.7.5
->=dev-python/ipython-2.0
+-~dev-python/ipython-2.1.0
 # preparing ecm for removal. I only keep it in case it solves some OS X problems
 sci-mathematics/ecm

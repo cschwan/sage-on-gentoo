@@ -22,18 +22,14 @@ dev-python/flask-openid
 dev-python/flask-oldsessions
 dev-python/flask-silk
 dev-python/gdmodule
-~dev-python/ipython-0.13.1
-~dev-python/ipython-0.13.2
 ~dev-python/ipython-1.2.1
+dev-python/ipython::sage-on-gentoo
 dev-python/matplotlib
 dev-python/mpmath
-~dev-python/networkx-1.8.1
-~dev-python/numpy-1.7.0
+dev-python/networkx
 ~dev-python/pexpect-2.0
-~dev-python/pexpect-3.2
 ~dev-python/sage-pexpect-2.0
 dev-python/pycrypto
-~dev-python/pyparsing-2.0.1
 dev-python/python-openid
 dev-python/python-pkgconfig
 dev-python/pytz
@@ -76,7 +72,7 @@ sci-libs/m4rie
 sci-libs/mpfi
 sci-libs/pynac
 sci-libs/sage-ppl
-~sci-libs/scipy-0.12.0
+~sci-libs/scipy-0.14.0
 sci-libs/superlu
 sci-libs/symmetrica
 sci-libs/vecmath-objectclub
@@ -93,6 +89,7 @@ sci-mathematics/glpk
 sci-mathematics/lcalc
 sci-mathematics/lrcalc
 ~sci-mathematics/maxima-5.29.1::sage-on-gentoo
+~sci-mathematics/maxima-5.33.0::sage-on-gentoo
 sci-mathematics/mcube
 sci-mathematics/optimal
 sci-mathematics/palp
@@ -107,6 +104,7 @@ sci-mathematics/sage
 sci-mathematics/sage-baselayout
 sci-mathematics/sage-clib
 sci-mathematics/sage-data-conway_polynomials
+sci-mathematics/sage-data-combinatorial_designs
 sci-mathematics/sage-data-elliptic_curves
 sci-mathematics/sage-data-graphs
 sci-mathematics/sage-data-polytopes_db
