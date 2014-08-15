@@ -13,7 +13,7 @@ MY_P="elliptic_curves-${PV}"
 
 DESCRIPTION="Sage's elliptic curves databases"
 HOMEPAGE="http://www.sagemath.org"
-SRC_URI="mirror://sagemath/elliptic_curves/${MY_P}.tar.bz2"
+SRC_URI="mirror://sageupstream/elliptic_curves/${MY_P}.tar.bz2"
 
 LICENSE="GPL-2"
 SLOT="0"
