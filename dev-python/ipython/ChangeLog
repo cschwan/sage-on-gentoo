@@ -3,6 +3,11 @@
 # $Header: /var/cvsroot/gentoo-x86/dev-python/ipython/ChangeLog,v 1.104 2013/02/11 15:59:01 mgorny Exp $
 
   15 Aug 2014; François Bissey <francois.bissey@canterbury.ac.nz>
+  -files/2.1.0-disable-tests.patch, -files/2.1.0-substitute-files.patch,
+  -ipython-2.1.0.ebuild:
+  I could have sworn ipython 2.1.0 was masked in the main tree.
+
+  15 Aug 2014; François Bissey <francois.bissey@canterbury.ac.nz>
   +files/2.1.0-disable-tests.patch, +files/2.1.0-substitute-files.patch,
   ipython-2.1.0.ebuild:
   synchronize ipython 2.1.0 with main tree, we can unmask our copy.
