@@ -28,6 +28,7 @@ dev-python/ipython::sage-on-gentoo
 dev-python/matplotlib
 dev-python/mpmath
 dev-python/networkx
+dev-python/numpy
 ~dev-python/pexpect-2.0
 ~dev-python/sage-pexpect-2.0
 dev-python/pycrypto
