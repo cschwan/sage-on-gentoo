@@ -95,7 +95,7 @@ pkg_setup() {
 src_prepare() {
 	local n PATCHES v
 	PATCHES=( imaxima-0 rmaxima-0 wish-0 xdg-utils-0 maxima-5.33.0-0001-taylor2-Avoid-blowing-the-stack-when-diff-expand-isn
-		maxima-5.33.0-matrixexp maxima-5.33.0_bug_2526 )
+		maxima-5.33.0-matrixexp maxima-5.33.0_bug_2526 maxima-5.33.0-limit-replace-logs)
 
 	n=${#PATCHES[*]}
 	for ((n--; n >= 0; n--)); do
