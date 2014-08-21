@@ -3,6 +3,10 @@
 # $Header: $
 
   21 Aug 2014; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-9999.ebuild:
+  enforce dependency to maxima 5.33.0-r1 in sage-9999
+
+  21 Aug 2014; François Bissey <francois.bissey@canterbury.ac.nz>
   +files/sage-6.4-ppl1.patch, sage-9999.ebuild:
   update patch for 6.4.beta1
 
