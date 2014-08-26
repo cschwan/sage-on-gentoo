@@ -2,6 +2,14 @@
 # Copyright 1999-2014 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*eclib-20140805 (26 Aug 2014)
+
+  26 Aug 2014; François Bissey <francois.bissey@canterbury.ac.nz>
+  +eclib-20140805.ebuild:
+  New eclib, main feature is inclusion of our patches and support for clang. Got
+  the source from github. It want to unfold in  eclib-eclib-version which is why
+  I added a certain eclass.
+
   14 Aug 2014; François Bissey <francois.bissey@canterbury.ac.nz>
   eclib-20120830.ebuild, eclib-20140128.ebuild:
   change mirror
