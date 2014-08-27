@@ -2,6 +2,10 @@
 # Copyright 1999-2014 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  27 Aug 2014; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-9999.ebuild:
+  accept newer eclib in 9999, probably safe for earlier sage too.
+
   21 Aug 2014; François Bissey <francois.bissey@canterbury.ac.nz>
   sage-9999.ebuild:
   enforce dependency to maxima 5.33.0-r1 in sage-9999
