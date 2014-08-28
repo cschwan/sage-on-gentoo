@@ -2,6 +2,13 @@
 # Copyright 1999-2014 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*flint-2.4.4-r2 (28 Aug 2014)
+
+  28 Aug 2014; François Bissey <francois.bissey@canterbury.ac.nz>
+  +files/ntl62.patch, +flint-2.4.4-r2.ebuild, metadata.xml:
+  Importing the patch from https://github.com/wbhart/flint2/pull/95 for when we
+  get ntl 6.2.x
+
   21 Jul 2014; François Bissey <francois.bissey@canterbury.ac.nz>
   flint-2.3-r2.ebuild:
   keywording flint 2.3 ~ppc (for singular)
