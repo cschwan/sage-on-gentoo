@@ -42,7 +42,7 @@ CDEPEND="dev-libs/gmp
 	>=dev-lisp/ecls-12.12.1-r5
 	>=dev-python/numpy-1.8.1[${PYTHON_USEDEP}]
 	>=dev-python/cython-0.20.1[${PYTHON_USEDEP}]
-	>=sci-mathematics/eclib-20140128[flint]
+	>=sci-mathematics/eclib-20140805[flint]
 	>=sci-mathematics/gmp-ecm-6.4.4[-openmp]
 	>=sci-mathematics/flint-2.4.2[ntl]
 	~sci-libs/fplll-4.0.4
@@ -59,9 +59,9 @@ CDEPEND="dev-libs/gmp
 	>=sci-libs/symmetrica-2.0-r3
 	>=sci-libs/zn_poly-0.9
 	sci-mathematics/glpk:0=
-	>=sci-mathematics/lcalc-1.23-r5[pari]
+	>=sci-mathematics/lcalc-1.23-r6[pari]
 	>=sci-mathematics/lrcalc-1.1.6_beta1
-	=sci-mathematics/pari-2.5.5-r2[data,gmp]
+	=sci-mathematics/pari-2.7.1[data,gmp]
 	>=sci-mathematics/polybori-0.8.3[${PYTHON_USEDEP}]
 	>=sci-mathematics/ratpoints-2.1.3
 	~sci-mathematics/sage-baselayout-${PV}[testsuite=,${PYTHON_USEDEP}]
@@ -81,7 +81,7 @@ DEPEND="${CDEPEND}
 
 RDEPEND="${CDEPEND}
 	>=dev-lang/R-3.1.0
-	>=dev-python/cvxopt-1.1.6[glpk,${PYTHON_USEDEP}]
+	>=dev-python/cvxopt-1.1.7[glpk,${PYTHON_USEDEP}]
 	>=dev-python/gdmodule-0.56-r2[png,${PYTHON_USEDEP}]
 	~dev-python/ipython-2.1.0[${PYTHON_USEDEP}]
 	>=dev-python/jinja-2.5.5[${PYTHON_USEDEP}]
@@ -99,7 +99,7 @@ RDEPEND="${CDEPEND}
 	>=sci-libs/scipy-0.14.0[${PYTHON_USEDEP}]
 	>=sci-mathematics/flintqs-20070817
 	~sci-mathematics/gap-4.7.4
-	>=sci-mathematics/genus2reduction-0.3-r1
+	>=sci-mathematics/genus2reduction-20140211
 	~sci-mathematics/gfan-0.5
 	>=sci-mathematics/cu2-20060223
 	>=sci-mathematics/cubex-20060128

@@ -90,7 +90,7 @@ RDEPEND="${CDEPEND}
 	>=sci-libs/scipy-0.11.0[${PYTHON_USEDEP}]
 	>=sci-mathematics/flintqs-20070817
 	~sci-mathematics/gap-4.5.7
-	>=sci-mathematics/genus2reduction-0.3-r1
+	~sci-mathematics/genus2reduction-0.3
 	~sci-mathematics/gfan-0.5
 	>=sci-mathematics/cu2-20060223
 	>=sci-mathematics/cubex-20060128
