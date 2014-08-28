@@ -17,7 +17,7 @@ IUSE=""
 
 RESTRICT="mirror"
 
-RDEPEND="=sci-mathematics/pari-2.5*"
+RDEPEND="=sci-mathematics/pari-2.7*"
 DEPEND="${RDEPEND}"
 
 src_prepare() {
