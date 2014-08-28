@@ -1,0 +1,6 @@
+*cvxopt-1.1.7 (28 Aug 2014)
+
+  28 Aug 2014; François Bissey <francois.bissey@canterbury.ac.nz>
+  +cvxopt-1.1.7.ebuild, +files/cvxopt-1.1.6-setup.patch, +metadata.xml:
+  Importing from my local overlay while waiting for main tree to catch up at
+  https://bugs.gentoo.org/show_bug.cgi?id=521210
