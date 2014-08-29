@@ -1,3 +1,7 @@
+  29 Aug 2014; François Bissey <francois.bissey@canterbury.ac.nz>
+  files/50sage_mode-gentoo.el:
+  minor change to sitefile
+
 *sage_mode-0.12 (27 Aug 2014)
 
   27 Aug 2014; François Bissey <francois.bissey@canterbury.ac.nz>
