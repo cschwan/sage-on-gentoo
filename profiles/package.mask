@@ -7,4 +7,4 @@ sci-mathematics/ecm
 # sage 6.4 is coming
 #nasty with flint and singular
 >=dev-libs/ntl-6.2
-
+>=sci-mathematics/lcalc-1.23-r6
