@@ -2,6 +2,11 @@
 # Copyright 1999-2014 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  30 Aug 2014; François Bissey <francois.bissey@canterbury.ac.nz>
+  +files/flint-2.4.3-cflags-ldflags.patch, +files/flint-2.4.3-libdir.patch,
+  +files/flint-2.4.3-whitespaces.patch, +files/flint-2.4.4-test.patch:
+  missing flint patches
+
 *flint-2.4.4-r2 (28 Aug 2014)
 
   28 Aug 2014; François Bissey <francois.bissey@canterbury.ac.nz>
