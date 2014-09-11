@@ -2,6 +2,12 @@
 # Copyright 1999-2014 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/dev-python/cython/ChangeLog,v 1.93 2013/02/16 22:07:28 mgorny Exp $
 
+*cython-0.21 (11 Sep 2014)
+
+  11 Sep 2014; François Bissey <francois.bissey@canterbury.ac.nz>
+  +cython-0.21.ebuild:
+  cython 0.21 just released and already on its way to sage 6.4
+
   22 Feb 2014; François Bissey <francois.bissey@canterbury.ac.nz>
   -cython-0.20.1.ebuild, cython-0.19.1-r1.ebuild, cython-0.19.ebuild:
   Clean up in cython following discussion with jlec on bugzilla. 0.20.1 in main
