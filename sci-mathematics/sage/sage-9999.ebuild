@@ -41,7 +41,7 @@ CDEPEND="dev-libs/gmp
 	>=sci-libs/sage-ppl-1.0
 	>=dev-lisp/ecls-12.12.1-r5
 	>=dev-python/numpy-1.8.1[${PYTHON_USEDEP}]
-	>=dev-python/cython-0.20.1[${PYTHON_USEDEP}]
+	>=dev-python/cython-0.21[${PYTHON_USEDEP}]
 	>=sci-mathematics/eclib-20140805[flint]
 	>=sci-mathematics/gmp-ecm-6.4.4[-openmp]
 	>=sci-mathematics/flint-2.4.2[ntl]
@@ -83,7 +83,7 @@ RDEPEND="${CDEPEND}
 	>=dev-lang/R-3.1.0
 	>=dev-python/cvxopt-1.1.7[glpk,${PYTHON_USEDEP}]
 	>=dev-python/gdmodule-0.56-r2[png,${PYTHON_USEDEP}]
-	~dev-python/ipython-2.1.0[${PYTHON_USEDEP}]
+	~dev-python/ipython-2.2.0[${PYTHON_USEDEP}]
 	>=dev-python/jinja-2.5.5[${PYTHON_USEDEP}]
 	>=dev-python/matplotlib-1.3.1[${PYTHON_USEDEP}]
 	>=dev-python/mpmath-0.18[${PYTHON_USEDEP}]
