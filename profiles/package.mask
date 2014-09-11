@@ -9,3 +9,4 @@ sci-mathematics/ecm
 >=dev-libs/ntl-6.2
 >=sci-mathematics/lcalc-1.23-r6
 >=sci-mathematics/maxima-5.34.1
+>=dev-python/cython-0.21
