@@ -174,10 +174,6 @@ python_prepare() {
 	# use already installed csage
 	rm -rf c_lib || die "failed to remove c library directory"
 
-	# use installed clib headers
-	sed -i "s:c_lib/include/memory.h:csage/memory.h:" \
-		sage/libs/pari/pari_instance.pyx
-
 	# fix png library name
 	sed -i "s:png12:$(libpng-config --libs | cut -dl -f2):g" module_list.py
 
@@ -197,6 +193,9 @@ python_prepare() {
 
 	# Do not clean up the previous install with setup.py
 	epatch "${FILESDIR}"/${PN}-6.3-noclean.patch
+
+	# fix the re-introduction of SAGE_ROOT by trac 15915
+	epatch "${FILESDIR}"/${PN}-6.4-dgs_gauss.patch
 
 	############################################################################
 	# Fixes to Sage itself

@@ -1,0 +1,14 @@
+--- module_list.py.orig	2014-09-12 15:03:19.370250091 +1200
++++ module_list.py	2014-09-12 15:02:13.930114901 +1200
+@@ -1998,10 +1998,9 @@
+ 
+     Extension('sage.stats.distributions.discrete_gaussian_integer',
+               sources = ['sage/stats/distributions/discrete_gaussian_integer.pyx', 'sage/stats/distributions/dgs_gauss_mp.c', 'sage/stats/distributions/dgs_gauss_dp.c', 'sage/stats/distributions/dgs_bern.c'],
+-              depends = ['sage/stats/distributions/dgs_gauss.h', 'sage/stats/distributions/dgs_bern.h'],
++              depends = ['sage/stats/distributions/dgs_misc.h', 'sage/stats/distributions/dgs_gauss.h', 'sage/stats/distributions/dgs_bern.h'],
+               libraries = ['gmp', 'mpfr'],
+               extra_compile_args=["-std=c99", "-D_XOPEN_SOURCE=600"],
+-              include_dirs = [SAGE_ROOT +"/src/sage/stats/distributions"],
+           ),
+ 
+     ################################
