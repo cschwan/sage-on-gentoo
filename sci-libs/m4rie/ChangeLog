@@ -2,6 +2,12 @@
 # Copyright 1999-2014 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*m4rie-20140914 (14 Sep 2014)
+
+  14 Sep 2014; François Bissey <francois.bissey@canterbury.ac.nz>
+  +m4rie-20140914.ebuild:
+  bump m4rie and this one has a new .pc file for real.
+
   14 Aug 2014; François Bissey <francois.bissey@canterbury.ac.nz>
   m4rie-20120613.ebuild, m4rie-20130416.ebuild:
   migrated to sageupstream repo
