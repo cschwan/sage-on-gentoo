@@ -1,0 +1,154 @@
+--- DoConfig.orig	2014-09-15 14:28:34.196493897 +1200
++++ DoConfig	2014-09-15 14:33:21.117077030 +1200
+@@ -7,6 +7,7 @@
+ 
+ 'WIZARD'  => 'on',
+ 'SHARED'  => 'off',
++'STATIC'  => 'on',
+ 
+ );
+ 
+@@ -123,6 +124,7 @@
+ 
+    $MakeVal{'LSTAT'} = '';
+    $MakeVal{'LSHAR'} = '# ';
++   $MakeVal{'SHFLAGS'} = '# ';
+ 
+ } else {
+ 
+@@ -136,7 +138,11 @@
+ 
+    $MakeVal{'LSTAT'} = '# ';
+    $MakeVal{'LSHAR'} = '';
+-
++   if ($MakeFlag{'STATIC'} eq 'on') {
++      $MakeVal{'SHFLAGS'} = '# ';
++   } else {
++      $MakeVal{'SHFLAGS'} = '';
++   }
+ }
+ 
+ # special GMP variables
+--- WizardAux.orig	2014-09-15 15:28:52.943620834 +1200
++++ WizardAux	2014-09-15 15:31:27.443932718 +1200
+@@ -47,9 +47,9 @@
+    my $val;
+    my $res;
+ 
+-   system("make wntl.a");
++   system("make \$MAKEOPTS wntl.a");
+    RemoveProg($name);
+-   system("make $name");
++   system("make \$MAKEOPTS $name");
+ 
+    print "\n*** running $name...";
+ 
+@@ -73,7 +73,7 @@
+ 
+ 
+ 
+-system("make InitSettings");
++system("make \$MAKEOPTS InitSettings");
+ 
+ @lines = `./InitSettings`;
+ 
+@@ -254,7 +254,7 @@
+ 
+ print "\n\n*** the wizard is done!!\n\n"; 
+ 
+-system("make DispSettings");
++system("make \$MAKEOPTS DispSettings");
+ system("./DispSettings");
+ 
+ 
+--- mfile.orig	2014-08-27 05:51:42.000000000 +1200
++++ mfile	2014-09-15 21:16:45.326235345 +1200
+@@ -322,11 +322,11 @@
+ # again.
+ 
+ all:
+-	make setup1
+-	make setup2
+-	make setup3
+-	make setup4
+-	make ntl.a
++	$(MAKE) setup1
++	$(MAKE) setup2
++	$(MAKE) setup3
++	$(MAKE) setup4
++	$(MAKE) ntl.a
+ 	touch all
+ 
+ 
+@@ -361,29 +361,31 @@
+ ntl.a:	$(OBJ) 
+ @{LSTAT}	$(AR) $(ARFLAGS) ntl.a $(OBJ) #LSTAT
+ @{LSTAT}	- $(RANLIB) ntl.a #LSTAT
+-@{LSHAR}	$(LIBTOOL) --mode=link $(LINK) -o libntl.la $(OBJ:.o=.lo) $(GMP_OPT_LIBDIR) $(GMP_OPT_LIB) $(GF2X_OPT_LIBDIR) $(GF2X_OPT_LIB) $(LDLIBS) -rpath $(LIBDIR) -version-info `cat VERSION_INFO` #LSHAR
++@{LSHAR}	$(LIBTOOL) --mode=link $(LINK) $(LTOPT) -o libntl.la $(OBJ:.o=.lo) $(GMP_OPT_LIBDIR) $(GMP_OPT_LIB) $(GF2X_OPT_LIBDIR) $(GF2X_OPT_LIB) $(LDLIBS) -rpath $(LIBDIR) -version-info `cat VERSION_INFO` #LSHAR
+ 
++LTOPT=
++@{SHFLAGS}LTOPT=-shared
+ @{LSTAT}LCOMP= #LSTAT
+ @{LSHAR}LCOMP=$(LIBTOOL) --mode=compile #LSHAR
+ 
+ lip.o:	lip.c g_lip_impl.h c_lip_impl.h 
+-	$(LCOMP) $(COMPILE) $(GMP_OPT_INCDIR) lip.c
++	$(LCOMP) $(COMPILE) $(GMP_OPT_INCDIR) $(LTOPT) lip.c
+ 
+ ctools.o:	ctools.c
+-	$(LCOMP) $(COMPILE) ctools.c
++	$(LCOMP) $(COMPILE) $(LTOPT) ctools.c
+ 
+ 
+ GetTime.o: GetTime.c 
+-	$(LCOMP) $(COMPILE) GetTime.c
++	$(LCOMP) $(COMPILE) $(LTOPT) GetTime.c
+ 
+ 
+ 
+ .c.o: 
+-	$(LCOMP) $(COMPILE) $(GF2X_OPT_INCDIR) $<
++	$(LCOMP) $(COMPILE) $(GF2X_OPT_INCDIR) $(LTOPT) $<
+ 
+ .c: 
+ @{LSTAT}	$(LINK) -o $@ $< ntl.a $(GMP_OPT_LIBDIR) $(GMP_OPT_LIB) $(GF2X_OPT_LIBDIR) $(GF2X_OPT_LIB) $(LDLIBS) #LSTAT
+-@{LSHAR}	$(LIBTOOL) --mode=link $(LINK) -o $@ $< libntl.la #LSHAR
++@{LSHAR}	$(LIBTOOL) --mode=link $(LINK) $(LTOPT) -o $@ $< libntl.la #LSHAR
+ 
+ #################################################################
+ #
+@@ -394,7 +396,7 @@
+ 
+ check:
+ 	sh RemoveProg $(PROGS)
+-	make QuickTest
++	$(MAKE) QuickTest
+ 	./QuickTest
+ 	sh RemoveProg QuickTest
+ 	sh TestScript
+@@ -421,6 +423,12 @@
+ 	mkdir -m 755 $(INCLUDEDIR)/NTL
+ 	cp -p ../include/NTL/*.h $(INCLUDEDIR)/NTL
+ 	- chmod -R a+r $(INCLUDEDIR)/NTL
++	mkdir -p -m 755 $(LIBDIR)
++@{LSTAT}	cp -p ntl.a $(LIBDIR)/libntl.a #LSTAT
++@{LSTAT}	- chmod a+r $(LIBDIR)/libntl.a #LSTAT
++@{LSHAR}	$(LIBTOOL) --mode=install cp -p libntl.la $(LIBDIR) #LSHAR
++
++install-doc:
+ 	mkdir -p -m 755 $(DOCDIR)
+ 	rm -rf $(DOCDIR)/NTL
+ 	mkdir -m 755 $(DOCDIR)/NTL
+@@ -428,11 +436,6 @@
+ 	cp -p ../doc/*.html $(DOCDIR)/NTL
+ 	cp -p ../doc/*.gif $(DOCDIR)/NTL
+ 	- chmod -R a+r $(DOCDIR)/NTL
+-	mkdir -p -m 755 $(LIBDIR)
+-@{LSTAT}	cp -p ntl.a $(LIBDIR)/libntl.a #LSTAT
+-@{LSTAT}	- chmod a+r $(LIBDIR)/libntl.a #LSTAT
+-@{LSHAR}	$(LIBTOOL) --mode=install cp -p libntl.la $(LIBDIR) #LSHAR
+-
+ 
+ uninstall:
+ @{LSTAT}	rm -f $(LIBDIR)/libntl.a #LSTAT
