@@ -23,6 +23,8 @@ RDEPEND=">=sci-mathematics/pari-2.5.0
 	boost? ( dev-libs/boost[threads] )"
 DEPEND="${RDEPEND}"
 
+PATCHES=( "${FILESDIR}"/${PN}-ntl_detection.patch )
+
 AUTOTOOLS_AUTORECONF=yes
 
 src_configure() {

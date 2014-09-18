@@ -2,6 +2,10 @@
 # Copyright 1999-2014 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  18 Sep 2014; François Bissey <francois.bissey@canterbury.ac.nz>
+  +files/eclib-ntl_detection.patch, eclib-20140805.ebuild:
+  Adding pattch for detecting ntl 6.2+ properly fixing issue #322
+
 *eclib-20140805 (26 Aug 2014)
 
   26 Aug 2014; François Bissey <francois.bissey@canterbury.ac.nz>
