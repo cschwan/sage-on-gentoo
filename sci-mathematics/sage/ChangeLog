@@ -2,6 +2,10 @@
 # Copyright 1999-2014 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  18 Sep 2014; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-6.3.ebuild, sage-9999.ebuild:
+  Really restricting matplotlib to under 1.4 not including 1.4.0 itself.
+
   15 Sep 2014; François Bissey <francois.bissey@canterbury.ac.nz>
   sage-6.3.ebuild, sage-9999.ebuild:
   we don't want matplotlib 1.4.x just yet

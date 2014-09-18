@@ -86,7 +86,7 @@ RDEPEND="${CDEPEND}
 	~dev-python/ipython-2.2.0[${PYTHON_USEDEP}]
 	>=dev-python/jinja-2.5.5[${PYTHON_USEDEP}]
 	>=dev-python/matplotlib-1.3.1[${PYTHON_USEDEP}]
-	<=dev-python/matplotlib-1.4.0[${PYTHON_USEDEP}]
+	<dev-python/matplotlib-1.4.0[${PYTHON_USEDEP}]
 	>=dev-python/mpmath-0.18[${PYTHON_USEDEP}]
 	>=dev-python/networkx-1.8[${PYTHON_USEDEP}]
 	~dev-python/sage-pexpect-2.0[${PYTHON_USEDEP}]
