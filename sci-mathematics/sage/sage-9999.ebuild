@@ -52,8 +52,8 @@ CDEPEND="dev-libs/gmp
 	~sci-libs/libcliquer-1.21_p1
 	~sci-libs/libgap-4.7.4
 	~sci-libs/linbox-1.3.2[sage]
-	~sci-libs/m4ri-20130416
-	~sci-libs/m4rie-20130416
+	~sci-libs/m4ri-20140914
+	~sci-libs/m4rie-20140914
 	>=sci-libs/mpfi-1.5.1
 	~sci-libs/pynac-0.3.2[${PYTHON_USEDEP}]
 	>=sci-libs/symmetrica-2.0-r3
@@ -105,7 +105,7 @@ RDEPEND="${CDEPEND}
 	>=sci-mathematics/cu2-20060223
 	>=sci-mathematics/cubex-20060128
 	>=sci-mathematics/dikcube-20070912
-	>=sci-mathematics/maxima-5.33.0-r1[ecls]
+	>=sci-mathematics/maxima-5.34.1-r1[ecls]
 	>=sci-mathematics/mcube-20051209
 	>=sci-mathematics/optimal-20040603
 	>=sci-mathematics/palp-2.1
@@ -137,7 +137,7 @@ pkg_setup() {
 
 python_prepare() {
 	# ATLAS independence
-	epatch "${FILESDIR}"/${PN}-6.3-blas.patch
+	epatch "${FILESDIR}"/${PN}-6.4-blas.patch
 
 	# Remove sage's package management system
 	epatch "${WORKDIR}"/patches/${PN}-6.3-package.patch
@@ -194,9 +194,6 @@ python_prepare() {
 
 	# Do not clean up the previous install with setup.py
 	epatch "${FILESDIR}"/${PN}-6.3-noclean.patch
-
-	# fix the re-introduction of SAGE_ROOT by trac 15915
-	epatch "${FILESDIR}"/${PN}-6.4-dgs_gauss.patch
 
 	############################################################################
 	# Fixes to Sage itself
