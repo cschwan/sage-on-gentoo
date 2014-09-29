@@ -2,6 +2,15 @@
 # Copyright 1999-2014 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/sci-mathematics/pari/ChangeLog,v 1.87 2012/03/06 17:06:06 bicatali Exp $
 
+*pari-2.7.1-r1 (29 Sep 2014)
+
+  29 Sep 2014; François Bissey <francois.bissey@canterbury.ac.nz>
+  +files/pari-2.7.0-doc-make.patch, +files/pari-2.7.0-no-automagic.patch,
+  +files/pari-2.7.0-slow-discriminant.patch, +files/pari-2.7.1-nffactor.patch,
+  +pari-2.7.1-r1.ebuild:
+  Not sure we'll ever get rid of pari in the overlay. We may even have to
+  maintain a mini fork for sage. Anyway include trac #16894.
+
   11 May 2014; François Bissey <francois.bissey@canterbury.ac.nz>
   -files/pari-2.7.0-doc-make.patch, -files/pari-2.7.0-no-automagic.patch,
   -files/pari-2.7.0-slow-discriminant.patch, -pari-2.7.0.ebuild:
