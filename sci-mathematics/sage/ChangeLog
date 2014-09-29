@@ -2,6 +2,10 @@
 # Copyright 1999-2014 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  29 Sep 2014; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-9999.ebuild:
+  relax pari dependency a little bit
+
   28 Sep 2014; François Bissey <francois.bissey@canterbury.ac.nz>
   +files/sage-6.4-blas.patch, -files/sage-6.4-dgs_gauss.patch, sage-9999.ebuild:
   Bump dependencies for 6.4.beta4 as well as blas patch. eclib not updated yet,
