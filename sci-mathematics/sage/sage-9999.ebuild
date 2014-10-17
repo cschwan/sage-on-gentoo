@@ -213,10 +213,6 @@ python_prepare() {
 		sage/interfaces/maxima.py \
 		sage/interfaces/maxima_abstract.py
 
-	# speaking of ecl - patching so we can allow ecl with unicode.
-	epatch "${FILESDIR}"/trac_14636_1.patch
-	epatch "${FILESDIR}"/trac_14636_2b.patch
-
 	# TODO: should be a patch
 	# Uses singular internal copy of the factory header
 	sed -i "s:factory/factory.h:singular/factory.h:" \
@@ -245,11 +241,6 @@ python_prepare() {
 
 	# Fix for sphinx 1.2+
 	epatch "${FILESDIR}"/${PN}-doc-6.2-seealso.patch
-
-	# Make the Octave interface work with a root install
-	# some other interface are likely to be affected
-	sed -i "s:script_subdirectory='user':script_subdirectory=None:" \
-		sage/interfaces/octave.py
 
 	############################################################################
 	# Fixes to doctests
