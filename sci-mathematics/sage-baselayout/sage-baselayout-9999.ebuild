@@ -22,7 +22,7 @@ fi
 DESCRIPTION="Sage baselayout files"
 HOMEPAGE="http://www.sagemath.org"
 SRC_URI="${SRC_URI}
-	mirror://sagemath/patches/${PN}-6.4-patch.tar.bz2
+	mirror://sagemath/patches/${PN}-6.4-patch-v2.tar.bz2
 	mirror://sagemath/patches/sage-icon.tar.bz2"
 
 LICENSE="GPL-2"
@@ -66,25 +66,16 @@ src_prepare() {
 	EOF
 
 	# Eliminate SAGE_ROOT, replacing with SAGE_LOCAL if necessary
-	epatch "${WORKDIR}"/${PN}-6.1-sage_root.patch
-	eprefixify sage-notebook sage-notebook-insecure
+	epatch "${WORKDIR}"/${PN}-6.4-sage_root.patch
 
 	# solve sage-notebook start-up problems (after patching them)
 	mv sage-notebook sage-notebook-real
-	mv sage-notebook-insecure sage-notebook-insecure-real
 
 	cat > sage-notebook <<-EOF
 		#!/bin/bash
 
 		source ${EPREFIX}/etc/sage-env
 		${EPREFIX}/usr/bin/sage-notebook-real "\$@"
-	EOF
-
-	cat > sage-notebook-insecure <<-EOF
-		#!/bin/bash
-
-		source ${EPREFIX}/etc/sage-env
-		${EPREFIX}/usr/bin/sage-notebook-insecure-real "\$@"
 	EOF
 
 	# TODO: if USE=debug/testsuite, remove corresponding options
@@ -135,10 +126,9 @@ src_install() {
 	# COMMAND helper scripts
 	python_foreach_impl python_doscript \
 		sage-cython \
-		sage-notebook-insecure-real \
 		sage-notebook-real \
 		sage-run-cython
-	dobin sage-notebook sage-notebook-insecure sage-python
+	dobin sage-notebook sage-python
 
 	# additonal helper scripts
 	python_foreach_impl python_doscript sage-preparse sage-startuptime.py
