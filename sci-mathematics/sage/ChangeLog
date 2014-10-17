@@ -3,6 +3,10 @@
 # $Header: $
 
   17 Oct 2014; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-9999.ebuild:
+  add new dependencies to sage
+
+  17 Oct 2014; François Bissey <francois.bissey@canterbury.ac.nz>
   files/sage-6.4-blas.patch, sage-9999.ebuild:
   6.4.beta6: sage
 

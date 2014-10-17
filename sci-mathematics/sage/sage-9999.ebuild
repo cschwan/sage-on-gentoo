@@ -44,7 +44,7 @@ CDEPEND="dev-libs/gmp
 	>=dev-python/cython-0.21[${PYTHON_USEDEP}]
 	>=sci-mathematics/eclib-20140805[flint]
 	>=sci-mathematics/gmp-ecm-6.4.4[-openmp]
-	>=sci-mathematics/flint-2.4.2[ntl]
+	>=sci-mathematics/flint-2.4.4[ntl]
 	~sci-libs/fplll-4.0.4
 	~sci-libs/givaro-3.7.1
 	>=sci-libs/gsl-1.15
@@ -83,7 +83,7 @@ RDEPEND="${CDEPEND}
 	>=dev-lang/R-3.1.0
 	>=dev-python/cvxopt-1.1.7[glpk,${PYTHON_USEDEP}]
 	>=dev-python/gdmodule-0.56-r2[png,${PYTHON_USEDEP}]
-	~dev-python/ipython-2.2.0[${PYTHON_USEDEP}]
+	~dev-python/ipython-2.2.0[notebook,${PYTHON_USEDEP}]
 	>=dev-python/jinja-2.5.5[${PYTHON_USEDEP}]
 	>=dev-python/matplotlib-1.3.1[${PYTHON_USEDEP}]
 	<dev-python/matplotlib-1.4.0[${PYTHON_USEDEP}]
@@ -115,6 +115,7 @@ RDEPEND="${CDEPEND}
 	~sci-mathematics/sage-data-polytopes_db-20120220
 	~sci-mathematics/singular-3.1.6
 	>=sci-mathematics/sympow-1.018.1
+	www-servers/tornado
 	!prefix? ( >=sys-libs/glibc-2.13-r4 )
 	latex? (
 		~dev-tex/sage-latex-2.3.4
