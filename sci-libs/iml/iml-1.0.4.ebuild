@@ -41,7 +41,7 @@ src_configure() {
 		--with-default="${EPREFIX}"/usr
 		--with-cblas-include=$(pc_incdir cblas)
 		--with-cblas-lib=$(pc_libdir cblas)
-		--with-cblas=$($(tc-getPKG_CONFIG) --libs cblas)
+		--with-cblas="$($(tc-getPKG_CONFIG) --libs cblas)"
 	)
 	autotools-utils_src_configure
 }
