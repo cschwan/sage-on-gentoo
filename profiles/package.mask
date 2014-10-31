@@ -9,5 +9,6 @@ sci-mathematics/ecm
 >=sci-mathematics/maxima-5.34.1
 >=dev-python/cython-0.21
 >=dev-python/flask-autoindex-0.5
+>=dev-python/flask-silk-0.2
 #nasty with flint and singular, delayed probably to sage 6.5
 >=dev-libs/ntl-6.2
