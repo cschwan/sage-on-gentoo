@@ -2,6 +2,15 @@
 # Copyright 1999-2014 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  31 Oct 2014; François Bissey <francois.bissey@canterbury.ac.nz>
+  -files/sage-baselayout-4.7.2-fix-SAGE_LOCAL.patch,
+  -files/sage-baselayout-5.6-gentooify-startup-script.patch.bz2,
+  -files/sage-baselayout-5.7-fix-SAGE_LOCAL-r1.patch,
+  -files/sage-baselayout-5.7-fix-SAGE_LOCAL.patch, -sage-baselayout-5.6.ebuild,
+  -sage-baselayout-5.7-r2.ebuild, -sage-baselayout-5.8-r1.ebuild,
+  -sage-baselayout-5.8.ebuild:
+  clean up old sage (5.6, 5.7 and 5.8)
+
   17 Oct 2014; François Bissey <francois.bissey@canterbury.ac.nz>
   sage-baselayout-9999.ebuild:
   6.4.beta6: baselayout
