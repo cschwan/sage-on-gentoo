@@ -2,6 +2,12 @@
 # Copyright 1999-2014 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  31 Oct 2014; François Bissey <francois.bissey@canterbury.ac.nz>
+  -files/polybori-0.8.2-boost-mt.patch, -files/polybori-0.8.2-boost1.52.patch,
+  -files/polybori-0.8.2-doc.patch, -files/polybori-0.8.2-otool.patch,
+  -files/polybori-0.8.2-python.patch, -polybori-0.8.2-r5.ebuild:
+  removed old unused polybori
+
 *polybori-0.8.2-r5 (02 Jul 2014)
 
   02 Jul 2014; François Bissey <francois.bissey@canterbury.ac.nz>
