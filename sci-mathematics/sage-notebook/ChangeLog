@@ -2,6 +2,10 @@
 # Copyright 1999-2014 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  31 Oct 2014; François Bissey <francois.bissey@canterbury.ac.nz>
+  -sage-notebook-0.10.2-r5.ebuild:
+  remove old sagenb 0.10.2. last used in a removed sage.
+
 *sage-notebook-0.10.8.2-r2 (06 Jun 2014)
 
   06 Jun 2014; Stefan Huber <shuber@sthu.org> +sage-notebook-0.10.8.2-r2.ebuild:
