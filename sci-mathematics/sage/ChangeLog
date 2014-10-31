@@ -2,6 +2,19 @@
 # Copyright 1999-2014 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  31 Oct 2014; François Bissey <francois.bissey@canterbury.ac.nz>
+  -files/maxima-5.29.1-doctests.patch, -files/sage-5.0-degree-sequence.patch,
+  -files/sage-5.4-package.patch, -files/sage-5.4-plural.patch,
+  -files/sage-5.4-variables.patch.bz2, -files/sage-5.6-variables.patch,
+  -files/sage-5.7-libgap.patch, -files/sage-5.8-fix-cmdline-doctest.patch,
+  -files/sage-5.8-fix-numpy-doctests.patch, -files/trac12205.patch,
+  -files/trac13262_update_doctests.patch, -files/trac_13324.2.patch,
+  -files/trac_13324.patch, -files/trac_13740_final_fixes.patch,
+  -sage-5.6-r4.ebuild, -sage-5.7-r5.ebuild, -sage-5.8-r4.ebuild, metadata.xml,
+  sage-9999.ebuild:
+  update sage-9999 for 6.4.rc0. Drop sage 5.6, 5.7 and 5.8 because cython-0.18
+  is gone from the tree and it makes repoman unhappy. More clean up to follow.
+
   17 Oct 2014; François Bissey <francois.bissey@canterbury.ac.nz>
   sage-9999.ebuild:
   add new dependencies to sage

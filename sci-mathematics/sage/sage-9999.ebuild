@@ -26,7 +26,7 @@ fi
 DESCRIPTION="Math software for algebra, geometry, number theory, cryptography and numerical computation"
 HOMEPAGE="http://www.sagemath.org"
 SRC_URI="${SRC_URI}
-	mirror://sagemath/patches/${PN}-6.3-neutering.tar.bz2"
+	mirror://sagemath/patches/${PN}-6.4-neutering.tar.bz2"
 
 LICENSE="GPL-2"
 SLOT="0"
@@ -41,14 +41,14 @@ CDEPEND="dev-libs/gmp
 	>=sci-libs/sage-ppl-1.0
 	>=dev-lisp/ecls-12.12.1-r5
 	>=dev-python/numpy-1.8.1[${PYTHON_USEDEP}]
-	>=dev-python/cython-0.21[${PYTHON_USEDEP}]
+	>=dev-python/cython-0.21.1[${PYTHON_USEDEP}]
 	>=sci-mathematics/eclib-20140805[flint]
 	>=sci-mathematics/gmp-ecm-6.4.4[-openmp]
 	>=sci-mathematics/flint-2.4.4[ntl]
 	~sci-libs/fplll-4.0.4
 	~sci-libs/givaro-3.7.1
 	>=sci-libs/gsl-1.15
-	>=sci-libs/iml-1.0.1
+	>=sci-libs/iml-1.0.4
 	~sci-libs/libcliquer-1.21_p1
 	~sci-libs/libgap-4.7.4
 	~sci-libs/linbox-1.3.2[sage]
@@ -73,6 +73,7 @@ CDEPEND="dev-libs/gmp
 	sys-libs/zlib
 	dev-python/python-pkgconfig
 	virtual/cblas
+	!sci-mathematics/genus2reduction
 	!sci-mathematics/sage-extcode
 	!sci-mathematics/sage-matroids"
 
@@ -85,14 +86,13 @@ RDEPEND="${CDEPEND}
 	>=dev-python/gdmodule-0.56-r2[png,${PYTHON_USEDEP}]
 	~dev-python/ipython-2.2.0[notebook,${PYTHON_USEDEP}]
 	>=dev-python/jinja-2.5.5[${PYTHON_USEDEP}]
-	>=dev-python/matplotlib-1.3.1[${PYTHON_USEDEP}]
 	<dev-python/matplotlib-1.4.0[${PYTHON_USEDEP}]
 	>=dev-python/mpmath-0.18[${PYTHON_USEDEP}]
 	>=dev-python/networkx-1.8[${PYTHON_USEDEP}]
 	~dev-python/sage-pexpect-2.0[${PYTHON_USEDEP}]
 	>=dev-python/pycrypto-2.1.0[${PYTHON_USEDEP}]
 	>=dev-python/rpy-2.3.8[${PYTHON_USEDEP}]
-	>=dev-python/sphinx-1.1.2[${PYTHON_USEDEP}]
+	>=dev-python/sphinx-1.2.2[${PYTHON_USEDEP}]
 	>=dev-python/sqlalchemy-0.5.8[${PYTHON_USEDEP}]
 	>=dev-python/sympy-0.7.4[${PYTHON_USEDEP}]
 	>=media-gfx/tachyon-0.98.9[png]
@@ -100,7 +100,6 @@ RDEPEND="${CDEPEND}
 	>=sci-libs/scipy-0.14.0[${PYTHON_USEDEP}]
 	>=sci-mathematics/flintqs-20070817
 	~sci-mathematics/gap-4.7.4
-	>=sci-mathematics/genus2reduction-20140211
 	~sci-mathematics/gfan-0.5
 	>=sci-mathematics/cu2-20060223
 	>=sci-mathematics/cubex-20060128
@@ -124,7 +123,7 @@ RDEPEND="${CDEPEND}
 	lrs? ( sci-libs/lrslib )
 	nauty? ( sci-mathematics/nauty )"
 
-PDEPEND="~sci-mathematics/sage-notebook-0.10.8.2[${PYTHON_USEDEP}]
+PDEPEND="~sci-mathematics/sage-notebook-0.11.0[${PYTHON_USEDEP}]
 	~sci-mathematics/sage-data-conway_polynomials-0.4
 	~sci-mathematics/sage-doc-${PV}
 	testsuite? ( ~sci-mathematics/sage-doc-${PV}[html] )"
@@ -149,7 +148,7 @@ python_prepare() {
 	rm -rf sage/dev
 
 	# Remove sage cmdline tests related to these
-	epatch "${WORKDIR}"/patches/${PN}-6.0-cmdline.patch
+	epatch "${WORKDIR}"/patches/${PN}-6.4-cmdline.patch
 
 	if use lrs; then
 		sed -i "s:if True:if False:" sage/geometry/polyhedron/base.py
@@ -239,9 +238,6 @@ python_prepare() {
 	# Getting the singular documentation from the right place
 	sed -i "s:os.environ\[\"SAGE_LOCAL\"\]+\"/share/singular/\":sage.env.SAGE_DOC + \"/\":" \
 		sage/interfaces/singular.py
-
-	# Fix for sphinx 1.2+
-	epatch "${FILESDIR}"/${PN}-doc-6.2-seealso.patch
 
 	############################################################################
 	# Fixes to doctests
