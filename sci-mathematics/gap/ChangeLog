@@ -2,6 +2,13 @@
 # Copyright 1999-2014 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  31 Oct 2014; François Bissey <francois.bissey@canterbury.ac.nz>
+  -files/64gap-gentoo.el,
+  -files/gap-4.4.12-sage-and-steve-lintons-itanium.patch,
+  -files/gap-4.4.12-sage-strict_aliasing.patch, -gap-4.4.12-r2.ebuild:
+  removing gap 4.4.12. It is still available and in a good shape in the science
+  overlay.
+
 *gap-4.7.5 (19 Jun 2014)
 
   19 Jun 2014; François Bissey <francois.bissey@canterbury.ac.nz>
