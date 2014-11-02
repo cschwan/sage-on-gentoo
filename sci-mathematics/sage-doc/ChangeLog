@@ -2,6 +2,10 @@
 # Copyright 1999-2014 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  02 Nov 2014; François Bissey <francois.bissey@canterbury.ac.nz>
+  -sage-doc-9999.ebuild, sage-doc-9999-r1.ebuild:
+  revising sage-doc-9999-r1 for sage 6.4.rc
+
   31 Oct 2014; François Bissey <francois.bissey@canterbury.ac.nz>
   -sage-doc-5.6.ebuild, -sage-doc-5.7-r1.ebuild, -sage-doc-5.7.ebuild,
   -sage-doc-5.8-r2.ebuild:
