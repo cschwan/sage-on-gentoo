@@ -22,7 +22,7 @@ fi
 DESCRIPTION="Sage baselayout files"
 HOMEPAGE="http://www.sagemath.org"
 SRC_URI="${SRC_URI}
-	mirror://sagemath/patches/${PN}-6.4-patch-v2.tar.bz2
+	mirror://sagemath/patches/${PN}-6.4-patch-v3.tar.bz2
 	mirror://sagemath/patches/sage-icon.tar.bz2"
 
 LICENSE="GPL-2"
