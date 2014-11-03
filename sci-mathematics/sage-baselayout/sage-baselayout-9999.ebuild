@@ -68,16 +68,6 @@ src_prepare() {
 	# Eliminate SAGE_ROOT, replacing with SAGE_LOCAL if necessary
 	epatch "${WORKDIR}"/${PN}-6.4-sage_root.patch
 
-	# solve sage-notebook start-up problems (after patching them)
-	mv sage-notebook sage-notebook-real
-
-	cat > sage-notebook <<-EOF
-		#!/bin/bash
-
-		source ${EPREFIX}/etc/sage-env
-		${EPREFIX}/usr/bin/sage-notebook-real "\$@"
-	EOF
-
 	# TODO: if USE=debug/testsuite, remove corresponding options
 
 	# replace MAKE by MAKEOPTS in sage-num-threads.py
@@ -90,7 +80,7 @@ src_prepare() {
 
 	# create expected folders under extcode
 	mkdir -p "${EXTSRC}"/sage
-	mkdir -p "${EXTSRC}"/genus2reduction
+	#mkdir -p "${EXTSRC}"/genus2reduction
 }
 
 src_install() {
@@ -126,9 +116,9 @@ src_install() {
 	# COMMAND helper scripts
 	python_foreach_impl python_doscript \
 		sage-cython \
-		sage-notebook-real \
+		sage-notebook \
 		sage-run-cython
-	dobin sage-notebook sage-python
+	dobin sage-python
 
 	# additonal helper scripts
 	python_foreach_impl python_doscript sage-preparse sage-startuptime.py
