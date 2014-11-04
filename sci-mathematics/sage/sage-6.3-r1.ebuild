@@ -38,7 +38,7 @@ CDEPEND="dev-libs/gmp
 	>=dev-libs/mpfr-3.1.0
 	>=dev-libs/mpc-1.0
 	>=dev-libs/ntl-6.0.0
-	>=sci-libs/sage-ppl-1.0
+	>=dev-libs/ppl-1.1
 	>=dev-lisp/ecls-12.12.1-r5
 	>=dev-python/numpy-1.8.1[${PYTHON_USEDEP}]
 	>=dev-python/cython-0.20.1[${PYTHON_USEDEP}]
@@ -185,10 +185,6 @@ python_prepare() {
 	# fix numpy path (final quote removed to catch numpy_include_dirs and numpy_depends)
 	sed -i "s:SAGE_LOCAL + '/lib/python/site-packages/numpy/core/include:'$(python_get_sitedir)/numpy/core/include:g" \
 		module_list.py
-
-	# use sage-ppl
-	epatch "${FILESDIR}"/${PN}-6.3-ppl1.patch
-	sed -i "s:lib/ppl1:$(get_libdir)/ppl1:" module_list.py
 
 	# fix lcalc path
 	sed -i "s:SAGE_INC + \"/libLfunction:SAGE_INC + \"/Lfunction:g" module_list.py

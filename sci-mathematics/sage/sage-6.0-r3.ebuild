@@ -12,12 +12,18 @@ DISTUTILS_NO_PARALLEL_BUILD="1"
 
 inherit distutils-r1 eutils flag-o-matic multilib multiprocessing prefix toolchain-funcs versionator
 
-MY_P="sage-$(replace_version_separator 2 '.')"
+if [[ ${PV} = *9999* ]]; then
+	EGIT_REPO_URI="git://github.com/sagemath/sage.git"
+	EGIT_SOURCEDIR="${WORKDIR}/${P}"
+	inherit git-2
+else
+	SRC_URI="mirror://sagemath/${PV}.tar.gz -> ${P}.tar.gz"
+fi
 
 DESCRIPTION="Math software for algebra, geometry, number theory, cryptography and numerical computation"
 HOMEPAGE="http://www.sagemath.org"
-SRC_URI="mirror://sagemath/${MY_P}.spkg -> ${P}.tar.bz2
-	mirror://sagemath/patches/${PN}-5.10-neutering-r3.tar.bz2"
+SRC_URI="${SRC_URI}
+	mirror://sagemath/patches/${PN}-6.0-neutering.tar.bz2"
 
 LICENSE="GPL-2"
 SLOT="0"
@@ -30,31 +36,30 @@ CDEPEND="dev-libs/gmp
 	>=dev-libs/mpfr-3.1.0
 	>=dev-libs/mpc-1.0
 	<dev-libs/ntl-6.0.0
-	>=dev-libs/ppl-0.11.2
+	>=dev-libs/ppl-1.1
 	>=dev-lisp/ecls-12.12.1-r5
 	>=dev-python/numpy-1.7.0[${PYTHON_USEDEP}]
-	~dev-python/cython-0.19.1[${PYTHON_USEDEP}]
+	=dev-python/cython-0.19*[${PYTHON_USEDEP}]
 	~sci-mathematics/eclib-20120830
 	>=sci-mathematics/gmp-ecm-6.4.4[-openmp]
 	>=sci-mathematics/flint-2.3[ntl]
-	~sci-libs/fplll-3.0.12
+	~sci-libs/fplll-4.0.4
 	~sci-libs/givaro-3.7.1
 	>=sci-libs/gsl-1.15
 	>=sci-libs/iml-1.0.1
 	~sci-libs/libcliquer-1.21_p0
-	~sci-libs/libgap-4.5.7_p2
+	~sci-libs/libgap-4.6.4
 	~sci-libs/linbox-1.3.2[sage]
 	~sci-libs/m4ri-20130416
 	~sci-libs/m4rie-20130416
 	>=sci-libs/mpfi-1.5.1
-	~sci-libs/pynac-0.2.6[${PYTHON_USEDEP}]
-	>=sci-libs/symmetrica-2.0
+	~sci-libs/pynac-0.3.0[${PYTHON_USEDEP}]
+	>=sci-libs/symmetrica-2.0-r3
 	>=sci-libs/zn_poly-0.9
 	sci-mathematics/glpk:0=
 	>=sci-mathematics/lcalc-1.23-r4[pari]
 	>=sci-mathematics/lrcalc-1.1.6_beta1
-	>=sci-mathematics/pari-2.5.4[data,gmp]
-	<sci-mathematics/pari-2.7.0
+	=sci-mathematics/pari-2.5.5-r1[data,gmp]
 	>=sci-mathematics/polybori-0.8.3[${PYTHON_USEDEP}]
 	>=sci-mathematics/ratpoints-2.1.3
 	~sci-mathematics/sage-baselayout-${PV}[testsuite=,${PYTHON_USEDEP}]
@@ -64,31 +69,33 @@ CDEPEND="dev-libs/gmp
 	media-libs/libpng:0=
 	>=sys-libs/readline-6.2
 	sys-libs/zlib
-	virtual/cblas"
+	virtual/cblas
+	!sci-mathematics/sage-extcode
+	!sci-mathematics/sage-matroids"
 
 DEPEND="${CDEPEND}
 	!dev-python/gmpy"
 
 RDEPEND="${CDEPEND}
 	>=dev-lang/R-2.14.0
-	>=dev-python/cvxopt-1.1.5[glpk,${PYTHON_USEDEP}]
-	>=dev-python/gdmodule-0.56-r2[png]
-	~dev-python/ipython-0.13.1[${PYTHON_USEDEP}]
+	>=dev-python/cvxopt-1.1.6[glpk,${PYTHON_USEDEP}]
+	>=dev-python/gdmodule-0.56-r2[png,${PYTHON_USEDEP}]
+	~dev-python/ipython-0.13.2[${PYTHON_USEDEP}]
 	>=dev-python/jinja-2.5.5[${PYTHON_USEDEP}]
 	>=dev-python/matplotlib-1.2.1[${PYTHON_USEDEP}]
 	>=dev-python/mpmath-0.17[${PYTHON_USEDEP}]
 	>=dev-python/networkx-1.6[${PYTHON_USEDEP}]
-	~dev-python/pexpect-2.0[${PYTHON_USEDEP}]
+	~dev-python/sage-pexpect-2.0[${PYTHON_USEDEP}]
 	>=dev-python/pycrypto-2.1.0[${PYTHON_USEDEP}]
 	>=dev-python/rpy-2.0.8[${PYTHON_USEDEP}]
 	>=dev-python/sphinx-1.1.2[${PYTHON_USEDEP}]
 	>=dev-python/sqlalchemy-0.5.8[${PYTHON_USEDEP}]
-	>=dev-python/sympy-0.7.1[${PYTHON_USEDEP}]
+	>=dev-python/sympy-0.7.3[${PYTHON_USEDEP}]
 	>=media-gfx/tachyon-0.98.9[png]
 	>=sci-libs/cddlib-094f-r2
 	>=sci-libs/scipy-0.11.0[${PYTHON_USEDEP}]
 	>=sci-mathematics/flintqs-20070817
-	~sci-mathematics/gap-4.5.7
+	~sci-mathematics/gap-4.6.4
 	~sci-mathematics/genus2reduction-0.3
 	~sci-mathematics/gfan-0.5
 	>=sci-mathematics/cu2-20060223
@@ -102,7 +109,6 @@ RDEPEND="${CDEPEND}
 	~sci-mathematics/sage-data-graphs-20120404
 	~sci-mathematics/sage-data-polytopes_db-20120220
 	>=sci-mathematics/sage-doc-${PV}
-	~sci-mathematics/sage-extcode-${PV}
 	~sci-mathematics/singular-3.1.5
 	>=sci-mathematics/sympow-1.018.1
 	!prefix? ( >=sys-libs/glibc-2.13-r4 )
@@ -114,10 +120,10 @@ RDEPEND="${CDEPEND}
 	lrs? ( sci-libs/lrslib )
 	nauty? ( sci-mathematics/nauty )"
 
-PDEPEND="~sci-mathematics/sage-notebook-0.10.4[${PYTHON_USEDEP}]
+PDEPEND="~sci-mathematics/sage-notebook-0.10.7.2[${PYTHON_USEDEP}]
 	~sci-mathematics/sage-data-conway_polynomials-0.4"
 
-S="${WORKDIR}"/${MY_P}
+S="${WORKDIR}/${P}/src"
 
 pkg_setup() {
 	# needed since Ticket #14460
@@ -133,15 +139,17 @@ python_prepare() {
 		-e "s: ::g")\'
 
 	# Remove sage's package management system
-	epatch "${WORKDIR}"/patches/${PN}-5.10-package.patch
+	epatch "${WORKDIR}"/patches/${PN}-6.0-package.patch
 	rm sage/misc/package.py
+	# tarc 15443 has been reverted since beta4, next line to go when that ticket is merged.
+	epatch "${FILESDIR}"/${PN}-6.0-ecm-package.patch
 
-	# Remove sage's mercurial capabilities
-	epatch "${WORKDIR}"/patches/${PN}-5.10-hg.patch
-	rm sage/misc/hg.py
+	# Remove sage's git capabilities
+	epatch "${WORKDIR}"/patches/${PN}-6.0-hg.patch
+	rm -rf sage/dev
 
 	# Remove sage cmdline tests related to these
-	epatch "${WORKDIR}"/patches/${PN}-5.10-cmdline.patch
+	epatch "${WORKDIR}"/patches/${PN}-6.0-cmdline.patch
 
 	if use lrs; then
 		sed -i "s:if True:if False:" sage/geometry/polyhedron/base.py
@@ -154,14 +162,19 @@ python_prepare() {
 			sage/graphs/hypergraph_generators.py
 	fi
 
+	# replace pexpect with sage pinned version
+	epatch "${FILESDIR}"/${PN}-pexpect.patch
+	sed -i "s:import pexpect:import sage_pexpect as pexpect:g" \
+		`grep -rl "import pexpect" *`
+	sed -i "s:from pexpect:from sage_pexpect:g" \
+		`grep -rl "from pexpect" *`
+
 	############################################################################
 	# Fixes to Sage's build system
 	############################################################################
 
 	# Fix startup issue and python-2.6.5 problem
 	append-flags -fno-strict-aliasing
-
-	epatch "${FILESDIR}"/${PN}-4.7.2-site-packages.patch
 
 	# use already installed csage
 	rm -rf c_lib || die "failed to remove c library directory"
@@ -188,15 +201,12 @@ python_prepare() {
 	sed -i "s:-D__STDC_LIMIT_MACROS:-D__STDC_LIMIT_MACROS', '-DNDEBUG:g" \
 		module_list.py
 
-	# flint patch resurected
-	epatch "${FILESDIR}"/trac_14656.patch
-
 	############################################################################
 	# Fixes to Sage itself
 	############################################################################
 
 	# sage on gentoo env.py
-	epatch "${FILESDIR}"/sage-5.10-env.patch
+	epatch "${FILESDIR}"/sage-6.0-env.patch
 	eprefixify sage/env.py
 
 	# support the use of pillow
@@ -212,8 +222,9 @@ python_prepare() {
 		sage/interfaces/maxima.py \
 		sage/interfaces/maxima_abstract.py
 
-	# speaking ecl - patching so we can allow ecl with unicode
-	epatch "${FILESDIR}"/trac12985-unicode.patch
+	# speaking of ecl - patching so we can allow ecl with unicode.
+	epatch "${FILESDIR}"/trac_14636_1.patch
+	epatch "${FILESDIR}"/trac_14636_2b.patch
 
 	# TODO: should be a patch
 	# Uses singular internal copy of the factory header
@@ -224,6 +235,8 @@ python_prepare() {
 
 	# remove the need for the external "testjava.sh" script
 	epatch "${FILESDIR}"/remove-testjavapath-to-python.patch
+	# finding JmolData.jar in the right place
+	sed -i "s:\"jmol\", \"JmolData:\"jmol-applet\", \"JmolData:" sage/interfaces/jmoldata.py
 
 	# Make sage-inline-fortran useless by having better fortran settings
 	sed -i \
@@ -248,8 +261,10 @@ python_prepare() {
 	sed -i "s:SAGE_LOCAL, 'etc', 'gprc.expect':'${EPREFIX}/etc','gprc.expect':" \
 		sage/interfaces/gp.py
 
-	# allow sage-matroids to be used if installed
-	epatch "${FILESDIR}"/${PN}-matroids.patch
+	# Make the Octave interface work with a root install
+	# some other interface are likely to be affected
+	sed -i "s:script_subdirectory='user':script_subdirectory=None:" \
+		sage/interfaces/octave.py
 
 	############################################################################
 	# Fixes to doctests
@@ -260,23 +275,26 @@ python_prepare() {
 	sed -i "s:\.\.\./local/share/pari:.../share/pari:g" sage/interfaces/gp.py
 
 	# fix all.py
-	epatch "${FILESDIR}"/${PN}-5.9-all.py
+	epatch "${FILESDIR}"/${PN}-6.0-all.py.patch
 	sed -i "s:\"lib\",\"python\":\"$(get_libdir)\",\"${EPYTHON}\":" sage/all.py
 
 	# remove strings of libraries that we do not link to
 	epatch "${FILESDIR}"/${PN}-5.8-fix-cython-doctest.patch
 
-	# only do a very basic R version string test
-	epatch "${FILESDIR}"/${PN}-5.8-fix-r-doctest.patch
-
 	# do not test safe python stuff from trac 13579
-	epatch "${FILESDIR}"/${PN}-5.9-safepython.patch
+	epatch "${FILESDIR}"/${PN}-6.0-safepython.patch
 
 	# remove version information of GLPK
 	epatch "${FILESDIR}"/${PN}-5.9-fix-mip-doctest.patch
 
 	# 'sage' is not in SAGE_ROOT, but in PATH
 	epatch "${FILESDIR}"/${PN}-5.9-fix-ostools-doctest.patch
+
+	# change the location of the doc building tools in sage/doctest/control.py
+	epatch "${FILESDIR}"/${PN}-6.0-doc_common.patch
+
+	# fix location of the html doc
+	epatch "${FILESDIR}"/${PN}-6.0-sagedoc.patch
 }
 
 python_configure() {
@@ -305,11 +323,12 @@ python_install_all() {
 		-o -name "*.rst" \) -type f -delete \
 		|| die "failed to remove non-testable sources"
 
-	insinto /usr/share/sage/devel/sage-main
+	insinto /usr/share/sage/src
 	doins -r sage
 	if use debug; then
-		cd build
+		pushd build
 		doins -r cython_debug
+		popd
 	fi
 }
 

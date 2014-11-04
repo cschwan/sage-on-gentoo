@@ -2,6 +2,26 @@
 # Copyright 1999-2014 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*sage-5.10-r3 (04 Nov 2014)
+*sage-5.11-r4 (04 Nov 2014)
+*sage-5.9-r3 (04 Nov 2014)
+*sage-6.0-r3 (04 Nov 2014)
+*sage-6.1.1-r3 (04 Nov 2014)
+*sage-6.2-r1 (04 Nov 2014)
+*sage-6.3-r1 (04 Nov 2014)
+
+  04 Nov 2014; François Bissey <francois.bissey@canterbury.ac.nz>
+  +sage-5.10-r3.ebuild, +sage-5.11-r4.ebuild, +sage-5.12-r1.ebuild:,
+  +sage-5.9-r3.ebuild, +sage-6.0-r3.ebuild, +sage-6.1.1-r3.ebuild,
+  +sage-6.2-r1.ebuild, +sage-6.3-r1.ebuild, -files/sage-5.11-ppl1.patch,
+  -files/sage-6.0-ppl1.patch, -files/sage-6.2-r1-ppl1.patch,
+  -files/sage-6.3-ppl1.patch, -files/sage-6.4-ppl1.patch, -sage-5.10-r2.ebuild,
+  -sage-5.11-r3.ebuild, -sage-5.12.ebuild, -sage-5.9-r2.ebuild,
+  -sage-6.0-r2.ebuild, -sage-6.1.1-r2.ebuild, -sage-6.2.ebuild,
+  -sage-6.3.ebuild, sage-9999.ebuild:
+  move back to dev-libs/ppl now that 1.1 is in the main tree. Note that the
+  current glpk dependency in the main tree is wrong.
+
   31 Oct 2014; François Bissey <francois.bissey@canterbury.ac.nz>
   -files/maxima-5.29.1-doctests.patch, -files/sage-5.0-degree-sequence.patch,
   -files/sage-5.4-package.patch, -files/sage-5.4-plural.patch,

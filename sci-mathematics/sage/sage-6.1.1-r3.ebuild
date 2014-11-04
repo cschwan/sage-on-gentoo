@@ -14,20 +14,22 @@ inherit distutils-r1 eutils flag-o-matic multilib multiprocessing prefix toolcha
 
 if [[ ${PV} = *9999* ]]; then
 	EGIT_REPO_URI="git://github.com/sagemath/sage.git"
+	EGIT_BRANCH=develop
 	EGIT_SOURCEDIR="${WORKDIR}/${P}"
 	inherit git-2
+	KEYWORDS=""
 else
 	SRC_URI="mirror://sagemath/${PV}.tar.gz -> ${P}.tar.gz"
+	KEYWORDS="~amd64 ~x86 ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~x64-macos"
 fi
 
 DESCRIPTION="Math software for algebra, geometry, number theory, cryptography and numerical computation"
 HOMEPAGE="http://www.sagemath.org"
 SRC_URI="${SRC_URI}
-	mirror://sagemath/patches/${PN}-6.0-neutering.tar.bz2"
+	mirror://sagemath/patches/${PN}-6.1-neutering.tar.bz2"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~x86 ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~x64-macos"
 IUSE="latex testsuite lrs nauty debug"
 
 RESTRICT="mirror test"
@@ -36,7 +38,7 @@ CDEPEND="dev-libs/gmp
 	>=dev-libs/mpfr-3.1.0
 	>=dev-libs/mpc-1.0
 	<dev-libs/ntl-6.0.0
-	>=sci-libs/sage-ppl-1.0
+	>=dev-libs/ppl-1.1
 	>=dev-lisp/ecls-12.12.1-r5
 	>=dev-python/numpy-1.7.0[${PYTHON_USEDEP}]
 	=dev-python/cython-0.19*[${PYTHON_USEDEP}]
@@ -120,7 +122,7 @@ RDEPEND="${CDEPEND}
 	lrs? ( sci-libs/lrslib )
 	nauty? ( sci-mathematics/nauty )"
 
-PDEPEND="~sci-mathematics/sage-notebook-0.10.7.2[${PYTHON_USEDEP}]
+PDEPEND="~sci-mathematics/sage-notebook-0.10.8.2[${PYTHON_USEDEP}]
 	~sci-mathematics/sage-data-conway_polynomials-0.4"
 
 S="${WORKDIR}/${P}/src"
@@ -139,9 +141,9 @@ python_prepare() {
 		-e "s: ::g")\'
 
 	# Remove sage's package management system
-	epatch "${WORKDIR}"/patches/${PN}-6.0-package.patch
+	epatch "${WORKDIR}"/patches/${PN}-6.1-package.patch
 	rm sage/misc/package.py
-	# tarc 15443 has been reverted since beta4, next line to go when that ticket is merged.
+	# trac 15443 has been reverted since beta4, next line to go when that ticket is merged.
 	epatch "${FILESDIR}"/${PN}-6.0-ecm-package.patch
 
 	# Remove sage's git capabilities
@@ -186,12 +188,11 @@ python_prepare() {
 	sed -i "s:SAGE_LOCAL + '/lib/python/site-packages/numpy/core/include:'$(python_get_sitedir)/numpy/core/include:g" \
 		module_list.py
 
-	# use sage-ppl
-	epatch "${FILESDIR}"/${PN}-6.0-ppl1.patch
-	sed -i "s:lib/ppl1:$(get_libdir)/ppl1:" module_list.py
-
 	# fix lcalc path
 	sed -i "s:SAGE_INC + \"/libLfunction:SAGE_INC + \"/Lfunction:g" module_list.py
+
+	# Fix farey_symbol implicit cast
+	epatch "${FILESDIR}"/${PN}-6.1-farey_explicit_cast.patch
 
 	# fix CBLAS/ATLAS
 	sed -i \
@@ -210,11 +211,8 @@ python_prepare() {
 	############################################################################
 
 	# sage on gentoo env.py
-	epatch "${FILESDIR}"/sage-6.0-env.patch
+	epatch "${FILESDIR}"/sage-6.1-env.patch
 	eprefixify sage/env.py
-
-	# support the use of pillow
-	sed -i "s:import Image:from PIL import Image:" sage/plot/plot3d/base.pyx
 
 	# fix library path of libsingular
 	sed -i "s:os.environ\['SAGE_LOCAL'\]+\"/lib:\"${EPREFIX}/usr/$(get_libdir):" \
@@ -238,7 +236,7 @@ python_prepare() {
 	sed -i "s:cblas(), atlas():${cblaslibs}:" sage/misc/cython.py
 
 	# remove the need for the external "testjava.sh" script
-	epatch "${FILESDIR}"/remove-testjavapath-to-python.patch
+	epatch "${FILESDIR}"/remove-testjavapath-to-python-6.1.patch
 	# finding JmolData.jar in the right place
 	sed -i "s:\"jmol\", \"JmolData:\"jmol-applet\", \"JmolData:" sage/interfaces/jmoldata.py
 
@@ -260,13 +258,8 @@ python_prepare() {
 	sed -i "s:os.environ\[\"SAGE_LOCAL\"\]+\"/share/singular/\":sage.env.SAGE_DOC + \"/\":" \
 		sage/interfaces/singular.py
 
-	# TODO: should be a patch + eprefixy
-	# Get gprc.expect from the right place
-	sed -i "s:SAGE_LOCAL, 'etc', 'gprc.expect':'${EPREFIX}/etc','gprc.expect':" \
-		sage/interfaces/gp.py
-
 	# Make the Octave interface work with a root install
-	# some other interface are likely to be affected
+	# some other interface are likely to be affected 
 	sed -i "s:script_subdirectory='user':script_subdirectory=None:" \
 		sage/interfaces/octave.py
 

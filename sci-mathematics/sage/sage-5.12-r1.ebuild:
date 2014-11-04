@@ -30,10 +30,10 @@ CDEPEND="dev-libs/gmp
 	>=dev-libs/mpfr-3.1.0
 	>=dev-libs/mpc-1.0
 	<dev-libs/ntl-6.0.0
-	>=sci-libs/sage-ppl-1.0
+	>=dev-libs/ppl-1.1
 	>=dev-lisp/ecls-12.12.1-r5
 	>=dev-python/numpy-1.7.0[${PYTHON_USEDEP}]
-	~dev-python/cython-0.19.1[${PYTHON_USEDEP}]
+	=dev-python/cython-0.19*[${PYTHON_USEDEP}]
 	~sci-mathematics/eclib-20120830
 	>=sci-mathematics/gmp-ecm-6.4.4[-openmp]
 	>=sci-mathematics/flint-2.3[ntl]
@@ -64,7 +64,8 @@ CDEPEND="dev-libs/gmp
 	media-libs/libpng:0=
 	>=sys-libs/readline-6.2
 	sys-libs/zlib
-	virtual/cblas"
+	virtual/cblas
+	!sci-mathematics/sage-matroids"
 
 DEPEND="${CDEPEND}
 	!dev-python/gmpy"
@@ -72,8 +73,8 @@ DEPEND="${CDEPEND}
 RDEPEND="${CDEPEND}
 	>=dev-lang/R-2.14.0
 	>=dev-python/cvxopt-1.1.6[glpk,${PYTHON_USEDEP}]
-	>=dev-python/gdmodule-0.56-r2[png]
-	~dev-python/ipython-0.13.1[${PYTHON_USEDEP}]
+	>=dev-python/gdmodule-0.56-r2[png,${PYTHON_USEDEP}]
+	~dev-python/ipython-0.13.2[${PYTHON_USEDEP}]
 	>=dev-python/jinja-2.5.5[${PYTHON_USEDEP}]
 	>=dev-python/matplotlib-1.2.1[${PYTHON_USEDEP}]
 	>=dev-python/mpmath-0.17[${PYTHON_USEDEP}]
@@ -83,7 +84,7 @@ RDEPEND="${CDEPEND}
 	>=dev-python/rpy-2.0.8[${PYTHON_USEDEP}]
 	>=dev-python/sphinx-1.1.2[${PYTHON_USEDEP}]
 	>=dev-python/sqlalchemy-0.5.8[${PYTHON_USEDEP}]
-	>=dev-python/sympy-0.7.1[${PYTHON_USEDEP}]
+	>=dev-python/sympy-0.7.3[${PYTHON_USEDEP}]
 	>=media-gfx/tachyon-0.98.9[png]
 	>=sci-libs/cddlib-094f-r2
 	>=sci-libs/scipy-0.11.0[${PYTHON_USEDEP}]
@@ -114,7 +115,7 @@ RDEPEND="${CDEPEND}
 	lrs? ( sci-libs/lrslib )
 	nauty? ( sci-mathematics/nauty )"
 
-PDEPEND="~sci-mathematics/sage-notebook-0.10.4[${PYTHON_USEDEP}]
+PDEPEND="~sci-mathematics/sage-notebook-0.10.7.2[${PYTHON_USEDEP}]
 	~sci-mathematics/sage-data-conway_polynomials-0.4"
 
 S="${WORKDIR}"/${MY_P}
@@ -173,10 +174,6 @@ python_prepare() {
 	sed -i "s:SAGE_LOCAL + '/lib/python/site-packages/numpy/core/include:'$(python_get_sitedir)/numpy/core/include:g" \
 		module_list.py
 
-	# use sage-ppl
-	epatch "${FILESDIR}"/${PN}-5.11-ppl1.patch
-	sed -i "s:lib/ppl1:$(get_libdir)/ppl1:" module_list.py
-
 	# fix lcalc path
 	sed -i "s:SAGE_INC + \"/libLfunction:SAGE_INC + \"/Lfunction:g" module_list.py
 
@@ -213,8 +210,9 @@ python_prepare() {
 		sage/interfaces/maxima.py \
 		sage/interfaces/maxima_abstract.py
 
-	# speaking ecl - patching so we can allow ecl with unicode
-	epatch "${FILESDIR}"/trac12985-unicode.patch
+	# speaking of ecl - patching so we can allow ecl with unicode.
+	epatch "${FILESDIR}"/trac_14636_1.patch
+	epatch "${FILESDIR}"/trac_14636_2.patch
 
 	# TODO: should be a patch
 	# Uses singular internal copy of the factory header
@@ -251,9 +249,6 @@ python_prepare() {
 	sed -i "s:SAGE_LOCAL, 'etc', 'gprc.expect':'${EPREFIX}/etc','gprc.expect':" \
 		sage/interfaces/gp.py
 
-	# allow sage-matroids to be used if installed
-	epatch "${FILESDIR}"/${PN}-matroids.patch
-
 	############################################################################
 	# Fixes to doctests
 	############################################################################
@@ -270,7 +265,7 @@ python_prepare() {
 	epatch "${FILESDIR}"/${PN}-5.8-fix-cython-doctest.patch
 
 	# only do a very basic R version string test
-	epatch "${FILESDIR}"/${PN}-5.8-fix-r-doctest.patch
+	epatch "${FILESDIR}"/${PN}-5.12-fix-r-doctest.patch
 
 	# do not test safe python stuff from trac 13579
 	epatch "${FILESDIR}"/${PN}-5.9-safepython.patch
