@@ -2,6 +2,10 @@
 # Copyright 1999-2014 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  04 Nov 2014; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-doc-9999-r1.ebuild:
+  Further clean up of sage-doc has found out by Steve in issue #210
+
   02 Nov 2014; François Bissey <francois.bissey@canterbury.ac.nz>
   -sage-doc-9999.ebuild, sage-doc-9999-r1.ebuild:
   revising sage-doc-9999-r1 for sage 6.4.rc

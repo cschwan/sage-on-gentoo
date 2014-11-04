@@ -60,8 +60,6 @@ python_prepare_all() {
 	# Put singular help file where it is expected
 	cp "${WORKDIR}"/Singular/3-1-6/info/singular.hlp ./
 
-	# fix issue 197
-	touch en/__init__.py
 	# install missing directories to satisfy builder.py test
 	mkdir -p output/doctrees/en/tutorial
 	mkdir -p en/tutorial/templates
@@ -79,8 +77,6 @@ python_compile() {
 
 	if use html ; then
 		${PYTHON} doc/common/builder.py --no-pdf-links all html || die "failed to produce html doc"
-		# issue #197
-		touch doc/output/html/en/__init__.py
 	fi
 	if use pdf ; then
 		export MAKE=make
