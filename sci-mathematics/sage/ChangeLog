@@ -2,6 +2,12 @@
 # Copyright 1999-2014 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*sage-5.12-r1 (05 Nov 2014)
+
+  05 Nov 2014; François Bissey <francois.bissey@canterbury.ac.nz>
+  +sage-5.12-r1.ebuild, -sage-5.12-r1.ebuild::
+  remove ":" in "sage-5.12.ebuild:" created by a previous commit
+
 *sage-5.10-r3 (04 Nov 2014)
 *sage-5.11-r4 (04 Nov 2014)
 *sage-5.9-r3 (04 Nov 2014)
