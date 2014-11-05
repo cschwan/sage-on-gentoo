@@ -5,7 +5,7 @@ dev-libs/mpc
 dev-lisp/asdf
 dev-lisp/uiop
 dev-libs/ntl
-=dev-libs/ppl-0.11.2
+~dev-libs/ppl-1.1
 ~dev-lisp/ecls-12.12.1::sage-on-gentoo
 dev-python/Babel
 dev-python/blinker
@@ -73,7 +73,6 @@ sci-libs/m4ri
 sci-libs/m4rie
 sci-libs/mpfi
 sci-libs/pynac
-sci-libs/sage-ppl
 ~sci-libs/scipy-0.14.0
 sci-libs/superlu
 sci-libs/symmetrica
