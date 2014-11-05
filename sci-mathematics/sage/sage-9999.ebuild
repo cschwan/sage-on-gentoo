@@ -294,6 +294,8 @@ python_install_all() {
 	insinto /usr/share/sage/src
 	doins -r sage
 	if use debug; then
+		# TODO make it usable if it is installed directly under src rather than src/build
+		insinto /usr/share/sage/src/build
 		pushd build
 		doins -r cython_debug
 		popd
