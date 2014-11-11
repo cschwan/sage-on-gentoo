@@ -9,6 +9,7 @@ dev-libs/ntl
 ~dev-lisp/ecls-12.12.1::sage-on-gentoo
 dev-python/Babel
 dev-python/blinker
+dev-python/characteristic
 dev-python/cvxopt
 dev-python/cython
 dev-python/python-dateutil
@@ -31,6 +32,8 @@ dev-python/networkx
 <dev-python/numpy-1.9.0
 ~dev-python/pexpect-2.0
 ~dev-python/sage-pexpect-2.0
+dev-python/pandas
+dev-python/pyasn1-modules
 dev-python/pycrypto
 dev-python/python-openid
 dev-python/python-pkgconfig
@@ -38,6 +41,7 @@ dev-python/pytz
 sys-libs/timezone-data
 dev-python/pyzmq
 dev-python/rpy
+dev-python/service_identity
 dev-python/simplegeneric
 dev-python/six
 dev-python/speaklater
