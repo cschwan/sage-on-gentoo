@@ -2,6 +2,10 @@
 # Copyright 1999-2014 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  16 Nov 2014; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-6.4.ebuild:
+  forgot to bump gap dependency. Doesn't seem to be that important.
+
 *sage-6.4 (16 Nov 2014)
 
   16 Nov 2014; François Bissey <francois.bissey@canterbury.ac.nz>
