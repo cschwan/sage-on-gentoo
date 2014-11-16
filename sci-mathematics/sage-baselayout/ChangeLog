@@ -2,6 +2,12 @@
 # Copyright 1999-2014 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*sage-baselayout-6.4 (16 Nov 2014)
+
+  16 Nov 2014; François Bissey <francois.bissey@canterbury.ac.nz>
+  +sage-baselayout-6.4.ebuild:
+  6.4 is out: base
+
   13 Nov 2014; François Bissey <francois.bissey@canterbury.ac.nz>
   sage-baselayout-9999.ebuild:
   bump sage-exec patch for changes in 6.4.rc2
