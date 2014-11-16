@@ -39,7 +39,7 @@ CDEPEND="dev-libs/gmp
 	>=dev-libs/mpc-1.0
 	>=dev-libs/ntl-6.0.0
 	>=dev-libs/ppl-1.1
-	>=dev-lisp/ecls-12.12.1-r5
+	>=dev-lisp/ecls-13.5.1
 	>=dev-python/numpy-1.8.1[${PYTHON_USEDEP}]
 	>=dev-python/cython-0.21.1[${PYTHON_USEDEP}]
 	>=sci-mathematics/eclib-20140805[flint]
@@ -47,7 +47,7 @@ CDEPEND="dev-libs/gmp
 	>=sci-mathematics/flint-2.4.4[ntl]
 	~sci-libs/fplll-4.0.4
 	~sci-libs/givaro-3.7.1
-	>=sci-libs/gsl-1.15
+	>=sci-libs/gsl-1.16
 	>=sci-libs/iml-1.0.4
 	~sci-libs/libcliquer-1.21_p1
 	~sci-libs/libgap-4.7.5
@@ -81,7 +81,7 @@ DEPEND="${CDEPEND}
 	!dev-python/gmpy"
 
 RDEPEND="${CDEPEND}
-	>=dev-lang/R-3.1.0
+	>=dev-lang/R-3.1.2
 	>=dev-python/cvxopt-1.1.7[glpk,${PYTHON_USEDEP}]
 	>=dev-python/gdmodule-0.56-r2[png,${PYTHON_USEDEP}]
 	~dev-python/ipython-2.2.0[notebook,${PYTHON_USEDEP}]
