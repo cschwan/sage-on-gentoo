@@ -3,6 +3,10 @@
 # $Header: $
 
   16 Nov 2014; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-9999.ebuild:
+  Bump gap in 9999 as well.
+
+  16 Nov 2014; François Bissey <francois.bissey@canterbury.ac.nz>
   sage-6.4.ebuild:
   forgot to bump gap dependency. Doesn't seem to be that important.
 
