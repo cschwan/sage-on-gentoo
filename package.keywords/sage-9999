@@ -1,6 +1,6 @@
 app-emacs/imaxima # 1.0-r3 is needed for >=maxima-5.29
 dev-java/asm:2
-~dev-lang/R-3.1.1
+~dev-lang/R-3.1.2
 ~dev-libs/mpc-1.0.2
 ~dev-libs/ntl-6.1.0
 ~dev-libs/ppl-1.1
@@ -45,7 +45,7 @@ sci-libs/dsdp
 sci-libs/fflas-ffpack
 >=sci-libs/fplll-4.0.4
 ~sci-libs/givaro-3.7.1
->=sci-libs/gsl-1.15
+>=sci-libs/gsl-1.16
 ~sci-libs/iml-1.0.4
 ~sci-libs/libcliquer-1.21_p1
 ~sci-libs/libgap-4.7.5
