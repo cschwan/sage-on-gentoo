@@ -66,6 +66,7 @@ sci-mathematics/dikcube
 ~sci-mathematics/gmp-ecm-6.4.4
 sci-mathematics/flintqs
 ~sci-mathematics/gap-4.7.5
+>=sci-mathematics/glpk-4.54
 >=sci-mathematics/lcalc-1.23-r6
 sci-mathematics/lrcalc
 ~sci-mathematics/maxima-5.34.1::sage-on-gentoo
