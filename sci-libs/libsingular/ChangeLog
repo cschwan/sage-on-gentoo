@@ -2,6 +2,12 @@
 # Copyright 1999-2014 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*libsingular-3.1.6-r4 (17 Nov 2014)
+
+  17 Nov 2014; François Bissey <francois.bissey@canterbury.ac.nz>
+  +files/singular-3.1.6-implicit-template.patch, +libsingular-3.1.6-r4.ebuild:
+  implicit template patch for funny gcc default flags.
+
 *libsingular-3.1.6-r3 (21 Jul 2014)
 
   21 Jul 2014; François Bissey <francois.bissey@canterbury.ac.nz>
