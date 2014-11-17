@@ -2,6 +2,10 @@
 # Copyright 1999-2014 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  17 Nov 2014; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-6.4.ebuild, sage-9999.ebuild:
+  Adjust runtime dependency on ipython
+
   16 Nov 2014; François Bissey <francois.bissey@canterbury.ac.nz>
   sage-6.4.ebuild, sage-9999.ebuild:
   Adjusting dependencies on R and ecls
