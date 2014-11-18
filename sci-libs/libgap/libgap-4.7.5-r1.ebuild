@@ -8,7 +8,7 @@ inherit autotools-utils
 
 DESCRIPTION="A cython library interface to gap for sage"
 HOMEPAGE="https://bitbucket.org/vbraun/libgap"
-SRC_URI="mirror://sageupstream/${PN}/${P}.tar.gz"
+SRC_URI="mirror://sageupstream/${PN}/${P}.1.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
@@ -23,6 +23,8 @@ RDEPEND="${DEPEND}"
 
 AUTOTOOLS_AUTORECONF=yes
 AUTOTOOLS_IN_SOURCE_BUILD=1
+
+S="${WORKDIR}"/${P}.1
 
 src_prepare(){
 	sed -e "s:src/compiled.h:compiled.h:" \
