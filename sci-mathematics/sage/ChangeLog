@@ -2,6 +2,11 @@
 # Copyright 1999-2014 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  18 Nov 2014; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-9999.ebuild:
+  bump neutering patch for new is_package_install instances. Improved way of
+  dealing with optional runtime dependencies.
+
   17 Nov 2014; François Bissey <francois.bissey@canterbury.ac.nz>
   sage-6.4.ebuild, sage-9999.ebuild:
   Adjust runtime dependency on ipython

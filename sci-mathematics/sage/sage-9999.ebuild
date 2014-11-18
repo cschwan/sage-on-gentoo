@@ -26,11 +26,11 @@ fi
 DESCRIPTION="Math software for algebra, geometry, number theory, cryptography and numerical computation"
 HOMEPAGE="http://www.sagemath.org"
 SRC_URI="${SRC_URI}
-	mirror://sagemath/patches/${PN}-6.4-neutering.tar.bz2"
+	mirror://sagemath/patches/${PN}-6.5-neutering.tar.bz2"
 
 LICENSE="GPL-2"
 SLOT="0"
-IUSE="latex testsuite lrs nauty debug"
+IUSE="latex testsuite debug"
 
 RESTRICT="mirror test"
 
@@ -119,9 +119,7 @@ RDEPEND="${CDEPEND}
 	latex? (
 		~dev-tex/sage-latex-2.3.4
 		|| ( app-text/dvipng[truetype] media-gfx/imagemagick[png] )
-	)
-	lrs? ( sci-libs/lrslib )
-	nauty? ( sci-mathematics/nauty )"
+	)"
 
 PDEPEND="~sci-mathematics/sage-notebook-0.11.0[${PYTHON_USEDEP}]
 	~sci-mathematics/sage-data-conway_polynomials-0.4
@@ -140,7 +138,7 @@ python_prepare() {
 	epatch "${FILESDIR}"/${PN}-6.4-blas.patch
 
 	# Remove sage's package management system
-	epatch "${WORKDIR}"/patches/${PN}-6.3-package.patch
+	epatch "${WORKDIR}"/patches/${PN}-6.5-package.patch
 	rm sage/misc/package.py
 
 	# Remove sage's git capabilities
@@ -149,17 +147,6 @@ python_prepare() {
 
 	# Remove sage cmdline tests related to these
 	epatch "${WORKDIR}"/patches/${PN}-6.4-cmdline.patch
-
-	if use lrs; then
-		sed -i "s:if True:if False:" sage/geometry/polyhedron/base.py
-	fi
-
-	if use nauty; then
-		sed -i "s:if True:if False:" \
-			sage/graphs/graph_generators.py \
-			sage/graphs/digraph_generators.py \
-			sage/graphs/hypergraph_generators.py
-	fi
 
 	# replace pexpect with sage pinned version
 	epatch "${FILESDIR}"/${PN}-6.2-pexpect.patch
