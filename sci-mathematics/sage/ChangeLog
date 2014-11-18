@@ -4,6 +4,10 @@
 
   18 Nov 2014; François Bissey <francois.bissey@canterbury.ac.nz>
   sage-9999.ebuild:
+  Remove a tab from the neutering patch
+
+  18 Nov 2014; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-9999.ebuild:
   bump neutering patch for new is_package_install instances. Improved way of
   dealing with optional runtime dependencies.
 
