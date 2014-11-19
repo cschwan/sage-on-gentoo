@@ -5,4 +5,4 @@
 # preparing ecm for removal. I only keep it in case it solves some OS X problems
 sci-mathematics/ecm
 #nasty with flint and singular, delayed probably to sage 6.5
->=dev-libs/ntl-6.2
+>=dev-libs/ntl-6.2.0
