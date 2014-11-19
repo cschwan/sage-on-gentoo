@@ -177,6 +177,8 @@ python_prepare() {
 
 	# Do not clean up the previous install with setup.py
 	epatch "${FILESDIR}"/${PN}-6.3-noclean.patch
+	# and do not install sage_setup at all
+	rm -rf sage_setup
 
 	############################################################################
 	# Fixes to Sage itself
