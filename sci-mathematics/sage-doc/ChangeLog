@@ -3,6 +3,11 @@
 # $Header: $
 
   19 Nov 2014; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-doc-6.2.ebuild, sage-doc-6.3.ebuild:
+  pin sphinx to 1.1.3 for sage-doc 6.2 and 6.3 - not previous because we don't
+  use it to build before that.
+
+  19 Nov 2014; François Bissey <francois.bissey@canterbury.ac.nz>
   sage-doc-6.4.ebuild:
   Forgot to remove pdf generation from sage-doc 6.4
 
