@@ -1,0 +1,6 @@
+*sage-doc-bin-6.4 (19 Nov 2014)
+
+  19 Nov 2014; François Bissey <francois.bissey@canterbury.ac.nz>
+  +files/sage-doc-bin-6.0-misc.patch, +files/sage-doc-bin-dev.patch,
+  +metadata.xml, +sage-doc-bin-6.4.ebuild:
+  New ebuild for pre-built documentation.
