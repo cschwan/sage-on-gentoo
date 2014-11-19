@@ -3,6 +3,10 @@
 # $Header: $
 
   19 Nov 2014; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-6.4.ebuild:
+  sage 6.4 can use either sage-doc or sage-doc-bin
+
+  19 Nov 2014; François Bissey <francois.bissey@canterbury.ac.nz>
   sage-9999.ebuild:
   Remove sage_setup (thought I had already done so)
 
