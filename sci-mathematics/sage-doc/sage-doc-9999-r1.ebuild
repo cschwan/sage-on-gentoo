@@ -32,7 +32,8 @@ IUSE="html pdf"
 RESTRICT="mirror"
 
 # TODO: depend on sage-baselayout (creates sage-main directory) ?
-DEPEND=">=dev-python/docutils-0.12[${PYTHON_USEDEP}]
+DEPEND="!sci-mathematics/sage-doc-bin
+	>=dev-python/docutils-0.12[${PYTHON_USEDEP}]
 	sci-mathematics/sage
 	pdf? ( dev-texlive/texlive-langcyrillic
 		dev-texlive/texlive-langfrench
