@@ -2,6 +2,10 @@
 # Copyright 1999-2014 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  19 Nov 2014; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-doc-6.4.ebuild:
+  Forgot to remove pdf generation from sage-doc 6.4
+
 *sage-doc-6.4 (16 Nov 2014)
 
   16 Nov 2014; François Bissey <francois.bissey@canterbury.ac.nz>

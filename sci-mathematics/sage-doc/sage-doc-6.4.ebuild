@@ -27,23 +27,15 @@ SRC_URI="${SRC_URI}
 
 LICENSE="GPL-2"
 SLOT="0"
-IUSE="html pdf"
+IUSE="html"
 
 RESTRICT="mirror"
 
 # TODO: depend on sage-baselayout (creates sage-main directory) ?
 DEPEND=">=dev-python/docutils-0.12[${PYTHON_USEDEP}]
-	sci-mathematics/sage
-	pdf? ( dev-texlive/texlive-langcyrillic
-		dev-texlive/texlive-langfrench
-		dev-texlive/texlive-langportuguese
-		dev-texlive/texlive-langgerman )"
+	sci-mathematics/sage"
 RDEPEND="${DEPEND}
-	>=dev-python/sphinx-1.2.2[${PYTHON_USEDEP}]
-	pdf? ( dev-texlive/texlive-langcyrillic
-		dev-texlive/texlive-langfrench
-		dev-texlive/texlive-langportuguese
-		dev-texlive/texlive-langgerman )"
+	>=dev-python/sphinx-1.2.2[${PYTHON_USEDEP}]"
 
 S="${WORKDIR}/sage-${PV}/src"
 
@@ -77,10 +69,6 @@ python_compile() {
 
 	if use html ; then
 		${PYTHON} doc/common/builder.py --no-pdf-links all html || die "failed to produce html doc"
-	fi
-	if use pdf ; then
-		export MAKE=make
-		${PYTHON} doc/common/builder.py all pdf || die "failed to produce pdf doc"
 	fi
 }
 
