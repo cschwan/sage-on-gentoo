@@ -29,6 +29,7 @@ dev-python/pandas
 dev-python/pyasn1-modules
 dev-python/python-pkgconfig
 ~dev-python/numexpr-2.4
+~dev-python/pycurl-7.19.3.1
 ~dev-python/pytz-2014.2
 ~dev-python/pytables-3.1.1
 >=dev-python/pyzmq-14.3.0
