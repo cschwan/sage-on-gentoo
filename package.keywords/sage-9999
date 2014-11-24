@@ -99,6 +99,7 @@ sci-mathematics/rubiks
 ~sci-mathematics/sage-notebook-0.11.0
 ~sci-mathematics/singular-3.1.6
 sci-mathematics/sympow
+~www-servers/tornado-3.1.1
 ##########################
 # optional dependencies
 ##########################
