@@ -6,3 +6,5 @@
 sci-mathematics/ecm
 #nasty with flint and singular, delayed probably to sage 6.5
 >=dev-libs/ntl-6.2.0
+#Work in progress
+>=dev-python/sympy-0.7.6
