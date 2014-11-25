@@ -10,8 +10,7 @@ inherit distutils-r1 eutils virtualx
 
 DESCRIPTION="Computer Algebra System in pure Python"
 HOMEPAGE="http://sympy.org"
-SRC_URI="https://github.com/${PN}/${PN}/releases/download/${P}/${P}.tar.gz
-	http://dev.gentoo.org/~bicatali/distfiles/${PN}-0.7.4.1-system-mpmath.patch.gz"
+SRC_URI="https://github.com/${PN}/${PN}/releases/download/${P}/${P}.tar.gz"
 
 LICENSE="BSD"
 SLOT="0"
@@ -49,7 +48,7 @@ DEPEND="${RDEPEND}
 python_prepare_all() {
 	if use system-mpmath; then
 		rm -r sympy/mpmath doc/src/modules/mpmath || die
-		epatch "${WORKDIR}"/${PN}-0.7.4.1-system-mpmath.patch
+		epatch "${FILESDIR}"/${P}-system-mpmath.patch.bz2
 	fi
 	distutils-r1_python_prepare_all
 }
@@ -68,7 +67,8 @@ python_compile_all() {
 }
 
 python_test() {
-	 VIRTUALX_COMMAND="./setup.py" virtualmake test
+	export MPMATH_NOSAGE=1
+	VIRTUALX_COMMAND="./setup.py" virtualmake test
 }
 
 python_install() {
