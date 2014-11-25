@@ -4,6 +4,11 @@
 
   25 Nov 2014; François Bissey <francois.bissey@canterbury.ac.nz>
   sage-9999.ebuild:
+  (lib)singular 3.1.7 is not really needed, depending on 3.1.6 until I fixed
+  libsingular 3.1.7_p1 to install properly.
+
+  25 Nov 2014; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-9999.ebuild:
   updating 9999 ebuild for sage 6.5.beta1
 
   19 Nov 2014; François Bissey <francois.bissey@canterbury.ac.nz>
