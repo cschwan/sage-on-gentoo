@@ -37,7 +37,7 @@ RESTRICT="mirror test"
 CDEPEND="dev-libs/gmp
 	>=dev-libs/mpfr-3.1.0
 	>=dev-libs/mpc-1.0
-	>=dev-libs/ntl-6.0.0
+	~dev-libs/ntl-6.2.1
 	>=dev-libs/ppl-1.1
 	>=dev-lisp/ecls-13.5.1
 	>=dev-python/numpy-1.8.1[${PYTHON_USEDEP}]
@@ -66,7 +66,7 @@ CDEPEND="dev-libs/gmp
 	>=sci-mathematics/ratpoints-2.1.3
 	~sci-mathematics/sage-baselayout-${PV}[testsuite=,${PYTHON_USEDEP}]
 	~sci-mathematics/sage-clib-${PV}
-	~sci-libs/libsingular-3.1.6[flint]
+	~sci-libs/libsingular-3.1.7_p1[flint]
 	media-libs/gd[jpeg,png]
 	media-libs/libpng:0=
 	>=sys-libs/readline-6.2
@@ -94,7 +94,7 @@ RDEPEND="${CDEPEND}
 	>=dev-python/rpy-2.3.8[${PYTHON_USEDEP}]
 	>=dev-python/sphinx-1.2.2[${PYTHON_USEDEP}]
 	>=dev-python/sqlalchemy-0.5.8[${PYTHON_USEDEP}]
-	>=dev-python/sympy-0.7.4[${PYTHON_USEDEP}]
+	>=dev-python/sympy-0.7.5[${PYTHON_USEDEP}]
 	>=media-gfx/tachyon-0.98.9[png]
 	>=sci-libs/cddlib-094f-r2
 	>=sci-libs/scipy-0.14.0[${PYTHON_USEDEP}]
@@ -112,7 +112,7 @@ RDEPEND="${CDEPEND}
 	~sci-mathematics/sage-data-graphs-20120404
 	~sci-mathematics/sage-data-combinatorial_designs-20140630
 	~sci-mathematics/sage-data-polytopes_db-20120220
-	~sci-mathematics/singular-3.1.6
+	~sci-mathematics/singular-3.1.7_p1
 	>=sci-mathematics/sympow-1.018.1
 	www-servers/tornado
 	!prefix? ( >=sys-libs/glibc-2.13-r4 )
@@ -240,9 +240,6 @@ python_prepare() {
 
 	# do not test safe python stuff from trac 13579
 	epatch "${FILESDIR}"/${PN}-6.0-safepython.patch
-
-	# remove version information of GLPK
-	epatch "${FILESDIR}"/${PN}-5.9-fix-mip-doctest.patch
 
 	# 'sage' is not in SAGE_ROOT, but in PATH
 	epatch "${FILESDIR}"/${PN}-5.9-fix-ostools-doctest.patch
