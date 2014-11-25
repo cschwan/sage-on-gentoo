@@ -1,0 +1,61 @@
+--- Singular/configure.in.orig	2014-11-25 21:51:35.101252819 +1300
++++ Singular/configure.in	2014-11-25 21:55:43.641887286 +1300
+@@ -79,13 +79,13 @@
+  do	
+ if test -r "$FLINT_HOME/include/flint/fmpz.h"; then
+ 
+-	#if test "x$FLINT_HOME" != "x/usr"; then
++	if test "x$FLINT_HOME" != "x/usr"; then
+ 		FLINT_CFLAGS="-I${FLINT_HOME}/include"
+ 		FLINT_LIBS="-L${FLINT_HOME}/lib -lflint -lmpfr -lmpir"
+-	#else
+-	#	FLINT_CFLAGS=
+-	#	FLINT_LIBS="-lflint"		
+-	#fi	
++	else
++		FLINT_CFLAGS="-I${FLINT_HOME}/include/flint"
++		FLINT_LIBS="-lflint"		
++	fi	
+ 	CFLAGS="${BACKUP_CFLAGS} ${FLINT_CFLAGS}" 
+ 	LIBS="${BACKUP_LIBS} ${FLINT_LIBS}"
+ 
+--- factory/flint-check.m4.orig	2014-11-25 21:51:54.511302087 +1300
++++ factory/flint-check.m4	2014-11-25 21:57:18.122145067 +1300
+@@ -49,13 +49,13 @@
+  do	
+ if test -r "$FLINT_HOME/include/flint/fmpz.h"; then
+ 
+-	#if test "x$FLINT_HOME" != "x/usr"; then
++	if test "x$FLINT_HOME" != "x/usr"; then
+ 		FLINT_CFLAGS="-I${FLINT_HOME}/include"
+ 		FLINT_LIBS="-L${FLINT_HOME}/lib -lflint -lmpfr -lmpir"
+-	#else
+-	#	FLINT_CFLAGS=
+-	#	FLINT_LIBS="-lflint"
+-	#fi	
++	else
++		FLINT_CFLAGS="-I${FLINT_HOME}/include/flint"
++		FLINT_LIBS="-lflint"
++	fi	
+ 	CFLAGS="${BACKUP_CFLAGS} ${FLINT_CFLAGS}" 
+ 	LIBS="${BACKUP_LIBS} ${FLINT_LIBS}"
+ 
+@@ -115,8 +115,6 @@
+ 
+ AC_LANG_POP
+ 
+-AM_CONDITIONAL(SING_HAVE_FLINT, test "x$HAVE_FLINT" = "xyes")
+-
+ CFLAGS=${BACKUP_CFLAGS}
+ LIBS=${BACKUP_LIBS}
+ #unset LD_LIBRARY_PATH
+--- factory/configure.in.orig	2014-11-25 21:52:14.271352214 +1300
++++ factory/configure.in	2014-11-25 21:58:16.362303438 +1300
+@@ -16,6 +16,7 @@
+ AC_CONFIG_HEADER(config.h)
+ AC_CONFIG_AUX_DIR(bin)
+ AC_CONFIG_MACRO_DIR([.])
++m4_include([flint-check.m4])
+ #
+ # Do not change version here!!!
+ #

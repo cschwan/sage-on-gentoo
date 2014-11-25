@@ -2,6 +2,13 @@
 # Copyright 1999-2014 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/sci-mathematics/singular/ChangeLog,v 1.53 2012/06/23 10:50:20 xarthisius Exp $
 
+*singular-3.1.7_p1 (25 Nov 2014)
+
+  25 Nov 2014; François Bissey <francois.bissey@canterbury.ac.nz>
+  +files/singular-3.1.7-flintconfig.patch,
+  +files/singular-3.1.7-implicit-template.patch, +singular-3.1.7_p1.ebuild:
+  singular 3.1.7p1 for sage 6.5
+
 *singular-3.1.6-r1 (17 Nov 2014)
 
   17 Nov 2014; François Bissey <francois.bissey@canterbury.ac.nz>
