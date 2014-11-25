@@ -2,6 +2,14 @@
 # Copyright 1999-2014 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*sage-6.4-r1 (25 Nov 2014)
+
+  25 Nov 2014; François Bissey <francois.bissey@canterbury.ac.nz>
+  +files/sage-6.4.1-maxima.patch, +sage-6.4-r1.ebuild, -sage-6.4.ebuild:
+  bump 6.4 to 6.4-r1 for the only fix from 6.4.1 that we should practically
+  include. This is mainly so we are not in a mess with regards  to maxima
+  dependencies.
+
   25 Nov 2014; François Bissey <francois.bissey@canterbury.ac.nz>
   sage-9999.ebuild:
   (lib)singular 3.1.7 is not really needed, depending on 3.1.6 until I fixed

@@ -104,7 +104,7 @@ RDEPEND="${CDEPEND}
 	>=sci-mathematics/cu2-20060223
 	>=sci-mathematics/cubex-20060128
 	>=sci-mathematics/dikcube-20070912
-	>=sci-mathematics/maxima-5.34.1-r1[ecls]
+	>=sci-mathematics/maxima-5.34.1-r2[ecls]
 	>=sci-mathematics/mcube-20051209
 	>=sci-mathematics/optimal-20040603
 	>=sci-mathematics/palp-2.1
@@ -167,6 +167,10 @@ python_prepare() {
 		`grep -rl "import pexpect" *`
 	sed -i "s:from pexpect:from sage_pexpect:g" \
 		`grep -rl "from pexpect" *`
+
+	# This is the only interesting difference with 6.4.1 and it is introduced so
+	# only have to keep one version of maxima 5.34.1 around
+	epatch "${FILESDIR}"/${PN}-6.4.1-maxima.patch
 
 	############################################################################
 	# Fixes to Sage's build system
