@@ -2,6 +2,12 @@
 # Copyright 1999-2014 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  25 Nov 2014; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-9999.ebuild:
+  Hopefully with the new maxima fix, maxima won't leak output like crazy in
+  doctest. Off course we could have reversed sage-6.4.1-maxima  patch instead
+  for the same effect I think.
+
 *sage-6.4-r1 (25 Nov 2014)
 
   25 Nov 2014; François Bissey <francois.bissey@canterbury.ac.nz>
