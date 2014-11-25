@@ -2,6 +2,13 @@
 # Copyright 1999-2014 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*libsingular-3.1.7_p1 (25 Nov 2014)
+
+  25 Nov 2014; François Bissey <francois.bissey@canterbury.ac.nz>
+  +files/singular-3.1.7-flintconfig.patch,
+  +files/singular-3.1.7-implicit-template.patch, +libsingular-3.1.7_p1.ebuild:
+  libsingular 3.1.7p1 for sage 6.5
+
 *libsingular-3.1.6-r4 (17 Nov 2014)
 
   17 Nov 2014; François Bissey <francois.bissey@canterbury.ac.nz>
