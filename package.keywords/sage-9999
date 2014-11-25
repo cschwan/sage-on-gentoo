@@ -2,7 +2,7 @@ app-emacs/imaxima # 1.0-r3 is needed for >=maxima-5.29
 dev-java/asm:2
 ~dev-lang/R-3.1.2
 ~dev-libs/mpc-1.0.2
-~dev-libs/ntl-6.1.0
+~dev-libs/ntl-6.2.1
 ~dev-libs/ppl-1.1
 dev-libs/c-blosc
 dev-python/characteristic
@@ -58,7 +58,7 @@ sci-libs/fflas-ffpack
 ~sci-libs/iml-1.0.4
 ~sci-libs/libcliquer-1.21_p1
 ~sci-libs/libgap-4.7.5
-~sci-libs/libsingular-3.1.6
+~sci-libs/libsingular-3.1.7
 ~sci-libs/linbox-1.3.2
 ~sci-libs/m4ri-20140914
 ~sci-libs/m4rie-20140914
@@ -74,6 +74,7 @@ sci-mathematics/dikcube
 >=sci-mathematics/eclib-20140805
 ~sci-mathematics/gmp-ecm-6.4.4
 sci-mathematics/flintqs
+~sci-mathematics/flint-2.4.4
 ~sci-mathematics/gap-4.7.5
 >=sci-mathematics/glpk-4.54
 >=sci-mathematics/lcalc-1.23-r6
@@ -97,7 +98,7 @@ sci-mathematics/rubiks
 ~sci-mathematics/sage-data-polytopes_db-20120220
 ~sci-mathematics/sage-doc-9999 **
 ~sci-mathematics/sage-notebook-0.11.0
-~sci-mathematics/singular-3.1.6
+~sci-mathematics/singular-3.1.7
 sci-mathematics/sympow
 ~www-servers/tornado-3.1.1
 ##########################
