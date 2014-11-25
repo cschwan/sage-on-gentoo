@@ -27,4 +27,6 @@ AUTOTOOLS_AUTORECONF=yes
 
 DOCS=( AUTHORS NEWS README )
 
+PATCHES=( "${FILESDIR}"/${PN}-0.3.2-pynac.pc.patch )
+
 myeconfargs=( PYTHON_VERSION="2.7" )

@@ -2,6 +2,14 @@
 # Copyright 1999-2014 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*pynac-0.3.2-r1 (25 Nov 2014)
+
+  25 Nov 2014; François Bissey <francois.bissey@canterbury.ac.nz>
+  +files/pynac-0.3.2-pynac.pc.patch, +pynac-0.3.2-r1.ebuild,
+  -pynac-0.3.2.ebuild:
+  minor fix to pynac.pc file see https://bitbucket.org/pynac/pynac/issue/20
+  /minor-thing-in-pynacpcin
+
 *pynac-0.3.2 (30 Mar 2014)
 
   30 Mar 2014; François Bissey <francois.bissey@canterbury.ac.nz>
