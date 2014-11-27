@@ -2,6 +2,12 @@
 # Copyright 1999-2014 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*eclib-20140921 (27 Nov 2014)
+
+  27 Nov 2014; François Bissey <francois.bissey@canterbury.ac.nz>
+  +eclib-20140921.ebuild:
+  Way delayed version bump...
+
   31 Oct 2014; François Bissey <francois.bissey@canterbury.ac.nz>
   -eclib-20120428.ebuild:
   removing old unused eclib
