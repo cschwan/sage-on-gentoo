@@ -66,7 +66,7 @@ CDEPEND="dev-libs/gmp
 	>=sci-mathematics/ratpoints-2.1.3
 	~sci-mathematics/sage-baselayout-${PV}[testsuite=,${PYTHON_USEDEP}]
 	~sci-mathematics/sage-clib-${PV}
-	>=sci-libs/libsingular-3.1.6[flint]
+	~sci-libs/libsingular-3.1.7_p1[flint]
 	media-libs/gd[jpeg,png]
 	media-libs/libpng:0=
 	>=sys-libs/readline-6.2
@@ -112,7 +112,7 @@ RDEPEND="${CDEPEND}
 	~sci-mathematics/sage-data-graphs-20120404
 	~sci-mathematics/sage-data-combinatorial_designs-20140630
 	~sci-mathematics/sage-data-polytopes_db-20120220
-	>=sci-mathematics/singular-3.1.6
+	~sci-mathematics/singular-3.1.7_p1
 	>=sci-mathematics/sympow-1.018.1
 	www-servers/tornado
 	!prefix? ( >=sys-libs/glibc-2.13-r4 )
