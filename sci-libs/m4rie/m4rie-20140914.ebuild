@@ -4,7 +4,7 @@
 
 EAPI="5"
 
-inherit autotools-utils eutils flag-o-matic
+inherit autotools-utils eutils flag-o-matic toolchain-funcs
 
 DESCRIPTION="Method of four russian for inversion (M4RI)"
 HOMEPAGE="http://m4ri.sagemath.org/"
@@ -19,9 +19,14 @@ IUSE="debug openmp static-libs"
 # TODO: tests do not compile since m4rie expects header already being installed
 RESTRICT="mirror test"
 
-DEPEND="openmp? ( >=sys-devel/gcc-4.2[openmp] )
-	~sci-libs/m4ri-${PV}[openmp?]"
-RDEPEND="~sci-libs/m4ri-${PV}[openmp?]"
+DEPEND="~sci-libs/m4ri-${PV}[openmp?]"
+RDEPEND="${DEPEND}"
+
+pkg_pretend() {
+	if use openmp ; then
+		tc-has-openmp || die "Please switch to an openmp compatible compiler"
+	fi
+}
 
 src_configure() {
 	myeconfargs=(
