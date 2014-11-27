@@ -1,10 +1,10 @@
-# Copyright 1999-2013 Gentoo Foundation
+# Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
 EAPI=5
 
-inherit autotools eutils flag-o-matic multilib
+inherit autotools eutils flag-o-matic multilib toolchain-funcs
 
 DESCRIPTION="Elliptic Curve Method for Integer Factorization"
 HOMEPAGE="http://ecm.gforge.inria.fr/"
@@ -19,8 +19,7 @@ DEPEND="
 	dev-libs/gmp
 	!sci-mathematics/ecm
 	blas? ( sci-libs/gsl )
-	gwnum? ( sci-mathematics/gwnum )
-	openmp? ( sys-devel/gcc[openmp] )"
+	gwnum? ( sci-mathematics/gwnum )"
 RDEPEND="${DEPEND}"
 
 # can't be both enabled
@@ -30,6 +29,12 @@ REQUIRED_USE="gwnum? ( !openmp )
 S=${WORKDIR}/ecm-${PV}
 
 MAKEOPTS+=" -j1"
+
+pkg_pretend() {
+	if use openmp ; then
+		tc-has-openmp || die "Please switch to an openmp compatible compiler"
+	fi
+}
 
 src_prepare() {
 	sed -e '/libecm_la_LIBADD/s:$: -lgmp:g' -i Makefile.am || die
