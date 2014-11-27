@@ -146,7 +146,7 @@ src_install () {
 	# This file is not copied by singular in the right place
 	doins "${S}"/Singular/sing_dbm.h
 	insinto /usr/include/singular/factory
-	doins factory/*
+	doins -r factory/*
 }
 
 pkg_postinst() {
