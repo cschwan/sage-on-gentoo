@@ -2,6 +2,11 @@
 # Copyright 1999-2014 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  27 Nov 2014; François Bissey <francois.bissey@canterbury.ac.nz>
+  libsingular-3.1.7_p1.ebuild:
+  fixed header installation issue in a way that is compatible with our current
+  approach in sage. sage itself may need a small adjustment.
+
 *libsingular-3.1.7_p1 (25 Nov 2014)
 
   25 Nov 2014; François Bissey <francois.bissey@canterbury.ac.nz>

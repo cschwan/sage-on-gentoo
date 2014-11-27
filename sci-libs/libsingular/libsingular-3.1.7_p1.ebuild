@@ -135,31 +135,18 @@ src_install () {
 	fi
 	insinto /usr/include
 	cd "${S}"/build/include
-	# Move factory.h and cf_gmp.h in the singular folder so we don't either
+	# Move factory headers in the singular folder so we don't either
 	# collide with factory or need it to use libsingular.
-	sed -e "s:factory.h:singular/factory.h:" \
-		-i singular/clapconv.h singular/fglm.h
-	sed -e "s:factory/cf_gmp.h:singular/cf_gmp.h:" \
-		-i factory.h
-	sed -e "s:cf_gmp.h:singular/cf_gmp.h:" \
-		-i singular/si_gmp.h
-	sed -e "s:factory/factoryconf.h:singular/factoryconf.h:" \
-		-e "s:factory/templates:singular/templates:g" \
-		-i factory.h
-	sed -e "s:factory/factoryconf.h:singular/factoryconf.h:" \
-		-i templates/ftmpl_list.h templates/ftmpl_factor.h \
-			templates/ftmpl_matrix.h templates/ftmpl_array.h
-	sed -e "s:factory/factory.h:singular/factory.h:" \
-		-i factor.h
+	sed -e "s:<factory/:<singular/factory/:g" \
+		-i `grep -rl "<factory/" *`
 
 	doins libsingular.h mylimits.h omalloc.h
 	insinto /usr/include/singular
-	doins singular/*
-	doins factory.h factoryconf.h cf_gmp.h factor.h
+	doins factor.h singular/*
 	# This file is not copied by singular in the right place
 	doins "${S}"/Singular/sing_dbm.h
-	insinto /usr/include/singular/templates
-	doins templates/*
+	insinto /usr/include/singular/factory
+	doins factory/*
 }
 
 pkg_postinst() {
@@ -170,6 +157,6 @@ pkg_postinst() {
 	einfo "To avoid file collisions with factory and the need of factory to use libsingular"
 	einfo "We have moved the factory headers shipped by singular in /usr/include/singular."
 	einfo "If you want to use the factory functionality offered by libsingular rather than"
-	einfo "the one offered by the factory ebuild you should include singular/factory.h rather"
-	einfo "than just factory.h."
+	einfo "the one offered by the factory ebuild you should include singular/factor.h rather"
+	einfo "than just factor.h."
 }
