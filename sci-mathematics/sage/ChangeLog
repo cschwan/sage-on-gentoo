@@ -4,6 +4,11 @@
 
   27 Nov 2014; François Bissey <francois.bissey@canterbury.ac.nz>
   sage-9999.ebuild:
+  Work around issues with sage_setup removal. Not sure how it got unnoticed
+  before.
+
+  27 Nov 2014; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-9999.ebuild:
   sage 9999 depends on (lib)singular 3.1.7_p1 again. Not doing so will lead to 2
   doctests failure.
 

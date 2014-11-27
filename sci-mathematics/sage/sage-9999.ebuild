@@ -177,8 +177,6 @@ python_prepare() {
 
 	# Do not clean up the previous install with setup.py
 	epatch "${FILESDIR}"/${PN}-6.3-noclean.patch
-	# and do not install sage_setup at all
-	rm -rf sage_setup
 
 	############################################################################
 	# Fixes to Sage itself
@@ -267,6 +265,9 @@ python_configure() {
 }
 
 python_install_all() {
+	# Do not install sage_setup at all (but this is needed at the begining).
+	rm -rf sage_setup
+
 	distutils-r1_python_install_all
 
 	# install sources needed for testing/compiling of cython/spyx files
