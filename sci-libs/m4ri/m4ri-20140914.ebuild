@@ -4,7 +4,7 @@
 
 EAPI="5"
 
-inherit autotools-utils flag-o-matic
+inherit autotools-utils flag-o-matic toolchain-funcs
 
 DESCRIPTION="Method of four russian for inversion (M4RI)"
 HOMEPAGE="http://m4ri.sagemath.org/"
@@ -19,11 +19,16 @@ IUSE="debug openmp sse2 static-libs"
 RESTRICT="mirror"
 
 DEPEND="media-libs/libpng
-	virtual/pkgconfig
-	openmp? ( >=sys-devel/gcc-4.2[openmp] )"
+	virtual/pkgconfig"
 RDEPEND="media-libs/libpng"
 
 DOCS=( AUTHORS )
+
+pkg_pretend() {
+	if use openmp ; then
+		tc-has-openmp || die "Please switch to an openmp compatible compiler"
+	fi
+}
 
 src_configure() {
 	# cachetune option is not available, because it kills (at least my) X when I

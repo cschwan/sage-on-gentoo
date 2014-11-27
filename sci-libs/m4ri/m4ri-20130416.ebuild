@@ -4,7 +4,7 @@
 
 EAPI="5"
 
-inherit autotools-utils flag-o-matic
+inherit autotools-utils flag-o-matic toolchain-funcs
 
 DESCRIPTION="Method of four russian for inversion (M4RI)"
 HOMEPAGE="http://m4ri.sagemath.org/"
@@ -20,11 +20,16 @@ S="${WORKDIR}"/lib${P}
 RESTRICT="mirror"
 
 DEPEND="media-libs/libpng
-	virtual/pkgconfig
-	openmp? ( >=sys-devel/gcc-4.2[openmp] )"
+	virtual/pkgconfig"
 RDEPEND="media-libs/libpng"
 
 DOCS=( AUTHORS README )
+
+pkg_pretend() {
+	if use openmp ; then
+		tc-has-openmp || die "Please switch to an openmp compatible compiler"
+	fi
+}
 
 pkg_setup() {
 	# TODO: there should be a better way to fix this
