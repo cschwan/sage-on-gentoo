@@ -142,7 +142,7 @@ src_install () {
 
 	doins libsingular.h mylimits.h omalloc.h
 	insinto /usr/include/singular
-	doins factor.h singular/*
+	doins factor.h factory/factory.h factory/cf_gmp.h singular/*
 	# This file is not copied by singular in the right place
 	doins "${S}"/Singular/sing_dbm.h
 	insinto /usr/include/singular/factory
