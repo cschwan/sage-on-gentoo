@@ -3,6 +3,7 @@ dev-libs/boost              python
 dev-libs/boehm-gc           threads
 dev-python/cvxopt           glpk
 dev-python/cython           -numpy
+dev-python/ipython          notebook
 dev-python/mpmath           -gmp
 dev-python/numpy            lapack
 dev-python/gdmodule         png
