@@ -1,7 +1,7 @@
 dev-lang/python             readline sqlite
 dev-libs/boost              python
 dev-libs/boehm-gc           threads
-dev-python/cvxopt           glpk
+dev-python/cvxopt           glpk gsl
 dev-python/cython           -numpy
 dev-python/ipython          notebook
 dev-python/mpmath           -gmp
@@ -11,26 +11,27 @@ media-libs/gd               jpeg png
 media-gfx/tachyon           png
 sci-mathematics/flint       ntl
 sci-libs/linbox             sage
+sci-libs/libsingular        flint
 sci-mathematics/eclib       flint
 sci-mathematics/gmp-ecm     -openmp
 sci-mathematics/maxima      ecls
 sci-mathematics/lcalc       pari
 sci-mathematics/pari        data gmp
+sci-mathematics/polybori    gd
 sys-libs/zlib               minizip
 
 ################################################
 # qt4 is broken with matplotlib 1.3.x
 ################################################
-=dev-python/matplotlib-1.3.* -qt4
+=dev-python/matplotlib-1.3* -qt4
 
 ################################################
 # Recomended flags for optional dependency jmol
 ################################################
 sci-chemistry/jmol          client-only
 
-# matplotlib
+# matplotlib (testing)
 x11-base/xorg-server        xvfb
-sci-libs/libsingular        flint
 
 ##################################
 # ipython update will break stuff wanting python 3.2
