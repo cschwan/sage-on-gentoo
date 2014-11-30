@@ -78,6 +78,10 @@ QUICK INSTALLATION GUIDE
    <path-to-layman> is usually /var/lib/layman (this path used to be
    /usr/local/portage/layman for older version of layman).
 
+   Note: As of 2014-11-30 we have put -qt4 for matplotlib 1.3.x. This is to 
+   avoid bug#530492. Building Matplotlib 1.3.x against qt4 is broken and unlikely
+   to get fixed.
+
 5. *INSTALL SAGE*:
    Type::
 
