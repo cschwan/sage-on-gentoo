@@ -37,6 +37,8 @@ src_install() {
 	java-pkg_dojar *.jar
 	java-pkg_dolauncher ${MY_PN} --main org.openscience.jmol.app.Jmol \
 		--java_args "-Xmx512m"
-	insinto /usr/share/${PN}/lib/jsmol
+	insinto /usr/share/${PN}/lib/appletweb
+	doins "${FILESDIR}"/*
+	insinto /usr/share/jsmol
 	doins -r jsmol/*
 }
