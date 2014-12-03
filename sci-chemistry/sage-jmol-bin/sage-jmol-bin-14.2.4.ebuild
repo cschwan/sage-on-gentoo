@@ -17,7 +17,7 @@ SLOT="0"
 KEYWORDS="~amd64 ~x86"
 iUSE=""
 
-DEPEND=""
+DEPEND="!sci-chemistry/jmol"
 RDEPEND="${DEPEND}
 	>=virtual/jre-1.7"
 

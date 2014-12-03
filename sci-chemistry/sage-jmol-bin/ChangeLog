@@ -1,4 +1,8 @@
   03 Dec 2014; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-jmol-bin-14.2.4.ebuild:
+  jmol and sage-jmol-bin do clash.
+
+  03 Dec 2014; François Bissey <francois.bissey@canterbury.ac.nz>
   +files/JmolHelp.html, +files/SageMenu.mnu, sage-jmol-bin-14.2.4.ebuild:
   more work on binary jmol for sage. Now work has to be done sage and sagenb
   sides.
