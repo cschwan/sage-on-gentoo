@@ -1,0 +1,6 @@
+*sage-jmol-bin-14.2.4 (03 Dec 2014)
+
+  03 Dec 2014; François Bissey <francois.bissey@canterbury.ac.nz> +metadata.xml,
+  +sage-jmol-bin-14.2.4.ebuild:
+  Initial commit of the jmol binary ebuild containing jsmol. Probably lots more
+  to do.
