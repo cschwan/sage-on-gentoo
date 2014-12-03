@@ -27,6 +27,12 @@ RDEPEND=""
 
 S="${WORKDIR}"/${MY_P}
 
+src_prepare(){
+	# copy a slightly modified spkg-install. We used to have it in the tarball
+	# but when we changed to new style git spkg tarball we lost the file
+	cp "${FILESDIR}"/spkg-install .
+}
+
 src_install() {
 	SAGE_SHARE="${ED}/usr/share/sage" "${PYTHON}" spkg-install
 }

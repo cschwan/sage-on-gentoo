@@ -2,6 +2,14 @@
 # Copyright 1999-2014 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*sage-data-elliptic_curves-0.7-r2 (03 Dec 2014)
+
+  03 Dec 2014; François Bissey <francois.bissey@canterbury.ac.nz>
+  +files/spkg-install, +sage-data-elliptic_curves-0.7-r2.ebuild,
+  -sage-data-elliptic_curves-0.7-r1.ebuild:
+  How could such glaring mistake gone unnoticed for nearly 4 months? We may have
+  lost people over this.
+
   15 Aug 2014; François Bissey <francois.bissey@canterbury.ac.nz>
   sage-data-elliptic_curves-0.7-r1.ebuild:
   finish migration to sageupstream repo. fix issue #316
