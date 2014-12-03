@@ -27,12 +27,12 @@
 -        self.add_static_path('/j2s', os.path.join(os.environ["SAGE_ROOT"],"local","share","jsmol","j2s"))
 -        self.add_static_path('/jsmol/j2s', os.path.join(os.environ["SAGE_ROOT"],"local","share","jsmol","j2s"))
 -        self.add_static_path('/j2s/core', os.path.join(os.environ["SAGE_ROOT"],"local","share","jsmol","j2s","core"))
-+        self.add_static_path('/java/jmol', os.path.join(os.path.join(SAGE_LOCAL,"share","sage-jmol-bin","lib","jmol"))
-+        self.add_static_path('/jsmol', os.path.join(os.path.join(SAGE_LOCAL,"share","jsmol"))
-+        self.add_static_path('/jsmol/js', os.path.join(os.path.join(SAGE_LOCAL,"share","jsmol","js"))
-+        self.add_static_path('/j2s', os.path.join(os.path.join(SAGE_LOCAL,"share","jsmol","j2s"))
-+        self.add_static_path('/jsmol/j2s', os.path.join(os.path.join(SAGE_LOCAL,"share","jsmol","j2s"))
-+        self.add_static_path('/j2s/core', os.path.join(os.path.join(SAGE_LOCAL,"share","jsmol","j2s","core"))
++        self.add_static_path('/java/jmol', os.path.join(SAGE_LOCAL,"share","sage-jmol-bin","lib","jmol"))
++        self.add_static_path('/jsmol', os.path.join(SAGE_LOCAL,"share","jsmol"))
++        self.add_static_path('/jsmol/js', os.path.join(SAGE_LOCAL,"share","jsmol","js"))
++        self.add_static_path('/j2s', os.path.join(SAGE_LOCAL,"share","jsmol","j2s"))
++        self.add_static_path('/jsmol/j2s', os.path.join(SAGE_LOCAL,"share","jsmol","j2s"))
++        self.add_static_path('/j2s/core', os.path.join(SAGE_LOCAL,"share","jsmol","j2s","core"))
          import mimetypes
          mimetypes.add_type('text/plain','.jmol')
  

@@ -2,6 +2,14 @@
 # Copyright 1999-2014 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*sage-notebook-0.11.0-r100 (03 Dec 2014)
+
+  03 Dec 2014; François Bissey <francois.bissey@canterbury.ac.nz>
+  +sage-notebook-0.11.0-r100.ebuild, -sage-notebook-0.11.0-r1.ebuild,
+  files/sage-notebook-0.11.0-base.patch,
+  files/sage-notebook-0.11.0-r2-base.patch, sage-notebook-0.11.0-r2.ebuild:
+  Correct the patch for 0.11.0 as pointed out by Steve.
+
   03 Dec 2014; François Bissey <francois.bissey@canterbury.ac.nz>
   sage-notebook-0.11.0-r2.ebuild:
   Don't block jmol/jmol-applet in latest sagenb it is meaningless.
