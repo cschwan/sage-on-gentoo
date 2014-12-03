@@ -37,8 +37,9 @@ DEPEND="${CDEPEND}
 	test? ( sci-mathematics/sage[testsuite,${PYTHON_USEDEP}] )"
 RDEPEND="${CDEPEND}
 	sci-mathematics/sage[${PYTHON_USEDEP}]
-	java? ( >=sci-chemistry/jmol-12.3.27
-		>=sci-chemistry/jmol-applet-12.3.27 )"
+	java? ( !sci-chemistry/jmol
+		!sci-chemistry/jmol-applet
+		sci-chemistry/sage-jmol-bin )"
 
 pkg_setup() {
 	python_export python2_7 EPYTHON
@@ -56,6 +57,9 @@ src_prepare() {
 
 	# remove sage3d
 	rm -rf sagenb/data/sage3d || die "failed to remove sage3d"
+
+	# correct path for jmol
+	epatch "${FILESDIR}"/${PN}-0.11.0-r2-base.patch
 
 	# fix SAGE_ROOT
 	epatch "${FILESDIR}"/${PN}-0.9.1-notebook.patch

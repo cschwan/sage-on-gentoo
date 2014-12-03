@@ -2,6 +2,16 @@
 # Copyright 1999-2014 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*sage-notebook-0.11.0-r1 (03 Dec 2014)
+*sage-notebook-0.11.0-r2 (03 Dec 2014)
+
+  03 Dec 2014; François Bissey <francois.bissey@canterbury.ac.nz>
+  +files/sage-notebook-0.11.0-r2-base.patch, +sage-notebook-0.11.0-r1.ebuild,
+  +sage-notebook-0.11.0-r2.ebuild, -sage-notebook-0.11.0.ebuild,
+  files/sage-notebook-0.11.0-base.patch:
+  sage-notebook-0.11.0-r1 applies the jmol location patch properly. Incredible
+  that it wasn't spotted before. 0.11.0-r2 will use the new sage-jmol-bin.
+
   31 Oct 2014; François Bissey <francois.bissey@canterbury.ac.nz>
   -sage-notebook-0.10.2-r5.ebuild:
   remove old sagenb 0.10.2. last used in a removed sage.
