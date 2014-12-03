@@ -1,4 +1,4 @@
-# Copyright 1999-2012 Gentoo Foundation
+# Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
@@ -23,7 +23,8 @@ IUSE="+client-only vhosts"
 WEBAPP_MANUAL_SLOT="yes"
 SLOT="0"
 
-COMMON_DEP="dev-java/commons-cli
+COMMON_DEP="!sci-chemistry/sage-jmol-bin
+	dev-java/commons-cli
 	dev-java/itext:0
 	sci-libs/jmol-acme
 	sci-libs/vecmath-objectclub

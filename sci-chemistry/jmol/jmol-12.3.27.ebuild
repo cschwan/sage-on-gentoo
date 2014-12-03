@@ -23,7 +23,8 @@ IUSE="+client-only vhosts"
 WEBAPP_MANUAL_SLOT="yes"
 SLOT="0"
 
-COMMON_DEP="dev-java/commons-cli
+COMMON_DEP="sci-chemistry/sage-jmol-bin
+	dev-java/commons-cli
 	dev-java/itext:0
 	sci-chemistry/jspecview
 	sci-libs/jmol-acme

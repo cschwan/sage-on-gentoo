@@ -2,6 +2,10 @@
 # Copyright 1999-2014 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  03 Dec 2014; François Bissey <francois.bissey@canterbury.ac.nz>
+  jmol-12.0.45.ebuild, jmol-12.3.14.ebuild, jmol-12.3.27.ebuild:
+  jmol and sage-jmol-bin do clash
+
 *jmol-12.3.27 (06 Jun 2014)
 
   06 Jun 2014; Stefan Huber <shuber@sthu.org> +jmol-12.3.27.ebuild:
