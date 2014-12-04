@@ -2,6 +2,10 @@
 # Copyright 1999-2014 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  04 Dec 2014; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-6.3-r1.ebuild, sage-6.4-r1.ebuild, sage-9999.ebuild:
+  Fix numpy dependency to 1.8* for sage 6.2 to 9999
+
   27 Nov 2014; François Bissey <francois.bissey@canterbury.ac.nz>
   sage-9999.ebuild:
   Work around issues with sage_setup removal. Not sure how it got unnoticed
