@@ -1,3 +1,7 @@
+  08 Dec 2014; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-doc-bin-6.4.ebuild:
+  Make shipping html the default in sage-doc-bin
+
 *sage-doc-bin-6.4 (19 Nov 2014)
 
   19 Nov 2014; François Bissey <francois.bissey@canterbury.ac.nz>

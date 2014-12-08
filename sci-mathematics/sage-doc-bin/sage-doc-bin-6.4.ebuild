@@ -20,7 +20,7 @@ SRC_URI="mirror://sagemath/${PV}.tar.gz -> sage-${PV}.tar.gz
 
 LICENSE="GPL-2"
 SLOT="0"
-IUSE="html pdf"
+IUSE="+html pdf"
 
 RESTRICT="mirror"
 
