@@ -1,10 +1,10 @@
 # Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/sphinx/sphinx-1.2.3.ebuild,v 1.2 2014/10/19 01:20:42 idella4 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/sphinx/sphinx-1.2.3.ebuild,v 1.5 2014/12/03 16:09:32 floppym Exp $
 
 EAPI=5
 
-PYTHON_COMPAT=( python{2_7,3_2,3_3,3_4} pypy )
+PYTHON_COMPAT=( python{2_7,3_3,3_4} pypy pypy3 )
 
 inherit distutils-r1 eutils versionator
 
@@ -45,9 +45,10 @@ python_compile() {
 	# Note that the tests usually do it for us. However, I don't want
 	# to trust USE=test really running all the tests, especially
 	# with FEATURES=test-fail-continue.
-	cd "${BUILD_DIR}"/lib || die
+	pushd "${BUILD_DIR}"/lib > /dev/null || die
 	"${PYTHON}" -m sphinx.pycode.__init__ \
 		|| die "Grammar generation failed."
+	popd > /dev/null || die
 }
 
 python_compile_all() {
