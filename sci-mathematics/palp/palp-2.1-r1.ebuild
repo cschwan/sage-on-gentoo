@@ -4,7 +4,7 @@
 
 EAPI="4"
 
-inherit base toolchain-funcs
+inherit base toolchain-funcs flag-o-matic
 
 DESCRIPTION="A Package for Analyzing Lattice Polytopes"
 HOMEPAGE="http://hep.itp.tuwien.ac.at/~kreuzer/CY/CYpalp.html"
@@ -21,6 +21,9 @@ DEPEND=""
 RDEPEND="${DEPEND}"
 
 PATCHES=( "${FILESDIR}"/${PN}-2.0-gnumakefile.patch )
+
+# this flag break the executable with certain versions of gcc
+filter-flags -ftree-vectorize
 
 pkg_setup() {
 	tc-export CC

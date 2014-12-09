@@ -2,6 +2,11 @@
 # Copyright 1999-2014 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  09 Dec 2014; François Bissey <francois.bissey@canterbury.ac.nz>
+  palp-2.1-r1.ebuild:
+  filter -ftree-vectorize which is toxic to palp with gcc 4.8.3 according to
+  some reports.
+
 *palp-2.1-r1 (24 May 2014)
 
   24 May 2014; François Bissey <francois.bissey@canterbury.ac.nz>
