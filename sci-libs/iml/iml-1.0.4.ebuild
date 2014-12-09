@@ -8,7 +8,7 @@ inherit autotools-utils toolchain-funcs flag-o-matic
 
 DESCRIPTION="Integer Matrix Library"
 HOMEPAGE="http://www.cs.uwaterloo.ca/~astorjoh/iml.html"
-SRC_URI="http://www.cs.uwaterloo.ca/~astorjoh/${P}.tar.gz"
+SRC_URI="http://www.cs.uwaterloo.ca/~astorjoh/${P}.tar.bz2"
 
 LICENSE="GPL-2"
 SLOT="0"

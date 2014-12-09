@@ -2,6 +2,11 @@
 # Copyright 1999-2014 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  09 Dec 2014; François Bissey <francois.bissey@canterbury.ac.nz>
+  iml-1.0.4.ebuild:
+  upstream changed the tarball to include a missing cblas.h header so as not to
+  rely on system provided one (useful on OS X for example).
+
   26 Oct 2014; François Bissey <francois.bissey@canterbury.ac.nz>
   iml-1.0.4.ebuild:
   Add missing double quotes in case there is more than one library needing to be
