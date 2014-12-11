@@ -34,7 +34,8 @@ RDEPEND="
 DEPEND="${DEPEND}
 	test? ( dev-python/nose[${PYTHON_USEDEP}] )"
 
-PATCHES=( "${FILESDIR}"/${PN}-1.2.2-inline-latex.patch )
+PATCHES=( "${FILESDIR}"/${PN}-1.2.2-inline-latex.patch
+	"${FILESDIR}"/${PN}-1.2.2-nested.patch )
 
 S="${WORKDIR}/${MY_P}"
 
