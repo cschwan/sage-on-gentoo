@@ -6,7 +6,6 @@
 sci-mathematics/ecm
 # Probably to sage 6.5
 >=dev-libs/ntl-6.2.0
->=dev-python/sympy-0.7.6
 >=sci-mathematics/singular-3.1.7
 >=sci-libs/libsingular-3.1.7
 # new jmol/jsmol
