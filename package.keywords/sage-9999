@@ -81,6 +81,7 @@ sci-mathematics/flintqs
 >=sci-mathematics/lcalc-1.23-r6
 sci-mathematics/lrcalc
 ~sci-mathematics/maxima-5.34.1::sage-on-gentoo
+~sci-mathematics/maxima-5.35.1::sage-on-gentoo
 sci-mathematics/mcube
 sci-mathematics/optimal
 sci-mathematics/palp
