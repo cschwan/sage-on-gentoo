@@ -22,12 +22,12 @@ fi
 DESCRIPTION="Sage baselayout files"
 HOMEPAGE="http://www.sagemath.org"
 SRC_URI="${SRC_URI}
-	mirror://sagemath/patches/${PN}-6.4-patch-v4.tar.bz2
+	mirror://sagemath/patches/sage-bin-patches-6.5.tar.bz2
 	mirror://sagemath/patches/sage-icon.tar.bz2"
 
 LICENSE="GPL-2"
 SLOT="0"
-IUSE="debug testsuite X tools"
+IUSE="debug testsuite X"
 
 RESTRICT="mirror"
 
@@ -35,11 +35,9 @@ DEPEND="
 	!sci-mathematics/sage-extcode"
 if  [[ ${CHOST} == *-darwin* ]] ; then
 	RDEPEND="${DEPEND}
-		tools? ( dev-vcs/mercurial )
 		debug? ( sys-devel/gdb-apple )"
 else
 	RDEPEND="${DEPEND}
-		tools? ( dev-vcs/mercurial )
 		debug? ( sys-devel/gdb )"
 fi
 
@@ -66,7 +64,7 @@ src_prepare() {
 	EOF
 
 	# Eliminate SAGE_ROOT, replacing with SAGE_LOCAL if necessary
-	epatch "${WORKDIR}"/${PN}-6.4-sage_root.patch
+	epatch "${WORKDIR}"/sage-bin-6.5-sage_root.patch
 
 	# TODO: if USE=debug/testsuite, remove corresponding options
 
@@ -75,7 +73,7 @@ src_prepare() {
 		sage-num-threads.py
 
 	# remove developer- and unsupported options
-	epatch "${WORKDIR}"/sage-exec-6.4.patch
+	epatch "${WORKDIR}"/sage-exec-6.5.patch
 	eprefixify sage
 
 	# create expected folders under extcode
@@ -106,11 +104,6 @@ src_install() {
 	if use testsuite ; then
 		# DOCTESTING helper scripts
 		python_foreach_impl python_doscript sage-runtests
-	fi
-
-	if use tools ; then
-		# install some of sage tools for spkg development
-		python_foreach_impl python_doscript sage-pkg
 	fi
 
 	# COMMAND helper scripts
