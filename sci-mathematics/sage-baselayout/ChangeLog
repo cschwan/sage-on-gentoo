@@ -4,6 +4,10 @@
 
   18 Dec 2014; François Bissey <francois.bissey@canterbury.ac.nz>
   sage-baselayout-9999.ebuild:
+  Removing the dead sage-devel directories
+
+  18 Dec 2014; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-baselayout-9999.ebuild:
   update patch for 6.5.beta3, remove the tool flag as no one should be making
   .spkg anymore.
 

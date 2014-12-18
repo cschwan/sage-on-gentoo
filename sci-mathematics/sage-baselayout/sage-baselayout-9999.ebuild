@@ -133,10 +133,6 @@ src_install() {
 	insinto /etc
 	doins "${FILESDIR}"/gprc.expect
 
-	# install devel directories and link
-	dodir /usr/share/sage/devel/sage-main
-	dosym /usr/share/sage/devel/sage-main /usr/share/sage/devel/sage
-
 	if use X ; then
 		doicon "${WORKDIR}"/sage.svg
 		domenu "${T}"/sage-sage.desktop
