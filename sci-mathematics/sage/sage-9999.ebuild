@@ -1,4 +1,4 @@
-# Copyright 1999-2014 Gentoo Foundation
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
@@ -121,7 +121,7 @@ RDEPEND="${CDEPEND}
 		|| ( app-text/dvipng[truetype] media-gfx/imagemagick[png] )
 	)"
 
-PDEPEND="~sci-mathematics/sage-notebook-0.11.0[${PYTHON_USEDEP}]
+PDEPEND="~sci-mathematics/sage-notebook-0.11.2[${PYTHON_USEDEP}]
 	~sci-mathematics/sage-data-conway_polynomials-0.4
 	~sci-mathematics/sage-doc-${PV}
 	testsuite? ( ~sci-mathematics/sage-doc-${PV}[html] )"
