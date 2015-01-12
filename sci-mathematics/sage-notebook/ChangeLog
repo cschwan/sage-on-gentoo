@@ -1,6 +1,12 @@
 # ChangeLog for sci-mathematics/sage-notebook
-# Copyright 1999-2014 Gentoo Foundation; Distributed under the GPL v2
+# Copyright 1999-2015 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
+
+*sage-notebook-0.11.2 (12 Jan 2015)
+
+  12 Jan 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  +files/sage-notebook-0.11.2-base.patch, +sage-notebook-0.11.2.ebuild:
+  Rev bump for sage 6.5
 
   03 Dec 2014; François Bissey <francois.bissey@canterbury.ac.nz>
   files/sage-notebook-0.11.0-r2-base.patch:

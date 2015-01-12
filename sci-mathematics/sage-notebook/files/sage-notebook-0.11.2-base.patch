@@ -1,0 +1,38 @@
+--- sagenb/flask_version/base.py.orig	2014-10-31 14:37:57.317447839 +1300
++++ sagenb/flask_version/base.py	2014-10-31 14:43:39.998127464 +1300
+@@ -8,14 +8,11 @@
+ from flask_oldsessions import OldSecureCookieSessionInterface
+ 
+ from flask.ext.autoindex import AutoIndex
+-try:
+-    from sage.env import SAGE_SRC
+-except ImportError:
+-    SAGE_SRC = os.environ.get('SAGE_SRC', os.path.join(os.environ['SAGE_ROOT'], 'devel', 'sage'))
+-SRC = os.path.join(SAGE_SRC, 'sage')
+ from flask.ext.openid import OpenID
+ from flask.ext.babel import Babel, gettext, ngettext, lazy_gettext, get_locale
+ from sagenb.misc.misc import SAGENB_ROOT, DATA, SAGE_DOC, translations_path, N_, nN_
++from sage.env import SAGE_SRC, SAGE_LOCAL
++SRC = os.path.join(SAGE_SRC, 'sage')
+ 
+ oid = OpenID()
+ 
+@@ -36,12 +33,12 @@
+         self.add_static_path('/javascript', DATA)
+         self.add_static_path('/static', DATA)
+         self.add_static_path('/java', DATA)
+-        self.add_static_path('/java/jmol', os.path.join(os.environ["SAGE_ROOT"],"local","share","jmol"))
+-        self.add_static_path('/jsmol', os.path.join(os.environ["SAGE_ROOT"],"local","share","jsmol"))
+-        self.add_static_path('/jsmol/js', os.path.join(os.environ["SAGE_ROOT"],"local","share","jsmol","js"))
+-        self.add_static_path('/j2s', os.path.join(os.environ["SAGE_ROOT"],"local","share","jsmol","j2s"))
+-        self.add_static_path('/jsmol/j2s', os.path.join(os.environ["SAGE_ROOT"],"local","share","jsmol","j2s"))
+-        self.add_static_path('/j2s/core', os.path.join(os.environ["SAGE_ROOT"],"local","share","jsmol","j2s","core"))
++        self.add_static_path('/java/jmol', os.path.join(SAGE_LOCAL,"share","sage-jmol-bin","lib"))
++        self.add_static_path('/jsmol', os.path.join(SAGE_LOCAL,"share","jsmol"))
++        self.add_static_path('/jsmol/js', os.path.join(SAGE_LOCAL,"share","jsmol","js"))
++        self.add_static_path('/j2s', os.path.join(SAGE_LOCAL,"share","jsmol","j2s"))
++        self.add_static_path('/jsmol/j2s', os.path.join(SAGE_LOCAL,"share","jsmol","j2s"))
++        self.add_static_path('/j2s/core', os.path.join(SAGE_LOCAL,"share","jsmol","j2s","core"))
+         import mimetypes
+         mimetypes.add_type('text/plain','.jmol')
+ 
