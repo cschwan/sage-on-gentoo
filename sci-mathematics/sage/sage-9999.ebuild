@@ -202,7 +202,7 @@ python_prepare() {
 		sage/libs/singular/singular-cdefs.pxi
 
 	# finding JmolData.jar in the right place
-	sed -i "s:\"jmol\", \"JmolData:\"jmol-applet\", \"JmolData:" sage/interfaces/jmoldata.py
+	sed -i "s:\"jmol\", \"JmolData:\"sage-jmol-bin\", \"lib\", \"JmolData:" sage/interfaces/jmoldata.py
 
 	# Make sage-inline-fortran useless by having better fortran settings
 	sed -i \
