@@ -1,4 +1,4 @@
-# Copyright 1999-2014 Gentoo Foundation
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
@@ -34,7 +34,9 @@ src_compile() { :; }
 src_install() {
 	dodoc *.txt || die
 
-	java-pkg_dojar *.jar
+	# The order seems to be important, Jmol.jar needs to be first. 
+	# Using *.jar puts JSpecView.jar first and leads to breakages.
+	java-pkg_dojar Jmol.jar JmolData.jar JmolLib.jar JSpecView.jar
 	java-pkg_dolauncher ${MY_PN} --main org.openscience.jmol.app.Jmol \
 		--java_args "-Xmx512m"
 	insinto /usr/share/${PN}/lib/appletweb

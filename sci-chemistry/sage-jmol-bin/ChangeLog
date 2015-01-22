@@ -1,3 +1,9 @@
+*sage-jmol-bin-14.2.4-r1 (22 Jan 2015)
+
+  22 Jan 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  +sage-jmol-bin-14.2.4-r1.ebuild, -sage-jmol-bin-14.2.4.ebuild:
+  Fix the jar order for package.env. This should fix issue #332.
+
   03 Dec 2014; François Bissey <francois.bissey@canterbury.ac.nz>
   sage-jmol-bin-14.2.4.ebuild:
   jmol and sage-jmol-bin do clash.
