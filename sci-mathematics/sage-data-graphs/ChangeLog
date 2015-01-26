@@ -2,6 +2,10 @@
 # Copyright 1999-2015 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  26 Jan 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-data-graphs-20130920.ebuild:
+  install all files in sage-data-graphs
+
 *sage-data-graphs-20130920 (26 Jan 2015)
 
   26 Jan 2015; François Bissey <francois.bissey@canterbury.ac.nz>

@@ -25,5 +25,5 @@ S="${WORKDIR}"/${MY_P}
 
 src_install() {
 	insinto /usr/share/sage/graphs
-	doins graphs.db isgci_sage.xml
+	doins *
 }
