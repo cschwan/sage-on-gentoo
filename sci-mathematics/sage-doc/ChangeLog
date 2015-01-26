@@ -1,6 +1,10 @@
 # ChangeLog for sci-mathematics/sage-doc
-# Copyright 1999-2014 Gentoo Foundation; Distributed under the GPL v2
+# Copyright 1999-2015 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
+
+  26 Jan 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-doc-9999-r1.ebuild:
+  removin dev tool patch as the stuff has been removed upstream
 
   19 Nov 2014; François Bissey <francois.bissey@canterbury.ac.nz>
   sage-doc-6.4.ebuild, sage-doc-9999-r1.ebuild:

@@ -1,4 +1,4 @@
-# Copyright 1999-2014 Gentoo Foundation
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
@@ -48,15 +48,12 @@ RDEPEND="${DEPEND}
 
 S="${WORKDIR}/sage-${PV}/src"
 
-PATCHES=( "${FILESDIR}"/${PN}-6.0-misc.patch
-	"${FILESDIR}"/${PN}-dev.patch )
+PATCHES=( "${FILESDIR}"/${PN}-6.0-misc.patch )
 
 python_prepare_all() {
 	distutils-r1_python_prepare_all
 
 	cd doc
-	# remove dev tools
-	rm -rf en/reference/dev
 
 	# Put singular help file where it is expected
 	cp "${WORKDIR}"/Singular/3-1-6/info/singular.hlp ./
