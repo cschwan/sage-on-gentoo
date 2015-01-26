@@ -2,6 +2,11 @@
 # Copyright 1999-2015 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  26 Jan 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-9999.ebuild:
+  bump neutering patches for 6.5.beta6. Also sqlalchemy is no more a standard
+  sage package.
+
   21 Jan 2015; François Bissey <francois.bissey@canterbury.ac.nz>
   sage-9999.ebuild:
   Fix location of jmol in jmoldata.py for new sage-jmol-bin

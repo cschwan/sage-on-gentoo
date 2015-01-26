@@ -26,7 +26,7 @@ fi
 DESCRIPTION="Math software for algebra, geometry, number theory, cryptography and numerical computation"
 HOMEPAGE="http://www.sagemath.org"
 SRC_URI="${SRC_URI}
-	mirror://sagemath/patches/${PN}-6.5-r1-neutering.tar.bz2"
+	mirror://sagemath/patches/${PN}-6.5-r2-neutering.tar.bz2"
 
 LICENSE="GPL-2"
 SLOT="0"
@@ -93,7 +93,6 @@ RDEPEND="${CDEPEND}
 	>=dev-python/pycrypto-2.1.0[${PYTHON_USEDEP}]
 	>=dev-python/rpy-2.3.8[${PYTHON_USEDEP}]
 	>=dev-python/sphinx-1.2.2[${PYTHON_USEDEP}]
-	>=dev-python/sqlalchemy-0.5.8[${PYTHON_USEDEP}]
 	>=dev-python/sympy-0.7.5[${PYTHON_USEDEP}]
 	>=media-gfx/tachyon-0.98.9[png]
 	>=sci-libs/cddlib-094f-r2
@@ -142,11 +141,11 @@ python_prepare() {
 	rm sage/misc/package.py
 
 	# Remove sage's git capabilities
-	epatch "${WORKDIR}"/patches/${PN}-6.2-hg.patch
+	epatch "${WORKDIR}"/patches/${PN}-6.5-hg.patch
 	rm -rf sage/dev
 
 	# Remove sage cmdline tests related to these
-	epatch "${WORKDIR}"/patches/${PN}-6.4-cmdline.patch
+	epatch "${WORKDIR}"/patches/${PN}-6.5-cmdline.patch
 
 	# replace pexpect with sage pinned version
 	epatch "${FILESDIR}"/${PN}-6.2-pexpect.patch
