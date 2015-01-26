@@ -4,6 +4,10 @@
 
   26 Jan 2015; François Bissey <francois.bissey@canterbury.ac.nz>
   sage-9999.ebuild:
+  bump dependency on sage-data-graphs in sage-9999
+
+  26 Jan 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-9999.ebuild:
   Bump neutering patch again. This time all t are crossed and all the i are
   dotted.
 
