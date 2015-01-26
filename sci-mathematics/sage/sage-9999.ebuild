@@ -7,9 +7,6 @@ EAPI="5"
 PYTHON_COMPAT=( python2_7 )
 PYTHON_REQ_USE="readline,sqlite"
 
-# disable parallel build - Sage has its own method (see src_configure)
-DISTUTILS_NO_PARALLEL_BUILD="1"
-
 inherit distutils-r1 eutils flag-o-matic multilib multiprocessing prefix toolchain-funcs versionator
 
 if [[ ${PV} = *9999* ]]; then
@@ -26,7 +23,7 @@ fi
 DESCRIPTION="Math software for algebra, geometry, number theory, cryptography and numerical computation"
 HOMEPAGE="http://www.sagemath.org"
 SRC_URI="${SRC_URI}
-	mirror://sagemath/patches/${PN}-6.5-r2-neutering.tar.bz2"
+	mirror://sagemath/patches/${PN}-6.5-r3-neutering.tar.bz2"
 
 LICENSE="GPL-2"
 SLOT="0"
