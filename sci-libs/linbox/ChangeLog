@@ -1,6 +1,10 @@
 # ChangeLog for sci-libs/linbox
-# Copyright 1999-2013 Gentoo Foundation; Distributed under the GPL v2
+# Copyright 1999-2015 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
+
+  27 Jan 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  linbox-1.3.2.ebuild:
+  Removing clang dependency on mac-os. The mac os problems are deeper than that.
 
   08 Jan 2013; François Bissey <francois.bissey@canterbury.ac.nz>
   files/linbox-1.3.2-clang-fix.patch:
@@ -250,4 +254,3 @@
   06 Nov 2009; Christopher Schwan <cschwan@students.uni-mainz.de>
   +linbox-1.1.6.ebuild:
   Initial import
-

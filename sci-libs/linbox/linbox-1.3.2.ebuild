@@ -1,4 +1,4 @@
-# Copyright 1999-2013 Gentoo Foundation
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
@@ -28,9 +28,6 @@ CDEPEND="dev-libs/gmp[cxx]
 	~sci-libs/fflas-ffpack-1.6.0
 	virtual/cblas
 	sage? ( dev-libs/ntl )
-	ppc-macos? ( sys-devel/clang )
-	x86-macos? ( sys-devel/clang )
-	x64-macos? ( sys-devel/clang )
 	sci-libs/iml
 	dev-libs/mpfr"
 DEPEND="${CDEPEND}
@@ -45,10 +42,6 @@ DOCS=( ChangeLog README NEWS TODO )
 
 pkg_setup() {
 	append-libs "mpfr" "iml"
-
-	if  [[ ${CHOST} == *-darwin* ]] ; then
-		export CXX=clang++
-	fi
 }
 
 src_configure() {
