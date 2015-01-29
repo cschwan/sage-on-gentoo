@@ -1,6 +1,12 @@
 # ChangeLog for sci-mathematics/pari
-# Copyright 1999-2014 Gentoo Foundation; Distributed under the GPL v2
+# Copyright 1999-2015 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/sci-mathematics/pari/ChangeLog,v 1.87 2012/03/06 17:06:06 bicatali Exp $
+
+*pari-2.7.1-r2 (29 Jan 2015)
+
+  29 Jan 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  +files/pari-2.7.1-cb_pari_err_handle.patch, +pari-2.7.1-r2.ebuild:
+  New patch set for sage-6.5, may be incompatible with previous stuff.
 
 *pari-2.7.1-r1 (29 Sep 2014)
 
