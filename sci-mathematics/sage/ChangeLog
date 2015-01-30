@@ -4,6 +4,10 @@
 
   30 Jan 2015; François Bissey <francois.bissey@canterbury.ac.nz>
   sage-9999.ebuild:
+  bump sagenb dependency see http://trac.sagemath.org/ticket/17645
+
+  30 Jan 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-9999.ebuild:
   bump package patch (again) for sage 6.5
 
   29 Jan 2015; François Bissey <francois.bissey@canterbury.ac.nz>
