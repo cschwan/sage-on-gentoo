@@ -2,6 +2,10 @@
 # Copyright 1999-2015 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  30 Jan 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-9999.ebuild:
+  bump package patch (again) for sage 6.5
+
   29 Jan 2015; François Bissey <francois.bissey@canterbury.ac.nz>
   sage-6.4-r1.ebuild, sage-9999.ebuild:
   adjust pari dependencies in 6.4 and 9999

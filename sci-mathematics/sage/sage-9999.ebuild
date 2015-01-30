@@ -23,7 +23,7 @@ fi
 DESCRIPTION="Math software for algebra, geometry, number theory, cryptography and numerical computation"
 HOMEPAGE="http://www.sagemath.org"
 SRC_URI="${SRC_URI}
-	mirror://sagemath/patches/${PN}-6.5-r4-neutering.tar.bz2"
+	mirror://sagemath/patches/${PN}-6.5-r5-neutering.tar.bz2"
 
 LICENSE="GPL-2"
 SLOT="0"
