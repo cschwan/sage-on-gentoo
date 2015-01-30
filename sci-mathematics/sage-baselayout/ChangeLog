@@ -1,6 +1,10 @@
 # ChangeLog for sci-mathematics/sage-baselayout
-# Copyright 1999-2014 Gentoo Foundation; Distributed under the GPL v2
+# Copyright 1999-2015 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
+
+  30 Jan 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-baselayout-9999.ebuild:
+  bump bin patch for upcoming sage 6.5
 
   18 Dec 2014; François Bissey <francois.bissey@canterbury.ac.nz>
   sage-baselayout-9999.ebuild:
