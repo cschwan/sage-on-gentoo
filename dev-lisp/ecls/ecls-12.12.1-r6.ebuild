@@ -1,4 +1,4 @@
-# Copyright 1999-2014 Gentoo Foundation
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-lisp/ecls/ecls-12.12.1-r5.ebuild,v 1.1 2013/05/29 13:24:25 grozin Exp $
 
@@ -15,7 +15,7 @@ RESTRICT="mirror"
 LICENSE="BSD LGPL-2"
 SLOT="0/${PV}"
 KEYWORDS="~amd64 ~ppc ~sparc ~x86 ~ppc-macos ~x86-macos ~x64-macos"
-IUSE="debug emacs gengc precisegc sse +threads +unicode X"
+IUSE="debug emacs gengc precisegc cpu_flags_x86_sse +threads +unicode X"
 
 CDEPEND="dev-libs/gmp
 		virtual/libffi
@@ -55,7 +55,7 @@ src_configure() {
 		$(use_enable gengc) \
 		$(use_enable precisegc) \
 		$(use_with debug debug-cflags) \
-		$(use_with sse) \
+		$(use_with cpu_flags_x86_sse sse) \
 		$(use_enable threads) \
 		$(use_with threads __thread) \
 		$(use_enable unicode) \
