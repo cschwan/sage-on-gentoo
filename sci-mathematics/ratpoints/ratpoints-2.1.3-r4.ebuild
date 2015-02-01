@@ -1,4 +1,4 @@
-# Copyright 1999-2014 Gentoo Foundation
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
@@ -13,7 +13,7 @@ SRC_URI="http://www.mathe2.uni-bayreuth.de/stoll/programs/${P}.tar.gz"
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64 ~ppc ~x86 ~amd64-linux ~x86-linux ~x86-macos ~ppc-macos ~x64-macos"
-IUSE="doc sse2"
+IUSE="doc cpu_flags_x86_sse2"
 
 RESTRICT="mirror"
 
@@ -34,7 +34,7 @@ pkg_setup() {
 		append-cflags -fnested-functions
 	fi
 
-	if use sse2 ; then
+	if use cpu_flags_x86_sse2 ; then
 		append-cflags -DUSE_SSE
 	fi
 
