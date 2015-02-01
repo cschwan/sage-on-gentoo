@@ -1,6 +1,10 @@
 # ChangeLog for sci-mathematics/qsieve
-# Copyright 1999-2014 Gentoo Foundation; Distributed under the GPL v2
+# Copyright 1999-2015 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
+
+  01 Feb 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  qsieve-3.02.ebuild:
+  migrating to cpu_flags_x86 - issue #333
 
   14 Aug 2014; François Bissey <francois.bissey@canterbury.ac.nz>
   qsieve-3.02.ebuild:

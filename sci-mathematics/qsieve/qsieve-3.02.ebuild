@@ -1,4 +1,4 @@
-# Copyright 1999-2014 Gentoo Foundation
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
@@ -13,7 +13,7 @@ SRC_URI="http://www.thorstenreinecke.de/downloads/${P}.tar.bz2"
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64 ~x86 ~amd64-linux ~x86-linux ~x86-macos ~x64-macos"
-IUSE="doc sse2"
+IUSE="doc cpu_flags_x86_sse2"
 
 RESTRICT="mirror"
 
@@ -27,7 +27,7 @@ PATCHES=( "${FILESDIR}"/${PN}-3.02-fix-programming-errors.patch )
 src_configure() {
 	myeconfargs=(
 		$(use_enable doc reference-manual)
-		$(use_enable sse2 SSE2)
+		$(use_enable cpu_flags_x86_sse2 SSE2)
 	)
 
 	autotools-utils_src_configure
