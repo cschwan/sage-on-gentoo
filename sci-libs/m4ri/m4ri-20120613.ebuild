@@ -1,4 +1,4 @@
-# Copyright 1999-2014 Gentoo Foundation
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
@@ -13,7 +13,7 @@ SRC_URI="mirror://sageupstream/lib${PN}/lib${P}.tar.bz2"
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64 ~ppc64 ~x86 ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~x64-macos"
-IUSE="debug openmp sse2 static-libs"
+IUSE="debug openmp cpu_flags_x86_sse2 static-libs"
 
 S="${WORKDIR}"/lib${P}
 
@@ -44,7 +44,7 @@ src_configure() {
 	myeconfargs=(
 		$(use_enable debug)
 		$(use_enable openmp)
-		$(use_enable sse2)
+		$(use_enable cpu_flags_x86_sse2 sse2)
 	)
 
 	autotools-utils_src_configure
