@@ -1,3 +1,9 @@
+*sage-jmol-bin-14.2.11 (08 Feb 2015)
+
+  08 Feb 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  +sage-jmol-bin-14.2.11.ebuild:
+  Bump for 6.5.rc1
+
 *sage-jmol-bin-14.2.4-r1 (22 Jan 2015)
 
   22 Jan 2015; François Bissey <francois.bissey@canterbury.ac.nz>
