@@ -110,7 +110,7 @@ sci-libs/naga
 >=sci-chemistry/jmol-applet-12.3.27
 sci-libs/jmol-acme
 sci-chemistry/jspecview
-sci-chemistry/sage-jmol-bin
+~sci-chemistry/sage-jmol-bin-14.2.11
 virtual/jre:1.7
 virtual/jdk:1.7
 dev-java/icedtea-bin:7
