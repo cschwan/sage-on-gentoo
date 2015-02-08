@@ -7,11 +7,12 @@ EAPI=5
 inherit java-pkg-2 versionator
 
 MY_PN="Jmol"
-MPV=$(get_version_component_range 1-2)
+MY_PM="jmol"
 MY_P=${MY_PN}-${PV}_2015.01.20
+MY_SP=${MY_PM}-${PV}_2015.01.20
 DESCRIPTION="Jmol is a java molecular viever for 3-D chemical structures."
 HOMEPAGE="http://jmol.sourceforge.net/"
-SRC_URI="mirror://sourceforge/${MY_PN}/${MPV}/${PV}/${MY_P}-binary.zip"
+SRC_URI="mirror://sourceforge/jmol/Jmol/${MY_P}-binary.tar.gz"
 
 LICENSE="LGPL-2.1"
 SLOT="0"
@@ -24,7 +25,7 @@ RDEPEND="${DEPEND}
 
 QA_PREBUILT="*"
 
-S="${WORKDIR}"/${MY_P}
+S="${WORKDIR}"/${MY_SP}
 
 src_prepare(){
 	rm jmol.bat jmol.mac
