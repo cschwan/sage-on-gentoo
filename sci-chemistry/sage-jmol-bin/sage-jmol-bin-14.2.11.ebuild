@@ -19,7 +19,8 @@ SLOT="0"
 KEYWORDS="~amd64 ~x86"
 iUSE=""
 
-DEPEND="!sci-chemistry/jmol"
+DEPEND="app-arch/unzip
+	!sci-chemistry/jmol"
 RDEPEND="${DEPEND}
 	>=virtual/jre-1.7"
 
@@ -29,6 +30,9 @@ S="${WORKDIR}"/${MY_SP}
 
 src_prepare(){
 	rm jmol.bat jmol.mac
+
+	# jsmol is zipped inside the tarball
+	unzip -q jsmol.zip || die
 }
 
 src_compile() { :; }
