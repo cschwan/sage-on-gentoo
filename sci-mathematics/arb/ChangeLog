@@ -1,0 +1,7 @@
+*arb-2.5.0 (10 Feb 2015)
+
+  10 Feb 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  +arb-2.5.0.ebuild, +files/arb-2.5.0-dedekind_sum-check.patch,
+  +files/arb-2.5.0-makefile.in.patch, +metadata.xml:
+  Adding the sage optional package arb to the overlay. This will probably be
+  made a standard package at some point in the not so distant  future.

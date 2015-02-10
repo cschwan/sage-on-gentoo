@@ -1,0 +1,58 @@
+Author: Francois Bissey <francois.bissey@canterbury.ac.nz>
+Date:   Tue Feb 11 09:44:00 2015 +1300
+
+	arb is derived from flint and the Makefile.in suffers all the same diseases:
+	  * Lack of a libdir option to switch between lib and lib64
+          * Unquoted variables that could contain spaces
+          * linking doesn't respect the FLAGS.
+
+	This patch is fixing all these at once.
+
+--- Makefile.in.orig	2015-02-11 09:33:25.995055933 +1300
++++ Makefile.in	2015-02-11 09:41:06.505771122 +1300
+@@ -4,6 +4,8 @@
+   $(DLPATH):=$(DLPATH_ADD)
+ endif
+ 
++LIBDIR=lib
++
+ QUIET_CC  = @echo '   ' CC  ' ' $@;
+ QUIET_CXX = @echo '   ' CXX ' ' $@;
+ QUIET_AR  = @echo '   ' AR  ' ' $@;
+@@ -90,10 +92,10 @@
+ 	$(AT)$(foreach dir, $(BUILD_DIRS), mkdir -p build/$(dir); BUILD_DIR=../build/$(dir); export BUILD_DIR; MOD_DIR=$(dir); export MOD_DIR; $(MAKE) -f ../Makefile.subdirs -C $(dir) shared || exit $$?;)
+ 	$(AT)if [ "$(WANT_NTL)" -eq "1" ]; then \
+ 	  $(MAKE) build/interfaces/NTL-interface.lo; \
+-	  $(CXX) $(ABI_FLAG) -shared $(EXTRA_SHARED_FLAGS) build/interfaces/NTL-interface.lo $(LOBJS) $(MOD_LOBJS) $(EXT_OBJS) $(LIBS2) -o $(ARB_LIB); \
++	  $(CXX) $(CXXFLAGS) $(ABI_FLAG) -shared $(EXTRA_SHARED_FLAGS) build/interfaces/NTL-interface.lo $(LOBJS) $(MOD_LOBJS) $(EXT_OBJS) $(LDFLAGS) $(LIBS2) -o $(ARB_LIB); \
+ 	fi
+ 	$(AT)if [ "$(WANT_NTL)" -ne "1" ]; then \
+-	  $(CC) $(ABI_FLAG) -shared $(EXTRA_SHARED_FLAGS) $(LOBJS) $(MOD_LOBJS) $(EXT_OBJS) $(LIBS2) -o $(ARB_LIB); \
++	  $(CC) $(CFLAGS) $(ABI_FLAG) -shared $(EXTRA_SHARED_FLAGS) $(LOBJS) $(MOD_LOBJS) $(EXT_OBJS) $(LDFLAGS) $(LIBS2) -o $(ARB_LIB); \
+ 	fi
+ 
+ libarb.a: $(OBJS) $(LIB_SOURCES) $(EXT_SOURCES) $(HEADERS) $(EXT_HEADERS) | build build/interfaces
+@@ -157,17 +159,17 @@
+ endif
+ 
+ install: library
+-	mkdir -p $(DESTDIR)$(PREFIX)/lib
+-	mkdir -p $(DESTDIR)$(PREFIX)/include
++	mkdir -p "$(DESTDIR)$(PREFIX)/$(LIBDIR)"
++	mkdir -p "$(DESTDIR)$(PREFIX)/include"
+ 	$(AT)if [ "$(ARB_SHARED)" -eq "1" ]; then \
+-		cp $(ARB_LIB) $(DESTDIR)$(PREFIX)/lib; \
++		cp $(ARB_LIB) "$(DESTDIR)$(PREFIX)/$(LIBDIR)"; \
+ 	fi
+ 	$(AT)if [ "$(ARB_STATIC)" -eq "1" ]; then \
+-		cp libarb.a $(DESTDIR)$(PREFIX)/lib; \
++		cp libarb.a "$(DESTDIR)$(PREFIX)/$(LIBDIR)"; \
+ 	fi
+-	cp $(HEADERS) $(DESTDIR)$(PREFIX)/include
++	cp $(HEADERS) "$(DESTDIR)$(PREFIX)/include"
+ 	$(AT)if [ ! -z $(EXT_HEADERS) ]; then \
+-		cp $(EXT_HEADERS) $(DESTDIR)$(PREFIX)/include; \
++		cp $(EXT_HEADERS) "$(DESTDIR)$(PREFIX)/include"; \
+ 	fi
+ 
+ build:
