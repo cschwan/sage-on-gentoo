@@ -2,6 +2,10 @@
 # Copyright 1999-2015 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  14 Feb 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-9999.ebuild:
+  Adjust maxima dependency in sage 9999 for upcoming 6.5 release.
+
   09 Feb 2015; François Bissey <francois.bissey@canterbury.ac.nz>
   sage-9999.ebuild:
   bumping neutering patch again...
