@@ -1,6 +1,6 @@
-# Copyright 1999-2014 Gentoo Foundation
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sci-mathematics/maxima/maxima-5.33.0.ebuild,v 1.1 2014/04/06 11:11:41 grozin Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-mathematics/maxima/maxima-5.35.1-r1.ebuild,v 1.1 2014/12/25 16:00:06 grozin Exp $
 
 EAPI=5
 
@@ -14,7 +14,7 @@ LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64 ~ppc ~x86 ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~x64-macos"
 
-# Supported lisps (the first one is the default)
+# Supported lisps
 LISPS=(     sbcl cmucl gcl             ecls clozurecl clisp )
 # <lisp> supports readline: . - no, y - yes
 SUPP_RL=(   .    .     y               .    .         y     )
@@ -62,7 +62,14 @@ for ((n--; n >= 0; n--)); do
 	fi
 done
 
-DEF_DEP="${DEF_DEP} `depends 0`"
+# default lisp
+if use arm; then
+	DEF_LISP=2 # gcl
+else
+	DEF_LISP=0 # sbcl
+fi
+
+DEF_DEP="${DEF_DEP} `depends ${DEF_LISP}`"
 
 n=${#LISPS[*]}
 for ((n--; n > 0; n--)); do
@@ -87,15 +94,15 @@ pkg_setup() {
 	done
 
 	if [ -z "${NLISPS}" ]; then
-		ewarn "No lisp specified in USE flags, choosing ${LISPS[0]} as default"
-		NLISPS=0
+		ewarn "No lisp specified in USE flags, choosing ${LISPS[${DEF_LISP}]} as default"
+		NLISPS=${DEF_LISP}
 	fi
 }
 
 src_prepare() {
 	local n PATCHES v
 	PATCHES=( imaxima-0 rmaxima-0 wish-1 xdg-utils-0 maxima-5.33.0-0001-taylor2-Avoid-blowing-the-stack-when-diff-expand-isn
-		maxima-5.34.1-matrixexp undoing_true_false_printing_patch )
+		maxima-5.34.1-matrixexp undoing_true_false_printing_patch maxima-5.35.1-stdin-illegal-seek )
 
 	n=${#PATCHES[*]}
 	for ((n--; n >= 0; n--)); do
@@ -109,6 +116,9 @@ src_prepare() {
 			epatch "${FILESDIR}"/${LISPS[${n}]}-${v}.patch
 		fi
 	done
+
+	# this file is wrong in 5.35.1
+	rm -f src/sys-proclaim.lisp
 
 	# bug #343331
 	rm share/Makefile.in || die
@@ -138,11 +148,13 @@ src_configure() {
 		done
 	fi
 
-	econf ${CONFS} $(use_with tk wish) --with-lispdir="${SITELISP}"/${PN}
+	# re-generate sys-proclaim.lisp (only affects gcl)
+	econf ${CONFS} --enable-sys-proclaim $(use_with tk wish) --with-lispdir="${SITELISP}"/${PN}
 }
 
 src_install() {
-	einstall emacsdir="${ED}${SITELISP}/${PN}" || die "einstall failed"
+	docompress -x /usr/share/info
+	emake DESTDIR="${D}" emacsdir="${SITELISP}/${PN}" install
 
 	use tk && make_desktop_entry xmaxima xmaxima \
 		/usr/share/${PN}/${PV}/xmaxima/maxima-new.png \
@@ -170,14 +182,6 @@ src_install() {
 		insinto "${ECLLIB#${EPREFIX}}"
 		doins src/binary-ecl/maxima.fas
 	fi
-}
-
-pkg_preinst() {
-	# some lisps do not read compress info files (bug #176411)
-	local infofile
-	for infofile in "${ED}"/usr/share/info/*.bz2 ; do
-		bunzip2 "${infofile}"
-	done
 }
 
 pkg_postinst() {
