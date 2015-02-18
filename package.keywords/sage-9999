@@ -16,6 +16,7 @@ dev-python/characteristic
 ~dev-python/flask-autoindex-0.5
 ~dev-python/flask-babel-0.8
 ~dev-python/flask-openid-1.2.4
+~dev-python/setuptools-9.1
 dev-python/flask-oldsessions
 ~dev-python/flask-silk-0.2
 dev-python/gdmodule
