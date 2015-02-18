@@ -2,6 +2,10 @@
 # Copyright 1999-2015 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  18 Feb 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-9999.ebuild:
+  bump cython dependency for 6.6.beta0
+
 *sage-6.5 (18 Feb 2015)
 
   18 Feb 2015; François Bissey <francois.bissey@canterbury.ac.nz>
