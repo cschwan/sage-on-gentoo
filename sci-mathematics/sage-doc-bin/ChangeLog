@@ -1,3 +1,11 @@
+*sage-doc-bin-6.5 (18 Feb 2015)
+
+  18 Feb 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  +sage-doc-bin-6.5.ebuild:
+  Temporary ebuild for sage-doc-bin the html shipped has been generated from
+  sage-6.5.rc3 with the sage-doc-9999-r1 ebuild. to be  replaced when official
+  doc comes out.
+
   08 Dec 2014; François Bissey <francois.bissey@canterbury.ac.nz>
   sage-doc-bin-6.4.ebuild:
   Make shipping html the default in sage-doc-bin
