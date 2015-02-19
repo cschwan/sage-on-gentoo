@@ -4,6 +4,10 @@
 
   19 Feb 2015; François Bissey <francois.bissey@canterbury.ac.nz>
   maxima-5.35.1-r2.ebuild:
+  issue #335 prefix is still not behaving SITELISP needs prefixing.
+
+  19 Feb 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  maxima-5.35.1-r2.ebuild:
   D-> ED for proper prefix support see issue #335
 
 *maxima-5.35.1-r2 (14 Feb 2015)
