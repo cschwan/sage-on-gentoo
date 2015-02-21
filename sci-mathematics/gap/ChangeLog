@@ -1,6 +1,12 @@
 # ChangeLog for sci-mathematics/gap
-# Copyright 1999-2014 Gentoo Foundation; Distributed under the GPL v2
+# Copyright 1999-2015 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
+
+*gap-4.7.7 (21 Feb 2015)
+
+  21 Feb 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  +files/gap-4.7.7-testall.patch, +gap-4.7.7.ebuild:
+  gap bump for sage 6.6.beta1 - should be compatible with gap 4.7.5
 
   31 Oct 2014; François Bissey <francois.bissey@canterbury.ac.nz>
   -files/64gap-gentoo.el,
