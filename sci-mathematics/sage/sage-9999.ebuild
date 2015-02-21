@@ -81,7 +81,7 @@ RDEPEND="${CDEPEND}
 	>=dev-lang/R-3.1.2
 	>=dev-python/cvxopt-1.1.7[glpk,${PYTHON_USEDEP}]
 	>=dev-python/gdmodule-0.56-r2[png,${PYTHON_USEDEP}]
-	~dev-python/ipython-2.3.0[notebook,${PYTHON_USEDEP}]
+	>=dev-python/ipython-2.3.0[notebook,${PYTHON_USEDEP}]
 	>=dev-python/jinja-2.5.5[${PYTHON_USEDEP}]
 	<dev-python/matplotlib-1.4.0[${PYTHON_USEDEP}]
 	>=dev-python/mpmath-0.18[${PYTHON_USEDEP}]

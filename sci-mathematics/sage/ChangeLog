@@ -4,6 +4,11 @@
 
   21 Feb 2015; François Bissey <francois.bissey@canterbury.ac.nz>
   sage-9999.ebuild:
+  upstream trivially upgraded ipython for 2.3.0 to 2.4.1 without change to
+  sage's code so any ipython from 2.3.0 to 2.4.1 is good.
+
+  21 Feb 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-9999.ebuild:
   bump gap dependency for sage 6.6.beta1
 
   18 Feb 2015; François Bissey <francois.bissey@canterbury.ac.nz>
