@@ -23,11 +23,11 @@ fi
 DESCRIPTION="Math software for algebra, geometry, number theory, cryptography and numerical computation"
 HOMEPAGE="http://www.sagemath.org"
 SRC_URI="${SRC_URI}
-	mirror://sagemath/patches/${PN}-6.5-r7-neutering.tar.bz2"
+	mirror://sagemath/patches/${PN}-6.6-neutering.tar.bz2"
 
 LICENSE="GPL-2"
 SLOT="0"
-IUSE="latex testsuite debug"
+IUSE="latex testsuite debug arb"
 
 RESTRICT="mirror test"
 
@@ -70,6 +70,7 @@ CDEPEND="dev-libs/gmp
 	sys-libs/zlib
 	dev-python/python-pkgconfig
 	virtual/cblas
+	arb? ( >=sci-mathematics/arb-2.5.0 )
 	!sci-mathematics/genus2reduction
 	!sci-mathematics/sage-extcode
 	!sci-mathematics/sage-matroids"
@@ -134,7 +135,7 @@ python_prepare() {
 	epatch "${FILESDIR}"/${PN}-6.4-blas.patch
 
 	# Remove sage's package management system
-	epatch "${WORKDIR}"/patches/${PN}-6.5-package.patch
+	epatch "${WORKDIR}"/patches/${PN}-6.6-package.patch
 	rm sage/misc/package.py
 
 	# Remove sage's git capabilities
@@ -251,6 +252,11 @@ python_configure() {
 	export SAGE_SRC=`pwd`
 	export SAGE_VERSION=${PV}
 	export SAGE_NUM_THREADS=$(makeopts_jobs)
+	if use arb; then
+		export WANT_ARB="True"
+	else
+		export WANT_ARB="False"
+	fi
 	if use debug; then
 		export SAGE_DEBUG=1
 	fi

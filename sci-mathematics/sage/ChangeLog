@@ -2,6 +2,11 @@
 # Copyright 1999-2015 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  21 Feb 2015; François Bissey <francois.bissey@canterbury.ac.nz> metadata.xml,
+  sage-9999.ebuild:
+  bump the neutering patch for the inclusion of the new optional dependency on
+  arb. Make arb a useflag.
+
   21 Feb 2015; François Bissey <francois.bissey@canterbury.ac.nz>
   sage-9999.ebuild:
   upstream trivially upgraded ipython for 2.3.0 to 2.4.1 without change to
