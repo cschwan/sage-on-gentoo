@@ -78,7 +78,6 @@ src_prepare() {
 
 	# create expected folders under extcode
 	mkdir -p "${EXTSRC}"/sage
-	#mkdir -p "${EXTSRC}"/genus2reduction
 }
 
 src_install() {
@@ -129,9 +128,6 @@ src_install() {
 
 	insinto /usr/share/sage
 	doins ../../COPYING.txt
-
-	insinto /etc
-	doins "${FILESDIR}"/gprc.expect
 
 	if use X ; then
 		doicon "${WORKDIR}"/sage.svg
