@@ -1,3 +1,9 @@
+*libgap-4.7.7 (21 Feb 2015)
+
+  21 Feb 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  +libgap-4.7.7.ebuild:
+  bump libgap for 6.6.beta1 - should be compatible with 4.7.5
+
 *libgap-4.7.5-r1 (18 Nov 2014)
 
   18 Nov 2014; François Bissey <francois.bissey@canterbury.ac.nz>
