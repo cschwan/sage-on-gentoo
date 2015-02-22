@@ -2,6 +2,10 @@
 # Copyright 1999-2015 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  22 Feb 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-6.4-r1.ebuild, sage-6.5.ebuild:
+  pin down cython in 6.4 and 6.5. We don't to try them with cython 0.22+
+
   21 Feb 2015; François Bissey <francois.bissey@canterbury.ac.nz> metadata.xml,
   sage-9999.ebuild:
   bump the neutering patch for the inclusion of the new optional dependency on
