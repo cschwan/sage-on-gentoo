@@ -1,3 +1,9 @@
+*sage-doc-bin-6.5-r1 (22 Feb 2015)
+
+  22 Feb 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  +sage-doc-bin-6.5-r1.ebuild, -sage-doc-bin-6.5.ebuild:
+  update the documentation to the official release.
+
 *sage-doc-bin-6.5 (18 Feb 2015)
 
   18 Feb 2015; François Bissey <francois.bissey@canterbury.ac.nz>

@@ -15,13 +15,12 @@ DESCRIPTION="Documentation, tutorials and help files for Sage (pre-built html/pd
 HOMEPAGE="http://www.sagemath.org/"
 SRC_URI="mirror://sagemath/${PV}.tar.gz -> sage-${PV}.tar.gz
 	http://www.mathematik.uni-kl.de/ftp/pub/Math/Singular/SOURCES/3-1-6/Singular-3-1-6-share.tar.gz
-	html? ( mirror://sagemathdoc/${MY_P_HTML}.tar.bz2 )"
-#	pdf? ( mirror://sagemathdoc/${MY_P_PDF}.tar.bz2 )"
+	html? ( mirror://sagemathdoc/${MY_P_HTML}.tar.bz2 )
+	pdf? ( mirror://sagemathdoc/${MY_P_PDF}.tar.bz2 )"
 
 LICENSE="GPL-2"
 SLOT="0"
-#IUSE="+html pdf"
-IUSE="+html"
+IUSE="+html pdf"
 
 RESTRICT="mirror"
 
@@ -55,10 +54,10 @@ src_prepare() {
 		cp -r "${WORKDIR}"/${MY_P_HTML}/* output/html/
 	fi
 
-#	if use pdf ; then
-#		mkdir -p output/pdf
-#		cp -r "${WORKDIR}"/${MY_P_PDF}/* output/pdf/
-#	fi
+	if use pdf ; then
+		mkdir -p output/pdf
+		cp -r "${WORKDIR}"/${MY_P_PDF}/* output/pdf/
+	fi
 }
 
 src_install() {
