@@ -2,6 +2,11 @@
 # Copyright 1999-2015 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  22 Feb 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-doc-6.5.ebuild:
+  We don't want people to generate pdf in stable release at this stage. Pointed
+  out in issue #338.
+
 *sage-doc-6.5 (18 Feb 2015)
 
   18 Feb 2015; François Bissey <francois.bissey@canterbury.ac.nz>
