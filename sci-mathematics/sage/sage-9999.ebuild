@@ -23,7 +23,7 @@ fi
 DESCRIPTION="Math software for algebra, geometry, number theory, cryptography and numerical computation"
 HOMEPAGE="http://www.sagemath.org"
 SRC_URI="${SRC_URI}
-	mirror://sagemath/patches/${PN}-6.6-neutering.tar.bz2"
+	mirror://sagemath/patches/${PN}-6.6-r1-neutering.tar.bz2"
 
 LICENSE="GPL-2"
 SLOT="0"
@@ -143,7 +143,7 @@ python_prepare() {
 	rm -rf sage/dev
 
 	# Remove sage cmdline tests related to these
-	epatch "${WORKDIR}"/patches/${PN}-6.5-cmdline.patch
+	epatch "${WORKDIR}"/patches/${PN}-6.6-cmdline.patch
 
 	# replace pexpect with sage pinned version
 	epatch "${FILESDIR}"/${PN}-6.2-pexpect.patch
@@ -234,7 +234,7 @@ python_prepare() {
 		-e "s:\"bin\":\"lib\",\"python-exec\",\"${EPYTHON}\":" sage/all.py
 
 	# do not test safe python stuff from trac 13579
-	epatch "${FILESDIR}"/${PN}-6.0-safepython.patch
+	epatch "${FILESDIR}"/${PN}-6.6-safepython.patch
 
 	# 'sage' is not in SAGE_ROOT, but in PATH
 	epatch "${FILESDIR}"/${PN}-5.9-fix-ostools-doctest.patch

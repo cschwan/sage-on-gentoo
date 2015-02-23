@@ -2,6 +2,11 @@
 # Copyright 1999-2015 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  23 Feb 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  +files/sage-6.6-safepython.patch, sage-9999.ebuild:
+  Bump some patches. Finally figured that the big failing doctest in cmdline.py
+  was test the -fixdoctest switch which is of course removed here.
+
   22 Feb 2015; François Bissey <francois.bissey@canterbury.ac.nz>
   sage-6.4-r1.ebuild, sage-6.5.ebuild:
   pin down cython in 6.4 and 6.5. We don't to try them with cython 0.22+
