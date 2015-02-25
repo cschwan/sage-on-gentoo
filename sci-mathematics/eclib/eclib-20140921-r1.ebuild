@@ -1,8 +1,8 @@
-# Copyright 1999-2014 Gentoo Foundation
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
-EAPI="5"
+EAPI=5
 
 inherit eutils autotools-utils vcs-snapshot
 
@@ -17,7 +17,7 @@ IUSE="static-libs flint boost"
 
 RESTRICT="mirror"
 
-RDEPEND=">=sci-mathematics/pari-2.5.0
+RDEPEND=">=sci-mathematics/pari-2.5.0:=
 	>=dev-libs/ntl-5.4.2
 	flint? ( >=sci-mathematics/flint-2.3 )
 	boost? ( dev-libs/boost[threads] )"
