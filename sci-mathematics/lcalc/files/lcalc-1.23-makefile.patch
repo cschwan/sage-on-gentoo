@@ -1,5 +1,5 @@
---- Makefile.orig	2010-08-04 23:47:25.594042595 +1200
-+++ Makefile	2010-08-04 23:49:28.824041638 +1200
+--- src/Makefile.orig	2010-08-04 23:47:25.594042595 +1200
++++ src/Makefile	2010-08-04 23:49:28.824041638 +1200
 @@ -58,7 +58,7 @@
     #MACHINE_SPECIFIC_FLAGS = -mpowerpc -mpowerpc64 -m64
  endif
