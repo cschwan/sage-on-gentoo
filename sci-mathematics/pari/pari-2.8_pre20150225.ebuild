@@ -4,19 +4,19 @@
 
 EAPI=5
 
-inherit git-2 eutils flag-o-matic toolchain-funcs multilib
+inherit eutils flag-o-matic toolchain-funcs multilib
 
+MY_P="pari-2.8-1315-g031c9d6"
 DESCRIPTION="Computer-aided number theory C library and tools"
 HOMEPAGE="http://pari.math.u-bordeaux.fr/"
-EGIT_REPO_URI="http://pari.math.u-bordeaux.fr/git/pari.git"
-EGIT_BRANCH=master
-EGIT_SOURCEDIR="${WORKDIR}/${P}"
+SRC_URI="http://boxen.math.washington.edu/home/jdemeyer/spkg/${MY_P}.tar.gz"
+#SRC_URI="mirror://sageupstream/${PN}/${MY_P}.tar.gz"
 
 LICENSE="GPL-2"
-# Pari dev release have soname of the form pari-{gmp-}-{PV}.so.0
+# Pari dev release have soname of the form pari-{gmp-}-{Major}.{minor}.so.0
 #SLOT="0/4"
 SLOT="0/0"
-KEYWORDS=""
+KEYWORDS="~alpha ~amd64 ~hppa ~mips ~ppc ~ppc64 ~sparc ~x86 ~amd64-linux ~x86-fbsd ~x86-linux ~x86-macos ~x86-solaris"
 IUSE="data doc fltk gmp qt4 X"
 
 RDEPEND="
@@ -29,6 +29,8 @@ RDEPEND="
 	X? ( x11-libs/libX11:0= )"
 DEPEND="${RDEPEND}
 	doc? ( virtual/latex-base )"
+
+S="${WORKDIR}"/${MY_P}
 
 get_compile_dir() {
 	pushd "${S}/config" > /dev/null

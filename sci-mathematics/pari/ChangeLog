@@ -2,6 +2,14 @@
 # Copyright 1999-2015 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/sci-mathematics/pari/ChangeLog,v 1.87 2012/03/06 17:06:06 bicatali Exp $
 
+*pari-2.8_pre20150225 (25 Feb 2015)
+
+  25 Feb 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  +pari-2.8_pre20150225.ebuild, pari-9999.ebuild:
+  ebuild for Jeroen's snapshot of pari 2.8 (or will it be pari 2.9). pari does
+  weird soname stuff for development release. I very much  hope we can trigger a
+  rebuild of stuff by subslots.
+
   25 Feb 2015; François Bissey <francois.bissey@canterbury.ac.nz>
   +files/pari-9999-public_memory_functions.patch, pari-9999.ebuild:
   Add backward compatibility patch with sage in pari-9999
