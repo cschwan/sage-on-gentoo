@@ -51,6 +51,9 @@ src_prepare() {
 		-e "s:install-doc install-examples:install-examples:" \
 		config/Makefile.SH || die "Failed to fix makefile"
 
+	# Compatibility with sage current reporting. To disappear in the future.
+	epatch "${FILESDIR}"/${PN}-9999-public_memory_functions.patch
+
 	# propagate ldflags
 	sed -i \
 		-e 's/$shared $extra/$shared $extra \\$(LDFLAGS)/' \
