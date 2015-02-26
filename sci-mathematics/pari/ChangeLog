@@ -3,6 +3,12 @@
 # $Header: /var/cvsroot/gentoo-x86/sci-mathematics/pari/ChangeLog,v 1.87 2012/03/06 17:06:06 bicatali Exp $
 
   26 Feb 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  pari-2.5.3-r1.ebuild, pari-2.5.3-r2.ebuild, pari-2.5.5-r1.ebuild,
+  pari-2.5.5-r2.ebuild, pari-2.5.5.ebuild:
+  All sources of version of pari lower than 2.7 have been moved into OLD/x.y
+  subfolders.
+
+  26 Feb 2015; François Bissey <francois.bissey@canterbury.ac.nz>
   pari-9999.ebuild:
   migration to git-r3
 

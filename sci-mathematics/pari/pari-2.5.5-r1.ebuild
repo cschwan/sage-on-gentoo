@@ -1,4 +1,4 @@
-# Copyright 1999-2013 Gentoo Foundation
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
@@ -8,7 +8,7 @@ inherit eutils flag-o-matic toolchain-funcs multilib
 
 DESCRIPTION="Computer-aided number theory C library and tools"
 HOMEPAGE="http://pari.math.u-bordeaux.fr/"
-SRC_URI="http://pari.math.u-bordeaux.fr/pub/${PN}/unix/${P}.tar.gz"
+SRC_URI="http://pari.math.u-bordeaux.fr/pub/${PN}/unix/OLD/2.5/${P}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
