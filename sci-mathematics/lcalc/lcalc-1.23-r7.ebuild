@@ -55,12 +55,13 @@ src_prepare() {
 			src/Makefile || die "sed for pari location failed"
 
 		if has_version "=sci-mathematics/pari-2.5*" ; then
-			# This is the patch included in r5, r4 has a different patch
+			# This is the patch included in r5 and r6, r4 has a different patch
 			epatch "${FILESDIR}"/${PN}-1.23-init_stack.patch
 			# patch for pari-2.4+ this pari-2.3 safe.
 			sed -i "s:lgeti:(long)cgeti:g" src/Lcommandline_elliptic.cc \
 				|| die "sed for lgeti failed"
 		elif has_version "=sci-mathematics/pari-2.7*" ; then
+			epatch "${FILESDIR}"/${PN}-1.23-init_stack.patch
 			# compatibility with pari 2.7
 			epatch "${FILESDIR}"/pari-2.7.patch
 		elif has_version ">=sci-mathematics/pari-2.8_pre20150225" ; then
