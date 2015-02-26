@@ -4,13 +4,12 @@
 
 EAPI=5
 
-inherit git-2 eutils flag-o-matic toolchain-funcs multilib
+inherit git-r3 eutils flag-o-matic toolchain-funcs multilib
 
 DESCRIPTION="Computer-aided number theory C library and tools"
 HOMEPAGE="http://pari.math.u-bordeaux.fr/"
 EGIT_REPO_URI="http://pari.math.u-bordeaux.fr/git/pari.git"
 EGIT_BRANCH=master
-EGIT_SOURCEDIR="${WORKDIR}/${P}"
 
 LICENSE="GPL-2"
 # Pari dev release have soname of the form pari-{gmp-}-{PV}.so.0
