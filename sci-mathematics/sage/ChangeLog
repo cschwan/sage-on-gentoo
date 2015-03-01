@@ -3,6 +3,10 @@
 # $Header: $
 
   01 Mar 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-6.4-r1.ebuild, sage-6.5.ebuild:
+  Adjust cython versions available for 6.4 and 6.5 see issue #336
+
+  01 Mar 2015; François Bissey <francois.bissey@canterbury.ac.nz>
   +files/sage-6.6-blas.patch, sage-6.3-r1.ebuild, sage-6.4-r1.ebuild,
   sage-6.5.ebuild, sage-9999.ebuild:
   bump for 6.6.beta2. Bump ipython dependency of old sage ebuild to something in
