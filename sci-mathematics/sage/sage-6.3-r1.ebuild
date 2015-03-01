@@ -80,7 +80,7 @@ RDEPEND="${CDEPEND}
 	>=dev-lang/R-3.1.0
 	>=dev-python/cvxopt-1.1.6[glpk,${PYTHON_USEDEP}]
 	>=dev-python/gdmodule-0.56-r2[png,${PYTHON_USEDEP}]
-	~dev-python/ipython-2.1.0[${PYTHON_USEDEP}]
+	~dev-python/ipython-2.2.0[${PYTHON_USEDEP}]
 	>=dev-python/jinja-2.5.5[${PYTHON_USEDEP}]
 	>=dev-python/matplotlib-1.3.1[${PYTHON_USEDEP}]
 	<dev-python/matplotlib-1.4.0[${PYTHON_USEDEP}]

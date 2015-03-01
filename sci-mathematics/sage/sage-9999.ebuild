@@ -132,7 +132,7 @@ pkg_setup() {
 
 python_prepare() {
 	# ATLAS independence
-	epatch "${FILESDIR}"/${PN}-6.4-blas.patch
+	epatch "${FILESDIR}"/${PN}-6.6-blas.patch
 
 	# Remove sage's package management system
 	epatch "${WORKDIR}"/patches/${PN}-6.6-package.patch
