@@ -37,13 +37,23 @@ DEPEND="!sci-mathematics/sage-doc-bin
 	pdf? ( dev-texlive/texlive-langcyrillic
 		dev-texlive/texlive-langfrench
 		dev-texlive/texlive-langportuguese
-		dev-texlive/texlive-langgerman )"
+		dev-texlive/texlive-langgerman
+		dev-texlive/texlive-langhungarian
+		dev-texlive/texlive-langitalian
+		dev-texlive/texlive-langczechslovak
+		dev-texlive/texlive-langenglish
+		dev-texlive/texlive-langpolish )"
 RDEPEND="${DEPEND}
 	>=dev-python/sphinx-1.2.2[${PYTHON_USEDEP}]
 	pdf? ( dev-texlive/texlive-langcyrillic
 		dev-texlive/texlive-langfrench
 		dev-texlive/texlive-langportuguese
-		dev-texlive/texlive-langgerman )"
+		dev-texlive/texlive-langgerman
+		dev-texlive/texlive-langhungarian
+		dev-texlive/texlive-langitalian
+		dev-texlive/texlive-langczechslovak
+		dev-texlive/texlive-langenglish
+		dev-texlive/texlive-langpolish )"
 
 S="${WORKDIR}/sage-${PV}/src"
 

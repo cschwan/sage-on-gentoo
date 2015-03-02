@@ -2,6 +2,11 @@
 # Copyright 1999-2015 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  02 Mar 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-doc-9999-r1.ebuild:
+  Improvement on the list of dependency for building latex documentation, issue
+  #210.
+
   22 Feb 2015; François Bissey <francois.bissey@canterbury.ac.nz>
   sage-doc-6.5.ebuild:
   We don't want people to generate pdf in stable release at this stage. Pointed
