@@ -74,8 +74,7 @@ CDEPEND="dev-libs/gmp
 	!sci-mathematics/sage-extcode
 	!sci-mathematics/sage-matroids"
 
-DEPEND="${CDEPEND}
-	!dev-python/gmpy"
+DEPEND="${CDEPEND}"
 
 RDEPEND="${CDEPEND}
 	>=dev-lang/R-3.1.2
