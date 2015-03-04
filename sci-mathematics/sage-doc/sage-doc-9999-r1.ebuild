@@ -24,9 +24,15 @@ HOMEPAGE="http://www.sagemath.org/"
 SRC_URI="${SRC_URI}
 	http://www.mathematik.uni-kl.de/ftp/pub/Math/Singular/SOURCES/3-1-6/Singular-3-1-6-share.tar.gz"
 
+LANGS="ca de en fr hu it pt ru tr"
+
 LICENSE="GPL-2"
 SLOT="0"
 IUSE="html pdf"
+
+for X in ${LANGS} ; do
+	IUSE="${IUSE} linguas_${X}"
+done
 
 RESTRICT="mirror"
 
@@ -34,30 +40,22 @@ RESTRICT="mirror"
 DEPEND="!sci-mathematics/sage-doc-bin
 	>=dev-python/docutils-0.12[${PYTHON_USEDEP}]
 	sci-mathematics/sage
-	pdf? ( dev-texlive/texlive-langcyrillic
-		dev-texlive/texlive-langfrench
-		dev-texlive/texlive-langportuguese
-		dev-texlive/texlive-langgerman
-		dev-texlive/texlive-langhungarian
-		dev-texlive/texlive-langitalian
+	pdf? ( linguas_ru? ( dev-texlive/texlive-langcyrillic )
+		linguas_fr? ( dev-texlive/texlive-langfrench )
+		linguas_pt? ( dev-texlive/texlive-langportuguese )
+		linguas_de? ( dev-texlive/texlive-langgerman )
+		linguas_hu? ( dev-texlive/texlive-langhungarian )
+		linguas_it? ( dev-texlive/texlive-langitalian )
 		dev-texlive/texlive-langczechslovak
-		dev-texlive/texlive-langenglish
+		linguas_en? ( dev-texlive/texlive-langenglish )
 		dev-texlive/texlive-langpolish )"
 RDEPEND="${DEPEND}
-	>=dev-python/sphinx-1.2.2[${PYTHON_USEDEP}]
-	pdf? ( dev-texlive/texlive-langcyrillic
-		dev-texlive/texlive-langfrench
-		dev-texlive/texlive-langportuguese
-		dev-texlive/texlive-langgerman
-		dev-texlive/texlive-langhungarian
-		dev-texlive/texlive-langitalian
-		dev-texlive/texlive-langczechslovak
-		dev-texlive/texlive-langenglish
-		dev-texlive/texlive-langpolish )"
+	>=dev-python/sphinx-1.2.2[${PYTHON_USEDEP}]"
 
 S="${WORKDIR}/sage-${PV}/src"
 
-PATCHES=( "${FILESDIR}"/${PN}-6.0-misc.patch )
+PATCHES=( "${FILESDIR}"/${PN}-6.0-misc.patch
+	"${FILESDIR}"/${PN}-6.6-linguas.patch )
 
 python_prepare_all() {
 	distutils-r1_python_prepare_all
@@ -81,6 +79,11 @@ python_compile() {
 	export SAGE_NUM_THREADS=$(makeopts_jobs)
 	export SAGE_DOC_MATHJAX=yes
 	export VARTEXFONTS="${T}"/fonts
+	local mylang
+	for lang in ${LANGS} ; do
+		use linguas_$lang && mylang+="$lang "
+	done
+	export LANGUAGES="${mylang}"
 
 	if use html ; then
 		${PYTHON} doc/common/builder.py --no-pdf-links all html || die "failed to produce html doc"
