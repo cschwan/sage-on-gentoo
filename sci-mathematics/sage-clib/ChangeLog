@@ -2,6 +2,11 @@
 # Copyright 1999-2015 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  05 Mar 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-clib-9999.ebuild:
+  Bumping pari dependency. Note that we are in process to replace clib upstream.
+  Whether we'll be finished for 6.6 is unsure.
+
 *sage-clib-6.5 (18 Feb 2015)
 
   18 Feb 2015; François Bissey <francois.bissey@canterbury.ac.nz>

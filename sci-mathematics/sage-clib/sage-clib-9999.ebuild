@@ -1,4 +1,4 @@
-# Copyright 1999-2014 Gentoo Foundation
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
@@ -28,7 +28,7 @@ RESTRICT="mirror"
 
 DEPEND="dev-libs/gmp[cxx]
 	>=dev-libs/ntl-6.0.0
-	>=sci-mathematics/pari-2.7.1"
+	>=sci-mathematics/pari-2.8_pre20150225"
 RDEPEND="${DEPEND}"
 
 S="${WORKDIR}/sage-${PV}/src/c_lib"
