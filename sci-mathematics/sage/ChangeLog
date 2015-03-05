@@ -2,6 +2,11 @@
 # Copyright 1999-2015 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  05 Mar 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-9999.ebuild:
+  bump pari version for 6.6.beta3. This is the big test of the work I have done
+  on the pari dependency handling.
+
   03 Mar 2015; François Bissey <francois.bissey@canterbury.ac.nz>
   sage-6.5.ebuild, sage-9999.ebuild:
   Lift the restriction on installing gmpy and sage at the same time. The
