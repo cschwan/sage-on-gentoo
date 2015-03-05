@@ -1,3 +1,9 @@
+*sage-doc-bin-6.5-r2 (05 Mar 2015)
+
+  05 Mar 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  +sage-doc-bin-6.5-r2.ebuild:
+  Initial linguas support for pre-generated doc.
+
 *sage-doc-bin-6.5-r1 (22 Feb 2015)
 
   22 Feb 2015; François Bissey <francois.bissey@canterbury.ac.nz>
