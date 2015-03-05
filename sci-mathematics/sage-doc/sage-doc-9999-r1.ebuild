@@ -40,15 +40,15 @@ RESTRICT="mirror"
 DEPEND="!sci-mathematics/sage-doc-bin
 	>=dev-python/docutils-0.12[${PYTHON_USEDEP}]
 	sci-mathematics/sage
-	pdf? ( linguas_ru? ( dev-texlive/texlive-langcyrillic )
-		linguas_fr? ( dev-texlive/texlive-langfrench )
-		linguas_pt? ( dev-texlive/texlive-langportuguese )
-		linguas_de? ( dev-texlive/texlive-langgerman )
-		linguas_hu? ( dev-texlive/texlive-langhungarian )
-		linguas_it? ( dev-texlive/texlive-langitalian )
-		dev-texlive/texlive-langczechslovak
-		linguas_en? ( dev-texlive/texlive-langenglish )
-		dev-texlive/texlive-langpolish )"
+	pdf? ( linguas_ca? ( app-text/texlive[extra,linguas_ca] )
+		linguas_de? ( app-text/texlive[extra,linguas_de] )
+		linguas_en? ( app-text/texlive[extra,linguas_en] )
+		linguas_fr? ( app-text/texlive[extra,linguas_fr] )
+		linguas_hu? ( app-text/texlive[extra,linguas_hu] )
+		linguas_it? ( app-text/texlive[extra,linguas_it] )
+		linguas_pt? ( app-text/texlive[extra,linguas_pt] )
+		linguas_ru? ( app-text/texlive[extra,linguas_ru] )
+		linguas_tr? ( app-text/texlive[extra,linguas_tr] ) )"
 RDEPEND="${DEPEND}
 	>=dev-python/sphinx-1.2.2[${PYTHON_USEDEP}]"
 

@@ -2,6 +2,10 @@
 # Copyright 1999-2015 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  05 Mar 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-doc-9999-r1.ebuild:
+  Adopte Steve Trodgon's recommendation in issue #210
+
   04 Mar 2015; François Bissey <francois.bissey@canterbury.ac.nz>
   +files/sage-doc-6.6-linguas.patch, metadata.xml, sage-doc-9999-r1.ebuild:
   Introducing linguas for sage-doc-9999-r1. Note that empty linguas will result
