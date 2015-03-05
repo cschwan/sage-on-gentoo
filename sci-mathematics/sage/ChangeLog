@@ -4,6 +4,12 @@
 
   05 Mar 2015; François Bissey <francois.bissey@canterbury.ac.nz>
   sage-9999.ebuild:
+  Because of some changes to the building system we cannot remove all the
+  sources for clib. We have to keep the headers at least. The  requirement is
+  likely to go away when we completely eliminate clib.
+
+  05 Mar 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-9999.ebuild:
   bump pari version for 6.6.beta3. This is the big test of the work I have done
   on the pari dependency handling.
 

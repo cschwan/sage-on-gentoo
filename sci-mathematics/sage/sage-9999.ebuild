@@ -156,7 +156,8 @@ python_prepare() {
 	############################################################################
 
 	# use already installed csage
-	rm -rf c_lib || die "failed to remove c library directory"
+	# but we need to keep the include directory while clib is in the process of being removed.
+	rm -rf c_lib/src || die "failed to remove c library source directory"
 
 	# fix png library name
 	sed -i "s:png12:$(libpng-config --libs | cut -dl -f2):g" module_list.py
