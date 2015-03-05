@@ -30,9 +30,12 @@ LICENSE="GPL-2"
 SLOT="0"
 IUSE="html pdf"
 
+LINGUAS_USEDEP=""
 for X in ${LANGS} ; do
 	IUSE="${IUSE} linguas_${X}"
+	LINGUAS_USEDEP="${LINGUAS_USEDEP}linguas_${X}=,"
 done
+LINGUAS_USEDEP="${LINGUAS_USEDEP%?}"
 
 RESTRICT="mirror"
 
@@ -40,15 +43,7 @@ RESTRICT="mirror"
 DEPEND="!sci-mathematics/sage-doc-bin
 	>=dev-python/docutils-0.12[${PYTHON_USEDEP}]
 	sci-mathematics/sage
-	pdf? ( linguas_ca? ( app-text/texlive[extra,linguas_ca] )
-		linguas_de? ( app-text/texlive[extra,linguas_de] )
-		linguas_en? ( app-text/texlive[extra,linguas_en] )
-		linguas_fr? ( app-text/texlive[extra,linguas_fr] )
-		linguas_hu? ( app-text/texlive[extra,linguas_hu] )
-		linguas_it? ( app-text/texlive[extra,linguas_it] )
-		linguas_pt? ( app-text/texlive[extra,linguas_pt] )
-		linguas_ru? ( app-text/texlive[extra,linguas_ru] )
-		linguas_tr? ( app-text/texlive[extra,linguas_tr] ) )"
+	pdf? ( app-text/texlive[extra,${LINGUAS_USEDEP}] )"
 RDEPEND="${DEPEND}
 	>=dev-python/sphinx-1.2.2[${PYTHON_USEDEP}]"
 
