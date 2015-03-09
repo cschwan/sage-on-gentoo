@@ -3,6 +3,10 @@
 # $Header: $
 
   09 Mar 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  files/sage-6.6-sagedoc.patch:
+  New iteration of the sagedoc patch for new location of documentation.
+
+  09 Mar 2015; François Bissey <francois.bissey@canterbury.ac.nz>
   files/sage-6.6-safepython.patch:
   update safepython patch to include previously forgotten line
 

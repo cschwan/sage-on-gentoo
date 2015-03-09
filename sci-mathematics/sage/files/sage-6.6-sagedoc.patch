@@ -1,6 +1,15 @@
 diff -Naur src.orig/sage/misc/sagedoc.py src/sage/misc/sagedoc.py
---- src.orig/sage/misc/sagedoc.py	2015-03-06 13:55:25.777123283 +1300
-+++ src/sage/misc/sagedoc.py	2015-03-06 14:55:07.075517796 +1300
+--- src.orig/sage/misc/sagedoc.py	2015-03-10 10:37:53.446733040 +1300
++++ src/sage/misc/sagedoc.py	2015-03-10 10:41:17.507186765 +1300
+@@ -18,7 +18,7 @@
+ Check that argspecs of extension function/methods appear correctly,
+ see :trac:`12849`::
+ 
+-    sage: docfilename = os.path.join(SAGE_DOC, 'output', 'html', 'en', 'reference', 'calculus', 'sage', 'symbolic', 'expression.html')
++    sage: docfilename = os.path.join(SAGE_DOC, 'html', 'en', 'reference', 'calculus', 'sage', 'symbolic', 'expression.html')
+     sage: for line in open(docfilename):
+     ...       if "#sage.symbolic.expression.Expression.N" in line:
+     ...           print line
 @@ -725,7 +725,7 @@
          module = ''
          exts = ['html']
@@ -10,6 +19,18 @@ diff -Naur src.orig/sage/misc/sagedoc.py src/sage/misc/sagedoc.py
          doc_path = SAGE_DOC
  
          # We need to import stuff from SAGE_DOC/common
+@@ -749,9 +749,9 @@
+         # Check to see if any documents are missing.  This just
+         # checks to see if the appropriate output directory exists,
+         # not that it contains a complete build of the docs.
+-        missing = [os.path.join(doc_path, 'output', 'html', doc)
++        missing = [os.path.join(doc_path, 'html', doc)
+                    for doc in documents if not
+-                   os.path.exists(os.path.join(doc_path, 'output', 'html', doc))]
++                   os.path.exists(os.path.join(doc_path, 'html', doc))]
+         num_missing = len(missing)
+         if num_missing > 0:
+             print("""Warning, the following Sage documentation hasn't been built,
 @@ -1235,7 +1235,7 @@
              'http://localhost:8000/doc/live/'
          """
@@ -38,8 +59,8 @@ diff -Naur src.orig/sage/misc/sagedoc.py src/sage/misc/sagedoc.py
          url = self._base_url + os.path.join(name, "index.html")
          path = os.path.join(self._base_path, name, "index.html")
 diff -Naur src.orig/sage/repl/notebook_ipython.py src/sage/repl/notebook_ipython.py
---- src.orig/sage/repl/notebook_ipython.py	2015-03-06 13:55:25.807123352 +1300
-+++ src/sage/repl/notebook_ipython.py	2015-03-08 23:29:29.393346592 +1300
+--- src.orig/sage/repl/notebook_ipython.py	2015-03-10 10:37:53.476733106 +1300
++++ src/sage/repl/notebook_ipython.py	2015-03-10 10:38:19.916791827 +1300
 @@ -28,7 +28,7 @@
  # The notebook Jinja2 templates and static files
  TEMPLATE_PATH = os.path.join(SAGE_EXTCODE, 'notebook-ipython', 'templates')
