@@ -27,8 +27,8 @@ diff -Naur src.orig/sage/tests/cmdline.py src/sage/tests/cmdline.py
  
          sage: (out, err, ret) = test_executable(["sage", "--sh"], "echo Hello World\nexit 42\n")
 diff -Naur src.orig/sage/doctest/control.py src/sage/doctest/control.py
---- src.orig/sage/doctest/control.py	2015-03-09 23:16:50.424452379 +1300
-+++ src/sage/doctest/control.py	2015-03-09 23:18:21.814653677 +1300
+--- src.orig/sage/doctest/control.py	2015-03-10 00:15:48.002037229 +1300
++++ src/sage/doctest/control.py	2015-03-10 00:19:08.442454047 +1300
 @@ -439,40 +439,6 @@
          sys.stdout.write(s)
          sys.stdout.flush()
@@ -70,3 +70,11 @@ diff -Naur src.orig/sage/doctest/control.py src/sage/doctest/control.py
      def create_run_id(self):
          """
          Creates the run id.
+@@ -963,7 +929,6 @@
+                 return 2
+             return self.run_val_gdb()
+         else:
+-            self.test_safe_directory()
+             self.create_run_id()
+             from sage.env import SAGE_ROOT
+             DOT_GIT= os.path.join(SAGE_ROOT, '.git')

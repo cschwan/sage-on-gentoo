@@ -3,6 +3,10 @@
 # $Header: $
 
   09 Mar 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  files/sage-6.6-safepython.patch:
+  update safepython patch to include previously forgotten line
+
+  09 Mar 2015; François Bissey <francois.bissey@canterbury.ac.nz>
   +files/sage-6.6-sagedoc.patch, files/sage-6.6-safepython.patch,
   sage-9999.ebuild:
   Improving the handling of the documentation
