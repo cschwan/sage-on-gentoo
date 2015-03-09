@@ -243,7 +243,7 @@ python_prepare() {
 	epatch "${FILESDIR}"/${PN}-6.3-doc_common.patch
 
 	# fix location of the html doc
-	epatch "${FILESDIR}"/${PN}-6.0-sagedoc.patch
+	epatch "${FILESDIR}"/${PN}-6.6-sagedoc.patch
 }
 
 python_configure() {

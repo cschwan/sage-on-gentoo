@@ -2,6 +2,11 @@
 # Copyright 1999-2015 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  09 Mar 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  +files/sage-6.6-sagedoc.patch, files/sage-6.6-safepython.patch,
+  sage-9999.ebuild:
+  Improving the handling of the documentation
+
   05 Mar 2015; François Bissey <francois.bissey@canterbury.ac.nz>
   sage-9999.ebuild:
   Because of some changes to the building system we cannot remove all the
