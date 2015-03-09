@@ -87,6 +87,9 @@ python_install() {
 
 	insinto /usr/share/doc/sage
 	doins doc/singular.hlp
+	for lang in ${LANGS} ; do
+		use linguas_$lang && doins -r doc/$lang
+	done
 
 	insinto /usr/share/doc/sage/common
 	# not installing doc build system
