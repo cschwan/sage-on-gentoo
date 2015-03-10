@@ -36,7 +36,8 @@ RDEPEND="${DEPEND}
 
 S="${WORKDIR}/sage-${PV}/src/doc"
 
-PATCHES=( "${FILESDIR}"/${PN}-6.0-misc.patch )
+PATCHES=( "${FILESDIR}"/${PN}-6.0-misc.patch
+	"${FILESDIR}"/sage-doc-6.6-linguas.patch )
 
 src_prepare() {
 	base_src_prepare
@@ -47,13 +48,6 @@ src_prepare() {
 	rm Makefile
 	# Put singular help file where it is expected
 	cp "${WORKDIR}"/Singular/3-1-6/info/singular.hlp ./
-
-	# install missing directories to satisfy builder.py test
-	mkdir -p output/doctrees/en/tutorial
-	mkdir -p en/tutorial/templates
-	mkdir -p en/tutorial/static
-	mkdir -p en/reference/templates
-	mkdir -p en/reference/static
 
 	if use html ; then
 		mkdir -p output/html
@@ -72,12 +66,28 @@ src_prepare() {
 
 src_install() {
 	docompress -x /usr/share/doc/sage
-	# TODO: check if all of these files are needed
+
+	insinto /usr/share/doc/sage
+	doins singular.hlp
+	for lang in ${LANGS} ; do
+		use linguas_$lang && doins -r $lang
+	done
+
+	insinto /usr/share/doc/sage/common
 	# not installing doc build system
 	rm common/builder.py
 	rm common/custom-sphinx-build.py
-	insinto /usr/share/doc/sage
-	doins -r *
+	doins -r common/*
+
+	if use html ; then
+		insinto /usr/share/doc/sage/output/html
+		doins -r output/html/*
+	fi
+
+	if use pdf ; then
+		insinto /usr/share/doc/sage/output/pdf
+		doins -r output/pdf/*
+	fi
 }
 
 pkg_postinst() {

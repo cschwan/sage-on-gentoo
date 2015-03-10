@@ -1,3 +1,8 @@
+  10 Mar 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  +files/sage-doc-bin-6.6-linguas.patch, sage-doc-bin-6.5-r2.ebuild:
+  Get sage-doc-bin linguas support in line with sage-doc-9999 as much as
+  possible.
+
   05 Mar 2015; François Bissey <francois.bissey@canterbury.ac.nz> metadata.xml:
   update metadata.
 
