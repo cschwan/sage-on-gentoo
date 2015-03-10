@@ -8,3 +8,4 @@ sci-mathematics/ecm
 >=sci-mathematics/pari-2.8_pre20150225
 # experimental
 =sci-mathematics/sage-doc-bin-6.5-r2
+=sci-mathematics/sage-doc-6.5-r1
