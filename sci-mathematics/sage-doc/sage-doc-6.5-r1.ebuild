@@ -81,20 +81,20 @@ python_install() {
 	docompress -x /usr/share/doc/sage
 
 	insinto /usr/share/doc/sage
-	doins singular.hlp
+	doins doc/singular.hlp
 	for lang in ${LANGS} ; do
-		use linguas_$lang && doins -r $lang
+		use linguas_$lang && doins -r doc/$lang
 	done
 
 	insinto /usr/share/doc/sage/common
 	# not installing doc build system
-	rm common/builder.py
-	rm common/custom-sphinx-build.py
-	doins -r common/*
+	rm doc/common/builder.py
+	rm doc/common/custom-sphinx-build.py
+	doins -r doc/common/*
 
 	if use html ; then
 		insinto /usr/share/doc/sage/output/html
-		doins -r output/html/*
+		doins -r doc/output/html/*
 	fi
 }
 
