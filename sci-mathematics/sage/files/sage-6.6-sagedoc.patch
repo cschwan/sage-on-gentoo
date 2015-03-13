@@ -1,6 +1,6 @@
 diff -Naur src.orig/sage/misc/sagedoc.py src/sage/misc/sagedoc.py
---- src.orig/sage/misc/sagedoc.py	2015-03-10 10:37:53.446733040 +1300
-+++ src/sage/misc/sagedoc.py	2015-03-10 10:41:17.507186765 +1300
+--- src.orig/sage/misc/sagedoc.py	2015-03-13 13:51:42.829117147 +1300
++++ src/sage/misc/sagedoc.py	2015-03-13 13:53:07.159355497 +1300
 @@ -18,7 +18,7 @@
  Check that argspecs of extension function/methods appear correctly,
  see :trac:`12849`::
@@ -58,15 +58,15 @@ diff -Naur src.orig/sage/misc/sagedoc.py src/sage/misc/sagedoc.py
          """
          url = self._base_url + os.path.join(name, "index.html")
          path = os.path.join(self._base_path, name, "index.html")
-diff -Naur src.orig/sage/repl/notebook_ipython.py src/sage/repl/notebook_ipython.py
---- src.orig/sage/repl/notebook_ipython.py	2015-03-10 10:37:53.476733106 +1300
-+++ src/sage/repl/notebook_ipython.py	2015-03-10 10:38:19.916791827 +1300
-@@ -28,7 +28,7 @@
- # The notebook Jinja2 templates and static files
- TEMPLATE_PATH = os.path.join(SAGE_EXTCODE, 'notebook-ipython', 'templates')
- STATIC_PATH = os.path.join(SAGE_EXTCODE, 'notebook-ipython', 'static')
--DOCS_PATH = os.path.join(SAGE_DOC, 'output', 'html', 'en')
-+DOCS_PATH = os.path.join(SAGE_DOC, 'html', 'en')
- 
- 
- # Note: sage.repl.interpreter.DEFAULT_SAGE_CONFIG will be applied, too
+diff -Naur src.orig/sage/repl/ipython_kernel/install.py src/sage/repl/ipython_kernel/install.py
+--- src.orig/sage/repl/ipython_kernel/install.py	2015-03-13 13:51:42.859117231 +1300
++++ src/sage/repl/ipython_kernel/install.py	2015-03-13 13:54:38.759614821 +1300
+@@ -220,7 +220,7 @@
+                 os.path.join(spec_dir, filename)
+             )
+         self.symlink(
+-            os.path.join(SAGE_DOC, 'output', 'html', 'en'),
++            os.path.join(SAGE_DOC, 'html', 'en'),
+             os.path.join(spec_dir, 'doc')
+         )
+         

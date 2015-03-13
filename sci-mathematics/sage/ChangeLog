@@ -2,6 +2,10 @@
 # Copyright 1999-2015 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  13 Mar 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  files/sage-6.6-sagedoc.patch, sage-9999.ebuild:
+  bump patch and dependency for 6.6.beta4
+
   10 Mar 2015; François Bissey <francois.bissey@canterbury.ac.nz>
   sage-9999.ebuild:
   adjust dependency on sagenb in 9999
