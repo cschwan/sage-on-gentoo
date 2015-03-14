@@ -6,7 +6,7 @@ EAPI=5
 
 inherit eutils flag-o-matic toolchain-funcs multilib
 
-MY_P="pari-2.8-1315-g031c9d6"
+MY_P="pari-2.8-1369-g0e48e9b"
 DESCRIPTION="Computer-aided number theory C library and tools"
 HOMEPAGE="http://pari.math.u-bordeaux.fr/"
 SRC_URI="mirror://sageupstream/${PN}/${MY_P}.tar.gz"
