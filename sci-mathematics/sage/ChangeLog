@@ -3,6 +3,10 @@
 # $Header: $
 
   14 Mar 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-6.4-r1.ebuild, sage-6.5.ebuild:
+  Fixed ipython dependency in 6.4 and 6.5 to deal with issue #340
+
+  14 Mar 2015; François Bissey <francois.bissey@canterbury.ac.nz>
   +files/sage-6.6.beta5-ipython.patch, sage-9999.ebuild:
   just pushing the patch I sent upstream for ipython's behavior. Should be
   included in the next beta.
