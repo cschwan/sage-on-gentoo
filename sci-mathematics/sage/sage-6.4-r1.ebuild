@@ -92,7 +92,7 @@ RDEPEND="${CDEPEND}
 	>=dev-python/sphinx-1.2.2[${PYTHON_USEDEP}]
 	>=dev-python/sqlalchemy-0.5.8[${PYTHON_USEDEP}]
 	>=dev-python/sympy-0.7.4[${PYTHON_USEDEP}]
-	>=media-gfx/tachyon-0.98.9[png]
+	~media-gfx/tachyon-0.98.9[png]
 	>=sci-libs/cddlib-094f-r2
 	>=sci-libs/scipy-0.14.0[${PYTHON_USEDEP}]
 	>=sci-mathematics/flintqs-20070817
