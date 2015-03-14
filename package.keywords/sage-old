@@ -58,7 +58,7 @@ dev-python/werkzeug
 dev-tex/sage-latex
 dev-tex/tkz-berge
 dev-tex/tkz-graph
-media-gfx/tachyon
+~media-gfx/tachyon-0.98.9
 net-zope/zope-fixers
 net-zope/zope-interface
 sci-libs/cddlib
