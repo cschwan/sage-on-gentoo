@@ -219,6 +219,9 @@ python_prepare() {
 	sed -i "s:os.environ\[\"SAGE_LOCAL\"\]+\"/share/singular/\":sage.env.SAGE_DOC + \"/\":" \
 		sage/interfaces/singular.py
 
+	# To be removed at the next beta
+	epatch "${FILESDIR}"/${PN}-6.6.beta5-ipython.patch
+
 	############################################################################
 	# Fixes to doctests
 	############################################################################

@@ -2,6 +2,11 @@
 # Copyright 1999-2015 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  14 Mar 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  +files/sage-6.6.beta5-ipython.patch, sage-9999.ebuild:
+  just pushing the patch I sent upstream for ipython's behavior. Should be
+  included in the next beta.
+
   13 Mar 2015; François Bissey <francois.bissey@canterbury.ac.nz>
   files/sage-6.6-sagedoc.patch, sage-9999.ebuild:
   bump patch and dependency for 6.6.beta4
