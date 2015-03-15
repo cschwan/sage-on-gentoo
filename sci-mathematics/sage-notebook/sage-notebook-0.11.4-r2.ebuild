@@ -100,9 +100,13 @@ src_install() {
 	distutils-r1_src_install
 
 	# link in system mathjax
-#	ln -snf "${EPREFIX}"/usr/share/mathjax \
-#		"${D}$(python_get_sitedir)"/sagenb/data/mathjax || die
 	dosym /usr/share/mathjax "$(python_get_sitedir)"/sagenb/data/mathjax
+}
+
+pkg_preinst() {
+	# remove old mathjax folder if present
+	[[ -d "${ROOT}$(python_get_sitedir)/sagenb/data/mathjax" ]] \
+		&& rm -rf "${ROOT}$(python_get_sitedir)/sagenb/data/mathjax"
 }
 
 pkg_postinst() {
