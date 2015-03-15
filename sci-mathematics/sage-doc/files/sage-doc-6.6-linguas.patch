@@ -14,7 +14,7 @@ diff -Naur doc.orig/common/build_options.py doc/common/build_options.py
 +LANGUAGES = []
 +for d in DESIRED_LANGUAGES:
 +    if d in LANGUAGELIST:
-+	LANGUAGES.append(d)
++        LANGUAGES.append(d)
 +if not LANGUAGES:
 +    LANGUAGES=LANGUAGELIST
 +

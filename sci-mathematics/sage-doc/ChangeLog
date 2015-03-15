@@ -2,6 +2,10 @@
 # Copyright 1999-2015 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  15 Mar 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  files/sage-doc-6.6-linguas.patch:
+  Replace tab by white space in patch
+
   10 Mar 2015; François Bissey <francois.bissey@canterbury.ac.nz>
   sage-doc-6.5-r1.ebuild:
   Fix install phase in 6.5-r1
