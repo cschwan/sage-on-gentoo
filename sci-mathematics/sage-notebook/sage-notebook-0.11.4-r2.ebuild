@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
-EAPI="5"
+EAPI=5
 
 PYTHON_COMPAT=( python2_7 )
 python_moduleroot="sagenb"
@@ -34,6 +34,7 @@ CDEPEND="~dev-python/sage-pexpect-2.0[${PYTHON_USEDEP}]
 	<dev-python/flask-babel-0.9[${PYTHON_USEDEP}]
 	dev-python/webassets[${PYTHON_USEDEP}]"
 DEPEND="${CDEPEND}
+	!<=sci-mathematics/sage-notebook-0.11.4-r1
 	test? ( sci-mathematics/sage[testsuite,${PYTHON_USEDEP}] )"
 RDEPEND="${CDEPEND}
 	sci-mathematics/sage[${PYTHON_USEDEP}]

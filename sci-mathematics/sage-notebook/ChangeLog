@@ -2,6 +2,14 @@
 # Copyright 1999-2015 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*sage-notebook-0.11.4-r2 (15 Mar 2015)
+
+  15 Mar 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  +sage-notebook-0.11.4-r2.ebuild, -sage-notebook-0.11.4-r1.ebuild:
+  We need the old notebook to be removed before installing the new one.
+  Otherwise there may be trouble between the old mathjax folder and the link in
+  the latest  ebuild.
+
   15 Mar 2015; François Bissey <francois.bissey@canterbury.ac.nz>
   sage-notebook-0.11.4-r1.ebuild:
   Use system mathjax for the notebook, sage is also moving to use a mathjax
