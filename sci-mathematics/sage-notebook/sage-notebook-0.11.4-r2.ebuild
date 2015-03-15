@@ -34,7 +34,6 @@ CDEPEND="~dev-python/sage-pexpect-2.0[${PYTHON_USEDEP}]
 	<dev-python/flask-babel-0.9[${PYTHON_USEDEP}]
 	dev-python/webassets[${PYTHON_USEDEP}]"
 DEPEND="${CDEPEND}
-	!<=sci-mathematics/sage-notebook-0.11.4-r1
 	test? ( sci-mathematics/sage[testsuite,${PYTHON_USEDEP}] )"
 RDEPEND="${CDEPEND}
 	sci-mathematics/sage[${PYTHON_USEDEP}]
@@ -101,8 +100,9 @@ src_install() {
 	distutils-r1_src_install
 
 	# link in system mathjax
-	ln -snf "${EPREFIX}"/usr/share/mathjax \
-		"${D}$(python_get_sitedir)"/sagenb/data/mathjax || die
+#	ln -snf "${EPREFIX}"/usr/share/mathjax \
+#		"${D}$(python_get_sitedir)"/sagenb/data/mathjax || die
+	dosym /usr/share/mathjax "$(python_get_sitedir)"/sagenb/data/mathjax
 }
 
 pkg_postinst() {
