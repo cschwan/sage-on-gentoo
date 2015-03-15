@@ -37,6 +37,7 @@ DEPEND="${CDEPEND}
 	test? ( sci-mathematics/sage[testsuite,${PYTHON_USEDEP}] )"
 RDEPEND="${CDEPEND}
 	sci-mathematics/sage[${PYTHON_USEDEP}]
+	dev-libs/mathjax
 	java? ( >=sci-chemistry/sage-jmol-bin-14.2.11 )"
 
 pkg_setup() {
@@ -55,6 +56,9 @@ src_prepare() {
 
 	# remove sage3d
 	rm -rf sagenb/data/sage3d || die "failed to remove sage3d"
+
+	# use system mathjax
+	rm -rf sagenb/data/mathjax || die "failed to remove mathjax"
 
 	# correct path for jmol
 	epatch "${FILESDIR}"/${PN}-0.11.2-base.patch
@@ -94,6 +98,10 @@ src_install() {
 	fi
 
 	distutils-r1_src_install
+
+	# link in system mathjax
+	ln -snf "${EPREFIX}"/usr/share/mathjax \
+		"${D}$(python_get_sitedir)"/sagenb/data/mathjax || die
 }
 
 pkg_postinst() {
