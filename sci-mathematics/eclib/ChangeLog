@@ -2,6 +2,15 @@
 # Copyright 1999-2015 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*eclib-0_p20120830 (17 Mar 2015)
+*eclib-0_p20140128 (17 Mar 2015)
+
+  17 Mar 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  +eclib-0_p20120830.ebuild, +eclib-0_p20140128.ebuild, -eclib-20120830.ebuild,
+  -eclib-20140128.ebuild, -eclib-20140805.ebuild, -eclib-20140921-r1.ebuild:
+  Change versioning scheme following discussion on gentoo-dev-help. Also added
+  subslot.
+
 *eclib-1.0.0 (17 Mar 2015)
 
   17 Mar 2015; François Bissey <francois.bissey@canterbury.ac.nz>

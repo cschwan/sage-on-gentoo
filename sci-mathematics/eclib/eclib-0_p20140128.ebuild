@@ -1,17 +1,18 @@
-# Copyright 1999-2014 Gentoo Foundation
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
-EAPI="5"
+EAPI=5
 
 inherit eutils autotools-utils
 
+MY_PV=${PV#0_p}
 DESCRIPTION="Programs for enumerating and computing with elliptic curves defined over the rational numbers."
 HOMEPAGE="http://www.warwick.ac.uk/~masgaj/mwrank/index.html"
-SRC_URI="mirror://sageupstream/${PN}/${P}.tar.bz2"
+SRC_URI="mirror://sageupstream/${PN}/${PN}-${MY_PV}.tar.bz2"
 
 LICENSE="GPL-2"
-SLOT="0"
+SLOT="0/0"
 KEYWORDS="~amd64 ~x86 ~amd64-linux ~x86-linux ~x86-macos ~x64-macos"
 IUSE="static-libs flint boost"
 
@@ -23,12 +24,14 @@ RDEPEND=">=sci-mathematics/pari-2.5.0
 	boost? ( dev-libs/boost[threads] )"
 DEPEND="${RDEPEND}"
 
+S="${WORKDIR}"/${PN}-${MY_PV}
+
 src_prepare() {
 	# https://github.com/JohnCremona/eclib/issues/3
 	# patch pushed upstream for consideration
-	epatch "${FILESDIR}"/${P}-configure.patch
+	epatch "${FILESDIR}"/${PN}-${MY_PV}-configure.patch
 	# https://github.com/JohnCremona/eclib/issues/4
-	epatch "${FILESDIR}"/${P}-gp.patch
+	epatch "${FILESDIR}"/${PN}-${MY_PV}-gp.patch
 	mv libsrc/gpslave.cc libsrc/gpslave.cc.in
 
 	eautomake
