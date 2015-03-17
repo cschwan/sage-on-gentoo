@@ -6,6 +6,7 @@
 sci-mathematics/ecm
 # candidate for 6.6
 >=sci-mathematics/pari-2.8_pre20150225
+>=sci-mathematics/eclib-1.0.0
 # experimental
 =sci-mathematics/sage-doc-bin-6.5-r2
 =sci-mathematics/sage-doc-6.5-r1
