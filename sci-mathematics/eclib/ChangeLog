@@ -2,6 +2,13 @@
 # Copyright 1999-2015 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*eclib-1.0.0 (17 Mar 2015)
+
+  17 Mar 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  +eclib-1.0.0.ebuild:
+  eclib is now 1.0 - welcome to the mess of having old version in YYYYMMDD
+  format.
+
 *eclib-20140921-r1 (25 Feb 2015)
 
   25 Feb 2015; François Bissey <francois.bissey@canterbury.ac.nz>
