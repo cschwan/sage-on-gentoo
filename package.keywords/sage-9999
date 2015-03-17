@@ -74,7 +74,7 @@ sci-libs/zn_poly
 sci-mathematics/cu2
 sci-mathematics/cubex
 sci-mathematics/dikcube
->=sci-mathematics/eclib-20140805
+>=sci-mathematics/eclib-0_p20140805
 ~sci-mathematics/gmp-ecm-6.4.4
 sci-mathematics/flintqs
 ~sci-mathematics/flint-2.4.5
