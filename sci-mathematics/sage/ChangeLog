@@ -4,6 +4,10 @@
 
   19 Mar 2015; François Bissey <francois.bissey@canterbury.ac.nz>
   sage-9999.ebuild:
+  Forgot to bump pari dependency in 6.6.beta6
+
+  19 Mar 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-9999.ebuild:
   Bump for 6.6.beta6
 
   17 Mar 2015; François Bissey <francois.bissey@canterbury.ac.nz>
