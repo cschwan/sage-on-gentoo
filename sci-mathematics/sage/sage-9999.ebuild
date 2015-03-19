@@ -23,7 +23,7 @@ fi
 DESCRIPTION="Math software for algebra, geometry, number theory, cryptography and numerical computation"
 HOMEPAGE="http://www.sagemath.org"
 SRC_URI="${SRC_URI}
-	mirror://sagemath/patches/${PN}-6.6-r1-neutering.tar.bz2"
+	mirror://sagemath/patches/${PN}-6.6-r2-neutering.tar.bz2"
 
 LICENSE="GPL-2"
 SLOT="0"
@@ -39,7 +39,7 @@ CDEPEND="dev-libs/gmp
 	>=dev-lisp/ecls-13.5.1
 	=dev-python/numpy-1.8*[${PYTHON_USEDEP}]
 	>=dev-python/cython-0.22[${PYTHON_USEDEP}]
-	~sci-mathematics/eclib-0_p20140921[flint]
+	>=sci-mathematics/eclib-1.0.0[flint]
 	>=sci-mathematics/gmp-ecm-6.4.4[-openmp]
 	>=sci-mathematics/flint-2.4.4[ntl]
 	~sci-libs/fplll-4.0.4
@@ -218,9 +218,6 @@ python_prepare() {
 	# Getting the singular documentation from the right place
 	sed -i "s:os.environ\[\"SAGE_LOCAL\"\]+\"/share/singular/\":sage.env.SAGE_DOC + \"/\":" \
 		sage/interfaces/singular.py
-
-	# To be removed at the next beta
-	epatch "${FILESDIR}"/${PN}-6.6.beta5-ipython.patch
 
 	############################################################################
 	# Fixes to doctests

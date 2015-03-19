@@ -2,6 +2,10 @@
 # Copyright 1999-2015 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  19 Mar 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-9999.ebuild:
+  Bump for 6.6.beta6
+
   17 Mar 2015; François Bissey <francois.bissey@canterbury.ac.nz>
   sage-6.4-r1.ebuild, sage-6.5.ebuild, sage-9999.ebuild:
   Adjust eclib dependency again
