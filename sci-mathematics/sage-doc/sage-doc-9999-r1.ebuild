@@ -63,7 +63,12 @@ python_prepare_all() {
 
 python_compile() {
 	export SAGE_DOC="${S}"/doc
-	export SAGE_SRC="${S}"
+	#export SAGE_SRC="${S}"
+	# Using installed sources rather than tarball sources.
+	# The installed sources include automatically generated
+	# files. It means we will probably never be able not to
+	# install sage's sources by default.
+	export SAGE_SRC="${EPREFIX}"/usr/share/sage/src
 	export SAGE_NUM_THREADS=$(makeopts_jobs)
 	export SAGE_DOC_MATHJAX=yes
 	export VARTEXFONTS="${T}"/fonts
