@@ -8,7 +8,7 @@ inherit eutils autotools-utils vcs-snapshot
 
 DESCRIPTION="Programs for enumerating and computing with elliptic curves defined over the rational numbers."
 HOMEPAGE="http://www.warwick.ac.uk/~masgaj/mwrank/index.html"
-SRC_URI="https://github.com/JohnCremona/${PN}/archive/v${PV}.tar.gz -> ${P}.tar.gz"
+SRC_URI="https://github.com/JohnCremona/${PN}/archive/${P}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0/1"
