@@ -1,0 +1,5 @@
+*modular_decomposition-20100607 (28 Mar 2015)
+
+  28 Mar 2015; François Bissey <francois.bissey@canterbury.ac.nz> +metadata.xml,
+  +modular_decomposition-20100607.ebuild:
+  Add new optional sage dependency - used to be shipped inside sage.
