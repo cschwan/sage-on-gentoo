@@ -2,6 +2,10 @@
 # Copyright 1999-2015 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  28 Mar 2015; François Bissey <francois.bissey@canterbury.ac.nz> metadata.xml,
+  sage-9999.ebuild:
+  Add useflag and dependency for the option modular_decomposition code.
+
   19 Mar 2015; François Bissey <francois.bissey@canterbury.ac.nz>
   sage-9999.ebuild:
   Forgot to bump pari dependency in 6.6.beta6

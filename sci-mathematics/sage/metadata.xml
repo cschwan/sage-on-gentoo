@@ -19,5 +19,8 @@
 		<flag name='arb'>
 			build the bindings to the arb library
 		</flag>
+		<flag name='modular_decomposition'>
+			build the bindings to the modular_decomposition library
+		</flag>
 	</use>
 </pkgmetadata>

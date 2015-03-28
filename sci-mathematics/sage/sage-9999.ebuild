@@ -23,11 +23,11 @@ fi
 DESCRIPTION="Math software for algebra, geometry, number theory, cryptography and numerical computation"
 HOMEPAGE="http://www.sagemath.org"
 SRC_URI="${SRC_URI}
-	mirror://sagemath/patches/${PN}-6.6-r2-neutering.tar.bz2"
+	mirror://sagemath/patches/${PN}-6.6-r3-neutering.tar.bz2"
 
 LICENSE="GPL-2"
 SLOT="0"
-IUSE="latex testsuite debug arb"
+IUSE="latex testsuite debug arb modular_decomposition"
 
 RESTRICT="mirror test"
 
@@ -71,6 +71,7 @@ CDEPEND="dev-libs/gmp
 	dev-python/python-pkgconfig
 	virtual/cblas
 	arb? ( >=sci-mathematics/arb-2.5.0 )
+	modular_decomposition? ( sci-libs/modular_decomposition )
 	!sci-mathematics/genus2reduction
 	!sci-mathematics/sage-extcode
 	!sci-mathematics/sage-matroids"
@@ -256,6 +257,11 @@ python_configure() {
 		export WANT_ARB="True"
 	else
 		export WANT_ARB="False"
+	fi
+	if use modular_decomposition; then
+		export WANT_MOD_DECOMP="True"
+	else
+		export WANT_MOD_DECOMP="False"
 	fi
 	if use debug; then
 		export SAGE_DEBUG=1
