@@ -2,6 +2,10 @@
 # Copyright 1999-2015 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  29 Mar 2015; François Bissey <francois.bissey@canterbury.ac.nz> metadata.xml,
+  sage-9999.ebuild:
+  Add coinor-cbc optional binding
+
   29 Mar 2015; François Bissey <francois.bissey@canterbury.ac.nz>
   sage-6.5.ebuild:
   Pin pari version used in sage 6.5
