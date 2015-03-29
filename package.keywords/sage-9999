@@ -93,7 +93,6 @@ sci-mathematics/pari-data
 sci-mathematics/polybori
 sci-mathematics/ratpoints
 sci-mathematics/rubiks
-~sci-mathematics/arb-2.5.0
 ~sci-mathematics/sage-9999 **
 ~sci-mathematics/sage-baselayout-9999 **
 ~sci-mathematics/sage-clib-9999 **
@@ -119,4 +118,16 @@ sci-chemistry/jspecview
 virtual/jre:1.7
 virtual/jdk:1.7
 dev-java/icedtea-bin:7
-
+#########################
+# sage optional binding
+#########################
+~sci-mathematics/arb-2.5.0
+sci-libs/modular_decomposition
+# coinor-cbc
+sci-libs/coinor-clp
+sci-libs/coinor-dylp
+sci-libs/coinor-vol
+sci-libs/coinor-cgl
+sci-libs/coinor-utils
+sci-libs/coinor-osi
+sci-libs/coinor-cbc
