@@ -65,7 +65,6 @@ sci-libs/fflas-ffpack
 ~sci-libs/linbox-1.3.2
 ~sci-libs/m4ri-20140914
 ~sci-libs/m4rie-20140914
-sci-libs/modular_decomposition
 ~sci-libs/mpfi-1.5.1
 ~sci-libs/pynac-0.3.2
 ~sci-libs/scipy-0.14.0
