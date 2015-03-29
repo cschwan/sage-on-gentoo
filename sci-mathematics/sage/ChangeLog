@@ -4,6 +4,10 @@
 
   29 Mar 2015; François Bissey <francois.bissey@canterbury.ac.nz> metadata.xml,
   sage-9999.ebuild:
+  Unfortunately the coinor-cbc extension is not in a working shape
+
+  29 Mar 2015; François Bissey <francois.bissey@canterbury.ac.nz> metadata.xml,
+  sage-9999.ebuild:
   Add coinor-cbc optional binding
 
   29 Mar 2015; François Bissey <francois.bissey@canterbury.ac.nz>

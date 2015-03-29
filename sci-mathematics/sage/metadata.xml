@@ -22,8 +22,5 @@
 		<flag name='modular_decomposition'>
 			build the bindings to the modular_decomposition library
 		</flag>
-		<flag name='coinor_cbc'>
-			build the bindings to the coinor-cbc libraries
-		</flag>
 	</use>
 </pkgmetadata>

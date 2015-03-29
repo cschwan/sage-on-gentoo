@@ -27,7 +27,7 @@ SRC_URI="${SRC_URI}
 
 LICENSE="GPL-2"
 SLOT="0"
-SAGE_USE="arb modular_decomposition coinor_cbc"
+SAGE_USE="arb modular_decomposition"
 IUSE="latex testsuite debug ${SAGE_USE}"
 
 RESTRICT="mirror test"
@@ -73,7 +73,6 @@ CDEPEND="dev-libs/gmp
 	virtual/cblas
 	arb? ( >=sci-mathematics/arb-2.5.0 )
 	modular_decomposition? ( sci-libs/modular_decomposition )
-	coinor_cbc? ( sci-libs/coinor-cbc )
 	!sci-mathematics/genus2reduction
 	!sci-mathematics/sage-extcode
 	!sci-mathematics/sage-matroids"
