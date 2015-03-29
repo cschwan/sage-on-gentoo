@@ -123,10 +123,10 @@ dev-java/icedtea-bin:7
 ~sci-mathematics/arb-2.5.0
 sci-libs/modular_decomposition
 # coinor-cbc
-sci-libs/coinor-clp
-sci-libs/coinor-dylp
-sci-libs/coinor-vol
-sci-libs/coinor-cgl
-sci-libs/coinor-utils
-sci-libs/coinor-osi
-sci-libs/coinor-cbc
+#sci-libs/coinor-clp
+#sci-libs/coinor-dylp
+#sci-libs/coinor-vol
+#sci-libs/coinor-cgl
+#sci-libs/coinor-utils
+#sci-libs/coinor-osi
+#sci-libs/coinor-cbc
