@@ -221,6 +221,11 @@ python_prepare() {
 	sed -i "s:os.environ\[\"SAGE_LOCAL\"\]+\"/share/singular/\":sage.env.SAGE_DOC + \"/\":" \
 		sage/interfaces/singular.py
 
+	# The ipython kernel tries to to start a new session via $SAGE_ROOT/sage -python
+	# Since we don't have $SAGE_ROOT/sage it fails. 
+	#See https://github.com/cschwan/sage-on-gentoo/issues/342
+	epatch "${FILESDIR}"/${PN}-6.6-ipython_kernel_start.patch
+
 	############################################################################
 	# Fixes to doctests
 	############################################################################
