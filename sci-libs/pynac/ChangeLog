@@ -1,6 +1,11 @@
 # ChangeLog for sci-libs/pynac
-# Copyright 1999-2014 Gentoo Foundation; Distributed under the GPL v2
+# Copyright 1999-2015 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
+
+  08 Apr 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  pynac-0.2.6-r1.ebuild, pynac-0.3.0.ebuild, pynac-0.3.1.ebuild,
+  pynac-0.3.2-r1.ebuild:
+  Pynac's home migrated from bitbucket to github
 
 *pynac-0.3.2-r1 (25 Nov 2014)
 
