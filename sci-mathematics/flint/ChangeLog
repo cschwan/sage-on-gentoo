@@ -2,6 +2,13 @@
 # Copyright 1999-2015 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  10 Apr 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  -files/flint-2.4.3-cflags-ldflags.patch, -files/flint-2.4.3-libdir.patch,
+  -files/flint-2.4.3-whitespaces.patch, -files/flint-2.4.4-test.patch,
+  -files/ntl62.patch, -flint-2.4.4-r2.ebuild, -flint-2.4.5.ebuild, metadata.xml:
+  Clean up. flint 2.4.5 is in good shape in the main tree and everyone wanting a
+  flint 2.4.x should use flint 2.4.5.
+
 *flint-2.4.5 (21 Feb 2015)
 
   21 Feb 2015; François Bissey <francois.bissey@canterbury.ac.nz>
