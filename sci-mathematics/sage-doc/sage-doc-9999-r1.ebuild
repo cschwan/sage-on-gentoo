@@ -87,7 +87,7 @@ python_compile() {
 	fi
 }
 
-python_install() {
+src_install() {
 	docompress -x /usr/share/doc/sage
 
 	insinto /usr/share/doc/sage
@@ -103,6 +103,13 @@ python_install() {
 	doins -r doc/common/*
 
 	if use html ; then
+		cp -r doc/output/html/en/_static doc/output/html/
+		for sdir in `find doc/output/html -name _static` ; do
+			if [ $sdir != "doc/output/html/_static" ] ; then
+				rm -rf $sdir || die "failed to remove $sdir"
+				ln -s /usr/share/doc/sage/html/_static $sdir
+			fi
+		done
 		insinto /usr/share/doc/sage/html
 		doins -r doc/output/html/*
 	fi
