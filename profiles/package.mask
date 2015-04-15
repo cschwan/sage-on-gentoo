@@ -4,8 +4,5 @@
 ~sci-mathematics/sage-doc-9999
 # preparing ecm for removal. I only keep it in case it solves some OS X problems
 sci-mathematics/ecm
-# candidate for 6.6
->=sci-mathematics/pari-2.8_pre20150225
->=sci-mathematics/eclib-1.0.0
 # for 6.7
 >=sci-libs/pynac-0.3.3
