@@ -107,7 +107,7 @@ src_install() {
 		for sdir in `find doc/output/html -name _static` ; do
 			if [ $sdir != "doc/output/html/_static" ] ; then
 				rm -rf $sdir || die "failed to remove $sdir"
-				ln -s /usr/share/doc/sage/html/_static $sdir
+				ln -s "${EPREFIX}"/usr/share/doc/sage/html/_static $sdir
 			fi
 		done
 		insinto /usr/share/doc/sage/html
