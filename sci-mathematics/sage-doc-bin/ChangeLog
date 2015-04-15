@@ -1,3 +1,10 @@
+*sage-doc-bin-6.6 (15 Apr 2015)
+
+  15 Apr 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  +sage-doc-bin-6.6.ebuild:
+  sage 6.6 is out. Temporary ebuild with html generated documentation from the
+  sage-doc ebuild.
+
   10 Mar 2015; François Bissey <francois.bissey@canterbury.ac.nz>
   sage-doc-bin-6.5-r2.ebuild:
   Make english compulsory for html doc
