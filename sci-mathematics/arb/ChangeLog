@@ -1,3 +1,7 @@
+  15 Apr 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  arb-2.5.0.ebuild:
+  Add keywords to arb to satisfy sage
+
 *arb-2.5.0 (10 Feb 2015)
 
   10 Feb 2015; François Bissey <francois.bissey@canterbury.ac.nz>
