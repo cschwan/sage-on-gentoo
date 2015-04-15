@@ -22,7 +22,7 @@ fi
 DESCRIPTION="Sage baselayout files"
 HOMEPAGE="http://www.sagemath.org"
 SRC_URI="${SRC_URI}
-	mirror://sagemath/patches/sage-bin-patches-6.6-r1.tar.bz2
+	mirror://sagemath/patches/sage-bin-patches-6.7.tar.bz2
 	mirror://sagemath/patches/sage-icon.tar.bz2"
 
 LICENSE="GPL-2"
@@ -73,7 +73,7 @@ src_prepare() {
 		sage-num-threads.py
 
 	# remove developer- and unsupported options
-	epatch "${WORKDIR}"/sage-exec-6.6.patch
+	epatch "${WORKDIR}"/sage-exec-6.7.patch
 	eprefixify sage
 
 	# create expected folders under extcode
