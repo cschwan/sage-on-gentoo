@@ -2,6 +2,12 @@
 # Copyright 1999-2015 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*sage-6.6 (15 Apr 2015)
+
+  15 Apr 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  +sage-6.6.ebuild:
+  sage 6.6 is out
+
   04 Apr 2015; François Bissey <francois.bissey@canterbury.ac.nz>
   +files/sage-6.6-ipython_kernel_start.patch, sage-9999.ebuild:
   ipython kernel start up fix. Should solve issue #342
