@@ -3,6 +3,12 @@
 # $Header: $
 
   16 Apr 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-9999.ebuild:
+  Now all clear to build 6.7.beta1. Change code so there is no problem like
+  spotted in issue #346 again where I forgot to add sage-doc-bin as a
+  dependency.
+
+  16 Apr 2015; François Bissey <francois.bissey@canterbury.ac.nz>
   sage-6.6.ebuild, sage-9999.ebuild:
   Correct dependency on sage-doc/sage-doc-bin spotted in issue #346
 
