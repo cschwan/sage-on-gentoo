@@ -35,7 +35,7 @@ DEPEND="!sci-mathematics/sage-doc-bin
 	>=dev-python/docutils-0.12[${PYTHON_USEDEP}]
 	sci-mathematics/sage"
 RDEPEND="${DEPEND}
-	>=dev-python/sphinx-1.2.2[${PYTHON_USEDEP}]"
+	~dev-python/sphinx-1.2.2[${PYTHON_USEDEP}]"
 
 S="${WORKDIR}/sage-${PV}/src"
 

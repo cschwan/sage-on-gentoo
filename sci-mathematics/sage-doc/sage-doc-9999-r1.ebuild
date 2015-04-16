@@ -45,7 +45,7 @@ DEPEND="!sci-mathematics/sage-doc-bin
 	sci-mathematics/sage
 	pdf? ( app-text/texlive[extra,${LINGUAS_USEDEP}] )"
 RDEPEND="${DEPEND}
-	>=dev-python/sphinx-1.2.2[${PYTHON_USEDEP}]"
+	~dev-python/sphinx-1.2.2[${PYTHON_USEDEP}]"
 
 S="${WORKDIR}/sage-${PV}/src"
 
