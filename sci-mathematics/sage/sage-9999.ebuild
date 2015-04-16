@@ -59,7 +59,7 @@ CDEPEND="dev-libs/gmp
 	sci-mathematics/glpk:0=
 	>=sci-mathematics/lcalc-1.23-r6[pari]
 	>=sci-mathematics/lrcalc-1.1.6_beta1
-	>=sci-mathematics/pari-2.8_pre20150307[data,gmp]
+	>=sci-mathematics/pari-2.8_pre20150307[data,gmp,doc]
 	>=sci-mathematics/polybori-0.8.3[${PYTHON_USEDEP}]
 	>=sci-mathematics/ratpoints-2.1.3
 	~sci-mathematics/sage-baselayout-${PV}[testsuite=,${PYTHON_USEDEP}]
@@ -265,6 +265,11 @@ python_configure() {
 	# files are not built unless they are touched
 	find sage -name "*pyx" -exec touch '{}' \; \
 		|| die "failed to touch *pyx files"
+
+	# autogenerate pari files
+	# This is done src/Makefile in vanilla sage - we don't want to use the Makefile, even patched.
+	"${PYTHON}" -c "from sage_setup.autogen.pari import rebuild; rebuild()"
+	"${PYTHON}" -c "from sage_setup.autogen.interpreters import rebuild; rebuild('sage/ext/interpreters')"
 }
 
 python_install_all() {

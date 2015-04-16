@@ -3,6 +3,10 @@
 # $Header: $
 
   16 Apr 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-6.6.ebuild, sage-9999.ebuild:
+  Correct dependency on sage-doc/sage-doc-bin spotted in issue #346
+
+  16 Apr 2015; François Bissey <francois.bissey@canterbury.ac.nz>
   +files/sage-6.7-blas.patch, sage-9999.ebuild:
   All fixes needed up to 6.7.beta1
 
