@@ -23,7 +23,7 @@ fi
 DESCRIPTION="Math software for algebra, geometry, number theory, cryptography and numerical computation"
 HOMEPAGE="http://www.sagemath.org"
 SRC_URI="${SRC_URI}
-	mirror://sagemath/patches/${PN}-6.6-r5-neutering.tar.bz2"
+	mirror://sagemath/patches/${PN}-6.7-neutering.tar.bz2"
 
 LICENSE="GPL-2"
 SLOT="0"
@@ -39,7 +39,7 @@ CDEPEND="dev-libs/gmp
 	>=dev-libs/ppl-1.1
 	>=dev-lisp/ecls-13.5.1
 	=dev-python/numpy-1.8*[${PYTHON_USEDEP}]
-	>=dev-python/cython-0.22[${PYTHON_USEDEP}]
+	>=dev-python/cython-0.22-r1[${PYTHON_USEDEP}]
 	>=sci-mathematics/eclib-1.0.0[flint]
 	>=sci-mathematics/gmp-ecm-6.4.4[-openmp]
 	>=sci-mathematics/flint-2.4.4[ntl]
@@ -83,7 +83,7 @@ RDEPEND="${CDEPEND}
 	>=dev-lang/R-3.1.2
 	>=dev-python/cvxopt-1.1.7[glpk,${PYTHON_USEDEP}]
 	>=dev-python/gdmodule-0.56-r2[png,${PYTHON_USEDEP}]
-	>=dev-python/ipython-3.0.0[notebook,${PYTHON_USEDEP}]
+	>=dev-python/ipython-3.1.0[notebook,${PYTHON_USEDEP}]
 	>=dev-python/jinja-2.5.5[${PYTHON_USEDEP}]
 	<dev-python/matplotlib-1.4.0[${PYTHON_USEDEP}]
 	>=dev-python/mpmath-0.18[${PYTHON_USEDEP}]
@@ -119,7 +119,7 @@ RDEPEND="${CDEPEND}
 		|| ( app-text/dvipng[truetype] media-gfx/imagemagick[png] )
 	)"
 
-PDEPEND=">=sci-mathematics/sage-notebook-0.11.4-r1[${PYTHON_USEDEP}]
+PDEPEND=">=sci-mathematics/sage-notebook-0.11.4-r2[${PYTHON_USEDEP}]
 	~sci-mathematics/sage-data-conway_polynomials-0.4
 	~sci-mathematics/sage-doc-${PV}
 	testsuite? ( ~sci-mathematics/sage-doc-${PV}[html] )"
@@ -133,10 +133,10 @@ pkg_setup() {
 
 python_prepare() {
 	# ATLAS independence
-	epatch "${FILESDIR}"/${PN}-6.6-blas.patch
+	epatch "${FILESDIR}"/${PN}-6.7-blas.patch
 
 	# Remove sage's package management system
-	epatch "${WORKDIR}"/patches/${PN}-6.6-package.patch
+	epatch "${WORKDIR}"/patches/${PN}-6.7-package.patch
 	rm sage/misc/package.py
 
 	# Remove sage's git capabilities
@@ -163,10 +163,6 @@ python_prepare() {
 
 	# fix png library name
 	sed -i "s:png12:$(libpng-config --libs | cut -dl -f2):g" module_list.py
-
-	# fix numpy path (final quote removed to catch numpy_include_dirs and numpy_depends)
-	sed -i "s:SAGE_LOCAL + '/lib/python/site-packages/numpy/core/include:'$(python_get_sitedir)/numpy/core/include:g" \
-		module_list.py
 
 	# fix lcalc path
 	sed -i "s:SAGE_INC + \"/libLfunction:SAGE_INC + \"/Lfunction:g" module_list.py
@@ -260,11 +256,7 @@ python_configure() {
 	export SAGE_VERSION=${PV}
 	export SAGE_NUM_THREADS=$(makeopts_jobs)
 	for option in ${SAGE_USE}; do
-		if use $option; then
-			export WANT_$option="True"
-		else
-			export WANT_$option="False"
-		fi
+		use $option && export WANT_$option="True"
 	done
 	if use debug; then
 		export SAGE_DEBUG=1
