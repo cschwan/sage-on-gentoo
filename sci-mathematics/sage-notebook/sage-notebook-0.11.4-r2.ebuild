@@ -106,8 +106,8 @@ src_install() {
 
 pkg_preinst() {
 	# remove old mathjax folder if present
-	[[ -d "${EROOT}$(python_get_sitedir)/sagenb/data/mathjax" ]] \
-		&& rm -rf "${EROOT}$(python_get_sitedir)/sagenb/data/mathjax"
+	[[ -d "${ROOT}$(python_get_sitedir)/sagenb/data/mathjax" ]] \
+		&& rm -rf "${ROOT}$(python_get_sitedir)/sagenb/data/mathjax"
 }
 
 pkg_postinst() {
