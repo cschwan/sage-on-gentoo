@@ -39,7 +39,7 @@ S="${WORKDIR}/sage-${PV}/src/doc"
 REQUIRED_USE="html? ( linguas_en )"
 
 PATCHES=( "${FILESDIR}"/${PN}-6.0-misc.patch
-	"${FILESDIR}"/sage-doc-6.6-linguas.patch )
+	"${FILESDIR}"/${PN}-6.6-linguas.patch )
 
 src_prepare() {
 	base_src_prepare

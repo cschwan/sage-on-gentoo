@@ -1,4 +1,8 @@
   18 Apr 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-doc-bin-6.5-r2.ebuild:
+  Wrong patch name also present in 6.5-r2
+
+  18 Apr 2015; François Bissey <francois.bissey@canterbury.ac.nz>
   sage-doc-bin-6.6.ebuild:
   correct patch name
 
