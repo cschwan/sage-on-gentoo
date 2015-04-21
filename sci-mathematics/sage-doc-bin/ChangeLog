@@ -1,3 +1,8 @@
+  21 Apr 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-doc-bin-6.6.ebuild:
+  Recreate tarball directly from a vanilla build and solve last problem in issue
+  #346 - cross fingers
+
   18 Apr 2015; François Bissey <francois.bissey@canterbury.ac.nz>
   sage-doc-bin-6.5-r2.ebuild:
   Wrong patch name also present in 6.5-r2

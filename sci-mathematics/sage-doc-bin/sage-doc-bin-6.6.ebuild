@@ -8,14 +8,14 @@ inherit base
 
 KEYWORDS="~amd64 ~x86 ~amd64-linux ~x86-linux"
 
-MY_P_HTML="sage-${PV}_fb_-doc-html"
+MY_P_HTML="sage-${PV}-doc-html"
 #MY_P_PDF="sage-${PV}-doc-pdf"
 
 DESCRIPTION="Documentation, tutorials and help files for Sage (pre-built html/pdf)"
 HOMEPAGE="http://www.sagemath.org/"
 SRC_URI="mirror://sagemath/${PV}.tar.gz -> sage-${PV}.tar.gz
 	http://www.mathematik.uni-kl.de/ftp/pub/Math/Singular/SOURCES/3-1-6/Singular-3-1-6-share.tar.gz
-	html? ( mirror://sagemathdoc/${MY_P_HTML}.tar.bz2 )"
+	html? ( mirror://sagemathdoc/${MY_P_HTML}.tar.xz )"
 #	pdf? ( mirror://sagemathdoc/${MY_P_PDF}.tar.bz2 )"
 
 LANGS="ca de en fr hu it pt ru tr"
