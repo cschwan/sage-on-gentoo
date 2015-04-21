@@ -24,7 +24,7 @@ IUSE="latex testsuite lrs nauty"
 
 RESTRICT="mirror test"
 
-CDEPEND="dev-libs/gmp
+CDEPEND="dev-libs/gmp:0=
 	>=dev-libs/mpfr-3.1.0
 	>=dev-libs/mpc-1.0
 	<dev-libs/ntl-6.0.0

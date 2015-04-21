@@ -34,7 +34,7 @@ IUSE="latex testsuite debug ${SAGE_USE}"
 
 RESTRICT="mirror test"
 
-CDEPEND="dev-libs/gmp
+CDEPEND="dev-libs/gmp:0=
 	>=dev-libs/mpfr-3.1.0
 	>=dev-libs/mpc-1.0
 	~dev-libs/ntl-6.2.1
@@ -55,7 +55,7 @@ CDEPEND="dev-libs/gmp
 	~sci-libs/m4ri-20140914
 	~sci-libs/m4rie-20140914
 	>=sci-libs/mpfi-1.5.1
-	~sci-libs/pynac-0.3.2[${PYTHON_USEDEP}]
+	~sci-libs/pynac-0.3.5[${PYTHON_USEDEP}]
 	>=sci-libs/symmetrica-2.0-r3
 	>=sci-libs/zn_poly-0.9
 	sci-mathematics/glpk:0=

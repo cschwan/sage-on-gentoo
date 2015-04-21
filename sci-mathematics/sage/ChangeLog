@@ -2,6 +2,14 @@
 # Copyright 1999-2015 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  21 Apr 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-5.10-r3.ebuild, sage-5.11-r4.ebuild, sage-5.12-r1.ebuild,
+  sage-5.9-r3.ebuild, sage-6.0-r3.ebuild, sage-6.1.1-r3.ebuild,
+  sage-6.2-r1.ebuild, sage-6.3-r1.ebuild, sage-6.4-r1.ebuild, sage-6.5.ebuild,
+  sage-6.6.ebuild, sage-9999.ebuild:
+  Bump pynac dependency in sage-9999. Add slot dependency for gmp as required by
+  repoman.
+
   16 Apr 2015; François Bissey <francois.bissey@canterbury.ac.nz>
   sage-9999.ebuild:
   Now all clear to build 6.7.beta1. Change code so there is no problem like
