@@ -6,7 +6,7 @@ EAPI="5"
 
 PYTHON_COMPAT=( python2_7 )
 
-inherit distutils-r1 multiprocessing versionator
+inherit distutils-r1 multiprocessing check-reqs
 
 if [[ ${PV} = *9999* ]]; then
 	EGIT_REPO_URI="git://github.com/sagemath/sage.git"
@@ -45,6 +45,9 @@ DEPEND="!sci-mathematics/sage-doc-bin
 	sci-mathematics/sage"
 RDEPEND="${DEPEND}
 	~dev-python/sphinx-1.2.2[${PYTHON_USEDEP}]"
+
+CHECKREQS_DISK_BUILD="5G"
+CHECKREQS_DISK_USR="5G"
 
 S="${WORKDIR}/sage-${PV}/src"
 

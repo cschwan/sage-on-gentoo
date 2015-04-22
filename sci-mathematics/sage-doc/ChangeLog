@@ -3,6 +3,12 @@
 # $Header: $
 
   22 Apr 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-doc-6.6.ebuild:
+  putting some CHECKREQS in 6.6 as per issue #346 rquest. Note that it wouldn't
+  solve issue #346 latest problem as there is no checks for inode usage, but we
+  can do  space.
+
+  22 Apr 2015; François Bissey <francois.bissey@canterbury.ac.nz>
   sage-doc-9999-r1.ebuild:
   Introduce check-reqs in sage-doc-9999 it probably needs porting to stable.
   Current stable need a check in USR as well.
