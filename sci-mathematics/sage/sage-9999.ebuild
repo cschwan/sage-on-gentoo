@@ -25,11 +25,11 @@ fi
 DESCRIPTION="Math software for algebra, geometry, number theory, cryptography and numerical computation"
 HOMEPAGE="http://www.sagemath.org"
 SRC_URI="${SRC_URI}
-	mirror://sagemath/patches/${PN}-6.7-neutering.tar.bz2"
+	mirror://sagemath/patches/${PN}-6.7-r1-neutering.tar.xz"
 
 LICENSE="GPL-2"
 SLOT="0"
-SAGE_USE="arb modular_decomposition"
+SAGE_USE="arb modular_decomposition bliss"
 IUSE="latex testsuite debug ${SAGE_USE}"
 
 RESTRICT="mirror test"
@@ -75,6 +75,7 @@ CDEPEND="dev-libs/gmp:0=
 	virtual/cblas
 	arb? ( >=sci-mathematics/arb-2.5.0 )
 	modular_decomposition? ( sci-libs/modular_decomposition )
+	bliss? ( sci-libs/bliss )
 	!sci-mathematics/genus2reduction
 	!sci-mathematics/sage-extcode
 	!sci-mathematics/sage-matroids"

@@ -22,5 +22,8 @@
 		<flag name='modular_decomposition'>
 			build the bindings to the modular_decomposition library
 		</flag>
+		<flag name='bliss'>
+			build the bindings to the bliss library
+		</flag>
 	</use>
 </pkgmetadata>
