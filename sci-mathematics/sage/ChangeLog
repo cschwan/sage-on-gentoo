@@ -2,6 +2,10 @@
 # Copyright 1999-2015 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  22 Apr 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-9999.ebuild:
+  bliss the optional package take 2
+
   22 Apr 2015; François Bissey <francois.bissey@canterbury.ac.nz> metadata.xml,
   sage-9999.ebuild:
   bump the neutering patch for new crop of "is_installed_package". Adding the
