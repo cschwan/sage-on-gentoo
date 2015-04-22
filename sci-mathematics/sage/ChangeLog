@@ -4,6 +4,10 @@
 
   22 Apr 2015; François Bissey <francois.bissey@canterbury.ac.nz>
   sage-9999.ebuild:
+  bliss take 3. I had stupidly used double quotes for boolean variables.
+
+  22 Apr 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-9999.ebuild:
   bliss the optional package take 2
 
   22 Apr 2015; François Bissey <francois.bissey@canterbury.ac.nz> metadata.xml,
