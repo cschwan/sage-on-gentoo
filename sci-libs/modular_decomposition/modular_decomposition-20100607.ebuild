@@ -4,7 +4,7 @@
 
 EAPI=5
 
-inherit toolchain-funcs
+inherit toolchain-funcs multilib
 
 DESCRIPTION="This is an implementation of a modular decomposition algorithm."
 HOMEPAGE="http://www.liafa.jussieu.fr/~fm/"
@@ -19,12 +19,17 @@ DEPEND=""
 RDEPEND="${DEPEND}"
 
 src_compile(){
-	$(tc-getCC) -o libmodulardecomposition.so dm.c random.c \
-		-fPIC -shared -Wl,-soname=libmodulardecomposition.so
+	if [[ ${CHOST} == *-darwin* ]] ; then
+		sharedopt=-install_name ${EPREFIX}/usr/$(get_libdir)/libmodulardecomposition$(get_libname)
+	else
+		sharedopt=-Wl,-soname=libmodulardecomposition$(get_libname)
+	fi
+	$(tc-getCC) -o libmodulardecomposition$(get_libname) dm.c random.c \
+		-fPIC -shared "${sharedopt}"
 }
 
 src_install(){
-	dolib libmodulardecomposition.so
+	dolib libmodulardecomposition$(get_libname)
 	cp dm_english.h modular_decomposition.h
 	doheader modular_decomposition.h
 }
