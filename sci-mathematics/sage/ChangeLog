@@ -2,6 +2,10 @@
 # Copyright 1999-2015 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  24 Apr 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-9999.ebuild:
+  Make the bliss otional dependency actually compile
+
   23 Apr 2015; François Bissey <francois.bissey@canterbury.ac.nz>
   files/sage-6.7-blas.patch:
   sage-6.7-blas.patch was incomplete and causing doctest failures.
