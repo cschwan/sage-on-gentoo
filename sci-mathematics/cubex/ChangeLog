@@ -1,6 +1,12 @@
 # ChangeLog for sci-mathematics/cubex
-# Copyright 1999-2014 Gentoo Foundation; Distributed under the GPL v2
+# Copyright 1999-2015 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
+
+  27 Apr 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  cubex-20060128.ebuild:
+  mirror source on www.lmona.de - had to repack it from the sage rubick's
+  tarball as I didn't have the original sources in my distfiles. Solve issue
+  #350
 
   01 Jul 2014; François Bissey <francois.bissey@canterbury.ac.nz>
   cubex-20060128.ebuild:
