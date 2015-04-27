@@ -1,6 +1,10 @@
 # ChangeLog for sci-mathematics/mcube
-# Copyright 1999-2014 Gentoo Foundation; Distributed under the GPL v2
+# Copyright 1999-2015 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
+
+  27 Apr 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  mcube-20051209.ebuild:
+  Put source on www.lmona.de (wrongway website is down) issue #350
 
   01 Jul 2014; François Bissey <francois.bissey@canterbury.ac.nz>
   mcube-20051209.ebuild:

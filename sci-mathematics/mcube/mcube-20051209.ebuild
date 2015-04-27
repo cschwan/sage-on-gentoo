@@ -1,4 +1,4 @@
-# Copyright 1999-2014 Gentoo Foundation
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
@@ -10,7 +10,8 @@ MY_PN="${PN}10-src"
 
 DESCRIPTION="An non-optimal 4x4x4 rubik's cube solver"
 HOMEPAGE="http://www.wrongway.org/?rubiksource"
-SRC_URI="http://www.wrongway.org/work/${MY_PN}.zip"
+#SRC_URI="http://www.wrongway.org/work/${MY_PN}.zip"
+SRC_URI="mirror://sagemath/${MY_PN}.zip"
 
 LICENSE="GPL-2"
 SLOT="0"
