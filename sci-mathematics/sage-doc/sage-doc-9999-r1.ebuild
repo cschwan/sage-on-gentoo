@@ -53,7 +53,7 @@ S="${WORKDIR}/sage-${PV}/src"
 
 REQUIRED_USE="html? ( linguas_en )"
 
-PATCHES=( "${FILESDIR}"/${PN}-6.0-misc.patch
+PATCHES=( "${FILESDIR}"/${PN}-6.7-misc.patch
 	"${FILESDIR}"/${PN}-6.6-linguas.patch )
 
 python_prepare_all() {
