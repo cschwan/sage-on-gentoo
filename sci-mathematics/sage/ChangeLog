@@ -4,6 +4,10 @@
 
   28 Apr 2015; François Bissey <francois.bissey@canterbury.ac.nz>
   sage-9999.ebuild:
+  Bump neutering patchset to remove sage/misc/dist.py
+
+  28 Apr 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-9999.ebuild:
   bump cython dependency in 9999≈y
 
   24 Apr 2015; François Bissey <francois.bissey@canterbury.ac.nz>

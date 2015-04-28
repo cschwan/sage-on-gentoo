@@ -25,7 +25,7 @@ fi
 DESCRIPTION="Math software for algebra, geometry, number theory, cryptography and numerical computation"
 HOMEPAGE="http://www.sagemath.org"
 SRC_URI="${SRC_URI}
-	mirror://sagemath/patches/${PN}-6.7-r3-neutering.tar.xz"
+	mirror://sagemath/patches/${PN}-6.7-r4-neutering.tar.xz"
 
 LICENSE="GPL-2"
 SLOT="0"
@@ -141,6 +141,8 @@ python_prepare() {
 	# Remove sage's package management system
 	epatch "${WORKDIR}"/patches/${PN}-6.7-package.patch
 	rm sage/misc/package.py
+	# remove the install_script facility
+	rm sage/misc/dist.py
 
 	# Remove sage's git capabilities
 	epatch "${WORKDIR}"/patches/${PN}-6.5-hg.patch
