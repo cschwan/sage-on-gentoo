@@ -13,12 +13,6 @@ diff -Naur doc.orig/en/constructions/plotting.rst doc/en/constructions/plotting.
 diff -Naur doc.orig/en/reference/misc/index.rst doc/en/reference/misc/index.rst
 --- doc.orig/en/reference/misc/index.rst	2015-04-28 22:08:40.475522792 +1200
 +++ doc/en/reference/misc/index.rst	2015-04-28 22:10:48.885809247 +1200
-@@ -1,4 +1,4 @@
--Utilities
-+wUtilities
- =========
- 
- General Infrastructure
 @@ -221,15 +221,6 @@
     sage/misc/pager
     sage/misc/sagedoc

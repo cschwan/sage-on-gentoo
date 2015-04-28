@@ -3,6 +3,10 @@
 # $Header: $
 
   28 Apr 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  files/sage-doc-6.7-misc.patch:
+  Mistake in the generation of sage-doc-6.7-misc.patch
+
+  28 Apr 2015; François Bissey <francois.bissey@canterbury.ac.nz>
   +files/sage-doc-6.7-misc.patch, sage-doc-9999-r1.ebuild:
   Update the the misc patch to mirror the removal of package.py and dist.py in
   the documentation
