@@ -2,6 +2,10 @@
 # Copyright 1999-2015 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  28 Apr 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-9999.ebuild:
+  bump cython dependency in 9999≈y
+
   24 Apr 2015; François Bissey <francois.bissey@canterbury.ac.nz>
   sage-9999.ebuild:
   Make the bliss otional dependency actually compile
