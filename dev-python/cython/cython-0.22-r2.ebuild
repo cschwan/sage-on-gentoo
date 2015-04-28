@@ -28,8 +28,11 @@ DEPEND="${RDEPEND}
 	doc? ( dev-python/sphinx[${PYTHON_USEDEP}] )
 	test? ( dev-python/numpy[${PYTHON_USEDEP}] )"
 
+#
 PATCHES=(
 	"${FILESDIR}"/${PN}-0.22-embedsignatures.patch
+	"${FILESDIR}"/${PN}-0.22_include_to_git_master.patch
+	"${FILESDIR}"/${PN}-0.22-c_tuple_type_memleak.patch
 	)
 
 S="${WORKDIR}/${MY_PN}-${PV%_*}"

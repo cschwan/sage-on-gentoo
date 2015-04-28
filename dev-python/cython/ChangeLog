@@ -2,6 +2,13 @@
 # Copyright 1999-2015 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/dev-python/cython/ChangeLog,v 1.93 2013/02/16 22:07:28 mgorny Exp $
 
+*cython-0.22-r2 (28 Apr 2015)
+
+  28 Apr 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  +cython-0.22-r2.ebuild, +files/cython-0.22-c_tuple_type_memleak.patch,
+  +files/cython-0.22_include_to_git_master.patch, -cython-0.22-r1.ebuild:
+  Bump cython with commit from upcoming 0.23. See sage's trac #18294 and #18121
+
 *cython-0.22-r1 (16 Apr 2015)
 
   16 Apr 2015; François Bissey <francois.bissey@canterbury.ac.nz>
