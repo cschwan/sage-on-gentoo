@@ -2,6 +2,10 @@
 # Copyright 1999-2015 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  29 Apr 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  +files/lcalc-1.23_default_parameters_2.patch, lcalc-1.23-r7.ebuild:
+  Add patch to support gcc 5.1 see http://trac.sagemath.org/ticket/18316
+
   02 Apr 2015; François Bissey <francois.bissey@canterbury.ac.nz>
   -lcalc-1.23-r5.ebuild, -lcalc-1.23-r6.ebuild:
   Cleaning now unused versions

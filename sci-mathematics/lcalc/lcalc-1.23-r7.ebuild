@@ -35,6 +35,8 @@ src_prepare() {
 	epatch "${FILESDIR}"/${PN}-1.23-gcc-4.6-fix.patch
 	# fix error that pops up with GCC >= 4.9
 	epatch "${FILESDIR}"/${PN}-1.23-fix-default-argument.patch
+	# patch to support GCC 5.1+
+	epatch "${FILESDIR}"/${PN}-1.23_default_parameters_2.patch
 
 	# macos patching
 	if [[ ${CHOST} == *-darwin* ]] ; then
