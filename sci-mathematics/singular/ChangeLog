@@ -1,6 +1,10 @@
 # ChangeLog for sci-mathematics/singular
-# Copyright 1999-2014 Gentoo Foundation; Distributed under the GPL v2
+# Copyright 1999-2015 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/sci-mathematics/singular/ChangeLog,v 1.53 2012/06/23 10:50:20 xarthisius Exp $
+
+  30 Apr 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  +files/singular-3.1.7-use_cxx_for_linking.patch, singular-3.1.7_p1.ebuild:
+  Use CXX instead of LD for linking to help with issue #352
 
 *singular-3.1.7_p1 (25 Nov 2014)
 

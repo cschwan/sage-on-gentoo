@@ -1,4 +1,4 @@
-# Copyright 1999-2014 Gentoo Foundation
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
@@ -58,7 +58,9 @@ src_prepare () {
 		"${FILESDIR}"/${PN}-3.0.4.4-nostrip.patch \
 		"${FILESDIR}"/${PN}-3.1.3.3-Minor.h.patch \
 		"${FILESDIR}"/${PN}-3.1.7-flintconfig.patch \
-		"${FILESDIR}"/${PN}-3.1.7-implicit-template.patch
+		"${FILESDIR}"/${PN}-3.1.7-implicit-template.patch \
+		"${FILESDIR}"/${PN}-3.1.7-use_cxx_for_linking.patch
+	eprefixify kernel/Makefile.in
 	use python && epatch "${FILESDIR}"/${PN}-3.1.3.2-python.patch
 
 	if  [[ ${CHOST} == *-darwin* ]] ; then
