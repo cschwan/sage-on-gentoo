@@ -102,7 +102,7 @@ RDEPEND="${CDEPEND}
 	>=sci-mathematics/cu2-20060223
 	>=sci-mathematics/cubex-20060128
 	>=sci-mathematics/dikcube-20070912
-	>=sci-mathematics/maxima-5.35.1-r2[ecls]
+	~sci-mathematics/maxima-5.35.1[ecls]
 	>=sci-mathematics/mcube-20051209
 	>=sci-mathematics/optimal-20040603
 	>=sci-mathematics/palp-2.1
