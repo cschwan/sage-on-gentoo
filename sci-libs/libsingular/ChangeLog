@@ -1,6 +1,11 @@
 # ChangeLog for sci-libs/libsingular
-# Copyright 1999-2014 Gentoo Foundation; Distributed under the GPL v2
+# Copyright 1999-2015 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
+
+  30 Apr 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  +files/singular-3.1.7-use_cxx_for_linking.patch,
+  libsingular-3.1.7_p1-r2.ebuild:
+  mirror linking fixe from singular for issue #352
 
 *libsingular-3.1.7_p1-r2 (27 Nov 2014)
 

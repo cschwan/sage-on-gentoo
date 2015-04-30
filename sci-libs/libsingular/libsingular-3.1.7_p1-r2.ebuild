@@ -1,8 +1,8 @@
-# Copyright 1999-2014 Gentoo Foundation
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
-EAPI="5"
+EAPI=5
 
 inherit autotools eutils flag-o-matic multilib prefix versionator
 
@@ -49,7 +49,8 @@ src_prepare () {
 		"${FILESDIR}"/${PN_PATCH}-3.1.0-gentoo.patch \
 		"${FILESDIR}"/${PN_PATCH}-3.1.3.3-Minor.h.patch \
 		"${FILESDIR}"/${PN_PATCH}-3.1.7-flintconfig.patch \
-		"${FILESDIR}"/${PN_PATCH}-3.1.7-implicit-template.patch
+		"${FILESDIR}"/${PN_PATCH}-3.1.7-implicit-template.patch \
+		"${FILESDIR}"/${PN_PATCH}-3.1.7-use_cxx_for_linking.patch
 	if  [[ ${CHOST} == *-darwin* ]] ; then
 		# really a placeholder until I figure out the patch for that one.
 		epatch "${FILESDIR}"/${PN_PATCH}-3.1.3.3-dylib.patch
