@@ -2,28 +2,35 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
-EAPI=4
+EAPI=5
 
 inherit eutils flag-o-matic toolchain-funcs multilib
 
-DESCRIPTION="A software package for computer-aided number theory"
+MY_P="pari-2.8-1545-gd04cdd3"
+DESCRIPTION="Computer-aided number theory C library and tools"
 HOMEPAGE="http://pari.math.u-bordeaux.fr/"
-SRC_URI="http://pari.math.u-bordeaux.fr/pub/${PN}/unix/OLD/2.5/${P}.tar.gz"
+#SRC_URI="mirror://sageupstream/${PN}/${MY_P}.tar.gz"
+SRC_URI="http://boxen.math.washington.edu/home/jdemeyer/spkg/${MY_P}.tar.gz"
 
 LICENSE="GPL-2"
-SLOT="0"
+# Pari dev release have soname of the form pari-{gmp-}-{Major}.{minor}.so.0
+#SLOT="0/4"
+SLOT="0/0"
 KEYWORDS="~alpha ~amd64 ~hppa ~mips ~ppc ~ppc64 ~sparc ~x86 ~amd64-linux ~x86-fbsd ~x86-linux ~x86-macos ~x86-solaris"
 IUSE="data doc fltk gmp qt4 X"
 
-RDEPEND="sys-libs/readline
+RDEPEND="
+	sys-libs/readline:0=
 	data? ( sci-mathematics/pari-data )
 	doc? ( X? ( x11-misc/xdg-utils ) )
-	fltk? ( x11-libs/fltk:1 )
-	gmp? ( dev-libs/gmp )
-	qt4? ( dev-qt/qtgui:4 )
-	X? ( x11-libs/libX11 )"
+	fltk? ( x11-libs/fltk:1= )
+	gmp? ( dev-libs/gmp:0= )
+	qt4? ( dev-qt/qtgui:4= )
+	X? ( x11-libs/libX11:0= )"
 DEPEND="${RDEPEND}
 	doc? ( virtual/latex-base )"
+
+S="${WORKDIR}"/${MY_P}
 
 get_compile_dir() {
 	pushd "${S}/config" > /dev/null
@@ -37,22 +44,19 @@ src_prepare() {
 	epatch "${FILESDIR}"/${PN}-2.3.2-strip.patch
 	epatch "${FILESDIR}"/${PN}-2.3.2-ppc-powerpc-arch-fix.patch
 	# fix parallel make
-	epatch "${FILESDIR}"/${PN}-2.5.0-doc-make.patch
-	# sage error handling patch
-	epatch "${FILESDIR}"/${PN}-2.5.0-mp.c.patch
-	# OS X: add -install_name to the linker option
-	epatch "${FILESDIR}"/${PN}-2.5.0-macos.patch
+	epatch "${FILESDIR}"/${PN}-2.7.0-doc-make.patch
 	# fix automagic
-	epatch "${FILESDIR}"/${PN}-2.5.1-no-automagic.patch
-	# sage trac 13902: Slowdown for PARI integer determinant
-	epatch "${FILESDIR}"/${PN}-2.5.3-slow_determinant.patch
-	# sage trac 13863: Segfault in pari galoisconj0
-	epatch "${FILESDIR}"/${PN}-2.5.3-galoisanalysis_p4.patch
+	epatch "${FILESDIR}"/${PN}-2.8_pre20150430-no-automagic.patch
+	# sage-on-gentoo trac 15654: PARI discriminant speed depends on stack size
+	epatch "${FILESDIR}"/${PN}-9999-det_garbage.patch
 
 	# disable default building of docs during install
 	sed -i \
 		-e "s:install-doc install-examples:install-examples:" \
 		config/Makefile.SH || die "Failed to fix makefile"
+
+	# Compatibility with sage current reporting. To disappear in the future.
+	epatch "${FILESDIR}"/${PN}-9999-public_memory_functions.patch
 
 	# propagate ldflags
 	sed -i \
@@ -63,17 +67,11 @@ src_prepare() {
 		-e "s:\$d = \$0:\$d = '${EPREFIX}/usr/share/doc/${PF}':" \
 		-e 's:"acroread":"xdg-open":' \
 		doc/gphelp.in || die "Failed to fix doc dir"
-
-	sed -i "s:/\(usr\|lib64\):${EPREFIX}/\1:g" \
-		config/get_{Qt,X11,include_path,libpth} \
-		|| die "Failed to fix get_X11"
-
-	# usersch3.tex is generated
-	rm doc/usersch3.tex || die "failed to remove generated file"
 }
 
 src_configure() {
 	tc-export CC
+	export CPLUSPLUS=$(tc-getCXX)
 
 	# need to force optimization here, as it breaks without
 	if is-flag -O0; then
@@ -98,9 +96,8 @@ src_configure() {
 }
 
 src_compile() {
-	if use hppa; then
+	use hppa && \
 		mymake=DLLD\="${EPREFIX}"/usr/bin/gcc\ DLLDFLAGS\=-shared\ -Wl,-soname=\$\(LIBPARI_SONAME\)\ -lm
-	fi
 
 	mycxxmake=LD\=$(tc-getCXX)
 
@@ -134,10 +131,13 @@ src_install() {
 		dobin doc/gphelp
 		insinto /usr/share/doc/${PF}
 		# gphelp looks for some of the tex sources...
+		# and they need to be uncompressed
+		docompress -x /usr/share/doc/${PF}
 		doins doc/*.tex doc/translations
 		# Install the examples - for real.
-		local installdir=$(get_compile_dir)
-		cd "${installdir}" || die "failed to change directory"
-		emake EXDIR="${ED}/usr/share/doc/${PF}/examples" install-examples
+		emake EXDIR="${ED}/usr/share/doc/${PF}/examples" \
+			-C $(get_compile_dir) install-examples
 	fi
+	insinto /usr/include/pari
+	doins src/language/anal.h
 }

@@ -1,0 +1,110 @@
+diff -Naur pari-2.8-1545-gd04cdd3.orig/config/Makefile.SH pari-2.8-1545-gd04cdd3/config/Makefile.SH
+--- pari-2.8-1545-gd04cdd3.orig/config/Makefile.SH	2015-05-04 11:47:29.628679772 +1200
++++ pari-2.8-1545-gd04cdd3/config/Makefile.SH	2015-05-04 11:48:42.348842987 +1200
+@@ -75,12 +75,12 @@
+   PLOTLIBS="-L\$(QTDIR)/lib $QTLIB"
+   graph=plotQt;;
+ Qt4)
+-  PLOTCFLAGS='-D__FANCY_WIN__ -I$(QTDIR)/include'
+-  PLOTLIBS="-L\$(QTDIR)/lib $QTLIB"
++  PLOTCFLAGS='-D__FANCY_WIN__ `pkg-config --cflags QtGui`'
++  PLOTLIBS="`pkg-config --libs QtGui`"
+   graph=plotQt4;;
+ fltk)
+-  PLOTCFLAGS=
+-  PLOTLIBS="$FLTK_LIBS"
++  PLOTCFLAGS="`fltk-config --cxxflags` $X11_INC"
++  PLOTLIBS="`fltk-config --ldflags`"
+   postconfig='fltk-config --post '
+   graph=plotfltk;;
+ win32)
+@@ -269,7 +269,7 @@
+ GMPINCLUDE = $GMPINCLUDE
+ # Graphic library.
+ QTDIR      = "$QTDIR"
+-MOC        = \$(QTDIR)/bin/moc
++MOC        = "`which moc`"
+ PLOTCFLAGS = $PLOTCFLAGS
+ PLOTLIBS   = $PLOTLIBS
+ CXX        = g++
+@@ -728,8 +728,7 @@
+   plotQt4)
+     cflags="$cflags \$(PLOTCFLAGS)"
+     depend="$RECT_H"
+-    compile="\$(MOC) \$(PLOTCFLAGS) -o plotQt4.moc.cpp $src/graph/plotQt4.c
+-&& \$(CXX)"
++    compile="\$(MOC) \$(PLOTCFLAGS) -o plotQt4.moc.cpp $src/graph/plotQt4.c && \$(CXX)"
+     ;;
+   plotfltk)
+     cflags="$cflags \$(PLOTCFLAGS)"
+diff -Naur pari-2.8-1545-gd04cdd3.orig/config/get_Qt pari-2.8-1545-gd04cdd3/config/get_Qt
+--- pari-2.8-1545-gd04cdd3.orig/config/get_Qt	2015-05-04 11:47:29.638679797 +1200
++++ pari-2.8-1545-gd04cdd3/config/get_Qt	2015-05-04 11:48:00.158748310 +1200
+@@ -5,7 +5,7 @@
+ case "$with_qt" in
+ yes)
+    pth="/usr/local/lib /usr/local/share /usr/lib /usr/share"
+-   QTDIR=`locatedir qt4/bin $pth`
++   QTDIR=`locatedir qt4 $pth`
+    if test -n "$QTDIR"; then
+      QTLIB="-lQtCore -lQtGui"
+      which_graphic_lib=Qt4
+diff -Naur pari-2.8-1545-gd04cdd3.orig/config/get_config_options pari-2.8-1545-gd04cdd3/config/get_config_options
+--- pari-2.8-1545-gd04cdd3.orig/config/get_config_options	2015-05-04 11:47:29.628679772 +1200
++++ pari-2.8-1545-gd04cdd3/config/get_config_options	2015-05-04 11:48:00.158748310 +1200
+@@ -86,10 +86,12 @@
+   --with-ncurses-lib=*|--with-ncurses=*)
+       with_ncurses_lib=`echo "$1" | sed -e 's/[-a-z]*=//'` ;;
+ 
++  --without-qt|--with-qt=no) without_qt=yes ;;
+   --with-qt) with_qt=yes ;;
+   --with-qt=*)
+       with_qt=`echo "$1" | sed -e 's/[-a-z]*=//'` ;;
+ 
++  --without-fltk|--with-fltk=no) without_fltk=yes ;;
+   --with-fltk) with_fltk=yes ;;
+   --with-fltk=*)
+       with_fltk=`echo "$1" | sed -e 's/[-a-z]*=//'` ;;
+@@ -165,7 +167,9 @@
+   --with-gmp-lib=DIR          specify location of gmp libs
+ 
+   --with-qt[=DIR]        use the Qt graphical library [prefix for Qt dir.]
++  --without-qt           do not try to use the Qt lib
+   --with-fltk            use the FLTK graphical library [need fltk-config]
++  --without-fltk         do not try to use the FLTK lib
+ 
+ Miscellaneous
+   --with-runtime-perl[=path-to-perl-binary] for gphelp / tex2mail
+diff -Naur pari-2.8-1545-gd04cdd3.orig/config/get_fltk pari-2.8-1545-gd04cdd3/config/get_fltk
+--- pari-2.8-1545-gd04cdd3.orig/config/get_fltk	2015-05-04 11:47:29.638679797 +1200
++++ pari-2.8-1545-gd04cdd3/config/get_fltk	2015-05-04 11:48:00.158748310 +1200
+@@ -2,6 +2,9 @@
+   with_fltk=yes
+ fi
+ FLTK_LIBS="`fltk-config --ldflags`"
++if test -z "$without_fltk; then
++   FLTK_LIBS=""
++fi
+ exe=$osname-$arch-fltk$$
+ cxx=$CXX
+ if test -z "$cxx"; then cxx=g++; fi;
+diff -Naur pari-2.8-1545-gd04cdd3.orig/config/get_graphic_lib pari-2.8-1545-gd04cdd3/config/get_graphic_lib
+--- pari-2.8-1545-gd04cdd3.orig/config/get_graphic_lib	2015-05-04 11:47:29.638679797 +1200
++++ pari-2.8-1545-gd04cdd3/config/get_graphic_lib	2015-05-04 11:48:00.158748310 +1200
+@@ -7,6 +7,7 @@
+ 
+ if test -n "$with_fltk"; then which_graphic_lib=fltk; fi
+ if test -n "$with_qt";   then which_graphic_lib=Qt; fi
++if test -n "$without_fltk" -a -n "$without_qt"; then which_graphic_lib=none; fi
+ if test "$fastread" != yes; then
+   cat << EOT
+ ==========================================================================
+@@ -38,7 +39,7 @@
+     case $osname in
+       darwin) ;; # fltk brings in CoreFoundation, incompatible with pari_daemon
+       *). ./get_fltk # FLTK_LIBS ;;
+-        if test -z "$FLTK_LIBS"; then
++        if test -z "`fltk-config --ldflags 2> /dev/null`"; then
+           case $which_graphic_lib in fltk) which_graphic_lib=none;; esac
+         else
+           which_graphic_lib=fltk
