@@ -19,7 +19,6 @@ dev-python/characteristic
 ~dev-python/setuptools-9.1
 dev-python/flask-oldsessions
 ~dev-python/flask-silk-0.2
-dev-python/gdmodule
 dev-python/terminado
 dev-python/mistune
 ~dev-python/ipython-3.1.0::sage-on-gentoo
@@ -87,7 +86,7 @@ sci-mathematics/lrcalc
 sci-mathematics/mcube
 sci-mathematics/optimal
 sci-mathematics/palp
->=sci-mathematics/pari-2.7.1-r2
+~sci-mathematics/pari-2.8
 sci-mathematics/pari-data
 sci-mathematics/polybori
 sci-mathematics/ratpoints
