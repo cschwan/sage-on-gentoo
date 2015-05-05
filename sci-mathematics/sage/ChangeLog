@@ -2,6 +2,11 @@
 # Copyright 1999-2015 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  05 May 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-9999.ebuild:
+  Bump pari dependency for 6.7.beta4. gdmodule is gone upstream (not so long ago
+  but before this beta) so removing from dependencies.
+
   02 May 2015; François Bissey <francois.bissey@canterbury.ac.nz>
   sage-6.6.ebuild:
   pin pari in sage 6.6. The next pari upgrade in

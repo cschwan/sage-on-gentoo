@@ -61,7 +61,7 @@ CDEPEND="dev-libs/gmp:0=
 	sci-mathematics/glpk:0=
 	>=sci-mathematics/lcalc-1.23-r6[pari]
 	>=sci-mathematics/lrcalc-1.1.6_beta1
-	>=sci-mathematics/pari-2.8_pre20150307[data,gmp,doc]
+	>=sci-mathematics/pari-2.8_pre20150430[data,gmp,doc]
 	>=sci-mathematics/polybori-0.8.3[${PYTHON_USEDEP}]
 	>=sci-mathematics/ratpoints-2.1.3
 	~sci-mathematics/sage-baselayout-${PV}[testsuite=,${PYTHON_USEDEP}]
@@ -85,7 +85,6 @@ DEPEND="${CDEPEND}"
 RDEPEND="${CDEPEND}
 	>=dev-lang/R-3.1.2
 	>=dev-python/cvxopt-1.1.7[glpk,${PYTHON_USEDEP}]
-	>=dev-python/gdmodule-0.56-r2[png,${PYTHON_USEDEP}]
 	>=dev-python/ipython-3.1.0[notebook,${PYTHON_USEDEP}]
 	>=dev-python/jinja-2.5.5[${PYTHON_USEDEP}]
 	<dev-python/matplotlib-1.4.0[${PYTHON_USEDEP}]
