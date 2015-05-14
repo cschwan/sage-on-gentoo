@@ -2,6 +2,10 @@
 # Copyright 1999-2015 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  14 May 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  -pynac-0.3.5.ebuild:
+  We can now remove pynac 0.3.5 which is not used by any sage version
+
 *pynac-0.3.5 (05 May 2015)
 
   05 May 2015; François Bissey <francois.bissey@canterbury.ac.nz>
