@@ -25,7 +25,7 @@ fi
 DESCRIPTION="Math software for algebra, geometry, number theory, cryptography and numerical computation"
 HOMEPAGE="http://www.sagemath.org"
 SRC_URI="${SRC_URI}
-	mirror://sagemath/patches/${PN}-6.7-r5-neutering.tar.xz"
+	mirror://sagemath/patches/${PN}-6.7-r6-neutering.tar.xz"
 
 LICENSE="GPL-2"
 SLOT="0"
@@ -61,7 +61,7 @@ CDEPEND="dev-libs/gmp:0=
 	sci-mathematics/glpk:0=
 	>=sci-mathematics/lcalc-1.23-r6[pari]
 	>=sci-mathematics/lrcalc-1.1.6_beta1
-	>=sci-mathematics/pari-2.8_pre20150430[data,gmp,doc]
+	>=sci-mathematics/pari-2.8_pre20150510[data,gmp,doc]
 	>=sci-mathematics/polybori-0.8.3[${PYTHON_USEDEP}]
 	>=sci-mathematics/ratpoints-2.1.3
 	~sci-mathematics/sage-baselayout-${PV}[testsuite=,${PYTHON_USEDEP}]
@@ -148,7 +148,7 @@ python_prepare() {
 	rm -rf sage/dev
 
 	# Remove sage cmdline tests related to these
-	epatch "${WORKDIR}"/patches/${PN}-6.6-cmdline.patch
+	epatch "${WORKDIR}"/patches/${PN}-6.7-cmdline.patch
 
 	# replace pexpect with sage pinned version
 	epatch "${FILESDIR}"/${PN}-6.2-pexpect.patch
@@ -182,7 +182,7 @@ python_prepare() {
 	############################################################################
 
 	# sage on gentoo env.py
-	epatch "${FILESDIR}"/sage-6.3-env.patch
+	epatch "${FILESDIR}"/sage-6.7-env.patch
 	eprefixify sage/env.py
 
 	# fix library path of libsingular
