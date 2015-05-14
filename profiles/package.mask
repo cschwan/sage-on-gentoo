@@ -5,5 +5,4 @@
 # preparing ecm for removal. I only keep it in case it solves some OS X problems
 sci-mathematics/ecm
 # for 6.7
->=sci-libs/pynac-0.3.3
 >=sci-mathematics/pari-2.8_pre20150430
