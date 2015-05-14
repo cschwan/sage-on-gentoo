@@ -42,7 +42,7 @@ CDEPEND="dev-libs/gmp:0=
 	>=dev-lisp/ecls-13.5.1
 	=dev-python/numpy-1.8*[${PYTHON_USEDEP}]
 	>=dev-python/cython-0.22-r2[${PYTHON_USEDEP}]
-	>=sci-mathematics/eclib-1.0.0[flint]
+	>=sci-mathematics/eclib-20150510[flint]
 	>=sci-mathematics/gmp-ecm-6.4.4[-openmp]
 	>=sci-mathematics/flint-2.4.4[ntl]
 	~sci-libs/fplll-4.0.4
@@ -55,7 +55,7 @@ CDEPEND="dev-libs/gmp:0=
 	~sci-libs/m4ri-20140914
 	~sci-libs/m4rie-20140914
 	>=sci-libs/mpfi-1.5.1
-	~sci-libs/pynac-0.3.5[${PYTHON_USEDEP}]
+	~sci-libs/pynac-0.3.7[${PYTHON_USEDEP}]
 	>=sci-libs/symmetrica-2.0-r3
 	>=sci-libs/zn_poly-0.9
 	sci-mathematics/glpk:0=
@@ -83,7 +83,7 @@ CDEPEND="dev-libs/gmp:0=
 DEPEND="${CDEPEND}"
 
 RDEPEND="${CDEPEND}
-	>=dev-lang/R-3.1.2
+	>=dev-lang/R-3.2.0
 	>=dev-python/cvxopt-1.1.7[glpk,${PYTHON_USEDEP}]
 	>=dev-python/ipython-3.1.0[notebook,${PYTHON_USEDEP}]
 	>=dev-python/jinja-2.5.5[${PYTHON_USEDEP}]

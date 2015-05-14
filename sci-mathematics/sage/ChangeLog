@@ -3,6 +3,10 @@
 # $Header: $
 
   14 May 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-9999.ebuild:
+  Bump dependencies for 6.7.rc0
+
+  14 May 2015; François Bissey <francois.bissey@canterbury.ac.nz>
   +files/sage-6.7-env.patch, sage-9999.ebuild:
   bump a few patches and pari dep for 6.7.beta5
 
