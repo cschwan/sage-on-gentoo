@@ -2,6 +2,10 @@
 # Copyright 1999-2015 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/sci-mathematics/pari/ChangeLog,v 1.87 2012/03/06 17:06:06 bicatali Exp $
 
+  14 May 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  pari-2.8_pre20150510.ebuild:
+  use the sage mirror for latest pari now that 6.7.beta5 is released.
+
 *pari-2.8_pre20150510 (13 May 2015)
 
   13 May 2015; François Bissey <francois.bissey@canterbury.ac.nz>

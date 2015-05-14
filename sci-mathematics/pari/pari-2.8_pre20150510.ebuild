@@ -9,8 +9,7 @@ inherit eutils flag-o-matic toolchain-funcs multilib
 MY_P="pari-2.8-1564-gdeac36e"
 DESCRIPTION="Computer-aided number theory C library and tools"
 HOMEPAGE="http://pari.math.u-bordeaux.fr/"
-#SRC_URI="mirror://sageupstream/${PN}/${MY_P}.tar.gz"
-SRC_URI="http://boxen.math.washington.edu/home/jdemeyer/spkg/${MY_P}.tar.gz"
+SRC_URI="mirror://sageupstream/${PN}/${MY_P}.tar.gz"
 
 LICENSE="GPL-2"
 # Pari dev release have soname of the form pari-{gmp-}-{Major}.{minor}.so.0
