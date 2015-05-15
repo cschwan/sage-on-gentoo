@@ -1,3 +1,3 @@
-sageupstream http://www.sagemath.org/packages/upstream
+sageupstream http://www.mirrorservice.org/sites/www.sagemath.org/spkg/upstream/
 sagemath http://www.lmona.de/files/sage http://www.lmona.de/files/distfiles https://github.com/sagemath/sage/archive
 sagemathdoc http://www.lmona.de/files/sage http://www.sagemath.org/doc-bz2
