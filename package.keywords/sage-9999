@@ -131,3 +131,4 @@ sci-libs/modular_decomposition
 #sci-libs/coinor-utils
 #sci-libs/coinor-osi
 #sci-libs/coinor-cbc
+~dev-libs/gmp-6.0.0a
