@@ -28,7 +28,7 @@ LANGS="ca de en fr hu it pt ru tr"
 
 LICENSE="GPL-2"
 SLOT="0"
-IUSE="html pdf"
+IUSE="html"
 
 LINGUAS_USEDEP=""
 for X in ${LANGS} ; do
@@ -42,8 +42,7 @@ RESTRICT="mirror"
 # TODO: depend on sage-baselayout (creates sage-main directory) ?
 DEPEND="!sci-mathematics/sage-doc-bin
 	>=dev-python/docutils-0.12[${PYTHON_USEDEP}]
-	sci-mathematics/sage
-	pdf? ( app-text/texlive[extra,${LINGUAS_USEDEP}] )"
+	sci-mathematics/sage"
 RDEPEND="${DEPEND}
 	~dev-python/sphinx-1.2.2[${PYTHON_USEDEP}]"
 
@@ -78,10 +77,6 @@ python_compile() {
 	if use html ; then
 		${PYTHON} doc/common/builder.py --no-pdf-links all html || die "failed to produce html doc"
 	fi
-	if use pdf ; then
-		export MAKE=make
-		${PYTHON} doc/common/builder.py all pdf || die "failed to produce pdf doc"
-	fi
 }
 
 src_install() {
@@ -109,11 +104,6 @@ src_install() {
 		done
 		insinto /usr/share/doc/sage/html
 		doins -r doc/output/html/*
-	fi
-
-	if use pdf ; then
-		insinto /usr/share/doc/sage/pdf
-		doins -r doc/output/pdf/*
 	fi
 }
 
