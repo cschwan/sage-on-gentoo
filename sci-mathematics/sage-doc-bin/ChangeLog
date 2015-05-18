@@ -1,3 +1,9 @@
+*sage-doc-bin-6.7 (18 May 2015)
+
+  18 May 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  +sage-doc-bin-6.7.ebuild:
+  sage 6.7 binary documentation as prepared by F. Bissey
+
   21 Apr 2015; François Bissey <francois.bissey@canterbury.ac.nz>
   sage-doc-bin-6.6.ebuild:
   Recreate tarball directly from a vanilla build and solve last problem in issue
