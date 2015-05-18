@@ -16,7 +16,7 @@ sci-mathematics/eclib       flint
 sci-mathematics/gmp-ecm     -openmp
 sci-mathematics/maxima      ecls
 sci-mathematics/lcalc       pari
-sci-mathematics/pari        data gmp
+sci-mathematics/pari        data gmp doc
 sci-mathematics/polybori    gd
 sys-libs/zlib               minizip
 

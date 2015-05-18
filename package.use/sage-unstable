@@ -1,6 +1,4 @@
 # Use in addition to ./sage when running Gentoo unstable
-sci-mathematics/pari        doc
-
 app-text/ghostscript-gpl    cups
 ##################################
 # ipython update will break stuff wanting python 3.2
