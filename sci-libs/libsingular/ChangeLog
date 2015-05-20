@@ -2,6 +2,13 @@
 # Copyright 1999-2015 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*libsingular-3.1.7_p1-r3 (20 May 2015)
+
+  20 May 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  +files/singular-3.1.7-flintconfig-r2.patch, +libsingular-3.1.7_p1-r3.ebuild:
+  Use updated flintconfig patch for prefix goodness. It should contribute to
+  resolving issue #353
+
   30 Apr 2015; François Bissey <francois.bissey@canterbury.ac.nz>
   +files/singular-3.1.7-use_cxx_for_linking.patch,
   libsingular-3.1.7_p1-r2.ebuild:
