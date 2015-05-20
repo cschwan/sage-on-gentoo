@@ -1,4 +1,4 @@
-# Copyright 1999-2014 Gentoo Foundation
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/sci-mathematics/singular/singular-3.1.4-r1.ebuild,v 1.4 2012/06/23 10:50:20 xarthisius Exp $
 
@@ -29,14 +29,14 @@ SLOT="0"
 KEYWORDS="~amd64 ~ppc ~x86 ~x86-linux ~ppc-macos ~x86-macos ~x64-macos"
 IUSE="boost doc emacs examples python +readline test"
 
-RDEPEND="dev-libs/gmp
+RDEPEND="dev-libs/gmp:0=
 	<dev-libs/ntl-6.0.0
 	emacs? ( >=virtual/emacs-22 )
-	readline? ( sys-libs/readline )"
+	readline? ( sys-libs/readline:0= )"
 
 DEPEND="${RDEPEND}
 	dev-lang/perl
-	boost? ( dev-libs/boost )"
+	boost? ( dev-libs/boost:0= )"
 
 S="${WORKDIR}"/${MY_PN}-${MY_DIR}
 SITEFILE=60${PN}-gentoo.el

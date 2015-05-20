@@ -2,6 +2,14 @@
 # Copyright 1999-2015 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/sci-mathematics/singular/ChangeLog,v 1.53 2012/06/23 10:50:20 xarthisius Exp $
 
+*singular-3.1.7_p1-r1 (20 May 2015)
+
+  20 May 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  +files/singular-3.1.7-flintconfig-r2.patch, +singular-3.1.7_p1-r1.ebuild,
+  singular-3.1.5-r1.ebuild, singular-3.1.5-r2.ebuild:
+  Update flinconfig patch has it wasn't working properly on prefix. Make repoman
+  happy about slots.
+
   30 Apr 2015; François Bissey <francois.bissey@canterbury.ac.nz>
   +files/singular-3.1.7-use_cxx_for_linking.patch, singular-3.1.7_p1.ebuild:
   Use CXX instead of LD for linking to help with issue #352
