@@ -52,7 +52,10 @@ python_compile() {
 }
 
 python_compile_all() {
-	use doc && unset XDG_CONFIG_HOME && emake -C docs html
+	use doc && \
+		unset XDG_CONFIG_HOME && \
+		export VARTEXFONTS="${T}"/fonts && \
+		emake -C docs html
 }
 
 python_test() {
