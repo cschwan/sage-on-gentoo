@@ -2,6 +2,10 @@
 # Copyright 1999-2015 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/sci-mathematics/pari/ChangeLog,v 1.87 2012/03/06 17:06:06 bicatali Exp $
 
+  22 May 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  pari-9999.ebuild:
+  port the change made in the 2.8 branch for testing to the 9999 branch
+
 *pari-2.8_pre20150519 (19 May 2015)
 
   19 May 2015; François Bissey <francois.bissey@canterbury.ac.nz>

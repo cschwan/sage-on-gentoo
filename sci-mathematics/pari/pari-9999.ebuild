@@ -43,7 +43,7 @@ src_prepare() {
 	# fix parallel make
 	epatch "${FILESDIR}"/${PN}-2.7.0-doc-make.patch
 	# fix automagic
-	epatch "${FILESDIR}"/${PN}-2.7.0-no-automagic.patch
+	epatch "${FILESDIR}"/${PN}-2.8_pre20150430-no-automagic.patch
 	# sage-on-gentoo trac 15654: PARI discriminant speed depends on stack size
 	epatch "${FILESDIR}"/${PN}-9999-det_garbage.patch
 
@@ -115,7 +115,7 @@ src_compile() {
 }
 
 src_test() {
-	emake dobench
+	emake ${mymake} ${mycxxmake} test-all
 }
 
 src_install() {
