@@ -25,7 +25,7 @@ fi
 DESCRIPTION="Math software for algebra, geometry, number theory, cryptography and numerical computation"
 HOMEPAGE="http://www.sagemath.org"
 SRC_URI="${SRC_URI}
-	mirror://sagemath/patches/${PN}-6.7-r7-neutering.tar.xz"
+	mirror://sagemath/patches/${PN}-6.8-neutering.tar.xz"
 
 LICENSE="GPL-2"
 SLOT="0"
@@ -41,7 +41,7 @@ CDEPEND="dev-libs/gmp:0=
 	>=dev-libs/ppl-1.1
 	>=dev-lisp/ecls-13.5.1
 	=dev-python/numpy-1.8*[${PYTHON_USEDEP}]
-	>=dev-python/cython-0.22-r2[${PYTHON_USEDEP}]
+	>=dev-python/cython-0.22-r3[${PYTHON_USEDEP}]
 	>=sci-mathematics/eclib-20150510[flint]
 	>=sci-mathematics/gmp-ecm-6.4.4[-openmp]
 	>=sci-mathematics/flint-2.4.4[ntl]
@@ -138,7 +138,7 @@ python_prepare() {
 	epatch "${FILESDIR}"/${PN}-6.7-blas.patch
 
 	# Remove sage's package management system
-	epatch "${WORKDIR}"/patches/${PN}-6.7-package.patch
+	epatch "${WORKDIR}"/patches/${PN}-6.8-package.patch
 	rm sage/misc/package.py
 	# remove the install_script facility
 	rm sage/misc/dist.py
