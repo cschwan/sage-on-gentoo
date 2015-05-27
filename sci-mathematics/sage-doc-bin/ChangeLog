@@ -1,3 +1,7 @@
+  27 May 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  +files/sage-doc-bin-6.7-misc.patch, sage-doc-bin-6.7.ebuild:
+  Wrong patch in sage-doc-bin-6.7 fixing issue #355
+
 *sage-doc-bin-6.7 (18 May 2015)
 
   18 May 2015; François Bissey <francois.bissey@canterbury.ac.nz>
