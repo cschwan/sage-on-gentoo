@@ -40,6 +40,7 @@ CDEPEND="dev-libs/gmp:0=
 	~dev-libs/ntl-6.2.1
 	>=dev-libs/ppl-1.1
 	>=dev-lisp/ecls-13.5.1
+	dev-python/six[${PYTHON_USEDEP}]
 	=dev-python/numpy-1.8*[${PYTHON_USEDEP}]
 	>=dev-python/cython-0.22-r3[${PYTHON_USEDEP}]
 	>=sci-mathematics/eclib-20150510[flint]
@@ -135,7 +136,7 @@ pkg_setup() {
 
 python_prepare() {
 	# ATLAS independence
-	epatch "${FILESDIR}"/${PN}-6.7-blas.patch
+	epatch "${FILESDIR}"/${PN}-6.8-blas.patch
 
 	# Remove sage's package management system
 	epatch "${WORKDIR}"/patches/${PN}-6.8-package.patch
@@ -151,7 +152,6 @@ python_prepare() {
 	epatch "${WORKDIR}"/patches/${PN}-6.7-cmdline.patch
 
 	# replace pexpect with sage pinned version
-	epatch "${FILESDIR}"/${PN}-6.2-pexpect.patch
 	sed -i "s:import pexpect:import sage_pexpect as pexpect:g" \
 		`grep -rl "import pexpect" *`
 	sed -i "s:from pexpect:from sage_pexpect:g" \
