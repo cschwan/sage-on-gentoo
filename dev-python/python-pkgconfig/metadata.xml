@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
-<pkgmetadata>
-	<herd>sci</herd>
-	<longdescription>
-		pkgconfig is a Python module to interface with the pkg-config command line tool and supports Python 2.6+
-	</longdescription>
-</pkgmetadata>
