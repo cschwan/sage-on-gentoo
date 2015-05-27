@@ -68,7 +68,7 @@ CDEPEND="dev-libs/gmp:0=
 	media-libs/libpng:0=
 	>=sys-libs/readline-6.2
 	sys-libs/zlib
-	dev-python/python-pkgconfig
+	dev-python/pkgconfig
 	virtual/cblas
 	!sci-mathematics/sage-extcode
 	!sci-mathematics/sage-matroids"

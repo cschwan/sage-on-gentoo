@@ -71,7 +71,7 @@ CDEPEND="dev-libs/gmp:0=
 	media-libs/libpng:0=
 	>=sys-libs/readline-6.2
 	sys-libs/zlib
-	dev-python/python-pkgconfig
+	dev-python/pkgconfig
 	virtual/cblas
 	arb? ( >=sci-mathematics/arb-2.5.0 )
 	modular_decomposition? ( sci-libs/modular_decomposition )

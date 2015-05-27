@@ -2,6 +2,11 @@
 # Copyright 1999-2015 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  27 May 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-6.2-r1.ebuild, sage-6.3-r1.ebuild, sage-6.4-r1.ebuild, sage-6.5.ebuild,
+  sage-6.6.ebuild, sage-6.7.ebuild, sage-9999.ebuild:
+  dev-python/pkgconfig is now in the main tree, removing our own version
+
   24 May 2015; François Bissey <francois.bissey@canterbury.ac.nz>
   sage-9999.ebuild:
   Bump neutering patch for 6.8.beta0
