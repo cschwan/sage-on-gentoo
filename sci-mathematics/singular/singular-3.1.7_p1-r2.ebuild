@@ -59,7 +59,8 @@ src_prepare () {
 		"${FILESDIR}"/${PN}-3.1.3.3-Minor.h.patch \
 		"${FILESDIR}"/${PN}-3.1.7-flintconfig-r2.patch \
 		"${FILESDIR}"/${PN}-3.1.7-implicit-template.patch \
-		"${FILESDIR}"/${PN}-3.1.7-use_cxx_for_linking.patch
+		"${FILESDIR}"/${PN}-3.1.7-use_cxx_for_linking.patch \
+		"${FILESDIR}"/${PN}-3.1.7-curring.patch
 	eprefixify kernel/Makefile.in
 	use python && epatch "${FILESDIR}"/${PN}-3.1.3.2-python.patch
 

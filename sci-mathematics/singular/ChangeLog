@@ -2,6 +2,13 @@
 # Copyright 1999-2015 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/sci-mathematics/singular/ChangeLog,v 1.53 2012/06/23 10:50:20 xarthisius Exp $
 
+*singular-3.1.7_p1-r2 (28 May 2015)
+
+  28 May 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  +files/singular-3.1.7-curring.patch, +singular-3.1.7_p1-r2.ebuild,
+  -singular-3.1.7_p1-r1.ebuild:
+  Additional sage patch for issue #353
+
   21 May 2015; François Bissey <francois.bissey@canterbury.ac.nz>
   -files/singular-3.1.7-flintconfig.patch, -singular-3.1.7_p1.ebuild:
   remove prefix unsafe singular
