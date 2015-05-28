@@ -50,7 +50,8 @@ src_prepare () {
 		"${FILESDIR}"/${PN_PATCH}-3.1.3.3-Minor.h.patch \
 		"${FILESDIR}"/${PN_PATCH}-3.1.7-flintconfig-r2.patch \
 		"${FILESDIR}"/${PN_PATCH}-3.1.7-implicit-template.patch \
-		"${FILESDIR}"/${PN_PATCH}-3.1.7-use_cxx_for_linking.patch
+		"${FILESDIR}"/${PN_PATCH}-3.1.7-use_cxx_for_linking.patch \
+		"${FILESDIR}"/${PN_PATCH}-3.1.7-curring.patch
 	if  [[ ${CHOST} == *-darwin* ]] ; then
 		# really a placeholder until I figure out the patch for that one.
 		epatch "${FILESDIR}"/${PN_PATCH}-3.1.3.3-dylib.patch
