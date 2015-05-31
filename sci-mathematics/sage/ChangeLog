@@ -2,6 +2,13 @@
 # Copyright 1999-2015 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  31 May 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  +files/sage-6.8-sources.patch, sage-9999.ebuild:
+  Add new patch to solve problems with sage 6.8.beta1+ this patch extends work
+  upstream at trac #18494. It addresses a multitude of issue beside the
+  principal:  finally get rid of sage_setup, all source installed alongside code
+  and extensions - /usr/share/sage/src/sage is now a link.
+
   27 May 2015; François Bissey <francois.bissey@canterbury.ac.nz>
   +files/sage-6.8-blas.patch, sage-9999.ebuild:
   various fixes for 6.8.beta1
