@@ -3,6 +3,10 @@
 # $Header: $
 
   31 May 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-9999.ebuild:
+  Deal with old sage source folder if present
+
+  31 May 2015; François Bissey <francois.bissey@canterbury.ac.nz>
   +files/sage-6.8-sources.patch, sage-9999.ebuild:
   Add new patch to solve problems with sage 6.8.beta1+ this patch extends work
   upstream at trac #18494. It addresses a multitude of issue beside the

@@ -301,6 +301,12 @@ python_install_all() {
 	fi
 }
 
+pkg_preinst() {
+	# remove old sage source folder if present
+	[[ -d "${ROOT}/usr/share/sage/src/sage" ]] \
+		&& rm -rf "${ROOT}/usr/share/sage/src/sage"
+}
+
 pkg_postinst() {
 	einfo "If you use Sage's browser interface ('Sage Notebook') and experience"
 	einfo "an 'Internal Server Error' you should append the following line to"
