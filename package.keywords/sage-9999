@@ -12,6 +12,7 @@ dev-python/characteristic
 ~dev-python/bottleneck-0.8.0
 ~dev-python/pyopenssl-0.14
 ~dev-python/cryptography-0.6.1
+dev-python/ptyprocess
 ~dev-python/python-dateutil-2.3
 ~dev-python/python-openid-2.2.5
 ~dev-python/flask-autoindex-0.5
