@@ -290,7 +290,7 @@ python_install_all() {
 	# This is necessary while SAGE_SRC is still in use and curiously to build the documentation.
 	dodir /usr/share/sage/src
 	ln -snf "$(python_get_sitedir)"/sage \
-		"${D}"/usr/share/sage/src/sage
+		"${ED}"/usr/share/sage/src/sage
 
 	if use debug; then
 		# TODO make it usable if it is installed directly under src rather than src/build

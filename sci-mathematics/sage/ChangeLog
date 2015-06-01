@@ -4,6 +4,10 @@
 
   01 Jun 2015; François Bissey <francois.bissey@canterbury.ac.nz>
   sage-9999.ebuild:
+  Fix for prefix should now be complete.
+
+  01 Jun 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-9999.ebuild:
   Correction in the prefix support.
 
   31 May 2015; François Bissey <francois.bissey@canterbury.ac.nz>
