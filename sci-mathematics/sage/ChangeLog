@@ -2,6 +2,10 @@
 # Copyright 1999-2015 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  01 Jun 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-9999.ebuild:
+  Correction in the prefix support.
+
   31 May 2015; François Bissey <francois.bissey@canterbury.ac.nz>
   sage-9999.ebuild:
   Deal with old sage source folder if present

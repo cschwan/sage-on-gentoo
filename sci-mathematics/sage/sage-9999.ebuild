@@ -289,7 +289,7 @@ python_install_all() {
 	# Create a link from the defined SAGE_SRC to installation folder of sage which now includes source.
 	# This is necessary while SAGE_SRC is still in use and curiously to build the documentation.
 	dodir /usr/share/sage/src
-	ln -snf "${EPREFIX}$(python_get_sitedir)"/sage \
+	ln -snf "$(python_get_sitedir)"/sage \
 		"${D}"/usr/share/sage/src/sage
 
 	if use debug; then
