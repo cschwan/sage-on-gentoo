@@ -2,6 +2,10 @@
 # Copyright 1999-2015 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/dev-libs/ppl/ChangeLog,v 1.72 2015/03/17 05:27:11 vapier Exp $
 
+  02 Jun 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  -files/ppl-fix-gmp-5.1.0.patch:
+  removing unused patch
+
   17 Mar 2015; Mike Frysinger <vapier@gentoo.org> ppl-1.1.ebuild:
   Block cloog-ppl as we are punting it #448024.
 
