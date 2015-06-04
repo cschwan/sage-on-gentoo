@@ -39,7 +39,6 @@ dev-python/python-openid
 dev-python/pkgconfig
 dev-python/pytz
 sys-libs/timezone-data
-dev-python/pyzmq
 dev-python/rpy
 dev-python/service_identity
 dev-python/simplegeneric

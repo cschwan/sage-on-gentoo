@@ -37,7 +37,6 @@ dev-python/pkgconfig
 ~dev-python/pycurl-7.19.3.1
 ~dev-python/pytz-2014.2
 ~dev-python/pytables-3.1.1
->=dev-python/pyzmq-14.3.0
 dev-python/rpy
 dev-python/service_identity
 dev-python/simplegeneric
