@@ -1,0 +1,26 @@
+diff -Naur planarity-2.2.0.orig/c/planarityCommandLine.c planarity-2.2.0/c/planarityCommandLine.c
+--- planarity-2.2.0.orig/c/planarityCommandLine.c	2015-06-05 00:35:48.631211411 +1200
++++ planarity-2.2.0/c/planarityCommandLine.c	2015-06-05 00:38:55.041613193 +1200
+@@ -153,6 +153,7 @@
+ // from McKay's nauty package
+ // makeg [-c -t -b] [-d<max>] n [mine [maxe [mod res]]]
+ 
++#ifdef HAVE_NAUTY
+ extern unsigned long numGraphs;
+ extern unsigned long numErrors;
+ extern unsigned long numOKs;
+@@ -294,6 +295,14 @@
+ 		return 0;
+ 	}
+ }
++#else
++unsigned long numGraphs, numErrors, numOKs;
++int callNauty(int argc, char *argv[])
++{
++	fprintf(stderr, "Internal copy of Nauty not installed, aborting\n");
++	exit(1);
++}
++#endif
+ 
+ /****************************************************************************
+  Quick regression test

@@ -1,0 +1,6 @@
+*planarity-2.2.0 (04 Jun 2015)
+
+  04 Jun 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  +files/planarity-2.2.0-extern.patch, +files/planarity-2.2.0-malloc.patch,
+  +files/planarity-2.2.0-no_nauty.patch, +metadata.xml, +planarity-2.2.0.ebuild:
+  New ebuild for package taken out of sage's sources.
