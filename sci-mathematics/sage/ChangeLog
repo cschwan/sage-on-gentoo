@@ -3,6 +3,10 @@
 # $Header: $
 
   05 Jun 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  -files/sage-6.8-blas.patch, -files/sage-6.8-sources.patch:
+  pruning obsolete patches
+
+  05 Jun 2015; François Bissey <francois.bissey@canterbury.ac.nz>
   +files/proto.sage-env-6.8, +files/sage-6.6-linguas.patch,
   +files/sage-6.7-misc.patch, +files/sage-6.8-blas-r1.patch,
   +files/sage-6.8-env.patch, +files/sage-6.8-exec.patch,
