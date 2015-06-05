@@ -76,8 +76,6 @@ CDEPEND="dev-libs/gmp:0=
 	>=sci-mathematics/pari-2.8_pre20150510[data,gmp,doc]
 	>=sci-mathematics/polybori-0.8.3[${PYTHON_USEDEP}]
 	>=sci-mathematics/ratpoints-2.1.3
-	~sci-mathematics/sage-baselayout-${PV}[testsuite=,${PYTHON_USEDEP}]
-	~sci-mathematics/sage-clib-${PV}
 	~sci-libs/libsingular-3.1.7_p1[flint]
 	media-libs/gd[jpeg,png]
 	media-libs/libpng:0=
