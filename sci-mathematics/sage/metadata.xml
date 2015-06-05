@@ -25,5 +25,8 @@
 		<flag name='bliss'>
 			build the bindings to the bliss library
 		</flag>
+		<flag name='html'>
+			build and install html documentation
+		</flag>
 	</use>
 </pkgmetadata>

@@ -1,0 +1,59 @@
+#!/bin/bash
+
+if [[ -z ${SAGE_ROOT} ]]; then
+	export SAGE_ROOT="@GENTOO_PORTAGE_EPREFIX@/usr/share/sage"
+fi
+
+if [[ -z ${SAGE_LOCAL} ]]; then
+	export SAGE_LOCAL="@GENTOO_PORTAGE_EPREFIX@/usr/"
+fi
+
+if [[ -z ${SAGE_DATA} ]]; then
+	export SAGE_DATA="@GENTOO_PORTAGE_EPREFIX@/usr/share/sage"
+fi
+
+if [[ -z ${SAGE_SHARE} ]]; then
+	export SAGE_SHARE="@GENTOO_PORTAGE_EPREFIX@/usr/share/sage"
+fi
+
+if [[ -z ${SAGE_DOC} ]]; then
+	export SAGE_DOC="@GENTOO_PORTAGE_EPREFIX@/usr/share/doc/sage"
+fi
+
+if [[ -z ${SAGE_EXTCODE} ]]; then
+	export SAGE_EXTCODE="@GENTOO_PORTAGE_EPREFIX@/usr/share/sage/ext"
+fi
+
+if [[ -z ${SAGE_SRC} ]]; then
+	export SAGE_SRC="@GENTOO_SITEDIR@"
+fi
+
+if [[ -z ${DOT_SAGE} ]]; then
+	export DOT_SAGE="${HOME}/.sage"
+fi
+
+if [ "$SAGE_STARTUP_FILE" = "" ]; then
+	export SAGE_STARTUP_FILE="${DOT_SAGE}/init.sage"
+fi
+
+if [[ -z ${SAGE_TESTDIR} ]]; then
+	export SAGE_TESTDIR="${DOT_SAGE}/tmp"
+fi
+if [[ -z ${SAGE_SERVER} ]]; then
+	export SAGE_SERVER="http://www.sagemath.org/"
+fi
+
+if [ -z "$SAGE_RC_FILE" ]; then
+	SAGE_RC_FILE="$DOT_SAGE/sagerc"
+fi
+
+if [ -r "$SAGE_RC_FILE" ]; then
+	source "$SAGE_RC_FILE"
+	if [ $? -ne 0 ]; then
+		echo >&2 "Error sourcing $SAGE_RC_FILE"
+		exit 1
+	fi
+fi
+
+export EPYTHON=python2.7
+export MPMATH_NOGMPY=1

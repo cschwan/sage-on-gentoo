@@ -2,6 +2,14 @@
 # Copyright 1999-2015 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  05 Jun 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  +files/proto.sage-env-6.8, +files/sage-6.6-linguas.patch,
+  +files/sage-6.7-misc.patch, +files/sage-6.8-blas-r1.patch,
+  +files/sage-6.8-env.patch, +files/sage-6.8-exec.patch,
+  +files/sage-6.8-sources-r1.patch, metadata.xml, sage-9999.ebuild:
+  sage 6.8.beta3 - beware this is an un-doctested monolithic ebuild. sage-clib
+  is no more and I am folding everything in.
+
   01 Jun 2015; François Bissey <francois.bissey@canterbury.ac.nz>
   sage-9999.ebuild:
   Fix for prefix should now be complete.
