@@ -251,6 +251,9 @@ python_prepare() {
 	epatch "${FILESDIR}"/sage-6.8-env.patch
 	eprefixify sage/env.py
 
+	# sage-maxima.lisp really belong to /etc
+	epatch "${FILESDIR}"/sage-6.8-maxima.lisp.patch
+
 	# fix library path of libsingular
 	sed -i "s:os.environ\['SAGE_LOCAL'\]+\"/lib:\"${EPREFIX}/usr/$(get_libdir):" \
 		sage/libs/singular/singular.pyx
@@ -288,7 +291,7 @@ python_prepare() {
 		sage/interfaces/singular.py
 
 	# The ipython kernel tries to to start a new session via $SAGE_ROOT/sage -python
-	# Since we don't have $SAGE_ROOT/sage it fails. 
+	# Since we don't have $SAGE_ROOT/sage it fails.
 	#See https://github.com/cschwan/sage-on-gentoo/issues/342
 	epatch "${FILESDIR}"/${PN}-6.6-ipython_kernel_start.patch
 
@@ -335,9 +338,10 @@ python_prepare() {
 }
 
 python_configure() {
-	export SAGE_LOCAL="${EPREFIX}"/usr/
-	export SAGE_ROOT="${EPREFIX}"/usr/share/sage
+	export SAGE_LOCAL="${EPREFIX}"/usr
+	export SAGE_ROOT=`pwd`/..
 	export SAGE_SRC=`pwd`
+	export SAGE_ETC=`pwd`/bin
 	export SAGE_DOC=`pwd`/doc
 	export SAGE_DOC_MATHJAX=yes
 	export VARTEXFONTS="${T}"/fonts
@@ -415,12 +419,12 @@ python_install_all() {
 	# additonal helper scripts
 	python_foreach_impl python_doscript sage-preparse sage-startuptime.py
 
-	dobin sage-maxima.lisp sage-native-execute sage \
+	dobin sage-native-execute sage \
 		sage-python sage-version.sh
 
 	# install sage-env under /etc
 	insinto /etc
-	doins sage-env sage-banner
+	doins sage-maxima.lisp sage-env sage-banner
 
 	if use testsuite ; then
 		# DOCTESTING helper scripts

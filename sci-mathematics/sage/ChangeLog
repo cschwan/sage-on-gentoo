@@ -3,6 +3,10 @@
 # $Header: $
 
   05 Jun 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  +files/sage-6.8-maxima.lisp.patch, sage-9999.ebuild:
+  Final fix to build sage 6.8.beta3
+
+  05 Jun 2015; François Bissey <francois.bissey@canterbury.ac.nz>
   sage-9999.ebuild:
   Removing conflicting dependencies
 

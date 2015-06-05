@@ -1,0 +1,21 @@
+diff -Naur src.orig/sage/interfaces/maxima.py src/sage/interfaces/maxima.py
+--- src.orig/sage/interfaces/maxima.py	2015-06-05 21:06:59.351761664 +1200
++++ src/sage/interfaces/maxima.py	2015-06-05 21:08:30.291950957 +1200
+@@ -469,7 +469,7 @@
+ 
+ from random import randrange
+ 
+-from sage.env import DOT_SAGE, SAGE_LOCAL
++from sage.env import DOT_SAGE, SAGE_ETC
+ 
+ ##import sage.rings.all
+ 
+@@ -520,7 +520,7 @@
+         # setting inchar and outchar..
+         eval_using_file_cutoff = 256
+         self.__eval_using_file_cutoff = eval_using_file_cutoff
+-        STARTUP = os.path.join(SAGE_LOCAL,'bin','sage-maxima.lisp')
++        STARTUP = os.path.join(SAGE_ETC, 'sage-maxima.lisp')
+ 
+         # We set maxima's configuration directory to $DOT_SAGE/maxima
+         # This avoids that sage's maxima inadvertently loads
