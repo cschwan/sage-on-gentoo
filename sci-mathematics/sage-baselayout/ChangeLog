@@ -2,6 +2,10 @@
 # Copyright 1999-2015 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  08 Jun 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  -sage-baselayout-9999.ebuild:
+  There will be no more sage-baselayout so 9999 is gone
+
 *sage-baselayout-6.7 (18 May 2015)
 
   18 May 2015; François Bissey <francois.bissey@canterbury.ac.nz>
