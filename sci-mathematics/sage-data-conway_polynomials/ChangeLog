@@ -1,6 +1,14 @@
 # ChangeLog for sci-mathematics/sage-data-conway_polynomials
-# Copyright 1999-2014 Gentoo Foundation; Distributed under the GPL v2
+# Copyright 1999-2015 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
+
+*sage-data-conway_polynomials-0.4-r3 (08 Jun 2015)
+
+  08 Jun 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  +sage-data-conway_polynomials-0.4-r3.ebuild,
+  -sage-data-conway_polynomials-0.4-r2.ebuild, files/spkg-install:
+  Allow sage-data-conway_polynomial to be installed without sage being a build
+  dependency.
 
 *sage-data-conway_polynomials-0.4-r2 (04 Jul 2014)
 

@@ -1,5 +1,6 @@
 import os
-from sage.structure.sage_object import save
+import cPickle
+import zlib
 
 
 install_root = os.path.join(os.environ['SAGE_SHARE'], 'conway_polynomials')
@@ -14,6 +15,11 @@ def create_db():
     if not os.path.exists(install_root):
         os.makedirs(install_root)
     save(db, os.path.join(install_root, 'conway_polynomials.sobj'))
+
+def save(obj, filename):
+    s = cPickle.dumps(obj, protocol=2)
+    s = zlib.compress(s)
+    open(filename, 'wb').write(s)
 
 if __name__ == '__main__':
     create_db()
