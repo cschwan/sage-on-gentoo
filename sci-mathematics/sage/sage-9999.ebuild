@@ -127,6 +127,7 @@ RDEPEND="${CDEPEND}
 	~sci-mathematics/sage-data-graphs-20130920
 	~sci-mathematics/sage-data-combinatorial_designs-20140630
 	~sci-mathematics/sage-data-polytopes_db-20120220
+	~sci-mathematics/sage-data-conway_polynomials-0.4
 	~sci-mathematics/singular-3.1.7_p1
 	>=sci-mathematics/sympow-1.018.1
 	www-servers/tornado
@@ -136,8 +137,7 @@ RDEPEND="${CDEPEND}
 		|| ( app-text/dvipng[truetype] media-gfx/imagemagick[png] )
 	)"
 
-PDEPEND=">=sci-mathematics/sage-notebook-0.11.4-r2[${PYTHON_USEDEP}]
-	~sci-mathematics/sage-data-conway_polynomials-0.4"
+PDEPEND=">=sci-mathematics/sage-notebook-0.11.4-r2[${PYTHON_USEDEP}]"
 
 CHECKREQS_DISK_BUILD="5G"
 
