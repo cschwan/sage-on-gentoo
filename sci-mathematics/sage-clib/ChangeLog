@@ -2,6 +2,10 @@
 # Copyright 1999-2015 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  08 Jun 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  -sage-clib-9999.ebuild:
+  sage-clib is gone no more 9999 ebuild for it.
+
 *sage-clib-6.7 (18 May 2015)
 
   18 May 2015; François Bissey <francois.bissey@canterbury.ac.nz>
