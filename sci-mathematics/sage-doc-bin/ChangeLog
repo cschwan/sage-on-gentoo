@@ -1,3 +1,8 @@
+  09 Jun 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  -files/sage-doc-bin-dev.patch, -sage-doc-bin-6.4.ebuild,
+  -sage-doc-bin-6.5-r1.ebuild:
+  clean up ol old versions of sage up to 6.5
+
   27 May 2015; François Bissey <francois.bissey@canterbury.ac.nz>
   +files/sage-doc-bin-6.7-misc.patch, sage-doc-bin-6.7.ebuild:
   Wrong patch in sage-doc-bin-6.7 fixing issue #355
