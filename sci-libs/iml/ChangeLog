@@ -1,6 +1,14 @@
 # ChangeLog for sci-libs/iml
-# Copyright 1999-2014 Gentoo Foundation; Distributed under the GPL v2
+# Copyright 1999-2015 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
+
+  09 Jun 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  -files/iml-1.0.3-automake-1.13.patch,
+  -files/iml-1.0.3-fix-undefined-symbol.patch,
+  -files/iml-1.0.3-repl_removal.patch,
+  -files/iml-1.0.3-use-any-cblas-implementation.patch, -iml-1.0.3-r2.ebuild,
+  iml-1.0.4.ebuild:
+  remove old and make repoman happy
 
   09 Dec 2014; François Bissey <francois.bissey@canterbury.ac.nz>
   iml-1.0.4.ebuild:

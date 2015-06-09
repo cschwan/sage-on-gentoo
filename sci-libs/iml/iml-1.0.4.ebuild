@@ -1,8 +1,8 @@
-# Copyright 1999-2014 Gentoo Foundation
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
-EAPI="5"
+EAPI=5
 
 inherit autotools-utils toolchain-funcs flag-o-matic
 
@@ -17,10 +17,10 @@ IUSE="static-libs"
 
 RESTRICT="mirror"
 
-DEPEND="dev-libs/gmp
+DEPEND="dev-libs/gmp:=
 	virtual/cblas
 	virtual/pkgconfig"
-RDEPEND="dev-libs/gmp
+RDEPEND="dev-libs/gmp:=
 	virtual/cblas"
 
 DOCS=( AUTHORS ChangeLog README )
