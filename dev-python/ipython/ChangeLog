@@ -2,6 +2,14 @@
 # Copyright 1999-2015 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/dev-python/ipython/ChangeLog,v 1.104 2013/02/11 15:59:01 mgorny Exp $
 
+  09 Jun 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  -files/0001-Allow-InputTransformers-to-raise-SyntaxErrors.patch,
+  -files/62ipython-gentoo.el, -files/ipython-0.12-globalpath.patch,
+  -files/ipython-1.0.0-setuptools.patch, -files/ipython-history-backport.patch,
+  -files/prun_timeit_magics.patch, -ipython-0.13.1-r1.ebuild,
+  -ipython-0.13.1.ebuild, -ipython-0.13.2.ebuild, -ipython-1.2.1.ebuild:
+  remove old unused ebuild
+
 *ipython-3.1.0 (16 Apr 2015)
 
   16 Apr 2015; François Bissey <francois.bissey@canterbury.ac.nz>
