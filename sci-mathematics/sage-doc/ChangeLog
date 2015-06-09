@@ -2,6 +2,15 @@
 # Copyright 1999-2015 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  09 Jun 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  -files/sage-doc-6.2-favicon.patch, -files/sage-doc-6.2-seealso.patch,
+  -files/sage-doc-6.2-sphinx.patch, -files/sage-doc-dev.patch,
+  -sage-doc-5.10.ebuild, -sage-doc-5.11.ebuild, -sage-doc-5.12.ebuild,
+  -sage-doc-5.9.ebuild, -sage-doc-6.0-r3.ebuild, -sage-doc-6.1.1.ebuild,
+  -sage-doc-6.2.ebuild, -sage-doc-6.3.ebuild, -sage-doc-6.4.ebuild,
+  -sage-doc-6.5.ebuild, -sage-doc-9999-r1.ebuild, metadata.xml:
+  clean up old sage versions up to 6.5
+
 *sage-doc-6.7 (18 May 2015)
 
   18 May 2015; François Bissey <francois.bissey@canterbury.ac.nz>
