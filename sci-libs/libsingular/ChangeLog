@@ -2,6 +2,22 @@
 # Copyright 1999-2015 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  09 Jun 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  -files/pullrequest215.patch, -files/sage_trac_14295.patch,
+  -files/singular-3.1.5-NTLnegate.patch,
+  -files/singular-3.1.6-factory_template_instantiation.patch,
+  -files/singular-3.1.6-fix_mpoly_factor_segfault.patch,
+  -files/singular-3.1.6-flintconfig.patch,
+  -files/singular-3.1.6-implicit-template.patch,
+  -files/singular-3.1.6-ntl6compat.patch, -files/singular_15435.patch,
+  -files/singular_part_of_changeset_baadc0f7.patch,
+  -files/singular_trac_439.patch, -files/singular_trac_440.patch,
+  -files/singular_trac_441.patch, -files/singular_trac_443.patch,
+  -libsingular-3.1.5-r2.ebuild, -libsingular-3.1.5-r3.ebuild,
+  -libsingular-3.1.6-r3.ebuild, -libsingular-3.1.6-r4.ebuild,
+  libsingular-3.1.7_p1-r4.ebuild:
+  removing old, cleaning patches and make repoman happy
+
 *libsingular-3.1.7_p1-r4 (28 May 2015)
 
   28 May 2015; François Bissey <francois.bissey@canterbury.ac.nz>
