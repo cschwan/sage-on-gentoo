@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
-EAPI="5"
+EAPI=5
 
 inherit autotools-utils flag-o-matic toolchain-funcs
 
@@ -18,9 +18,9 @@ IUSE="debug openmp cpu_flags_x86_sse2 static-libs"
 
 RESTRICT="mirror"
 
-DEPEND="media-libs/libpng
+DEPEND="media-libs/libpng:=
 	virtual/pkgconfig"
-RDEPEND="media-libs/libpng"
+RDEPEND="media-libs/libpng:="
 
 DOCS=( AUTHORS )
 
