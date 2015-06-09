@@ -2,6 +2,21 @@
 # Copyright 1999-2015 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/sci-mathematics/singular/ChangeLog,v 1.53 2012/06/23 10:50:20 xarthisius Exp $
 
+  09 Jun 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  -files/pullrequest215.patch, -files/sage_trac_14295.patch,
+  -files/singular-3.1.3.3-os_x_ppc.patch,
+  -files/singular-3.1.3.3.make_parallel.2.patch,
+  -files/singular-3.1.5-NTLnegate.patch,
+  -files/singular-3.1.6-factory_template_instantiation.patch,
+  -files/singular-3.1.6-fix_mpoly_factor_segfault.patch,
+  -files/singular-3.1.6-flintconfig.patch,
+  -files/singular-3.1.6-implicit-template.patch,
+  -files/singular-3.1.6-ntl6compat.patch, -files/singular_trac_439.patch,
+  -files/singular_trac_440.patch, -files/singular_trac_441.patch,
+  -files/singular_trac_443.patch, -singular-3.1.5-r1.ebuild,
+  -singular-3.1.5-r2.ebuild, -singular-3.1.6-r1.ebuild, -singular-3.1.6.ebuild:
+  remove unused singular
+
 *singular-3.1.7_p1-r2 (28 May 2015)
 
   28 May 2015; François Bissey <francois.bissey@canterbury.ac.nz>
