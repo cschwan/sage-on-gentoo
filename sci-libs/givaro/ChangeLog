@@ -1,6 +1,10 @@
 # ChangeLog for sci-libs/givaro
-# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# Copyright 1999-2015 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
+
+  09 Jun 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  -files/givaro-3.2.16-gcc47.patch, -givaro-3.2.16-r2.ebuild:
+  cleaning up old givaro
 
   21 Nov 2012; François Bissey <francois.bissey@canterbury.ac.nz>
   -givaro-3.3.6.ebuild, -files/givaro-3.3.6-fix-compiler-checks.patch:
@@ -122,4 +126,3 @@
   06 Nov 2009; Christopher Schwan <cschwan@students.uni-mainz.de>
   +givaro-3.3.0.ebuild:
   Initial import
-
