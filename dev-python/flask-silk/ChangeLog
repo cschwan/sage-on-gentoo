@@ -1,6 +1,10 @@
 # ChangeLog for dev-python/flask-silk
-# Copyright 1999-2014 Gentoo Foundation; Distributed under the GPL v2
+# Copyright 1999-2015 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
+
+  09 Jun 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  -flask-silk-0.1.1-r1.ebuild, -flask-silk-0.1.1.ebuild:
+  removing old unused ebuilds
 
 *flask-silk-0.2 (31 Oct 2014)
 
