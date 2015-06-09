@@ -24,8 +24,8 @@ IUSE="+gmp emacs vim-syntax readline"
 
 RESTRICT="mirror"
 
-DEPEND="gmp? ( dev-libs/gmp )
-	readline? ( sys-libs/readline )"
+DEPEND="gmp? ( dev-libs/gmp:= )
+	readline? ( sys-libs/readline:= )"
 RDEPEND="${DEPEND}
 	emacs? ( virtual/emacs )
 	vim-syntax? ( || ( app-editors/vim app-editors/gvim ) )"

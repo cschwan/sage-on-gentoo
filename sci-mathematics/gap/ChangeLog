@@ -2,6 +2,13 @@
 # Copyright 1999-2015 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  09 Jun 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  -files/gap-4.5.7-Makefile.patch, -files/gap-4.5.7-cflags.patch,
+  -files/gap-4.5.7-siginterrupt.patch, -files/gap-4.6.4-Makefile.patch,
+  -gap-4.5.7-r3.ebuild, -gap-4.6.4-r1.ebuild, -gap-4.6.4.ebuild,
+  -gap-4.6.5.ebuild, -gap-4.7.4.ebuild, gap-4.7.5.ebuild, gap-4.7.7.ebuild:
+  clean up old unused ebuild, make repoman happy
+
 *gap-4.7.7 (21 Feb 2015)
 
   21 Feb 2015; François Bissey <francois.bissey@canterbury.ac.nz>
