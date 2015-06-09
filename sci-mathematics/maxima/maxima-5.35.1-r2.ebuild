@@ -33,7 +33,7 @@ done
 
 RDEPEND="X? ( x11-misc/xdg-utils
 		 sci-visualization/gnuplot[gd]
-		 tk? ( dev-lang/tk ) )
+		 tk? ( dev-lang/tk:0 ) )
 	latex? ( virtual/latex-base )
 	emacs? ( virtual/emacs
 		latex? ( app-emacs/auctex ) )

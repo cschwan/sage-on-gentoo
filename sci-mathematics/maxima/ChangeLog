@@ -2,6 +2,20 @@
 # Copyright 1999-2015 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/sci-mathematics/maxima/ChangeLog,v 1.102 2012/12/14 09:55:25 grozin Exp $
 
+  09 Jun 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  -files/0001-taylor2-Avoid-blowing-the-stack-when-diff-expand-isn.patch,
+  -files/clozurecl-0.patch, -files/maxima-5.29.1-sbcl.patch,
+  -files/maxima-5.29.1-wish.patch, -files/maxima-5.29.1.patch,
+  -files/maxima-5.33.0-limit-replace-logs.patch,
+  -files/maxima-5.33.0-matrixexp.patch, -files/maxima-5.33.0_bug_2526.patch,
+  -files/maxima-5.34.1-C_compiler.patch, -files/maxima-ccl.patch,
+  -files/maxima-ecl-ldflags.patch, -files/maxima-imaxima.patch,
+  -files/maxima-no-init-files.patch, -files/maxima-rmaxima.patch,
+  -files/maxima-xdg-utils.patch, -files/maxima_bug_2526.patch,
+  -files/texinfo51.patch, -files/wish-0.patch, -maxima-5.29.1-r3.ebuild,
+  -maxima-5.33.0-r2.ebuild, -maxima-5.34.1-r2.ebuild, maxima-5.35.1-r2.ebuild:
+  remove unused maxima, make repoman happy
+
   05 Mar 2015; François Bissey <francois.bissey@canterbury.ac.nz>
   -maxima-5.30.0-r2.ebuild, -maxima-5.31.2.ebuild, -maxima-5.32.1.ebuild:
   Remove a few versions of maxima from the overlay
