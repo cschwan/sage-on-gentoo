@@ -7,8 +7,5 @@
 			If activated installs scripts to enable testing of Sage
 		</flag>
 		<flag name='X'>Installs icon and desktop file</flag>
-		<flag name='tools'>
-			Install some tools for sage development
-		</flag>
 	</use>
 </pkgmetadata>
