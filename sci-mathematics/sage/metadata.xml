@@ -10,12 +10,6 @@
 			If activated installs Sage's sources into
 			/usr/share/sage/devel/sage to enable testing
 		</flag>
-		<flag name='lrs'>
-			Enable the use of sci-libs/lrslib in sage
-		</flag>
-		<flag name='nauty'>
-			Enable the use of sci-mathematics/nauty in sage
-		</flag>
 		<flag name='arb'>
 			build the bindings to the arb library
 		</flag>

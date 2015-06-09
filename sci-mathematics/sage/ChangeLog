@@ -2,6 +2,30 @@
 # Copyright 1999-2015 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  09 Jun 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  -files/remove-testjavapath-to-python-6.1.patch,
+  -files/remove-testjavapath-to-python.patch, -files/sage-4.4.2-flint.patch,
+  -files/sage-4.7.2-site-packages.patch, -files/sage-5.10-env.patch,
+  -files/sage-5.12-fix-r-doctest.patch,
+  -files/sage-5.8-fix-cremona-doctest.patch,
+  -files/sage-5.8-fix-cython-doctest.patch, -files/sage-5.8-fix-r-doctest.patch,
+  -files/sage-5.9-all.py, -files/sage-5.9-env.patch,
+  -files/sage-5.9-fix-mip-doctest.patch, -files/sage-5.9-safepython.patch,
+  -files/sage-6.0-doc_common.patch, -files/sage-6.0-ecm-package.patch,
+  -files/sage-6.0-env.patch, -files/sage-6.1-env.patch,
+  -files/sage-6.1-farey_explicit_cast.patch, -files/sage-6.2-r1-env.patch,
+  -files/sage-6.3-blas.patch, -files/sage-6.3-givaro_singular_extra.patch,
+  -files/sage-6.4.1-maxima.patch, -files/sage-6.6.beta5-ipython.patch,
+  -files/sage-blas.patch, -files/sage-doc-6.2-seealso.patch,
+  -files/sage-matroids.patch, -files/sage-pexpect.patch,
+  -files/trac12985-unicode.patch, -files/trac_13693-part1.patch,
+  -files/trac_14636_1.patch, -files/trac_14636_2.patch,
+  -files/trac_14636_2b.patch, -files/trac_14656.patch, -sage-5.10-r3.ebuild,
+  -sage-5.11-r4.ebuild, -sage-5.12-r1.ebuild, -sage-5.9-r3.ebuild,
+  -sage-6.0-r3.ebuild, -sage-6.1.1-r3.ebuild, -sage-6.2-r1.ebuild,
+  -sage-6.3-r1.ebuild, -sage-6.4-r1.ebuild, metadata.xml:
+  clean up old sage versions up to sage 6.5
+
   08 Jun 2015; François Bissey <francois.bissey@canterbury.ac.nz>
   sage-9999.ebuild:
   Move conway_polynomial to RDEPEND now that it is possible. It may soon be
