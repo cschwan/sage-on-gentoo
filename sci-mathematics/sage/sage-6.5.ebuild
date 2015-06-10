@@ -69,10 +69,7 @@ CDEPEND="dev-libs/gmp:0=
 	>=sys-libs/readline-6.2
 	sys-libs/zlib
 	dev-python/pkgconfig
-	virtual/cblas
-	!sci-mathematics/genus2reduction
-	!sci-mathematics/sage-extcode
-	!sci-mathematics/sage-matroids"
+	virtual/cblas"
 
 DEPEND="${CDEPEND}"
 

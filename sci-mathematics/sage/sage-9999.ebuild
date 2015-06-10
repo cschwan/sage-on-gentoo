@@ -87,9 +87,6 @@ CDEPEND="dev-libs/gmp:0=
 	modular_decomposition? ( sci-libs/modular_decomposition )
 	bliss? ( sci-libs/bliss )
 	pdf? ( app-text/texlive[extra,${LINGUAS_USEDEP}] )
-	!sci-mathematics/genus2reduction
-	!sci-mathematics/sage-extcode
-	!sci-mathematics/sage-matroids
 	!sci-mathematics/sage-baselayout
 	!sci-mathematics/sage-clib
 	!sci-mathematics/sage-doc

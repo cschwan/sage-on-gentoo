@@ -75,10 +75,7 @@ CDEPEND="dev-libs/gmp:0=
 	virtual/cblas
 	arb? ( >=sci-mathematics/arb-2.5.0 )
 	modular_decomposition? ( sci-libs/modular_decomposition )
-	bliss? ( sci-libs/bliss )
-	!sci-mathematics/genus2reduction
-	!sci-mathematics/sage-extcode
-	!sci-mathematics/sage-matroids"
+	bliss? ( sci-libs/bliss )"
 
 DEPEND="${CDEPEND}"
 

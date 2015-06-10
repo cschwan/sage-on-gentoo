@@ -72,10 +72,7 @@ CDEPEND="dev-libs/gmp:0=
 	dev-python/pkgconfig
 	virtual/cblas
 	arb? ( >=sci-mathematics/arb-2.5.0 )
-	modular_decomposition? ( sci-libs/modular_decomposition )
-	!sci-mathematics/genus2reduction
-	!sci-mathematics/sage-extcode
-	!sci-mathematics/sage-matroids"
+	modular_decomposition? ( sci-libs/modular_decomposition )"
 
 DEPEND="${CDEPEND}"
 

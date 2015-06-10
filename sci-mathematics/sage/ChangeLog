@@ -2,6 +2,11 @@
 # Copyright 1999-2015 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  10 Jun 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-6.5.ebuild, sage-6.6.ebuild, sage-6.7.ebuild, sage-9999.ebuild:
+  remove blockers for ebuilds that haven't been used for a while and are now
+  gone.
+
   09 Jun 2015; François Bissey <francois.bissey@canterbury.ac.nz>
   -files/remove-testjavapath-to-python-6.1.patch,
   -files/remove-testjavapath-to-python.patch, -files/sage-4.4.2-flint.patch,
