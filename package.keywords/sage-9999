@@ -121,7 +121,7 @@ dev-java/icedtea-bin:7
 #########################
 # sage optional binding
 #########################
-~sci-mathematics/arb-2.5.0
+~sci-mathematics/arb-2.6.0
 sci-libs/modular_decomposition
 ~sci-libs/bliss-0.72
 # coinor-cbc
