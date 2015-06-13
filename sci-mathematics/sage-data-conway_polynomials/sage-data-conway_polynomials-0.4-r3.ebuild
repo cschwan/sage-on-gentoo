@@ -12,7 +12,7 @@ MY_P="conway_polynomials-${PV}"
 
 DESCRIPTION="Sage's conway polynomial database"
 HOMEPAGE="http://www.sagemath.org"
-SRC_URI="http://www.sagemath.org/packages/upstream/conway_polynomials/${MY_P}.tar.bz2"
+SRC_URI="mirror://sageupstream/conway_polynomials/${MY_P}.tar.bz2"
 
 LICENSE="GPL-2"
 SLOT="0"
