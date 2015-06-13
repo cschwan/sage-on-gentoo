@@ -11,7 +11,7 @@ MY_P="${MY_PN}-$(replace_version_separator 1 '.')"
 
 DESCRIPTION="Data for Combinatorial Designs"
 HOMEPAGE="http://www.sagemath.org"
-SRC_URI="http://www.sagemath.org/packages/upstream/${MY_PN}/${MY_P}.tar.bz2"
+SRC_URI="mirror://sageupstream/${MY_PN}/${MY_P}.tar.bz2"
 
 LICENSE="GPL-2"
 SLOT="0"
