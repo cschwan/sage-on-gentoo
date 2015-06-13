@@ -2,6 +2,11 @@
 # Copyright 1999-2015 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  13 Jun 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  +files/sage-6.8-misc.patch, +files/sage-6.8-noclean.patch,
+  files/sage-6.8-env.patch, files/sage-6.8-sources-r1.patch, sage-9999.ebuild:
+  bump patches for 6.8.beta4
+
   10 Jun 2015; François Bissey <francois.bissey@canterbury.ac.nz>
   sage-6.5.ebuild, sage-6.6.ebuild, sage-6.7.ebuild, sage-9999.ebuild:
   remove blockers for ebuilds that haven't been used for a while and are now

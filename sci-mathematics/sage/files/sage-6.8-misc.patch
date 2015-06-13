@@ -1,0 +1,31 @@
+diff -Naur src.orig/doc/en/constructions/plotting.rst src/doc/en/constructions/plotting.rst
+--- src.orig/doc/en/constructions/plotting.rst	2015-06-13 19:42:21.416488520 +1200
++++ src/doc/en/constructions/plotting.rst	2015-06-13 19:43:28.576632179 +1200
+@@ -214,7 +214,7 @@
+ ::
+ 
+     sage: maxima.eval('load("plotdf");')
+-    '".../local/share/maxima/.../share/dynamics/plotdf.lisp"'
++    '".../share/maxima/.../share/dynamics/plotdf.lisp"'
+     sage: maxima.eval('plotdf(x+y,[trajectory_at,2,-0.1]); ')  # not tested
+ 
+ This plots a direction field (the plotdf Maxima package was also
+diff -Naur src.orig/doc/en/reference/misc/index.rst src/doc/en/reference/misc/index.rst
+--- src.orig/doc/en/reference/misc/index.rst	2015-06-13 19:42:21.406488499 +1200
++++ src/doc/en/reference/misc/index.rst	2015-06-13 19:42:55.566561567 +1200
+@@ -236,15 +236,6 @@
+    sage/misc/pager
+    sage/misc/sagedoc
+ 
+-Distribution
+-~~~~~~~~~~~~
+-
+-.. toctree::
+-   :maxdepth: 1
+-
+-   sage/misc/package
+-   sage/misc/dist
+-
+ Credits
+ ~~~~~~~
+ 

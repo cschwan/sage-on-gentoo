@@ -1,6 +1,6 @@
 diff -Naur src.orig/sage/doctest/sources.py src/sage/doctest/sources.py
---- src.orig/sage/doctest/sources.py	2015-06-05 11:34:39.724200039 +1200
-+++ src/sage/doctest/sources.py	2015-06-05 11:35:01.474247761 +1200
+--- src.orig/sage/doctest/sources.py	2015-06-13 15:15:45.291695123 +1200
++++ src/sage/doctest/sources.py	2015-06-13 15:22:21.542557947 +1200
 @@ -27,7 +27,7 @@
  from parsing import SageDocTestParser
  from util import NestedName
@@ -15,90 +15,14 @@ diff -Naur src.orig/sage/doctest/sources.py src/sage/doctest/sources.py
      # the directory structure
      dev = SAGE_SRC
 -    sp = os.path.join(SAGE_LOCAL, 'lib', 'python', 'site-packages')
-+    sp = os.path.join(SAGE_LIB)
++    sp = SAGE_LIB
      if path.startswith(dev):
          # there will be a branch name
          i = path.find(os.path.sep, len(dev))
-diff -Naur src.orig/sage/ext/interrupt/pxi.h src/sage/ext/interrupt/pxi.h
---- src.orig/sage/ext/interrupt/pxi.h	2015-06-05 11:34:39.774200149 +1200
-+++ src/sage/ext/interrupt/pxi.h	2015-06-05 11:35:01.474247761 +1200
-@@ -4,5 +4,5 @@
-  * struct_signals.h and macros.h must be separate files.
-  */
- #include "interrupt/struct_signals.h"
--#include "build/cythonized/sage/ext/interrupt/interrupt_api.h"
-+#include "interrupt/interrupt_api.h"
- #include "interrupt/macros.h"
-diff -Naur src.orig/sage/misc/cython.py src/sage/misc/cython.py
---- src.orig/sage/misc/cython.py	2015-06-05 11:34:39.694199973 +1200
-+++ src/sage/misc/cython.py	2015-06-05 11:37:19.464550421 +1200
-@@ -17,9 +17,10 @@
- 
- from __future__ import print_function
- 
--import os, sys, platform, __builtin__
-+import os, sys, platform, __builtin__, numpy
-+import distutils.sysconfig
- 
--from sage.env import SAGE_LOCAL, SAGE_SRC, UNAME
-+from sage.env import SAGE_LOCAL, SAGE_SRC, SAGE_LIB, UNAME
- from misc import SPYX_TMP
- from temporary_file import tmp_filename
- 
-@@ -70,11 +71,10 @@
-         return 'atlas'
- 
- include_dirs = [os.path.join(SAGE_LOCAL,'include'),
--                os.path.join(SAGE_LOCAL,'include','python'+platform.python_version().rsplit('.', 1)[0]),
--                os.path.join(SAGE_LOCAL,'lib','python','site-packages','numpy','core','include'),
--                os.path.join(SAGE_SRC,'sage','ext'),
--                os.path.join(SAGE_SRC),
--                os.path.join(SAGE_SRC,'sage','gsl')]
-+                os.path.join(distutils.sysconfig.get_python_inc()), \
-+                os.path.join(numpy.get_include()), \
-+                os.path.join(SAGE_LIB), \
-+                os.path.join(SAGE_LIB,'sage','ext')]
- 
- 
- standard_libs = ['mpfr', 'gmp', 'gmpxx', 'stdc++', 'pari', 'm', \
-@@ -211,10 +211,8 @@
-         'ntl'],
-         ['.../include',
-         '.../include/python2.7',
--        '.../lib/python/site-packages/numpy/core/include',
--        '.../sage/ext',
--        '...',
--        '.../sage/gsl'],
-+        '.../lib/python2.7/site-packages/numpy/core/include',
-+        '.../sage/ext'],
-         'c',
-         [], ['-w', '-O2'])
-         sage: s, libs, inc, lang, f, args = pyx_preparse("# clang c++\n #clib foo\n # cinclude bar\n")
-@@ -237,10 +235,8 @@
-         ['bar',
-         '.../include',
-         '.../include/python2.7',
--        '.../lib/python/site-packages/numpy/core/include',
--        '.../sage/ext',
--        '...',
--        '.../sage/gsl']
-+        '.../lib/python2.7/site-packages/numpy/core/include',
-+        '.../sage/ext']
- 
-         sage: s, libs, inc, lang, f, args = pyx_preparse("# cargs -O3 -ggdb\n")
-         sage: args
 diff -Naur src.orig/setup.py src/setup.py
---- src.orig/setup.py	2015-06-05 11:34:39.784200171 +1200
-+++ src/setup.py	2015-06-05 11:35:01.474247761 +1200
-@@ -37,6 +37,7 @@
- include_dirs = [SAGE_INC,
-                 SAGE_SRC,
-                 os.path.join(SAGE_SRC, 'sage', 'ext'),
-+                os.path.join(SAGE_SRC, 'build', 'cythonized', 'sage', 'ext'),
-                 os.path.join(numpy.get_include())]
- 
- # Manually add -fno-strict-aliasing, which is needed to compile Cython
-@@ -586,7 +587,7 @@
+--- src.orig/setup.py	2015-06-13 15:15:45.351695252 +1200
++++ src/setup.py	2015-06-13 15:18:57.262113356 +1200
+@@ -580,7 +580,7 @@
  t = time.time()
  from sage_setup.find import find_python_sources
  python_packages, python_modules = find_python_sources(
@@ -107,36 +31,17 @@ diff -Naur src.orig/setup.py src/setup.py
  print("Discovered Python source, time: %.2f seconds." % (time.time() - t))
  
  
-@@ -603,6 +604,23 @@
-     clean_install_dir(output_dir, python_packages, python_modules, ext_modules)
- print('Finished cleaning, time: %.2f seconds.' % (time.time() - t))
+@@ -604,9 +604,11 @@
+ python_package_data = {}
+ for package in python_packages:
+     if package == 'sage.libs.ntl':
+-        python_package_data[package] = ['*.pxd', '*.pxi', '*.h', 'ntlwrap.cpp']
++        python_package_data[package] = ['*.pyx', '*.pxd', '*.pxi', '*.h', 'ntlwrap.cpp']
++    elif package == 'sage.doctest':
++        python_package_data[package] = ['tests/*']
+     else:
+-        python_package_data[package] = ['*.pxd', '*.pxi','*.h']
++        python_package_data[package] = ['*.pyx', '*.pxd', '*.pxi','*.h']
  
-+#########################################################
-+### Extra files to install
-+#########################################################
-+
-+python_package_data = {}
-+for package in python_packages:
-+   if package == 'sage.doctest':
-+       python_package_data[package] = ['tests/*']
-+   else:
-+       python_package_data[package] = ['*.pyx', '*.pxd', '*.pxi','*.h']
-+
-+python_data_files = [(os.path.join(SAGE_LIB, 'sage', 'ext', 'interrupt'),
-+                      ['build/cythonized/sage/ext/interrupt/interrupt_api.h',
-+                       'build/cythonized/sage/ext/interrupt/interrupt.h']),
-+                     (os.path.join(SAGE_LIB, 'sage', 'libs', 'linkages', 'padics'),
-+                      ['sage/libs/linkages/padics/API.pxi',
-+                       'sage/libs/linkages/padics/mpz.pxi'])]
- 
- #########################################################
- ### Distutils
-@@ -616,6 +634,8 @@
-       author_email= 'http://groups.google.com/group/sage-support',
-       url         = 'http://www.sagemath.org',
-       packages    = python_packages,
-+      package_data= python_package_data,
-+      data_files  = python_data_files,
-       scripts = [],
-       cmdclass = { 'build_ext': sage_build_ext },
-       ext_modules = ext_modules)
+ # List of files generated by cython that needs to be installed.
+ # The list gives the location of the files to be installed relative to SAGE_LIB.
