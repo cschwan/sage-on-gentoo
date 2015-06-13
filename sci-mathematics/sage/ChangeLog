@@ -3,6 +3,10 @@
 # $Header: $
 
   13 Jun 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-9999.ebuild:
+  Bump arb optional dependency
+
+  13 Jun 2015; François Bissey <francois.bissey@canterbury.ac.nz>
   +files/sage-6.8-misc.patch, +files/sage-6.8-noclean.patch,
   files/sage-6.8-env.patch, files/sage-6.8-sources-r1.patch, sage-9999.ebuild:
   bump patches for 6.8.beta4
