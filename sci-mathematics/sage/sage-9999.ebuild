@@ -23,7 +23,7 @@ fi
 DESCRIPTION="Math software for algebra, geometry, number theory, cryptography and numerical computation"
 HOMEPAGE="http://www.sagemath.org"
 SRC_URI="${SRC_URI}
-	mirror://sagemath/patches/${PN}-6.8-neutering-r1.tar.xz
+	mirror://sagemath/patches/${PN}-6.8-neutering.patch.xz
 	mirror://sagemath/patches/sage-icon.tar.bz2
 	http://www.mathematik.uni-kl.de/ftp/pub/Math/Singular/SOURCES/3-1-6/Singular-3-1-6-share.tar.gz"
 
@@ -202,18 +202,11 @@ python_prepare() {
 	# ATLAS independence
 	epatch "${FILESDIR}"/${PN}-6.8-blas-r1.patch
 
-	# Remove sage's package management system
-	epatch "${WORKDIR}"/patches/${PN}-6.8-package.patch
+	# Remove sage's package management system, git capabilities and associated tests
+	epatch "${WORKDIR}"/${PN}-6.8-neutering.patch
 	rm sage/misc/package.py
-	# remove the install_script facility
 	rm sage/misc/dist.py
-
-	# Remove sage's git capabilities
-	epatch "${WORKDIR}"/patches/${PN}-6.5-hg.patch
 	rm -rf sage/dev
-
-	# Remove sage cmdline tests related to these
-	epatch "${WORKDIR}"/patches/${PN}-6.7-cmdline.patch
 
 	# replace pexpect with sage pinned version
 	sed -i "s:import pexpect:import sage_pexpect as pexpect:g" \
