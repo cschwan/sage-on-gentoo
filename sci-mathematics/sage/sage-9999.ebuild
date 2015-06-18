@@ -49,7 +49,7 @@ CDEPEND="dev-libs/gmp:0=
 	>=dev-libs/ppl-1.1
 	>=dev-lisp/ecls-13.5.1
 	dev-python/six[${PYTHON_USEDEP}]
-	=dev-python/numpy-1.8*[${PYTHON_USEDEP}]
+	>=dev-python/numpy-1.8.0[${PYTHON_USEDEP}]
 	>=dev-python/cython-0.22-r3[${PYTHON_USEDEP}]
 	dev-python/pkgconfig
 	>=dev-python/docutils-0.12[${PYTHON_USEDEP}]
@@ -99,7 +99,7 @@ RDEPEND="${CDEPEND}
 	>=dev-python/cvxopt-1.1.7[glpk,${PYTHON_USEDEP}]
 	>=dev-python/ipython-3.1.0[notebook,${PYTHON_USEDEP}]
 	>=dev-python/jinja-2.5.5[${PYTHON_USEDEP}]
-	<dev-python/matplotlib-1.4.0[${PYTHON_USEDEP}]
+	>=dev-python/matplotlib-1.4.0[${PYTHON_USEDEP}]
 	>=dev-python/mpmath-0.18[${PYTHON_USEDEP}]
 	>=dev-python/networkx-1.8[${PYTHON_USEDEP}]
 	~dev-python/sage-pexpect-2.0[${PYTHON_USEDEP}]
@@ -241,6 +241,9 @@ python_prepare() {
 	# sage on gentoo env.py
 	epatch "${FILESDIR}"/sage-6.8-env.patch
 	eprefixify sage/env.py
+
+	# Upgrade matplotlib to 1.4.x
+	epatch "${FILESDIR}"/MPL-1.4.patch
 
 	# sage-maxima.lisp really belong to /etc
 	epatch "${FILESDIR}"/sage-6.8-maxima.lisp.patch

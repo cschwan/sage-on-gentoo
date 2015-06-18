@@ -40,7 +40,7 @@ CDEPEND="dev-libs/gmp:0=
 	~dev-libs/ntl-6.2.1
 	>=dev-libs/ppl-1.1
 	>=dev-lisp/ecls-13.5.1
-	=dev-python/numpy-1.8*[${PYTHON_USEDEP}]
+	>=dev-python/numpy-1.8.0[${PYTHON_USEDEP}]
 	>=dev-python/cython-0.22-r2[${PYTHON_USEDEP}]
 	>=sci-mathematics/eclib-20150510[flint]
 	>=sci-mathematics/gmp-ecm-6.4.4[-openmp]
@@ -84,7 +84,7 @@ RDEPEND="${CDEPEND}
 	>=dev-python/cvxopt-1.1.7[glpk,${PYTHON_USEDEP}]
 	>=dev-python/ipython-3.1.0[notebook,${PYTHON_USEDEP}]
 	>=dev-python/jinja-2.5.5[${PYTHON_USEDEP}]
-	<dev-python/matplotlib-1.4.0[${PYTHON_USEDEP}]
+	=dev-python/matplotlib-1.4*[${PYTHON_USEDEP}]
 	>=dev-python/mpmath-0.18[${PYTHON_USEDEP}]
 	>=dev-python/networkx-1.8[${PYTHON_USEDEP}]
 	~dev-python/sage-pexpect-2.0[${PYTHON_USEDEP}]
@@ -181,6 +181,9 @@ python_prepare() {
 	# sage on gentoo env.py
 	epatch "${FILESDIR}"/sage-6.7-env.patch
 	eprefixify sage/env.py
+
+	# Upgrade matplotlib to 1.4.x
+	epatch "${FILESDIR}"/MPL-1.4.patch
 
 	# fix library path of libsingular
 	sed -i "s:os.environ\['SAGE_LOCAL'\]+\"/lib:\"${EPREFIX}/usr/$(get_libdir):" \
