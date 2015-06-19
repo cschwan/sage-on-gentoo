@@ -15,10 +15,12 @@ if [[ ${PV} = *9999* ]]; then
 	EGIT_SOURCEDIR="${WORKDIR}/${P}"
 	inherit git-2
 	SAGE_DOC_DEP="~sci-mathematics/sage-doc-${PV}"
+	SAGE_DOC_DEP_HTML="~sci-mathematics/sage-doc-${PV}[html]"
 	KEYWORDS=""
 else
 	SRC_URI="mirror://sagemath/${PV}.tar.gz -> ${P}.tar.gz"
 	SAGE_DOC_DEP="|| ( ~sci-mathematics/sage-doc-bin-${PV} ~sci-mathematics/sage-doc-${PV} )"
+	SAGE_DOC_DEP_HTML="|| ( ~sci-mathematics/sage-doc-bin-${PV}[html] ~sci-mathematics/sage-doc-${PV}[html] )"
 	KEYWORDS="~amd64 ~x86 ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~x64-macos"
 fi
 
@@ -121,7 +123,7 @@ RDEPEND="${CDEPEND}
 PDEPEND=">=sci-mathematics/sage-notebook-0.11.4-r2[${PYTHON_USEDEP}]
 	~sci-mathematics/sage-data-conway_polynomials-0.4
 	${SAGE_DOC_DEP}
-	testsuite? ( ~sci-mathematics/sage-doc-${PV}[html] )"
+	testsuite? ( ${SAGE_DOC_DEP_HTML} )"
 
 S="${WORKDIR}/${P}/src"
 
