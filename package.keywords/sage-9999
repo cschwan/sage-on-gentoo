@@ -90,6 +90,7 @@ sci-mathematics/pari-data
 sci-mathematics/polybori
 sci-mathematics/ratpoints
 sci-mathematics/rubiks
+sci-mathematics/rw
 ~sci-mathematics/sage-9999 **
 ~sci-mathematics/sage-baselayout-9999 **
 ~sci-mathematics/sage-clib-9999 **
