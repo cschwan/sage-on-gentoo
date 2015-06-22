@@ -77,6 +77,7 @@ CDEPEND="dev-libs/gmp:0=
 	~sci-mathematics/planarity-2.2.0
 	>=sci-mathematics/polybori-0.8.3[${PYTHON_USEDEP}]
 	>=sci-mathematics/ratpoints-2.1.3
+	>=sci-mathematics/rw-0.7
 	~sci-libs/libsingular-3.1.7_p1[flint]
 	media-libs/gd[jpeg,png]
 	media-libs/libpng:0=
@@ -301,7 +302,7 @@ python_prepare() {
 	sed -i "s:\.\.\./local/share/pari:.../share/pari:g" sage/interfaces/gp.py
 
 	# fix all.py
-	epatch "${FILESDIR}"/${PN}-6.0-all.py.patch
+	epatch "${FILESDIR}"/${PN}-6.8-all.py.patch
 	sed -i \
 		-e "s:\"lib\",\"python\":\"$(get_libdir)\",\"${EPYTHON}\":" \
 		-e "s:\"bin\":\"lib\",\"python-exec\",\"${EPYTHON}\":" sage/all.py
