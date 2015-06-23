@@ -2,6 +2,11 @@
 # Copyright 1999-2015 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/sci-mathematics/pari/ChangeLog,v 1.87 2012/03/06 17:06:06 bicatali Exp $
 
+  23 Jun 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  +files/pari-9999-no-automagic.patch, pari-9999.ebuild:
+  updating pari-9999, test suite still failing because of difference in
+  formatting of the output
+
   09 Jun 2015; François Bissey <francois.bissey@canterbury.ac.nz>
   -files/pari-2.5.0-doc-make.patch, -files/pari-2.5.0-macos.patch,
   -files/pari-2.5.0-mp.c.patch, -files/pari-2.5.1-no-automagic.patch,
