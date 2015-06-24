@@ -8,3 +8,5 @@ sci-mathematics/ecm
 >=sci-mathematics/pari-2.8_pre20150519
 >=sci-mathematics/gap-4.7.8
 >=sci-libs/libgap-4.7.8
+# linbox lapack stuff needs propagating to all affected sage before unmasking it.
+=sci-libs/linbox-1.3.2-r1
