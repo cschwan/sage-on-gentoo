@@ -2,6 +2,13 @@
 # Copyright 1999-2015 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*linbox-1.3.2-r1 (24 Jun 2015)
+
+  24 Jun 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  +files/linbox-1.3.2-lapack_detection.patch, +linbox-1.3.2-r1.ebuild:
+  New revbump of linbox that is properly detecting lapack and linking against it
+  (for linboxsage) more improvements to come.
+
   09 Jun 2015; François Bissey <francois.bissey@canterbury.ac.nz>
   -files/linbox-1.1.6-disable-commentator.patch,
   -files/linbox-1.1.6-fix-config.patch,
