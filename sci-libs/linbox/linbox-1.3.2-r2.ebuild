@@ -4,9 +4,7 @@
 
 EAPI=5
 
-AUTOTOOLS_AUTORECONF=1
-
-inherit autotools-utils toolchain-funcs flag-o-matic
+inherit autotools-utils flag-o-matic
 
 DESCRIPTION="LinBox is a C++ template library for linear algebra computation over integers and over finite fields"
 HOMEPAGE="http://linalg.org/"
@@ -33,23 +31,20 @@ CDEPEND="dev-libs/gmp[cxx]
 	sage? ( dev-libs/ntl )
 	sci-libs/iml
 	dev-libs/mpfr:="
-DEPEND="${CDEPEND}
-	virtual/pkgconfig"
+DEPEND="${CDEPEND}"
 RDEPEND="${CDEPEND}"
 
 PATCHES=(
 	"${FILESDIR}/${P}-clang-fix.patch"
-	"${FILESDIR}/${P}-lapack_detection.patch"
 	)
+
 AUTOTOOLS_IN_SOURCE_BUILD="1"
 DOCS=( ChangeLog README NEWS TODO )
 
 # TODO: installation of documentation does not work ?
 
 pkg_setup() {
-	tc-export PKG_CONFIG
-	local lapacklib=`"${PKG_CONFIG}" lapack --libs-only-l`
-	append-libs "-lmpfr" "-liml" "$lapacklib"
+	append-libs "-lmpfr" "-liml"
 }
 
 src_configure() {
