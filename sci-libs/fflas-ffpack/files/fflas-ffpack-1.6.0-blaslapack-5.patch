@@ -1,6 +1,6 @@
 diff -Naur fflas-ffpack-1.6.0.orig/configure.ac fflas-ffpack-1.6.0/configure.ac
---- fflas-ffpack-1.6.0.orig/configure.ac	2015-06-25 09:46:50.554383088 +1200
-+++ fflas-ffpack-1.6.0/configure.ac	2015-06-25 10:00:34.816912082 +1200
+--- fflas-ffpack-1.6.0.orig/configure.ac	2015-06-25 14:56:28.123898356 +1200
++++ fflas-ffpack-1.6.0/configure.ac	2015-06-25 14:56:53.673980842 +1200
 @@ -240,38 +240,25 @@
  echo '*******************************************************************************'
  ])
@@ -58,3 +58,20 @@ diff -Naur fflas-ffpack-1.6.0.orig/configure.ac fflas-ffpack-1.6.0/configure.ac
  
  # AM_CONDITIONAL(FFLASFFPACK_HAVE_BLAS,  test "x$BLAS_FOUND" != "xfalse")
  
+diff -Naur fflas-ffpack-1.6.0.orig/fflas-ffpack-config.in fflas-ffpack-1.6.0/fflas-ffpack-config.in
+--- fflas-ffpack-1.6.0.orig/fflas-ffpack-config.in	2015-06-25 14:56:28.123898356 +1200
++++ fflas-ffpack-1.6.0/fflas-ffpack-config.in	2015-06-25 14:57:55.464180289 +1200
+@@ -110,11 +110,11 @@
+ 			;;
+ 
+ 		--libs)
+-			echo  @GMP_LIBS@ @GIVARO_LIBS@ @BLAS_LIBS@ 
++			echo  @GMP_LIBS@ @GIVARO_LIBS@ @LAPACK_LIBS@ @BLAS_LIBS@ 
+ 			;;
+ 
+ 		--blas-libs)
+-			echo  @BLAS_LIBS@ 
++			echo  @LAPACK_LIBS@ @BLAS_LIBS@ 
+ 			;;
+ 	
+ 		--blas-home)
