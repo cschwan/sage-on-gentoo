@@ -1,3 +1,7 @@
+  26 Jun 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  -sage-doc-bin-6.5-r2.ebuild, metadata.xml:
+  removal of sage 6.5
+
   09 Jun 2015; François Bissey <francois.bissey@canterbury.ac.nz>
   -files/sage-doc-bin-dev.patch, -sage-doc-bin-6.4.ebuild,
   -sage-doc-bin-6.5-r1.ebuild:

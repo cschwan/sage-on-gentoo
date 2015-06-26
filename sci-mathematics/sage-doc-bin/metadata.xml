@@ -7,7 +7,6 @@
 	</maintainer>
 	<use>
 		<flag name='html'>Install HTML documentation</flag>
-		<flag name='pdf'>Install the pdf version of the documentation.</flag>
 		<flag name='linguas_ca'>Install Catalan documentation in html and/or pdf.</flag>
 		<flag name='linguas_de'>Install German documentation in html and/or pdf.</flag>
 		<flag name='linguas_en'>Install English documentation in html and/or pdf.</flag>
