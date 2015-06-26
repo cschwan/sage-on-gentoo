@@ -2,6 +2,10 @@
 # Copyright 1999-2015 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  26 Jun 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  -sage-clib-6.5.ebuild:
+  removal of sage 6.5
+
   09 Jun 2015; François Bissey <francois.bissey@canterbury.ac.nz>
   -files/sage-clib-4.5.3-fix-undefined-symbols-warning.patch,
   -files/sage-clib-4.7.1-importenv.patch, -sage-clib-5.10.ebuild,
