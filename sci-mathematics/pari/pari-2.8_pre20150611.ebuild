@@ -6,11 +6,10 @@ EAPI=5
 
 inherit eutils flag-o-matic toolchain-funcs multilib
 
-MY_P="pari-2.8-1577-gde33857"
+MY_P="pari-2.8-1637-g489005a"
 DESCRIPTION="Computer-aided number theory C library and tools"
 HOMEPAGE="http://pari.math.u-bordeaux.fr/"
-#SRC_URI="mirror://sageupstream/${PN}/${MY_P}.tar.gz"
-SRC_URI="http://boxen.math.washington.edu/home/jdemeyer/spkg/${MY_P}.tar.gz"
+SRC_URI="mirror://sageupstream/${PN}/${MY_P}.tar.gz"
 
 LICENSE="GPL-2"
 # Pari dev release have soname of the form pari-{gmp-}-{Major}.{minor}.so.0
@@ -46,7 +45,7 @@ src_prepare() {
 	# fix parallel make
 	epatch "${FILESDIR}"/${PN}-2.7.0-doc-make.patch
 	# fix automagic
-	epatch "${FILESDIR}"/${PN}-2.8_pre20150430-no-automagic.patch
+	epatch "${FILESDIR}"/${PN}-2.8_pre20150611-no-automagic.patch
 	# sage-on-gentoo trac 15654: PARI discriminant speed depends on stack size
 	epatch "${FILESDIR}"/${PN}-9999-det_garbage.patch
 
