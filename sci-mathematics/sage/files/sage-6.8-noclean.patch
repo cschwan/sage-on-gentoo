@@ -1,6 +1,6 @@
-diff -Nuar src.orig/sage/doctest/control.py src/sage/doctest/control.py
---- src.orig/sage/doctest/control.py	2015-06-13 19:13:51.002817153 +1200
-+++ src/sage/doctest/control.py	2015-06-13 19:16:45.993193698 +1200
+diff -Naur src.orig/sage/doctest/control.py src/sage/doctest/control.py
+--- src.orig/sage/doctest/control.py	2015-06-26 14:15:41.427111169 +1200
++++ src/sage/doctest/control.py	2015-06-26 14:16:09.957204981 +1200
 @@ -545,7 +545,6 @@
          def all_files():
              from glob import glob
@@ -9,10 +9,10 @@ diff -Nuar src.orig/sage/doctest/control.py src/sage/doctest/control.py
              self.files.append(opj(SAGE_SRC, 'doc', 'common'))
              self.files.extend(glob(opj(SAGE_SRC, 'doc', '[a-z][a-z]')))
              self.options.sagenb = True
-diff -Nuar src.orig/setup.py src/setup.py
---- src.orig/setup.py	2015-06-13 19:13:51.062817283 +1200
-+++ src/setup.py	2015-06-13 19:17:46.803324555 +1200
-@@ -585,19 +585,6 @@
+diff -Naur src.orig/setup.py src/setup.py
+--- src.orig/setup.py	2015-06-26 14:15:41.487111366 +1200
++++ src/setup.py	2015-06-26 14:16:42.227311085 +1200
+@@ -642,20 +642,6 @@
  
  
  #########################################################
@@ -28,7 +28,8 @@ diff -Nuar src.orig/setup.py src/setup.py
 -    clean_install_dir(output_dir, python_packages, python_modules, ext_modules)
 -print('Finished cleaning, time: %.2f seconds.' % (time.time() - t))
 -
+-
 -#########################################################
- ### Extra files to install
+ ### Distutils
  #########################################################
  

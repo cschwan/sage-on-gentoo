@@ -2,6 +2,11 @@
 # Copyright 1999-2015 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  26 Jun 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  -sage-6.5.ebuild, files/sage-6.8-blas-r1.patch, files/sage-6.8-noclean.patch,
+  files/sage-6.8-sources-r1.patch, sage-6.7-r1.ebuild, sage-9999.ebuild:
+  Bump patche for 6.8.beta5
+
   22 Jun 2015; François Bissey <francois.bissey@canterbury.ac.nz>
   +files/sage-6.8-all.py.patch, sage-9999.ebuild:
   bump for 6.8.beta5, still have to work out problems with numpy 1.9

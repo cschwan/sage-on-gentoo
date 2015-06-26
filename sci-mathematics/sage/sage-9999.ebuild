@@ -73,7 +73,7 @@ CDEPEND="dev-libs/gmp:0=
 	sci-mathematics/glpk:0=
 	>=sci-mathematics/lcalc-1.23-r6[pari]
 	>=sci-mathematics/lrcalc-1.1.6_beta1
-	>=sci-mathematics/pari-2.8_pre20150510[data,gmp,doc]
+	>=sci-mathematics/pari-2.8_pre20150611[data,gmp,doc]
 	~sci-mathematics/planarity-2.2.0
 	>=sci-mathematics/polybori-0.8.3[${PYTHON_USEDEP}]
 	>=sci-mathematics/ratpoints-2.1.3
@@ -242,9 +242,6 @@ python_prepare() {
 	# sage on gentoo env.py
 	epatch "${FILESDIR}"/sage-6.8-env.patch
 	eprefixify sage/env.py
-
-	# Upgrade matplotlib to 1.4.x
-	epatch "${FILESDIR}"/MPL-1.4.patch
 
 	# sage-maxima.lisp really belong to /etc
 	epatch "${FILESDIR}"/sage-6.8-maxima.lisp.patch

@@ -1,7 +1,7 @@
 diff -Naur src.orig/module_list.py src/module_list.py
---- src.orig/module_list.py	2015-06-05 11:42:18.275205274 +1200
-+++ src/module_list.py	2015-06-05 11:43:39.765383736 +1200
-@@ -4,6 +4,7 @@
+--- src.orig/module_list.py	2015-06-26 13:07:53.383751930 +1200
++++ src/module_list.py	2015-06-26 13:26:24.107401431 +1200
+@@ -2,6 +2,7 @@
  from glob import glob
  from distutils.extension import Extension
  from sage.env import SAGE_LOCAL
@@ -9,7 +9,7 @@ diff -Naur src.orig/module_list.py src/module_list.py
  
  SAGE_INC = os.path.join(SAGE_LOCAL, 'include')
  
-@@ -11,26 +12,8 @@
+@@ -9,26 +10,8 @@
  ### BLAS setup
  #########################################################
  
@@ -38,7 +38,16 @@ diff -Naur src.orig/module_list.py src/module_list.py
  
  #########################################################
  ### Commonly used definitions and aliases
-@@ -95,7 +78,7 @@
+@@ -41,7 +24,7 @@
+ singular_incs = [SAGE_INC + '/singular', SAGE_INC + '/factory']
+ 
+ aliases = dict(
+-        GSL_LIBRARIES=['gsl', BLAS, BLAS2],
++        GSL_LIBRARIES=['gsl'] + blas_libs,
+         INTERRUPT_DEPENDS=glob("sage/ext/interrupt/*.h"),
+         )
+ 
+@@ -96,7 +79,7 @@
      "zn_poly", "gap",
      "gd", "png12",
      "m", "readline", "Lfunction",
@@ -47,66 +56,16 @@ diff -Naur src.orig/module_list.py src/module_list.py
      "cryptominisat", "fplll", "z"]
  
  # Make a dict with library:order pairs, where the order are negative
-@@ -591,42 +574,50 @@
+@@ -585,7 +568,7 @@
+     ##
+     ################################
  
-     Extension('sage.gsl.callback',
-               sources = ['sage/gsl/callback.pyx'],
--              libraries = ['gsl', BLAS, BLAS2],
-+              library_dirs = blas_dir,
-+              libraries = ['gsl'] + blas_libs,
-               define_macros=[('GSL_DISABLE_DEPRECATED','1')]),
- 
-     Extension('sage.gsl.dwt',
-               sources = ['sage/gsl/dwt.pyx'],
--              libraries=['gsl',BLAS],
-+              library_dirs = blas_dir,
-+              libraries=['gsl'] + blas_libs,
-               define_macros=[('GSL_DISABLE_DEPRECATED','1')]),
- 
-     Extension('sage.gsl.fft',
-               sources = ['sage/gsl/fft.pyx'],
--              libraries = ['gsl', BLAS, BLAS2],
-+              library_dirs = blas_dir,
-+              libraries = ['gsl'] + blas_libs,
-               define_macros=[('GSL_DISABLE_DEPRECATED','1')]),
- 
-     Extension('sage.gsl.gsl_array',
-               sources = ['sage/gsl/gsl_array.pyx'],
--              libraries=['gsl', BLAS, BLAS2],
-+              library_dirs = blas_dir,
-+              libraries=['gsl'] + blas_libs,
-               define_macros=[('GSL_DISABLE_DEPRECATED','1')]),
- 
-     Extension('sage.gsl.integration',
-               sources = ['sage/gsl/integration.pyx'],
-               define_macros=[('GSL_DISABLE_DEPRECATED','1')],
--              libraries=['gsl',BLAS, BLAS2]),
-+              library_dirs = blas_dir,
-+              libraries=['gsl'] + blas_libs),
- 
-     Extension('sage.gsl.interpolation',
-               sources = ['sage/gsl/interpolation.pyx'],
--              libraries = ['gsl', BLAS, BLAS2],
-+              library_dirs = blas_dir,
-+              libraries = ['gsl'] + blas_libs,
-               define_macros=[('GSL_DISABLE_DEPRECATED','1')]),
- 
-     Extension('sage.gsl.ode',
-               sources = ['sage/gsl/ode.pyx'],
--              libraries=['gsl',BLAS, BLAS2],
-+              library_dirs = blas_dir,
-+              libraries=['gsl'] + blas_libs,
-               define_macros=[('GSL_DISABLE_DEPRECATED','1')]),
- 
-     Extension('sage.gsl.probability_distribution',
-               sources = ['sage/gsl/probability_distribution.pyx'],
--              libraries=['gsl', BLAS, BLAS2],
-+              library_dirs = blas_dir,
-+              libraries=['gsl'] + blas_libs,
-               define_macros=[('GSL_DISABLE_DEPRECATED','1')]),
+-    Extension('*', ['sage/gsl/*.pyx']),
++    Extension('*', ['sage/gsl/*.pyx'], library_dirs = blas_dir),
  
      ################################
-@@ -698,10 +689,11 @@
+     ##
+@@ -665,10 +648,11 @@
  
      Extension('sage.libs.linbox.linbox',
                sources = ['sage/libs/linbox/linbox.pyx'],
@@ -119,36 +78,7 @@ diff -Naur src.orig/module_list.py src/module_list.py
                language = 'c++',
                extra_compile_args = givaro_extra_compile_args,
                depends = givaro_depends),
-@@ -1012,7 +1004,8 @@
- 
-     Extension('sage.matrix.change_ring',
-               sources = ['sage/matrix/change_ring.pyx'],
--              libraries=[BLAS, BLAS2]),
-+              library_dirs = blas_dir,
-+              libraries=blas_libs),
- 
-     Extension('sage.matrix.matrix',
-               sources = ['sage/matrix/matrix.pyx']),
-@@ -1028,7 +1021,8 @@
- 
-     Extension('sage.matrix.matrix_complex_double_dense',
-               sources = ['sage/matrix/matrix_complex_double_dense.pyx'],
--              libraries=[BLAS, BLAS2]),
-+              library_dirs = blas_dir,
-+              libraries= blas_libs),
- 
-     Extension('sage.matrix.matrix_cyclo_dense',
-               sources = ['sage/matrix/matrix_cyclo_dense.pyx'],
-@@ -1040,7 +1034,7 @@
- 
-     Extension('sage.matrix.matrix_double_dense',
-               sources = ['sage/matrix/matrix_double_dense.pyx'],
--              libraries=[BLAS, BLAS2]),
-+              libraries=blas_libs),
- 
-     Extension('sage.matrix.matrix_generic_dense',
-               sources = ['sage/matrix/matrix_generic_dense.pyx']),
-@@ -1050,8 +1044,9 @@
+@@ -1018,8 +1002,9 @@
  
      Extension('sage.matrix.matrix_integer_dense',
                sources = ['sage/matrix/matrix_integer_dense.pyx'],
@@ -159,7 +89,7 @@ diff -Naur src.orig/module_list.py src/module_list.py
                depends = [SAGE_INC + '/m4ri/m4ri.h'] + flint_depends),
  
      Extension('sage.matrix.matrix_integer_sparse',
-@@ -1072,14 +1067,16 @@
+@@ -1040,14 +1025,16 @@
  
      Extension('sage.matrix.matrix_modn_dense_float',
                sources = ['sage/matrix/matrix_modn_dense_float.pyx'],
@@ -178,7 +108,7 @@ diff -Naur src.orig/module_list.py src/module_list.py
                extra_compile_args = ["-D_XPG6", "-DDISABLE_COMMENTATOR"]
                      + m4ri_extra_compile_args + givaro_extra_compile_args),
  
-@@ -1095,8 +1092,9 @@
+@@ -1063,8 +1050,9 @@
  
      Extension('sage.matrix.matrix_rational_dense',
                sources = ['sage/matrix/matrix_rational_dense.pyx'],
@@ -189,67 +119,10 @@ diff -Naur src.orig/module_list.py src/module_list.py
                depends = [SAGE_INC + '/m4ri/m4ri.h'] + flint_depends),
  
      Extension('sage.matrix.matrix_rational_sparse',
-@@ -1104,7 +1102,8 @@
- 
-     Extension('sage.matrix.matrix_real_double_dense',
-               sources = ['sage/matrix/matrix_real_double_dense.pyx'],
--              libraries=[BLAS, BLAS2]),
-+              library_dirs = blas_dir,
-+              libraries= blas_libs),
- 
-     Extension('sage.matrix.matrix_sparse',
-               sources = ['sage/matrix/matrix_sparse.pyx']),
-@@ -1242,11 +1241,13 @@
- 
-     Extension('sage.modules.vector_complex_double_dense',
-               ['sage/modules/vector_complex_double_dense.pyx'],
--              libraries = [BLAS, BLAS2]),
-+              library_dirs = blas_dir,
-+              libraries = blas_libs),
- 
-     Extension('sage.modules.vector_double_dense',
-               ['sage/modules/vector_double_dense.pyx'],
--              libraries = [BLAS, BLAS2]),
-+              library_dirs = blas_dir,
-+              libraries = blas_libs),
- 
-     Extension('sage.modules.vector_integer_dense',
-               sources = ['sage/modules/vector_integer_dense.pyx']),
-@@ -1266,7 +1267,8 @@
- 
-     Extension('sage.modules.vector_real_double_dense',
-               ['sage/modules/vector_real_double_dense.pyx'],
--              libraries = [BLAS, BLAS2]),
-+              library_dirs = blas_dir,
-+              libraries = blas_libs),
- 
-     ################################
-     ##
-@@ -1434,8 +1436,9 @@
- 
-     Extension('sage.rings.complex_double',
-               sources = ['sage/rings/complex_double.pyx'],
-+              library_dirs = blas_dir,
-               extra_compile_args=["-std=c99", "-D_XPG6"],
--              libraries = (['gsl', BLAS, BLAS2, 'm'])),
-+              libraries = ['gsl', 'm'] + blas_libs),
- 
-     Extension('sage.rings.complex_interval',
-               sources = ['sage/rings/complex_interval.pyx'],
-@@ -1497,7 +1500,8 @@
- 
-     Extension('sage.rings.real_double',
-               sources = ['sage/rings/real_double.pyx'],
--              libraries = ['gsl', BLAS, BLAS2],
-+              library_dirs = blas_dir,
-+              libraries = ['gsl'] + blas_libs,
-               define_macros=[('GSL_DISABLE_DEPRECATED','1')]),
- 
-     Extension('sage.rings.real_interval_absolute',
 diff -Naur src.orig/sage/misc/cython.py src/sage/misc/cython.py
---- src.orig/sage/misc/cython.py	2015-06-05 11:42:18.195205097 +1200
-+++ src/sage/misc/cython.py	2015-06-05 11:42:44.645263029 +1200
-@@ -24,50 +24,35 @@
+--- src.orig/sage/misc/cython.py	2015-06-26 13:07:53.293751633 +1200
++++ src/sage/misc/cython.py	2015-06-26 13:08:18.483834486 +1200
+@@ -24,53 +24,38 @@
  from temporary_file import tmp_filename
  
  
@@ -315,18 +188,13 @@ diff -Naur src.orig/sage/misc/cython.py src/sage/misc/cython.py
 +
 +    return list(pkgconfig.parse('cblas')['library_dir'])
  
- include_dirs = [os.path.join(SAGE_LOCAL,'include'),
-                 os.path.join(SAGE_LOCAL,'include','python'+platform.python_version().rsplit('.', 1)[0]),
-@@ -78,7 +63,7 @@
- 
- 
  standard_libs = ['mpfr', 'gmp', 'gmpxx', 'stdc++', 'pari', 'm', \
 -                 'ec', 'gsl', cblas(), atlas(), 'ntl']
 +                 'ec', 'gsl'] + cblas_libs() + ['ntl']
  
  offset = 0
  
-@@ -206,7 +191,6 @@
+@@ -198,7 +183,6 @@
          'm',
          'ec',
          'gsl',
@@ -334,9 +202,9 @@ diff -Naur src.orig/sage/misc/cython.py src/sage/misc/cython.py
          ...,
          'ntl'],
          ['.../include',
-@@ -216,8 +200,8 @@
+@@ -207,8 +191,8 @@
          '...',
-         '.../sage/gsl'],
+         '.../sage/ext'],
          'c',
 -        [], ['-w', '-O2'])
 -        sage: s, libs, inc, lang, f, args = pyx_preparse("# clang c++\n #clib foo\n # cinclude bar\n")
@@ -345,7 +213,7 @@ diff -Naur src.orig/sage/misc/cython.py src/sage/misc/cython.py
          sage: lang
          'c++'
  
-@@ -228,7 +212,7 @@
+@@ -219,7 +203,7 @@
          'pari',
          'm',
          'ec',
@@ -354,16 +222,16 @@ diff -Naur src.orig/sage/misc/cython.py src/sage/misc/cython.py
          'ntl']
          sage: libs[1:] == sage.misc.cython.standard_libs
          True
-@@ -242,7 +226,7 @@
+@@ -232,7 +216,7 @@
          '...',
-         '.../sage/gsl']
+         '.../sage/ext']
  
 -        sage: s, libs, inc, lang, f, args = pyx_preparse("# cargs -O3 -ggdb\n")
 +        sage: s, libs, inc, lang, f, args, libdirs = pyx_preparse("# cargs -O3 -ggdb\n")
          sage: args
          ['-w', '-O2', '-O3', '-ggdb']
  
-@@ -269,9 +253,10 @@
+@@ -261,9 +245,10 @@
      s = """\ninclude "cdefs.pxi"\n""" + s
      s = """\ninclude "interrupt.pxi"  # ctrl-c interrupt block support\ninclude "stdsage.pxi"\n""" + s
      args, s = parse_keywords('cargs', s)
@@ -375,7 +243,7 @@ diff -Naur src.orig/sage/misc/cython.py src/sage/misc/cython.py
  
  ################################################################
  # If the user attaches a .spyx file and changes it, we have
-@@ -408,7 +393,7 @@
+@@ -400,7 +385,7 @@
  
      F = open(filename).read()
  
@@ -384,7 +252,7 @@ diff -Naur src.orig/sage/misc/cython.py src/sage/misc/cython.py
  
      # add the working directory to the includes so custom headers etc. work
      includes.append(os.path.split(os.path.splitext(filename)[0])[0])
-@@ -448,19 +433,17 @@
+@@ -440,19 +425,17 @@
  
  from sage.env import SAGE_LOCAL
  
