@@ -50,7 +50,7 @@ CDEPEND="dev-libs/gmp:0=
 	>=dev-lisp/ecls-13.5.1
 	dev-python/six[${PYTHON_USEDEP}]
 	>=dev-python/numpy-1.8.0[${PYTHON_USEDEP}]
-	>=dev-python/cython-0.22-r3[${PYTHON_USEDEP}]
+	~dev-python/cython-0.22[${PYTHON_USEDEP}]
 	dev-python/pkgconfig
 	>=dev-python/docutils-0.12[${PYTHON_USEDEP}]
 	~dev-python/sphinx-1.2.2[${PYTHON_USEDEP}]
