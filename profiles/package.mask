@@ -4,6 +4,3 @@
 ~sci-mathematics/sage-doc-9999
 # preparing ecm for removal. I only keep it in case it solves some OS X problems
 sci-mathematics/ecm
-# sage 6.8
->=sci-mathematics/gap-4.7.8
->=sci-libs/libgap-4.7.8
