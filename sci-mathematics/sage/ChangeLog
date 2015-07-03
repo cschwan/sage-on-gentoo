@@ -3,6 +3,11 @@
 # $Header: $
 
   03 Jul 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-9999.ebuild:
+  Bumping dependency on {lib}gap in 6.8.beta7, not doing ipython before checking
+  patches.
+
+  03 Jul 2015; François Bissey <francois.bissey@canterbury.ac.nz>
   +files/sage-6.8-singular_extra_arg.patch, files/sage-6.8-blas-r1.patch,
   sage-9999.ebuild:
   patch bump for 6.8.beta7
