@@ -2,6 +2,11 @@
 # Copyright 1999-2015 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  03 Jul 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  +files/sage-6.8-singular_extra_arg.patch, files/sage-6.8-blas-r1.patch,
+  sage-9999.ebuild:
+  patch bump for 6.8.beta7
+
   28 Jun 2015; François Bissey <francois.bissey@canterbury.ac.nz>
   sage-6.7-r1.ebuild, sage-9999.ebuild:
   Limit cython dependency to 0.22 releases in 6.7 and 9999, 0.22.1 is now going

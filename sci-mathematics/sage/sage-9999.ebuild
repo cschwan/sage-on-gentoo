@@ -225,8 +225,8 @@ python_prepare() {
 	# fix lcalc path
 	sed -i "s:SAGE_INC + \"/libLfunction:SAGE_INC + \"/Lfunction:g" module_list.py
 
-	# We add -DNDEBUG to objects linking to givaro and libsingular And use factory headers from libsingular.
-	epatch "${FILESDIR}"/${PN}-6.4-givaro_singular_extra.patch
+	# We add -DNDEBUG to objects linking to libsingular And use factory headers from libsingular.
+	epatch "${FILESDIR}"/${PN}-6.8-singular_extra_arg.patch
 
 	# Do not clean up the previous install with setup.py
 	epatch "${FILESDIR}"/${PN}-6.8-noclean.patch

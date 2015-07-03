@@ -1,6 +1,6 @@
 diff -Naur src.orig/module_list.py src/module_list.py
---- src.orig/module_list.py	2015-06-26 13:07:53.383751930 +1200
-+++ src/module_list.py	2015-06-26 13:26:24.107401431 +1200
+--- src.orig/module_list.py	2015-07-03 12:42:59.927729625 +1200
++++ src/module_list.py	2015-07-03 12:46:39.108447709 +1200
 @@ -2,6 +2,7 @@
  from glob import glob
  from distutils.extension import Extension
@@ -38,7 +38,7 @@ diff -Naur src.orig/module_list.py src/module_list.py
  
  #########################################################
  ### Commonly used definitions and aliases
-@@ -41,7 +24,7 @@
+@@ -37,7 +20,7 @@
  singular_incs = [SAGE_INC + '/singular', SAGE_INC + '/factory']
  
  aliases = dict(
@@ -47,7 +47,7 @@ diff -Naur src.orig/module_list.py src/module_list.py
          INTERRUPT_DEPENDS=glob("sage/ext/interrupt/*.h"),
          )
  
-@@ -96,7 +79,7 @@
+@@ -92,7 +75,7 @@
      "zn_poly", "gap",
      "gd", "png12",
      "m", "readline", "Lfunction",
@@ -56,7 +56,7 @@ diff -Naur src.orig/module_list.py src/module_list.py
      "cryptominisat", "fplll", "z"]
  
  # Make a dict with library:order pairs, where the order are negative
-@@ -585,7 +568,7 @@
+@@ -471,7 +454,7 @@
      ##
      ################################
  
@@ -65,20 +65,18 @@ diff -Naur src.orig/module_list.py src/module_list.py
  
      ################################
      ##
-@@ -665,10 +648,11 @@
+@@ -545,8 +528,9 @@
  
      Extension('sage.libs.linbox.linbox',
                sources = ['sage/libs/linbox/linbox.pyx'],
 +              library_dirs = blas_dir,
-               # For this to work on cygwin, linboxsage *must* be
-               # before ntl.
                libraries = ['linboxsage', 'ntl', 'iml', 'linbox',
 -                           'givaro', 'mpfr', 'gmp', 'gmpxx', BLAS, BLAS2],
 +                           'givaro', 'mpfr', 'gmp', 'gmpxx'] + blas_libs,
                language = 'c++',
                extra_compile_args = givaro_extra_compile_args,
-               depends = givaro_depends),
-@@ -1018,8 +1002,9 @@
+               depends = [os.path.join(SAGE_INC, 'givaro', 'givconfig.h')]),
+@@ -889,8 +873,9 @@
  
      Extension('sage.matrix.matrix_integer_dense',
                sources = ['sage/matrix/matrix_integer_dense.pyx'],
@@ -86,10 +84,10 @@ diff -Naur src.orig/module_list.py src/module_list.py
                extra_compile_args = ['-std=c99'] + m4ri_extra_compile_args,
 -              libraries = ['iml', 'ntl', 'gmp', 'm', 'flint', BLAS, BLAS2],
 +              libraries = ['iml', 'ntl', 'gmp', 'm', 'flint'] + blas_libs,
-               depends = [SAGE_INC + '/m4ri/m4ri.h'] + flint_depends),
+               depends = [SAGE_INC + '/m4ri/m4ri.h']),
  
      Extension('sage.matrix.matrix_integer_sparse',
-@@ -1040,14 +1025,16 @@
+@@ -911,14 +896,16 @@
  
      Extension('sage.matrix.matrix_modn_dense_float',
                sources = ['sage/matrix/matrix_modn_dense_float.pyx'],
@@ -108,7 +106,7 @@ diff -Naur src.orig/module_list.py src/module_list.py
                extra_compile_args = ["-D_XPG6", "-DDISABLE_COMMENTATOR"]
                      + m4ri_extra_compile_args + givaro_extra_compile_args),
  
-@@ -1063,8 +1050,9 @@
+@@ -933,8 +920,9 @@
  
      Extension('sage.matrix.matrix_rational_dense',
                sources = ['sage/matrix/matrix_rational_dense.pyx'],
@@ -116,12 +114,12 @@ diff -Naur src.orig/module_list.py src/module_list.py
                extra_compile_args = ["-std=c99", "-D_XPG6"] + m4ri_extra_compile_args,
 -              libraries = ['iml', 'ntl', 'm', 'flint', BLAS, BLAS2],
 +              libraries = ['iml', 'ntl', 'm', 'flint'] + blas_libs,
-               depends = [SAGE_INC + '/m4ri/m4ri.h'] + flint_depends),
+               depends = [SAGE_INC + '/m4ri/m4ri.h']),
  
      Extension('sage.matrix.matrix_rational_sparse',
 diff -Naur src.orig/sage/misc/cython.py src/sage/misc/cython.py
---- src.orig/sage/misc/cython.py	2015-06-26 13:07:53.293751633 +1200
-+++ src/sage/misc/cython.py	2015-06-26 13:08:18.483834486 +1200
+--- src.orig/sage/misc/cython.py	2015-07-03 12:42:59.837729330 +1200
++++ src/sage/misc/cython.py	2015-07-03 12:43:34.177841868 +1200
 @@ -24,53 +24,38 @@
  from temporary_file import tmp_filename
  

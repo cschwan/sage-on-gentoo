@@ -1,0 +1,134 @@
+diff -Naur src.orig/module_list.py src/module_list.py
+--- src.orig/module_list.py	2015-07-03 12:49:58.409100250 +1200
++++ src/module_list.py	2015-07-03 13:00:51.621236467 +1200
+@@ -17,7 +17,7 @@
+ ### Commonly used definitions and aliases
+ #########################################################
+ 
+-singular_incs = [SAGE_INC + '/singular', SAGE_INC + '/factory']
++singular_incs = [SAGE_INC + '/singular']
+ 
+ aliases = dict(
+         GSL_LIBRARIES=['gsl'] + blas_libs,
+@@ -43,7 +43,8 @@
+ ### Givaro flags
+ #########################################################
+ 
+-givaro_extra_compile_args =['-D__STDC_LIMIT_MACROS']
++givaro_extra_compile_args =['-D__STDC_LIMIT_MACROS', '-DNDEBUG']
++singular_extra_compile_args = ['-DNDEBUG']
+ 
+ #########################################################
+ ### PolyBoRi settings
+@@ -126,19 +127,22 @@
+               sources = ['sage/algebras/letterplace/free_algebra_letterplace.pyx'],
+               libraries = singular_libs,
+               language="c++",
+-              include_dirs = singular_incs),
++              include_dirs = singular_incs,
++              extra_compile_args = singular_extra_compile_args),
+ 
+     Extension('sage.algebras.letterplace.free_algebra_element_letterplace',
+               sources = ['sage/algebras/letterplace/free_algebra_element_letterplace.pyx'],
+               libraries = singular_libs,
+               language="c++",
+-              include_dirs = singular_incs),
++              include_dirs = singular_incs,
++              extra_compile_args = singular_extra_compile_args),
+ 
+     Extension('sage.algebras.letterplace.letterplace_ideal',
+               sources = ['sage/algebras/letterplace/letterplace_ideal.pyx'],
+               libraries = singular_libs,
+               language="c++",
+-              include_dirs = singular_incs),
++              include_dirs = singular_incs,
++              extra_compile_args = singular_extra_compile_args),
+ 
+     Extension('sage.algebras.quatalg.quaternion_algebra_cython',
+                sources = ['sage/algebras/quatalg/quaternion_algebra_cython.pyx'],
+@@ -602,38 +606,42 @@
+               libraries = ['givaro'] + singular_libs,
+               language="c++",
+               include_dirs = singular_incs,
+-              extra_compile_args = givaro_extra_compile_args),
++              extra_compile_args = givaro_extra_compile_args + singular_extra_compile_args),
+ 
+     Extension('sage.libs.singular.polynomial',
+               sources = ['sage/libs/singular/polynomial.pyx'],
+               libraries = singular_libs,
+               language="c++",
+-              include_dirs = singular_incs),
++              include_dirs = singular_incs,
++              extra_compile_args = singular_extra_compile_args),
+ 
+     Extension('sage.libs.singular.ring',
+               sources = ['sage/libs/singular/ring.pyx'],
+               libraries = singular_libs,
+               language="c++",
+-              include_dirs = singular_incs),
++              include_dirs = singular_incs,
++              extra_compile_args = singular_extra_compile_args),
+ 
+     Extension('sage.libs.singular.groebner_strategy',
+               sources = ['sage/libs/singular/groebner_strategy.pyx'],
+               libraries = singular_libs,
+               language="c++",
+-              include_dirs = singular_incs),
++              include_dirs = singular_incs,
++              extra_compile_args = singular_extra_compile_args),
+ 
+     Extension('sage.libs.singular.function',
+               sources = ['sage/libs/singular/function.pyx'],
+               libraries = singular_libs,
+               language="c++",
+               include_dirs = singular_incs,
+-              extra_compile_args = givaro_extra_compile_args),
++              extra_compile_args = givaro_extra_compile_args + singular_extra_compile_args),
+ 
+     Extension('sage.libs.singular.option',
+               sources = ['sage/libs/singular/option.pyx'],
+               libraries = singular_libs,
+               language="c++",
+-              include_dirs = singular_incs),
++              include_dirs = singular_incs,
++              extra_compile_args = singular_extra_compile_args),
+ 
+     Extension('sage.libs.symmetrica.symmetrica',
+               sources = ["sage/libs/symmetrica/%s"%s for s in ["symmetrica.pyx"]],
+@@ -916,7 +924,8 @@
+               sources = ['sage/matrix/matrix_mpolynomial_dense.pyx'],
+               libraries = singular_libs,
+               language="c++",
+-              include_dirs = singular_incs),
++              include_dirs = singular_incs,
++              extra_compile_args = singular_extra_compile_args),
+ 
+     Extension('sage.matrix.matrix_rational_dense',
+               sources = ['sage/matrix/matrix_rational_dense.pyx'],
+@@ -1481,7 +1490,8 @@
+               sources = ['sage/rings/polynomial/multi_polynomial_ideal_libsingular.pyx'],
+               libraries = singular_libs,
+               language="c++",
+-              include_dirs = singular_incs),
++              include_dirs = singular_incs,
++              extra_compile_args = singular_extra_compile_args),
+ 
+     Extension('sage.rings.polynomial.plural',
+               sources = ['sage/rings/polynomial/plural.pyx'],
+@@ -1489,13 +1499,14 @@
+               language="c++",
+               include_dirs = singular_incs,
+               depends = [SAGE_INC + "/libsingular.h"],
+-              extra_compile_args = givaro_extra_compile_args),
++              extra_compile_args = givaro_extra_compile_args + singular_extra_compile_args),
+ 
+     Extension('sage.rings.polynomial.multi_polynomial_libsingular',
+               sources = ['sage/rings/polynomial/multi_polynomial_libsingular.pyx'],
+               libraries = singular_libs,
+               language="c++",
+-              include_dirs = singular_incs),
++              include_dirs = singular_incs,
++              extra_compile_args = singular_extra_compile_args),
+ 
+     Extension('sage.rings.polynomial.multi_polynomial_ring_generic',
+               sources = ['sage/rings/polynomial/multi_polynomial_ring_generic.pyx']),
