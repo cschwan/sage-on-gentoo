@@ -35,6 +35,7 @@ PATCHES=(
 	"${FILESDIR}"/${PN}-0.22-c_tuple_type_memleak.patch
 	"${FILESDIR}"/${PN}-0.22-api_mangle.patch
 	"${FILESDIR}"/${PN}-0.22-extern_impl.patch
+	"${FILESDIR}"/${PN}-0.22-find_pxd.patch
 	)
 
 S="${WORKDIR}/${MY_PN}-${PV%_*}"

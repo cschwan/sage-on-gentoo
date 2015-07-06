@@ -2,6 +2,15 @@
 # Copyright 1999-2015 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/dev-python/cython/ChangeLog,v 1.93 2013/02/16 22:07:28 mgorny Exp $
 
+*cython-0.22-r4 (06 Jul 2015)
+
+  06 Jul 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  +cython-0.22-r4.ebuild, +files/cython-0.22-find_pxd.patch,
+  -cython-0.22-r2.ebuild, -cython-0.22-r3.ebuild:
+  Update cython 0.22 patchset to include stuff from
+  https://github.com/cython/cython/pull/409 which is important now that we ship
+  headers and .pxd files.
+
   09 Jun 2015; François Bissey <francois.bissey@canterbury.ac.nz>
   -cython-0.19.2.ebuild, -cython-0.19.ebuild, -files/api_mangle.patch,
   -files/build_dir.patch:
