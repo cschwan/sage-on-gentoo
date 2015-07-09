@@ -2,6 +2,12 @@
 # Copyright 1999-2015 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*libsingular-3.1.7_p1-r5 (09 Jul 2015)
+
+  09 Jul 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  +files/singular-3.1.7-ntl8.patch, +libsingular-3.1.7_p1-r5.ebuild:
+  bump revision to include support for ntl 8+
+
   09 Jun 2015; François Bissey <francois.bissey@canterbury.ac.nz>
   -files/pullrequest215.patch, -files/sage_trac_14295.patch,
   -files/singular-3.1.5-NTLnegate.patch,
