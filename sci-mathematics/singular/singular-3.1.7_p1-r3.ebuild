@@ -21,7 +21,7 @@ HOMEPAGE="http://www.singular.uni-kl.de/"
 
 SRC_COM="http://www.mathematik.uni-kl.de/ftp/pub/Math/${MY_PN}/SOURCES/"
 SRC_URI="${SRC_COM}${MY_DIR}/${MY_PN}-${MY_PV}.tar.gz
-		 ${SRC_COM}${MY_SHARE_DIR}/${MY_PN}-${MY_PV_SHARE}-share.tar.gz"
+	${SRC_COM}${MY_SHARE_DIR}/${MY_PN}-${MY_PV_SHARE}-share.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
@@ -62,6 +62,12 @@ src_prepare () {
 		"${FILESDIR}"/${PN}-3.1.7-use_cxx_for_linking.patch \
 		"${FILESDIR}"/${PN}-3.1.7-curring.patch
 	eprefixify kernel/Makefile.in
+
+	if has_version ">=dev-libs/ntl-9.0.2"; then
+		# ccompatibility with ntl 8+
+		epatch "${FILESDIR}"/${PN}-3.1.7-ntl8.patch
+	fi
+
 	use python && epatch "${FILESDIR}"/${PN}-3.1.3.2-python.patch
 
 	if  [[ ${CHOST} == *-darwin* ]] ; then

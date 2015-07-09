@@ -2,6 +2,14 @@
 # Copyright 1999-2015 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/sci-mathematics/singular/ChangeLog,v 1.53 2012/06/23 10:50:20 xarthisius Exp $
 
+*singular-3.1.7_p1-r3 (09 Jul 2015)
+
+  09 Jul 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  +files/singular-3.1.7-ntl8.patch, +singular-3.1.7_p1-r3.ebuild,
+  singular-3.1.7_p1-r2.ebuild:
+  Bump revision to include ntl 8+ support, make repoman happy by dropping ppc
+  support.
+
   09 Jun 2015; François Bissey <francois.bissey@canterbury.ac.nz>
   -files/pullrequest215.patch, -files/sage_trac_14295.patch,
   -files/singular-3.1.3.3-os_x_ppc.patch,
