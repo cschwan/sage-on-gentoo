@@ -1,4 +1,4 @@
-# Copyright 1999-2014 Gentoo Foundation
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-libs/ntl/ntl-6.1.0.ebuild,v 1.1 2014/06/16 21:54:20 jauhien Exp $
 
@@ -14,7 +14,7 @@ SLOT="0"
 KEYWORDS="~amd64 ~ppc ~x86 ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~x64-macos"
 IUSE="doc static-libs test"
 
-RDEPEND=">=dev-libs/gmp-4.3
+RDEPEND="dev-libs/gmp:=
 	>=dev-libs/gf2x-0.9"
 DEPEND="${RDEPEND}
 	dev-lang/perl"

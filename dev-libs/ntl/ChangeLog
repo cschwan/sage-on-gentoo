@@ -1,6 +1,15 @@
 # ChangeLog for dev-libs/ntl
-# Copyright 1999-2014 Gentoo Foundation; Distributed under the GPL v2
+# Copyright 1999-2015 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/dev-libs/ntl/ChangeLog,v 1.25 2014/06/19 13:08:44 jauhien Exp $
+
+*ntl-9.2.0 (09 Jul 2015)
+
+  09 Jul 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  +files/ntl-9.2.0-sage-callback.patch,
+  +files/ntl-9.2.0-sanitize-makefile.patch, +files/ntl-9.2.0-singular.patch,
+  +files/ntl-9.2.0-sp_arith.patch, +ntl-9.2.0.ebuild, ntl-6.2.1.ebuild:
+  Bump to ntl 9.2.0 which is to land in sage 6.8, included appropriate sage
+  patch. Make repoman happy.
 
   19 Jun 2014; Jauhien Piatlicki <jauhien@gentoo.org>
   +files/ntl-5.5.2-shared-r1.patch:
