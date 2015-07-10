@@ -3,6 +3,10 @@
 # $Header: /var/cvsroot/gentoo-x86/dev-libs/ntl/ChangeLog,v 1.25 2014/06/19 13:08:44 jauhien Exp $
 
   10 Jul 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  +files/ntl-9.2.0-singular.patch:
+  restore patch mistakenly removed during the bump
+
+  10 Jul 2015; François Bissey <francois.bissey@canterbury.ac.nz>
   ntl-9.3.0.ebuild:
   cleaning all the "die" that are un-needed in EAPI 4 and over.
 
