@@ -50,33 +50,33 @@ src_compile() {
 	emake setup3 || die "emake setup failed"
 	sh Wizard on || die "Tuning wizard failed"
 	if use static-libs; then
-		emake ntl.a  || die "emake static failed"
+		emake ntl.a
 	fi
 	local trg=so
 	[[ ${CHOST} == *-darwin* ]] && trg=dylib
-	emake shared${trg} || die "emake shared failed"
+	emake shared${trg}
 }
 
 src_install() {
 	if use static-libs; then
-		newlib.a ntl.a libntl.a || die "installation of static library failed"
+		newlib.a ntl.a libntl.a
 	fi
-	dolib.so lib*$(get_libname) || die "installation of shared library failed"
+	dolib.so lib*$(get_libname)
 
 	cd ..
 	insinto /usr/include
-	doins -r include/NTL || die "installation of the headers failed"
+	doins -r include/NTL
 
 	dodoc README
 	if use doc ; then
-		dodoc doc/*.txt || die
-		dohtml doc/* || die
+		dodoc doc/*.txt
+		dohtml doc/*
 	fi
 }
 
 src_test(){
 	# the current ebuild need static library to run tests
-	emake ntl.a  || die "emake static failed"
+	emake ntl.a
 
 	default
 }
