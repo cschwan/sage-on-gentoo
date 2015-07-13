@@ -3,7 +3,7 @@ dev-java/asm:2
 ~dev-lang/R-3.2.0
 ~dev-libs/mathjax-2.4
 ~dev-libs/mpc-1.0.2
-~dev-libs/ntl-6.2.1
+~dev-libs/ntl-9.3.0
 ~dev-libs/ppl-1.1
 dev-libs/c-blosc
 dev-python/characteristic
