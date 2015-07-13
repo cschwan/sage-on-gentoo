@@ -36,6 +36,8 @@ PATCHES=(
 	"${FILESDIR}"/${PN}-0.22-api_mangle.patch
 	"${FILESDIR}"/${PN}-0.22-extern_impl.patch
 	"${FILESDIR}"/${PN}-0.22-find_pxd.patch
+	"${FILESDIR}"/${PN}-0.22-includes_cmp.patch
+	"${FILESDIR}"/${PN}-0.22-transitive_dependencies.patch
 	)
 
 S="${WORKDIR}/${MY_PN}-${PV%_*}"

@@ -2,6 +2,14 @@
 # Copyright 1999-2015 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/dev-python/cython/ChangeLog,v 1.93 2013/02/16 22:07:28 mgorny Exp $
 
+*cython-0.22-r5 (13 Jul 2015)
+
+  13 Jul 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  +cython-0.22-r5.ebuild, +files/cython-0.22-includes_cmp.patch,
+  +files/cython-0.22-transitive_dependencies.patch, -cython-0.22-r4.ebuild:
+  get cython 0.22 on par with sage's version. Please someone release 0.23 with
+  all these.
+
 *cython-0.22-r4 (06 Jul 2015)
 
   06 Jul 2015; François Bissey <francois.bissey@canterbury.ac.nz>
