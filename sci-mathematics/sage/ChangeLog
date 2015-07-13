@@ -3,6 +3,10 @@
 # $Header: $
 
   13 Jul 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-9999.ebuild:
+  Correct the dependency on pynac in 9999. See issue #360
+
+  13 Jul 2015; François Bissey <francois.bissey@canterbury.ac.nz>
   -files/sage-6.8-noclean.patch, files/sage-6.8-sources-r1.patch,
   sage-9999.ebuild:
   consolidate a couple of patches. Properly install the needed source files.
