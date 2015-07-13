@@ -1,6 +1,6 @@
 diff -Naur src.orig/sage/doctest/control.py src/sage/doctest/control.py
---- src.orig/sage/doctest/control.py	2015-06-26 14:15:41.427111169 +1200
-+++ src/sage/doctest/control.py	2015-06-26 14:16:09.957204981 +1200
+--- src.orig/sage/doctest/control.py	2015-07-13 11:29:04.490770881 +1200
++++ src/sage/doctest/control.py	2015-07-13 11:30:28.920909215 +1200
 @@ -545,7 +545,6 @@
          def all_files():
              from glob import glob
@@ -10,9 +10,9 @@ diff -Naur src.orig/sage/doctest/control.py src/sage/doctest/control.py
              self.files.extend(glob(opj(SAGE_SRC, 'doc', '[a-z][a-z]')))
              self.options.sagenb = True
 diff -Naur src.orig/setup.py src/setup.py
---- src.orig/setup.py	2015-06-26 14:15:41.487111366 +1200
-+++ src/setup.py	2015-06-26 14:16:42.227311085 +1200
-@@ -642,20 +642,6 @@
+--- src.orig/setup.py	2015-07-13 11:29:04.520770929 +1200
++++ src/setup.py	2015-07-13 11:32:03.141062990 +1200
+@@ -620,21 +620,6 @@
  
  
  #########################################################
@@ -25,7 +25,8 @@ diff -Naur src.orig/setup.py src/setup.py
 -output_dirs = SITE_PACKAGES + glob.glob(os.path.join(SAGE_SRC, 'build', 'lib*'))
 -for output_dir in output_dirs:
 -    print('- cleaning {0}'.format(output_dir))
--    clean_install_dir(output_dir, python_packages, python_modules, ext_modules)
+-    clean_install_dir(output_dir, python_packages, python_modules,
+-            ext_modules, python_data_files)
 -print('Finished cleaning, time: %.2f seconds.' % (time.time() - t))
 -
 -

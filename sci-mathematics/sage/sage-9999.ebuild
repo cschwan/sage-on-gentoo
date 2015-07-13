@@ -45,7 +45,7 @@ RESTRICT="mirror test"
 CDEPEND="dev-libs/gmp:0=
 	>=dev-libs/mpfr-3.1.0
 	>=dev-libs/mpc-1.0
-	~dev-libs/ntl-6.2.1
+	>=dev-libs/ntl-9.3.0
 	>=dev-libs/ppl-1.1
 	>=dev-lisp/ecls-13.5.1
 	dev-python/six[${PYTHON_USEDEP}]
@@ -215,6 +215,9 @@ python_prepare() {
 	sed -i "s:from pexpect:from sage_pexpect:g" \
 		`grep -rl "from pexpect" *`
 
+	# update from ntl 9.2.0 to 9.3.0 remove in the next beta/rc
+	epatch "${FILESDIR}"/ntl-9.3.0.patch
+
 	############################################################################
 	# Fixes to Sage's build system
 	############################################################################
@@ -223,7 +226,7 @@ python_prepare() {
 	sed -i "s:png12:$(libpng-config --libs | cut -dl -f2):g" module_list.py
 
 	# fix lcalc path
-	sed -i "s:SAGE_INC + \"/libLfunction:SAGE_INC + \"/Lfunction:g" module_list.py
+	sed -i "s:libLfunction:Lfunction:g" sage/libs/lcalc/lcalc_sage.h
 
 	# We add -DNDEBUG to objects linking to libsingular And use factory headers from libsingular.
 	epatch "${FILESDIR}"/${PN}-6.8-singular_extra_arg.patch
@@ -327,6 +330,10 @@ python_prepare() {
 
 	# Put singular help file where it is expected
 	cp "${WORKDIR}"/Singular/3-1-6/info/singular.hlp doc/
+
+	# try to fix random sphinx crash during the building of the documentation
+	mkdir -p "${T}"/matplotlib-"${USER}"
+	#touch "${T}"/matplotlib-"${USER}"/fontList.cache
 }
 
 python_configure() {
