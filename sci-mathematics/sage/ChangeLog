@@ -3,6 +3,11 @@
 # $Header: $
 
   13 Jul 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  -files/sage-6.8-noclean.patch, files/sage-6.8-sources-r1.patch,
+  sage-9999.ebuild:
+  consolidate a couple of patches. Properly install the needed source files.
+
+  13 Jul 2015; François Bissey <francois.bissey@canterbury.ac.nz>
   +files/ntl-9.3.0.patch, files/sage-6.8-noclean.patch,
   files/sage-6.8-sources-r1.patch, sage-9999.ebuild:
   Bump to 6.8.beta8. It builds, it has to checked over for correctness so there
