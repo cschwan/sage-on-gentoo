@@ -2,6 +2,13 @@
 # Copyright 1999-2015 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/sci-mathematics/singular/ChangeLog,v 1.53 2012/06/23 10:50:20 xarthisius Exp $
 
+  14 Jul 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  files/singular-3.1.7-use_cxx_for_linking.patch:
+  Update patch for issue #352 - the change had side effects on OS X where
+  libsingular.dylib became an executable rather than a dynamic  library. The
+  update corrects this side effect as reported in
+  http://trac.sagemath.org/ticket/18892
+
 *singular-3.1.7_p1-r3 (09 Jul 2015)
 
   09 Jul 2015; François Bissey <francois.bissey@canterbury.ac.nz>

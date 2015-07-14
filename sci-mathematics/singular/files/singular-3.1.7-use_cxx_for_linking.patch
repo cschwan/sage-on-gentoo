@@ -1,6 +1,6 @@
 diff -Naur Singular-3-1-7.orig/Singular/Makefile.in Singular-3-1-7/Singular/Makefile.in
---- Singular-3-1-7.orig/Singular/Makefile.in	2014-11-20 02:06:05.000000000 +1300
-+++ Singular-3-1-7/Singular/Makefile.in	2015-04-30 11:55:25.285611669 +1200
+--- Singular-3-1-7.orig/Singular/Makefile.in	2015-07-15 11:20:45.151216425 +1200
++++ Singular-3-1-7/Singular/Makefile.in	2015-07-15 11:21:31.261310983 +1200
 @@ -67,7 +67,7 @@
  ##
  @SET_MAKE@
@@ -10,9 +10,39 @@ diff -Naur Singular-3-1-7.orig/Singular/Makefile.in Singular-3-1-7/Singular/Make
  CXX		= @CXX@
  LEX		= sh flexer.sh
  
+diff -Naur Singular-3-1-7.orig/Singular/configure.in Singular-3-1-7/Singular/configure.in
+--- Singular-3-1-7.orig/Singular/configure.in	2015-07-15 11:20:45.151216425 +1200
++++ Singular-3-1-7/Singular/configure.in	2015-07-15 11:22:22.271415522 +1200
+@@ -912,7 +912,7 @@
+ 	  	LD_DYN_FLAGS1="-dynamic"
+ 	  	LD_DYN_FLAGS2="-ldl"
+ 	  	SFLAGS="-fpic -DPIC"
+-	  	SLDFLAGS="-dynamic -twolevel_namespace -weak_reference_mismatches weak -undefined dynamic_lookup"
++	  	SLDFLAGS="-dynamiclib -twolevel_namespace -weak_reference_mismatches weak -undefined dynamic_lookup"
+                 if test "${LD+set}" != set; then
+ 		  LD=libtool
+                 fi
+@@ -925,7 +925,7 @@
+ 	  	LD_DYN_FLAGS1="-dynamic"
+ 	  	LD_DYN_FLAGS2="-ldl"
+ 	  	SFLAGS="-fpic -DPIC"
+-	  	SLDFLAGS="-dynamic -twolevel_namespace -weak_reference_mismatches weak -undefined dynamic_lookup"
++	  	SLDFLAGS="-dynamiclib -twolevel_namespace -weak_reference_mismatches weak -undefined dynamic_lookup"
+                 if test "${LD+set}" != set; then
+ 		  LD=libtool
+                 fi
+@@ -938,7 +938,7 @@
+                 LD_DYN_FLAGS1="-dynamic"
+                 LD_DYN_FLAGS2="-ldl"
+                 SFLAGS="-fpic -DPIC"
+-                SLDFLAGS="-dynamic -twolevel_namespace -weak_reference_mismatches weak -undefined dynamic_lookup"
++                SLDFLAGS="-dynamiclib -twolevel_namespace -weak_reference_mismatches weak -undefined dynamic_lookup"
+                  if test "${LD+set}" != set; then
+                   LD=libtool
+                  fi
 diff -Naur Singular-3-1-7.orig/dyn_modules/modgen/Makefile.in Singular-3-1-7/dyn_modules/modgen/Makefile.in
---- Singular-3-1-7.orig/dyn_modules/modgen/Makefile.in	2014-11-20 02:06:05.000000000 +1300
-+++ Singular-3-1-7/dyn_modules/modgen/Makefile.in	2015-04-30 11:55:25.285611669 +1200
+--- Singular-3-1-7.orig/dyn_modules/modgen/Makefile.in	2015-07-15 11:20:45.141216403 +1200
++++ Singular-3-1-7/dyn_modules/modgen/Makefile.in	2015-07-15 11:21:31.261310983 +1200
 @@ -20,7 +20,7 @@
  ##
  @SET_MAKE@
@@ -23,8 +53,8 @@ diff -Naur Singular-3-1-7.orig/dyn_modules/modgen/Makefile.in Singular-3-1-7/dyn
  LEX		= sh ../../Singular/flexer.sh
  PERL		= @PERL@
 diff -Naur Singular-3-1-7.orig/kernel/Makefile.in Singular-3-1-7/kernel/Makefile.in
---- Singular-3-1-7.orig/kernel/Makefile.in	2014-11-20 02:06:05.000000000 +1300
-+++ Singular-3-1-7/kernel/Makefile.in	2015-04-30 11:55:25.285611669 +1200
+--- Singular-3-1-7.orig/kernel/Makefile.in	2015-07-15 11:20:45.131216385 +1200
++++ Singular-3-1-7/kernel/Makefile.in	2015-07-15 11:21:31.261310983 +1200
 @@ -30,7 +30,7 @@
  ##
  @SET_MAKE@
