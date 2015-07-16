@@ -2,6 +2,11 @@
 # Copyright 1999-2015 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  16 Jul 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  -files/ntl-9.3.0.patch, files/sage-6.8-exec.patch, sage-9999.ebuild:
+  patch rebasing, bumping and expanding for 6.8.rc0 - also remove ntl-9.3.0
+  patch now that it is useless and bumped pynac dependency.
+
   13 Jul 2015; François Bissey <francois.bissey@canterbury.ac.nz>
   sage-9999.ebuild:
   Correct the dependency on pynac in 9999. See issue #360

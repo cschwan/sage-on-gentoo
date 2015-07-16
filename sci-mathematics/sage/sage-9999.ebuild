@@ -67,7 +67,7 @@ CDEPEND="dev-libs/gmp:0=
 	~sci-libs/m4ri-20140914
 	~sci-libs/m4rie-20140914
 	>=sci-libs/mpfi-1.5.1
-	~sci-libs/pynac-0.3.9.1[${PYTHON_USEDEP}]
+	~sci-libs/pynac-0.3.9.2[${PYTHON_USEDEP}]
 	>=sci-libs/symmetrica-2.0-r3
 	>=sci-libs/zn_poly-0.9
 	sci-mathematics/glpk:0=
@@ -214,9 +214,6 @@ python_prepare() {
 		`grep -rl "import pexpect" *`
 	sed -i "s:from pexpect:from sage_pexpect:g" \
 		`grep -rl "from pexpect" *`
-
-	# update from ntl 9.2.0 to 9.3.0 remove in the next beta/rc
-	epatch "${FILESDIR}"/ntl-9.3.0.patch
 
 	############################################################################
 	# Fixes to Sage's build system
