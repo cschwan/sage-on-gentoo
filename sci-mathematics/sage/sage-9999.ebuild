@@ -326,10 +326,6 @@ python_prepare() {
 
 	# Put singular help file where it is expected
 	cp "${WORKDIR}"/Singular/3-1-6/info/singular.hlp doc/
-
-	# try to fix random sphinx crash during the building of the documentation
-	mkdir -p "${T}"/matplotlib-"${USER}"
-	#touch "${T}"/matplotlib-"${USER}"/fontList.cache
 }
 
 python_configure() {
@@ -342,6 +338,8 @@ python_configure() {
 	export VARTEXFONTS="${T}"/fonts
 	export SAGE_VERSION=${PV}
 	export SAGE_NUM_THREADS=$(makeopts_jobs)
+	# try to fix random sphinx crash during the building of the documentation
+	export MPLCONFIGDIR="${T}"/matplotlib
 	for option in ${SAGE_USE}; do
 		use $option && export WANT_$option="True"
 	done

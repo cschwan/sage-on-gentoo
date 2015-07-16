@@ -3,6 +3,10 @@
 # $Header: $
 
   16 Jul 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-9999.ebuild:
+  Another try at fixing what is now issue #361
+
+  16 Jul 2015; François Bissey <francois.bissey@canterbury.ac.nz>
   -files/ntl-9.3.0.patch, files/sage-6.8-exec.patch, sage-9999.ebuild:
   patch rebasing, bumping and expanding for 6.8.rc0 - also remove ntl-9.3.0
   patch now that it is useless and bumped pynac dependency.
