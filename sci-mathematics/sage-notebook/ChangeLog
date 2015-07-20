@@ -2,6 +2,12 @@
 # Copyright 1999-2015 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*sage-notebook-0.11.4-r3 (20 Jul 2015)
+
+  20 Jul 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  +sage-notebook-0.11.4-r3.ebuild, -sage-notebook-0.11.4.ebuild:
+  Moving to newer pexpect.
+
   09 Jun 2015; François Bissey <francois.bissey@canterbury.ac.nz>
   -files/sage-notebook-0.10.2-setup.py.patch,
   -files/sage-notebook-0.10.4-base.patch,
