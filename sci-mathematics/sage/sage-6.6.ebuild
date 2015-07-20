@@ -116,7 +116,7 @@ RDEPEND="${CDEPEND}
 		|| ( app-text/dvipng[truetype] media-gfx/imagemagick[png] )
 	)"
 
-PDEPEND=">=sci-mathematics/sage-notebook-0.11.4-r1[${PYTHON_USEDEP}]
+PDEPEND="=sci-mathematics/sage-notebook-0.11.4-r2[${PYTHON_USEDEP}]
 	~sci-mathematics/sage-data-conway_polynomials-0.4
 	|| ( ~sci-mathematics/sage-doc-bin-${PV} ~sci-mathematics/sage-doc-${PV} )
 	testsuite? ( ~sci-mathematics/sage-doc-${PV}[html] )"

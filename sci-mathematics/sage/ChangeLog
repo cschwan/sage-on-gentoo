@@ -2,6 +2,10 @@
 # Copyright 1999-2015 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  20 Jul 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-6.6.ebuild, sage-6.7-r1.ebuild, sage-9999.ebuild:
+  Move to newer pexpect. Pin notebook version depending on pexpect used.
+
   16 Jul 2015; François Bissey <francois.bissey@canterbury.ac.nz>
   sage-9999.ebuild:
   Another try at fixing what is now issue #361

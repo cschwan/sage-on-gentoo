@@ -103,7 +103,7 @@ RDEPEND="${CDEPEND}
 	>=dev-python/matplotlib-1.4.0[${PYTHON_USEDEP}]
 	>=dev-python/mpmath-0.18[${PYTHON_USEDEP}]
 	>=dev-python/networkx-1.8[${PYTHON_USEDEP}]
-	~dev-python/sage-pexpect-2.0[${PYTHON_USEDEP}]
+	~dev-python/pexpect-3.3[${PYTHON_USEDEP}]
 	>=dev-python/pycrypto-2.1.0[${PYTHON_USEDEP}]
 	>=dev-python/rpy-2.3.8[${PYTHON_USEDEP}]
 	>=dev-python/sphinx-1.2.2[${PYTHON_USEDEP}]
@@ -135,7 +135,7 @@ RDEPEND="${CDEPEND}
 		|| ( app-text/dvipng[truetype] media-gfx/imagemagick[png] )
 	)"
 
-PDEPEND=">=sci-mathematics/sage-notebook-0.11.4-r2[${PYTHON_USEDEP}]"
+PDEPEND=">=sci-mathematics/sage-notebook-0.11.4-r3[${PYTHON_USEDEP}]"
 
 CHECKREQS_DISK_BUILD="5G"
 
@@ -208,12 +208,6 @@ python_prepare() {
 	rm sage/misc/package.py
 	rm sage/misc/dist.py
 	rm -rf sage/dev
-
-	# replace pexpect with sage pinned version
-	sed -i "s:import pexpect:import sage_pexpect as pexpect:g" \
-		`grep -rl "import pexpect" *`
-	sed -i "s:from pexpect:from sage_pexpect:g" \
-		`grep -rl "from pexpect" *`
 
 	############################################################################
 	# Fixes to Sage's build system
