@@ -8,7 +8,7 @@ inherit autotools-utils
 
 DESCRIPTION="This code project provides a library for implementing graph algorithms"
 HOMEPAGE="https://code.google.com/p/planarity/"
-SRC_URI="http://boxen.math.washington.edu/home/jdemeyer/spkg/planarity-2.2.0.tar.bz2"
+SRC_URI="mirror://sageupstream/${PN}/${P}.tar.bz2"
 IUSE="static-libs"
 
 LICENSE="BSD"
@@ -16,7 +16,7 @@ SLOT="0"
 KEYWORDS="~amd64 ~x86"
 
 DEPEND=""
-RDEPEND="sci-mathematics/nauty"
+RDEPEND=""
 
 PATCHES=(
 	"${FILESDIR}"/${PN}-2.2.0-extern.patch
