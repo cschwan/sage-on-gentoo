@@ -66,6 +66,8 @@ src_prepare() {
 		-e "s:\$d = \$0:\$d = '${EPREFIX}/usr/share/doc/${PF}':" \
 		-e 's:"acroread":"xdg-open":' \
 		doc/gphelp.in || die "Failed to fix doc dir"
+	# Fix for regexp in perl 5.22+
+	epatch "${FILESDIR}"/${PN}-2.8-perl_regex.patch
 }
 
 src_configure() {

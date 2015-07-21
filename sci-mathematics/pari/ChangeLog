@@ -2,6 +2,12 @@
 # Copyright 1999-2015 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/sci-mathematics/pari/ChangeLog,v 1.87 2012/03/06 17:06:06 bicatali Exp $
 
+  21 Jul 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  +files/pari-2.8-perl_regex.patch, pari-2.8_pre20150307-r1.ebuild,
+  pari-2.8_pre20150510.ebuild, pari-2.8_pre20150611.ebuild:
+  Add upstream patch to pari 2.8* to deal with perl 5.22+ for building the
+  documentation.
+
   26 Jun 2015; François Bissey <francois.bissey@canterbury.ac.nz>
   -files/pari-2.7.0-slow-discriminant.patch,
   -files/pari-2.7.1-cb_pari_err_handle.patch, -files/pari-2.7.1-nffactor.patch,
