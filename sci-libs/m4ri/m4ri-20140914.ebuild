@@ -8,8 +8,7 @@ inherit autotools-utils flag-o-matic toolchain-funcs
 
 DESCRIPTION="Method of four russian for inversion (M4RI)"
 HOMEPAGE="http://m4ri.sagemath.org/"
-#SRC_URI="mirror://sageupstream/lib${PN}/${P}.tar.bz2"
-SRC_URI="http://m4ri.sagemath.org/downloads/${PN}/${P}.tar.gz"
+SRC_URI="mirror://sageupstream/${PN}/${P}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"

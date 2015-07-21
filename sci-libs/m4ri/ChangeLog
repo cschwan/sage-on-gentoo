@@ -2,6 +2,10 @@
 # Copyright 1999-2015 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  21 Jul 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  m4ri-20140914.ebuild:
+  Change of SRC_URI the olde m4ri website is gone
+
   09 Jun 2015; François Bissey <francois.bissey@canterbury.ac.nz>
   -m4ri-20120613.ebuild, -m4ri-20130416.ebuild, m4ri-20140914.ebuild:
   remove unused, make repoman happy
