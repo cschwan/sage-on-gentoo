@@ -13,6 +13,7 @@ sci-mathematics/flint       ntl
 sci-libs/linbox             sage
 sci-libs/libsingular        flint
 sci-mathematics/eclib       flint
+sci-mathematics/glpk        gmp
 sci-mathematics/gmp-ecm     -openmp
 sci-mathematics/maxima      ecls
 sci-mathematics/lcalc       pari
