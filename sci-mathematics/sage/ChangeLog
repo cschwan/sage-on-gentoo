@@ -2,6 +2,13 @@
 # Copyright 1999-2015 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*sage-6.8 (27 Jul 2015)
+
+  27 Jul 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  +sage-6.8.ebuild, metadata.xml:
+  Bump to sage 6.8 - add to drop ~x86 because sci-mathematics/rw is not
+  keyworded (~)x86 and it makes repoman complains.
+
   24 Jul 2015; François Bissey <francois.bissey@canterbury.ac.nz>
   sage-9999.ebuild:
   using glpk build without gmp will lead to (minor) doctest failures

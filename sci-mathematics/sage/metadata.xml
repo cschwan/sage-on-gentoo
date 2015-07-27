@@ -22,5 +22,8 @@
 		<flag name='html'>
 			build and install html documentation
 		</flag>
+		<flag name='bin-html'>
+			install pre-built html documentation
+		</flag>
 	</use>
 </pkgmetadata>
