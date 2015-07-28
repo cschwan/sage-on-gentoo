@@ -2,6 +2,10 @@
 # Copyright 1999-2015 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  28 Jul 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-6.8.ebuild, sage-9999.ebuild:
+  dependency tweak in sage 6.8+
+
 *sage-6.8 (27 Jul 2015)
 
   27 Jul 2015; François Bissey <francois.bissey@canterbury.ac.nz>
