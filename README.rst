@@ -50,6 +50,7 @@ QUICK INSTALLATION GUIDE
 
      sage-on-gentoo/package.unmask/sage
      sage-on-gentoo/package.keywords/sage
+     sage-on-gentoo/package.keywords/sage.prefix (for prefix users only)
 
    To use these files permanently, place symbolic links to those files into your
    ``/etc/portage/package.unmask`` and ``/etc/portage/package.keywords/``
@@ -62,6 +63,9 @@ QUICK INSTALLATION GUIDE
 
    Otherwise, simply copy them into the respective directories for a one-time
    fix.
+
+   The sage.prefix files contains keywords for ebuilds lacking any prefix 
+   keywords.
 
 4. *ADD USE-FLAGS FOR EBUILDS*:
    Since Sage's ebuild requires its dependencies to be built with several USE-
@@ -81,6 +85,9 @@ QUICK INSTALLATION GUIDE
    Note: As of 2014-11-30 we have put -qt4 for matplotlib 1.3.x. This is to 
    avoid bug#530492. Building Matplotlib 1.3.x against qt4 is broken and unlikely
    to get fixed.
+
+   Note: For sage 6.8 we also provide a file 99sage-doc-bin that makes it easy 
+   to use pre-built html documentation. This is recomended for ~arch users.
 
 5. *INSTALL SAGE*:
    Type::
