@@ -280,6 +280,11 @@ python_prepare() {
 	#See https://github.com/cschwan/sage-on-gentoo/issues/342
 	epatch "${FILESDIR}"/${PN}-6.6-ipython_kernel_start.patch
 
+	# Make the lazy_import pickle name versioned with the sage version number
+	# rather than the path to the source which is a constant acroos versions 
+	# in sage-on-gentoo. This fixes issue #362.
+	epatch "${FILESDIR}"/${PN}-6.8-lazy_import_cache.patch
+
 	# Make sure bliss header are found
 	sed -i "s:graph.hh:bliss/graph.hh:" sage/graphs/bliss.pyx || die "bliss.pyx not patched"
 

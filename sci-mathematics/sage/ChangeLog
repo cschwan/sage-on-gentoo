@@ -3,6 +3,11 @@
 # $Header: $
 
   28 Jul 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  +files/sage-6.8-lazy_import_cache.patch, sage-6.8.ebuild, sage-9999.ebuild:
+  Fix for issue #362, use sage's version number for lazy_import_cache pickle
+  file rather than path to the source.
+
+  28 Jul 2015; François Bissey <francois.bissey@canterbury.ac.nz>
   sage-6.8.ebuild, sage-9999.ebuild:
   dependency tweak in sage 6.8+
 
