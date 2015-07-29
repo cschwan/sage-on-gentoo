@@ -2,6 +2,10 @@
 # Copyright 1999-2015 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  29 Jul 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  +files/sage-6.9-exec.patch, sage-9999.ebuild:
+  bump patch for new sage 6.9.beta0
+
   28 Jul 2015; François Bissey <francois.bissey@canterbury.ac.nz>
   +files/sage-6.8-lazy_import_cache.patch, sage-6.8.ebuild, sage-9999.ebuild:
   Fix for issue #362, use sage's version number for lazy_import_cache pickle
