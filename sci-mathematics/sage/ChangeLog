@@ -2,6 +2,11 @@
 # Copyright 1999-2015 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  31 Jul 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  +files/cython-0.23.patch, sage-9999.ebuild:
+  Testing migration to cython 0.23.beta in the live ebuild for issue #365. If
+  successful, it will be extended to sage 6.8.
+
   29 Jul 2015; François Bissey <francois.bissey@canterbury.ac.nz>
   +files/sage-6.9-exec.patch, sage-9999.ebuild:
   bump patch for new sage 6.9.beta0
