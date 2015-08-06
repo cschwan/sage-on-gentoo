@@ -47,7 +47,7 @@ CDEPEND="dev-libs/gmp:0=
 	>=dev-libs/mpc-1.0
 	>=dev-libs/ntl-9.3.0
 	>=dev-libs/ppl-1.1
-	>=dev-lisp/ecls-13.5.1
+	>=dev-lisp/ecls-15.3.7
 	dev-python/six[${PYTHON_USEDEP}]
 	>=dev-python/numpy-1.8.0[${PYTHON_USEDEP}]
 	>=dev-python/cython-0.23_beta1[${PYTHON_USEDEP}]
@@ -98,7 +98,7 @@ DEPEND="${CDEPEND}"
 RDEPEND="${CDEPEND}
 	>=dev-lang/R-3.2.0
 	>=dev-python/cvxopt-1.1.7[glpk,${PYTHON_USEDEP}]
-	>=dev-python/ipython-3.1.0[notebook,${PYTHON_USEDEP}]
+	>=dev-python/ipython-3.2.1[notebook,${PYTHON_USEDEP}]
 	>=dev-python/jinja-2.5.5[${PYTHON_USEDEP}]
 	>=dev-python/matplotlib-1.4.0[${PYTHON_USEDEP}]
 	>=dev-python/mpmath-0.18[${PYTHON_USEDEP}]
