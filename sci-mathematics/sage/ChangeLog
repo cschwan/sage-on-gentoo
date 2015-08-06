@@ -4,6 +4,10 @@
 
   06 Aug 2015; François Bissey <francois.bissey@canterbury.ac.nz>
   sage-9999.ebuild:
+  depend on the new graphs ebuild
+
+  06 Aug 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-9999.ebuild:
   Bump dependencies for sage 9999
 
 *sage-6.8-r1 (31 Jul 2015)

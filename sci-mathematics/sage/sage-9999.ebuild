@@ -122,7 +122,7 @@ RDEPEND="${CDEPEND}
 	>=sci-mathematics/optimal-20040603
 	>=sci-mathematics/palp-2.1
 	~sci-mathematics/sage-data-elliptic_curves-0.8
-	~sci-mathematics/sage-data-graphs-20130920
+	~sci-mathematics/sage-data-graphs-20150724
 	~sci-mathematics/sage-data-combinatorial_designs-20140630
 	~sci-mathematics/sage-data-polytopes_db-20120220
 	~sci-mathematics/sage-data-conway_polynomials-0.4
