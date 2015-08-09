@@ -139,7 +139,7 @@ RDEPEND="${CDEPEND}
 		|| ( app-text/dvipng[truetype] media-gfx/imagemagick[png] )
 	)"
 
-PDEPEND=">=sci-mathematics/sage-notebook-0.11.4-r3[${PYTHON_USEDEP}]"
+PDEPEND=">=sci-mathematics/sage-notebook-0.11.4-r4[${PYTHON_USEDEP}]"
 
 CHECKREQS_DISK_BUILD="5G"
 
