@@ -66,6 +66,9 @@ src_prepare() {
 	# fix SAGE_ROOT
 	epatch "${FILESDIR}"/${PN}-0.9.1-notebook.patch
 
+	# fix for pexpect 3.3: https://github.com/billpage/sagenb/commit/811a2e762bb041dd34d32d96b003ab46eaab22e9
+	epatch "${FILESDIR}"/pexpect-3.3.patch
+
 	# in sage 6.6+ we get rid of the output subfolder for the documentation
 	sed -i "s:SAGE_DOC, 'output':SAGE_DOC:g" \
 		sagenb/flask_version/doc.py \

@@ -1,0 +1,28 @@
+From 811a2e762bb041dd34d32d96b003ab46eaab22e9 Mon Sep 17 00:00:00 2001
+From: Bill Page <bill.page@newsynthesis.org>
+Date: Sun, 10 May 2015 03:33:05 -0400
+Subject: [PATCH] With pexpect 3.3 there is no need to accumulate
+
+Unlike version 2.0, with pexpect 3.3 there is no need to accumulate
+the output in the 'self._so_far' buffer because '_expect.before' is
+not modified following TIMEOUT.
+---
+ sagenb/interfaces/expect.py | 5 ++++-
+ 1 file changed, 4 insertions(+), 1 deletion(-)
+
+diff --git a/sagenb/interfaces/expect.py b/sagenb/interfaces/expect.py
+index 1f3ec9d..4d58621 100644
+--- a/sagenb/interfaces/expect.py
++++ b/sagenb/interfaces/expect.py
+@@ -277,7 +277,10 @@ def output_status(self):
+         if self._expect is None:
+             self._is_computing = False
+         else:
+-            self._so_far += self._expect.before
++            # Unlike version 2.0 pexpect 3.3 TIMEOUT does not modify .before!
++            # So there is no need to accumulate the output so far. 
++            #self._so_far += self._expect.before
++            self._so_far = self._expect.before
+             
+         import re
+         v = re.findall('START%s.*%s'%(self._number,self._prompt), self._so_far, re.DOTALL)

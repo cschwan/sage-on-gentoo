@@ -2,6 +2,13 @@
 # Copyright 1999-2015 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*sage-notebook-0.11.4-r4 (09 Aug 2015)
+
+  09 Aug 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  +files/pexpect-3.3.patch, +sage-notebook-0.11.4-r4.ebuild,
+  -sage-notebook-0.11.4-r3.ebuild:
+  Bump sage-notebook for forgotten pexpect patch
+
 *sage-notebook-0.11.4-r3 (20 Jul 2015)
 
   20 Jul 2015; François Bissey <francois.bissey@canterbury.ac.nz>
