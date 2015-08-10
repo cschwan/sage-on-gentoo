@@ -2,6 +2,10 @@
 # Copyright 1999-2015 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  10 Aug 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-6.8-r1.ebuild, sage-9999.ebuild:
+  pushing cython dependency to newly released 0.23 from the main tree.
+
   09 Aug 2015; François Bissey <francois.bissey@canterbury.ac.nz>
   sage-6.8-r1.ebuild, sage-9999.ebuild:
   bump sage-notebook dependency for issue #366

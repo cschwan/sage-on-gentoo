@@ -50,7 +50,7 @@ CDEPEND="dev-libs/gmp:0=
 	>=dev-lisp/ecls-15.3.7
 	dev-python/six[${PYTHON_USEDEP}]
 	>=dev-python/numpy-1.8.0[${PYTHON_USEDEP}]
-	>=dev-python/cython-0.23_beta1[${PYTHON_USEDEP}]
+	>=dev-python/cython-0.23[${PYTHON_USEDEP}]
 	dev-python/pkgconfig
 	>=dev-python/docutils-0.12[${PYTHON_USEDEP}]
 	~dev-python/sphinx-1.2.2[${PYTHON_USEDEP}]
@@ -222,7 +222,7 @@ python_prepare() {
 	# We add -DNDEBUG to objects linking to libsingular And use factory headers from libsingular.
 	epatch "${FILESDIR}"/${PN}-6.8-singular_extra_arg.patch
 
-	# Upgrade to cython 0.23_beta
+	# Upgrade to cython 0.23_beta to disapear at the next beta.
 	epatch "${FILESDIR}"/cython-0.23.patch
 
 	# Do not clean up the previous install with setup.py
