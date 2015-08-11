@@ -1,0 +1,24 @@
+diff -Naur flint-2.5.0.orig/Makefile.in flint-2.5.0/Makefile.in
+--- flint-2.5.0.orig/Makefile.in	2015-08-11 14:10:51.445030109 +1200
++++ flint-2.5.0/Makefile.in	2015-08-11 14:12:17.095188415 +1200
+@@ -116,9 +116,8 @@
+ 	fi
+ 	$(AT)if [ "$(FLINT_SOLIB)" -eq "1" ]; then \
+ 		ldconfig -n "$(CURDIR)"; \
+-	else \
+-		ln -sf "$(CURDIR)/$(FLINT_LIB)" "$(CURDIR)/$(FLINT_LIBNAME)"; \
+ 	fi
++	ln -sf "$(FLINT_LIB)" "$(FLINT_LIBNAME)"; \
+ 
+ libflint.a: $(OBJS) $(LIB_SOURCES) $(EXT_SOURCES) $(HEADERS) $(EXT_HEADERS) | build build/interfaces
+ 	$(AT)$(foreach ext, $(EXTENSIONS), $(foreach dir, $(filter-out %templates, $(patsubst $(ext)/%.h, %, $(wildcard $(ext)/*.h))), mkdir -p build/$(dir); BUILD_DIR=$(CURDIR)/build/$(dir); export BUILD_DIR; MOD_DIR=$(dir); export MOD_DIR; $(MAKE) -f $(CURDIR)/Makefile.subdirs -C $(ext)/$(dir) static || exit $$?;))
+@@ -202,8 +201,7 @@
+ 	mkdir -p "$(DESTDIR)$(PREFIX)/include/flint"
+ 	$(AT)if [ "$(FLINT_SHARED)" -eq "1" ]; then \
+ 		cp $(FLINT_LIB) "$(DESTDIR)$(PREFIX)/$(LIBDIR)"; \
+-		cp $(wildcard $(FLINT_LIBNAME)*) "$(DESTDIR)$(PREFIX)/$(LIBDIR)"; \
+-		ln -sf "$(DESTDIR)$(PREFIX)/$(LIBDIR)/$(FLINT_LIB)" "$(DESTDIR)$(PREFIX)/$(LIBDIR)/$(FLINT_LIBNAME)"; \
++		cp -a $(wildcard $(FLINT_LIBNAME)*) "$(DESTDIR)$(PREFIX)/$(LIBDIR)"; \
+ 	fi
+ 	$(AT)if [ "$(FLINT_STATIC)" -eq "1" ]; then \
+ 		cp libflint.a "$(DESTDIR)$(PREFIX)/$(LIBDIR)"; \

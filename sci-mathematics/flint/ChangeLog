@@ -1,0 +1,7 @@
+*flint-2.5 (11 Aug 2015)
+
+  11 Aug 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  +files/flint-2.5-issue175.patch, +files/flint-2.5-test.patch,
+  +flint-2.5.ebuild, +metadata.xml:
+  importing flint 2.5 before it is in the tree. Patches either accepted or
+  discussed upstream.
