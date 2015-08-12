@@ -27,14 +27,6 @@ DEPEND="${RDEPEND}
 		dev-texlive/texlive-latexextra
 	)"
 
-S="${WORKDIR}"/${P}.0
-
-src_prepare() {
-	epatch \
-		"${FILESDIR}"/${PN}-2.5-test.patch \
-		"${FILESDIR}"/${PN}-2.5-issue175.patch
-}
-
 src_configure() {
 	./configure \
 		--prefix="${EPREFIX}/usr" \
