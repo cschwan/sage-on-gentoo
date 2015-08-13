@@ -1,3 +1,9 @@
+*flint-2.5.2 (13 Aug 2015)
+
+  13 Aug 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  +flint-2.5.2.ebuild, -flint-2.5.1.ebuild:
+  sci-mathematics/flint:
+
 *flint-2.5.1 (12 Aug 2015)
 
   12 Aug 2015; François Bissey <francois.bissey@canterbury.ac.nz>
