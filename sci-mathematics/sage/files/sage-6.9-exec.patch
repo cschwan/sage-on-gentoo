@@ -1,6 +1,6 @@
 diff -Naur src.orig/bin/sage src/bin/sage
---- src.orig/bin/sage	2015-07-30 11:18:31.055321668 +1200
-+++ src/bin/sage	2015-07-30 11:23:46.815885195 +1200
+--- src.orig/bin/sage	2015-08-14 10:14:07.472740537 +1200
++++ src/bin/sage	2015-08-14 10:16:53.033046266 +1200
 @@ -1,7 +1,7 @@
  #!/usr/bin/env bash
  
@@ -377,7 +377,7 @@ diff -Naur src.orig/bin/sage src/bin/sage
  if [ "$1" = '-testall' -o "$1" = "--testall" ]; then
      shift
      SAGE_BANNER="no"
-@@ -749,140 +555,6 @@
+@@ -749,139 +555,6 @@
      exec sage-eval "$@"
  fi
  
@@ -411,9 +411,8 @@ diff -Naur src.orig/bin/sage src/bin/sage
 -        PKG_NAME=`echo "$PKG" | sed -e "s/\.spkg$//"`
 -        PKG_NAME=`basename "$PKG_NAME"`
 -
--        "$SAGE_ROOT"/build/make/pipestatus \
--            "sage-spkg $OPTINFO $OPTF $OPTS $OPTC '$PKG' 2>&1" \
--            "(trap '' SIGINT; tee -a '$SAGE_ROOT/logs/install.log' '$SAGE_LOGS/$PKG_NAME.log')"
+-        sage-logger \
+-            "sage-spkg $OPTINFO $OPTF $OPTS $OPTC '$PKG'" "$SAGE_LOGS/$PKG_NAME.log"
 -        # Do not try to install further packages if one failed
 -        if [ $? -ne 0 ]; then
 -            exit 1
@@ -518,7 +517,7 @@ diff -Naur src.orig/bin/sage src/bin/sage
  if [ "$1" = '-gdb' -o "$1" = "--gdb" ]; then
      shift
      sage_setup
-@@ -946,16 +618,7 @@
+@@ -945,16 +618,7 @@
      interactive_sage "$@"
  fi
  

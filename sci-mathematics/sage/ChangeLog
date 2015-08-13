@@ -2,6 +2,11 @@
 # Copyright 1999-2015 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  13 Aug 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  files/sage-6.9-exec.patch, sage-6.6.ebuild, sage-6.7-r1.ebuild,
+  sage-6.8-r1.ebuild, sage-6.8.ebuild, sage-9999.ebuild:
+  sci-mathematics/sage: bump patch for sage-9999, adapt ebuilds to new scheme.
+
   10 Aug 2015; François Bissey <francois.bissey@canterbury.ac.nz>
   sage-6.8-r1.ebuild, sage-9999.ebuild:
   pushing cython dependency to newly released 0.23 from the main tree.
