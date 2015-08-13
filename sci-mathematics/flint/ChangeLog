@@ -1,5 +1,9 @@
   13 Aug 2015; François Bissey <francois.bissey@canterbury.ac.nz>
   flint-2.5.2.ebuild:
+  sci-mathematics/flint: add subslot
+
+  13 Aug 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  flint-2.5.2.ebuild:
   sci-mathematics/flint: bump to 2.5.2
 
 *flint-2.5.2 (13 Aug 2015)
