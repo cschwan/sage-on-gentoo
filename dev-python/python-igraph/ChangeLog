@@ -1,0 +1,5 @@
+*python-igraph-0.7.0 (14 Aug 2015)
+
+  14 Aug 2015; François Bissey <francois.bissey@canterbury.ac.nz> +metadata.xml,
+  +python-igraph-0.7.0.ebuild:
+  dev-python/python-igraph: Initial commit, optional runtime sage dependency
