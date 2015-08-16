@@ -2,6 +2,11 @@
 # Copyright 1999-2015 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  16 Aug 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-9999.ebuild:
+  sci-mathematics/sage: Introduce subslot for flint and ntl (one day we'll get
+  some)
+
   13 Aug 2015; François Bissey <francois.bissey@canterbury.ac.nz>
   files/sage-6.9-exec.patch, sage-6.6.ebuild, sage-6.7-r1.ebuild,
   sage-6.8-r1.ebuild, sage-6.8.ebuild, sage-9999.ebuild:

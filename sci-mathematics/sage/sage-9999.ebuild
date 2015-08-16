@@ -45,7 +45,7 @@ RESTRICT="mirror test"
 CDEPEND="dev-libs/gmp:0=
 	>=dev-libs/mpfr-3.1.0
 	>=dev-libs/mpc-1.0
-	>=dev-libs/ntl-9.3.0
+	>=dev-libs/ntl-9.3.0:=
 	>=dev-libs/ppl-1.1
 	>=dev-lisp/ecls-15.3.7
 	dev-python/six[${PYTHON_USEDEP}]
@@ -56,7 +56,7 @@ CDEPEND="dev-libs/gmp:0=
 	~dev-python/sphinx-1.2.2[${PYTHON_USEDEP}]
 	>=sci-mathematics/eclib-20150510[flint]
 	>=sci-mathematics/gmp-ecm-6.4.4[-openmp]
-	>=sci-mathematics/flint-2.4.4[ntl]
+	>=sci-mathematics/flint-2.4.4:=[ntl]
 	~sci-libs/fplll-4.0.4
 	~sci-libs/givaro-3.7.1
 	>=sci-libs/gsl-1.16
