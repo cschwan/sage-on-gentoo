@@ -2,6 +2,13 @@
 # Copyright 1999-2015 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*eclib-20150510-r1 (16 Aug 2015)
+
+  16 Aug 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  +eclib-20150510-r1.ebuild, -eclib-20150510.ebuild,
+  eclib-0_p20140921-r1.ebuild:
+  sci-mathematics/eclib: make it depen on flint subslot
+
   09 Jun 2015; François Bissey <francois.bissey@canterbury.ac.nz>
   -eclib-0_p20120830.ebuild, -eclib-0_p20140128.ebuild, -eclib-20150323.ebuild,
   -files/eclib-20140128-configure.patch, -files/eclib-20140128-gp.patch,

@@ -1,6 +1,6 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: $
+# $Id$
 
 EAPI=5
 
@@ -18,8 +18,8 @@ IUSE="static-libs flint boost"
 RESTRICT="mirror"
 
 RDEPEND=">=sci-mathematics/pari-2.5.0:=
-	>=dev-libs/ntl-5.4.2
-	flint? ( >=sci-mathematics/flint-2.3 )
+	>=dev-libs/ntl-5.4.2:=
+	flint? ( sci-mathematics/flint:= )
 	boost? ( dev-libs/boost[threads] )"
 DEPEND="${RDEPEND}"
 
