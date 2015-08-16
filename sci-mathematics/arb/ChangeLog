@@ -1,4 +1,8 @@
   16 Aug 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  arb-2.5.0.ebuild, arb-2.6.0.ebuild:
+  sci-mathematics/arb: make 2.6.0 depend on flint subslot, make repoman happy
+
+  16 Aug 2015; François Bissey <francois.bissey@canterbury.ac.nz>
   arb-2.6.0.ebuild:
   sci-mathematics/arb:
 
