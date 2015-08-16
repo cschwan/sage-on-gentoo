@@ -1,6 +1,6 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: $
+# $Id$
 
 EAPI=5
 
@@ -31,7 +31,7 @@ IUSE="boost doc emacs examples python readline test flint"
 RDEPEND="
 	dev-libs/gmp:0=
 	dev-libs/ntl:0=
-	flint? ( >=sci-mathematics/flint-2.3 )
+	flint? ( >=sci-mathematics/flint-2.3:= )
 	emacs? ( >=virtual/emacs-22 )
 	readline? ( sys-libs/readline:0= )"
 DEPEND="${RDEPEND}
