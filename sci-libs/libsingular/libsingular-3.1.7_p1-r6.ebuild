@@ -1,6 +1,6 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: $
+# $Id$
 
 EAPI=5
 
@@ -29,7 +29,7 @@ IUSE="boost flint debug"
 RDEPEND="
 	dev-libs/gmp:0=
 	dev-libs/ntl:0=
-	flint? ( >=sci-mathematics/flint-2.3 )"
+	flint? ( >=sci-mathematics/flint-2.3:= )"
 
 DEPEND="${RDEPEND}
 	dev-lang/perl
@@ -52,6 +52,12 @@ src_prepare () {
 		"${FILESDIR}"/${PN_PATCH}-3.1.7-implicit-template.patch \
 		"${FILESDIR}"/${PN_PATCH}-3.1.7-use_cxx_for_linking.patch \
 		"${FILESDIR}"/${PN_PATCH}-3.1.7-curring.patch
+
+	if has_version ">=dev-libs/ntl-9.0.2"; then
+		# ccompatibility with ntl 8+
+		epatch "${FILESDIR}"/${PN_PATCH}-3.1.7-ntl8.patch
+	fi
+
 	if  [[ ${CHOST} == *-darwin* ]] ; then
 		# really a placeholder until I figure out the patch for that one.
 		epatch "${FILESDIR}"/${PN_PATCH}-3.1.3.3-dylib.patch
