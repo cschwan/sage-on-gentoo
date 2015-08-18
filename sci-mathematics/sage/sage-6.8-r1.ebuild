@@ -539,8 +539,10 @@ pkg_postinst() {
 	fi
 
 	if ! use html ; then
-		ewarn "You haven't requested the html documentation."
-		ewarn "The html version of the sage manual won't be available in the sage notebook."
+		if ! use bin-html ; then
+			ewarn "You haven't requested the html documentation."
+			ewarn "The html version of the sage manual won't be available in the sage notebook."
+		fi
 	fi
 
 	einfo ""
