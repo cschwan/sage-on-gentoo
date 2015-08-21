@@ -23,7 +23,7 @@ fi
 DESCRIPTION="Math software for algebra, geometry, number theory, cryptography and numerical computation"
 HOMEPAGE="http://www.sagemath.org"
 SRC_URI="${SRC_URI}
-	mirror://sagemath/patches/${PN}-6.8-neutering.patch.xz
+	mirror://sagemath/patches/${PN}-6.9-neutering.patch.xz
 	mirror://sagemath/patches/sage-icon.tar.bz2
 	http://www.mathematik.uni-kl.de/ftp/pub/Math/Singular/SOURCES/3-1-6/Singular-3-1-6-share.tar.gz"
 
@@ -204,7 +204,7 @@ python_prepare() {
 	epatch "${FILESDIR}"/${PN}-6.8-blas-r1.patch
 
 	# Remove sage's package management system, git capabilities and associated tests
-	epatch "${WORKDIR}"/${PN}-6.8-neutering.patch
+	epatch "${WORKDIR}"/${PN}-6.9-neutering.patch
 	rm sage/misc/package.py
 	rm sage/misc/dist.py
 	rm -rf sage/dev

@@ -3,6 +3,10 @@
 # $Header: $
 
   21 Aug 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-9999.ebuild:
+  sci-mathematics/sage: bumping the neutering patch for 6.9.beta3
+
+  21 Aug 2015; François Bissey <francois.bissey@canterbury.ac.nz>
   files/sage-6.9-exec.patch:
   sci-mathematics/sage: bump patch for 6.9.beta3
 
