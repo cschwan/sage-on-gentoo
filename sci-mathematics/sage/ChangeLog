@@ -2,6 +2,10 @@
 # Copyright 1999-2015 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  21 Aug 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  files/sage-6.9-exec.patch:
+  sci-mathematics/sage: bump patch for 6.9.beta3
+
   18 Aug 2015; François Bissey <francois.bissey@canterbury.ac.nz>
   sage-6.8-r1.ebuild, sage-6.8.ebuild:
   sci-mathematics/sage: from 6.8 onwards post-install should warn about the lack

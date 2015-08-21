@@ -1,6 +1,6 @@
 diff -Naur src.orig/bin/sage src/bin/sage
---- src.orig/bin/sage	2015-08-14 10:14:07.472740537 +1200
-+++ src/bin/sage	2015-08-14 10:16:53.033046266 +1200
+--- src.orig/bin/sage	2015-08-21 15:36:47.194969260 +1200
++++ src/bin/sage	2015-08-21 15:42:39.645776245 +1200
 @@ -1,7 +1,7 @@
  #!/usr/bin/env bash
  
@@ -58,11 +58,13 @@ diff -Naur src.orig/bin/sage src/bin/sage
      echo "  -inotebook [...]    -- start the *insecure* Sage notebook (deprecated)"
      echo "  -n, -notebook [...] -- start the default Sage notebook (options are the"
      echo "                         same as for the notebook command in Sage).  See the"
-@@ -116,45 +105,7 @@
+@@ -116,47 +105,7 @@
      echo
      ####  1.......................26..................................................78
      ####  |.....................--.|...................................................|
 -    echo "Installing packages and upgrading:"
+-    echo "  -package [args]     -- call the new package manager with given arguments."
+-    echo "                         Run without arguments for package-specific help."
 -    echo "  -experimental       -- list all experimental packages that can be installed"
 -    echo "  -f [opts] [packages]-- shortcut for -i -f: force build of the given Sage"
 -    echo "                         packages"
@@ -105,7 +107,7 @@ diff -Naur src.orig/bin/sage src/bin/sage
      echo "  -startuptime [module] -- display how long each component of Sage takes to"
      echo "                         start up; optionally specify a module to get more"
      echo "                         details about that particular module"
-@@ -163,9 +114,7 @@
+@@ -165,9 +114,7 @@
      echo "                         selected options:"
      echo "                           --long - include lines with the phrase 'long time'"
      echo "                           --verbose - print debugging output during the test"
@@ -115,7 +117,7 @@ diff -Naur src.orig/bin/sage src/bin/sage
      echo "                           --initial - only show the first failure per block"
      echo "                           --debug - drop into PDB after an unexpected error"
      echo "                           --failed - only test files that failed last test"
-@@ -181,10 +130,6 @@
+@@ -183,10 +130,6 @@
      ####  1.......................26..................................................78
      ####  |.....................--.|...................................................|
      echo "Documentation:"
@@ -126,7 +128,7 @@ diff -Naur src.orig/bin/sage src/bin/sage
      echo "  -search_src <string> -- search through all the Sage library code for string"
      echo "  -search_doc <string> -- search through the Sage documentation for string"
      echo "  -grep <string>      -- same as -search_src"
-@@ -204,17 +149,6 @@
+@@ -206,17 +149,6 @@
      echo
      ####  1.......................26..................................................78
      ####  |.....................--.|...................................................|
@@ -144,7 +146,7 @@ diff -Naur src.orig/bin/sage src/bin/sage
      echo "Valgrind memory debugging:"
      echo "  -cachegrind         -- run Sage using Valgrind's cachegrind tool.  The log"
      echo "                         files are named sage-cachegrind.PID can be found in"
-@@ -250,30 +184,13 @@
+@@ -252,30 +184,13 @@
      exit $status
  fi
  
@@ -178,7 +180,7 @@ diff -Naur src.orig/bin/sage src/bin/sage
      exit 1
  fi
  
-@@ -289,49 +206,14 @@
+@@ -291,49 +206,14 @@
  
  # Prepare for running Sage, either interactively or non-interactively.
  sage_setup() {
@@ -229,7 +231,7 @@ diff -Naur src.orig/bin/sage src/bin/sage
  # Start an interactive Sage session, this function never returns.
  interactive_sage() {
      sage_setup
-@@ -431,11 +313,6 @@
+@@ -433,11 +313,6 @@
      exec kash "$@"
  fi
  
@@ -241,7 +243,7 @@ diff -Naur src.orig/bin/sage src/bin/sage
  if [ "$1" = '-maxima' -o "$1" = '--maxima' ]; then
      shift
      exec maxima "$@"
-@@ -456,16 +333,6 @@
+@@ -458,16 +333,6 @@
      exec scons "$@"
  fi
  
@@ -258,7 +260,7 @@ diff -Naur src.orig/bin/sage src/bin/sage
  if [ "$1" = '-python' -o "$1" = '--python' ]; then
      shift
      exec python "$@"
-@@ -486,11 +353,6 @@
+@@ -488,11 +353,6 @@
      exec git "$@"
  fi
  
@@ -270,7 +272,7 @@ diff -Naur src.orig/bin/sage src/bin/sage
  if [ "$1" = '-sh' -o "$1" = '--sh' ]; then
      # AUTHORS:
      # - Carl Witty and William Stein: initial version
-@@ -610,20 +472,6 @@
+@@ -612,20 +472,6 @@
  fi
  
  #####################################################################
@@ -291,7 +293,7 @@ diff -Naur src.orig/bin/sage src/bin/sage
  # File conversion
  #####################################################################
  
-@@ -641,11 +489,6 @@
+@@ -643,11 +489,6 @@
  # Run Sage's versions of the standard Algebra/Geometry etc. software
  #####################################################################
  
@@ -303,7 +305,7 @@ diff -Naur src.orig/bin/sage src/bin/sage
  if [[ "$1" =~ ^--notebook=.* || "$1" =~ ^-n=.* || "$1" =~ ^-notebook=.* ]] ; then
      sage-cleaner &>/dev/null &
      exec sage-notebook "$@"
-@@ -656,13 +499,6 @@
+@@ -658,13 +499,6 @@
      exec sage-notebook "$@"
  fi
  
@@ -317,7 +319,7 @@ diff -Naur src.orig/bin/sage src/bin/sage
  if [ "$1" = "-inotebook" -o "$1" = '--inotebook' ]; then
      shift
      sage-cleaner &>/dev/null &
-@@ -681,31 +517,12 @@
+@@ -683,31 +517,12 @@
     exit 0
  fi
  
@@ -350,7 +352,7 @@ diff -Naur src.orig/bin/sage src/bin/sage
      if [ ! -f  "$DOT_SAGE"/init.sage ]; then
          echo >&2 "init.sage does not exist ... creating"
          touch "$DOT_SAGE"/init.sage
-@@ -713,7 +530,7 @@
+@@ -715,7 +530,7 @@
      SAGE_BANNER="no"
      sage_setup
      export PYTHONIOENCODING="utf-8"  # Fix encoding for doctests
@@ -359,7 +361,7 @@ diff -Naur src.orig/bin/sage src/bin/sage
          shift
          exec sage-runtests -p "$@"
      else
-@@ -722,17 +539,6 @@
+@@ -724,17 +539,6 @@
      fi
  fi
  
@@ -377,7 +379,7 @@ diff -Naur src.orig/bin/sage src/bin/sage
  if [ "$1" = '-testall' -o "$1" = "--testall" ]; then
      shift
      SAGE_BANNER="no"
-@@ -749,139 +555,6 @@
+@@ -751,144 +555,6 @@
      exec sage-eval "$@"
  fi
  
@@ -428,6 +430,11 @@ diff -Naur src.orig/bin/sage src/bin/sage
 -    fi
 -    exit 0
 -}
+-
+-if [ "$1" = '-package' -o "$1" = "--package" ]; then
+-    shift
+-    exec sage-package $@
+-fi
 -
 -if [ "$1" = '-optional' -o "$1" = "--optional" ]; then
 -    shift
@@ -517,7 +524,7 @@ diff -Naur src.orig/bin/sage src/bin/sage
  if [ "$1" = '-gdb' -o "$1" = "--gdb" ]; then
      shift
      sage_setup
-@@ -945,16 +618,7 @@
+@@ -952,16 +618,7 @@
      interactive_sage "$@"
  fi
  
