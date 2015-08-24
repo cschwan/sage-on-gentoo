@@ -67,5 +67,3 @@ src_test(){
 
 	python_foreach_impl python_test
 }
-
-

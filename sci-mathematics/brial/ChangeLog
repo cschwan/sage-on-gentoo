@@ -1,3 +1,7 @@
+  24 Aug 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  brial-0.8.4.ebuild:
+  sci-mathematics/brial: initial import, make repoman happy.
+
 *brial-0.8.4 (24 Aug 2015)
 
   24 Aug 2015; François Bissey <francois.bissey@canterbury.ac.nz>
