@@ -1,3 +1,9 @@
+*brial-0.8.4.2 (26 Aug 2015)
+
+  26 Aug 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  +brial-0.8.4.2.ebuild, -brial-0.8.4.1.ebuild:
+  sci-mathematics/brial: micro bump for configure.ac probably useful on prefix
+
 *brial-0.8.4.1 (25 Aug 2015)
 
   25 Aug 2015; François Bissey <francois.bissey@canterbury.ac.nz>
