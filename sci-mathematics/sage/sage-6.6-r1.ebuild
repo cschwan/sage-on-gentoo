@@ -14,24 +14,20 @@ if [[ ${PV} = *9999* ]]; then
 	EGIT_BRANCH=develop
 	EGIT_SOURCEDIR="${WORKDIR}/${P}"
 	inherit git-2
-	SAGE_DOC_DEP="~sci-mathematics/sage-doc-${PV}"
-	SAGE_DOC_DEP_HTML="~sci-mathematics/sage-doc-${PV}[html]"
 	KEYWORDS=""
 else
 	SRC_URI="mirror://sagemath/${PV}.tar.gz -> ${P}.tar.gz"
-	SAGE_DOC_DEP="|| ( ~sci-mathematics/sage-doc-bin-${PV} ~sci-mathematics/sage-doc-${PV} )"
-	SAGE_DOC_DEP_HTML="|| ( ~sci-mathematics/sage-doc-bin-${PV}[html] ~sci-mathematics/sage-doc-${PV}[html] )"
 	KEYWORDS="~amd64 ~x86 ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~x64-macos"
 fi
 
 DESCRIPTION="Math software for algebra, geometry, number theory, cryptography and numerical computation"
 HOMEPAGE="http://www.sagemath.org"
 SRC_URI="${SRC_URI}
-	mirror://sagemath/patches/${PN}-6.7-r7-neutering.tar.xz"
+	mirror://sagemath/patches/${PN}-6.6-r5-neutering.tar.bz2"
 
 LICENSE="GPL-2"
 SLOT="0"
-SAGE_USE="arb modular_decomposition bliss"
+SAGE_USE="arb modular_decomposition"
 IUSE="latex testsuite debug ${SAGE_USE}"
 
 RESTRICT="mirror test"
@@ -42,11 +38,11 @@ CDEPEND="dev-libs/gmp:0=
 	~dev-libs/ntl-6.2.1
 	>=dev-libs/ppl-1.1
 	>=dev-lisp/ecls-13.5.1
-	>=dev-python/numpy-1.8.0[${PYTHON_USEDEP}]
-	~dev-python/cython-0.22[${PYTHON_USEDEP}]
-	>=sci-mathematics/eclib-20150510[flint]
+	=dev-python/numpy-1.8*[${PYTHON_USEDEP}]
+	>=dev-python/cython-0.22[${PYTHON_USEDEP}]
+	>=sci-mathematics/eclib-1.0.0[flint]
 	>=sci-mathematics/gmp-ecm-6.4.4[-openmp]
-	|| ( ~sci-mathematics/flint-2.4.5[ntl] ~sci-mathematics/flint-2.4.4[ntl] )
+	>=sci-mathematics/flint-2.5.2[ntl]
 	~sci-libs/fplll-4.0.4
 	~sci-libs/givaro-3.7.1
 	>=sci-libs/gsl-1.16
@@ -57,13 +53,13 @@ CDEPEND="dev-libs/gmp:0=
 	~sci-libs/m4ri-20140914
 	~sci-libs/m4rie-20140914
 	>=sci-libs/mpfi-1.5.1
-	~sci-libs/pynac-0.3.7[${PYTHON_USEDEP}]
+	~sci-libs/pynac-0.3.2[${PYTHON_USEDEP}]
 	>=sci-libs/symmetrica-2.0-r3
 	>=sci-libs/zn_poly-0.9
 	sci-mathematics/glpk:0=
 	>=sci-mathematics/lcalc-1.23-r6[pari]
 	>=sci-mathematics/lrcalc-1.1.6_beta1
-	~sci-mathematics/pari-2.8_pre20150510[data,gmp,doc]
+	~sci-mathematics/pari-2.8_pre20150307[data,gmp]
 	>=sci-mathematics/polybori-0.8.3[${PYTHON_USEDEP}]
 	>=sci-mathematics/ratpoints-2.1.3
 	~sci-mathematics/sage-baselayout-${PV}[testsuite=,${PYTHON_USEDEP}]
@@ -76,17 +72,17 @@ CDEPEND="dev-libs/gmp:0=
 	dev-python/pkgconfig
 	virtual/cblas
 	arb? ( >=sci-mathematics/arb-2.5.0 )
-	modular_decomposition? ( sci-libs/modular_decomposition )
-	bliss? ( sci-libs/bliss )"
+	modular_decomposition? ( sci-libs/modular_decomposition )"
 
 DEPEND="${CDEPEND}"
 
 RDEPEND="${CDEPEND}
-	>=dev-lang/R-3.2.0
+	>=dev-lang/R-3.1.2
 	>=dev-python/cvxopt-1.1.7[glpk,${PYTHON_USEDEP}]
-	>=dev-python/ipython-3.1.0[notebook,${PYTHON_USEDEP}]
+	>=dev-python/gdmodule-0.56-r2[png,${PYTHON_USEDEP}]
+	~dev-python/ipython-3.0.0[notebook,${PYTHON_USEDEP}]
 	>=dev-python/jinja-2.5.5[${PYTHON_USEDEP}]
-	=dev-python/matplotlib-1.4*[${PYTHON_USEDEP}]
+	<dev-python/matplotlib-1.4.0[${PYTHON_USEDEP}]
 	>=dev-python/mpmath-0.18[${PYTHON_USEDEP}]
 	>=dev-python/networkx-1.8[${PYTHON_USEDEP}]
 	~dev-python/sage-pexpect-2.0[${PYTHON_USEDEP}]
@@ -122,8 +118,8 @@ RDEPEND="${CDEPEND}
 
 PDEPEND="=sci-mathematics/sage-notebook-0.11.4-r2[${PYTHON_USEDEP}]
 	~sci-mathematics/sage-data-conway_polynomials-0.4
-	${SAGE_DOC_DEP}
-	testsuite? ( ${SAGE_DOC_DEP_HTML} )"
+	|| ( ~sci-mathematics/sage-doc-bin-${PV} ~sci-mathematics/sage-doc-${PV} )
+	testsuite? ( ~sci-mathematics/sage-doc-${PV}[html] )"
 
 S="${WORKDIR}/${P}/src"
 
@@ -134,20 +130,18 @@ pkg_setup() {
 
 python_prepare() {
 	# ATLAS independence
-	epatch "${FILESDIR}"/${PN}-6.7-blas.patch
+	epatch "${FILESDIR}"/${PN}-6.6-blas.patch
 
 	# Remove sage's package management system
-	epatch "${WORKDIR}"/patches/${PN}-6.7-package.patch
+	epatch "${WORKDIR}"/patches/${PN}-6.6-package.patch
 	rm sage/misc/package.py
-	# remove the install_script facility
-	rm sage/misc/dist.py
 
 	# Remove sage's git capabilities
 	epatch "${WORKDIR}"/patches/${PN}-6.5-hg.patch
 	rm -rf sage/dev
 
 	# Remove sage cmdline tests related to these
-	epatch "${WORKDIR}"/patches/${PN}-6.7-cmdline.patch
+	epatch "${WORKDIR}"/patches/${PN}-6.6-cmdline.patch
 
 	# replace pexpect with sage pinned version
 	epatch "${FILESDIR}"/${PN}-6.2-pexpect.patch
@@ -167,6 +161,10 @@ python_prepare() {
 	# fix png library name
 	sed -i "s:png12:$(libpng-config --libs | cut -dl -f2):g" module_list.py
 
+	# fix numpy path (final quote removed to catch numpy_include_dirs and numpy_depends)
+	sed -i "s:SAGE_LOCAL + '/lib/python/site-packages/numpy/core/include:'$(python_get_sitedir)/numpy/core/include:g" \
+		module_list.py
+
 	# fix lcalc path
 	sed -i "s:SAGE_INC + \"/libLfunction:SAGE_INC + \"/Lfunction:g" module_list.py
 
@@ -181,11 +179,8 @@ python_prepare() {
 	############################################################################
 
 	# sage on gentoo env.py
-	epatch "${FILESDIR}"/sage-6.7-env.patch
+	epatch "${FILESDIR}"/sage-6.3-env.patch
 	eprefixify sage/env.py
-
-	# Upgrade matplotlib to 1.4.x
-	epatch "${FILESDIR}"/MPL-1.4.patch
 
 	# fix library path of libsingular
 	sed -i "s:os.environ\['SAGE_LOCAL'\]+\"/lib:\"${EPREFIX}/usr/$(get_libdir):" \
@@ -228,9 +223,6 @@ python_prepare() {
 	#See https://github.com/cschwan/sage-on-gentoo/issues/342
 	epatch "${FILESDIR}"/${PN}-6.6-ipython_kernel_start.patch
 
-	# Make sure bliss header are found
-	sed -i "s:graph.hh:bliss/graph.hh:" sage/graphs/bliss.pyx || die "bliss.pyx not patched"
-
 	############################################################################
 	# Fixes to doctests
 	############################################################################
@@ -265,7 +257,11 @@ python_configure() {
 	export SAGE_VERSION=${PV}
 	export SAGE_NUM_THREADS=$(makeopts_jobs)
 	for option in ${SAGE_USE}; do
-		use $option && export WANT_$option="True"
+		if use $option; then
+			export WANT_$option="True"
+		else
+			export WANT_$option="False"
+		fi
 	done
 	if use debug; then
 		export SAGE_DEBUG=1
@@ -274,11 +270,6 @@ python_configure() {
 	# files are not built unless they are touched
 	find sage -name "*pyx" -exec touch '{}' \; \
 		|| die "failed to touch *pyx files"
-
-	# autogenerate pari files
-	# This is done src/Makefile in vanilla sage - we don't want to use the Makefile, even patched.
-	"${PYTHON}" -c "from sage_setup.autogen.pari import rebuild; rebuild()"
-	"${PYTHON}" -c "from sage_setup.autogen.interpreters import rebuild; rebuild('sage/ext/interpreters')"
 }
 
 python_install_all() {
