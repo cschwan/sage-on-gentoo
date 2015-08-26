@@ -15,15 +15,18 @@ if [[ ${PV} = *9999* ]]; then
 	EGIT_SOURCEDIR="${WORKDIR}/${P}"
 	inherit git-2
 	KEYWORDS=""
+	DOC_USE="html pdf"
 else
-	SRC_URI="mirror://sagemath/${PV}.tar.gz -> ${P}.tar.gz"
-	KEYWORDS="~amd64 ~x86 ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~x64-macos"
+	SRC_URI="mirror://sagemath/${PV}.tar.gz -> ${P}.tar.gz
+		bin-html? ( mirror://sagemathdoc/${P}-doc-html.tar.xz )"
+	KEYWORDS="~amd64 ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~x64-macos"
+	DOC_USE="+bin-html -html -pdf"
 fi
 
 DESCRIPTION="Math software for algebra, geometry, number theory, cryptography and numerical computation"
 HOMEPAGE="http://www.sagemath.org"
 SRC_URI="${SRC_URI}
-	mirror://sagemath/patches/${PN}-6.9-neutering.patch.xz
+	mirror://sagemath/patches/${PN}-6.8-neutering.patch.xz
 	mirror://sagemath/patches/sage-icon.tar.bz2
 	http://www.mathematik.uni-kl.de/ftp/pub/Math/Singular/SOURCES/3-1-6/Singular-3-1-6-share.tar.gz"
 
@@ -32,7 +35,7 @@ LANGS="ca de en fr hu it pt ru tr"
 LICENSE="GPL-2"
 SLOT="0"
 SAGE_USE="arb modular_decomposition bliss"
-IUSE="latex testsuite debug X html pdf ${SAGE_USE}"
+IUSE="latex testsuite debug X ${SAGE_USE} ${DOC_USE}"
 LINGUAS_USEDEP=""
 for X in ${LANGS} ; do
 	IUSE="${IUSE} linguas_${X}"
@@ -45,18 +48,19 @@ RESTRICT="mirror test"
 CDEPEND="dev-libs/gmp:0=
 	>=dev-libs/mpfr-3.1.0
 	>=dev-libs/mpc-1.0
-	>=dev-libs/ntl-9.3.0:=
+	>=dev-libs/ntl-9.3.0
 	>=dev-libs/ppl-1.1
-	>=dev-lisp/ecls-15.3.7
+	>=dev-lisp/ecls-13.5.1
 	dev-python/six[${PYTHON_USEDEP}]
 	>=dev-python/numpy-1.8.0[${PYTHON_USEDEP}]
 	>=dev-python/cython-0.23[${PYTHON_USEDEP}]
 	dev-python/pkgconfig
 	>=dev-python/docutils-0.12[${PYTHON_USEDEP}]
-	~dev-python/sphinx-1.2.2[${PYTHON_USEDEP}]
+	html? ( ~dev-python/sphinx-1.2.2[${PYTHON_USEDEP}] )
+	bin-html? ( >=dev-python/sphinx-1.2.2[${PYTHON_USEDEP}] )
 	>=sci-mathematics/eclib-20150510[flint]
 	>=sci-mathematics/gmp-ecm-6.4.4[-openmp]
-	>=sci-mathematics/flint-2.5.2:=[ntl]
+	>=sci-mathematics/flint-2.5.2[ntl]
 	~sci-libs/fplll-4.0.4
 	~sci-libs/givaro-3.7.1
 	>=sci-libs/gsl-1.16
@@ -98,7 +102,7 @@ DEPEND="${CDEPEND}"
 RDEPEND="${CDEPEND}
 	>=dev-lang/R-3.2.0
 	>=dev-python/cvxopt-1.1.7[glpk,${PYTHON_USEDEP}]
-	>=dev-python/ipython-3.2.1[notebook,${PYTHON_USEDEP}]
+	>=dev-python/ipython-3.1.0[notebook,${PYTHON_USEDEP}]
 	>=dev-python/jinja-2.5.5[${PYTHON_USEDEP}]
 	>=dev-python/matplotlib-1.4.0[${PYTHON_USEDEP}]
 	>=dev-python/mpmath-0.18[${PYTHON_USEDEP}]
@@ -122,7 +126,7 @@ RDEPEND="${CDEPEND}
 	>=sci-mathematics/optimal-20040603
 	>=sci-mathematics/palp-2.1
 	~sci-mathematics/sage-data-elliptic_curves-0.8
-	~sci-mathematics/sage-data-graphs-20150724
+	~sci-mathematics/sage-data-graphs-20130920
 	~sci-mathematics/sage-data-combinatorial_designs-20140630
 	~sci-mathematics/sage-data-polytopes_db-20120220
 	~sci-mathematics/sage-data-conway_polynomials-0.4
@@ -142,7 +146,8 @@ CHECKREQS_DISK_BUILD="5G"
 S="${WORKDIR}/${P}/src"
 
 REQUIRED_USE="html? ( linguas_en )
-	testsuite? ( html )"
+	testsuite? ( || ( bin-html html ) )
+	bin-html? ( !html !pdf linguas_en )"
 
 pkg_setup() {
 	# needed since Ticket #14460
@@ -188,7 +193,7 @@ python_prepare() {
 		bin/sage-num-threads.py
 
 	# remove developer and unsupported options
-	epatch "${FILESDIR}"/${PN}-6.9-exec.patch
+	epatch "${FILESDIR}"/${PN}-6.8-exec.patch
 	eprefixify bin/sage
 
 	# create expected folders under extcode
@@ -204,7 +209,7 @@ python_prepare() {
 	epatch "${FILESDIR}"/${PN}-6.8-blas-r1.patch
 
 	# Remove sage's package management system, git capabilities and associated tests
-	epatch "${WORKDIR}"/${PN}-6.9-neutering.patch
+	epatch "${WORKDIR}"/${PN}-6.8-neutering.patch
 	rm sage/misc/package.py
 	rm sage/misc/dist.py
 	rm -rf sage/dev
@@ -222,7 +227,7 @@ python_prepare() {
 	# We add -DNDEBUG to objects linking to libsingular And use factory headers from libsingular.
 	epatch "${FILESDIR}"/${PN}-6.8-singular_extra_arg.patch
 
-	# Upgrade to cython 0.23_beta to disapear at the next beta.
+	# Upgrade to cython 0.23_beta
 	epatch "${FILESDIR}"/cython-0.23.patch
 
 	# Do not clean up the previous install with setup.py
@@ -328,6 +333,13 @@ python_prepare() {
 
 	# Put singular help file where it is expected
 	cp "${WORKDIR}"/Singular/3-1-6/info/singular.hlp doc/
+
+	if use bin-html ; then
+		mkdir -p doc/output/html
+		for lang in ${LANGS} ; do
+			use linguas_$lang && cp -r "${WORKDIR}"/${lang} doc/output/html/
+		done
+	fi
 }
 
 python_configure() {
@@ -482,6 +494,11 @@ python_install_all() {
 		insinto /usr/share/doc/sage/pdf
 		doins -r doc/output/pdf/*
 	fi
+
+	if use bin-html ; then
+		insinto /usr/share/doc/sage/html
+		doins -r doc/output/html/*
+	fi
 }
 
 pkg_preinst() {
@@ -522,8 +539,10 @@ pkg_postinst() {
 	fi
 
 	if ! use html ; then
-		ewarn "You haven't requested the html documentation."
-		ewarn "The html version of the sage manual won't be available in the sage notebook."
+		if ! use bin-html ; then
+			ewarn "You haven't requested the html documentation."
+			ewarn "The html version of the sage manual won't be available in the sage notebook."
+		fi
 	fi
 
 	einfo ""
