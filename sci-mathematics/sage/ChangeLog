@@ -2,6 +2,29 @@
 # Copyright 1999-2015 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*sage-6.6-r1 (26 Aug 2015)
+
+  26 Aug 2015; Martin von Gagern (MvG) <Martin.vGagern@gmx.net>
+  -sage-6.6.ebuild, +sage-6.6-r1.ebuild, -sage-6.7-r1.ebuild, -sage-6.8.ebuild,
+  -sage-6.8-r1.ebuild:
+  Drop revisions using old versions of flint
+
+  26 Aug 2015; Martin von Gagern (MvG) <Martin.vGagern@gmx.net>
+  sage-6.6.ebuild, sage-6.7-r1.ebuild, sage-6.8.ebuild, sage-6.8-r1.ebuild:
+  change double constraint to any-of constraint for flint version range
+
+*sage-6.7-r2 (26 Aug 2015)
+
+  26 Aug 2015; Martin von Gagern (MvG) <Martin.vGagern@gmx.net>
+  sage-6.6.ebuild, sage-6.7-r1.ebuild, +sage-6.7-r2.ebuild:
+  revbump sage 6.7 as well for flint, while 6.6 depends on older flint
+
+*sage-6.8-r2 (26 Aug 2015)
+
+  26 Aug 2015; Martin von Gagern (MvG) <Martin.vGagern@gmx.net>
+  sage-6.8-r1.ebuild, +sage-6.8-r2.ebuild, sage-9999.ebuild:
+  revbump to force recompilation against recent flint
+
   21 Aug 2015; François Bissey <francois.bissey@canterbury.ac.nz>
   sage-9999.ebuild:
   sci-mathematics/sage: bumping the neutering patch for 6.9.beta3

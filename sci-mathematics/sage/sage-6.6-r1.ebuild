@@ -42,7 +42,7 @@ CDEPEND="dev-libs/gmp:0=
 	>=dev-python/cython-0.22[${PYTHON_USEDEP}]
 	>=sci-mathematics/eclib-1.0.0[flint]
 	>=sci-mathematics/gmp-ecm-6.4.4[-openmp]
-	>=sci-mathematics/flint-2.4.4[ntl]
+	>=sci-mathematics/flint-2.5.2[ntl]
 	~sci-libs/fplll-4.0.4
 	~sci-libs/givaro-3.7.1
 	>=sci-libs/gsl-1.16
@@ -219,7 +219,7 @@ python_prepare() {
 		sage/interfaces/singular.py
 
 	# The ipython kernel tries to to start a new session via $SAGE_ROOT/sage -python
-	# Since we don't have $SAGE_ROOT/sage it fails. 
+	# Since we don't have $SAGE_ROOT/sage it fails.
 	#See https://github.com/cschwan/sage-on-gentoo/issues/342
 	epatch "${FILESDIR}"/${PN}-6.6-ipython_kernel_start.patch
 

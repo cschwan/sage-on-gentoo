@@ -56,7 +56,7 @@ CDEPEND="dev-libs/gmp:0=
 	~dev-python/sphinx-1.2.2[${PYTHON_USEDEP}]
 	>=sci-mathematics/eclib-20150510[flint]
 	>=sci-mathematics/gmp-ecm-6.4.4[-openmp]
-	>=sci-mathematics/flint-2.4.4:=[ntl]
+	>=sci-mathematics/flint-2.5.2:=[ntl]
 	~sci-libs/fplll-4.0.4
 	~sci-libs/givaro-3.7.1
 	>=sci-libs/gsl-1.16
@@ -284,7 +284,7 @@ python_prepare() {
 	epatch "${FILESDIR}"/${PN}-6.6-ipython_kernel_start.patch
 
 	# Make the lazy_import pickle name versioned with the sage version number
-	# rather than the path to the source which is a constant acroos versions 
+	# rather than the path to the source which is a constant across versions
 	# in sage-on-gentoo. This fixes issue #362.
 	epatch "${FILESDIR}"/${PN}-6.8-lazy_import_cache.patch
 
