@@ -2,6 +2,13 @@
 # Copyright 1999-2015 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*eclib-20150827 (27 Aug 2015)
+
+  27 Aug 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  +eclib-20150827.ebuild:
+  sci-mathematics/eclib: upstream bump to fix a minor bug. Compatible with
+  previous version.
+
 *eclib-20150510-r1 (16 Aug 2015)
 
   16 Aug 2015; François Bissey <francois.bissey@canterbury.ac.nz>
