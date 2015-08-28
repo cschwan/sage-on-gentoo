@@ -11,8 +11,8 @@ inherit distutils-r1 latex-package
 MY_PN="sagetex"
 MY_P="${MY_PN}-${PV}"
 DESCRIPTION="SageTeX package allows to embed code from the Sage mathematics software suite into LaTeX documents"
-HOMEPAGE="http://www.sagemath.org https://bitbucket.org/ddrake/sagetex/overview"
-SRC_URI="mirror://sageupstream/${MY_PN}/${MY_P}.tar.bz2"
+HOMEPAGE="http://www.sagemath.org https://github.com/dandrake/sagetex"
+SRC_URI="https://github.com/dandrake/${MY_PN}/archive/v${PV}.tar.gz -> ${MY_P}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
@@ -28,10 +28,7 @@ S="${WORKDIR}"/${MY_P}
 
 src_prepare() {
 	# LaTeX file are installed by eclass functions
-	epatch "${FILESDIR}"/${PN}-2.3.4-install-python-files-only.patch
-
-	# Don't regenerate the documentation
-	rm *.dtx
+	epatch "${FILESDIR}"/${PN}-3.0-install-python-files-only.patch
 
 	distutils-r1_src_prepare
 }

@@ -2,6 +2,13 @@
 # Copyright 1999-2015 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*sage-latex-3.0 (28 Aug 2015)
+
+  28 Aug 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  +files/sage-latex-3.0-install-python-files-only.patch, +sage-latex-3.0.ebuild,
+  sage-latex-2.3.4.ebuild:
+  dev-tex/sage-latex: New release, beware, backward incompatible changes
+
   09 Jun 2015; François Bissey <francois.bissey@canterbury.ac.nz>
   -files/sage-latex-2.3.3-install-python-files-only.patch,
   -sage-latex-2.3.3_p2.ebuild:
