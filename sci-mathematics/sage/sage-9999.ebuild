@@ -236,11 +236,14 @@ python_prepare() {
 	############################################################################
 
 	# sage on gentoo env.py
-	epatch "${FILESDIR}"/sage-6.8-env.patch
+	epatch "${FILESDIR}"/${PN}-6.8-env.patch
 	eprefixify sage/env.py
 
+	# fix issue #363 where there is bad interaction between MPL build with qt4 support and ecls
+	epatch "${FILESDIR}"/${PN}-6.9-qt4_conflict.patch
+
 	# sage-maxima.lisp really belong to /etc
-	epatch "${FILESDIR}"/sage-6.8-maxima.lisp.patch
+	epatch "${FILESDIR}"/${PN}-6.8-maxima.lisp.patch
 
 	# fix library path of libsingular
 	sed -i "s:os.environ\['SAGE_LOCAL'\]+\"/lib:\"${EPREFIX}/usr/$(get_libdir):" \
@@ -359,7 +362,7 @@ python_configure() {
 		|| die "failed to touch *pyx files"
 
 	# autogenerate pari files
-	# This is done src/Makefile in vanilla sage - we don't want to use the Makefile, even patched.
+	# This is done in src/Makefile in vanilla sage - we don't want to use the Makefile, even patched.
 	"${PYTHON}" -c "from sage_setup.autogen.pari import rebuild; rebuild()"
 	"${PYTHON}" -c "from sage_setup.autogen.interpreters import rebuild; rebuild('sage/ext/interpreters')"
 }

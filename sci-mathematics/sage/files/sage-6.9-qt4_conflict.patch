@@ -1,0 +1,13 @@
+diff -Naur src.orig/sage/doctest/forker.py src/sage/doctest/forker.py
+--- src.orig/sage/doctest/forker.py	2015-08-26 11:29:22.975208479 +1200
++++ src/sage/doctest/forker.py	2015-08-26 11:33:05.245728361 +1200
+@@ -103,6 +103,9 @@
+     import sage.all_cmdline
+     sage.interfaces.quit.invalidate_all()
+ 
++    # Do this to avoid conflict with qt4 backend of MPL
++    from sage.libs.ecl import init_ecl
++
+     # Use the rich output backend for doctest 
+     from sage.repl.rich_output import get_display_manager
+     dm = get_display_manager()
