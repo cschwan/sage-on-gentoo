@@ -3,6 +3,11 @@
 # $Header: $
 
   28 Aug 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-9999.ebuild:
+  sci-mathematics/sage: small revision for 6.9.beta4, cython 0.23 support now
+  in, eclib dep bumped.
+
+  28 Aug 2015; François Bissey <francois.bissey@canterbury.ac.nz>
   +files/sage-6.9-qt4_conflict.patch, sage-9999.ebuild:
   sci-mathematics/sage:
 
