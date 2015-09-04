@@ -2,6 +2,11 @@
 # Copyright 1999-2015 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  04 Sep 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  files/sage-6.9-exec.patch, sage-9999.ebuild:
+  sci-mathematics/sage: bump patch for 6.9.beta5, brial is replacing polybori in
+  this release. A block may need to be manually resolved.
+
   28 Aug 2015; François Bissey <francois.bissey@canterbury.ac.nz>
   sage-9999.ebuild:
   sci-mathematics/sage: small revision for 6.9.beta4, cython 0.23 support now
