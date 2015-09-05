@@ -18,7 +18,7 @@ IUSE="debug openmp static-libs"
 # TODO: tests do not compile since m4rie expects header already being installed
 RESTRICT="mirror test"
 
-DEPEND="~sci-libs/m4ri-${PV}[openmp?]"
+DEPEND=">=sci-libs/m4ri-20140914[openmp?]"
 RDEPEND="${DEPEND}"
 
 pkg_pretend() {
