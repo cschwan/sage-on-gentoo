@@ -1,3 +1,8 @@
+  05 Sep 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  +files/brial-0.8.4.3-g++_linking.patch, brial-0.8.4.3.ebuild:
+  sci-mathematics/brial: Add patch for c++ linking
+  (https://github.com/BRiAl/BRiAl/pull/5)
+
 *brial-0.8.4.3 (04 Sep 2015)
 
   04 Sep 2015; François Bissey <francois.bissey@canterbury.ac.nz>

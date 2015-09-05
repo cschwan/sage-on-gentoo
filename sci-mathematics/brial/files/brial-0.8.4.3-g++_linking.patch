@@ -1,0 +1,22 @@
+From ef6939ec2ee14f8ec0316692cc78e79adffe8231 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Fran=C3=A7ois=20Bissey?= <francois.bissey@canterbury.ac.nz>
+Date: Fri, 28 Aug 2015 12:05:47 +1200
+Subject: [PATCH] Force the linking of lib{brial,polybori} with g++
+
+---
+ Makefile.am | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/Makefile.am b/Makefile.am
+index 5e4535a..1ee8ed0 100644
+--- a/Makefile.am
++++ b/Makefile.am
+@@ -5,6 +5,8 @@ SUBDIRS = Cudd/cudd libbrial . groebner pyroot
+ lib_LTLIBRARIES = libpolybori.la
+ 
+ libpolybori_la_SOURCES =
++# Dummy C++ source to cause C++ linking.
++nodist_EXTRA_libpolybori_la_SOURCES = dummy.cxx
+ libpolybori_la_LIBADD = \
+ 	Cudd/cudd/libcudd.la \
+ 	libpolybori/src/libpolybori_base.la

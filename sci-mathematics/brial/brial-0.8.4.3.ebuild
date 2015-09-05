@@ -32,6 +32,10 @@ DEPEND="virtual/pkgconfig
 	)"
 RDEPEND="${CDEPEND}"
 
+PATCHES=(
+	"${FILESDIR}"/${PN}-0.8.4.3-g++_linking.patch
+	)
+
 pkg_setup(){
 	tc-export PKG_CONFIG
 }
