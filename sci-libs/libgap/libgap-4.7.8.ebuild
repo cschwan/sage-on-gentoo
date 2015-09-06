@@ -1,9 +1,10 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: $
+# $Id$
 
 EAPI=5
 
+AUTOTOOLS_AUTORECONF=yes
 inherit autotools-utils
 
 DESCRIPTION="A cython library interface to gap for sage"
@@ -22,7 +23,6 @@ DEPEND=">=dev-libs/gmp-5.0.2
 	~sci-mathematics/gap-${PV}"
 RDEPEND="${DEPEND}"
 
-AUTOTOOLS_AUTORECONF=yes
 AUTOTOOLS_IN_SOURCE_BUILD=1
 
 src_prepare(){
