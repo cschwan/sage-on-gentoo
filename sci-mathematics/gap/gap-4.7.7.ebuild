@@ -1,9 +1,10 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: $
+# $Id$
 
 EAPI=5
 
+AUTOTOOLS_AUTORECONF=1
 inherit eutils multilib autotools-utils elisp-common
 
 # gap-lite is a pre-made tarball where the following has been removed:
@@ -35,7 +36,6 @@ PATCHES=(
 	"${FILESDIR}"/${PN}-4.7.7-testall.patch
 	)
 
-AUTOTOOLS_AUTORECONF=1
 AUTOTOOLS_IN_SOURCE_BUILD=1
 
 src_prepare(){
