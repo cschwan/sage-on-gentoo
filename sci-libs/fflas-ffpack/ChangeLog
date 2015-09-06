@@ -2,6 +2,11 @@
 # Copyright 1999-2015 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  06 Sep 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  fflas-ffpack-1.6.0-r5.ebuild:
+  sci-libs/fflas-ffpack: Put AUTOTOOLS* variable before inherit as requested in
+  the eclass reference
+
 *fflas-ffpack-1.6.0-r5 (25 Jun 2015)
 
   25 Jun 2015; François Bissey <francois.bissey@canterbury.ac.nz>

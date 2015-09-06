@@ -1,8 +1,10 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: $
+# $Id$
 
 EAPI=5
+AUTOTOOLS_AUTORECONF="1"
+AUTOTOOLS_IN_SOURCE_BUILD="1"
 
 inherit autotools-utils toolchain-funcs
 
@@ -23,8 +25,6 @@ DEPEND="virtual/cblas
 	>=sci-libs/givaro-3.7.0"
 RDEPEND="${DEPEND}"
 
-AUTOTOOLS_AUTORECONF="1"
-AUTOTOOLS_IN_SOURCE_BUILD="1"
 PATCHES=(
 	"${FILESDIR}/${P}-blaslapack-5.patch"
 	"${FILESDIR}/${P}-automake-1.13.patch"
