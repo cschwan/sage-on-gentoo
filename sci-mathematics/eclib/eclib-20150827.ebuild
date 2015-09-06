@@ -4,6 +4,7 @@
 
 EAPI=5
 
+AUTOTOOLS_AUTORECONF=yes
 inherit eutils autotools-utils vcs-snapshot
 
 DESCRIPTION="Programs for enumerating and computing with elliptic curves defined over the rational numbers."
@@ -22,8 +23,6 @@ RDEPEND=">=sci-mathematics/pari-2.5.0:=
 	flint? ( sci-mathematics/flint:= )
 	boost? ( dev-libs/boost[threads] )"
 DEPEND="${RDEPEND}"
-
-AUTOTOOLS_AUTORECONF=yes
 
 src_configure() {
 	local myeconfargs=(--disable-allprogs

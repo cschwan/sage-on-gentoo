@@ -4,6 +4,7 @@
 
 EAPI=5
 
+AUTOTOOLS_AUTORECONF=yes
 inherit eutils autotools-utils vcs-snapshot
 
 MY_PV=${PV#0_p}
@@ -25,8 +26,6 @@ RDEPEND=">=sci-mathematics/pari-2.5.0:=
 DEPEND="${RDEPEND}"
 
 S="${WORKDIR}"/${PN}-${MY_PV}
-
-AUTOTOOLS_AUTORECONF=yes
 
 src_configure() {
 	local myeconfargs=(--disable-allprogs
