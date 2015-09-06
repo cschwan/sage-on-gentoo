@@ -1,3 +1,8 @@
+  06 Sep 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  brial-0.8.4.3.ebuild:
+  sci-mathematics/brial: make sure autoreconf is called at the right time. This
+  should also trigger dependency on the latest automake.
+
   05 Sep 2015; François Bissey <francois.bissey@canterbury.ac.nz>
   +files/brial-0.8.4.3-g++_linking.patch, brial-0.8.4.3.ebuild:
   sci-mathematics/brial: Add patch for c++ linking
