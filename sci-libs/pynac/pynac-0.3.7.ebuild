@@ -1,10 +1,11 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: $
+# $Id$
 
 EAPI="5"
 
 PYTHON_COMPAT=( python2_7 )
+AUTOTOOLS_AUTORECONF=yes
 
 inherit autotools-utils python-r1 vcs-snapshot
 
@@ -22,8 +23,6 @@ RESTRICT="mirror"
 DEPEND="virtual/pkgconfig
 	${PYTHON_DEPS}"
 RDEPEND=""
-
-AUTOTOOLS_AUTORECONF=yes
 
 DOCS=( AUTHORS NEWS README )
 
