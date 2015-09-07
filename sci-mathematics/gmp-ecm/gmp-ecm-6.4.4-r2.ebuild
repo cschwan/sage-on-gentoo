@@ -16,7 +16,7 @@ KEYWORDS="~amd64 ~x86 ~x86-macos ~ppc-macos ~x64-macos"
 IUSE="+blas +custom-tune gwnum -openmp static-libs test"
 
 DEPEND="
-	dev-libs/gmp
+	dev-libs/gmp:=
 	!sci-mathematics/ecm
 	blas? ( sci-libs/gsl )
 	gwnum? ( sci-mathematics/gwnum )"

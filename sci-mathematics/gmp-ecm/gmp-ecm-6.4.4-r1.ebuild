@@ -16,7 +16,7 @@ KEYWORDS="~amd64 ~x86"
 IUSE="+blas +custom-tune gwnum -openmp static-libs test"
 
 DEPEND="
-	dev-libs/gmp
+	dev-libs/gmp:=
 	!sci-mathematics/ecm
 	blas? ( sci-libs/gsl )
 	gwnum? ( sci-mathematics/gwnum )"

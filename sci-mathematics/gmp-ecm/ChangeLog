@@ -4,6 +4,10 @@
 
   07 Sep 2015; François Bissey <francois.bissey@canterbury.ac.nz>
   gmp-ecm-6.4.4-r1.ebuild, gmp-ecm-6.4.4-r2.ebuild:
+  sci-mathematics/gmp-ecm: add slot dependency to make repoman happy
+
+  07 Sep 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  gmp-ecm-6.4.4-r1.ebuild, gmp-ecm-6.4.4-r2.ebuild:
   Massive ebuild format clean up. One removal. Further QA to follow.
 
   27 Nov 2014; François Bissey <francois.bissey@canterbury.ac.nz>
