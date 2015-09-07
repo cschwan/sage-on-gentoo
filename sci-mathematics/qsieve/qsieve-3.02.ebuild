@@ -17,7 +17,7 @@ IUSE="doc cpu_flags_x86_sse2"
 
 RESTRICT="mirror"
 
-CDEPEND=">=dev-libs/gmp-4.0.0"
+CDEPEND="dev-libs/gmp:="
 DEPEND="${CDEPEND}
 	doc? ( app-doc/doxygen )"
 RDEPEND="${CDEPEND}"
