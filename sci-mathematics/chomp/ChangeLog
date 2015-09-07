@@ -1,6 +1,10 @@
 # ChangeLog for sci-mathematics/chomp
-# Copyright 1999-2013 Gentoo Foundation; Distributed under the GPL v2
+# Copyright 1999-2015 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
+
+  07 Sep 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  chomp-20120805.ebuild:
+  Massive ebuild format clean up. One removal. Further QA to follow.
 
   10 Feb 2013; François Bissey <francois.bissey@canterbury.ac.nz>
   chomp-20120805.ebuild:

@@ -2,6 +2,10 @@
 # Copyright 1999-2015 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  07 Sep 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-data-graphs-20130920.ebuild, sage-data-graphs-20150724.ebuild:
+  Massive ebuild format clean up. One removal. Further QA to follow.
+
 *sage-data-graphs-20150724 (06 Aug 2015)
 
   06 Aug 2015; François Bissey <francois.bissey@canterbury.ac.nz>

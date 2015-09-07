@@ -1,3 +1,7 @@
+  07 Sep 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-doc-bin-6.6.ebuild, sage-doc-bin-6.7.ebuild:
+  Massive ebuild format clean up. One removal. Further QA to follow.
+
   26 Jun 2015; François Bissey <francois.bissey@canterbury.ac.nz>
   -sage-doc-bin-6.5-r2.ebuild, metadata.xml:
   removal of sage 6.5

@@ -1,6 +1,10 @@
 # ChangeLog for sci-mathematics/dikcube
-# Copyright 1999-2014 Gentoo Foundation; Distributed under the GPL v2
+# Copyright 1999-2015 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
+
+  07 Sep 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  dikcube-20070912-r1.ebuild:
+  Massive ebuild format clean up. One removal. Further QA to follow.
 
   14 Aug 2014; François Bissey <francois.bissey@canterbury.ac.nz>
   dikcube-20070912-r1.ebuild:

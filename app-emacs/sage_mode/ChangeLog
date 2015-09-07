@@ -1,3 +1,7 @@
+  07 Sep 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage_mode-0.12.ebuild:
+  Massive ebuild format clean up. One removal. Further QA to follow.
+
   29 Aug 2014; François Bissey <francois.bissey@canterbury.ac.nz>
   files/50sage_mode-gentoo.el:
   minor change to sitefile

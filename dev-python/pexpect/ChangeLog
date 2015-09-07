@@ -2,6 +2,10 @@
 # Copyright 1999-2015 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/dev-python/pexpect/ChangeLog,v 1.89 2015/04/08 08:04:53 mgorny Exp $
 
+  07 Sep 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  pexpect-3.3-r1.ebuild:
+  Massive ebuild format clean up. One removal. Further QA to follow.
+
   08 Apr 2015; Michał Górny <mgorny@gentoo.org> pexpect-2.4-r1.ebuild,
   pexpect-3.0.ebuild, pexpect-3.1.ebuild, pexpect-3.2.ebuild,
   pexpect-3.3.ebuild:

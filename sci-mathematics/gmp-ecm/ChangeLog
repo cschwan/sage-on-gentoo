@@ -1,6 +1,10 @@
 # ChangeLog for sci-mathematics/gmp-ecm
-# Copyright 1999-2014 Gentoo Foundation; Distributed under the GPL v2
+# Copyright 1999-2015 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/sci-mathematics/gmp-ecm/ChangeLog,v 1.11 2013/03/10 09:02:26 patrick Exp $
+
+  07 Sep 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  gmp-ecm-6.4.4-r1.ebuild, gmp-ecm-6.4.4-r2.ebuild:
+  Massive ebuild format clean up. One removal. Further QA to follow.
 
   27 Nov 2014; François Bissey <francois.bissey@canterbury.ac.nz>
   gmp-ecm-6.4.4-r1.ebuild, gmp-ecm-6.4.4-r2.ebuild:

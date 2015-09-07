@@ -1,6 +1,10 @@
 # ChangeLog for sci-mathematics/optimal
-# Copyright 1999-2014 Gentoo Foundation; Distributed under the GPL v2
+# Copyright 1999-2015 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
+
+  07 Sep 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  optimal-20040603-r1.ebuild:
+  Massive ebuild format clean up. One removal. Further QA to follow.
 
 *optimal-20040603-r1 (24 May 2014)
 
