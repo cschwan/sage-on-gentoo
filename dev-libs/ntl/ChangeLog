@@ -2,6 +2,10 @@
 # Copyright 1999-2015 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/dev-libs/ntl/ChangeLog,v 1.25 2014/06/19 13:08:44 jauhien Exp $
 
+  07 Sep 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  ntl-6.2.1.ebuild:
+  dev-libs/ntl: formatting clean up
+
   13 Jul 2015; François Bissey <francois.bissey@canterbury.ac.nz>
   -files/ntl-9.2.0-sage-callback.patch,
   -files/ntl-9.2.0-sanitize-makefile.patch, -files/ntl-9.2.0-singular.patch,
