@@ -1,3 +1,7 @@
+  07 Sep 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  matplotlib-1.3.1.ebuild:
+  dev-python/matplotlib: format clean up. Keep repoman happy.
+
 *matplotlib-1.3.1 (18 Dec 2014)
 
   18 Dec 2014; François Bissey <francois.bissey@canterbury.ac.nz>
