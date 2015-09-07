@@ -17,7 +17,7 @@ IUSE=""
 
 RESTRICT="mirror"
 
-DEPEND="dev-libs/gmp"
+DEPEND="dev-libs/gmp:="
 RDEPEND="${DEPEND}"
 
 src_prepare() {
