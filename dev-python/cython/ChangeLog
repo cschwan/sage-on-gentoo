@@ -2,6 +2,10 @@
 # Copyright 1999-2015 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/dev-python/cython/ChangeLog,v 1.93 2013/02/16 22:07:28 mgorny Exp $
 
+  07 Sep 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  cython-0.22-r5.ebuild:
+  dev-python/cython: format clean up
+
   10 Aug 2015; François Bissey <francois.bissey@canterbury.ac.nz>
   -cython-0.23_beta2.ebuild:
   removing 0.23_beta2 in favor in newly released 0.23 from the main tree.
