@@ -65,7 +65,7 @@ CDEPEND="dev-libs/gmp:0=
 	~sci-libs/libgap-4.7.8
 	~sci-libs/linbox-1.3.2[sage]
 	~sci-libs/m4ri-20140914
-	~sci-libs/m4rie-20140914
+	~sci-libs/m4rie-20150908
 	>=sci-libs/mpfi-1.5.1
 	~sci-libs/pynac-0.3.9.2[${PYTHON_USEDEP}]
 	>=sci-libs/symmetrica-2.0-r3

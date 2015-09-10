@@ -2,6 +2,10 @@
 # Copyright 1999-2015 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  10 Sep 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  files/sage-6.9-exec.patch, sage-9999.ebuild:
+  sci-mathematics/sage: bump patches for 6.9.beta6.
+
   04 Sep 2015; François Bissey <francois.bissey@canterbury.ac.nz>
   files/sage-6.9-exec.patch, sage-9999.ebuild:
   sci-mathematics/sage: bump patch for 6.9.beta5, brial is replacing polybori in
