@@ -2,6 +2,12 @@
 # Copyright 1999-2015 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*pynac-0.3.9.5 (13 Sep 2015)
+
+  13 Sep 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  +pynac-0.3.9.5.ebuild:
+  sci-libs/pynac: bump in 0.3.9 series.
+
   06 Sep 2015; François Bissey <francois.bissey@canterbury.ac.nz>
   pynac-0.3.2-r1.ebuild, pynac-0.3.7.ebuild, pynac-0.3.9.2.ebuild,
   pynac-0.4.2.ebuild:
