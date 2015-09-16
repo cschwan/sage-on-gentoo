@@ -3,6 +3,10 @@
 # $Header: $
 
   16 Sep 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  files/sage-6.3-env.patch, files/sage-6.7-env.patch, files/sage-6.8-env.patch:
+  sci-mathematics/sage: synchronize fix for issue #372 with master
+
+  16 Sep 2015; François Bissey <francois.bissey@canterbury.ac.nz>
   +files/sage-6.9-neutering.patch, files/sage-6.9-exec.patch, sage-9999.ebuild:
   sci-mathematics/sage: this branch tracks Volker's dev branch. Use with
   caution. Some issues to be sorted in science overlay about ipython deps.
