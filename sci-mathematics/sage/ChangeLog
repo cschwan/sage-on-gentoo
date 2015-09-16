@@ -2,6 +2,11 @@
 # Copyright 1999-2015 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  16 Sep 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  +files/sage-6.9-neutering.patch, files/sage-6.9-exec.patch, sage-9999.ebuild:
+  sci-mathematics/sage: this branch tracks Volker's dev branch. Use with
+  caution. Some issues to be sorted in science overlay about ipython deps.
+
   10 Sep 2015; François Bissey <francois.bissey@canterbury.ac.nz>
   files/sage-6.9-exec.patch, sage-9999.ebuild:
   sci-mathematics/sage: bump patches for 6.9.beta6.
