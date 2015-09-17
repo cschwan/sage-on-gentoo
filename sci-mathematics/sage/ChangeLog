@@ -2,6 +2,10 @@
 # Copyright 1999-2015 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  17 Sep 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  files/sage-6.9-exec.patch:
+  sci-mathematics/sage: bump exec patch for jupyter
+
   16 Sep 2015; François Bissey <francois.bissey@canterbury.ac.nz>
   files/sage-6.3-env.patch, files/sage-6.7-env.patch, files/sage-6.8-env.patch:
   sci-mathematics/sage: synchronize fix for issue #372 with master
