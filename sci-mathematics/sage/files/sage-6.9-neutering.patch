@@ -1,0 +1,882 @@
+diff -Naur src.orig/sage/doctest/control.py src/sage/doctest/control.py
+--- src.orig/sage/doctest/control.py	2015-09-15 15:06:36.887149188 +1200
++++ src/sage/doctest/control.py	2015-09-15 15:07:02.147228804 +1200
+@@ -92,7 +92,6 @@
+         self.cachegrind = False
+         self.omega = False
+         self.failed = False
+-        self.new = False
+         self.show_skipped = False
+         # We don't want to use the real stats file by default so that
+         # we don't overwrite timings for the actual running doctests.
+@@ -221,7 +220,7 @@
+                 options.timeout = int(os.getenv('SAGE_TIMEOUT', 5 * 60))
+         if options.nthreads == 0:
+             options.nthreads = int(os.getenv('SAGE_NUM_THREADS_PARALLEL',1))
+-        if options.failed and not (args or options.new or options.sagenb):
++        if options.failed and not (args or options.sagenb):
+             # If the user doesn't specify any files then we rerun all failed files.
+             options.all = True
+         if options.global_iterations == 0:
+@@ -241,22 +240,8 @@
+             if s == 'true':
+                 sage.misc.superseded.deprecation(18558, "Use --optional=all instead of --optional=true")
+                 s = "all"
+-            options.optional = set(s.split(','))
+-            if "all" in options.optional:
+-                # Special case to run all optional tests
+-                options.optional = True
+             else:
+-                # We replace the 'optional' tag by all optional
+-                # packages for which the installed version matches the
+-                # latest available version (this implies in particular
+-                # that the package is actually installed).
+-                if 'optional' in options.optional:
+-                    options.optional.discard('optional')
+-                    from sage.misc.package import package_versions
+-                    optional_pkgs = package_versions("optional", local=True)
+-                    for pkg, versions in optional_pkgs.items():
+-                        if versions[0] == versions[1]:
+-                            options.optional.add(pkg)
++                options.optional = set(s.split(','))
+ 
+                 # Check that all tags are valid
+                 for o in options.optional:
+@@ -507,7 +492,7 @@
+ 
+     def add_files(self):
+         r"""
+-        Checks for the flags '--all', '--new' and '--sagenb'.
++        Checks for the flags '--all' and '--sagenb'.
+ 
+         For each one present, this function adds the appropriate directories and files to the todo list.
+ 
+@@ -526,13 +511,6 @@
+ 
+         ::
+ 
+-            sage: DD = DocTestDefaults(new = True)
+-            sage: DC = DocTestController(DD, [])
+-            sage: DC.add_files()
+-            Doctesting ...
+-
+-        ::
+-
+             sage: DD = DocTestDefaults(sagenb = True)
+             sage: DC = DocTestController(DD, [])
+             sage: DC.add_files()
+@@ -549,29 +527,9 @@
+             self.files.append(opj(SAGE_SRC, 'doc', 'common'))
+             self.files.extend(glob(opj(SAGE_SRC, 'doc', '[a-z][a-z]')))
+             self.options.sagenb = True
+-        DOT_GIT= opj(SAGE_ROOT, '.git')
+-        have_git = os.path.exists(DOT_GIT)
+-        if self.options.all or (self.options.new and not have_git):
++        if self.options.all:
+             self.log("Doctesting entire Sage library.")
+             all_files()
+-        elif self.options.new and have_git:
+-            # Get all files changed in the working repo.
+-            self.log("Doctesting files changed since last git commit")
+-            import subprocess
+-            change = subprocess.check_output(["git",
+-                                              "--git-dir=" + DOT_GIT,
+-                                              "--work-tree=" + SAGE_ROOT,
+-                                              "status",
+-                                              "--porcelain"])
+-            for line in change.split("\n"):
+-                if not line:
+-                    continue
+-                data = line.strip().split(' ')
+-                status, filename = data[0], data[-1]
+-                if (set(status).issubset("MARCU")
+-                    and filename.startswith("src/sage")
+-                    and (filename.endswith(".py") or filename.endswith(".pyx"))):
+-                    self.files.append(os.path.relpath(opj(SAGE_ROOT,filename)))
+         if self.options.sagenb:
+             if not self.options.all:
+                 self.log("Doctesting the Sage notebook.")
+@@ -597,8 +555,6 @@
+             sage: DC.expand_files_into_sources()
+             sage: len(DC.sources)
+             10
+-            sage: DC.sources[0].options.optional
+-            True
+ 
+         ::
+ 
+@@ -833,14 +789,9 @@
+             sage: DC = DocTestController(DocTestDefaults(), [])
+             sage: DC._optional_tags_string()
+             'sage'
+-            sage: DC = DocTestController(DocTestDefaults(optional="all,and,some,more"), [])
+-            sage: DC._optional_tags_string()
+-            'all'
+             sage: DC = DocTestController(DocTestDefaults(optional="true"), [])
+             doctest:...: DeprecationWarning: Use --optional=all instead of --optional=true
+             See http://trac.sagemath.org/18558 for details.
+-            sage: DC._optional_tags_string()
+-            'all'
+             sage: DC = DocTestController(DocTestDefaults(optional="sage,openssl"), [])
+             sage: DC._optional_tags_string()
+             'openssl,sage'
+@@ -867,7 +818,7 @@
+         for o in ("all", "sagenb"):
+             if o in opt:
+                 raise ValueError("You cannot run gdb/valgrind on the whole sage%s library"%("" if o == "all" else "nb"))
+-        for o in ("all", "sagenb", "long", "force_lib", "verbose", "failed", "new"):
++        for o in ("all", "sagenb", "long", "force_lib", "verbose", "failed"):
+             if o in opt:
+                 cmd += "--%s "%o
+         for o in ("timeout", "randorder", "stats_path"):
+diff -Naur src.orig/sage/game_theory/normal_form_game.py src/sage/game_theory/normal_form_game.py
+--- src.orig/sage/game_theory/normal_form_game.py	2015-09-15 15:06:36.897149221 +1200
++++ src/sage/game_theory/normal_form_game.py	2015-09-15 15:07:02.147228804 +1200
+@@ -613,8 +613,9 @@
+ from sage.structure.sage_object import SageObject
+ from sage.matrix.constructor import matrix
+ from sage.matrix.constructor import vector
+-from sage.misc.package import is_package_installed
+ from sage.misc.temporary_file import tmp_filename
++import os
++from sage.env import SAGE_LOCAL
+ 
+ try:
+     from gambit import Game
+@@ -1315,13 +1316,13 @@
+             raise ValueError("utilities have not been populated")
+ 
+         if not algorithm:
+-            if is_package_installed('lrslib'):
++            if os.path.isfile(os.path.join(SAGE_LOCAL, 'bin', 'lrs')):
+                 algorithm = "lrs"
+             else:
+                 algorithm = "enumeration"
+ 
+         if algorithm == "lrs":
+-            if not is_package_installed('lrslib'):
++            if not os.path.isfile(os.path.join(SAGE_LOCAL, 'bin', 'lrs')):
+                 raise NotImplementedError("lrslib is not installed")
+ 
+             return self._solve_lrs(maximization)
+diff -Naur src.orig/sage/geometry/polyhedron/base.py src/sage/geometry/polyhedron/base.py
+--- src.orig/sage/geometry/polyhedron/base.py	2015-09-15 15:06:36.897149221 +1200
++++ src/sage/geometry/polyhedron/base.py	2015-09-15 15:07:02.147228804 +1200
+@@ -16,7 +16,6 @@
+ from sage.structure.element import Element, coerce_binop, is_Vector
+ 
+ from sage.misc.all import cached_method, prod
+-from sage.misc.package import is_package_installed
+ 
+ from sage.rings.all import Integer, QQ, ZZ
+ from sage.rings.real_double import RDF
+@@ -3461,7 +3460,9 @@
+ 
+              David Avis's lrs program.
+         """
+-        if not is_package_installed('lrslib'):
++        import os
++        from sage.env import SAGE_LOCAL
++        if os.path.isfile(os.path.join(SAGE_LOCAL, 'bin', 'lrs')) != True:
+             raise NotImplementedError('You must install the optional lrslib package '
+                                        'for this function to work')
+ 
+diff -Naur src.orig/sage/graphs/digraph_generators.py src/sage/graphs/digraph_generators.py
+--- src.orig/sage/graphs/digraph_generators.py	2015-09-15 15:06:36.897149221 +1200
++++ src/sage/graphs/digraph_generators.py	2015-09-15 15:07:02.147228804 +1200
+@@ -456,9 +456,10 @@
+             [1, 0, 1, 1, 6, 35, 353, 6008]
+         """
+         import subprocess
+-        from sage.misc.package import is_package_installed
+-        if not is_package_installed("nauty"):
+-            raise TypeError("The optional nauty spkg does not seem to be installed")
++        import os
++        from sage.env import SAGE_LOCAL
++        if os.path.isfile(os.path.join(SAGE_LOCAL, 'bin', 'gentourng')) != True:
++            raise TypeError("The optional package nauty does not seem to be installed")
+ 
+         nauty_input = options
+ 
+diff -Naur src.orig/sage/graphs/generic_graph.py src/sage/graphs/generic_graph.py
+--- src.orig/sage/graphs/generic_graph.py	2015-09-15 15:06:36.897149221 +1200
++++ src/sage/graphs/generic_graph.py	2015-09-15 15:07:02.147228804 +1200
+@@ -7777,7 +7777,6 @@
+            sage: abs(flow_ff-flow_igraph) < 0.00001         # optional python_igraph
+            True
+         """
+-        from sage.misc.package import is_package_installed
+         self._scream_if_not_simple(allow_loops=True)
+         if vertex_bound and method in ["FF", "igraph"]:
+             raise ValueError("This method does not support both " +
+@@ -7795,10 +7794,12 @@
+         if method is None:
+             if vertex_bound:
+                 method = "LP"
+-            elif is_package_installed("python_igraph"):
+-                method = "igraph"
+             else:
+-                method = "FF"
++                method = "igraph"
++                try:
++                    import igraph
++                except ImportError:
++                    method = "FF"
+ 
+         if (method == "FF"):
+             return self._ford_fulkerson(x,y, value_only=value_only, integer=integer, use_edge_labels=use_edge_labels)
+@@ -19978,17 +19979,18 @@
+             Subgroup of (Permutation Group with generators [(0,7)(1,4)(2,3)(6,8)]) generated by [(0,7)(1,4)(2,3)(6,8)]]
+ 
+         """
+-        from sage.misc.package import is_package_installed
++        has_bliss=True
++        try:
++            from sage.graphs.bliss import automorphism_group
++        except ImportError:
++            has_bliss=False
++
+         if (algorithm == 'bliss'           or   # explicit choice from the user; or
+             (algorithm is None             and  # by default
+              not edge_labels               and
+-             is_package_installed('bliss'))):
++             has_bliss)):
+             if edge_labels:
+                 raise ValueError("bliss cannot be used when edge_labels is True")
+-            try:
+-                from sage.graphs.bliss import automorphism_group
+-            except ImportError:
+-                raise ImportError("You must install the 'bliss' package to run this command.")
+ 
+             A = automorphism_group(self, partition)
+ 
+@@ -20630,17 +20632,18 @@
+             True
+ 
+         """
+-        from sage.misc.package import is_package_installed
++        has_bliss=True
++        try:
++            from sage.graphs.bliss import canonical_form
++        except ImportError:
++            has_bliss=False
++
+         if (algorithm == 'bliss'           or  # explicit request; or
+             (algorithm is None             and # default choice
+-             is_package_installed('bliss') and
++             has_bliss                     and
+              not edge_labels)):
+             if edge_labels:
+                 raise ValueError("bliss cannot be used when edge_labels is True")
+-            try:
+-                from sage.graphs.bliss import canonical_form
+-            except ImportError:
+-                raise ImportError("You must install the 'bliss' package to run this command.")
+             return canonical_form(self, partition, return_graph, certify)
+ 
+         if (algorithm is not None and
+diff -Naur src.orig/sage/graphs/graph_generators.py src/sage/graphs/graph_generators.py
+--- src.orig/sage/graphs/graph_generators.py	2015-09-15 15:06:36.897149221 +1200
++++ src/sage/graphs/graph_generators.py	2015-09-15 15:07:02.147228804 +1200
+@@ -859,8 +859,9 @@
+             >A geng -d0D3 n=4 e=0-6
+         """
+         import subprocess
+-        from sage.misc.package import is_package_installed
+-        if not is_package_installed("nauty"):
++        import os
++        from sage.env import SAGE_LOCAL
++        if not os.path.isfile(os.path.join(SAGE_LOCAL, 'bin', 'geng')):
+             raise TypeError("the optional nauty package is not installed")
+         sp = subprocess.Popen("geng {0}".format(options), shell=True,
+                               stdin=subprocess.PIPE, stdout=subprocess.PIPE,
+diff -Naur src.orig/sage/graphs/hypergraph_generators.py src/sage/graphs/hypergraph_generators.py
+--- src.orig/sage/graphs/hypergraph_generators.py	2015-09-15 15:06:36.897149221 +1200
++++ src/sage/graphs/hypergraph_generators.py	2015-09-15 15:07:02.147228804 +1200
+@@ -103,9 +103,10 @@
+             ((0, 1, 2), (0, 3, 4), (0, 5, 6), (1, 3, 5), (2, 4, 5), (2, 3, 6), (1, 4, 6))
+         """
+         import subprocess
+-        from sage.misc.package import is_package_installed
+-        if not is_package_installed("nauty"):
+-            raise TypeError("The optional nauty spkg does not seem to be installed")
++        import os
++        from sage.env import SAGE_LOCAL
++        if not os.path.isfile(os.path.join(SAGE_LOCAL, 'bin', 'genbg')):
++            raise TypeError("The optional nauty package does not seem to be installed")
+ 
+         nauty_input = options
+ 
+diff -Naur src.orig/sage/graphs/lovasz_theta.py src/sage/graphs/lovasz_theta.py
+--- src.orig/sage/graphs/lovasz_theta.py	2015-09-15 15:06:36.897149221 +1200
++++ src/sage/graphs/lovasz_theta.py	2015-09-15 15:07:02.147228804 +1200
+@@ -65,9 +65,9 @@
+     from sage.misc.temporary_file import tmp_filename
+     import os, subprocess
+     from sage.env import SAGE_LOCAL
+-    from sage.misc.package import is_package_installed, PackageNotFoundError
++    from sage.misc.package import PackageNotFoundError
+ 
+-    if not is_package_installed('csdp'):
++    if not os.path.isfile(os.path.join(SAGE_LOCAL, 'bin', 'theta')):
+         raise PackageNotFoundError("csdp")
+ 
+     g = graph.relabel(inplace=False, perm=range(1,n+1)).networkx_graph()
+diff -Naur src.orig/sage/groups/generic.py src/sage/groups/generic.py
+--- src.orig/sage/groups/generic.py	2015-09-15 15:06:36.897149221 +1200
++++ src/sage/groups/generic.py	2015-09-15 15:07:02.147228804 +1200
+@@ -1394,16 +1394,10 @@
+         'A8'
+     """
+     import re
+-    from sage.misc.package import is_package_installed
+     def correct_dihedral_degree(match):
+         return "%sD%d" % (match.group(1), int(match.group(2))/2)
+ 
+-    try:
+-        description = G._gap_().StructureDescription().__str__()
+-    except RuntimeError:
+-        if not is_package_installed('database_gap'):
+-            raise RuntimeError("You must install the optional database_gap package first.")
+-        raise
++    description = G._gap_().StructureDescription().__str__()
+ 
+     description = re.sub(r"(\A|\W)D(\d+)", correct_dihedral_degree, description)
+     if not latex:
+diff -Naur src.orig/sage/groups/perm_gps/permgroup.py src/sage/groups/perm_gps/permgroup.py
+--- src.orig/sage/groups/perm_gps/permgroup.py	2015-09-15 15:06:36.907149252 +1200
++++ src/sage/groups/perm_gps/permgroup.py	2015-09-15 15:07:02.147228804 +1200
+@@ -136,7 +136,6 @@
+ from sage.groups.abelian_gps.abelian_group import AbelianGroup
+ from sage.misc.cachefunc import cached_method
+ from sage.groups.class_function import ClassFunction
+-from sage.misc.package import is_package_installed
+ from sage.sets.finite_enumerated_set import FiniteEnumeratedSet
+ from sage.categories.all import FiniteEnumeratedSets
+ from sage.groups.conjugacy_classes import ConjugacyClassGAP
+@@ -155,7 +154,10 @@
+     try:
+         gap.load_package("hap")
+     except Exception:
+-        gap.load_package("hap")
++        try:
++            gap.load_package("hap")
++        except Exception:
++            raise RuntimeError("You must install gap_sage_packages package.")
+ 
+ def hap_decorator(f):
+     """
+@@ -181,8 +183,6 @@
+     """
+     @wraps(f)
+     def wrapped(self, n, p=0):
+-        if not is_package_installed('gap_packages'):
+-            raise RuntimeError("You must install the optional gap_packages package.")
+         load_hap()
+         from sage.rings.arith import is_prime
+         if not (p == 0 or is_prime(p)):
+@@ -1653,9 +1653,7 @@
+         try:
+             return [Integer(n) for n in self._gap_().IdGroup()]
+         except RuntimeError:
+-            if not is_package_installed('database_gap'):
+-                raise RuntimeError("You must install the optional database_gap package first.")
+-            raise
++            raise RuntimeError("You must install gap_sage_packages first.")
+ 
+     def id(self):
+         """
+@@ -1706,9 +1704,7 @@
+         try:
+             return Integer(self._gap_().PrimitiveIdentification())
+         except RuntimeError:
+-            if not is_package_installed('database_gap'):
+-                raise RuntimeError("You must install the optional database_gap package first.")
+-            raise
++            raise RuntimeError("You must install gap_sage_packages first.")
+ 
+     def center(self):
+         """
+@@ -3995,8 +3991,6 @@
+ 
+         - David Joyner and Graham Ellis
+         """
+-        if not is_package_installed('gap_packages'):
+-            raise RuntimeError("You must install the optional gap_packages package.")
+         load_hap()
+         from sage.rings.arith import is_prime
+         if not (p == 0 or is_prime(p)):
+diff -Naur src.orig/sage/misc/all.py src/sage/misc/all.py
+--- src.orig/sage/misc/all.py	2015-09-15 15:06:36.917149283 +1200
++++ src/sage/misc/all.py	2015-09-15 15:07:02.147228804 +1200
+@@ -48,13 +48,6 @@
+ 
+ from fpickle import pickle_function, unpickle_function
+ 
+-from dist import install_scripts
+-
+-from package import (install_package,
+-        installed_packages, is_package_installed,
+-        standard_packages, optional_packages, experimental_packages,
+-        upgrade, package_versions)
+-
+ from pager import pager
+ 
+ from sagedoc import (search_src, search_def, search_doc, browse_sage_doc,
+diff -Naur src.orig/sage/misc/package.py src/sage/misc/package.py
+--- src.orig/sage/misc/package.py	2015-09-15 15:06:36.917149283 +1200
++++ src/sage/misc/package.py	2015-09-15 15:08:21.287478133 +1200
+@@ -27,253 +27,13 @@
+ 
+ import os
+ 
+-def install_package(package=None, force=None):
+-    """
+-    This function is obsolete. Run ``sage -i PKGNAME`` from a shell
+-    to install a package. Use the function :func:`installed_packages`
+-    to list all installed packages.
+-
+-    TESTS::
+-
+-        sage: install_package()
+-        doctest:...: DeprecationWarning: use installed_packages() to list all installed packages
+-        See http://trac.sagemath.org/16759 for details.
+-        [...'atlas...'python...]
+-        sage: install_package("autotools")
+-        Traceback (most recent call last):
+-        ...
+-        NotImplementedError: installing Sage packages using 'install_package()' is obsolete.
+-        Run 'sage -i autotools' from a shell prompt instead
+-    """
+-    if package is not None:
+-        # deprecation(16759, ...)
+-        raise NotImplementedError("installing Sage packages using 'install_package()' is obsolete.\nRun 'sage -i {}' from a shell prompt instead".format(package))
+-
+-    from sage.misc.superseded import deprecation
+-    deprecation(16759, "use installed_packages() to list all installed packages")
+-    return installed_packages()
+-
+-
+-def installed_packages():
+-    """
+-    Return a list of all installed packages, with version numbers.
+-
+-    EXAMPLES::
+-
+-        sage: installed_packages()
+-        [...'atlas...'python...]
+-
+-    .. seealso::
+-
+-        :func:`standard_packages`, :func:`optional_packages`, :func:`experimental_packages`
+-    """
+-    from sage.env import SAGE_SPKG_INST
+-    return sorted(os.listdir(SAGE_SPKG_INST))
+-
+ 
+ def is_package_installed(package):
+     """
+-    Return true if ``package`` is installed.
+-
+-    EXAMPLES::
++    Return False in sage-on-gentoo.
+ 
+-        sage: is_package_installed('pari')
+-        True
+-
+-    Giving just the beginning of the package name is not good enough::
+-
+-        sage: is_package_installed('matplotli')
+-        False
+-
+-    Otherwise, installing "pillow" will cause this function to think
+-    that "pil" is installed, for example.
+-    """
+-    return any(p.split('-')[0] == package for p in installed_packages())
+-
+-def package_versions(package_type, local=False):
+-    r"""
+-    Return version information for each Sage package.
+-
+-    INPUT:
+-
+-    - ``package_type`` (string) -- one of `"standard"`, `"optional"` or
+-      `"experimental"`
+-
+-    - ``local`` (boolean) -- only query local data (no internet needed)
+-
+-    For packages of the given type, return a dictionary whose entries
+-    are of the form ``'package': (installed, latest)``, where
+-    ``installed`` is the installed version (or ``None`` if not
+-    installed) and ``latest`` is the latest available version. If the
+-    package has a directory in ``SAGE_ROOT/build/pkgs/``, then
+-    ``latest`` is determined by the file ``package-version.txt`` in
+-    that directory.  If ``local`` is False, then Sage's servers are
+-    queried for package information.
+-
+-    EXAMPLES::
+-
+-        sage: std = package_versions('standard', local=True)
+-        sage: 'gap' in std
+-        True
+-        sage: std['zn_poly']
+-        ('0.9.p11', '0.9.p11')
+     """
+-    if package_type not in ['standard','optional','experimental']:
+-        raise ValueError("'package_type' must be one of 'standard','optional','experimental'.")
+-
+-    cmd = 'sage-list-packages {} --dump'.format(package_type)
+-    if local:
+-        cmd += " --local"
+-    X = os.popen(cmd).read().split('\n')[:-1]
+-
+-    versions = {}
+-    for line in X:
+-        line = line.split(' ')
+-        installed = line[2]
+-        if installed == 'not_installed': installed = None
+-        versions[line[0]] = (installed, line[1])
+-    return versions
+-
+-def _package_lists_from_sage_output(package_type, local=False):
+-    r"""
+-    Helper function for :func:`standard_packages`, :func:`optional_packages` and
+-    :func:`experimental_packages`.
+-
+-    INPUT:
+-
+-    - ``package_type`` (string) -- one of `"standard"`, `"optional"` or
+-      `"experimental"`
+-
+-    - ``local`` (boolean) -- only query local data (no internet needed)
+-
+-    OUTPUT:
+-
+-    The function returns a pair of lists ``(installed,not_installed)``
+-    with the corresponding packages' name, sorted alphabetically. If
+-    ``local`` is ``True``, then the list of all packages is downloaded
+-    from the server; otherwise, the list is extracted from the
+-    packages in ``SAGE_ROOT/build/pkgs/`
+-
+-    EXAMPLE::
+-
+-        sage: from sage.misc.package import standard_packages
+-        sage: installed, not_installed = standard_packages()  # optional internet
+-
+-    Local check that all standard packages are installed::
+-
+-        sage: from sage.misc.package import _package_lists_from_sage_output
+-        sage: installed, not_installed = _package_lists_from_sage_output('standard',local=True)
+-        sage: bool(not_installed)
+-        False
+-        sage: 'glpk' in installed
+-        True
+-    """
+-    installed     = []
+-    not_installed = []
+-    versions = package_versions(package_type, local)
+-    for p in versions:
+-        if versions[p][0] is None:
+-            not_installed.append(p)
+-        else:
+-            installed.append(p)
+-
+-    return sorted(installed), sorted(not_installed)
+-
+-def standard_packages():
+-    """
+-    Return two lists. The first contains the installed and the second
+-    contains the not-installed standard packages that are available
+-    from the Sage repository. You must have an internet connection.
+-
+-    OUTPUT:
+-
+-    -  installed standard packages (as a list)
+-
+-    -  NOT installed standard packages (as a list)
+-
+-    Run ``sage -i package_name`` from a shell to install a given
+-    package or ``sage -f package_name`` to re-install it.
+-
+-    EXAMPLE::
+-
+-        sage: from sage.misc.package import standard_packages
+-        sage: installed, not_installed = standard_packages() # optional internet
+-        sage: installed[0], installed[-1]                    # optional internet
+-        ('atlas', 'zn_poly')
+-        sage: 'mercurial' in not_installed                   # optional internet
+-        True
+-
+-    """
+-    return _package_lists_from_sage_output('standard')
+-
+-def optional_packages():
+-    """
+-    Return two lists. The first contains the installed and the second
+-    contains the not-installed optional packages that are available
+-    from the Sage repository. You must have an internet connection.
+-
+-    OUTPUT:
+-
+-    -  installed optional packages (as a list)
+-
+-    -  NOT installed optional packages (as a list)
+-
+-    Run ``sage -i package_name`` from a shell to install a given
+-    package or ``sage -f package_name`` to re-install it.
+-
+-    EXAMPLE::
+-
+-        sage: from sage.misc.package import optional_packages
+-        sage: installed, not_installed = optional_packages() # optional internet
+-        sage: min(installed+not_installed)                   # optional internet
+-        '4ti2'
+-        sage: max(installed+not_installed)                   # optional internet
+-        'zeromq'
+-    """
+-    return _package_lists_from_sage_output('optional')
+-
+-def experimental_packages():
+-    """
+-    Return two lists. The first contains the installed and the second
+-    contains the not-installed experimental packages that are available
+-    from the Sage repository. You must have an internet connection.
+-
+-    OUTPUT:
+-
+-    -  installed experimental packages (as a list)
+-
+-    -  NOT installed experimental packages (as a list)
+-
+-    Run ``sage -i package_name`` from a shell to install a given
+-    package or ``sage -f package_name`` to re-install it.
+-
+-    EXAMPLE::
+-
+-        sage: from sage.misc.package import experimental_packages
+-        sage: installed, not_installed = experimental_packages() # optional internet
+-        sage: min(installed+not_installed)                   # optional internet
+-        'PyQt4'
+-        sage: max(installed+not_installed)                   # optional internet
+-        'yassl'
+-    """
+-    return _package_lists_from_sage_output('experimental')
+-
+-
+-def upgrade():
+-    """
+-    Obsolete function, run 'sage --upgrade' from a shell prompt instead.
+-
+-    TESTS::
+-
+-        sage: upgrade()
+-        Traceback (most recent call last):
+-        ...
+-        NotImplementedError: upgrading Sage using 'upgrade()' is obsolete.
+-        Run 'sage --upgrade' from a shell prompt instead
+-    """
+-    # deprecation(16759, ..)
+-    raise NotImplementedError("upgrading Sage using 'upgrade()' is obsolete.\nRun 'sage --upgrade' from a shell prompt instead")
+-
++    return False
+ 
+ class PackageNotFoundError(RuntimeError):
+     """
+@@ -298,7 +58,7 @@
+         sage: raise PackageNotFoundError("my_package")
+         Traceback (most recent call last):
+         ...
+-        PackageNotFoundError: the package 'my_package' was not found. You can install it by running 'sage -i my_package' in a shell
++        PackageNotFoundError: the package 'my_package' was not found. It may or may not be available in portage
+     """
+     def __str__(self):
+         """
+@@ -308,8 +68,8 @@
+ 
+             sage: from sage.misc.package import PackageNotFoundError
+             sage: str(PackageNotFoundError("my_package"))
+-            "the package 'my_package' was not found. You can install it by running 'sage -i my_package' in a shell"
++            "the package 'my_package' was not found. It may or may not be available in portage"
+         """
+         return ("the package {0!r} was not found. "
+-            "You can install it by running 'sage -i {0}' in a shell"
++            "It may or may not be available in portage"
+             .format(self.args[0]))
+diff -Naur src.orig/sage/tests/cmdline.py src/sage/tests/cmdline.py
+--- src.orig/sage/tests/cmdline.py	2015-09-15 15:06:36.957149409 +1200
++++ src/sage/tests/cmdline.py	2015-09-15 15:07:02.147228804 +1200
+@@ -13,23 +13,18 @@
+ --advanced
+ -c
+ --cython
+---dev
+ --ecl
+---experimental
+---fixdoctests
+ --gap
+ --gdb
+ --gp
+ -h
+ --help
+---info
+ --ipython
+ --kash
+ --lisp
+ --maxima
+ --min
+ --mwrank
+---optional
+ --preparse
+ --python
+ -q
+@@ -40,7 +35,6 @@
+ --sh
+ --singular
+ --sqlite3
+---standard
+ --startuptime
+ -t
+ -v
+@@ -198,36 +192,6 @@
+         sage: ret
+         0
+ 
+-    Test ``sage --info [packages]`` and the equivalent
+-    ``sage -p --info --info [packages]`` (the doubling of ``--info``
+-    is intentional, that option should be idempotent)::
+-
+-        sage: out, err, ret = test_executable(["sage", "--info", "sqlite"])
+-        sage: print out
+-        Found local metadata for sqlite-...
+-        = SQLite =
+-        ...
+-        SQLite is a software library that implements a self-contained,
+-        serverless, zero-configuration, transactional SQL database engine.
+-        ...
+-        sage: err
+-        ''
+-        sage: ret
+-        0
+-
+-        sage: out, err, ret = test_executable(["sage", "-p", "--info", "--info", "sqlite"])
+-        sage: print out
+-        Found local metadata for sqlite-...
+-        = SQLite =
+-        ...
+-        SQLite is a software library that implements a self-contained,
+-        serverless, zero-configuration, transactional SQL database engine.
+-        ...
+-        sage: err
+-        ''
+-        sage: ret
+-        0
+-
+     Test ``sage-run`` on a Python file, both with an absolute and with a relative path::
+ 
+         sage: dir = tmp_dir(); name = 'python_test_file.py'
+@@ -404,50 +368,6 @@
+         ...
+         RuntimeError: refusing to run doctests...
+ 
+-    Now run a test for the fixdoctests script and, in particular, check that the
+-    issues raised in :trac:`10589` are fixed. We have to go to slightly silly
+-    lengths to doctest the output.::
+-
+-        sage: test='r\"\"\"Add a doc-test for the fixdoctest command line option and, in particular, check that\n:trac:`10589` is fixed.\n\nEXAMPLES::\n\n    sage: 1+1              # incorrect output\n    3\n    sage: m=matrix(ZZ,3)   # output when none is expected\n    [0 0 0]\n    [0 0 0]\n    [1 0 0]\n    sage: (2/3)*m          # no output when it is expected\n    sage: mu=PartitionTuple([[4,4],[3,3,2,1],[1,1]])   # output when none is expected\n    [4, 4, 3, 3, 2, 1, 1]\n    sage: mu.pp()          # uneven indentation\n    ****\n    ****\n    sage: PartitionTuples.global_options(convention="French")\n    sage: mu.pp()         # fix doctest with uneven indentation\n    sage: PartitionTuples.global_options.reset()\n\"\"\"\n'
+-        sage: test_file = os.path.join(tmp_dir(), 'test_file.py')
+-        sage: F = open(test_file, 'w')
+-        sage: F.write(test)
+-        sage: F.close()
+-        sage: (out, err, ret) = test_executable(["sage", "--fixdoctests", test_file])
+-        sage: with open(test_file, 'r') as f:
+-        ....:     fixed_test = f.read()
+-        sage: import difflib
+-        sage: list(difflib.unified_diff(test.splitlines(), fixed_test.splitlines()))[2:-1]
+-        ['@@ -4,18 +4,23 @@\n',
+-         ' EXAMPLES::',
+-         ' ',
+-         '     sage: 1+1              # incorrect output',
+-         '-    3',
+-         '+    2',
+-         '     sage: m=matrix(ZZ,3)   # output when none is expected',
+-         '+    sage: (2/3)*m          # no output when it is expected',
+-         '     [0 0 0]',
+-         '     [0 0 0]',
+-         '-    [1 0 0]',
+-         '-    sage: (2/3)*m          # no output when it is expected',
+-         '+    [0 0 0]',
+-         '     sage: mu=PartitionTuple([[4,4],[3,3,2,1],[1,1]])   # output when none is expected',
+-         '-    [4, 4, 3, 3, 2, 1, 1]',
+-         '     sage: mu.pp()          # uneven indentation',
+-         '-    ****',
+-         '-    ****',
+-         '+       ****   ***   *',
+-         '+       ****   ***   *',
+-         '+              **',
+-         '+              *',
+-         '     sage: PartitionTuples.global_options(convention="French")',
+-         '     sage: mu.pp()         # fix doctest with uneven indentation',
+-         '+    *',
+-         '+    **',
+-         '+    ****   ***   *',
+-         '+    ****   ***   *',
+-         '     sage: PartitionTuples.global_options.reset()']
+-
+     Test external programs being called by Sage::
+ 
+         sage: (out, err, ret) = test_executable(["sage", "--sh"], "echo Hello World\nexit 42\n")
+@@ -595,32 +515,6 @@
+         sage: ret
+         0
+ 
+-    Check some things requiring an internet connection::
+-
+-        sage: (out, err, ret) = test_executable(["sage", "--standard"])  # optional - internet
+-        sage: out.find("atlas") >= 0  # optional - internet
+-        True
+-        sage: err  # optional - internet
+-        ''
+-        sage: ret  # optional - internet
+-        0
+-
+-        sage: (out, err, ret) = test_executable(["sage", "--optional"])  # optional - internet
+-        sage: out.find("database_cremona_ellcurve") >= 0  # optional - internet
+-        True
+-        sage: err  # optional - internet
+-        ''
+-        sage: ret  # optional - internet
+-        0
+-
+-        sage: (out, err, ret) = test_executable(["sage", "--experimental"])  # optional - internet
+-        sage: out.find("macaulay2") >= 0  # optional - internet
+-        True
+-        sage: err  # optional - internet
+-        ''
+-        sage: ret  # optional - internet
+-        0
+-
+     Check an illegal command line option.  This outputs an error to stdout,
+     but we allow stderr in case this changes in the future::
+ 
+diff -Naur src.orig/sage_setup/optional_extension.py src/sage_setup/optional_extension.py
+--- src.orig/sage_setup/optional_extension.py	2015-09-15 15:06:36.957149409 +1200
++++ src/sage_setup/optional_extension.py	2015-09-15 15:07:02.147228804 +1200
+@@ -19,8 +19,7 @@
+ 
+ 
+ from distutils.extension import Extension
+-from sage.misc.package import is_package_installed
+-
++import os
+ 
+ class CythonizeExtension(Extension):
+     """
+@@ -74,7 +73,7 @@
+         condition = kwds.pop("condition")
+     except KeyError:
+         pkg = kwds.pop("package")
+-        condition = is_package_installed(pkg)
++        condition = os.getenv('WANT_%s'%pkg,False)
+ 
+     if condition:
+         return Extension(*args, **kwds)

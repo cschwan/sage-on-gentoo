@@ -2,6 +2,10 @@
 # Copyright 1999-2015 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  17 Sep 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  +files/sage-6.9-neutering.patch, files/sage-6.9-exec.patch, sage-9999.ebuild:
+  sci-mathematics/sage: 6.9.beta7
+
   16 Sep 2015; François Bissey <francois.bissey@canterbury.ac.nz>
   files/sage-6.3-env.patch, files/sage-6.7-env.patch, files/sage-6.8-env.patch:
   sci-mathematics/sage: fix issue #372 - env.py has the wrong value for

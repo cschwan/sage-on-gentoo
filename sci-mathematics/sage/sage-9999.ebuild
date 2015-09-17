@@ -23,7 +23,6 @@ fi
 DESCRIPTION="Math software for algebra, geometry, number theory, cryptography and numerical computation"
 HOMEPAGE="http://www.sagemath.org"
 SRC_URI="${SRC_URI}
-	mirror://sagemath/patches/${PN}-6.9-neutering.patch.xz
 	mirror://sagemath/patches/sage-icon.tar.bz2
 	http://www.mathematik.uni-kl.de/ftp/pub/Math/Singular/SOURCES/3-1-6/Singular-3-1-6-share.tar.gz"
 
@@ -50,7 +49,7 @@ CDEPEND="dev-libs/gmp:0=
 	>=dev-lisp/ecls-15.3.7
 	dev-python/six[${PYTHON_USEDEP}]
 	>=dev-python/numpy-1.8.0[${PYTHON_USEDEP}]
-	>=dev-python/cython-0.23[${PYTHON_USEDEP}]
+	>=dev-python/cython-0.23.2-r1[${PYTHON_USEDEP}]
 	dev-python/pkgconfig
 	>=dev-python/docutils-0.12[${PYTHON_USEDEP}]
 	~dev-python/sphinx-1.2.2[${PYTHON_USEDEP}]
@@ -67,7 +66,7 @@ CDEPEND="dev-libs/gmp:0=
 	~sci-libs/m4ri-20140914
 	~sci-libs/m4rie-20150908
 	>=sci-libs/mpfi-1.5.1
-	~sci-libs/pynac-0.3.9.2[${PYTHON_USEDEP}]
+	~sci-libs/pynac-0.3.9.5[${PYTHON_USEDEP}]
 	>=sci-libs/symmetrica-2.0-r3
 	>=sci-libs/zn_poly-0.9
 	sci-mathematics/glpk:0=[gmp]
@@ -98,7 +97,7 @@ DEPEND="${CDEPEND}"
 RDEPEND="${CDEPEND}
 	>=dev-lang/R-3.2.0
 	>=dev-python/cvxopt-1.1.7[glpk,${PYTHON_USEDEP}]
-	>=dev-python/ipython-3.2.1[notebook,${PYTHON_USEDEP}]
+	>=dev-python/ipython-4.0.0[notebook,${PYTHON_USEDEP}]
 	>=dev-python/jinja-2.5.5[${PYTHON_USEDEP}]
 	>=dev-python/matplotlib-1.4.0[${PYTHON_USEDEP}]
 	>=dev-python/mpmath-0.18[${PYTHON_USEDEP}]
@@ -204,8 +203,7 @@ python_prepare() {
 	epatch "${FILESDIR}"/${PN}-6.8-blas-r1.patch
 
 	# Remove sage's package management system, git capabilities and associated tests
-	epatch "${WORKDIR}"/${PN}-6.9-neutering.patch
-	rm sage/misc/package.py
+	epatch "${FILESDIR}"/${PN}-6.9-neutering.patch
 	rm sage/misc/dist.py
 	rm -rf sage/dev
 

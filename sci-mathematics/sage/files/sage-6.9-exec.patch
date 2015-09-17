@@ -1,6 +1,6 @@
 diff -Naur src.orig/bin/sage src/bin/sage
---- src.orig/bin/sage	2015-09-11 09:01:54.247986598 +1200
-+++ src/bin/sage	2015-09-11 09:12:33.209399398 +1200
+--- src.orig/bin/sage	2015-09-14 13:47:56.988568926 +1200
++++ src/bin/sage	2015-09-14 13:47:32.928492467 +1200
 @@ -1,7 +1,7 @@
  #!/usr/bin/env bash
  
@@ -24,7 +24,7 @@ diff -Naur src.orig/bin/sage src/bin/sage
      echo "  -maxima [...]       -- run Sage's Maxima with given arguments"
      echo "  -mwrank [...]       -- run Sage's mwrank with given arguments"
      echo "  --notebook=[...]    -- start the Sage notebook (valid options are"
-     echo "                         'default', 'sagenb', and 'ipython')"
+     echo "                         'default', 'sagenb', and 'jupyter')"
      echo "  -n, --notebook      -- shortcut for --notebook=default"
 -    echo "  -optional           -- list all optional packages that can be installed"
      echo "  -python [...]       -- run the Python interpreter"
@@ -50,7 +50,7 @@ diff -Naur src.orig/bin/sage src/bin/sage
      echo
      ####  1.......................26..................................................78
 @@ -77,8 +68,6 @@
-     echo "                         'default', 'sagenb', and 'ipython'). See the output"
+     echo "                         'default', 'sagenb', and 'jupyter'). See the output"
      echo "                         of sage --notebook --help for more details and"
      echo "                         examples of how to pass optional arguments"
 -    echo "  -bn, -build-and-notebook [...] -- build the Sage library then start"
@@ -66,7 +66,7 @@ diff -Naur src.orig/bin/sage src/bin/sage
      echo "  -sh [...]           -- run \$SHELL ($SHELL) with Sage environment variables"
      echo "  -singular [...]     -- run Sage's singular with given arguments"
      echo "  -sqlite3 [...]      -- run Sage's sqlite3 with given arguments"
-@@ -116,47 +104,7 @@
+@@ -116,49 +104,7 @@
      echo
      ####  1.......................26..................................................78
      ####  |.....................--.|...................................................|
@@ -78,13 +78,15 @@ diff -Naur src.orig/bin/sage src/bin/sage
 -    echo "                         packages"
 -    echo "  -i [opts] [packages]-- install the given Sage packages.  Options:"
 -    echo "                           -c -- run the packages' test suites"
+-    echo "                           -d -- only download, do not install packages"
 -    echo "                           -f -- force build: install the packages even"
 -    echo "                                 if they are already installed"
 -    echo "                           -s -- do not delete the temporary build directories"
 -    echo "                                 after a successful build"
--    echo "                           -d -- only download, do not install packages"
--    echo "  -p [opts] [packages]-- like -i but without dependency checking and with"
--    echo "                         support for old-style spkgs"
+-    echo "  -p [opts] [packages]-- install the given Sage packages, without dependency"
+-    echo "                         checking and with support for old-style spkgs."
+-    echo "                         Options are -c, -d and -s with the same meaning as"
+-    echo "                         for the -i command"
 -    echo "  -info [packages]    -- print the SPKG.txt of the given packages"
 -    echo "  --location          -- if needed, fix paths to make Sage relocatable"
 -    echo "  -optional           -- list all optional packages that can be installed"
@@ -115,7 +117,7 @@ diff -Naur src.orig/bin/sage src/bin/sage
      echo "  -startuptime [module] -- display how long each component of Sage takes to"
      echo "                         start up; optionally specify a module to get more"
      echo "                         details about that particular module"
-@@ -165,9 +113,7 @@
+@@ -167,9 +113,7 @@
      echo "                         selected options:"
      echo "                           --long - include lines with the phrase 'long time'"
      echo "                           --verbose - print debugging output during the test"
@@ -125,7 +127,7 @@ diff -Naur src.orig/bin/sage src/bin/sage
      echo "                           --initial - only show the first failure per block"
      echo "                           --debug - drop into PDB after an unexpected error"
      echo "                           --failed - only test files that failed last test"
-@@ -183,10 +129,6 @@
+@@ -185,10 +129,6 @@
      ####  1.......................26..................................................78
      ####  |.....................--.|...................................................|
      echo "Documentation:"
@@ -136,7 +138,7 @@ diff -Naur src.orig/bin/sage src/bin/sage
      echo "  -search_src <string> -- search through all the Sage library code for string"
      echo "  -search_doc <string> -- search through the Sage documentation for string"
      echo "  -grep <string>      -- same as -search_src"
-@@ -206,17 +148,6 @@
+@@ -208,17 +148,6 @@
      echo
      ####  1.......................26..................................................78
      ####  |.....................--.|...................................................|
@@ -154,7 +156,7 @@ diff -Naur src.orig/bin/sage src/bin/sage
      echo "Valgrind memory debugging:"
      echo "  -cachegrind         -- run Sage using Valgrind's cachegrind tool.  The log"
      echo "                         files are named sage-cachegrind.PID can be found in"
-@@ -257,82 +188,15 @@
+@@ -259,83 +188,15 @@
      exit $status
  fi
  
@@ -197,7 +199,7 @@ diff -Naur src.orig/bin/sage src/bin/sage
 -    $MAKE all-toolchain
 -    echo
 -
--    INSTALL_OPTIONS="-f"  # Options to sage-spkg
+-    INSTALL_OPTIONS=""  # Options to sage-spkg
 -    for PKG in "$@"
 -    do
 -        case "$PKG" in
@@ -207,16 +209,17 @@ diff -Naur src.orig/bin/sage src/bin/sage
 -            -f) FORCE_INSTALL=yes;;
 -            -*) INSTALL_OPTIONS="$INSTALL_OPTIONS $PKG";;
 -            *)
--                if [ x$FORCE_INSTALL = xyes ]; then
--                    rm -f "local/var/lib/sage/installed/$PKG"-*
--                fi
 -                # First check that $PKG is actually a Makefile target
 -                if ! grep "^$PKG: " build/make/Makefile >/dev/null; then
 -                    echo >&2 "Error: package '$PKG' not found"
 -                    echo >&2 "Assuming it is an old-style package... (this is deprecated: use -p instead of -i to install old-style packages)"
+-                    echo >&2
 -                    sleep 5
 -                    ./sage -p $INSTALL_OPTIONS "$PKG"
 -                else
+-                    if [ x$FORCE_INSTALL = xyes ]; then
+-                        $MAKE "$PKG-clean"
+-                    fi
 -                    $MAKE SAGE_SPKG="sage-spkg $INSTALL_OPTIONS" "$PKG"
 -                fi;;
 -        esac
@@ -240,7 +243,7 @@ diff -Naur src.orig/bin/sage src/bin/sage
      exit 1
  fi
  
-@@ -348,49 +212,14 @@
+@@ -351,49 +212,14 @@
  
  # Prepare for running Sage, either interactively or non-interactively.
  sage_setup() {
@@ -291,7 +294,7 @@ diff -Naur src.orig/bin/sage src/bin/sage
  # Start an interactive Sage session, this function never returns.
  interactive_sage() {
      sage_setup
-@@ -490,11 +319,6 @@
+@@ -493,11 +319,6 @@
      exec kash "$@"
  fi
  
@@ -303,7 +306,7 @@ diff -Naur src.orig/bin/sage src/bin/sage
  if [ "$1" = '-maxima' -o "$1" = '--maxima' ]; then
      shift
      exec maxima "$@"
-@@ -510,21 +334,6 @@
+@@ -513,21 +334,6 @@
      exec M2 "$@"
  fi
  
@@ -325,7 +328,7 @@ diff -Naur src.orig/bin/sage src/bin/sage
  if [ "$1" = '-python' -o "$1" = '--python' ]; then
      shift
      exec python "$@"
-@@ -545,11 +354,6 @@
+@@ -548,11 +354,6 @@
      exec git "$@"
  fi
  
@@ -337,7 +340,7 @@ diff -Naur src.orig/bin/sage src/bin/sage
  if [ "$1" = '-sh' -o "$1" = '--sh' ]; then
      # AUTHORS:
      # - Carl Witty and William Stein: initial version
-@@ -669,20 +473,6 @@
+@@ -672,20 +473,6 @@
  fi
  
  #####################################################################
@@ -358,7 +361,7 @@ diff -Naur src.orig/bin/sage src/bin/sage
  # File conversion
  #####################################################################
  
-@@ -700,11 +490,6 @@
+@@ -703,11 +490,6 @@
  # Run Sage's versions of the standard Algebra/Geometry etc. software
  #####################################################################
  
@@ -370,7 +373,7 @@ diff -Naur src.orig/bin/sage src/bin/sage
  if [[ "$1" =~ ^--notebook=.* || "$1" =~ ^-n=.* || "$1" =~ ^-notebook=.* ]] ; then
      sage-cleaner &>/dev/null &
      exec sage-notebook "$@"
-@@ -715,13 +500,6 @@
+@@ -718,13 +500,6 @@
      exec sage-notebook "$@"
  fi
  
@@ -384,7 +387,7 @@ diff -Naur src.orig/bin/sage src/bin/sage
  if [ "$1" = "-inotebook" -o "$1" = '--inotebook' ]; then
      shift
      sage-cleaner &>/dev/null &
-@@ -740,31 +518,12 @@
+@@ -743,31 +518,12 @@
     exit 0
  fi
  
@@ -417,7 +420,7 @@ diff -Naur src.orig/bin/sage src/bin/sage
      if [ ! -f  "$DOT_SAGE"/init.sage ]; then
          echo >&2 "init.sage does not exist ... creating"
          touch "$DOT_SAGE"/init.sage
-@@ -772,7 +531,7 @@
+@@ -775,7 +531,7 @@
      SAGE_BANNER="no"
      sage_setup
      export PYTHONIOENCODING="utf-8"  # Fix encoding for doctests
@@ -426,7 +429,7 @@ diff -Naur src.orig/bin/sage src/bin/sage
          shift
          exec sage-runtests -p "$@"
      else
-@@ -781,17 +540,6 @@
+@@ -784,17 +540,6 @@
      fi
  fi
  
@@ -444,7 +447,7 @@ diff -Naur src.orig/bin/sage src/bin/sage
  if [ "$1" = '-testall' -o "$1" = "--testall" ]; then
      shift
      SAGE_BANNER="no"
-@@ -808,125 +556,6 @@
+@@ -811,125 +556,6 @@
      exec sage-eval "$@"
  fi
  
@@ -570,7 +573,7 @@ diff -Naur src.orig/bin/sage src/bin/sage
  if [ "$1" = '-gdb' -o "$1" = "--gdb" ]; then
      shift
      sage_setup
-@@ -990,16 +619,7 @@
+@@ -993,16 +619,7 @@
      interactive_sage "$@"
  fi
  
