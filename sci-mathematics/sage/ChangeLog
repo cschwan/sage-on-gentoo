@@ -4,6 +4,11 @@
 
   22 Sep 2015; François Bissey <francois.bissey@canterbury.ac.nz>
   sage-6.7-r2.ebuild, sage-6.8-r2.ebuild:
+  sci-mathematics/sage: properly fix ipython dependency to ipython in 6.7 and
+  6.8 for issue #373
+
+  22 Sep 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-6.7-r2.ebuild, sage-6.8-r2.ebuild:
   sci-mathematics/sage: add constraint on ipython version for 6.7 and 6.8 to fix
   #373
 
