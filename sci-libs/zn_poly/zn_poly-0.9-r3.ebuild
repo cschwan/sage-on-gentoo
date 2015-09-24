@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
-EAPI="4"
+EAPI=5
 
 inherit eutils flag-o-matic multilib toolchain-funcs
 
@@ -17,7 +17,7 @@ IUSE=""
 
 RESTRICT="mirror"
 
-CDEPEND=">=dev-libs/gmp-4.2.4"
+CDEPEND="dev-libs/gmp:="
 DEPEND="${CDEPEND}
 	=dev-lang/python-2*"
 RDEPEND="${CDEPEND}"
