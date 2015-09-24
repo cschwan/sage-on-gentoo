@@ -2,6 +2,10 @@
 # Copyright 1999-2015 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  24 Sep 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  symmetrica-2.0-r4.ebuild:
+  sci-libs/symmetrica: move to EAPI 5
+
   07 Sep 2015; François Bissey <francois.bissey@canterbury.ac.nz>
   symmetrica-2.0-r4.ebuild:
   Massive ebuild format clean up. One removal. Further QA to follow.
