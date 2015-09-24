@@ -3,6 +3,11 @@
 # $Header: $
 
   24 Sep 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  -files/12.0.45/jmol-manifest.patch, -files/12.0.45/jmol-nointl.patch,
+  -files/jmol-11.6.16-manifest.patch, -files/jmol-11.6.16-nointl.patch:
+  sci-chemistry/jmol: clean up of old patches
+
+  24 Sep 2015; François Bissey <francois.bissey@canterbury.ac.nz>
   -jmol-12.0.45.ebuild, -jmol-12.3.14.ebuild, jmol-12.3.27.ebuild:
   sci-chemistry/jmol: clean up, move to EAPI 5
 
