@@ -122,4 +122,3 @@ src_install() {
 		doins *
 	fi
 }
-    
