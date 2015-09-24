@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
-EAPI="3"
+EAPI=5
 
 inherit eutils java-pkg-2 java-ant-2
 
@@ -44,7 +44,6 @@ pkg_setup() {
 
 src_prepare() {
 	edos2unix build.xml
-#	epatch "${FILESDIR}"/${MY_PN}-${PV}-nointl.patch
 	epatch "${FILESDIR}"/${MY_PN}-12.3.27-nointl.patch
 
 	# Jmol.js-12.3.27 patch
