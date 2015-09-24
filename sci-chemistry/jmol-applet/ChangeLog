@@ -3,6 +3,10 @@
 # $Header: $
 
   24 Sep 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  -files/jmol-add-help.patch:
+  sci-chemistry/jmol-applet: remove old patch
+
+  24 Sep 2015; François Bissey <francois.bissey@canterbury.ac.nz>
   -jmol-applet-12.3.14-r1.ebuild, -jmol-applet-12.3.14.ebuild,
   jmol-applet-12.3.27.ebuild:
   sci-chemistry/jmol-applet: clean up, move to EAPI 5
