@@ -2,6 +2,8 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
+EAPI=5
+
 inherit latex-package
 
 DESCRIPTION="tkz-graph is a set of convenient macros for drawing graphs"

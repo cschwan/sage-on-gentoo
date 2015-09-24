@@ -2,6 +2,8 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
+EAPI=5
+
 inherit latex-package
 
 DESCRIPTION="A collection of useful macros to draw some classic graphs of the graph theory or others graphs"

@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
-EAPI="4"
+EAPI=5
 
 inherit eutils toolchain-funcs
 
@@ -15,11 +15,11 @@ SLOT="0"
 KEYWORDS="~amd64 ~ppc ~x86 ~ppc-macos ~x86-macos ~x64-macos"
 IUSE="doc examples jpeg mpi opengl png threads"
 
-CDEPEND="jpeg? ( virtual/jpeg )
+CDEPEND="jpeg? ( virtual/jpeg:= )
 	mpi? ( virtual/mpi )
 	opengl? ( virtual/glu
 		virtual/opengl )
-	png? ( media-libs/libpng )"
+	png? ( media-libs/libpng:= )"
 DEPEND="${CDEPEND}
 	virtual/pkgconfig"
 RDEPEND="${CDEPEND}"

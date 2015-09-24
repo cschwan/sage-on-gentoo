@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
-EAPI=2
+EAPI=5
 WEBAPP_OPTIONAL="yes"
 
 inherit eutils webapp java-pkg-2 java-ant-2
@@ -77,8 +77,8 @@ src_install() {
 	insinto "${JAVA_PKG_SHAREPATH}"
 
 	java-pkg_dojar build/Jmol.jar build/JmolData.jar
-	dohtml -r  build/doc/* || die "Failed to install html docs."
-	dodoc *.txt doc/*license* || die "Failed to install licenses."
+	dohtml -r  build/doc/
+	dodoc *.txt doc/*license*
 
 	java-pkg_dolauncher ${PN} --main org.openscience.jmol.app.Jmol \
 		--java_args "-Xmx512m"

@@ -2,6 +2,10 @@
 # Copyright 1999-2015 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  24 Sep 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  -jmol-12.0.45.ebuild, -jmol-12.3.14.ebuild, jmol-12.3.27.ebuild:
+  sci-chemistry/jmol: clean up, move to EAPI 5
+
   07 Sep 2015; François Bissey <francois.bissey@canterbury.ac.nz>
   jmol-12.0.45.ebuild, jmol-12.3.14.ebuild, jmol-12.3.27.ebuild:
   Massive ebuild format clean up. One removal. Further QA to follow.
