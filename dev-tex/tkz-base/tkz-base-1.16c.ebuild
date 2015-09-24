@@ -2,6 +2,8 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
+EAPI=5
+
 inherit latex-package
 
 DESCRIPTION="tkz-base is a base package to give easy access to programation with tikz"
