@@ -1,5 +1,6 @@
---- src/Makefile.orig	2010-08-04 23:47:25.594042595 +1200
-+++ src/Makefile	2010-08-04 23:49:28.824041638 +1200
+diff -Naur L-1.23.orig/src/Makefile L-1.23/src/Makefile
+--- L-1.23.orig/src/Makefile	2015-10-05 14:14:26.081966092 +1300
++++ L-1.23/src/Makefile	2015-10-05 14:15:39.962209700 +1300
 @@ -58,7 +58,7 @@
     #MACHINE_SPECIFIC_FLAGS = -mpowerpc -mpowerpc64 -m64
  endif
@@ -97,14 +98,15 @@
  	rm -f *.o lcalc libLfunction.so example_programs/example
  
  install:
-+	mkdir -p $(INSTALL_DIR)/bin
-+	mkdir -p $(INSTALL_DIR)/$(LIB_DIR)
-+	mkdir -p $(INSTALL_DIR)/include/Lfunction
- 	cp -f lcalc $(INSTALL_DIR)/bin/.
+-	cp -f lcalc $(INSTALL_DIR)/bin/.
 -	cp -f libLfunction.so $(INSTALL_DIR)/lib/.
 -	cp -rf ../include $(INSTALL_DIR)/include/Lfunction
-+	cp -f libLfunction.so $(INSTALL_DIR)/$(LIB_DIR)/.
-+	cp -rf ../include/*.h $(INSTALL_DIR)/include/Lfunction
++	install -d $(INSTALL_DIR)/bin
++	install -d $(INSTALL_DIR)/$(LIB_DIR)
++	install -d $(INSTALL_DIR)/include/Lfunction
++	install lcalc $(INSTALL_DIR)/bin
++	install libLfunction.so $(INSTALL_DIR)/$(LIB_DIR)
++	install -m 644 -t $(INSTALL_DIR)/include/Lfunction ../include/*.h
  
  
  SRCS = Lcommandline.cc Lcommandline_elliptic.cc Lcommandline_globals.cc Lcommandline_misc.cc Lcommandline_numbertheory.cc Lcommandline_twist.cc Lcommandline_values_zeros.cc Lgamma.cc Lglobals.cc Lmisc.cc Lriemannsiegel.cc Lriemannsiegel_blfi.cc cmdline.c

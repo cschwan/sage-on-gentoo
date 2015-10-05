@@ -50,7 +50,7 @@ CDEPEND="dev-libs/gmp:0=
 	>=dev-libs/mpc-1.0
 	>=dev-libs/ntl-9.3.0
 	>=dev-libs/ppl-1.1
-	>=dev-lisp/ecls-13.5.1
+	>=dev-lisp/ecls-13.5.1:=
 	dev-python/six[${PYTHON_USEDEP}]
 	>=dev-python/numpy-1.8.0[${PYTHON_USEDEP}]
 	>=dev-python/cython-0.23[${PYTHON_USEDEP}]

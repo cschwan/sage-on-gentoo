@@ -44,8 +44,6 @@ src_prepare() {
 	epatch "${FILESDIR}"/${PN}-2.7.0-doc-make.patch
 	# fix automagic
 	epatch "${FILESDIR}"/${PN}-2.8_pre20150611-no-automagic.patch
-	# sage-on-gentoo trac 15654: PARI discriminant speed depends on stack size
-	epatch "${FILESDIR}"/${PN}-9999-det_garbage.patch
 
 	# disable default building of docs during install
 	sed -i \

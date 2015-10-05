@@ -2,6 +2,11 @@
 # Copyright 1999-2015 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  05 Oct 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-6.7-r2.ebuild, sage-6.8-r2.ebuild, sage-9999.ebuild:
+  sci-mathematics/sage: added subslot dependency on ecls so rebuild can be
+  triggered on ecls upgrade
+
   22 Sep 2015; François Bissey <francois.bissey@canterbury.ac.nz>
   sage-6.7-r2.ebuild, sage-6.8-r2.ebuild:
   sci-mathematics/sage: properly fix ipython dependency to ipython in 6.7 and
