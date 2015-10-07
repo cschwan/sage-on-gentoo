@@ -2,6 +2,11 @@
 # Copyright 1999-2015 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  07 Oct 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  +files/cython-0.23.3.patch, sage-9999.ebuild:
+  sci-mathematics/sage: bug fix in sage-9999 for using cython 0.23.3 may need to
+  backport to 6.8.
+
   05 Oct 2015; François Bissey <francois.bissey@canterbury.ac.nz>
   sage-6.7-r2.ebuild, sage-6.8-r2.ebuild, sage-9999.ebuild:
   sci-mathematics/sage: added subslot dependency on ecls so rebuild can be

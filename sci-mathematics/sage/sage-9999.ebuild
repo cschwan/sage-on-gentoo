@@ -49,7 +49,7 @@ CDEPEND="dev-libs/gmp:0=
 	>=dev-lisp/ecls-15.3.7:=
 	dev-python/six[${PYTHON_USEDEP}]
 	>=dev-python/numpy-1.8.0[${PYTHON_USEDEP}]
-	>=dev-python/cython-0.23.2-r1[${PYTHON_USEDEP}]
+	>=dev-python/cython-0.23.3-r1[${PYTHON_USEDEP}]
 	dev-python/pkgconfig
 	>=dev-python/docutils-0.12[${PYTHON_USEDEP}]
 	~dev-python/sphinx-1.2.2[${PYTHON_USEDEP}]
@@ -233,6 +233,9 @@ python_prepare() {
 	# sage on gentoo env.py
 	epatch "${FILESDIR}"/${PN}-6.8-env.patch
 	eprefixify sage/env.py
+
+	# upgrade to cython 0.23.3 - http://trac.sagemath.org/ticket/19334
+	epatch "${FILESDIR}"/cython-0.23.3.patch
 
 	# fix issue #363 where there is bad interaction between MPL build with qt4 support and ecls
 	epatch "${FILESDIR}"/${PN}-6.9-qt4_conflict.patch
