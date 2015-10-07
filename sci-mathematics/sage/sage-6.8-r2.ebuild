@@ -245,6 +245,9 @@ python_prepare() {
 	epatch "${FILESDIR}"/sage-6.8-env.patch
 	eprefixify sage/env.py
 
+	# upgrade to cython 0.23.3 - http://trac.sagemath.org/ticket/19334
+	epatch "${FILESDIR}"/cython-0.23.3.patch
+
 	# sage-maxima.lisp really belong to /etc
 	epatch "${FILESDIR}"/sage-6.8-maxima.lisp.patch
 
