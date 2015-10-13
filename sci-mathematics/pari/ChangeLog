@@ -2,6 +2,10 @@
 # Copyright 1999-2015 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/sci-mathematics/pari/ChangeLog,v 1.87 2012/03/06 17:06:06 bicatali Exp $
 
+  13 Oct 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  -files/pari-2.7.0-no-automagic.patch, -pari-2.8_pre20150307-r1.ebuild:
+  sci-mathematics/pari: remove old unused version
+
   07 Oct 2015; François Bissey <francois.bissey@canterbury.ac.nz>
   +files/pari-9999-det_garbage.patch:
   sci-mathematics/pari: restoring det_garbage patch for ebuilds still needing
