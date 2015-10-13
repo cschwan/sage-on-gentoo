@@ -1,3 +1,7 @@
+  13 Oct 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  -libgap-4.7.5-r1.ebuild:
+  sci-libs/libgap: remove old
+
   06 Sep 2015; François Bissey <francois.bissey@canterbury.ac.nz>
   libgap-4.7.5-r1.ebuild, libgap-4.7.7.ebuild, libgap-4.7.8.ebuild:
   sci-libs/libgap: Make sure AUTOTOOLS_AUTORECONF is in the right spot as per

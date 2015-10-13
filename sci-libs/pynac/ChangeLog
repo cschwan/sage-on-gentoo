@@ -2,6 +2,10 @@
 # Copyright 1999-2015 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  13 Oct 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  -files/pynac-0.3.2-pynac.pc.patch, -pynac-0.3.2-r1.ebuild:
+  sci-libs/pynac: remove old
+
 *pynac-0.3.9.5 (13 Sep 2015)
 
   13 Sep 2015; François Bissey <francois.bissey@canterbury.ac.nz>
