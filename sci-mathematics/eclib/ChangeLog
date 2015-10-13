@@ -2,6 +2,10 @@
 # Copyright 1999-2015 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  13 Oct 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  -eclib-0_p20140921-r1.ebuild:
+  sci-mathematics/eclib: remove old
+
   06 Sep 2015; François Bissey <francois.bissey@canterbury.ac.nz>
   eclib-0_p20140921-r1.ebuild, eclib-20150510-r1.ebuild, eclib-20150827.ebuild:
   sci-mathematics/eclib: move AUTOTOOLS_AUTORECONF in the right spot as per
