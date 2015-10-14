@@ -28,7 +28,7 @@ CDEPEND="dev-libs/gmp[cxx]
 	~sci-libs/fflas-ffpack-1.6.0
 	virtual/cblas
 	virtual/lapack
-	sage? ( dev-libs/ntl )
+	sage? ( dev-libs/ntl:= )
 	sci-libs/iml
 	dev-libs/mpfr:="
 DEPEND="${CDEPEND}"
