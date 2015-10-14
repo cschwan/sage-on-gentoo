@@ -19,7 +19,7 @@ IUSE="doc gc ntl static-libs test"
 RDEPEND="dev-libs/gmp:=
 	dev-libs/mpfr:=
 	gc? ( dev-libs/boehm-gc )
-	ntl? ( dev-libs/ntl )"
+	ntl? ( dev-libs/ntl:= )"
 DEPEND="${RDEPEND}
 	doc? (
 		app-text/texlive-core
