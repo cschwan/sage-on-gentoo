@@ -1,3 +1,3 @@
-sageupstream http://sagepad.org/spkg/upstream/
+sageupstream http://files.sagemath.org//spkg/upstream/ http://ftp.riken.jp/sagemath/spkg/upstream/ http://echidna.maths.usyd.edu.au/sage/spkg/upstream http://www-ftp.lip6.fr/pub/math/sagemath/spkg/upstream ftp://ftp.fu-berlin.de/unix/misc/sage/spkg/upstream
 sagemath http://www.lmona.de/files/sage http://www.lmona.de/files/distfiles https://github.com/sagemath/sage/archive
 sagemathdoc http://www.lmona.de/files/sage http://www.sagemath.org/doc-bz2
