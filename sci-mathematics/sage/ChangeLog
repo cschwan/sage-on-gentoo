@@ -4,6 +4,10 @@
 
   16 Oct 2015; François Bissey <francois.bissey@canterbury.ac.nz>
   sage-9999.ebuild:
+  sci-mathematics/sage: Add die calls for autogenrated code.
+
+  16 Oct 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-9999.ebuild:
   sci-mathematics/sage: start work on 6.10.beta0
 
   13 Oct 2015; François Bissey <francois.bissey@canterbury.ac.nz>

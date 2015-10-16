@@ -358,8 +358,8 @@ python_configure() {
 
 	# autogenerate pari files
 	# This is done in src/Makefile in vanilla sage - we don't want to use the Makefile, even patched.
-	"${PYTHON}" -c "from sage_setup.autogen.pari import rebuild; rebuild()"
-	"${PYTHON}" -c "from sage_setup.autogen.interpreters import rebuild; rebuild('sage/ext/interpreters')"
+	"${PYTHON}" -c "from sage_setup.autogen.pari import rebuild; rebuild()" || die "failed to generate pari interface"
+	"${PYTHON}" -c "from sage_setup.autogen.interpreters import rebuild; rebuild('sage/ext/interpreters')" || die "failed to generate interpreters"
 }
 
 python_compile_all() {
