@@ -126,6 +126,8 @@ src_install() {
 		dobin doc/gphelp
 		insinto /usr/share/doc/${PF}
 		# gphelp looks for some of the tex sources...
+		# and they need to be uncompressed
+		docompress -x /usr/share/doc/${PF}
 		doins doc/*.tex doc/translations
 		# Install the examples - for real.
 		emake EXDIR="${ED}/usr/share/doc/${PF}/examples" \
