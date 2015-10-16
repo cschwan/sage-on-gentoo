@@ -72,7 +72,7 @@ CDEPEND="dev-libs/gmp:0=
 	sci-mathematics/glpk:0=[gmp]
 	>=sci-mathematics/lcalc-1.23-r6[pari]
 	>=sci-mathematics/lrcalc-1.1.6_beta1
-	~sci-mathematics/pari-2.8_pre20150611[data,gmp,doc]
+	~sci-mathematics/pari-2.8_pre20151001[data,gmp,doc]
 	~sci-mathematics/planarity-2.2.0
 	>=sci-mathematics/brial-0.8.4.3[${PYTHON_USEDEP}]
 	>=sci-mathematics/ratpoints-2.1.3
@@ -101,7 +101,7 @@ RDEPEND="${CDEPEND}
 	>=dev-python/jinja-2.5.5[${PYTHON_USEDEP}]
 	>=dev-python/matplotlib-1.4.0[${PYTHON_USEDEP}]
 	>=dev-python/mpmath-0.18[${PYTHON_USEDEP}]
-	>=dev-python/networkx-1.8[${PYTHON_USEDEP}]
+	>=dev-python/networkx-1.10[${PYTHON_USEDEP}]
 	>=dev-python/pexpect-3.3-r1[${PYTHON_USEDEP}]
 	>=dev-python/pycrypto-2.1.0[${PYTHON_USEDEP}]
 	>=dev-python/rpy-2.3.8[${PYTHON_USEDEP}]
@@ -233,9 +233,6 @@ python_prepare() {
 	# sage on gentoo env.py
 	epatch "${FILESDIR}"/${PN}-6.8-env.patch
 	eprefixify sage/env.py
-
-	# upgrade to cython 0.23.3 - http://trac.sagemath.org/ticket/19334
-	epatch "${FILESDIR}"/cython-0.23.3.patch
 
 	# fix issue #363 where there is bad interaction between MPL build with qt4 support and ecls
 	epatch "${FILESDIR}"/${PN}-6.9-qt4_conflict.patch
