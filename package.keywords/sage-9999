@@ -1,7 +1,7 @@
 app-emacs/imaxima # 1.0-r3 is needed for >=maxima-5.29
 dev-java/asm:2
 ~dev-lang/R-3.2.0
-~dev-libs/mathjax-2.4
+>=dev-libs/mathjax-2.5.0
 ~dev-libs/mpc-1.0.2
 ~dev-libs/ntl-9.3.0
 ~dev-libs/ppl-1.1
@@ -11,6 +11,7 @@ dev-python/characteristic
 ~dev-python/cvxopt-1.1.7
 >=dev-python/cython-0.23.2-r1
 ~dev-python/bottleneck-0.8.0
+~dev-python/networkx-1.10
 ~dev-python/pyopenssl-0.14
 ~dev-python/cryptography-0.6.1
 dev-python/ptyprocess
@@ -98,7 +99,7 @@ sci-mathematics/lrcalc
 sci-mathematics/mcube
 sci-mathematics/optimal
 sci-mathematics/palp
-~sci-mathematics/pari-2.8_pre20150611
+~sci-mathematics/pari-2.8_pre20151001
 sci-mathematics/pari-data
 ~sci-mathematics/planarity-2.2.0
 sci-mathematics/brial

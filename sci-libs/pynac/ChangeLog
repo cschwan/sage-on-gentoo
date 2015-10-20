@@ -2,6 +2,12 @@
 # Copyright 1999-2015 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*pynac-0.5.0 (16 Oct 2015)
+
+  16 Oct 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  +pynac-0.5.0.ebuild, -pynac-0.4.2.ebuild:
+  sci-libs/pynac: bump to 0.5.0 may need a way to check for c++11 support
+
   13 Oct 2015; François Bissey <francois.bissey@canterbury.ac.nz>
   -files/pynac-0.3.2-pynac.pc.patch, -pynac-0.3.2-r1.ebuild:
   sci-libs/pynac: remove old

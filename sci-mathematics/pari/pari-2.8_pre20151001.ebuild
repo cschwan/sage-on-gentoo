@@ -9,8 +9,7 @@ inherit eutils flag-o-matic toolchain-funcs multilib
 MY_P="pari-2.8-1813-g6157df4"
 DESCRIPTION="Computer-aided number theory C library and tools"
 HOMEPAGE="http://pari.math.u-bordeaux.fr/"
-#SRC_URI="mirror://sageupstream/${PN}/${MY_P}.tar.gz"
-SRC_URI="http://sage.ugent.be/www/jdemeyer/sage/${MY_P}.tar.gz"
+SRC_URI="mirror://sageupstream/${PN}/${MY_P}.tar.gz"
 
 LICENSE="GPL-2"
 # Pari dev release have soname of the form pari-{gmp-}-{PV}.so.0
@@ -129,6 +128,8 @@ src_install() {
 		dobin doc/gphelp
 		insinto /usr/share/doc/${PF}
 		# gphelp looks for some of the tex sources...
+		# and they need to be uncompressed
+		docompress -x /usr/share/doc/${PF}
 		doins doc/*.tex doc/translations
 		# Install the examples - for real.
 		emake EXDIR="${ED}/usr/share/doc/${PF}/examples" \

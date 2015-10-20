@@ -101,7 +101,7 @@ RDEPEND="${CDEPEND}
 	>=dev-python/jinja-2.5.5[${PYTHON_USEDEP}]
 	>=dev-python/matplotlib-1.4.0[${PYTHON_USEDEP}]
 	>=dev-python/mpmath-0.18[${PYTHON_USEDEP}]
-	>=dev-python/networkx-1.8[${PYTHON_USEDEP}]
+	>=dev-python/networkx-1.10[${PYTHON_USEDEP}]
 	>=dev-python/pexpect-3.3-r1[${PYTHON_USEDEP}]
 	>=dev-python/pycrypto-2.1.0[${PYTHON_USEDEP}]
 	>=dev-python/rpy-2.3.8[${PYTHON_USEDEP}]
@@ -362,8 +362,8 @@ python_configure() {
 
 	# autogenerate pari files
 	# This is done in src/Makefile in vanilla sage - we don't want to use the Makefile, even patched.
-	"${PYTHON}" -c "from sage_setup.autogen.pari import rebuild; rebuild()"
-	"${PYTHON}" -c "from sage_setup.autogen.interpreters import rebuild; rebuild('sage/ext/interpreters')"
+	"${PYTHON}" -c "from sage_setup.autogen.pari import rebuild; rebuild()" || die "failed to generate pari interface"
+	"${PYTHON}" -c "from sage_setup.autogen.interpreters import rebuild; rebuild('sage/ext/interpreters')" || die "failed to generate interpreters"
 }
 
 python_compile_all() {
