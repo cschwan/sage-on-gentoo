@@ -2,6 +2,10 @@
 # Copyright 1999-2015 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  14 Oct 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  linbox-1.3.2-r2.ebuild:
+  sci-libs/linbox: added subslot dependency on ntl
+
   07 Sep 2015; François Bissey <francois.bissey@canterbury.ac.nz>
   linbox-1.3.2-r2.ebuild:
   Massive ebuild format clean up. One removal. Further QA to follow.

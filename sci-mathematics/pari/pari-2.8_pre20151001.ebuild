@@ -6,13 +6,13 @@ EAPI=5
 
 inherit eutils flag-o-matic toolchain-funcs multilib
 
-MY_P="pari-2.8-1369-g0e48e9b"
+MY_P="pari-2.8-1813-g6157df4"
 DESCRIPTION="Computer-aided number theory C library and tools"
 HOMEPAGE="http://pari.math.u-bordeaux.fr/"
 SRC_URI="mirror://sageupstream/${PN}/${MY_P}.tar.gz"
 
 LICENSE="GPL-2"
-# Pari dev release have soname of the form pari-{gmp-}-{Major}.{minor}.so.0
+# Pari dev release have soname of the form pari-{gmp-}-{PV}.so.0
 #SLOT="0/4"
 SLOT="0/0"
 KEYWORDS="~alpha ~amd64 ~hppa ~mips ~ppc ~ppc64 ~sparc ~x86 ~amd64-linux ~x86-fbsd ~x86-linux ~x86-macos ~x86-solaris"
@@ -45,9 +45,7 @@ src_prepare() {
 	# fix parallel make
 	epatch "${FILESDIR}"/${PN}-2.7.0-doc-make.patch
 	# fix automagic
-	epatch "${FILESDIR}"/${PN}-2.7.0-no-automagic.patch
-	# sage-on-gentoo trac 15654: PARI discriminant speed depends on stack size
-	epatch "${FILESDIR}"/${PN}-9999-det_garbage.patch
+	epatch "${FILESDIR}"/${PN}-2.8_pre20150611-no-automagic.patch
 
 	# disable default building of docs during install
 	sed -i \
@@ -66,8 +64,6 @@ src_prepare() {
 		-e "s:\$d = \$0:\$d = '${EPREFIX}/usr/share/doc/${PF}':" \
 		-e 's:"acroread":"xdg-open":' \
 		doc/gphelp.in || die "Failed to fix doc dir"
-	# Fix for regexp in perl 5.22+
-	epatch "${FILESDIR}"/${PN}-2.8-perl_regex.patch
 }
 
 src_configure() {
@@ -119,7 +115,7 @@ src_compile() {
 }
 
 src_test() {
-	emake dobench
+	emake ${mymake} ${mycxxmake} test-all
 }
 
 src_install() {

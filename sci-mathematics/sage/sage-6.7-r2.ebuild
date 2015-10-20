@@ -41,7 +41,7 @@ CDEPEND="dev-libs/gmp:0=
 	>=dev-libs/mpc-1.0
 	~dev-libs/ntl-6.2.1
 	>=dev-libs/ppl-1.1
-	>=dev-lisp/ecls-13.5.1
+	>=dev-lisp/ecls-13.5.1:=
 	>=dev-python/numpy-1.8.0[${PYTHON_USEDEP}]
 	~dev-python/cython-0.22[${PYTHON_USEDEP}]
 	>=sci-mathematics/eclib-20150510[flint]

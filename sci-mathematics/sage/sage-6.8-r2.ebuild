@@ -50,7 +50,7 @@ CDEPEND="dev-libs/gmp:0=
 	>=dev-libs/mpc-1.0
 	>=dev-libs/ntl-9.3.0
 	>=dev-libs/ppl-1.1
-	>=dev-lisp/ecls-13.5.1
+	>=dev-lisp/ecls-13.5.1:=
 	dev-python/six[${PYTHON_USEDEP}]
 	>=dev-python/numpy-1.8.0[${PYTHON_USEDEP}]
 	>=dev-python/cython-0.23[${PYTHON_USEDEP}]
@@ -77,7 +77,7 @@ CDEPEND="dev-libs/gmp:0=
 	sci-mathematics/glpk:0=[gmp]
 	>=sci-mathematics/lcalc-1.23-r6[pari]
 	>=sci-mathematics/lrcalc-1.1.6_beta1
-	>=sci-mathematics/pari-2.8_pre20150611[data,gmp,doc]
+	~sci-mathematics/pari-2.8_pre20150611[data,gmp,doc]
 	~sci-mathematics/planarity-2.2.0
 	>=sci-mathematics/polybori-0.8.3[${PYTHON_USEDEP}]
 	>=sci-mathematics/ratpoints-2.1.3
@@ -244,6 +244,9 @@ python_prepare() {
 	# sage on gentoo env.py
 	epatch "${FILESDIR}"/sage-6.8-env.patch
 	eprefixify sage/env.py
+
+	# upgrade to cython 0.23.3 - http://trac.sagemath.org/ticket/19334
+	epatch "${FILESDIR}"/cython-0.23.3.patch
 
 	# sage-maxima.lisp really belong to /etc
 	epatch "${FILESDIR}"/sage-6.8-maxima.lisp.patch

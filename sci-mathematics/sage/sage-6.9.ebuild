@@ -10,14 +10,18 @@ PYTHON_REQ_USE="readline,sqlite"
 inherit distutils-r1 eutils flag-o-matic multilib multiprocessing prefix toolchain-funcs versionator
 
 if [[ ${PV} = *9999* ]]; then
-	EGIT_REPO_URI="git://github.com/vbraun/sage.git"
+	EGIT_REPO_URI="git://github.com/sagemath/sage.git"
 	EGIT_BRANCH=develop
 	EGIT_SOURCEDIR="${WORKDIR}/${P}"
 	inherit git-2
 	KEYWORDS=""
+	DOC_USE="html pdf"
 else
-	SRC_URI="mirror://sagemath/${PV}.tar.gz -> ${P}.tar.gz"
-	KEYWORDS="~amd64 ~x86 ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~x64-macos"
+	SRC_URI="mirror://sagemath/${PV}.tar.gz -> ${P}.tar.gz
+		bin-html? ( mirror://sagemathdoc/${P}-doc-html.tar.xz )
+		bin-pdf? ( mirror://sagemathdoc/${P}-doc-pdf.tar.xz )"
+	KEYWORDS="~amd64 ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~x64-macos"
+	DOC_USE="+bin-html bin-pdf html pdf"
 fi
 
 DESCRIPTION="Math software for algebra, geometry, number theory, cryptography and numerical computation"
@@ -31,7 +35,7 @@ LANGS="ca de en fr hu it pt ru tr"
 LICENSE="GPL-2"
 SLOT="0"
 SAGE_USE="arb modular_decomposition bliss"
-IUSE="latex testsuite debug X html pdf ${SAGE_USE}"
+IUSE="latex testsuite debug X ${DOC_USE} ${SAGE_USE}"
 LINGUAS_USEDEP=""
 for X in ${LANGS} ; do
 	IUSE="${IUSE} linguas_${X}"
@@ -52,7 +56,7 @@ CDEPEND="dev-libs/gmp:0=
 	>=dev-python/cython-0.23.3-r1[${PYTHON_USEDEP}]
 	dev-python/pkgconfig
 	>=dev-python/docutils-0.12[${PYTHON_USEDEP}]
-	~dev-python/sphinx-1.2.2[${PYTHON_USEDEP}]
+	>=dev-python/sphinx-1.2.2[${PYTHON_USEDEP}]
 	>=sci-mathematics/eclib-20150827[flint]
 	>=sci-mathematics/gmp-ecm-6.4.4[-openmp]
 	>=sci-mathematics/flint-2.5.2:=[ntl]
@@ -72,7 +76,7 @@ CDEPEND="dev-libs/gmp:0=
 	sci-mathematics/glpk:0=[gmp]
 	>=sci-mathematics/lcalc-1.23-r6[pari]
 	>=sci-mathematics/lrcalc-1.1.6_beta1
-	~sci-mathematics/pari-2.8_pre20151001[data,gmp,doc]
+	~sci-mathematics/pari-2.8_pre20150611[data,gmp,doc]
 	~sci-mathematics/planarity-2.2.0
 	>=sci-mathematics/brial-0.8.4.3[${PYTHON_USEDEP}]
 	>=sci-mathematics/ratpoints-2.1.3
@@ -101,7 +105,7 @@ RDEPEND="${CDEPEND}
 	>=dev-python/jinja-2.5.5[${PYTHON_USEDEP}]
 	>=dev-python/matplotlib-1.4.0[${PYTHON_USEDEP}]
 	>=dev-python/mpmath-0.18[${PYTHON_USEDEP}]
-	>=dev-python/networkx-1.10[${PYTHON_USEDEP}]
+	>=dev-python/networkx-1.8[${PYTHON_USEDEP}]
 	>=dev-python/pexpect-3.3-r1[${PYTHON_USEDEP}]
 	>=dev-python/pycrypto-2.1.0[${PYTHON_USEDEP}]
 	>=dev-python/rpy-2.3.8[${PYTHON_USEDEP}]
@@ -141,7 +145,9 @@ CHECKREQS_DISK_BUILD="5G"
 S="${WORKDIR}/${P}/src"
 
 REQUIRED_USE="html? ( linguas_en )
-	testsuite? ( html )"
+	testsuite? ( || ( bin-html html ) )
+	bin-html? ( !html !pdf linguas_en )
+	bin-pdf? ( !html !pdf linguas_en )"
 
 pkg_setup() {
 	# needed since Ticket #14460
@@ -233,6 +239,9 @@ python_prepare() {
 	# sage on gentoo env.py
 	epatch "${FILESDIR}"/${PN}-6.8-env.patch
 	eprefixify sage/env.py
+
+	# upgrade to cython 0.23.3 - http://trac.sagemath.org/ticket/19334
+	epatch "${FILESDIR}"/cython-0.23.3.patch
 
 	# fix issue #363 where there is bad interaction between MPL build with qt4 support and ecls
 	epatch "${FILESDIR}"/${PN}-6.9-qt4_conflict.patch
@@ -326,6 +335,20 @@ python_prepare() {
 
 	# Put singular help file where it is expected
 	cp "${WORKDIR}"/Singular/3-1-6/info/singular.hlp doc/
+
+	if use bin-html ; then
+		mkdir -p doc/output/html
+		for lang in ${LANGS} ; do
+			use linguas_$lang && cp -r "${WORKDIR}"/html/${lang} doc/output/html/
+		done
+	fi
+
+	if use bin-pdf ; then
+		mkdir -p doc/output/pdf
+		for lang in ${LANGS} ; do
+			use linguas_$lang && cp -r "${WORKDIR}"/pdf/${lang} doc/output/pdf/
+		done
+	fi
 }
 
 python_configure() {
@@ -358,8 +381,8 @@ python_configure() {
 
 	# autogenerate pari files
 	# This is done in src/Makefile in vanilla sage - we don't want to use the Makefile, even patched.
-	"${PYTHON}" -c "from sage_setup.autogen.pari import rebuild; rebuild()" || die "failed to generate pari interface"
-	"${PYTHON}" -c "from sage_setup.autogen.interpreters import rebuild; rebuild('sage/ext/interpreters')" || die "failed to generate interpreters"
+	"${PYTHON}" -c "from sage_setup.autogen.pari import rebuild; rebuild()"
+	"${PYTHON}" -c "from sage_setup.autogen.interpreters import rebuild; rebuild('sage/ext/interpreters')"
 }
 
 python_compile_all() {
@@ -477,6 +500,16 @@ python_install_all() {
 	fi
 
 	if use pdf ; then
+		insinto /usr/share/doc/sage/pdf
+		doins -r doc/output/pdf/*
+	fi
+
+	if use bin-html ; then
+		insinto /usr/share/doc/sage/html
+		doins -r doc/output/html/*
+	fi
+
+	if use bin-pdf ; then
 		insinto /usr/share/doc/sage/pdf
 		doins -r doc/output/pdf/*
 	fi

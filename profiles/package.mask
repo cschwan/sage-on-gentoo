@@ -1,3 +1,5 @@
 ~sci-mathematics/sage-9999
 # preparing ecm for removal. I only keep it in case it solves some OS X problems
 sci-mathematics/ecm
+# in doubt mask it
+~dev-libs/ntl-9.4.0

@@ -44,8 +44,6 @@ src_prepare() {
 	epatch "${FILESDIR}"/${PN}-2.7.0-doc-make.patch
 	# fix automagic
 	epatch "${FILESDIR}"/${PN}-2.8_pre20150611-no-automagic.patch
-	# sage-on-gentoo trac 15654: PARI discriminant speed depends on stack size
-	epatch "${FILESDIR}"/${PN}-9999-det_garbage.patch
 
 	# disable default building of docs during install
 	sed -i \
@@ -128,6 +126,8 @@ src_install() {
 		dobin doc/gphelp
 		insinto /usr/share/doc/${PF}
 		# gphelp looks for some of the tex sources...
+		# and they need to be uncompressed
+		docompress -x /usr/share/doc/${PF}
 		doins doc/*.tex doc/translations
 		# Install the examples - for real.
 		emake EXDIR="${ED}/usr/share/doc/${PF}/examples" \

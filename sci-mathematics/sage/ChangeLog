@@ -2,6 +2,44 @@
 # Copyright 1999-2015 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  16 Oct 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-9999.ebuild:
+  sci-mathematics/sage: Add die calls for autogenrated code.
+
+  16 Oct 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-9999.ebuild:
+  sci-mathematics/sage: start work on 6.10.beta0
+
+  13 Oct 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  -files/sage-6.3-env.patch, -files/sage-6.6-blas.patch, -sage-6.6-r1.ebuild:
+  sci-mathematics/sage: dropping old sage 6.6
+
+*sage-6.9 (13 Oct 2015)
+
+  13 Oct 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  +sage-6.9.ebuild, metadata.xml:
+  sci-mathematics/sage: 6.9 at last! Now with bin-pdf provided.
+
+  08 Oct 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-6.8-r2.ebuild, sage-9999.ebuild:
+  sci-mathematics/sage: pin pari version. Don't any surprises there.
+
+  07 Oct 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-6.8-r2.ebuild:
+  sci-mathematics/sage: extend the cython 0.23.3 fix to sage 6.8. It is more of
+  a case that cython 0.23.3 uncovered a bug than a specific  problem to cython
+  0.23.3.
+
+  07 Oct 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  +files/cython-0.23.3.patch, sage-9999.ebuild:
+  sci-mathematics/sage: bug fix in sage-9999 for using cython 0.23.3 may need to
+  backport to 6.8.
+
+  05 Oct 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-6.7-r2.ebuild, sage-6.8-r2.ebuild, sage-9999.ebuild:
+  sci-mathematics/sage: added subslot dependency on ecls so rebuild can be
+  triggered on ecls upgrade
+
   22 Sep 2015; François Bissey <francois.bissey@canterbury.ac.nz>
   sage-6.7-r2.ebuild, sage-6.8-r2.ebuild:
   sci-mathematics/sage: properly fix ipython dependency to ipython in 6.7 and
