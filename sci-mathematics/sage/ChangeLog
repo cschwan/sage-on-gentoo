@@ -7,6 +7,12 @@
   sci-mathematics/sage: Add ja (japanese) to possible languages for future sage
   6.10
 
+  21 Oct 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  +files/sage-6.10-ipython_kernel_start.patch,
+  +files/sage-6.10-jupyter_install.patch, +files/sage-6.10-sagedoc.patch,
+  +files/sage-6.10-sources.patch, sage-9999.ebuild:
+  sci-mathematics/sage: bump for sage 6.10.beta1
+
   16 Oct 2015; François Bissey <francois.bissey@canterbury.ac.nz>
   sage-9999.ebuild:
   sci-mathematics/sage: Add die calls for autogenrated code.
