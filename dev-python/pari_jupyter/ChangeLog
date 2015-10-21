@@ -1,0 +1,5 @@
+*pari_jupyter-1.0.0 (21 Oct 2015)
+
+  21 Oct 2015; François Bissey <francois.bissey@canterbury.ac.nz> +metadata.xml,
+  +pari_jupyter-1.0.0.ebuild:
+  dev-python/pari_jupyter: new ebuild for a pari/gp jupyter kernel
