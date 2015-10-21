@@ -1,0 +1,14 @@
+diff -Naur src.orig/sage/repl/ipython_kernel/install.py src/sage/repl/ipython_kernel/install.py
+--- src.orig/sage/repl/ipython_kernel/install.py	2015-10-20 10:54:59.192856108 +1300
++++ src/sage/repl/ipython_kernel/install.py	2015-10-20 12:58:14.540392327 +1300
+@@ -13,8 +13,8 @@
+     SAGE_ROOT, SAGE_DOC, SAGE_LOCAL, SAGE_EXTCODE,
+     SAGE_VERSION
+ )
+-from jupyter_core.paths import ENV_JUPYTER_PATH
+-JUPYTER_PATH = ENV_JUPYTER_PATH[0]
++from jupyter_core.paths import jupyter_path
++JUPYTER_PATH = jupyter_path()[0]
+ 
+ 
+ class SageKernelSpec(object):
