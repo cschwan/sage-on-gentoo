@@ -2,6 +2,12 @@
 # Copyright 1999-2015 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/sci-mathematics/pari/ChangeLog,v 1.87 2012/03/06 17:06:06 bicatali Exp $
 
+  23 Oct 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  pari-2.8_pre20150510.ebuild, pari-2.8_pre20150611.ebuild,
+  pari-2.8_pre20151001.ebuild, pari-9999.ebuild:
+  sci-mathematics/pari: install pari.cfg, this is used to compile pari/gp
+  "modules" such as gp2c.
+
   16 Oct 2015; François Bissey <francois.bissey@canterbury.ac.nz>
   pari-2.8_pre20151001.ebuild, pari-9999.ebuild:
   sci-mathematics/pari: pari's documentation needs to be uncompressed
