@@ -2,6 +2,13 @@
 # Copyright 1999-2015 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  27 Oct 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  +files/sage-6.10-jupyter.patch, -files/sage-6.10-ipython_kernel_start.patch,
+  -files/sage-6.10-jupyter_install.patch, sage-9999.ebuild:
+  sci-mathematics/sage: issue #376. Rewrite/maim/disable all the crap in
+  sage/repl/ipython_kernel/install.py and move logic in ebuild  where
+  applicable. It may not be possible to find a convenient solution for upstream.
+
   21 Oct 2015; François Bissey <francois.bissey@canterbury.ac.nz>
   +files/sage-6.10-ipython_kernel_start.patch,
   +files/sage-6.10-jupyter_install.patch, +files/sage-6.10-sagedoc.patch,
