@@ -4,6 +4,10 @@
 
   27 Oct 2015; François Bissey <francois.bissey@canterbury.ac.nz>
   sage-9999.ebuild:
+  sci-mathematics/sage: more work on links
+
+  27 Oct 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-9999.ebuild:
   sci-mathematics/sage: setting more symlinks as upstream intended.
 
   27 Oct 2015; François Bissey <francois.bissey@canterbury.ac.nz>
