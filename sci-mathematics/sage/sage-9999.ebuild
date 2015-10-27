@@ -455,9 +455,8 @@ python_install_all() {
 	dodir /usr/share/jupyter/nbextensions
 	ln -sf "${EPREFIX}/usr/share/mathjax" "${ED}"/usr/share/jupyter/nbextensions/mathjax || die "die creating mathjax simlink"
 	ln -sf "${EPREFIX}/usr/share/jsmol" "${ED}"/usr/share/jupyter/nbextensions/jsmol || die "die creating jsmol simlink"
-	ln -sf "${EPREFIX}/usr/share/sage/ext/notebook-ipython/logo-64x64.png" "${ED}"/usr/share/jupyter/kernel/sagemath/logo-64x64.png || die "die creating logo-64x64 simlink"
-	ln -sf "${EPREFIX}/usr/share/sage/ext/notebook-ipython/logo.svg" "${ED}"/usr/share/jupyter/kernel/sagemath/logo.svg || die "die creating logo.svg simlink"
-
+	dosym /usr/share/sage/ext/notebook-ipython/logo-64x64.png /usr/share/jupyter/kernels/sagemath/logo-64x64.png
+	dosym /usr/share/sage/ext/notebook-ipython/logo.svg /usr/share/jupyter/kernels/sagemath/logo.svg
 
 	####################################
 	# Install documentation
@@ -486,7 +485,7 @@ python_install_all() {
 		done
 		insinto /usr/share/doc/sage/html
 		doins -r doc/output/html/*
-		ln -sf "${EPREFIX}"/usr/share/doc/sage/html/en "${ED}"/usr/share/jupyter/kernel/sagemath/doc || die "die symlinking the documentation to the jupyter notebook"
+		dosym /usr/share/doc/sage/html/en /usr/share/jupyter/kernels/sagemath/doc
 	fi
 
 	if use pdf ; then
@@ -501,7 +500,7 @@ pkg_preinst() {
 		&& rm -rf "${ROOT}/usr/share/sage/src/sage"
 	# remove old links if present
 	rm -rf "${EROOT}"/usr/share/jupyter/nbextensions/*
-	rm -rf "${EROOT}"/usr/share/jupyter/kernel/sagemath/*
+	rm -rf "${EROOT}"/usr/share/jupyter/kernels/sagemath/*
 }
 
 pkg_postinst() {
