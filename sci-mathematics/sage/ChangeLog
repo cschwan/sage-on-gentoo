@@ -3,6 +3,10 @@
 # $Header: $
 
   27 Oct 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-9999.ebuild:
+  sci-mathematics/sage: setting more symlinks as upstream intended.
+
+  27 Oct 2015; François Bissey <francois.bissey@canterbury.ac.nz>
   +files/sage-6.10-jupyter.patch, -files/sage-6.10-ipython_kernel_start.patch,
   -files/sage-6.10-jupyter_install.patch, sage-9999.ebuild:
   sci-mathematics/sage: issue #376. Rewrite/maim/disable all the crap in
