@@ -234,9 +234,6 @@ python_prepare() {
 	epatch "${FILESDIR}"/${PN}-6.8-env.patch
 	eprefixify sage/env.py
 
-	# Sort out the way jupyter installs its kernel
-	epatch "${FILESDIR}"/${PN}-6.10-jupyter_install.patch
-
 	# fix issue #363 where there is bad interaction between MPL build with qt4 support and ecls
 	epatch "${FILESDIR}"/${PN}-6.9-qt4_conflict.patch
 
@@ -282,7 +279,11 @@ python_prepare() {
 	# The ipython kernel tries to to start a new session via $SAGE_ROOT/sage -python
 	# Since we don't have $SAGE_ROOT/sage it fails.
 	#See https://github.com/cschwan/sage-on-gentoo/issues/342
-	epatch "${FILESDIR}"/${PN}-6.10-ipython_kernel_start.patch
+	# There are a lot of issue with that file during building and installation. 
+	# it tries to link in the filesystem in ways that are difficult to support 
+	# in a global install from a pure python perspective. See also 
+	# https://github.com/cschwan/sage-on-gentoo/issues/376
+	epatch "${FILESDIR}"/${PN}-6.10-jupyter.patch
 
 	# Make the lazy_import pickle name versioned with the sage version number
 	# rather than the path to the source which is a constant across versions
@@ -341,7 +342,6 @@ python_configure() {
 	export VARTEXFONTS="${T}"/fonts
 	export SAGE_VERSION=${PV}
 	export SAGE_NUM_THREADS=$(makeopts_jobs)
-	export JUPYTER_PATH="${ED}"/usr/share/jupyter
 	# try to fix random sphinx crash during the building of the documentation
 	export MPLCONFIGDIR="${T}"/matplotlib
 	for option in ${SAGE_USE}; do
@@ -451,6 +451,11 @@ python_install_all() {
 	insinto /usr/share/sage
 	doins -r ext
 
+	# install links for jupyter install
+	dodir /usr/share/jupyter/nbextensions
+	ln -sf "${EPREFIX}/usr/share/mathjax" "${ED}"/usr/share/jupyter/nbextensions/mathjax || die "die creating mathjax simlink"
+	ln -sf "${EPREFIX}/usr/share/jsmol" "${ED}"/usr/share/jupyter/nbextensions/jsmol || die "die creating jsmol simlink"
+
 	####################################
 	# Install documentation
 	####################################
@@ -490,6 +495,8 @@ pkg_preinst() {
 	# remove old sage source folder if present
 	[[ -d "${ROOT}/usr/share/sage/src/sage" ]] \
 		&& rm -rf "${ROOT}/usr/share/sage/src/sage"
+	# remove old links if present
+	rm -rf "${EROOT}"/usr/share/jupyter/nbextensions/*
 }
 
 pkg_postinst() {

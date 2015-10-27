@@ -137,4 +137,6 @@ src_install() {
 	fi
 	insinto /usr/include/pari
 	doins src/language/anal.h
+	insinto /usr/share/pari
+	doins $(get_compile_dir)/pari.cfg
 }
