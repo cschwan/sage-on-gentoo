@@ -2,6 +2,11 @@
 # Copyright 1999-2015 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  29 Oct 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  +files/m4rie-20150908-out_of_src_test.patch, m4rie-20150908.ebuild:
+  sci-libs/m4rie: Fix issue #377. Bonus: now it has a test suite and it is not
+  restricted anymore.
+
   21 Jul 2015; François Bissey <francois.bissey@canterbury.ac.nz>
   m4rie-20140914.ebuild:
   Change SRC_URI the m4ri website is gone
