@@ -16,10 +16,12 @@ KEYWORDS="~amd64 ~x86 ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~x64-macos"
 IUSE="debug openmp static-libs"
 
 # TODO: tests do not compile since m4rie expects header already being installed
-RESTRICT="mirror test"
+RESTRICT="mirror"
 
 DEPEND=">=sci-libs/m4ri-20140914[openmp?]"
 RDEPEND="${DEPEND}"
+
+PATCHES=( "${FILESDIR}"/${PN}-20150908-out_of_src_test.patch )
 
 pkg_pretend() {
 	if use openmp ; then
