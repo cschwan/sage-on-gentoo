@@ -30,7 +30,7 @@ LANGS="ca de en fr hu it ja pt ru tr"
 
 LICENSE="GPL-2"
 SLOT="0"
-SAGE_USE="arb modular_decomposition bliss"
+SAGE_USE="modular_decomposition bliss"
 IUSE="latex testsuite debug X html pdf ${SAGE_USE}"
 LINGUAS_USEDEP=""
 for X in ${LANGS} ; do
@@ -83,7 +83,7 @@ CDEPEND="dev-libs/gmp:0=
 	>=sys-libs/readline-6.2
 	sys-libs/zlib
 	virtual/cblas
-	arb? ( >=sci-mathematics/arb-2.6.0 )
+	>=sci-mathematics/arb-2.6.0
 	modular_decomposition? ( sci-libs/modular_decomposition )
 	bliss? ( sci-libs/bliss )
 	pdf? ( app-text/texlive[extra,${LINGUAS_USEDEP}] )
