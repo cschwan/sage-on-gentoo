@@ -1,0 +1,6 @@
+*gp2c-0.0.9_p3 (31 Oct 2015)
+
+  31 Oct 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  +files/20150326.patch, +files/global.patch, +gp2c-0.0.9_p3.ebuild,
+  +metadata.xml:
+  sci-mathematics/gp2c: Adding new optional package gp2c
