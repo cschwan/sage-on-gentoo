@@ -2,6 +2,10 @@
 # Copyright 1999-2015 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  01 Nov 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-9999.ebuild:
+  sci-mathematics/sage: Update optional dependency on bliss in sage-9999
+
   27 Oct 2015; François Bissey <francois.bissey@canterbury.ac.nz>
   sage-9999.ebuild:
   sci-mathematics/sage: more work on links
