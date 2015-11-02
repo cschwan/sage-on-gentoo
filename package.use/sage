@@ -22,14 +22,11 @@ sci-mathematics/polybori    gd
 sys-libs/zlib               minizip
 
 ################################################
-# qt4 is broken with matplotlib 1.3.x
-################################################
-=dev-python/matplotlib-1.3* -qt4
-
-################################################
 # Recomended flags for optional dependency jmol
 ################################################
 sci-chemistry/jmol          client-only
+# bliss seems to be broken with latest gmp at least in sage doctests
+sci-libs/bliss              -gmp
 
 # matplotlib (testing)
 x11-base/xorg-server        xvfb
