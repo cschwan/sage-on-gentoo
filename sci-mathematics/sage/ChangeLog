@@ -3,6 +3,10 @@
 # $Header: $
 
   04 Nov 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  files/sage-6.10-jupyter-r2.patch:
+  sci-mathematics/sage: fix overzealous replacement in new jupyter patch
+
+  04 Nov 2015; François Bissey <francois.bissey@canterbury.ac.nz>
   +files/sage-6.10-jupyter-r2.patch, +files/sage-6.10-sagedoc-r2.patch,
   -files/sage-6.10-jupyter.patch, -files/sage-6.10-sagedoc.patch,
   sage-9999.ebuild:
