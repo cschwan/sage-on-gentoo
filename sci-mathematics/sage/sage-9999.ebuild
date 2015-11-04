@@ -283,7 +283,8 @@ python_prepare() {
 	# it tries to link in the filesystem in ways that are difficult to support 
 	# in a global install from a pure python perspective. See also 
 	# https://github.com/cschwan/sage-on-gentoo/issues/376
-	epatch "${FILESDIR}"/${PN}-6.10-jupyter.patch
+	epatch "${FILESDIR}"/${PN}-6.10-jupyter-r2.patch
+	touch sage_setup/jupyter/__init__.py
 
 	# Make the lazy_import pickle name versioned with the sage version number
 	# rather than the path to the source which is a constant across versions
@@ -317,7 +318,7 @@ python_prepare() {
 	epatch "${FILESDIR}"/${PN}-6.3-doc_common.patch
 
 	# fix location of the html doc
-	epatch "${FILESDIR}"/${PN}-6.10-sagedoc.patch
+	epatch "${FILESDIR}"/${PN}-6.10-sagedoc-r2.patch
 
 	####################################
 	#

@@ -58,15 +58,3 @@ diff -Naur src.orig/sage/misc/sagedoc.py src/sage/misc/sagedoc.py
          """
          url = self._base_url + os.path.join(name, "index.html")
          path = os.path.join(self._base_path, name, "index.html")
-diff -Naur src.orig/sage/repl/ipython_kernel/install.py src/sage/repl/ipython_kernel/install.py
---- src.orig/sage/repl/ipython_kernel/install.py	2015-03-13 13:51:42.859117231 +1300
-+++ src/sage/repl/ipython_kernel/install.py	2015-03-13 13:54:38.759614821 +1300
-@@ -220,7 +220,7 @@
-                 os.path.join(spec_dir, filename)
-             )
-         self.symlink(
--            os.path.join(SAGE_DOC, 'output', 'html', 'en'),
-+            os.path.join(SAGE_DOC, 'html', 'en'),
-             os.path.join(self.kernel_dir, 'doc')
-         )
-         
