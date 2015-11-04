@@ -2,6 +2,14 @@
 # Copyright 1999-2015 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  04 Nov 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  +files/sage-6.10-jupyter-r2.patch, +files/sage-6.10-sagedoc-r2.patch,
+  -files/sage-6.10-jupyter.patch, -files/sage-6.10-sagedoc.patch,
+  sage-9999.ebuild:
+  sci-mathematics/sage: New version of the jupyter patch. The kernel
+  installation bits are moved to sage_setup which in s-o-g is not  installed and
+  therefore not doctested.
+
   01 Nov 2015; François Bissey <francois.bissey@canterbury.ac.nz>
   sage-9999.ebuild:
   sci-mathematics/sage: Update optional dependency on bliss in sage-9999
