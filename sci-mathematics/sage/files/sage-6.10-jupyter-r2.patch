@@ -497,13 +497,13 @@ diff -Naur src.orig/sage_setup/jupyter/install.py src/sage_setup/jupyter/install
 +            sage: spec._kernel_cmd()
 +            ['python2.7',
 +             '-m',
-+             'sage_setup.jupyter',
++             'sage.repl.ipython_kernel',
 +             '-f',
 +             '{connection_file}']
 +        """
 +        return [
 +            'python2.7',
-+            '-m', 'sage_setup.jupyter',
++            '-m', 'sage.repl.ipython_kernel',
 +            '-f', '{connection_file}',
 +        ]
 +
