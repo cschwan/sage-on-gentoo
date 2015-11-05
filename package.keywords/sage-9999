@@ -25,6 +25,7 @@ dev-python/flask-oldsessions
 ~dev-python/flask-silk-0.2
 dev-python/terminado
 dev-python/mistune
+=dev-python/numpy-1.8*
 =dev-python/ipython-4.0*
 =dev-python/notebook-4.0*
 =dev-python/ipywidgets-4.0*
