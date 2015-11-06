@@ -2,6 +2,11 @@
 # Copyright 1999-2015 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  06 Nov 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-9999.ebuild:
+  sci-mathematics/sage: adjustements for 6.10.beta3 (arb is now standard and
+  there is a japanese translation)
+
   04 Nov 2015; François Bissey <francois.bissey@canterbury.ac.nz>
   files/sage-6.10-jupyter-r2.patch:
   sci-mathematics/sage: fix overzealous replacement in new jupyter patch
