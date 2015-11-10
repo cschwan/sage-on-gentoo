@@ -1,3 +1,9 @@
+*arb-2.7.0 (10 Nov 2015)
+
+  10 Nov 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  +arb-2.7.0.ebuild:
+  sci-mathematics/arb: bump to new version
+
   16 Aug 2015; François Bissey <francois.bissey@canterbury.ac.nz>
   arb-2.5.0.ebuild, arb-2.6.0.ebuild:
   sci-mathematics/arb: make 2.6.0 depend on flint subslot, make repoman happy
