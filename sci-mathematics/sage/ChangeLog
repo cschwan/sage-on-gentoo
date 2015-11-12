@@ -2,6 +2,11 @@
 # Copyright 1999-2015 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  12 Nov 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  +files/sage-6.10-neutering.patch, sage-9999.ebuild:
+  sci-mathematics/sage: update and rebase the neutering patch for upcoming sage
+  6.10
+
   06 Nov 2015; François Bissey <francois.bissey@canterbury.ac.nz>
   sage-9999.ebuild:
   sci-mathematics/sage: adjustements for 6.10.beta3 (arb is now standard and
