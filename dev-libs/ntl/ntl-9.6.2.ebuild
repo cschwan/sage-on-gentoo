@@ -10,9 +10,9 @@ HOMEPAGE="http://shoup.net/ntl/"
 SRC_URI="http://www.shoup.net/ntl/${P}.tar.gz"
 
 LICENSE="GPL-2"
-SLOT="0/9.4.0"
+SLOT="0/${PV}"
 KEYWORDS="~amd64 ~ppc ~x86 ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos"
-IUSE="doc static-libs test"
+IUSE="doc static-libs test threads"
 
 RDEPEND="dev-libs/gmp:=
 	>=dev-libs/gf2x-0.9"
@@ -33,6 +33,12 @@ src_prepare() {
 }
 
 src_configure() {
+
+	local myconfig=""
+	if use threads ; then
+		myconfig="NTL_THREAD_BOOST=on"
+	fi
+
 	perl DoConfig \
 		PREFIX="${EPREFIX}"/usr \
 		CXXFLAGS="${CXXFLAGS}" \
@@ -41,6 +47,7 @@ src_configure() {
 		AR="$(tc-getAR)" \
 		RANLIB="$(tc-getRANLIB)" \
 		NTL_GMP_LIP=on NTL_GF2X_LIB=on NTL_LEGACY_SP_MULMOD=on \
+		"${myconfig}" \
 		|| die "DoConfig failed"
 }
 
