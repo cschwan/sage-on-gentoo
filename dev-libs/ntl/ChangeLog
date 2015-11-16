@@ -2,6 +2,13 @@
 # Copyright 1999-2015 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/dev-libs/ntl/ChangeLog,v 1.25 2014/06/19 13:08:44 jauhien Exp $
 
+*ntl-9.6.2 (16 Nov 2015)
+
+  16 Nov 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  +ntl-9.6.2.ebuild, -ntl-9.4.0.ebuild:
+  dev-libs/ntl: bumping to 9.6.2 with new threads useflag. Sage is not ready for
+  this new version.
+
 *ntl-9.4.0 (09 Oct 2015)
 
   09 Oct 2015; François Bissey <francois.bissey@canterbury.ac.nz>
