@@ -48,7 +48,7 @@ CDEPEND="dev-libs/gmp:0=
 	>=dev-libs/ppl-1.1
 	>=dev-lisp/ecls-15.3.7:=
 	dev-python/six[${PYTHON_USEDEP}]
-	>=dev-python/numpy-1.8.0[${PYTHON_USEDEP}]
+	>=dev-python/numpy-1.10.1-r1[${PYTHON_USEDEP}]
 	>=dev-python/cython-0.23.3-r1[${PYTHON_USEDEP}]
 	dev-python/pkgconfig
 	>=dev-python/docutils-0.12[${PYTHON_USEDEP}]
@@ -99,7 +99,7 @@ RDEPEND="${CDEPEND}
 	>=dev-python/cvxopt-1.1.7[glpk,${PYTHON_USEDEP}]
 	>=dev-python/ipython-4.0.0[notebook,${PYTHON_USEDEP}]
 	>=dev-python/jinja-2.5.5[${PYTHON_USEDEP}]
-	>=dev-python/matplotlib-1.4.0[${PYTHON_USEDEP}]
+	>=dev-python/matplotlib-1.5.0[${PYTHON_USEDEP}]
 	>=dev-python/mpmath-0.18[${PYTHON_USEDEP}]
 	>=dev-python/networkx-1.10[${PYTHON_USEDEP}]
 	>=dev-python/pexpect-3.3-r1[${PYTHON_USEDEP}]
@@ -109,7 +109,7 @@ RDEPEND="${CDEPEND}
 	>=dev-python/sympy-0.7.6.1-r1[${PYTHON_USEDEP}]
 	~media-gfx/tachyon-0.98.9[png]
 	>=sci-libs/cddlib-094f-r2
-	>=sci-libs/scipy-0.14.0[${PYTHON_USEDEP}]
+	>=sci-libs/scipy-0.16.1[${PYTHON_USEDEP}]
 	>=sci-mathematics/flintqs-20070817
 	~sci-mathematics/gap-4.7.8
 	~sci-mathematics/gfan-0.5

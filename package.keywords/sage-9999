@@ -11,6 +11,7 @@ dev-python/characteristic
 ~dev-python/cvxopt-1.1.7
 >=dev-python/cython-0.23.2-r1
 ~dev-python/bottleneck-0.8.0
+=dev-python/matplotlib-1.5*
 ~dev-python/networkx-1.10
 ~dev-python/pyopenssl-0.14
 ~dev-python/cryptography-0.6.1
@@ -25,11 +26,13 @@ dev-python/flask-oldsessions
 ~dev-python/flask-silk-0.2
 dev-python/terminado
 dev-python/mistune
-=dev-python/numpy-1.8*
+~dev-python/numpy-1.10.1::sage-on-gentoo
+dev-python/cycler
+dev-python/versioneer
 =dev-python/ipython-4.0*
 =dev-python/notebook-4.0*
 =dev-python/ipywidgets-4.0*
-=dev-python/ipykernel-4.0*
+=dev-python/ipykernel-4.1*
 =dev-python/nbformat-4.0*
 =dev-python/path-py-7*
 =dev-python/ipyparallel-4.0*
@@ -79,7 +82,7 @@ sci-libs/fflas-ffpack
 ~sci-libs/m4rie-20150908
 ~sci-libs/mpfi-1.5.1
 ~sci-libs/pynac-0.3.9.5
-~sci-libs/scipy-0.14.0
+~sci-libs/scipy-0.16.1
 sci-libs/symmetrica
 sci-libs/vecmath-objectclub
 sci-libs/zn_poly
