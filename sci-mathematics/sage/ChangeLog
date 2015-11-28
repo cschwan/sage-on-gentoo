@@ -4,6 +4,10 @@
 
   28 Nov 2015; François Bissey <francois.bissey@canterbury.ac.nz>
   sage-9999.ebuild:
+  sci-mathematics/sage: correct numpy dependency
+
+  28 Nov 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-9999.ebuild:
   sci-mathematics/sage: bump dependencies for 6.10.beta6
 
   16 Nov 2015; François Bissey <francois.bissey@canterbury.ac.nz>
