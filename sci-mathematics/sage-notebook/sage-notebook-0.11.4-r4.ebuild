@@ -83,7 +83,7 @@ src_prepare() {
 	distutils-r1_src_prepare
 }
 
-src_install() {
+python_install_all() {
 	# install runscript+configuration file to run the notebook as a daemon
 	if use server ; then
 		doinitd init.d/${PN}
@@ -93,7 +93,7 @@ src_install() {
 		doins "${FILESDIR}"/matplotlibrc
 	fi
 
-	distutils-r1_src_install
+	distutils-r1_python_install_all
 
 	# link in system mathjax
 	ln -snf "${EPREFIX}"/usr/share/mathjax \
