@@ -41,7 +41,7 @@ RDEPEND="${CDEPEND}
 	java? ( >=sci-chemistry/sage-jmol-bin-14.2.11 )"
 
 pkg_setup() {
-	python_export python2_7 EPYTHON
+	python_export python2_7 EPYTHON PYTHON PYTHON_SITEDIR
 
 	# create user to run the server
 	if use server ; then
