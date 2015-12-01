@@ -3,6 +3,10 @@
 # $Header: $
 
   01 Dec 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-9999.ebuild:
+  sci-mathematics/sage: update dependency to lrcalc and arb
+
+  01 Dec 2015; François Bissey <francois.bissey@canterbury.ac.nz>
   files/sage-6.10-neutering.patch:
   sci-mathematics/sage: update neutering patch for trac 19597
 
