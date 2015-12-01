@@ -1,0 +1,45 @@
+Issue #18235: _sysconfigdata.py wrong on AIX installations
+
+--- Lib/sysconfig.py
++++ Lib/sysconfig.py
+@@ -307,7 +307,7 @@
+     # -- these paths are relative to the Python source, but when installed
+     # the scripts are in another directory.
+     if _PYTHON_BUILD:
+-        vars['LDSHARED'] = vars['BLDSHARED']
++        vars['BLDSHARED'] = vars['LDSHARED']
+ 
+     # There's a chicken-and-egg situation on OS X with regards to the
+     # _sysconfigdata module after the changes introduced by #15298:
+--- Makefile.pre.in
++++ Makefile.pre.in
+@@ -1123,7 +1123,7 @@
+ 		$(INSTALL_SCRIPT) $(srcdir)/Modules/makexp_aix	\
+ 				$(DESTDIR)$(LIBPL)/makexp_aix;		\
+ 		echo "$(LIBPL)/makexp_aix";			\
+-		$(INSTALL_SCRIPT) $(srcdir)/Modules/ld_so_aix	\
++		$(INSTALL_SCRIPT) $(abs_builddir)/Modules/ld_so_aix	\
+ 				$(DESTDIR)$(LIBPL)/ld_so_aix;		\
+ 		echo "$(LIBPL)/ld_so_aix";			\
+ 		echo; echo "See Misc/AIX-NOTES for details.";	\
+--- Modules/ld_so_aix.in
++++ Modules/ld_so_aix.in
+@@ -70,6 +70,7 @@
+ fi
+ 
+ makexp=`dirname $0`/makexp_aix
++test -x "${makexp}" || makexp="@abs_srcdir@/makexp_aix"
+ 
+ # Check for existence of compiler.
+ CC=$1; shift
+--- configure.ac
++++ configure.ac
+@@ -1958,7 +1958,7 @@
+ then
+ 	case $ac_sys_system/$ac_sys_release in
+ 	AIX*)
+-		BLDSHARED="\$(srcdir)/Modules/ld_so_aix \$(CC) -bI:\$(srcdir)/Modules/python.exp"
++		BLDSHARED="\$(abs_builddir)/Modules/ld_so_aix \$(CC) -bI:\$(abs_builddir)/Modules/python.exp"
+ 		LDSHARED="\$(BINLIBDEST)/config/ld_so_aix \$(CC) -bI:\$(BINLIBDEST)/config/python.exp"
+ 		;;
+ 	BeOS*)

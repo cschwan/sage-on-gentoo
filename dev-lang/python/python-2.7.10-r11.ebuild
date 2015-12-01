@@ -15,7 +15,7 @@ DESCRIPTION="An interpreted, interactive, object-oriented programming language"
 HOMEPAGE="http://www.python.org/"
 SRC_URI="http://www.python.org/ftp/python/${PV}/${MY_P}.tar.xz
 	http://dev.gentoo.org/~floppym/python/python-gentoo-patches-${PATCHSET_VERSION}.tar.xz
-	prefix? ( http://dev.gentoo.org/~grobian/distfiles/python-prefix-${PV}-gentoo-patches${PREFIX_PATCHREV}.tar.bz2 )"
+	http://dev.gentoo.org/~grobian/distfiles/python-prefix-${PV}-gentoo-patches${PREFIX_PATCHREV}.tar.bz2"
 
 LICENSE="PSF-2"
 SLOT="2.7"
