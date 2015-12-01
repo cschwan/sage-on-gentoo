@@ -20,4 +20,6 @@ RESTRICT="mirror"
 DEPEND=""
 RDEPEND=""
 
+PATCHES=( "${FILESDIR}"/${PN}-1.2-includes.patch )
+
 AUTOTOOLS_IN_SOURCE_BUILD=1

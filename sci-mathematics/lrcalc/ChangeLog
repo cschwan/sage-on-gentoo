@@ -2,6 +2,13 @@
 # Copyright 1999-2015 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*lrcalc-1.2-r1 (01 Dec 2015)
+
+  01 Dec 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  +files/lrcalc-1.2-includes.patch, +lrcalc-1.2-r1.ebuild, -lrcalc-1.2.ebuild:
+  sci-mathematics/lrcalc: Import sage's patch which was merged upstream. Without
+  this patch building against the lrcalc library is troublesome.
+
 *lrcalc-1.2 (30 Nov 2015)
 
   30 Nov 2015; François Bissey <francois.bissey@canterbury.ac.nz>
