@@ -18,7 +18,10 @@ IUSE="static-libs"
 RDEPEND=">=sci-mathematics/flint-2.5.0:="
 DEPEND="${RDEPEND}"
 
-PATCHES=( "${FILESDIR}"/${PN}-2.5.0-makefile.in.patch )
+PATCHES=(
+	"${FILESDIR}"/${PN}-2.5.0-makefile.in.patch
+	"${FILESDIR}"/${PN}-2.7.0-flint_includes.patch
+	)
 
 src_configure() {
 	# Figure extra flags for linking
