@@ -2,6 +2,10 @@
 # Copyright 1999-2015 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  01 Dec 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  files/sage-6.10-neutering.patch:
+  sci-mathematics/sage: update neutering patch for trac 19597
+
   28 Nov 2015; François Bissey <francois.bissey@canterbury.ac.nz>
   sage-9999.ebuild:
   sci-mathematics/sage: correct numpy dependency
