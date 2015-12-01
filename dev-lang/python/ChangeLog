@@ -1,0 +1,11 @@
+*python-2.7.10-r10 (01 Dec 2015)
+
+  01 Dec 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  +files/descr_ref.patch, +files/pydoc.conf, +files/pydoc.init,
+  +files/python-2.7.10-cross-compile-warn-test.patch,
+  +files/python-2.7.10-system-libffi.patch,
+  +files/python-2.7.5-nonfatal-compileall.patch,
+  +files/python-2.7.9-ncurses-pkg-config.patch, +metadata.xml,
+  +python-2.7.10-r10.ebuild:
+  dev-lang/python: importing our own python 2.7 (based on 2.7.10-r4) to include
+  the fix for http://bugs.python.org/issue25750
