@@ -5,5 +5,5 @@ sci-mathematics/ecm
 # but I would assume more of the same.
 >=dev-libs/ntl-9.4.0
 # we will need a specific patch in python for sage 6.10
-=dev-lang/python-2.7.10-r10
-=dev-lang/python-2.7.10-r11
+#=dev-lang/python-2.7.10-r10
+#=dev-lang/python-2.7.10-r11
