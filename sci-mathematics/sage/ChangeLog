@@ -2,6 +2,10 @@
 # Copyright 1999-2015 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  05 Dec 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  files/sage-6.10-neutering.patch, sage-9999.ebuild:
+  sci-mathematics/sage: bump dependencies for 6.10.beta7
+
   28 Nov 2015; François Bissey <francois.bissey@canterbury.ac.nz>
   sage-9999.ebuild:
   sci-mathematics/sage: correct numpy dependency
