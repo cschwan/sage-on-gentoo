@@ -1,3 +1,8 @@
+  01 Dec 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  python-2.7.10-r10.ebuild:
+  dev-lang/python: remove prefix keywords from 2.7.10-r10. This version is
+  unsuitable for prefix usage.
+
 *python-2.7.10-r10 (01 Dec 2015)
 
   01 Dec 2015; François Bissey <francois.bissey@canterbury.ac.nz>
