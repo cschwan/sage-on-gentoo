@@ -1,6 +1,7 @@
 app-emacs/imaxima # 1.0-r3 is needed for >=maxima-5.29
 dev-java/asm:2
 ~dev-lang/R-3.2.0
+dev-lang/python:2.7::sage-on-gentoo
 >=dev-libs/mathjax-2.5.0
 ~dev-libs/mpc-1.0.2
 ~dev-libs/ntl-9.3.0
@@ -81,11 +82,12 @@ sci-libs/fflas-ffpack
 ~sci-libs/m4ri-20140914
 ~sci-libs/m4rie-20150908
 ~sci-libs/mpfi-1.5.1
-~sci-libs/pynac-0.3.9.5
+~sci-libs/pynac-0.5.2
 ~sci-libs/scipy-0.16.1
 sci-libs/symmetrica
 sci-libs/vecmath-objectclub
 sci-libs/zn_poly
+~sci-mathematics/arb-2.7.0
 sci-mathematics/cu2
 sci-mathematics/cubex
 sci-mathematics/dikcube
@@ -130,7 +132,6 @@ dev-java/icedtea-bin:7
 #########################
 # sage optional binding
 #########################
-~sci-mathematics/arb-2.6.0
 sci-libs/modular_decomposition
 ~sci-libs/bliss-0.73
 dev-libs/igraph
