@@ -2,6 +2,11 @@
 # Copyright 1999-2015 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  09 Dec 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  +files/sage-6.10-blas.patch, sage-6.7-r2.ebuild, sage-6.8-r2.ebuild,
+  sage-6.9.ebuild, sage-9999.ebuild:
+  sci-mathematics/sage: update patch for 6.10.rc0 make repoman happy.
+
   05 Dec 2015; François Bissey <francois.bissey@canterbury.ac.nz>
   files/sage-6.10-neutering.patch, sage-9999.ebuild:
   sci-mathematics/sage: bump dependencies for 6.10.beta7

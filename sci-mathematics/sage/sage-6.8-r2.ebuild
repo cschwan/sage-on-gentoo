@@ -23,7 +23,7 @@ else
 	DOC_USE="+bin-html -html -pdf"
 fi
 
-DESCRIPTION="Math software for algebra, geometry, number theory, cryptography and numerical computation"
+DESCRIPTION="MAth software for abstract and numerical computations"
 HOMEPAGE="http://www.sagemath.org"
 SRC_URI="${SRC_URI}
 	mirror://sagemath/patches/${PN}-6.8-neutering.patch.xz
@@ -172,7 +172,7 @@ python_prepare() {
 		[Desktop Entry]
 		Name=Sage Shell
 		Type=Application
-		Comment=Math software for algebra, geometry, number theory, cryptography and numerical computation
+		Comment=MAth software for abstract and numerical computations
 		Exec=sage
 		TryExec=sage
 		Icon=sage

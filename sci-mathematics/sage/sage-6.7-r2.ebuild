@@ -24,7 +24,7 @@ else
 	KEYWORDS="~amd64 ~x86 ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~x64-macos"
 fi
 
-DESCRIPTION="Math software for algebra, geometry, number theory, cryptography and numerical computation"
+DESCRIPTION="MAth software for abstract and numerical computations"
 HOMEPAGE="http://www.sagemath.org"
 SRC_URI="${SRC_URI}
 	mirror://sagemath/patches/${PN}-6.7-r7-neutering.tar.xz"
