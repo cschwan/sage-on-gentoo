@@ -24,7 +24,7 @@ else
 	DOC_USE="+bin-html bin-pdf html pdf"
 fi
 
-DESCRIPTION="Math software for algebra, geometry, number theory, cryptography and numerical computation"
+DESCRIPTION="MAth software for abstract and numerical computations"
 HOMEPAGE="http://www.sagemath.org"
 SRC_URI="${SRC_URI}
 	mirror://sagemath/patches/sage-icon.tar.bz2
@@ -171,7 +171,7 @@ python_prepare() {
 		[Desktop Entry]
 		Name=Sage Shell
 		Type=Application
-		Comment=Math software for algebra, geometry, number theory, cryptography and numerical computation
+		Comment=MAth software for abstract and numerical computations
 		Exec=sage
 		TryExec=sage
 		Icon=sage

@@ -20,7 +20,7 @@ else
 	KEYWORDS="~amd64 ~x86 ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~x64-macos"
 fi
 
-DESCRIPTION="Math software for algebra, geometry, number theory, cryptography and numerical computation"
+DESCRIPTION="MAth software for abstract and numerical computations"
 HOMEPAGE="http://www.sagemath.org"
 SRC_URI="${SRC_URI}
 	mirror://sagemath/patches/sage-icon.tar.bz2
@@ -165,7 +165,7 @@ python_prepare() {
 		[Desktop Entry]
 		Name=Sage Shell
 		Type=Application
-		Comment=Math software for algebra, geometry, number theory, cryptography and numerical computation
+		Comment=MAth software for abstract and numerical computations
 		Exec=sage
 		TryExec=sage
 		Icon=sage
@@ -200,7 +200,7 @@ python_prepare() {
 	###############################
 
 	# ATLAS independence
-	epatch "${FILESDIR}"/${PN}-6.8-blas-r1.patch
+	epatch "${FILESDIR}"/${PN}-6.10-blas.patch
 
 	# Remove sage's package management system, git capabilities and associated tests
 	epatch "${FILESDIR}"/${PN}-6.10-neutering.patch
