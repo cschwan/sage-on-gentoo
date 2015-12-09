@@ -54,9 +54,9 @@ diff -Naur src.orig/module_list.py src/module_list.py
 -    "m", "readline", "Lfunction",
 -    BLAS, BLAS2,
 -    "cryptominisat", "z"]
-+    "m", "readline", "Lfunction"]
-+    + blas_libs +
-+    ["cryptominisat", "z"]
++    "m", "readline", "Lfunction"
++    ] + blas_libs + [
++    "cryptominisat", "z"]
  
  # Make a dict with library:order pairs, where the order are negative
  # integers sorted according to library_order_list. When sorting,
