@@ -3,6 +3,10 @@
 # $Header: $
 
   09 Dec 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  files/sage-6.10-blas.patch:
+  sci-mathematics/sage: the updated blas patch is now usable
+
+  09 Dec 2015; François Bissey <francois.bissey@canterbury.ac.nz>
   +files/sage-6.10-blas.patch, sage-6.7-r2.ebuild, sage-6.8-r2.ebuild,
   sage-6.9.ebuild, sage-9999.ebuild:
   sci-mathematics/sage: update patch for 6.10.rc0 make repoman happy.
