@@ -1,3 +1,9 @@
+*cvxopt-1.1.8 (10 Dec 2015)
+
+  10 Dec 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  +cvxopt-1.1.8.ebuild:
+  dev-python/cvxopt: bump to 1.1.8, be a bit more clever with the options
+
   07 Sep 2015; François Bissey <francois.bissey@canterbury.ac.nz>
   cvxopt-1.1.7.ebuild:
   Massive ebuild format clean up. One removal. Further QA to follow.
