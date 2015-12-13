@@ -2,6 +2,13 @@
 # Copyright 1999-2015 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*flintqs-1.0 (13 Dec 2015)
+
+  13 Dec 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  +flintqs-1.0.ebuild, -files/flintqs-lanczos.patch, -flintqs-20070817.ebuild:
+  sci-mathematics/flintqs: Move to 1.0 and new upstream repo on github including
+  all accumulated patches
+
   07 Sep 2015; François Bissey <francois.bissey@canterbury.ac.nz>
   flintqs-20070817.ebuild:
   sci-mathematics/flintqs: add slot to make repoman happy
