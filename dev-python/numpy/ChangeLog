@@ -1,3 +1,9 @@
+*numpy-1.10.1-r2 (13 Dec 2015)
+
+  13 Dec 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  +numpy-1.10.1-r2.ebuild, -numpy-1.10.1-r1.ebuild:
+  dev-python/numpy: bump to include latest changes from the main tree
+
   11 Nov 2015; François Bissey <francois.bissey@canterbury.ac.nz>
   files/numpy-1.10.1-asarray_conversion.patch:
   dev-python/numpy: update asarray patch to reflect upstream discussion
