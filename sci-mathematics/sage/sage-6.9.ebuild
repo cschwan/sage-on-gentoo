@@ -114,7 +114,7 @@ RDEPEND="${CDEPEND}
 	~media-gfx/tachyon-0.98.9[png]
 	>=sci-libs/cddlib-094f-r2
 	>=sci-libs/scipy-0.14.0[${PYTHON_USEDEP}]
-	>=sci-mathematics/flintqs-20070817
+	sci-mathematics/flintqs
 	~sci-mathematics/gap-4.7.8
 	~sci-mathematics/gfan-0.5
 	>=sci-mathematics/cu2-20060223
