@@ -6,7 +6,7 @@ EAPI=5
 
 PYTHON_COMPAT=( python{2_7,3_2,3_3,3_4,3_5} )
 
-inherit distutils-r1 toolchain-funcs eutils
+inherit distutils-r1 toolchain-funcs
 
 DESCRIPTION="Python package for convex optimization"
 HOMEPAGE="http://cvxopt.org/"
