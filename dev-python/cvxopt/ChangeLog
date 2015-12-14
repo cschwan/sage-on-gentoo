@@ -1,5 +1,9 @@
   14 Dec 2015; François Bissey <francois.bissey@canterbury.ac.nz>
   cvxopt-1.1.8.ebuild:
+  dev-python/cvxopt: harmonise with main tree
+
+  14 Dec 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  cvxopt-1.1.8.ebuild:
   dev-python/cvxopt: eclass clean up
 
   14 Dec 2015; François Bissey <francois.bissey@canterbury.ac.nz>

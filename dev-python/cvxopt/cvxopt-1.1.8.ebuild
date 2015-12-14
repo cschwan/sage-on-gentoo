@@ -4,7 +4,7 @@
 
 EAPI=5
 
-PYTHON_COMPAT=( python{2_7,3_2,3_3,3_4,3_5} )
+PYTHON_COMPAT=( python2_7 python3_{3,4,5} )
 
 inherit distutils-r1 toolchain-funcs
 
@@ -22,7 +22,10 @@ RDEPEND="
 	virtual/blas
 	virtual/cblas
 	virtual/lapack
+	sci-libs/amd:0=
 	sci-libs/cholmod:0=
+	sci-libs/colamd:0=
+	sci-libs/suitesparseconfig:0=
 	sci-libs/umfpack:0=
 	dsdp? ( sci-libs/dsdp:0= )
 	fftw? ( sci-libs/fftw:3.0= )
@@ -64,6 +67,8 @@ python_configure() {
 	for option in ${CVXOPT_USE} ; do
 		if use ${option} ; then
 			export CVXOPT_BUILD_${option^^}=1
+			# When INC_DIR is not defined distutils just put a naked -I
+			# which breaks compilation.
 			export CVXOPT_${option^^}_INC_DIR="${EPREFIX}/usr/include"
 			export CVXOPT_${option^^}_LIB_DIR=''
 		fi
