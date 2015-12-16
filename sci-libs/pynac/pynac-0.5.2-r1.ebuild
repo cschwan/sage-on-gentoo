@@ -20,9 +20,11 @@ IUSE="static-libs"
 
 RESTRICT="mirror"
 
-DEPEND="virtual/pkgconfig
+DEPEND="dev-libs/gmp:0=
+	virtual/pkgconfig
 	${PYTHON_DEPS}"
-RDEPEND=""
+RDEPEND="dev-libs/gmp:0=
+	${PYTHON_DEPS}"
 
 DOCS=( AUTHORS NEWS README )
 
