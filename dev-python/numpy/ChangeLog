@@ -1,3 +1,9 @@
+*numpy-1.10.2-r1 (15 Dec 2015)
+
+  15 Dec 2015; Fran\udcc3\udca7ois Bissey <francois.bissey@canterbury.ac.nz>
+  +numpy-1.10.2-r1.ebuild:
+  dev-python/numpy: bumping version to include asarray patch
+
 *numpy-1.10.1-r2 (13 Dec 2015)
 
   13 Dec 2015; François Bissey <francois.bissey@canterbury.ac.nz>
