@@ -37,6 +37,8 @@ src_configure() {
 	local myconfig=""
 	if use threads ; then
 		myconfig="NTL_THREAD_BOOST=on"
+	else
+		myconfig="NTL_THREAD_BOOST=off"
 	fi
 
 	perl DoConfig \

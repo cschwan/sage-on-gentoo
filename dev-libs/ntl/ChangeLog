@@ -2,6 +2,10 @@
 # Copyright 1999-2015 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/dev-libs/ntl/ChangeLog,v 1.25 2014/06/19 13:08:44 jauhien Exp $
 
+  17 Dec 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  ntl-9.6.2.ebuild:
+  dev-libs/ntl: fix ntl-9..6.2 configuration so things work with USE=-threads
+
 *ntl-9.6.2 (16 Nov 2015)
 
   16 Nov 2015; François Bissey <francois.bissey@canterbury.ac.nz>
