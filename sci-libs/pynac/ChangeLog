@@ -2,6 +2,13 @@
 # Copyright 1999-2015 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*pynac-0.5.3 (18 Dec 2015)
+
+  18 Dec 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  +pynac-0.5.3.ebuild, -files/pynac-0.5.2-gmp.patch,
+  -files/pynac-0.5.2-pc.patch, -pynac-0.5.2-r1.ebuild:
+  sci-libs/pynac: bump to include the latest patches merged upstream
+
   16 Dec 2015; François Bissey <francois.bissey@canterbury.ac.nz>
   pynac-0.5.2-r1.ebuild:
   sci-libs/pynac: get pynac 0.5.2's dependencies right

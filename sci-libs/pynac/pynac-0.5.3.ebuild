@@ -28,11 +28,6 @@ RDEPEND="dev-libs/gmp:0=
 
 DOCS=( AUTHORS NEWS README )
 
-PATCHES=(
-	"${FILESDIR}"/${PN}-0.5.2-gmp.patch
-	"${FILESDIR}"/${PN}-0.5.2-pc.patch
-	)
-
 pkg_setup(){
 	python_setup
 }
