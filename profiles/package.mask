@@ -1,9 +1,6 @@
 ~sci-mathematics/sage-9999
 # preparing ecm for removal. I only keep it in case it solves some OS X problems
 sci-mathematics/ecm
-# ntl 9.40 works with sage but breaks quite a lot of doctests. Not sure about 9.6.2
-# but I would assume more of the same.
+# for (sage-6.10)++
 >=dev-libs/ntl-9.4.0
-# we will need a specific patch in python for sage 6.10
-#=dev-lang/python-2.7.10-r10
-#=dev-lang/python-2.7.10-r11
+>=sci-libs/fplll-20151131
