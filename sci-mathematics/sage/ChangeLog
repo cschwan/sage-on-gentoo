@@ -3,6 +3,10 @@
 # $Header: $
 
   20 Dec 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-9999.ebuild:
+  sci-mathematics/sage: correct dependencies for the vbraun branch
+
+  20 Dec 2015; François Bissey <francois.bissey@canterbury.ac.nz>
   sage-6.10.ebuild, sage-6.8-r2.ebuild, sage-6.9.ebuild:
   sci-mathematics/sage: current stable depend on sage-notebook 0.11.4
 
