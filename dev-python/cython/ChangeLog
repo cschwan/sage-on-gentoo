@@ -2,6 +2,16 @@
 # Copyright 1999-2015 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/dev-python/cython/ChangeLog,v 1.93 2013/02/16 22:07:28 mgorny Exp $
 
+  20 Dec 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  -cython-0.22-r5.ebuild, -files/cython-0.22-api_mangle.patch,
+  -files/cython-0.22-c_tuple_type_memleak.patch,
+  -files/cython-0.22-embedsignatures.patch,
+  -files/cython-0.22-extern_impl.patch, -files/cython-0.22-find_pxd.patch,
+  -files/cython-0.22-includes_cmp.patch,
+  -files/cython-0.22-transitive_dependencies.patch,
+  -files/cython-0.22_include_to_git_master.patch:
+  dev-python/cython: remove unused
+
   16 Dec 2015; Fran\udcc3\udca7ois Bissey <francois.bissey@canterbury.ac.nz>
   cython-0.23.4-r1.ebuild:
   dev-python/cython: align with main tree
