@@ -2,6 +2,13 @@
 # Copyright 1999-2015 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*sage-6.10 (20 Dec 2015)
+
+  20 Dec 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  +sage-6.10.ebuild, -sage-6.7-r2.ebuild, sage-9999.ebuild:
+  sci-mathematics/sage: 6.10 at last. Generating bin-pdf docs took an awful long
+  time.
+
   13 Dec 2015; François Bissey <francois.bissey@canterbury.ac.nz>
   sage-9999.ebuild:
   sci-mathematics/sage: bump numpy dependency

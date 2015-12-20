@@ -1,0 +1,5 @@
+*fplll-20151201 (18 Dec 2015)
+
+  18 Dec 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  +fplll-20151201.ebuild, +metadata.xml:
+  sci-libs/fplll: new version of fplll probably for (sage-6.10)++
