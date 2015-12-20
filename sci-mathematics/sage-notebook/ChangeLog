@@ -2,6 +2,11 @@
 # Copyright 1999-2015 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  20 Dec 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  -files/sage-notebook-pexpect.patch, -sage-notebook-0.11.4-r2.ebuild,
+  sage-notebook-0.11.4-r4.ebuild:
+  sci-mathematics/sage-notebook: drop old, drop keyword
+
   30 Nov 2015; François Bissey <francois.bissey@canterbury.ac.nz>
   sage-notebook-0.11.4-r2.ebuild, sage-notebook-0.11.4-r4.ebuild:
   sci-mathematics/sage-notebook: more potential fix for #384
