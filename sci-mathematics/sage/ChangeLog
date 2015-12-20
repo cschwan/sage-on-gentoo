@@ -3,6 +3,10 @@
 # $Header: $
 
   20 Dec 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-6.10.ebuild, sage-6.8-r2.ebuild, sage-6.9.ebuild:
+  sci-mathematics/sage: current stable depend on sage-notebook 0.11.4
+
+  20 Dec 2015; François Bissey <francois.bissey@canterbury.ac.nz>
   -files/MPL-1.4.patch, -files/sage-6.0-all.py.patch,
   -files/sage-6.2-pexpect.patch, -files/sage-6.3-noclean.patch,
   -files/sage-6.4-givaro_singular_extra.patch, -files/sage-6.7-blas.patch,
