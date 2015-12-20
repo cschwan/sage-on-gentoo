@@ -2,6 +2,10 @@
 # Copyright 1999-2015 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  20 Dec 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  -files/gap-4.5.7-testall.patch, -gap-4.7.5.ebuild, -gap-4.7.7.ebuild:
+  sci-mathematics/gap: remove unused
+
   06 Sep 2015; François Bissey <francois.bissey@canterbury.ac.nz>
   gap-4.7.5.ebuild, gap-4.7.7.ebuild, gap-4.7.8.ebuild:
   sci-mathematics/gap: Moved AUTOTOOLS_AUTORECONF in the right place as per

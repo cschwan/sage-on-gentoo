@@ -2,6 +2,11 @@
 # Copyright 1999-2015 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/dev-libs/ntl/ChangeLog,v 1.25 2014/06/19 13:08:44 jauhien Exp $
 
+  20 Dec 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  -files/ntl-6.0.0-sage-tools.patch, -files/ntl-6.0.0-singular.patch,
+  -files/ntl-6.2.1-static_and_sanity.patch, -ntl-6.2.1.ebuild:
+  dev-libs/ntl: remove old
+
   17 Dec 2015; François Bissey <francois.bissey@canterbury.ac.nz>
   ntl-9.6.2.ebuild:
   dev-libs/ntl: fix ntl-9..6.2 configuration so things work with USE=-threads

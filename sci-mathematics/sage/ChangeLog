@@ -2,6 +2,13 @@
 # Copyright 1999-2015 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  20 Dec 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  -files/MPL-1.4.patch, -files/sage-6.0-all.py.patch,
+  -files/sage-6.2-pexpect.patch, -files/sage-6.3-noclean.patch,
+  -files/sage-6.4-givaro_singular_extra.patch, -files/sage-6.7-blas.patch,
+  -files/sage-6.7-env.patch, -files/sage-6.7-misc.patch:
+  sci-mathematics/sage: remove old patches
+
 *sage-6.10 (20 Dec 2015)
 
   20 Dec 2015; François Bissey <francois.bissey@canterbury.ac.nz>
