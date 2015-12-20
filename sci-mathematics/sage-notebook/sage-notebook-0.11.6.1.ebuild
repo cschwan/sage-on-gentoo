@@ -21,7 +21,7 @@ IUSE="+java server test"
 
 RESTRICT="mirror test"
 
-CDEPEND="~dev-python/pexpect-3.3[${PYTHON_USEDEP}]
+CDEPEND=">=dev-python/pexpect-4.0.1-r1[${PYTHON_USEDEP}]
 	>=dev-python/twisted-core-14.0.0[${PYTHON_USEDEP}]
 	>=dev-python/twisted-mail-14.0.0[${PYTHON_USEDEP}]
 	>=dev-python/twisted-web-14.0.0[${PYTHON_USEDEP}]
@@ -61,13 +61,10 @@ src_prepare() {
 	rm -rf sagenb/data/mathjax || die "failed to remove mathjax"
 
 	# correct path for jmol
-	epatch "${FILESDIR}"/${PN}-0.11.2-base.patch
+	epatch "${FILESDIR}"/${PN}-0.11.6.1-base.patch
 
 	# fix SAGE_ROOT
 	epatch "${FILESDIR}"/${PN}-0.9.1-notebook.patch
-
-	# fix for pexpect 3.3: https://github.com/billpage/sagenb/commit/811a2e762bb041dd34d32d96b003ab46eaab22e9
-	epatch "${FILESDIR}"/pexpect-3.3.patch
 
 	# in sage 6.6+ we get rid of the output subfolder for the documentation
 	sed -i "s:SAGE_DOC, 'output':SAGE_DOC:g" \

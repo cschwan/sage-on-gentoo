@@ -2,6 +2,14 @@
 # Copyright 1999-2015 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*sage-notebook-0.11.6.1 (20 Dec 2015)
+
+  20 Dec 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  +files/sage-notebook-0.11.6.1-base.patch, +sage-notebook-0.11.6.1.ebuild,
+  sage-notebook-0.11.4-r4.ebuild:
+  sci-mathematics/sage-notebook: ew pexpect 4.0.1+ able notebook for the next
+  sage
+
   20 Dec 2015; François Bissey <francois.bissey@canterbury.ac.nz>
   -files/sage-notebook-pexpect.patch, -sage-notebook-0.11.4-r2.ebuild,
   sage-notebook-0.11.4-r4.ebuild:
