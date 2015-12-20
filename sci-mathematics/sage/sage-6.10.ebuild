@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
-EAPI="5"
+EAPI=5
 
 PYTHON_COMPAT=( python2_7 )
 PYTHON_REQ_USE="readline,sqlite"
@@ -16,22 +16,25 @@ if [[ ${PV} = *9999* ]]; then
 	inherit git-2
 	KEYWORDS=""
 else
-	SRC_URI="mirror://sagemath/${PV}.tar.gz -> ${P}.tar.gz"
-	KEYWORDS="~amd64 ~x86 ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~x64-macos"
+	SRC_URI="mirror://sagemath/${PV}.tar.gz -> ${P}.tar.gz
+		bin-html? ( mirror://sagemathdoc/${P}-doc-html.tar.xz )
+		bin-pdf? ( mirror://sagemathdoc/${P}-doc-pdf.tar.xz )"
+	KEYWORDS="~amd64 ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~x64-macos"
+	DOC_USE="+bin-html bin-pdf html pdf"
 fi
 
-DESCRIPTION="MAth software for abstract and numerical computations"
+DESCRIPTION="Math software for abstract and numerical computations"
 HOMEPAGE="http://www.sagemath.org"
 SRC_URI="${SRC_URI}
 	mirror://sagemath/patches/sage-icon.tar.bz2
 	http://www.mathematik.uni-kl.de/ftp/pub/Math/Singular/SOURCES/3-1-6/Singular-3-1-6-share.tar.gz"
 
-LANGS="ca de en fr hu it ja pt ru tr"
+LANGS="ca de en fr hu it pt ru tr"
 
 LICENSE="GPL-2"
 SLOT="0"
 SAGE_USE="modular_decomposition bliss"
-IUSE="latex testsuite debug X html pdf ${SAGE_USE}"
+IUSE="latex testsuite debug X ${DOC_USE} ${SAGE_USE}"
 LINGUAS_USEDEP=""
 for X in ${LANGS} ; do
 	IUSE="${IUSE} linguas_${X}"
@@ -85,7 +88,7 @@ CDEPEND="dev-libs/gmp:0=
 	virtual/cblas
 	>=sci-mathematics/arb-2.7.0-r1
 	modular_decomposition? ( sci-libs/modular_decomposition )
-	bliss? ( >=sci-libs/bliss-0.73 )
+	bliss? ( >=sci-libs/bliss-0.73[-gmp] )
 	pdf? ( app-text/texlive[extra,${LINGUAS_USEDEP}] )
 	!sci-mathematics/sage-baselayout
 	!sci-mathematics/sage-clib
@@ -493,6 +496,16 @@ python_install_all() {
 		insinto /usr/share/doc/sage/pdf
 		doins -r doc/output/pdf/*
 	fi
+
+	if use bin-html ; then
+		insinto /usr/share/doc/sage/html
+		doins -r doc/output/html/*
+	fi
+
+	if use bin-pdf ; then
+		insinto /usr/share/doc/sage/pdf
+		doins -r doc/output/pdf/*
+	fi
 }
 
 pkg_preinst() {
@@ -536,8 +549,10 @@ pkg_postinst() {
 	fi
 
 	if ! use html ; then
-		ewarn "You haven't requested the html documentation."
-		ewarn "The html version of the sage manual won't be available in the sage notebook."
+		if ! use bin-html ; then
+			ewarn "You haven't requested the html documentation."
+			ewarn "The html version of the sage manual won't be available in the sage notebook."
+		fi
 	fi
 
 	einfo ""
