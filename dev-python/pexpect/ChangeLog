@@ -2,6 +2,17 @@
 # Copyright 1999-2015 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/dev-python/pexpect/ChangeLog,v 1.89 2015/04/08 08:04:53 mgorny Exp $
 
+*pexpect-4.0.1-r1 (20 Dec 2015)
+
+  20 Dec 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  +files/pexpect-4.0.1-none_delaybeforesend.patch,
+  +files/pexpect-4.0.1-read_more_bytes.patch,
+  +files/pexpect-4.0.1-spawnpty.patch,
+  +files/pexpect-4.0.1_superfluous_sleep.patch, +pexpect-4.0.1-r1.ebuild,
+  pexpect-3.3-r1.ebuild:
+  dev-python/pexpect: Import 4.0.1 and sage patches accepted upstream. Put the
+  ebuild in line with main tree. Make repoman happy.
+
   15 Dec 2015; Fran\udcc3\udca7ois Bissey <francois.bissey@canterbury.ac.nz>
   pexpect-3.3-r1.ebuild:
   dev-python/pexpect: tentative python 3.5 support
