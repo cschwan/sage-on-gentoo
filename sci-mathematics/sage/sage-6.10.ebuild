@@ -334,6 +334,20 @@ python_prepare() {
 
 	# Put singular help file where it is expected
 	cp "${WORKDIR}"/Singular/3-1-6/info/singular.hlp doc/
+
+	if use bin-html ; then
+		mkdir -p doc/output/html
+		for lang in ${LANGS} ; do
+			use linguas_$lang && cp -r "${WORKDIR}"/html/${lang} doc/output/html/
+		done
+	fi
+
+	if use bin-pdf ; then
+		mkdir -p doc/output/pdf
+		for lang in ${LANGS} ; do
+			use linguas_$lang && cp -r "${WORKDIR}"/pdf/${lang} doc/output/pdf/
+		done
+	fi
 }
 
 python_configure() {

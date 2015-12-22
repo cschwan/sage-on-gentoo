@@ -2,6 +2,10 @@
 # Copyright 1999-2015 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  22 Dec 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-6.10.ebuild:
+  sci-mathematics/sage: Fix to close #386
+
   20 Dec 2015; François Bissey <francois.bissey@canterbury.ac.nz>
   sage-6.10.ebuild, sage-6.8-r2.ebuild, sage-6.9.ebuild:
   sci-mathematics/sage: fix pexpect version in stable branches
