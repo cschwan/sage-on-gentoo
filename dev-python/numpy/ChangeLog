@@ -1,3 +1,10 @@
+*numpy-1.10.2-r2 (23 Dec 2015)
+
+  23 Dec 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  +files/numpy-1.10.2-no-hardcode-blas.patch, +numpy-1.10.2-r2.ebuild,
+  -numpy-1.10.2-r1.ebuild, numpy-1.10.1-r2.ebuild:
+  dev-python/numpy: synchronize all the improvement from the main tree
+
 *numpy-1.10.2-r1 (15 Dec 2015)
 
   15 Dec 2015; Fran\udcc3\udca7ois Bissey <francois.bissey@canterbury.ac.nz>
