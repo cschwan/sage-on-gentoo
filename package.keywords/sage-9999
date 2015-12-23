@@ -4,7 +4,7 @@ dev-java/asm:2
 dev-lang/python:2.7::sage-on-gentoo
 >=dev-libs/mathjax-2.5.0
 ~dev-libs/mpc-1.0.2
-~dev-libs/ntl-9.3.0
+~dev-libs/ntl-9.6.2
 ~dev-libs/ppl-1.1
 dev-libs/c-blosc
 ~dev-lisp/ecls-16.0.0
@@ -27,7 +27,7 @@ dev-python/flask-oldsessions
 ~dev-python/flask-silk-0.2
 dev-python/terminado
 dev-python/mistune
-~dev-python/numpy-1.10.1::sage-on-gentoo
+=dev-python/numpy-1.10*::sage-on-gentoo
 dev-python/cycler
 dev-python/versioneer
 =dev-python/ipython-4.0*
@@ -45,7 +45,7 @@ dev-python/pickleshare
 >=dev-python/jupyter_client-4.0.0
 >=dev-python/qtconsole-4.0.0
 dev-python/mpmath
-~dev-python/pexpect-3.3::sage-on-gentoo
+~dev-python/pexpect-4.0.1::sage-on-gentoo
 dev-python/pandas
 dev-python/pyasn1-modules
 dev-python/pkgconfig
@@ -118,7 +118,7 @@ sci-mathematics/rw
 ~sci-mathematics/sage-data-elliptic_curves-0.8
 ~sci-mathematics/sage-data-graphs-20150724
 ~sci-mathematics/sage-data-polytopes_db-20120220
->=sci-mathematics/sage-notebook-0.11.4-r3
+>=sci-mathematics/sage-notebook-0.11.6.1
 ~sci-mathematics/singular-3.1.7_p1
 sci-mathematics/sympow
 ~www-servers/tornado-3.1.1

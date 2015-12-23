@@ -105,7 +105,7 @@ RDEPEND="${CDEPEND}
 	>=dev-python/matplotlib-1.5.0[${PYTHON_USEDEP}]
 	>=dev-python/mpmath-0.18[${PYTHON_USEDEP}]
 	>=dev-python/networkx-1.10[${PYTHON_USEDEP}]
-	>=dev-python/pexpect-3.3-r1[${PYTHON_USEDEP}]
+	=dev-python/pexpect-3.3-r1[${PYTHON_USEDEP}]
 	>=dev-python/pycrypto-2.1.0[${PYTHON_USEDEP}]
 	>=dev-python/rpy-2.3.8[${PYTHON_USEDEP}]
 	>=dev-python/sphinx-1.2.2[${PYTHON_USEDEP}]
@@ -334,6 +334,20 @@ python_prepare() {
 
 	# Put singular help file where it is expected
 	cp "${WORKDIR}"/Singular/3-1-6/info/singular.hlp doc/
+
+	if use bin-html ; then
+		mkdir -p doc/output/html
+		for lang in ${LANGS} ; do
+			use linguas_$lang && cp -r "${WORKDIR}"/html/${lang} doc/output/html/
+		done
+	fi
+
+	if use bin-pdf ; then
+		mkdir -p doc/output/pdf
+		for lang in ${LANGS} ; do
+			use linguas_$lang && cp -r "${WORKDIR}"/pdf/${lang} doc/output/pdf/
+		done
+	fi
 }
 
 python_configure() {
