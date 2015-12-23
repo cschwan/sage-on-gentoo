@@ -44,7 +44,7 @@ RESTRICT="mirror test"
 CDEPEND="dev-libs/gmp:0=
 	>=dev-libs/mpfr-3.1.0
 	>=dev-libs/mpc-1.0
-	>=dev-libs/ntl-9.3.0:=
+	>=dev-libs/ntl-9.6.2:=
 	>=dev-libs/ppl-1.1
 	>=dev-lisp/ecls-15.3.7:=
 	dev-python/six[${PYTHON_USEDEP}]
@@ -102,7 +102,7 @@ RDEPEND="${CDEPEND}
 	>=dev-python/matplotlib-1.5.0[${PYTHON_USEDEP}]
 	>=dev-python/mpmath-0.18[${PYTHON_USEDEP}]
 	>=dev-python/networkx-1.10[${PYTHON_USEDEP}]
-	>=dev-python/pexpect-3.3-r1[${PYTHON_USEDEP}]
+	>=dev-python/pexpect-4.0.1-r1[${PYTHON_USEDEP}]
 	>=dev-python/pycrypto-2.1.0[${PYTHON_USEDEP}]
 	>=dev-python/rpy-2.3.8[${PYTHON_USEDEP}]
 	>=dev-python/sphinx-1.2.2[${PYTHON_USEDEP}]
@@ -134,7 +134,7 @@ RDEPEND="${CDEPEND}
 		|| ( app-text/dvipng[truetype] media-gfx/imagemagick[png] )
 	)"
 
-PDEPEND=">=sci-mathematics/sage-notebook-0.11.4-r4[${PYTHON_USEDEP}]"
+PDEPEND=">=sci-mathematics/sage-notebook-0.11.6.1[${PYTHON_USEDEP}]"
 
 CHECKREQS_DISK_BUILD="5G"
 

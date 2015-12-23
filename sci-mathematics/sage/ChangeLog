@@ -2,6 +2,10 @@
 # Copyright 1999-2015 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  23 Dec 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-9999.ebuild:
+  sci-mathematics/sage: bump dependencies for 7.0.beta0
+
   22 Dec 2015; François Bissey <francois.bissey@canterbury.ac.nz>
   sage-6.10.ebuild:
   sci-mathematics/sage: Fix to close #386
