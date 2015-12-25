@@ -1,6 +1,3 @@
 ~sci-mathematics/sage-9999
 # preparing ecm for removal. I only keep it in case it solves some OS X problems
 sci-mathematics/ecm
-# for (sage-6.10)++
->=dev-libs/ntl-9.4.0
->=sci-libs/fplll-20151131
