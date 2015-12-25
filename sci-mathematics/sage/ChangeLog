@@ -3,6 +3,10 @@
 # $Header: $
 
   25 Dec 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-6.10.ebuild, sage-6.8-r2.ebuild, sage-6.9.ebuild:
+  sci-mathematics/sage: pin ntl dependency in stable sage.
+
+  25 Dec 2015; François Bissey <francois.bissey@canterbury.ac.nz>
   sage-9999.ebuild:
   sci-mathematics/sage: bump dependencies for 7.0.beta1
 
