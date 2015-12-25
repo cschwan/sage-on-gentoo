@@ -56,7 +56,7 @@ CDEPEND="dev-libs/gmp:0=
 	>=sci-mathematics/eclib-20150827[flint]
 	>=sci-mathematics/gmp-ecm-6.4.4[-openmp]
 	>=sci-mathematics/flint-2.5.2:=[ntl]
-	~sci-libs/fplll-4.0.4
+	~sci-libs/fplll-20151201
 	~sci-libs/givaro-3.7.1
 	>=sci-libs/gsl-1.16
 	>=sci-libs/iml-1.0.4
@@ -72,7 +72,7 @@ CDEPEND="dev-libs/gmp:0=
 	sci-mathematics/glpk:0=[gmp]
 	>=sci-mathematics/lcalc-1.23-r6[pari]
 	>=sci-mathematics/lrcalc-1.2-r1
-	~sci-mathematics/pari-2.8_pre20151001[data,gmp,doc]
+	~sci-mathematics/pari-2.8_pre20151201[data,gmp,doc]
 	~sci-mathematics/planarity-2.2.0
 	>=sci-mathematics/brial-0.8.4.3[${PYTHON_USEDEP}]
 	>=sci-mathematics/ratpoints-2.1.3
@@ -96,7 +96,7 @@ DEPEND="${CDEPEND}"
 
 RDEPEND="${CDEPEND}
 	>=dev-lang/R-3.2.0
-	>=dev-python/cvxopt-1.1.7[glpk,${PYTHON_USEDEP}]
+	>=dev-python/cvxopt-1.1.8[glpk,${PYTHON_USEDEP}]
 	>=dev-python/ipython-4.0.0[notebook,${PYTHON_USEDEP}]
 	>=dev-python/jinja-2.5.5[${PYTHON_USEDEP}]
 	>=dev-python/matplotlib-1.5.0[${PYTHON_USEDEP}]
