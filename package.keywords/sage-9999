@@ -71,7 +71,7 @@ dev-tex/tkz-graph
 sci-libs/cddlib
 sci-libs/dsdp
 sci-libs/fflas-ffpack
->=sci-libs/fplll-4.0.4
+~sci-libs/fplll-20151201
 ~sci-libs/givaro-3.7.1
 >=sci-libs/gsl-1.16
 ~sci-libs/iml-1.0.4
@@ -105,7 +105,7 @@ sci-mathematics/lrcalc
 sci-mathematics/mcube
 sci-mathematics/optimal
 sci-mathematics/palp
-~sci-mathematics/pari-2.8_pre20151001
+~sci-mathematics/pari-2.8_pre20151201
 sci-mathematics/pari-data
 ~sci-mathematics/planarity-2.2.0
 sci-mathematics/brial
