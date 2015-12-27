@@ -34,9 +34,10 @@ DEPEND=">=dev-python/pexpect-4.0.1-r1[${PYTHON_USEDEP}]
 	<dev-python/flask-babel-0.9[${PYTHON_USEDEP}]
 	dev-python/webassets[${PYTHON_USEDEP}]"
 RDEPEND="${DEPEND}
-	sci-mathematics/sage[${PYTHON_USEDEP}]
 	dev-libs/mathjax
 	java? ( >=sci-chemistry/sage-jmol-bin-14.2.11 )"
+
+PDEPEND="sci-mathematics/sage[${PYTHON_USEDEP}]"
 
 pkg_setup() {
 	python_export python2_7 EPYTHON PYTHON PYTHON_SITEDIR

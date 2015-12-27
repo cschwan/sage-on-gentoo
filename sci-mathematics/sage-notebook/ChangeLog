@@ -4,6 +4,11 @@
 
   27 Dec 2015; François Bissey <francois.bissey@canterbury.ac.nz>
   sage-notebook-0.11.6.1.ebuild:
+  sci-mathematics/sage-notebook: move sage to PDEPEND to avoid circular
+  dependency
+
+  27 Dec 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-notebook-0.11.6.1.ebuild:
   sci-mathematics/sage-notebook: Do not set sage as a build dependency anymore.
 
 *sage-notebook-0.11.6.1 (20 Dec 2015)
