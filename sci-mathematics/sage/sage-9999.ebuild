@@ -87,10 +87,8 @@ CDEPEND="dev-libs/gmp:0=
 	modular_decomposition? ( sci-libs/modular_decomposition )
 	bliss? ( >=sci-libs/bliss-0.73 )
 	pdf? ( app-text/texlive[extra,${LINGUAS_USEDEP}] )
-	!sci-mathematics/sage-baselayout
-	!sci-mathematics/sage-clib
-	!sci-mathematics/sage-doc
-	!sci-mathematics/sage-doc-bin"
+	html? ( >=sci-mathematics/sage-notebook-0.11.6.1[${PYTHON_USEDEP}] )
+	pdf? ( >=sci-mathematics/sage-notebook-0.11.6.1[${PYTHON_USEDEP}] )"
 
 DEPEND="${CDEPEND}"
 
@@ -133,8 +131,6 @@ RDEPEND="${CDEPEND}
 		~dev-tex/sage-latex-2.3.4
 		|| ( app-text/dvipng[truetype] media-gfx/imagemagick[png] )
 	)"
-
-PDEPEND=">=sci-mathematics/sage-notebook-0.11.6.1[${PYTHON_USEDEP}]"
 
 CHECKREQS_DISK_BUILD="5G"
 
