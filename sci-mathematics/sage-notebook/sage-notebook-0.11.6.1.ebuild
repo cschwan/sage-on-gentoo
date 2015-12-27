@@ -21,7 +21,7 @@ IUSE="+java server test"
 
 RESTRICT="mirror test"
 
-CDEPEND=">=dev-python/pexpect-4.0.1-r1[${PYTHON_USEDEP}]
+DEPEND=">=dev-python/pexpect-4.0.1-r1[${PYTHON_USEDEP}]
 	>=dev-python/twisted-core-14.0.0[${PYTHON_USEDEP}]
 	>=dev-python/twisted-mail-14.0.0[${PYTHON_USEDEP}]
 	>=dev-python/twisted-web-14.0.0[${PYTHON_USEDEP}]
@@ -33,9 +33,7 @@ CDEPEND=">=dev-python/pexpect-4.0.1-r1[${PYTHON_USEDEP}]
 	dev-python/flask-oldsessions[${PYTHON_USEDEP}]
 	<dev-python/flask-babel-0.9[${PYTHON_USEDEP}]
 	dev-python/webassets[${PYTHON_USEDEP}]"
-DEPEND="${CDEPEND}
-	test? ( sci-mathematics/sage[testsuite,${PYTHON_USEDEP}] )"
-RDEPEND="${CDEPEND}
+RDEPEND="${DEPEND}
 	sci-mathematics/sage[${PYTHON_USEDEP}]
 	dev-libs/mathjax
 	java? ( >=sci-chemistry/sage-jmol-bin-14.2.11 )"
