@@ -2,6 +2,11 @@
 # Copyright 1999-2015 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  30 Dec 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  +files/sage-7.0-blas.patch, +files/sage-7.0-singular_extra_arg.patch,
+  sage-9999.ebuild:
+  sci-mathematics/sage: bump patches for 7.0.beta2
+
   27 Dec 2015; François Bissey <francois.bissey@canterbury.ac.nz>
   sage-9999.ebuild:
   sci-mathematics/sage: clean depedndencies. Make sagenb a build and runtime
