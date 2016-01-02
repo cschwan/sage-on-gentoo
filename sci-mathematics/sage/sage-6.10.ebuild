@@ -55,7 +55,7 @@ CDEPEND="dev-libs/gmp:0=
 	>=dev-python/cython-0.23.3-r1[${PYTHON_USEDEP}]
 	dev-python/pkgconfig
 	>=dev-python/docutils-0.12[${PYTHON_USEDEP}]
-	~dev-python/sphinx-1.2.2[${PYTHON_USEDEP}]
+	>=dev-python/sphinx-1.2.2[${PYTHON_USEDEP}]
 	>=sci-mathematics/eclib-20150827[flint]
 	>=sci-mathematics/gmp-ecm-6.4.4[-openmp]
 	>=sci-mathematics/flint-2.5.2:=[ntl]
@@ -108,7 +108,6 @@ RDEPEND="${CDEPEND}
 	=dev-python/pexpect-3.3-r1[${PYTHON_USEDEP}]
 	>=dev-python/pycrypto-2.1.0[${PYTHON_USEDEP}]
 	>=dev-python/rpy-2.3.8[${PYTHON_USEDEP}]
-	>=dev-python/sphinx-1.2.2[${PYTHON_USEDEP}]
 	>=dev-python/sympy-0.7.6.1-r1[${PYTHON_USEDEP}]
 	~media-gfx/tachyon-0.98.9[png]
 	>=sci-libs/cddlib-094f-r2
