@@ -1,4 +1,4 @@
-# Copyright 1999-2015 Gentoo Foundation
+# Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
@@ -15,17 +15,24 @@ SLOT="0"
 KEYWORDS="~amd64  ~x86 ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~x64-macos"
 IUSE="static-libs"
 
-RDEPEND=">=sci-mathematics/flint-2.4.4"
+RDEPEND=">=sci-mathematics/flint-2.5.0:="
 DEPEND="${RDEPEND}"
 
-PATCHES=( "${FILESDIR}"/${PN}-2.5.0-makefile.in.patch
-	"${FILESDIR}"/${PN}-2.5.0-dedekind_sum-check.patch )
+PATCHES=(
+	"${FILESDIR}"/${PN}-2.8.0-flint_includes.patch
+	)
 
 src_configure() {
+	# Figure extra flags for linking
+	if [[ ${CHOST} == *-darwin* ]] ; then
+		extra_ldflags="-install_name ${EPREFIX}/usr/$(get_libdir)/libarb.dylib"
+	else
+		extra_ldflags="-Wl,-soname=libarb.so"
+	fi
 	# Not an autoconf configure script.
 	# Note that it appears to have been cloned from the flint configure script
 	# and that not all the options offered are valid.
-	./configure \
+	EXTRA_SHARED_FLAGS="${extra_ldflags}" ./configure \
 		--prefix="${EPREFIX}/usr" \
 		--with-flint="${EPREFIX}/usr" \
 		--with-gmp="${EPREFIX}/usr" \
@@ -42,7 +49,13 @@ src_compile() {
 }
 
 src_test() {
-	emake AT= QUIET_CC= QUIET_CXX= QUIET_AR= check
+	# Have to set the library path otherwise a previous install of libarb may be loaded.
+	# This is in part a consequence of setting the soname/installnae I think.
+	if [[ ${CHOST} == *-darwin* ]] ; then
+		DYLD_LIBRARY_PATH="${S}" emake AT= QUIET_CC= QUIET_CXX= QUIET_AR= check
+	else
+		LD_LIBRARY_PATH="${S}" emake AT= QUIET_CC= QUIET_CXX= QUIET_AR= check
+	fi
 }
 
 src_install() {

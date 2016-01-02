@@ -1,4 +1,4 @@
-# Copyright 1999-2015 Gentoo Foundation
+# Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
@@ -88,7 +88,7 @@ CDEPEND="dev-libs/gmp:0=
 	>=sys-libs/readline-6.2
 	sys-libs/zlib
 	virtual/cblas
-	arb? ( >=sci-mathematics/arb-2.6.0 )
+	arb? ( ~sci-mathematics/arb-2.6.0 )
 	modular_decomposition? ( sci-libs/modular_decomposition )
 	bliss? ( sci-libs/bliss )
 	pdf? ( app-text/texlive[extra,${LINGUAS_USEDEP}] )
