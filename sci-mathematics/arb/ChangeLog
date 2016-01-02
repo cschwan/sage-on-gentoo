@@ -1,3 +1,9 @@
+*arb-2.8.0 (02 Jan 2016)
+
+  02 Jan 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  +arb-2.8.0.ebuild, +files/arb-2.8.0-flint_includes.patch, -arb-2.5.0.ebuild:
+  sci-mathematics/arb: bump to 2.8.0 for future sage 7.0
+
 *arb-2.7.0-r1 (01 Dec 2015)
 
   01 Dec 2015; François Bissey <francois.bissey@canterbury.ac.nz>
