@@ -1,6 +1,10 @@
 # ChangeLog for sci-mathematics/sage
-# Copyright 1999-2015 Gentoo Foundation; Distributed under the GPL v2
+# Copyright 1999-2016 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
+
+  02 Jan 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-6.10.ebuild, sage-6.8-r2.ebuild, sage-6.9.ebuild:
+  sci-mathematics/sage:
 
   30 Dec 2015; François Bissey <francois.bissey@canterbury.ac.nz>
   +files/sage-7.0-blas.patch, +files/sage-7.0-singular_extra_arg.patch,
