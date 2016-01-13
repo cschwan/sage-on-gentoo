@@ -17,7 +17,7 @@ index 299016c..bb0c099 100644
  
 -        self.ptyproc = ptyprocess.PtyProcess.spawn(self.args, env=self.env,
 -                                                   cwd=self.cwd, **kwargs)
-+        self.ptyproc = self.spawnpty(self.args, env=self.env,
++        self.ptyproc = self._spawnpty(self.args, env=self.env,
 +                                     cwd=self.cwd, **kwargs)
  
          self.pid = self.ptyproc.pid
@@ -26,38 +26,10 @@ index 299016c..bb0c099 100644
          self.terminated = False
          self.closed = False
  
-+    def spawnpty(self, args, **kwargs):
++    def _spawnpty(self, args, **kwargs):
 +        '''Spawn a pty and return an instance of PtyProcess.'''
 +        return ptyprocess.PtyProcess.spawn(args, **kwargs)
 +
      def close(self, force=True):
          '''This closes the connection with the child application. Note that
          calling close() more than once is valid. This emulates standard Python
-commit ddd4bfd4258eb080c128713600aaee95fee66b85
-Author: Jeroen Demeyer <jdemeyer@cage.ugent.be>
-Date:   Wed Dec 16 22:38:29 2015 +0100
-
-    Rename spawnpty to _spawnpty
-
-diff --git a/pexpect/pty_spawn.py b/pexpect/pty_spawn.py
-index bb0c099..2855cfa 100644
---- a/pexpect/pty_spawn.py
-+++ b/pexpect/pty_spawn.py
-@@ -290,7 +290,7 @@ class spawn(SpawnBase):
-             self.args = [a if isinstance(a, bytes) else a.encode(self.encoding)
-                          for a in self.args]
- 
--        self.ptyproc = self.spawnpty(self.args, env=self.env,
-+        self.ptyproc = self._spawnpty(self.args, env=self.env,
-                                      cwd=self.cwd, **kwargs)
- 
-         self.pid = self.ptyproc.pid
-@@ -300,7 +300,7 @@ class spawn(SpawnBase):
-         self.terminated = False
-         self.closed = False
- 
--    def spawnpty(self, args, **kwargs):
-+    def _spawnpty(self, args, **kwargs):
-         '''Spawn a pty and return an instance of PtyProcess.'''
-         return ptyprocess.PtyProcess.spawn(args, **kwargs)
- 

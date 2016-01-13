@@ -1,6 +1,10 @@
 # ChangeLog for dev-python/pexpect
-# Copyright 1999-2015 Gentoo Foundation; Distributed under the GPL v2
+# Copyright 1999-2016 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/dev-python/pexpect/ChangeLog,v 1.89 2015/04/08 08:04:53 mgorny Exp $
+
+  13 Jan 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  files/pexpect-4.0.1-spawnpty.patch:
+  dev-python/pexpect: fix pexpect patch
 
 *pexpect-4.0.1-r1 (20 Dec 2015)
 
