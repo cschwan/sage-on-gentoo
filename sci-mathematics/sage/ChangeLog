@@ -2,6 +2,10 @@
 # Copyright 1999-2016 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  13 Jan 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-9999.ebuild:
+  sci-mathematics/sage: bump pexpect dependency
+
   02 Jan 2016; François Bissey <francois.bissey@canterbury.ac.nz>
   sage-6.10.ebuild, sage-6.8-r2.ebuild, sage-6.9.ebuild:
   sci-mathematics/sage:
