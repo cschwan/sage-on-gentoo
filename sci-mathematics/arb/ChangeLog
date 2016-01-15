@@ -1,3 +1,9 @@
+*arb-2.8.1 (15 Jan 2016)
+
+  15 Jan 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  +arb-2.8.1.ebuild, -arb-2.8.0.ebuild:
+  sci-mathematics/arb:
+
 *arb-2.8.0 (02 Jan 2016)
 
   02 Jan 2016; François Bissey <francois.bissey@canterbury.ac.nz>
