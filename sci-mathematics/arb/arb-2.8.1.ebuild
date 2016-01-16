@@ -2,16 +2,16 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
-EAPI=5
+EAPI=6
 
-inherit base multilib toolchain-funcs
+inherit toolchain-funcs
 
 DESCRIPTION="Arb is a C library for arbitrary-precision floating-point ball arithmetic."
 HOMEPAGE="http://fredrikj.net/arb/"
 SRC_URI="https://github.com/fredrik-johansson/arb/archive/${PV}.tar.gz -> ${P}.tar.gz"
 
 LICENSE="GPL-2+"
-SLOT="0"
+SLOT="0/1.1"
 KEYWORDS="~amd64  ~x86 ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~x64-macos"
 IUSE="static-libs"
 
@@ -23,16 +23,10 @@ PATCHES=(
 	)
 
 src_configure() {
-	# Figure extra flags for linking
-	if [[ ${CHOST} == *-darwin* ]] ; then
-		extra_ldflags="-install_name ${EPREFIX}/usr/$(get_libdir)/libarb.dylib"
-	else
-		extra_ldflags="-Wl,-soname=libarb.so"
-	fi
 	# Not an autoconf configure script.
 	# Note that it appears to have been cloned from the flint configure script
 	# and that not all the options offered are valid.
-	EXTRA_SHARED_FLAGS="${extra_ldflags}" ./configure \
+	./configure \
 		--prefix="${EPREFIX}/usr" \
 		--with-flint="${EPREFIX}/usr" \
 		--with-gmp="${EPREFIX}/usr" \

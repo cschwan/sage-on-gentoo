@@ -1,3 +1,14 @@
+  15 Jan 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  arb-2.6.0.ebuild, arb-2.7.0-r1.ebuild, arb-2.8.1.ebuild,
+  files/arb-2.5.0-makefile.in.patch:
+  sci-mathematics/arb: Migrating to EAPI 6, some clean up.
+
+*arb-2.8.1 (15 Jan 2016)
+
+  15 Jan 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  +arb-2.8.1.ebuild, -arb-2.8.0.ebuild:
+  sci-mathematics/arb:
+
 *arb-2.8.0 (02 Jan 2016)
 
   02 Jan 2016; François Bissey <francois.bissey@canterbury.ac.nz>
