@@ -316,6 +316,9 @@ python_prepare() {
 	# fix location of the html doc
 	epatch "${FILESDIR}"/${PN}-6.10-sagedoc-r2.patch
 
+	# Compatibility with MPL 1.5.1. implicit_plot shouldn't set "contours"
+	epatch "${FILESDIR}"/${PN}-MPL-1.5.1.patch
+
 	####################################
 	#
 	# Fixing problems with documentation
