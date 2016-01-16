@@ -1,3 +1,10 @@
+*gp2c-0.0.9_p5 (16 Jan 2016)
+
+  16 Jan 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  +gp2c-0.0.9_p5.ebuild, -files/20150326.patch, -files/global.patch,
+  -gp2c-0.0.9_p3.ebuild:
+  sci-mathematics/gp2c: Bump to a new version that doesn't need any patches
+
 *gp2c-0.0.9_p3 (31 Oct 2015)
 
   31 Oct 2015; François Bissey <francois.bissey@canterbury.ac.nz>
