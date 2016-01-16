@@ -2,6 +2,10 @@
 # Copyright 1999-2016 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  16 Jan 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  +files/sage-MPL-1.5.1.patch, sage-9999.ebuild:
+  sci-mathematics/sage: Make implicit_plot play nice with MPL 1.5.1 in sage 9999
+
   13 Jan 2016; François Bissey <francois.bissey@canterbury.ac.nz>
   sage-9999.ebuild:
   sci-mathematics/sage: bump pexpect dependency
