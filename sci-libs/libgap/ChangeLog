@@ -1,3 +1,9 @@
+*libgap-4.8.1 (21 Jan 2016)
+
+  21 Jan 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  +libgap-4.8.1.ebuild:
+  sci-libs/libgap: 4.8.1 for sage 7.1
+
   20 Dec 2015; François Bissey <francois.bissey@canterbury.ac.nz>
   -libgap-4.7.7.ebuild:
   sci-libs/libgap: remove unused
