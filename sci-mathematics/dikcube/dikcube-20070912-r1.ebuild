@@ -1,10 +1,10 @@
-# Copyright 1999-2015 Gentoo Foundation
+# Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
-EAPI="5"
+EAPI=6
 
-inherit eutils flag-o-matic
+inherit flag-o-matic
 
 MY_P="rubiks-${PV}"
 
@@ -22,14 +22,12 @@ RESTRICT="mirror"
 DEPEND=""
 RDEPEND=""
 
-S="${WORKDIR}"/${MY_P}/dik
+PATCHES=(
+	"${FILESDIR}"/${PN}-20070912_p10-fix-missing-includes.patch
+	"${FILESDIR}"/${PN}-20070912_p10-fix-LDFLAGS.patch
+	)
 
-src_prepare() {
-	# fixes a lot of QA warnings
-	epatch "${FILESDIR}"/${PN}-20070912_p10-fix-missing-includes.patch
-	# Respect LDFLAGS
-	epatch "${FILESDIR}"/${PN}-20070912_p10-fix-LDFLAGS.patch
-}
+S="${WORKDIR}"/${MY_P}/dik
 
 src_compile() {
 	append-cflags -DLARGE_MEM -DVERBOSE
