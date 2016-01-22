@@ -1,3 +1,7 @@
+  22 Jan 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  gp2c-0.0.9_p5.ebuild:
+  sci-mathematics/gp2c: ebuild simplification
+
 *gp2c-0.0.9_p5 (16 Jan 2016)
 
   16 Jan 2016; François Bissey <francois.bissey@canterbury.ac.nz>
