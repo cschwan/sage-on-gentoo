@@ -1,10 +1,8 @@
-# Copyright 1999-2015 Gentoo Foundation
+# Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
-EAPI="5"
-
-inherit autotools-utils
+EAPI=6
 
 DESCRIPTION="A program for factoring numbers"
 HOMEPAGE="http://www.thorstenreinecke.de/qsieve/"
@@ -22,13 +20,12 @@ DEPEND="${CDEPEND}
 	doc? ( app-doc/doxygen )"
 RDEPEND="${CDEPEND}"
 
-PATCHES=( "${FILESDIR}"/${PN}-3.02-fix-programming-errors.patch )
-
-src_configure() {
-	myeconfargs=(
-		$(use_enable doc reference-manual)
-		$(use_enable cpu_flags_x86_sse2 SSE2)
+PATCHES=(
+	"${FILESDIR}"/${PN}-3.02-fix-programming-errors.patch
 	)
 
-	autotools-utils_src_configure
+src_configure() {
+	econf \
+		$(use_enable doc reference-manual) \
+		$(use_enable cpu_flags_x86_sse2 SSE2)
 }
