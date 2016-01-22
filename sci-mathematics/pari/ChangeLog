@@ -1,6 +1,10 @@
 # ChangeLog for sci-mathematics/pari
-# Copyright 1999-2015 Gentoo Foundation; Distributed under the GPL v2
+# Copyright 1999-2016 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/sci-mathematics/pari/ChangeLog,v 1.87 2012/03/06 17:06:06 bicatali Exp $
+
+  22 Jan 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  files/pari-2.3.2-strip.patch, pari-2.8_pre20151201.ebuild, pari-9999.ebuild:
+  sci-mathematics/pari: move latest to EAPI 6
 
 *pari-2.8_pre20151201 (25 Dec 2015)
 

@@ -1,10 +1,10 @@
-# Copyright 1999-2015 Gentoo Foundation
+# Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
-EAPI=5
+EAPI=6
 
-inherit eutils flag-o-matic toolchain-funcs multilib
+inherit flag-o-matic toolchain-funcs
 
 MY_P="pari-2.8-2044-g89b0f1e"
 DESCRIPTION="Computer-aided number theory C library and tools"
@@ -29,6 +29,14 @@ RDEPEND="
 DEPEND="${RDEPEND}
 	doc? ( virtual/latex-base )"
 
+PATCHES=(
+	"${FILESDIR}"/${PN}-2.3.2-strip.patch
+	"${FILESDIR}"/${PN}-2.3.2-ppc-powerpc-arch-fix.patch
+	"${FILESDIR}"/${PN}-2.7.0-doc-make.patch
+	"${FILESDIR}"/${PN}-2.8_pre20150611-no-automagic.patch
+	"${FILESDIR}"/${PN}-9999-public_memory_functions.patch
+	)
+
 S="${WORKDIR}"/${MY_P}
 
 get_compile_dir() {
@@ -40,20 +48,12 @@ get_compile_dir() {
 }
 
 src_prepare() {
-	epatch "${FILESDIR}"/${PN}-2.3.2-strip.patch
-	epatch "${FILESDIR}"/${PN}-2.3.2-ppc-powerpc-arch-fix.patch
-	# fix parallel make
-	epatch "${FILESDIR}"/${PN}-2.7.0-doc-make.patch
-	# fix automagic
-	epatch "${FILESDIR}"/${PN}-2.8_pre20150611-no-automagic.patch
+	default
 
 	# disable default building of docs during install
 	sed -i \
 		-e "s:install-doc install-examples:install-examples:" \
 		config/Makefile.SH || die "Failed to fix makefile"
-
-	# Compatibility with sage current reporting. To disappear in the future.
-	epatch "${FILESDIR}"/${PN}-9999-public_memory_functions.patch
 
 	# propagate ldflags
 	sed -i \
