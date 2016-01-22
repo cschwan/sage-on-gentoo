@@ -2,6 +2,11 @@
 # Copyright 1999-2016 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  22 Jan 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-7.0.ebuild:
+  sci-mathematics/sage: correct ntl dependency and enforce strict version for
+  now
+
 *sage-7.0 (20 Jan 2016)
 
   20 Jan 2016; François Bissey <francois.bissey@canterbury.ac.nz>
