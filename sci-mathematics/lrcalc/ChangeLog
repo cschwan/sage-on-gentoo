@@ -1,6 +1,10 @@
 # ChangeLog for sci-mathematics/lrcalc
-# Copyright 1999-2015 Gentoo Foundation; Distributed under the GPL v2
+# Copyright 1999-2016 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
+
+  22 Jan 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  lrcalc-1.2-r1.ebuild:
+  sci-mathematics/lrcalc: move to EAPI 6, clean up
 
 *lrcalc-1.2-r1 (01 Dec 2015)
 
