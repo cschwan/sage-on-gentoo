@@ -1,8 +1,8 @@
-# Copyright 1999-2015 Gentoo Foundation
+# Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
-EAPI=5
+EAPI=6
 
 PYTHON_COMPAT=( python2_7 )
 
@@ -29,6 +29,8 @@ S="${WORKDIR}"
 src_prepare() {
 	ln -s ${MY_P} src
 	cp "${FILESDIR}"/spkg-install ./
+
+	default
 }
 
 src_install() {
