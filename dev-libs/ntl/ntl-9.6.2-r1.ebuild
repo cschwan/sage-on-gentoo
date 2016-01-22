@@ -50,7 +50,7 @@ src_configure() {
 		CXX="$(tc-getCXX)" \
 		AR="$(tc-getAR)" \
 		RANLIB="$(tc-getRANLIB)" \
-		NTL_GMP_LIP=on NTL_GF2X_LIB=on NTL_LEGACY_SP_MULMOD=on \
+		NTL_GMP_LIP=on NTL_GF2X_LIB=on \
 		"${myconfig}" \
 		|| die "DoConfig failed"
 }
