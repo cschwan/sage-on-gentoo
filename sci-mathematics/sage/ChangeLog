@@ -3,6 +3,11 @@
 # $Header: $
 
   22 Jan 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  files/sage-5.9-fix-ostools-doctest.patch, files/sage-6.3-doc_common.patch,
+  files/sage-6.6-linguas.patch, sage-9999.ebuild:
+  sci-mathematics/sage: moving to EAPI 6
+
+  22 Jan 2016; François Bissey <francois.bissey@canterbury.ac.nz>
   sage-7.0.ebuild:
   sci-mathematics/sage: correct ntl dependency and enforce strict version for
   now

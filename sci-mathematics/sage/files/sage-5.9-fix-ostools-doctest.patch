@@ -1,5 +1,5 @@
---- sage/misc/sage_ostools.py.orig	2013-03-28 19:19:40.000000000 +0000
-+++ sage/misc/sage_ostools.py	2013-04-14 09:47:19.288092468 +0000
+--- a/sage/misc/sage_ostools.py	2013-03-28 19:19:40.000000000 +0000
++++ b/sage/misc/sage_ostools.py	2013-04-14 09:47:19.288092468 +0000
 @@ -24,7 +24,7 @@
          True
          sage: have_program('there_is_not_a_program_with_this_name')
