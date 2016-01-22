@@ -1,10 +1,10 @@
-# Copyright 1999-2015 Gentoo Foundation
+# Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
-EAPI=5
+EAPI=6
 
-inherit eutils multilib
+inherit toolchain-funcs
 
 MY_PN="L"
 MY_P="${MY_PN}-${PV}"
@@ -29,14 +29,14 @@ S="${WORKDIR}/${MY_P}"
 
 src_prepare() {
 	# patch for proper installation routine, flag respect and crufty linking flag removal.
-	epatch "${FILESDIR}"/${P}-makefile.patch
+	eapply "${FILESDIR}"/${P}-makefile.patch
 
 	# gcc 4.6+ fix
-	epatch "${FILESDIR}"/${PN}-1.23-gcc-4.6-fix.patch
+	eapply "${FILESDIR}"/${PN}-1.23-gcc-4.6-fix.patch
 	# fix error that pops up with GCC >= 4.9
-	epatch "${FILESDIR}"/${PN}-1.23-fix-default-argument.patch
+	eapply "${FILESDIR}"/${PN}-1.23-fix-default-argument.patch
 	# patch to support GCC 5.1+
-	epatch "${FILESDIR}"/${PN}-1.23_default_parameters_2.patch
+	eapply "${FILESDIR}"/${PN}-1.23_default_parameters_2.patch
 
 	# macos patching
 	if [[ ${CHOST} == *-darwin* ]] ; then
@@ -58,20 +58,21 @@ src_prepare() {
 
 		if has_version "=sci-mathematics/pari-2.5*" ; then
 			# This is the patch included in r5 and r6, r4 has a different patch
-			epatch "${FILESDIR}"/${PN}-1.23-init_stack.patch
+			eapply "${FILESDIR}"/${PN}-1.23-init_stack.patch
 			# patch for pari-2.4+ this pari-2.3 safe.
 			sed -i "s:lgeti:(long)cgeti:g" src/Lcommandline_elliptic.cc \
 				|| die "sed for lgeti failed"
 		elif has_version "=sci-mathematics/pari-2.7*" ; then
-			epatch "${FILESDIR}"/${PN}-1.23-init_stack.patch
+			eapply "${FILESDIR}"/${PN}-1.23-init_stack.patch
 			# compatibility with pari 2.7
-			epatch "${FILESDIR}"/pari-2.7.patch
+			eapply "${FILESDIR}"/pari-2.7.patch
 		elif has_version ">=sci-mathematics/pari-2.8_pre20150225" ; then
 			# compatibility with pari 2.8+
-			epatch "${FILESDIR}"/pari-2.8.patch
+			eapply "${FILESDIR}"/pari-2.8.patch
 		fi
 	fi
 
+	default
 }
 
 src_compile() {
