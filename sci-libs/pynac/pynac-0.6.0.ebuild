@@ -2,12 +2,11 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
-EAPI="5"
+EAPI=6
 
 PYTHON_COMPAT=( python2_7 )
-AUTOTOOLS_AUTORECONF=yes
 
-inherit autotools-utils python-r1 vcs-snapshot eutils
+inherit autotools python-r1 vcs-snapshot
 
 DESCRIPTION="A modified version of GiNaC that replaces the dependency on CLN by Python"
 HOMEPAGE="http://pynac.sagemath.org/ https://github.com/pynac/pynac"
@@ -30,4 +29,15 @@ DOCS=( AUTHORS NEWS README )
 
 pkg_setup(){
 	python_setup
+}
+
+src_prepare(){
+	default
+
+	eautoreconf
+}
+
+src_configure(){
+	econf \
+		$(use_enable static-libs static)
 }
