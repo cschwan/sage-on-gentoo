@@ -1,8 +1,8 @@
-# Copyright 1999-2015 Gentoo Foundation
+# Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
-EAPI=5
+EAPI=6
 
 PYTHON_COMPAT=( python{2_6,2_7} )
 
@@ -52,7 +52,7 @@ pkg_setup() {
 }
 
 src_prepare () {
-	epatch \
+	eapply \
 		"${FILESDIR}"/${PN}-3.1.0-gentoo.patch \
 		"${FILESDIR}"/${PN}-3.1.0-emacs-22.patch \
 		"${FILESDIR}"/${PN}-3.0.4.4-nostrip.patch \
@@ -61,17 +61,16 @@ src_prepare () {
 		"${FILESDIR}"/${PN}-3.1.7-implicit-template.patch \
 		"${FILESDIR}"/${PN}-3.1.7-use_cxx_for_linking.patch \
 		"${FILESDIR}"/${PN}-3.1.7-curring.patch
-	eprefixify kernel/Makefile.in
 
 	if has_version ">=dev-libs/ntl-9.0.2"; then
 		# ccompatibility with ntl 8+
-		epatch "${FILESDIR}"/${PN}-3.1.7-ntl8.patch
+		eapply "${FILESDIR}"/${PN}-3.1.7-ntl8.patch
 	fi
 
-	use python && epatch "${FILESDIR}"/${PN}-3.1.3.2-python.patch
+	use python && eapply "${FILESDIR}"/${PN}-3.1.3.2-python.patch
 
 	if  [[ ${CHOST} == *-darwin* ]] ; then
-		epatch "${FILESDIR}"/${PN}-3.1.3.3-install_name.patch
+		eapply "${FILESDIR}"/${PN}-3.1.3.3-install_name.patch
 		eprefixify kernel/Makefile.in
 		eprefixify Singular/Makefile.in
 	fi
@@ -80,6 +79,8 @@ src_prepare () {
 
 	# remove ntl sources for safety.
 	rm -r ntl || die
+
+	eapply_user
 
 	cd "${S}"/Singular || die "failed to cd into Singular/"
 	eautoconf
