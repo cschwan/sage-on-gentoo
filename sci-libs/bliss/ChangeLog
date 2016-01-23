@@ -1,4 +1,9 @@
 
+  23 Jan 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  bliss-0.73.ebuild, files/bliss-0.73-man.patch:
+  sci-libs/bliss: move to EAPI 6. Note building of the html doc is automagic. To
+  fix.
+
   02 Nov 2015; François Bissey <francois.bissey@canterbury.ac.nz>
   files/bliss-0.72-autotools.patch:
   sci-libs/bliss: Make USE=-gmp actually work

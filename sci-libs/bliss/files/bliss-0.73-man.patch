@@ -8,8 +8,8 @@ http://pkgs.fedoraproject.org/cgit/bliss.git/tree/
    performance enhancement.
 
 diff -Naur bliss-0.72.orig/bliss.1 bliss-0.72/bliss.1
---- bliss.1.orig	1969-12-31 17:00:00.000000000 -0700
-+++ bliss.1	2013-04-28 14:35:37.000000000 -0600
+--- a/bliss.1	1969-12-31 17:00:00.000000000 -0700
++++ b/bliss.1	2013-04-28 14:35:37.000000000 -0600
 @@ -0,0 +1,55 @@
 +.TH "BLISS" "1" "@VERSION@" "Tommi Junttila & Petteri Kaski" "User Commands"
 +.SH "NAME"
