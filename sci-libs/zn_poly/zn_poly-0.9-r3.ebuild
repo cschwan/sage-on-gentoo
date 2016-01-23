@@ -1,10 +1,10 @@
-# Copyright 1999-2015 Gentoo Foundation
+# Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
-EAPI=5
+EAPI=6
 
-inherit eutils flag-o-matic multilib toolchain-funcs
+inherit flag-o-matic toolchain-funcs
 
 DESCRIPTION="A library for polynomial arithmetic"
 HOMEPAGE="http://web.maths.unsw.edu.au/~davidharvey/code/zn_poly/"
@@ -24,7 +24,9 @@ RDEPEND="${CDEPEND}"
 
 src_prepare() {
 	# both flint and zn_poly typedef "ulong" - fix it
-	epatch "${FILESDIR}"/${P}-flint-hack.patch
+	eapply "${FILESDIR}"/${P}-flint-hack.patch
+
+	eapply_user
 
 	# fix for multilib-strict
 	sed -i "s:%s/lib:%s/$(get_libdir):g" makemakefile.py \
@@ -49,10 +51,10 @@ src_configure() {
 
 	# this command actually calls a python script
 	./configure \
-		--prefix="${ED}"/usr \
+		--prefix="${EPREFIX}"/usr \
 		--cflags="${CFLAGS}" \
 		--ldflags="${LDFLAGS}" \
-		--gmp-prefix="${ED}"/usr \
+		--gmp-prefix="${EPREFIX}"/usr \
 		|| die "failed to configure sources"
 }
 
