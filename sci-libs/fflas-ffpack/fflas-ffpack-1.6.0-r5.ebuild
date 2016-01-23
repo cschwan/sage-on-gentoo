@@ -1,14 +1,12 @@
-# Copyright 1999-2015 Gentoo Foundation
+# Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
-EAPI=5
-AUTOTOOLS_AUTORECONF="1"
-AUTOTOOLS_IN_SOURCE_BUILD="1"
+EAPI=6
 
-inherit autotools-utils toolchain-funcs
+inherit autotools toolchain-funcs
 
-DESCRIPTION="FFLAS-FFPACK is a LGPL-2.1+ library for dense linear algebra over word-size finite fields."
+DESCRIPTION="FFLAS-FFPACK is a library for dense linear algebra over word-size finite fields."
 HOMEPAGE="http://linalg.org/projects/fflas-ffpack"
 SRC_URI="http://linalg.org/${P}.tar.gz"
 
@@ -34,10 +32,13 @@ pkg_setup(){
 	tc-export PKG_CONFIG
 }
 
-src_configure() {
-	myeconfargs=(
-		--enable-optimization
-	)
+src_prepare(){
+	default
 
-	autotools-utils_src_configure
+	eautoreconf
+}
+
+src_configure() {
+	econf \
+		--enable-optimization
 }

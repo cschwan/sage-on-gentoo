@@ -1,10 +1,10 @@
-# Copyright 1999-2015 Gentoo Foundation
+# Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
-EAPI=5
+EAPI=6
 
-inherit autotools eutils flag-o-matic multilib prefix versionator
+inherit autotools flag-o-matic prefix versionator
 
 MY_PN=Singular
 PV1=$(replace_all_version_separators -)
@@ -45,7 +45,7 @@ pkg_setup() {
 }
 
 src_prepare () {
-	epatch \
+	eapply \
 		"${FILESDIR}"/${PN_PATCH}-3.1.0-gentoo.patch \
 		"${FILESDIR}"/${PN_PATCH}-3.1.3.3-Minor.h.patch \
 		"${FILESDIR}"/${PN_PATCH}-3.1.7-flintconfig-r2.patch \
@@ -55,17 +55,17 @@ src_prepare () {
 
 	if has_version ">=dev-libs/ntl-9.0.2"; then
 		# ccompatibility with ntl 8+
-		epatch "${FILESDIR}"/${PN_PATCH}-3.1.7-ntl8.patch
+		eapply "${FILESDIR}"/${PN_PATCH}-3.1.7-ntl8.patch
 	fi
 
 	if  [[ ${CHOST} == *-darwin* ]] ; then
 		# really a placeholder until I figure out the patch for that one.
-		epatch "${FILESDIR}"/${PN_PATCH}-3.1.3.3-dylib.patch
+		eapply "${FILESDIR}"/${PN_PATCH}-3.1.3.3-dylib.patch
 		eprefixify Singular/Makefile.in
 		sed -i -e "s|@LIB_DIR@|$(get_libdir)|g" Singular/Makefile.in
 		sed -i -e "s:::"
 	else
-		epatch "${FILESDIR}"/${PN_PATCH}-3.1.3.3-soname.patch
+		eapply "${FILESDIR}"/${PN_PATCH}-3.1.3.3-soname.patch
 	fi
 
 	rm -rf ntl
@@ -80,6 +80,8 @@ src_prepare () {
 	sed -i \
 		-e "s:SO_SUFFIX = so:SO_SUFFIX = so.${SOSUFFIX}:" \
 		"${S}"/Singular/Makefile.in || die
+
+	eapply_user
 
 	cd "${S}"/Singular || die "failed to cd into Singular/"
 	eautoconf

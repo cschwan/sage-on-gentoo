@@ -1,5 +1,5 @@
---- include/L.h.old	2014-07-06 09:02:17.001966682 +0000
-+++ include/L.h	2014-07-06 09:02:27.871967142 +0000
+--- a/include/L.h	2014-07-06 09:02:17.001966682 +0000
++++ b/include/L.h	2014-07-06 09:02:27.871967142 +0000
 @@ -490,7 +490,7 @@
      Double next_gram(Double t);
  
@@ -9,8 +9,8 @@
      Complex dirichlet_series(Complex s, long long N);
  
      //#include "Ltaylor_series.h" //for computing taylor series for Dirichlet series
---- include/Ldirichlet_series.h.old	2014-07-06 09:01:07.097963726 +0000
-+++ include/Ldirichlet_series.h	2014-07-06 09:04:16.211971724 +0000
+--- a/include/Ldirichlet_series.h	2014-07-06 09:01:07.097963726 +0000
++++ b/include/Ldirichlet_series.h	2014-07-06 09:04:16.211971724 +0000
 @@ -43,7 +43,7 @@
   //XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
  template <class ttype>

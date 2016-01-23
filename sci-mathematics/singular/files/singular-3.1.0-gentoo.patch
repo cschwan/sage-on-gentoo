@@ -1,5 +1,5 @@
---- kernel/feResource.cc.orig	2010-04-30 10:20:14.000000000 +0000
-+++ kernel/feResource.cc	2010-10-11 09:19:01.431179334 +0000
+--- a/kernel/feResource.cc	2010-04-30 10:20:14.000000000 +0000
++++ b/kernel/feResource.cc	2010-10-11 09:19:01.431179334 +0000
 @@ -41,7 +41,7 @@
  #define SINGULAR_DEFAULT_DIR "/usr/local/Singular/"S_VERSION1
  #endif
@@ -63,8 +63,8 @@
  #endif
    {NULL, 0, feResUndef, NULL, NULL, NULL}, // must be the last record
  };
---- kernel/mod_raw.cc.orig	2009-11-02 10:12:22.000000000 +0000
-+++ kernel/mod_raw.cc	2010-10-11 09:19:01.432179264 +0000
+--- a/kernel/mod_raw.cc	2009-11-02 10:12:22.000000000 +0000
++++ b/kernel/mod_raw.cc	2010-10-11 09:19:01.432179264 +0000
 @@ -109,11 +109,11 @@
  void* dynl_open_binary_warn(const char* binary_name, const char* msg)
  {

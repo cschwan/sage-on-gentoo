@@ -1,12 +1,10 @@
-# Copyright 1999-2015 Gentoo Foundation
+# Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
-EAPI=5
+EAPI=6
 
-AUTOTOOLS_AUTORECONF=yes
-
-inherit autotools-utils
+inherit autotools
 
 MY_PN="FlintQS"
 DESCRIPTION="William Hart's GPL'd multi-polynomial quadratic sieve for integer factorization"
@@ -24,3 +22,9 @@ DEPEND="dev-libs/gmp:="
 RDEPEND="${DEPEND}"
 
 S="${WORKDIR}"/${MY_PN}-${PV}
+
+src_prepare(){
+	default
+
+	eautoreconf
+}

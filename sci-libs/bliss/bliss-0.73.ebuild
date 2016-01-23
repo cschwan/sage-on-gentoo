@@ -1,12 +1,10 @@
-# Copyright 1999-2015 Gentoo Foundation
+# Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
-EAPI=5
+EAPI=6
 
-AUTOTOOLS_AUTORECONF=1
-
-inherit autotools-utils
+inherit autotools
 
 SRC_URI="http://www.tcs.hut.fi/Software/${PN}/${P}.zip"
 DESCRIPTION="A Tool for Computing Automorphism Groups and Canonical Labelings of Graphs"
@@ -22,23 +20,29 @@ RDEPEND="gmp? ( dev-libs/gmp:0= )"
 DEPEND="${RDEPEND}
 	doc? ( app-doc/doxygen )"
 
-AUTOTOOLS_PRUNE_LIBTOOL_FILES="all" #comes with pkg-config file
-
 PATCHES=(
 	"${FILESDIR}/${PN}-0.72-autotools.patch"
 	"${FILESDIR}/${PN}-0.73-man.patch"
-)
+	)
+
+src_prepare(){
+	default
+
+	eautoreconf
+}
 
 src_configure() {
-	local myeconfargs=( $(use_with gmp) )
-	autotools-utils_src_configure
+	econf \
+		$(use_with gmp) \
+		$(use_enable static-libs static)
 }
 
 src_compile() {
-	autotools-utils_src_compile all $(usex doc html "")
+	emake all $(usex doc html "")
 }
 
 src_install() {
 	use doc && HTML_DOCS=( "${BUILD_DIR}"/html/. )
-	autotools-utils_src_install
+
+	default
 }

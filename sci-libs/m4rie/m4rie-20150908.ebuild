@@ -1,10 +1,10 @@
-# Copyright 1999-2015 Gentoo Foundation
+# Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
-EAPI=5
+EAPI=6
 
-inherit autotools-utils eutils flag-o-matic toolchain-funcs
+inherit autotools flag-o-matic toolchain-funcs
 
 DESCRIPTION="Method of four russian for inversion (M4RI)"
 HOMEPAGE="http://m4ri.sagemath.org/"
@@ -29,11 +29,15 @@ pkg_pretend() {
 	fi
 }
 
-src_configure() {
-	myeconfargs=(
-		$(use_enable debug)
-		$(use_enable openmp)
-	)
+src_prepare(){
+	default
 
-	autotools-utils_src_configure
+	eautoreconf
+}
+
+src_configure() {
+	econf \
+		$(use_enable debug) \
+		$(use_enable openmp) \
+		$(use_enable static-libs static)
 }

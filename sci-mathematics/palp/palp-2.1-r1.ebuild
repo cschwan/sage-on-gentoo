@@ -1,10 +1,10 @@
-# Copyright 1999-2015 Gentoo Foundation
+# Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
-EAPI=5
+EAPI=6
 
-inherit base toolchain-funcs flag-o-matic
+inherit toolchain-funcs flag-o-matic
 
 DESCRIPTION="A Package for Analyzing Lattice Polytopes"
 HOMEPAGE="http://hep.itp.tuwien.ac.at/~kreuzer/CY/CYpalp.html"
@@ -20,7 +20,9 @@ RESTRICT="mirror"
 DEPEND=""
 RDEPEND="${DEPEND}"
 
-PATCHES=( "${FILESDIR}"/${PN}-2.0-gnumakefile.patch )
+PATCHES=(
+	"${FILESDIR}"/${PN}-2.0-gnumakefile.patch
+	)
 
 # this flag break the executable with certain versions of gcc
 filter-flags -ftree-vectorize
@@ -31,7 +33,7 @@ pkg_setup() {
 }
 
 src_prepare(){
-	base_src_prepare
+	default
 
 	local x
 	for x in ${Dmax}; do

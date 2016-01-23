@@ -1,6 +1,11 @@
 # ChangeLog for sci-mathematics/lcalc
-# Copyright 1999-2015 Gentoo Foundation; Distributed under the GPL v2
+# Copyright 1999-2016 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
+
+  22 Jan 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  files/lcalc-1.23-fix-default-argument.patch,
+  files/lcalc-1.23-gcc-4.6-fix.patch, lcalc-1.23-r7.ebuild:
+  sci-mathematics/lcalc: move to EAPI 6
 
   05 Oct 2015; François Bissey <francois.bissey@canterbury.ac.nz>
   files/lcalc-1.23-makefile.patch:

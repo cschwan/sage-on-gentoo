@@ -1,10 +1,8 @@
-# Copyright 1999-2015 Gentoo Foundation
+# Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
-EAPI=5
-
-inherit eutils
+EAPI=6
 
 DESCRIPTION="Different implementations of the floating-point LLL reduction algorithm"
 HOMEPAGE="https://github.com/dstehle/fplll"
@@ -29,5 +27,4 @@ src_configure() {
 
 src_install() {
 	DOCS="AUTHORS NEWS" default
-	prune_libtool_files
 }

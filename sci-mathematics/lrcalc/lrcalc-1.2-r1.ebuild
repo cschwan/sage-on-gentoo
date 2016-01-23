@@ -1,10 +1,8 @@
-# Copyright 1999-2015 Gentoo Foundation
+# Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
-EAPI=5
-
-inherit autotools-utils
+EAPI=6
 
 DESCRIPTION="Littlewood-Richardson Calculator"
 HOMEPAGE="http://www.math.rutgers.edu/~asbuch/lrcalc/"
@@ -20,6 +18,11 @@ RESTRICT="mirror"
 DEPEND=""
 RDEPEND=""
 
-PATCHES=( "${FILESDIR}"/${PN}-1.2-includes.patch )
+PATCHES=(
+	"${FILESDIR}"/${PN}-1.2-includes.patch
+	)
 
-AUTOTOOLS_IN_SOURCE_BUILD=1
+src_configure(){
+	econf \
+		$(use_enable static-libs static)
+}

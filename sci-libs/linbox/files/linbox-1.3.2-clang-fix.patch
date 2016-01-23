@@ -1,5 +1,5 @@
---- linbox/solutions/solve.h.orig	2013-01-08 23:32:04.216963122 +1300
-+++ linbox/solutions/solve.h	2013-01-08 23:32:56.613007720 +1300
+--- a/linbox/solutions/solve.h	2013-01-08 23:32:04.216963122 +1300
++++ b/linbox/solutions/solve.h	2013-01-08 23:32:56.613007720 +1300
 @@ -311,7 +311,7 @@
  		      const RingCategories::ModularTag & tag,
  		      const Method::Dixon & m)

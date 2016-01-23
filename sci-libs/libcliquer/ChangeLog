@@ -1,6 +1,10 @@
 # ChangeLog for sci-libs/libcliquer
-# Copyright 1999-2015 Gentoo Foundation; Distributed under the GPL v2
+# Copyright 1999-2016 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
+
+  23 Jan 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  files/libcliquer-1.21-makefile.patch, libcliquer-1.21_p1.ebuild:
+  sci-libs/libcliquer: move to EAPI 6, keep repoman happy
 
   07 Sep 2015; François Bissey <francois.bissey@canterbury.ac.nz>
   libcliquer-1.21_p1.ebuild:

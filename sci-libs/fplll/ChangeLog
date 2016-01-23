@@ -1,3 +1,7 @@
+  23 Jan 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  fplll-20151201.ebuild:
+  sci-libs/fplll: move to EAPI 6
+
 *fplll-20151201 (18 Dec 2015)
 
   18 Dec 2015; François Bissey <francois.bissey@canterbury.ac.nz>

@@ -1,16 +1,16 @@
-# Copyright 1999-2015 Gentoo Foundation
+# Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
-EAPI="5"
+EAPI=6
 
-inherit eutils flag-o-matic toolchain-funcs versionator multilib
+inherit flag-o-matic toolchain-funcs versionator multilib
 
 MY_PN="cliquer"
 MY_PV="$(get_version_component_range 1-2)"
 MY_P=${MY_PN}-${MY_PV}
 
-DESCRIPTION="Cliquer is a set of C routines for finding cliques in an arbitrary weighted graph"
+DESCRIPTION="A set of C routines for finding cliques in an arbitrary weighted graph"
 HOMEPAGE="http://users.tkk.fi/pat/cliquer.html"
 SRC_URI="http://users.tkk.fi/~pat/cliquer/${MY_P}.tar.gz"
 
@@ -24,6 +24,10 @@ RESTRICT="mirror"
 DEPEND=""
 RDEPEND="${DEPEND}"
 
+PATCHES=(
+	"${FILESDIR}"/${PN}-1.21-makefile.patch
+	)
+
 S="${WORKDIR}"/${MY_P}
 
 pkg_setup() {
@@ -34,7 +38,8 @@ pkg_setup() {
 }
 
 src_prepare() {
-	epatch "${FILESDIR}"/${PN}-1.21-makefile.patch
+	default
+
 	sed -i "s:@SHLIB@:$(get_libname ${MY_PV}):g" Makefile
 	if  [[ ${CHOST} == *-darwin* ]] ; then
 		sed -i "s:@SHAREDFLAGS@:-dynamiclib -install_name ${EPREFIX}/usr/$(get_libdir)/libcliquer$(get_libname ${MY_PV}):" \

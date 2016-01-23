@@ -2,10 +2,9 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
-EAPI=5
+EAPI=6
 
-AUTOTOOLS_AUTORECONF=yes
-inherit eutils autotools-utils vcs-snapshot
+inherit autotools vcs-snapshot
 
 DESCRIPTION="enumerating and computing with elliptic curves defined over the rational numbers"
 HOMEPAGE="http://www.warwick.ac.uk/~masgaj/mwrank/index.html"
@@ -24,11 +23,16 @@ RDEPEND=">=sci-mathematics/pari-2.5.0:=
 	boost? ( dev-libs/boost[threads] )"
 DEPEND="${RDEPEND}"
 
-src_configure() {
-	local myeconfargs=(--disable-allprogs
-		$(use_with flint)
-		$(use_with boost)
-		)
+src_prepare(){
+	default
 
-	autotools-utils_src_configure
+	eautoreconf
+}
+
+src_configure() {
+	econf \
+		--disable-allprogs \
+		$(use_with flint) \
+		$(use_with boost) \
+		$(use_enable static-libs static)
 }

@@ -21,9 +21,6 @@ RDEPEND="${DEPEND}"
 S="${WORKDIR}/${PN}-${MY_PV}"
 
 src_configure(){
-	local myeconfargs=(
+	econf \
 		--with-paricfg="${EPREFIX}/usr/share/pari/pari.cfg"
-		)
-
-	econf "${myeconfarg}"
 }

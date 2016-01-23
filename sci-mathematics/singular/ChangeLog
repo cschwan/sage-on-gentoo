@@ -1,6 +1,11 @@
 # ChangeLog for sci-mathematics/singular
-# Copyright 1999-2015 Gentoo Foundation; Distributed under the GPL v2
+# Copyright 1999-2016 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/sci-mathematics/singular/ChangeLog,v 1.53 2012/06/23 10:50:20 xarthisius Exp $
+
+  23 Jan 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  files/singular-3.1.0-gentoo.patch, files/singular-3.1.3.3-install_name.patch,
+  singular-3.1.7_p1-r4.ebuild:
+  sci-mathematics/singular: move to EAPI 6
 
 *singular-3.1.7_p1-r4 (16 Aug 2015)
 

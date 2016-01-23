@@ -1,5 +1,8 @@
---- makefile.orig	2014-05-24 19:12:58.281288745 +1200
-+++ makefile	2014-05-24 19:25:19.141594193 +1200
+Author: Lost in the mist of times
+Respect LDFLAGS
+
+--- a/makefile	2014-05-24 19:12:58.281288745 +1200
++++ b/makefile	2014-05-24 19:25:19.141594193 +1200
 @@ -9,40 +9,40 @@
  	globals.o
  
