@@ -44,7 +44,7 @@ RESTRICT="mirror test"
 CDEPEND="dev-libs/gmp:0=
 	>=dev-libs/mpfr-3.1.0
 	>=dev-libs/mpc-1.0
-	>=dev-libs/ntl-9.6.2:=
+	>=dev-libs/ntl-9.6.2-r1:=
 	>=dev-libs/ppl-1.1
 	>=dev-lisp/ecls-15.3.7:=
 	dev-python/six[${PYTHON_USEDEP}]
@@ -285,7 +285,7 @@ python_prepare() {
 	# it tries to link in the filesystem in ways that are difficult to support 
 	# in a global install from a pure python perspective. See also 
 	# https://github.com/cschwan/sage-on-gentoo/issues/376
-	eapply "${FILESDIR}"/${PN}-6.10-jupyter-r2.patch
+	eapply "${FILESDIR}"/${PN}-7.1-jupyter.patch
 	touch sage_setup/jupyter/__init__.py
 
 	# Make the lazy_import pickle name versioned with the sage version number
