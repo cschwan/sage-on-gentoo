@@ -4,7 +4,7 @@ dev-java/asm:2
 dev-lang/python:2.7::sage-on-gentoo
 >=dev-libs/mathjax-2.5.0
 ~dev-libs/mpc-1.0.2
-~dev-libs/ntl-9.6.2
+>=dev-libs/ntl-9.6.2-r1
 ~dev-libs/ppl-1.1
 dev-libs/c-blosc
 ~dev-lisp/ecls-16.0.0
