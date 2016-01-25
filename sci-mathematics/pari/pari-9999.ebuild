@@ -34,7 +34,6 @@ PATCHES=(
 	"${FILESDIR}"/${PN}-2.3.2-ppc-powerpc-arch-fix.patch
 	"${FILESDIR}"/${PN}-2.7.0-doc-make.patch
 	"${FILESDIR}"/${PN}-2.8_pre20150611-no-automagic.patch
-	"${FILESDIR}"/${PN}-9999-public_memory_functions.patch
 	)
 
 get_compile_dir() {
