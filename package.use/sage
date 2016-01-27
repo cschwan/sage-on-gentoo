@@ -1,6 +1,7 @@
 dev-lang/python             readline sqlite
 dev-libs/boost              python
 dev-libs/boehm-gc           threads
+dev-libs/ntl                -threads
 dev-python/cvxopt           glpk gsl
 dev-python/cython           -numpy
 dev-python/ipython          notebook
