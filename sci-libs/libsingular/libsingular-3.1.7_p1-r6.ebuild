@@ -28,7 +28,7 @@ IUSE="boost flint debug"
 
 RDEPEND="
 	dev-libs/gmp:0=
-	dev-libs/ntl:0=
+	dev-libs/ntl:0=[-threads]
 	flint? ( >=sci-mathematics/flint-2.3:= )"
 
 DEPEND="${RDEPEND}
