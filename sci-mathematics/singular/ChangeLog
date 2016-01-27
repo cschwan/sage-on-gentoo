@@ -3,6 +3,10 @@
 # $Header: /var/cvsroot/gentoo-x86/sci-mathematics/singular/ChangeLog,v 1.53 2012/06/23 10:50:20 xarthisius Exp $
 
   27 Jan 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  singular-3.1.7_p1-r4.ebuild:
+  sci-mathematics/singular: depend on ntl[-threads] to avoid c++11 breakages
+
+  27 Jan 2016; François Bissey <francois.bissey@canterbury.ac.nz>
   files/singular-3.1.3.2-python.patch, metadata.xml:
   sci-mathematics/singular: fix python patch, modify metadata.xml
 
