@@ -1,0 +1,5 @@
+*autocliquer-1.21 (28 Jan 2016)
+
+  28 Jan 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  +autocliquer-1.21.ebuild, +metadata.xml:
+  sci-libs/autocliquer: autotool fork of cliquer to replace libcliquer
