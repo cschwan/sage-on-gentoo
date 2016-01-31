@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
 <pkgmetadata>
-  <herd>sci-mathematics</herd>
-  <maintainer>
-    <email>grozin@gentoo.org</email>
-    <name>Andrey Grozin</name>
-  </maintainer>
+<maintainer type="person">
+	<email>francois.bissey@canterbury.ac.nz</email>
+	<name>Francois Bissey</name>
+</maintainer>
   <longdescription>
  SymPy is a Python library for symbolic mathematics (manipulation). It
  aims to become a full-featured computer algebra system (CAS) while keeping
