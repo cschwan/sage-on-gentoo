@@ -1,3 +1,9 @@
+*pari_jupyter-1.0.1 (31 Jan 2016)
+
+  31 Jan 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  +pari_jupyter-1.0.1.ebuild, metadata.xml:
+  dev-python/pari_jupyter: bump and update metadata
+
   22 Jan 2016; François Bissey <francois.bissey@canterbury.ac.nz>
   pari_jupyter-1.0.0.ebuild:
   dev-python/pari_jupyter: move to EAPI 6
