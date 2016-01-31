@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
 <pkgmetadata>
-  <herd>python</herd>
-  <longdescription lang="en">
+<maintainer type="person">
+	<email>francois.bissey@canterbury.ac.nz</email>
+	<name>Francois Bissey</name>
+</maintainer>
+<longdescription lang="en">
 	Adds silk icons to your Flask application or module, or extension
-  </longdescription>
+</longdescription>
 </pkgmetadata>
