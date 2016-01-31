@@ -1,6 +1,9 @@
 # ChangeLog for dev-tex/tkz-base
-# Copyright 1999-2015 Gentoo Foundation; Distributed under the GPL v2
+# Copyright 1999-2016 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
+
+  31 Jan 2016; François Bissey <francois.bissey@canterbury.ac.nz> metadata.xml:
+  dev-tex/tkz-base: update metadata
 
   24 Sep 2015; François Bissey <francois.bissey@canterbury.ac.nz>
   tkz-base-1.16c.ebuild:
