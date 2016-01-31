@@ -1,4 +1,7 @@
 
+  31 Jan 2016; François Bissey <francois.bissey@canterbury.ac.nz> metadata.xml:
+  sci-libs/bliss: update metadata
+
   23 Jan 2016; François Bissey <francois.bissey@canterbury.ac.nz>
   bliss-0.73.ebuild, files/bliss-0.73-man.patch:
   sci-libs/bliss: move to EAPI 6. Note building of the html doc is automagic. To
