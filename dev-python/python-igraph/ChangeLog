@@ -1,3 +1,6 @@
+  31 Jan 2016; François Bissey <francois.bissey@canterbury.ac.nz> metadata.xml:
+  dev-python/python-igraph: update metadata
+
   23 Jan 2016; François Bissey <francois.bissey@canterbury.ac.nz>
   python-igraph-0.7.0.ebuild:
   dev-python/python-igraph: move to EAPI 6
