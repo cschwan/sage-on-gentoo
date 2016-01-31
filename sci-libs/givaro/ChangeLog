@@ -2,6 +2,9 @@
 # Copyright 1999-2016 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  31 Jan 2016; François Bissey <francois.bissey@canterbury.ac.nz> metadata.xml:
+  sci-libs/givaro: update metadata
+
   23 Jan 2016; François Bissey <francois.bissey@canterbury.ac.nz>
   givaro-3.7.1.ebuild:
   sci-libs/givaro: move to EAPI 6
