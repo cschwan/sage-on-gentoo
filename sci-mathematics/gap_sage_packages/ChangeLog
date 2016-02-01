@@ -1,3 +1,6 @@
+  01 Feb 2016; François Bissey <francois.bissey@canterbury.ac.nz> metadata.xml:
+  sci-mathematics/gap_sage_packages: update metadata
+
   07 Sep 2015; François Bissey <francois.bissey@canterbury.ac.nz>
   gap_sage_packages-4.6.4.ebuild:
   Massive ebuild format clean up. One removal. Further QA to follow.
