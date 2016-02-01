@@ -1,3 +1,6 @@
+  01 Feb 2016; François Bissey <francois.bissey@canterbury.ac.nz> metadata.xml:
+  update metadata
+
   22 Jan 2016; François Bissey <francois.bissey@canterbury.ac.nz>
   planarity-2.2.0.ebuild:
   sci-mathematics/planarity: move to EAPI 6
