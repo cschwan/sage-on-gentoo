@@ -2,6 +2,9 @@
 # Copyright 1999-2016 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  31 Jan 2016; François Bissey <francois.bissey@canterbury.ac.nz> metadata.xml:
+  sci-libs/linbox: update metadata
+
   23 Jan 2016; François Bissey <francois.bissey@canterbury.ac.nz>
   files/linbox-1.3.2-clang-fix.patch, linbox-1.3.2-r2.ebuild:
   sci-libs/linbox: move to EAPI 6, make repoman happy

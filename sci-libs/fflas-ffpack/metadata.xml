@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
 <pkgmetadata>
-	<herd>sci</herd>
+<maintainer type="person">
+	<email>francois.bissey@canterbury.ac.nz</email>
+	<name>Francois Bissey</name>
+</maintainer>
 	<longdescription lang="en">
 FFLAS-FFPACK: Finite Field Linear Algebra Subroutines / Package.
 FFLAS-FFPACK is a LGPL-2.1+ source code library for dense linear algebra over word-size finite fields.

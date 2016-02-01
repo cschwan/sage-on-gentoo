@@ -63,7 +63,7 @@ CDEPEND="dev-libs/gmp:0=
 	~sci-libs/givaro-3.7.1
 	>=sci-libs/gsl-1.16
 	>=sci-libs/iml-1.0.4
-	~sci-libs/libcliquer-1.21_p1
+	~sci-mathematics/cliquer-1.21
 	~sci-libs/libgap-4.7.8
 	~sci-libs/linbox-1.3.2[sage]
 	~sci-libs/m4ri-20140914

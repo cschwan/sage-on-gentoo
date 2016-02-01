@@ -1,3 +1,6 @@
+  31 Jan 2016; François Bissey <francois.bissey@canterbury.ac.nz> metadata.xml:
+  sci-chemistry/jspecview: updating metadata
+
   07 Sep 2015; François Bissey <francois.bissey@canterbury.ac.nz>
   jspecview-1169-r1.ebuild, jspecview-1169.ebuild:
   Massive ebuild format clean up. One removal. Further QA to follow.

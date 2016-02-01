@@ -2,6 +2,9 @@
 # Copyright 1999-2016 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  01 Feb 2016; François Bissey <francois.bissey@canterbury.ac.nz> metadata.xml:
+  update metadata
+
   22 Jan 2016; François Bissey <francois.bissey@canterbury.ac.nz>
   optimal-20040603-r1.ebuild:
   sci-mathematics/optimal: move to EAPI 6, ebuild clean up

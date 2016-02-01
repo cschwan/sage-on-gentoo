@@ -1,6 +1,9 @@
 # ChangeLog for dev-tex/sage-latex
-# Copyright 1999-2015 Gentoo Foundation; Distributed under the GPL v2
+# Copyright 1999-2016 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
+
+  31 Jan 2016; François Bissey <francois.bissey@canterbury.ac.nz> metadata.xml:
+  dev-tex/sage-latex: update metadata
 
 *sage-latex-3.0 (28 Aug 2015)
 

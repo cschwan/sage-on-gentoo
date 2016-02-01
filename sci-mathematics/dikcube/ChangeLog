@@ -2,6 +2,9 @@
 # Copyright 1999-2016 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  01 Feb 2016; François Bissey <francois.bissey@canterbury.ac.nz> metadata.xml:
+  sci-mathematics/dikcube: update metadata
+
   22 Jan 2016; François Bissey <francois.bissey@canterbury.ac.nz>
   dikcube-20070912-r1.ebuild, files/dikcube-20070912_p10-fix-LDFLAGS.patch,
   files/dikcube-20070912_p10-fix-missing-includes.patch:

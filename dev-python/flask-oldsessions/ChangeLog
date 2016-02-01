@@ -1,3 +1,6 @@
+  31 Jan 2016; François Bissey <francois.bissey@canterbury.ac.nz> metadata.xml:
+  dev-python/flask-oldsessions: update metadata
+
   23 Jan 2016; François Bissey <francois.bissey@canterbury.ac.nz>
   flask-oldsessions-0.10.ebuild:
   dev-python/flask-oldsessions: move to EAPI 6

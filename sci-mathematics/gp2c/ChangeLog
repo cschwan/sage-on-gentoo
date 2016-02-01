@@ -1,3 +1,6 @@
+  01 Feb 2016; François Bissey <francois.bissey@canterbury.ac.nz> metadata.xml:
+  sci-mathematics/gp2c: update metatdata
+
   22 Jan 2016; François Bissey <francois.bissey@canterbury.ac.nz>
   gp2c-0.0.9_p5.ebuild:
   sci-mathematics/gp2c: ebuild simplification
