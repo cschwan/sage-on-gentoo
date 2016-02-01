@@ -1,3 +1,6 @@
+  01 Feb 2016; François Bissey <francois.bissey@canterbury.ac.nz> metadata.xml:
+  update metadata
+
   22 Jan 2016; François Bissey <francois.bissey@canterbury.ac.nz>
   sage-data-combinatorial_designs-20140630.ebuild:
   sci-mathematics/sage-data-combinatorial_designs: trivial move to EAPI 6
