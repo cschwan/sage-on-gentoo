@@ -2,6 +2,9 @@
 # Copyright 1999-2016 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  01 Feb 2016; François Bissey <francois.bissey@canterbury.ac.nz> metadata.xml:
+  update metadata
+
   22 Jan 2016; François Bissey <francois.bissey@canterbury.ac.nz>
   sage-data-polytopes_db-20120220.ebuild:
   sci-mathematics/sage-data-polytopes_db: move to EAPI 6
