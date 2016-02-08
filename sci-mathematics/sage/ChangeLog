@@ -2,6 +2,14 @@
 # Copyright 1999-2016 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  08 Feb 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  +files/sage-7.1-doc_common.patch, +files/sage-7.1-env.patch,
+  +files/sage-7.1-exec.patch, +files/sage-7.1-linguas.patch,
+  +files/sage-7.1-sagedoc.patch, +files/sage-7.1-sources.patch,
+  files/sage-7.1-jupyter.patch, sage-9999.ebuild:
+  sci-mathematics/sage: patches updated. At this stage I don't expect the
+  documentation to build.
+
   31 Jan 2016; François Bissey <francois.bissey@canterbury.ac.nz> metadata.xml,
   sage-6.10.ebuild, sage-6.9.ebuild, sage-7.0.ebuild, sage-9999.ebuild:
   sci-mathematics/sage: change dep from libcliquer to cliquer

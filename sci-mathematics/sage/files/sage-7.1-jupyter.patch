@@ -1,8 +1,7 @@
-diff --git a/bin/sage-notebook b/bin/sage-notebook
-index cbe3e56..b13da52 100755
---- a/bin/sage-notebook
-+++ b/bin/sage-notebook
-@@ -74,7 +74,7 @@ class NotebookJupyter(object):
+diff -Naur src.orig/bin/sage-notebook src/bin/sage-notebook
+--- src.orig/bin/sage-notebook	2016-02-08 21:53:19.366463272 +1300
++++ src/bin/sage-notebook	2016-02-08 21:53:24.685476412 +1300
+@@ -74,7 +74,7 @@
      """)
  
      def __init__(self, argv):
@@ -11,11 +10,10 @@ index cbe3e56..b13da52 100755
          if not have_prerequisites():
              print(self.PREREQUISITE_ERROR)
              raise SystemExit(1)
-diff --git a/doc/en/reference/repl/index.rst b/doc/en/reference/repl/index.rst
-index 1ddae8b..97fb4bd 100644
---- a/doc/en/reference/repl/index.rst
-+++ b/doc/en/reference/repl/index.rst
-@@ -94,7 +94,6 @@ Miscellaneous
+diff -Naur src.orig/doc/en/reference/repl/index.rst src/doc/en/reference/repl/index.rst
+--- src.orig/doc/en/reference/repl/index.rst	2016-02-08 21:53:19.376463296 +1300
++++ src/doc/en/reference/repl/index.rst	2016-02-08 21:53:24.685476412 +1300
+@@ -94,7 +94,6 @@
     sage/repl/interpreter
     sage/repl/ipython_extension
     sage/repl/interface_magic
@@ -23,11 +21,9 @@ index 1ddae8b..97fb4bd 100644
     sage/repl/ipython_kernel/kernel
     sage/repl/ipython_tests
  
-diff --git a/sage/repl/ipython_kernel/install.py b/sage/repl/ipython_kernel/install.py
-deleted file mode 100644
-index fe8aafb..0000000
---- a/sage/repl/ipython_kernel/install.py
-+++ /dev/null
+diff -Naur src.orig/sage/repl/ipython_kernel/install.py src/sage/repl/ipython_kernel/install.py
+--- src.orig/sage/repl/ipython_kernel/install.py	2016-02-08 21:53:19.470463527 +1300
++++ src/sage/repl/ipython_kernel/install.py	1970-01-01 12:00:00.000000000 +1200
 @@ -1,272 +0,0 @@
 -"""
 -Installing the SageMath Jupyter Kernel and extensions
@@ -41,7 +37,7 @@ index fe8aafb..0000000
 -import errno
 -
 -from sage.env import (
--    SAGE_ROOT, SAGE_DOC, SAGE_LOCAL, SAGE_EXTCODE,
+-    SAGE_ROOT, SAGE_DOC, SAGE_DOC_OUTPUT, SAGE_LOCAL, SAGE_EXTCODE,
 -    SAGE_VERSION
 -)
 -from jupyter_core.paths import ENV_JUPYTER_PATH
@@ -245,7 +241,7 @@ index fe8aafb..0000000
 -                os.path.join(self.kernel_dir, filename)
 -            )
 -        self.symlink(
--            os.path.join(SAGE_DOC, 'output', 'html', 'en'),
+-            os.path.join(SAGE_DOC_OUTPUT, 'html', 'en'),
 -            os.path.join(self.kernel_dir, 'doc')
 -        )
 -
@@ -301,11 +297,10 @@ index fe8aafb..0000000
 -            import traceback
 -            traceback.print_exc()
 -        return False
-diff --git a/sage/repl/ipython_kernel/kernel.py b/sage/repl/ipython_kernel/kernel.py
-index 9639322..e407cf0 100644
---- a/sage/repl/ipython_kernel/kernel.py
-+++ b/sage/repl/ipython_kernel/kernel.py
-@@ -95,9 +95,7 @@ class SageKernel(IPythonKernel):
+diff -Naur src.orig/sage/repl/ipython_kernel/kernel.py src/sage/repl/ipython_kernel/kernel.py
+--- src.orig/sage/repl/ipython_kernel/kernel.py	2016-02-08 21:53:19.470463527 +1300
++++ src/sage/repl/ipython_kernel/kernel.py	2016-02-08 21:53:29.224487632 +1300
+@@ -95,9 +95,7 @@
                'url': 'kernelspecs/sagemath/doc/index.html'},
               ...]
          """
@@ -316,7 +311,7 @@ index 9639322..e407cf0 100644
          return [
              {
                  'text': 'Sage Documentation',
-@@ -168,3 +166,49 @@ class SageKernel(IPythonKernel):
+@@ -168,3 +166,49 @@
      def pre_handler_hook(self):
          from sage.ext.interrupt.interrupt import init_interrupts
          self.saved_sigint_handler = init_interrupts()
@@ -366,11 +361,9 @@ index 9639322..e407cf0 100644
 +            import traceback
 +            traceback.print_exc()
 +        return False
-diff --git a/sage_setup/jupyter/install.py b/sage_setup/jupyter/install.py
-new file mode 100644
-index 0000000..4a335bd
---- /dev/null
-+++ b/sage_setup/jupyter/install.py
+diff -Naur src.orig/sage_setup/jupyter/install.py src/sage_setup/jupyter/install.py
+--- src.orig/sage_setup/jupyter/install.py	1970-01-01 12:00:00.000000000 +1200
++++ src/sage_setup/jupyter/install.py	2016-02-08 21:53:29.224487632 +1300
 @@ -0,0 +1,229 @@
 +"""
 +Installing the SageMath Jupyter Kernel and extensions
@@ -601,11 +594,10 @@ index 0000000..4a335bd
 +
 +        return data_files
 +
-diff --git a/setup.py b/setup.py
-index cf00136..07dc4a9 100755
---- a/setup.py
-+++ b/setup.py
-@@ -635,19 +635,11 @@ print('Finished cleaning, time: %.2f seconds.' % (time.time() - t))
+diff -Naur src.orig/setup.py src/setup.py
+--- src.orig/setup.py	2016-02-08 21:53:19.499463598 +1300
++++ src/setup.py	2016-02-08 21:53:29.225487635 +1300
+@@ -635,19 +635,11 @@
  
  
  #########################################################
@@ -628,7 +620,7 @@ index cf00136..07dc4a9 100755
  
  
  #########################################################
-@@ -664,5 +656,5 @@ code = setup(name = 'sage',
+@@ -664,5 +656,5 @@
        packages    = python_packages,
        data_files  = python_data_files,
        scripts = [],
