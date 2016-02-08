@@ -11,7 +11,7 @@ diff -Naur src.orig/sage/env.py src/sage/env.py
 -_add_variable_or_fallback('SAGE_INC',        opj('$SAGE_LOCAL', 'include'))
 -_add_variable_or_fallback('SAGE_SHARE',      opj('$SAGE_LOCAL', 'share'))
 +_add_variable_or_fallback('SAGE_ROOT',       opj('@GENTOO_PORTAGE_EPREFIX@/usr', 'share', 'sage'))
-+_add_variable_or_fallback('SAGE_LOCAL',      opj('@GENTOO_PORTAGE_EPREFIX@/usr')
++_add_variable_or_fallback('SAGE_LOCAL',      opj('@GENTOO_PORTAGE_EPREFIX@/usr'))
 +_add_variable_or_fallback('SAGE_ETC',        opj('@GENTOO_PORTAGE_EPREFIX@/etc'))
 +_add_variable_or_fallback('SAGE_INC',        opj('@GENTOO_PORTAGE_EPREFIX@/usr/include'))
 +_add_variable_or_fallback('SAGE_SHARE',      opj('$SAGE_LOCAL', 'share', 'sage'))
