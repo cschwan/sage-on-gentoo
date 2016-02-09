@@ -334,6 +334,9 @@ python_prepare() {
 	eapply "${FILESDIR}"/${PN}-6.8-misc.patch \
 		"${FILESDIR}"/${PN}-7.1-linguas.patch
 
+	sed -i "s:.build_options:sage_setup.docbuild.build_options:" sage_setup/docbuild/__init__.py
+	sed -i "s:from .:from sage_setup.docbuild:" sage_setup/docbuild/__main__.py
+
 	# Put singular help file where it is expected
 	cp "${WORKDIR}"/Singular/3-1-6/info/singular.hlp doc/
 }
@@ -376,17 +379,12 @@ python_configure() {
 python_compile_all() {
 	distutils-r1_python_compile
 
-	local tempsage=`pwd`/lib/build
-
-	pushd sage_setup
 	if use html ; then
-		PYTHONPATH="${tempsage}" "${PYTHON}" -m docbuild --no-pdf-links all html || die "failed to produce html doc"
+		"${PYTHON}" sage_setup/docbuild/__main__.py --no-pdf-links all html || die "failed to produce html doc"
 	fi
 	if use pdf ; then
-		export MAKE=make
-		PYTHONPATH="${tempsage}" "${PYTHON}" -m sage_setup.docbuild all pdf || die "failed to produce pdf doc"
+		"${PYTHON}" sage_setup/docbuild/__main__.py all pdf || die "failed to produce pdf doc"
 	fi
-	popd
 }
 
 python_install_all() {
