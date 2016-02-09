@@ -1,6 +1,6 @@
 diff -Naur src.orig/sage/misc/sagedoc.py src/sage/misc/sagedoc.py
---- src.orig/sage/misc/sagedoc.py	2016-02-08 22:17:58.966137012 +1300
-+++ src/sage/misc/sagedoc.py	2016-02-08 22:28:43.595740239 +1300
+--- src.orig/sage/misc/sagedoc.py	2016-02-10 11:35:31.298447778 +1300
++++ src/sage/misc/sagedoc.py	2016-02-10 11:38:01.520790091 +1300
 @@ -18,8 +18,8 @@
  Check that argspecs of extension function/methods appear correctly,
  see :trac:`12849`::
@@ -17,11 +17,11 @@ diff -Naur src.orig/sage/misc/sagedoc.py src/sage/misc/sagedoc.py
  from sage.misc.temporary_file import tmp_dir
  import sage.version
 -from sage.env import SAGE_DOC, SAGE_DOC_OUTPUT, SAGE_SRC
-+from sage.env import SAGE_DOC, SAGE_DOC, SAGE_SRC
++from sage.env import SAGE_DOC, SAGE_SRC
  
  # The detex function does two kinds of substitutions: math, which
  # should only be done on the command line -- in the notebook, these
-@@ -800,7 +800,7 @@
+@@ -800,14 +800,13 @@
          module = ''
          exts = ['html']
          title = 'Documentation'
@@ -29,8 +29,17 @@ diff -Naur src.orig/sage/misc/sagedoc.py src/sage/misc/sagedoc.py
 +        base_path = SAGE_DOC
          doc_path = SAGE_DOC
  
-         from sage_setup.docbuild.build_options import LANGUAGES, OMIT
-@@ -819,9 +819,9 @@
+-        from sage_setup.docbuild.build_options import LANGUAGES, OMIT
+         # List of languages
+-        lang = LANGUAGES
++        lang = [d for d in os.listdir(SAGE_DOC) if re.match('^[a-z][a-z]$', d)]
+         # Documents in SAGE_DOC/LANG/ to omit
+-        omit = OMIT
++        omit = ["introspect"]
+ 
+         # List of documents, minus the omitted ones
+         documents = []
+@@ -819,9 +818,9 @@
          # Check to see if any documents are missing.  This just
          # checks to see if the appropriate output directory exists,
          # not that it contains a complete build of the docs.
@@ -42,7 +51,7 @@ diff -Naur src.orig/sage/misc/sagedoc.py src/sage/misc/sagedoc.py
          num_missing = len(missing)
          if num_missing > 0:
              print("""Warning, the following Sage documentation hasn't been built,
-@@ -1102,7 +1102,7 @@
+@@ -1102,7 +1101,7 @@
      search is case-insensitive by default.
  
      The file paths in the output are relative to
@@ -51,7 +60,7 @@ diff -Naur src.orig/sage/misc/sagedoc.py src/sage/misc/sagedoc.py
  
      INPUT: same as for :func:`search_src`.
  
-@@ -1309,7 +1309,7 @@
+@@ -1309,7 +1308,7 @@
              'http://localhost:8000/doc/live/'
          """
          self._base_url = "http://localhost:8000/doc/live/"
@@ -60,7 +69,7 @@ diff -Naur src.orig/sage/misc/sagedoc.py src/sage/misc/sagedoc.py
  
      def __call__(self, obj, output='html', view=True):
          r"""
-@@ -1376,7 +1376,7 @@
+@@ -1376,7 +1375,7 @@
                  path = os.path.join(tmp_dir(), "temp.html")
                  filed = open(path, 'w')
  
@@ -69,7 +78,7 @@ diff -Naur src.orig/sage/misc/sagedoc.py src/sage/misc/sagedoc.py
                  if os.path.exists(static_path):
                      title = obj_name + ' - Sage ' + sage.version.version + ' Documentation'
                      template = """<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-@@ -1463,7 +1463,7 @@
+@@ -1463,7 +1462,7 @@
              sage: browse_sage_doc._open("reference", testing=True)[0]
              'http://localhost:8000/doc/live/reference/index.html'
              sage: browse_sage_doc._open("tutorial", testing=True)[1]

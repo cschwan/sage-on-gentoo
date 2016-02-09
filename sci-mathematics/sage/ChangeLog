@@ -3,6 +3,10 @@
 # $Header: $
 
   09 Feb 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  files/sage-7.1-sagedoc.patch:
+  sci-mathematics/sage: getting rid of calls to sage_setup in sagedoc
+
+  09 Feb 2016; François Bissey <francois.bissey@canterbury.ac.nz>
   sage-9999.ebuild:
   sci-mathematics/sage: re-instate installing rst files as they are required for
   doctests.
