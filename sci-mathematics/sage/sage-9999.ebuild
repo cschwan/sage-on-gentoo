@@ -475,9 +475,6 @@ python_install_all() {
 	doins doc/singular.hlp
 
 	insinto /usr/share/doc/sage/common
-	# not installing doc build system
-	rm doc/common/builder.py
-	rm doc/common/custom-sphinx-build.py
 	doins -r doc/common/*
 
 	if use html ; then
