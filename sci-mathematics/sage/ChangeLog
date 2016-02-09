@@ -4,6 +4,11 @@
 
   09 Feb 2016; François Bissey <francois.bissey@canterbury.ac.nz>
   sage-9999.ebuild:
+  sci-mathematics/sage: re-instate installing rst files as they are required for
+  doctests.
+
+  09 Feb 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-9999.ebuild:
   sci-mathematics/sage: more adjustments for 7.1.beta2
 
   09 Feb 2016; François Bissey <francois.bissey@canterbury.ac.nz>
