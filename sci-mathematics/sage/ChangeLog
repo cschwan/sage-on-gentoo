@@ -2,6 +2,10 @@
 # Copyright 1999-2016 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  09 Feb 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  files/sage-7.1-linguas.patch, sage-9999.ebuild:
+  sci-mathematics/sage: documentation still not building.
+
   08 Feb 2016; François Bissey <francois.bissey@canterbury.ac.nz>
   files/sage-7.1-env.patch, sage-9999.ebuild:
   sci-mathematics/sage: more changes for 7.1.beta1

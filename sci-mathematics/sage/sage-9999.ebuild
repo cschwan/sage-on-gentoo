@@ -376,14 +376,17 @@ python_configure() {
 python_compile_all() {
 	distutils-r1_python_compile
 
+	local tempsage=`pwd`/lib/build
+
+	pushd sage_setup
 	if use html ; then
-		${PYTHON} -m sage_setup.docbuild --no-pdf-links all html || die "failed to produce html doc"
+		PYTHONPATH="${tempsage}" "${PYTHON}" -m docbuild --no-pdf-links all html || die "failed to produce html doc"
 	fi
 	if use pdf ; then
 		export MAKE=make
-		${PYTHON} -m sage_setup.docbuild all pdf || die "failed to produce pdf doc"
+		PYTHONPATH="${tempsage}" "${PYTHON}" -m sage_setup.docbuild all pdf || die "failed to produce pdf doc"
 	fi
-
+	popd
 }
 
 python_install_all() {
@@ -472,9 +475,6 @@ python_install_all() {
 
 	insinto /usr/share/doc/sage
 	doins doc/singular.hlp
-	for lang in ${LANGS} ; do
-		use linguas_$lang && doins -r doc/$lang
-	done
 
 	insinto /usr/share/doc/sage/common
 	# not installing doc build system
