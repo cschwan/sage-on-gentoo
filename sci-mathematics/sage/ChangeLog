@@ -3,6 +3,12 @@
 # $Header: $
 
   10 Feb 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  files/sage-7.1-sagedoc.patch, sage-9999.ebuild:
+  sci-mathematics/sage: rip off the part that checks that html documentation is
+  built against the  shipped rst files. Remove all rst  files and doc/common
+  files are they are now unused.
+
+  10 Feb 2016; François Bissey <francois.bissey@canterbury.ac.nz>
   sage-9999.ebuild:
   sci-mathematics/sage: re-add export MAKE=make for pdf doc
 

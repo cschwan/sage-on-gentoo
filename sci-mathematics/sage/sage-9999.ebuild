@@ -474,12 +474,6 @@ python_install_all() {
 
 	insinto /usr/share/doc/sage
 	doins doc/singular.hlp
-	for lang in ${LANGS} ; do
-		use linguas_$lang && doins -r doc/$lang
-	done
-
-	insinto /usr/share/doc/sage/common
-	doins -r doc/common/*
 
 	if use html ; then
 		cp -r doc/output/html/en/_static doc/output/html/
