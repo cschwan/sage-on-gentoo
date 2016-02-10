@@ -1,0 +1,6 @@
+*cysignals-0.9 (10 Feb 2016)
+*cysignals-9999 (10 Feb 2016)
+
+  10 Feb 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  +cysignals-0.9.ebuild, +cysignals-9999.ebuild, +metadata.xml:
+  dev-python/cysignals: initial commit
