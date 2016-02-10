@@ -2,6 +2,10 @@
 # Copyright 1999-2016 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  10 Feb 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-9999.ebuild:
+  sci-mathematics/sage: re-add export MAKE=make for pdf doc
+
   09 Feb 2016; François Bissey <francois.bissey@canterbury.ac.nz>
   files/sage-7.1-sagedoc.patch:
   sci-mathematics/sage: getting rid of calls to sage_setup in sagedoc

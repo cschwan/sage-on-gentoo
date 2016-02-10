@@ -383,6 +383,7 @@ python_compile_all() {
 		"${PYTHON}" sage_setup/docbuild/__main__.py --no-pdf-links all html || die "failed to produce html doc"
 	fi
 	if use pdf ; then
+		export MAKE=make
 		"${PYTHON}" sage_setup/docbuild/__main__.py all pdf || die "failed to produce pdf doc"
 	fi
 }
