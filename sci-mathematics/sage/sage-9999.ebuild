@@ -72,7 +72,7 @@ CDEPEND="dev-libs/gmp:0=
 	sci-mathematics/glpk:0=[gmp]
 	>=sci-mathematics/lcalc-1.23-r6[pari]
 	>=sci-mathematics/lrcalc-1.2-r1
-	~sci-mathematics/pari-2.8_pre20160130[data,gmp,doc]
+	~sci-mathematics/pari-2.8_pre20160209[data,gmp,doc]
 	~sci-mathematics/planarity-2.2.0
 	>=sci-mathematics/brial-0.8.4.3[${PYTHON_USEDEP}]
 	>=sci-mathematics/ratpoints-2.1.3
@@ -474,6 +474,12 @@ python_install_all() {
 
 	insinto /usr/share/doc/sage
 	doins doc/singular.hlp
+
+	# necessary for sagedoc.py call to sphinxify in sagenb for now.
+	insinto /usr/share/doc/sage/doc/en/introspect
+	doins -r doc/en/introspect/*
+	insinto /usr/share/doc/sage/common
+	doins -r doc/common/*
 
 	if use html ; then
 		cp -r doc/output/html/en/_static doc/output/html/
