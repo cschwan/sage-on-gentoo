@@ -3,6 +3,10 @@
 # $Header: $
 
   11 Feb 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-9999.ebuild:
+  sci-mathematics/sage: correction for case of overzealous sed-ing
+
+  11 Feb 2016; François Bissey <francois.bissey@canterbury.ac.nz>
   files/sage-7.1-env.patch, files/sage-7.1-sagedoc.patch, sage-9999.ebuild:
   sci-mathematics/sage: bump patch and dependency for 7.1.beta3
 

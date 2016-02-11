@@ -335,7 +335,7 @@ python_prepare() {
 		"${FILESDIR}"/${PN}-7.1-linguas.patch
 
 	sed -i "s:.build_options:sage_setup.docbuild.build_options:" sage_setup/docbuild/__init__.py
-	sed -i "s:from .:from sage_setup.docbuild:" sage_setup/docbuild/__main__.py
+	sed -i "s:from . import main:from sage_setup.docbuild import main:" sage_setup/docbuild/__main__.py
 
 	# Put singular help file where it is expected
 	cp "${WORKDIR}"/Singular/3-1-6/info/singular.hlp doc/
