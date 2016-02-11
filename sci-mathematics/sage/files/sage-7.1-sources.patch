@@ -1,17 +1,24 @@
 diff -Naur src.orig/sage/doctest/control.py src/sage/doctest/control.py
---- src.orig/sage/doctest/control.py	2016-02-05 12:56:01.335192754 +1300
-+++ src/sage/doctest/control.py	2016-02-05 12:57:01.572345296 +1300
-@@ -545,7 +545,6 @@
+--- src.orig/sage/doctest/control.py	2016-02-12 11:05:59.358040832 +1300
++++ src/sage/doctest/control.py	2016-02-12 11:08:10.173362940 +1300
+@@ -541,12 +541,11 @@
+             'sagenb'
+         """
+         opj = os.path.join
+-        from sage.env import SAGE_SRC, SAGE_ROOT
++        from sage.env import SAGE_SRC, SAGE_DOC, SAGE_ROOT
          def all_files():
              from glob import glob
              self.files.append(opj(SAGE_SRC, 'sage'))
 -            self.files.append(opj(SAGE_SRC, 'sage_setup'))
-             self.files.extend(glob(opj(SAGE_SRC, 'doc', '[a-z][a-z]')))
+-            self.files.extend(glob(opj(SAGE_SRC, 'doc', '[a-z][a-z]')))
++            self.files.extend(glob(opj(SAGE_DOC, '[a-z][a-z]')))
              self.options.sagenb = True
          DOT_GIT= opj(SAGE_ROOT, '.git')
+         have_git = os.path.exists(DOT_GIT)
 diff -Naur src.orig/sage/doctest/sources.py src/sage/doctest/sources.py
---- src.orig/sage/doctest/sources.py	2016-02-05 12:56:01.335192754 +1300
-+++ src/sage/doctest/sources.py	2016-02-05 12:56:37.285283793 +1300
+--- src.orig/sage/doctest/sources.py	2016-02-12 11:05:59.358040832 +1300
++++ src/sage/doctest/sources.py	2016-02-12 11:06:26.108106695 +1300
 @@ -27,7 +27,7 @@
  from parsing import SageDocTestParser
  from util import NestedName
@@ -30,9 +37,39 @@ diff -Naur src.orig/sage/doctest/sources.py src/sage/doctest/sources.py
      if path.startswith(dev):
          # there will be a branch name
          i = path.find(os.path.sep, len(dev))
+diff -Naur src.orig/sage_setup/docbuild/__init__.py src/sage_setup/docbuild/__init__.py
+--- src.orig/sage_setup/docbuild/__init__.py	2016-02-12 11:05:59.439041031 +1300
++++ src/sage_setup/docbuild/__init__.py	2016-02-12 11:09:42.667590723 +1300
+@@ -24,7 +24,7 @@
+ from sage.misc.misc import sage_makedirs
+ from sage.env import SAGE_DOC, SAGE_DOC_OUTPUT, SAGE_SRC
+ 
+-from .build_options import (LANGUAGES, SPHINXOPTS, PAPER, OMIT,
++from sage_setup.docbuild.build_options import (LANGUAGES, SPHINXOPTS, PAPER, OMIT,
+      PAPEROPTS, ALLSPHINXOPTS, NUM_THREADS, WEBSITESPHINXOPTS,
+      INCREMENTAL_BUILD, ABORT_ON_ERROR)
+ 
+diff -Naur src.orig/sage_setup/docbuild/__main__.py src/sage_setup/docbuild/__main__.py
+--- src.orig/sage_setup/docbuild/__main__.py	2016-02-12 11:05:59.439041031 +1300
++++ src/sage_setup/docbuild/__main__.py	2016-02-12 11:09:12.635516761 +1300
+@@ -1,13 +1,2 @@
+-from . import main
++from sage_setup.docbuild import main
+ main()
+-
+-# Replace old documentation output by symbolic link to SAGE_DOC_OUTPUT
+-import os
+-from sage.env import SAGE_DOC, SAGE_DOC_OUTPUT
+-old_doc = os.path.join(SAGE_DOC, "output")
+-
+-if not os.path.islink(old_doc):
+-    if os.path.exists(old_doc):
+-        from shutil import rmtree
+-        rmtree(old_doc)
+-    os.symlink(SAGE_DOC_OUTPUT, old_doc)
 diff -Naur src.orig/sage_setup/find.py src/sage_setup/find.py
---- src.orig/sage_setup/find.py	2016-02-05 12:56:01.419192966 +1300
-+++ src/sage_setup/find.py	2016-02-05 12:56:37.285283793 +1300
+--- src.orig/sage_setup/find.py	2016-02-12 11:05:59.440041034 +1300
++++ src/sage_setup/find.py	2016-02-12 11:06:26.108106695 +1300
 @@ -116,7 +116,7 @@
          cydir = os.path.join(cythonized_dir, dir)
  
@@ -43,8 +80,8 @@ diff -Naur src.orig/sage_setup/find.py src/sage_setup/find.py
              files += [os.path.join(cydir, f) for f in os.listdir(cydir)
                      if f.endswith(".h")]
 diff -Naur src.orig/setup.py src/setup.py
---- src.orig/setup.py	2016-02-05 12:56:01.419192966 +1300
-+++ src/setup.py	2016-02-05 12:56:37.285283793 +1300
+--- src.orig/setup.py	2016-02-12 11:05:59.439041031 +1300
++++ src/setup.py	2016-02-12 11:06:26.108106695 +1300
 @@ -613,28 +613,13 @@
  t = time.time()
  from sage_setup.find import find_python_sources, find_extra_files
