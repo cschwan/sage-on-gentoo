@@ -4,6 +4,10 @@
 
   12 Feb 2016; François Bissey <francois.bissey@canterbury.ac.nz>
   sage-9999.ebuild:
+  sci-mathematics/sage: one doc too many
+
+  12 Feb 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-9999.ebuild:
   sci-mathematics/sage: shipping more files for sagedoc.py
 
   11 Feb 2016; François Bissey <francois.bissey@canterbury.ac.nz>

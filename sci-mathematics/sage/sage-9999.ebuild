@@ -471,7 +471,7 @@ python_install_all() {
 	doins doc/singular.hlp
 
 	# necessary for sagedoc.py call to sphinxify in sagenb for now.
-	insinto /usr/share/doc/sage/doc/en/introspect
+	insinto /usr/share/doc/sage/en/introspect
 	doins -r doc/en/introspect/*
 	insinto /usr/share/doc/sage/common
 	doins -r doc/common/*
