@@ -2,6 +2,10 @@
 # Copyright 1999-2016 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  12 Feb 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-9999.ebuild:
+  sci-mathematics/sage: shipping more files for sagedoc.py
+
   11 Feb 2016; François Bissey <francois.bissey@canterbury.ac.nz>
   -files/sage-7.1-doc_common.patch, files/sage-7.1-sources.patch,
   sage-9999.ebuild:

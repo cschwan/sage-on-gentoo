@@ -475,6 +475,9 @@ python_install_all() {
 	doins -r doc/en/introspect/*
 	insinto /usr/share/doc/sage/common
 	doins -r doc/common/*
+	doins sage_setup/docbuild/ext/sage_autodoc.py
+	doins sage_setup/docbuild/ext/inventory_builder.py
+	doins sage_setup/docbuild/ext/multidocs.py
 
 	if use html ; then
 		cp -r doc/output/html/en/_static doc/output/html/
