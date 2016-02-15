@@ -1,4 +1,4 @@
-# Copyright 1999-2015 Gentoo Foundation
+# Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
@@ -33,6 +33,7 @@ S="${WORKDIR}/${MY_PN}-${PV%_*}"
 
 PATCHES=(
 	"${FILESDIR}"/${PN}-0.23.2-signal.patch
+	"${FILESDIR}"/${PN}-0.23.4-PR483.patch
 	)
 
 python_compile() {

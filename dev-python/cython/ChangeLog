@@ -2,6 +2,13 @@
 # Copyright 1999-2016 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/dev-python/cython/ChangeLog,v 1.93 2013/02/16 22:07:28 mgorny Exp $
 
+*cython-0.23.4-r2 (15 Feb 2016)
+
+  15 Feb 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  +cython-0.23.4-r2.ebuild, +files/cython-0.23.4-PR483.patch,
+  -cython-0.23.4-r1.ebuild:
+  dev-python/cython: add PR483 for future inclusion of cysignals
+
   31 Jan 2016; François Bissey <francois.bissey@canterbury.ac.nz> metadata.xml:
   dev-python/cython: update metadata
 
