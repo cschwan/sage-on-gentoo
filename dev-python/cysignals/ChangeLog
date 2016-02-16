@@ -1,3 +1,9 @@
+*cysignals-1.0_rc0 (16 Feb 2016)
+
+  16 Feb 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  +cysignals-1.0_rc0.ebuild, -cysignals-0.9.ebuild:
+  dev-python/cysignals: version bump for sage inclusion
+
 *cysignals-0.9 (10 Feb 2016)
 *cysignals-9999 (10 Feb 2016)
 
