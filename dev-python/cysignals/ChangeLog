@@ -1,3 +1,7 @@
+  17 Feb 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  cysignals-1.0_rc0.ebuild:
+  dev-python/cysignals: improve ebuild, test fail in python3
+
 *cysignals-1.0_rc0 (16 Feb 2016)
 
   16 Feb 2016; François Bissey <francois.bissey@canterbury.ac.nz>

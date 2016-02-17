@@ -6,7 +6,7 @@ EAPI=5
 
 PYTHON_COMPAT=( python2_7 python{3_4,3_5} )
 
-inherit distutils-r1 autotools
+inherit distutils-r1
 
 MY_PV="1.0rc0"
 DESCRIPTION="interrupt and signal handling for Cython"
@@ -24,6 +24,6 @@ RDEPEND="${DEPEND}"
 
 S="${WORKDIR}/${PN}-${MY_PV}"
 
-src_prepare(){
-	eautoreconf
+python_test(){
+	PATH="${BUILD_DIR}/scripts:${PATH}" "${EPYTHON}" -m doctest "${S}"/src/cysignals/*.pyx
 }
