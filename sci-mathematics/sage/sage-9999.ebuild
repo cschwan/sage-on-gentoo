@@ -205,7 +205,7 @@ python_prepare() {
 	eapply "${FILESDIR}"/${PN}-7.0-blas.patch
 
 	# Remove sage's package management system, git capabilities and associated tests
-	eapply "${FILESDIR}"/${PN}-6.10-neutering.patch
+	eapply "${FILESDIR}"/${PN}-7.1-neutering.patch
 	rm sage/misc/dist.py
 	rm -rf sage/dev
 
