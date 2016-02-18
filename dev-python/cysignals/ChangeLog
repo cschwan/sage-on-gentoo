@@ -1,3 +1,10 @@
+*cysignals-1.0_rc1 (18 Feb 2016)
+
+  18 Feb 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  +cysignals-1.0_rc1.ebuild, -cysignals-1.0_rc0.ebuild, cysignals-9999.ebuild:
+  dev-python/cysignals: move to 1.0_rc2, bump cython dep to something more
+  realistic
+
   18 Feb 2016; François Bissey <francois.bissey@canterbury.ac.nz>
   cysignals-9999.ebuild:
   dev-python/cysignals: bring testing to the live ebuild

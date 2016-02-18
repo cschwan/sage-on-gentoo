@@ -18,7 +18,7 @@ SLOT="0"
 KEYWORDS=""
 IUSE=""
 
-DEPEND=">=dev-python/cython-0.23.4
+DEPEND=">=dev-python/cython-0.23.4-r2
 	>=sci-mathematics/pari-2.7.0"
 RDEPEND="${DEPEND}"
 
