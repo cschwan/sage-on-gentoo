@@ -3,6 +3,11 @@
 # $Header: $
 
   18 Feb 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-7.0.ebuild:
+  sci-mathematics/sage: improve sphinx dependency in stable to fix and close
+  #392
+
+  18 Feb 2016; François Bissey <francois.bissey@canterbury.ac.nz>
   +files/sage-7.1-neutering.patch, sage-9999.ebuild:
   sci-mathematics/sage: bump for 7.1.beta4
 

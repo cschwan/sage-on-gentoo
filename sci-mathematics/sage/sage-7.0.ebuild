@@ -90,8 +90,14 @@ CDEPEND="dev-libs/gmp:0=
 	modular_decomposition? ( sci-libs/modular_decomposition )
 	bliss? ( >=sci-libs/bliss-0.73[-gmp] )
 	pdf? ( app-text/texlive[extra,${LINGUAS_USEDEP}] )
-	html? ( >=sci-mathematics/sage-notebook-0.11.6.1[${PYTHON_USEDEP}] )
-	pdf? ( >=sci-mathematics/sage-notebook-0.11.6.1[${PYTHON_USEDEP}] )"
+	html? (
+		>=sci-mathematics/sage-notebook-0.11.6.1[${PYTHON_USEDEP}]
+		=dev-python/sphinx-1.2*
+	)
+	pdf? (
+		>=sci-mathematics/sage-notebook-0.11.6.1[${PYTHON_USEDEP}]
+		=dev-python/sphinx-1.2*
+	)"
 
 DEPEND="${CDEPEND}"
 
