@@ -25,3 +25,7 @@ RDEPEND="${DEPEND}"
 src_prepare(){
 	eautoreconf
 }
+
+python_test(){
+	PATH="${BUILD_DIR}/scripts:${PATH}" "${EPYTHON}" -m doctest "${S}"/src/cysignals/*.pyx
+}
