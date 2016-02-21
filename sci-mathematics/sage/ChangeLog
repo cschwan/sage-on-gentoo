@@ -2,6 +2,11 @@
 # Copyright 1999-2016 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  21 Feb 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  files/sage-MPL-1.5.1.patch:
+  sci-mathematics/sage: update MPL-1.5.1 patch in line with decision reached for
+  sage 7.1
+
   18 Feb 2016; François Bissey <francois.bissey@canterbury.ac.nz>
   sage-7.0.ebuild:
   sci-mathematics/sage: improve sphinx dependency in stable to fix and close
