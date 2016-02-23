@@ -2,6 +2,13 @@
 # Copyright 1999-2016 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*flask-autoindex-0.6 (23 Feb 2016)
+
+  23 Feb 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  +flask-autoindex-0.6.ebuild:
+  dev-python/flask-autoindex: Bump for potential new sagenb. Make it python3_4
+  aware. Dependency to future means x86 keyword had to be  dropped.
+
   31 Jan 2016; François Bissey <francois.bissey@canterbury.ac.nz> metadata.xml:
   dev-python/flask-autoindex: update metadata
 
