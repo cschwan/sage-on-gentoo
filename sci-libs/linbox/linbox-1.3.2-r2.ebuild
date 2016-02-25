@@ -24,7 +24,7 @@ RESTRICT="mirror
 # FIXME: using external expat breaks the tests.
 # FIXME: dependency on iml, mpfr, fplll, m4ri and m4rie are automagical
 CDEPEND="dev-libs/gmp[cxx]
-	>=sci-libs/givaro-3.7.0
+	=sci-libs/givaro-3.7*
 	~sci-libs/fflas-ffpack-1.6.0
 	virtual/cblas
 	virtual/lapack
