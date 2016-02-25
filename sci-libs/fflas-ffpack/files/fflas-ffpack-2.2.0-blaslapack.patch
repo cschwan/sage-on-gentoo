@@ -1,0 +1,88 @@
+diff -Naur fflas_ffpack-2.2.0.orig/configure.ac fflas_ffpack-2.2.0/configure.ac
+--- fflas_ffpack-2.2.0.orig/configure.ac	2016-02-26 09:59:27.985171776 +1300
++++ fflas_ffpack-2.2.0/configure.ac	2016-02-26 10:05:43.297133947 +1300
+@@ -244,49 +244,25 @@
+ exit 1
+ ])
+ 
+-BLAS_FOUND=false
+-
+-FF_CHECK_BLAS_CFLAGS
+-FF_CHECK_BLAS_LIBS
+-FF_CHECK_MKL
+-FF_CHECK_USER_BLAS
+-FF_CHECK_USER_LAPACK
+-
+-# FF_CHECK_BLAS
+-
+-# FF_CHECK_GOTOBLAS
+-
+-# FF_CHECK_GSL
+-
+-# if test "$BLAS_FOUND" = "false" ; then
+-	# FF_CHECK_CBLAS
+-# fi
+-
+-# if test "$BLAS_FOUND" = "false" ; then
+-	# FF_CHECK_OTHERBLAS
+-# fi
+-
+-# FF_CHECK_LAPACK
+-
+-# if test "$BLAS_FOUND" = "false" ; then
+-	# FF_CHECK_BLAS2
+-# fi
+-
+-
+-
+-if test "$BLAS_FOUND" = "false" ; then
+-	echo ''
+-	echo '*******************************************************************************'
+-	echo ' ERROR: BLAS not found!'
+-	echo
+-	echo ' BLAS routines are required for this library to compile. Please'
+-	echo ' make sure BLAS are installed and specify its location with the option'
+-	echo ' --with-blas-libs=<libs> and if necessary --with-blas-cflags=<cflags>'
+-	echo ' when running configure.'
+-	echo '*******************************************************************************'
+-	exit 1
+-fi
++PKG_PROG_PKG_CONFIG
+ 
++PKG_CHECK_MODULES([BLAS], [cblas],[
++    CBLAS_FLAG="-D__FFLASFFPACK_HAVE_CBLAS"
++    AC_DEFINE(HAVE_BLAS,1,[Define if BLAS is installed])
++    AC_DEFINE(HAVE_CBLAS,1,[Define if C interface to BLAS is installed])
++    BLAS_FOUND=true
++    HAVE_BLAS=yes
++    BLAS_PATH=""
++    AC_SUBST(BLAS_LIBS)  
++    AC_SUBST(BLAS_CFLAGS)
++    AC_SUBST(CBLAS_FLAG)
++    AC_SUBST(BLAS_FOUND)
++    AC_SUBST(BLAS_PATH)])
++
++PKG_CHECK_MODULES([LAPACK], [lapack],[
++    AC_DEFINE(HAVE_LAPACK,1,[Define if LAPACK is installed])
++    AC_SUBST(LAPACK_LIBS)
++    AC_SUBST(LAPACK_CFLAGS)])
+ 
+ 
+ # BLAS_LIBS="${BLAS_LIBS}"
+diff -Naur fflas_ffpack-2.2.0.orig/fflas-ffpack-config.in fflas_ffpack-2.2.0/fflas-ffpack-config.in
+--- fflas_ffpack-2.2.0.orig/fflas-ffpack-config.in	2016-02-26 09:59:27.983171771 +1300
++++ fflas_ffpack-2.2.0/fflas-ffpack-config.in	2016-02-26 10:05:35.499113953 +1300
+@@ -112,11 +112,11 @@
+ 			;;
+ 
+ 		--libs)
+-			echo @PRECOMPILE_LIBS@ @CBLAS_LIBS@ @GIVARO_LIBS@ # @CUDA_LIBS@
++			echo @PRECOMPILE_LIBS@ @LAPACK_LIBS@ @CBLAS_LIBS@ @GIVARO_LIBS@ # @CUDA_LIBS@
+ 			;;
+ 
+ 		--blas-libs)
+-			echo  @CBLAS_LIBS@
++			echo  @LAPACK_LIBS@ @CBLAS_LIBS@
+ 			;;
+ 
+ 		--blas-home)

@@ -20,7 +20,7 @@ RESTRICT="mirror"
 DEPEND="virtual/cblas
 	virtual/lapack
 	>=dev-libs/gmp-4.0[cxx]
-	>=sci-libs/givaro-3.7.0"
+	=sci-libs/givaro-3.7*"
 RDEPEND="${DEPEND}"
 
 PATCHES=(

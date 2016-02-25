@@ -2,6 +2,13 @@
 # Copyright 1999-2016 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*fflas-ffpack-2.2.0 (25 Feb 2016)
+
+  25 Feb 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  +fflas-ffpack-2.2.0.ebuild, +files/fflas-ffpack-2.2.0-blaslapack.patch,
+  fflas-ffpack-1.6.0-r5.ebuild:
+  sci-libs/fflas-ffpack: fix dependencies in 1.6, new 2.2.0 ebuild
+
   31 Jan 2016; François Bissey <francois.bissey@canterbury.ac.nz> metadata.xml:
   sci-libs/fflas-ffpack: update metadata
 
