@@ -69,7 +69,7 @@ dev-tex/tkz-graph
 ~media-gfx/tachyon-0.98.9
 sci-libs/cddlib
 sci-libs/dsdp
-sci-libs/fflas-ffpack
+~sci-libs/fflas-ffpack-1.6.0
 ~sci-libs/fplll-20151201
 ~sci-libs/givaro-3.7.1
 >=sci-libs/gsl-1.16
