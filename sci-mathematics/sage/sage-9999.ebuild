@@ -339,7 +339,7 @@ python_configure() {
 	export SAGE_ROOT=`pwd`/..
 	export SAGE_SRC=`pwd`
 	export SAGE_ETC=`pwd`/bin
-	export SAGE_DOC=`pwd`/doc/output
+	export SAGE_DOC=`pwd`/doc
 	export SAGE_DOC_SRC=`pwd`/doc
 	export SAGE_DOC_MATHJAX=yes
 	export VARTEXFONTS="${T}"/fonts
@@ -372,7 +372,6 @@ python_configure() {
 python_compile_all() {
 	distutils-r1_python_compile
 
-	mkdir -p "${SAGE_DOC}"
 	if use html ; then
 		"${PYTHON}" sage_setup/docbuild/__main__.py --no-pdf-links all html || die "failed to produce html doc"
 	fi
@@ -478,21 +477,21 @@ python_install_all() {
 	doins sage_setup/docbuild/ext/multidocs.py
 
 	if use html ; then
-		cp -r doc/output/html/en/_static doc/output/html/
-		for sdir in `find doc/output/html -name _static` ; do
-			if [ $sdir != "doc/output/html/_static" ] ; then
+		cp -r doc/html/en/_static doc/html/
+		for sdir in `find doc/html -name _static` ; do
+			if [ $sdir != "doc/html/_static" ] ; then
 				rm -rf $sdir || die "failed to remove $sdir"
 				ln -s "${EPREFIX}"/usr/share/doc/sage/html/_static $sdir
 			fi
 		done
 		insinto /usr/share/doc/sage/html
-		doins -r doc/output/html/*
+		doins -r doc/html/*
 		dosym /usr/share/doc/sage/html/en /usr/share/jupyter/kernels/sagemath/doc
 	fi
 
 	if use pdf ; then
 		insinto /usr/share/doc/sage/pdf
-		doins -r doc/output/pdf/*
+		doins -r doc/pdf/*
 	fi
 }
 
