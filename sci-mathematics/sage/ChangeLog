@@ -3,6 +3,10 @@
 # $Header: $
 
   26 Feb 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-9999.ebuild:
+  sci-mathematics/sage: More rumbling about documentation building
+
+  26 Feb 2016; François Bissey <francois.bissey@canterbury.ac.nz>
   +files/sage-7.1-blas.patch, files/sage-7.1-env.patch,
   files/sage-7.1-jupyter.patch, files/sage-7.1-linguas.patch,
   files/sage-7.1-sagedoc.patch, files/sage-7.1-sources.patch, sage-9999.ebuild:

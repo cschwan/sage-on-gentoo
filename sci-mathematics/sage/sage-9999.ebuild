@@ -339,8 +339,8 @@ python_configure() {
 	export SAGE_ROOT=`pwd`/..
 	export SAGE_SRC=`pwd`
 	export SAGE_ETC=`pwd`/bin
-	export SAGE_DOC=`pwd`/doc
-	export SAGE_DOC_OUTPUT=`pwd`/doc/output
+	export SAGE_DOC=`pwd`/doc/output
+	export SAGE_DOC_SRC=`pwd`/doc
 	export SAGE_DOC_MATHJAX=yes
 	export VARTEXFONTS="${T}"/fonts
 	export SAGE_VERSION=${PV}
@@ -372,6 +372,7 @@ python_configure() {
 python_compile_all() {
 	distutils-r1_python_compile
 
+	mkdir -p "${SAGE_DOC}"
 	if use html ; then
 		"${PYTHON}" sage_setup/docbuild/__main__.py --no-pdf-links all html || die "failed to produce html doc"
 	fi
