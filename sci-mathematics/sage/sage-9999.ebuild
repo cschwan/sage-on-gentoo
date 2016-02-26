@@ -51,6 +51,7 @@ CDEPEND="dev-libs/gmp:0=
 	>=dev-python/numpy-1.10.1-r2[${PYTHON_USEDEP}]
 	>=dev-python/cython-0.23.3-r1[${PYTHON_USEDEP}]
 	dev-python/pkgconfig
+	>=dev-python/cysignals-1.0_rc2[${PYTHON_USEDEP}]
 	>=dev-python/docutils-0.12[${PYTHON_USEDEP}]
 	~dev-python/sphinx-1.2.2[${PYTHON_USEDEP}]
 	>=sci-mathematics/eclib-20150827[flint]
@@ -66,7 +67,7 @@ CDEPEND="dev-libs/gmp:0=
 	~sci-libs/m4ri-20140914
 	~sci-libs/m4rie-20150908
 	>=sci-libs/mpfi-1.5.1
-	~sci-libs/pynac-0.6.1[${PYTHON_USEDEP}]
+	~sci-libs/pynac-0.6.2[${PYTHON_USEDEP}]
 	>=sci-libs/symmetrica-2.0-r3
 	>=sci-libs/zn_poly-0.9
 	sci-mathematics/glpk:0=[gmp]
@@ -83,12 +84,12 @@ CDEPEND="dev-libs/gmp:0=
 	>=sys-libs/readline-6.2
 	sys-libs/zlib
 	virtual/cblas
-	>=sci-mathematics/arb-2.7.0-r1
+	>=sci-mathematics/arb-2.8.1
 	modular_decomposition? ( sci-libs/modular_decomposition )
 	bliss? ( >=sci-libs/bliss-0.73 )
 	pdf? ( app-text/texlive[extra,${LINGUAS_USEDEP}] )
-	html? ( >=sci-mathematics/sage-notebook-0.11.6.1[${PYTHON_USEDEP}] )
-	pdf? ( >=sci-mathematics/sage-notebook-0.11.6.1[${PYTHON_USEDEP}] )"
+	html? ( >=sci-mathematics/sage-notebook-0.11.7[${PYTHON_USEDEP}] )
+	pdf? ( >=sci-mathematics/sage-notebook-0.11.7[${PYTHON_USEDEP}] )"
 
 DEPEND="${CDEPEND}"
 
@@ -97,7 +98,7 @@ RDEPEND="${CDEPEND}
 	>=dev-python/cvxopt-1.1.8[glpk,${PYTHON_USEDEP}]
 	>=dev-python/ipython-4.0.0[notebook,${PYTHON_USEDEP}]
 	>=dev-python/jinja-2.5.5[${PYTHON_USEDEP}]
-	>=dev-python/matplotlib-1.5.0[${PYTHON_USEDEP}]
+	>=dev-python/matplotlib-1.5.1[${PYTHON_USEDEP}]
 	>=dev-python/mpmath-0.18[${PYTHON_USEDEP}]
 	>=dev-python/networkx-1.10[${PYTHON_USEDEP}]
 	>=dev-python/pexpect-4.0.1-r2[${PYTHON_USEDEP}]
@@ -202,7 +203,7 @@ python_prepare() {
 	###############################
 
 	# ATLAS independence
-	eapply "${FILESDIR}"/${PN}-7.0-blas.patch
+	eapply "${FILESDIR}"/${PN}-7.1-blas.patch
 
 	# Remove sage's package management system, git capabilities and associated tests
 	eapply "${FILESDIR}"/${PN}-7.1-neutering.patch
@@ -320,9 +321,6 @@ python_prepare() {
 	# fix location of the html doc
 	eapply "${FILESDIR}"/${PN}-7.1-sagedoc.patch
 
-	# Compatibility with MPL 1.5.1. implicit_plot shouldn't set "contours"
-	eapply "${FILESDIR}"/${PN}-MPL-1.5.1.patch
-
 	####################################
 	#
 	# Fixing problems with documentation
@@ -434,9 +432,8 @@ python_install_all() {
 
 	if use debug ; then
 		# GNU DEBUGGER helper schripts
-		python_foreach_impl python_doscript sage-CSI
 		insinto /usr/bin
-		doins sage-CSI-helper.py sage-gdb-commands
+		doins sage-gdb-commands
 
 		# VALGRIND helper scripts
 		dobin sage-cachegrind sage-callgrind sage-massif sage-omega \

@@ -2,6 +2,12 @@
 # Copyright 1999-2016 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  26 Feb 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  +files/sage-7.1-blas.patch, files/sage-7.1-env.patch,
+  files/sage-7.1-jupyter.patch, files/sage-7.1-linguas.patch,
+  files/sage-7.1-sagedoc.patch, files/sage-7.1-sources.patch, sage-9999.ebuild:
+  sci-mathematics/sage: bump patches and dependencies for 7.1.beta5
+
   21 Feb 2016; François Bissey <francois.bissey@canterbury.ac.nz>
   files/sage-MPL-1.5.1.patch:
   sci-mathematics/sage: update MPL-1.5.1 patch in line with decision reached for
