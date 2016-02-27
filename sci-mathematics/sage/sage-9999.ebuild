@@ -159,7 +159,7 @@ python_prepare() {
 	#########################################
 
 	# ship our own version of sage-env
-	cp "${FILESDIR}"/proto.sage-env-6.8 bin/sage-env
+	cp "${FILESDIR}"/proto.sage-env-7.1 bin/sage-env
 	eprefixify bin/sage-env
 	sed -i "s:@GENTOO_SITEDIR@:$(python_get_sitedir):" bin/sage-env
 
