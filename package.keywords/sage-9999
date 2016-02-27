@@ -10,6 +10,7 @@ dev-libs/c-blosc
 ~dev-lisp/ecls-16.0.0
 dev-python/characteristic
 dev-python/cvxopt
+~dev-python/cysignals-1.0
 >=dev-python/cython-0.23.2-r1
 ~dev-python/bottleneck-0.8.0
 >=dev-python/matplotlib-1.5.1
