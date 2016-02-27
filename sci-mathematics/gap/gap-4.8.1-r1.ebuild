@@ -36,8 +36,8 @@ src_prepare(){
 		configure.in || die
 
 	# put GAPdoc in place
-	mkdir pkg
-	mv "${WORKDIR}/${GAPDOC}" pkg/
+	mkdir pkg || die
+	mv "${WORKDIR}/${GAPDOC}" pkg/ || die
 
 	eautoreconf
 }
