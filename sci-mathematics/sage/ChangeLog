@@ -3,6 +3,12 @@
 # $Header: $
 
   27 Feb 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-7.0.ebuild, sage-9999.ebuild:
+  sci-mathematics/sage: work on sage-notebook dependencies for issue #396, use
+  some new knoledge about location of sphinxify while working on upstream
+  tickets.
+
+  27 Feb 2016; François Bissey <francois.bissey@canterbury.ac.nz>
   +files/proto.sage-env-7.1, sage-9999.ebuild:
   sci-mathematics/sage: for sage 7.1 sage-env will need SAGE_DOC_SRC
 
