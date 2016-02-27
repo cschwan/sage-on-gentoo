@@ -1,3 +1,9 @@
+*cysignals-1.0 (27 Feb 2016)
+
+  27 Feb 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  +cysignals-1.0.ebuild, -cysignals-1.0_rc2.ebuild:
+  dev-python/cysignals: Bump, python3 clean
+
 *cysignals-1.0_rc2 (19 Feb 2016)
 
   19 Feb 2016; François Bissey <francois.bissey@canterbury.ac.nz>
