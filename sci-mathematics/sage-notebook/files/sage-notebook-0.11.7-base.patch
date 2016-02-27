@@ -1,6 +1,15 @@
 diff -Naur sage-notebook-0.11.7.orig/sagenb/flask_version/base.py sage-notebook-0.11.7/sagenb/flask_version/base.py
---- sage-notebook-0.11.7.orig/sagenb/flask_version/base.py	2016-02-24 11:41:36.023592049 +1300
-+++ sage-notebook-0.11.7/sagenb/flask_version/base.py	2016-02-24 11:42:19.697704341 +1300
+--- sage-notebook-0.11.7.orig/sagenb/flask_version/base.py	2016-02-27 22:11:10.119167154 +1300
++++ sage-notebook-0.11.7/sagenb/flask_version/base.py	2016-02-27 22:12:45.275411933 +1300
+@@ -8,7 +8,7 @@
+ from flask_oldsessions import OldSecureCookieSessionInterface
+ 
+ from flask.ext.autoindex import AutoIndex
+-from sage.env import SAGE_SRC, SAGE_DOC
++from sage.env import SAGE_SRC, SAGE_DOC, SAGE_LOCAL
+ SRC = os.path.join(SAGE_SRC, 'sage')
+ from flask.ext.openid import OpenID
+ from flask.ext.babel import Babel, gettext, ngettext, lazy_gettext, get_locale
 @@ -36,12 +36,12 @@
          self.add_static_path('/javascript', DATA)
          self.add_static_path('/static', DATA)
