@@ -8,7 +8,9 @@ inherit autotools elisp-common
 
 DESCRIPTION="System for computational discrete algebra"
 HOMEPAGE="http://www.gap-system.org/"
-SRC_URI="https://github.com/gap-system/gap/archive/v${PV}.tar.gz -> ${P}.tar.gz"
+GAPDOC="GAPDoc-1.5.1"
+SRC_URI="https://github.com/gap-system/gap/archive/v${PV}.tar.gz -> ${P}.tar.gz
+	http://www.gap-system.org/pub/gap/gap4/tar.bz2/packages/${GAPDOC}.tar.bz2"
 
 LICENSE="GPL-2"
 SLOT="0"
@@ -32,6 +34,10 @@ src_prepare(){
 
 	sed -i "s:gapdir=\`pwd\`:gapdir=${EPREFIX}/usr/$(get_libdir)/${PN}:" \
 		configure.in || die
+
+	# put GAPdoc in place
+	mkdir pkg
+	mv "${WORKDIR}/${GAPDOC}" pkg/
 
 	eautoreconf
 }
