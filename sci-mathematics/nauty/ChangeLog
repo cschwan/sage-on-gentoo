@@ -1,0 +1,5 @@
+*nauty-2.6.1 (28 Feb 2016)
+
+  28 Feb 2016; François Bissey <francois.bissey@canterbury.ac.nz> +metadata.xml,
+  +nauty-2.6.1.ebuild:
+  sci-mathematics/nauty: bump to new version
