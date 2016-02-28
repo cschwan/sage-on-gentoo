@@ -40,8 +40,7 @@ src_install () {
 		directg gentreeg genquarticg \
 		ranlabg multig planarg gentourng linegraphg watercluster2 dretodot \
 		subdivideg vcolg delptg cubhamg twohamg hamheuristic converseg \
-		genspecialg genbgL \
-		copyg listg labelg dretog amtog geng complg showg NRswitchg \
+		genspecialg genbgL shortg \
 		dreadnaut
 
 	dodoc README formats.txt nug*.pdf
