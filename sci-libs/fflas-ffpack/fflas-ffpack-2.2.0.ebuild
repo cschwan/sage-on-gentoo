@@ -4,7 +4,7 @@
 
 EAPI=5
 
-inherit autotools toolchain-funcs
+inherit autotools toolchain-funcs eutils
 
 MY_PN="fflas_ffpack"
 MY_P="${MY_PN}-${PV}"
@@ -28,7 +28,8 @@ DEPEND="virtual/cblas
 RDEPEND="${DEPEND}"
 
 PATCHES=(
-	"${FILESDIR}/${P}-blaslapack.patch"
+	"${FILESDIR}/${PN}-2.2.0-blaslapack.patch"
+	"${FILESDIR}/${PN}-2.2.0-test.patch"
 	)
 
 S="${WORKDIR}"/${MY_P}
@@ -44,6 +45,7 @@ pkg_setup(){
 }
 
 src_prepare(){
+	epatch "${PATCHES[@]}"
 	default
 
 	eautoreconf

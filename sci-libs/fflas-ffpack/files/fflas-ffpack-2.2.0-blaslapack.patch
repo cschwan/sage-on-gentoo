@@ -1,12 +1,13 @@
 diff -Naur fflas_ffpack-2.2.0.orig/configure.ac fflas_ffpack-2.2.0/configure.ac
---- fflas_ffpack-2.2.0.orig/configure.ac	2016-02-26 09:59:27.985171776 +1300
-+++ fflas_ffpack-2.2.0/configure.ac	2016-02-26 10:05:43.297133947 +1300
-@@ -244,49 +244,25 @@
+--- fflas_ffpack-2.2.0.orig/configure.ac	2016-03-02 11:29:51.302283308 +1300
++++ fflas_ffpack-2.2.0/configure.ac	2016-03-02 11:50:48.815029035 +1300
+@@ -244,62 +244,26 @@
  exit 1
  ])
  
 -BLAS_FOUND=false
--
++PKG_PROG_PKG_CONFIG
+ 
 -FF_CHECK_BLAS_CFLAGS
 -FF_CHECK_BLAS_LIBS
 -FF_CHECK_MKL
@@ -47,31 +48,43 @@ diff -Naur fflas_ffpack-2.2.0.orig/configure.ac fflas_ffpack-2.2.0/configure.ac
 -	echo '*******************************************************************************'
 -	exit 1
 -fi
-+PKG_PROG_PKG_CONFIG
- 
-+PKG_CHECK_MODULES([BLAS], [cblas],[
+-
+-
+-
+-# BLAS_LIBS="${BLAS_LIBS}"
+-# BLAS_LIBS="-L/${BLAS_PATH} ${LAPACK_LIBS} ${BLAS_LIBS}"
+-# AC_SUBST(BLAS_LIBS)
+-
+-# FF_CHECK_CUDA
+-
+-# AM_CONDITIONAL(FFLASFFPACK_HAVE_BLAS,  test "x$BLAS_FOUND" != "xfalse")
+-
+-
+-# FF_BENCH
++PKG_CHECK_MODULES([CBLAS], [cblas],[
 +    CBLAS_FLAG="-D__FFLASFFPACK_HAVE_CBLAS"
 +    AC_DEFINE(HAVE_BLAS,1,[Define if BLAS is installed])
 +    AC_DEFINE(HAVE_CBLAS,1,[Define if C interface to BLAS is installed])
 +    BLAS_FOUND=true
 +    HAVE_BLAS=yes
 +    BLAS_PATH=""
-+    AC_SUBST(BLAS_LIBS)  
-+    AC_SUBST(BLAS_CFLAGS)
++    CBLAS_FLAG="${CBLAS_CFLAGS}"
++    AC_SUBST(CBLAS_LIBS)  
 +    AC_SUBST(CBLAS_FLAG)
 +    AC_SUBST(BLAS_FOUND)
 +    AC_SUBST(BLAS_PATH)])
 +
 +PKG_CHECK_MODULES([LAPACK], [lapack],[
 +    AC_DEFINE(HAVE_LAPACK,1,[Define if LAPACK is installed])
-+    AC_SUBST(LAPACK_LIBS)
-+    AC_SUBST(LAPACK_CFLAGS)])
++    AC_SUBST(LAPACK_LIBS)])
  
++AM_CONDITIONAL(FFLASFFPACK_HAVE_LAPACK,  test "x$HAVE_LAPACK" == "x1")
  
- # BLAS_LIBS="${BLAS_LIBS}"
+ FF_DOC
+ 
 diff -Naur fflas_ffpack-2.2.0.orig/fflas-ffpack-config.in fflas_ffpack-2.2.0/fflas-ffpack-config.in
---- fflas_ffpack-2.2.0.orig/fflas-ffpack-config.in	2016-02-26 09:59:27.983171771 +1300
-+++ fflas_ffpack-2.2.0/fflas-ffpack-config.in	2016-02-26 10:05:35.499113953 +1300
+--- fflas_ffpack-2.2.0.orig/fflas-ffpack-config.in	2016-03-02 11:29:51.300283303 +1300
++++ fflas_ffpack-2.2.0/fflas-ffpack-config.in	2016-03-02 11:30:09.812323376 +1300
 @@ -112,11 +112,11 @@
  			;;
  
