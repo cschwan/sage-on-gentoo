@@ -1,4 +1,4 @@
-# Copyright 1999-2015 Gentoo Foundation
+# Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
@@ -10,7 +10,7 @@ inherit distutils-r1 latex-package
 
 MY_PN="sagetex"
 MY_P="${MY_PN}-${PV}"
-DESCRIPTION="SageTeX package allows to embed code from the Sage mathematics software suite into LaTeX documents"
+DESCRIPTION="SageTeX allows you to embed Sage code into LaTeX documents"
 HOMEPAGE="http://www.sagemath.org https://bitbucket.org/ddrake/sagetex/overview"
 SRC_URI="mirror://sageupstream/${MY_PN}/${MY_P}.tar.bz2"
 
@@ -30,8 +30,20 @@ src_prepare() {
 	# LaTeX file are installed by eclass functions
 	epatch "${FILESDIR}"/${PN}-2.3.4-install-python-files-only.patch
 
-	# Don't regenerate the documentation
-	rm *.dtx
+	# Those files will be over-written, and there presence will
+	# make latex die in batchmode
+	rm sagetex.sty \
+		sagetex.py \
+		sagetexparse.py \
+		makestatic.py \
+		extractsagecode.py \
+		remote-sagetex.py || die "failed to remove files to be regenerated"
+
+	mkdir sub
+	for i in scripts.dtx remote-sagetex.dtx py-and-sty.dtx; do
+		mv "${i}" sub/
+		sed -i "s:${i}:sub/${i}:g" sagetex.dtx sagetex.ins
+	done
 
 	distutils-r1_src_prepare
 }
@@ -48,7 +60,7 @@ src_install() {
 
 	rm example.tex || die "failed to remove example file"
 
-	latex-package_src_install
+	latex-package_src_install sagetex
 	distutils-r1_src_install
 }
 
