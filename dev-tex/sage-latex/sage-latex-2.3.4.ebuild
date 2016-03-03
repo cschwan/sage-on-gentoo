@@ -39,10 +39,10 @@ src_prepare() {
 		extractsagecode.py \
 		remote-sagetex.py || die "failed to remove files to be regenerated"
 
-	mkdir sub
+	mkdir sub || die "faile to create sub"
 	for i in scripts.dtx remote-sagetex.dtx py-and-sty.dtx; do
-		mv "${i}" sub/
-		sed -i "s:${i}:sub/${i}:g" sagetex.dtx sagetex.ins
+		mv "${i}" sub/ || die "failed to move ${i} to sub"
+		sed -i "s:${i}:sub/${i}:g" sagetex.dtx sagetex.ins || die "failed to change ${i} in sagetex.*"
 	done
 
 	distutils-r1_src_prepare

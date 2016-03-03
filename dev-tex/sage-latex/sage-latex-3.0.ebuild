@@ -30,6 +30,12 @@ src_prepare() {
 	# LaTeX file are installed by eclass functions
 	epatch "${FILESDIR}"/${PN}-3.0-install-python-files-only.patch
 
+	mkdir sub || die "faile to create sub"
+	for i in scripts.dtx remote-sagetex.dtx py-and-sty.dtx; do
+		mv "${i}" sub/ || die "failed to move ${i} to sub"
+		sed -i "s:${i}:sub/${i}:g" sagetex.dtx sagetex.ins || die "failed to change ${i} in sagetex.*"
+	done
+
 	distutils-r1_src_prepare
 }
 
