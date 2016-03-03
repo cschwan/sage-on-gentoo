@@ -51,7 +51,7 @@ CDEPEND="dev-libs/gmp:0=
 	>=dev-python/numpy-1.10.1-r2[${PYTHON_USEDEP}]
 	>=dev-python/cython-0.23.3-r1[${PYTHON_USEDEP}]
 	dev-python/pkgconfig
-	>=dev-python/cysignals-1.0_rc2[${PYTHON_USEDEP}]
+	>=dev-python/cysignals-1.0.1[${PYTHON_USEDEP}]
 	>=dev-python/docutils-0.12[${PYTHON_USEDEP}]
 	>=dev-python/sphinx-1.2.2[${PYTHON_USEDEP}]
 	>=sci-mathematics/eclib-20150827[flint]
@@ -120,6 +120,7 @@ RDEPEND="${CDEPEND}
 	>=sci-mathematics/dikcube-20070912
 	~sci-mathematics/maxima-5.35.1[ecls]
 	>=sci-mathematics/mcube-20051209
+	>=sci-mathematics/nauty-2.6.1
 	>=sci-mathematics/optimal-20040603
 	>=sci-mathematics/palp-2.1
 	~sci-mathematics/sage-data-elliptic_curves-0.8

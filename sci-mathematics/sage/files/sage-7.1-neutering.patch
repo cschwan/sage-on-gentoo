@@ -181,23 +181,6 @@ diff -Naur src.orig/sage/geometry/polyhedron/base.py src/sage/geometry/polyhedro
              raise NotImplementedError('You must install the optional lrslib package '
                                         'for this function to work')
  
-diff -Naur src.orig/sage/graphs/digraph_generators.py src/sage/graphs/digraph_generators.py
---- src.orig/sage/graphs/digraph_generators.py	2016-02-19 10:34:58.658146381 +1300
-+++ src/sage/graphs/digraph_generators.py	2016-02-19 10:35:27.540215802 +1300
-@@ -468,9 +468,10 @@
-             [1, 0, 1, 1, 6, 35, 353, 6008]
-         """
-         import subprocess
--        from sage.misc.package import is_package_installed
--        if not is_package_installed("nauty"):
--            raise TypeError("The optional nauty spkg does not seem to be installed")
-+        import os
-+        from sage.env import SAGE_LOCAL
-+        if os.path.isfile(os.path.join(SAGE_LOCAL, 'bin', 'gentourng')) != True:
-+            raise TypeError("The optional package nauty does not seem to be installed")
- 
-         nauty_input = options
- 
 diff -Naur src.orig/sage/graphs/generic_graph.py src/sage/graphs/generic_graph.py
 --- src.orig/sage/graphs/generic_graph.py	2016-02-19 10:34:58.659146384 +1300
 +++ src/sage/graphs/generic_graph.py	2016-02-19 10:35:27.542215807 +1300
@@ -275,38 +258,6 @@ diff -Naur src.orig/sage/graphs/generic_graph.py src/sage/graphs/generic_graph.p
              return canonical_form(self, partition, return_graph, certify)
  
          if (algorithm is not None and
-diff -Naur src.orig/sage/graphs/graph_generators.py src/sage/graphs/graph_generators.py
---- src.orig/sage/graphs/graph_generators.py	2016-02-19 10:34:58.660146386 +1300
-+++ src/sage/graphs/graph_generators.py	2016-02-19 10:35:27.543215809 +1300
-@@ -873,8 +873,9 @@
-             >A geng -d0D3 n=4 e=0-6
-         """
-         import subprocess
--        from sage.misc.package import is_package_installed
--        if not is_package_installed("nauty"):
-+        import os
-+        from sage.env import SAGE_LOCAL
-+        if not os.path.isfile(os.path.join(SAGE_LOCAL, 'bin', 'geng')):
-             raise TypeError("the optional nauty package is not installed")
-         sp = subprocess.Popen("geng {0}".format(options), shell=True,
-                               stdin=subprocess.PIPE, stdout=subprocess.PIPE,
-diff -Naur src.orig/sage/graphs/hypergraph_generators.py src/sage/graphs/hypergraph_generators.py
---- src.orig/sage/graphs/hypergraph_generators.py	2016-02-19 10:34:58.661146388 +1300
-+++ src/sage/graphs/hypergraph_generators.py	2016-02-19 10:35:27.543215809 +1300
-@@ -103,9 +103,10 @@
-             ((0, 1, 2), (0, 3, 4), (0, 5, 6), (1, 3, 5), (2, 4, 5), (2, 3, 6), (1, 4, 6))
-         """
-         import subprocess
--        from sage.misc.package import is_package_installed
--        if not is_package_installed("nauty"):
--            raise TypeError("The optional nauty spkg does not seem to be installed")
-+        import os
-+        from sage.env import SAGE_LOCAL
-+        if not os.path.isfile(os.path.join(SAGE_LOCAL, 'bin', 'genbg')):
-+            raise TypeError("The optional nauty package does not seem to be installed")
- 
-         nauty_input = options
- 
 diff -Naur src.orig/sage/graphs/lovasz_theta.py src/sage/graphs/lovasz_theta.py
 --- src.orig/sage/graphs/lovasz_theta.py	2016-02-19 10:34:58.661146388 +1300
 +++ src/sage/graphs/lovasz_theta.py	2016-02-19 10:35:27.543215809 +1300
