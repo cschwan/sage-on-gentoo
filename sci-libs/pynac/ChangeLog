@@ -2,6 +2,12 @@
 # Copyright 1999-2016 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*pynac-0.6.3 (03 Mar 2016)
+
+  03 Mar 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  +pynac-0.6.3.ebuild, -pynac-0.6.1.ebuild:
+  sci-libs/pynac: bump and remove unused version
+
 *pynac-0.6.2 (23 Feb 2016)
 
   23 Feb 2016; François Bissey <francois.bissey@canterbury.ac.nz>
