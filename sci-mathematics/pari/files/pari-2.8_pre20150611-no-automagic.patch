@@ -72,7 +72,7 @@ diff -Naur pari-2.8-1545-gd04cdd3.orig/config/get_fltk pari-2.8-1545-gd04cdd3/co
    with_fltk=yes
  fi
  FLTK_LIBS="`fltk-config --ldflags`"
-+if test -z "$without_fltk; then
++if test -z "$without_fltk"; then
 +   FLTK_LIBS=""
 +fi
  exe=$osname-$arch-fltk$$

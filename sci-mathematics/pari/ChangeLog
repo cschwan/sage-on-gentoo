@@ -2,6 +2,11 @@
 # Copyright 1999-2016 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/sci-mathematics/pari/ChangeLog,v 1.87 2012/03/06 17:06:06 bicatali Exp $
 
+  03 Mar 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  files/pari-2.8_pre20150611-no-automagic.patch:
+  sci-mathematics/pari: fix syntax error in the no-automagic patch to close
+  issue #401
+
 *pari-2.8_pre20160209 (11 Feb 2016)
 
   11 Feb 2016; François Bissey <francois.bissey@canterbury.ac.nz>
