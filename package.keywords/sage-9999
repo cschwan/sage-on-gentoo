@@ -10,7 +10,7 @@ dev-libs/c-blosc
 ~dev-lisp/ecls-16.0.0
 dev-python/characteristic
 dev-python/cvxopt
-~dev-python/cysignals-1.0
+~dev-python/cysignals-1.0.1
 >=dev-python/cython-0.23.2-r1
 ~dev-python/bottleneck-0.8.0
 >=dev-python/matplotlib-1.5.1
@@ -108,6 +108,7 @@ sci-mathematics/palp
 sci-mathematics/pari-data
 ~sci-mathematics/planarity-2.2.0
 sci-mathematics/brial
+~sci-mathematics/nauty-2.6.1
 sci-mathematics/ratpoints
 sci-mathematics/rubiks
 sci-mathematics/rw
