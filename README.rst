@@ -98,7 +98,7 @@ QUICK INSTALLATION GUIDE
    you can not proceed with this step (because of circular dependencies, missing
    USE-flags, and so on) please report this behavior.
 
-   NOTE also, that we do _not_ recommend to use the ATLAS (sci-libs/blas-alas
+   NOTE also, that we do _not_ recommend to use the ATLAS (sci-libs/blas-atlas
    and/or sci-libs/lapack-atlas) blas/lapack implementation since we experienced
    some failures with it:
 
