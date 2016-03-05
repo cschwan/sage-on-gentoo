@@ -134,6 +134,7 @@ dev-java/icedtea-bin:7
 #########################
 sci-libs/modular_decomposition
 ~sci-libs/bliss-0.73
+=sci-libs/cxsparse-3.1*
 dev-libs/igraph
 ~dev-python/python-igraph-0.7.0
 # coinor-cbc
