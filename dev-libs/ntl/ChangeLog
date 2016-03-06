@@ -2,6 +2,13 @@
 # Copyright 1999-2016 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/dev-libs/ntl/ChangeLog,v 1.25 2014/06/19 13:08:44 jauhien Exp $
 
+*ntl-9.6.4 (06 Mar 2016)
+
+  06 Mar 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  +ntl-9.6.4.ebuild:
+  dev-libs/ntl: adding 9.6.4 from the main tree with our additions (sub-
+  slotting, threads useflag and disabling old compatibility)
+
   31 Jan 2016; François Bissey <francois.bissey@canterbury.ac.nz> metadata.xml:
   dev-libs/ntl: update metadata
 
