@@ -335,7 +335,8 @@ python_prepare() {
 		"${FILESDIR}"/${PN}-7.1-linguas.patch
 
 	# Put singular help file where it is expected
-	cp "${WORKDIR}"/Singular/3-1-6/info/singular.hlp doc/
+	mkdir -p doc/output || die "failed to create the output directory"
+	cp "${WORKDIR}"/Singular/3-1-6/info/singular.hlp doc/output/ || die "failed to copy singular.hlp in place"
 }
 
 python_configure() {
@@ -343,7 +344,7 @@ python_configure() {
 	export SAGE_ROOT=`pwd`/..
 	export SAGE_SRC=`pwd`
 	export SAGE_ETC=`pwd`/bin
-	export SAGE_DOC=`pwd`/doc
+	export SAGE_DOC=`pwd`/doc/output
 	export SAGE_DOC_SRC=`pwd`/doc
 	export SAGE_DOC_MATHJAX=yes
 	export VARTEXFONTS="${T}"/fonts
@@ -469,7 +470,7 @@ python_install_all() {
 	docompress -x /usr/share/doc/sage
 
 	insinto /usr/share/doc/sage
-	doins doc/singular.hlp
+	doins doc/output/singular.hlp
 
 	# necessary for sagedoc.py call to sphinxify in sagenb for now.
 	insinto /usr/share/doc/sage/en/introspect
@@ -481,21 +482,21 @@ python_install_all() {
 	doins sage_setup/docbuild/ext/multidocs.py
 
 	if use html ; then
-		cp -r doc/html/en/_static doc/html/
-		for sdir in `find doc/html -name _static` ; do
-			if [ $sdir != "doc/html/_static" ] ; then
+		cp -r doc/output/html/en/_static doc/output/html/
+		for sdir in `find doc/output/html -name _static` ; do
+			if [ $sdir != "doc/output/html/_static" ] ; then
 				rm -rf $sdir || die "failed to remove $sdir"
 				ln -s "${EPREFIX}"/usr/share/doc/sage/html/_static $sdir
 			fi
 		done
 		insinto /usr/share/doc/sage/html
-		doins -r doc/html/*
+		doins -r doc/output/html/*
 		dosym /usr/share/doc/sage/html/en /usr/share/jupyter/kernels/sagemath/doc
 	fi
 
 	if use pdf ; then
 		insinto /usr/share/doc/sage/pdf
-		doins -r doc/pdf/*
+		doins -r doc/output/pdf/*
 	fi
 }
 
