@@ -335,8 +335,8 @@ python_prepare() {
 		"${FILESDIR}"/${PN}-7.1-linguas.patch
 
 	# Put singular help file where it is expected
-	mkdir -p doc/output || die "failed to create the output directory"
-	cp "${WORKDIR}"/Singular/3-1-6/info/singular.hlp doc/output/ || die "failed to copy singular.hlp in place"
+	mkdir -p build_doc || die "failed to create the doc building directory"
+	cp "${WORKDIR}"/Singular/3-1-6/info/singular.hlp build_doc/ || die "failed to copy singular.hlp in place"
 }
 
 python_configure() {
@@ -344,7 +344,7 @@ python_configure() {
 	export SAGE_ROOT=`pwd`/..
 	export SAGE_SRC=`pwd`
 	export SAGE_ETC=`pwd`/bin
-	export SAGE_DOC=`pwd`/doc/output
+	export SAGE_DOC=`pwd`/build_doc
 	export SAGE_DOC_SRC=`pwd`/doc
 	export SAGE_DOC_MATHJAX=yes
 	export VARTEXFONTS="${T}"/fonts
@@ -470,7 +470,7 @@ python_install_all() {
 	docompress -x /usr/share/doc/sage
 
 	insinto /usr/share/doc/sage
-	doins doc/output/singular.hlp
+	doins build_doc/singular.hlp
 
 	# necessary for sagedoc.py call to sphinxify in sagenb for now.
 	insinto /usr/share/doc/sage/en/introspect
@@ -482,21 +482,22 @@ python_install_all() {
 	doins sage_setup/docbuild/ext/multidocs.py
 
 	if use html ; then
-		cp -r doc/output/html/en/_static doc/output/html/
-		for sdir in `find doc/output/html -name _static` ; do
-			if [ $sdir != "doc/output/html/_static" ] ; then
-				rm -rf $sdir || die "failed to remove $sdir"
-				ln -s "${EPREFIX}"/usr/share/doc/sage/html/_static $sdir
-			fi
-		done
+# 		cp -r build_doc/html/en/_static build_doc/html/
+# 		for sdir in `find build_doc/html -name _static` ; do
+# 			if [ $sdir != "build_doc/html/_static" ] ; then
+# 				rm -rf $sdir || die "failed to remove $sdir"
+# 				ln -s "${EPREFIX}"/usr/share/doc/sage/html/_static $sdir \
+# 					|| die "failed to link $dir to top documentation folder"
+# 			fi
+# 		done
 		insinto /usr/share/doc/sage/html
-		doins -r doc/output/html/*
+		doins -r build_doc/html/*
 		dosym /usr/share/doc/sage/html/en /usr/share/jupyter/kernels/sagemath/doc
 	fi
 
 	if use pdf ; then
 		insinto /usr/share/doc/sage/pdf
-		doins -r doc/output/pdf/*
+		doins -r build_doc/pdf/*
 	fi
 }
 
