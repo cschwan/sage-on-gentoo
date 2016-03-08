@@ -31,9 +31,17 @@ QUICK INSTALLATION GUIDE
      http://www.gentoo.org/proj/en/overlays/userguide.xml
 
 2. *ADD OUR OVERLAY*:
-   Update your layman list and add this overlay with::
+   Update your layman list:: 
 
      layman -L
+
+   This overlay now depends on the science overlay. So you will need to add as well
+   if it is not already installed::
+
+     layman -a science
+
+   Finally add this overlay::
+
      layman -a sage-on-gentoo
 
 .. note:: Steps 3 and 4 may not be fully or at all necessary on your system. You
@@ -82,10 +90,6 @@ QUICK INSTALLATION GUIDE
    <path-to-layman> is usually /var/lib/layman (this path used to be
    /usr/local/portage/layman for older version of layman).
 
-   Note: As of 2014-11-30 we have put -qt4 for matplotlib 1.3.x. This is to 
-   avoid bug#530492. Building Matplotlib 1.3.x against qt4 is broken and unlikely
-   to get fixed.
-
    Note: For sage 6.8 we also provide a file 99sage-doc-bin that makes it easy 
    to use pre-built html documentation. This is recomended for ~arch users.
 
@@ -97,16 +101,6 @@ QUICK INSTALLATION GUIDE
    to install sage; please note that this will pull in a lot of dependencies. If
    you can not proceed with this step (because of circular dependencies, missing
    USE-flags, and so on) please report this behavior.
-
-   NOTE also, that we do _not_ recommend to use the ATLAS (sci-libs/blas-atlas
-   and/or sci-libs/lapack-atlas) blas/lapack implementation since we experienced
-   some failures with it:
-
-   - https://github.com/cschwan/sage-on-gentoo/issues/3
-   - https://github.com/cschwan/sage-on-gentoo/issues/6
-
-   However, this should not pose a problem since the default choice is the
-   reference implementation.
 
 6. *UPDATE YOUR LOCAL OVERLAY*:
    To update your local copy of sage-on-gentoo simply type::
