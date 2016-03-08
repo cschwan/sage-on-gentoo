@@ -35,7 +35,7 @@ QUICK INSTALLATION GUIDE
 
      layman -L
 
-   This overlay now depends on the science overlay. So you will need to add as well
+   This overlay now depends on the science overlay. So you will need to add it as well
    if it is not already installed::
 
      layman -a science
