@@ -482,14 +482,11 @@ python_install_all() {
 	doins sage_setup/docbuild/ext/multidocs.py
 
 	if use html ; then
-# 		cp -r build_doc/html/en/_static build_doc/html/
-# 		for sdir in `find build_doc/html -name _static` ; do
-# 			if [ $sdir != "build_doc/html/_static" ] ; then
-# 				rm -rf $sdir || die "failed to remove $sdir"
-# 				ln -s "${EPREFIX}"/usr/share/doc/sage/html/_static $sdir \
-# 					|| die "failed to link $dir to top documentation folder"
-# 			fi
-# 		done
+		# Work around for issue #402 until I understand where it comes from
+		for pyfile in `find build_doc/html -name \*.py` ; do
+			rm -rf "${pyfile}" || die "fail to to remove $pyfile"
+			rm -rf "${pyfile/%.py/.pdf}" "${pyfile/%.py/png}"
+		done
 		insinto /usr/share/doc/sage/html
 		doins -r build_doc/html/*
 		dosym /usr/share/doc/sage/html/en /usr/share/jupyter/kernels/sagemath/doc
