@@ -482,6 +482,14 @@ python_install_all() {
 	doins sage_setup/docbuild/ext/multidocs.py
 
 	if use html ; then
+		# Prune _static folders
+		cp -r build_doc/html/en/_static build_doc/html/ || die "failed to copy _static folder"
+		for sdir in `find build_doc/html -name _static` ; do
+			if [ $sdir != "build_doc/html/_static" ] ; then
+				rm -rf $sdir || die "failed to remove $sdir"
+				ln -s "${EPREFIX}"/usr/share/doc/sage/html/_static $sdir
+			fi
+		done
 		# Work around for issue #402 until I understand where it comes from
 		for pyfile in `find build_doc/html -name \*.py` ; do
 			rm -rf "${pyfile}" || die "fail to to remove $pyfile"
