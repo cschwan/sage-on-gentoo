@@ -206,9 +206,6 @@ python_prepare() {
 	#
 	###############################
 
-	# ATLAS independence
-	eapply "${FILESDIR}"/${PN}-7.1-blas.patch
-
 	# Remove sage's package management system, git capabilities and associated tests
 	eapply "${FILESDIR}"/${PN}-7.1-neutering.patch
 	rm sage/misc/dist.py
@@ -217,9 +214,6 @@ python_prepare() {
 	############################################################################
 	# Fixes to Sage's build system
 	############################################################################
-
-	# fix png library name
-	sed -i "s:png12:$(libpng-config --libs | cut -dl -f2):g" module_list.py
 
 	# fix lcalc path
 	sed -i "s:libLfunction:Lfunction:g" sage/libs/lcalc/lcalc_sage.h

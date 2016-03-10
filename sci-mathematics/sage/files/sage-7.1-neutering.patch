@@ -1,7 +1,7 @@
 diff -Naur src.orig/sage/doctest/control.py src/sage/doctest/control.py
---- src.orig/sage/doctest/control.py	2016-02-19 10:34:58.649146359 +1300
-+++ src/sage/doctest/control.py	2016-02-19 10:35:27.538215797 +1300
-@@ -92,7 +92,6 @@
+--- src.orig/sage/doctest/control.py	2016-03-11 11:23:50.344081238 +1300
++++ src/sage/doctest/control.py	2016-03-11 11:23:58.662100852 +1300
+@@ -93,7 +93,6 @@
          self.cachegrind = False
          self.omega = False
          self.failed = False
@@ -9,7 +9,7 @@ diff -Naur src.orig/sage/doctest/control.py src/sage/doctest/control.py
          self.show_skipped = False
          # We don't want to use the real stats file by default so that
          # we don't overwrite timings for the actual running doctests.
-@@ -221,7 +220,7 @@
+@@ -222,7 +221,7 @@
                  options.timeout = int(os.getenv('SAGE_TIMEOUT', 5 * 60))
          if options.nthreads == 0:
              options.nthreads = int(os.getenv('SAGE_NUM_THREADS_PARALLEL',1))
@@ -18,7 +18,7 @@ diff -Naur src.orig/sage/doctest/control.py src/sage/doctest/control.py
              # If the user doesn't specify any files then we rerun all failed files.
              options.all = True
          if options.global_iterations == 0:
-@@ -241,22 +240,8 @@
+@@ -242,22 +241,8 @@
              if s == 'true':
                  sage.misc.superseded.deprecation(18558, "Use --optional=all instead of --optional=true")
                  s = "all"
@@ -42,7 +42,7 @@ diff -Naur src.orig/sage/doctest/control.py src/sage/doctest/control.py
  
                  # Check that all tags are valid
                  for o in options.optional:
-@@ -507,7 +492,7 @@
+@@ -508,7 +493,7 @@
  
      def add_files(self):
          r"""
@@ -51,7 +51,7 @@ diff -Naur src.orig/sage/doctest/control.py src/sage/doctest/control.py
  
          For each one present, this function adds the appropriate directories and files to the todo list.
  
-@@ -526,13 +511,6 @@
+@@ -527,13 +512,6 @@
  
          ::
  
@@ -65,9 +65,9 @@ diff -Naur src.orig/sage/doctest/control.py src/sage/doctest/control.py
              sage: DD = DocTestDefaults(sagenb = True)
              sage: DC = DocTestController(DD, [])
              sage: DC.add_files()
-@@ -548,29 +526,9 @@
+@@ -549,29 +527,9 @@
              self.files.append(opj(SAGE_SRC, 'sage_setup'))
-             self.files.extend(glob(opj(SAGE_SRC, 'doc', '[a-z][a-z]')))
+             self.files.append(SAGE_DOC_SRC)
              self.options.sagenb = True
 -        DOT_GIT= opj(SAGE_ROOT, '.git')
 -        have_git = os.path.exists(DOT_GIT)
@@ -96,7 +96,7 @@ diff -Naur src.orig/sage/doctest/control.py src/sage/doctest/control.py
          if self.options.sagenb:
              if not self.options.all:
                  self.log("Doctesting the Sage notebook.")
-@@ -596,8 +554,6 @@
+@@ -597,8 +555,6 @@
              sage: DC.expand_files_into_sources()
              sage: len(DC.sources)
              10
@@ -105,7 +105,7 @@ diff -Naur src.orig/sage/doctest/control.py src/sage/doctest/control.py
  
          ::
  
-@@ -832,14 +788,9 @@
+@@ -833,14 +789,9 @@
              sage: DC = DocTestController(DocTestDefaults(), [])
              sage: DC._optional_tags_string()
              'sage'
@@ -120,7 +120,7 @@ diff -Naur src.orig/sage/doctest/control.py src/sage/doctest/control.py
              sage: DC = DocTestController(DocTestDefaults(optional="sage,openssl"), [])
              sage: DC._optional_tags_string()
              'openssl,sage'
-@@ -866,7 +817,7 @@
+@@ -867,7 +818,7 @@
          for o in ("all", "sagenb"):
              if o in opt:
                  raise ValueError("You cannot run gdb/valgrind on the whole sage%s library"%("" if o == "all" else "nb"))
@@ -130,8 +130,8 @@ diff -Naur src.orig/sage/doctest/control.py src/sage/doctest/control.py
                  cmd += "--%s "%o
          for o in ("timeout", "randorder", "stats_path"):
 diff -Naur src.orig/sage/game_theory/normal_form_game.py src/sage/game_theory/normal_form_game.py
---- src.orig/sage/game_theory/normal_form_game.py	2016-02-19 10:34:58.653146369 +1300
-+++ src/sage/game_theory/normal_form_game.py	2016-02-19 10:35:27.539215800 +1300
+--- src.orig/sage/game_theory/normal_form_game.py	2016-03-11 11:23:50.348081247 +1300
++++ src/sage/game_theory/normal_form_game.py	2016-03-11 11:23:58.662100852 +1300
 @@ -612,8 +612,9 @@
  from sage.structure.sage_object import SageObject
  from sage.matrix.constructor import matrix
@@ -160,8 +160,8 @@ diff -Naur src.orig/sage/game_theory/normal_form_game.py src/sage/game_theory/no
  
              return self._solve_lrs(maximization)
 diff -Naur src.orig/sage/geometry/polyhedron/base.py src/sage/geometry/polyhedron/base.py
---- src.orig/sage/geometry/polyhedron/base.py	2016-02-19 10:34:58.655146374 +1300
-+++ src/sage/geometry/polyhedron/base.py	2016-02-19 10:35:27.539215800 +1300
+--- src.orig/sage/geometry/polyhedron/base.py	2016-03-11 11:23:50.350081252 +1300
++++ src/sage/geometry/polyhedron/base.py	2016-03-11 11:23:58.663100854 +1300
 @@ -20,7 +20,6 @@
  from sage.structure.element import Element, coerce_binop, is_Vector
  
@@ -170,7 +170,7 @@ diff -Naur src.orig/sage/geometry/polyhedron/base.py src/sage/geometry/polyhedro
  
  from sage.rings.all import Integer, QQ, ZZ
  from sage.rings.real_double import RDF
-@@ -3637,7 +3636,9 @@
+@@ -3636,7 +3635,9 @@
  
               David Avis's lrs program.
          """
@@ -182,9 +182,9 @@ diff -Naur src.orig/sage/geometry/polyhedron/base.py src/sage/geometry/polyhedro
                                         'for this function to work')
  
 diff -Naur src.orig/sage/graphs/generic_graph.py src/sage/graphs/generic_graph.py
---- src.orig/sage/graphs/generic_graph.py	2016-02-19 10:34:58.659146384 +1300
-+++ src/sage/graphs/generic_graph.py	2016-02-19 10:35:27.542215807 +1300
-@@ -7809,7 +7809,6 @@
+--- src.orig/sage/graphs/generic_graph.py	2016-03-11 11:23:50.354081261 +1300
++++ src/sage/graphs/generic_graph.py	2016-03-11 11:23:58.666100861 +1300
+@@ -7831,7 +7831,6 @@
             sage: abs(flow_ff-flow_igraph) < 0.00001         # optional python_igraph
             True
          """
@@ -192,7 +192,7 @@ diff -Naur src.orig/sage/graphs/generic_graph.py src/sage/graphs/generic_graph.p
          self._scream_if_not_simple(allow_loops=True)
          if vertex_bound and algorithm in ["FF", "igraph"]:
              raise ValueError("This method does not support both " +
-@@ -7827,10 +7826,12 @@
+@@ -7849,10 +7848,12 @@
          if algorithm is None:
              if vertex_bound:
                  algorithm = "LP"
@@ -208,7 +208,7 @@ diff -Naur src.orig/sage/graphs/generic_graph.py src/sage/graphs/generic_graph.p
  
          if (algorithm == "FF"):
              return self._ford_fulkerson(x,y, value_only=value_only, integer=integer, use_edge_labels=use_edge_labels)
-@@ -20080,17 +20081,18 @@
+@@ -20102,17 +20103,18 @@
              Subgroup of (Permutation Group with generators [(0,7)(1,4)(2,3)(6,8)]) generated by [(0,7)(1,4)(2,3)(6,8)]]
  
          """
@@ -233,7 +233,7 @@ diff -Naur src.orig/sage/graphs/generic_graph.py src/sage/graphs/generic_graph.p
  
              A = automorphism_group(self, partition)
  
-@@ -20732,17 +20734,18 @@
+@@ -20754,17 +20756,18 @@
              True
  
          """
@@ -259,8 +259,8 @@ diff -Naur src.orig/sage/graphs/generic_graph.py src/sage/graphs/generic_graph.p
  
          if (algorithm is not None and
 diff -Naur src.orig/sage/graphs/lovasz_theta.py src/sage/graphs/lovasz_theta.py
---- src.orig/sage/graphs/lovasz_theta.py	2016-02-19 10:34:58.661146388 +1300
-+++ src/sage/graphs/lovasz_theta.py	2016-02-19 10:35:27.543215809 +1300
+--- src.orig/sage/graphs/lovasz_theta.py	2016-03-11 11:23:50.355081264 +1300
++++ src/sage/graphs/lovasz_theta.py	2016-03-11 11:23:58.666100861 +1300
 @@ -65,9 +65,9 @@
      from sage.misc.temporary_file import tmp_filename
      import os, subprocess
@@ -274,9 +274,9 @@ diff -Naur src.orig/sage/graphs/lovasz_theta.py src/sage/graphs/lovasz_theta.py
  
      g = graph.relabel(inplace=False, perm=range(1,n+1)).networkx_graph()
 diff -Naur src.orig/sage/groups/generic.py src/sage/groups/generic.py
---- src.orig/sage/groups/generic.py	2016-02-19 10:34:58.662146391 +1300
-+++ src/sage/groups/generic.py	2016-02-19 10:35:27.543215809 +1300
-@@ -1394,16 +1394,10 @@
+--- src.orig/sage/groups/generic.py	2016-03-11 11:23:50.357081268 +1300
++++ src/sage/groups/generic.py	2016-03-11 11:23:58.666100861 +1300
+@@ -1397,16 +1397,10 @@
          'A8'
      """
      import re
@@ -295,8 +295,8 @@ diff -Naur src.orig/sage/groups/generic.py src/sage/groups/generic.py
      description = re.sub(r"(\A|\W)D(\d+)", correct_dihedral_degree, description)
      if not latex:
 diff -Naur src.orig/sage/groups/perm_gps/permgroup.py src/sage/groups/perm_gps/permgroup.py
---- src.orig/sage/groups/perm_gps/permgroup.py	2016-02-19 10:34:58.664146396 +1300
-+++ src/sage/groups/perm_gps/permgroup.py	2016-02-19 10:35:27.544215811 +1300
+--- src.orig/sage/groups/perm_gps/permgroup.py	2016-03-11 11:23:50.359081273 +1300
++++ src/sage/groups/perm_gps/permgroup.py	2016-03-11 11:23:58.667100863 +1300
 @@ -143,7 +143,6 @@
  from sage.groups.abelian_gps.abelian_group import AbelianGroup
  from sage.misc.cachefunc import cached_method
@@ -326,7 +326,7 @@ diff -Naur src.orig/sage/groups/perm_gps/permgroup.py src/sage/groups/perm_gps/p
          load_hap()
          from sage.arith.all import is_prime
          if not (p == 0 or is_prime(p)):
-@@ -1663,9 +1663,7 @@
+@@ -1664,9 +1664,7 @@
          try:
              return [Integer(n) for n in self._gap_().IdGroup()]
          except RuntimeError:
@@ -337,7 +337,7 @@ diff -Naur src.orig/sage/groups/perm_gps/permgroup.py src/sage/groups/perm_gps/p
  
      def id(self):
          """
-@@ -1716,9 +1714,7 @@
+@@ -1717,9 +1715,7 @@
          try:
              return Integer(self._gap_().PrimitiveIdentification())
          except RuntimeError:
@@ -348,7 +348,7 @@ diff -Naur src.orig/sage/groups/perm_gps/permgroup.py src/sage/groups/perm_gps/p
  
      def center(self):
          """
-@@ -4094,8 +4090,6 @@
+@@ -4095,8 +4091,6 @@
          - David Joyner and Graham Ellis
  
          """
@@ -358,9 +358,9 @@ diff -Naur src.orig/sage/groups/perm_gps/permgroup.py src/sage/groups/perm_gps/p
          from sage.arith.all import is_prime
          if not (p == 0 or is_prime(p)):
 diff -Naur src.orig/sage/misc/all.py src/sage/misc/all.py
---- src.orig/sage/misc/all.py	2016-02-19 10:34:58.684146444 +1300
-+++ src/sage/misc/all.py	2016-02-19 10:35:27.544215811 +1300
-@@ -48,13 +48,6 @@
+--- src.orig/sage/misc/all.py	2016-03-11 11:23:50.378081318 +1300
++++ src/sage/misc/all.py	2016-03-11 11:23:58.667100863 +1300
+@@ -51,13 +51,6 @@
  
  from fpickle import pickle_function, unpickle_function
  
@@ -375,9 +375,9 @@ diff -Naur src.orig/sage/misc/all.py src/sage/misc/all.py
  
  from sagedoc import (search_src, search_def, search_doc, browse_sage_doc,
 diff -Naur src.orig/sage/misc/package.py src/sage/misc/package.py
---- src.orig/sage/misc/package.py	2016-02-19 10:34:58.686146448 +1300
-+++ src/sage/misc/package.py	2016-02-19 10:41:33.156094134 +1300
-@@ -42,370 +42,14 @@
+--- src.orig/sage/misc/package.py	2016-03-11 11:23:50.380081323 +1300
++++ src/sage/misc/package.py	2016-03-11 11:27:21.533584530 +1300
+@@ -42,368 +42,14 @@
  # (at your option) any later version.
  #                  http://www.gnu.org/licenses/
  #*****************************************************************************
@@ -635,10 +635,8 @@ diff -Naur src.orig/sage/misc/package.py src/sage/misc/package.py
 -    Local check that all standard packages are installed::
 -
 -        sage: from sage.misc.package import _package_lists_from_sage_output
--        sage: installed, not_installed = _package_lists_from_sage_output('standard',local=True)
--        sage: bool(not_installed)
--        False
--        sage: 'glpk' in installed
+-        sage: installed, not_installed = _package_lists_from_sage_output('standard', local=True)
+-        sage: 'pari' in installed
 -        True
 -    """
 -    installed     = []
@@ -750,7 +748,7 @@ diff -Naur src.orig/sage/misc/package.py src/sage/misc/package.py
  
  class PackageNotFoundError(RuntimeError):
      """
-@@ -430,7 +74,7 @@
+@@ -428,7 +74,7 @@
          sage: raise PackageNotFoundError("my_package")
          Traceback (most recent call last):
          ...
@@ -759,7 +757,7 @@ diff -Naur src.orig/sage/misc/package.py src/sage/misc/package.py
      """
      def __str__(self):
          """
-@@ -440,8 +84,8 @@
+@@ -438,8 +84,8 @@
  
              sage: from sage.misc.package import PackageNotFoundError
              sage: str(PackageNotFoundError("my_package"))
@@ -771,8 +769,8 @@ diff -Naur src.orig/sage/misc/package.py src/sage/misc/package.py
 +            "It may or may not be available in portage"
              .format(self.args[0]))
 diff -Naur src.orig/sage/tests/cmdline.py src/sage/tests/cmdline.py
---- src.orig/sage/tests/cmdline.py	2016-02-19 10:34:58.731146557 +1300
-+++ src/sage/tests/cmdline.py	2016-02-19 10:35:27.545215814 +1300
+--- src.orig/sage/tests/cmdline.py	2016-03-11 11:23:50.424081427 +1300
++++ src/sage/tests/cmdline.py	2016-03-11 11:23:58.668100866 +1300
 @@ -13,23 +13,18 @@
  --advanced
  -c
@@ -927,8 +925,8 @@ diff -Naur src.orig/sage/tests/cmdline.py src/sage/tests/cmdline.py
      but we allow stderr in case this changes in the future::
  
 diff -Naur src.orig/sage_setup/optional_extension.py src/sage_setup/optional_extension.py
---- src.orig/sage_setup/optional_extension.py	2016-02-19 10:34:58.732146559 +1300
-+++ src/sage_setup/optional_extension.py	2016-02-19 10:35:27.545215814 +1300
+--- src.orig/sage_setup/optional_extension.py	2016-03-11 11:23:50.426081431 +1300
++++ src/sage_setup/optional_extension.py	2016-03-11 11:23:58.668100866 +1300
 @@ -19,8 +19,7 @@
  
  

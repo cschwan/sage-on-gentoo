@@ -1,5 +1,6 @@
---- src.orig/bin/sage	2016-02-05 12:43:57.784394493 +1300
-+++ src/bin/sage	2016-02-05 12:47:05.533867817 +1300
+diff -Naur src.orig/bin/sage src/bin/sage
+--- src.orig/bin/sage	2016-03-11 11:10:09.852141267 +1300
++++ src/bin/sage	2016-03-11 11:19:47.019507026 +1300
 @@ -1,7 +1,7 @@
  #!/usr/bin/env bash
  
@@ -137,12 +138,11 @@
      echo "  -search_src <string> -- search through all the Sage library code for string"
      echo "  -search_doc <string> -- search through the Sage documentation for string"
      echo "  -grep <string>      -- same as -search_src"
-@@ -208,17 +148,6 @@
+@@ -208,16 +148,6 @@
      echo
      ####  1.......................26..................................................78
      ####  |.....................--.|...................................................|
 -    echo "Making Sage packages or distributions:"
--    echo "  -bdist <tmpdir>     -- build a binary distribution of Sage"
 -    echo "  -sdist              -- build a source distribution of Sage"
 -    echo "  -pkg <dir>          -- create Sage package dir.spkg from a given directory"
 -    echo "  -pkg_nc <dir>       -- as -pkg, but do not compress the package"
@@ -155,7 +155,7 @@
      echo "Valgrind memory debugging:"
      echo "  -cachegrind         -- run Sage using Valgrind's cachegrind tool.  The log"
      echo "                         files are named sage-cachegrind.PID can be found in"
-@@ -259,83 +188,15 @@
+@@ -258,83 +188,15 @@
      exit $status
  fi
  
@@ -242,7 +242,7 @@
      exit 1
  fi
  
-@@ -351,49 +212,14 @@
+@@ -350,49 +212,14 @@
  
  # Prepare for running Sage, either interactively or non-interactively.
  sage_setup() {
@@ -293,7 +293,7 @@
  # Start an interactive Sage session, this function never returns.
  interactive_sage() {
      sage_setup
-@@ -493,11 +319,6 @@
+@@ -492,11 +319,6 @@
      exec kash "$@"
  fi
  
@@ -305,7 +305,7 @@
  if [ "$1" = '-maxima' -o "$1" = '--maxima' ]; then
      shift
      exec maxima "$@"
-@@ -513,21 +334,6 @@
+@@ -512,21 +334,6 @@
      exec M2 "$@"
  fi
  
@@ -327,7 +327,7 @@
  if [ "$1" = '-python' -o "$1" = '--python' ]; then
      shift
      exec python "$@"
-@@ -548,11 +354,6 @@
+@@ -547,11 +354,6 @@
      exec git "$@"
  fi
  
@@ -339,7 +339,7 @@
  if [ "$1" = '-sh' -o "$1" = '--sh' ]; then
      # AUTHORS:
      # - Carl Witty and William Stein: initial version
-@@ -672,20 +473,6 @@
+@@ -671,20 +473,6 @@
  fi
  
  #####################################################################
@@ -360,7 +360,7 @@
  # File conversion
  #####################################################################
  
-@@ -703,11 +490,6 @@
+@@ -702,11 +490,6 @@
  # Run Sage's versions of the standard Algebra/Geometry etc. software
  #####################################################################
  
@@ -372,7 +372,7 @@
  if [[ "$1" =~ ^--notebook=.* || "$1" =~ ^-n=.* || "$1" =~ ^-notebook=.* ]] ; then
      sage-cleaner &>/dev/null &
      exec sage-notebook "$@"
-@@ -718,13 +500,6 @@
+@@ -717,13 +500,6 @@
      exec sage-notebook "$@"
  fi
  
@@ -386,7 +386,7 @@
  if [ "$1" = "-inotebook" -o "$1" = '--inotebook' ]; then
      shift
      sage-cleaner &>/dev/null &
-@@ -743,31 +518,12 @@
+@@ -742,31 +518,12 @@
     exit 0
  fi
  
@@ -419,7 +419,7 @@
      if [ ! -f  "$DOT_SAGE"/init.sage ]; then
          echo >&2 "init.sage does not exist ... creating"
          touch "$DOT_SAGE"/init.sage
-@@ -775,7 +531,7 @@
+@@ -774,7 +531,7 @@
      SAGE_BANNER="no"
      sage_setup
      export PYTHONIOENCODING="utf-8"  # Fix encoding for doctests
@@ -428,7 +428,7 @@
          shift
          exec sage-runtests -p "$@"
      else
-@@ -784,17 +540,6 @@
+@@ -783,17 +540,6 @@
      fi
  fi
  
@@ -446,7 +446,7 @@
  if [ "$1" = '-testall' -o "$1" = "--testall" ]; then
      shift
      SAGE_BANNER="no"
-@@ -811,125 +556,6 @@
+@@ -810,119 +556,6 @@
      exec sage-eval "$@"
  fi
  
@@ -558,12 +558,6 @@
 -    exec sage-rsyncdist $2
 -fi
 -
--if [ "$1" = '-bdist' -o "$1" = "--bdist" ]; then
--    maybe_sage_location
--    shift
--    exec sage-bdist "$@"
--fi
--
 -if [ "$1" = "-docbuild" -o "$1" = "--docbuild" ]; then
 -    shift
 -    exec python -m "sage_setup.docbuild" "$@"
@@ -572,7 +566,7 @@
  if [ "$1" = '-gdb' -o "$1" = "--gdb" ]; then
      shift
      sage_setup
-@@ -993,16 +619,7 @@
+@@ -986,16 +619,7 @@
      interactive_sage "$@"
  fi
  
