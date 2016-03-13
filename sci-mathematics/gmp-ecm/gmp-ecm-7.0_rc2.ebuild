@@ -8,7 +8,7 @@ inherit flag-o-matic multilib toolchain-funcs
 
 DESCRIPTION="Elliptic Curve Method for Integer Factorization"
 HOMEPAGE="http://ecm.gforge.inria.fr/"
-SRC_URI="http://www.loria.fr/~zimmerma/ecm-7.0-rc1.tar.gz"
+SRC_URI="http://www.loria.fr/~zimmerma/ecm-7.0-rc2.tar.gz"
 
 LICENSE="GPL-3 LGPL-3"
 SLOT="0"
@@ -25,7 +25,7 @@ RDEPEND="${DEPEND}"
 REQUIRED_USE="gwnum? ( !openmp )
 	x86-macos? ( !custom-tune )"
 
-S=${WORKDIR}/ecm-7.0-rc1
+S="${WORKDIR}"/ecm-7.0-rc2
 
 pkg_pretend() {
 	if use openmp ; then
