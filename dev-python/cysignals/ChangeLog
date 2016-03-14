@@ -1,3 +1,9 @@
+*cysignals-1.1.0 (14 Mar 2016)
+
+  14 Mar 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  +cysignals-1.1.0.ebuild:
+  dev-python/cysignals: bump to latest. Probably not sage safe yet.
+
 *cysignals-1.0.1 (03 Mar 2016)
 
   03 Mar 2016; François Bissey <francois.bissey@canterbury.ac.nz>
