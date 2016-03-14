@@ -3,3 +3,4 @@
 sci-mathematics/ecm
 # testing only
 >=sci-mathematics/gmp-ecm-7.0_rc1
+=sci-mathematics/sage-7.0-r1
