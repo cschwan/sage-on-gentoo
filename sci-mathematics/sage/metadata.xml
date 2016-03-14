@@ -28,5 +28,8 @@
 		<flag name='bin-pdf'>
 			install pre-built pdf documentation
 		</flag>
+		<flag name='manifolds'>
+			install the optional manifolds package from http://sagemanifolds.obspm.fr
+		</flag>
 	</use>
 </pkgmetadata>

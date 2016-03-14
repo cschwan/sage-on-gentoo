@@ -1,0 +1,19 @@
+diff -Naur src.orig/doc/en/reference/index.rst src/doc/en/reference/index.rst
+--- src.orig/doc/en/reference/index.rst	2016-03-15 10:33:05.917483186 +1300
++++ src/doc/en/reference/index.rst	2016-03-15 10:34:47.750707088 +1300
+@@ -86,6 +86,7 @@
+ * :doc:`Combinatorial Geometry <geometry/index>`
+ * :doc:`Cell Complexes and their Homology <homology/index>`
+ * :doc:`Differential Forms <tensor/index>`
++* :doc:`Manifolds <manifolds/index>`
+ * :doc:`Parametrized Surfaces <riemannian_geometry/index>`
+ 
+ Number Theory, Algebraic Geometry
+diff -Naur src.orig/sage/all.py src/sage/all.py
+--- src.orig/sage/all.py	2016-03-15 10:33:05.939483234 +1300
++++ src/sage/all.py	2016-03-15 10:33:19.988514121 +1300
+@@ -319,3 +319,4 @@
+ 
+ # From now on it is ok to resolve lazy imports
+ sage.misc.lazy_import.finish_startup()
++from sage.manifolds.all import *
