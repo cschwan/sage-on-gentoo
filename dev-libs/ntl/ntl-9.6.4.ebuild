@@ -56,7 +56,8 @@ src_configure() {
 
 src_compile() {
 	# split the targets to allow parallel make to run properly
-	emake setup1 setup2
+	emake setup1
+	emake setup2
 	emake setup3
 	sh Wizard on || die "Tuning wizard failed"
 	if use static-libs; then
