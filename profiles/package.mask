@@ -6,3 +6,7 @@ sci-mathematics/ecm
 =sci-mathematics/sage-7.0-r1
 # probably not safe for sage yet
 >=dev-python/cysignals-1.1.0
+# Work in progress on support ntl[threads] which require a
+# fair number of package to support/enable c++11
+=sci-mathematics/singular-3.1.7_p1-r5
+=sci-libs/libsingular-3.1.7_p1-r7
