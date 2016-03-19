@@ -1,3 +1,10 @@
+*sympy-1.0 (19 Mar 2016)
+
+  19 Mar 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  +files/sympy-0.7.6.1-zeta.patch, +files/sympy-1.0-doc-makefile.patch,
+  +files/sympy-1.0-undeffun_sage.patch, +sympy-1.0.ebuild:
+  dev-python/sympy: In place for sage 7.2
+
   31 Jan 2016; François Bissey <francois.bissey@canterbury.ac.nz> metadata.xml:
   dev-python/sympy: update metadata
 
