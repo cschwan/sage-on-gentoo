@@ -1,3 +1,7 @@
+  20 Mar 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  -arb-2.6.0.ebuild, -files/arb-2.5.0-dedekind_sum-check.patch:
+  sci-mathematics/arb: drop old
+
   01 Feb 2016; François Bissey <francois.bissey@canterbury.ac.nz> metadata.xml:
   sci-mathematics/arb: update metadata
 
