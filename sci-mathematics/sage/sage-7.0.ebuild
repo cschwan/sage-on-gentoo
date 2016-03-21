@@ -140,7 +140,9 @@ CHECKREQS_DISK_BUILD="5G"
 S="${WORKDIR}/${P}/src"
 
 REQUIRED_USE="html? ( linguas_en )
-	testsuite? ( html )"
+	testsuite? ( || ( bin-html html ) )
+	bin-html? ( !html !pdf linguas_en )
+	bin-pdf? ( !html !pdf linguas_en )"
 
 pkg_setup() {
 	# needed since Ticket #14460
@@ -164,7 +166,7 @@ python_prepare() {
 		[Desktop Entry]
 		Name=Sage Shell
 		Type=Application
-		Comment=MAth software for abstract and numerical computations
+		Comment=Math software for abstract and numerical computations
 		Exec=sage
 		TryExec=sage
 		Icon=sage

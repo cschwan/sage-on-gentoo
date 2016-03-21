@@ -10,9 +10,6 @@
 			If activated installs Sage's sources into
 			/usr/share/sage/devel/sage to enable testing
 		</flag>
-		<flag name='arb'>
-			build the bindings to the arb library
-		</flag>
 		<flag name='modular_decomposition'>
 			build the bindings to the modular_decomposition library
 		</flag>
