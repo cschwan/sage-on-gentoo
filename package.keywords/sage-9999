@@ -26,6 +26,7 @@ dev-python/ptyprocess
 ~dev-python/flask-openid-1.2.4
 dev-python/flask-oldsessions
 ~dev-python/flask-silk-0.2
+=dev-python/setuptools-20.3*
 dev-python/terminado
 dev-python/mistune
 =dev-python/numpy-1.10*::sage-on-gentoo
