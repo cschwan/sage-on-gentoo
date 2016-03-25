@@ -67,7 +67,7 @@ CDEPEND="dev-libs/gmp:0=
 	~sci-libs/m4ri-20140914
 	~sci-libs/m4rie-20150908
 	>=sci-libs/mpfi-1.5.1
-	~sci-libs/pynac-0.6.2[${PYTHON_USEDEP}]
+	~sci-libs/pynac-0.6.4[${PYTHON_USEDEP}]
 	>=sci-libs/symmetrica-2.0-r3
 	>=sci-libs/zn_poly-0.9
 	sci-mathematics/glpk:0=[gmp]
@@ -99,7 +99,7 @@ DEPEND="${CDEPEND}"
 RDEPEND="${CDEPEND}
 	>=dev-lang/R-3.2.0
 	>=dev-python/cvxopt-1.1.8[glpk,${PYTHON_USEDEP}]
-	>=dev-python/ipython-4.0.0[notebook,${PYTHON_USEDEP}]
+	>=dev-python/ipython-4.1.1[notebook,${PYTHON_USEDEP}]
 	>=dev-python/jinja-2.5.5[${PYTHON_USEDEP}]
 	>=dev-python/matplotlib-1.5.1[${PYTHON_USEDEP}]
 	>=dev-python/mpmath-0.18[${PYTHON_USEDEP}]
@@ -108,7 +108,7 @@ RDEPEND="${CDEPEND}
 	>=dev-python/pycrypto-2.1.0[${PYTHON_USEDEP}]
 	>=dev-python/rpy-2.3.8[${PYTHON_USEDEP}]
 	>=dev-python/sphinx-1.2.2[${PYTHON_USEDEP}]
-	=dev-python/sympy-0.7.6.1-r1[${PYTHON_USEDEP}]
+	>=dev-python/sympy-1.0[${PYTHON_USEDEP}]
 	~media-gfx/tachyon-0.98.9[png]
 	>=sci-libs/cddlib-094f-r2
 	>=sci-libs/scipy-0.16.1[${PYTHON_USEDEP}]
