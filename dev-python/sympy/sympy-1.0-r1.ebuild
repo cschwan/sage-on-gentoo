@@ -42,7 +42,7 @@ RDEPEND="dev-python/mpmath[${PYTHON_USEDEP}]
 "
 
 DEPEND="${RDEPEND}
-	doc? ( dev-python/sphinx[${PYTHON_USEDEP}] )
+	doc? ( dev-python/sphinx[${PYTHON_USEDEP}] app-text/docbook2X )
 	test? ( ${RDEPEND} dev-python/pytest[${PYTHON_USEDEP}] )"
 
 pkg_setup() {

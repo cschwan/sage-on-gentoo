@@ -1,3 +1,9 @@
+*sympy-1.0-r1 (28 Mar 2016)
+
+  28 Mar 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  +sympy-1.0-r1.ebuild, -sympy-1.0.ebuild:
+  dev-python/sympy: align to version in the main tree
+
 *sympy-1.0 (19 Mar 2016)
 
   19 Mar 2016; François Bissey <francois.bissey@canterbury.ac.nz>
