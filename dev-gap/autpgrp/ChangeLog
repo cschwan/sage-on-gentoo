@@ -1,0 +1,5 @@
+*autpgrp-1.5 (30 Mar 2016)
+
+  30 Mar 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  +autpgrp-1.5.ebuild, +metadata.xml:
+  dev-gap/autpgrp: first gap package
