@@ -1,3 +1,8 @@
+  30 Mar 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  cryst-4.1.12.ebuild:
+  dev-gap/cryst: Not supporting optional carat package as it requires extra
+  dependency not in a tree I know.
+
 *cryst-4.1.12 (30 Mar 2016)
 
   30 Mar 2016; François Bissey <francois.bissey@canterbury.ac.nz>

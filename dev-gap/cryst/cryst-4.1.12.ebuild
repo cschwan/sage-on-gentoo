@@ -26,10 +26,3 @@ src_install(){
 	insinto /usr/$(get_libdir)/gap/pkg/"${PN}"
 	doins -r *
 }
-
-pkg_postinst() {
-	elog "To get additional features, a number of optional runtime"
-	elog "dependencies may be installed:"
-	elog ""
-	optfeature "use functions from Carat" dev-gap/carat
-}
