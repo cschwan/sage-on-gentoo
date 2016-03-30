@@ -1,0 +1,6 @@
+*Alnuth-3.0.0 (30 Mar 2016)
+
+  30 Mar 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  +Alnuth-3.0.0.ebuild, +metadata.xml:
+  dev-gap: checking Alnuth and polycyclic together as they are mutually
+  dependent (fun)

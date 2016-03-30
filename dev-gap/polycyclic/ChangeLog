@@ -1,0 +1,6 @@
+*polycyclic-2.11 (30 Mar 2016)
+
+  30 Mar 2016; François Bissey <francois.bissey@canterbury.ac.nz> +metadata.xml,
+  +polycyclic-2.11.ebuild:
+  dev-gap: checking Alnuth and polycyclic together as they are mutually
+  dependent (fun)
