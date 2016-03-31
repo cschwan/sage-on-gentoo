@@ -1,0 +1,5 @@
+*tomlib-1.2_p5 (31 Mar 2016)
+
+  31 Mar 2016; François Bissey <francois.bissey@canterbury.ac.nz> +metadata.xml,
+  +tomlib-1.2_p5.ebuild:
+  dev-gap/tomlib: initial commit
