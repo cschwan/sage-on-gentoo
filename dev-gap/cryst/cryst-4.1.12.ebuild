@@ -15,7 +15,7 @@ SLOT="0"
 KEYWORDS="~amd64 ~x86"
 IUSE=""
 
-DEPEND="sci-mathematics/gap"
+DEPEND=">=sci-mathematics/gap-4.7.8"
 RDEPEND="${DEPEND}"
 
 PDEPEND="dev-gap/polycyclic"
