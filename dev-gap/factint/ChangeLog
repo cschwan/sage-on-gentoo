@@ -1,0 +1,5 @@
+*factint-1.5.3 (31 Mar 2016)
+
+  31 Mar 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  +factint-1.5.3.ebuild, +metadata.xml:
+  dev-gap/factint: initial commit
