@@ -1,0 +1,6 @@
+*grape-4.7 (31 Mar 2016)
+
+  31 Mar 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  +files/grape-4.7-exec.patch, +grape-4.7.ebuild, +metadata.xml:
+  dev-gap/grape: initial commit. Using either bliss or nauty but not embeded
+  copy of nauty22 which is removed.
