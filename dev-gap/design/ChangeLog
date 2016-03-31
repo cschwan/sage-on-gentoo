@@ -1,0 +1,5 @@
+*design-1.6 (31 Mar 2016)
+
+  31 Mar 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  +design-1.6.ebuild, +metadata.xml:
+  dev-gap/design: initial commit
