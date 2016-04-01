@@ -51,29 +51,31 @@ src_install(){
 	insinto /usr/$(get_libdir)/${PN}
 	# This is excrutiatingly slow even with the reduced content.
 	# An install target in the makefile may speed things up.
-	doins -r *
+	doins -r doc \
+		etc \
+		grp \
+		lib \
+		prim \
+		small \
+		trans \
+		sysinfo.gap*
+
+	insinto /usr/$(get_libdir)/${PN}/bin
+	doins bin/gap.sh bin/gap-*
+
+	source sysinfo.gap
+	pushd bin/${GAParch_system}
+	ar qv libgap.a *.o
+	insinto /usr/$(get_libdir)/${PN}/bin/${GAParch_system}
+	doins gap \
+		gac \
+		libgap.a
+	popd
 
 	newbin bin/gap.sh gap
 
 	dosym /usr/$(get_libdir)/${PN}/sysinfo.gap /etc/sysinfo.gap
 
-	source sysinfo.gap
-
-	local MUST_BE_EXECUTABLE_FOR_LATER_COMPILING=(
-		config.status
-		configure
-		gap.shi
-		makepkgs
-		cnf/config.guess
-		cnf/config.sub
-		cnf/configure.out
-		cnf/install-sh
-		etc/install-tools.sh
-		tst/remake.sh
-		)
-	for i in ${MUST_BE_EXECUTABLE_FOR_LATER_COMPILING}; do
-		fperms 755 /usr/$(get_libdir)/${PN}/$i
-	done
 	# Make the real gap program executable again after install
 	einfo "making /usr/$(get_libdir)/${PN}/bin/${GAParch_system}/gap executable"
 	fperms 755 /usr/$(get_libdir)/${PN}/bin/${GAParch_system}/gap
