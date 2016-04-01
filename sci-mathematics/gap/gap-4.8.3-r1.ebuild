@@ -27,15 +27,17 @@ PDEPEND="dev-gap/GAPDoc"
 
 PATCHES=(
 	"${FILESDIR}"/${PN}-4.5.7-writeandcheck.patch
+	"${FILESDIR}"/${PN}-4.8.3-configdir.patch
 	)
 
 src_prepare(){
 	default
 
-	sed -i "s:gapdir=\`pwd\`:gapdir=${EPREFIX}/usr/$(get_libdir)/${PN}:" \
-		configure.in || die
-
 	eautoreconf
+	pushd cnf
+	eautoreconf
+	mv configure configure.out || die "failed to move configure in cnf"
+	popd
 }
 
 src_configure(){
@@ -73,8 +75,12 @@ src_install(){
 	popd
 
 	newbin bin/gap.sh gap
+	newbin bin/${GAParch_system}/gac gac
 
 	dosym /usr/$(get_libdir)/${PN}/sysinfo.gap /etc/sysinfo.gap
+
+	insinto /usr/include/gap
+	doins src/*.h
 
 	# Make the real gap program executable again after install
 	einfo "making /usr/$(get_libdir)/${PN}/bin/${GAParch_system}/gap executable"

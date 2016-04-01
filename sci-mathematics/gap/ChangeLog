@@ -3,6 +3,10 @@
 # $Header: $
 
   01 Apr 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  +files/gap-4.8.3-configdir.patch, gap-4.8.3-r1.ebuild:
+  sci-mathematics/gap: more refined gap
+
+  01 Apr 2016; François Bissey <francois.bissey@canterbury.ac.nz>
   gap-4.8.3-r1.ebuild:
   sci-mathematics/gap: Work in progress for new form gap
 
