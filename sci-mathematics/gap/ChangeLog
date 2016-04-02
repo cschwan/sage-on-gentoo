@@ -4,6 +4,10 @@
 
   02 Apr 2016; François Bissey <francois.bissey@canterbury.ac.nz>
   gap-4.8.3.ebuild:
+  sci-mathematics/gap: found where "unknow" version comes from
+
+  02 Apr 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  gap-4.8.3.ebuild:
   sci-mathematics/gap: correct more instances of 4.dev to 4.8.3
 
   02 Apr 2016; François Bissey <francois.bissey@canterbury.ac.nz>

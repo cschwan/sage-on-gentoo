@@ -44,6 +44,9 @@ src_prepare(){
 		doc/dev/kernel.xml \
 		|| die "failed to insert correct version"
 
+	sed -i "s:GAP_BUILD_VERSION=unknown:GAP_BUILD_VERSION=\"${PV}\":" \
+		cnf/mkversionheader.sh || die "failed to patch mkversionheader.sh"
+
 	# put GAPdoc in place
 	mkdir pkg || die
 	mv "${WORKDIR}/${GAPDOC}" pkg/ || die
