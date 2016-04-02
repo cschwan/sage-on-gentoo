@@ -35,6 +35,18 @@ src_prepare(){
 	sed -i "s:gapdir=\`pwd\`:gapdir=${EPREFIX}/usr/$(get_libdir)/${PN}:" \
 		configure.in || die
 
+	sed -i "s:4.dev:${PV}:g" \
+		lib/system.g \
+		src/system.c \
+		cnf/configure.out \
+		doc/versiondata \
+		doc/dev/updates.xml \
+		doc/dev/kernel.xml \
+		|| die "failed to insert correct version"
+
+	sed -i "s:GAP_BUILD_VERSION=unknown:GAP_BUILD_VERSION=\"${PV}\":" \
+		cnf/mkversionheader.sh || die "failed to patch mkversionheader.sh"
+
 	# put GAPdoc in place
 	mkdir pkg || die
 	mv "${WORKDIR}/${GAPDOC}" pkg/ || die
