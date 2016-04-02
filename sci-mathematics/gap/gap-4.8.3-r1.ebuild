@@ -38,6 +38,11 @@ src_prepare(){
 	eautoreconf
 	mv configure configure.out || die "failed to move configure in cnf"
 	popd
+	# Removing dev stuff in doc
+	pushd doc
+	rm -rf dev *.tex manualindex \
+		mrabbrev.bib README*
+	popd
 }
 
 src_configure(){
@@ -54,7 +59,6 @@ src_install(){
 	# This is excrutiatingly slow even with the reduced content.
 	# An install target in the makefile may speed things up.
 	doins -r doc \
-		etc \
 		grp \
 		lib \
 		prim \
@@ -67,10 +71,12 @@ src_install(){
 
 	source sysinfo.gap
 	pushd bin/${GAParch_system}
-	ar qv libgap.a *.o
+	# replace the objects needed in gac by an archive.
+	# compstat.o is explicitely excluded from it.
+	rm -f compstat.o
+	ar qv libgap.a *.o || die "failed to produce the libgap archive"
 	insinto /usr/$(get_libdir)/${PN}/bin/${GAParch_system}
 	doins gap \
-		gac \
 		libgap.a
 	popd
 
