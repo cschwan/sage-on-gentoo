@@ -1,0 +1,5 @@
+*ctbllib-1.2_p2 (31 Mar 2016)
+
+  31 Mar 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  +ctbllib-1.2_p2.ebuild, +metadata.xml:
+  dev-gap/ctbllib: initial commit

@@ -1,0 +1,6 @@
+*laguna-3.7.0 (31 Mar 2016)
+
+  31 Mar 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  +laguna-3.7.0.ebuild, +metadata.xml:
+  dev-gap: Add laguna + up the version of gap needed so as not to use gap from
+  the main tree. Most package require gap 4.5+ and main tree  is at 4.4.

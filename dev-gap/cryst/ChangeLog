@@ -1,0 +1,19 @@
+  31 Mar 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  cryst-4.1.12.ebuild:
+  dev-gap: Add laguna + up the version of gap needed so as not to use gap from
+  the main tree. Most package require gap 4.5+ and main tree  is at 4.4.
+
+  31 Mar 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  cryst-4.1.12.ebuild:
+  dev-gap/cryst: Fix description
+
+  30 Mar 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  cryst-4.1.12.ebuild:
+  dev-gap/cryst: Not supporting optional carat package as it requires extra
+  dependency not in a tree I know.
+
+*cryst-4.1.12 (30 Mar 2016)
+
+  30 Mar 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  +cryst-4.1.12.ebuild, +metadata.xml:
+  dev-gap/cryst: initial commit

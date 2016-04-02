@@ -1,0 +1,5 @@
+*sonata-2.8 (31 Mar 2016)
+
+  31 Mar 2016; François Bissey <francois.bissey@canterbury.ac.nz> +metadata.xml,
+  +sonata-2.8.ebuild:
+  dev-gap/sonata: initial commit

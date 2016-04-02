@@ -1,0 +1,199 @@
+diff -Naur gap-4.8.3.orig/Makefile.in gap-4.8.3/Makefile.in
+--- gap-4.8.3.orig/Makefile.in	2016-04-02 21:52:06.885622034 +1300
++++ gap-4.8.3/Makefile.in	2016-04-02 21:52:26.275663547 +1300
+@@ -114,7 +114,7 @@
+ 		MAKE_GMP='$(MAKE_GMP)' \
+ 		USE_GMP='$(USE_GMP)' \
+ 		GAPARCH='$(GAPARCH)' \
+-		./configure --target=@target@ @gp_configure_options@ )
++		./configure --target=@target@ @gp_configure_options@ --srcdir=../../src )
+ 
+ extern: config
+ 	( cd bin/$(GAPARCH)/extern ; \
+diff -Naur gap-4.8.3.orig/cnf/configure.in gap-4.8.3/cnf/configure.in
+--- gap-4.8.3.orig/cnf/configure.in	2016-04-02 21:52:06.890622045 +1300
++++ gap-4.8.3/cnf/configure.in	2016-04-02 21:52:26.275663547 +1300
+@@ -3,7 +3,7 @@
+ dnl ## check for a unique program in the source directory
+ dnl ##
+ 
+-AC_INIT([GAP], [4.dev], [support@gap-system.org], [gap], [http://www.gap-system.org/])
++AC_INIT([GAP], [4.8.3], [support@gap-system.org], [gap], [http://www.gap-system.org/])
+ AC_CONFIG_SRCDIR([gap.c])
+ AC_CONFIG_AUX_DIR(../../cnf)
+ 
+@@ -16,7 +16,7 @@
+ dnl ## create a config file from "config.hin"
+ dnl ##
+ 
+-AC_CONFIG_HEADER(config.h:config.hin)
++AC_CONFIG_HEADER(config.h:../../cnf/config.hin)
+ 
+ 
+ dnl #########################################################################
+@@ -375,7 +375,9 @@
+ AC_SUBST(LDFLAGS)
+ 
+ AC_SUBST(gapbin)
+-gapbin=`pwd`
++gapbin=$libdir/gap/bin/${GAPARCH}
++AC_SUBST(gapinc)
++gapinc=$prefix/include/gap
+ 
+ AC_SUBST(ABI)
+ AC_SUBST(ABI_CFLAGS)
+diff -Naur gap-4.8.3.orig/cnf/gac.in gap-4.8.3/cnf/gac.in
+--- gap-4.8.3.orig/cnf/gac.in	2016-04-02 21:52:06.890622045 +1300
++++ gap-4.8.3/cnf/gac.in	2016-04-02 21:52:26.275663547 +1300
+@@ -67,7 +67,7 @@
+     gap_binary="${gap_bin}";
+ fi
+ gap_options=""
+-gap_include="${gap_dir}/src"
++gap_include=@gapinc@
+ stat_identifier="USER";
+ 
+ # These three should be filled in by the standard autoconf procedures 
+@@ -87,71 +87,7 @@
+ # hardwire this for now. There is probably a nicer way 
+ # note: compstat.o is omitted on purpose from this list
+ 
+-OBJECTS="\
+-    ariths.o \
+-    blister.o \
+-    bool.o \
+-    c_filt1.o \
+-    c_meths1.o \
+-    c_oper1.o \
+-    c_random.o \
+-    c_type1.o \
+-    calls.o \
+-    code.o \
+-    compiler.o \
+-    costab.o \
+-    cyclotom.o \
+-    dt.o \
+-    dteval.o \
+-    exprs.o \
+-    finfield.o \
+-    funcs.o \
+-    gap.o \
+-    gasman.o \
+-    gmpints.o \
+-    gvars.o \
+-    integer.o \
+-    intfuncs.o \
+-    intrprtr.o \
+-    iostream.o \
+-    listfunc.o \
+-    listoper.o \
+-    lists.o \
+-    macfloat.o \
+-    objccoll.o \
+-    objcftl.o \
+-    objects.o \
+-    objfgelm.o \
+-    objpcgel.o \
+-    objscoll.o \
+-    opers.o \
+-    permutat.o \
+-    plist.o \
+-    pperm.o \
+-    precord.o \
+-    range.o \
+-    rational.o \
+-    read.o \
+-    records.o \
+-    saveload.o \
+-    scanner.o \
+-    sctable.o \
+-    set.o \
+-    stats.o \
+-    streams.o \
+-    string.o \
+-    sysfiles.o \
+-    system.o \
+-    tietze.o \
+-    trans.o \
+-    vars.o \
+-    vec8bit.o \
+-    vecffe.o \
+-    vecgf2.o \
+-    vector.o \
+-    weakptr.o \
+-    @ITANIUMOBJ@
+-"
++OBJECTS="libgap.a"
+ 
+ EXTOBJS=
+ 
+diff -Naur gap-4.8.3.orig/cnf/mkversionheader.sh gap-4.8.3/cnf/mkversionheader.sh
+--- gap-4.8.3.orig/cnf/mkversionheader.sh	2016-04-02 21:52:06.890622045 +1300
++++ gap-4.8.3/cnf/mkversionheader.sh	2016-04-02 21:53:14.314766395 +1300
+@@ -4,7 +4,7 @@
+ DST="$1"
+ 
+ # Determine build version and date
+-GAP_BUILD_VERSION=unknown
++GAP_BUILD_VERSION="4.8.3, 19-Mar-2016, build"
+ if command -v git >/dev/null 2>&1 ; then
+   if test -d .git ; then
+     GAP_BUILD_VERSION=`git describe --tags --dirty || echo`
+diff -Naur gap-4.8.3.orig/configure.in gap-4.8.3/configure.in
+--- gap-4.8.3.orig/configure.in	2016-04-02 21:52:06.890622045 +1300
++++ gap-4.8.3/configure.in	2016-04-02 21:52:26.275663547 +1300
+@@ -52,7 +52,7 @@
+ AC_SUBST(BASECC)
+ AC_PROG_MAKE_SET
+ AC_SUBST(gapdir)
+-gapdir=`pwd`
++gapdir=$libdir/gap
+ 
+ case $target_os in
+   cygwin*)
+diff -Naur gap-4.8.3.orig/doc/versiondata gap-4.8.3/doc/versiondata
+--- gap-4.8.3.orig/doc/versiondata	2016-04-02 21:52:06.917622102 +1300
++++ gap-4.8.3/doc/versiondata	2016-04-02 21:52:26.276663549 +1300
+@@ -1,6 +1,6 @@
+ <!-- Do not edit the following four lines. They will be updated 
+      automatically by the distribution wrapper scripts. -->
+-<!ENTITY VERSIONNUMBER "4.dev">
+-<!ENTITY RELEASEDAY "today">
+-<!ENTITY RELEASEYEAR "this year">
+-<!ENTITY GAPDIRNAME "gap4dev">
++<!ENTITY VERSIONNUMBER "4.8.3">
++<!ENTITY RELEASEDAY "19-Mar-2016">
++<!ENTITY RELEASEYEAR "2016">
++<!ENTITY GAPDIRNAME "gap4r8">
+diff -Naur gap-4.8.3.orig/lib/system.g gap-4.8.3/lib/system.g
+--- gap-4.8.3.orig/lib/system.g	2016-04-02 21:52:06.948622169 +1300
++++ gap-4.8.3/lib/system.g	2016-04-02 21:52:26.276663549 +1300
+@@ -22,9 +22,9 @@
+ 
+ # do not edit the following three lines. Occurences of `4.dev' and `today'
+ # will be replaced by string matching by distribution wrapping scripts.
+-    Version := "4.dev",
+-    Date := "today",
+-    NeedKernelVersion := "4.dev",
++    Version := "4.8.3",
++    Date := "19-Mar-2016",
++    NeedKernelVersion := "4.8.3",
+ 
+ # Without the needed packages, GAP does not start.
+     Dependencies := rec(
+diff -Naur gap-4.8.3.orig/src/system.c gap-4.8.3/src/system.c
+--- gap-4.8.3.orig/src/system.c	2016-04-02 21:52:07.117622531 +1300
++++ gap-4.8.3/src/system.c	2016-04-02 21:52:26.276663549 +1300
+@@ -78,10 +78,10 @@
+ /****************************************************************************
+ **
+ *V  SyKernelVersion  . . . . . . . . . . . . . . . hard coded kernel version
+-** do not edit the following line. Occurences of `4.dev' and `today'
++** do not edit the following line. Occurences of `4.8.3' and `today'
+ ** will be replaced by string matching by distribution wrapping scripts.
+ */
+-const Char * SyKernelVersion = "4.dev";
++const Char * SyKernelVersion = "4.8.3";
+ 
+ /****************************************************************************
+ **

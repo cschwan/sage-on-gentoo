@@ -1,0 +1,5 @@
+*toric-1.8 (31 Mar 2016)
+
+  31 Mar 2016; François Bissey <francois.bissey@canterbury.ac.nz> +metadata.xml,
+  +toric-1.8.ebuild:
+  dev-gap/toric: initial commit

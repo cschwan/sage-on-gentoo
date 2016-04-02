@@ -1,0 +1,5 @@
+*crime-1.4 (31 Mar 2016)
+
+  31 Mar 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  +crime-1.4.ebuild, +metadata.xml:
+  dev-gap/crime: initial commit

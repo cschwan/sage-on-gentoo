@@ -1,0 +1,15 @@
+  31 Mar 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  autpgrp-1.5.ebuild:
+  dev-gap: Add laguna + up the version of gap needed so as not to use gap from
+  the main tree. Most package require gap 4.5+ and main tree  is at 4.4.
+
+  30 Mar 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  autpgrp-1.5.ebuild, metadata.xml:
+  dev-gap/autpgrp: gap documentation is complicated not touching installation
+  path for now
+
+*autpgrp-1.5 (30 Mar 2016)
+
+  30 Mar 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  +autpgrp-1.5.ebuild, +metadata.xml:
+  dev-gap/autpgrp: first gap package

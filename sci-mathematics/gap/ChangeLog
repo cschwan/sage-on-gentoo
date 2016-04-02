@@ -3,6 +3,11 @@
 # $Header: $
 
   02 Apr 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  files/gap-4.8.3-configdir.patch, gap-4.8.3-r1.ebuild:
+  sci-mathematics/gap: More improvement, including proper versionning from
+  master.
+
+  02 Apr 2016; François Bissey <francois.bissey@canterbury.ac.nz>
   gap-4.8.3.ebuild:
   sci-mathematics/gap: found where "unknow" version comes from
 
@@ -14,6 +19,21 @@
   gap-4.8.3.ebuild:
   sci-mathematics/gap: the gap tarball from github doesn't have the right
   version inserted in lib/system.g. gap is a mess in more ways than one.
+
+  01 Apr 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  +files/gap-4.8.3-configdir.patch, gap-4.8.3-r1.ebuild:
+  sci-mathematics/gap: more refined gap
+
+  01 Apr 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  gap-4.8.3-r1.ebuild:
+  sci-mathematics/gap: Work in progress for new form gap
+
+*gap-4.8.3-r1 (01 Apr 2016)
+
+  01 Apr 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  +gap-4.8.3-r1.ebuild:
+  sci-mathematics/gap: bump latest for various changes: always use system gmp,
+  use dev-gap/GAPDoc as a separate package.
 
 *gap-4.8.3 (29 Mar 2016)
 
