@@ -3,6 +3,11 @@
 # $Header: $
 
   02 Apr 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-9999.ebuild:
+  sci-mathematics/sage: gap 4.8.3 is functional enough but will go under more
+  scrutiny. Correcting the relative location of VERSION.txt
+
+  02 Apr 2016; François Bissey <francois.bissey@canterbury.ac.nz>
   +files/sage-7.2-exec.patch, sage-9999.ebuild:
   sci-mathematics/sage: bump for 7.2.beta2
 
