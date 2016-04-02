@@ -85,7 +85,7 @@ src_install(){
 
 	dosym /usr/$(get_libdir)/${PN}/sysinfo.gap /etc/sysinfo.gap
 
-	insinto /usr/include/gap
+	insinto /usr/include/gap-${PV}
 	doins src/*.h
 
 	# Make the real gap program executable again after install

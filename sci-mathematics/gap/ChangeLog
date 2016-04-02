@@ -3,6 +3,10 @@
 # $Header: $
 
   02 Apr 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  files/gap-4.8.3-configdir.patch, gap-4.8.3-r1.ebuild:
+  sci-mathematics/gap: solve un-noticed collision with libgap
+
+  02 Apr 2016; François Bissey <francois.bissey@canterbury.ac.nz>
   -gap-4.8.1-r1.ebuild:
   sci-mathematics/gap: drop unused
 

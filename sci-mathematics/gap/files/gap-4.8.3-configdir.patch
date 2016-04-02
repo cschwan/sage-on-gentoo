@@ -38,7 +38,7 @@ diff -Naur gap-4.8.3.orig/cnf/configure.in gap-4.8.3/cnf/configure.in
 -gapbin=`pwd`
 +gapbin=$libdir/gap/bin/${GAPARCH}
 +AC_SUBST(gapinc)
-+gapinc=$prefix/include/gap
++gapinc=$prefix/include/gap-4.8.3
  
  AC_SUBST(ABI)
  AC_SUBST(ABI_CFLAGS)
