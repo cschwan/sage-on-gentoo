@@ -76,7 +76,7 @@ sci-libs/dsdp
 >=sci-libs/gsl-1.16
 >=sci-libs/iml-1.0.4
 ~sci-mathematics/cliquer-1.21
-~sci-libs/libgap-4.7.8
+~sci-libs/libgap-4.8.3
 ~sci-libs/libsingular-3.1.7_p1
 ~sci-libs/linbox-1.3.2
 ~sci-libs/m4ri-20140914
@@ -96,7 +96,7 @@ sci-mathematics/dikcube
 sci-mathematics/flintqs
 ~sci-mathematics/flint-2.4.5
 ~sci-mathematics/flint-2.5.2
-~sci-mathematics/gap-4.7.8
+~sci-mathematics/gap-4.8.3
 >=sci-mathematics/glpk-4.54
 >=sci-mathematics/lcalc-1.23-r6
 sci-mathematics/lrcalc
