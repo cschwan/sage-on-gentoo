@@ -1,5 +1,9 @@
   04 Apr 2016; François Bissey <francois.bissey@canterbury.ac.nz>
   atlasrep-1.5_p0.ebuild:
+  dev-gap/atlasrep: correct description
+
+  04 Apr 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  atlasrep-1.5_p0.ebuild:
   dev-gap: removing useless eclasses
 
   04 Apr 2016; François Bissey <francois.bissey@canterbury.ac.nz>

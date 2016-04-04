@@ -7,7 +7,7 @@ EAPI=6
 inherit versionator
 
 MY_PV=$(replace_version_separator 1 'r' $(delete_version_separator 2 ) )
-DESCRIPTION="The GAP Character Table Library"
+DESCRIPTION="A GAP Interface to the Atlas of Group Representations"
 HOMEPAGE="http://www.gap-system.org/Packages/${PN}.html"
 SRC_URI="http://www.gap-system.org/pub/gap/gap4/tar.bz2/packages/${PN}${MY_PV}.tar.bz2"
 
