@@ -20,7 +20,7 @@ S="${WORKDIR}/${PN}${PV}"
 
 src_install(){
 	insinto /usr/$(get_libdir)/gap/pkg/"${PN}"
-	doins -r doc htm lib
+	doins -r doc html lib
 	doins *.g
 
 	dodoc CHANGES.toric README.toric
