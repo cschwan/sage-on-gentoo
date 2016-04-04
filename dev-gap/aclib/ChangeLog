@@ -1,0 +1,5 @@
+*aclib-1.2 (04 Apr 2016)
+
+  04 Apr 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  +aclib-1.2.ebuild, +metadata.xml:
+  dev-gap/aclib: initial commit
