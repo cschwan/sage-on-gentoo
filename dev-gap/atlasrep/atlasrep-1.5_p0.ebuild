@@ -23,5 +23,8 @@ S="${WORKDIR}/${PN}"
 
 src_install(){
 	insinto /usr/$(get_libdir)/gap/pkg/"${PN}"
-	doins -r *
+	doins -r bibl datagens dataword doc gap tst etc
+	doins *.g
+
+	dodoc README
 }
