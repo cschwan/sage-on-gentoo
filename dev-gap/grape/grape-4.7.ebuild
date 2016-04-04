@@ -30,6 +30,10 @@ PATCHES=(
 src_prepare(){
 	default
 
+	rm -f configure \
+ 		Makefile \
+ 		Makefile.in
+
 	local nauty="true"
 	if use bliss ; then
 		nauty="false"
