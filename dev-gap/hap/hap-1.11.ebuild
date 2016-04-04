@@ -4,8 +4,6 @@
 
 EAPI=6
 
-inherit multilib eutils
-
 DESCRIPTION="Homological Algebra Programming"
 HOMEPAGE="http://www.gap-system.org/Packages/${PN}.html"
 SRC_URI="http://www.gap-system.org/pub/gap/gap4/tar.bz2/packages/${PN}${PV}.tar.bz2"

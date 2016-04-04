@@ -4,8 +4,6 @@
 
 EAPI=6
 
-inherit multilib
-
 DESCRIPTION="Algebraic number theory and an interface to PARI/GP"
 HOMEPAGE="http://www.gap-system.org/Packages/alnuth.html"
 SRC_URI="http://www.gap-system.org/pub/gap/gap4/tar.bz2/packages/${P}.tar.bz2"

@@ -4,8 +4,6 @@
 
 EAPI=6
 
-inherit multilib
-
 DESCRIPTION="Computing the Automorphism Group of a p-Group"
 HOMEPAGE="http://www.gap-system.org/Packages/autpgrp.html"
 SRC_URI="http://www.gap-system.org/pub/gap/gap4/tar.bz2/packages/${P}.tar.bz2"

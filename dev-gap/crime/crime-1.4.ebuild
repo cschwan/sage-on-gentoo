@@ -4,8 +4,6 @@
 
 EAPI=6
 
-inherit multilib
-
 DESCRIPTION="A GAP Package to Calculate Group Cohomology and Massey Products"
 HOMEPAGE="http://www.gap-system.org/Packages/${PN}.html"
 SRC_URI="http://www.gap-system.org/pub/gap/gap4/tar.bz2/packages/${P}.tar.bz2"
@@ -15,7 +13,7 @@ SLOT="0"
 KEYWORDS="~amd64 ~x86"
 IUSE=""
 
-DEPEND=">=sci-mathematics/gap-4.4"
+DEPEND="sci-mathematics/gap"
 RDEPEND="${DEPEND}"
 
 S="${WORKDIR}/${PN}"

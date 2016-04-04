@@ -1,5 +1,9 @@
   04 Apr 2016; François Bissey <francois.bissey@canterbury.ac.nz>
   grape-4.7.ebuild:
+  dev-gap: removing useless eclasses
+
+  04 Apr 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  grape-4.7.ebuild:
   dev-gap/grape: no need to remove stuff since we don't do a blanket install
   anymore.
 

@@ -4,7 +4,7 @@
 
 EAPI=6
 
-inherit multilib versionator
+inherit versionator
 
 MY_PV=$(replace_version_separator 1 'r' $(delete_version_separator 2 ) )
 DESCRIPTION="The GAP Library of Tables of Marks"
@@ -24,5 +24,8 @@ S="${WORKDIR}/${PN}"
 
 src_install(){
 	insinto /usr/$(get_libdir)/gap/pkg/"${PN}"
-	doins -r *
+	doins -r data doc gap tst
+	doins *.g
+
+	dodoc README
 }

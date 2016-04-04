@@ -1,3 +1,7 @@
+  04 Apr 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  aclib-1.2.ebuild:
+  dev-gap: removing useless eclasses
+
 *aclib-1.2 (04 Apr 2016)
 
   04 Apr 2016; François Bissey <francois.bissey@canterbury.ac.nz>

@@ -4,7 +4,7 @@
 
 EAPI=6
 
-inherit multilib versionator
+inherit versionator
 
 MY_PV=$(replace_version_separator 1 'r' )
 DESCRIPTION="The Design Package for GAP"

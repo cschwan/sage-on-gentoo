@@ -4,7 +4,7 @@
 
 EAPI=6
 
-inherit prefix multilib versionator
+inherit prefix versionator
 
 MY_PV=$(replace_version_separator 1 'r' )
 DESCRIPTION="GRaph Algorithms using PErmutation groups"

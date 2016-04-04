@@ -4,7 +4,7 @@
 
 EAPI=6
 
-inherit multilib versionator
+inherit versionator
 
 MY_PV=$(replace_version_separator 1 'r' $(delete_version_separator 2 ) )
 DESCRIPTION="The GAP Character Table Library"
