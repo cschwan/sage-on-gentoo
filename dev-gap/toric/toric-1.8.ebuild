@@ -22,5 +22,8 @@ S="${WORKDIR}/${PN}${PV}"
 
 src_install(){
 	insinto /usr/$(get_libdir)/gap/pkg/"${PN}"
-	doins -r *
+	doins -r doc htm lib
+	doins *.g
+
+	dodoc CHANGES.toric README.toric
 }
