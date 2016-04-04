@@ -20,7 +20,7 @@ RDEPEND="${DEPEND}"
 
 src_install(){
 	insinto /usr/$(get_libdir)/gap/pkg/"${P}"
-	doins -r 3k+1 doc examples lib mathml styles
+	doins -r 3k+1 doc example lib mathml styles
 	doins *.g *.dtd
 
 	dodoc CHANGES README

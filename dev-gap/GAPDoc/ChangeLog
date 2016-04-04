@@ -1,5 +1,9 @@
   04 Apr 2016; François Bissey <francois.bissey@canterbury.ac.nz>
   GAPDoc-1.5.1.ebuild:
+  dev-gap/GAPDoc: typo caught by Coacher
+
+  04 Apr 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  GAPDoc-1.5.1.ebuild:
   dev-gap/GAPDoc: Some improvements
 
 *GAPDoc-1.5.1 (01 Apr 2016)
