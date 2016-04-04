@@ -40,10 +40,14 @@ src_prepare(){
 	rm -rf configure \
 		Makefile \
 		Makefile.in \
-		nauty22 || die "failed to remove embeded version of nauty"
+		nauty22 \
+		bin || die "failed to remove embeded version of nauty"
 }
 
 src_install(){
 	insinto /usr/$(get_libdir)/gap/pkg/"${PN}"
-	doins -r *
+	doins -r doc grh htm lib tst
+	doins *.g
+
+	dodoc README
 }
