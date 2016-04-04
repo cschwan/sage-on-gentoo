@@ -1,3 +1,7 @@
+  04 Apr 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  crystcat-1.1.6.ebuild:
+  dev-gap/crystcat: ebuild improvement
+
   31 Mar 2016; François Bissey <francois.bissey@canterbury.ac.nz>
   crystcat-1.1.6.ebuild:
   dev-gap: Add laguna + up the version of gap needed so as not to use gap from
