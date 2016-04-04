@@ -1,3 +1,7 @@
+  04 Apr 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  factint-1.5.3.ebuild:
+  dev-gap/factint: ebuild improvement
+
   31 Mar 2016; François Bissey <francois.bissey@canterbury.ac.nz>
   factint-1.5.3.ebuild:
   dev-gap: Add laguna + up the version of gap needed so as not to use gap from

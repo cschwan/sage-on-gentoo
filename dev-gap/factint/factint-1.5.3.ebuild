@@ -22,5 +22,8 @@ S="${WORKDIR}/${PN}"
 
 src_install(){
 	insinto /usr/$(get_libdir)/gap/pkg/"${PN}"
-	doins -r *
+	doins -r doc gap tables
+	doins *.g ${PN}.tst
+
+	dodoc readme.txt relnotes.txt
 }
