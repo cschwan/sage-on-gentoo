@@ -24,5 +24,8 @@ PDEPEND="dev-gap/autpgrp
 
 src_install(){
 	insinto /usr/$(get_libdir)/gap/pkg/"${PN}"
-	doins -r *
+	doins -r doc exam gap gp htm
+	doins *.g
+
+	dodoc CHANGES README
 }
