@@ -1,3 +1,7 @@
+  04 Apr 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  HAPcryst-0.1.11.ebuild:
+  dev-gap/HAPcryst: Fix required by EAPI 6
+
 *HAPcryst-0.1.11 (04 Apr 2016)
 
   04 Apr 2016; François Bissey <francois.bissey@canterbury.ac.nz>

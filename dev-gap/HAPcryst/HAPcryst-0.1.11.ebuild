@@ -27,6 +27,8 @@ RDEPEND="${DEPEND}
 S="${WORKDIR}/${PN}"
 
 src_prepare(){
+	default
+
 	rm -f examples/3dimBieberbachFD.gap~
 }
 
