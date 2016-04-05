@@ -25,7 +25,7 @@ S="${WORKDIR}/${PN}"
 src_install(){
 	insinto /usr/$(get_libdir)/gap/pkg/"${PN}"
 	doins -r doc htm lib
-	doinst *.g
+	doins *.g
 
 	dodoc README
 }
