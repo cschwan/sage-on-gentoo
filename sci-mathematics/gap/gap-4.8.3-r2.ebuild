@@ -6,11 +6,17 @@ EAPI=6
 
 inherit autotools elisp-common
 
+# gap-lite is a pre-made tarball where the following has been removed:
+# 1) all pkg
+# 2) content of the bin folder - premade stuff
+# 3) gmp tarball(s) in the extern folder (don't remove the makefile)
+# sage also remove some of the database
+MY_P="gap-lite-${PV}"
 DESCRIPTION="System for computational discrete algebra"
 HOMEPAGE="http://www.gap-system.org/"
-SRC_URI="https://github.com/gap-system/gap/archive/v${PV}.tar.gz -> ${P}.tar.gz"
+SRC_URI="mirror://sagemath/${MY_P}.tar.xz"
 
-LICENSE="GPL-2"
+LICENSE="GPL-2+"
 SLOT="0"
 KEYWORDS="~amd64 ~x86 ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~x64-macos"
 IUSE="emacs readline vim-syntax"
@@ -38,11 +44,6 @@ src_prepare(){
 	eautoreconf
 	mv configure configure.out || die "failed to move configure in cnf"
 	popd
-	# Removing dev stuff in doc
-	pushd doc
-	rm -rf dev *.tex manualindex \
-		mrabbrev.bib README*
-	popd
 }
 
 src_configure(){
@@ -64,6 +65,7 @@ src_install(){
 		prim \
 		small \
 		trans \
+		tst \
 		sysinfo.gap*
 
 	insinto /usr/$(get_libdir)/${PN}/bin
@@ -87,6 +89,8 @@ src_install(){
 
 	insinto /usr/include/gap-${PV}
 	doins src/*.h
+
+	dodoc CITATION CONTRIBUTING.md README.md
 
 	# Make the real gap program executable again after install
 	einfo "making /usr/$(get_libdir)/${PN}/bin/${GAParch_system}/gap executable"
