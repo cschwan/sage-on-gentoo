@@ -5,4 +5,9 @@
 	<email>francois.bissey@canterbury.ac.nz</email>
 	<name>Francois Bissey</name>
 </maintainer>
+<use>
+	<flag name="opencl">
+		enable the use of opencl in linbox
+	</flag>
+</use>
 </pkgmetadata>
