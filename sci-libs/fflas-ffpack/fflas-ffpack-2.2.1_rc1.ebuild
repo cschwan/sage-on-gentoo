@@ -4,10 +4,11 @@
 
 EAPI=5
 
-inherit autotools toolchain-funcs eutils
+inherit autotools toolchain-funcs eutils versionator
 
 MY_PN="fflas_ffpack"
-MY_P="${MY_PN}-${PV}"
+MY_PV=$(delete_version_separator '_' )
+MY_P="${MY_PN}-${MY_PV}"
 DESCRIPTION="FFLAS-FFPACK is a library for dense linear algebra over word-size finite fields."
 HOMEPAGE="http://linalg.org/projects/fflas-ffpack"
 SRC_URI="http://lig-membres.imag.fr/pernet/prereleases/${MY_P}.tar.bz2"
@@ -29,7 +30,6 @@ RDEPEND="${DEPEND}"
 
 PATCHES=(
 	"${FILESDIR}/${PN}-2.2.0-blaslapack.patch"
-	"${FILESDIR}/${PN}-2.2.0-test.patch"
 	)
 
 S="${WORKDIR}"/${MY_P}
