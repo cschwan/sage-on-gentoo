@@ -17,7 +17,8 @@ KEYWORDS="~amd64 ~x86"
 IUSE=""
 
 DEPEND="sci-mathematics/gap"
-RDEPEND="${DEPEND}"
+RDEPEND="${DEPEND}
+	net-misc/wget"
 
 S="${WORKDIR}/${PN}"
 

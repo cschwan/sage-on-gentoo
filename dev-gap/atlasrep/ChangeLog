@@ -1,3 +1,8 @@
+  06 Apr 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  atlasrep-1.5_p0.ebuild:
+  dev-gap/atlasrep: added runtime dependency to wget as it is used to fetch
+  data.
+
   04 Apr 2016; François Bissey <francois.bissey@canterbury.ac.nz>
   atlasrep-1.5_p0.ebuild:
   dev-gap/atlasrep: correct description
