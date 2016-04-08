@@ -285,7 +285,7 @@ python_prepare() {
 	# it tries to link in the filesystem in ways that are difficult to support 
 	# in a global install from a pure python perspective. See also 
 	# https://github.com/cschwan/sage-on-gentoo/issues/376
-	eapply "${FILESDIR}"/${PN}-7.1-jupyter.patch
+	eapply "${FILESDIR}"/${PN}-7.2-jupyter.patch
 	touch sage_setup/jupyter/__init__.py
 
 	# Make the lazy_import pickle name versioned with the sage version number
