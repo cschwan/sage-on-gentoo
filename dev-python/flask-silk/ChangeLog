@@ -2,6 +2,11 @@
 # Copyright 1999-2016 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  23 Feb 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  flask-silk-0.2.ebuild:
+  dev-python/flask-silk: lower eapi to 5 for prefix. Mark it as compatible with
+  python3_4. Upstream seems to think it is.
+
   31 Jan 2016; François Bissey <francois.bissey@canterbury.ac.nz> metadata.xml:
   dev-python/flask-silk: update metadata
 

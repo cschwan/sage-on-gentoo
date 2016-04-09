@@ -1,4 +1,4 @@
-# Copyright 1999-2015 Gentoo Foundation
+# Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
@@ -37,7 +37,13 @@ DEPEND="${DEPEND}
 PATCHES=( "${FILESDIR}"/${PN}-1.2.2-inline-latex.patch
 	"${FILESDIR}"/${PN}-1.2.2-nested.patch )
 
+REQUIRED_USE="doc? ( || ( $(python_gen_useflags 'python2*' pypy) ) )"
+
 S="${WORKDIR}/${MY_P}"
+
+pkg_setup() {
+	use doc && DISTUTILS_ALL_SUBPHASE_IMPLS=( 'python2*' pypy )
+}
 
 python_compile() {
 	distutils-r1_python_compile

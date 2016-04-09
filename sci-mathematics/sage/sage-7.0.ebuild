@@ -90,8 +90,9 @@ CDEPEND="dev-libs/gmp:0=
 	modular_decomposition? ( sci-libs/modular_decomposition )
 	bliss? ( >=sci-libs/bliss-0.73[-gmp] )
 	pdf? ( app-text/texlive[extra,${LINGUAS_USEDEP}] )
-	html? ( >=sci-mathematics/sage-notebook-0.11.6.1[${PYTHON_USEDEP}] )
-	pdf? ( >=sci-mathematics/sage-notebook-0.11.6.1[${PYTHON_USEDEP}] )"
+	~sci-mathematics/sage-notebook-0.11.6.1[${PYTHON_USEDEP}]
+	html? ( =dev-python/sphinx-1.2* )
+	pdf? ( =dev-python/sphinx-1.2* )"
 
 DEPEND="${CDEPEND}"
 
@@ -106,7 +107,7 @@ RDEPEND="${CDEPEND}
 	=dev-python/pexpect-4.0.1-r2[${PYTHON_USEDEP}]
 	>=dev-python/pycrypto-2.1.0[${PYTHON_USEDEP}]
 	>=dev-python/rpy-2.3.8[${PYTHON_USEDEP}]
-	>=dev-python/sympy-0.7.6.1-r1[${PYTHON_USEDEP}]
+	=dev-python/sympy-0.7.6.1-r1[${PYTHON_USEDEP}]
 	~media-gfx/tachyon-0.98.9[png]
 	>=sci-libs/cddlib-094f-r2
 	>=sci-libs/scipy-0.16.1[${PYTHON_USEDEP}]
@@ -139,7 +140,9 @@ CHECKREQS_DISK_BUILD="5G"
 S="${WORKDIR}/${P}/src"
 
 REQUIRED_USE="html? ( linguas_en )
-	testsuite? ( html )"
+	testsuite? ( || ( bin-html html ) )
+	bin-html? ( !html !pdf linguas_en )
+	bin-pdf? ( !html !pdf linguas_en )"
 
 pkg_setup() {
 	# needed since Ticket #14460
@@ -163,7 +166,7 @@ python_prepare() {
 		[Desktop Entry]
 		Name=Sage Shell
 		Type=Application
-		Comment=MAth software for abstract and numerical computations
+		Comment=Math software for abstract and numerical computations
 		Exec=sage
 		TryExec=sage
 		Icon=sage

@@ -2,6 +2,189 @@
 # Copyright 1999-2016 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  08 Apr 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  +files/sage-7.2-jupyter.patch, sage-9999.ebuild:
+  sci-mathematics/sage: updating jupyter patch for upcoming move of sphinxify.
+
+  07 Apr 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  files/sage-7.2-exec.patch:
+  sci-mathematics/sage: bump patch for 7.2.beta3
+
+  02 Apr 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-9999.ebuild:
+  sci-mathematics/sage: gap 4.8.3 is functional enough but will go under more
+  scrutiny. Correcting the relative location of VERSION.txt
+
+  02 Apr 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  +files/sage-7.2-exec.patch, sage-9999.ebuild:
+  sci-mathematics/sage: bump for 7.2.beta2
+
+  25 Mar 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-9999.ebuild:
+  sci-mathematics/sage: depend on the right version of cysignals
+
+  25 Mar 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-9999.ebuild:
+  sci-mathematics/sage: update dependencies for 7.2.beta0
+
+*sage-7.1-r1 (21 Mar 2016)
+
+  21 Mar 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  +sage-7.1-r1.ebuild:
+  sci-mathematics/sage: Add manifolds option to sage 7.1 in r1 for issue #407
+
+*sage-7.1 (21 Mar 2016)
+
+  21 Mar 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  +sage-7.1.ebuild, -files/cython-0.23.3.patch,
+  -files/sage-6.6-ipython_kernel_start.patch, -files/sage-6.6-sagedoc.patch,
+  -files/sage-6.8-blas-r1.patch, -files/sage-6.9-neutering.patch,
+  -sage-6.9.ebuild, metadata.xml, sage-6.10.ebuild, sage-7.0.ebuild:
+  sci-mathematics/sage: sage 7.1 has landed
+
+  19 Mar 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-6.10.ebuild, sage-6.9.ebuild, sage-7.0-r1.ebuild, sage-7.0.ebuild,
+  sage-9999.ebuild:
+  sci-mathematics/sage: pin sympy version
+
+*sage-7.0-r1 (14 Mar 2016)
+
+  14 Mar 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  +files/sage-7.0-manifolds.patch, +sage-7.0-r1.ebuild, metadata.xml:
+  sci-mathematics/sage: add a manifolds option for issue #407
+
+  10 Mar 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  -files/sage-7.1-blas.patch, files/sage-7.1-exec.patch,
+  files/sage-7.1-neutering.patch, sage-9999.ebuild:
+  sci-mathematics/sage: The one in which the blas patch disapear....
+
+  09 Mar 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-9999.ebuild:
+  sci-mathematics/sage: removing the pruning of _static folders lead to a
+  tripling of the install time locally, restoring.
+
+  08 Mar 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-9999.ebuild:
+  sci-mathematics/sage: Work around for issue #402 while I am scratching my head
+  on where it is coming from.
+
+  07 Mar 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-9999.ebuild:
+  sci-mathematics/sage: touching doc building again. Not solution in sight for
+  issue #402
+
+  06 Mar 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  files/sage-7.1-linguas.patch, sage-9999.ebuild:
+  sci-mathematics/sage: small re-organzing of the doc. No impact on issue #402
+
+  03 Mar 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  files/sage-7.1-neutering.patch, files/sage-7.1-sources.patch,
+  sage-9999.ebuild:
+  sci-mathematics/sage: bump patches and dependencies for sage 7.1.beta6
+
+  27 Feb 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-7.0.ebuild, sage-9999.ebuild:
+  sci-mathematics/sage: work on sage-notebook dependencies for issue #396, use
+  some new knoledge about location of sphinxify while working on upstream
+  tickets.
+
+  27 Feb 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  +files/proto.sage-env-7.1, sage-9999.ebuild:
+  sci-mathematics/sage: for sage 7.1 sage-env will need SAGE_DOC_SRC
+
+  26 Feb 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-9999.ebuild:
+  sci-mathematics/sage: documentation should be all right now
+
+  26 Feb 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-9999.ebuild:
+  sci-mathematics/sage: More rumbling about documentation building
+
+  26 Feb 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  +files/sage-7.1-blas.patch, files/sage-7.1-env.patch,
+  files/sage-7.1-jupyter.patch, files/sage-7.1-linguas.patch,
+  files/sage-7.1-sagedoc.patch, files/sage-7.1-sources.patch, sage-9999.ebuild:
+  sci-mathematics/sage: bump patches and dependencies for 7.1.beta5
+
+  21 Feb 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  files/sage-MPL-1.5.1.patch:
+  sci-mathematics/sage: update MPL-1.5.1 patch in line with decision reached for
+  sage 7.1
+
+  18 Feb 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-7.0.ebuild:
+  sci-mathematics/sage: improve sphinx dependency in stable to fix and close
+  #392
+
+  18 Feb 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  +files/sage-7.1-neutering.patch, sage-9999.ebuild:
+  sci-mathematics/sage: bump for 7.1.beta4
+
+  12 Feb 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-9999.ebuild:
+  sci-mathematics/sage: one doc too many
+
+  12 Feb 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-9999.ebuild:
+  sci-mathematics/sage: shipping more files for sagedoc.py
+
+  11 Feb 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  -files/sage-7.1-doc_common.patch, files/sage-7.1-sources.patch,
+  sage-9999.ebuild:
+  sci-mathematics/sage: fixing problems with links generated by the next
+  documentation ticket
+
+  11 Feb 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-9999.ebuild:
+  sci-mathematics/sage: correction for case of overzealous sed-ing
+
+  11 Feb 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  files/sage-7.1-env.patch, files/sage-7.1-sagedoc.patch, sage-9999.ebuild:
+  sci-mathematics/sage: bump patch and dependency for 7.1.beta3
+
+  10 Feb 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  files/sage-7.1-sagedoc.patch, sage-9999.ebuild:
+  sci-mathematics/sage: rip off the part that checks that html documentation is
+  built against the  shipped rst files. Remove all rst  files and doc/common
+  files are they are now unused.
+
+  10 Feb 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-9999.ebuild:
+  sci-mathematics/sage: re-add export MAKE=make for pdf doc
+
+  09 Feb 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  files/sage-7.1-sagedoc.patch:
+  sci-mathematics/sage: getting rid of calls to sage_setup in sagedoc
+
+  09 Feb 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-9999.ebuild:
+  sci-mathematics/sage: re-instate installing rst files as they are required for
+  doctests.
+
+  09 Feb 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-9999.ebuild:
+  sci-mathematics/sage: more adjustments for 7.1.beta2
+
+  09 Feb 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-9999.ebuild:
+  sci-mathematics/sage: We have building of documention again in sage-9999
+
+  09 Feb 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  files/sage-7.1-linguas.patch, sage-9999.ebuild:
+  sci-mathematics/sage: documentation still not building.
+
+  08 Feb 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  files/sage-7.1-env.patch, sage-9999.ebuild:
+  sci-mathematics/sage: more changes for 7.1.beta1
+
+  08 Feb 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  +files/sage-7.1-doc_common.patch, +files/sage-7.1-env.patch,
+  +files/sage-7.1-exec.patch, +files/sage-7.1-linguas.patch,
+  +files/sage-7.1-sagedoc.patch, +files/sage-7.1-sources.patch,
+  files/sage-7.1-jupyter.patch, sage-9999.ebuild:
+  sci-mathematics/sage: patches updated. At this stage I don't expect the
+  documentation to build.
+
   31 Jan 2016; François Bissey <francois.bissey@canterbury.ac.nz> metadata.xml,
   sage-6.10.ebuild, sage-6.9.ebuild, sage-7.0.ebuild, sage-9999.ebuild:
   sci-mathematics/sage: change dep from libcliquer to cliquer

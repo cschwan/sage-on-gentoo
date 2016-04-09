@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<maintainer type="person">
+		<email>francois.bissey@canterbury.ac.nz</email>
+		<name>FranÃ§ois Bissey</name>
+	</maintainer>
+	<longdescription lang="en">
+		This package computes the cohomology rings of finite p-groups, induced maps, and Massey products.
+	</longdescription>
+</pkgmetadata>

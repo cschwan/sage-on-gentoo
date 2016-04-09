@@ -2,6 +2,13 @@
 # Copyright 1999-2016 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/sci-mathematics/singular/ChangeLog,v 1.53 2012/06/23 10:50:20 xarthisius Exp $
 
+*singular-3.1.7_p1-r5 (17 Mar 2016)
+
+  17 Mar 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  +singular-3.1.7_p1-r5.ebuild:
+  sci-mathematics/singular: bump for a singular that can compile against ntl
+  with threads
+
   01 Feb 2016; François Bissey <francois.bissey@canterbury.ac.nz> metadata.xml:
   update metadata
 

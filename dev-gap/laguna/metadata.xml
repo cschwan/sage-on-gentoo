@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<maintainer type="person">
+		<email>francois.bissey@canterbury.ac.nz</email>
+		<name>FranÃ§ois Bissey</name>
+	</maintainer>
+	<longdescription lang="en">
+		The LAGUNA package replaces the LAG package and provides functionality for calculation of the 
+		normalized unit group of the modular group algebra of the finite p-group and for investigation 
+		of Lie algebra associated with group algebras and other associative algebras.
+	</longdescription>
+</pkgmetadata>

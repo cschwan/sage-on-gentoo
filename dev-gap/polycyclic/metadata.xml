@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<maintainer type="person">
+		<email>francois.bissey@canterbury.ac.nz</email>
+		<name>FranÃ§ois Bissey</name>
+	</maintainer>
+	<longdescription lang="en">
+		This package provides various algorithms for computations with polycyclic groups defined by polycyclic presentations.
+	</longdescription>
+</pkgmetadata>

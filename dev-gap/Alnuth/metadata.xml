@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<maintainer type="person">
+		<email>francois.bissey@canterbury.ac.nz</email>
+		<name>FranÃ§ois Bissey</name>
+	</maintainer>
+	<longdescription lang="en">
+		The Alnuth package provides various methods to compute with number fields which are given by a defining polynomial 
+		or by generators. Some of the methods provided in this package are written in GAP code. The other part of the 
+		methods is imported from the computer algebra system PARI/GP.
+	</longdescription>
+</pkgmetadata>

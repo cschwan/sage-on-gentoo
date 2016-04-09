@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
-EAPI=6
+EAPI=5
 
 inherit flag-o-matic
 
@@ -24,13 +24,12 @@ RESTRICT="mirror
 # FIXME: using external expat breaks the tests.
 # FIXME: dependency on iml, mpfr, fplll, m4ri and m4rie are automagical
 CDEPEND="dev-libs/gmp[cxx]
-	>=sci-libs/givaro-3.7.0
+	=sci-libs/givaro-3.7*
 	~sci-libs/fflas-ffpack-1.6.0
 	virtual/cblas
 	virtual/lapack
-	sage? ( dev-libs/ntl:= )
-	sci-libs/iml
-	dev-libs/mpfr:="
+	sage? ( dev-libs/ntl:=
+		sci-libs/iml )"
 DEPEND="${CDEPEND}"
 RDEPEND="${CDEPEND}"
 
@@ -43,7 +42,7 @@ DOCS=( ChangeLog README NEWS TODO )
 # TODO: installation of documentation does not work ?
 
 pkg_setup() {
-	append-libs "-lmpfr" "-liml"
+	append-libs "-liml"
 }
 
 src_configure() {
@@ -60,7 +59,6 @@ src_configure() {
 	econf \
 		--enable-optimization \
 		--with-default="${EPREFIX}"/usr \
-		--with-mpfr="${EPREFIX}"/usr \
 		$(use_enable sage) \
 		$(use_enable static-libs static) \
 		${myeconfargs}

@@ -1,3 +1,7 @@
+  03 Feb 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  cliquer-1.21.ebuild:
+  sci-mathematics/cliquer: add x86 keyword
+
   28 Jan 2016; François Bissey <francois.bissey@canterbury.ac.nz>
   autocliquer-1.21.ebuild:
   sci-libs/autocliquer: reverting to EAPI 5 for now. No rush.

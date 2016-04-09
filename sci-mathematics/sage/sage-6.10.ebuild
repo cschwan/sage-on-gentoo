@@ -108,7 +108,7 @@ RDEPEND="${CDEPEND}
 	=dev-python/pexpect-3.3-r1[${PYTHON_USEDEP}]
 	>=dev-python/pycrypto-2.1.0[${PYTHON_USEDEP}]
 	>=dev-python/rpy-2.3.8[${PYTHON_USEDEP}]
-	>=dev-python/sympy-0.7.6.1-r1[${PYTHON_USEDEP}]
+	=dev-python/sympy-0.7.6.1-r1[${PYTHON_USEDEP}]
 	~media-gfx/tachyon-0.98.9[png]
 	>=sci-libs/cddlib-094f-r2
 	>=sci-libs/scipy-0.16.1[${PYTHON_USEDEP}]
@@ -143,7 +143,9 @@ CHECKREQS_DISK_BUILD="5G"
 S="${WORKDIR}/${P}/src"
 
 REQUIRED_USE="html? ( linguas_en )
-	testsuite? ( html )"
+	testsuite? ( || ( bin-html html ) )
+	bin-html? ( !html !pdf linguas_en )
+	bin-pdf? ( !html !pdf linguas_en )"
 
 pkg_setup() {
 	# needed since Ticket #14460

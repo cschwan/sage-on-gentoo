@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<maintainer type="person">
+		<email>francois.bissey@canterbury.ac.nz</email>
+		<name>FranÃ§ois Bissey</name>
+	</maintainer>
+	<longdescription lang="en">
+		The AutPGrp package introduces a new function to compute the automorphism group of a finite $p$-group
+	</longdescription>
+</pkgmetadata>

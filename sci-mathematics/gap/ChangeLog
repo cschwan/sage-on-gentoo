@@ -2,6 +2,71 @@
 # Copyright 1999-2016 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*gap-4.8.3-r2 (05 Apr 2016)
+
+  05 Apr 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  +gap-4.8.3-r2.ebuild, -gap-4.8.3-r1.ebuild, files/gap-4.8.3-configdir.patch:
+  sci-mathematics/gap: switching to a lite tarball produced from the release
+  tarball rather than the github tarball. It includes proper  pre-made
+  documentation.
+
+  02 Apr 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  files/gap-4.8.3-configdir.patch, gap-4.8.3-r1.ebuild:
+  sci-mathematics/gap: solve un-noticed collision with libgap
+
+  02 Apr 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  -gap-4.8.1-r1.ebuild:
+  sci-mathematics/gap: drop unused
+
+  02 Apr 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  files/gap-4.8.3-configdir.patch, gap-4.8.3-r1.ebuild:
+  sci-mathematics/gap: More improvement, including proper versionning from
+  master.
+
+  02 Apr 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  gap-4.8.3.ebuild:
+  sci-mathematics/gap: found where "unknow" version comes from
+
+  02 Apr 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  gap-4.8.3.ebuild:
+  sci-mathematics/gap: correct more instances of 4.dev to 4.8.3
+
+  02 Apr 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  gap-4.8.3.ebuild:
+  sci-mathematics/gap: the gap tarball from github doesn't have the right
+  version inserted in lib/system.g. gap is a mess in more ways than one.
+
+  01 Apr 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  +files/gap-4.8.3-configdir.patch, gap-4.8.3-r1.ebuild:
+  sci-mathematics/gap: more refined gap
+
+  01 Apr 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  gap-4.8.3-r1.ebuild:
+  sci-mathematics/gap: Work in progress for new form gap
+
+*gap-4.8.3-r1 (01 Apr 2016)
+
+  01 Apr 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  +gap-4.8.3-r1.ebuild:
+  sci-mathematics/gap: bump latest for various changes: always use system gmp,
+  use dev-gap/GAPDoc as a separate package.
+
+*gap-4.8.3 (29 Mar 2016)
+
+  29 Mar 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  +gap-4.8.3.ebuild:
+  sci-mathematics/gap: bump to latest
+
+  27 Feb 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  gap-4.8.1-r1.ebuild:
+  sci-mathematics/gap: Add missing "die"s
+
+*gap-4.8.1-r1 (27 Feb 2016)
+
+  27 Feb 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  +gap-4.8.1-r1.ebuild, -gap-4.8.1.ebuild:
+  sci-mathematics/gap: work to fix issue #395
+
   01 Feb 2016; François Bissey <francois.bissey@canterbury.ac.nz> metadata.xml:
   sci-mathematics/gap: update metadata
 

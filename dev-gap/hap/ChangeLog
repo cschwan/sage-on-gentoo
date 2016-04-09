@@ -1,0 +1,9 @@
+  04 Apr 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  hap-1.11.ebuild:
+  dev-gap: removing useless eclasses
+
+*hap-1.11 (04 Apr 2016)
+
+  04 Apr 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  +hap-1.11.ebuild, +metadata.xml:
+  dev-gap/hap: initial commit

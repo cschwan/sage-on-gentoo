@@ -1,4 +1,5 @@
-app-emacs/imaxima # 1.0-r3 is needed for >=maxima-5.29
+# app-emacs/imaxima-1.0-r3 is needed for >=maxima-5.29
+app-emacs/imaxima
 dev-java/asm:2
 ~dev-lang/R-3.2.0
 dev-lang/python:2.7::sage-on-gentoo
@@ -54,10 +55,9 @@ dev-python/pkgconfig
 ~dev-python/pytz-2014.2
 ~dev-python/pytables-3.1.1
 dev-python/rpy
-dev-python/service_identity
 dev-python/simplegeneric
 ~dev-python/speaklater-1.3
->=dev-python/sympy-0.7.6.1-r1
+=dev-python/sympy-0.7.6.1-r1
 ~dev-python/twisted-names-14.0.1
 ~dev-python/twisted-core-14.0.1
 ~dev-python/twisted-mail-14.0.1
@@ -70,7 +70,7 @@ dev-tex/tkz-graph
 ~media-gfx/tachyon-0.98.9
 sci-libs/cddlib
 sci-libs/dsdp
-sci-libs/fflas-ffpack
+~sci-libs/fflas-ffpack-1.6.0
 ~sci-libs/fplll-20151201
 ~sci-libs/givaro-3.7.1
 >=sci-libs/gsl-1.16
@@ -133,6 +133,7 @@ dev-java/icedtea-bin:7
 #########################
 sci-libs/modular_decomposition
 ~sci-libs/bliss-0.73
+=sci-libs/cxsparse-3.1*
 dev-libs/igraph
 ~dev-python/python-igraph-0.7.0
 # coinor-cbc
