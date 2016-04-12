@@ -3,6 +3,11 @@
 # $Header: $
 
   12 Apr 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  +files/sage-7.2-singular.patch, -files/sage-7.2-singular_extra_arg.patch,
+  sage-9999.ebuild:
+  sci-mathematics/sage: preparation for 7.2.beta4
+
+  12 Apr 2016; François Bissey <francois.bissey@canterbury.ac.nz>
   files/sage-7.2-singular_extra_arg.patch:
   sci-mathematics/sage: updating singular_extra_args patch
 

@@ -1,6 +1,6 @@
 diff -Naur src.orig/module_list.py src/module_list.py
---- src.orig/module_list.py	2016-04-12 22:16:27.425363022 +1200
-+++ src/module_list.py	2016-04-12 22:22:06.626090496 +1200
+--- src.orig/module_list.py	2016-04-12 22:50:43.279736545 +1200
++++ src/module_list.py	2016-04-12 22:51:23.916821539 +1200
 @@ -83,6 +83,7 @@
  #########################################################
  
@@ -111,3 +111,19 @@ diff -Naur src.orig/module_list.py src/module_list.py
  
      Extension('sage.rings.polynomial.multi_polynomial_ring_generic',
                sources = ['sage/rings/polynomial/multi_polynomial_ring_generic.pyx']),
+diff -Naur src.orig/sage/libs/singular/decl.pxd src/sage/libs/singular/decl.pxd
+--- src.orig/sage/libs/singular/decl.pxd	2016-04-12 22:50:43.369736733 +1200
++++ src/sage/libs/singular/decl.pxd	2016-04-12 22:52:46.275993838 +1200
+@@ -25,10 +25,10 @@
+ 
+ from sage.libs.gmp.types cimport mpz_t, mpz_ptr
+ 
+-cdef extern from "factor.h":
++cdef extern from "singular/factor.h":
+     cdef int libfac_interruptflag
+ 
+-cdef extern from "factory/factory.h":
++cdef extern from "singular/factory.h":
+ 
+     #
+     # CF OPTIONS
