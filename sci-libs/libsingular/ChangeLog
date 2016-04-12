@@ -2,6 +2,14 @@
 # Copyright 1999-2016 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*libsingular-3.1.7_p1-r8 (12 Apr 2016)
+
+  12 Apr 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  +libsingular-3.1.7_p1-r8.ebuild, -libsingular-3.1.7_p1-r6.ebuild,
+  libsingular-3.1.7_p1-r7.ebuild:
+  sci-libs/libsingular: correct a header for 7.2.beta4 - it should be compatible
+  with stable.
+
 *libsingular-3.1.7_p1-r7 (17 Mar 2016)
 
   17 Mar 2016; François Bissey <francois.bissey@canterbury.ac.nz>

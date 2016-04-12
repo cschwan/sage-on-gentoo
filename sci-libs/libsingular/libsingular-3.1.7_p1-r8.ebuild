@@ -28,7 +28,7 @@ IUSE="boost flint debug"
 
 RDEPEND="
 	dev-libs/gmp:0=
-	dev-libs/ntl:0=[-threads]
+	dev-libs/ntl:0=
 	flint? ( >=sci-mathematics/flint-2.3:= )"
 
 DEPEND="${RDEPEND}
@@ -42,6 +42,9 @@ pkg_setup() {
 	append-flags -fPIC
 	append-ldflags -fPIC
 	tc-export CC CPP CXX
+	if has_version "dev-libs/ntl[threads]" ; then
+		export CXX="${CXX} -std=c++11"
+	fi
 }
 
 src_prepare () {
@@ -149,6 +152,9 @@ src_install () {
 	# collide with factory or need it to use libsingular.
 	sed -e "s:<factory/:<singular/factory/:g" \
 		-i `grep -rl "<factory/" *`
+
+	sed -e "s:cf_gmp.h:singular/cf_gmp.h:" \
+		-i singular/si_gmp.h
 
 	doins libsingular.h mylimits.h omalloc.h
 	insinto /usr/include/singular
