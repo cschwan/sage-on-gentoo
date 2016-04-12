@@ -2,6 +2,19 @@
 # Copyright 1999-2016 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  12 Apr 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  +files/sage-7.2-singular.patch, -files/sage-7.2-singular_extra_arg.patch,
+  sage-9999.ebuild:
+  sci-mathematics/sage: preparation for 7.2.beta4
+
+  12 Apr 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  files/sage-7.2-singular_extra_arg.patch:
+  sci-mathematics/sage: updating singular_extra_args patch
+
+  09 Apr 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  +files/sage-7.2-singular_extra_arg.patch, sage-9999.ebuild:
+  sci-mathematics/sage: updating patches
+
   08 Apr 2016; François Bissey <francois.bissey@canterbury.ac.nz>
   +files/sage-7.2-jupyter.patch, sage-9999.ebuild:
   sci-mathematics/sage: updating jupyter patch for upcoming move of sphinxify.
@@ -255,6 +268,10 @@
   sci-mathematics/sage: fix pexpect version in stable branches
 
   20 Dec 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-9999.ebuild:
+  sci-mathematics/sage: correct dependencies for the vbraun branch
+
+  20 Dec 2015; François Bissey <francois.bissey@canterbury.ac.nz>
   sage-6.10.ebuild, sage-6.8-r2.ebuild, sage-6.9.ebuild:
   sci-mathematics/sage: current stable depend on sage-notebook 0.11.4
 
@@ -332,6 +349,10 @@
   sage-9999.ebuild:
   sci-mathematics/sage: Update optional dependency on bliss in sage-9999
 
+  30 Oct 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-9999.ebuild:
+  sci-mathematics/sage: arb is now a standard package
+
   27 Oct 2015; François Bissey <francois.bissey@canterbury.ac.nz>
   sage-9999.ebuild:
   sci-mathematics/sage: more work on links
@@ -346,6 +367,11 @@
   sci-mathematics/sage: issue #376. Rewrite/maim/disable all the crap in
   sage/repl/ipython_kernel/install.py and move logic in ebuild  where
   applicable. It may not be possible to find a convenient solution for upstream.
+
+  21 Oct 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-9999.ebuild:
+  sci-mathematics/sage: Add ja (japanese) to possible languages for future sage
+  6.10
 
   21 Oct 2015; François Bissey <francois.bissey@canterbury.ac.nz>
   +files/sage-6.10-ipython_kernel_start.patch,
