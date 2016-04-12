@@ -1,0 +1,5 @@
+*polymaking-0.8.1 (04 Apr 2016)
+
+  04 Apr 2016; François Bissey <francois.bissey@canterbury.ac.nz> +metadata.xml,
+  +polymaking-0.8.1.ebuild:
+  dev-gap/polymaking: initial commit

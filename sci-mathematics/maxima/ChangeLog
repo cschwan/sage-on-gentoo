@@ -1,6 +1,9 @@
 # ChangeLog for sci-mathematics/maxima
-# Copyright 1999-2015 Gentoo Foundation; Distributed under the GPL v2
+# Copyright 1999-2016 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/sci-mathematics/maxima/ChangeLog,v 1.102 2012/12/14 09:55:25 grozin Exp $
+
+  01 Feb 2016; François Bissey <francois.bissey@canterbury.ac.nz> metadata.xml:
+  sci-mathematics/maxima: update metadata
 
   07 Sep 2015; François Bissey <francois.bissey@canterbury.ac.nz>
   maxima-5.35.1-r2.ebuild:

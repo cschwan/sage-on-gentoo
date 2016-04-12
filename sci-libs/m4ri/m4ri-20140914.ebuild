@@ -1,10 +1,10 @@
-# Copyright 1999-2015 Gentoo Foundation
+# Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
-EAPI=5
+EAPI=6
 
-inherit autotools-utils flag-o-matic toolchain-funcs
+inherit flag-o-matic toolchain-funcs
 
 DESCRIPTION="Method of four russian for inversion (M4RI)"
 HOMEPAGE="http://m4ri.sagemath.org/"
@@ -32,11 +32,9 @@ pkg_pretend() {
 src_configure() {
 	# cachetune option is not available, because it kills (at least my) X when I
 	# switch from yakuake to desktop
-	myeconfargs=(
-		$(use_enable debug)
-		$(use_enable openmp)
-		$(use_enable cpu_flags_x86_sse2 sse2)
-	)
-
-	autotools-utils_src_configure
+	econf \
+		$(use_enable debug) \
+		$(use_enable openmp) \
+		$(use_enable cpu_flags_x86_sse2 sse2) \
+		$(use_enable static-libs static)
 }

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+<maintainer type="person">
+<email>francois.bissey@canterbury.ac.nz</email>
+<name>FranÃ§ois Bissey</name>
+</maintainer>
+<longdescription lang="en">
+The cysignals package provides mechanisms to handle interrupts (and other signals and errors) in Cython code.
+</longdescription>
+</pkgmetadata>

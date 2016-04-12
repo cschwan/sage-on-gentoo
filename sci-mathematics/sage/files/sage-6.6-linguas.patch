@@ -1,6 +1,6 @@
 diff -Naur doc.orig/common/build_options.py doc/common/build_options.py
---- doc.orig/common/build_options.py	2015-03-17 23:35:58.116605817 +1300
-+++ doc/common/build_options.py	2015-03-17 23:40:42.687210590 +1300
+--- a/doc/common/build_options.py	2015-03-17 23:35:58.116605817 +1300
++++ b/doc/common/build_options.py	2015-03-17 23:40:42.687210590 +1300
 @@ -4,7 +4,18 @@
  
  import os, re

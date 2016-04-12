@@ -1,5 +1,5 @@
---- sage/doctest/control.py.orig	2014-07-29 13:42:35.869541651 +1200
-+++ sage/doctest/control.py	2014-07-29 13:43:42.389644902 +1200
+--- a/sage/doctest/control.py	2014-07-29 13:42:35.869541651 +1200
++++ b/sage/doctest/control.py	2014-07-29 13:43:42.389644902 +1200
 @@ -415,12 +415,12 @@
              'sagenb'
          """

@@ -1,3 +1,6 @@
+  01 Feb 2016; François Bissey <francois.bissey@canterbury.ac.nz> metadata.xml:
+  sci-mathematics/brial: update metadata
+
   06 Sep 2015; François Bissey <francois.bissey@canterbury.ac.nz>
   brial-0.8.4.3.ebuild:
   sci-mathematics/brial: make sure autoreconf is called at the right time. This

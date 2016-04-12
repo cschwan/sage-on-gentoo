@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
 <pkgmetadata>
-	<herd>sci</herd>
-	<maintainer>
-		<email>sci@gentoo.org</email>
-	</maintainer>
+<maintainer type="person">
+	<email>francois.bissey@canterbury.ac.nz</email>
+	<name>Francois Bissey</name>
+</maintainer>
 	<longdescription>A collection of routines handling a variety of
 	mathematical subjects: ordinary representation theory of the symmetric
 	group and related groups, ordinary representation theory of the classical

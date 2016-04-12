@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<maintainer type="person">
+		<email>francois.bissey@canterbury.ac.nz</email>
+		<name>Francois Bissey</name>
+	</maintainer>
+	<longdescription lang="en">
+		GRAPE is a package for computing with graphs and groups, and is primarily designed for
+		constructing and analysing graphs related to groups, finite geometries, and designs.
+	</longdescription>
+	<use>
+		<flag name="bliss">
+			Use bliss instead of nauty's dreadnaut as the back end for grape.
+		</flag>
+	</use>
+</pkgmetadata>

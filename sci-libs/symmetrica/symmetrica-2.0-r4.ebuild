@@ -1,10 +1,10 @@
-# Copyright 1999-2015 Gentoo Foundation
+# Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
-EAPI=5
+EAPI=6
 
-inherit eutils base multilib toolchain-funcs versionator
+inherit toolchain-funcs versionator
 
 MY_P="SYM$(replace_all_version_separators '_')"
 
@@ -39,7 +39,7 @@ pkg_setup() {
 }
 
 src_prepare() {
-	base_src_prepare
+	default
 	# symmetrica by itself is just a bunch of files and a few headers plus
 	# documentation that you can use as you wish in your programs. For sage and
 	# ease of use we make it into a library with the following makefile
@@ -66,7 +66,7 @@ src_install() {
 	export PREFIX="${EPREFIX}"/usr
 	export LIBDIR=$(get_libdir)
 
-	default_src_install
+	default
 
 	# symmetrica's documentation are just text files with a ".doc" extension.
 	if use doc ; then

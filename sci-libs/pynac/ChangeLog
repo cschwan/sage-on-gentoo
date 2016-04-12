@@ -1,6 +1,85 @@
 # ChangeLog for sci-libs/pynac
-# Copyright 1999-2015 Gentoo Foundation; Distributed under the GPL v2
+# Copyright 1999-2016 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
+
+  20 Mar 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  -pynac-0.3.9.5.ebuild:
+  sci-libs/pynac: drop old
+
+*pynac-0.6.4 (15 Mar 2016)
+
+  15 Mar 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  +pynac-0.6.4.ebuild, -pynac-0.6.3.ebuild:
+  sci-libs/pynac: version bump
+
+*pynac-0.6.3 (03 Mar 2016)
+
+  03 Mar 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  +pynac-0.6.3.ebuild, -pynac-0.6.1.ebuild:
+  sci-libs/pynac: bump and remove unused version
+
+*pynac-0.6.2 (23 Feb 2016)
+
+  23 Feb 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  +pynac-0.6.2.ebuild:
+  sci-libs/pynac: bump for next beta/rc of sage 7.1
+
+  31 Jan 2016; François Bissey <francois.bissey@canterbury.ac.nz> metadata.xml:
+  sci-libs/pynac: update metadata
+
+*pynac-0.6.1 (23 Jan 2016)
+
+  23 Jan 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  +pynac-0.6.1.ebuild:
+  sci-libs/pynac: new version of pynac http://trac.sagemath.org/ticket/19948
+
+  23 Jan 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  pynac-0.6.0.ebuild:
+  sci-libs/pynac: move to EAPI 6
+
+  20 Jan 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  -pynac-0.3.9.2.ebuild:
+  sci-libs/pynac: drop old
+
+*pynac-0.5.4 (02 Jan 2016)
+
+  02 Jan 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  +pynac-0.5.4.ebuild:
+  sci-libs/pynac: bump for sage 7.0
+
+  20 Dec 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  -pynac-0.3.7.ebuild:
+  sci-libs/pynac: remove unused
+
+*pynac-0.5.3 (18 Dec 2015)
+
+  18 Dec 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  +pynac-0.5.3.ebuild, -files/pynac-0.5.2-gmp.patch,
+  -files/pynac-0.5.2-pc.patch, -pynac-0.5.2-r1.ebuild:
+  sci-libs/pynac: bump to include the latest patches merged upstream
+
+  16 Dec 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  pynac-0.5.2-r1.ebuild:
+  sci-libs/pynac: get pynac 0.5.2's dependencies right
+
+*pynac-0.5.2-r1 (15 Dec 2015)
+
+  15 Dec 2015; Fran\udcc3\udca7ois Bissey <francois.bissey@canterbury.ac.nz>
+  +files/pynac-0.5.2-gmp.patch, +files/pynac-0.5.2-pc.patch,
+  +pynac-0.5.2-r1.ebuild, -pynac-0.5.2.ebuild:
+  sci-libs/pynac: various fixes: properly link to gmp, get pynac.pc in shape.
+
+*pynac-0.5.2 (27 Nov 2015)
+
+  27 Nov 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  +pynac-0.5.2.ebuild, -pynac-0.5.1.ebuild:
+  sci-libs/pynac: bump to 0.5.2
+
+*pynac-0.5.1 (25 Nov 2015)
+
+  25 Nov 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  +pynac-0.5.1.ebuild, -pynac-0.5.0.ebuild:
+  sci-libs/pynac: bump
 
 *pynac-0.5.0 (16 Oct 2015)
 

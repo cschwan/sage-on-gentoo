@@ -1,5 +1,5 @@
---- include/zn_poly.h.orig	2009-12-11 19:55:14.292298540 +0000
-+++ include/zn_poly.h	2009-12-12 10:41:38.372837577 +0000
+--- a/include/zn_poly.h	2009-12-11 19:55:14.292298540 +0000
++++ b/include/zn_poly.h	2009-12-12 10:41:38.372837577 +0000
 @@ -69,7 +69,9 @@
  /*
     I get really sick of typing unsigned long.

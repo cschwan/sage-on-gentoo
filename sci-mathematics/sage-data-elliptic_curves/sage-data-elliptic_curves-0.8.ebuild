@@ -1,8 +1,8 @@
-# Copyright 1999-2015 Gentoo Foundation
+# Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
-EAPI="5"
+EAPI=6
 
 PYTHON_COMPAT=( python2_7 )
 PYTHON_REQ_USE="sqlite"
@@ -31,6 +31,8 @@ src_prepare(){
 	# copy a slightly modified spkg-install. We used to have it in the tarball
 	# but when we changed to new style git spkg tarball we lost the file
 	cp "${FILESDIR}"/spkg-install .
+
+	default
 }
 
 src_install() {

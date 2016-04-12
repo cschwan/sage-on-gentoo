@@ -1,6 +1,48 @@
 # ChangeLog for sci-mathematics/sage-notebook
-# Copyright 1999-2015 Gentoo Foundation; Distributed under the GPL v2
+# Copyright 1999-2016 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
+
+  27 Feb 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  files/sage-notebook-0.11.7-base.patch:
+  sci-mathematics/sage-notebook: update sage-notebook patch
+
+*sage-notebook-0.11.7 (23 Feb 2016)
+
+  23 Feb 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  +files/sage-notebook-0.11.7-base.patch, +sage-notebook-0.11.7.ebuild,
+  metadata.xml:
+  sci-mathematics/sage-notebook: sagenb bump
+
+  27 Dec 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-notebook-0.11.6.1.ebuild:
+  sci-mathematics/sage-notebook: move sage to PDEPEND to avoid circular
+  dependency
+
+  27 Dec 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-notebook-0.11.6.1.ebuild:
+  sci-mathematics/sage-notebook: Do not set sage as a build dependency anymore.
+
+*sage-notebook-0.11.6.1 (20 Dec 2015)
+
+  20 Dec 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  +files/sage-notebook-0.11.6.1-base.patch, +sage-notebook-0.11.6.1.ebuild,
+  sage-notebook-0.11.4-r4.ebuild:
+  sci-mathematics/sage-notebook: ew pexpect 4.0.1+ able notebook for the next
+  sage
+
+  20 Dec 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  -files/sage-notebook-pexpect.patch, -sage-notebook-0.11.4-r2.ebuild,
+  sage-notebook-0.11.4-r4.ebuild:
+  sci-mathematics/sage-notebook: drop old, drop keyword
+
+  30 Nov 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-notebook-0.11.4-r2.ebuild, sage-notebook-0.11.4-r4.ebuild:
+  sci-mathematics/sage-notebook: more potential fix for #384
+
+  30 Nov 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-notebook-0.11.4-r2.ebuild, sage-notebook-0.11.4-r4.ebuild:
+  sci-mathematics/sage-notebook: make sage-notebook distutils-r1 compliant to
+  fix issue #384
 
   07 Sep 2015; François Bissey <francois.bissey@canterbury.ac.nz>
   sage-notebook-0.11.4-r2.ebuild, sage-notebook-0.11.4-r4.ebuild:

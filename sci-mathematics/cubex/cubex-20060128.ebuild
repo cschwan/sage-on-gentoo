@@ -1,10 +1,10 @@
-# Copyright 1999-2015 Gentoo Foundation
+# Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
-EAPI=5
+EAPI=6
 
-inherit eutils toolchain-funcs
+inherit toolchain-funcs
 
 MY_PN="solver"
 
@@ -23,11 +23,11 @@ RESTRICT="mirror"
 DEPEND=""
 RDEPEND="${DEPEND}"
 
-S="${WORKDIR}/${MY_PN}"
+PATCHES=(
+	"${FILESDIR}"/${P}-fix-missing-include.patch
+	)
 
-src_prepare() {
-	epatch "${FILESDIR}"/${P}-fix-missing-include.patch
-}
+S="${WORKDIR}/${MY_PN}"
 
 src_compile() {
 	emake CC="$(tc-getCXX)" LINK="$(tc-getCXX)" CFLAGS="${CFLAGS}" \

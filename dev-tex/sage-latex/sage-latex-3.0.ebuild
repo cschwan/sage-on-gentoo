@@ -1,4 +1,4 @@
-# Copyright 1999-2015 Gentoo Foundation
+# Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
@@ -10,7 +10,7 @@ inherit distutils-r1 latex-package
 
 MY_PN="sagetex"
 MY_P="${MY_PN}-${PV}"
-DESCRIPTION="SageTeX package allows to embed code from the Sage mathematics software suite into LaTeX documents"
+DESCRIPTION="SageTeX allows you to embed Sage code into LaTeX documents"
 HOMEPAGE="http://www.sagemath.org https://github.com/dandrake/sagetex"
 SRC_URI="https://github.com/dandrake/${MY_PN}/archive/v${PV}.tar.gz -> ${MY_P}.tar.gz"
 
@@ -29,6 +29,12 @@ S="${WORKDIR}"/${MY_P}
 src_prepare() {
 	# LaTeX file are installed by eclass functions
 	epatch "${FILESDIR}"/${PN}-3.0-install-python-files-only.patch
+
+	mkdir sub || die "faile to create sub"
+	for i in scripts.dtx remote-sagetex.dtx py-and-sty.dtx; do
+		mv "${i}" sub/ || die "failed to move ${i} to sub"
+		sed -i "s:${i}:sub/${i}:g" sagetex.dtx sagetex.ins || die "failed to change ${i} in sagetex.*"
+	done
 
 	distutils-r1_src_prepare
 }

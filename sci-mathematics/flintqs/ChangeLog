@@ -1,6 +1,20 @@
 # ChangeLog for sci-mathematics/flintqs
-# Copyright 1999-2015 Gentoo Foundation; Distributed under the GPL v2
+# Copyright 1999-2016 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
+
+  01 Feb 2016; François Bissey <francois.bissey@canterbury.ac.nz> metadata.xml:
+  sci-mathematics/flintqs: update metadata
+
+  22 Jan 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  flintqs-1.0.ebuild:
+  sci-mathematics/flintqs: move to EAPI 6
+
+*flintqs-1.0 (13 Dec 2015)
+
+  13 Dec 2015; François Bissey <francois.bissey@canterbury.ac.nz>
+  +flintqs-1.0.ebuild, -files/flintqs-lanczos.patch, -flintqs-20070817.ebuild:
+  sci-mathematics/flintqs: Move to 1.0 and new upstream repo on github including
+  all accumulated patches
 
   07 Sep 2015; François Bissey <francois.bissey@canterbury.ac.nz>
   flintqs-20070817.ebuild:

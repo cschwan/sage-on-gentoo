@@ -1,16 +1,14 @@
-# Copyright 1999-2015 Gentoo Foundation
+# Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
-EAPI=5
+EAPI=6
 
 inherit toolchain-funcs
 
-MY_P="optimal"
-
 DESCRIPTION="An optimal rubik's cube solver using God's Algorithm"
 HOMEPAGE="http://www.permutationpuzzles.org/rubik/"
-SRC_URI="http://www.permutationpuzzles.org/rubik/software/${MY_P}.tar.gz -> $P.tar.gz"
+SRC_URI="http://www.permutationpuzzles.org/rubik/software/${PN}.tar.gz -> ${P}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
@@ -22,7 +20,7 @@ RESTRICT="mirror"
 DEPEND=""
 RDEPEND="${DEPEND}"
 
-S="${WORKDIR}/${MY_P}"
+S="${WORKDIR}/${PN}"
 
 src_compile() {
 	$(tc-getCC) ${CFLAGS} -c optimal.c -o optimal.o

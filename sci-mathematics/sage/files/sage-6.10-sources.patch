@@ -1,0 +1,77 @@
+diff -Naur src.orig/sage/doctest/control.py src/sage/doctest/control.py
+--- src.orig/sage/doctest/control.py	2015-07-13 21:45:39.480725215 +1200
++++ src/sage/doctest/control.py	2015-07-13 21:46:01.500766505 +1200
+@@ -545,7 +545,6 @@
+         def all_files():
+             from glob import glob
+             self.files.append(opj(SAGE_SRC, 'sage'))
+-            self.files.append(opj(SAGE_SRC, 'sage_setup'))
+             self.files.append(opj(SAGE_SRC, 'doc', 'common'))
+             self.files.extend(glob(opj(SAGE_SRC, 'doc', '[a-z][a-z]')))
+             self.options.sagenb = True
+diff -Naur src.orig/sage/doctest/sources.py src/sage/doctest/sources.py
+--- src.orig/sage/doctest/sources.py	2015-07-13 21:45:39.480725215 +1200
++++ src/sage/doctest/sources.py	2015-07-13 21:46:11.840785894 +1200
+@@ -27,7 +27,7 @@
+ from parsing import SageDocTestParser
+ from util import NestedName
+ from sage.structure.dynamic_class import dynamic_class
+-from sage.env import SAGE_SRC, SAGE_LOCAL
++from sage.env import SAGE_SRC, SAGE_LOCAL, SAGE_LIB
+ 
+ # Python file parsing
+ triple_quotes = re.compile("\s*[rRuU]*((''')|(\"\"\"))")
+@@ -80,7 +80,7 @@
+     # If the file is in the sage library, we can use our knowledge of
+     # the directory structure
+     dev = SAGE_SRC
+-    sp = os.path.join(SAGE_LOCAL, 'lib', 'python', 'site-packages')
++    sp = SAGE_LIB
+     if path.startswith(dev):
+         # there will be a branch name
+         i = path.find(os.path.sep, len(dev))
+diff -Naur src.orig/sage_setup/find.py src/sage_setup/find.py
+--- src.orig/sage_setup/find.py	2015-07-13 21:45:39.400725065 +1200
++++ src/sage_setup/find.py	2015-07-13 21:50:34.271278250 +1200
+@@ -116,7 +116,7 @@
+         cydir = os.path.join(cythonized_dir, dir)
+ 
+         files = [os.path.join(sdir, f) for f in os.listdir(sdir)
+-                if f.endswith((".pxd", ".pxi")) or f in special_filenames]
++                if f.endswith((".pxd", ".pxi", ".pyx", ".rst")) or f in special_filenames]
+         if os.path.isdir(cydir):  # Not every directory contains Cython files
+             files += [os.path.join(cydir, f) for f in os.listdir(cydir)
+                     if f.endswith(".h")]
+diff -Naur src.orig/setup.py src/setup.py
+--- src.orig/setup.py	2015-07-13 21:45:39.510725271 +1200
++++ src/setup.py	2015-07-13 21:46:40.060838817 +1200
+@@ -613,28 +613,13 @@
+ t = time.time()
+ from sage_setup.find import find_python_sources, find_extra_files
+ python_packages, python_modules = find_python_sources(
+-    SAGE_SRC, ['sage', 'sage_setup'])
++    SAGE_SRC, ['sage'])
+ python_data_files = find_extra_files(python_packages,
+     ".", SAGE_CYTHONIZED, SAGE_LIB, ["ntlwrap.cpp"])
+ print("Discovered Python/Cython sources, time: %.2f seconds." % (time.time() - t))
+ 
+ 
+ #########################################################
+-### Clean
+-#########################################################
+-
+-print('Cleaning up stale installed files....')
+-t = time.time()
+-from sage_setup.clean import clean_install_dir
+-output_dirs = SITE_PACKAGES + glob.glob(os.path.join(SAGE_SRC, 'build', 'lib*'))
+-for output_dir in output_dirs:
+-    print('- cleaning {0}'.format(output_dir))
+-    clean_install_dir(output_dir, python_packages, python_modules,
+-            ext_modules, python_data_files)
+-print('Finished cleaning, time: %.2f seconds.' % (time.time() - t))
+-
+-
+-#########################################################
+ ### Install also Jupyter kernel spec
+ #########################################################
+ 

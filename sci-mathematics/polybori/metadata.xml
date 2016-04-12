@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
 <pkgmetadata>
-	<herd>sci</herd>
-	<maintainer>
-		<email>sci@gentoo.org</email>
-	</maintainer>
+<maintainer type="person">
+	<email>francois.bissey@canterbury.ac.nz</email>
+	<name>Francois Bissey</name>
+</maintainer>
 	<longdescription lang="en">
 		PolyBoRi is a C++ library, which provides high-level data types for
 		Boolean polynomials and monomials, exponent vectors, as well as for

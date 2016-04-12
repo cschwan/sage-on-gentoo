@@ -1,0 +1,51 @@
+*cysignals-1.1.0 (14 Mar 2016)
+
+  14 Mar 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  +cysignals-1.1.0.ebuild:
+  dev-python/cysignals: bump to latest. Probably not sage safe yet.
+
+*cysignals-1.0.1 (03 Mar 2016)
+
+  03 Mar 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  +cysignals-1.0.1.ebuild:
+  dev-python/cysignals: version bump
+
+*cysignals-1.0 (27 Feb 2016)
+
+  27 Feb 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  +cysignals-1.0.ebuild, -cysignals-1.0_rc2.ebuild:
+  dev-python/cysignals: Bump, python3 clean
+
+*cysignals-1.0_rc2 (19 Feb 2016)
+
+  19 Feb 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  +cysignals-1.0_rc2.ebuild, -cysignals-1.0_rc1.ebuild:
+  dev-python/cysignals: bump
+
+*cysignals-1.0_rc1 (18 Feb 2016)
+
+  18 Feb 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  +cysignals-1.0_rc1.ebuild, -cysignals-1.0_rc0.ebuild, cysignals-9999.ebuild:
+  dev-python/cysignals: move to 1.0_rc2, bump cython dep to something more
+  realistic
+
+  18 Feb 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  cysignals-9999.ebuild:
+  dev-python/cysignals: bring testing to the live ebuild
+
+  17 Feb 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  cysignals-1.0_rc0.ebuild:
+  dev-python/cysignals: improve ebuild, test fail in python3
+
+*cysignals-1.0_rc0 (16 Feb 2016)
+
+  16 Feb 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  +cysignals-1.0_rc0.ebuild, -cysignals-0.9.ebuild:
+  dev-python/cysignals: version bump for sage inclusion
+
+*cysignals-0.9 (10 Feb 2016)
+*cysignals-9999 (10 Feb 2016)
+
+  10 Feb 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  +cysignals-0.9.ebuild, +cysignals-9999.ebuild, +metadata.xml:
+  dev-python/cysignals: initial commit
