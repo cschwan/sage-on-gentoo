@@ -1,3 +1,9 @@
+*fplll-20160331 (16 Apr 2016)
+
+  16 Apr 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  +fplll-20160331.ebuild:
+  sci-libs/fplll: new snapshot
+
   31 Jan 2016; François Bissey <francois.bissey@canterbury.ac.nz> metadata.xml:
   sci-libs/fplll: update metadata
 
