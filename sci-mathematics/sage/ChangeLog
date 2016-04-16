@@ -4,6 +4,10 @@
 
   16 Apr 2016; François Bissey <francois.bissey@canterbury.ac.nz>
   sage-9999.ebuild:
+  sci-mathematics/sage: correct repo for this branch
+
+  16 Apr 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-9999.ebuild:
   sci-mathematics/sage: restore te right repo
 
   12 Apr 2016; François Bissey <francois.bissey@canterbury.ac.nz>
