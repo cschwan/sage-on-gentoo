@@ -57,7 +57,7 @@ CDEPEND="dev-libs/gmp:0=
 	>=sci-mathematics/eclib-20150827[flint]
 	>=sci-mathematics/gmp-ecm-6.4.4[-openmp]
 	>=sci-mathematics/flint-2.5.2:=[ntl]
-	~sci-libs/fplll-20151201
+	~sci-libs/fplll-20160331
 	~sci-libs/givaro-3.7.1
 	>=sci-libs/gsl-1.16
 	>=sci-libs/iml-1.0.4
@@ -86,7 +86,6 @@ CDEPEND="dev-libs/gmp:0=
 	virtual/cblas
 	>=sci-mathematics/arb-2.8.1
 	modular_decomposition? ( sci-libs/modular_decomposition )
-	~sci-mathematics/sage-notebook-0.11.7[${PYTHON_USEDEP}]
 	bliss? ( >=sci-libs/bliss-0.73 )
 	pdf? (
 		app-text/texlive[extra,${LINGUAS_USEDEP}]
@@ -128,6 +127,7 @@ RDEPEND="${CDEPEND}
 	~sci-mathematics/sage-data-combinatorial_designs-20140630
 	~sci-mathematics/sage-data-polytopes_db-20120220
 	~sci-mathematics/sage-data-conway_polynomials-0.4
+	~sci-mathematics/sage-notebook-0.12[${PYTHON_USEDEP}]
 	~sci-mathematics/singular-3.1.7_p1
 	>=sci-mathematics/sympow-1.018.1
 	www-servers/tornado
