@@ -4,12 +4,11 @@
 
 EAPI=5
 
-inherit flag-o-matic toolchain-funcs versionator
+inherit flag-o-matic toolchain-funcs
 
-MY_PV=$(delete_version_separator '_' )
 DESCRIPTION="A C++ template library for linear algebra over integers and over finite fields"
 HOMEPAGE="http://linalg.org/"
-SRC_URI="http://lig-membres.imag.fr/pernet/prereleases/${PN}-${MY_PV}.tar.gz"
+SRC_URI="https://github.com/linbox-team/${PN}/releases/download/v${PV}/${P}.tar.gz"
 
 LICENSE="LGPL-2.1"
 SLOT="0"
@@ -24,7 +23,7 @@ RESTRICT="mirror
 
 DEPEND="dev-libs/gmp[cxx]
 	~sci-libs/givaro-4.0.1
-	~sci-libs/fflas-ffpack-2.2.1_rc1
+	~sci-libs/fflas-ffpack-2.2.1
 	virtual/cblas
 	virtual/lapack
 	opencl? ( virtual/opencl )
@@ -36,8 +35,6 @@ DEPEND="dev-libs/gmp[cxx]
 RDEPEND="${DEPEND}"
 
 DOCS=( ChangeLog README NEWS TODO )
-
-S="${WORKDIR}"/${PN}-${MY_PV}
 
 # TODO: installation of documentation does not work ?
 
