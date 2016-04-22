@@ -4,7 +4,7 @@
 
 EAPI=5
 
-inherit autotools toolchain-funcs eutils versionator
+inherit autotools toolchain-funcs eutils
 
 DESCRIPTION="FFLAS-FFPACK is a library for dense linear algebra over word-size finite fields."
 HOMEPAGE="https://linbox-team.github.io/fflas-ffpack/"
