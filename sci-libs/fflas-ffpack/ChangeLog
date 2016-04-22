@@ -2,6 +2,16 @@
 # Copyright 1999-2016 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  22 Apr 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  fflas-ffpack-2.2.1.ebuild:
+  sci-libs/fflas-ffpack: remove un-needed eclass.
+
+*fflas-ffpack-2.2.1 (22 Apr 2016)
+
+  22 Apr 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  +fflas-ffpack-2.2.1.ebuild, -fflas-ffpack-2.2.1_rc1.ebuild:
+  sci-libs/fflas-ffpack: bump for, probably, sage-7.2
+
 *fflas-ffpack-2.2.1_rc1 (05 Apr 2016)
 
   05 Apr 2016; François Bissey <francois.bissey@canterbury.ac.nz>
