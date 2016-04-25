@@ -17,7 +17,7 @@ SLOT="0"
 KEYWORDS="~x86 ~amd64"
 IUSE=""
 
-DEPEND=">=dev-python/cython-0.23.4-r2
+DEPEND=">=dev-python/cython-0.24
 	>=sci-mathematics/pari-2.7.0"
 RDEPEND="${DEPEND}"
 
