@@ -2,6 +2,13 @@
 # Copyright 1999-2016 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/dev-python/cython/ChangeLog,v 1.93 2013/02/16 22:07:28 mgorny Exp $
 
+*cython-0.24 (25 Apr 2016)
+
+  25 Apr 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  +cython-0.24.ebuild:
+  dev-python/cython: bump before the main tree. One test failing, probably
+  debuging one.
+
   22 Apr 2016; François Bissey <francois.bissey@canterbury.ac.nz>
   +files/50cython-gentoo.el:
   dev-python/cython: add missing from the main tree for bug #578726
