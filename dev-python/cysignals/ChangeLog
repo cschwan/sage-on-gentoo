@@ -1,3 +1,9 @@
+*cysignals-1.1.1 (25 Apr 2016)
+
+  25 Apr 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  +cysignals-1.1.1.ebuild, -cysignals-1.1.0.ebuild:
+  dev-python/cysignals: bump
+
 *cysignals-1.1.0 (14 Mar 2016)
 
   14 Mar 2016; François Bissey <francois.bissey@canterbury.ac.nz>
