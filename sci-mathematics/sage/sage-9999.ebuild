@@ -89,9 +89,9 @@ CDEPEND="dev-libs/gmp:0=
 	bliss? ( >=sci-libs/bliss-0.73 )
 	pdf? (
 		app-text/texlive[extra,${LINGUAS_USEDEP}]
-		~dev-python/sphinx-1.2.2[${PYTHON_USEDEP}]
+		~dev-python/sphinx-1.4.1[${PYTHON_USEDEP}]
 	)
-	html? ( ~dev-python/sphinx-1.2.2[${PYTHON_USEDEP}] )"
+	html? ( ~dev-python/sphinx-1.4.1[${PYTHON_USEDEP}] )"
 
 DEPEND="${CDEPEND}"
 
@@ -133,7 +133,7 @@ RDEPEND="${CDEPEND}
 	www-servers/tornado
 	!prefix? ( >=sys-libs/glibc-2.13-r4 )
 	latex? (
-		~dev-tex/sage-latex-2.3.4
+		~dev-tex/sage-latex-3.0
 		|| ( app-text/dvipng[truetype] media-gfx/imagemagick[png] )
 	)"
 
