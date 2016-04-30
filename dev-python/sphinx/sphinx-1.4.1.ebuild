@@ -53,6 +53,8 @@ PATCHES=(
 S="${WORKDIR}/${MY_P}"
 
 python_compile() {
+	esetup.py compile_catalog
+	esetup.py update_catalog
 	distutils-r1_python_compile
 
 	# Generate the grammar. It will be caught by install somehow.
