@@ -12,7 +12,7 @@ dev-libs/c-blosc
 dev-python/characteristic
 dev-python/cvxopt
 ~dev-python/cysignals-1.1.1
->=dev-python/cython-0.23.2-r1
+>=dev-python/cython-0.24
 ~dev-python/bottleneck-0.8.0
 >=dev-python/matplotlib-1.5.1
 ~dev-python/networkx-1.10
