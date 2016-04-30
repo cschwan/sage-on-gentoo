@@ -4,6 +4,10 @@
 
   30 Apr 2016; François Bissey <francois.bissey@canterbury.ac.nz>
   sage-9999.ebuild:
+  sci-mathematics/sage: re-allow multiple LINGUAS in this branch
+
+  30 Apr 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-9999.ebuild:
   sci-mathematics/sage: bump cython dependency to 0.24 in sage-9999
 
   28 Apr 2016; François Bissey <francois.bissey@canterbury.ac.nz>
