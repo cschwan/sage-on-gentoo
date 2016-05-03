@@ -48,13 +48,12 @@ PATCHES=(
 	"${FILESDIR}"/${PN}-1.4.1-Makefile.patch
 	"${FILESDIR}"/${PN}-1.4.1-environment.patch
 	"${FILESDIR}"/${PN}-1.4.1-issue_777.patch
+	"${FILESDIR}"/${PN}-1.4.1-locale_dir.patch
 	)
 
 S="${WORKDIR}/${MY_P}"
 
 python_compile() {
-	esetup.py compile_catalog
-	esetup.py update_catalog
 	distutils-r1_python_compile
 
 	# Generate the grammar. It will be caught by install somehow.

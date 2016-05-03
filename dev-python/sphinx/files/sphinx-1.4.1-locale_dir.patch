@@ -1,0 +1,22 @@
+diff -Naur Sphinx-1.4.1.orig/sphinx/util/i18n.py Sphinx-1.4.1/sphinx/util/i18n.py
+--- Sphinx-1.4.1.orig/sphinx/util/i18n.py	2016-05-03 13:32:18.749387638 +1200
++++ Sphinx-1.4.1/sphinx/util/i18n.py	2016-05-03 13:43:08.346271870 +1200
+@@ -97,6 +97,8 @@
+        default is False.
+     :return: [CatalogInfo(), ...]
+     """
++    from sphinx import package_dir
++
+     if not locale:
+         return []  # locale is not specified
+ 
+@@ -105,6 +107,9 @@
+         if not locale_dir:
+             continue  # skip system locale directory
+ 
++        if locale_dir == path.join(package_dir, 'locale'):
++            continue # skip the real system locale directory
++
+         base_dir = path.join(locale_dir, locale, 'LC_MESSAGES')
+ 
+         if not path.exists(base_dir):
