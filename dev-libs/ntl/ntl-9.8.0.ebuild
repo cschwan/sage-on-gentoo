@@ -43,7 +43,7 @@ src_configure() {
 		AR="$(tc-getAR)" \
 		RANLIB="$(tc-getRANLIB)" \
 		NTL_GMP_LIP=on NTL_GF2X_LIB=on \
-		$(usex threads NTL_THREAD_BOOST= NTL_THREAD_BOOST= on off) \
+		$(usex threads NTL_THREADS= NTL_THREADS= on off) \
 		$(usex bindist NATIVE= NATIVE= off on) \
 		|| die "DoConfig failed"
 }
