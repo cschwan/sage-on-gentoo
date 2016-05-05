@@ -297,7 +297,7 @@ python_prepare() {
 	sed -i "s:\.\.\./local/share/pari:.../share/pari:g" sage/interfaces/gp.py
 
 	# fix all.py
-	eapply "${FILESDIR}"/${PN}-6.8-all.py.patch
+	eapply "${FILESDIR}"/${PN}-7.2-all.py.patch
 	sed -i \
 		-e "s:\"lib\",\"python\":\"$(get_libdir)\",\"${EPYTHON}\":" \
 		-e "s:\"bin\":\"lib\",\"python-exec\",\"${EPYTHON}\":" sage/all.py
