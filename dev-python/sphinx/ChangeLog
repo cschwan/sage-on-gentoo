@@ -2,6 +2,13 @@
 # Copyright 1999-2016 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/dev-python/sphinx/ChangeLog,v 1.175 2014/11/02 09:18:55 ago Exp $
 
+*sphinx-1.4.1-r2 (05 May 2016)
+
+  05 May 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  +files/sphinx-1.4.1-issue2522.patch, +sphinx-1.4.1-r2.ebuild,
+  -files/sphinx-1.4.1-locale_dir.patch, -sphinx-1.4.1-r1.ebuild:
+  dev-python/sphinx: Uses upstream fix for issue #416 (sphinx issue #2522)
+
   04 May 2016; François Bissey <francois.bissey@canterbury.ac.nz>
   sphinx-1.4.1-r1.ebuild:
   dev-python/sphinx: bump Babel dependency for issue #418
