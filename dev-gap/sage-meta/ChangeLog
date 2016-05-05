@@ -1,0 +1,5 @@
+*sage-meta-1.0 (05 May 2016)
+
+  05 May 2016; François Bissey <francois.bissey@canterbury.ac.nz> +metadata.xml,
+  +sage-meta-1.0.ebuild:
+  dev-gap/sage-meta: new meta package for optional dependencies
