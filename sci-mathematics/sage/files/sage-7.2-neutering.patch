@@ -1,6 +1,6 @@
 diff -Naur src.orig/sage/doctest/control.py src/sage/doctest/control.py
---- src.orig/sage/doctest/control.py	2016-04-27 09:18:09.596308861 +1200
-+++ src/sage/doctest/control.py	2016-04-27 09:28:57.124293147 +1200
+--- src.orig/sage/doctest/control.py	2016-05-08 13:06:51.373624770 +1200
++++ src/sage/doctest/control.py	2016-05-08 13:19:16.482078744 +1200
 @@ -247,23 +247,6 @@
              if "all" in options.optional:
                  # Special case to run all optional tests
@@ -25,7 +25,21 @@ diff -Naur src.orig/sage/doctest/control.py src/sage/doctest/control.py
  
          self.options = options
          self.files = args
-@@ -550,29 +533,10 @@
+@@ -528,13 +511,6 @@
+ 
+         ::
+ 
+-            sage: DD = DocTestDefaults(new = True)
+-            sage: DC = DocTestController(DD, [])
+-            sage: DC.add_files()
+-            Doctesting ...
+-
+-        ::
+-
+             sage: DD = DocTestDefaults(sagenb = True)
+             sage: DC = DocTestController(DD, [])
+             sage: DC.add_files()
+@@ -550,29 +526,10 @@
              self.files.append(opj(SAGE_SRC, 'sage_setup'))
              self.files.append(SAGE_DOC_SRC)
              self.options.sagenb = True
@@ -57,9 +71,27 @@ diff -Naur src.orig/sage/doctest/control.py src/sage/doctest/control.py
          if self.options.sagenb:
              if not self.options.all:
                  self.log("Doctesting the Sage notebook.")
+diff -Naur src.orig/sage/doctest/test.py src/sage/doctest/test.py
+--- src.orig/sage/doctest/test.py	2016-05-08 13:06:51.373624770 +1200
++++ src/sage/doctest/test.py	2016-05-08 13:09:09.776888482 +1200
+@@ -396,14 +396,6 @@
+     ...
+     0
+ 
+-Test an invalid value for ``--optional``::
+-
+-    sage: subprocess.call(["sage", "-t",  "--warn-long", "0", "--optional=bad-option", "show_skipped.rst"], **kwds)
+-    Traceback (most recent call last):
+-    ...
+-    ValueError: invalid optional tag 'bad-option'
+-    1
+-
+ Test ``atexit`` support in the doctesting framework::
+ 
+     sage: F = tmp_filename()
 diff -Naur src.orig/sage/game_theory/normal_form_game.py src/sage/game_theory/normal_form_game.py
---- src.orig/sage/game_theory/normal_form_game.py	2016-04-27 09:18:09.599308865 +1200
-+++ src/sage/game_theory/normal_form_game.py	2016-04-27 09:18:30.162339703 +1200
+--- src.orig/sage/game_theory/normal_form_game.py	2016-05-08 13:06:51.376624776 +1200
++++ src/sage/game_theory/normal_form_game.py	2016-05-08 13:07:19.427678289 +1200
 @@ -612,8 +612,9 @@
  from sage.structure.sage_object import SageObject
  from sage.matrix.constructor import matrix
@@ -88,17 +120,17 @@ diff -Naur src.orig/sage/game_theory/normal_form_game.py src/sage/game_theory/no
  
              return self._solve_lrs(maximization)
 diff -Naur src.orig/sage/geometry/polyhedron/base.py src/sage/geometry/polyhedron/base.py
---- src.orig/sage/geometry/polyhedron/base.py	2016-04-27 09:18:09.602308870 +1200
-+++ src/sage/geometry/polyhedron/base.py	2016-04-27 09:18:30.163339704 +1200
+--- src.orig/sage/geometry/polyhedron/base.py	2016-05-08 13:06:51.378624780 +1200
++++ src/sage/geometry/polyhedron/base.py	2016-05-08 13:07:19.428678291 +1200
 @@ -20,7 +20,6 @@
  from sage.structure.element import Element, coerce_binop, is_Vector
  
  from sage.misc.all import cached_method, prod
 -from sage.misc.package import is_package_installed
  
- from sage.rings.all import Integer, QQ, ZZ
+ from sage.rings.all import QQ, ZZ
  from sage.rings.real_double import RDF
-@@ -3691,7 +3690,9 @@
+@@ -3690,7 +3689,9 @@
  
               David Avis's lrs program.
          """
@@ -110,8 +142,8 @@ diff -Naur src.orig/sage/geometry/polyhedron/base.py src/sage/geometry/polyhedro
                                         'for this function to work')
  
 diff -Naur src.orig/sage/graphs/generic_graph.py src/sage/graphs/generic_graph.py
---- src.orig/sage/graphs/generic_graph.py	2016-04-27 09:18:09.606308876 +1200
-+++ src/sage/graphs/generic_graph.py	2016-04-27 09:18:30.166339709 +1200
+--- src.orig/sage/graphs/generic_graph.py	2016-05-08 13:06:51.382624787 +1200
++++ src/sage/graphs/generic_graph.py	2016-05-08 13:07:19.431678296 +1200
 @@ -7833,7 +7833,6 @@
             sage: abs(flow_ff-flow_igraph) < 0.00001         # optional python_igraph
             True
@@ -187,8 +219,8 @@ diff -Naur src.orig/sage/graphs/generic_graph.py src/sage/graphs/generic_graph.p
  
          if (algorithm is not None and
 diff -Naur src.orig/sage/graphs/lovasz_theta.py src/sage/graphs/lovasz_theta.py
---- src.orig/sage/graphs/lovasz_theta.py	2016-04-27 09:18:09.607308877 +1200
-+++ src/sage/graphs/lovasz_theta.py	2016-04-27 09:18:30.166339709 +1200
+--- src.orig/sage/graphs/lovasz_theta.py	2016-05-08 13:06:51.384624791 +1200
++++ src/sage/graphs/lovasz_theta.py	2016-05-08 13:07:19.431678296 +1200
 @@ -65,9 +65,9 @@
      from sage.misc.temporary_file import tmp_filename
      import os, subprocess
@@ -202,8 +234,8 @@ diff -Naur src.orig/sage/graphs/lovasz_theta.py src/sage/graphs/lovasz_theta.py
  
      g = graph.relabel(inplace=False, perm=range(1,n+1)).networkx_graph()
 diff -Naur src.orig/sage/groups/generic.py src/sage/groups/generic.py
---- src.orig/sage/groups/generic.py	2016-04-27 09:18:09.609308880 +1200
-+++ src/sage/groups/generic.py	2016-04-27 09:18:30.166339709 +1200
+--- src.orig/sage/groups/generic.py	2016-05-08 13:06:51.385624793 +1200
++++ src/sage/groups/generic.py	2016-05-08 13:07:19.432678298 +1200
 @@ -1397,16 +1397,10 @@
          'A8'
      """
@@ -223,8 +255,8 @@ diff -Naur src.orig/sage/groups/generic.py src/sage/groups/generic.py
      description = re.sub(r"(\A|\W)D(\d+)", correct_dihedral_degree, description)
      if not latex:
 diff -Naur src.orig/sage/groups/perm_gps/permgroup.py src/sage/groups/perm_gps/permgroup.py
---- src.orig/sage/groups/perm_gps/permgroup.py	2016-04-27 09:18:09.611308883 +1200
-+++ src/sage/groups/perm_gps/permgroup.py	2016-04-27 09:18:30.167339710 +1200
+--- src.orig/sage/groups/perm_gps/permgroup.py	2016-05-08 13:06:51.387624797 +1200
++++ src/sage/groups/perm_gps/permgroup.py	2016-05-08 13:07:19.432678298 +1200
 @@ -143,7 +143,6 @@
  from sage.groups.abelian_gps.abelian_group import AbelianGroup
  from sage.misc.cachefunc import cached_method
@@ -254,7 +286,7 @@ diff -Naur src.orig/sage/groups/perm_gps/permgroup.py src/sage/groups/perm_gps/p
          load_hap()
          from sage.arith.all import is_prime
          if not (p == 0 or is_prime(p)):
-@@ -1669,9 +1669,7 @@
+@@ -1681,9 +1681,7 @@
          try:
              return [Integer(n) for n in self._gap_().IdGroup()]
          except RuntimeError:
@@ -265,7 +297,7 @@ diff -Naur src.orig/sage/groups/perm_gps/permgroup.py src/sage/groups/perm_gps/p
  
      def id(self):
          """
-@@ -1722,9 +1720,7 @@
+@@ -1734,9 +1732,7 @@
          try:
              return Integer(self._gap_().PrimitiveIdentification())
          except RuntimeError:
@@ -276,7 +308,7 @@ diff -Naur src.orig/sage/groups/perm_gps/permgroup.py src/sage/groups/perm_gps/p
  
      def center(self):
          """
-@@ -4100,8 +4096,6 @@
+@@ -4112,8 +4108,6 @@
          - David Joyner and Graham Ellis
  
          """
@@ -286,8 +318,8 @@ diff -Naur src.orig/sage/groups/perm_gps/permgroup.py src/sage/groups/perm_gps/p
          from sage.arith.all import is_prime
          if not (p == 0 or is_prime(p)):
 diff -Naur src.orig/sage/misc/all.py src/sage/misc/all.py
---- src.orig/sage/misc/all.py	2016-04-27 09:18:09.630308912 +1200
-+++ src/sage/misc/all.py	2016-04-27 09:18:30.167339710 +1200
+--- src.orig/sage/misc/all.py	2016-05-08 13:06:51.407624835 +1200
++++ src/sage/misc/all.py	2016-05-08 13:07:19.432678298 +1200
 @@ -50,13 +50,6 @@
  
  from fpickle import pickle_function, unpickle_function
@@ -303,8 +335,8 @@ diff -Naur src.orig/sage/misc/all.py src/sage/misc/all.py
  
  lazy_import('sage.misc.sagedoc', ['browse_sage_doc',
 diff -Naur src.orig/sage/misc/package.py src/sage/misc/package.py
---- src.orig/sage/misc/package.py	2016-04-27 09:18:09.632308914 +1200
-+++ src/sage/misc/package.py	2016-04-27 09:18:30.167339710 +1200
+--- src.orig/sage/misc/package.py	2016-05-08 13:06:51.409624839 +1200
++++ src/sage/misc/package.py	2016-05-08 13:07:19.433678300 +1200
 @@ -42,368 +42,14 @@
  # (at your option) any later version.
  #                  http://www.gnu.org/licenses/
@@ -697,8 +729,8 @@ diff -Naur src.orig/sage/misc/package.py src/sage/misc/package.py
 +            "It may or may not be available in portage"
              .format(self.args[0]))
 diff -Naur src.orig/sage/tests/cmdline.py src/sage/tests/cmdline.py
---- src.orig/sage/tests/cmdline.py	2016-04-27 09:18:09.676308980 +1200
-+++ src/sage/tests/cmdline.py	2016-04-27 09:18:30.168339712 +1200
+--- src.orig/sage/tests/cmdline.py	2016-05-08 13:06:51.455624927 +1200
++++ src/sage/tests/cmdline.py	2016-05-08 13:07:19.433678300 +1200
 @@ -13,23 +13,18 @@
  --advanced
  -c
@@ -853,8 +885,8 @@ diff -Naur src.orig/sage/tests/cmdline.py src/sage/tests/cmdline.py
      but we allow stderr in case this changes in the future::
  
 diff -Naur src.orig/sage_setup/optional_extension.py src/sage_setup/optional_extension.py
---- src.orig/sage_setup/optional_extension.py	2016-04-27 09:18:09.678308984 +1200
-+++ src/sage_setup/optional_extension.py	2016-04-27 09:18:30.168339712 +1200
+--- src.orig/sage_setup/optional_extension.py	2016-05-08 13:06:51.456624929 +1200
++++ src/sage_setup/optional_extension.py	2016-05-08 13:07:19.433678300 +1200
 @@ -19,8 +19,7 @@
  
  
