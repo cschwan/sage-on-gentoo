@@ -14,7 +14,8 @@ inherit distutils-r1 eutils user
 
 DESCRIPTION="The Sage Notebook is a web-based graphical user interface for sage"
 HOMEPAGE="http://nb.sagemath.org"
-SRC_URI="mirror://sageupstream/${MY_PN}/${MY_P}.tar.bz2"
+#SRC_URI="mirror://sageupstream/${MY_PN}/${MY_P}.tar.bz2"
+SRC_URI="https://github.com/sagemath/sagenb/archive/${PV}.tar.gz -> ${P}.tar.gz"
 
 LICENSE="GPL-3+"
 SLOT="0"
