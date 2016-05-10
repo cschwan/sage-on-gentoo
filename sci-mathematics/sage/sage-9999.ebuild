@@ -123,7 +123,7 @@ RDEPEND="${CDEPEND}
 	~sci-mathematics/sage-data-combinatorial_designs-20140630
 	~sci-mathematics/sage-data-polytopes_db-20120220
 	~sci-mathematics/sage-data-conway_polynomials-0.4
-	~sci-mathematics/sage-notebook-0.12[${PYTHON_USEDEP}]
+	~sci-mathematics/sage-notebook-0.13[${PYTHON_USEDEP}]
 	~sci-mathematics/singular-3.1.7_p1
 	>=sci-mathematics/sympow-1.018.1
 	www-servers/tornado
