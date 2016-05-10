@@ -2,6 +2,12 @@
 # Copyright 1999-2016 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/sci-mathematics/pari/ChangeLog,v 1.87 2012/03/06 17:06:06 bicatali Exp $
 
+*pari-2.8_pre20160510 (10 May 2016)
+
+  10 May 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  +pari-2.8_pre20160510.ebuild:
+  sci-mathematics/pari: new snapshot for sage 7.3
+
   21 Mar 2016; François Bissey <francois.bissey@canterbury.ac.nz>
   -pari-2.8_pre20150611.ebuild:
   sci-mathematics/pari: drop old
