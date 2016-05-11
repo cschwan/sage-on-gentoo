@@ -2,6 +2,12 @@
 # Copyright 1999-2016 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/dev-libs/ntl/ChangeLog,v 1.25 2014/06/19 13:08:44 jauhien Exp $
 
+*ntl-9.8.1 (11 May 2016)
+
+  11 May 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  +ntl-9.8.1.ebuild, -ntl-9.8.0.ebuild:
+  dev-libs/ntl: minor bump
+
 *ntl-9.8.0 (04 May 2016)
 
   04 May 2016; François Bissey <francois.bissey@canterbury.ac.nz>
