@@ -7,8 +7,8 @@
 	</maintainer>
 	<use>
 		<flag name='testsuite'>
-			If activated installs Sage's sources into
-			/usr/share/sage/devel/sage to enable testing
+			If activated installs tools to runs the testsuite and insure that all
+			the files needed are present.
 		</flag>
 		<flag name='modular_decomposition'>
 			build the bindings to the modular_decomposition library
@@ -24,6 +24,10 @@
 		</flag>
 		<flag name='bin-pdf'>
 			install pre-built pdf documentation
+		</flag>
+		<flag name='sagenb'>
+			Trigger the installation of the historic sage-notebook (a jupyter notebook
+			is installed with sage)
 		</flag>
 		<flag name='manifolds'>
 			install the optional manifolds package from http://sagemanifolds.obspm.fr
