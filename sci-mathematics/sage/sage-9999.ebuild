@@ -31,7 +31,7 @@ LANGS="ca de en fr hu it ja pt ru tr"
 LICENSE="GPL-2"
 SLOT="0"
 SAGE_USE="modular_decomposition bliss"
-IUSE="latex testsuite debug X html pdf ${SAGE_USE}"
+IUSE="debug html latex pdf sagenb testsuite X ${SAGE_USE}"
 LINGUAS_USEDEP=""
 for X in ${LANGS} ; do
 	IUSE="${IUSE} linguas_${X}"
@@ -123,11 +123,11 @@ RDEPEND="${CDEPEND}
 	~sci-mathematics/sage-data-combinatorial_designs-20140630
 	~sci-mathematics/sage-data-polytopes_db-20120220
 	~sci-mathematics/sage-data-conway_polynomials-0.4
-	~sci-mathematics/sage-notebook-0.13[${PYTHON_USEDEP}]
 	~sci-mathematics/singular-3.1.7_p1
 	>=sci-mathematics/sympow-1.018.1
 	www-servers/tornado
 	!prefix? ( >=sys-libs/glibc-2.13-r4 )
+	sagenb? ( ~sci-mathematics/sage-notebook-0.13[${PYTHON_USEDEP}] )
 	latex? (
 		~dev-tex/sage-latex-3.0
 		|| ( app-text/dvipng[truetype] media-gfx/imagemagick[png] )
