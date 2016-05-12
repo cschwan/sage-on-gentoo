@@ -19,6 +19,9 @@
 		<flag name='html'>
 			build and install html documentation
 		</flag>
+		<flag name='pdf'>
+			build and install documentation in pdf format
+		</flag>
 		<flag name='bin-html'>
 			install pre-built html documentation
 		</flag>
