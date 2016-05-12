@@ -16,7 +16,7 @@ SLOT="0"
 KEYWORDS="~amd64"
 IUSE=""
 
-DEPEND=">=dev-python/ipykernel-4.0.0
-	>=sci-mathematics/pari-2.8_pre20160130
-	>=dev-python/cython-0.23.4"
+DEPEND=">=dev-python/ipykernel-4.0.0[${PYTHON_USEDEP}]
+	~sci-mathematics/pari-2.8_pre20160209
+	>=dev-python/cython-0.23.4[${PYTHON_USEDEP}]"
 RDEPEND="${DEPEND}"

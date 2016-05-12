@@ -1,3 +1,11 @@
+*pari_jupyter-1.1.2 (12 May 2016)
+
+  12 May 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  +pari_jupyter-1.1.2.ebuild, -pari_jupyter-1.0.0.ebuild,
+  -pari_jupyter-1.0.1.ebuild:
+  dev-python/pari_jupyter: big bump. Very dependent on the version of pari. May
+  have to make it a runtime dependency of pari to get matching version.
+
 *pari_jupyter-1.0.1 (31 Jan 2016)
 
   31 Jan 2016; François Bissey <francois.bissey@canterbury.ac.nz>
