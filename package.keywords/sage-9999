@@ -18,6 +18,7 @@ dev-python/cvxopt
 ~dev-python/networkx-1.10
 ~dev-python/pyopenssl-0.14
 ~dev-python/cryptography-0.6.1
+dev-python/imagesize
 dev-python/ptyprocess
 ~dev-python/python-dateutil-2.3
 ~dev-python/python-openid-2.2.5
