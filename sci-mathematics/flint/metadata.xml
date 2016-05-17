@@ -2,7 +2,7 @@
 <!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
 <pkgmetadata>
 	<maintainer type="person">
-		<email>fbissey@slingshot.co.nz</email>
+		<email>francois.bissey@canterbury.ac.nz</email>
 		<name>Francois Bissey</name>
 	</maintainer>
 	<upstream>
