@@ -2,39 +2,29 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
-EAPI=5
+EAPI=6
 
 PYTHON_COMPAT=( python2_7 )
 PYTHON_REQ_USE="readline,sqlite"
 
-inherit distutils-r1 eutils flag-o-matic multilib multiprocessing prefix toolchain-funcs versionator
-
-if [[ ${PV} = *9999* ]]; then
-	EGIT_REPO_URI="git://github.com/sagemath/sage.git"
-	EGIT_BRANCH=develop
-	EGIT_SOURCEDIR="${WORKDIR}/${P}"
-	inherit git-2
-	KEYWORDS=""
-else
-	SRC_URI="mirror://sagemath/${PV}.tar.gz -> ${P}.tar.gz
-		bin-html? ( mirror://sagemathdoc/${P}-doc-html.tar.xz )
-		bin-pdf? ( mirror://sagemathdoc/${P}-doc-pdf.tar.xz )"
-	KEYWORDS="~amd64 ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~x64-macos"
-	DOC_USE="+bin-html bin-pdf html pdf"
-fi
+inherit distutils-r1 flag-o-matic multiprocessing prefix toolchain-funcs versionator
 
 DESCRIPTION="Math software for abstract and numerical computations"
 HOMEPAGE="http://www.sagemath.org"
-SRC_URI="${SRC_URI}
+SRC_URI="mirror://sagemath/${PV}.tar.gz -> ${P}.tar.gz
+	bin-html? ( mirror://sagemathdoc/${P}-doc-html.tar.xz )
+	bin-pdf? ( mirror://sagemathdoc/${P}-doc-pdf.tar.xz )
+	manifolds? ( http://sagemanifolds.obspm.fr/spkg/manifolds-0.9.tar.gz )
 	mirror://sagemath/patches/sage-icon.tar.bz2
 	http://www.mathematik.uni-kl.de/ftp/pub/Math/Singular/SOURCES/3-1-6/Singular-3-1-6-share.tar.gz"
+KEYWORDS="~amd64 ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~x64-macos"
 
-LANGS="ca de en fr hu it pt ru tr"
+LANGS="ca de en fr hu it ja pt ru tr"
 
 LICENSE="GPL-2"
 SLOT="0"
 SAGE_USE="modular_decomposition bliss"
-IUSE="latex testsuite debug X ${DOC_USE} ${SAGE_USE}"
+IUSE="+bin-html bin-pdf debug html latex manifolds pdf sagenb testsuite X ${SAGE_USE}"
 LINGUAS_USEDEP=""
 for X in ${LANGS} ; do
 	IUSE="${IUSE} linguas_${X}"
@@ -47,83 +37,82 @@ RESTRICT="mirror test"
 CDEPEND="dev-libs/gmp:0=
 	>=dev-libs/mpfr-3.1.0
 	>=dev-libs/mpc-1.0
-	~dev-libs/ntl-9.3.0:=
+	>=dev-libs/ntl-9.6.2-r1:=
 	>=dev-libs/ppl-1.1
 	>=dev-lisp/ecls-15.3.7:=
 	dev-python/six[${PYTHON_USEDEP}]
 	>=dev-python/numpy-1.10.1-r2[${PYTHON_USEDEP}]
-	>=dev-python/cython-0.23.3-r1[${PYTHON_USEDEP}]
+	>=dev-python/cython-0.24[${PYTHON_USEDEP}]
 	dev-python/pkgconfig
+	>=dev-python/cysignals-1.1.0[${PYTHON_USEDEP}]
 	>=dev-python/docutils-0.12[${PYTHON_USEDEP}]
 	>=dev-python/sphinx-1.2.2[${PYTHON_USEDEP}]
 	>=sci-mathematics/eclib-20150827[flint]
 	>=sci-mathematics/gmp-ecm-6.4.4[-openmp]
 	>=sci-mathematics/flint-2.5.2:=[ntl]
-	~sci-libs/fplll-4.0.4
+	~sci-libs/fplll-20160331
 	~sci-libs/givaro-3.7.1
 	>=sci-libs/gsl-1.16
 	>=sci-libs/iml-1.0.4
 	~sci-mathematics/cliquer-1.21
-	~sci-libs/libgap-4.7.8
+	~sci-libs/libgap-4.8.3
 	~sci-libs/linbox-1.3.2[sage]
 	~sci-libs/m4ri-20140914
 	~sci-libs/m4rie-20150908
 	>=sci-libs/mpfi-1.5.1
-	~sci-libs/pynac-0.5.3[${PYTHON_USEDEP}]
+	~sci-libs/pynac-0.6.5[${PYTHON_USEDEP}]
 	>=sci-libs/symmetrica-2.0-r3
 	>=sci-libs/zn_poly-0.9
 	sci-mathematics/glpk:0=[gmp]
 	>=sci-mathematics/lcalc-1.23-r6[pari]
 	>=sci-mathematics/lrcalc-1.2-r1
-	~sci-mathematics/pari-2.8_pre20151001[data,gmp,doc]
+	~sci-mathematics/pari-2.8_pre20160209[data,gmp,doc]
 	~sci-mathematics/planarity-2.2.0
 	>=sci-mathematics/brial-0.8.4.3[${PYTHON_USEDEP}]
 	>=sci-mathematics/ratpoints-2.1.3
 	>=sci-mathematics/rw-0.7
-	~sci-libs/libsingular-3.1.7_p1[flint]
+	>=sci-libs/libsingular-3.1.7_p1-r7[flint]
 	media-libs/gd[jpeg,png]
 	media-libs/libpng:0=
 	>=sys-libs/readline-6.2
 	sys-libs/zlib
 	virtual/cblas
-	~sci-mathematics/arb-2.7.0
+	>=sci-mathematics/arb-2.8.1
 	modular_decomposition? ( sci-libs/modular_decomposition )
-	bliss? ( >=sci-libs/bliss-0.73[-gmp] )
-	pdf? ( app-text/texlive[extra,${LINGUAS_USEDEP}] )
-	!sci-mathematics/sage-baselayout
-	!sci-mathematics/sage-clib
-	!sci-mathematics/sage-doc
-	!sci-mathematics/sage-doc-bin"
+	bliss? ( >=sci-libs/bliss-0.73 )
+	~dev-python/sphinx-1.4.1[${PYTHON_USEDEP}]"
 
-DEPEND="${CDEPEND}"
+DEPEND="${CDEPEND}
+	pdf? ( app-text/texlive[extra,${LINGUAS_USEDEP}] )"
 
 RDEPEND="${CDEPEND}
 	>=dev-lang/R-3.2.0
-	>=dev-python/cvxopt-1.1.7[glpk,${PYTHON_USEDEP}]
-	>=dev-python/ipython-4.0.0[notebook,${PYTHON_USEDEP}]
+	>=dev-python/cvxopt-1.1.8[glpk,${PYTHON_USEDEP}]
+	>=dev-python/ipython-4.1.1[notebook,${PYTHON_USEDEP}]
 	>=dev-python/jinja-2.5.5[${PYTHON_USEDEP}]
-	>=dev-python/matplotlib-1.5.0[${PYTHON_USEDEP}]
+	>=dev-python/matplotlib-1.5.1[${PYTHON_USEDEP}]
 	>=dev-python/mpmath-0.18[${PYTHON_USEDEP}]
 	>=dev-python/networkx-1.10[${PYTHON_USEDEP}]
-	=dev-python/pexpect-3.3-r1[${PYTHON_USEDEP}]
+	>=dev-python/pexpect-4.0.1-r2[${PYTHON_USEDEP}]
 	>=dev-python/pycrypto-2.1.0[${PYTHON_USEDEP}]
 	>=dev-python/rpy-2.3.8[${PYTHON_USEDEP}]
-	=dev-python/sympy-0.7.6.1-r1[${PYTHON_USEDEP}]
+	>=dev-python/sympy-1.0[${PYTHON_USEDEP}]
 	~media-gfx/tachyon-0.98.9[png]
 	>=sci-libs/cddlib-094f-r2
 	>=sci-libs/scipy-0.16.1[${PYTHON_USEDEP}]
 	sci-mathematics/flintqs
-	~sci-mathematics/gap-4.7.8
+	~sci-mathematics/gap-4.8.3
 	~sci-mathematics/gfan-0.5
 	>=sci-mathematics/cu2-20060223
 	>=sci-mathematics/cubex-20060128
 	>=sci-mathematics/dikcube-20070912
 	~sci-mathematics/maxima-5.35.1[ecls]
 	>=sci-mathematics/mcube-20051209
+	>=sci-mathematics/nauty-2.6.1
 	>=sci-mathematics/optimal-20040603
 	>=sci-mathematics/palp-2.1
 	~sci-mathematics/sage-data-elliptic_curves-0.8
-	~sci-mathematics/sage-data-graphs-20150724
+	~sci-mathematics/sage-data-graphs-20151224
 	~sci-mathematics/sage-data-combinatorial_designs-20140630
 	~sci-mathematics/sage-data-polytopes_db-20120220
 	~sci-mathematics/sage-data-conway_polynomials-0.4
@@ -131,12 +120,11 @@ RDEPEND="${CDEPEND}
 	>=sci-mathematics/sympow-1.018.1
 	www-servers/tornado
 	!prefix? ( >=sys-libs/glibc-2.13-r4 )
+	sagenb? ( ~sci-mathematics/sage-notebook-0.13[${PYTHON_USEDEP}] )
 	latex? (
-		~dev-tex/sage-latex-2.3.4
+		~dev-tex/sage-latex-3.0
 		|| ( app-text/dvipng[truetype] media-gfx/imagemagick[png] )
 	)"
-
-PDEPEND="~sci-mathematics/sage-notebook-0.11.4[${PYTHON_USEDEP}]"
 
 CHECKREQS_DISK_BUILD="5G"
 
@@ -160,7 +148,7 @@ python_prepare() {
 	#########################################
 
 	# ship our own version of sage-env
-	cp "${FILESDIR}"/proto.sage-env-6.8 bin/sage-env
+	cp "${FILESDIR}"/proto.sage-env-7.1 bin/sage-env
 	eprefixify bin/sage-env
 	sed -i "s:@GENTOO_SITEDIR@:$(python_get_sitedir):" bin/sage-env
 
@@ -191,7 +179,7 @@ python_prepare() {
 		bin/sage-num-threads.py
 
 	# remove developer and unsupported options
-	epatch "${FILESDIR}"/${PN}-6.9-exec.patch
+	eapply "${FILESDIR}"/${PN}-7.2-exec.patch
 	eprefixify bin/sage
 
 	# create expected folders under extcode
@@ -199,15 +187,22 @@ python_prepare() {
 
 	###############################
 	#
+	# Put manifolds in place if wanted
+	#
+	###############################
+
+	if use manifolds ; then
+		cp -r "${WORKDIR}"/src/* . || die "failed to copy sage-manifolds"
+	fi
+
+	###############################
+	#
 	# Patches to the sage library
 	#
 	###############################
 
-	# ATLAS independence
-	epatch "${FILESDIR}"/${PN}-6.10-blas.patch
-
 	# Remove sage's package management system, git capabilities and associated tests
-	epatch "${FILESDIR}"/${PN}-6.10-neutering.patch
+	eapply "${FILESDIR}"/${PN}-7.2-neutering.patch
 	rm sage/misc/dist.py
 	rm -rf sage/dev
 
@@ -215,19 +210,18 @@ python_prepare() {
 	# Fixes to Sage's build system
 	############################################################################
 
-	# fix png library name
-	sed -i "s:png12:$(libpng-config --libs | cut -dl -f2):g" module_list.py
-
 	# fix lcalc path
 	sed -i "s:libLfunction:Lfunction:g" sage/libs/lcalc/lcalc_sage.h
 
-	# We add -DNDEBUG to objects linking to libsingular And use factory headers from libsingular.
-	epatch "${FILESDIR}"/${PN}-6.8-singular_extra_arg.patch
+	# We add -DNDEBUG to objects linking to libsingular.
+	# and fix factory headers (internal to singular) in decl.pxd
+	eapply "${FILESDIR}"/${PN}-7.2-singular.patch
 
 	# Do not clean up the previous install with setup.py
 	# Get headers generated by cython installed and found at runtime and buildtime
 	# Also install all appropriate sources alongside python code.
-	epatch "${FILESDIR}"/${PN}-6.10-sources.patch
+	# get the doc building in the right place and replace relative import to the right location.
+	eapply "${FILESDIR}"/${PN}-7.1-sources.patch
 	touch sage/doctest/tests/__init__.py
 
 	############################################################################
@@ -235,14 +229,14 @@ python_prepare() {
 	############################################################################
 
 	# sage on gentoo env.py
-	epatch "${FILESDIR}"/${PN}-6.8-env.patch
+	eapply "${FILESDIR}"/${PN}-7.1-env.patch
 	eprefixify sage/env.py
 
 	# fix issue #363 where there is bad interaction between MPL build with qt4 support and ecls
-	epatch "${FILESDIR}"/${PN}-6.9-qt4_conflict.patch
+	eapply "${FILESDIR}"/${PN}-6.9-qt4_conflict.patch
 
 	# sage-maxima.lisp really belong to /etc
-	epatch "${FILESDIR}"/${PN}-6.8-maxima.lisp.patch
+	eapply "${FILESDIR}"/${PN}-6.8-maxima.lisp.patch
 
 	# fix library path of libsingular
 	sed -i "s:os.environ\['SAGE_LOCAL'\]+\"/lib:\"${EPREFIX}/usr/$(get_libdir):" \
@@ -253,11 +247,6 @@ python_prepare() {
 	sed -i "s:'maxima :'maxima -l ecl :g" \
 		sage/interfaces/maxima.py \
 		sage/interfaces/maxima_abstract.py
-
-	# TODO: should be a patch
-	# Uses singular internal copy of the factory header
-	sed -i "s:factory/factory.h:singular/factory.h:" \
-		sage/libs/singular/decl.pxd
 
 	# finding JmolData.jar in the right place
 	sed -i "s:\"jmol\", \"JmolData:\"sage-jmol-bin\", \"lib\", \"JmolData:" sage/interfaces/jmoldata.py
@@ -273,7 +262,7 @@ python_prepare() {
 	sed -i -e "s:/lib/LiE/:/share/lie/:" sage/interfaces/lie.py
 
 	# patching libs/gap/util.pyx so we don't get noise from missing SAGE_LOCAL/gap/latest
-	epatch "${FILESDIR}"/${PN}-5.9-libgap.patch
+	eapply "${FILESDIR}"/${PN}-5.9-libgap.patch
 
 	# TODO: should be a patch
 	# Getting the singular documentation from the right place
@@ -287,13 +276,13 @@ python_prepare() {
 	# it tries to link in the filesystem in ways that are difficult to support 
 	# in a global install from a pure python perspective. See also 
 	# https://github.com/cschwan/sage-on-gentoo/issues/376
-	epatch "${FILESDIR}"/${PN}-6.10-jupyter-r2.patch
+	eapply "${FILESDIR}"/${PN}-7.2-jupyter.patch
 	touch sage_setup/jupyter/__init__.py
 
 	# Make the lazy_import pickle name versioned with the sage version number
 	# rather than the path to the source which is a constant across versions
 	# in sage-on-gentoo. This fixes issue #362.
-	epatch "${FILESDIR}"/${PN}-6.8-lazy_import_cache.patch
+	eapply "${FILESDIR}"/${PN}-6.8-lazy_import_cache.patch
 
 	# Make sure bliss header are found
 	sed -i "s:graph.hh:bliss/graph.hh:" sage/graphs/bliss.pyx || die "bliss.pyx not patched"
@@ -307,22 +296,19 @@ python_prepare() {
 	sed -i "s:\.\.\./local/share/pari:.../share/pari:g" sage/interfaces/gp.py
 
 	# fix all.py
-	epatch "${FILESDIR}"/${PN}-6.8-all.py.patch
+	eapply "${FILESDIR}"/${PN}-7.2-all.py.patch
 	sed -i \
 		-e "s:\"lib\",\"python\":\"$(get_libdir)\",\"${EPYTHON}\":" \
 		-e "s:\"bin\":\"lib\",\"python-exec\",\"${EPYTHON}\":" sage/all.py
 
 	# do not test safe python stuff from trac 13579
-	epatch "${FILESDIR}"/${PN}-6.6-safepython.patch
+	eapply "${FILESDIR}"/${PN}-6.6-safepython.patch
 
 	# 'sage' is not in SAGE_ROOT, but in PATH
-	epatch "${FILESDIR}"/${PN}-5.9-fix-ostools-doctest.patch
-
-	# change the location of the doc building tools in sage/doctest/control.py
-	epatch "${FILESDIR}"/${PN}-6.3-doc_common.patch
+	eapply "${FILESDIR}"/${PN}-5.9-fix-ostools-doctest.patch
 
 	# fix location of the html doc
-	epatch "${FILESDIR}"/${PN}-6.10-sagedoc-r2.patch
+	eapply "${FILESDIR}"/${PN}-7.1-sagedoc.patch
 
 	####################################
 	#
@@ -330,23 +316,24 @@ python_prepare() {
 	#
 	####################################
 
-	epatch "${FILESDIR}"/${PN}-6.8-misc.patch \
-		"${FILESDIR}"/${PN}-6.6-linguas.patch
+	eapply "${FILESDIR}"/${PN}-6.8-misc.patch \
+		"${FILESDIR}"/${PN}-7.1-linguas.patch
 
 	# Put singular help file where it is expected
-	cp "${WORKDIR}"/Singular/3-1-6/info/singular.hlp doc/
+	mkdir -p build_doc || die "failed to create the doc building directory"
+	cp "${WORKDIR}"/Singular/3-1-6/info/singular.hlp build_doc/ || die "failed to copy singular.hlp in place"
 
 	if use bin-html ; then
-		mkdir -p doc/output/html
+		mkdir -p build_doc/html
 		for lang in ${LANGS} ; do
-			use linguas_$lang && cp -r "${WORKDIR}"/html/${lang} doc/output/html/
+			use linguas_$lang && cp -r "${WORKDIR}"/html/${lang} build_doc/html/
 		done
 	fi
 
 	if use bin-pdf ; then
-		mkdir -p doc/output/pdf
+		mkdir -p build_doc/pdf
 		for lang in ${LANGS} ; do
-			use linguas_$lang && cp -r "${WORKDIR}"/pdf/${lang} doc/output/pdf/
+			use linguas_$lang && cp -r "${WORKDIR}"/pdf/${lang} build_doc/pdf/
 		done
 	fi
 }
@@ -356,7 +343,8 @@ python_configure() {
 	export SAGE_ROOT=`pwd`/..
 	export SAGE_SRC=`pwd`
 	export SAGE_ETC=`pwd`/bin
-	export SAGE_DOC=`pwd`/doc
+	export SAGE_DOC=`pwd`/build_doc
+	export SAGE_DOC_SRC=`pwd`/doc
 	export SAGE_DOC_MATHJAX=yes
 	export VARTEXFONTS="${T}"/fonts
 	export SAGE_VERSION=${PV}
@@ -389,13 +377,12 @@ python_compile_all() {
 	distutils-r1_python_compile
 
 	if use html ; then
-		${PYTHON} doc/common/builder.py --no-pdf-links all html || die "failed to produce html doc"
+		"${PYTHON}" sage_setup/docbuild/__main__.py --no-pdf-links all html || die "failed to produce html doc"
 	fi
 	if use pdf ; then
 		export MAKE=make
-		${PYTHON} doc/common/builder.py all pdf || die "failed to produce pdf doc"
+		"${PYTHON}" sage_setup/docbuild/__main__.py all pdf || die "failed to produce pdf doc"
 	fi
-
 }
 
 python_install_all() {
@@ -441,6 +428,7 @@ python_install_all() {
 	# install sage-env under /etc
 	insinto /etc
 	doins sage-maxima.lisp sage-env sage-banner
+	newins ../../VERSION.txt sage-version.txt
 
 	if use testsuite ; then
 		# DOCTESTING helper scripts
@@ -449,9 +437,8 @@ python_install_all() {
 
 	if use debug ; then
 		# GNU DEBUGGER helper schripts
-		python_foreach_impl python_doscript sage-CSI
 		insinto /usr/bin
-		doins sage-CSI-helper.py sage-gdb-commands
+		doins sage-gdb-commands
 
 		# VALGRIND helper scripts
 		dobin sage-cachegrind sage-callgrind sage-massif sage-omega \
@@ -483,43 +470,49 @@ python_install_all() {
 	docompress -x /usr/share/doc/sage
 
 	insinto /usr/share/doc/sage
-	doins doc/singular.hlp
-	for lang in ${LANGS} ; do
-		use linguas_$lang && doins -r doc/$lang
-	done
+	doins build_doc/singular.hlp
 
+	# necessary for sagedoc.py call to sphinxify in sagenb for now.
+	insinto /usr/share/doc/sage/en/introspect
+	doins -r doc/en/introspect/*
 	insinto /usr/share/doc/sage/common
-	# not installing doc build system
-	rm doc/common/builder.py
-	rm doc/common/custom-sphinx-build.py
 	doins -r doc/common/*
+	doins sage_setup/docbuild/ext/sage_autodoc.py
+	doins sage_setup/docbuild/ext/inventory_builder.py
+	doins sage_setup/docbuild/ext/multidocs.py
 
 	if use html ; then
-		cp -r doc/output/html/en/_static doc/output/html/
-		for sdir in `find doc/output/html -name _static` ; do
-			if [ $sdir != "doc/output/html/_static" ] ; then
+		# Prune _static folders
+		cp -r build_doc/html/en/_static build_doc/html/ || die "failed to copy _static folder"
+		for sdir in `find build_doc/html -name _static` ; do
+			if [ $sdir != "build_doc/html/_static" ] ; then
 				rm -rf $sdir || die "failed to remove $sdir"
 				ln -s "${EPREFIX}"/usr/share/doc/sage/html/_static $sdir
 			fi
 		done
+		# Work around for issue #402 until I understand where it comes from
+		for pyfile in `find build_doc/html -name \*.py` ; do
+			rm -rf "${pyfile}" || die "fail to to remove $pyfile"
+			rm -rf "${pyfile/%.py/.pdf}" "${pyfile/%.py/png}"
+		done
 		insinto /usr/share/doc/sage/html
-		doins -r doc/output/html/*
+		doins -r build_doc/html/*
 		dosym /usr/share/doc/sage/html/en /usr/share/jupyter/kernels/sagemath/doc
 	fi
 
 	if use pdf ; then
 		insinto /usr/share/doc/sage/pdf
-		doins -r doc/output/pdf/*
+		doins -r build_doc/pdf/*
 	fi
 
 	if use bin-html ; then
 		insinto /usr/share/doc/sage/html
-		doins -r doc/output/html/*
+		doins -r build_doc/html/*
 	fi
 
 	if use bin-pdf ; then
 		insinto /usr/share/doc/sage/pdf
-		doins -r doc/output/pdf/*
+		doins -r build_doc/pdf/*
 	fi
 }
 

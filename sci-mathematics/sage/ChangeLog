@@ -2,9 +2,20 @@
 # Copyright 1999-2016 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  18 May 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  -files/sage-6.10-blas.patch, -files/sage-6.8-singular_extra_arg.patch,
+  -sage-6.10.ebuild:
+  sci-mathematics/sage: remove 6.10
+
   17 May 2016; François Bissey <francois.bissey@canterbury.ac.nz>
   +files/sage-7.3-neutering.patch, sage-9999.ebuild:
   sci-mathematics/sage: bump neutering patch
+
+*sage-7.2-r1 (17 May 2016)
+
+  17 May 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  +sage-7.2-r1.ebuild:
+  sci-mathematics/sage: add a manifolds option in 7.2 for issue #407
 
 *sage-7.2 (16 May 2016)
 
