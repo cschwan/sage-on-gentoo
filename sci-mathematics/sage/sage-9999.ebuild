@@ -302,8 +302,8 @@ python_prepare() {
 		-e "s:\"lib\",\"python\":\"$(get_libdir)\",\"${EPYTHON}\":" \
 		-e "s:\"bin\":\"lib\",\"python-exec\",\"${EPYTHON}\":" sage/all.py
 
-	# do not test safe python stuff from trac 13579
-	eapply "${FILESDIR}"/${PN}-6.6-safepython.patch
+	# do not test safe python stuff from trac 13579. Needs to be applied after neutering.
+	eapply "${FILESDIR}"/${PN}-7.3-safepython.patch
 
 	# 'sage' is not in SAGE_ROOT, but in PATH
 	eapply "${FILESDIR}"/${PN}-5.9-fix-ostools-doctest.patch
