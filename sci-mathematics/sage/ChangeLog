@@ -3,6 +3,10 @@
 # $Header: $
 
   21 May 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-9999.ebuild:
+  sci-mathematics/sage: revert pari upgrade for now
+
+  21 May 2016; François Bissey <francois.bissey@canterbury.ac.nz>
   +files/sage-7.3-neutering.patch, +files/sage-7.3-safepython.patch,
   sage-9999.ebuild:
   sci-mathematics/sage: bump atches and dependencies for 7.3.beta0
