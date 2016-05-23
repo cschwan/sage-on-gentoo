@@ -292,10 +292,6 @@ python_prepare() {
 	# Fixes to doctests
 	############################################################################
 
-	# TODO: should be a patch
-	# remove 'local' part
-	sed -i "s:\.\.\./local/share/pari:.../share/pari:g" sage/interfaces/gp.py
-
 	# fix all.py
 	eapply "${FILESDIR}"/${PN}-7.2-all.py.patch
 	sed -i \
@@ -308,7 +304,7 @@ python_prepare() {
 	# 'sage' is not in SAGE_ROOT, but in PATH
 	eapply "${FILESDIR}"/${PN}-5.9-fix-ostools-doctest.patch
 
-	# fix location of the html doc
+	# Do not check build documentation against the source
 	eapply "${FILESDIR}"/${PN}-7.1-sagedoc.patch
 
 	####################################
