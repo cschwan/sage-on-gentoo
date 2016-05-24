@@ -2,6 +2,13 @@
 # Copyright 1999-2016 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*libsingular-3.1.7_p1-r9 (24 May 2016)
+
+  24 May 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  +libsingular-3.1.7_p1-r9.ebuild, libsingular-3.1.7_p1-r8.ebuild:
+  sci-libs/libsingular: block factory and simplify header installation needs
+  matching changes in sage.
+
 *libsingular-3.1.7_p1-r8 (12 Apr 2016)
 
   12 Apr 2016; François Bissey <francois.bissey@canterbury.ac.nz>
