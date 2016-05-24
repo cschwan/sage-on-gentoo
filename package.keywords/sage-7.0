@@ -77,7 +77,7 @@ sci-libs/dsdp
 ~sci-libs/iml-1.0.4
 ~sci-mathematics/cliquer-1.21
 ~sci-libs/libgap-4.7.8
-~sci-libs/libsingular-3.1.7_p1
+<=sci-libs/libsingular-3.1.7_p1-r7
 ~sci-libs/linbox-1.3.2
 ~sci-libs/m4ri-20140914
 ~sci-libs/m4rie-20150908
