@@ -146,7 +146,13 @@ src_install () {
 	fi
 
 	cd "${S}"/build/include
+	# fix incorrect headers, not sure it gets to be right in sage upstream
+	sed -e "s:cf_gmp.h:factory/cf_gmp.h:" \
+		-i singular/si_gmp.h
 	doheader -r *
+	# This file is not copied by singular in the right place
+	insinto /usr/include/singular
+	doins "${S}"/Singular/sing_dbm.h
 }
 
 pkg_postinst() {
