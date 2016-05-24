@@ -3,6 +3,11 @@
 # $Header: $
 
   24 May 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  libsingular-3.1.7_p1-r7.ebuild, libsingular-3.1.7_p1-r8.ebuild,
+  libsingular-3.1.7_p1-r9.ebuild:
+  sci-libs/libsingular: put r9 in line with r8. Clean up and clarifications.
+
+  24 May 2016; François Bissey <francois.bissey@canterbury.ac.nz>
   libsingular-3.1.7_p1-r8.ebuild:
   sci-libs/libsingular: fix headers
 

@@ -121,9 +121,7 @@ src_compile() {
 	cd "${S}"/factory && emake install || die "making factory failed"
 	cd "${S}"/libfac && emake install || die "making libfac failed"
 	cd "${S}"/kernel && emake install || die "making kernel failed"
-
-	cd "${S}"
-#	emake libsingular || die "emake libsingular failed"
+	# no libsingular target
 }
 
 src_test() {
@@ -146,23 +144,16 @@ src_install () {
 			/usr/$(get_libdir)/libsingular.so."$(get_major_version)" \
 			|| die "failed to create symbolic link"
 	fi
-	insinto /usr/include
+
 	cd "${S}"/build/include
-	# Move factory headers in the singular folder so we don't either
-	# collide with factory or need it to use libsingular.
-	sed -e "s:<factory/:<singular/factory/:g" \
-		-i `grep -rl "<factory/" *`
-
-	sed -e "s:cf_gmp.h:singular/cf_gmp.h:" \
-		-i singular/si_gmp.h
-
-	doins libsingular.h mylimits.h omalloc.h
-	insinto /usr/include/singular
-	doins factor.h factory/factory.h factory/cf_gmp.h singular/*
+	# fix incorrect headers, done with include_dirs.patch in sage
+	# I think sage's approach has funny side efffects
+	sed -e "s:cf_gmp.h:factory/cf_gmp.h:" \
+		-i singular/si_gmp.h || die "failed to correct si_gmp.h"
+	doheader -r *
 	# This file is not copied by singular in the right place
+	insinto /usr/include/singular
 	doins "${S}"/Singular/sing_dbm.h
-	insinto /usr/include/singular/factory
-	doins -r factory/*
 }
 
 pkg_postinst() {
