@@ -28,9 +28,8 @@ IUSE="boost flint debug"
 
 RDEPEND="
 	dev-libs/gmp:0=
-	dev-libs/ntl:0=[-threads]
-	flint? ( >=sci-mathematics/flint-2.3:= )
-	!!sci-libs/factory"
+	dev-libs/ntl:0=
+	flint? ( >=sci-mathematics/flint-2.3:= )"
 
 DEPEND="${RDEPEND}
 	dev-lang/perl
@@ -43,6 +42,9 @@ pkg_setup() {
 	append-flags -fPIC
 	append-ldflags -fPIC
 	tc-export CC CPP CXX
+	if has_version "dev-libs/ntl[threads]" ; then
+		export CXX="${CXX} -std=c++11"
+	fi
 }
 
 src_prepare () {
@@ -144,9 +146,23 @@ src_install () {
 			/usr/$(get_libdir)/libsingular.so."$(get_major_version)" \
 			|| die "failed to create symbolic link"
 	fi
-
+	insinto /usr/include
 	cd "${S}"/build/include
-	doheader -r *
+	# Move factory headers in the singular folder so we don't either
+	# collide with factory or need it to use libsingular.
+	sed -e "s:<factory/:<singular/factory/:g" \
+		-i `grep -rl "<factory/" *`
+
+	sed -e "s:cf_gmp.h:singular/cf_gmp.h:" \
+		-i singular/si_gmp.h
+
+	doins libsingular.h mylimits.h omalloc.h
+	insinto /usr/include/singular
+	doins factor.h factory/factory.h factory/cf_gmp.h singular/*
+	# This file is not copied by singular in the right place
+	doins "${S}"/Singular/sing_dbm.h
+	insinto /usr/include/singular/factory
+	doins -r factory/*
 }
 
 pkg_postinst() {

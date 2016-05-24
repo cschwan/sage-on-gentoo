@@ -81,7 +81,7 @@ CDEPEND="dev-libs/gmp:0=
 	>=sci-mathematics/brial-0.8.4.3[${PYTHON_USEDEP}]
 	>=sci-mathematics/ratpoints-2.1.3
 	>=sci-mathematics/rw-0.7
-	~sci-libs/libsingular-3.1.7_p1[flint]
+	=sci-libs/libsingular-3.1.7_p1-r7[flint]
 	media-libs/gd[jpeg,png]
 	media-libs/libpng:0=
 	>=sys-libs/readline-6.2
