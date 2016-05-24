@@ -118,9 +118,7 @@ src_compile() {
 	cd "${S}"/factory && emake install || die "making factory failed"
 	cd "${S}"/libfac && emake install || die "making libfac failed"
 	cd "${S}"/kernel && emake install || die "making kernel failed"
-
-	cd "${S}"
-#	emake libsingular || die "emake libsingular failed"
+	# no libsingular target
 }
 
 src_test() {
