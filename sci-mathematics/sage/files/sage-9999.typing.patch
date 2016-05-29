@@ -1,0 +1,16 @@
+diff --git a/src/sage_setup/docbuild/ext/sage_autodoc.py b/src/sage_setup/docbuild/ext/sage_autodoc.py
+index c366746..7b9c1df 100644
+--- a/sage_setup/docbuild/ext/sage_autodoc.py
++++ b/sage_setup/docbuild/ext/sage_autodoc.py
+@@ -45,7 +45,10 @@ from sphinx.util.inspect import getargspec, isdescriptor, safe_getmembers, \
+ from sphinx.util.docstrings import prepare_docstring
+ 
+ try:
+-    import typing
++    if sys.version_info >= (3,):
++        import typing
++    else:
++        typing = None
+ except ImportError:
+     typing = None
+ 

@@ -3,6 +3,10 @@
 # $Header: $
 
   29 May 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  +files/sage-9999.typing.patch, sage-9999.ebuild:
+  sci-mathematics/sage: include trac #20702 for issue with typing
+
+  29 May 2016; François Bissey <francois.bissey@canterbury.ac.nz>
   sage-7.2-r1.ebuild, sage-7.2.ebuild, sage-9999.ebuild:
   sci-mathematics/sage: sphinx dependency clean up
 
