@@ -1,0 +1,20 @@
+From 20b3da5cf6aa4917301b2db2259bc78c3e20a122 Mon Sep 17 00:00:00 2001
+From: Takeshi KOMIYA <i.tkomiya@gmail.com>
+Date: Sat, 21 May 2016 11:50:13 +0900
+Subject: [PATCH] Fix #2470: ``typing`` backport package causes autodoc errors
+diff --git a/sphinx/ext/autodoc.py b/sphinx/ext/autodoc.py
+index e32511a..6ae0966 100644
+--- a/sphinx/ext/autodoc.py
++++ b/sphinx/ext/autodoc.py
+@@ -35,7 +35,10 @@
+ from sphinx.util.docstrings import prepare_docstring
+ 
+ try:
+-    import typing
++    if sys.version_info >= (3,):
++        import typing
++    else:
++        typing = None
+ except ImportError:
+     typing = None
+ 
