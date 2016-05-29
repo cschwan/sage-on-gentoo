@@ -313,7 +313,7 @@ python_prepare() {
 
 	eapply "${FILESDIR}"/${PN}-6.8-misc.patch \
 		"${FILESDIR}"/${PN}-7.1-linguas.patch \
-		"${FILESDIR}"/${PN}-9999-typing.patch
+		"${FILESDIR}"/${PN}-9999.typing.patch
 
 	# Put singular help file where it is expected
 	mkdir -p build_doc || die "failed to create the doc building directory"

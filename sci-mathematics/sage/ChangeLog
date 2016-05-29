@@ -3,6 +3,10 @@
 # $Header: $
 
   29 May 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-9999.ebuild:
+  sci-mathematics/sage: typo in typing patch name
+
+  29 May 2016; François Bissey <francois.bissey@canterbury.ac.nz>
   +files/sage-9999.typing.patch, sage-9999.ebuild:
   sci-mathematics/sage: include trac #20702 for issue with typing
 
