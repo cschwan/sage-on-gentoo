@@ -2,6 +2,10 @@
 # Copyright 1999-2016 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  05 Jun 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  +files/sage-7.3-sources.patch, sage-9999.ebuild:
+  sci-mathematics/sage: bump patches
+
   31 May 2016; François Bissey <francois.bissey@canterbury.ac.nz>
   -files/sage-9999.typing.patch, sage-9999.ebuild:
   sci-mathematics/sage: the typing fix is now upstreamed
