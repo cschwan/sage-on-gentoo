@@ -228,7 +228,7 @@ python_prepare() {
 	############################################################################
 
 	# sage on gentoo env.py
-	eapply "${FILESDIR}"/${PN}-7.1-env.patch
+	eapply "${FILESDIR}"/${PN}-7.3-env.patch
 	eprefixify sage/env.py
 
 	# fix issue #363 where there is bad interaction between MPL build with qt4 support and ecls
