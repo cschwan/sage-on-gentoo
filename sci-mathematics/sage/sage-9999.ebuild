@@ -311,10 +311,6 @@ python_prepare() {
 	#
 	####################################
 
-	# Some examples and plots from http://trac.sagemath.org/20530
-	# causes ecl to crash (issue #428).
-	eapply "${FILESDIR}"/${PN}-7.3-trac20530.patch
-
 	eapply "${FILESDIR}"/${PN}-6.8-misc.patch \
 		"${FILESDIR}"/${PN}-7.1-linguas.patch
 
