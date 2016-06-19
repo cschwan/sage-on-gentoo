@@ -10,7 +10,7 @@ DESCRIPTION="Computer-aided number theory C library and tools"
 HOMEPAGE="http://pari.math.u-bordeaux.fr/"
 EGIT_REPO_URI="http://pari.math.u-bordeaux.fr/git/pari.git"
 EGIT_BRANCH=master
-EGIT_COMMIT=2670-g9b4a64c
+EGIT_COMMIT=2771-gb70b447
 
 LICENSE="GPL-2"
 # Pari dev release have soname of the form pari-{gmp-}-{PV}.so.0

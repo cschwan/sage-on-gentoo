@@ -1,0 +1,6 @@
+*ecls-16.1.2-r1 (19 Jun 2016)
+
+  19 Jun 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  +ecls-16.1.2-r1.ebuild, +files/16.1.2-getcwd.patch,
+  +files/16.1.2-headers-gentoo.patch, +files/README.Gentoo, +metadata.xml:
+  dev-lisp/ecls: import of main tree to include getcwd fix.
