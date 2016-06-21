@@ -2,6 +2,10 @@
 # Copyright 1999-2016 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  21 Jun 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-7.2-r1.ebuild, sage-7.2.ebuild, sage-9999.ebuild:
+  sci-mathematics/sage: we still need sagenb to build html and pdf doc.
+
   11 Jun 2016; François Bissey <francois.bissey@canterbury.ac.nz>
   +files/sage-7.3-env.patch, sage-9999.ebuild:
   sci-mathematics/sage: refresh patch

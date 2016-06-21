@@ -136,7 +136,8 @@ CHECKREQS_DISK_BUILD="5G"
 
 S="${WORKDIR}/${P}/src"
 
-REQUIRED_USE="html? ( linguas_en )
+REQUIRED_USE="html? ( linguas_en sagenb )
+	pdf? ( sagenb )
 	testsuite? ( html )"
 
 pkg_setup() {
