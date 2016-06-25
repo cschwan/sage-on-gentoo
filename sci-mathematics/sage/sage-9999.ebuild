@@ -262,7 +262,7 @@ python_prepare() {
 	sed -i -e "s:/lib/LiE/:/share/lie/:" sage/interfaces/lie.py
 
 	# patching libs/gap/util.pyx so we don't get noise from missing SAGE_LOCAL/gap/latest
-	eapply "${FILESDIR}"/${PN}-5.9-libgap.patch
+	eapply "${FILESDIR}"/${PN}-7.3-libgap.patch
 
 	# TODO: should be a patch
 	# Getting the singular documentation from the right place
