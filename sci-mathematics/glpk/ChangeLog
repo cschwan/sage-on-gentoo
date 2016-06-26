@@ -1,0 +1,8 @@
+*glpk-4.60 (26 Jun 2016)
+
+  26 Jun 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  +files/glpk-4.60-debundle-system-libs.patch,
+  +files/glpk-4.60-error_recovery.patch, +glpk-4.60.ebuild, +metadata.xml:
+  sci-mathematics/glpk: initial import in the overlay. We have one extra patch
+  for error recovery rejected upstream see
+  https://trac.sagemath.org/ticket/20710#comment:17 for detailled explanations.
