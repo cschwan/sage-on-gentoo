@@ -24,12 +24,12 @@ LICENSE="GPL-2"
 SLOT="0"
 SAGE_USE="modular_decomposition bliss"
 IUSE="+bin-html bin-pdf debug html latex pdf sagenb testsuite X ${SAGE_USE}"
-LINGUAS_USEDEP=""
+L10N_USEDEP=""
 for X in ${LANGS} ; do
-	IUSE="${IUSE} linguas_${X}"
-	LINGUAS_USEDEP="${LINGUAS_USEDEP}linguas_${X}=,"
+	IUSE="${IUSE} l10n_${X}"
+	L10N_USEDEP="${L10N_USEDEP}l10n_${X}=,"
 done
-LINGUAS_USEDEP="${LINGUAS_USEDEP%?}"
+L10N_USEDEP="${L10N_USEDEP%?}"
 
 RESTRICT="mirror test"
 
@@ -81,7 +81,7 @@ CDEPEND="dev-libs/gmp:0=
 	~dev-python/sphinx-1.4.1[${PYTHON_USEDEP}]"
 
 DEPEND="${CDEPEND}
-	pdf? ( app-text/texlive[extra,${LINGUAS_USEDEP}] )"
+	pdf? ( app-text/texlive[extra,${L10N_USEDEP}] )"
 
 RDEPEND="${CDEPEND}
 	>=dev-lang/R-3.2.0
@@ -128,11 +128,11 @@ CHECKREQS_DISK_BUILD="5G"
 
 S="${WORKDIR}/${P}/src"
 
-REQUIRED_USE="html? ( linguas_en sagenb )
+REQUIRED_USE="html? ( l10n_en sagenb )
 	pdf? ( sagenb )
 	testsuite? ( || ( bin-html html ) )
-	bin-html? ( !html !pdf linguas_en )
-	bin-pdf? ( !html !pdf linguas_en )"
+	bin-html? ( !html !pdf l10n_en )
+	bin-pdf? ( !html !pdf l10n_en )"
 
 pkg_setup() {
 	# needed since Ticket #14460
@@ -315,14 +315,14 @@ python_prepare() {
 	if use bin-html ; then
 		mkdir -p build_doc/html
 		for lang in ${LANGS} ; do
-			use linguas_$lang && cp -r "${WORKDIR}"/html/${lang} build_doc/html/
+			use l10n_$lang && cp -r "${WORKDIR}"/html/${lang} build_doc/html/
 		done
 	fi
 
 	if use bin-pdf ; then
 		mkdir -p build_doc/pdf
 		for lang in ${LANGS} ; do
-			use linguas_$lang && cp -r "${WORKDIR}"/pdf/${lang} build_doc/pdf/
+			use l10n_$lang && cp -r "${WORKDIR}"/pdf/${lang} build_doc/pdf/
 		done
 	fi
 }
@@ -345,7 +345,7 @@ python_configure() {
 	done
 	local mylang
 	for lang in ${LANGS} ; do
-		use linguas_$lang && mylang+="$lang "
+		use l10n_$lang && mylang+="$lang "
 	done
 	export LANGUAGES="${mylang}"
 	if use debug; then

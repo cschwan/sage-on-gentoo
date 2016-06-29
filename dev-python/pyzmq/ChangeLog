@@ -1,6 +1,0 @@
-*pyzmq-15.2.0 (18 May 2016)
-
-  18 May 2016; François Bissey <francois.bissey@canterbury.ac.nz>
-  +files/commit659f921.patch, +metadata.xml, +pyzmq-15.2.0.ebuild:
-  dev-python/pyzmq: adopt ebuild with a patch for cython 0.24 waiting for a new
-  release. This is for issue #422.
