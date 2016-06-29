@@ -2,6 +2,12 @@
 # Copyright 1999-2016 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  29 Jun 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-7.0-r1.ebuild, sage-7.0.ebuild, sage-7.1-r1.ebuild, sage-7.1.ebuild,
+  sage-7.2-r1.ebuild, sage-7.2.ebuild, sage-9999.ebuild:
+  sci-mathematics/sage: migration L10N. texlive uses L10N and so should we in
+  that case.
+
   21 Jun 2016; François Bissey <francois.bissey@canterbury.ac.nz>
   sage-9999.ebuild:
   sci-mathematics/sage: bump pari dependency
