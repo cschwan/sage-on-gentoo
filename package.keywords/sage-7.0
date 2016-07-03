@@ -107,7 +107,7 @@ sci-mathematics/palp
 ~sci-mathematics/pari-2.8_pre20151201
 sci-mathematics/pari-data
 ~sci-mathematics/planarity-2.2.0
-sci-mathematics/brial
+~sci-mathematics/brial-0.8.4.3
 sci-mathematics/ratpoints
 sci-mathematics/rubiks
 sci-mathematics/rw
