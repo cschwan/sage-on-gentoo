@@ -10,7 +10,7 @@ PYTHON_REQ_USE="readline,sqlite"
 inherit distutils-r1 flag-o-matic multiprocessing prefix toolchain-funcs versionator
 
 if [[ ${PV} = *9999* ]]; then
-	EGIT_REPO_URI="git://github.com/sagemath/sage.git"
+	EGIT_REPO_URI="git://github.com/vbraun/sage.git"
 	EGIT_BRANCH=develop
 	EGIT_CHECKOUT_DIR="${WORKDIR}/${P}"
 	inherit git-r3
@@ -74,7 +74,7 @@ CDEPEND="dev-libs/gmp:0=
 	>=sci-mathematics/lrcalc-1.2-r1
 	~sci-mathematics/pari-2.8_pre20160616[data,gmp,doc]
 	~sci-mathematics/planarity-2.2.0
-	>=sci-mathematics/brial-0.8.4.3[${PYTHON_USEDEP}]
+	>=sci-mathematics/brial-0.8.5[${PYTHON_USEDEP}]
 	>=sci-mathematics/ratpoints-2.1.3
 	>=sci-mathematics/rw-0.7
 	>=sci-libs/libsingular-3.1.7_p1-r8[flint]
