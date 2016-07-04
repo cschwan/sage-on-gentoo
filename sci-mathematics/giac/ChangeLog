@@ -1,0 +1,10 @@
+  04 Jul 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  giac-1.2.2.63.ebuild:
+  sci-mathematics/giac: refine dependencies
+
+*giac-1.2.2.63 (04 Jul 2016)
+
+  04 Jul 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  +files/giac-1.2.2-cSolveorder-check.patch, +files/giac-1.2.2-lapack.patch,
+  +giac-1.2.2.63.ebuild, +metadata.xml:
+  sci-mathematics/giac: Initial commit to this overlay.
