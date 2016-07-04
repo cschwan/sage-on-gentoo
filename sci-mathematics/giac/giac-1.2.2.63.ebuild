@@ -18,17 +18,20 @@ KEYWORDS="~x86 ~amd64"
 IUSE="doc examples gc"
 # BUG: it is currently impossible to build without the gui
 
-RDEPEND=">=dev-libs/gmp-3
-	>=sys-libs/readline-4.2
+RDEPEND="dev-libs/gmp:=
+	sys-libs/readline:=
 	>=x11-libs/fltk-1.1.9
 	media-libs/libao
-	dev-libs/mpfr
+	dev-libs/mpfr:=
 	sci-libs/mpfi
-	sci-libs/gsl
-	>=sci-mathematics/pari-2.7
-	>=dev-libs/ntl-5.2
+	sci-libs/gsl:=
+	>=sci-mathematics/pari-2.7:=
+	dev-libs/ntl:=
 	virtual/lapack
 	gc? ( dev-libs/boehm-gc )"
+
+DEPEND="${RDEPEND}
+	virtual/pkgconfig"
 
 PATCHES=(
 	"${FILESDIR}"/${PN}-1.2.2-cSolveorder-check.patch
