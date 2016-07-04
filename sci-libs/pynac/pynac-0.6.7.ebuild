@@ -15,14 +15,16 @@ SRC_URI="https://github.com/pynac/pynac/archive/${P}.tar.gz"
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64 ~x86 ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~x64-macos"
-IUSE="static-libs"
+IUSE="static-libs giac"
 
 RESTRICT="mirror"
 
 DEPEND="dev-libs/gmp:0=
+	giac? ( >=sci-mathematics/giac-1.2.2 )
 	virtual/pkgconfig
 	${PYTHON_DEPS}"
 RDEPEND="dev-libs/gmp:0=
+	giac? ( >=sci-mathematics/giac-1.2.2 )
 	${PYTHON_DEPS}"
 
 DOCS=( AUTHORS NEWS README )
@@ -40,6 +42,6 @@ src_prepare(){
 src_configure(){
 	# we need a better giac before enabling it.
 	econf \
-		--without-giac \
+		$(use_with giac) \
 		$(use_enable static-libs static)
 }

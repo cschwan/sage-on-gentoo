@@ -5,4 +5,7 @@
 	<email>francois.bissey@canterbury.ac.nz</email>
 	<name>Francois Bissey</name>
 </maintainer>
+<use>
+	<flag name="giac">Use the <pkg>sci-mathematics/giac</pkg> library.</flag>
+</use>
 </pkgmetadata>
