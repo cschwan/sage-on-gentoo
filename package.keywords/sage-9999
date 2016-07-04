@@ -138,6 +138,7 @@ sci-mathematics/sympow
 virtual/jre:1.7
 virtual/jdk:1.7
 dev-java/icedtea-bin:7
+sci-mathematics/giac
 #########################
 # sage optional binding
 #########################
