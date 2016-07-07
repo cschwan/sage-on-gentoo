@@ -1,3 +1,7 @@
+  07 Jul 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  giacpy_sage-0.6.ebuild:
+  dev-python/giacpy_sage: proper python dependencies
+
 *giacpy_sage-0.6 (07 Jul 2016)
 
   07 Jul 2016; François Bissey <francois.bissey@canterbury.ac.nz>
