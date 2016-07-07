@@ -15,13 +15,13 @@ LICENSE="GPL-2"
 
 SLOT="0"
 KEYWORDS="~x86 ~amd64"
-IUSE="doc examples gc"
+IUSE="ao doc examples fltk gc"
 # BUG: it is currently impossible to build without the gui
 
-RDEPEND="dev-libs/gmp:=
+RDEPEND="dev-libs/gmp:=[cxx]
 	sys-libs/readline:=
-	>=x11-libs/fltk-1.1.9
-	media-libs/libao
+	fltk? ( >=x11-libs/fltk-1.1.9 )
+	ao? ( media-libs/libao )
 	dev-libs/mpfr:=
 	sci-libs/mpfi
 	sci-libs/gsl:=
@@ -34,33 +34,45 @@ DEPEND="${RDEPEND}
 	virtual/pkgconfig"
 
 PATCHES=(
-	"${FILESDIR}"/${PN}-1.2.2-cSolveorder-check.patch
 	"${FILESDIR}"/${PN}-1.2.2-lapack.patch
 	)
 
 S="${WORKDIR}/${PN}-${MY_PV}"
 
 src_prepare(){
+	if has_version "=sci-mathematics/pari-2.8*"; then
+		eapply 	"${FILESDIR}"/${PN}-1.2.2-cSolveorder-check.patch
+	fi
+	if !(use fltk); then
+		eapply "${FILESDIR}"/${PN}-1.2.2-test_with_nofltk.patch
+	fi
 	default
 
 	eautoreconf
 }
 
 src_configure(){
-	append-cppflags -I$(fltk-config --includedir)
-	append-lfs-flags
-	append-libs $(fltk-config --ldflags | sed -e 's/\(-L\S*\)\s.*/\1/') || die
-	# gmpxx interface is currently broken don't use it.
+	if use fltk; then
+		append-cppflags -I$(fltk-config --includedir)
+		append-lfs-flags
+		append-libs $(fltk-config --ldflags | sed -e 's/\(-L\S*\)\s.*/\1/') || die
+	fi
+
 	econf \
-		--enable-gui \
-		--disable-gmpxx
+		--enable-gmpxx \
+		$(use_enable fltk gui)  \
+		$(use_enable ao) \
+		$(use_enable gc)
+
 }
 
 src_install() {
 	emake install DESTDIR="${D}"
 	dodoc AUTHORS ChangeLog INSTALL NEWS README TROUBLES
 	if host-is-pax; then
-		pax-mark -m "${D}"/usr/bin/x*
+		if use fltk; then
+			pax-mark -m "${D}"/usr/bin/x*
+		fi
 	fi
 	if use !doc; then
 		rm -R "${D}"/usr/share/doc/giac* "${D}"/usr/share/giac/doc/ || die
