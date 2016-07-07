@@ -1,1 +1,1 @@
-sci-mathematics/sage bin-html -html -pdf linguas_en
+sci-mathematics/sage bin-html -html -pdf l10n_en
