@@ -1,0 +1,5 @@
+*giacpy_sage-0.6 (07 Jul 2016)
+
+  07 Jul 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  +giacpy_sage-0.6.ebuild, +metadata.xml:
+  dev-python/giacpy_sage: New optional sage package
