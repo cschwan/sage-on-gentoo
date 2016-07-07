@@ -1,5 +1,5 @@
 diff --git a/configure.in b/configure.in
-index 581b1f3..ebda44e 100644
+index 0f85137..aba25f5 100644
 --- a/configure.in
 +++ b/configure.in
 @@ -38,6 +38,7 @@ AC_LANG([C++])
@@ -10,7 +10,7 @@ index 581b1f3..ebda44e 100644
  
  dnl Check for standard C+headers
  GINAC_STD_CXX_HEADERS
-@@ -138,18 +139,9 @@ AC_SUBST(GSL_LIBS)
+@@ -138,20 +139,9 @@ AC_SUBST(GSL_LIBS)
  AM_CONDITIONAL(CONFIG_GSL, [test "$CONFIG_GSL" = "yes"])
    
  CONFIG_LAPACK="yes"
@@ -25,7 +25,9 @@ index 581b1f3..ebda44e 100644
 -	AC_CHECK_LIB(gfortran, main)
 -	AC_CHECK_LIB(blas, main)
 -	AC_CHECK_LIB(lapack, main, [], [CONFIG_LAPACK="no"])
--  fi
+-#        AX_BLAS([have_blas=yes],[have_blas=no])
+-#        AX_LAPACK([have_lapack=yes],[have_lapack=no])
+-fi
 +PKG_CHECK_MODULES([LAPACK], [lapack],[
 +    AC_DEFINE(HAVE_LAPACK,1,[Define if LAPACK is installed])
 +    AC_SUBST(LAPACK_LIBS)])

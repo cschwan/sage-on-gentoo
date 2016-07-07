@@ -1,3 +1,11 @@
+*giac-1.2.2.67 (07 Jul 2016)
+
+  07 Jul 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  +files/giac-1.2.2-test_with_nofltk.patch, +giac-1.2.2.67.ebuild,
+  -giac-1.2.2.63.ebuild, files/giac-1.2.2-lapack.patch:
+  sci-mathematics/giac: New improved version of giac with upstream fix for gui
+  less and ao less options.
+
   04 Jul 2016; François Bissey <francois.bissey@canterbury.ac.nz>
   giac-1.2.2.63.ebuild:
   sci-mathematics/giac: refine dependencies
