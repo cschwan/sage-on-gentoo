@@ -139,6 +139,7 @@ virtual/jre:1.7
 virtual/jdk:1.7
 dev-java/icedtea-bin:7
 sci-mathematics/giac
+dev-python/giacpy_sage
 #########################
 # sage optional binding
 #########################
