@@ -15,8 +15,11 @@ LICENSE="GPL-2"
 
 SLOT="0"
 KEYWORDS="~x86 ~amd64"
+LANGS="el en es fr pt"
 IUSE="ao doc examples fltk gc"
-# BUG: it is currently impossible to build without the gui
+for X in ${LANGS} ; do
+	IUSE="${IUSE} l10n_${X}"
+done
 
 RDEPEND="dev-libs/gmp:=[cxx]
 	sys-libs/readline:=
@@ -69,22 +72,30 @@ src_configure(){
 src_install() {
 	emake install DESTDIR="${D}"
 	dodoc AUTHORS ChangeLog INSTALL NEWS README TROUBLES
-	if host-is-pax; then
-		if use fltk; then
+	if use fltk; then
+		if host-is-pax; then
 			pax-mark -m "${D}"/usr/bin/x*
 		fi
+	else
+		rm -rf \
+			"${D}"/usr/bin/x* \
+			"${D}"/usr/share/application-registry/xcas.applications \
+			"${D}"/usr/share/applications/xcas.desktop \
+			"${D}"/usr/share/icons
 	fi
+
 	if use !doc; then
 		rm -R "${D}"/usr/share/doc/giac* "${D}"/usr/share/giac/doc/ || die
 	else
-		for LANG in el en es fr pt; do
-			if echo ${LINGUAS} | grep -v "$LANG" &> /dev/null; then
-				rm -R "${D}"/usr/share/giac/doc/"$LANG"
+		for lang in ${LANGS}; do
+			if use l10n_$lang; then
+				ln "${D}"/usr/share/giac/doc/aide_cas "${D}"/usr/share/giac/doc/"${lang}"/aide_cas || die
 			else
-				ln "${D}"/usr/share/giac/doc/aide_cas "${D}"/usr/share/giac/doc/"$LANG"/aide_cas || die
+				rm -rf "${D}"/usr/share/giac/doc/"${lang}"
 			fi
 		done
 	fi
+
 	if use !examples; then
 		rm -R "${D}"/usr/share/giac/examples || die
 	fi
