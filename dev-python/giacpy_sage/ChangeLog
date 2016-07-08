@@ -1,3 +1,7 @@
+  08 Jul 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  giacpy_sage-0.6.ebuild:
+  dev-python/giacpy_sage: upstream tarball is now properly named and all.
+
   07 Jul 2016; François Bissey <francois.bissey@canterbury.ac.nz>
   giacpy_sage-0.6.ebuild:
   dev-python/giacpy_sage: proper python dependencies

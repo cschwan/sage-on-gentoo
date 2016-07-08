@@ -10,7 +10,7 @@ inherit distutils-r1
 
 DESCRIPTION="A Cython frontend to the c++ library giac for sage"
 HOMEPAGE="https://www.imj-prg.fr/~frederic.han/xcas/giacpy"
-SRC_URI="http://webusers.imj-prg.fr/~frederic.han/xcas/giacpy/sage/giacpy-0.6.tar.gz -> ${P}.tar.gz"
+SRC_URI="http://webusers.imj-prg.fr/~frederic.han/xcas/giacpy/sage/${P}.tar.gz"
 
 LICENSE="GPL-2+"
 SLOT="0"
@@ -21,5 +21,3 @@ DEPEND=">=sci-mathematics/giac-1.2.2.67
 	>=sci-mathematics/sage-6.8[${PYTHON_USEDEP}]
 	>=dev-python/cython-0.24[${PYTHON_USEDEP}]"
 RDEPEND="${DEPEND}"
-
-S="${WORKDIR}"/giacpy-${PV}
