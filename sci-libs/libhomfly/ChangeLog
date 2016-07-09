@@ -1,0 +1,6 @@
+*libhomfly-1.0 (09 Jul 2016)
+
+  09 Jul 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  +files/libhomfly-1.0-dont_ship_test.patch, +libhomfly-1.0.ebuild,
+  +metadata.xml:
+  sci-libs/libhomfly: initial commit
