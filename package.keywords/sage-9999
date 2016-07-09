@@ -140,6 +140,7 @@ virtual/jdk:1.7
 dev-java/icedtea-bin:7
 sci-mathematics/giac
 dev-python/giacpy_sage
+sc-libs/libbraiding
 #########################
 # sage optional binding
 #########################

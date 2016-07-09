@@ -79,8 +79,8 @@ src_install() {
 	else
 		rm -rf \
 			"${D}"/usr/bin/x* \
-			"${D}"/usr/share/application-registry/xcas.applications \
-			"${D}"/usr/share/applications/xcas.desktop \
+			"${D}"/usr/share/application-registry \
+			"${D}"/usr/share/applications \
 			"${D}"/usr/share/icons
 	fi
 
