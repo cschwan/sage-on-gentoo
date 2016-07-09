@@ -141,6 +141,7 @@ dev-java/icedtea-bin:7
 sci-mathematics/giac
 dev-python/giacpy_sage
 sci-libs/libbraiding
+sci-libs/libhomfly
 #########################
 # sage optional binding
 #########################
