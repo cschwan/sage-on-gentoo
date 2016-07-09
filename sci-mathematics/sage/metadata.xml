@@ -16,6 +16,9 @@
 		<flag name='bliss'>
 			build the bindings to the bliss library
 		</flag>
+		<flag name='libbraiding'>
+			build the bindings to the libbraiding library
+		</flag>
 		<flag name='html'>
 			build and install html documentation
 		</flag>
