@@ -1,3 +1,9 @@
+*libbraiding-1.0 (09 Jul 2016)
+
+  09 Jul 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  +libbraiding-1.0.ebuild:
+  sci-libs/libbraiding: Include 1.0 included as a sage optional package.
+
   09 Jul 2016; François Bissey <francois.bissey@canterbury.ac.nz>
   libbraiding-9999.ebuild:
   sci-libs/libbraiding: deal with static libs
