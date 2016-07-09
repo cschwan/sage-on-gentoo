@@ -14,7 +14,7 @@ EGIT_BRANCH=master
 LICENSE="GPL-3+"
 SLOT="0"
 KEYWORDS=""
-IUSE=""
+IUSE="static-libs"
 
 DEPEND=""
 RDEPEND="${DEPEND}"
@@ -23,4 +23,9 @@ src_prepare(){
 	default
 
 	eautoreconf
+}
+
+src_configure(){
+	econf \
+		$(use_enable static-libs static)
 }
