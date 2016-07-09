@@ -1,0 +1,5 @@
+*libbraiding-9999 (09 Jul 2016)
+
+  09 Jul 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  +libbraiding-9999.ebuild, +metadata.xml:
+  sci-libs/libbraiding: initial commit
