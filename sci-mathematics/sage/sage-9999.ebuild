@@ -30,7 +30,7 @@ LANGS="ca de en fr hu it ja pt ru tr"
 
 LICENSE="GPL-2"
 SLOT="0"
-SAGE_USE="modular_decomposition bliss libbraiding libhomfly"
+SAGE_USE="modular_decomposition bliss libbraiding"
 IUSE="debug html latex pdf sagenb testsuite X ${SAGE_USE}"
 L10N_USEDEP=""
 for X in ${LANGS} ; do
@@ -87,7 +87,6 @@ CDEPEND="dev-libs/gmp:0=
 	modular_decomposition? ( sci-libs/modular_decomposition )
 	bliss? ( >=sci-libs/bliss-0.73 )
 	libbraiding? ( sci-libs/libbraiding )
-	libhomfly? ( sci-libs/libhomfly )
 	>=dev-python/sphinx-1.4.1-r3[${PYTHON_USEDEP}]"
 
 DEPEND="${CDEPEND}
