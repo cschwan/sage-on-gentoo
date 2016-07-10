@@ -2,6 +2,10 @@
 # Copyright 1999-2016 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  10 Jul 2016; François Bissey <francois.bissey@canterbury.ac.nz> metadata.xml,
+  sage-9999.ebuild:
+  sci-mathematics/sage: add libhomfly optional package
+
   09 Jul 2016; François Bissey <francois.bissey@canterbury.ac.nz>
   files/sage-7.3-neutering.patch:
   sci-mathematics/sage: change needed in neutering patch reverted upstream
