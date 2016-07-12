@@ -1,3 +1,11 @@
+*libhomfly-1.0.1 (12 Jul 2016)
+
+  12 Jul 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  +libhomfly-1.0.1.ebuild, -files/libhomfly-1.0-dont_ship_test.patch,
+  -libhomfly-1.0.ebuild:
+  sci-libs/libhomfly: bump version to get proper header and patch inclusion
+  upstream.
+
 *libhomfly-1.0 (09 Jul 2016)
 
   09 Jul 2016; François Bissey <francois.bissey@canterbury.ac.nz>

@@ -4,11 +4,12 @@
 
 EAPI=6
 
-inherit autotools
+inherit autotools versionator
 
+MY_PV=$(replace_version_separator 2 r)
 DESCRIPTION="Library to compute the homfly polynomial of a link"
 HOMEPAGE="https://github.com/miguelmarco/libhomfly"
-SRC_URI="https://github.com/miguelmarco/${PN}/archive/${PV}.tar.gz -> ${P}.tar.gz"
+SRC_URI="https://github.com/miguelmarco/${PN}/archive/${MY_PV}.tar.gz -> ${P}.tar.gz"
 
 LICENSE="Unlicense"
 SLOT="0"
@@ -18,9 +19,7 @@ IUSE="static-libs"
 DEPEND=""
 RDEPEND="${DEPEND}"
 
-PATCHES=(
-	"${FILESDIR}"/${PN}-1.0-dont_ship_test.patch
-	)
+S="${WORKDIR}"/${PN}-${MY_PV}
 
 src_prepare(){
 	default
