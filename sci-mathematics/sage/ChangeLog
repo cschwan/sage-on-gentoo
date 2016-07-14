@@ -3,6 +3,10 @@
 # $Header: $
 
   12 Jul 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  files/sage-7.3-neutering.patch:
+  sci-mathematics/sage: update neutering patch
+
+  12 Jul 2016; François Bissey <francois.bissey@canterbury.ac.nz>
   sage-9999.ebuild:
   sci-mathematics/sage: re-enable libhomfly
 
@@ -15,9 +19,17 @@
   sage-9999.ebuild:
   sci-mathematics/sage: add libhomfly optional package
 
+  09 Jul 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  files/sage-7.3-neutering.patch:
+  sci-mathematics/sage: change needed in neutering patch reverted upstream
+
   09 Jul 2016; François Bissey <francois.bissey@canterbury.ac.nz> metadata.xml,
   sage-9999.ebuild:
   sci-mathematics/sage: add optional libbraiding dependency
+
+  09 Jul 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  files/sage-7.3-neutering.patch:
+  sci-mathematics/sage: revised neutering patch
 
   03 Jul 2016; François Bissey <francois.bissey@canterbury.ac.nz>
   sage-9999.ebuild:
