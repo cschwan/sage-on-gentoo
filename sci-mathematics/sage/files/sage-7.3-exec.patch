@@ -1,11 +1,11 @@
 diff -Naur src.orig/bin/sage src/bin/sage
---- src.orig/bin/sage	2016-05-22 11:14:21.443988139 +1200
-+++ src/bin/sage	2016-05-22 11:16:19.151108603 +1200
+--- src.orig/bin/sage	2016-07-15 11:12:15.268625859 +1200
++++ src/bin/sage	2016-07-15 11:28:48.100905990 +1200
 @@ -1,7 +1,7 @@
  #!/usr/bin/env bash
  
  help_banner() {
--    grep -v 'Type' "$SAGE_LOCAL/bin/sage-banner"
+-    echo "$SAGE_BANNER_TEXT" | grep -v 'Type'
 +    grep -v 'Type' "@GENTOO_PORTAGE_EPREFIX@/etc/sage-banner"
      echo
  }
@@ -251,7 +251,7 @@ diff -Naur src.orig/bin/sage src/bin/sage
      exit 1
  fi
  
-@@ -352,51 +212,16 @@
+@@ -352,50 +212,14 @@
  
  # Prepare for running Sage, either interactively or non-interactively.
  sage_setup() {
@@ -267,12 +267,10 @@ diff -Naur src.orig/bin/sage src/bin/sage
 -        exit 1
 -    fi
 -
-     # Display the startup banner
-     if [ "$SAGE_BANNER" = "bare" ]; then
--        cat "$SAGE_ROOT/VERSION.txt"
-+        cat "@GENTOO_PORTAGE_EPREFIX@/etc/sage-version.txt"
-     elif [ "$SAGE_BANNER" != "no" ]; then
--        cat "$SAGE_LOCAL/bin/sage-banner"
+     # Display the startup banner (unless SAGE_BANNER is explictly "no")
+     if [ "$SAGE_BANNER" != "no" ]; then
+-        # can be 'bare', or 'yes', or unspecified
+-        echo "$SAGE_BANNER_TEXT"
 +        cat "@GENTOO_PORTAGE_EPREFIX@/etc/sage-banner"
      fi
  
@@ -305,7 +303,7 @@ diff -Naur src.orig/bin/sage src/bin/sage
  # Start an interactive Sage session, this function never returns.
  interactive_sage() {
      sage_setup
-@@ -456,11 +281,6 @@
+@@ -455,11 +279,6 @@
      exec gap "$@"
  fi
  
@@ -317,7 +315,7 @@ diff -Naur src.orig/bin/sage src/bin/sage
  if [ "$1" = '-gp' -o "$1" = '--gp' ]; then
      shift
      exec gp "$@"
-@@ -501,11 +321,6 @@
+@@ -500,11 +319,6 @@
      exec kash "$@"
  fi
  
@@ -329,7 +327,7 @@ diff -Naur src.orig/bin/sage src/bin/sage
  if [ "$1" = '-maxima' -o "$1" = '--maxima' ]; then
      shift
      exec maxima "$@"
-@@ -521,21 +336,6 @@
+@@ -520,21 +334,6 @@
      exec M2 "$@"
  fi
  
@@ -351,7 +349,7 @@ diff -Naur src.orig/bin/sage src/bin/sage
  if [ "$1" = '-python' -o "$1" = '--python' ]; then
      shift
      exec python "$@"
-@@ -556,11 +356,6 @@
+@@ -555,11 +354,6 @@
      exec git "$@"
  fi
  
@@ -363,7 +361,7 @@ diff -Naur src.orig/bin/sage src/bin/sage
  if [ "$1" = '-sh' -o "$1" = '--sh' ]; then
      # AUTHORS:
      # - Carl Witty and William Stein: initial version
-@@ -680,20 +475,6 @@
+@@ -679,20 +473,6 @@
  fi
  
  #####################################################################
@@ -384,7 +382,7 @@ diff -Naur src.orig/bin/sage src/bin/sage
  # File conversion
  #####################################################################
  
-@@ -711,11 +492,6 @@
+@@ -710,11 +490,6 @@
  # Run Sage's versions of the standard Algebra/Geometry etc. software
  #####################################################################
  
@@ -396,7 +394,7 @@ diff -Naur src.orig/bin/sage src/bin/sage
  if [[ "$1" =~ ^--notebook=.* || "$1" =~ ^-n=.* || "$1" =~ ^-notebook=.* ]] ; then
      sage-cleaner &>/dev/null &
      exec sage-notebook "$@"
-@@ -726,13 +502,6 @@
+@@ -725,13 +500,6 @@
      exec sage-notebook "$@"
  fi
  
@@ -410,7 +408,7 @@ diff -Naur src.orig/bin/sage src/bin/sage
  if [ "$1" = "-inotebook" -o "$1" = '--inotebook' ]; then
      shift
      sage-cleaner &>/dev/null &
-@@ -751,38 +520,19 @@
+@@ -750,38 +518,19 @@
     exit 0
  fi
  
@@ -451,7 +449,7 @@ diff -Naur src.orig/bin/sage src/bin/sage
          shift
          exec sage-runtests -p "$@"
      else
-@@ -791,16 +541,6 @@
+@@ -790,16 +539,6 @@
      fi
  fi
  
@@ -468,7 +466,7 @@ diff -Naur src.orig/bin/sage src/bin/sage
  if [ "$1" = '-testall' -o "$1" = "--testall" ]; then
      shift
      SAGE_BANNER=no sage_setup
-@@ -815,119 +555,6 @@
+@@ -814,119 +553,6 @@
      exec sage-eval "$@"
  fi
  
@@ -588,7 +586,7 @@ diff -Naur src.orig/bin/sage src/bin/sage
  if [ "$1" = '-gdb' -o "$1" = "--gdb" ]; then
      shift
      sage_setup
-@@ -992,10 +619,6 @@
+@@ -991,10 +617,6 @@
  fi
  
  if [ $# -ge 1 ]; then
