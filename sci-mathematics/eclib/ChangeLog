@@ -2,6 +2,12 @@
 # Copyright 1999-2016 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*eclib-20160720 (21 Jul 2016)
+
+  21 Jul 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  +eclib-20160720.ebuild, -eclib-20160206.ebuild:
+  sci-mathematics/eclib: version bump again
+
 *eclib-20160206 (20 Jul 2016)
 
   20 Jul 2016; François Bissey <francois.bissey@canterbury.ac.nz>
