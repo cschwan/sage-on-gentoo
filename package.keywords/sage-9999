@@ -134,17 +134,18 @@ sci-mathematics/sympow
 ##########################
 # optional dependencies
 ##########################
+sci-mathematics/ExportSageNB
 ~sci-chemistry/sage-jmol-bin-14.2.11
 virtual/jre:1.7
 virtual/jdk:1.7
 dev-java/icedtea-bin:7
 sci-mathematics/giac
 dev-python/giacpy_sage
-sci-libs/libbraiding
-sci-libs/libhomfly
 #########################
 # sage optional binding
 #########################
+sci-libs/libbraiding
+sci-libs/libhomfly
 sci-libs/modular_decomposition
 ~sci-libs/bliss-0.73
 =sci-libs/cxsparse-3.1*
