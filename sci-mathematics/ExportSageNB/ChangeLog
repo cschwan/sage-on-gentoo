@@ -1,0 +1,5 @@
+*ExportSageNB-2.0 (29 Jul 2016)
+
+  29 Jul 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  +ExportSageNB-2.0.ebuild, +files/ExportSageNB-install.patch, +metadata.xml:
+  sci-mathematics/ExportSageNB: initial commit
