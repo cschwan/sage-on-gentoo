@@ -25,7 +25,7 @@ diff -Naur src.orig/bin/sage src/bin/sage
      echo "  -maxima [...]       -- run Sage's Maxima with given arguments"
      echo "  -mwrank [...]       -- run Sage's mwrank with given arguments"
      echo "  --notebook=[...]    -- start the Sage notebook (valid options are"
-     echo "                         'default', 'sagenb', and 'jupyter')"
+     echo "                         'default', 'sagenb', 'jupyter', and 'export')"
      echo "  -n, --notebook      -- shortcut for --notebook=default"
 -    echo "  -optional           -- list all optional packages that can be installed"
      echo "  -python [...]       -- run the Python interpreter"
