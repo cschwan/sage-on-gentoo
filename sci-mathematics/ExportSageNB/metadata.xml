@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+<maintainer type="person">
+<email>francois.bissey@canterbury.ac.nz</email>
+<name>François Bissey</name>
+</maintainer>
+<longdescription lang="en">
+This is a tool to convert SageNB notebooks to other formats, in particular IPython/Jupyter notebooks.
+</longdescription>
+</pkgmetadata>
