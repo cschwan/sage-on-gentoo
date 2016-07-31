@@ -2,13 +2,13 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
-EAPI=5
+EAPI=6
 
-inherit flag-o-matic multilib toolchain-funcs
+inherit flag-o-matic toolchain-funcs
 
 DESCRIPTION="Elliptic Curve Method for Integer Factorization"
 HOMEPAGE="http://ecm.gforge.inria.fr/"
-SRC_URI="http://www.loria.fr/~zimmerma/ecm-7.0-rc2.tar.gz"
+SRC_URI="https://gforge.inria.fr/frs/download.php/file/35642/${P}.tar.gz"
 
 LICENSE="GPL-3 LGPL-3"
 SLOT="0"
@@ -25,7 +25,7 @@ RDEPEND="${DEPEND}"
 REQUIRED_USE="gwnum? ( !openmp )
 	x86-macos? ( !custom-tune )"
 
-S="${WORKDIR}"/ecm-7.0-rc2
+S="${WORKDIR}"/ecm-${PV}
 
 pkg_pretend() {
 	if use openmp ; then
@@ -46,10 +46,4 @@ src_configure() {
 		$(use_enable cpu_flags_x86_sse2 sse2) \
 		$(use_enable custom-tune asm-redc) \
 		${myconf}
-}
-
-src_install() {
-	default
-	mkdir -p "${ED}/usr/include/${PN}/"
-	cp "${S}"/*.h "${ED}/usr/include/${PN}" || die "Failed to copy headers" # needed by other apps like YAFU
 }
