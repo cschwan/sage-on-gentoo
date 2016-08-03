@@ -1,3 +1,8 @@
+  03 Aug 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  sympy-1.0-r1.ebuild:
+  dev-python/sympy: Re-align to main tree by adding python 3_5 support. Fix
+  issue #432
+
 *sympy-1.0-r1 (28 Mar 2016)
 
   28 Mar 2016; François Bissey <francois.bissey@canterbury.ac.nz>
