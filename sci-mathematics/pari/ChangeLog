@@ -2,6 +2,13 @@
 # Copyright 1999-2016 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/sci-mathematics/pari/ChangeLog,v 1.87 2012/03/06 17:06:06 bicatali Exp $
 
+*pari-2.8.0_pre1_alpha (03 Aug 2016)
+
+  03 Aug 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  +pari-2.8.0_pre1_alpha.ebuild, -pari-2.8_pre20160728.ebuild:
+  sci-mathematics/pari: pre-release. Back to only running make bench for test
+  (as recommended upstream)
+
 *pari-2.8_pre20160728 (27 Jul 2016)
 
   27 Jul 2016; François Bissey <francois.bissey@canterbury.ac.nz>
