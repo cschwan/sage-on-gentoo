@@ -8,7 +8,7 @@ inherit flag-o-matic toolchain-funcs
 
 DESCRIPTION="Elliptic Curve Method for Integer Factorization"
 HOMEPAGE="http://ecm.gforge.inria.fr/"
-SRC_URI="https://gforge.inria.fr/frs/download.php/file/35642/${P}.tar.gz"
+SRC_URI="https://gforge.inria.fr/frs/download.php/file/36043/${P}.tar.gz"
 
 LICENSE="GPL-3 LGPL-3"
 SLOT="0"
@@ -34,7 +34,9 @@ pkg_pretend() {
 }
 
 src_configure() {
-	if [[ ${CHOST} == *-linux* ]] ; then
+	# gmp-6.1.1 (and hopefully later) automatically pass LDFLAGS to deal
+	# with executable stack.
+	if has_version "<dev-libs/gmp-6.1.1" ; then
 		append-ldflags "-Wl,-z,noexecstack"
 	fi
 	use gwnum && local myconf="--with-gwnum="${EPREFIX}"/usr/$(get_libdir)"
@@ -46,4 +48,8 @@ src_configure() {
 		$(use_enable cpu_flags_x86_sse2 sse2) \
 		$(use_enable custom-tune asm-redc) \
 		${myconf}
+}
+
+src_test(){
+	emake check
 }
