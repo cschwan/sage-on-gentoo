@@ -1,3 +1,9 @@
+  06 Aug 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  -files/sympy-0.7.6-doc-makefile.patch,
+  -files/sympy-0.7.6-system-mpmath.patch.gz,
+  -files/sympy-0.7.6.1-sphinx-1.3.1.patch, -sympy-0.7.6.1-r1.ebuild:
+  dev-python/sympy: drop old
+
   03 Aug 2016; François Bissey <francois.bissey@canterbury.ac.nz>
   sympy-1.0-r1.ebuild:
   dev-python/sympy: Re-align to main tree by adding python 3_5 support. Fix
