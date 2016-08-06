@@ -287,9 +287,6 @@ python_prepare() {
 	# in sage-on-gentoo. This fixes issue #362.
 	eapply "${FILESDIR}"/${PN}-6.8-lazy_import_cache.patch
 
-	# Make sure bliss header are found
-	sed -i "s:graph.hh:bliss/graph.hh:" sage/graphs/bliss.pyx || die "bliss.pyx not patched"
-
 	############################################################################
 	# Fixes to doctests
 	############################################################################
