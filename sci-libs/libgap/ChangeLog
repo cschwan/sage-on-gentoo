@@ -1,3 +1,7 @@
+  06 Aug 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  -libgap-4.7.8.ebuild:
+  sci-libs/libgap: remove old
+
   05 Apr 2016; François Bissey <francois.bissey@canterbury.ac.nz>
   -libgap-4.8.1.ebuild:
   sci-libs/libgap: remove unused

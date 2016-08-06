@@ -1,3 +1,7 @@
+  06 Aug 2016; François Bissey <francois.bissey@canterbury.ac.nz> -Manifest,
+  -fplll-20151201.ebuild:
+  sci-libs/fplll: remove old
+
 *fplll-20160331 (16 Apr 2016)
 
   16 Apr 2016; François Bissey <francois.bissey@canterbury.ac.nz>

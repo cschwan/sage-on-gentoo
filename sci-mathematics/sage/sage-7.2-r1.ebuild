@@ -79,7 +79,7 @@ CDEPEND="dev-libs/gmp:0=
 	>=sci-mathematics/arb-2.8.1
 	modular_decomposition? ( sci-libs/modular_decomposition )
 	bliss? ( >=sci-libs/bliss-0.73 )
-	~dev-python/sphinx-1.4.1[${PYTHON_USEDEP}]"
+	>=dev-python/sphinx-1.4.1[${PYTHON_USEDEP}]"
 
 DEPEND="${CDEPEND}
 	pdf? ( app-text/texlive[extra,${L10N_USEDEP}] )"

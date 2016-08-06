@@ -1,3 +1,7 @@
+  06 Aug 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  -cysignals-1.0.1.ebuild, -cysignals-1.0.ebuild:
+  dev-python/cysignals: remove old
+
 *cysignals-1.1.1 (25 Apr 2016)
 
   25 Apr 2016; François Bissey <francois.bissey@canterbury.ac.nz>
