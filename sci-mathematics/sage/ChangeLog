@@ -3,6 +3,13 @@
 # $Header: $
 
   06 Aug 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  -files/sage-6.8-all.py.patch, -files/sage-7.0-singular_extra_arg.patch,
+  -files/sage-7.1-exec.patch, -files/sage-7.1-jupyter.patch,
+  -files/sage-7.1-neutering.patch, -sage-7.1-r1.ebuild, -sage-7.1.ebuild,
+  sage-7.2-r1.ebuild, sage-7.2.ebuild:
+  sci-mathematics/sage: drop old. Allow everyone to use sphinx 1.4.4
+
+  06 Aug 2016; François Bissey <francois.bissey@canterbury.ac.nz>
   -files/proto.sage-env-6.8, -files/sage-6.10-jupyter-r2.patch,
   -files/sage-6.10-neutering.patch, -files/sage-6.10-sagedoc-r2.patch,
   -files/sage-6.10-sources.patch, -files/sage-6.3-doc_common.patch,
