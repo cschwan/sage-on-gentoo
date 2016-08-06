@@ -1,3 +1,10 @@
+*python-2.7.12-r100 (06 Aug 2016)
+
+  06 Aug 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  +python-2.7.12-r100.ebuild:
+  dev-lang/python: provide 2.7.12 for ~arch users. Only one sage patch not
+  upstreamed.
+
 *python-2.7.10-r100 (12 Jun 2016)
 
   12 Jun 2016; François Bissey <francois.bissey@canterbury.ac.nz>
