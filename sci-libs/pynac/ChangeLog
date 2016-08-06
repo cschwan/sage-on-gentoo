@@ -3,6 +3,10 @@
 # $Header: $
 
   06 Aug 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  -pynac-0.6.2.ebuild:
+  sci-libs/pynac: remove old
+
+  06 Aug 2016; François Bissey <francois.bissey@canterbury.ac.nz>
   -pynac-0.6.0.ebuild:
   sci-libs/pynac: drop old
 
