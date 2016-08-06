@@ -2,6 +2,11 @@
 # Copyright 1999-2016 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  06 Aug 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  -files/gap-4.7.7-testall.patch, -gap-4.7.8-r1.ebuild, -gap-4.7.8.ebuild,
+  -gap-4.8.3.ebuild:
+  sci-mathematics/gap: drop old dirty gap
+
 *gap-4.8.3-r2 (05 Apr 2016)
 
   05 Apr 2016; François Bissey <francois.bissey@canterbury.ac.nz>
