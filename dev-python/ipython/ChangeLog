@@ -1,0 +1,5 @@
+*ipython-5.0.0 (06 Aug 2016)
+
+  06 Aug 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  +files/2.1.0-substitute-files.patch, +ipython-5.0.0.ebuild, +metadata.xml:
+  dev-python/ipython: Adding latest ipython to overlay in advance from the tree.
