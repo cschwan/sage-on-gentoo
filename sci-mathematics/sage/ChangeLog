@@ -2,10 +2,22 @@
 # Copyright 1999-2016 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  11 Aug 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  +files/sage-7.4-neutering.patch, sage-9999.ebuild:
+  sci-mathematics/sage: bump patches
+
+  06 Aug 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-9999.ebuild:
+  sci-mathematics/sage: new dependencies in vbraun branch
+
   06 Aug 2016; François Bissey <francois.bissey@canterbury.ac.nz>
   sage-7.2-r1.ebuild, sage-7.2.ebuild, sage-7.3.ebuild, sage-9999.ebuild:
   sci-mathematics/sage: forbid ipython 5, in current ebuild. May be comming in
   the next beta
+
+  06 Aug 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-9999.ebuild:
+  sci-mathematics/sage: bliss header work around not needed anymore.
 
   06 Aug 2016; François Bissey <francois.bissey@canterbury.ac.nz>
   -files/sage-6.8-all.py.patch, -files/sage-7.0-singular_extra_arg.patch,
