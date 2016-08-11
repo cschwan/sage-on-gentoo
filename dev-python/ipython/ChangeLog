@@ -1,3 +1,8 @@
+  11 Aug 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  ipython-5.0.0.ebuild:
+  dev-python/ipython: bump pickleshare dependency to make sure pathlib2 is
+  installed
+
 *ipython-5.0.0 (06 Aug 2016)
 
   06 Aug 2016; François Bissey <francois.bissey@canterbury.ac.nz>

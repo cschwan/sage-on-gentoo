@@ -25,7 +25,7 @@ REQUIRED_USE="
 CDEPEND="
 	dev-python/decorator[${PYTHON_USEDEP}]
 	dev-python/pexpect[${PYTHON_USEDEP}]
-	dev-python/pickleshare[${PYTHON_USEDEP}]
+	>=dev-python/pickleshare-0.7.3[${PYTHON_USEDEP}]
 	dev-python/pyparsing[${PYTHON_USEDEP}]
 	dev-python/simplegeneric[${PYTHON_USEDEP}]
 	>=dev-python/traitlets-4.2.1[${PYTHON_USEDEP}]
