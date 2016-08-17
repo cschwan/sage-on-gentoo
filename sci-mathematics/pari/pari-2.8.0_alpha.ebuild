@@ -6,10 +6,10 @@ EAPI=6
 
 inherit flag-o-matic toolchain-funcs versionator
 
-MY_PV=$(replace_version_separator 4 '.' $(replace_version_separator 3 '-'))
+MY_PV=$(replace_version_separator 3 '.')
 DESCRIPTION="Computer-aided number theory C library and tools"
 HOMEPAGE="http://pari.math.u-bordeaux.fr/"
-SRC_URI="http://pari.math.u-bordeaux.fr/pub/pari/snapshots/${PN}-${MY_PV}.tar.gz"
+SRC_URI="http://pari.math.u-bordeaux.fr/pub/pari/unstable/${PN}-${MY_PV}.tar.gz"
 
 LICENSE="GPL-2"
 # Pari dev release have soname of the form pari-{gmp-}-{PV}.so.0
@@ -37,7 +37,7 @@ PATCHES=(
 	"${FILESDIR}"/${PN}-2.8_pre20160130-stackwarn.patch
 	)
 
-S="${WORKDIR}"/${PN}-2.8.0.alpha
+S="${WORKDIR}"/${PN}-${MY_PV}
 
 get_compile_dir() {
 	pushd "${S}/config" > /dev/null
