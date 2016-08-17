@@ -1,38 +1,6 @@
 r"""
-Listing Sage packages
-
-This module can be used to see which Sage packages are installed
-and which packages are available for installation.
-
-For more information about creating Sage packages, see
-the "Packaging Third-Party Code" section of the
-Sage Developer's Guide.
-
-Actually installing the packages should be done via the command
-line, using the following commands:
-
-- ``sage -i PACKAGE_NAME`` -- install the given package
-
-- ``sage -f PACKAGE_NAME`` -- re-install the given package, even if it
-  was already installed
-  
-Packages available
-------------------
-
-**Standard packages:**
-
-{STANDARD_PACKAGES}
-
-**Optional packages:**
-
-{OPTIONAL_PACKAGES}
-
-**Experimental packages:**
-
-{EXPERIMENTAL_PACKAGES}
-
-Functions
----------
+This is a sage-on-gentoo stub. The functionality usually found in this file
+is not compatible with the management of sage by portage.
 """
 
 #*****************************************************************************

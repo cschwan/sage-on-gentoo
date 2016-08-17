@@ -1,7 +1,7 @@
 diff -Naur src.orig/sage/doctest/control.py src/sage/doctest/control.py
---- src.orig/sage/doctest/control.py	2016-08-11 19:28:20.836792347 +1200
-+++ src/sage/doctest/control.py	2016-08-11 19:28:40.476842840 +1200
-@@ -307,23 +307,6 @@
+--- src.orig/sage/doctest/control.py	2016-08-17 13:16:37.788512761 +1200
++++ src/sage/doctest/control.py	2016-08-17 13:21:53.459302659 +1200
+@@ -307,22 +307,6 @@
              if "all" in options.optional:
                  # Special case to run all optional tests
                  options.optional = True
@@ -12,11 +12,10 @@ diff -Naur src.orig/sage/doctest/control.py src/sage/doctest/control.py
 -                # that the package is actually installed).
 -                if 'optional' in options.optional:
 -                    options.optional.discard('optional')
--                    from sage.misc.package import package_versions
--                    optional_pkgs = package_versions("optional", local=True)
--                    for pkg, versions in optional_pkgs.items():
--                        if versions[0] == versions[1]:
--                            options.optional.add(pkg)
+-                    from sage.misc.package import list_packages
+-                    for pkg in list_packages('optional', local=True).values():
+-                        if pkg['installed_version'] == pkg['remote_version']:
+-                            options.optional.add(pkg['name'])
 -
 -                # Check that all tags are valid
 -                for o in options.optional:
@@ -25,7 +24,7 @@ diff -Naur src.orig/sage/doctest/control.py src/sage/doctest/control.py
  
          self.options = options
          self.files = args
-@@ -618,13 +601,6 @@
+@@ -617,13 +601,6 @@
  
          ::
  
@@ -39,7 +38,7 @@ diff -Naur src.orig/sage/doctest/control.py src/sage/doctest/control.py
              sage: DD = DocTestDefaults(sagenb = True)
              sage: DC = DocTestController(DD, [])
              sage: DC.add_files()
-@@ -639,29 +615,10 @@
+@@ -638,29 +615,10 @@
              self.files.append(opj(SAGE_SRC, 'sage_setup'))
              self.files.append(SAGE_DOC_SRC)
              self.options.sagenb = True
@@ -72,8 +71,8 @@ diff -Naur src.orig/sage/doctest/control.py src/sage/doctest/control.py
              if not self.options.all:
                  self.log("Doctesting the Sage notebook.")
 diff -Naur src.orig/sage/doctest/test.py src/sage/doctest/test.py
---- src.orig/sage/doctest/test.py	2016-08-11 19:28:20.836792347 +1200
-+++ src/sage/doctest/test.py	2016-08-11 19:28:40.476842840 +1200
+--- src.orig/sage/doctest/test.py	2016-08-17 13:16:37.788512761 +1200
++++ src/sage/doctest/test.py	2016-08-17 13:16:59.618567363 +1200
 @@ -444,14 +444,6 @@
      ...
      0
@@ -90,8 +89,8 @@ diff -Naur src.orig/sage/doctest/test.py src/sage/doctest/test.py
  
      sage: F = tmp_filename()
 diff -Naur src.orig/sage/game_theory/normal_form_game.py src/sage/game_theory/normal_form_game.py
---- src.orig/sage/game_theory/normal_form_game.py	2016-08-11 19:28:20.836792347 +1200
-+++ src/sage/game_theory/normal_form_game.py	2016-08-11 19:28:40.476842840 +1200
+--- src.orig/sage/game_theory/normal_form_game.py	2016-08-17 13:16:37.798512788 +1200
++++ src/sage/game_theory/normal_form_game.py	2016-08-17 13:16:59.618567363 +1200
 @@ -614,8 +614,9 @@
  from sage.structure.sage_object import SageObject
  from sage.matrix.constructor import matrix
@@ -120,8 +119,8 @@ diff -Naur src.orig/sage/game_theory/normal_form_game.py src/sage/game_theory/no
  
              return self._solve_lrs(maximization)
 diff -Naur src.orig/sage/geometry/polyhedron/base.py src/sage/geometry/polyhedron/base.py
---- src.orig/sage/geometry/polyhedron/base.py	2016-08-11 19:28:20.836792347 +1200
-+++ src/sage/geometry/polyhedron/base.py	2016-08-11 19:28:40.476842840 +1200
+--- src.orig/sage/geometry/polyhedron/base.py	2016-08-17 13:16:37.798512788 +1200
++++ src/sage/geometry/polyhedron/base.py	2016-08-17 13:16:59.618567363 +1200
 @@ -21,7 +21,6 @@
  from sage.structure.element import Element, coerce_binop, is_Vector
  
@@ -142,8 +141,8 @@ diff -Naur src.orig/sage/geometry/polyhedron/base.py src/sage/geometry/polyhedro
                                         'for this function to work')
  
 diff -Naur src.orig/sage/graphs/generic_graph.py src/sage/graphs/generic_graph.py
---- src.orig/sage/graphs/generic_graph.py	2016-08-11 19:28:20.846792373 +1200
-+++ src/sage/graphs/generic_graph.py	2016-08-11 19:33:09.427534058 +1200
+--- src.orig/sage/graphs/generic_graph.py	2016-08-17 13:16:37.798512788 +1200
++++ src/sage/graphs/generic_graph.py	2016-08-17 13:16:59.628567388 +1200
 @@ -7856,7 +7856,6 @@
             sage: abs(flow_ff-flow_igraph) < 0.00001         # optional python_igraph
             True
@@ -219,8 +218,8 @@ diff -Naur src.orig/sage/graphs/generic_graph.py src/sage/graphs/generic_graph.p
  
          if (algorithm is not None and
 diff -Naur src.orig/sage/graphs/lovasz_theta.py src/sage/graphs/lovasz_theta.py
---- src.orig/sage/graphs/lovasz_theta.py	2016-08-11 19:28:20.846792373 +1200
-+++ src/sage/graphs/lovasz_theta.py	2016-08-11 19:28:40.486842865 +1200
+--- src.orig/sage/graphs/lovasz_theta.py	2016-08-17 13:16:37.798512788 +1200
++++ src/sage/graphs/lovasz_theta.py	2016-08-17 13:16:59.628567388 +1200
 @@ -65,9 +65,9 @@
      from sage.misc.temporary_file import tmp_filename
      import os, subprocess
@@ -234,8 +233,8 @@ diff -Naur src.orig/sage/graphs/lovasz_theta.py src/sage/graphs/lovasz_theta.py
  
      g = graph.relabel(inplace=False, perm=range(1,n+1)).networkx_graph()
 diff -Naur src.orig/sage/groups/generic.py src/sage/groups/generic.py
---- src.orig/sage/groups/generic.py	2016-08-11 19:28:20.846792373 +1200
-+++ src/sage/groups/generic.py	2016-08-11 19:28:40.486842865 +1200
+--- src.orig/sage/groups/generic.py	2016-08-17 13:16:37.798512788 +1200
++++ src/sage/groups/generic.py	2016-08-17 13:16:59.628567388 +1200
 @@ -1397,16 +1397,10 @@
          'A8'
      """
@@ -255,8 +254,8 @@ diff -Naur src.orig/sage/groups/generic.py src/sage/groups/generic.py
      description = re.sub(r"(\A|\W)D(\d+)", correct_dihedral_degree, description)
      if not latex:
 diff -Naur src.orig/sage/groups/perm_gps/permgroup.py src/sage/groups/perm_gps/permgroup.py
---- src.orig/sage/groups/perm_gps/permgroup.py	2016-08-11 19:28:20.846792373 +1200
-+++ src/sage/groups/perm_gps/permgroup.py	2016-08-11 19:28:40.486842865 +1200
+--- src.orig/sage/groups/perm_gps/permgroup.py	2016-08-17 13:16:37.808512809 +1200
++++ src/sage/groups/perm_gps/permgroup.py	2016-08-17 13:16:59.628567388 +1200
 @@ -145,7 +145,6 @@
  from sage.groups.abelian_gps.abelian_group import AbelianGroup
  from sage.misc.cachefunc import cached_method
@@ -318,8 +317,8 @@ diff -Naur src.orig/sage/groups/perm_gps/permgroup.py src/sage/groups/perm_gps/p
          from sage.arith.all import is_prime
          if not (p == 0 or is_prime(p)):
 diff -Naur src.orig/sage/misc/all.py src/sage/misc/all.py
---- src.orig/sage/misc/all.py	2016-08-11 19:28:20.866792425 +1200
-+++ src/sage/misc/all.py	2016-08-11 19:28:40.486842865 +1200
+--- src.orig/sage/misc/all.py	2016-08-17 13:16:37.818512835 +1200
++++ src/sage/misc/all.py	2016-08-17 13:16:59.628567388 +1200
 @@ -51,13 +51,6 @@
  
  from .fpickle import pickle_function, unpickle_function
@@ -335,8 +334,8 @@ diff -Naur src.orig/sage/misc/all.py src/sage/misc/all.py
  
  lazy_import('sage.misc.sagedoc', ['browse_sage_doc',
 diff -Naur src.orig/sage/tests/cmdline.py src/sage/tests/cmdline.py
---- src.orig/sage/tests/cmdline.py	2016-08-11 19:28:20.906792527 +1200
-+++ src/sage/tests/cmdline.py	2016-08-11 19:28:40.486842865 +1200
+--- src.orig/sage/tests/cmdline.py	2016-08-17 13:16:37.858512935 +1200
++++ src/sage/tests/cmdline.py	2016-08-17 13:16:59.628567388 +1200
 @@ -13,23 +13,18 @@
  --advanced
  -c
@@ -491,8 +490,8 @@ diff -Naur src.orig/sage/tests/cmdline.py src/sage/tests/cmdline.py
      but we allow stderr in case this changes in the future::
  
 diff -Naur src.orig/sage_setup/optional_extension.py src/sage_setup/optional_extension.py
---- src.orig/sage_setup/optional_extension.py	2016-08-11 19:28:20.906792527 +1200
-+++ src/sage_setup/optional_extension.py	2016-08-11 19:28:40.486842865 +1200
+--- src.orig/sage_setup/optional_extension.py	2016-08-17 13:16:37.858512935 +1200
++++ src/sage_setup/optional_extension.py	2016-08-17 13:16:59.628567388 +1200
 @@ -19,8 +19,7 @@
  
  
