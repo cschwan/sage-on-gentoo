@@ -113,7 +113,7 @@ sci-mathematics/lrcalc
 sci-mathematics/mcube
 sci-mathematics/optimal
 sci-mathematics/palp
-~sci-mathematics/pari-2.8_pre20160616
+~sci-mathematics/pari-2.8.0_alpha
 sci-mathematics/pari-data
 ~sci-mathematics/planarity-2.2.0
 ~sci-mathematics/brial-0.8.5
