@@ -180,7 +180,7 @@ dev-libs/igraph
 ~dev-gap/polycyclic-2.11
 ~dev-gap/polymaking-0.8.1
 ~dev-gap/sonata-2.8
-~dev-gap/tomlib-1.2_p5
+~dev-gap/cryst-4.1.12
 ~dev-gap/toric-1.8
 ~dev-gap/sage-meta-1.0
 
