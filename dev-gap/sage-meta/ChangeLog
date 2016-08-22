@@ -1,3 +1,10 @@
+*sage-meta-1.0-r1 (22 Aug 2016)
+
+  22 Aug 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  +sage-meta-1.0-r1.ebuild, -sage-meta-1.0.ebuild:
+  dev-gap/sage-meta: bump to remove tomlib which depends on atlasrep. Expand the
+  user message.
+
   13 May 2016; François Bissey <francois.bissey@canterbury.ac.nz> metadata.xml:
   dev-gap/sage-meta: update email in metadata
 
