@@ -1,3 +1,12 @@
+*numpy-1.11.0 (24 Aug 2016)
+
+  24 Aug 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  +files/numpy-1.11.0-asarray_conversion.patch, +numpy-1.11.0.ebuild,
+  -files/numpy-1.10.1-backport-1.patch, -files/numpy-1.10.1-backport-2.patch,
+  -files/numpy-1.9.2-no-hardcode-blas.patch, -numpy-1.10.1-r2.ebuild,
+  -numpy-1.10.2-r2.ebuild:
+  dev-python/numpy: drop old. Provide newer numpy from tree for ~arch
+
   31 Jan 2016; François Bissey <francois.bissey@canterbury.ac.nz> metadata.xml:
   dev-python/numpy: update metadata
 
