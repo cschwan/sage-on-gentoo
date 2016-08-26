@@ -2,6 +2,10 @@
 # Copyright 1999-2016 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  26 Aug 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  +files/sage-7.4-mpfi.patch, sage-9999.ebuild:
+  sci-mathematics/sage: testing trac #21273
+
   22 Aug 2016; François Bissey <francois.bissey@canterbury.ac.nz>
   sage-9999.ebuild:
   sci-mathematics/sage: depend on "future" (without a s)

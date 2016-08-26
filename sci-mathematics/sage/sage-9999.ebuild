@@ -232,6 +232,8 @@ python_prepare() {
 	# Fixes to Sage itself
 	############################################################################
 
+	eapply "${FILESDIR}"/${PN}-7.4-mpfi.patch
+
 	# sage on gentoo env.py
 	eapply "${FILESDIR}"/${PN}-7.3-env.patch
 	eprefixify sage/env.py
