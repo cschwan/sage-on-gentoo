@@ -2,6 +2,10 @@
 # Copyright 1999-2016 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  26 Aug 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  files/sage-7.4-neutering.patch, sage-9999.ebuild:
+  sci-mathematics/sage: bump for 7.4.beta2
+
   17 Aug 2016; François Bissey <francois.bissey@canterbury.ac.nz>
   files/sage-7.3-package.py, files/sage-7.4-neutering.patch:
   sci-mathematics/sage: bump patch on the vbraun branch

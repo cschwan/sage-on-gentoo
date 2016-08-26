@@ -50,6 +50,7 @@ CDEPEND="dev-libs/gmp:0=
 	dev-python/six[${PYTHON_USEDEP}]
 	>=dev-python/numpy-1.10.1-r2[${PYTHON_USEDEP}]
 	>=dev-python/cython-0.24[${PYTHON_USEDEP}]
+	dev-python/future[${PYTHON_USEDEP}]
 	dev-python/pkgconfig
 	>=dev-python/cysignals-1.1.0[${PYTHON_USEDEP}]
 	>=dev-python/docutils-0.12[${PYTHON_USEDEP}]
@@ -72,7 +73,7 @@ CDEPEND="dev-libs/gmp:0=
 	sci-mathematics/glpk:0=[gmp]
 	>=sci-mathematics/lcalc-1.23-r6[pari]
 	>=sci-mathematics/lrcalc-1.2-r1
-	~sci-mathematics/pari-2.8_pre20160616[data,gmp,doc]
+	~sci-mathematics/pari-2.8.0_alpha[data,gmp,doc]
 	~sci-mathematics/planarity-2.2.0
 	>=sci-mathematics/brial-0.8.5[${PYTHON_USEDEP}]
 	>=sci-mathematics/ratpoints-2.1.3
