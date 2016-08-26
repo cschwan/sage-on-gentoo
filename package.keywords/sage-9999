@@ -18,6 +18,7 @@ dev-python/cvxopt
 ~dev-python/networkx-1.10
 ~dev-python/pyopenssl-0.14
 ~dev-python/cryptography-0.6.1
+~dev-python/future-0.15.2
 dev-python/imagesize
 dev-python/ptyprocess
 ~dev-python/python-dateutil-2.3
@@ -113,7 +114,7 @@ sci-mathematics/lrcalc
 sci-mathematics/mcube
 sci-mathematics/optimal
 sci-mathematics/palp
-~sci-mathematics/pari-2.8_pre20160616
+~sci-mathematics/pari-2.8.0_alpha
 sci-mathematics/pari-data
 ~sci-mathematics/planarity-2.2.0
 ~sci-mathematics/brial-0.8.5
