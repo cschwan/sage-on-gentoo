@@ -6,13 +6,8 @@
   +files/sage-7.4-mpfi.patch, sage-9999.ebuild:
   sci-mathematics/sage: testing trac #21273
 
-  22 Aug 2016; François Bissey <francois.bissey@canterbury.ac.nz>
-  sage-9999.ebuild:
-  sci-mathematics/sage: depend on "future" (without a s)
-
-  21 Aug 2016; François Bissey <francois.bissey@canterbury.ac.nz>
-  sage-9999.ebuild:
-  sci-mathematics/sage: using newest pari
+  files/sage-7.4-neutering.patch, sage-9999.ebuild:
+  sci-mathematics/sage: bump for 7.4.beta2
 
   17 Aug 2016; François Bissey <francois.bissey@canterbury.ac.nz>
   files/sage-7.3-package.py, files/sage-7.4-neutering.patch:
