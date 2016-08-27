@@ -22,11 +22,11 @@ RESTRICT="mirror"
 DEPEND="virtual/cblas
 	virtual/lapack
 	>=dev-libs/gmp-4.0[cxx]
-	~sci-libs/givaro-4.0.1"
+	~sci-libs/givaro-4.0.2"
 RDEPEND="${DEPEND}"
 
 PATCHES=(
-	"${FILESDIR}/${PN}-2.2.0-blaslapack.patch"
+	"${FILESDIR}/${PN}-2.2.2-blaslapack.patch"
 	)
 
 pkg_pretend() {

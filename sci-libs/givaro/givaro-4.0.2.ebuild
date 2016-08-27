@@ -6,7 +6,7 @@ EAPI=5
 
 DESCRIPTION="Givaro is a C++ library for arithmetic and algebraic computations"
 HOMEPAGE="http://ljk.imag.fr/CASYS/LOGICIELS/givaro/"
-SRC_URI="http://lig-membres.imag.fr/pernet/prereleases/${P}.tar.gz"
+SRC_URI="https://github.com/linbox-team/givaro/releases/download/v${PV}/${P}.tar.gz"
 
 LICENSE="CeCILL-B"
 SLOT="0"

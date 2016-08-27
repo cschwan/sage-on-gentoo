@@ -2,6 +2,13 @@
 # Copyright 1999-2016 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*fflas-ffpack-2.2.2 (27 Aug 2016)
+
+  27 Aug 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  +fflas-ffpack-2.2.2.ebuild, +files/fflas-ffpack-2.2.2-blaslapack.patch,
+  -fflas-ffpack-2.2.1.ebuild, -files/fflas-ffpack-2.2.0-blaslapack.patch:
+  sci-libs/fflas-ffpack: bump
+
   22 Apr 2016; François Bissey <francois.bissey@canterbury.ac.nz>
   fflas-ffpack-2.2.1.ebuild:
   sci-libs/fflas-ffpack: remove un-needed eclass.
