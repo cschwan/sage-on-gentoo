@@ -51,19 +51,19 @@ CDEPEND="dev-libs/gmp:0=
 	>=dev-python/numpy-1.10.1-r2[${PYTHON_USEDEP}]
 	>=dev-python/cython-0.24[${PYTHON_USEDEP}]
 	dev-python/future[${PYTHON_USEDEP}]
-	dev-python/pkgconfig
+	dev-python/pkgconfig[${PYTHON_USEDEP}]
 	>=dev-python/cysignals-1.1.0[${PYTHON_USEDEP}]
 	>=dev-python/docutils-0.12[${PYTHON_USEDEP}]
 	>=sci-mathematics/eclib-20150827[flint]
 	>=sci-mathematics/gmp-ecm-6.4.4[-openmp]
 	>=sci-mathematics/flint-2.5.2:=[ntl]
 	~sci-libs/fplll-20160331
-	~sci-libs/givaro-3.7.1
+	~sci-libs/givaro-4.0.2
 	>=sci-libs/gsl-1.16
 	>=sci-libs/iml-1.0.4
 	~sci-mathematics/cliquer-1.21
 	~sci-libs/libgap-4.8.3
-	~sci-libs/linbox-1.3.2[sage]
+	~sci-libs/linbox-1.4.2[sage]
 	~sci-libs/m4ri-20140914
 	~sci-libs/m4rie-20150908
 	>=sci-libs/mpfi-1.5.1

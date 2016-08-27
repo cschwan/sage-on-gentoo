@@ -2,6 +2,10 @@
 # Copyright 1999-2016 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  27 Aug 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-9999.ebuild:
+  sci-mathematics/sage: upgrade gvaro/fflas-ffpack/linbox in upstream
+
   26 Aug 2016; François Bissey <francois.bissey@canterbury.ac.nz>
   +files/sage-7.4-mpfi.patch, sage-9999.ebuild:
   sci-mathematics/sage: testing trac #21273
