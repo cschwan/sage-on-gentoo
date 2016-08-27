@@ -34,7 +34,7 @@ DEPEND="dev-libs/gmp[cxx]
 	sci-mathematics/flint"
 RDEPEND="${DEPEND}"
 
-DOCS=( ChangeLog README NEWS TODO )
+DOCS=( ChangeLog NEWS TODO )
 
 # TODO: installation of documentation does not work ?
 
