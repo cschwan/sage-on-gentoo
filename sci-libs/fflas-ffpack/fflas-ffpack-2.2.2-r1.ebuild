@@ -37,6 +37,12 @@ pkg_pretend() {
 
 pkg_setup(){
 	tc-export PKG_CONFIG
+	if( (use cpu_flags_x86_avx) || (use cpu_flags_x86_avx2) || (use cpu_flags_x86_sse4_1) ); then
+		einfo "You have enabled one of avx/avx2/sse4.1 useflag."
+		einfo "There is no granularity inside the package, enabling one will enable"
+		einfo "all the ones that are available on your platform."
+		einfo "You unfortunately cannot selectively turn one off."
+	fi
 }
 
 src_prepare(){
@@ -47,16 +53,15 @@ src_prepare(){
 }
 
 src_configure() {
-	local avx_opt="--disable-avx"
-	if( (use cpu_flags_x86_avx) || (use cpu_flags_x86_avx2) ); then
-		avx_opt="--enable-avx"
+	local simd_opt="--disable-avx"
+	if( (use cpu_flags_x86_avx) || (use cpu_flags_x86_avx2) || (use cpu_flags_x86_sse4_1) ); then
+		simd_opt="--enable-simd"
 	fi
 
 	econf \
 		--enable-optimization \
 		--enable-precompilation \
 		$(use_enable openmp) \
-		$(use_enable cpu_flags_x86_sse4_1 sse) \
-		${avx_opt} \
+		${simd_opt} \
 		$(use_enable static-libs static)
 }
