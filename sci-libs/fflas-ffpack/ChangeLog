@@ -2,6 +2,12 @@
 # Copyright 1999-2016 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*fflas-ffpack-2.2.2-r1 (29 Aug 2016)
+
+  29 Aug 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  +fflas-ffpack-2.2.2-r1.ebuild, -fflas-ffpack-2.2.2.ebuild:
+  sci-libs/fflas-ffpack: correct the simmd flag logic
+
 *fflas-ffpack-2.2.2 (27 Aug 2016)
 
   27 Aug 2016; François Bissey <francois.bissey@canterbury.ac.nz>
