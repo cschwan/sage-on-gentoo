@@ -1,3 +1,9 @@
+*numpy-1.11.1 (30 Aug 2016)
+
+  30 Aug 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  +files/numpy-1.11.1-no-hardcode-blas.patch, +numpy-1.11.1.ebuild:
+  dev-python/numpy: keep up with numpy in main tree
+
 *numpy-1.11.0 (24 Aug 2016)
 
   24 Aug 2016; François Bissey <francois.bissey@canterbury.ac.nz>
