@@ -2,7 +2,22 @@
 # Copyright 1999-2016 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  30 Aug 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  files/sage-7.4-neutering.patch:
+  sci-mathematics/sage: bump neutering patching (actually sliming down!)
+
+  28 Aug 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  +files/sage-7.4-singular.patch, sage-9999.ebuild:
+  sci-mathematics/sage: more changes for givaro/fflas-ffpack/linbox upgrade
+
+  27 Aug 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-9999.ebuild:
+  sci-mathematics/sage: upgrade gvaro/fflas-ffpack/linbox in upstream
+
   26 Aug 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  +files/sage-7.4-mpfi.patch, sage-9999.ebuild:
+  sci-mathematics/sage: testing trac #21273
+
   files/sage-7.4-neutering.patch, sage-9999.ebuild:
   sci-mathematics/sage: bump for 7.4.beta2
 
