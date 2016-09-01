@@ -8,7 +8,8 @@ inherit toolchain-funcs
 
 DESCRIPTION="An optimal rubik's cube solver using God's Algorithm"
 HOMEPAGE="http://www.permutationpuzzles.org/rubik/"
-SRC_URI="http://www.permutationpuzzles.org/rubik/software/${PN}.tar.gz -> ${P}.tar.gz"
+#SRC_URI="http://www.permutationpuzzles.org/rubik/software/${PN}.tar.gz -> ${P}.tar.gz"
+SRC_URI="mirror://sagemath/${P}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
