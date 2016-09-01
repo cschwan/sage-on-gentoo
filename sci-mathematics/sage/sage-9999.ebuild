@@ -10,7 +10,7 @@ PYTHON_REQ_USE="readline,sqlite"
 inherit distutils-r1 flag-o-matic multiprocessing prefix toolchain-funcs versionator
 
 if [[ ${PV} = *9999* ]]; then
-	EGIT_REPO_URI="git://github.com/vbraun/sage.git"
+	EGIT_REPO_URI="git://github.com/sagemath/sage.git"
 	EGIT_BRANCH=develop
 	EGIT_CHECKOUT_DIR="${WORKDIR}/${P}"
 	inherit git-r3
@@ -233,7 +233,6 @@ python_prepare() {
 	############################################################################
 
 	eapply "${FILESDIR}"/${PN}-7.4-mpfi.patch
-	#eapply "${FILESDIR}"/givaro-up.patch
 
 	# sage on gentoo env.py
 	eapply "${FILESDIR}"/${PN}-7.3-env.patch
