@@ -13,4 +13,4 @@ sci-mathematics/ecm
 # Work in progress it doesn't like being installed in a root location
 dev-gap/atlasrep
 # new singular is finally approaching
-.=sci-mathematics/singular-4.0.3
+>=sci-mathematics/singular-4.0.3
