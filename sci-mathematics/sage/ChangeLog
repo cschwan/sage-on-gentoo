@@ -3,6 +3,11 @@
 # $Header: $
 
   05 Sep 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  +files/sage-7.4-qt4_conflict.patch, -files/sage-7.4-mpfi.patch,
+  sage-9999.ebuild:
+  sci-mathematics/sage: bump: move to next pynac, mpfi fix included.
+
+  05 Sep 2016; François Bissey <francois.bissey@canterbury.ac.nz>
   sage-9999.ebuild:
   sci-mathematics/sage: linbox[openmp] could be troublesome disabling it
 
