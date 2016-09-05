@@ -12,3 +12,5 @@ sci-mathematics/ecm
 =sci-libs/libsingular-3.1.7_p1-r9
 # Work in progress it doesn't like being installed in a root location
 dev-gap/atlasrep
+# new singular is finally approaching
+.=sci-mathematics/singular-4.0.3
