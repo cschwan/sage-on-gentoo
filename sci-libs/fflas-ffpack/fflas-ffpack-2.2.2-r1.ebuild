@@ -43,6 +43,11 @@ pkg_setup(){
 		einfo "all the ones that are available on your platform."
 		einfo "You unfortunately cannot selectively turn one off."
 	fi
+	if use openmp; then
+		einfo "using openmp within fflas-ffpack can cause compilation failures"
+		einfo "with particular compilers and possibly blas/cblas implementation"
+		einfo "If the build fails, try without openmp before reporting a new issue"
+	fi
 }
 
 src_prepare(){
