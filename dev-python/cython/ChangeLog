@@ -2,6 +2,13 @@
 # Copyright 1999-2016 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/dev-python/cython/ChangeLog,v 1.93 2013/02/16 22:07:28 mgorny Exp $
 
+*cython-0.24.1-r1 (06 Sep 2016)
+
+  06 Sep 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  +cython-0.24.1-r1.ebuild, +files/PR1439.patch, +files/PR545.patch,
+  -cython-0.24.1.ebuild:
+  dev-python/cython: bump to include two new PR merged upstream
+
   06 Aug 2016; François Bissey <francois.bissey@canterbury.ac.nz>
   -cython-0.23.4-r2.ebuild, -cython-0.23.5.ebuild,
   -files/cython-0.23.2-signal.patch:
