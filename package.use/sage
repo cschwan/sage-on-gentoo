@@ -11,7 +11,7 @@ dev-python/gdmodule         png
 media-libs/gd               jpeg png
 media-gfx/tachyon           png opengl
 sci-mathematics/flint       ntl
-sci-libs/linbox             sage -openmp
+sci-libs/linbox             sage
 sci-libs/libsingular        flint
 sci-mathematics/eclib       flint
 sci-mathematics/glpk        gmp
