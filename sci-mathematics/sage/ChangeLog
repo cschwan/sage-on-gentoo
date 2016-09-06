@@ -2,6 +2,12 @@
 # Copyright 1999-2016 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  06 Sep 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  files/sage-7.4-singular.patch, sage-9999.ebuild:
+  sci-mathematics/sage: bump for new stuff. linbox[-openmp] is probably too
+  restrictive in sage-on-gentoo, new form singular patch, which will probably
+  disappear with the  new singular
+
   05 Sep 2016; François Bissey <francois.bissey@canterbury.ac.nz>
   +files/sage-7.4-qt4_conflict.patch, -files/sage-7.4-mpfi.patch,
   sage-9999.ebuild:
