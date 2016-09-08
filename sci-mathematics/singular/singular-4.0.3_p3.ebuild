@@ -44,6 +44,7 @@ S="${WORKDIR}/${PN}-${MY_DIR2}"
 PATCHES=(
 	"${FILESDIR}"/${PN}-4.0.3-mprimdec.patch
 	"${FILESDIR}"/${PN}-4.0.3-xalloc.patch
+	"${FILESDIR}"/${PN}-4.0.3-gfan_linking.patch
 	)
 
 pkg_setup() {
@@ -62,10 +63,6 @@ pkg_setup() {
 src_prepare(){
 	default
 
-	# Running autoreconf as there may be assumptions about
-	# versions of autotools used
-	# FIXME: some nested configure is still re-run during compile,
-	# may be on purpose upstream?
 	eautoreconf
 }
 
