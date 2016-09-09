@@ -10,7 +10,7 @@ PYTHON_REQ_USE="readline,sqlite"
 inherit distutils-r1 flag-o-matic multiprocessing prefix toolchain-funcs versionator
 
 if [[ ${PV} = *9999* ]]; then
-	EGIT_REPO_URI="git://github.com/sagemath/sage.git"
+	EGIT_REPO_URI="git://github.com/vbraun/sage.git"
 	EGIT_BRANCH=develop
 	EGIT_CHECKOUT_DIR="${WORKDIR}/${P}"
 	inherit git-r3
@@ -123,7 +123,7 @@ RDEPEND="${CDEPEND}
 	~sci-mathematics/sage-data-combinatorial_designs-20140630
 	~sci-mathematics/sage-data-polytopes_db-20120220
 	~sci-mathematics/sage-data-conway_polynomials-0.4
-	=sci-mathematics/singular-4.0*[flint,readline]
+	=sci-mathematics/singular-4.0*[readline]
 	>=sci-mathematics/sympow-1.018.1
 	www-servers/tornado
 	!prefix? ( >=sys-libs/glibc-2.13-r4 )
