@@ -4,6 +4,10 @@
 
   09 Sep 2016; François Bissey <francois.bissey@canterbury.ac.nz>
   singular-4.0.3_p3.ebuild:
+  sci-mathematics/singular: creating a link singular to Singular
+
+  09 Sep 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  singular-4.0.3_p3.ebuild:
   sci-mathematics/singular: remove unused doc useflag. Install .hlp file in the
   expected place for sage.
 

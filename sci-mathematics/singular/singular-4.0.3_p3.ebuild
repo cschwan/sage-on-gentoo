@@ -96,8 +96,9 @@ src_compile() {
 src_install() {
 	default
 
+	dosym Singular /usr/bin/"${PN}"
 	insinto /usr/share/singular
-	doins ${MY_SHARE_DIR}/info/singular.hlp
+	doins "${MY_SHARE_DIR}"/info/singular.hlp
 }
 
 pkg_postinst() {
