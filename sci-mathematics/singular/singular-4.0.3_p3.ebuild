@@ -24,14 +24,15 @@ SRC_URI="http://www.mathematik.uni-kl.de/ftp/pub/Math/${MY_PN}/SOURCES/${MY_DIR}
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64 ~ppc ~x86 ~x86-linux ~x86-macos"
-IUSE="doc emacs examples python +readline static-libs"
+IUSE="emacs examples python +readline static-libs"
 
 RDEPEND="dev-libs/gmp:0
 	dev-libs/ntl:=
 	emacs? ( >=virtual/emacs-22 )
 	sci-mathematics/flint
 	sci-libs/cddlib
-	python? ( ${PYTHON_DEPS} )"
+	python? ( ${PYTHON_DEPS} )
+	!!sci-libs/libsingular"
 
 DEPEND="${RDEPEND}
 	dev-lang/perl
@@ -60,7 +61,7 @@ pkg_setup() {
 	use python && python-single-r1_pkg_setup
 }
 
-src_prepare(){
+src_prepare() {
 	default
 
 	eautoreconf
@@ -90,6 +91,13 @@ src_compile() {
 		cd "${MY_SHARE_DIR}"singular/emacs/
 		elisp-compile *.el || die "elisp-compile failed"
 	fi
+}
+
+src_install() {
+	default
+
+	insinto /usr/share/singular
+	doins ${MY_SHARE_DIR}/info/singular.hlp
 }
 
 pkg_postinst() {

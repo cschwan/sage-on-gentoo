@@ -7,10 +7,8 @@ sci-mathematics/ecm
 =sci-mathematics/sage-7.1-r1
 =sci-mathematics/sage-7.2-r1
 # Work in progress on support ntl[threads] which require a
-# fair number of package to support/enable c++11
+# fair number of package to support/enable c++11. Now obsoleted by singular 4.
 =sci-mathematics/singular-3.1.7_p1-r5
 =sci-libs/libsingular-3.1.7_p1-r9
 # Work in progress it doesn't like being installed in a root location
 dev-gap/atlasrep
-# new singular is finally approaching
->=sci-mathematics/singular-4.0.3
