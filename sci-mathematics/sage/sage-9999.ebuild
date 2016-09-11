@@ -238,7 +238,7 @@ python_prepare() {
 	eapply "${FILESDIR}"/${PN}-6.8-maxima.lisp.patch
 
 	# fix library path of libSingular
-	sed -i "s:os.environ\['SAGE_LOCAL'\]+\"/lib:\"${EPREFIX}/usr/$(get_libdir):" \
+	sed -i "s:lib/libSingular:$(get_libdir)/libSingular:" \
 		sage/libs/singular/singular.pyx
 
 	# TODO: should be a patch
@@ -262,11 +262,6 @@ python_prepare() {
 
 	# patching libs/gap/util.pyx so we don't get noise from missing SAGE_LOCAL/gap/latest
 	eapply "${FILESDIR}"/${PN}-7.3-libgap.patch
-
-	# TODO: should be a patch
-	# Getting the singular documentation from the right place
-	sed -i "s:os.environ\[\"SAGE_LOCAL\"\]:sage.env.SAGE_LOCAL:" \
-		sage/interfaces/singular.py
 
 	# The ipython kernel tries to to start a new session via $SAGE_ROOT/sage -python
 	# Since we don't have $SAGE_ROOT/sage it fails.
