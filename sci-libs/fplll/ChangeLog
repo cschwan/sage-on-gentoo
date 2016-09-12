@@ -1,3 +1,9 @@
+*fplll-5.0.3_rc0 (12 Sep 2016)
+
+  12 Sep 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  +fplll-5.0.3_rc0.ebuild:
+  sci-libs/fplll: New fplll
+
   06 Aug 2016; François Bissey <francois.bissey@canterbury.ac.nz> -Manifest,
   -fplll-20151201.ebuild:
   sci-libs/fplll: remove old
