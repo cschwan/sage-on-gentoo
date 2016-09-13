@@ -19,8 +19,6 @@ SLOT="0"
 KEYWORDS=""
 IUSE="sage test"
 
-REQUIRED_USE="sage? ( !test )"
-
 DEPEND=">=sci-libs/fplll-5.0.0
 	dev-python/cython[${PYTHON_USEDEP}]
 	dev-python/cysignals[${PYTHON_USEDEP}]
@@ -36,16 +34,21 @@ PATCHES=(
 
 S="${WORKDIR}/${MY_P}"
 
-python_compile(){
-	if ! python_is_python3 ; then
-		if use sage ; then
-			WANT_SAGE=True
-		fi
+pkg_setup(){
+	if use sage; then
+		export WANT_SAGE=True
 	fi
-
-	default
 }
 
 python_test(){
-	py.test -v
+	if ! python_is_python3 ; then
+		if ! use sage ; then
+			py.test -v
+		else
+			einfo "testing with sage and ${EPYTHON} is not supported"
+			einfo "skipping."
+		fi
+	else
+		py.test -v
+	fi
 }
