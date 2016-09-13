@@ -2,6 +2,14 @@
 # Copyright 1999-2016 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*linbox-1.4.2-r1 (13 Sep 2016)
+
+  13 Sep 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  +linbox-1.4.2-r1.ebuild, -linbox-1.4.2.ebuild:
+  sci-libs/linbox: disabling fplll for now. linbox is not compatible with the
+  latest fplll, just disabling it is the easiest thing to do and has no side
+  effects on  sage.
+
   27 Aug 2016; François Bissey <francois.bissey@canterbury.ac.nz>
   linbox-1.4.2.ebuild:
   sci-libs/linbox: No README file in 1.4.2

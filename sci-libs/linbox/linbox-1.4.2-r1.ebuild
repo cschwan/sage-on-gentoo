@@ -30,7 +30,6 @@ DEPEND="dev-libs/gmp[cxx]
 	dev-libs/ntl:=
 	sci-libs/iml
 	dev-libs/mpfr:=
-	sci-libs/fplll
 	sci-mathematics/flint"
 RDEPEND="${DEPEND}"
 
@@ -47,6 +46,7 @@ pkg_pretend() {
 src_configure() {
 	econf \
 		--with-all="${EPREFIX}"/usr \
+		--without-fplll \
 		$(use_enable sage) \
 		$(use_enable openmp) \
 		$(use_with opencl ocl) \
