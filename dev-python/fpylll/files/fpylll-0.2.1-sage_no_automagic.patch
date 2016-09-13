@@ -1,0 +1,19 @@
+diff --git a/setup.py b/setup.py
+index a9ecf28..7e564b9 100755
+--- a/setup.py
++++ b/setup.py
+@@ -56,13 +56,7 @@ else:
+ 
+ 
+ # SAGE
+-have_sage = False
+-
+-try:
+-    import sage
+-    have_sage = True
+-except ImportError:
+-    pass
++have_sage = os.getenv('WANT_SAGE',False)
+ 
+ if have_sage:
+     from sage.env import SAGE_SRC
