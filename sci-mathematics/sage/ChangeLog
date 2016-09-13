@@ -4,6 +4,10 @@
 
   13 Sep 2016; François Bissey <francois.bissey@canterbury.ac.nz>
   sage-9999.ebuild:
+  sci-mathematics/sage: improve dependency on fpylll
+
+  13 Sep 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-9999.ebuild:
   sci-mathematics/sage: ship our own singular4 patch until it finally lands
   properly upstream. Upgrade fplll and now depend on fpylll.
 

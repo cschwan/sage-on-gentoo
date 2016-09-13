@@ -57,7 +57,7 @@ CDEPEND="dev-libs/gmp:0=
 	>=sci-mathematics/eclib-20150827[flint]
 	>=sci-mathematics/gmp-ecm-6.4.4[-openmp]
 	>=sci-mathematics/flint-2.5.2:=[ntl]
-	dev-python/fpylll
+	dev-python/fpylll[${PYTHON_USEDEP},sage]
 	~sci-libs/givaro-4.0.2
 	>=sci-libs/gsl-1.16
 	>=sci-libs/iml-1.0.4
