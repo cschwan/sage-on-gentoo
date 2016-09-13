@@ -1,0 +1,7 @@
+*fpylll-0.2.1 (13 Sep 2016)
+
+  13 Sep 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  +files/PR36.patch, +files/fpylll-0.2.1-sage_no_automagic.patch,
+  +fpylll-0.2.1.ebuild, +metadata.xml:
+  dev-python/fpylll: initial commit. We build with no automagic detection of
+  sage as the test don't pass.
