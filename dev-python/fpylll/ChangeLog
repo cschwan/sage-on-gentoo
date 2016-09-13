@@ -1,3 +1,8 @@
+  13 Sep 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  fpylll-0.2.1.ebuild, metadata.xml:
+  dev-python/fpylll: getting sage back in, conditionally. Still need
+  improvements.
+
 *fpylll-0.2.1 (13 Sep 2016)
 
   13 Sep 2016; François Bissey <francois.bissey@canterbury.ac.nz>
