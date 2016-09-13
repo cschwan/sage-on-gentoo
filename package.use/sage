@@ -4,6 +4,7 @@ dev-libs/boehm-gc           threads
 dev-libs/ntl                -threads
 dev-python/cvxopt           glpk gsl
 dev-python/cython           -numpy
+dev-python/fpylll           sage
 dev-python/ipython          notebook
 dev-python/mpmath           -gmp
 dev-python/numpy            lapack
