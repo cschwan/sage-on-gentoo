@@ -1,3 +1,9 @@
+*fpylll-0.2.2 (13 Sep 2016)
+
+  13 Sep 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  +fpylll-0.2.2.ebuild, -files/PR36.patch, -fpylll-0.2.1.ebuild:
+  dev-python/fpylll: bump for inclusion of PR#36
+
   13 Sep 2016; François Bissey <francois.bissey@canterbury.ac.nz>
   files/fpylll-0.2.1-sage_no_automagic.patch, fpylll-0.2.1.ebuild:
   dev-python/fpylll: Hopefully all working now.

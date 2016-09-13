@@ -28,7 +28,6 @@ DEPEND=">=sci-libs/fplll-5.0.0
 RDEPEND="${DEPEND}"
 
 PATCHES=(
-	"${FILESDIR}"/PR36.patch
 	"${FILESDIR}"/${PN}-0.2.1-sage_no_automagic.patch
 	)
 
