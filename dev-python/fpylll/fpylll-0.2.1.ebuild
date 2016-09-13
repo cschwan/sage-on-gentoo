@@ -15,14 +15,18 @@ SRC_URI="https://github.com/fplll/${PN}/archive/${MY_PV}.tar.gz -> ${P}.tar.gz"
 
 LICENSE="GPL-2+"
 SLOT="0"
-KEYWORDS="~amd64 ~x86"
-IUSE="test"
+#KEYWORDS="~amd64 ~x86"
+KEYWORDS=""
+IUSE="sage test"
+
+REQUIRED_USE="sage? ( !test )"
 
 DEPEND=">=sci-libs/fplll-5.0.0
-	dev-python/cython
-	dev-python/cysignals
-	dev-python/numpy
-	test? ( dev-python/pytest )"
+	dev-python/cython[${PYTHON_USEDEP}]
+	dev-python/cysignals[${PYTHON_USEDEP}]
+	dev-python/numpy[${PYTHON_USEDEP}]
+	sage? ( >=sci-mathematics/sage-7.4[$(python_gen_usedep 'python2*')] )
+	test? ( dev-python/pytest[${PYTHON_USEDEP}] )"
 RDEPEND="${DEPEND}"
 
 PATCHES=(
@@ -31,6 +35,16 @@ PATCHES=(
 	)
 
 S="${WORKDIR}/${MY_P}"
+
+python_compile(){
+	if ! python_is_python3 ; then
+		if use sage ; then
+			WANT_SAGE=True
+		fi
+	fi
+
+	default
+}
 
 python_test(){
 	py.test -v

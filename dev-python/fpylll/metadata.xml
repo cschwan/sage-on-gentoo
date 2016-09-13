@@ -8,4 +8,9 @@
 <longdescription lang="en">
 A Python (2 and 3) wrapper for fplll.
 </longdescription>
+<use>
+	<flag name='sage'>
+		Use sage in fpylll for supported python implementation
+	</flag>
+</use>
 </pkgmetadata>
