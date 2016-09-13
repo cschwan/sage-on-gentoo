@@ -23,7 +23,8 @@ fi
 DESCRIPTION="Math software for abstract and numerical computations"
 HOMEPAGE="http://www.sagemath.org"
 SRC_URI="${SRC_URI}
-	mirror://sagemath/patches/sage-icon.tar.bz2"
+	mirror://sagemath/patches/sage-icon.tar.bz2
+	mirror://sagemath/patches/singular4.patch.xz"
 
 LANGS="ca de en fr hu it ja pt ru tr"
 
@@ -56,7 +57,7 @@ CDEPEND="dev-libs/gmp:0=
 	>=sci-mathematics/eclib-20150827[flint]
 	>=sci-mathematics/gmp-ecm-6.4.4[-openmp]
 	>=sci-mathematics/flint-2.5.2:=[ntl]
-	~sci-libs/fplll-20160331
+	dev-python/fpylll
 	~sci-libs/givaro-4.0.2
 	>=sci-libs/gsl-1.16
 	>=sci-libs/iml-1.0.4
@@ -158,6 +159,9 @@ python_prepare() {
 	# scripts under src/bin and miscellanous files
 	#
 	#########################################
+
+	# upgrade to singular4
+	eapply "${WORKDIR}"/singular4.patch
 
 	# ship our own version of sage-env
 	cp "${FILESDIR}"/proto.sage-env-7.1 bin/sage-env
