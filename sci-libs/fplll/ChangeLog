@@ -1,3 +1,7 @@
+  13 Sep 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  fplll-5.0.3_rc0.ebuild:
+  sci-libs/fplll: adding a subslot
+
 *fplll-5.0.3_rc0 (12 Sep 2016)
 
   12 Sep 2016; François Bissey <francois.bissey@canterbury.ac.nz>
