@@ -4,6 +4,10 @@
 
   14 Sep 2016; François Bissey <francois.bissey@canterbury.ac.nz>
   sage-9999.ebuild:
+  sci-mathematics/sage: add thebe.js from trac #21309 as an extra source
+
+  14 Sep 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-9999.ebuild:
   sci-mathematics/sage: move fpylll to PDEPEND
 
   13 Sep 2016; François Bissey <francois.bissey@canterbury.ac.nz>

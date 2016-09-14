@@ -23,6 +23,7 @@ fi
 DESCRIPTION="Math software for abstract and numerical computations"
 HOMEPAGE="http://www.sagemath.org"
 SRC_URI="${SRC_URI}
+	mirror://sagemath/main-built.js.xz
 	mirror://sagemath/patches/sage-icon.tar.bz2
 	mirror://sagemath/patches/singular4.patch.xz"
 
@@ -286,6 +287,9 @@ python_prepare() {
 	############################################################################
 	# Fixes to doctests
 	############################################################################
+
+	# Move the thebe.js theme in place
+	mv "${WORKDIR}"/main-built.js doc/common/themes/sage/static/thebe.js
 
 	# fix all.py
 	eapply "${FILESDIR}"/${PN}-7.2-all.py.patch
