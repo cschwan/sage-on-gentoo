@@ -67,6 +67,9 @@ src_configure() {
 	tc-export CC
 	export CPLUSPLUS=$(tc-getCXX)
 
+	# Workaraound to "asm operand has impossible constraints" as suggested in bug #499996.
+	use x86 && append-cflags $(test-flags-CC -fno-stack-check)
+
 	# need to force optimization here, as it breaks without
 	if is-flag -O0; then
 		replace-flags -O0 -O2
