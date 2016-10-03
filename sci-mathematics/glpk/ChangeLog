@@ -1,3 +1,9 @@
+*glpk-4.60-r1 (03 Oct 2016)
+
+  03 Oct 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  +glpk-4.60-r1.ebuild, -glpk-4.60.ebuild, files/glpk-4.60-error_recovery.patch:
+  sci-mathematics/glpk: bump error recovery patch so it works
+
 *glpk-4.60 (26 Jun 2016)
 
   26 Jun 2016; François Bissey <francois.bissey@canterbury.ac.nz>
