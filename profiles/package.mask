@@ -11,4 +11,4 @@ sci-mathematics/ecm
 =sci-mathematics/singular-3.1.7_p1-r5
 =sci-libs/libsingular-3.1.7_p1-r9
 # Work in progress it doesn't like being installed in a root location
-dev-gap/atlasrep
+#dev-gap/atlasrep
