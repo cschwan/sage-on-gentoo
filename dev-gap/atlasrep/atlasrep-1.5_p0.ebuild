@@ -22,6 +22,10 @@ RDEPEND="${DEPEND}
 
 S="${WORKDIR}/${PN}"
 
+PATCHES=(
+	"${FILESDIR}"/${PN}-1.5_p0-local.patch
+	)
+
 src_install(){
 	insinto /usr/$(get_libdir)/gap/pkg/"${PN}"
 	doins -r bibl datagens dataword doc gap tst etc
