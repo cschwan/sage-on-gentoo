@@ -58,7 +58,6 @@ CDEPEND="dev-libs/gmp:0=
 	>=sci-mathematics/eclib-20150827[flint]
 	>=sci-mathematics/gmp-ecm-6.4.4[-openmp]
 	>=sci-mathematics/flint-2.5.2:=[ntl]
-	~sci-libs/fplll-20160331
 	~sci-libs/givaro-4.0.2
 	>=sci-libs/gsl-1.16
 	>=sci-libs/iml-1.0.4
@@ -134,6 +133,8 @@ RDEPEND="${CDEPEND}
 		~dev-tex/sage-latex-3.0
 		|| ( app-text/dvipng[truetype] media-gfx/imagemagick[png] )
 	)"
+
+PDEPEND="dev-python/fpylll[${PYTHON_USEDEP},sage]"
 
 CHECKREQS_DISK_BUILD="5G"
 
