@@ -19,7 +19,7 @@ SLOT="0"
 KEYWORDS=""
 IUSE="sage test"
 
-DEPEND=">=sci-libs/fplll-5.0.0
+DEPEND="=sci-libs/fplll-5.0*
 	dev-python/cython[${PYTHON_USEDEP}]
 	dev-python/cysignals[${PYTHON_USEDEP}]
 	dev-python/numpy[${PYTHON_USEDEP}]

@@ -1,3 +1,8 @@
+  06 Oct 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  fpylll-0.2.2.ebuild:
+  dev-python/fpylll: depend specifically on fplll-5.0 so as to trigger downgrade
+  of fplll from 2016xxxx
+
 *fpylll-0.2.2 (13 Sep 2016)
 
   13 Sep 2016; François Bissey <francois.bissey@canterbury.ac.nz>
