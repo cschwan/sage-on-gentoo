@@ -2,6 +2,13 @@
 # Copyright 1999-2016 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  12 Oct 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  +files/sage-7.4-jupyter.patch, +files/sage-7.4-sources.patch,
+  -files/sage-7.4-env.patch-21480, -files/sage-7.4-jupyter.patch-21480,
+  -files/sage-7.4-sources.patch-21480, files/sage-7.4-env.patch,
+  sage-9999.ebuild:
+  sci-mathematics/sage: bump patch for rc1 which now includes ticket #21480
+
   06 Oct 2016; François Bissey <francois.bissey@canterbury.ac.nz>
   +files/sage-7.4-env.patch-21480, +files/sage-7.4-jupyter.patch-21480,
   +files/sage-7.4-sources.patch-21480, sage-9999.ebuild:
