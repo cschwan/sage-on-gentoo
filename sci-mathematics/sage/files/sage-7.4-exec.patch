@@ -336,7 +336,7 @@ diff -Naur src.orig/bin/sage src/bin/sage
 -
 -if [ "$1" = '-pip' -o "$1" = '--pip' ]; then
 -    shift
--    exec pip "$@"
+-    exec pip-lock "$@"
 -fi
 -
 -if [ "$1" = '-fix-pkg-checksums' -o "$1" = '--fix-pkg-checksums' ]; then
