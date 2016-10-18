@@ -12,3 +12,5 @@ sci-mathematics/ecm
 =sci-libs/libsingular-3.1.7_p1-r9
 # Work in progress it doesn't like being installed in a root location
 #dev-gap/atlasrep
+# singular4 fail to compile with this version of ntl
+>=dev-libs/ntl-10.0.0
