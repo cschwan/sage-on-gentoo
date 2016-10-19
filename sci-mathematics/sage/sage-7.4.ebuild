@@ -9,30 +9,22 @@ PYTHON_REQ_USE="readline,sqlite"
 
 inherit distutils-r1 flag-o-matic multiprocessing prefix toolchain-funcs versionator
 
-if [[ ${PV} = *9999* ]]; then
-	EGIT_REPO_URI="git://github.com/sagemath/sage.git"
-	EGIT_BRANCH=develop
-	EGIT_CHECKOUT_DIR="${WORKDIR}/${P}"
-	inherit git-r3
-	KEYWORDS=""
-else
-	SRC_URI="mirror://sagemath/${PV}.tar.gz -> ${P}.tar.gz"
-	KEYWORDS="~amd64 ~x86 ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~x64-macos"
-fi
-
 DESCRIPTION="Math software for abstract and numerical computations"
 HOMEPAGE="http://www.sagemath.org"
-SRC_URI="${SRC_URI}
+SRC_URI="mirror://sagemath/${PV}.tar.gz -> ${P}.tar.gz
+	bin-html? ( mirror://sagemathdoc/${P}-doc-html.tar.xz )
+	bin-pdf? ( mirror://sagemathdoc/${P}-doc-pdf.tar.xz )
 	mirror://sagemath/main-built.js.xz
 	mirror://sagemath/patches/sage-icon.tar.bz2
 	mirror://sagemath/patches/singular4.patch.xz"
+KEYWORDS="~amd64 ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~x64-macos"
 
 LANGS="ca de en fr hu it ja pt ru tr"
 
 LICENSE="GPL-2"
 SLOT="0"
 SAGE_USE="modular_decomposition bliss libhomfly libbraiding"
-IUSE="debug html latex pdf sagenb testsuite X ${SAGE_USE}"
+IUSE="+bin-html bin-pdf debug html latex pdf sagenb testsuite X ${SAGE_USE}"
 L10N_USEDEP=""
 for X in ${LANGS} ; do
 	IUSE="${IUSE} l10n_${X}"
@@ -52,7 +44,7 @@ CDEPEND="dev-libs/gmp:0=
 	>=dev-python/numpy-1.10.1-r2[${PYTHON_USEDEP}]
 	>=dev-python/cython-0.24.1-r1[${PYTHON_USEDEP}]
 	dev-python/future[${PYTHON_USEDEP}]
-	dev-python/pkgconfig[${PYTHON_USEDEP}]
+	dev-python/pkgconfig
 	>=dev-python/cysignals-1.1.0[${PYTHON_USEDEP}]
 	>=dev-python/docutils-0.12[${PYTHON_USEDEP}]
 	>=sci-mathematics/eclib-20150827[flint]
@@ -142,17 +134,13 @@ S="${WORKDIR}/${P}/src"
 
 REQUIRED_USE="html? ( l10n_en sagenb )
 	pdf? ( sagenb )
-	testsuite? ( html )"
+	testsuite? ( || ( bin-html html ) )
+	bin-html? ( !html !pdf l10n_en )
+	bin-pdf? ( !html !pdf l10n_en )"
 
 pkg_setup() {
 	# needed since Ticket #14460
 	tc-export CC
-}
-
-src_unpack(){
-	git-r3_src_unpack
-
-	default
 }
 
 python_prepare() {
@@ -314,6 +302,20 @@ python_prepare() {
 
 	eapply "${FILESDIR}"/${PN}-7.4-misc.patch \
 		"${FILESDIR}"/${PN}-7.1-linguas.patch
+
+	if use bin-html ; then
+		mkdir -p build_doc/html
+		for lang in ${LANGS} ; do
+			use l10n_$lang && cp -r "${WORKDIR}"/html/${lang} build_doc/html/
+		done
+	fi
+
+	if use bin-pdf ; then
+		mkdir -p build_doc/pdf
+		for lang in ${LANGS} ; do
+			use l10n_$lang && cp -r "${WORKDIR}"/pdf/${lang} build_doc/pdf/
+		done
+	fi
 }
 
 python_configure() {
@@ -474,6 +476,16 @@ python_install_all() {
 		insinto /usr/share/doc/sage/pdf
 		doins -r build_doc/pdf/*
 	fi
+
+	if use bin-html ; then
+		insinto /usr/share/doc/sage/html
+		doins -r build_doc/html/*
+	fi
+
+	if use bin-pdf ; then
+		insinto /usr/share/doc/sage/pdf
+		doins -r build_doc/pdf/*
+	fi
 }
 
 pkg_preinst() {
@@ -517,8 +529,10 @@ pkg_postinst() {
 	fi
 
 	if ! use html ; then
-		ewarn "You haven't requested the html documentation."
-		ewarn "The html version of the sage manual won't be available in the sage notebook."
+		if ! use bin-html ; then
+			ewarn "You haven't requested the html documentation."
+			ewarn "The html version of the sage manual won't be available in the sage notebook."
+		fi
 	fi
 
 	einfo ""
