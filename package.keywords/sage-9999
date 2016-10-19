@@ -81,7 +81,7 @@ sci-libs/cddlib
 sci-libs/dsdp
 ~sci-libs/fflas-ffpack-2.2.2
 =sci-libs/fplll-5.0*
-~dev-python/fpylll-0.2.2 **
+~dev-python/fpylll-0.2.2
 ~sci-libs/givaro-4.0.2
 >=sci-libs/gsl-1.16
 >=sci-libs/iml-1.0.4
