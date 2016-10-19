@@ -1,3 +1,9 @@
+*fplll-5.0.3 (19 Oct 2016)
+
+  19 Oct 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  +fplll-5.0.3.ebuild, -fplll-5.0.3_rc0.ebuild:
+  sci-libs/fplll: 5.0.3 final out (thanks debian for pushing)
+
   13 Sep 2016; François Bissey <francois.bissey@canterbury.ac.nz>
   fplll-5.0.3_rc0.ebuild:
   sci-libs/fplll: adding a subslot
