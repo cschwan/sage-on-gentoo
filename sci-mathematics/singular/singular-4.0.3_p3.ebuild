@@ -85,11 +85,12 @@ src_configure() {
 }
 
 src_compile() {
-	emake || die "emake failed"
+	default
 
 	if use emacs; then
-		cd "${MY_SHARE_DIR}"singular/emacs/
+		pushd "${S}"/emacs
 		elisp-compile *.el || die "elisp-compile failed"
+		popd
 	fi
 }
 
