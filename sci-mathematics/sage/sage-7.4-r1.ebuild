@@ -12,7 +12,7 @@ inherit distutils-r1 flag-o-matic multiprocessing prefix toolchain-funcs version
 DESCRIPTION="Math software for abstract and numerical computations"
 HOMEPAGE="http://www.sagemath.org"
 SRC_URI="mirror://sagemath/${PV}.tar.gz -> ${P}.tar.gz
-	bin-html? ( mirror://sagemathdoc/${P}-doc-html.tar.xz )
+	bin-html? ( mirror://sagemathdoc/${P}-doc-html-r1.tar.xz )
 	bin-pdf? ( mirror://sagemathdoc/${P}-doc-pdf.tar.xz )
 	mirror://sagemath/main-built.js.xz
 	mirror://sagemath/patches/sage-icon.tar.bz2
@@ -89,6 +89,7 @@ DEPEND="${CDEPEND}
 RDEPEND="${CDEPEND}
 	>=dev-lang/R-3.2.0
 	>=dev-python/cvxopt-1.1.8[glpk,${PYTHON_USEDEP}]
+	>=dev-python/fpylll-0.2.3[${PYTHON_USEDEP}]
 	>=dev-python/ipython-5.0.0[notebook,${PYTHON_USEDEP}]
 	>=dev-python/jinja-2.5.5[${PYTHON_USEDEP}]
 	>=dev-python/matplotlib-1.5.1[${PYTHON_USEDEP}]
@@ -125,8 +126,6 @@ RDEPEND="${CDEPEND}
 		~dev-tex/sage-latex-3.0
 		|| ( app-text/dvipng[truetype] media-gfx/imagemagick[png] )
 	)"
-
-PDEPEND="dev-python/fpylll[${PYTHON_USEDEP},sage]"
 
 CHECKREQS_DISK_BUILD="5G"
 
