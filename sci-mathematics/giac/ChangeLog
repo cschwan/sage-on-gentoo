@@ -1,3 +1,10 @@
+*giac-1.2.2.95 (20 Oct 2016)
+
+  20 Oct 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  +giac-1.2.2.95.ebuild, -files/giac-1.2.2-cSolveorder-check.patch,
+  -giac-1.2.2.75.ebuild:
+  sci-mathematics/giac: bump to match sage's upgrade ticket
+
 *giac-1.2.2.87 (03 Oct 2016)
 
   03 Oct 2016; François Bissey <francois.bissey@canterbury.ac.nz>
