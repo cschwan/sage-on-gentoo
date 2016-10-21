@@ -31,6 +31,7 @@ IUSE="boost doc emacs examples python readline test flint"
 RDEPEND="
 	dev-libs/gmp:0=
 	dev-libs/ntl:0=
+	<dev-libs/ntl-10.0.0
 	flint? ( >=sci-mathematics/flint-2.3:= )
 	emacs? ( >=virtual/emacs-22 )
 	readline? ( sys-libs/readline:0= )"

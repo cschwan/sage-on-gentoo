@@ -28,7 +28,6 @@ IUSE="emacs examples python +readline static-libs"
 
 RDEPEND="dev-libs/gmp:0
 	dev-libs/ntl:=
-	<dev-libs/ntl-10.0.0
 	emacs? ( >=virtual/emacs-22 )
 	sci-mathematics/flint
 	sci-libs/cddlib
@@ -44,8 +43,6 @@ SITEFILE=60${PN}-gentoo.el
 S="${WORKDIR}/${PN}-${MY_DIR2}"
 
 PATCHES=(
-	"${FILESDIR}"/${PN}-4.0.3-mprimdec.patch
-	"${FILESDIR}"/${PN}-4.0.3-xalloc.patch
 	"${FILESDIR}"/${PN}-4.0.3-gfan_linking.patch
 	)
 
