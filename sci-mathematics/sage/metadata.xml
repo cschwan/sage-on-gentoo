@@ -38,8 +38,5 @@
 			Trigger the installation of the historic sage-notebook (a jupyter notebook
 			is installed with sage)
 		</flag>
-		<flag name='manifolds'>
-			install the optional manifolds package from http://sagemanifolds.obspm.fr
-		</flag>
 	</use>
 </pkgmetadata>
