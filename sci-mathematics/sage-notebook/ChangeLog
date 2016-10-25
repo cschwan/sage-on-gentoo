@@ -2,6 +2,10 @@
 # Copyright 1999-2016 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  25 Oct 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-notebook-0.13.ebuild:
+  sci-mathematics/sage-notebook: enforce flask<0.11 for issue #441
+
   06 Aug 2016; François Bissey <francois.bissey@canterbury.ac.nz>
   -files/sage-notebook-0.11.6.1-base.patch, -sage-notebook-0.11.6.1.ebuild,
   -sage-notebook-0.11.7.ebuild:
