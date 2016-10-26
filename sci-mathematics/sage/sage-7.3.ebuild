@@ -46,7 +46,7 @@ CDEPEND="dev-libs/gmp:0=
 	>=dev-python/cysignals-1.1.0[${PYTHON_USEDEP}]
 	>=dev-python/docutils-0.12[${PYTHON_USEDEP}]
 	>=sci-mathematics/eclib-20150827[flint]
-	>=sci-mathematics/gmp-ecm-6.4.4[-openmp]
+	~sci-mathematics/gmp-ecm-6.4.4[-openmp]
 	>=sci-mathematics/flint-2.5.2:=[ntl]
 	~sci-libs/fplll-20160331
 	~sci-libs/givaro-3.7.1
