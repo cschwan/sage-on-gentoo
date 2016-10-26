@@ -2,7 +2,6 @@
 # preparing ecm for removal. I only keep it in case it solves some OS X problems
 sci-mathematics/ecm
 # testing only
->=sci-mathematics/gmp-ecm-7.0.0
 >=sci-mathematics/singular-4.0.3_p4
 # Work in progress it doesn't like being installed in a root location
 #dev-gap/atlasrep
