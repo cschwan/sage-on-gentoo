@@ -3,6 +3,10 @@
 # $Header: $
 
   27 Oct 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-9999.ebuild:
+  sci-mathematics/sage: testing the next singular
+
+  27 Oct 2016; François Bissey <francois.bissey@canterbury.ac.nz>
   sage-7.4-r1.ebuild, sage-9999.ebuild:
   sci-mathematics/sage: fix singular dependency since 4.0.3_p4 breaks stuff and
   will require non trivial changes.
