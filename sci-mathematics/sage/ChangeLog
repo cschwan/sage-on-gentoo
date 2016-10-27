@@ -2,6 +2,15 @@
 # Copyright 1999-2016 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*sage-7.3-r1 (27 Oct 2016)
+*sage-7.4-r2 (27 Oct 2016)
+
+  27 Oct 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  +sage-7.3-r1.ebuild, +sage-7.4-r2.ebuild, -sage-7.3.ebuild,
+  -sage-7.4-r1.ebuild:
+  sci-mathematics/sage: Sorry for the rebuilds. Rev-bump to force the dependency
+  changes.
+
   27 Oct 2016; François Bissey <francois.bissey@canterbury.ac.nz>
   sage-7.4-r1.ebuild, sage-9999.ebuild:
   sci-mathematics/sage: fix singular dependency since 4.0.3_p4 breaks stuff and
