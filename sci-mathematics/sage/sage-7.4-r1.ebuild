@@ -70,7 +70,7 @@ CDEPEND="dev-libs/gmp:0=
 	>=sci-mathematics/brial-0.8.5[${PYTHON_USEDEP}]
 	>=sci-mathematics/ratpoints-2.1.3
 	>=sci-mathematics/rw-0.7
-	=sci-mathematics/singular-4.0*[readline]
+	~sci-mathematics/singular-4.0.3_p3[readline]
 	media-libs/gd[jpeg,png]
 	media-libs/libpng:0=
 	>=sys-libs/readline-6.2

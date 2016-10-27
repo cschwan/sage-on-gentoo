@@ -3,6 +3,11 @@
 # $Header: $
 
   27 Oct 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-7.4-r1.ebuild, sage-9999.ebuild:
+  sci-mathematics/sage: fix singular dependency since 4.0.3_p4 breaks stuff and
+  will require non trivial changes.
+
+  27 Oct 2016; François Bissey <francois.bissey@canterbury.ac.nz>
   +files/singular-4.0.3p4.patch, sage-7.3.ebuild, sage-7.4-r1.ebuild,
   sage-9999.ebuild:
   sci-mathematics/sage: fix dependency on cython better to avoid breakages when
