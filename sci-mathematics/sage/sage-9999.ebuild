@@ -49,7 +49,7 @@ CDEPEND="dev-libs/gmp:0=
 	>=dev-lisp/ecls-15.3.7:=
 	dev-python/six[${PYTHON_USEDEP}]
 	>=dev-python/numpy-1.10.1-r2[${PYTHON_USEDEP}]
-	>=dev-python/cython-0.24.1-r1[${PYTHON_USEDEP}]
+	~dev-python/cython-0.24.1[${PYTHON_USEDEP}]
 	dev-python/future[${PYTHON_USEDEP}]
 	dev-python/pkgconfig[${PYTHON_USEDEP}]
 	>=dev-python/cysignals-1.1.0[${PYTHON_USEDEP}]
