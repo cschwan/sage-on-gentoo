@@ -3,6 +3,10 @@
 # $Header: $
 
   28 Oct 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  files/maxima-5.38.1.patch:
+  sci-mathematics/sage: updating maxima 5.38.1 patch
+
+  28 Oct 2016; François Bissey <francois.bissey@canterbury.ac.nz>
   +files/maxima-5.38.1.patch, sage-9999.ebuild:
   sci-mathematics/sage: trialling maxima 5.38.1
 
