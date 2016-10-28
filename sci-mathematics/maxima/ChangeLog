@@ -2,6 +2,18 @@
 # Copyright 1999-2016 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/sci-mathematics/maxima/ChangeLog,v 1.102 2012/12/14 09:55:25 grozin Exp $
 
+*maxima-5.38.1-r1 (28 Oct 2016)
+
+  28 Oct 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  +files/clisp-1.patch, +files/clozurecl-2.patch, +files/cmucl-1.patch,
+  +files/ecls-2.patch, +files/emacs-0.patch,
+  +files/maxima-5.38.1-0001-In-eigenvectors-iterate-over-all-eigenvalues.patch, 
+  +files/maxima-5.38.1-0001-taylor2-Avoid-blowing-the-stack-when-diff-expand-isn
+  .patch, +files/maxima-5.38.1-matrixexp.patch,
+  +files/maxima-5.38.1-undoing_true_false_printing_patch.patch,
+  +files/sbcl-2.patch, +files/wish-2.patch, +maxima-5.38.1-r1.ebuild:
+  sci-mathematics/maxima: maxima 5.38.1 with sage patches.
+
   05 Jun 2016; François Bissey <francois.bissey@canterbury.ac.nz>
   maxima-5.35.1-r2.ebuild:
   sci-mathematics/maxima: fix for issue #426
