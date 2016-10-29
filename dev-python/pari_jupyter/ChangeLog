@@ -1,3 +1,7 @@
+  29 Oct 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  pari_jupyter-1.1.2.ebuild:
+  dev-python/pari_jupyter: clean dep, drop python 3.3
+
 *pari_jupyter-1.1.2 (12 May 2016)
 
   12 May 2016; François Bissey <francois.bissey@canterbury.ac.nz>

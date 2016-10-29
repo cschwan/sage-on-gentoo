@@ -3,7 +3,7 @@
 # $Id$
 
 EAPI=6
-PYTHON_COMPAT=( python2_7 python{3_3,3_4,3_5} )
+PYTHON_COMPAT=( python2_7 python{3_4,3_5} )
 
 inherit distutils-r1
 
@@ -17,6 +17,6 @@ KEYWORDS="~amd64"
 IUSE=""
 
 DEPEND=">=dev-python/ipykernel-4.0.0[${PYTHON_USEDEP}]
-	~sci-mathematics/pari-2.8_pre20160209
+	>=sci-mathematics/pari-2.8_pre20160209
 	>=dev-python/cython-0.23.4[${PYTHON_USEDEP}]"
 RDEPEND="${DEPEND}"
