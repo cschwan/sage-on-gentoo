@@ -49,7 +49,7 @@ CDEPEND="dev-libs/gmp:0=
 	>=dev-lisp/ecls-15.3.7:=
 	dev-python/six[${PYTHON_USEDEP}]
 	>=dev-python/numpy-1.10.1-r2[${PYTHON_USEDEP}]
-	~dev-python/cython-0.24.1[${PYTHON_USEDEP}]
+	~dev-python/cython-0.25.1[${PYTHON_USEDEP}]
 	dev-python/future[${PYTHON_USEDEP}]
 	dev-python/pkgconfig[${PYTHON_USEDEP}]
 	>=dev-python/cysignals-1.1.0[${PYTHON_USEDEP}]
@@ -115,7 +115,7 @@ RDEPEND="${CDEPEND}
 	>=sci-mathematics/cu2-20060223
 	>=sci-mathematics/cubex-20060128
 	>=sci-mathematics/dikcube-20070912
-	~sci-mathematics/maxima-5.38.1[ecls]
+	~sci-mathematics/maxima-5.35.1[ecls]
 	>=sci-mathematics/mcube-20051209
 	>=sci-mathematics/nauty-2.6.1
 	>=sci-mathematics/optimal-20040603
