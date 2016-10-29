@@ -1,3 +1,7 @@
+  29 Oct 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  cvxopt-1.1.8.ebuild, metadata.xml:
+  dev-python/cvxopt: drop python 3.3 clean up
+
   14 Dec 2015; François Bissey <francois.bissey@canterbury.ac.nz>
   cvxopt-1.1.8.ebuild:
   dev-python/cvxopt: harmonise with main tree
