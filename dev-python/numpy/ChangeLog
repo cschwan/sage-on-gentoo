@@ -1,3 +1,7 @@
+  29 Oct 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  -numpy-1.11.0.ebuild, numpy-1.10.4.ebuild, numpy-1.11.1.ebuild:
+  dev-python/numpy: drop useless, drop python 3.3
+
 *numpy-1.11.1 (30 Aug 2016)
 
   30 Aug 2016; François Bissey <francois.bissey@canterbury.ac.nz>
