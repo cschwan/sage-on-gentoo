@@ -2,6 +2,12 @@
 # Copyright 1999-2016 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*sage-data-graphs-20161026 (30 Oct 2016)
+
+  30 Oct 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  +sage-data-graphs-20161026.ebuild:
+  sci-mathematics/sage-data-graphs: update for sage 7.5
+
   18 May 2016; François Bissey <francois.bissey@canterbury.ac.nz>
   -sage-data-graphs-20150724.ebuild:
   sci-mathematics/sage-data-graphs: remove old unused.
