@@ -3,6 +3,11 @@
 # $Header: $
 
   31 Oct 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-9999.ebuild:
+  sci-mathematics/sage: correct sage-data-graphs for 7.5.beta1, update probably
+  next beta
+
+  31 Oct 2016; François Bissey <francois.bissey@canterbury.ac.nz>
   files/singular-4.0.3p4.patch:
   sci-mathematics/sage: update singular 4.0.3p4 patch
 
