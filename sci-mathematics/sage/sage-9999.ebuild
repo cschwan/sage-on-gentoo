@@ -205,7 +205,7 @@ python_prepare() {
 	###############################
 
 	# upgrade to singular 4.0.3_p4
-	eapply "${FILESDIR}"/singular-4.0.3p4.patch
+	#eapply "${FILESDIR}"/singular-4.0.3p4.patch
 
 	# Remove sage's package management system, git capabilities and associated tests
 	eapply "${FILESDIR}"/${PN}-7.4-neutering.patch
