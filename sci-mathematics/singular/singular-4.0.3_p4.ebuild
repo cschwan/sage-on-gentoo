@@ -44,6 +44,7 @@ S="${WORKDIR}/${PN}-${MY_DIR2}"
 
 PATCHES=(
 	"${FILESDIR}"/${PN}-4.0.3-gfan_linking.patch
+	"${FILESDIR}"/${PN}-4.0.3-ntl10.patch
 	)
 
 pkg_setup() {
