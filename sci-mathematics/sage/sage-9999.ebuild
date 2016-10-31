@@ -10,7 +10,7 @@ PYTHON_REQ_USE="readline,sqlite"
 inherit distutils-r1 flag-o-matic multiprocessing prefix toolchain-funcs versionator
 
 if [[ ${PV} = *9999* ]]; then
-	EGIT_REPO_URI="git://github.com/sagemath/sage.git"
+	EGIT_REPO_URI="git://github.com/vbraun/sage.git"
 	EGIT_BRANCH=develop
 	EGIT_CHECKOUT_DIR="${WORKDIR}/${P}"
 	inherit git-r3
@@ -49,7 +49,7 @@ CDEPEND="dev-libs/gmp:0=
 	>=dev-lisp/ecls-15.3.7:=
 	dev-python/six[${PYTHON_USEDEP}]
 	>=dev-python/numpy-1.10.1-r2[${PYTHON_USEDEP}]
-	~dev-python/cython-0.24.1[${PYTHON_USEDEP}]
+	~dev-python/cython-0.25.1[${PYTHON_USEDEP}]
 	dev-python/future[${PYTHON_USEDEP}]
 	dev-python/pkgconfig[${PYTHON_USEDEP}]
 	>=dev-python/cysignals-1.1.0[${PYTHON_USEDEP}]
@@ -77,7 +77,7 @@ CDEPEND="dev-libs/gmp:0=
 	>=sci-mathematics/brial-0.8.5[${PYTHON_USEDEP}]
 	>=sci-mathematics/ratpoints-2.1.3
 	>=sci-mathematics/rw-0.7
-	~sci-mathematics/singular-4.0.3_p3[readline]
+	~sci-mathematics/singular-4.0.3_p4[readline]
 	media-libs/gd[jpeg,png]
 	media-libs/libpng:0=
 	>=sys-libs/readline-6.2
@@ -121,7 +121,7 @@ RDEPEND="${CDEPEND}
 	>=sci-mathematics/optimal-20040603
 	>=sci-mathematics/palp-2.1
 	~sci-mathematics/sage-data-elliptic_curves-0.8
-	~sci-mathematics/sage-data-graphs-20151224
+	~sci-mathematics/sage-data-graphs-20161026
 	~sci-mathematics/sage-data-combinatorial_designs-20140630
 	~sci-mathematics/sage-data-polytopes_db-20120220
 	~sci-mathematics/sage-data-conway_polynomials-0.4
@@ -203,6 +203,9 @@ python_prepare() {
 	# Patches to the sage library
 	#
 	###############################
+
+	# upgrade to singular 4.0.3_p4
+	eapply "${FILESDIR}"/singular-4.0.3p4.patch
 
 	# Remove sage's package management system, git capabilities and associated tests
 	eapply "${FILESDIR}"/${PN}-7.4-neutering.patch

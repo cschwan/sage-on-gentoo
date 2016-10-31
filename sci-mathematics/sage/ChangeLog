@@ -2,6 +2,27 @@
 # Copyright 1999-2016 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  31 Oct 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  files/singular-4.0.3p4.patch:
+  sci-mathematics/sage: update singular 4.0.3p4 patch
+
+  30 Oct 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-9999.ebuild:
+  sci-mathematics/sage: bump sage-data-graphs dep
+
+  29 Oct 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  files/sage-7.5-exec.patch, sage-9999.ebuild:
+  sci-mathematics/sage: reverse maxima experimentation. Bump for latest vbraun
+  merge
+
+  28 Oct 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  files/maxima-5.38.1.patch:
+  sci-mathematics/sage: updating maxima 5.38.1 patch
+
+  28 Oct 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  +files/maxima-5.38.1.patch, sage-9999.ebuild:
+  sci-mathematics/sage: trialling maxima 5.38.1
+
 *sage-7.3-r1 (27 Oct 2016)
 *sage-7.4-r2 (27 Oct 2016)
 
@@ -10,6 +31,10 @@
   -sage-7.4-r1.ebuild:
   sci-mathematics/sage: Sorry for the rebuilds. Rev-bump to force the dependency
   changes.
+
+  27 Oct 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-9999.ebuild:
+  sci-mathematics/sage: testing the next singular
 
   27 Oct 2016; François Bissey <francois.bissey@canterbury.ac.nz>
   sage-7.4-r1.ebuild, sage-9999.ebuild:
