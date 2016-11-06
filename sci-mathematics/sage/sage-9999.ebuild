@@ -234,16 +234,15 @@ python_prepare() {
 	# sage on gentoo env.py
 	eapply "${FILESDIR}"/${PN}-7.4-env.patch
 	eprefixify sage/env.py
+	# fix library path of libSingular
+	sed -i "s:lib/libSingular:$(get_libdir)/libSingular:" \
+		sage/env.py
 
 	# fix issue #363 where there is bad interaction between MPL build with qt4 support and ecls
 	eapply "${FILESDIR}"/${PN}-7.4-qt4_conflict.patch
 
 	# sage-maxima.lisp really belong to /etc
 	eapply "${FILESDIR}"/${PN}-6.8-maxima.lisp.patch
-
-	# fix library path of libSingular
-	sed -i "s:lib/libSingular:$(get_libdir)/libSingular:" \
-		sage/libs/singular/singular.pyx
 
 	# TODO: should be a patch
 	# run maxima with ecl
@@ -265,7 +264,7 @@ python_prepare() {
 	sed -i -e "s:/lib/LiE/:/share/lie/:" sage/interfaces/lie.py
 
 	# patching libs/gap/util.pyx so we don't get noise from missing SAGE_LOCAL/gap/latest
-	eapply "${FILESDIR}"/${PN}-7.3-libgap.patch
+	eapply "${FILESDIR}"/${PN}-7.5-libgap.patch
 
 	# The ipython kernel tries to to start a new session via $SAGE_ROOT/sage -python
 	# Since we don't have $SAGE_ROOT/sage it fails.
