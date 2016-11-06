@@ -3,6 +3,10 @@
 # $Header: $
 
   06 Nov 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  files/sage-7.5-libgap.patch:
+  sci-mathematics/sage: overzealous patching
+
+  06 Nov 2016; François Bissey <francois.bissey@canterbury.ac.nz>
   +files/sage-7.5-libgap.patch, sage-9999.ebuild:
   sci-mathematics/sage: bump for new commits
 
