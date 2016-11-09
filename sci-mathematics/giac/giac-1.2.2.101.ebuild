@@ -16,7 +16,7 @@ LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~x86 ~amd64"
 LANGS="el en es fr pt"
-IUSE="ao doc examples fltk gc"
+IUSE="ao doc examples fltk gc static-libs"
 for X in ${LANGS} ; do
 	IUSE="${IUSE} l10n_${X}"
 done
@@ -63,6 +63,7 @@ src_configure(){
 
 	econf \
 		--enable-gmpxx \
+		$(use_enable static-libs static) \
 		$(use_enable fltk gui)  \
 		$(use_enable ao) \
 		$(use_enable gc)
