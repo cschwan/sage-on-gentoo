@@ -2,6 +2,26 @@
 # Copyright 1999-2016 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  09 Nov 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-9999.ebuild:
+  sci-mathematics/sage: new pynac in use in this snapshot
+
+  07 Nov 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-9999.ebuild:
+  sci-mathematics/sage: allowing latest singular
+
+  06 Nov 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  files/sage-7.5-libgap.patch:
+  sci-mathematics/sage: overzealous patching
+
+  06 Nov 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  +files/sage-7.5-libgap.patch, sage-9999.ebuild:
+  sci-mathematics/sage: bump for new commits
+
+  31 Oct 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-9999.ebuild:
+  sci-mathematics/sage: singular 4.0.3p4 in.
+
   31 Oct 2016; François Bissey <francois.bissey@canterbury.ac.nz>
   sage-9999.ebuild:
   sci-mathematics/sage: correct sage-data-graphs for 7.5.beta1, update probably
