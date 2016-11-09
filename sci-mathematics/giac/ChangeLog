@@ -1,3 +1,10 @@
+*giac-1.2.2.101 (09 Nov 2016)
+
+  09 Nov 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  +files/giac-1.2.2.101-cSolveorder-check.patch, +giac-1.2.2.101.ebuild,
+  -giac-1.2.2.87.ebuild:
+  sci-mathematics/giac: newest giac in, drop old.
+
 *giac-1.2.2.95 (20 Oct 2016)
 
   20 Oct 2016; François Bissey <francois.bissey@canterbury.ac.nz>

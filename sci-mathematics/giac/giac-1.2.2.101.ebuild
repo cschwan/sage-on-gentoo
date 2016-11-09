@@ -44,7 +44,7 @@ S="${WORKDIR}/${PN}-${MY_PV}"
 
 src_prepare(){
 	if has_version "=sci-mathematics/pari-2.8*"; then
-		eapply 	"${FILESDIR}"/${PN}-1.2.2.87-cSolveorder-check.patch
+		eapply 	"${FILESDIR}"/${PN}-1.2.2.101-cSolveorder-check.patch
 	fi
 	if !(use fltk); then
 		eapply "${FILESDIR}"/${PN}-1.2.2-test_with_nofltk.patch
