@@ -1,0 +1,6 @@
+*gsl-2.1-r1 (13 Nov 2016)
+
+  13 Nov 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  +files/gsl-2.1-cblas-external.patch, +gsl-2.1-r1.ebuild, +metadata.xml:
+  sci-libs/gsl: Fed up with PR#638 not being merged solving #429 by importing
+  gsl 2.1-r1 in s-o-g overlay
