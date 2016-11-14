@@ -2,6 +2,13 @@
 # Copyright 1999-2016 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*linbox-1.4.2-r2 (14 Nov 2016)
+
+  14 Nov 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  +files/linbox-1.4.2-pkgconfig.patch, +linbox-1.4.2-r2.ebuild,
+  -linbox-1.4.2-r1.ebuild:
+  sci-libs/linbox: include upstream PR#45 to fix a small defect in linbox.pc
+
 *linbox-1.4.2-r1 (13 Sep 2016)
 
   13 Sep 2016; François Bissey <francois.bissey@canterbury.ac.nz>
