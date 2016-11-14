@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
-EAPI=5
+EAPI=6
 
 inherit flag-o-matic toolchain-funcs
 
@@ -34,6 +34,10 @@ DEPEND="dev-libs/gmp[cxx]
 RDEPEND="${DEPEND}"
 
 DOCS=( ChangeLog NEWS TODO )
+
+PATCHES=(
+	"${FILESDIR}"/${PN}-1.4.2-pkgconfig.patch
+	)
 
 # TODO: installation of documentation does not work ?
 
