@@ -1,3 +1,13 @@
+*cysignals-1.1.1-r1 (16 Nov 2016)
+*cysignals-1.3.2-r1 (16 Nov 2016)
+
+  16 Nov 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  +cysignals-1.1.1-r1.ebuild, +cysignals-1.3.2-r1.ebuild,
+  +files/cysignals-1.1.1-helper_loc.patch, +files/cysignals-1.1.1-libpath.patch,
+  -cysignals-1.1.1.ebuild, -cysignals-1.3.2.ebuild:
+  dev-python/cysignals: Various QA, one in a PR upstream the other needs more
+  tinkering.
+
 *cysignals-1.3.2 (08 Nov 2016)
 
   08 Nov 2016; François Bissey <francois.bissey@canterbury.ac.nz>

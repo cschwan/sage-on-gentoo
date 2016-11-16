@@ -1,0 +1,13 @@
+diff --git a/src/scripts/cysignals-CSI b/src/scripts/cysignals-CSI
+index 28187b6..87a4dbb 100755
+--- a/src/scripts/cysignals-CSI
++++ b/src/scripts/cysignals-CSI
+@@ -94,7 +94,7 @@ def run_gdb(pid, color):
+     Execute gdb.
+     """
+     # Preload the right Python library
+-    libpython = os.path.join(sysconfig.get_config_var('exec_prefix'), 'lib',
++    libpython = os.path.join(sysconfig.get_config_var('LIBDIR'),
+                              sysconfig.get_config_var('INSTSONAME'))
+     env = dict(os.environ)
+     if sys.platform == 'macosx':
