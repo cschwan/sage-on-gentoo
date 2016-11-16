@@ -1,13 +1,13 @@
 diff --git a/src/scripts/cysignals-CSI b/src/scripts/cysignals-CSI
-index 92585fc..dd907c1 100755
+index 28187b6..4a0348c 100755
 --- a/src/scripts/cysignals-CSI
 +++ b/src/scripts/cysignals-CSI
-@@ -65,7 +65,7 @@ def gdb_commands(pid, color):
-     cmds += 'import sys; sys.stdout.flush()\n'
-     cmds += 'end\n'
-     cmds += 'bt full\n'
+@@ -75,7 +75,7 @@ def gdb_commands(pid, color):
+     cmds += b('import sys; sys.stdout.flush()\n')
+     cmds += b('end\n')
+     cmds += b('bt full\n')
 -    script = os.path.join(os.path.dirname(sys.argv[0]), 'cysignals-CSI-helper.py')
 +    script = os.path.join(sysconfig.get_config_var('BINDIR'), 'cysignals-CSI-helper.py')
      with open(script, 'r') as f:
-         cmds += 'python\n'
-         cmds += 'color = {0}\n'.format(color)
+         cmds += b('python\n')
+         cmds += b('color = {0}\n'.format(color))
