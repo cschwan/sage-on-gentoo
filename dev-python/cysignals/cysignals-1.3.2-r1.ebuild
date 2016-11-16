@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
-EAPI=5
+EAPI=6
 
 PYTHON_COMPAT=( python2_7 python{3_4,3_5} )
 
@@ -23,7 +23,7 @@ RDEPEND="${DEPEND}"
 
 PATCHES=(
 	"${FILESDIR}"/${PN}-1.1.1-libpath.patch
-	"${FILESDIR}"/${PN}-1.1.1-helper_loc.patch
+	"${FILESDIR}"/${PN}-1.3.2-helper_loc.patch
 	)
 
 python_test(){
