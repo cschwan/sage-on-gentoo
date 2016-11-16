@@ -21,6 +21,11 @@ DEPEND=">=dev-python/cython-0.24
 	>=sci-mathematics/pari-2.7.0"
 RDEPEND="${DEPEND}"
 
+PATCHES=(
+	"${FILESDIR}"/${PN}-1.1.1-libpath.patch
+	"${FILESDIR}"/${PN}-1.1.1-helper_loc.patch
+	)
+
 python_test(){
-	PATH="${BUILD_DIR}/scripts:${PATH}" "${EPYTHON}" -m doctest "${S}"/src/cysignals/*.pyx
+	PATH="${BUILD_DIR}/scripts:${PATH}" "${EPYTHON}" -B "${S}"/rundoctests.py "${S}"/src/cysignals/*.pyx
 }
