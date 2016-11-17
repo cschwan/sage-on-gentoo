@@ -4,6 +4,10 @@
 
   17 Nov 2016; François Bissey <francois.bissey@canterbury.ac.nz>
   singular-4.1.0.ebuild:
+  sci-mathematics/singular: fix install permission. Raised upstream.
+
+  17 Nov 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  singular-4.1.0.ebuild:
   sci-mathematics/singular: Do not try to re-install singular.hlp when there is
   a perfectly fine copy already installed in a slightly different location.
 

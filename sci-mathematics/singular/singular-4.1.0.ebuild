@@ -99,6 +99,10 @@ src_install() {
 	default
 
 	dosym Singular /usr/bin/"${PN}"
+	# Currently install with wrong permission.
+	# Not accessible for normal users otherwise
+	fperms o+r /usr/share/info/singular.hlp
+	fperms o+r /usr/share/singular/html/*
 }
 
 pkg_postinst() {
