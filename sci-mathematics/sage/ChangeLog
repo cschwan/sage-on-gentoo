@@ -2,6 +2,10 @@
 # Copyright 1999-2016 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  17 Nov 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  -files/singular-4.0.3p4.patch, sage-9999.ebuild:
+  sci-mathematics/sage: clean up cruft in 9999
+
   09 Nov 2016; François Bissey <francois.bissey@canterbury.ac.nz>
   sage-9999.ebuild:
   sci-mathematics/sage: new pynac in use in this snapshot
