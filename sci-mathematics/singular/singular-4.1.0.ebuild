@@ -92,11 +92,13 @@ src_compile() {
 }
 
 src_install() {
+	# Do not compress ssingular's info file (singular.hlp)
+	# some consumer of that file do not know how to deal with compression
+	docompress -x /usr/share/info
+
 	default
 
 	dosym Singular /usr/bin/"${PN}"
-	insinto /usr/share/singular
-	doins doc/singular.hlp
 }
 
 pkg_postinst() {
