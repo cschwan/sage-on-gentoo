@@ -27,6 +27,7 @@ dev-python/ptyprocess
 ~dev-python/flask-babel-0.8
 ~dev-python/flask-openid-1.2.4
 dev-python/flask-oldsessions
+=dev-python/psutils-4.4*
 ~dev-python/flask-silk-0.2
 =dev-python/setuptools-20*
 dev-python/terminado
