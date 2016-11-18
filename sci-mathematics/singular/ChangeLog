@@ -2,6 +2,11 @@
 # Copyright 1999-2016 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/sci-mathematics/singular/ChangeLog,v 1.53 2012/06/23 10:50:20 xarthisius Exp $
 
+  18 Nov 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  singular-4.1.0.ebuild:
+  sci-mathematics/singular: fix permissions problem on prefix thanks to Steve
+  for investigating.
+
   17 Nov 2016; François Bissey <francois.bissey@canterbury.ac.nz>
   singular-4.1.0.ebuild:
   sci-mathematics/singular: fix install permission. Raised upstream.

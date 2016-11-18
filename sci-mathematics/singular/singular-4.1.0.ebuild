@@ -102,7 +102,7 @@ src_install() {
 	# Currently install with wrong permission.
 	# Not accessible for normal users otherwise
 	fperms o+r /usr/share/info/singular.hlp
-	fperms o+r /usr/share/singular/html/*
+	fperms -R o+r /usr/share/singular/html
 }
 
 pkg_postinst() {
