@@ -13,8 +13,6 @@ MY_PV=$(delete_version_separator 3)
 # Consistency is different...
 MY_DIR2=$(get_version_component_range 1-3 ${PV})
 MY_DIR=$(replace_all_version_separators '-' ${MY_DIR2})
-# This is where the share tarball unpacks to
-MY_SHARE_DIR="${WORKDIR}"/share/
 
 DESCRIPTION="Computer algebra system for polynomial computations"
 HOMEPAGE="http://www.singular.uni-kl.de/"
@@ -99,10 +97,6 @@ src_install() {
 	default
 
 	dosym Singular /usr/bin/"${PN}"
-	# Currently install with wrong permission.
-	# Not accessible for normal users otherwise
-	fperms o+r /usr/share/info/singular.hlp
-	fperms -R o+r /usr/share/singular/html
 }
 
 pkg_postinst() {
