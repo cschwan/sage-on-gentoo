@@ -24,6 +24,7 @@ RDEPEND="${DEPEND}"
 PATCHES=(
 	"${FILESDIR}"/${PN}-1.1.1-libpath.patch
 	"${FILESDIR}"/${PN}-1.3.2-helper_loc.patch
+	"${FILESDIR}"/PR45.patch
 	)
 
 python_test(){
