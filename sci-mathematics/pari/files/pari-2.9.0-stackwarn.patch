@@ -1,3 +1,15 @@
+diff --git a/src/gp/gp.c b/src/gp/gp.c
+index 678f1ba..af4ecdb 100644
+--- a/src/gp/gp.c
++++ b/src/gp/gp.c
+@@ -559,6 +559,7 @@ main(int argc, char **argv)
+ #endif
+   stdin_isatty = pari_stdin_isatty();
+   pari_init_defaults();
++  DEBUGMEM = 1;  /* Use \gm1 by default in gp */
+   pari_library_path = DL_DFLT_NAME;
+   pari_stack_init(&s_A,sizeof(*A),(void**)&A);
+   pari_init_opts(1000000 * sizeof(long), 0, INIT_SIGm | INIT_noPRIMEm | INIT_noIMTm);
 diff --git a/src/language/init.c b/src/language/init.c
 index a079cdf..3d0fda1 100644
 --- a/src/language/init.c
@@ -32,16 +44,3 @@ index a079cdf..3d0fda1 100644
  }
  
  void
-diff --git a/src/test/dotest b/src/test/dotest
-index 1b06c83..3667195 100755
---- a/src/test/dotest
-+++ b/src/test/dotest
-@@ -86,7 +86,7 @@ for testdata in $testlist; do
-     for suf in $SUF; do
-       file_diff=$testname-$suf.dif
-       gp=$execdir/gp-$suf$exe_suff
--      (echo 'gettime();0;'; cat $file_in; \
-+      (echo 'gettime();default(debugmem,1);'; cat $file_in; \
-        echo 'print("Total time spent: ",gettime);') \
-        | $RUNTEST $gp -q --test  > $file_test 2>&1
-       if test -n "$crlf"; then
