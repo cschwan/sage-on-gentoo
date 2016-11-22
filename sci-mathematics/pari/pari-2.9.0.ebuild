@@ -33,6 +33,7 @@ PATCHES=(
 	"${FILESDIR}"/${PN}-2.9.0-doc-make.patch
 	"${FILESDIR}"/${PN}-2.9.0-doc_libpari.patch
 	"${FILESDIR}"/${PN}-2.9.0-no-automagic.patch
+	"${FILESDIR}"/${PN}-2.9.0-rpath_reduction.patch
 	"${FILESDIR}"/${PN}-2.9.0-stackwarn.patch
 	)
 
@@ -50,10 +51,8 @@ src_prepare() {
 	default
 
 	# disable default building of docs during install
-	# correct arbitrary added rpath - could be even better to remove it completely
 	sed -i \
 		-e "s:install-doc install-examples:install-examples:" \
-		-e "s:\"/usr/lib\":\"${EPREFIX}/usr/$(get_libdir)\":" \
 		config/Makefile.SH || die "Failed to fix makefile"
 
 	# propagate ldflags

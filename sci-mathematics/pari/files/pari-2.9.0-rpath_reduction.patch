@@ -1,0 +1,13 @@
+diff --git a/config/Makefile.SH b/config/Makefile.SH
+index def1a9c..2d3e826 100644
+--- a/config/Makefile.SH
++++ b/config/Makefile.SH
+@@ -125,7 +125,7 @@ graph="$graph $libgraph"
+ 
+ # runpath
+ tmp=$runpath
+-for d in "$plotrunpath" "$gmp" "$readline" "/usr/lib"; do
++for d in "$plotrunpath" "$gmp" "$readline"; do
+   case "$d" in
+     ""|yes) ;;
+     *) case "$tmp" in
