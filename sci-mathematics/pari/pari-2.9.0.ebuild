@@ -12,9 +12,7 @@ HOMEPAGE="http://pari.math.u-bordeaux.fr/"
 SRC_URI="http://pari.math.u-bordeaux.fr/pub/pari/unix/${PN}-${MY_PV}.tar.gz"
 
 LICENSE="GPL-2"
-# Pari dev release have soname of the form pari-{gmp-}-{PV}.so.0
-#SLOT="0/4"
-SLOT="0/0"
+SLOT="0/5"
 KEYWORDS="~alpha ~amd64 ~hppa ~mips ~ppc ~ppc64 ~sparc ~x86 ~amd64-linux ~x86-fbsd ~x86-linux ~x86-macos ~x86-solaris"
 IUSE="data doc fltk gmp qt4 X"
 
