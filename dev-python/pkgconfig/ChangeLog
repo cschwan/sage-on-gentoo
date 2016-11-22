@@ -1,0 +1,5 @@
+*pkgconfig-1.1.0-r1 (22 Nov 2016)
+
+  22 Nov 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  +files/PR11.patch, +metadata.xml, +pkgconfig-1.1.0-r1.ebuild:
+  dev-python/pkgconfig: Add PR11 - not suitable for genral use yet.
