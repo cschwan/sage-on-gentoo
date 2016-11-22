@@ -3,6 +3,11 @@
 # $Header: /var/cvsroot/gentoo-x86/sci-mathematics/pari/ChangeLog,v 1.87 2012/03/06 17:06:06 bicatali Exp $
 
   22 Nov 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  files/pari-2.9.0-stackwarn.patch:
+  sci-mathematics/pari: Adopt newer stack warning patching, which may be going
+  upstream.
+
+  22 Nov 2016; François Bissey <francois.bissey@canterbury.ac.nz>
   pari-2.9.0.ebuild:
   sci-mathematics/pari: small cosmetics
 
