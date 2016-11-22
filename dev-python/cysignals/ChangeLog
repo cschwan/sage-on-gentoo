@@ -1,3 +1,9 @@
+*cysignals-1.4.0 (22 Nov 2016)
+
+  22 Nov 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  +cysignals-1.4.0.ebuild, -cysignals-1.3.2-r2.ebuild, -files/PR45.patch:
+  dev-python/cysignals: bump to 1.4.0 with a number of small fixes
+
 *cysignals-1.3.2-r2 (20 Nov 2016)
 
   20 Nov 2016; François Bissey <francois.bissey@canterbury.ac.nz>
