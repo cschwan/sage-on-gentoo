@@ -1,0 +1,47 @@
+diff --git a/src/language/init.c b/src/language/init.c
+index a079cdf..3d0fda1 100644
+--- a/src/language/init.c
++++ b/src/language/init.c
+@@ -740,7 +740,8 @@ parivstack_resize(ulong newsize)
+   evalstate_reset();
+   paristack_setsize(pari_mainstack->rsize, newsize);
+   s = pari_mainstack->vsize ? pari_mainstack->vsize : pari_mainstack->rsize;
+-  pari_warn(warner,"new maximum stack size = %lu (%.3f Mbytes)", s, s/1048576.);
++  if (DEBUGMEM > 0)
++    pari_warn(warner,"new maximum stack size = %lu (%.3f Mbytes)", s, s/1048576.);
+   pari_init_errcatch();
+   cb_pari_err_recover(-1);
+ }
+@@ -754,7 +755,8 @@ paristack_newrsize(ulong newsize)
+     pari_mainstack_resize(pari_mainstack, newsize, vsize);
+   evalstate_reset();
+   s = pari_mainstack->rsize;
+-  pari_warn(warner,"new stack size = %lu (%.3f Mbytes)", s, s/1048576.);
++  if (DEBUGMEM > 0)
++    pari_warn(warner,"new stack size = %lu (%.3f Mbytes)", s, s/1048576.);
+   pari_init_errcatch();
+   cb_pari_err_recover(-1);
+ }
+@@ -768,7 +770,8 @@ paristack_resize(ulong newsize)
+   newsize = maxuu(minuu(newsize, vsize), pari_mainstack->size);
+   pari_mainstack->size = newsize;
+   pari_mainstack->bot = pari_mainstack->top - pari_mainstack->size;
+-  pari_warn(warner,"increasing stack size to %lu",newsize);
++  if (DEBUGMEM > 0)
++    pari_warn(warner,"increasing stack size to %lu",newsize);
+ }
+ 
+ void
+diff --git a/src/test/dotest b/src/test/dotest
+index 1b06c83..3667195 100755
+--- a/src/test/dotest
++++ b/src/test/dotest
+@@ -86,7 +86,7 @@ for testdata in $testlist; do
+     for suf in $SUF; do
+       file_diff=$testname-$suf.dif
+       gp=$execdir/gp-$suf$exe_suff
+-      (echo 'gettime();0;'; cat $file_in; \
++      (echo 'gettime();default(debugmem,1);'; cat $file_in; \
+        echo 'print("Total time spent: ",gettime);') \
+        | $RUNTEST $gp -q --test  > $file_test 2>&1
+       if test -n "$crlf"; then
