@@ -1,3 +1,7 @@
+  23 Nov 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  python-2.7.12-r100.ebuild:
+  dev-lang/python: sync with main tree, now stable
+
 *python-2.7.12-r100 (06 Aug 2016)
 
   06 Aug 2016; François Bissey <francois.bissey@canterbury.ac.nz>
