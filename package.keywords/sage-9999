@@ -58,7 +58,7 @@ dev-python/mpmath
 ~dev-python/pexpect-4.0.1::sage-on-gentoo
 dev-python/pandas
 dev-python/pyasn1-modules
-dev-python/pkgconfig
+<=dev-python/pkgconfig-1.1.0
 ~dev-python/pycurl-7.19.3.1
 ~dev-python/pytz-2014.2
 ~dev-python/pytables-3.1.1
