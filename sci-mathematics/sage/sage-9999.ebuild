@@ -52,7 +52,7 @@ CDEPEND="dev-libs/gmp:0=
 	~dev-python/cython-0.25.1[${PYTHON_USEDEP}]
 	dev-python/future[${PYTHON_USEDEP}]
 	<=dev-python/pkgconfig-1.1.0[${PYTHON_USEDEP}]
-	>=dev-python/cysignals-1.1.0[${PYTHON_USEDEP}]
+	~dev-python/cysignals-1.4.0[${PYTHON_USEDEP}]
 	>=dev-python/docutils-0.12[${PYTHON_USEDEP}]
 	>=dev-python/psutil-4.4.0[${PYTHON_USEDEP}]
 	>=sci-mathematics/eclib-20150827[flint]

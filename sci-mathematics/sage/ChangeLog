@@ -6,6 +6,14 @@
   sage-7.3-r1.ebuild, sage-7.4-r2.ebuild, sage-9999.ebuild:
   sci-mathematics/sage: pinpoint pkgconfig dependency
 
+  22 Nov 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-9999.ebuild:
+  sci-mathematics/sage: adjust cysignals dependency
+
+  18 Nov 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-9999.ebuild:
+  sci-mathematics/sage: cysignals bump in dep
+
   18 Nov 2016; François Bissey <francois.bissey@canterbury.ac.nz>
   sage-9999.ebuild:
   sci-mathematics/sage: limit version of singular on the master branch
