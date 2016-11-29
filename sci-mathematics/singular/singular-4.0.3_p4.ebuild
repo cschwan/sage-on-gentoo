@@ -68,7 +68,7 @@ src_prepare() {
 
 src_configure() {
 	econf --with-gmp \
-		--with-ntl \
+		--with-ntl="${EPREFIX}"/usr \
 		--with-flint \
 		--enable-gfanlib \
 		--disable-debug \
