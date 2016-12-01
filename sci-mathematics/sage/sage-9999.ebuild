@@ -24,7 +24,7 @@ DESCRIPTION="Math software for abstract and numerical computations"
 HOMEPAGE="http://www.sagemath.org"
 SRC_URI="${SRC_URI}
 	mirror://sagemath/main-built.js.xz
-	mirror://sagemath/patches/sage-icon.tar.bz2"
+	mirror://sagemath/sage-icon.tar.bz2"
 
 LANGS="ca de en fr hu it ja pt ru tr"
 

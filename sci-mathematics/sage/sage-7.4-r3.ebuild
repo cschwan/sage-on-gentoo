@@ -15,8 +15,8 @@ SRC_URI="mirror://sagemath/${PV}.tar.gz -> ${P}.tar.gz
 	bin-html? ( mirror://sagemath/${P}-doc-html-r1.tar.xz )
 	bin-pdf? ( mirror://sagemath/${P}-doc-pdf.tar.xz )
 	mirror://sagemath/main-built.js.xz
-	mirror://sagemath/patches/sage-icon.tar.bz2
-	mirror://sagemath/patches/singular4.patch.xz"
+	mirror://sagemath/sage-icon.tar.bz2
+	mirror://sagemath/singular4.patch.xz"
 KEYWORDS="~amd64 ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~x64-macos"
 
 LANGS="ca de en fr hu it ja pt ru tr"

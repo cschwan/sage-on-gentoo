@@ -14,7 +14,7 @@ HOMEPAGE="http://www.sagemath.org"
 SRC_URI="mirror://sagemath/${PV}.tar.gz -> ${P}.tar.gz
 	bin-html? ( mirror://sagemath/${P}-doc-html.tar.xz )
 	bin-pdf? ( mirror://sagemath/${P}-doc-pdf.tar.xz )
-	mirror://sagemath/patches/sage-icon.tar.bz2
+	mirror://sagemath/sage-icon.tar.bz2
 	http://www.mathematik.uni-kl.de/ftp/pub/Math/Singular/SOURCES/3-1-6/Singular-3-1-6-share.tar.gz"
 KEYWORDS="~amd64 ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~x64-macos"
 
