@@ -220,6 +220,11 @@ python_prepare() {
 	# Fixes to Sage itself
 	############################################################################
 
+	# fix for python 2.7.12 now in stable
+	if has_version "~dev-lang/python-2.7.12" ; then
+		eapply "${FILESDIR}"/python-2.7.12.patch
+	fi
+
 	# sage on gentoo env.py
 	eapply "${FILESDIR}"/${PN}-7.3-env.patch
 	eprefixify sage/env.py
