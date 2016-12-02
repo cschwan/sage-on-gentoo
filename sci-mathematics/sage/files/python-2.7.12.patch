@@ -1,6 +1,6 @@
 diff -Naur src.orig/sage/combinat/words/word.py src/sage/combinat/words/word.py
---- src.orig/sage/combinat/words/word.py	2016-11-30 14:54:28.036049484 +1300
-+++ src/sage/combinat/words/word.py	2016-12-02 10:41:50.109360370 +1300
+--- src.orig/sage/combinat/words/word.py	2016-12-02 14:21:47.669810692 +1300
++++ src/sage/combinat/words/word.py	2016-12-02 14:23:47.931081557 +1300
 @@ -511,7 +511,7 @@
          sage: dumps(w)
          Traceback (most recent call last):
@@ -10,9 +10,36 @@ diff -Naur src.orig/sage/combinat/words/word.py src/sage/combinat/words/word.py
      """
      pass
  
+@@ -549,7 +549,7 @@
+         sage: dumps(w)
+         Traceback (most recent call last):
+         ...
+-        PicklingError: Can't pickle <type 'generator'>: attribute lookup __builtin__.generator failed
++        TypeError: can't pickle generator objects
+     """
+     pass
+ 
+@@ -648,7 +648,7 @@
+         sage: dumps(w)
+         Traceback (most recent call last):
+         ...
+-        PicklingError: Can't pickle <type 'generator'>: attribute lookup __builtin__.generator failed
++        TypeError: can't pickle generator objects
+     """
+     pass
+ 
+@@ -684,7 +684,7 @@
+         sage: dumps(w)
+         Traceback (most recent call last):
+         ...
+-        PicklingError: Can't pickle <type 'generator'>: attribute lookup __builtin__.generator failed
++        TypeError: can't pickle generator objects
+     """
+     pass
+ 
 diff -Naur src.orig/sage/misc/sage_timeit.py src/sage/misc/sage_timeit.py
---- src.orig/sage/misc/sage_timeit.py	2016-11-30 14:54:28.076049582 +1300
-+++ src/sage/misc/sage_timeit.py	2016-11-30 15:01:53.256127012 +1300
+--- src.orig/sage/misc/sage_timeit.py	2016-12-02 14:21:47.712810775 +1300
++++ src/sage/misc/sage_timeit.py	2016-12-02 14:22:25.578884481 +1300
 @@ -218,7 +218,7 @@
      # to the shell namespace?
  
