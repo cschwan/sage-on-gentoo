@@ -3,6 +3,11 @@
 # $Header: $
 
   02 Dec 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  +files/sage-7.5-3js.patch, sage-9999.ebuild:
+  sci-mathematics/sage: Deal with trac #12402. Hopefully a fix upstream is
+  coming.
+
+  02 Dec 2016; François Bissey <francois.bissey@canterbury.ac.nz>
   files/python-2.7.12.patch:
   sci-mathematics/sage: update python 2.7.12 patch
 

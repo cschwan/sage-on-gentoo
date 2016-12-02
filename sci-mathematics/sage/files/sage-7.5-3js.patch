@@ -1,0 +1,28 @@
+diff --git a/src/sage/plot/plot3d/base.pyx b/src/sage/plot/plot3d/base.pyx
+index 0ca1c71..6bb89e5 100644
+--- src.orig/sage/plot/plot3d/base.pyx
++++ src/sage/plot/plot3d/base.pyx
+@@ -407,8 +407,8 @@ cdef class Graphics3d(SageObject):
+         surfaces = flatten_list(surfaces)
+         surfaces = '[' + ','.join(surfaces) + ']'
+ 
+-        from sage.env import SAGE_SRC
+-        filename = os.path.join(SAGE_SRC, 'sage',
++        from sage.env import SAGE_LIB
++        filename = os.path.join(SAGE_LIB, 'sage',
+                                 'plot', 'plot3d', 'threejs_template.html')
+         f = open(filename, 'r')
+         html = f.read()
+diff --git a/src/setup.py b/src/setup.py
+index 7451519..7b96378 100755
+--- src.orig/setup.py
++++ src/setup.py
+@@ -666,7 +666,7 @@ class sage_build_ext(build_ext):
+         dist = self.distribution
+         from sage_setup.find import find_extra_files
+         self.cythonized_files = find_extra_files(dist.packages,
+-            ".", SAGE_CYTHONIZED, ["ntlwrap.cpp"])
++            ".", SAGE_CYTHONIZED, ["ntlwrap.cpp", "threejs_template.html"])
+ 
+         for (dst_dir, src_files) in self.cythonized_files:
+             dst = os.path.join(self.build_lib, dst_dir)
