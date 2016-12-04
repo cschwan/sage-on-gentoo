@@ -232,9 +232,6 @@ python_prepare() {
 	# fix for python 2.7.12 now in stable
 	eapply "${FILESDIR}"/python-2.7.12.patch
 
-	# patch bloody 3js stuff
-	eapply "${FILESDIR}"/${PN}-7.5-3js.patch
-
 	# sage on gentoo env.py
 	eapply "${FILESDIR}"/${PN}-7.4-env.patch
 	eprefixify sage/env.py
