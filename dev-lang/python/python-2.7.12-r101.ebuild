@@ -106,6 +106,9 @@ src_prepare() {
 	# sage patches
 	# http://bugs.python.org/issue25750
 	epatch "${FILESDIR}"/descr_ref.patch
+	# http://bugs.python.org/issue27177
+	# upstream python treats it as new feature for 3.6 only
+	epatch "${FILESDIR}"/${PN}-2.7.12-issue27177.patch
 
 	epatch_user
 
