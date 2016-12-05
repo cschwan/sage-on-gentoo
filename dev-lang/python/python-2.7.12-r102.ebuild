@@ -106,6 +106,9 @@ src_prepare() {
 	# sage patches
 	# http://bugs.python.org/issue25750
 	epatch "${FILESDIR}"/descr_ref.patch
+	# http://bugs.python.org/issue27177
+	# upstream python treats it as new feature for 3.6 only
+	epatch "${FILESDIR}"/${PN}-2.7.12-issue27177.patch
 
 	epatch_user
 
@@ -349,6 +352,10 @@ src_install() {
 eselect_python_update() {
 	if [[ -z "$(eselect python show)" || ! -f "${EROOT}usr/bin/$(eselect python show)" ]]; then
 		eselect python update
+	fi
+
+	if [[ -z "$(eselect python show --python${PV%%.*})" || ! -f "${EROOT}usr/bin/$(eselect python show --python${PV%%.*})" ]]; then
+		eselect python update --python${PV%%.*}
 	fi
 }
 
