@@ -37,7 +37,7 @@ DEPEND="${RDEPEND}
 	virtual/pkgconfig"
 
 PATCHES=(
-	"${FILESDIR}"/${PN}-1.2.2-lapack.patch
+	"${FILESDIR}"/${PN}-1.2.2-gsl_lapack.patch
 	)
 
 S="${WORKDIR}/${PN}-${MY_PV}"
