@@ -1,3 +1,11 @@
+*giac-1.2.2.103-r1 (06 Dec 2016)
+
+  06 Dec 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  +files/giac-1.2.2-gsl_lapack.patch, +giac-1.2.2.103-r1.ebuild,
+  -files/giac-1.2.2-lapack.patch, -files/giac-1.2.2.87-cSolveorder-check.patch,
+  -giac-1.2.2.101.ebuild, -giac-1.2.2.103.ebuild:
+  sci-mathematics/giac: use pkg-config for gsl. Fix lapack enabling and linking.
+
 *giac-1.2.2.103 (21 Nov 2016)
 
   21 Nov 2016; François Bissey <francois.bissey@canterbury.ac.nz>
