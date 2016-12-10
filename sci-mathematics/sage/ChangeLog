@@ -4,6 +4,10 @@
 
   10 Dec 2016; François Bissey <francois.bissey@canterbury.ac.nz>
   sage-9999.ebuild:
+  sci-mathematics/sage: move to new pynac
+
+  10 Dec 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-9999.ebuild:
   sci-mathematics/sage: add giac as a runtime dep for 7.5.beta6
 
   04 Dec 2016; François Bissey <francois.bissey@canterbury.ac.nz>
