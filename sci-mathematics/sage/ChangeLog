@@ -2,6 +2,10 @@
 # Copyright 1999-2016 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  10 Dec 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-9999.ebuild:
+  sci-mathematics/sage: add giac as a runtime dep for 7.5.beta6
+
   04 Dec 2016; François Bissey <francois.bissey@canterbury.ac.nz>
   -files/sage-7.5-3js.patch, sage-9999.ebuild:
   sci-mathematics/sage: 3js fixed
