@@ -51,7 +51,7 @@ CDEPEND="dev-libs/gmp:0=
 	>=dev-python/numpy-1.10.1-r2[${PYTHON_USEDEP}]
 	~dev-python/cython-0.25.1[${PYTHON_USEDEP}]
 	dev-python/future[${PYTHON_USEDEP}]
-	~dev-python/pkgconfig-1.1.0[${PYTHON_USEDEP}]
+	~dev-python/pkgconfig-1.2.2[${PYTHON_USEDEP}]
 	~dev-python/cysignals-1.4.0[${PYTHON_USEDEP}]
 	>=dev-python/docutils-0.12[${PYTHON_USEDEP}]
 	>=dev-python/psutil-4.4.0[${PYTHON_USEDEP}]
@@ -230,6 +230,9 @@ python_prepare() {
 	############################################################################
 	# Fixes to Sage itself
 	############################################################################
+
+	# fix my upstream mess
+	eapply "${FILESDIR}"/sage-7.5-overeager-gscblas-removal.patch
 
 	# fix for python 2.7.12 now in stable
 	eapply "${FILESDIR}"/python-2.7.12.patch
