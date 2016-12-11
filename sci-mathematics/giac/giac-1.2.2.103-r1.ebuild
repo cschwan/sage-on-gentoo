@@ -98,6 +98,6 @@ src_install() {
 	fi
 
 	if use !examples; then
-		rm -R "${D}"/usr/share/giac/examples || die
+		rm -R "${ED}"/usr/share/giac/examples || die
 	fi
 }
