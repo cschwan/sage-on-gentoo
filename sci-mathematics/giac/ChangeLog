@@ -1,5 +1,9 @@
   11 Dec 2016; François Bissey <francois.bissey@canterbury.ac.nz>
   giac-1.2.2.103-r1.ebuild:
+  sci-mathematics/giac: more D -> ED replacements
+
+  11 Dec 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  giac-1.2.2.103-r1.ebuild:
   sci-mathematics/giac: Some D should ED in src-install
 
 *giac-1.2.2.103-r1 (06 Dec 2016)
