@@ -75,24 +75,24 @@ src_install() {
 	dodoc AUTHORS ChangeLog INSTALL NEWS README TROUBLES
 	if use fltk; then
 		if host-is-pax; then
-			pax-mark -m "${D}"/usr/bin/x*
+			pax-mark -m "${ED}"/usr/bin/x*
 		fi
 	else
 		rm -rf \
-			"${D}"/usr/bin/x* \
-			"${D}"/usr/share/application-registry \
-			"${D}"/usr/share/applications \
-			"${D}"/usr/share/icons
+			"${ED}"/usr/bin/x* \
+			"${ED}"/usr/share/application-registry \
+			"${ED}"/usr/share/applications \
+			"${ED}"/usr/share/icons
 	fi
 
 	if use !doc; then
-		rm -R "${D}"/usr/share/doc/giac* "${D}"/usr/share/giac/doc/ || die
+		rm -R "${ED}"/usr/share/doc/giac* "${ED}"/usr/share/giac/doc/ || die
 	else
 		for lang in ${LANGS}; do
 			if use l10n_$lang; then
-				ln "${D}"/usr/share/giac/doc/aide_cas "${D}"/usr/share/giac/doc/"${lang}"/aide_cas || die
+				ln "${ED}"/usr/share/giac/doc/aide_cas "${ED}"/usr/share/giac/doc/"${lang}"/aide_cas || die
 			else
-				rm -rf "${D}"/usr/share/giac/doc/"${lang}"
+				rm -rf "${ED}"/usr/share/giac/doc/"${lang}"
 			fi
 		done
 	fi
