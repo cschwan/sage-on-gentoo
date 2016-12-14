@@ -11,7 +11,7 @@ inherit distutils-r1 flag-o-matic multiprocessing prefix toolchain-funcs version
 
 DESCRIPTION="Math software for abstract and numerical computations"
 HOMEPAGE="http://www.sagemath.org"
-SRC_URI="mirror://sagemath/${PV}.tar.gz -> ${P}.tar.gz
+SRC_URI="https://github.com/sagemath/sage/archive/${PV}.tar.gz -> ${P}.tar.gz
 	bin-html? ( mirror://sagemath/${P}-doc-html-r1.tar.xz )
 	bin-pdf? ( mirror://sagemath/${P}-doc-pdf.tar.xz )
 	mirror://sagemath/main-built.js.xz
