@@ -10,8 +10,7 @@ MY_PN="solver"
 
 DESCRIPTION="An non-optimal 3x3x3 rubik's cube solver"
 HOMEPAGE="http://www.wrongway.org/?rubiksource"
-#SRC_URI="http://www.wrongway.org/work/${MY_PN}.tar.gz -> ${P}.tar.gz"
-SRC_URI="mirror://sagemath/${MY_PN}.tar.xz -> ${P}.tar.xz"
+SRC_URI="mirror://sagemath/${P}.tar.xz"
 
 LICENSE="GPL-2"
 SLOT="0"
