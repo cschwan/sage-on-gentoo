@@ -1,0 +1,5 @@
+*GUAVA-3.13-r1 (18 Dec 2016)
+
+  18 Dec 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  +GUAVA-3.13-r1.ebuild, +files/guava-3.13-build.patch, -GUAVA-3.13.ebuild:
+  dev-gap/GUAVA: Fix issue #447, make a patch instead of sed, fix parallel make.
