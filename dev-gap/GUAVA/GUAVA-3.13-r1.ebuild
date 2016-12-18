@@ -25,20 +25,14 @@ RESTRICT=mirror
 
 DOCS=( {CHANGES,HISTORY,README}.${MY_PN} )
 
+PATCHES=(
+	"${FILESDIR}"/${MY_PN}-3.13-build.patch
+	)
+
 S="${WORKDIR}/${MY_P}"
 
 src_prepare() {
-	default_src_prepare
-
-	# Don't call autoreconf in src_compile().
-	sed -i -e 's| autoreconf[^;]*;||g' Makefile.in || die
-
-	# Don't call src/leon/configure in src_compile().
-	sed -i -e 's| ./configure;||g' Makefile.in || die
-
-	# There's no Makefile.am in src/leon/.
-	sed -i -e '/AM_INIT_AUTOMAKE/d' src/leon/configure.ac || die
-
+	default
 	# Remove temporary files in src/leon/.
 	rm -r src/leon/{autom4te.cache,src/stamp-h1} src/leon/src/*~ || die
 
@@ -47,15 +41,17 @@ src_prepare() {
 }
 
 src_configure() {
+	# Not a real autoconf configure script
 	econf "${EPREFIX}/usr/$(get_libdir)/gap"
 
 	cd src/leon/ || die
+	# real autoconf configure script
 	econf
 }
 
 src_compile() {
 	# COMPILE, COMPOPT, LINKOPT are needed to compile the code in src/leon/.
-	emake -j1 \
+	emake \
 		CC="$(tc-getCC)" CFLAGS="${CFLAGS}" \
 		COMPILE="$(tc-getCC)" COMPOPT="${CFLAGS} -c" LINKOPT="${LDFLAGS}"
 }
