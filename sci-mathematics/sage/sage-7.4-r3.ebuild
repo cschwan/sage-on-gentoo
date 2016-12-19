@@ -24,7 +24,7 @@ LANGS="ca de en fr hu it ja pt ru tr"
 LICENSE="GPL-2"
 SLOT="0"
 SAGE_USE="modular_decomposition bliss libhomfly libbraiding"
-IUSE="+bin-html bin-pdf debug html latex pdf sagenb testsuite X ${SAGE_USE}"
+IUSE="bin-html bin-pdf debug html latex pdf sagenb testsuite X ${SAGE_USE}"
 L10N_USEDEP=""
 for X in ${LANGS} ; do
 	IUSE="${IUSE} l10n_${X}"
