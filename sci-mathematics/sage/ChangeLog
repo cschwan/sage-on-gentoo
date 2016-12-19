@@ -11,9 +11,17 @@
   sage-7.3-r2.ebuild, sage-7.4-r3.ebuild:
   sci-mathematics/sage: fix SRC_URI to download the sage tarball itself
 
+  11 Dec 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-9999.ebuild:
+  sci-mathematics/sage: vbraun branch is now using python 2.7.12
+
   10 Dec 2016; François Bissey <francois.bissey@canterbury.ac.nz>
   +files/sage-7.5-overeager-gscblas-removal.patch, sage-9999.ebuild:
   sci-mathematics/sage: My own messing up, upstream is bitting.
+
+  10 Dec 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-9999.ebuild:
+  sci-mathematics/sage: move to new pynac
 
   10 Dec 2016; François Bissey <francois.bissey@canterbury.ac.nz>
   sage-9999.ebuild:
