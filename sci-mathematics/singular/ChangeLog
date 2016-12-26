@@ -2,6 +2,16 @@
 # Copyright 1999-2016 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/sci-mathematics/singular/ChangeLog,v 1.53 2012/06/23 10:50:20 xarthisius Exp $
 
+*singular-4.1.0_p1-r1 (26 Dec 2016)
+
+  26 Dec 2016; François Bissey <francois.bissey@canterbury.ac.nz>
+  +files/singular-4.1.0-fgets.patch, +files/singular-4.1.0-grobner.patch,
+  +files/singular-4.1.0-nfCoeffName.patch,
+  +files/singular-4.1.0-nrnCoeffName.patch, +singular-4.1.0_p1-r1.ebuild,
+  -singular-4.1.0_p1.ebuild:
+  sci-mathematics/singular: bump for inclusion of sage's patches. All of them
+  are upstreamed in some way.
+
   29 Nov 2016; François Bissey <francois.bissey@canterbury.ac.nz>
   singular-4.0.3_p3.ebuild, singular-4.0.3_p4.ebuild, singular-4.0.3_p5.ebuild,
   singular-4.1.0_p1.ebuild:

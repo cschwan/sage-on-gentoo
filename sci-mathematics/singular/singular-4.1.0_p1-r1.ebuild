@@ -41,6 +41,10 @@ S="${WORKDIR}/${PN}-${MY_DIR2}"
 
 PATCHES=(
 	"${FILESDIR}"/${PN}-4.0.3-gfan_linking.patch
+	"${FILESDIR}"/${PN}-4.1.0-fgets.patch
+	"${FILESDIR}"/${PN}-4.1.0-grobner.patch
+	"${FILESDIR}"/${PN}-4.1.0-nfCoeffName.patch
+	"${FILESDIR}"/${PN}-4.1.0-nrnCoeffName.patch
 	)
 
 pkg_setup() {
