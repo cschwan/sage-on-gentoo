@@ -49,7 +49,7 @@ CDEPEND="dev-libs/gmp:0=
 	~dev-lisp/ecls-16.1.2
 	dev-python/six[${PYTHON_USEDEP}]
 	>=dev-python/numpy-1.10.1-r2[${PYTHON_USEDEP}]
-	~dev-python/cython-0.25.1[${PYTHON_USEDEP}]
+	~dev-python/cython-0.25.2[${PYTHON_USEDEP}]
 	dev-python/future[${PYTHON_USEDEP}]
 	~dev-python/pkgconfig-1.2.2[${PYTHON_USEDEP}]
 	~dev-python/cysignals-1.4.0[${PYTHON_USEDEP}]
@@ -78,8 +78,7 @@ CDEPEND="dev-libs/gmp:0=
 	>=sci-mathematics/brial-0.8.5[${PYTHON_USEDEP}]
 	>=sci-mathematics/ratpoints-2.1.3
 	>=sci-mathematics/rw-0.7
-	>=sci-mathematics/singular-4.0.3_p4[readline]
-	<sci-mathematics/singular-4.1.0
+	>=sci-mathematics/singular-4.1.0_p1-r1[readline]
 	media-libs/gd[jpeg,png]
 	media-libs/libpng:0=
 	>=sys-libs/readline-6.2
