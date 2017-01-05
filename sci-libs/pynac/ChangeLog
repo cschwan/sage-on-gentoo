@@ -1,6 +1,12 @@
 # ChangeLog for sci-libs/pynac
-# Copyright 1999-2016 Gentoo Foundation; Distributed under the GPL v2
+# Copyright 1999-2017 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
+
+*pynac-0.7.3 (05 Jan 2017)
+
+  05 Jan 2017; François Bissey <francois.bissey@canterbury.ac.nz>
+  +pynac-0.7.3.ebuild:
+  sci-libs/pynac: bump! First ebuild of 2017.
 
 *pynac-0.7.2 (07 Dec 2016)
 
