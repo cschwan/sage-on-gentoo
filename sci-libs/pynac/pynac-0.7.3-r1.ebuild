@@ -30,6 +30,10 @@ RDEPEND="dev-libs/gmp:0=
 
 DOCS=( AUTHORS NEWS README )
 
+PATCHES=(
+	"${FILESDIR}"/${PN}-0.7.3-giac.patch
+	)
+
 pkg_setup(){
 	python_setup
 }
