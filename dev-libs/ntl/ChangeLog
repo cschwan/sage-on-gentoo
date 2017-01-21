@@ -1,6 +1,12 @@
 # ChangeLog for dev-libs/ntl
-# Copyright 1999-2016 Gentoo Foundation; Distributed under the GPL v2
+# Copyright 1999-2017 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/dev-libs/ntl/ChangeLog,v 1.25 2014/06/19 13:08:44 jauhien Exp $
+
+  21 Jan 2017; François Bissey <francois.bissey@canterbury.ac.nz>
+  -files/ntl-9.2.0-sanitize-makefile.patch, -files/ntl-9.2.0-singular.patch,
+  -files/ntl-9.6.4-sanitize-makefile.patch, -ntl-9.6.2-r1.ebuild,
+  -ntl-9.6.4.ebuild, -ntl-9.8.1.ebuild:
+  dev-libs/ntl: removing old
 
 *ntl-10.1.0 (17 Oct 2016)
 
