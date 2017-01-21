@@ -1,3 +1,7 @@
+  21 Jan 2017; François Bissey <francois.bissey@canterbury.ac.nz>
+  giac-1.2.2.103-r1.ebuild:
+  sci-mathematics/giac: apply patches for pari-2.8+ not just 2.8
+
   11 Dec 2016; François Bissey <francois.bissey@canterbury.ac.nz>
   giac-1.2.2.103-r1.ebuild:
   sci-mathematics/giac: more D -> ED replacements

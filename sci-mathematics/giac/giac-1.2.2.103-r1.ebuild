@@ -1,4 +1,4 @@
-# Copyright 1999-2016 Gentoo Foundation
+# Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
@@ -43,7 +43,7 @@ PATCHES=(
 S="${WORKDIR}/${PN}-${MY_PV}"
 
 src_prepare(){
-	if has_version "=sci-mathematics/pari-2.8*"; then
+	if has_version ">=sci-mathematics/pari-2.7.99"; then
 		eapply 	"${FILESDIR}"/${PN}-1.2.2.101-cSolveorder-check.patch
 	fi
 	if !(use fltk); then
