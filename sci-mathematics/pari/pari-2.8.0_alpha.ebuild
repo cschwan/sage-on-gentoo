@@ -1,16 +1,15 @@
-# Copyright 1999-2016 Gentoo Foundation
+# Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
 EAPI=6
 
-inherit git-r3 flag-o-matic toolchain-funcs
+inherit flag-o-matic toolchain-funcs versionator
 
+MY_PV=$(replace_version_separator 3 '.')
 DESCRIPTION="Computer-aided number theory C library and tools"
 HOMEPAGE="http://pari.math.u-bordeaux.fr/"
-EGIT_REPO_URI="http://pari.math.u-bordeaux.fr/git/pari.git"
-EGIT_BRANCH=master
-EGIT_COMMIT=2771-gb70b447
+SRC_URI="http://pari.math.u-bordeaux.fr/pub/pari/unstable/${PN}-${MY_PV}.tar.gz"
 
 LICENSE="GPL-2"
 # Pari dev release have soname of the form pari-{gmp-}-{PV}.so.0
@@ -37,6 +36,8 @@ PATCHES=(
 	"${FILESDIR}"/${PN}-2.8_pre20150611-no-automagic.patch
 	"${FILESDIR}"/${PN}-2.8_pre20160130-stackwarn.patch
 	)
+
+S="${WORKDIR}"/${PN}-${MY_PV}
 
 get_compile_dir() {
 	pushd "${S}/config" > /dev/null
@@ -117,7 +118,7 @@ src_compile() {
 }
 
 src_test() {
-	emake ${mymake} ${mycxxmake} test-all
+	emake ${mymake} ${mycxxmake} bench
 }
 
 src_install() {
