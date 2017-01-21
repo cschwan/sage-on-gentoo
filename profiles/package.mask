@@ -4,6 +4,3 @@ sci-mathematics/ecm
 # testing only
 # Work in progress it doesn't like being installed in a root location
 #dev-gap/atlasrep
-# singular4 fail to compile with this version of ntl
-#>=dev-libs/ntl-10.0.0
->=sci-mathematics/pari-2.9.0
