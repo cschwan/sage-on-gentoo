@@ -10,7 +10,7 @@ PYTHON_REQ_USE="readline,sqlite"
 inherit distutils-r1 flag-o-matic multiprocessing prefix toolchain-funcs versionator
 
 if [[ ${PV} = *9999* ]]; then
-	EGIT_REPO_URI="git://github.com/sagemath/sage.git"
+	EGIT_REPO_URI="git://github.com/vbraun/sage.git"
 	EGIT_BRANCH=develop
 	EGIT_CHECKOUT_DIR="${WORKDIR}/${P}"
 	inherit git-r3
@@ -31,7 +31,7 @@ LANGS="ca de en fr hu it ja pt ru tr"
 LICENSE="GPL-2"
 SLOT="0"
 SAGE_USE="modular_decomposition bliss libhomfly libbraiding"
-IUSE="debug html latex pdf sagenb testsuite X ${SAGE_USE}"
+IUSE="debug +doc-html doc-pdf latex sagenb testsuite X ${SAGE_USE}"
 L10N_USEDEP=""
 for X in ${LANGS} ; do
 	IUSE="${IUSE} l10n_${X}"
@@ -55,7 +55,7 @@ CDEPEND="dev-libs/gmp:0=
 	~dev-python/cysignals-1.4.0[${PYTHON_USEDEP}]
 	>=dev-python/docutils-0.12[${PYTHON_USEDEP}]
 	>=dev-python/psutil-4.4.0[${PYTHON_USEDEP}]
-	>=sci-mathematics/eclib-20150827[flint]
+	>=sci-mathematics/eclib-20170104[flint]
 	~sci-mathematics/gmp-ecm-6.4.4[-openmp]
 	>=sci-mathematics/flint-2.5.2:=[ntl]
 	~sci-libs/givaro-4.0.2
@@ -73,7 +73,7 @@ CDEPEND="dev-libs/gmp:0=
 	sci-mathematics/glpk:0=[gmp]
 	>=sci-mathematics/lcalc-1.23-r6[pari]
 	>=sci-mathematics/lrcalc-1.2-r1
-	~sci-mathematics/pari-2.8.0_alpha[data,gmp,doc]
+	~sci-mathematics/pari-2.9.1[data,gmp,doc]
 	~sci-mathematics/planarity-2.2.0
 	>=sci-mathematics/brial-0.8.5[${PYTHON_USEDEP}]
 	>=sci-mathematics/ratpoints-2.1.3
@@ -92,7 +92,7 @@ CDEPEND="dev-libs/gmp:0=
 	>=dev-python/sphinx-1.4.1-r3[${PYTHON_USEDEP}]"
 
 DEPEND="${CDEPEND}
-	pdf? ( app-text/texlive[extra,${L10N_USEDEP}] )"
+	doc-pdf? ( app-text/texlive[extra,${L10N_USEDEP}] )"
 
 RDEPEND="${CDEPEND}
 	>=dev-lang/R-3.2.0
@@ -140,9 +140,9 @@ CHECKREQS_DISK_BUILD="5G"
 
 S="${WORKDIR}/${P}/src"
 
-REQUIRED_USE="html? ( l10n_en sagenb )
-	pdf? ( sagenb )
-	testsuite? ( html )"
+REQUIRED_USE="doc-html? ( l10n_en sagenb )
+	doc-pdf? ( sagenb )
+	testsuite? ( doc-html )"
 
 pkg_setup() {
 	# needed since Ticket #14460
@@ -230,9 +230,6 @@ python_prepare() {
 	# Fixes to Sage itself
 	############################################################################
 
-	# fix my upstream mess
-	eapply "${FILESDIR}"/sage-7.5-overeager-gscblas-removal.patch
-
 	# sage on gentoo env.py
 	eapply "${FILESDIR}"/${PN}-7.4-env.patch
 	eprefixify sage/env.py
@@ -271,9 +268,9 @@ python_prepare() {
 	# The ipython kernel tries to to start a new session via $SAGE_ROOT/sage -python
 	# Since we don't have $SAGE_ROOT/sage it fails.
 	#See https://github.com/cschwan/sage-on-gentoo/issues/342
-	# There are a lot of issue with that file during building and installation. 
-	# it tries to link in the filesystem in ways that are difficult to support 
-	# in a global install from a pure python perspective. See also 
+	# There are a lot of issue with that file during building and installation.
+	# it tries to link in the filesystem in ways that are difficult to support
+	# in a global install from a pure python perspective. See also
 	# https://github.com/cschwan/sage-on-gentoo/issues/376
 	eapply "${FILESDIR}"/${PN}-7.5-jupyter.patch
 	touch sage_setup/jupyter/__init__.py
@@ -348,10 +345,10 @@ python_configure() {
 python_compile_all() {
 	distutils-r1_python_compile
 
-	if use html ; then
+	if use doc-html ; then
 		"${PYTHON}" sage_setup/docbuild/__main__.py --no-pdf-links all html || die "failed to produce html doc"
 	fi
-	if use pdf ; then
+	if use doc-pdf ; then
 		export MAKE=make
 		"${PYTHON}" sage_setup/docbuild/__main__.py all pdf || die "failed to produce pdf doc"
 	fi
@@ -453,7 +450,7 @@ python_install_all() {
 	doins sage_setup/docbuild/ext/inventory_builder.py
 	doins sage_setup/docbuild/ext/multidocs.py
 
-	if use html ; then
+	if use doc-html ; then
 		# Prune _static folders
 		cp -r build_doc/html/en/_static build_doc/html/ || die "failed to copy _static folder"
 		for sdir in `find build_doc/html -name _static` ; do
@@ -472,7 +469,7 @@ python_install_all() {
 		dosym /usr/share/doc/sage/html/en /usr/share/jupyter/kernels/sagemath/doc
 	fi
 
-	if use pdf ; then
+	if use doc-pdf ; then
 		insinto /usr/share/doc/sage/pdf
 		doins -r build_doc/pdf/*
 	fi
@@ -518,7 +515,7 @@ pkg_postinst() {
 
 	fi
 
-	if ! use html ; then
+	if ! use doc-html ; then
 		ewarn "You haven't requested the html documentation."
 		ewarn "The html version of the sage manual won't be available in the sage notebook."
 	fi
