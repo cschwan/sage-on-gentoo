@@ -1,3 +1,9 @@
+*gp2c-0.0.10 (21 Jan 2017)
+
+  21 Jan 2017; François Bissey <francois.bissey@canterbury.ac.nz>
+  +gp2c-0.0.10.ebuild:
+  sci-mathematics/gp2c: version bump
+
   01 Feb 2016; François Bissey <francois.bissey@canterbury.ac.nz> metadata.xml:
   sci-mathematics/gp2c: update metatdata
 
