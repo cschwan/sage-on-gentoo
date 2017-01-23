@@ -1,4 +1,4 @@
-# Copyright 1999-2016 Gentoo Foundation
+# Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
@@ -97,10 +97,9 @@ pkg_setup() {
 src_prepare() {
 	local n PATCHES v
 	PATCHES=( emacs-0 rmaxima-0 wish-2 xdg-utils-0
-		maxima-5.38.1-0001-In-eigenvectors-iterate-over-all-eigenvalues
-		maxima-5.38.1-matrixexp
-		maxima-5.38.1-0001-taylor2-Avoid-blowing-the-stack-when-diff-expand-isn
-		maxima-5.38.1-undoing_true_false_printing_patch )
+		${PN}-5.39.0-0001-taylor2-Avoid-blowing-the-stack-when-diff-expand-isn
+		${PN}-5.39.0-matrixexp
+		${PN}-5.39.0-undoing_true_false_printing_patch )
 
 	n=${#PATCHES[*]}
 	for ((n--; n >= 0; n--)); do

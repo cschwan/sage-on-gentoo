@@ -1,4 +1,4 @@
-# Copyright 1999-2016 Gentoo Foundation
+# Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
@@ -31,16 +31,19 @@ for lang in ${LANGS}; do
 	IUSE="${IUSE} linguas_${lang}"
 done
 
-RDEPEND="X? ( x11-misc/xdg-utils
+RDEPEND="!app-emacs/imaxima
+	X? ( x11-misc/xdg-utils
 		 sci-visualization/gnuplot[gd]
 		 tk? ( dev-lang/tk:0 ) )
 	latex? ( virtual/latex-base )
 	emacs? ( virtual/emacs
-		latex? ( app-emacs/auctex ) )
+		latex? ( app-emacs/auctex
+			app-text/ghostscript-gpl
+			dev-texlive/texlive-latexrecommended ) )
 	xemacs? ( app-editors/xemacs
-		latex? ( app-emacs/auctex ) )"
-
-PDEPEND="emacs? ( app-emacs/imaxima )"
+		latex? ( app-emacs/auctex
+			app-text/ghostscript-gpl
+			dev-texlive/texlive-latexrecommended ) )"
 
 # generating lisp dependencies
 depends() {
@@ -97,7 +100,7 @@ pkg_setup() {
 
 src_prepare() {
 	local n PATCHES v
-	PATCHES=( imaxima-0 rmaxima-0 wish-1 xdg-utils-0 maxima-5.33.0-0001-taylor2-Avoid-blowing-the-stack-when-diff-expand-isn
+	PATCHES=( rmaxima-0 wish-1 xdg-utils-0 maxima-5.33.0-0001-taylor2-Avoid-blowing-the-stack-when-diff-expand-isn
 		maxima-5.34.1-matrixexp undoing_true_false_printing_patch maxima-5.35.1-stdin-illegal-seek )
 
 	n=${#PATCHES[*]}
@@ -169,7 +172,16 @@ src_install() {
 	dosym ../${PN}/${PV}/doc /usr/share/doc/${PF} || die
 
 	if use emacs; then
-		elisp-site-file-install "${FILESDIR}"/50maxima-gentoo.el || die
+		elisp-install ${PN} interfaces/emacs/{emaxima,imaxima}/*.{el,elc,lisp}
+		elisp-site-file-install "${FILESDIR}"/50maxima-gentoo-1.el
+
+		rm "${ED}"/${SITELISP}/${PN}/emaxima.sty || die
+		insinto ${TEXMF}/tex/latex/emaxima
+		doins interfaces/emacs/emaxima/emaxima.sty
+
+		insinto /usr/share/${PN}/${PV}/doc/imaxima
+		doins interfaces/emacs/imaxima/README
+		doins -r interfaces/emacs/imaxima/imath-example
 	fi
 
 	# if we use ecls, build an ecls library for maxima
