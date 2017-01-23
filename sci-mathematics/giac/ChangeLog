@@ -1,3 +1,9 @@
+*giac-1.2.3.13 (23 Jan 2017)
+
+  23 Jan 2017; François Bissey <francois.bissey@canterbury.ac.nz>
+  +giac-1.2.3.13.ebuild:
+  sci-mathematics/giac: version bump
+
 *giac-1.2.2.105 (21 Jan 2017)
 
   21 Jan 2017; François Bissey <francois.bissey@canterbury.ac.nz>
