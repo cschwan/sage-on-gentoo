@@ -1,6 +1,21 @@
 # ChangeLog for sci-mathematics/maxima
-# Copyright 1999-2016 Gentoo Foundation; Distributed under the GPL v2
+# Copyright 1999-2017 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/sci-mathematics/maxima/ChangeLog,v 1.102 2012/12/14 09:55:25 grozin Exp $
+
+*maxima-5.39.0-r1 (23 Jan 2017)
+
+  23 Jan 2017; François Bissey <francois.bissey@canterbury.ac.nz>
+  +files/50maxima-gentoo-1.el, +files/maxima-5.39.0-0001-taylor2-Avoid-blowing-t
+  he-stack-when-diff-expand-isn.patch, +files/maxima-5.39.0-matrixexp.patch,
+  +files/maxima-5.39.0-undoing_true_false_printing_patch.patch,
+  +maxima-5.39.0-r1.ebuild, -files/50maxima-gentoo.el, -files/imaxima-0.patch,
+  -files/maxima-5.38.1-0001-In-eigenvectors-iterate-over-all-eigenvalues.patch, 
+  -files/maxima-5.38.1-0001-taylor2-Avoid-blowing-the-stack-when-diff-expand-isn
+  .patch, -files/maxima-5.38.1-matrixexp.patch,
+  -files/maxima-5.38.1-undoing_true_false_printing_patch.patch,
+  -maxima-5.38.1-r1.ebuild, maxima-5.35.1-r2.ebuild:
+  sci-mathematics/maxima: new maxima - hopefully for sage 7.6. Revision for
+  5.35.1 as imaxima is masked. Not sure it works if you have emacs.
 
 *maxima-5.38.1-r1 (28 Oct 2016)
 
