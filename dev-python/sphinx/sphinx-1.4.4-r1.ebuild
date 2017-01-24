@@ -45,6 +45,7 @@ DEPEND="${RDEPEND}
 
 PATCHES=(
 	"${FILESDIR}"/${PN}-1.4.1-Makefile.patch
+	"${FILESDIR}"/${PN}-1.4.1-docutils13.patch
 	)
 
 S="${WORKDIR}/${MY_P}"
