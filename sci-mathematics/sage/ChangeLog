@@ -3,6 +3,11 @@
 # $Header: $
 
   24 Jan 2017; François Bissey <francois.bissey@canterbury.ac.nz>
+  +files/sage-7.6-env.patch, sage-9999.ebuild:
+  sci-mathematics/sage: thebe as a separate package. maxima 5.39.0 coming in -
+  hopefully.
+
+  24 Jan 2017; François Bissey <francois.bissey@canterbury.ac.nz>
   sage-7.4-r3.ebuild, sage-7.5.1.ebuild, sage-9999.ebuild:
   sci-mathematics/sage: pin sphinx for issue #450
 

@@ -23,7 +23,6 @@ fi
 DESCRIPTION="Math software for abstract and numerical computations"
 HOMEPAGE="http://www.sagemath.org"
 SRC_URI="${SRC_URI}
-	mirror://sagemath/main-built.js.xz
 	mirror://sagemath/sage-icon.tar.bz2"
 
 LANGS="ca de en fr hu it ja pt ru tr"
@@ -85,6 +84,7 @@ CDEPEND="dev-libs/gmp:0=
 	sys-libs/zlib
 	virtual/cblas
 	>=sci-mathematics/arb-2.8.1
+	www-misc/thebe
 	modular_decomposition? ( sci-libs/modular_decomposition )
 	bliss? ( >=sci-libs/bliss-0.73 )
 	libhomfly? ( >=sci-libs/libhomfly-1.0.1 )
@@ -117,7 +117,7 @@ RDEPEND="${CDEPEND}
 	>=sci-mathematics/cu2-20060223
 	>=sci-mathematics/cubex-20060128
 	>=sci-mathematics/dikcube-20070912
-	~sci-mathematics/maxima-5.35.1[ecls]
+	~sci-mathematics/maxima-5.39.0[ecls]
 	>=sci-mathematics/mcube-20051209
 	>=sci-mathematics/nauty-2.6.1
 	>=sci-mathematics/optimal-20040603
@@ -231,7 +231,7 @@ python_prepare() {
 	############################################################################
 
 	# sage on gentoo env.py
-	eapply "${FILESDIR}"/${PN}-7.4-env.patch
+	eapply "${FILESDIR}"/${PN}-7.6-env.patch
 	eprefixify sage/env.py
 	# fix library path of libSingular
 	sed -i "s:lib/libSingular:$(get_libdir)/libSingular:" \
@@ -283,9 +283,6 @@ python_prepare() {
 	############################################################################
 	# Fixes to doctests
 	############################################################################
-
-	# Move the thebe.js theme in place
-	mv "${WORKDIR}"/main-built.js doc/common/themes/sage/static/thebe.js
 
 	# fix all.py
 	eapply "${FILESDIR}"/${PN}-7.2-all.py.patch
