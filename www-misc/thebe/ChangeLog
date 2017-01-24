@@ -1,0 +1,5 @@
+*thebe-20160525 (24 Jan 2017)
+
+  24 Jan 2017; François Bissey <francois.bissey@canterbury.ac.nz> +metadata.xml,
+  +thebe-20160525.ebuild:
+  www-misc/thebe: initial commit
