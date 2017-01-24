@@ -1,4 +1,4 @@
-# Copyright 1999-2016 Gentoo Foundation
+# Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
@@ -81,7 +81,7 @@ CDEPEND="dev-libs/gmp:0=
 	bliss? ( >=sci-libs/bliss-0.73 )
 	libhomfly? ( >=sci-libs/libhomfly-1.0.1 )
 	libbraiding? ( sci-libs/libbraiding )
-	>=dev-python/sphinx-1.4.1-r3[${PYTHON_USEDEP}]"
+	=dev-python/sphinx-1.4*[${PYTHON_USEDEP}]"
 
 DEPEND="${CDEPEND}
 	pdf? ( app-text/texlive[extra,${L10N_USEDEP}] )"
