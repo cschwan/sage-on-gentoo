@@ -2,6 +2,10 @@
 # Copyright 1999-2017 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  25 Jan 2017; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-9999.ebuild:
+  sci-mathematics/sage: allow giac-1.2.3
+
   24 Jan 2017; François Bissey <francois.bissey@canterbury.ac.nz>
   +files/sage-7.6-env.patch, sage-9999.ebuild:
   sci-mathematics/sage: thebe as a separate package. maxima 5.39.0 coming in -
