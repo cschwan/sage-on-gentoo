@@ -21,10 +21,13 @@ RESTRICT="mirror"
 
 DEPEND="dev-libs/gmp:0=
 	>=sci-mathematics/flint-2.5.2-r1
+	>=sci-mathematics/singular-4.0.3_p3
 	giac? ( >=sci-mathematics/giac-1.2.2 )
 	virtual/pkgconfig
 	${PYTHON_DEPS}"
 RDEPEND="dev-libs/gmp:0=
+	>=sci-mathematics/flint-2.5.2-r1
+	>=sci-mathematics/singular-4.0.3_p3
 	giac? ( >=sci-mathematics/giac-1.2.2 )
 	${PYTHON_DEPS}"
 
