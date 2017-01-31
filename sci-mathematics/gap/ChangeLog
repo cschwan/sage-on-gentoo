@@ -1,6 +1,12 @@
 # ChangeLog for sci-mathematics/gap
-# Copyright 1999-2016 Gentoo Foundation; Distributed under the GPL v2
+# Copyright 1999-2017 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
+
+*gap-4.8.6 (31 Jan 2017)
+
+  31 Jan 2017; François Bissey <francois.bissey@canterbury.ac.nz>
+  +files/gap-4.8.6-configdir.patch, +gap-4.8.6.ebuild:
+  sci-mathematics/gap: bump for next sage?
 
   06 Aug 2016; François Bissey <francois.bissey@canterbury.ac.nz>
   -files/gap-4.7.7-testall.patch, -gap-4.7.8-r1.ebuild, -gap-4.7.8.ebuild,

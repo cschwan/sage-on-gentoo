@@ -1,0 +1,137 @@
+diff --git a/Makefile.in b/Makefile.in
+index 16d7f14..733c197 100644
+--- a/Makefile.in
++++ b/Makefile.in
+@@ -114,7 +114,7 @@ bin/$(GAPARCH)/config.status : bin/$(GAPARCH)/configure cnf/config.hin cnf/gac.i
+ 		MAKE_GMP='$(MAKE_GMP)' \
+ 		USE_GMP='$(USE_GMP)' \
+ 		GAPARCH='$(GAPARCH)' \
+-		./configure --target=@target@ @gp_configure_options@ )
++		./configure --target=@target@ @gp_configure_options@ --srcdir=../../src )
+ 
+ extern: config
+ 	( cd bin/$(GAPARCH)/extern ; \
+diff --git a/cnf/configure.in b/cnf/configure.in
+index b9f87bd..c638531 100644
+--- a/cnf/configure.in
++++ b/cnf/configure.in
+@@ -16,7 +16,7 @@ dnl ##
+ dnl ## create a config file from "config.hin"
+ dnl ##
+ 
+-AC_CONFIG_HEADER(config.h:config.hin)
++AC_CONFIG_HEADER(config.h:../../cnf/config.hin)
+ 
+ 
+ dnl #########################################################################
+@@ -387,7 +387,9 @@ AC_SUBST(CPPFLAGS)
+ AC_SUBST(LDFLAGS)
+ 
+ AC_SUBST(gapbin)
+-gapbin=`pwd`
++gapbin=$libdir/gap/bin/${GAPARCH}
++AC_SUBST(gapinc)
++gapinc=$prefix/include/gap-4.8.3
+ 
+ AC_SUBST(ABI)
+ AC_SUBST(ABI_CFLAGS)
+diff --git a/cnf/gac.in b/cnf/gac.in
+index ad60320..431f58a 100644
+--- a/cnf/gac.in
++++ b/cnf/gac.in
+@@ -67,7 +67,7 @@ else
+     gap_binary="${gap_bin}";
+ fi
+ gap_options=""
+-gap_include="${gap_dir}/src"
++gap_include=@gapinc@
+ stat_identifier="USER";
+ 
+ # These three should be filled in by the standard autoconf procedures 
+@@ -87,72 +87,7 @@ c_addlibs=""
+ # hardwire this for now. There is probably a nicer way 
+ # note: compstat.o is omitted on purpose from this list
+ 
+-OBJECTS="\
+-    ariths.o \
+-    blister.o \
+-    bool.o \
+-    c_filt1.o \
+-    c_meths1.o \
+-    c_oper1.o \
+-    c_random.o \
+-    c_type1.o \
+-    calls.o \
+-    code.o \
+-    compiler.o \
+-    costab.o \
+-    cyclotom.o \
+-    dt.o \
+-    dteval.o \
+-    exprs.o \
+-    finfield.o \
+-    funcs.o \
+-    gap.o \
+-    gasman.o \
+-    gmpints.o \
+-    gvars.o \
+-    integer.o \
+-    intfuncs.o \
+-    intrprtr.o \
+-    iostream.o \
+-    listfunc.o \
+-    listoper.o \
+-    lists.o \
+-    macfloat.o \
+-    objccoll.o \
+-    objcftl.o \
+-    objects.o \
+-    objfgelm.o \
+-    objpcgel.o \
+-    objscoll.o \
+-    opers.o \
+-    permutat.o \
+-    plist.o \
+-    pperm.o \
+-    precord.o \
+-    profile.o \
+-    range.o \
+-    rational.o \
+-    read.o \
+-    records.o \
+-    saveload.o \
+-    scanner.o \
+-    sctable.o \
+-    set.o \
+-    stats.o \
+-    streams.o \
+-    string.o \
+-    sysfiles.o \
+-    system.o \
+-    tietze.o \
+-    trans.o \
+-    vars.o \
+-    vec8bit.o \
+-    vecffe.o \
+-    vecgf2.o \
+-    vector.o \
+-    weakptr.o \
+-    @ITANIUMOBJ@
+-"
++OBJECTS="libgap.a"
+ 
+ EXTOBJS=
+ 
+diff --git a/configure.in b/configure.in
+index 1424bd9..fde7d48 100644
+--- a/configure.in
++++ b/configure.in
+@@ -52,7 +52,7 @@ BASECC=`basename ${CC}`
+ AC_SUBST(BASECC)
+ AC_PROG_MAKE_SET
+ AC_SUBST(gapdir)
+-gapdir=`pwd`
++gapdir=$libdir/gap
+ 
+ case $target_os in
+   cygwin*)
