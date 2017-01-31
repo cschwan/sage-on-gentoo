@@ -1,4 +1,4 @@
-# Copyright 1999-2016 Gentoo Foundation
+# Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
@@ -25,7 +25,7 @@ SRC_URI="mirror://pypi/${PN:0:1}/${PN}/${P}.tar.gz
 # It appears the docs haven't been upgraded, still @ 1.11.0
 LICENSE="BSD"
 SLOT="0"
-KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~hppa ~ia64 ~mips ~ppc ~ppc64 ~s390 ~sh ~sparc ~x86 ~amd64-fbsd ~x86-fbsd ~x86-freebsd ~x86-interix ~amd64-linux ~arm-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~sparc-solaris ~x64-solaris ~x86-solaris"
+KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~hppa ~ia64 ~mips ~ppc ~ppc64 ~s390 ~sh ~sparc ~x86 ~amd64-fbsd ~x86-fbsd ~amd64-linux ~arm-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~sparc-solaris ~x64-solaris ~x86-solaris"
 IUSE="doc lapack test"
 
 RDEPEND="lapack? ( virtual/cblas virtual/lapack )"
@@ -38,6 +38,10 @@ DEPEND="${RDEPEND}
 PATCHES=(
 	"${FILESDIR}"/${PN}-1.11.1-no-hardcode-blas.patch
 	"${FILESDIR}"/${PN}-1.11.0-asarray_conversion.patch
+
+	# This has been fixed upstream but no new release yet
+	# https://github.com/numpy/numpy/commit/5d0ce36e5be134bb5ead03cab1edeaa60fa355aa
+	"${FILESDIR}"/${P}-import-module-fix.patch
 )
 
 src_unpack() {
@@ -68,7 +72,7 @@ python_prepare_all() {
 	if use lapack; then
 		append-ldflags "$($(tc-getPKG_CONFIG) --libs-only-other cblas lapack)"
 		local libdir="${EPREFIX}"/usr/$(get_libdir)
-		cat >> site.cfg <<-EOF
+		cat >> site.cfg <<-EOF || die
 			[blas]
 			include_dirs = $(pc_incdir cblas)
 			library_dirs = $(pc_libdir cblas blas):${libdir}
@@ -115,14 +119,14 @@ python_prepare_all() {
 	# of being bytecode compiled as a proper subdir package.
 	# We trick the buildsystem into accepting it as a bytecode
 	# package by adding a setup.py and an empty __init__.py
-	cp numpy/{compat/setup.py,core/tests} || die
-	touch numpy/core/tests/__init__.py || die
-	sed \
-		-e 's:compat:tests:' \
-		-i numpy/core/tests/setup.py || die
-	sed \
-		-e "s:config\.add_data_dir('tests'):config\.add_subpackage('tests'):" \
-		-i numpy/core/setup.py || die
+	#cp numpy/{compat/setup.py,core/tests} || die
+	#touch numpy/core/tests/__init__.py || die
+	#sed \
+	#	-e 's:compat:tests:' \
+	#	-i numpy/core/tests/setup.py || die
+	#sed \
+	#	-e "s:config\.add_data_dir('tests'):config\.add_subpackage('tests'):" \
+	#	-i numpy/core/setup.py || die
 
 	distutils-r1_python_prepare_all
 }
