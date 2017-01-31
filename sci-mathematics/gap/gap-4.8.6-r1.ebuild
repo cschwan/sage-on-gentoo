@@ -87,7 +87,7 @@ src_install(){
 
 	dosym /usr/$(get_libdir)/${PN}/sysinfo.gap /etc/sysinfo.gap
 
-	insinto /usr/include/gap-${PV}
+	insinto /usr/include/gap
 	doins src/*.h
 
 	dodoc CITATION CONTRIBUTING.md README.md
