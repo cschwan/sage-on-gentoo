@@ -107,13 +107,12 @@ sci-mathematics/flintqs
 ~sci-mathematics/flint-2.4.5
 ~sci-mathematics/flint-2.5.2
 ~sci-mathematics/gap-4.8.3
-=sci-mathematics/giac-1.2.2*
+=sci-mathematics/giac-1.2*
 dev-gap/GAPDoc
 >=sci-mathematics/glpk-4.54
 >=sci-mathematics/lcalc-1.23-r6
 sci-mathematics/lrcalc
-~sci-mathematics/maxima-5.35.1::sage-on-gentoo
-#~sci-mathematics/maxima-5.38.1::sage-on-gentoo
+~sci-mathematics/maxima-5.39.0::sage-on-gentoo
 sci-mathematics/mcube
 sci-mathematics/optimal
 sci-mathematics/palp
@@ -135,6 +134,7 @@ sci-mathematics/rw
 =sci-mathematics/singular-4.1*
 sci-mathematics/sympow
 ~www-servers/tornado-3.1.1
+www-misc/thebe
 ##########################
 # optional dependencies
 ##########################

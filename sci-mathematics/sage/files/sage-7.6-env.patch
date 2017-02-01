@@ -1,0 +1,66 @@
+diff -Naur src.orig/sage/env.py src/sage/env.py
+--- src.orig/sage/env.py	2017-01-24 21:23:08.461064635 +1300
++++ src/sage/env.py	2017-01-24 21:29:53.204068143 +1300
+@@ -89,13 +89,11 @@
+ _add_variable_or_fallback('LOCAL_IDENTIFIER','$HOSTNAME.%s'%os.getpid())
+ 
+ # bunch of sage directories and files
+-_add_variable_or_fallback('SAGE_ROOT',       None)
+-_add_variable_or_fallback('SAGE_LOCAL',      None)
+-_add_variable_or_fallback('SAGE_ETC',        opj('$SAGE_LOCAL', 'etc'))
+-_add_variable_or_fallback('SAGE_INC',        opj('$SAGE_LOCAL', 'include'))
+-_add_variable_or_fallback('SAGE_SHARE',      opj('$SAGE_LOCAL', 'share'))
+-
+-_add_variable_or_fallback('SAGE_SRC',        opj('$SAGE_ROOT', 'src'))
++_add_variable_or_fallback('SAGE_ROOT',       opj('@GENTOO_PORTAGE_EPREFIX@/usr', 'share', 'sage'))
++_add_variable_or_fallback('SAGE_LOCAL',      opj('@GENTOO_PORTAGE_EPREFIX@/usr'))
++_add_variable_or_fallback('SAGE_ETC',        opj('@GENTOO_PORTAGE_EPREFIX@/etc'))
++_add_variable_or_fallback('SAGE_INC',        opj('@GENTOO_PORTAGE_EPREFIX@/usr', 'include'))
++_add_variable_or_fallback('SAGE_SHARE',      opj('$SAGE_LOCAL', 'share', 'sage'))
+ 
+ try:
+     sitepackages_dirs = site.getsitepackages()
+@@ -106,20 +104,14 @@
+ 
+ _add_variable_or_fallback('SAGE_LIB',        SITE_PACKAGES[0])
+ 
+-_add_variable_or_fallback('SAGE_CYTHONIZED', opj('$SAGE_ROOT', 'src', 'build', 'cythonized'))
+-
+-# Used by sage/misc/package.py.  Should be SAGE_SRC_ROOT in VPATH.
+-_add_variable_or_fallback('SAGE_PKGS', opj('$SAGE_ROOT', 'build', 'pkgs'))
++_add_variable_or_fallback('SAGE_SRC',        opj('$SAGE_LIB'))
+ 
++_add_variable_or_fallback('SAGE_CYTHONIZED', opj('$SAGE_SRC', 'build', 'cythonized'))
+ 
+-_add_variable_or_fallback('SAGE_EXTCODE',    opj('$SAGE_SHARE', 'sage', 'ext'))
+-_add_variable_or_fallback('SAGE_LOGS',       opj('$SAGE_ROOT', 'logs', 'pkgs'))
+-_add_variable_or_fallback('SAGE_SPKG_INST',  opj('$SAGE_LOCAL', 'var', 'lib', 'sage', 'installed'))
+-_add_variable_or_fallback('SAGE_DOC_SRC',    opj('$SAGE_SRC', 'doc'))
+-_add_variable_or_fallback('SAGE_DOC',        opj('$SAGE_SHARE', 'doc', 'sage'))
++_add_variable_or_fallback('SAGE_EXTCODE',    opj('$SAGE_SHARE', 'ext'))
++_add_variable_or_fallback('SAGE_DOC',        opj('$SAGE_LOCAL', 'share', 'doc', 'sage'))
++_add_variable_or_fallback('SAGE_DOC_SRC',    opj('$SAGE_DOC'))
+ _add_variable_or_fallback('DOT_SAGE',        opj(os.environ.get('HOME','$SAGE_ROOT'), '.sage'))
+-_add_variable_or_fallback('SAGE_DOT_GIT',    opj('$SAGE_ROOT', '.git'))
+-_add_variable_or_fallback('SAGE_DISTFILES',  opj('$SAGE_ROOT', 'upstream'))
+ 
+ # misc
+ _add_variable_or_fallback('SAGE_URL',                'http://sage.math.washington.edu/sage/')
+@@ -137,8 +129,7 @@
+ _add_variable_or_fallback('GRAPHS_DATA_DIR',  opj('$SAGE_SHARE','graphs'))
+ _add_variable_or_fallback('ELLCURVE_DATA_DIR',opj('$SAGE_SHARE','ellcurves'))
+ _add_variable_or_fallback('POLYTOPE_DATA_DIR',opj('$SAGE_SHARE','reflexive_polytopes'))
+-_add_variable_or_fallback('GAP_ROOT_DIR',     opj('$SAGE_LOCAL','gap','latest'))
+-_add_variable_or_fallback('THEBE_DIR',        opj('$SAGE_SHARE','thebe'))
++_add_variable_or_fallback('THEBE_DIR',        opj('$SAGE_LOCAL','share','thebe'))
+ 
+ # locate singular shared object
+ if UNAME[:6] == "CYGWIN":
+@@ -181,7 +172,6 @@
+     del _uname, re
+ 
+ # things that need DOT_SAGE
+-_add_variable_or_fallback('PYTHON_EGG_CACHE',   opj('$DOT_SAGE', '.python-eggs'))
+ _add_variable_or_fallback('SAGE_STARTUP_FILE',  opj('$DOT_SAGE', 'init.sage'))
+ 
+ # delete temporary variables used for setting up sage.env
