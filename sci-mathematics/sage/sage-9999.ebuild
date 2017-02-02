@@ -286,6 +286,13 @@ python_prepare() {
 	# Fixes to doctests
 	############################################################################
 
+	# boost 1.62 leads to different results when used in polybori
+	# Using debian patch
+	# https://anonscm.debian.org/cgit/debian-science/packages/sagemath.git/tree/debian/patches/u1-version-pbori-boost1.62-hashes.patch
+	if has_version ">=dev-libs/boost-1.62.0" ; then
+		eapply "${FILESDIR}"/pbori-boost1.62-hashes.patch
+	fi
+
 	# fix all.py
 	eapply "${FILESDIR}"/${PN}-7.2-all.py.patch
 	sed -i \

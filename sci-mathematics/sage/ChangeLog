@@ -2,6 +2,14 @@
 # Copyright 1999-2017 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*sage-7.5.1-r1 (02 Feb 2017)
+
+  02 Feb 2017; François Bissey <francois.bissey@canterbury.ac.nz>
+  +files/pbori-boost1.62-hashes.patch, +sage-7.5.1-r1.ebuild,
+  -sage-7.5.1.ebuild, sage-9999.ebuild:
+  sci-mathematics/sage: boost 1.62 change the results of some tests in pbory.
+  Adopt debian's patch.
+
   27 Jan 2017; François Bissey <francois.bissey@canterbury.ac.nz>
   sage-9999.ebuild:
   sci-mathematics/sage: finishing touch for #20729
