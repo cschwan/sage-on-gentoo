@@ -2,6 +2,12 @@
 # Copyright 1999-2017 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*pynac-0.7.4 (05 Feb 2017)
+
+  05 Feb 2017; François Bissey <francois.bissey@canterbury.ac.nz>
+  +files/PR230.patch, +pynac-0.7.4.ebuild:
+  sci-libs/pynac: new pynac comming for the next beta.
+
   25 Jan 2017; François Bissey <francois.bissey@canterbury.ac.nz>
   pynac-0.7.3-r1.ebuild:
   sci-libs/pynac: fix issue #453
