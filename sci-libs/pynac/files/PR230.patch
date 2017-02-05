@@ -1,0 +1,20 @@
+From 16ee53047f57a9aeec1d77e846650d28bfbe266c Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Fran=C3=A7ois=20Bissey?= <francois.bissey@canterbury.ac.nz>
+Date: Mon, 6 Feb 2017 11:41:04 +1300
+Subject: [PATCH] Add libgiac to pynac.pc
+
+---
+ pynac.pc.in | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/pynac.pc.in b/pynac.pc.in
+index b3ce225..6dccd02 100644
+--- a/pynac.pc.in
++++ b/pynac.pc.in
+@@ -7,5 +7,5 @@ Name: pynac
+ Description: C++/Python library for symbolic calculations
+ Version: @VERSION@
+ Requires: python-@PYTHON_VERSION@ factory
+-Libs: -L${libdir} -lpynac -lflint -lgmp
++Libs: -L${libdir} -lpynac @LIBGIAC@ -lflint -lgmp
+ Cflags: -I${includedir}
