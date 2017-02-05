@@ -38,6 +38,7 @@ DEPEND="${RDEPEND}
 
 PATCHES=(
 	"${FILESDIR}"/${PN}-1.2.2-gsl_lapack.patch
+	"${FILESDIR}"/${PN}-1.2.3-pari_threads.patch
 	)
 
 S="${WORKDIR}/${PN}-${MY_PV}"
