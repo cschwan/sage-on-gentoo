@@ -1,3 +1,7 @@
+  05 Feb 2017; François Bissey <francois.bissey@canterbury.ac.nz>
+  +files/giac-1.2.3-pari_threads.patch, giac-1.2.3.13.ebuild:
+  sci-mathematics/giac: prepare for pari with threads
+
 *giac-1.2.3.13 (23 Jan 2017)
 
   23 Jan 2017; François Bissey <francois.bissey@canterbury.ac.nz>
