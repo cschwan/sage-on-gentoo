@@ -87,7 +87,9 @@ src_install(){
 
 	dosym /usr/$(get_libdir)/${PN}/sysinfo.gap /etc/sysinfo.gap
 
-	insinto /usr/include/gap
+	# install the header in 'gap-system'
+	# libgap installs its header into 'gap' and they would collide
+	insinto /usr/include/gap-system
 	doins src/*.h
 
 	dodoc CITATION CONTRIBUTING.md README.md

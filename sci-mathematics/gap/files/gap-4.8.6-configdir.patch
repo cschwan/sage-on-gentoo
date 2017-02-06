@@ -31,7 +31,7 @@ index b9f87bd..c638531 100644
 -gapbin=`pwd`
 +gapbin=$libdir/gap/bin/${GAPARCH}
 +AC_SUBST(gapinc)
-+gapinc=$prefix/include/gap
++gapinc=$prefix/include/gap-system
  
  AC_SUBST(ABI)
  AC_SUBST(ABI_CFLAGS)
