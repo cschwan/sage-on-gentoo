@@ -2,6 +2,15 @@
 # Copyright 1999-2017 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*gap-4.8.6-r3 (06 Feb 2017)
+
+  06 Feb 2017; François Bissey <francois.bissey@canterbury.ac.nz>
+  +files/gap-4.8.6-no_default_package.patch, +gap-4.8.6-r3.ebuild,
+  -gap-4.8.6-r2.ebuild:
+  sci-mathematics/gap: Adopted sage patch to remove a list of package loaded by
+  default. It is fatal when starting gap in sage. The only workaround would be
+  to make  sure all are available and installed at run time.
+
 *gap-4.8.6-r2 (06 Feb 2017)
 
   06 Feb 2017; François Bissey <francois.bissey@canterbury.ac.nz>

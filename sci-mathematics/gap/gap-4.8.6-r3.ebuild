@@ -34,6 +34,7 @@ PDEPEND="dev-gap/GAPDoc"
 PATCHES=(
 	"${FILESDIR}"/${PN}-4.5.7-writeandcheck.patch
 	"${FILESDIR}"/${PN}-4.8.6-configdir.patch
+	"${FILESDIR}"/${PN}-4.8.6-no_default_package.patch
 	)
 
 src_prepare(){
