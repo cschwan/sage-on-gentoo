@@ -4,3 +4,7 @@ sci-mathematics/ecm
 # testing only
 # Work in progress it doesn't like being installed in a root location
 #dev-gap/atlasrep
+# Masking latest revision of pari
+# new soname is pari-gmp-tls.so.5 and will break things.
+# Need some thought on slot or upstream soname.
+=sci-mathematics/pari-2.9.1-r1
