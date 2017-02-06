@@ -2,6 +2,10 @@
 # Copyright 1999-2017 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/sci-mathematics/maxima/ChangeLog,v 1.102 2012/12/14 09:55:25 grozin Exp $
 
+  06 Feb 2017; François Bissey <francois.bissey@canterbury.ac.nz>
+  maxima-5.35.1-r2.ebuild:
+  sci-mathematics/maxima: backporting more emacs bit from 5.39.0 to 5.35.1
+
 *maxima-5.39.0-r1 (23 Jan 2017)
 
   23 Jan 2017; François Bissey <francois.bissey@canterbury.ac.nz>

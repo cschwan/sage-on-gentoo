@@ -151,6 +151,19 @@ src_configure() {
 	econf ${CONFS} --enable-sys-proclaim $(use_with tk wish) --with-lispdir="${SITELISP}"/${PN}
 }
 
+src_compile() {
+	emake
+	if use emacs; then
+		pushd interfaces/emacs/emaxima > /dev/null
+		elisp-compile *.el
+		popd > /dev/null
+		pushd interfaces/emacs/imaxima > /dev/null
+		BYTECOMPFLAGS="-L . -L ../emaxima"
+		elisp-compile *.el
+		popd > /dev/null
+	fi
+}
+
 src_install() {
 	docompress -x /usr/share/info
 	emake DESTDIR="${D}" emacsdir="${EPREFIX}/${SITELISP}/${PN}" install
