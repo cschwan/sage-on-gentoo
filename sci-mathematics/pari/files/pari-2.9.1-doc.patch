@@ -1,14 +1,23 @@
 diff --git a/config/DOC_Make.SH b/config/DOC_Make.SH
-index 37b1ed5..bee3b56 100644
+index 37b1ed5..3242036 100644
 --- a/config/DOC_Make.SH
 +++ b/config/DOC_Make.SH
-@@ -59,34 +59,34 @@ libpari.pdf: \$(PARI_TEX) \$(MACROS)
+@@ -55,38 +55,41 @@ paricfg.tex: paricfg.tex.in
+ %.dvi: %.tex \$(MACROS)
+ 	\$(TEX) \$<
+ 
+-libpari.pdf: \$(PARI_TEX) \$(MACROS)
++# libpari needs to be able to find users.aux for possible cross-referencing
++# with the user manual. We ensure it is available by adding users.{dvi,pdf}
++# to the libpari.{dvi,pdf} dependencies.
++libpari.pdf: \$(PARI_TEX) users.pdf \$(MACROS)
  	-rm -f libpari.std
  	\$(PDFTEX) libpari
  	\$(PDFTEX) libpari
 -	make libpari.std; \$(PDFTEX) libpari; rm -f libpari.std
+-libpari.dvi: \$(PARI_TEX) \$(MACROS)
 +	\$(MAKE) libpari.std; \$(PDFTEX) libpari; rm -f libpari.std
- libpari.dvi: \$(PARI_TEX) \$(MACROS)
++libpari.dvi: \$(PARI_TEX) users.dvi \$(MACROS)
  	-rm -f libpari.std
  	\$(TEX) libpari
  	\$(TEX) libpari
@@ -43,7 +52,7 @@ index 37b1ed5..bee3b56 100644
  
  tutorial.pdf: tutorial.tex \$(MACROS)
  	-rm -f tutorial.std
-@@ -108,13 +108,13 @@ users.dvi: \$(USERS_TEX)
+@@ -108,13 +111,13 @@ users.dvi: \$(USERS_TEX)
  	-rm -f users.std
  	\$(TEX) users
  	\$(TEX) users
