@@ -1,4 +1,4 @@
-# Copyright 1999-2016 Gentoo Foundation
+# Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
@@ -30,8 +30,7 @@ DEPEND="${RDEPEND}
 PATCHES=(
 	"${FILESDIR}"/${PN}-2.3.2-strip.patch
 	"${FILESDIR}"/${PN}-2.3.2-ppc-powerpc-arch-fix.patch
-	"${FILESDIR}"/${PN}-2.9.0-doc-make.patch
-	"${FILESDIR}"/${PN}-2.9.0-doc_libpari.patch
+	"${FILESDIR}"/${PN}-2.9.1-doc.patch
 	"${FILESDIR}"/${PN}-2.9.0-no-automagic.patch
 	"${FILESDIR}"/${PN}-2.9.0-rpath_reduction.patch
 	"${FILESDIR}"/${PN}-2.9.0-stackwarn.patch
