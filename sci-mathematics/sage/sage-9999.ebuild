@@ -299,6 +299,14 @@ python_prepare() {
 		-e "s:\"lib\",\"python\":\"$(get_libdir)\",\"${EPYTHON}\":" \
 		-e "s:\"bin\":\"lib\",\"python-exec\",\"${EPYTHON}\":" sage/all.py
 
+	# Test looking for "/usr/bin/env python" when we are using python-exec
+	sed -i \
+		-e "s:env python:python-exec2c:" sage/tests/cmdline.py
+
+	# Test looking for "python"
+	sed -i \
+		-e "s:/python:/${EPYTHON}:" sage/misc/gperftools.py
+
 	# do not test safe python stuff from trac 13579. Needs to be applied after neutering.
 	eapply "${FILESDIR}"/${PN}-7.3-safepython.patch
 
