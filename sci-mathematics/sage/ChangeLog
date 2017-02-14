@@ -2,6 +2,14 @@
 # Copyright 1999-2017 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  13 Feb 2017; François Bissey <francois.bissey@canterbury.ac.nz>
+  +files/sage-7.6-cython-example.patch, sage-9999.ebuild:
+  sci-mathematics/sage: fix the cython doctest by doing things right.
+
+  13 Feb 2017; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-9999.ebuild:
+  sci-mathematics/sage: fix some trivial doctest
+
   06 Feb 2017; François Bissey <francois.bissey@canterbury.ac.nz>
   sage-9999.ebuild:
   sci-mathematics/sage: dependencies for new snapshot
