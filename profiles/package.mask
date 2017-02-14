@@ -7,4 +7,4 @@ sci-mathematics/ecm
 # Masking latest revision of pari
 # new soname is pari-gmp-tls.so.5 and will break things.
 # Need some thought on slot or upstream soname.
-=sci-mathematics/pari-2.9.1-r1
+>=sci-mathematics/pari-2.9.1-r100
