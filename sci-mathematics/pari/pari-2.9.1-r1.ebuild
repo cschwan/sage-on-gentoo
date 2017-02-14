@@ -14,7 +14,7 @@ SRC_URI="http://pari.math.u-bordeaux.fr/pub/pari/unix/${PN}-${MY_PV}.tar.gz"
 LICENSE="GPL-2"
 SLOT="0/5"
 KEYWORDS="~alpha ~amd64 ~hppa ~mips ~ppc ~ppc64 ~sparc ~x86 ~amd64-linux ~x86-fbsd ~x86-linux ~x86-macos ~x86-solaris"
-IUSE="data doc fltk gmp qt4 threads X"
+IUSE="data doc fltk gmp qt4 X"
 
 RDEPEND="
 	sys-libs/readline:0=
@@ -34,6 +34,7 @@ PATCHES=(
 	"${FILESDIR}"/${PN}-2.9.0-no-automagic.patch
 	"${FILESDIR}"/${PN}-2.9.0-rpath_reduction.patch
 	"${FILESDIR}"/${PN}-2.9.0-stackwarn.patch
+	"${FILESDIR}"/${PN}-2.9.1-dilog_prec.patch
 	)
 
 S="${WORKDIR}"/${PN}-${MY_PV}
@@ -79,11 +80,6 @@ src_configure() {
 		append-flags -O2
 	fi
 
-	local mt_threads=""
-	if use threads ; then
-		mt_threads="--mt=pthread"
-	fi
-
 	# sysdatadir installs a pari.cfg stuff which is informative only
 	./Configure \
 		--prefix="${EPREFIX}"/usr \
@@ -97,7 +93,6 @@ src_configure() {
 		$(use_with fltk) \
 		$(use_with gmp) \
 		$(use_with qt4 qt) \
-		${mt_threads} \
 		|| die "./Configure failed"
 }
 
