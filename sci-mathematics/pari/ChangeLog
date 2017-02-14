@@ -2,6 +2,14 @@
 # Copyright 1999-2017 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/sci-mathematics/pari/ChangeLog,v 1.87 2012/03/06 17:06:06 bicatali Exp $
 
+*pari-2.9.1-r100 (14 Feb 2017)
+
+  14 Feb 2017; François Bissey <francois.bissey@canterbury.ac.nz>
+  +files/pari-2.9.1-dilog_prec.patch, +pari-2.9.1-r100.ebuild,
+  -pari-2.9.1.ebuild, pari-2.9.1-r1.ebuild:
+  sci-mathematics/pari: Include upstream fix https://pari.math.u-bordeaux.fr
+  /cgi-bin/bugreport.cgi?bug=1895
+
   12 Feb 2017; François Bissey <francois.bissey@canterbury.ac.nz>
   +files/pari-2.9.1-doc.patch, -files/pari-2.9.0-doc-make.patch,
   -files/pari-2.9.0-doc_libpari.patch, pari-2.9.1-r1.ebuild, pari-2.9.1.ebuild:
