@@ -1,10 +1,10 @@
-# Copyright 1999-2015 Gentoo Foundation
+# Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
-EAPI="5"
+EAPI=6
 
-inherit eutils toolchain-funcs
+inherit flag-o-matic toolchain-funcs
 
 DESCRIPTION="Computes special values of symmetric power elliptic curve L-functions"
 HOMEPAGE="http://www.sagemath.org"
@@ -12,7 +12,7 @@ SRC_URI="mirror://sageupstream/${PN}/${P}.tar.bz2"
 
 LICENSE="BSD"
 SLOT="0"
-KEYWORDS="~amd64 ~x86 ~amd64-linux ~x86-linux ~x64-macos"
+KEYWORDS="~amd64 ~x86 ~amd64-linux ~x86-linux ~x64-macos ~ppc64"
 IUSE=""
 
 RESTRICT="mirror"
@@ -20,11 +20,25 @@ RESTRICT="mirror"
 DEPEND=""
 RDEPEND=">=sci-mathematics/pari-2.5.0"
 
-src_prepare() {
-	local sharedir="${EPREFIX}"/usr/share/sympow
+PATCHES=(
+	"${FILESDIR}"/execlp.patch
+	"${FILESDIR}"/fpu.patch
+	)
 
-	epatch "${FILESDIR}"/execlp.patch
-	epatch "${FILESDIR}"/fpu.patch
+pkg_setup(){
+	# sympow doen't work with fma instructions.
+	# Add flags to suppress them if available.
+	if test-flag-CC -ffp-contract=on ; then
+		append-cflags -ffp-contract=on
+	else
+		append-cflags $(test-flags-CC -mno-fused-madd)
+	fi
+}
+
+src_prepare() {
+	default
+
+	local sharedir="${EPREFIX}"/usr/share/sympow
 
 	# fix paths for gp scripts
 	sed -i "s:standard\([123]\).gp:${sharedir}/standard\1.gp:g" generate.c \
