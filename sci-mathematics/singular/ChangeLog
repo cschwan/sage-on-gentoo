@@ -2,6 +2,12 @@
 # Copyright 1999-2017 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/sci-mathematics/singular/ChangeLog,v 1.53 2012/06/23 10:50:20 xarthisius Exp $
 
+*singular-4.1.0_p2 (25 Feb 2017)
+
+  25 Feb 2017; François Bissey <francois.bissey@canterbury.ac.nz>
+  +singular-4.1.0_p2.ebuild:
+  sci-mathematics/singular: Version bump
+
   21 Jan 2017; François Bissey <francois.bissey@canterbury.ac.nz>
   -files/60singular-gentoo.el, -files/singular-3.0.4.4-nostrip.patch,
   -files/singular-3.1.0-emacs-22.patch, -files/singular-3.1.0-gentoo.patch,
