@@ -2,6 +2,10 @@
 # Copyright 1999-2017 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  25 Feb 2017; François Bissey <francois.bissey@canterbury.ac.nz>
+  sage-7.5.1-r1.ebuild, sage-9999.ebuild:
+  sci-mathematics/sage: pin singular version
+
   13 Feb 2017; François Bissey <francois.bissey@canterbury.ac.nz>
   +files/sage-7.6-cython-example.patch, sage-9999.ebuild:
   sci-mathematics/sage: fix the cython doctest by doing things right.
