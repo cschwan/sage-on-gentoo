@@ -1,3 +1,9 @@
+*ExportSageNB-3.0 (26 Feb 2017)
+
+  26 Feb 2017; François Bissey <francois.bissey@canterbury.ac.nz>
+  +ExportSageNB-3.0.ebuild, -ExportSageNB-2.0.ebuild:
+  sci-mathematics/ExportSageNB: version bump
+
 *ExportSageNB-2.0 (29 Jul 2016)
 
   29 Jul 2016; François Bissey <francois.bissey@canterbury.ac.nz>
