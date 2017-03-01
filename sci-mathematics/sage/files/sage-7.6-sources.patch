@@ -1,0 +1,102 @@
+diff -Naur src.orig/sage/doctest/sources.py src/sage/doctest/sources.py
+--- src.orig/sage/doctest/sources.py	2016-10-21 22:46:14.494482307 +1300
++++ src/sage/doctest/sources.py	2016-10-21 22:46:36.604534894 +1300
+@@ -32,7 +32,7 @@
+ from .parsing import SageDocTestParser
+ from .util import NestedName
+ from sage.structure.dynamic_class import dynamic_class
+-from sage.env import SAGE_SRC, SAGE_LOCAL
++from sage.env import SAGE_SRC, SAGE_LOCAL, SAGE_LIB
+ 
+ # Python file parsing
+ triple_quotes = re.compile("\s*[rRuU]*((''')|(\"\"\"))")
+@@ -85,7 +85,7 @@
+     # If the file is in the sage library, we can use our knowledge of
+     # the directory structure
+     dev = SAGE_SRC
+-    sp = os.path.join(SAGE_LOCAL, 'lib', 'python', 'site-packages')
++    sp = SAGE_LIB
+     if path.startswith(dev):
+         # there will be a branch name
+         i = path.find(os.path.sep, len(dev))
+diff -Naur src.orig/sage_setup/docbuild/__init__.py src/sage_setup/docbuild/__init__.py
+--- src.orig/sage_setup/docbuild/__init__.py	2016-10-21 22:46:14.564482474 +1300
++++ src/sage_setup/docbuild/__init__.py	2016-10-21 22:46:36.604534894 +1300
+@@ -24,7 +24,7 @@
+ from sage.misc.misc import sage_makedirs
+ from sage.env import SAGE_DOC_SRC, SAGE_DOC, SAGE_SRC
+ 
+-from .build_options import (LANGUAGES, SPHINXOPTS, PAPER, OMIT,
++from sage_setup.docbuild.build_options import (LANGUAGES, SPHINXOPTS, PAPER, OMIT,
+      PAPEROPTS, ALLSPHINXOPTS, NUM_THREADS, WEBSITESPHINXOPTS,
+      INCREMENTAL_BUILD, ABORT_ON_ERROR)
+ 
+diff -Naur src.orig/sage_setup/docbuild/__main__.py src/sage_setup/docbuild/__main__.py
+--- src.orig/sage_setup/docbuild/__main__.py	2016-10-21 22:46:14.564482474 +1300
++++ src/sage_setup/docbuild/__main__.py	2016-10-21 22:46:36.614534915 +1300
+@@ -1,20 +1,2 @@
+-from . import main
++from sage_setup.docbuild import main
+ main()
+-
+-# Remove old documentation
+-import os
+-from sage.env import SAGE_DOC_SRC, SAGE_DOC
+-old_doc = os.path.join(SAGE_DOC_SRC, "output")
+-
+-if os.path.exists(old_doc):
+-    try:
+-        os.unlink(old_doc)
+-    except OSError:
+-        from shutil import rmtree
+-        rmtree(old_doc)
+-
+-# Add symlink ouput -> . inside SAGE_DOC (for backwards compatibility)
+-try:
+-    os.symlink(".", os.path.join(SAGE_DOC, "output"))
+-except OSError:
+-    pass
+diff -Naur src.orig/sage_setup/find.py src/sage_setup/find.py
+--- src.orig/sage_setup/find.py	2016-10-21 22:46:14.564482474 +1300
++++ src/sage_setup/find.py	2016-10-21 22:46:36.614534915 +1300
+@@ -113,7 +113,7 @@
+         cydir = os.path.join(cythonized_dir, dir)
+ 
+         files = [os.path.join(sdir, f) for f in os.listdir(sdir)
+-                if f.endswith((".pxd", ".pxi")) or f in special_filenames]
++                if f.endswith((".pxd", ".pxi", ".pyx", ".rst")) or f in special_filenames]
+         if os.path.isdir(cydir):  # Not every directory contains Cython files
+             files += [os.path.join(cydir, f) for f in os.listdir(cydir)
+                     if f.endswith(".h")]
+diff -Naur src.orig/setup.py src/setup.py
+--- src.orig/setup.py	2016-10-21 22:46:14.464482236 +1300
++++ src/setup.py	2016-10-21 22:56:09.515905186 +1300
+@@ -659,7 +659,7 @@
+ t = time.time()
+ from sage_setup.find import find_python_sources
+ python_packages, python_modules = find_python_sources(
+-    SAGE_SRC, ['sage', 'sage_setup'])
++    SAGE_SRC, ['sage'])
+ 
+ log.info('python_packages = {0}'.format(python_packages))
+ 
+@@ -674,10 +674,6 @@
+     def run(self):
+         install.run(self)
+         self.install_kernel_spec()
+-        log.warn('Cleaning up stale installed files....')
+-        t = time.time()
+-        self.clean_stale_files()
+-        log.warn('Finished cleaning, time: %.2f seconds.' % (time.time() - t))
+ 
+     def install_kernel_spec(self):
+         """
+@@ -688,7 +684,7 @@
+             The files are generated, not copied. Therefore, we cannot
+             use ``data_files`` for this.
+         """
+-        from sage.repl.ipython_kernel.install import SageKernelSpec
++        from sage_setup.jupyter.install import SageKernelSpec
+         SageKernelSpec.update()
+ 
+     def clean_stale_files(self):
