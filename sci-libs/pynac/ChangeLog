@@ -2,6 +2,12 @@
 # Copyright 1999-2017 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*pynac-0.7.5-r1 (01 Mar 2017)
+
+  01 Mar 2017; François Bissey <francois.bissey@canterbury.ac.nz>
+  +files/Issue231.patch, +pynac-0.7.5-r1.ebuild, -pynac-0.7.5.ebuild:
+  sci-libs/pynac: Include fix for upstream issue 231/ sage trac #22421
+
 *pynac-0.7.5 (16 Feb 2017)
 
   16 Feb 2017; François Bissey <francois.bissey@canterbury.ac.nz>
