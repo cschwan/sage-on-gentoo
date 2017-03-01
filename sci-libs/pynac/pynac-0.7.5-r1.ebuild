@@ -33,6 +33,10 @@ RDEPEND="dev-libs/gmp:0=
 
 DOCS=( AUTHORS NEWS README )
 
+PATCHES=(
+	"${FILESDIR}"/Issue231.patch
+	)
+
 pkg_setup(){
 	python_setup
 }
