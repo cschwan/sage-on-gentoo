@@ -1,3 +1,9 @@
+*python-2.7.13-r100 (01 Mar 2017)
+
+  01 Mar 2017; François Bissey <francois.bissey@canterbury.ac.nz>
+  +python-2.7.13-r100.ebuild:
+  dev-lang/python: bump to match main tree
+
   23 Nov 2016; François Bissey <francois.bissey@canterbury.ac.nz>
   python-2.7.12-r100.ebuild:
   dev-lang/python: sync with main tree, now stable
