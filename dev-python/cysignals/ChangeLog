@@ -1,3 +1,8 @@
+  02 Mar 2017; François Bissey <francois.bissey@canterbury.ac.nz>
+  cysignals-1.1.1-r1.ebuild, cysignals-1.4.0.ebuild, cysignals-9999.ebuild:
+  Removal of "$Id", clean up of some useless ebuild, fixing a few fatal QA
+  overlay wide, fixing python3_6 QA arising.
+
 *cysignals-1.4.0 (22 Nov 2016)
 
   22 Nov 2016; François Bissey <francois.bissey@canterbury.ac.nz>

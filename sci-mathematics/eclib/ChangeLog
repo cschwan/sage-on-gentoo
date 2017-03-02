@@ -2,6 +2,11 @@
 # Copyright 1999-2017 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  02 Mar 2017; François Bissey <francois.bissey@canterbury.ac.nz>
+  eclib-20160720.ebuild, eclib-20170104.ebuild, eclib-20170122.ebuild:
+  Removal of "$Id", clean up of some useless ebuild, fixing a few fatal QA
+  overlay wide, fixing python3_6 QA arising.
+
 *eclib-20170122 (14 Feb 2017)
 
   14 Feb 2017; François Bissey <francois.bissey@canterbury.ac.nz>

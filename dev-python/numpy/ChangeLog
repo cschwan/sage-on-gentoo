@@ -1,3 +1,8 @@
+  02 Mar 2017; François Bissey <francois.bissey@canterbury.ac.nz>
+  numpy-1.10.4.ebuild, numpy-1.11.2-r1.ebuild:
+  Removal of "$Id", clean up of some useless ebuild, fixing a few fatal QA
+  overlay wide, fixing python3_6 QA arising.
+
 *numpy-1.11.2-r1 (31 Jan 2017)
 
   31 Jan 2017; François Bissey <francois.bissey@canterbury.ac.nz>

@@ -1,3 +1,8 @@
+  02 Mar 2017; François Bissey <francois.bissey@canterbury.ac.nz>
+  libgap-4.8.3.ebuild, libgap-4.8.6.ebuild:
+  Removal of "$Id", clean up of some useless ebuild, fixing a few fatal QA
+  overlay wide, fixing python3_6 QA arising.
+
 *libgap-4.8.6 (06 Feb 2017)
 
   06 Feb 2017; François Bissey <francois.bissey@canterbury.ac.nz>

@@ -1,6 +1,5 @@
 # Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id$
 
 EAPI=6
 
@@ -40,7 +39,7 @@ DEPEND="${RDEPEND}
 	test? (
 		dev-python/nose[${PYTHON_USEDEP}]
 		$(python_gen_cond_dep 'dev-python/mock[${PYTHON_USEDEP}]' python2_7 pypy)
-		dev-python/typing[${PYTHON_USEDEP}]
+		$(python_gen_cond_dep 'dev-python/typing[${PYTHON_USEDEP}]' 'pypy*' 'python2*' python3_4 )
 	)"
 
 PATCHES=(

@@ -2,6 +2,11 @@
 # Copyright 1999-2017 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  02 Mar 2017; François Bissey <francois.bissey@canterbury.ac.nz>
+  gap-4.8.3-r2.ebuild, gap-4.8.6-r3.ebuild:
+  Removal of "$Id", clean up of some useless ebuild, fixing a few fatal QA
+  overlay wide, fixing python3_6 QA arising.
+
 *gap-4.8.6-r3 (06 Feb 2017)
 
   06 Feb 2017; François Bissey <francois.bissey@canterbury.ac.nz>

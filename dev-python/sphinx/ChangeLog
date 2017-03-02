@@ -2,6 +2,11 @@
 # Copyright 1999-2017 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/dev-python/sphinx/ChangeLog,v 1.175 2014/11/02 09:18:55 ago Exp $
 
+  02 Mar 2017; François Bissey <francois.bissey@canterbury.ac.nz>
+  sphinx-1.4.4-r1.ebuild:
+  Removal of "$Id", clean up of some useless ebuild, fixing a few fatal QA
+  overlay wide, fixing python3_6 QA arising.
+
   31 Jan 2017; François Bissey <francois.bissey@canterbury.ac.nz>
   sphinx-1.4.4-r1.ebuild:
   dev-python/sphinx: drop retired keywords
