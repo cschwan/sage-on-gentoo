@@ -1,3 +1,8 @@
+  02 Mar 2017; François Bissey <francois.bissey@canterbury.ac.nz>
+  atlasrep-1.5_p0.ebuild:
+  Removal of "$Id", clean up of some useless ebuild, fixing a few fatal QA
+  overlay wide, fixing python3_6 QA arising.
+
   05 Oct 2016; François Bissey <francois.bissey@canterbury.ac.nz>
   +files/atlasrep-1.5_p0-local.patch, atlasrep-1.5_p0.ebuild:
   dev-gap/atlasrep: Try out a debian patch to write in a user location

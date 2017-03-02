@@ -1,3 +1,8 @@
+  02 Mar 2017; François Bissey <francois.bissey@canterbury.ac.nz>
+  giac-1.2.2.103-r1.ebuild, giac-1.2.2.105.ebuild, giac-1.2.3.25.ebuild:
+  Removal of "$Id", clean up of some useless ebuild, fixing a few fatal QA
+  overlay wide, fixing python3_6 QA arising.
+
 *giac-1.2.3.25 (16 Feb 2017)
 
   16 Feb 2017; François Bissey <francois.bissey@canterbury.ac.nz>

@@ -1,12 +1,11 @@
-# Copyright 1999-2015 Gentoo Foundation
+# Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id$
 
 EAPI=5
 
 inherit latex-package
 
-DESCRIPTION="A collection of useful macros to draw some classic graphs of the graph theory or others graphs"
+DESCRIPTION="Useful macros to draw some classic graphs of the graph theory or others graphs"
 HOMEPAGE="http://altermundus.com/pages/graphtheory.html"
 SRC_URI="http://www.ctan.org/tex-archive/macros/latex/contrib/tkz/${PN}/latex/tkz-arith.sty
 	http://www.ctan.org/tex-archive/macros/latex/contrib/tkz/${PN}/latex/${PN}.sty"

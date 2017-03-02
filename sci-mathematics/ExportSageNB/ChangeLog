@@ -1,3 +1,8 @@
+  02 Mar 2017; François Bissey <francois.bissey@canterbury.ac.nz>
+  ExportSageNB-3.0.ebuild:
+  Removal of "$Id", clean up of some useless ebuild, fixing a few fatal QA
+  overlay wide, fixing python3_6 QA arising.
+
 *ExportSageNB-3.0 (26 Feb 2017)
 
   26 Feb 2017; François Bissey <francois.bissey@canterbury.ac.nz>

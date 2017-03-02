@@ -1,3 +1,8 @@
+  02 Mar 2017; François Bissey <francois.bissey@canterbury.ac.nz>
+  brial-0.8.5.ebuild:
+  Removal of "$Id", clean up of some useless ebuild, fixing a few fatal QA
+  overlay wide, fixing python3_6 QA arising.
+
   21 Oct 2016; François Bissey <francois.bissey@canterbury.ac.nz>
   -brial-0.8.4.3.ebuild, -files/brial-0.8.4.3-g++_linking.patch:
   sci-mathematics/brial: removing unused

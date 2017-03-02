@@ -1,3 +1,8 @@
+  02 Mar 2017; François Bissey <francois.bissey@canterbury.ac.nz>
+  gsl-2.1-r1.ebuild, gsl-2.3-r1.ebuild:
+  Removal of "$Id", clean up of some useless ebuild, fixing a few fatal QA
+  overlay wide, fixing python3_6 QA arising.
+
   31 Jan 2017; François Bissey <francois.bissey@canterbury.ac.nz>
   gsl-2.1-r1.ebuild, gsl-2.3-r1.ebuild:
   sci-libs/gsl: drop retired keywords

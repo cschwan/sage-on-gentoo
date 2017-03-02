@@ -1,3 +1,8 @@
+  02 Mar 2017; François Bissey <francois.bissey@canterbury.ac.nz>
+  pari_jupyter-1.1.2.ebuild:
+  Removal of "$Id", clean up of some useless ebuild, fixing a few fatal QA
+  overlay wide, fixing python3_6 QA arising.
+
   29 Oct 2016; François Bissey <francois.bissey@canterbury.ac.nz>
   pari_jupyter-1.1.2.ebuild:
   dev-python/pari_jupyter: clean dep, drop python 3.3

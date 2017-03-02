@@ -1,4 +1,9 @@
 
+  02 Mar 2017; François Bissey <francois.bissey@canterbury.ac.nz>
+  bliss-0.73.ebuild:
+  Removal of "$Id", clean up of some useless ebuild, fixing a few fatal QA
+  overlay wide, fixing python3_6 QA arising.
+
   31 Jan 2016; François Bissey <francois.bissey@canterbury.ac.nz> metadata.xml:
   sci-libs/bliss: update metadata
 

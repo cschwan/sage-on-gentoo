@@ -1,3 +1,8 @@
+  02 Mar 2017; François Bissey <francois.bissey@canterbury.ac.nz>
+  thebe-20160525.ebuild:
+  Removal of "$Id", clean up of some useless ebuild, fixing a few fatal QA
+  overlay wide, fixing python3_6 QA arising.
+
 *thebe-20160525 (24 Jan 2017)
 
   24 Jan 2017; François Bissey <francois.bissey@canterbury.ac.nz> +metadata.xml,

@@ -1,3 +1,8 @@
+  02 Mar 2017; François Bissey <francois.bissey@canterbury.ac.nz>
+  fplll-5.0.3.ebuild:
+  Removal of "$Id", clean up of some useless ebuild, fixing a few fatal QA
+  overlay wide, fixing python3_6 QA arising.
+
   21 Jan 2017; François Bissey <francois.bissey@canterbury.ac.nz>
   -fplll-20160331.ebuild:
   sci-libs/fplll: remove old unused snapshot
