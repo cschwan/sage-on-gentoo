@@ -1,5 +1,9 @@
   02 Mar 2017; François Bissey <francois.bissey@canterbury.ac.nz>
   fpylll-0.2.3.ebuild:
+  dev-python/fpylll: QA
+
+  02 Mar 2017; François Bissey <francois.bissey@canterbury.ac.nz>
+  fpylll-0.2.3.ebuild:
   Removal of "$Id", clean up of some useless ebuild, fixing a few fatal QA
   overlay wide, fixing python3_6 QA arising.
 
