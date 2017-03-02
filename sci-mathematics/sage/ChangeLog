@@ -2,6 +2,11 @@
 # Copyright 1999-2017 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  02 Mar 2017; François Bissey <francois.bissey@canterbury.ac.nz>
+  +files/sage-7.6-jupyter.patch, sage-9999.ebuild:
+  sci-mathematics/sage: some bumps for latest snapshot. Some things are still
+  missing.
+
   01 Mar 2017; François Bissey <francois.bissey@canterbury.ac.nz>
   +files/proto.sage-env, +files/sage-7.6-neutering.patch,
   +files/sage-7.6-sources.patch, -files/proto.sage-env-7.1, sage-7.4-r3.ebuild,
