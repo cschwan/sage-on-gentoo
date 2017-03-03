@@ -35,6 +35,7 @@ DEPEND="${RDEPEND}
 PATCHES=(
 	"${FILESDIR}"/get_interact_value_output.patch
 	"${FILESDIR}"/output_exception.patch
+	"${FILESDIR}"/widget_repr.patch
 	)
 
 S="${WORKDIR}"/${MY_P}
