@@ -3,8 +3,6 @@
 
 EAPI=6
 
-MULTILIB_COMPAT=( abi_x86_{32,64} )
-
 inherit alternatives-2 autotools multilib-build numeric toolchain-funcs
 
 DESCRIPTION="GNU Scientific Library"
