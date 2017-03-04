@@ -1,6 +1,6 @@
 diff -Naur src.orig/bin/sage src/bin/sage
---- src.orig/bin/sage	2017-02-04 14:31:50.472966865 +1300
-+++ src/bin/sage	2017-02-04 14:33:15.313164704 +1300
+--- src.orig/bin/sage	2017-03-04 23:04:28.759121854 +1300
++++ src/bin/sage	2017-03-04 23:08:33.035547003 +1300
 @@ -1,7 +1,7 @@
  #!/usr/bin/env bash
  
@@ -153,7 +153,7 @@ diff -Naur src.orig/bin/sage src/bin/sage
      echo "  -search_src <string> -- search through all the Sage library code for string"
      echo "  -search_doc <string> -- search through the Sage documentation for string"
      echo "  -grep <string>      -- same as -search_src"
-@@ -220,16 +152,6 @@
+@@ -222,16 +154,6 @@
      echo
      ####  1.......................26..................................................78
      ####  |.....................--.|...................................................|
@@ -170,7 +170,7 @@ diff -Naur src.orig/bin/sage src/bin/sage
      echo "Valgrind memory debugging:"
      echo "  -cachegrind         -- run Sage using Valgrind's cachegrind tool.  The log"
      echo "                         files are named sage-cachegrind.PID can be found in"
-@@ -270,83 +192,15 @@
+@@ -272,101 +194,15 @@
      exit $status
  fi
  
@@ -178,8 +178,26 @@ diff -Naur src.orig/bin/sage src/bin/sage
 -# an unclobbered environment before testing unsafe tickets.
 -if [ "$1" = '-patchbot' -o "$1" = "--patchbot" ]; then
 -    shift
--    cd "$SAGE_ROOT"
--    exec local/bin/patchbot/patchbot.py "$@"
+-    # We ask the Python from Sage where the patchbot is installed.
+-    # We set PYTHONPATH to that directory such that the system Python
+-    # should also find the sage_patchbot package.
+-    cmd='import sage_patchbot as p; import os; print(os.path.dirname(p.__path__[0]))'
+-    export PYTHONPATH=`"$SAGE_ROOT/sage" --python -c "$cmd"`
+-    if [ -z "$PYTHONPATH" ]; then
+-        # Something went wrong, assume that the patchbot is not installed
+-        echo >&2 "Error: cannot find installation path for sage_patchbot"
+-        echo >&2 "See https://wiki.sagemath.org/buildbot for instructions"
+-        exit 1
+-    fi
+-
+-    # Try "python2.7", then "python2", then "python"
+-    shopt -s execfail  # Do not exit if "exec" fails
+-    exec python2.7 -m sage_patchbot.patchbot "$@"
+-    exec python2 -m sage_patchbot.patchbot "$@"
+-    exec python -m sage_patchbot.patchbot "$@"
+-    echo >&2 "Error: cannot find a suitable Python program."
+-    echo >&2 "The SageMath patchbot requires a system Python installation."
+-    exit 127
 -fi
 -
 -# Check for '--upgrade' before sourcing sage-env: the top-level "make"
@@ -257,7 +275,7 @@ diff -Naur src.orig/bin/sage src/bin/sage
      exit 1
  fi
  
-@@ -362,47 +216,13 @@
+@@ -382,47 +218,13 @@
  
  # Prepare for running Sage, either interactively or non-interactively.
  sage_setup() {
@@ -307,7 +325,7 @@ diff -Naur src.orig/bin/sage src/bin/sage
  # Start an interactive Sage session, this function never returns.
  interactive_sage() {
      sage_setup
-@@ -462,11 +282,6 @@
+@@ -482,11 +284,6 @@
      exec gap "$@"
  fi
  
@@ -319,7 +337,7 @@ diff -Naur src.orig/bin/sage src/bin/sage
  if [ "$1" = '-gp' -o "$1" = '--gp' ]; then
      shift
      exec gp "$@"
-@@ -512,11 +327,6 @@
+@@ -532,11 +329,6 @@
      exec kash "$@"
  fi
  
@@ -331,7 +349,7 @@ diff -Naur src.orig/bin/sage src/bin/sage
  if [ "$1" = '-maxima' -o "$1" = '--maxima' ]; then
      shift
      exec maxima "$@"
-@@ -532,21 +342,6 @@
+@@ -552,21 +344,6 @@
      exec M2 "$@"
  fi
  
@@ -353,7 +371,7 @@ diff -Naur src.orig/bin/sage src/bin/sage
  if [ "$1" = '-python' -o "$1" = '--python' ]; then
      shift
      exec python "$@"
-@@ -567,11 +362,6 @@
+@@ -587,11 +364,6 @@
      exec git "$@"
  fi
  
@@ -365,7 +383,7 @@ diff -Naur src.orig/bin/sage src/bin/sage
  if [ "$1" = '-sh' -o "$1" = '--sh' ]; then
      # AUTHORS:
      # - Carl Witty and William Stein: initial version
-@@ -691,20 +481,6 @@
+@@ -711,20 +483,6 @@
  fi
  
  #####################################################################
@@ -386,7 +404,7 @@ diff -Naur src.orig/bin/sage src/bin/sage
  # File conversion
  #####################################################################
  
-@@ -722,11 +498,6 @@
+@@ -747,11 +505,6 @@
  # Run Sage's versions of the standard Algebra/Geometry etc. software
  #####################################################################
  
@@ -398,7 +416,7 @@ diff -Naur src.orig/bin/sage src/bin/sage
  if [[ "$1" =~ ^--notebook=.* || "$1" =~ ^-n=.* || "$1" =~ ^-notebook=.* ]] ; then
      sage-cleaner &>/dev/null &
      exec sage-notebook "$@"
-@@ -737,13 +508,6 @@
+@@ -762,13 +515,6 @@
      exec sage-notebook "$@"
  fi
  
@@ -412,7 +430,7 @@ diff -Naur src.orig/bin/sage src/bin/sage
  if [ "$1" = "-inotebook" -o "$1" = '--inotebook' ]; then
      shift
      sage-cleaner &>/dev/null &
-@@ -762,38 +526,19 @@
+@@ -787,38 +533,19 @@
     exit 0
  fi
  
@@ -453,7 +471,7 @@ diff -Naur src.orig/bin/sage src/bin/sage
          shift
          exec sage-runtests -p "$@"
      else
-@@ -802,16 +547,6 @@
+@@ -827,16 +554,6 @@
      fi
  fi
  
@@ -470,7 +488,7 @@ diff -Naur src.orig/bin/sage src/bin/sage
  if [ "$1" = '-testall' -o "$1" = "--testall" ]; then
      shift
      SAGE_BANNER=no sage_setup
-@@ -826,119 +561,6 @@
+@@ -851,119 +568,6 @@
      exec sage-eval "$@"
  fi
  
@@ -590,7 +608,7 @@ diff -Naur src.orig/bin/sage src/bin/sage
  if [ "$1" = '-gdb' -o "$1" = "--gdb" ]; then
      shift
      sage_setup
-@@ -947,7 +569,7 @@
+@@ -972,7 +576,7 @@
              -args python "$SAGE_LOCAL/bin/sage-ipython" "$@" -i
      else
          # Location of cython_debug directory
@@ -599,7 +617,7 @@ diff -Naur src.orig/bin/sage src/bin/sage
          cygdb "$cygdb_dir" "$SAGE_SRC/sage" \
              -- -x "$SAGE_LOCAL/bin/sage-gdb-commands" \
              -args python "$SAGE_LOCAL/bin/sage-ipython" "$@" -i
-@@ -1005,10 +627,6 @@
+@@ -1030,10 +634,6 @@
  fi
  
  if [ $# -ge 1 ]; then
