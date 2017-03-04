@@ -48,7 +48,7 @@ if [[ -z ${SAGE_SERVER} ]]; then
 fi
 
 if [ -z "$SAGE_RC_FILE" ]; then
-	SAGE_RC_FILE="$DOT_SAGE/sagerc"
+	export SAGE_RC_FILE="$DOT_SAGE/sagerc"
 fi
 
 if [ -r "$SAGE_RC_FILE" ]; then
@@ -57,6 +57,11 @@ if [ -r "$SAGE_RC_FILE" ]; then
 		echo >&2 "Error sourcing $SAGE_RC_FILE"
 		exit 1
 	fi
+fi
+
+# Allow SAGE_BROWSER to override BROWSER (Trac #22449)
+if [ -n "$SAGE_BROWSER" ]; then
+	export BROWSER="$SAGE_BROWSER"
 fi
 
 export EPYTHON=python2.7
