@@ -1,0 +1,22 @@
+diff -Naur src.orig/sage/libs/gap/util.pyx src/sage/libs/gap/util.pyx
+--- src.orig/sage/libs/gap/util.pyx	2017-03-09 10:02:54.208318581 +1300
++++ src/sage/libs/gap/util.pyx	2017-03-09 10:29:40.124082076 +1300
+@@ -13,7 +13,7 @@
+ from __future__ import print_function, absolute_import
+ 
+ from cpython.object cimport Py_LT, Py_LE, Py_EQ, Py_NE, Py_GT, Py_GE
+-from sage.env import SAGE_LOCAL, GAP_ROOT_DIR
++from sage.env import SAGE_LOCAL
+ from libc.stdint cimport uintptr_t
+ from .element cimport *
+ 
+@@ -158,9 +158,6 @@
+         '/home/vbraun/opt/sage-5.3.rc0/local/gap/latest'
+     """
+     import os.path
+-    if os.path.exists(GAP_ROOT_DIR):
+-        return GAP_ROOT_DIR
+-    print('The gap-4.5.5.spkg (or later) seems to be not installed!')
+     gap_sh = open(os.path.join(SAGE_LOCAL, 'bin', 'gap')).read().splitlines()
+     gapdir = filter(lambda dir:dir.strip().startswith('GAP_DIR'), gap_sh)[0]
+     gapdir = gapdir.split('"')[1]
