@@ -14,7 +14,7 @@ media-gfx/tachyon           png opengl
 sci-mathematics/flint       ntl
 sci-libs/linbox             sage
 sci-libs/libsingular        flint
-sci-libs/pynac              giac
+sci-libs/pynac              -giac
 sci-mathematics/eclib       flint
 sci-mathematics/glpk        gmp
 sci-mathematics/gmp-ecm     -openmp
