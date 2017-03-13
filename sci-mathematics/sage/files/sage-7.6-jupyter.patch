@@ -1,6 +1,6 @@
 diff -Naur src.orig/bin/sage-notebook src/bin/sage-notebook
---- src.orig/bin/sage-notebook	2017-03-02 20:04:12.008917651 +1300
-+++ src/bin/sage-notebook	2017-03-02 20:04:50.918361067 +1300
+--- src.orig/bin/sage-notebook	2017-03-08 23:25:40.288827363 +1300
++++ src/bin/sage-notebook	2017-03-08 23:26:00.388520447 +1300
 @@ -92,7 +92,7 @@
  
      def __init__(self, argv):
@@ -11,8 +11,8 @@ diff -Naur src.orig/bin/sage-notebook src/bin/sage-notebook
              print(self.PREREQUISITE_ERROR)
              raise SystemExit(1)
 diff -Naur src.orig/doc/en/reference/repl/index.rst src/doc/en/reference/repl/index.rst
---- src.orig/doc/en/reference/repl/index.rst	2017-03-02 20:04:12.008917651 +1300
-+++ src/doc/en/reference/repl/index.rst	2017-03-02 20:06:01.967344704 +1300
+--- src.orig/doc/en/reference/repl/index.rst	2017-03-08 23:25:40.298827209 +1300
++++ src/doc/en/reference/repl/index.rst	2017-03-08 23:26:00.388520447 +1300
 @@ -95,7 +95,6 @@
     sage/repl/ipython_kernel/interact
     sage/repl/ipython_kernel/widgets
@@ -22,11 +22,11 @@ diff -Naur src.orig/doc/en/reference/repl/index.rst src/doc/en/reference/repl/in
     sage/repl/ipython_tests
  
 diff -Naur src.orig/sage/repl/ipython_kernel/install.py src/sage/repl/ipython_kernel/install.py
---- src.orig/sage/repl/ipython_kernel/install.py	2017-03-02 20:04:12.068916793 +1300
+--- src.orig/sage/repl/ipython_kernel/install.py	2017-03-08 23:25:40.348826446 +1300
 +++ src/sage/repl/ipython_kernel/install.py	1970-01-01 12:00:00.000000000 +1200
-@@ -1,272 +0,0 @@
+@@ -1,290 +0,0 @@
 -"""
--Installing the SageMath Jupyter Kernel and extensions
+-Installing the SageMath Jupyter Kernel and Extensions
 -
 -Kernels have to register themselves with Jupyter so that they appear
 -in the Jupyter notebook's kernel drop-down. This is done by
@@ -157,6 +157,23 @@ diff -Naur src.orig/sage/repl/ipython_kernel/install.py src/sage/repl/ipython_ke
 -        dst = os.path.join(self.nbextensions_dir, 'jsmol')
 -        self.symlink(src, dst)
 -
+-    def use_local_threejs(self):
+-        """
+-        Symlink threejs to the Jupyter notebook.
+-
+-        EXAMPLES::
+-
+-            sage: from sage.repl.ipython_kernel.install import SageKernelSpec
+-            sage: spec = SageKernelSpec()
+-            sage: spec.use_local_threejs()
+-            sage: threejs = os.path.join(spec.nbextensions_dir, 'threejs')
+-            sage: os.path.isdir(threejs)
+-            True
+-        """
+-        src = os.path.join(SAGE_LOCAL, 'share', 'threejs')
+-        dst = os.path.join(self.nbextensions_dir, 'threejs')
+-        self.symlink(src, dst)
+-
 -    def _kernel_cmd(self):
 -        """
 -        Helper to construct the SageMath kernel command.
@@ -263,6 +280,7 @@ diff -Naur src.orig/sage/repl/ipython_kernel/install.py src/sage/repl/ipython_ke
 -        instance = cls()
 -        instance.use_local_mathjax()
 -        instance.use_local_jsmol()
+-        instance.use_local_threejs()
 -        instance._install_spec()
 -        instance._symlink_resources()
 -
@@ -298,8 +316,8 @@ diff -Naur src.orig/sage/repl/ipython_kernel/install.py src/sage/repl/ipython_ke
 -            traceback.print_exc()
 -        return False
 diff -Naur src.orig/sage/repl/ipython_kernel/kernel.py src/sage/repl/ipython_kernel/kernel.py
---- src.orig/sage/repl/ipython_kernel/kernel.py	2017-03-02 20:04:12.068916793 +1300
-+++ src/sage/repl/ipython_kernel/kernel.py	2017-03-02 20:04:50.918361067 +1300
+--- src.orig/sage/repl/ipython_kernel/kernel.py	2017-03-08 23:25:40.348826446 +1300
++++ src/sage/repl/ipython_kernel/kernel.py	2017-03-08 23:26:21.098204235 +1300
 @@ -95,9 +95,7 @@
                'url': 'kernelspecs/sagemath/doc/index.html'},
               ...]
@@ -348,7 +366,7 @@ diff -Naur src.orig/sage/repl/ipython_kernel/kernel.py src/sage/repl/ipython_ker
 +        return False
 diff -Naur src.orig/sage_setup/jupyter/install.py src/sage_setup/jupyter/install.py
 --- src.orig/sage_setup/jupyter/install.py	1970-01-01 12:00:00.000000000 +1200
-+++ src/sage_setup/jupyter/install.py	2017-03-02 20:04:50.918361067 +1300
++++ src/sage_setup/jupyter/install.py	2017-03-08 23:26:21.108204084 +1300
 @@ -0,0 +1,139 @@
 +"""
 +Installing the SageMath Jupyter Kernel and extensions
