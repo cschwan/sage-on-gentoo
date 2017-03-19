@@ -112,7 +112,7 @@ RDEPEND="${CDEPEND}
 	>=sci-libs/scipy-0.16.1[${PYTHON_USEDEP}]
 	sci-mathematics/flintqs
 	~sci-mathematics/gap-4.8.6
-	=sci-mathematics/giac-1.2*
+	=sci-mathematics/giac-1.2.3*
 	~sci-mathematics/gfan-0.5
 	>=sci-mathematics/cu2-20060223
 	>=sci-mathematics/cubex-20060128
