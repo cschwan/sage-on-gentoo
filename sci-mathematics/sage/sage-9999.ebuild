@@ -422,6 +422,8 @@ python_install_all() {
 		python_foreach_impl python_doscript sage-runtests
 		# Remove __init__.py used to trigger installation of tests.
 		python_foreach_impl rm -f "${ED}"$(python_get_sitedir)/sage/doctest/tests/__init__.*
+		# remove the test trying to pre-compile sage's .py file with python3
+		python_foreach_impl rm -f "${ED}"$(python_get_sitedir)/sage/doctest/tests/py3_syntax.*
 	fi
 
 	if use debug ; then
