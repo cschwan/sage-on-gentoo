@@ -22,22 +22,16 @@
 		<flag name='libhomfly'>
 			build the bindings to the libhomfly library
 		</flag>
-		<flag name='html'>
-			build and install html documentation
-		</flag>
-		<flag name='pdf'>
-			build and install documentation in pdf format
-		</flag>
 		<flag name='doc-html'>
 			build and install html documentation
 		</flag>
 		<flag name='doc-pdf'>
 			build and install documentation in pdf format
 		</flag>
-		<flag name='bin-html'>
+		<flag name='doc-html-bin'>
 			install pre-built html documentation
 		</flag>
-		<flag name='bin-pdf'>
+		<flag name='doc-pdf-bin'>
 			install pre-built pdf documentation
 		</flag>
 		<flag name='sagenb'>
