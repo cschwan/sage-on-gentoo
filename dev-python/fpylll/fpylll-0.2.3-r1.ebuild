@@ -18,7 +18,7 @@ KEYWORDS="~amd64 ~x86"
 IUSE="test"
 
 CDEPEND=">=sci-libs/fplll-5.0.3
-	<sci-libs/fplll-20160000
+	<sci-libs/fplll-5.1.0
 	dev-python/cython[${PYTHON_USEDEP}]
 	dev-python/cysignals[${PYTHON_USEDEP}]
 	dev-python/numpy[${PYTHON_USEDEP}]"
