@@ -36,6 +36,7 @@ S="${WORKDIR}/${MY_PN}-${PV%_*}"
 
 PATCHES=(
 	"${FILESDIR}"/${PN}-0.23.4-PR483.patch
+	"${FILESDIR}"/PR466.patch
 	)
 
 python_compile() {
