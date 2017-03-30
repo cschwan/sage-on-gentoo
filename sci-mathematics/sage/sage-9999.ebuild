@@ -308,10 +308,6 @@ python_prepare() {
 	sed -i \
 		-e "s:/python:/${EPYTHON}:" sage/misc/gperftools.py
 
-	# Cython doctest tries to compile againt singular, but the header are not in the
-	# correct place for us. Generally it is shoddy. Much better with this patch.
-	eapply "${FILESDIR}"/${PN}-7.6-cython-example.patch
-
 	# do not test safe python stuff from trac 13579. Needs to be applied after neutering.
 	eapply "${FILESDIR}"/${PN}-7.3-safepython.patch
 
