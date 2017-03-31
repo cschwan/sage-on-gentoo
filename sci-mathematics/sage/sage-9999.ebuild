@@ -9,7 +9,7 @@ PYTHON_REQ_USE="readline,sqlite"
 inherit distutils-r1 flag-o-matic multiprocessing prefix toolchain-funcs versionator
 
 if [[ ${PV} = *9999* ]]; then
-	EGIT_REPO_URI="git://github.com/sagemath/sage.git"
+	EGIT_REPO_URI="git://github.com/vbraun/sage.git"
 	EGIT_BRANCH=develop
 	EGIT_CHECKOUT_DIR="${WORKDIR}/${P}"
 	inherit git-r3
@@ -47,7 +47,7 @@ CDEPEND="dev-libs/gmp:0=
 	~dev-lisp/ecls-16.1.2
 	dev-python/six[${PYTHON_USEDEP}]
 	>=dev-python/numpy-1.10.1-r2[${PYTHON_USEDEP}]
-	~dev-python/cython-0.25.2[${PYTHON_USEDEP}]
+	>=dev-python/cython-0.25.2-r2[${PYTHON_USEDEP}]
 	dev-python/future[${PYTHON_USEDEP}]
 	~dev-python/pkgconfig-1.2.2[${PYTHON_USEDEP}]
 	~dev-python/cysignals-1.4.0[${PYTHON_USEDEP}]
@@ -76,11 +76,11 @@ CDEPEND="dev-libs/gmp:0=
 	>=sci-mathematics/lcalc-1.23-r6[pari]
 	>=sci-mathematics/lrcalc-1.2-r1
 	~sci-mathematics/pari-2.9.1[data,gmp,doc]
-	~sci-mathematics/planarity-2.2.0
-	>=sci-mathematics/brial-0.8.5[${PYTHON_USEDEP}]
+	~sci-mathematics/planarity-3.0.0.5
+	~sci-mathematics/brial-0.8.5[${PYTHON_USEDEP}]
 	>=sci-mathematics/ratpoints-2.1.3
 	>=sci-mathematics/rw-0.7
-	=sci-mathematics/singular-4.1.0_p1-r1[readline]
+	=sci-mathematics/singular-4.1.0_p2[readline]
 	media-libs/gd[jpeg,png]
 	media-libs/libpng:0=
 	>=sys-libs/readline-6.2
@@ -92,7 +92,7 @@ CDEPEND="dev-libs/gmp:0=
 	bliss? ( >=sci-libs/bliss-0.73 )
 	libhomfly? ( >=sci-libs/libhomfly-1.0.1 )
 	libbraiding? ( sci-libs/libbraiding )
-	=dev-python/sphinx-1.4*[${PYTHON_USEDEP}]"
+	>=dev-python/sphinx-1.5.3[${PYTHON_USEDEP}]"
 
 DEPEND="${CDEPEND}
 	doc-pdf? ( app-text/texlive[extra,${L10N_USEDEP}] )"
@@ -117,6 +117,7 @@ RDEPEND="${CDEPEND}
 	>=sci-mathematics/cu2-20060223
 	>=sci-mathematics/cubex-20060128
 	>=sci-mathematics/dikcube-20070912
+	>=sci-mathematics/ExportSageNB-3.1
 	~sci-mathematics/maxima-5.39.0[ecls]
 	>=sci-mathematics/mcube-20051209
 	>=sci-mathematics/nauty-2.6.1
@@ -307,10 +308,6 @@ python_prepare() {
 	sed -i \
 		-e "s:/python:/${EPYTHON}:" sage/misc/gperftools.py
 
-	# Cython doctest tries to compile againt singular, but the header are not in the
-	# correct place for us. Generally it is shoddy. Much better with this patch.
-	eapply "${FILESDIR}"/${PN}-7.6-cython-example.patch
-
 	# do not test safe python stuff from trac 13579. Needs to be applied after neutering.
 	eapply "${FILESDIR}"/${PN}-7.3-safepython.patch
 
@@ -422,6 +419,8 @@ python_install_all() {
 		python_foreach_impl python_doscript sage-runtests
 		# Remove __init__.py used to trigger installation of tests.
 		python_foreach_impl rm -f "${ED}"$(python_get_sitedir)/sage/doctest/tests/__init__.*
+		# remove the test trying to pre-compile sage's .py file with python3
+		python_foreach_impl rm -f "${ED}"$(python_get_sitedir)/sage/doctest/tests/py3_syntax.*
 	fi
 
 	if use debug ; then
