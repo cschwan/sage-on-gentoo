@@ -77,7 +77,7 @@ CDEPEND="dev-libs/gmp:0=
 	>=sci-mathematics/lrcalc-1.2-r1
 	~sci-mathematics/pari-2.9.1[data,gmp,doc]
 	~sci-mathematics/planarity-3.0.0.5
-	~sci-mathematics/brial-0.8.5[${PYTHON_USEDEP}]
+	>=sci-mathematics/brial-0.8.5[${PYTHON_USEDEP}]
 	>=sci-mathematics/ratpoints-2.1.3
 	>=sci-mathematics/rw-0.7
 	=sci-mathematics/singular-4.1.0_p2[readline]
