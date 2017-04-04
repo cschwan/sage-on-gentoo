@@ -41,7 +41,7 @@ src_compile() {
 }
 
 src_install() {
-	use doc && HTML_DOCS=( "${BUILD_DIR}"/html/. )
+	use doc && HTML_DOCS=( "${S}"/html/. )
 
 	default
 }
