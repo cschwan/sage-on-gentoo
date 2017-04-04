@@ -31,10 +31,6 @@ DEPEND="virtual/pkgconfig
 	)"
 RDEPEND="${CDEPEND}"
 
-PATCHES=(
-	"${FILESDIR}"/${PN}-0.8.6-tr1.patch
-	)
-
 pkg_setup(){
 	tc-export PKG_CONFIG
 }
