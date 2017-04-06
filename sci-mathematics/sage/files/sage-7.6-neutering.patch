@@ -75,14 +75,6 @@ diff -Naur src.orig/sage/game_theory/normal_form_game.py src/sage/game_theory/no
 diff -Naur src.orig/sage/geometry/polyhedron/base.py src/sage/geometry/polyhedron/base.py
 --- src.orig/sage/geometry/polyhedron/base.py	2016-11-30 11:50:26.978875792 +1300
 +++ src/sage/geometry/polyhedron/base.py	2016-11-30 11:50:34.117896360 +1300
-@@ -21,7 +21,6 @@
- from sage.structure.element import Element, coerce_binop, is_Vector
- 
- from sage.misc.all import cached_method, prod
--from sage.misc.package import is_package_installed
- 
- from sage.rings.all import QQ, ZZ
- from sage.rings.real_double import RDF
 @@ -3680,7 +3679,9 @@
  
               David Avis's lrs program.
