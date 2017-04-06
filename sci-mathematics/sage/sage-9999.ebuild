@@ -318,7 +318,7 @@ python_prepare() {
 	eapply "${FILESDIR}"/${PN}-7.1-sagedoc.patch
 
 	# remove the test trying to pre-compile sage's .py file with python3
-	rm -f sage/doctest/tests/py3_syntax.*
+	rm sage/tests/py3_syntax.py || die "cannot remove py3_syntax test"
 
 	####################################
 	#
