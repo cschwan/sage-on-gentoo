@@ -5,7 +5,7 @@ EAPI=6
 
 PYTHON_COMPAT=( python2_7 )
 
-inherit python-r1 toolchain-funcs autotools
+inherit python-r1 toolchain-funcs
 
 DESCRIPTION="BriAL, a successor to PolyBoRI: Polynomials over Boolean Rings"
 HOMEPAGE="https://github.com/BRiAl/BRiAl"
@@ -35,11 +35,6 @@ pkg_setup(){
 	tc-export PKG_CONFIG
 }
 
-src_prepare(){
-	default
-
-	eautoreconf
-}
 src_configure(){
 	python_configure(){
 		default
