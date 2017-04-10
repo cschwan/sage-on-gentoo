@@ -12,11 +12,19 @@ SLOT="0"
 KEYWORDS="~x86 ~amd64 ~ppc-macos ~x86-macos ~x64-macos"
 IUSE="static-libs"
 
-RESTRICT="test"
-
 DEPEND=">=dev-libs/gmp-5.0.2
 	~sci-mathematics/gap-${PV}"
 RDEPEND="${DEPEND}"
+
+src_prepare(){
+	# location of the gap install
+	sed \
+		-e "s:/home/vbraun/Sage/sage/local/gap/latest:${EPREFIX}/usr/$(get_libdir)/gap:" \
+		-e "s:/home/vbraun/Sage/git/local/gap/latest:${EPREFIX}/usr/$(get_libdir)/gap:" \
+		-i test/*.c
+
+	default
+}
 
 src_configure(){
 	source "${EPREFIX}"/etc/sysinfo.gap
