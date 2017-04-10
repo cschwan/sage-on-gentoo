@@ -3,7 +3,7 @@
 
 EAPI=6
 
-inherit flag-o-matic toolchain-funcs
+inherit toolchain-funcs
 
 DESCRIPTION="A C++ template library for linear algebra over integers and over finite fields"
 HOMEPAGE="http://linalg.org/"
@@ -14,11 +14,7 @@ SLOT="0"
 KEYWORDS="~amd64 ~x86 ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~x64-macos"
 IUSE="sage static-libs openmp opencl"
 
-# TODO: support examples ?
-
-# disabling of commentator class breaks the tests
-RESTRICT="mirror
-	sage? ( test )"
+RESTRICT="mirror"
 
 DEPEND="dev-libs/gmp[cxx]
 	~sci-libs/givaro-4.0.2
