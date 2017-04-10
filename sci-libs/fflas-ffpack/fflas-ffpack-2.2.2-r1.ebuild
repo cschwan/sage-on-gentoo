@@ -1,9 +1,9 @@
 # Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=5
+EAPI=6
 
-inherit autotools toolchain-funcs eutils
+inherit autotools toolchain-funcs
 
 DESCRIPTION="FFLAS-FFPACK is a library for dense linear algebra over word-size finite fields."
 HOMEPAGE="https://linbox-team.github.io/fflas-ffpack/"
@@ -50,7 +50,6 @@ pkg_setup(){
 }
 
 src_prepare(){
-	epatch "${PATCHES[@]}"
 	default
 
 	eautoreconf
