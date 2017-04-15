@@ -11,7 +11,7 @@ dev-libs/c-blosc
 >=dev-lisp/ecls-16.0.0::sage-on-gentoo
 dev-python/characteristic
 dev-python/cvxopt
-~dev-python/cysignals-1.4.0
+=dev-python/cysignals-1.6*
 ~dev-python/cython-0.25.2::sage-on-gentoo
 ~dev-python/bottleneck-0.8.0
 >=dev-python/matplotlib-1.5.1
