@@ -195,7 +195,7 @@ python_prepare() {
 		bin/sage-num-threads.py
 
 	# remove developer and unsupported options
-	eapply "${FILESDIR}"/${PN}-7.6-exec.patch
+	eapply "${FILESDIR}"/${PN}-8.0-exec.patch
 	eprefixify bin/sage
 
 	# create expected folders under extcode
