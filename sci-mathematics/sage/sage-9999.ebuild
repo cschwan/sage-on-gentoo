@@ -127,7 +127,7 @@ RDEPEND="${CDEPEND}
 	~sci-mathematics/sage-data-graphs-20161026
 	~sci-mathematics/sage-data-combinatorial_designs-20140630
 	~sci-mathematics/sage-data-polytopes_db-20120220
-	~sci-mathematics/sage-data-conway_polynomials-0.4
+	~sci-mathematics/sage-data-conway_polynomials-0.5
 	>=sci-mathematics/sympow-1.018.1
 	www-servers/tornado
 	!prefix? ( >=sys-libs/glibc-2.13-r4 )
