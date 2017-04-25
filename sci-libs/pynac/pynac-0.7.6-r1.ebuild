@@ -30,6 +30,10 @@ RDEPEND="dev-libs/gmp:0=
 	giac? ( >=sci-mathematics/giac-1.2.2 )
 	${PYTHON_DEPS}"
 
+PATCHES=(
+	"${FILESDIR}"/${P}-coeff-to-ex.patch
+	)
+
 DOCS=( AUTHORS NEWS README )
 
 pkg_setup(){
