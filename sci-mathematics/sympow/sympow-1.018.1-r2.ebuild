@@ -22,6 +22,7 @@ RDEPEND=">=sci-mathematics/pari-2.5.0"
 PATCHES=(
 	"${FILESDIR}"/execlp.patch
 	"${FILESDIR}"/fpu.patch
+	"${FILESDIR}"/initialize-tacks.patch
 	)
 
 pkg_setup(){
