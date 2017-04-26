@@ -49,5 +49,5 @@ src_install() {
 		rm -f "${ED}"/usr/$(get_libdir)/libntl.a
 	fi
 	# purge .la file
-	rm -f "${ED}"/usr/$(get_libdir)/libntl.la
+	find "${ED}" -name '*.la' -delete || die
 }
