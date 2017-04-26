@@ -96,6 +96,9 @@ src_install() {
 	default
 
 	dosym Singular /usr/bin/"${PN}"
+
+	# purge .la file
+	rm -f "${ED}"/usr/$(get_libdir)/*.la
 }
 
 pkg_postinst() {
