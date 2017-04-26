@@ -99,4 +99,7 @@ src_install() {
 	if use !examples; then
 		rm -R "${ED}"/usr/share/giac/examples || die
 	fi
+
+	# remove .la file
+	find "${ED}" -name '*.la' -delete || die
 }
