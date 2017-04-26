@@ -68,3 +68,9 @@ src_configure() {
 		${simd_opt} \
 		$(use_enable static-libs static)
 }
+
+src_install(){
+	default
+	# remove .la file
+	find "${ED}" -name '*.la' -delete || die
+}
