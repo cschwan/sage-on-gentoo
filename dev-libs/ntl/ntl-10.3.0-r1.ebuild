@@ -48,4 +48,6 @@ src_install() {
 	if !(use static-libs); then
 		rm -f "${ED}"/usr/$(get_libdir)/libntl.a
 	fi
+	# purge .la file
+	rm -f "${ED}"/usr/$(get_libdir)/libntl.la
 }
