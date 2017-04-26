@@ -57,6 +57,7 @@ src_install(){
 	}
 
 	python_foreach_impl python_install
+	find "${ED}" -name '*.la' -delete || die
 }
 
 src_test(){
