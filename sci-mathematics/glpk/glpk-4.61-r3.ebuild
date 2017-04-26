@@ -60,4 +60,6 @@ src_install() {
 		docompress -x /usr/share/doc/${PF}/examples
 	fi
 	use doc && dodoc doc/*.pdf doc/notes/*.pdf doc/*.txt
+	# remove .la file
+	find "${ED}" -name '*.la' -delete || die
 }
