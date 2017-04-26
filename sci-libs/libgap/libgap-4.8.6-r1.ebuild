@@ -34,3 +34,9 @@ src_configure(){
 		--with-sage="${EPREFIX}"/usr \
 		--with-gap_system_arch=$GAParch_system
 }
+
+src_install(){
+	default
+	# remove .la file
+	find "${ED}" -name '*.la' -delete || die
+}
