@@ -98,7 +98,7 @@ src_install() {
 	dosym Singular /usr/bin/"${PN}"
 
 	# purge .la file
-	rm -f "${ED}"/usr/$(get_libdir)/*.la
+	find "${ED}" -name '*.la' -delete || die
 }
 
 pkg_postinst() {
