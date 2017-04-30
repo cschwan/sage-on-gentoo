@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+<maintainer type="person">
+<email>francois.bissey@canterbury.ac.nz</email>
+<name>François Bissey</name>
+</maintainer>
+<longdescription lang="en">This wrapper-kernel is a Jupyter kernel for the GAP Computer Algebra System based on the same ideas as the bash wrapper kernel.
+</longdescription>
+</pkgmetadata>
