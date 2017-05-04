@@ -32,7 +32,7 @@ dev-python/flask-oldsessions
 =dev-python/setuptools-20*
 dev-python/terminado
 dev-python/mistune
-=dev-python/numpy-1.10*::sage-on-gentoo
+~dev-python/numpy-1.12.1
 dev-python/cycler
 ~dev-python/cypari2-1.0.0
 dev-python/versioneer
@@ -133,7 +133,7 @@ sci-mathematics/rw
 ~sci-mathematics/sage-data-graphs-20161026
 ~sci-mathematics/sage-data-polytopes_db-20120220
 >=sci-mathematics/sage-notebook-0.13
-~sci-mathematics/singular-4.1.0_p2
+~sci-mathematics/singular-4.1.0_p3
 sci-mathematics/sympow
 ~www-servers/tornado-3.1.1
 www-misc/thebe
