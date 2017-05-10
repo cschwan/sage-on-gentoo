@@ -1,7 +1,7 @@
 diff --git a/unix/Makefile b/unix/Makefile
 index 8dd0846..d2fe1ac 100644
---- a/unix/Makefile
-+++ b/unix/Makefile
+--- a/Makefile
++++ b/Makefile
 @@ -121,7 +121,7 @@ ${MGFLIB} : ../libmgf/Makefile
  	};
  

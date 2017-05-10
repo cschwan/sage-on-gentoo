@@ -1,9 +1,9 @@
 # Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=5
+EAPI=6
 
-inherit eutils toolchain-funcs
+inherit toolchain-funcs
 
 DESCRIPTION="A portable, high performance parallel ray tracing system"
 HOMEPAGE="http://jedi.ks.uiuc.edu/~johns/raytracer/"
@@ -98,7 +98,9 @@ src_prepare() {
 		-e "s:CC = *cc:CC = $(tc-getCC):g" \
 		-e "s:-fomit-frame-pointer::g" Make-arch || die "sed failed"
 
-	epatch "${FILESDIR}"/${PV}-ldflags.patch
+	eapply "${FILESDIR}"/${PV}-ldflags.patch
+
+	default
 }
 
 src_compile() {
