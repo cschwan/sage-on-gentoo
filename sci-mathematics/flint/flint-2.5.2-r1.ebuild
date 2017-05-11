@@ -28,6 +28,7 @@ DEPEND="${RDEPEND}
 
 PATCHES=(
 	"${FILESDIR}"/flintxx-include.patch
+	"${FILESDIR}"/${PN}-2.5.2-pie.patch
 	)
 
 src_configure() {
