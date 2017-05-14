@@ -58,7 +58,7 @@ CDEPEND="dev-libs/gmp:0=
 	>=dev-python/matplotlib-1.5.1[${PYTHON_USEDEP}]
 	>=dev-python/ipywidgets-6.0.0_rc2[${PYTHON_USEDEP}]
 	>=sci-mathematics/eclib-20170330[flint]
-	~sci-mathematics/gmp-ecm-6.4.4[-openmp]
+	~sci-mathematics/gmp-ecm-7.0.4[-openmp]
 	>=sci-mathematics/flint-2.5.2:=[ntl]
 	~sci-libs/givaro-4.0.2
 	>=sci-libs/gsl-1.16
@@ -69,7 +69,7 @@ CDEPEND="dev-libs/gmp:0=
 	~sci-libs/m4ri-20140914
 	~sci-libs/m4rie-20150908
 	>=sci-libs/mpfi-1.5.1
-	~sci-libs/pynac-0.7.6[-giac,${PYTHON_USEDEP}]
+	~sci-libs/pynac-0.7.7[-giac,${PYTHON_USEDEP}]
 	>=sci-libs/symmetrica-2.0-r3
 	>=sci-libs/zn_poly-0.9
 	sci-mathematics/glpk:0=[gmp]
