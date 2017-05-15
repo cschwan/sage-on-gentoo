@@ -37,7 +37,8 @@ pkg_setup(){
 
 src_configure(){
 	python_configure(){
-		default
+		econf \
+			$(use_enable static-libs static)
 	}
 
 	python_foreach_impl python_configure
