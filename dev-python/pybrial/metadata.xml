@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+<maintainer type="person">
+	<email>francois.bissey@canterbury.ac.nz</email>
+	<name>Francois Bissey</name>
+</maintainer>
+	<longdescription lang="en">
+		BriAL is the the successor to PolyBoRi.
+		pyBRiAl is the python implemention of BRiAl.
+	</longdescription>
+</pkgmetadata>
