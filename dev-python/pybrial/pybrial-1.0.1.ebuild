@@ -19,5 +19,5 @@ IUSE="doc static-libs"
 
 RESTRICT="mirror"
 
-DEPEND=""
+DEPEND="!sci-mathematics/brial"
 RDEPEND="${DEPEND}"
