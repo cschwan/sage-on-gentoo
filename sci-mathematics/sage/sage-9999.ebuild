@@ -78,7 +78,7 @@ CDEPEND="dev-libs/gmp:0=
 	~dev-python/cypari2-1.0.0[${PYTHON_USEDEP}]
 	~sci-mathematics/planarity-3.0.0.5
 	~sci-libs/libbrial-1.0.0
-	~dev-python/pybrial-1.0.1
+	~dev-python/pybrial-1.0.1[${PYTHON_USEDEP}]
 	>=sci-mathematics/ratpoints-2.1.3
 	>=sci-mathematics/rw-0.7
 	~sci-mathematics/singular-4.1.0_p3[readline]
