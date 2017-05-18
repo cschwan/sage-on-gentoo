@@ -104,7 +104,7 @@ sci-mathematics/cu2
 sci-mathematics/cubex
 sci-mathematics/dikcube
 >=sci-mathematics/eclib-20170122
-~sci-mathematics/gmp-ecm-6.4.4
+~sci-mathematics/gmp-ecm-7.0.4
 sci-mathematics/flintqs
 ~sci-mathematics/flint-2.4.5
 ~sci-mathematics/flint-2.5.2
@@ -121,7 +121,8 @@ sci-mathematics/palp
 ~sci-mathematics/pari-2.9.2
 sci-mathematics/pari-data
 ~sci-mathematics/planarity-3.0.0.5
-=sci-mathematics/brial-0.8*
+=sci-libs/libbrial-1.0*
+=dev-python/pybrial-1.0*
 ~sci-mathematics/nauty-2.6.1
 sci-mathematics/ratpoints
 sci-mathematics/rubiks

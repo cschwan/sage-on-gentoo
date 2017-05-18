@@ -58,7 +58,7 @@ CDEPEND="dev-libs/gmp:0=
 	>=dev-python/matplotlib-1.5.1[${PYTHON_USEDEP}]
 	>=dev-python/ipywidgets-6.0.0_rc2[${PYTHON_USEDEP}]
 	>=sci-mathematics/eclib-20170330[flint]
-	~sci-mathematics/gmp-ecm-6.4.4[-openmp]
+	~sci-mathematics/gmp-ecm-7.0.4[-openmp]
 	>=sci-mathematics/flint-2.5.2:=[ntl]
 	~sci-libs/givaro-4.0.2
 	>=sci-libs/gsl-1.16
@@ -77,7 +77,8 @@ CDEPEND="dev-libs/gmp:0=
 	>=sci-mathematics/lrcalc-1.2-r1
 	~dev-python/cypari2-1.0.0[${PYTHON_USEDEP}]
 	~sci-mathematics/planarity-3.0.0.5
-	>=sci-mathematics/brial-0.8.5[${PYTHON_USEDEP}]
+	~sci-libs/libbrial-1.0.0
+	~dev-python/pybrial-1.0.1[${PYTHON_USEDEP}]
 	>=sci-mathematics/ratpoints-2.1.3
 	>=sci-mathematics/rw-0.7
 	~sci-mathematics/singular-4.1.0_p3[readline]
