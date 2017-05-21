@@ -20,6 +20,7 @@ DEPEND="${RDEPEND}"
 PATCHES=(
 	"${FILESDIR}"/${PN}-2.8.0-flint_includes.patch
 	"${FILESDIR}"/${PN}-2.8.1-pie.patch
+	"${FILESDIR}"/PR-187.patch
 	)
 
 src_configure() {
