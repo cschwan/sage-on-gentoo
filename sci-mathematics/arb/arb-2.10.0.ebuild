@@ -10,7 +10,7 @@ HOMEPAGE="http://fredrikj.net/arb/"
 SRC_URI="https://github.com/fredrik-johansson/arb/archive/${PV}.tar.gz -> ${P}.tar.gz"
 
 LICENSE="GPL-2+"
-SLOT="0/1.1"
+SLOT="0/2.1"
 KEYWORDS="~amd64  ~x86 ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~x64-macos"
 IUSE="static-libs"
 
