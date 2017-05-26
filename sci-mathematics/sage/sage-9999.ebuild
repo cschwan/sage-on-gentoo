@@ -375,15 +375,15 @@ python_configure() {
 
 python_compile() {
 	distutils-r1_python_compile
-}
 
-python_compile_all(){
-	if use doc-html ; then
-		"${PYTHON}" sage_setup/docbuild/__main__.py --no-pdf-links all html || die "failed to produce html doc"
-	fi
-	if use doc-pdf ; then
-		export MAKE=make
-		"${PYTHON}" sage_setup/docbuild/__main__.py all pdf || die "failed to produce pdf doc"
+	if not python_is_python3 ; then
+		if use doc-html ; then
+			"${PYTHON}" sage_setup/docbuild/__main__.py --no-pdf-links all html || die "failed to produce html doc"
+		fi
+		if use doc-pdf ; then
+			export MAKE=make
+			"${PYTHON}" sage_setup/docbuild/__main__.py all pdf || die "failed to produce pdf doc"
+		fi
 	fi
 }
 
@@ -424,24 +424,25 @@ python_install() {
 	# additonal helper scripts
 	python_doscript sage-preparse sage-startuptime.py
 
-	dobin sage-native-execute sage \
-		sage-python sage-version.sh
+	if use testsuite ; then
+		# DOCTESTING helper scripts
+		python_doscript sage-runtests
+		# Remove __init__.py used to trigger installation of tests.
+		rm -f "${ED}"$(python_get_sitedir)/sage/doctest/tests/__init__.*
+	fi
+
 }
 
 python_install_all(){
 	distutils-r1_python_install_all
 
+	dobin sage-native-execute sage \
+		sage-python sage-version.sh
+
 	# install sage-env under /etc
 	insinto /etc
 	doins sage-maxima.lisp sage-env sage-banner
 	newins ../../VERSION.txt sage-version.txt
-
-	if use testsuite ; then
-		# DOCTESTING helper scripts
-		python_foreach_impl python_doscript sage-runtests
-		# Remove __init__.py used to trigger installation of tests.
-		python_foreach_impl rm -f "${ED}"$(python_get_sitedir)/sage/doctest/tests/__init__.*
-	fi
 
 	if use debug ; then
 		# GNU DEBUGGER helper schripts
