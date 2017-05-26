@@ -3,7 +3,7 @@
 
 EAPI=6
 
-PYTHON_COMPAT=( python2_7 )
+PYTHON_COMPAT=( python2_7 python3_6 )
 PYTHON_REQ_USE="readline,sqlite"
 
 inherit distutils-r1 flag-o-matic multiprocessing prefix toolchain-funcs versionator
@@ -69,7 +69,7 @@ CDEPEND="dev-libs/gmp:0=
 	~sci-libs/m4ri-20140914
 	~sci-libs/m4rie-20150908
 	>=sci-libs/mpfi-1.5.1
-	~sci-libs/pynac-0.7.7[-giac,${PYTHON_USEDEP}]
+	=sci-libs/pynac-0.7.7-r100[-giac,${PYTHON_USEDEP}]
 	>=sci-libs/symmetrica-2.0-r3
 	>=sci-libs/zn_poly-0.9
 	sci-mathematics/glpk:0=[gmp]
@@ -79,9 +79,9 @@ CDEPEND="dev-libs/gmp:0=
 	~sci-mathematics/planarity-3.0.0.5
 	~sci-libs/libbrial-1.0.0
 	~dev-python/pybrial-1.0.1[${PYTHON_USEDEP}]
-	>=sci-mathematics/ratpoints-2.1.3
 	>=sci-mathematics/rw-0.7
 	~sci-mathematics/singular-4.1.0_p3[readline]
+	>=sci-mathematics/ratpoints-2.1.3
 	media-libs/gd[jpeg,png]
 	media-libs/libpng:0=
 	>=sys-libs/readline-6.2
@@ -132,7 +132,7 @@ RDEPEND="${CDEPEND}
 	>=sci-mathematics/sympow-1.018.1
 	www-servers/tornado
 	!prefix? ( >=sys-libs/glibc-2.13-r4 )
-	sagenb? ( ~sci-mathematics/sage-notebook-0.13[${PYTHON_USEDEP}] )
+	sagenb? ( ~sci-mathematics/sage-notebook-0.13[$(python_gen_usedep 'python2*')] )
 	latex? (
 		~dev-tex/sage-latex-3.0
 		|| ( app-text/dvipng[truetype] media-gfx/imagemagick[png] )
@@ -213,6 +213,15 @@ python_prepare() {
 	cp -f "${FILESDIR}"/${PN}-7.3-package.py sage/misc/package.py
 	rm -f sage/misc/dist.py
 	rm -rf sage/dev
+
+	###############################
+	#
+	# Link against appropriate pynac
+	#
+	###############################
+
+	sed -i "s:libraries = pynac gmp:libraries = pynac-${MULTIBUILD_VARIANT} gmp:" \
+		sage/libs/pynac/pynac.pxd
 
 	############################################################################
 	# Fixes to Sage's build system
@@ -364,9 +373,11 @@ python_configure() {
 		|| die "failed to touch *pyx files"
 }
 
-python_compile_all() {
+python_compile() {
 	distutils-r1_python_compile
+}
 
+python_compile_all(){
 	if use doc-html ; then
 		"${PYTHON}" sage_setup/docbuild/__main__.py --no-pdf-links all html || die "failed to produce html doc"
 	fi
@@ -376,8 +387,8 @@ python_compile_all() {
 	fi
 }
 
-python_install_all() {
-	distutils-r1_python_install_all
+python_install() {
+	distutils-r1_python_install
 
 	# install cython debugging files if requested
 	if use debug; then
@@ -394,7 +405,7 @@ python_install_all() {
 
 	# core scripts which are needed in every case
 	pushd bin
-	python_foreach_impl python_doscript \
+	python_doscript \
 		sage-cleaner \
 		sage-eval \
 		sage-ipython \
@@ -405,16 +416,20 @@ python_install_all() {
 		sage-sws2rst
 
 	# COMMAND helper scripts
-	python_foreach_impl python_doscript \
+	python_doscript \
 		sage-cython \
 		sage-notebook \
 		sage-run-cython
 
 	# additonal helper scripts
-	python_foreach_impl python_doscript sage-preparse sage-startuptime.py
+	python_doscript sage-preparse sage-startuptime.py
 
 	dobin sage-native-execute sage \
 		sage-python sage-version.sh
+}
+
+python_install_all(){
+	distutils-r1_python_install_all
 
 	# install sage-env under /etc
 	insinto /etc
