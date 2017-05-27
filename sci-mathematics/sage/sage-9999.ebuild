@@ -344,14 +344,14 @@ python_prepare() {
 }
 
 sage_build_env(){
-	export SAGE_ROOT=`pwd`/..
-	export SAGE_SRC=`pwd`
-	export SAGE_ETC=`pwd`/bin
-	export SAGE_DOC=`pwd`/build_doc
-	export SAGE_DOC_SRC=`pwd`/doc
+	export SAGE_ROOT="${BUILD_DIR}"/..
+	export SAGE_SRC="${BUILD_DIR}"
+	export SAGE_ETC="${BUILD_DIR}"/bin
+	export SAGE_DOC="${BUILD_DIR}"/build_doc
+	export SAGE_DOC_SRC="${BUILD_DIR}"/doc
 }
 
-python_configure() {
+python_configure_all() {
 	export SAGE_LOCAL="${EPREFIX}"/usr
 	export SAGE_DOC_MATHJAX=yes
 	export VARTEXFONTS="${T}"/fonts
@@ -370,7 +370,9 @@ python_configure() {
 	if use debug; then
 		export SAGE_DEBUG=1
 	fi
+}
 
+python_configure(){
 	# files are not built unless they are touched
 	find sage -name "*pyx" -exec touch '{}' \; \
 		|| die "failed to touch *pyx files"
