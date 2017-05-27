@@ -439,11 +439,13 @@ python_install() {
 		# Remove __init__.py used to trigger installation of tests.
 		rm -f "${ED}"$(python_get_sitedir)/sage/doctest/tests/__init__.*
 	fi
-
+	popd
 }
 
 python_install_all(){
 	distutils-r1_python_install_all
+
+	pushd bin
 
 	dobin sage-native-execute sage \
 		sage-python sage-version.sh
