@@ -344,11 +344,11 @@ python_prepare() {
 }
 
 sage_build_env(){
-	export SAGE_ROOT="${BUILD_DIR}"/..
-	export SAGE_SRC="${BUILD_DIR}"
-	export SAGE_ETC="${BUILD_DIR}"/bin
-	export SAGE_DOC="${BUILD_DIR}"/build_doc
-	export SAGE_DOC_SRC="${BUILD_DIR}"/doc
+	export SAGE_ROOT="${BUILD_DIR}"/../..
+	export SAGE_SRC="${BUILD_DIR}"/..
+	export SAGE_ETC="${SAGE_SRC}"/bin
+	export SAGE_DOC="${SAGE_SRC}"/build_doc
+	export SAGE_DOC_SRC="${SAGE_SRC}"/doc
 }
 
 python_configure_all() {
