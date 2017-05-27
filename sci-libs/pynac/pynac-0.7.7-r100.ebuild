@@ -42,7 +42,7 @@ src_prepare(){
 	pynac_prepare(){
 		cd "${BUILD_DIR}" || die
 
-		sed -i "s:libpynac:libpynac-${MULTIBUILD_VARIANT}:g" \
+		sed -i "s:libpynac:libpynac_${MULTIBUILD_VARIANT}:g" \
 			ginac/Makefile.am
 		eautoreconf
 	}
