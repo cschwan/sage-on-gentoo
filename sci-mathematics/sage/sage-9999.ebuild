@@ -220,7 +220,7 @@ python_prepare() {
 	#
 	###############################
 
-	sed -i "s:libraries = pynac gmp:libraries = pynac-${MULTIBUILD_VARIANT} gmp:" \
+	sed -i "s:libraries = pynac gmp:libraries = pynac_${MULTIBUILD_VARIANT} gmp:" \
 		sage/libs/pynac/pynac.pxd
 
 	############################################################################
@@ -343,13 +343,16 @@ python_prepare() {
 		"${FILESDIR}"/${PN}-7.1-linguas.patch
 }
 
-python_configure() {
-	export SAGE_LOCAL="${EPREFIX}"/usr
+sage_build_env(){
 	export SAGE_ROOT=`pwd`/..
 	export SAGE_SRC=`pwd`
 	export SAGE_ETC=`pwd`/bin
 	export SAGE_DOC=`pwd`/build_doc
 	export SAGE_DOC_SRC=`pwd`/doc
+}
+
+python_configure() {
+	export SAGE_LOCAL="${EPREFIX}"/usr
 	export SAGE_DOC_MATHJAX=yes
 	export VARTEXFONTS="${T}"/fonts
 	export SAGE_VERSION=${PV}
@@ -374,9 +377,11 @@ python_configure() {
 }
 
 python_compile() {
+	sage_build_env
+
 	distutils-r1_python_compile
 
-	if not python_is_python3 ; then
+	if ! python_is_python3; then
 		if use doc-html ; then
 			"${PYTHON}" sage_setup/docbuild/__main__.py --no-pdf-links all html || die "failed to produce html doc"
 		fi
@@ -388,6 +393,8 @@ python_compile() {
 }
 
 python_install() {
+	sage_build_env
+
 	distutils-r1_python_install
 
 	# install cython debugging files if requested
