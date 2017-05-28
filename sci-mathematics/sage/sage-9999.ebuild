@@ -344,11 +344,11 @@ python_prepare() {
 }
 
 sage_build_env(){
-	export SAGE_ROOT="${BUILD_DIR}"/../..
-	export SAGE_SRC="${BUILD_DIR}"/..
-	export SAGE_ETC="${SAGE_SRC}"/bin
-	export SAGE_DOC="${BUILD_DIR}"/build_doc
-	export SAGE_DOC_SRC="${SAGE_SRC}"/doc
+	export SAGE_ROOT="${S}-${MULTIBUILD_VARIANT}"/..
+	export SAGE_SRC="${S}-${MULTIBUILD_VARIANT}"
+	export SAGE_ETC="${S}-${MULTIBUILD_VARIANT}"/bin
+	export SAGE_DOC="${S}-${MULTIBUILD_VARIANT}"/build_doc
+	export SAGE_DOC_SRC="${S}-${MULTIBUILD_VARIANT}"/doc
 }
 
 python_configure_all() {
@@ -440,6 +440,46 @@ python_install() {
 		rm -f "${ED}"$(python_get_sitedir)/sage/doctest/tests/__init__.*
 	fi
 	popd
+
+	if ! python_is_python3; then
+	####################################
+	# Install documentation
+	####################################
+		docompress -x /usr/share/doc/sage
+
+		# necessary for sagedoc.py call to sphinxify in sagenb for now.
+		insinto /usr/share/doc/sage/en/introspect
+		doins -r doc/en/introspect/*
+		insinto /usr/share/doc/sage/common
+		doins -r doc/common/*
+		doins sage_setup/docbuild/ext/sage_autodoc.py
+		doins sage_setup/docbuild/ext/inventory_builder.py
+		doins sage_setup/docbuild/ext/multidocs.py
+
+		if use doc-html ; then
+			# Prune _static folders
+			cp -r build_doc/html/en/_static build_doc/html/ || die "failed to copy _static folder"
+			for sdir in `find build_doc/html -name _static` ; do
+				if [ $sdir != "build_doc/html/_static" ] ; then
+					rm -rf $sdir || die "failed to remove $sdir"
+					ln -s "${EPREFIX}"/usr/share/doc/sage/html/_static $sdir
+				fi
+			done
+			# Work around for issue #402 until I understand where it comes from
+			for pyfile in `find build_doc/html -name \*.py` ; do
+				rm -rf "${pyfile}" || die "fail to to remove $pyfile"
+				rm -rf "${pyfile/%.py/.pdf}" "${pyfile/%.py/png}"
+			done
+			insinto /usr/share/doc/sage/html
+			doins -r build_doc/html/*
+			dosym /usr/share/doc/sage/html/en /usr/share/jupyter/kernels/sagemath/doc
+		fi
+
+		if use doc-pdf ; then
+			insinto /usr/share/doc/sage/pdf
+			doins -r build_doc/pdf/*
+		fi
+	fi
 }
 
 python_install_all(){
@@ -486,44 +526,6 @@ python_install_all(){
 	ln -sf "${EPREFIX}/usr/share/jsmol" "${ED}"/usr/share/jupyter/nbextensions/jsmol || die "die creating jsmol simlink"
 	dosym /usr/share/sage/ext/notebook-ipython/logo-64x64.png /usr/share/jupyter/kernels/sagemath/logo-64x64.png
 	dosym /usr/share/sage/ext/notebook-ipython/logo.svg /usr/share/jupyter/kernels/sagemath/logo.svg
-
-	####################################
-	# Install documentation
-	####################################
-	docompress -x /usr/share/doc/sage
-
-	# necessary for sagedoc.py call to sphinxify in sagenb for now.
-	insinto /usr/share/doc/sage/en/introspect
-	doins -r doc/en/introspect/*
-	insinto /usr/share/doc/sage/common
-	doins -r doc/common/*
-	doins sage_setup/docbuild/ext/sage_autodoc.py
-	doins sage_setup/docbuild/ext/inventory_builder.py
-	doins sage_setup/docbuild/ext/multidocs.py
-
-	if use doc-html ; then
-		# Prune _static folders
-		cp -r build_doc/html/en/_static build_doc/html/ || die "failed to copy _static folder"
-		for sdir in `find build_doc/html -name _static` ; do
-			if [ $sdir != "build_doc/html/_static" ] ; then
-				rm -rf $sdir || die "failed to remove $sdir"
-				ln -s "${EPREFIX}"/usr/share/doc/sage/html/_static $sdir
-			fi
-		done
-		# Work around for issue #402 until I understand where it comes from
-		for pyfile in `find build_doc/html -name \*.py` ; do
-			rm -rf "${pyfile}" || die "fail to to remove $pyfile"
-			rm -rf "${pyfile/%.py/.pdf}" "${pyfile/%.py/png}"
-		done
-		insinto /usr/share/doc/sage/html
-		doins -r build_doc/html/*
-		dosym /usr/share/doc/sage/html/en /usr/share/jupyter/kernels/sagemath/doc
-	fi
-
-	if use doc-pdf ; then
-		insinto /usr/share/doc/sage/pdf
-		doins -r build_doc/pdf/*
-	fi
 }
 
 pkg_preinst() {
