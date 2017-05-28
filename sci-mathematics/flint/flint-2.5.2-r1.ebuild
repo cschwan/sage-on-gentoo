@@ -39,9 +39,9 @@ src_configure() {
 		$(usex ntl "--with-ntl=${EPREFIX}/usr" "") \
 		$(use_enable static-libs static) \
 		$(usex gc "--with-gc=${EPREFIX}/usr" "") \
-		CC=$(tc-getCC) \
-		CXX=$(tc-getCXX) \
-		AR=$(tc-getAR) \
+		CC="$(tc-getCC)" \
+		CXX="$(tc-getCXX)" \
+		AR="$(tc-getAR)" \
 		|| die
 }
 
