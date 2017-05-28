@@ -1,0 +1,4 @@
+amd64-linux             prefix/linux/amd64/stable		exp
+x86-linux               prefix/linux/x86/devel			exp
+amd64-linux             prefix/linux/amd64/stable/bindoc	exp
+x86-linux               prefix/linux/x86/devel/bindoc		exp
