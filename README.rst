@@ -90,8 +90,13 @@ QUICK INSTALLATION GUIDE
    <path-to-layman> is usually /var/lib/layman (this path used to be
    /usr/local/portage/layman for older version of layman).
 
-   Note: For sage 6.8 we also provide a file 99sage-doc-bin that makes it easy 
-   to use pre-built html documentation. This is recomended for ~arch users.
+   You should also consider linking in the same way the file ``99sage-doc-bin``.
+   This file sets sane default options for installing html documentation from a binary
+   tarball. Building the sage documentation from scratch is memory hungry and you
+   shouldn't consider doing it with less than 6GB of free memory on your system.
+   This is only available for stable realease of sage (sage-X.Y). User of the development
+   version of sage (sage-9999 ebuild) need to build their own documentation from scratch
+   if they need it.
 
 5. *INSTALL SAGE*:
    Type::
