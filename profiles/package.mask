@@ -4,5 +4,3 @@ sci-mathematics/ecm
 # testing only
 # Work in progress it doesn't like being installed in a root location
 #dev-gap/atlasrep
-#  Experimantal work in progress
-=sci-libs/pynac-0.7.7-r100
