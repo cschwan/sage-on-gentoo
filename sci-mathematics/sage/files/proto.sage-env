@@ -64,5 +64,4 @@ if [ -n "$SAGE_BROWSER" ]; then
 	export BROWSER="$SAGE_BROWSER"
 fi
 
-export EPYTHON=python2.7
 export MPMATH_NOGMPY=1
