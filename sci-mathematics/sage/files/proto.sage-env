@@ -28,10 +28,6 @@ if [[ -z ${SAGE_EXTCODE} ]]; then
 	export SAGE_EXTCODE="@GENTOO_PORTAGE_EPREFIX@/usr/share/sage/ext"
 fi
 
-if [[ -z ${SAGE_SRC} ]]; then
-	export SAGE_SRC="@GENTOO_SITEDIR@"
-fi
-
 if [[ -z ${DOT_SAGE} ]]; then
 	export DOT_SAGE="${HOME}/.sage"
 fi
