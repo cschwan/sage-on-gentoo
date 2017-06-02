@@ -222,7 +222,7 @@ python_prepare() {
 
 	sed \
 		-e "s:libraries = pynac gmp:libraries = pynac_${MULTIBUILD_VARIANT} gmp:" \
-		-e "s:clib pynac/;clib pynac_${MULTIBUILD_VARIANT}:" \
+		-e "s:clib pynac/:clib pynac_${MULTIBUILD_VARIANT}:" \
 		-i sage/libs/pynac/pynac.pxd
 
 	############################################################################
