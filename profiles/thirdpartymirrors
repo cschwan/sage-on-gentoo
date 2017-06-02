@@ -1,2 +1,2 @@
-sageupstream http:/files.sagemath.org//spkg/upstream/ http:/ftp.riken.jp/sagemath/spkg/upstream/ http:/echidna.maths.usyd.edu.au/sage/spkg/upstream http:/www-ftp.lip6.fr/pub/math/sagemath/spkg/upstream ftp:/ftp.fu-berlin.de/unix/misc/sage/spkg/upstream
-sagemath http:/sagetrac.lipn.univ-paris13.fr/sage/
+sageupstream http://files.sagemath.org//spkg/upstream/ http://ftp.riken.jp/sagemath/spkg/upstream/ http://echidna.maths.usyd.edu.au/sage/spkg/upstream http://www-ftp.lip6.fr/pub/math/sagemath/spkg/upstream ftp://ftp.fu-berlin.de/unix/misc/sage/spkg/upstream
+sagemath http://sagetrac.lipn.univ-paris13.fr/sage/
