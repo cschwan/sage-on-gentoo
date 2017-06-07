@@ -48,55 +48,77 @@ QUICK INSTALLATION GUIDE
           might want to try skipping to step 5 first, and if it doesn't work,
           coming back and doing steps 3 and 4.
 
-3. *UNMASK EBUILDS*:
-   Before being able to install you may need to unmask the required ebuilds. If
-   you are using Gentoo/unstable or Funtoo (i.e. you have a line like
-   ``ACCEPT_KEYWORDS=~arch`` in your /etc/portage/make.conf) you can at least
-   skip the ``keywords`` entries, but the ``unmask`` entries may still be
-   relevant. You can make use of the following files, which already contain all
-   required entries::
+3. *USE THE PROFILE*:
+   This overlay provides three types of profiles::
 
-     sage-on-gentoo/package.unmask/sage
-     sage-on-gentoo/package.keywords/sage
-     sage-on-gentoo/package.keywords/sage.prefix (for prefix users only)
+     stable
+     stable/bindoc
+     devel
 
-   To use these files permanently, place symbolic links to those files into your
-   ``/etc/portage/package.unmask`` and ``/etc/portage/package.keywords/``
-   directories, respectively::
+   you can see them with the command::
 
-     ln -s <path-to-layman>/sage-on-gentoo/package.unmask/sage \
-           /etc/portage/package.unmask/sage
-     ln -s <path-to-layman>/sage-on-gentoo/package.keywords/sage \
-           /etc/portage/package.keywords/sage
+     eselect profile list
 
-   Otherwise, simply copy them into the respective directories for a one-time
-   fix.
+   the fastest method for using the profile chosen is via::
 
-   The sage.prefix files contains keywords for ebuilds lacking any prefix 
-   keywords.
+     eselect profile set <number>
 
-4. *ADD USE-FLAGS FOR EBUILDS*:
-   Since Sage's ebuild requires its dependencies to be built with several USE-
-   flags we provide a standard package.use file as well::
+   where <number> is the number of the profile you want to use.
 
-     ln -s <path-to-layman>/sage-on-gentoo/package.use/sage \
-           /etc/portage/package.use/sage
+   Alternatively, if you don't want to lose your profile, you can combine your
+   existing profile with one of the sage-on-gentoo overlay; you may want to
+   get a look to this link
 
-   If you are using unstable or Funtoo you may also need the following file::
+   https://wiki.gentoo.org/wiki/Profile_(Portage)#Combining_profiles
 
-     ln -s <path-to-layman>/sage-on-gentoo/package.use/sage-unstable \
-           /etc/portage/package.use/sage-unstable
+   or follow our quickguide.
+   To get started you need a local overlay, for example in::
 
-   <path-to-layman> is usually /var/lib/layman (this path used to be
-   /usr/local/portage/layman for older version of layman).
+     /usr/local/portage
 
-   You should also consider linking in the same way the file ``99sage-doc-bin``.
-   This file sets sane default options for installing html documentation from a binary
-   tarball. Building the sage documentation from scratch is memory hungry and you
-   shouldn't consider doing it with less than 6GB of free memory on your system.
-   This is only available for stable realease of sage (sage-X.Y). User of the development
-   version of sage (sage-9999 ebuild) need to build their own documentation from scratch
-   if they need it.
+   next you have to put this line::
+
+     profile-formats = portage-2
+
+   in the file::
+
+     /usr/local/portage/metadata/layout.conf
+
+   then you have to create the path for your local profile, for example combining
+   hardened-amd64 with stable-bindoc-amd64::
+
+     mkdir -p /usr/local/portage/profiles/hardened/linux/amd64/sage-stable-bindoc/
+
+   once created, you put the lines corresponding to the path of the profiles (found
+   with eselect profile list)
+
+     sage-on-gentoo:default/linux/amd64/13.0/stable/bindoc
+     gentoo:hardened/linux/amd64
+
+   in::
+
+     /usr/local/portage/profiles/hardened/linux/amd64/sage-stable-bindoc/parent
+
+   remember that the order matters.
+   Lastly you have to add a line corresponding to the path you have created
+   following this format::
+
+     amd64 hardened/linux/amd64/sage-stable-bindoc stable
+
+   to the file::
+
+     /usr/local/portage/profiles/profiles.desc
+
+   remember to change "stable" into "dev" if you use the "devel" profile or into
+   "exp" if you use any of the prefix profiles and "amd64" to your architecture.
+
+   The new profile will show if you run::
+
+     eselect profile list
+
+   and now you can choose it with::
+
+     eselect profile set <number>
 
 5. *INSTALL SAGE*:
    Type::
