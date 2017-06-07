@@ -54,6 +54,9 @@ src_prepare(){
 }
 
 src_configure(){
+	if use ppc64; then
+		append-cppflags -Dx86_64
+	fi
 	if use fltk; then
 		append-cppflags -I$(fltk-config --includedir)
 		append-lfs-flags
