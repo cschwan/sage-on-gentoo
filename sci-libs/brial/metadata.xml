@@ -7,7 +7,7 @@
 </maintainer>
 	<longdescription lang="en">
 		BriAL is the the successor to PolyBoRi.
-		As PolyBoRi, libBRiAL is a C++ library, which provides high-level data types for
+		As PolyBoRi, BRiAL is a C++ library, which provides high-level data types for
 		Boolean polynomials and monomials, exponent vectors, as well as for
 		the underlying polynomial rings and subsets of the powerset of the
 		Boolean variables.

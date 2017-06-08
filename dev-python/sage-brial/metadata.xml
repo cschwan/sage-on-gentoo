@@ -7,6 +7,6 @@
 </maintainer>
 	<longdescription lang="en">
 		BriAL is the the successor to PolyBoRi.
-		pyBRiAl is the python implemention of BRiAl.
+		sage-BRiAl is the python interface to BRiAl using the sage library..
 	</longdescription>
 </pkgmetadata>

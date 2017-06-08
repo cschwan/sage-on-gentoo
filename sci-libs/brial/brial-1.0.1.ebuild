@@ -5,10 +5,10 @@ EAPI=6
 
 inherit toolchain-funcs
 
-DESCRIPTION="libBriAL, a successor to PolyBoRI: Polynomials over Boolean Rings"
-HOMEPAGE="https://github.com/BRiAl/libBRiAl"
+DESCRIPTION="BriAL, a successor to PolyBoRI: Polynomials over Boolean Rings"
+HOMEPAGE="https://github.com/BRiAl/BRiAl"
 
-SRC_URI="https://github.com/BRiAl/libBRiAl/releases/download/${PV}/${P}.tar.bz2"
+SRC_URI="https://github.com/BRiAl/BRiAl/releases/download/${PV}/${P}.tar.bz2"
 
 LICENSE="GPL-2"
 SLOT="0"
