@@ -225,6 +225,8 @@ python_prepare() {
 		-e "s:clib pynac:clib pynac_${MULTIBUILD_VARIANT}:" \
 		-i sage/libs/pynac/pynac.pxd
 
+	eapply "${FILESDIR}"/trac23147.patch
+
 	############################################################################
 	# Fixes to Sage's build system
 	############################################################################
