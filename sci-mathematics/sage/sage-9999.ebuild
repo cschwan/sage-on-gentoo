@@ -69,7 +69,7 @@ CDEPEND="dev-libs/gmp:0=
 	~sci-libs/m4ri-20140914
 	~sci-libs/m4rie-20150908
 	>=sci-libs/mpfi-1.5.1
-	=sci-libs/pynac-0.7.8[-giac,${PYTHON_USEDEP}]
+	=sci-libs/pynac-0.7.7-r100[-giac,${PYTHON_USEDEP}]
 	>=sci-libs/symmetrica-2.0-r3
 	>=sci-libs/zn_poly-0.9
 	sci-mathematics/glpk:0=[gmp]
@@ -132,7 +132,7 @@ RDEPEND="${CDEPEND}
 	>=sci-mathematics/sympow-1.018.1
 	www-servers/tornado
 	!prefix? ( >=sys-libs/glibc-2.13-r4 )
-	sagenb? ( ~sci-mathematics/sage-notebook-0.13[$(python_gen_usedep 'python2*')] )
+	sagenb? ( ~sci-mathematics/sage-notebook-1.0.1[$(python_gen_usedep 'python2*')] )
 	latex? (
 		~dev-tex/sage-latex-3.0
 		|| ( app-text/dvipng[truetype] media-gfx/imagemagick[png] )
