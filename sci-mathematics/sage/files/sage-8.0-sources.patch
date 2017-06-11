@@ -34,12 +34,12 @@ index 4315663..e87483f 100644
       INCREMENTAL_BUILD, ABORT_ON_ERROR)
  
 diff --git a/sage_setup/docbuild/__main__.py b/sage_setup/docbuild/__main__.py
-index 031df43..867f7cd 100644
+index 031df43..e68b438 100644
 --- a/sage_setup/docbuild/__main__.py
 +++ b/sage_setup/docbuild/__main__.py
-@@ -1,2 +1,3 @@
-+from __future__ import absolute_import
- from . import main
+@@ -1,2 +1,2 @@
+-from . import main
++from sage_setup.docbuild import main
  main()
 diff --git a/sage_setup/find.py b/sage_setup/find.py
 index cba29bf..36d5ab1 100644
