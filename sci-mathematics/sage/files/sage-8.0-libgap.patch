@@ -1,3 +1,25 @@
+diff --git a/sage/libs/gap/saved_workspace.py b/sage/libs/gap/saved_workspace.py
+index 3cb8fd3..2dd79fd 100644
+--- a/sage/libs/gap/saved_workspace.py
++++ b/sage/libs/gap/saved_workspace.py
+@@ -8,7 +8,6 @@ workspaces.
+ 
+ import os
+ import glob
+-from sage.env import GAP_ROOT_DIR
+ from sage.interfaces.gap import GAP_BINARY
+ from sage.interfaces.gap_workspace import gap_workspace_file
+ 
+@@ -32,8 +31,7 @@ def timestamp():
+     """
+     libgap_dir = os.path.dirname(__file__)
+     libgap_files = glob.glob(os.path.join(libgap_dir, '*'))
+-    gap_packages = glob.glob(os.path.join(GAP_ROOT_DIR, 'pkg', '*'))
+-    files = libgap_files + [GAP_BINARY] + gap_packages
++    files = libgap_files + [GAP_BINARY]
+     if len(files) == 0:
+         print('Unable to find LibGAP files.')
+         return float('inf')
 diff --git a/sage/libs/gap/util.pyx b/sage/libs/gap/util.pyx
 index 3dc2c2e..7f773e5 100644
 --- a/sage/libs/gap/util.pyx
