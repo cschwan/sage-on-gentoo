@@ -294,7 +294,7 @@ index 2091144..7fd4137 100755
 +        cat "@GENTOO_PORTAGE_EPREFIX@/etc/sage-banner"
      fi
  
--    # Display the startup banner (unless SAGE_BANNER is explictly "no")
+-    # Display the startup banner (unless SAGE_BANNER is explicitly "no")
 -    sage_banner
 -
 -    maybe_sage_location
