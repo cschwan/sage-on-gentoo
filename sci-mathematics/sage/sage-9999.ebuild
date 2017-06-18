@@ -24,7 +24,7 @@ HOMEPAGE="http://www.sagemath.org"
 SRC_URI="${SRC_URI}
 	mirror://sagemath/sage-icon.tar.bz2"
 
-LANGS="ca de en fr hu it ja pt ru tr"
+LANGS="ca de en es fr hu it ja pt ru tr"
 
 LICENSE="GPL-2"
 SLOT="0"
