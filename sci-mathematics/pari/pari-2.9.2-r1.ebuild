@@ -32,6 +32,7 @@ PATCHES=(
 	"${FILESDIR}"/${PN}-2.9.0-no-automagic.patch
 	"${FILESDIR}"/${PN}-2.9.0-stackwarn.patch
 	"${FILESDIR}"/${PN}-2.9.1-doc.patch
+	"${FILESDIR}"/${PN}-2.9.2-polredabs.patch
 	)
 
 S="${WORKDIR}"/${PN}-${MY_PV}
