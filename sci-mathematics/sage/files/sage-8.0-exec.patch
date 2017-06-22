@@ -1,5 +1,5 @@
 diff --git a/bin/sage b/bin/sage
-index 2091144..7fd4137 100755
+index 6a2b57f..388819c 100755
 --- a/bin/sage
 +++ b/bin/sage
 @@ -1,7 +1,7 @@
@@ -294,7 +294,7 @@ index 2091144..7fd4137 100755
 +        cat "@GENTOO_PORTAGE_EPREFIX@/etc/sage-banner"
      fi
  
--    # Display the startup banner (unless SAGE_BANNER is explictly "no")
+-    # Display the startup banner (unless SAGE_BANNER is explicitly "no")
 -    sage_banner
 -
 -    maybe_sage_location
@@ -431,7 +431,7 @@ index 2091144..7fd4137 100755
  if [ "$1" = "-inotebook" -o "$1" = '--inotebook' ]; then
      shift
      sage-cleaner &>/dev/null &
-@@ -798,38 +544,19 @@ if [ "$1" = '-grepdoc' -o "$1" = "--grepdoc" -o "$1" = "-search_doc" -o "$1" = "
+@@ -798,34 +544,15 @@ if [ "$1" = '-grepdoc' -o "$1" = "--grepdoc" -o "$1" = "-search_doc" -o "$1" = "
     exit 0
  fi
  
@@ -461,10 +461,6 @@ index 2091144..7fd4137 100755
 -        build_sage
 -    fi
 +if [ "$1" = '-t' -o "$1" = '-tp' ]; then
-     if [ ! -f  "$DOT_SAGE"/init.sage ]; then
-         echo >&2 "init.sage does not exist ... creating"
-         touch "$DOT_SAGE"/init.sage
-     fi
      SAGE_BANNER=no sage_setup
      export PYTHONIOENCODING="utf-8"  # Fix encoding for doctests
 -    if [ "$1" = '-tp' -o "$1" = '-btp' ]; then
@@ -472,7 +468,7 @@ index 2091144..7fd4137 100755
          shift
          exec sage-runtests -p "$@"
      else
-@@ -838,16 +565,6 @@ if [ "$1" = '-t' -o "$1" = '-bt' -o "$1" = '-tp' -o "$1" = '-btp' ]; then
+@@ -834,16 +561,6 @@ if [ "$1" = '-t' -o "$1" = '-bt' -o "$1" = '-tp' -o "$1" = '-btp' ]; then
      fi
  fi
  
@@ -489,7 +485,7 @@ index 2091144..7fd4137 100755
  if [ "$1" = '-testall' -o "$1" = "--testall" ]; then
      shift
      SAGE_BANNER=no sage_setup
-@@ -862,119 +579,6 @@ if [ "$1" = '-c' ]; then
+@@ -858,119 +575,6 @@ if [ "$1" = '-c' ]; then
      exec sage-eval "$@"
  fi
  
@@ -609,7 +605,7 @@ index 2091144..7fd4137 100755
  if [ "$1" = '-gdb' -o "$1" = "--gdb" ]; then
      shift
      sage_setup
-@@ -983,7 +587,7 @@ if [ "$1" = '-gdb' -o "$1" = "--gdb" ]; then
+@@ -979,7 +583,7 @@ if [ "$1" = '-gdb' -o "$1" = "--gdb" ]; then
              -args python "$SAGE_LOCAL/bin/sage-ipython" "$@" -i
      else
          # Location of cython_debug directory
@@ -618,7 +614,7 @@ index 2091144..7fd4137 100755
          cygdb "$cygdb_dir" "$SAGE_SRC/sage" \
              -- -x "$SAGE_LOCAL/bin/sage-gdb-commands" \
              -args python "$SAGE_LOCAL/bin/sage-ipython" "$@" -i
-@@ -1041,10 +645,6 @@ if [ "$1" = '-gthread' -o "$1" = '-qthread' -o "$1" = '-q4thread' -o "$1" = '-wt
+@@ -1037,10 +641,6 @@ if [ "$1" = '-gthread' -o "$1" = '-qthread' -o "$1" = '-q4thread' -o "$1" = '-wt
  fi
  
  if [ $# -ge 1 ]; then
