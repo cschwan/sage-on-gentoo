@@ -52,6 +52,7 @@ python_prepare_all() {
 	epatch "${FILESDIR}"/${PN}-1.0-doc-makefile.patch
 	epatch "${FILESDIR}"/${PN}-1.0-undeffun_sage.patch
 	epatch "${FILESDIR}"/${PN}-0.7.6.1-zeta.patch
+	epatch "${FILESDIR}"/PR12784.patch
 	distutils-r1_python_prepare_all
 }
 
