@@ -3,7 +3,7 @@
 
 EAPI=6
 
-PYTHON_COMPAT=( python2_7 )
+PYTHON_COMPAT=( python2_7 python3_{4,5,6} )
 
 inherit autotools python-r1 vcs-snapshot
 
@@ -33,27 +33,49 @@ RDEPEND="dev-libs/gmp:0=
 DOCS=( AUTHORS NEWS README )
 
 PATCHES=(
-	"${FILESDIR}"/${PN}-0.7.7-numeric.patch
+	"${FILESDIR}"/un-pc.patch
 	)
 
-pkg_setup(){
-	python_setup
-}
-
 src_prepare(){
-	default
+	pynac_prepare(){
+		cd "${BUILD_DIR}" || die
 
-	eautoreconf
+		sed -i "s:libpynac:libpynac_${MULTIBUILD_VARIANT}:g" \
+			ginac/Makefile.am
+		eautoreconf
+	}
+
+	default
+	python_copy_sources
+	python_foreach_impl pynac_prepare
 }
 
 src_configure(){
-	econf \
-		$(use_with giac) \
-		$(use_enable static-libs static)
+	pynac_configure(){
+		cd "${BUILD_DIR}" || die
+		econf \
+			$(use_with giac) \
+			$(use_enable static-libs static)
+	}
+
+	python_foreach_impl pynac_configure
+}
+
+src_compile(){
+	pynac_compile(){
+		cd "${BUILD_DIR}" || die
+		default
+	}
+	python_foreach_impl pynac_compile
 }
 
 src_install(){
-	default
+	pynac_install(){
+		cd "${BUILD_DIR}" || die
+		default
+	}
+
+	python_foreach_impl pynac_install
 	# remove .la file
 	find "${ED}" -name '*.la' -delete || die
 }
