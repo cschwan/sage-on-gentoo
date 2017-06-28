@@ -430,7 +430,8 @@ python_install() {
 	python_doscript \
 		sage-cython \
 		sage-notebook \
-		sage-run-cython
+		sage-run-cython \
+		math-readline
 
 	# additonal helper scripts
 	python_doscript sage-preparse sage-startuptime.py
