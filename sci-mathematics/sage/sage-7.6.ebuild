@@ -413,7 +413,8 @@ python_install_all() {
 	python_foreach_impl python_doscript sage-preparse sage-startuptime.py
 
 	dobin sage-native-execute sage \
-		sage-python sage-version.sh
+		sage-python sage-version.sh \
+		math-readline
 
 	# install sage-env under /etc
 	insinto /etc
