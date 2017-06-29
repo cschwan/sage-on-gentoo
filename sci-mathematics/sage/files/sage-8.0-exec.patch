@@ -1,5 +1,5 @@
 diff --git a/bin/sage b/bin/sage
-index 6a2b57f..388819c 100755
+index 41c547e..0d2b62b 100755
 --- a/bin/sage
 +++ b/bin/sage
 @@ -1,7 +1,7 @@
@@ -11,7 +11,7 @@ index 6a2b57f..388819c 100755
      echo
  }
  
-@@ -13,20 +13,15 @@ usage() {
+@@ -13,13 +13,9 @@ usage() {
      echo "  file.[sage|py|spyx] -- run given .sage, .py or .spyx file"
      echo "  -advanced           -- list all command line options"
      echo "  -c <cmd>            -- Evaluates cmd as sage code"
@@ -25,14 +25,15 @@ index 6a2b57f..388819c 100755
      echo "  -inotebook [...]    -- start the *insecure* Sage notebook (deprecated)"
      echo "  -maxima [...]       -- run Sage's Maxima with given arguments"
      echo "  -mwrank [...]       -- run Sage's mwrank with given arguments"
-     echo "  --notebook=[...]    -- start the Sage notebook (valid options are"
+@@ -27,7 +23,6 @@ usage() {
      echo "                         'default', 'sagenb', 'jupyter', and 'export')"
+     echo "                         Current default is 'export' from sagenb to jupyter"
      echo "  -n, --notebook      -- shortcut for --notebook=default"
 -    echo "  -optional           -- list all optional packages that can be installed"
      echo "  -python [...]       -- run the Python 2 interpreter"
      echo "  -python3 [...]      -- run the Python 3 interpreter"
      echo "  -R [...]            -- run Sage's R with given arguments"
-@@ -43,10 +38,6 @@ usage() {
+@@ -44,10 +39,6 @@ usage() {
      echo "                           --optional - controls which optional tests are run"
      echo "                           --sagenb - test all sagenb files"
      echo "                           --help - show all testing options"
@@ -43,7 +44,7 @@ index 6a2b57f..388819c 100755
      echo "  -v, -version        -- display Sage version information"
      exit 0
  }
-@@ -69,7 +60,6 @@ usage_advanced() {
+@@ -70,7 +61,6 @@ usage_advanced() {
      echo "                      -- pass the option through to ipython"
      echo "  -v, -version        -- display Sage version information"
      echo "  -dumpversion        -- print Sage version"
@@ -51,7 +52,7 @@ index 6a2b57f..388819c 100755
  
      echo
      ####  1.......................26..................................................78
-@@ -80,8 +70,6 @@ usage_advanced() {
+@@ -82,8 +72,6 @@ usage_advanced() {
      echo "                         See the output of sage --notebook --help"
      echo "                         for more details and examples of how to pass"
      echo "                         optional arguments"
@@ -60,7 +61,7 @@ index 6a2b57f..388819c 100755
      echo "  -inotebook [...]    -- start the *insecure* Sage notebook (deprecated)"
      echo "  -n, -notebook [...] -- start the default Sage notebook (options are the"
      echo "                         same as for the notebook command in Sage).  See the"
-@@ -95,7 +83,6 @@ usage_advanced() {
+@@ -97,7 +85,6 @@ usage_advanced() {
      echo "  -cython [...]       -- run Cython with given arguments"
      echo "  -ecl [...]          -- run Common Lisp"
      echo "  -gap [...]          -- run Sage's Gap with given arguments"
@@ -68,7 +69,7 @@ index 6a2b57f..388819c 100755
      echo "  -gdb                -- run Sage under the control of gdb"
      echo "  -gp [...]           -- run Sage's PARI/GP calculator with given arguments"
      echo "  -ipython [...]      -- run Sage's IPython using the default environment (not"
-@@ -114,7 +101,6 @@ usage_advanced() {
+@@ -116,7 +103,6 @@ usage_advanced() {
      echo "                         (not installed currently, run sage -i polymake)"
      echo "  -python [...]       -- run the Python interpreter"
      echo "  -R [...]            -- run Sage's R with given arguments"
@@ -76,7 +77,7 @@ index 6a2b57f..388819c 100755
      echo "  -sh [...]           -- run \$SHELL ($SHELL) with Sage environment variables"
      echo "  -singular [...]     -- run Sage's singular with given arguments"
      echo "  -sqlite3 [...]      -- run Sage's sqlite3 with given arguments"
-@@ -123,55 +109,7 @@ usage_advanced() {
+@@ -125,55 +111,7 @@ usage_advanced() {
      echo
      ####  1.......................26..................................................78
      ####  |.....................--.|...................................................|
@@ -133,7 +134,7 @@ index 6a2b57f..388819c 100755
      echo "  -startuptime [module] -- display how long each component of Sage takes to"
      echo "                         start up; optionally specify a module to get more"
      echo "                         details about that particular module"
-@@ -180,9 +118,7 @@ usage_advanced() {
+@@ -182,9 +120,7 @@ usage_advanced() {
      echo "                         selected options:"
      echo "                           --long - include lines with the phrase 'long time'"
      echo "                           --verbose - print debugging output during the test"
@@ -143,7 +144,7 @@ index 6a2b57f..388819c 100755
      echo "                           --initial - only show the first failure per block"
      echo "                           --debug - drop into PDB after an unexpected error"
      echo "                           --failed - only test files that failed last test"
-@@ -198,10 +134,6 @@ usage_advanced() {
+@@ -200,10 +136,6 @@ usage_advanced() {
      ####  1.......................26..................................................78
      ####  |.....................--.|...................................................|
      echo "Documentation:"
@@ -154,7 +155,7 @@ index 6a2b57f..388819c 100755
      echo "  -search_src <string> -- search through all the Sage library code for string"
      echo "  -search_doc <string> -- search through the Sage documentation for string"
      echo "  -grep <string>      -- same as -search_src"
-@@ -223,16 +155,6 @@ usage_advanced() {
+@@ -225,16 +157,6 @@ usage_advanced() {
      echo
      ####  1.......................26..................................................78
      ####  |.....................--.|...................................................|
@@ -171,7 +172,7 @@ index 6a2b57f..388819c 100755
      echo "Valgrind memory debugging:"
      echo "  -cachegrind         -- run Sage using Valgrind's cachegrind tool.  The log"
      echo "                         files are named sage-cachegrind.PID can be found in"
-@@ -273,101 +195,15 @@ if [ "$1" = '--nodotsage' ]; then
+@@ -275,101 +197,15 @@ if [ "$1" = '--nodotsage' ]; then
      exit $status
  fi
  
@@ -276,7 +277,7 @@ index 6a2b57f..388819c 100755
      exit 1
  fi
  
-@@ -383,47 +219,13 @@ fi
+@@ -385,47 +221,13 @@ fi
  
  # Prepare for running Sage, either interactively or non-interactively.
  sage_setup() {
@@ -326,7 +327,7 @@ index 6a2b57f..388819c 100755
  # Start an interactive Sage session, this function never returns.
  interactive_sage() {
      sage_setup
-@@ -483,11 +285,6 @@ if [ "$1" = '-gap' -o "$1" = '--gap' ]; then
+@@ -485,11 +287,6 @@ if [ "$1" = '-gap' -o "$1" = '--gap' ]; then
      exec gap "$@"
  fi
  
@@ -338,7 +339,7 @@ index 6a2b57f..388819c 100755
  if [ "$1" = '-gp' -o "$1" = '--gp' ]; then
      shift
      exec gp "$@"
-@@ -533,11 +330,6 @@ if [ "$1" = '-kash' -o "$1" = '--kash' ]; then
+@@ -535,11 +332,6 @@ if [ "$1" = '-kash' -o "$1" = '--kash' ]; then
      exec kash "$@"
  fi
  
@@ -350,7 +351,7 @@ index 6a2b57f..388819c 100755
  if [ "$1" = '-maxima' -o "$1" = '--maxima' ]; then
      shift
      exec maxima "$@"
-@@ -553,21 +345,6 @@ if [ "$1" = '-M2' -o "$1" = '--M2' ]; then
+@@ -555,21 +347,6 @@ if [ "$1" = '-M2' -o "$1" = '--M2' ]; then
      exec M2 "$@"
  fi
  
@@ -372,7 +373,7 @@ index 6a2b57f..388819c 100755
  if [ "$1" = '-python' -o "$1" = '--python' ]; then
      shift
      exec python "$@"
-@@ -598,11 +375,6 @@ if [ "$1" = '-git' -o "$1" = '--git' ]; then
+@@ -600,11 +377,6 @@ if [ "$1" = '-git' -o "$1" = '--git' ]; then
      exec git "$@"
  fi
  
@@ -384,7 +385,7 @@ index 6a2b57f..388819c 100755
  if [ "$1" = '-sh' -o "$1" = '--sh' ]; then
      # AUTHORS:
      # - Carl Witty and William Stein: initial version
-@@ -722,20 +494,6 @@ EOF
+@@ -724,20 +496,6 @@ EOF
  fi
  
  #####################################################################
@@ -405,7 +406,7 @@ index 6a2b57f..388819c 100755
  # File conversion
  #####################################################################
  
-@@ -758,11 +516,6 @@ fi
+@@ -760,11 +518,6 @@ fi
  # Run Sage's versions of the standard Algebra/Geometry etc. software
  #####################################################################
  
@@ -417,7 +418,7 @@ index 6a2b57f..388819c 100755
  if [[ "$1" =~ ^--notebook=.* || "$1" =~ ^-n=.* || "$1" =~ ^-notebook=.* ]] ; then
      sage-cleaner &>/dev/null &
      exec sage-notebook "$@"
-@@ -773,13 +526,6 @@ if [ "$1" = "-notebook" -o "$1" = '--notebook' -o "$1" = '-n' ]; then
+@@ -775,13 +528,6 @@ if [ "$1" = "-notebook" -o "$1" = '--notebook' -o "$1" = '-n' ]; then
      exec sage-notebook "$@"
  fi
  
@@ -431,7 +432,7 @@ index 6a2b57f..388819c 100755
  if [ "$1" = "-inotebook" -o "$1" = '--inotebook' ]; then
      shift
      sage-cleaner &>/dev/null &
-@@ -798,34 +544,15 @@ if [ "$1" = '-grepdoc' -o "$1" = "--grepdoc" -o "$1" = "-search_doc" -o "$1" = "
+@@ -800,34 +546,15 @@ if [ "$1" = '-grepdoc' -o "$1" = "--grepdoc" -o "$1" = "-search_doc" -o "$1" = "
     exit 0
  fi
  
@@ -468,7 +469,7 @@ index 6a2b57f..388819c 100755
          shift
          exec sage-runtests -p "$@"
      else
-@@ -834,16 +561,6 @@ if [ "$1" = '-t' -o "$1" = '-bt' -o "$1" = '-tp' -o "$1" = '-btp' ]; then
+@@ -836,16 +563,6 @@ if [ "$1" = '-t' -o "$1" = '-bt' -o "$1" = '-tp' -o "$1" = '-btp' ]; then
      fi
  fi
  
@@ -485,7 +486,7 @@ index 6a2b57f..388819c 100755
  if [ "$1" = '-testall' -o "$1" = "--testall" ]; then
      shift
      SAGE_BANNER=no sage_setup
-@@ -858,119 +575,6 @@ if [ "$1" = '-c' ]; then
+@@ -860,119 +577,6 @@ if [ "$1" = '-c' ]; then
      exec sage-eval "$@"
  fi
  
@@ -605,7 +606,7 @@ index 6a2b57f..388819c 100755
  if [ "$1" = '-gdb' -o "$1" = "--gdb" ]; then
      shift
      sage_setup
-@@ -979,7 +583,7 @@ if [ "$1" = '-gdb' -o "$1" = "--gdb" ]; then
+@@ -981,7 +585,7 @@ if [ "$1" = '-gdb' -o "$1" = "--gdb" ]; then
              -args python "$SAGE_LOCAL/bin/sage-ipython" "$@" -i
      else
          # Location of cython_debug directory
@@ -614,7 +615,7 @@ index 6a2b57f..388819c 100755
          cygdb "$cygdb_dir" "$SAGE_SRC/sage" \
              -- -x "$SAGE_LOCAL/bin/sage-gdb-commands" \
              -args python "$SAGE_LOCAL/bin/sage-ipython" "$@" -i
-@@ -1037,10 +641,6 @@ if [ "$1" = '-gthread' -o "$1" = '-qthread' -o "$1" = '-q4thread' -o "$1" = '-wt
+@@ -1039,10 +643,6 @@ if [ "$1" = '-gthread' -o "$1" = '-qthread' -o "$1" = '-q4thread' -o "$1" = '-wt
  fi
  
  if [ $# -ge 1 ]; then
