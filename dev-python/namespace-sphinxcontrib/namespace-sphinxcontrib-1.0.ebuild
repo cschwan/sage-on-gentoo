@@ -21,13 +21,15 @@ DEPEND="${PYTHON_DEPS}"
 
 REQUIRED_USE="${PYTHON_REQUIRED_USE}"
 
+MODNAME=${PN#namespace-}
+
 src_unpack() {
-	mkdir -p "${S}"/sphinxcontrib || die
-	cat > "${S}"/sphinxcontrib/__init__.py <<-EOF || die
+	mkdir -p "${S}"/${MODNAME} || die
+	cat > "${S}"/${MODNAME}/__init__.py <<-EOF || die
 		__import__('pkg_resources').declare_namespace(__name__)
 	EOF
 }
 
 src_install() {
-	python_foreach_impl python_domodule zope
+	python_foreach_impl python_domodule ${MODNAME}
 }
