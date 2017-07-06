@@ -29,7 +29,10 @@ pkg_pretend() {
 }
 
 src_configure() {
-	# cachetune option is not available, because it kills (at least my) X when I
+	# when using openmp and -O0 the testsuite fails
+	# https://github.com/cschwan/sage-on-gentoo/issues/475
+	use openmp && replace-flags -O0 -O1
+#	cachetune option is not available, because it kills (at least my) X when I
 	# switch from yakuake to desktop
 	econf \
 		$(use_enable debug) \
