@@ -40,7 +40,7 @@ CDEPEND="dev-libs/gmp:0=
 	~dev-lisp/ecls-16.1.2
 	dev-python/six[${PYTHON_USEDEP}]
 	>=dev-python/numpy-1.12.1[${PYTHON_USEDEP}]
-	>=dev-python/cython-0.25.2-r3[${PYTHON_USEDEP}]
+	>=dev-python/cython-0.26[${PYTHON_USEDEP}]
 	dev-python/future[${PYTHON_USEDEP}]
 	~dev-python/pkgconfig-1.2.2[${PYTHON_USEDEP}]
 	=dev-python/cysignals-1.6*[${PYTHON_USEDEP}]
@@ -196,6 +196,10 @@ python_prepare() {
 	# Patches to the sage library
 	#
 	###############################
+
+	# early update to cython 0.26:
+	# https://trac.sagemath.org/ticket/23360
+	eapply "${FILESDIR}"/cython-0.26.patch
 
 	# Remove sage's package management system, git capabilities and associated tests
 	eapply "${FILESDIR}"/${PN}-8.0-neutering.patch
