@@ -6,23 +6,16 @@ EAPI=6
 PYTHON_COMPAT=( python2_7 python3_6 )
 PYTHON_REQ_USE="readline,sqlite"
 
-inherit distutils-r1 flag-o-matic multiprocessing prefix toolchain-funcs versionator
+inherit distutils-r1 flag-o-matic multiprocessing prefix toolchain-funcs versionator git-r3
 
-if [[ ${PV} = *9999* ]]; then
-	EGIT_REPO_URI="git://github.com/sagemath/sage.git"
-	EGIT_BRANCH=develop
-	EGIT_CHECKOUT_DIR="${WORKDIR}/${P}"
-	inherit git-r3
-	KEYWORDS=""
-else
-	SRC_URI="mirror://sagemath/${PV}.tar.gz -> ${P}.tar.gz"
-	KEYWORDS="~amd64 ~x86 ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~x64-macos"
-fi
+EGIT_REPO_URI="git://github.com/sagemath/sage.git"
+EGIT_BRANCH=develop
+EGIT_CHECKOUT_DIR="${WORKDIR}/${P}"
+KEYWORDS=""
 
 DESCRIPTION="Math software for abstract and numerical computations"
 HOMEPAGE="http://www.sagemath.org"
-SRC_URI="${SRC_URI}
-	mirror://sagemath/sage-icon.tar.bz2"
+SRC_URI="mirror://sagemath/sage-icon.tar.bz2"
 
 LANGS="ca de en es fr hu it ja pt ru tr"
 
@@ -47,7 +40,7 @@ CDEPEND="dev-libs/gmp:0=
 	~dev-lisp/ecls-16.1.2
 	dev-python/six[${PYTHON_USEDEP}]
 	>=dev-python/numpy-1.12.1[${PYTHON_USEDEP}]
-	>=dev-python/cython-0.25.2-r3[${PYTHON_USEDEP}]
+	>=dev-python/cython-0.26[${PYTHON_USEDEP}]
 	dev-python/future[${PYTHON_USEDEP}]
 	~dev-python/pkgconfig-1.2.2[${PYTHON_USEDEP}]
 	=dev-python/cysignals-1.6*[${PYTHON_USEDEP}]
@@ -207,6 +200,10 @@ python_prepare() {
 	# Patches to the sage library
 	#
 	###############################
+
+	# early update to cython 0.26:
+	# https://trac.sagemath.org/ticket/23360
+	eapply "${FILESDIR}"/cython-0.26.patch
 
 	# Remove sage's package management system, git capabilities and associated tests
 	eapply "${FILESDIR}"/${PN}-8.0-neutering.patch
