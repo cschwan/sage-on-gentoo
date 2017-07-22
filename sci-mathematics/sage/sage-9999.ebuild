@@ -201,10 +201,6 @@ python_prepare() {
 	#
 	###############################
 
-	# early update to cython 0.26:
-	# https://trac.sagemath.org/ticket/23360
-	eapply "${FILESDIR}"/cython-0.26.patch
-
 	# Remove sage's package management system, git capabilities and associated tests
 	eapply "${FILESDIR}"/${PN}-8.0-neutering.patch
 	cp -f "${FILESDIR}"/${PN}-7.3-package.py sage/misc/package.py
@@ -253,7 +249,7 @@ python_prepare() {
 	eapply "${FILESDIR}"/${PN}-7.4-qt4_conflict.patch
 
 	# sage-maxima.lisp really belong to /etc
-	eapply "${FILESDIR}"/${PN}-6.8-maxima.lisp.patch
+	eapply "${FILESDIR}"/${PN}-8.1-maxima.lisp.patch
 
 	# TODO: should be a patch
 	# run maxima with ecl
