@@ -3,19 +3,17 @@
 
 EAPI=6
 
-inherit git-r3 flag-o-matic toolchain-funcs
+inherit flag-o-matic toolchain-funcs versionator
 
+MY_PV=$(replace_version_separator 3 '.')
 DESCRIPTION="Computer-aided number theory C library and tools"
 HOMEPAGE="http://pari.math.u-bordeaux.fr/"
-EGIT_REPO_URI="http://pari.math.u-bordeaux.fr/git/pari.git"
-EGIT_BRANCH=master
+SRC_URI="http://pari.math.u-bordeaux.fr/pub/pari/unix/${PN}-${MY_PV}.tar.gz"
 
 LICENSE="GPL-2"
-# Pari dev release have soname of the form pari-{gmp-}-{PV}.so.0
-#SLOT="0/4"
-SLOT="0/0"
-KEYWORDS=""
-IUSE="data doc fltk gmp qt4 X"
+SLOT="0/5"
+KEYWORDS="~alpha ~amd64 ~hppa ~mips ~ppc ~ppc64 ~sparc ~x86 ~amd64-linux ~x86-fbsd ~x86-linux ~x86-macos ~x86-solaris"
+IUSE="data doc fltk gmp qt4 threads X"
 
 RDEPEND="
 	sys-libs/readline:0=
@@ -31,17 +29,15 @@ DEPEND="${RDEPEND}
 PATCHES=(
 	"${FILESDIR}"/${PN}-2.3.2-strip.patch
 	"${FILESDIR}"/${PN}-2.3.2-ppc-powerpc-arch-fix.patch
-	"${FILESDIR}"/${PN}-2.9.0-doc-make.patch
-	"${FILESDIR}"/${PN}-2.9.0-doc_libpari.patch
 	"${FILESDIR}"/${PN}-2.9.0-no-automagic.patch
+	"${FILESDIR}"/${PN}-2.9.0-stackwarn.patch
+	"${FILESDIR}"/${PN}-2.9.1-doc.patch
 	)
 
+S="${WORKDIR}"/${PN}-${MY_PV}
+
 get_compile_dir() {
-	pushd "${S}/config" > /dev/null
-	local fastread=yes
-	source ./get_archos
-	popd > /dev/null
-	echo "O${osname}-${arch}"
+	"${S}"/config/objdir
 }
 
 src_prepare() {
@@ -77,6 +73,11 @@ src_configure() {
 		append-flags -O2
 	fi
 
+	local mt_threads=""
+	if use threads ; then
+		mt_threads="--mt=pthread"
+	fi
+
 	# sysdatadir installs a pari.cfg stuff which is informative only
 	./Configure \
 		--prefix="${EPREFIX}"/usr \
@@ -85,10 +86,12 @@ src_configure() {
 		--sysdatadir="${EPREFIX}"/usr/share/doc/${PF} \
 		--mandir="${EPREFIX}"/usr/share/man/man1 \
 		--with-readline="${EPREFIX}"/usr \
+		--with-readline-lib="${EPREFIX}"/usr/$(get_libdir) \
 		--with-ncurses-lib="${EPREFIX}"/usr/$(get_libdir) \
 		$(use_with fltk) \
 		$(use_with gmp) \
 		$(use_with qt4 qt) \
+		${mt_threads} \
 		|| die "./Configure failed"
 }
 
@@ -115,7 +118,7 @@ src_compile() {
 }
 
 src_test() {
-	emake ${mymake} ${mycxxmake} test-all
+	emake ${mymake} ${mycxxmake} bench
 }
 
 src_install() {
