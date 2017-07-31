@@ -46,8 +46,9 @@ DEPEND="${RDEPEND}
 	test? ( ${RDEPEND} dev-python/pytest[${PYTHON_USEDEP}] )"
 
 PATCHES=(
+	"${FILESDIR}"/${P}-zeta.patch
 	"${FILESDIR}"/${PN}-1.0-doc-makefile.patch
-	"${FILESDIR}"/${PN}-1.0-undeffun_sage.patch
+	"${FILESDIR}"/PR12826.patch
 )
 
 pkg_setup() {
