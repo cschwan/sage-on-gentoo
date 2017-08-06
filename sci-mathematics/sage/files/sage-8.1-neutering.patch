@@ -45,19 +45,22 @@ index 4607836..0dd84f6 100644
  
      sage: F = tmp_filename()
 diff --git a/sage/game_theory/normal_form_game.py b/sage/game_theory/normal_form_game.py
-index 9d6d0be..1bd7996 100644
+index 9d6d0be..bb12062 100644
 --- a/sage/game_theory/normal_form_game.py
 +++ b/sage/game_theory/normal_form_game.py
-@@ -603,7 +603,7 @@ from sage.rings.all import QQ
+@@ -603,8 +603,10 @@ from sage.rings.all import QQ
  from sage.structure.sage_object import SageObject
  from sage.matrix.constructor import matrix
  from sage.matrix.constructor import vector
 -from sage.misc.package import is_package_installed, PackageNotFoundError
 +from sage.misc.package import PackageNotFoundError
  from sage.misc.temporary_file import tmp_filename
++import os
++from sage.env import SAGE_LOCAL
  
  try:
-@@ -1306,13 +1306,13 @@ class NormalFormGame(SageObject, MutableMapping):
+     from gambit import Game
+@@ -1306,13 +1308,13 @@ class NormalFormGame(SageObject, MutableMapping):
              raise ValueError("utilities have not been populated")
  
          if not algorithm:
@@ -156,7 +159,7 @@ index 32bafe9..633a659 100644
      description = re.sub(r"(\A|\W)D(\d+)", correct_dihedral_degree, description)
      if not latex:
 diff --git a/sage/groups/perm_gps/permgroup.py b/sage/groups/perm_gps/permgroup.py
-index 4c4c934..04bb3d2 100644
+index 4c4c934..4adb61c 100644
 --- a/sage/groups/perm_gps/permgroup.py
 +++ b/sage/groups/perm_gps/permgroup.py
 @@ -146,7 +146,7 @@ from sage.groups.perm_gps.permgroup_element import PermutationGroupElement, stan
@@ -176,7 +179,7 @@ index 4c4c934..04bb3d2 100644
 +        try:
 +            gap.load_package("hap")
 +        except Exception:
-+            raise RuntimeError("You must install gap_sage_packages package.")
++            raise RuntimeError("You must install dev-gap/hap.")
  
  def hap_decorator(f):
      """
