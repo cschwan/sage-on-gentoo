@@ -202,7 +202,7 @@ python_prepare() {
 	#
 	###############################
 
-	eapply "${FILESDIR}"/sphinx-16.patch
+	eapply "${FILESDIR}"/sphinx16.patch
 
 	# Remove sage's package management system, git capabilities and associated tests
 	eapply "${FILESDIR}"/${PN}-8.1-neutering.patch
