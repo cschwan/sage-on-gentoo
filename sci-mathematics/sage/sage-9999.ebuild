@@ -62,7 +62,7 @@ CDEPEND="dev-libs/gmp:0=
 	~sci-libs/m4ri-20140914
 	~sci-libs/m4rie-20150908
 	>=sci-libs/mpfi-1.5.1
-	~sci-libs/pynac-0.7.8[-giac,${PYTHON_USEDEP}]
+	~sci-libs/pynac-0.7.10[-giac,${PYTHON_USEDEP}]
 	>=sci-libs/symmetrica-2.0-r3
 	>=sci-libs/zn_poly-0.9
 	>=sci-mathematics/glpk-4.63:0=[gmp]
@@ -121,7 +121,7 @@ RDEPEND="${CDEPEND}
 	~sci-mathematics/sage-data-elliptic_curves-0.8
 	~sci-mathematics/sage-data-graphs-20161026
 	~sci-mathematics/sage-data-combinatorial_designs-20140630
-	~sci-mathematics/sage-data-polytopes_db-20120220
+	~sci-mathematics/sage-data-polytopes_db-20170220
 	~sci-mathematics/sage-data-conway_polynomials-0.5
 	>=sci-mathematics/sympow-1.018.1
 	www-servers/tornado

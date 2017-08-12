@@ -1,5 +1,21 @@
 diff --git a/sage_setup/docbuild/__init__.py b/sage_setup/docbuild/__init__.py
 index 43156631ed..3fb41809ca 100644
+diff --git a/src/sage/misc/sphinxify.py b/src/sage/misc/sphinxify.py
+index f084a19..4f76d41 100644
+--- a/sage/misc/sphinxify.py
++++ b/sage/misc/sphinxify.py
+@@ -80,6 +80,10 @@ def sphinxify(docstring, format='html'):
+     # buildername, confoverrides, status, warning, freshenv).
+     confdir = os.path.join(SAGE_DOC_SRC, 'en', 'introspect')
+ 
++    open(os.path.join(srcdir, 'docutils.conf'), 'w').write(r"""
++[parsers]
++smart_quotes = no
++""")
+     doctreedir = os.path.join(srcdir, 'doctrees')
+     confoverrides = {'html_context': {}, 'master_doc': 'docstring'}
+ 
+
 --- a/sage_setup/docbuild/__init__.py
 +++ b/sage_setup/docbuild/__init__.py
 @@ -197,8 +197,7 @@ class DocBuilder(object):
