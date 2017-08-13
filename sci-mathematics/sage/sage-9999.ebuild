@@ -65,7 +65,7 @@ CDEPEND="dev-libs/gmp:0=
 	~sci-libs/pynac-0.7.8[-giac,${PYTHON_USEDEP}]
 	>=sci-libs/symmetrica-2.0-r3
 	>=sci-libs/zn_poly-0.9
-	sci-mathematics/glpk:0=[gmp]
+	>=sci-mathematics/glpk-4.63:0=[gmp]
 	>=sci-mathematics/lcalc-1.23-r6[pari]
 	>=sci-mathematics/lrcalc-1.2-r1
 	~dev-python/cypari2-1.0.0[${PYTHON_USEDEP}]
@@ -86,7 +86,7 @@ CDEPEND="dev-libs/gmp:0=
 	bliss? ( >=sci-libs/bliss-0.73 )
 	libhomfly? ( >=sci-libs/libhomfly-1.0.1 )
 	libbraiding? ( sci-libs/libbraiding )
-	~dev-python/sphinx-1.5.3[${PYTHON_USEDEP}]"
+	~dev-python/sphinx-1.6.3[${PYTHON_USEDEP}]"
 
 DEPEND="${CDEPEND}
 	doc-pdf? ( app-text/texlive[extra,${L10N_USEDEP}] )"
@@ -117,10 +117,11 @@ RDEPEND="${CDEPEND}
 	>=sci-mathematics/nauty-2.6.1
 	>=sci-mathematics/optimal-20040603
 	>=sci-mathematics/palp-2.1
+	~sci-mathematics/pari-2.9.3
 	~sci-mathematics/sage-data-elliptic_curves-0.8
 	~sci-mathematics/sage-data-graphs-20161026
 	~sci-mathematics/sage-data-combinatorial_designs-20140630
-	~sci-mathematics/sage-data-polytopes_db-20120220
+	~sci-mathematics/sage-data-polytopes_db-20170220
 	~sci-mathematics/sage-data-conway_polynomials-0.5
 	>=sci-mathematics/sympow-1.018.1
 	www-servers/tornado
@@ -201,8 +202,10 @@ python_prepare() {
 	#
 	###############################
 
+	eapply "${FILESDIR}"/sphinx16.patch
+
 	# Remove sage's package management system, git capabilities and associated tests
-	eapply "${FILESDIR}"/${PN}-8.0-neutering.patch
+	eapply "${FILESDIR}"/${PN}-8.1-neutering.patch
 	cp -f "${FILESDIR}"/${PN}-7.3-package.py sage/misc/package.py
 	rm -f sage/misc/dist.py
 	rm -rf sage/dev
@@ -383,7 +386,7 @@ python_compile() {
 			"${PYTHON}" sage_setup/docbuild/__main__.py --no-pdf-links all html || die "failed to produce html doc"
 		fi
 		if use doc-pdf ; then
-			export MAKE=make
+			export MAKE="make -j$(makeopts_jobs)"
 			"${PYTHON}" sage_setup/docbuild/__main__.py all pdf || die "failed to produce pdf doc"
 		fi
 	fi
