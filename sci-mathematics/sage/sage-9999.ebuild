@@ -62,7 +62,7 @@ CDEPEND="dev-libs/gmp:0=
 	~sci-libs/m4ri-20140914
 	~sci-libs/m4rie-20150908
 	>=sci-libs/mpfi-1.5.1
-	~sci-libs/pynac-0.7.10[-giac,${PYTHON_USEDEP}]
+	~sci-libs/pynac-0.7.8[-giac,${PYTHON_USEDEP}]
 	>=sci-libs/symmetrica-2.0-r3
 	>=sci-libs/zn_poly-0.9
 	>=sci-mathematics/glpk-4.63:0=[gmp]
@@ -386,7 +386,7 @@ python_compile() {
 			"${PYTHON}" sage_setup/docbuild/__main__.py --no-pdf-links all html || die "failed to produce html doc"
 		fi
 		if use doc-pdf ; then
-			export MAKE=make
+			export MAKE="make -j$(makeopts_jobs)"
 			"${PYTHON}" sage_setup/docbuild/__main__.py all pdf || die "failed to produce pdf doc"
 		fi
 	fi
