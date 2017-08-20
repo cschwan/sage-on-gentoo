@@ -49,7 +49,7 @@ CDEPEND="dev-libs/gmp:0=
 	>=dev-python/ipython-5.1.0[notebook,${PYTHON_USEDEP}]
 	>=dev-python/jinja-2.8[${PYTHON_USEDEP}]
 	=dev-python/matplotlib-1.5*[${PYTHON_USEDEP}]
-	>=dev-python/ipywidgets-6.0.0_rc2[${PYTHON_USEDEP}]
+	<dev-python/ipywidgets-7.0.0[${PYTHON_USEDEP}]
 	>=sci-mathematics/eclib-20170330[flint]
 	~sci-mathematics/gmp-ecm-7.0.4[-openmp]
 	>=sci-mathematics/flint-2.5.2:=[ntl]
