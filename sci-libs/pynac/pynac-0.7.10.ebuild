@@ -33,6 +33,7 @@ RDEPEND="dev-libs/gmp:0=
 DOCS=( AUTHORS NEWS README )
 
 PATCHES=(
+	"${FILESDIR}"/${P}-sage23325.patch
 	"${FILESDIR}"/un-pc.patch
 	)
 
