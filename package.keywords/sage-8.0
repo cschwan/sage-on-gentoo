@@ -6,7 +6,7 @@ dev-java/asm:2
 >=dev-libs/mathjax-2.5.0
 ~dev-libs/mpc-1.0.2
 >=dev-libs/ntl-9.8.1
-~dev-libs/ppl-1.1
+~dev-libs/ppl-1.2
 dev-libs/c-blosc
 >=dev-lisp/ecls-16.0.0::sage-on-gentoo
 dev-python/characteristic
@@ -18,7 +18,7 @@ dev-python/cvxopt
 ~dev-python/networkx-1.11
 ~dev-python/pyopenssl-0.14
 ~dev-python/cryptography-0.6.1
-~dev-python/future-0.15.2
+=dev-python/future-0.16*
 dev-python/imagesize
 dev-python/ptyprocess
 ~dev-python/python-dateutil-2.3
@@ -29,7 +29,6 @@ dev-python/ptyprocess
 dev-python/flask-oldsessions
 =dev-python/psutil-4.4*
 ~dev-python/flask-silk-0.2
-=dev-python/setuptools-20*
 dev-python/terminado
 dev-python/mistune
 ~dev-python/numpy-1.12.1
@@ -94,7 +93,7 @@ sci-libs/dsdp
 ~sci-libs/m4rie-20150908
 ~sci-libs/mpfi-1.5.1
 ~sci-libs/pynac-0.7.8
-~sci-libs/scipy-0.17.0
+=sci-libs/scipy-0.19*
 sci-libs/symmetrica
 sci-libs/vecmath-objectclub
 sci-libs/zn_poly
@@ -137,6 +136,22 @@ sci-mathematics/rw
 sci-mathematics/sympow
 ~www-servers/tornado-3.1.1
 www-misc/thebe
+##########################
+# dependencies required by nbconvert 5.2.1
+##########################
+~dev-python/pandocfilters-1.4.1
+~app-text/pandoc-1.18
+=dev-haskell/texmath-0.8*
+dev-haskell/doctemplates
+=dev-haskell/pandoc-types-1.17*
+=dev-haskell/tagsoup-0.13*
+=dev-haskell/cmark-0.5*
+=dev-python/testpath-0.3*
+=dev-haskell/highlighting-kate-0.6*
+=dev-haskell/http-client-0.5*
+=dev-haskell/memory-0.14*
+=dev-haskell/http-client-tls-0.3*
+~dev-haskell/cryptonite-0.21
 ##########################
 # optional dependencies
 ##########################
