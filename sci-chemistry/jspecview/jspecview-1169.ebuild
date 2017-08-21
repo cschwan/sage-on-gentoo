@@ -11,7 +11,7 @@ MY_BUILDVERSION="2.0.10076"
 MY_APPLET_BUILDVERSION="2.0.10077"
 DESCRIPTION="Spectroscopy Viewer"
 
-HOMEPAGE="http://sourceforge.net/projects/jspecview/"
+HOMEPAGE="https://sourceforge.net/projects/jspecview/"
 KEYWORDS="~amd64 ~x86 ~amd64-linux ~x86-linux"
 
 ESVN_REPO_URI="svn://svn.code.sf.net/p/jspecview/svn/dev2"
