@@ -23,7 +23,7 @@ dev-python/imagesize
 dev-python/ptyprocess
 ~dev-python/python-dateutil-2.3
 ~dev-python/python-openid-2.2.5
-~dev-python/flask-autoindex-0.5
+~dev-python/flask-autoindex-0.6
 ~dev-python/flask-babel-0.8
 ~dev-python/flask-openid-1.2.4
 dev-python/flask-oldsessions
