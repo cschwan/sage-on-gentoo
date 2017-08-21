@@ -2,8 +2,8 @@
 <!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
 <pkgmetadata>
   <maintainer type="person">
-	<email>frp.bissey@gmail.com</email>
-	<name>Francois Bissey</name>
+    <email>frp.bissey@gmail.com</email>
+    <name>Francois Bissey</name>
   </maintainer>
   <maintainer type="project">
     <email>sci@gentoo.org</email>
