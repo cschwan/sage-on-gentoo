@@ -11,7 +11,7 @@ MY_PN="Flask-Silk"
 MY_P="${MY_PN}-${PV}"
 
 DESCRIPTION="Adds silk icons to your Flask application or module, or extension"
-HOMEPAGE="http://github.com/sublee/flask-silk"
+HOMEPAGE="https://github.com/sublee/flask-silk"
 SRC_URI="mirror://pypi/F/${MY_PN}/${MY_P}.tar.gz"
 
 LICENSE="BSD"
