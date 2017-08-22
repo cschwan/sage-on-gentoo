@@ -458,8 +458,8 @@ python_install_all() {
 	dodir /usr/share/jupyter/nbextensions
 	ln -sf "${EPREFIX}/usr/share/mathjax" "${ED}"/usr/share/jupyter/nbextensions/mathjax || die "die creating mathjax simlink"
 	ln -sf "${EPREFIX}/usr/share/jsmol" "${ED}"/usr/share/jupyter/nbextensions/jsmol || die "die creating jsmol simlink"
-	dosym /usr/share/sage/ext/notebook-ipython/logo-64x64.png /usr/share/jupyter/kernels/sagemath/logo-64x64.png
-	dosym /usr/share/sage/ext/notebook-ipython/logo.svg /usr/share/jupyter/kernels/sagemath/logo.svg
+	dosym ../../../sage/ext/notebook-ipython/logo-64x64.png /usr/share/jupyter/kernels/sagemath/logo-64x64.png
+	dosym ../../../sage/ext/notebook-ipython/logo.svg /usr/share/jupyter/kernels/sagemath/logo.svg
 
 	####################################
 	# Install documentation
@@ -491,7 +491,7 @@ python_install_all() {
 		done
 		insinto /usr/share/doc/sage/html
 		doins -r build_doc/html/*
-		dosym /usr/share/doc/sage/html/en /usr/share/jupyter/kernels/sagemath/doc
+		dosym ../../doc/sage/html/en /usr/share/jupyter/kernels/sagemath/doc
 	fi
 
 	if use doc-pdf ; then
