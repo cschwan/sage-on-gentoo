@@ -103,7 +103,7 @@ RDEPEND="${CDEPEND}
 	~dev-python/sympy-1.0[${PYTHON_USEDEP}]
 	~media-gfx/tachyon-0.98.9[png]
 	~sci-libs/cddlib-094g
-	>=sci-libs/scipy-0.16.1[${PYTHON_USEDEP}]
+	>=sci-libs/scipy-0.19.1[${PYTHON_USEDEP}]
 	sci-mathematics/flintqs
 	~sci-mathematics/gap-4.8.6
 	=sci-mathematics/giac-1.2.3*
@@ -202,7 +202,7 @@ python_prepare() {
 	#
 	###############################
 
-	eapply "${FILESDIR}"/sphinx16.patch
+	#eapply "${FILESDIR}"/sphinx16.patch
 
 	# Remove sage's package management system, git capabilities and associated tests
 	eapply "${FILESDIR}"/${PN}-8.1-neutering.patch
