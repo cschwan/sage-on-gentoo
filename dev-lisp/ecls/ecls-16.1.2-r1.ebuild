@@ -78,8 +78,7 @@ src_compile() {
 		touch build/TAGS
 	fi
 
-	#parallel make fails
-	emake -j1 || die "Compilation failed"
+	emake || die "Compilation failed"
 }
 
 src_install () {
