@@ -85,7 +85,7 @@ src_install(){
 	newbin bin/gap.sh gap
 	newbin bin/${GAParch_system}/gac gac
 
-	dosym /usr/$(get_libdir)/${PN}/sysinfo.gap /etc/sysinfo.gap
+	dosym ../usr/$(get_libdir)/${PN}/sysinfo.gap /etc/sysinfo.gap
 
 	# install the header in 'gap-system'
 	# libgap installs its header into 'gap' and they would collide
