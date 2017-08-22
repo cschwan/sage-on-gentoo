@@ -5,8 +5,8 @@
 	<email>frp.bissey@gmail.com</email>
 	<name>Francois Bissey</name>
 </maintainer>
-  <use>
-    <flag name="custom-tune">Improve performance of some operations by selecting machine-specific defaults</flag>
-    <flag name="gwnum">Use GWNum lib where possible</flag>
-  </use>
+<use>
+	<flag name="custom-tune">Improve performance of some operations by selecting machine-specific defaults</flag>
+	<flag name="gwnum">Use GWNum lib where possible</flag>
+</use>
 </pkgmetadata>
