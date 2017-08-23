@@ -8,7 +8,7 @@ inherit distutils-r1
 
 DESCRIPTION="A Python interface to the number theory library libpari"
 HOMEPAGE="https://github.com/defeo/cypari2"
-SRC_URI="mirror://sageupstream/cypari/${P}.tar.bz2"
+SRC_URI="mirror://pypi/${PN:0:1}/${PN}/${P}.tar.gz"
 
 LICENSE="GPL-2+"
 SLOT="0"
@@ -19,3 +19,8 @@ DEPEND=">=sci-mathematics/pari-2.9.0
 	dev-python/cython
 	dev-python/cysignals"
 RDEPEND="${DEPEND}"
+
+python_test(){
+	cd "${S}"/tests
+	${EPYTHON} rundoctest.py
+}
