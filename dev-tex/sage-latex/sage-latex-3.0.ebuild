@@ -20,8 +20,9 @@ IUSE="examples"
 
 RESTRICT="mirror"
 
-DEPEND=""
-RDEPEND="dev-tex/pgf"
+DEPEND="app-text/texlive[extra]"
+RDEPEND="${DEPEND}
+	dev-tex/pgf"
 
 PATCHES=(
 	"${FILESDIR}"/${PN}-3.0-install-python-files-only.patch
