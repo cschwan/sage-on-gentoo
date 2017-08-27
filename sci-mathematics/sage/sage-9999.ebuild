@@ -62,7 +62,7 @@ CDEPEND="dev-libs/gmp:0=
 	~sci-libs/m4ri-20140914
 	~sci-libs/m4rie-20150908
 	>=sci-libs/mpfi-1.5.1
-	~sci-libs/pynac-0.7.8[-giac,${PYTHON_USEDEP}]
+	~sci-libs/pynac-0.7.10[-giac,${PYTHON_USEDEP}]
 	>=sci-libs/symmetrica-2.0-r3
 	>=sci-libs/zn_poly-0.9
 	>=sci-mathematics/glpk-4.63:0=[gmp]
@@ -458,6 +458,13 @@ python_install() {
 		doins sage_setup/docbuild/ext/inventory_builder.py
 		doins sage_setup/docbuild/ext/multidocs.py
 
+		# rst files are installed as rst.txt which prevents doctesting
+		pushd "${ED}"
+		for i in `find usr/share/doc/sage -name \*.rst.txt`; do
+			mv "${i}" "${i%.txt}"
+		done
+		popd
+
 		if use doc-html ; then
 			# Prune _static folders
 			cp -r build_doc/html/en/_static build_doc/html/ || die "failed to copy _static folder"
@@ -472,6 +479,11 @@ python_install() {
 				rm -rf "${pyfile}" || die "fail to to remove $pyfile"
 				rm -rf "${pyfile/%.py/.pdf}" "${pyfile/%.py/png}"
 			done
+			# restore .rst.txt file to .rst
+			for i in `find build_doc -name \*.rst.txt`; do
+				mv "${i}" "${i%.txt}"
+			done
+			# proceed with install
 			insinto /usr/share/doc/sage/html
 			doins -r build_doc/html/*
 			dosym ../../../doc/sage/html/en /usr/share/jupyter/kernels/sagemath/doc
