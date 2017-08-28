@@ -101,7 +101,7 @@ RDEPEND="${CDEPEND}
 	>=dev-python/pycrypto-2.1.0[${PYTHON_USEDEP}]
 	>=dev-python/rpy-2.3.8[${PYTHON_USEDEP}]
 	~dev-python/sympy-1.0[${PYTHON_USEDEP}]
-	~media-gfx/tachyon-0.98.9[png]
+	media-gfx/tachyon[png]
 	~sci-libs/cddlib-094g
 	>=sci-libs/scipy-0.16.1[${PYTHON_USEDEP}]
 	sci-mathematics/flintqs
