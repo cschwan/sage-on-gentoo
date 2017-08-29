@@ -33,7 +33,7 @@ dev-python/terminado
 dev-python/mistune
 ~dev-python/numpy-1.12.1
 dev-python/cycler
-~dev-python/cypari2-1.0.0
+~dev-python/cypari2-1.1.1
 dev-python/versioneer
 =dev-python/jedi-0.10*
 dev-python/typing
