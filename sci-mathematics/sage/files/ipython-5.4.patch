@@ -1,0 +1,50 @@
+Description: Update to IPython 5.4
+ I updated IPython 5.4's simple-prompt to use the application's configured
+ prompt rather than a hard-coded "In [xxx]" but Sage still expects the latter.
+Author: Ximin Luo <infinity0@debian.org>
+Bug: https://trac.sagemath.org/ticket/23125
+
+--- a/sage/interfaces/sage0.py
++++ b/sage/interfaces/sage0.py
+@@ -160,7 +160,7 @@ class Sage(ExtraTabCompletion, Expect):
+                 '--no-term-title',
+                 '--simple-prompt',
+             ])
+-            prompt = re.compile('In \[\d+\]: ')
++            prompt = re.compile('sage: ') # needs to match SagePrompts
+             if init_code is None:
+                 init_code = ['from six.moves import cPickle']
+ 
+--- a/sage/repl/configuration.py
++++ b/sage/repl/configuration.py
+@@ -11,7 +11,7 @@ the IPython simple prompt is being used::
+     sage: output = pexpect.run(
+     ....:     'bash -c \'echo "{0}" | sage\''.format(cmd),
+     ....: )
+-    sage: 'In [1]: [False, True]' in output
++    sage: 'sage: [False, True]' in output
+     True
+ """
+ 
+--- a/sage/doctest/test.py
++++ b/sage/doctest/test.py
+@@ -360,7 +360,7 @@ Test the ``--debug`` option::
+         s...: b = 5
+         s...: a + b
+         8
+-    In [1]:
++    s...:
+     <BLANKLINE>
+     Returning to doctests...
+     **********************************************************************
+--- a/sage/tests/cmdline.py
++++ b/sage/tests/cmdline.py
+@@ -386,7 +386,7 @@ def test_executable(args, input="", timeout=100.0, **kwds):
+         **********************************************************************
+         Previously executed commands:
+             s...: assert True == False
+-        In [1]:
++        s...:
+         <BLANKLINE>
+         Returning to doctests...
+         **********************************************************************

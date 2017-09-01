@@ -46,7 +46,7 @@ CDEPEND="dev-libs/gmp:0=
 	=dev-python/cysignals-1.6*[${PYTHON_USEDEP}]
 	>=dev-python/docutils-0.12[${PYTHON_USEDEP}]
 	>=dev-python/psutil-4.4.0[${PYTHON_USEDEP}]
-	>=dev-python/ipython-5.1.0[notebook,${PYTHON_USEDEP}]
+	>=dev-python/ipython-5.4.0[notebook,${PYTHON_USEDEP}]
 	>=dev-python/jinja-2.8[${PYTHON_USEDEP}]
 	=dev-python/matplotlib-1.5*[${PYTHON_USEDEP}]
 	<dev-python/ipywidgets-7.0.0[${PYTHON_USEDEP}]
@@ -203,6 +203,7 @@ python_prepare() {
 	###############################
 
 	eapply "${FILESDIR}"/sphinx16.patch
+	eapply "${FILESDIR}"/ipython-5.4.patch
 
 	# Remove sage's package management system, git capabilities and associated tests
 	eapply "${FILESDIR}"/${PN}-8.1-neutering.patch
