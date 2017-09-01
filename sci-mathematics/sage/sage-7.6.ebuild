@@ -426,7 +426,7 @@ python_install_all() {
 		# DOCTESTING helper scripts
 		python_foreach_impl python_doscript sage-runtests
 		# Remove __init__.py used to trigger installation of tests.
-		python_foreach_impl rm -f "${ED}"$(python_get_sitedir)/sage/doctest/tests/__init__.*
+		python_foreach_impl rm -f "${D}"$(python_get_sitedir)/sage/doctest/tests/__init__.*
 	fi
 
 	if use debug ; then

@@ -447,7 +447,7 @@ python_install() {
 		# DOCTESTING helper scripts
 		python_doscript sage-runtests
 		# Remove __init__.py used to trigger installation of tests.
-		rm -f "${ED}"$(python_get_sitedir)/sage/doctest/tests/__init__.*
+		rm -f "${D}"$(python_get_sitedir)/sage/doctest/tests/__init__.*
 	fi
 	popd
 
