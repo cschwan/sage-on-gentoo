@@ -4,5 +4,3 @@ sci-mathematics/ecm
 # testing only
 # Work in progress it doesn't like being installed in a root location
 #dev-gap/atlasrep
-# see trac 23496 not ready for production
-=dev-python/sympy-1.0-r4
