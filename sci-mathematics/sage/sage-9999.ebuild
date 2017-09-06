@@ -100,7 +100,7 @@ RDEPEND="${CDEPEND}
 	>=dev-python/pexpect-4.0.1-r2[${PYTHON_USEDEP}]
 	>=dev-python/pycrypto-2.1.0[${PYTHON_USEDEP}]
 	>=dev-python/rpy-2.3.8[${PYTHON_USEDEP}]
-	~dev-python/sympy-1.0[${PYTHON_USEDEP}]
+	<=dev-python/sympy-1.0-r3[${PYTHON_USEDEP}]
 	media-gfx/tachyon[png]
 	~sci-libs/cddlib-094g
 	>=sci-libs/scipy-0.19.1[${PYTHON_USEDEP}]
