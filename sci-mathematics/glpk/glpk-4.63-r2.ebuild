@@ -27,6 +27,7 @@ DEPEND="${RDEPEND}
 PATCHES=(
 	"${FILESDIR}"/${PN}-4.60-error_recovery.patch
 	"${FILESDIR}"/${PN}-4.63-debundle-system-libs.patch
+	"${FILESDIR}"/${PN}-4.63-verbosity.patch
 )
 
 src_prepare() {
