@@ -245,7 +245,7 @@ python_prepare() {
 	############################################################################
 
 	# sage on gentoo env.py
-	eapply "${FILESDIR}"/${PN}-7.6-env.patch
+	eapply "${FILESDIR}"/${PN}-8.1-env.patch
 	eprefixify sage/env.py
 	# fix library path of libSingular
 	sed -i "s:lib/libSingular:$(get_libdir)/libSingular:" \
