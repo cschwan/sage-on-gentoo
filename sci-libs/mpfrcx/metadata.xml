@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+<maintainer type="person">
+<email>frp.bissey@gmail.com</email>
+<name>Fran??ois Bissey</name>
+</maintainer>
+<longdescription lang="en">
+Mpfrcx is a library for the arithmetic of univariate polynomials over arbitrary
+precision real (Mpfr) or complex (Mpc) numbers, without control on the rounding.
+</longdescription>
+</pkgmetadata>
