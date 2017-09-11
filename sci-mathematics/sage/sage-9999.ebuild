@@ -100,7 +100,7 @@ RDEPEND="${CDEPEND}
 	>=dev-python/pexpect-4.0.1-r2[${PYTHON_USEDEP}]
 	>=dev-python/pycrypto-2.1.0[${PYTHON_USEDEP}]
 	>=dev-python/rpy-2.3.8[${PYTHON_USEDEP}]
-	<=dev-python/sympy-1.0-r3[${PYTHON_USEDEP}]
+	=dev-python/sympy-1.0-r4[${PYTHON_USEDEP}]
 	media-gfx/tachyon[png]
 	~sci-libs/cddlib-094g
 	>=sci-libs/scipy-0.19.1[${PYTHON_USEDEP}]
@@ -245,7 +245,7 @@ python_prepare() {
 	############################################################################
 
 	# sage on gentoo env.py
-	eapply "${FILESDIR}"/${PN}-7.6-env.patch
+	eapply "${FILESDIR}"/${PN}-8.1-env.patch
 	eprefixify sage/env.py
 	# fix library path of libSingular
 	sed -i "s:lib/libSingular:$(get_libdir)/libSingular:" \
