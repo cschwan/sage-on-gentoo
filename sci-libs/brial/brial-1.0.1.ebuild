@@ -31,7 +31,7 @@ pkg_setup(){
 
 src_configure(){
 	econf \
-		--with-boost="${EPREFIX}"/usr
+		--with-boost="${EPREFIX}"/usr \
 		$(use_enable static-libs static)
 }
 
