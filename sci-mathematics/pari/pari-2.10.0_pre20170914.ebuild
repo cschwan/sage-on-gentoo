@@ -9,7 +9,7 @@ DESCRIPTION="Computer-aided number theory C library and tools"
 HOMEPAGE="http://pari.math.u-bordeaux.fr/"
 EGIT_REPO_URI="https://pari.math.u-bordeaux.fr/git/pari.git"
 EGIT_BRANCH=master
-EGIT_COMMIT=1279-g3eef53f
+EGIT_COMMIT=1280-g88fb5b3
 
 LICENSE="GPL-2"
 SLOT="0/0"
@@ -116,7 +116,7 @@ src_compile() {
 }
 
 src_test() {
-	emake ${mymake} ${mycxxmake} bench
+	emake ${mymake} ${mycxxmake} dobench
 }
 
 src_install() {
