@@ -301,6 +301,11 @@ python_prepare() {
 	# Fixes to doctests
 	############################################################################
 
+	# https://trac.sagemath.org/ticket/23748 introduce memory limit for doctests
+	# it has a knowck down effect on various doctest in pure Gentoo as well as prefix.
+	# Disabling until it is improved
+	eapply "${FILESDIR}"/${PN}-8.1-doctest_memory.patch
+
 	# boost 1.62 leads to different results when used in polybori
 	# Using debian patch
 	# https://anonscm.debian.org/cgit/debian-science/packages/sagemath.git/tree/debian/patches/u1-version-pbori-boost1.62-hashes.patch
