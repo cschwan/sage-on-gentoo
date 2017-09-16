@@ -1,0 +1,26 @@
+diff --git a/bin/sage-runtests b/bin/sage-runtests
+index 6b0ce03..8b37648 100755
+--- a/bin/sage-runtests
++++ b/bin/sage-runtests
+@@ -93,21 +93,6 @@ if __name__ == "__main__":
+         parser.print_help()
+         sys.exit(2)
+ 
+-    # Ensure that all doctests can be run with virtual memory limited
+-    # to 3300 MiB. We must set this limit before starting Sage. Note
+-    # that this is a per-process limit, so we do not need to worry about
+-    # running multiple doctest processes in parallel. It is in
+-    # particular doctests in src/sage/schemes/elliptic_curves/heegner.py
+-    # which need this much memory.
+-    memlimit = 3300 << 20
+-    # Python's resource module only supports limits up to sys.maxsize,
+-    # even if the OS does support higher limits.
+-    if memlimit <= sys.maxsize:
+-        import resource
+-        lim, hard = resource.getrlimit(resource.RLIMIT_AS)
+-        if lim == resource.RLIM_INFINITY or lim > memlimit:
+-            resource.setrlimit(resource.RLIMIT_AS, (memlimit, hard))
+-
+     from sage.doctest.control import DocTestController
+     DC = DocTestController(options, args)
+     err = DC.run()
