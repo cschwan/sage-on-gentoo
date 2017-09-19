@@ -38,7 +38,7 @@ CDEPEND="dev-libs/gmp:0=
 	>=dev-libs/ntl-9.6.2-r1:=
 	>=dev-libs/ppl-1.1
 	~dev-lisp/ecls-16.1.2
-	dev-python/six[${PYTHON_USEDEP}]
+	<dev-python/six-1.11.0[${PYTHON_USEDEP}]
 	>=dev-python/numpy-1.10.1-r2[${PYTHON_USEDEP}]
 	>=dev-python/cython-0.25.2-r3[${PYTHON_USEDEP}]
 	<dev-python/cython-0.26[${PYTHON_USEDEP}]
