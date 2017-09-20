@@ -36,7 +36,6 @@ dev-python/cycler
 ~dev-python/cypari2-1.1.1
 dev-python/versioneer
 =dev-python/jedi-0.10*
-dev-python/typing
 =dev-python/ipython-5.4*
 >=dev-python/notebook-4.1.0
 >=dev-python/ipywidgets-4.0.0
