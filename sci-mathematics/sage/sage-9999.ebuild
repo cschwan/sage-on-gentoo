@@ -39,7 +39,7 @@ CDEPEND="dev-libs/gmp:0=
 	>=dev-libs/ppl-1.1
 	~dev-lisp/ecls-16.1.2
 	<dev-python/six-1.11.0[${PYTHON_USEDEP}]
-	>=dev-python/numpy-1.12.1[${PYTHON_USEDEP}]
+	>=dev-python/numpy-1.12.1-r100[${PYTHON_USEDEP}]
 	>=dev-python/cython-0.26[${PYTHON_USEDEP}]
 	dev-python/future[${PYTHON_USEDEP}]
 	~dev-python/pkgconfig-1.2.2[${PYTHON_USEDEP}]
