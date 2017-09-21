@@ -39,7 +39,7 @@ CDEPEND="dev-libs/gmp:0=
 	>=dev-libs/ppl-1.1
 	~dev-lisp/ecls-16.1.2
 	<dev-python/six-1.11.0[${PYTHON_USEDEP}]
-	>=dev-python/numpy-1.12.1[${PYTHON_USEDEP}]
+	>=dev-python/numpy-1.12.1-r100[${PYTHON_USEDEP}]
 	>=dev-python/cython-0.26[${PYTHON_USEDEP}]
 	dev-python/future[${PYTHON_USEDEP}]
 	~dev-python/pkgconfig-1.2.2[${PYTHON_USEDEP}]
@@ -62,7 +62,7 @@ CDEPEND="dev-libs/gmp:0=
 	~sci-libs/m4ri-20140914
 	~sci-libs/m4rie-20150908
 	>=sci-libs/mpfi-1.5.1
-	~sci-libs/pynac-0.7.10[-giac,${PYTHON_USEDEP}]
+	~sci-libs/pynac-0.7.11[-giac,${PYTHON_USEDEP}]
 	>=sci-libs/symmetrica-2.0-r3
 	>=sci-libs/zn_poly-0.9
 	>=sci-mathematics/glpk-4.63:0=[gmp]
