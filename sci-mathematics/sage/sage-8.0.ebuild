@@ -473,6 +473,7 @@ python_install() {
 			for sdir in `find build_doc/html -name _static` ; do
 				if [ $sdir != "build_doc/html/_static" ] ; then
 					rm -rf $sdir || die "failed to remove $sdir"
+					ln -rst ${sdir%_static} build_doc/html/_static
 					ln -s "${EPREFIX}"/usr/share/doc/sage/html/_static $sdir
 				fi
 			done
