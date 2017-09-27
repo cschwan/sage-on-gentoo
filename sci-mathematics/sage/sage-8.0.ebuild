@@ -474,7 +474,6 @@ python_install() {
 				if [ $sdir != "build_doc/html/_static" ] ; then
 					rm -rf $sdir || die "failed to remove $sdir"
 					ln -rst ${sdir%_static} build_doc/html/_static
-					ln -s "${EPREFIX}"/usr/share/doc/sage/html/_static $sdir
 				fi
 			done
 			# Work around for issue #402 until I understand where it comes from
