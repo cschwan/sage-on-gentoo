@@ -321,6 +321,8 @@ python_prepare() {
 
 	if use doc-html-bin ; then
 		mkdir -p build_doc/html
+		# Don't forget to also copy the _static folder in place
+		cp -r "${WORKDIR}"/html/_static build_doc/html/
 		for lang in ${LANGS} ; do
 			use l10n_$lang && cp -r "${WORKDIR}"/html/${lang} build_doc/html/
 		done
