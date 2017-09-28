@@ -14,7 +14,7 @@ DESCRIPTION="Math software for abstract and numerical computations"
 HOMEPAGE="http://www.sagemath.org"
 SRC_URI="https://github.com/sagemath/sage/archive/${PV}.tar.gz -> ${P}.tar.gz
 	mirror://sagemath/sage-icon.tar.bz2
-	doc-html-bin? ( mirror://sagemath/${P}-doc-html.tar.xz )
+	doc-html-bin? ( mirror://sagemath/${P}-r1-doc-html.tar.xz )
 	doc-pdf-bin? ( mirror://sagemath/${P}-doc-pdf.tar.xz )"
 
 LANGS="ca de en es fr hu it ja pt ru tr"
