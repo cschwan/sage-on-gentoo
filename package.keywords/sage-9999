@@ -33,7 +33,7 @@ dev-python/terminado
 dev-python/mistune
 ~dev-python/numpy-1.12.1
 dev-python/cycler
-~dev-python/cypari2-1.1.1
+~dev-python/cypari2-1.1.2
 dev-python/versioneer
 =dev-python/jedi-0.10*
 =dev-python/ipython-5.4*
@@ -116,7 +116,7 @@ sci-mathematics/lrcalc
 sci-mathematics/mcube
 sci-mathematics/optimal
 sci-mathematics/palp
-~sci-mathematics/pari-2.9.3
+~sci-mathematics/pari-2.10.0_pre20170914
 sci-mathematics/pari-data
 ~sci-mathematics/planarity-3.0.0.5
 =sci-libs/brial-1.0*
