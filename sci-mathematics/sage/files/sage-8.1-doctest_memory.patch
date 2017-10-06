@@ -1,5 +1,5 @@
 diff --git a/bin/sage-runtests b/bin/sage-runtests
-index 6b0ce03..8b37648 100755
+index 09b8aa2..ba9785d 100755
 --- a/bin/sage-runtests
 +++ b/bin/sage-runtests
 @@ -93,21 +93,6 @@ if __name__ == "__main__":
@@ -21,6 +21,6 @@ index 6b0ce03..8b37648 100755
 -        if lim == resource.RLIM_INFINITY or lim > memlimit:
 -            resource.setrlimit(resource.RLIMIT_AS, (memlimit, hard))
 -
-     from sage.doctest.control import DocTestController
-     DC = DocTestController(options, args)
-     err = DC.run()
+     # Limit the number of OMP threads to 2 to save system resources
+     # See Trac #23892
+     os.environ["OMP_NUM_THREADS"] = "2"

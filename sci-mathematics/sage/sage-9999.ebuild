@@ -38,7 +38,7 @@ CDEPEND="dev-libs/gmp:0=
 	>=dev-libs/ntl-9.6.2-r1:=
 	>=dev-libs/ppl-1.1
 	~dev-lisp/ecls-16.1.2
-	<dev-python/six-1.11.0[${PYTHON_USEDEP}]
+	>=dev-python/six-1.11.0[${PYTHON_USEDEP}]
 	>=dev-python/numpy-1.12.1-r100[${PYTHON_USEDEP}]
 	>=dev-python/cython-0.26[${PYTHON_USEDEP}]
 	dev-python/future[${PYTHON_USEDEP}]
@@ -68,7 +68,7 @@ CDEPEND="dev-libs/gmp:0=
 	>=sci-mathematics/glpk-4.63:0=[gmp]
 	>=sci-mathematics/lcalc-1.23-r6[pari]
 	>=sci-mathematics/lrcalc-1.2-r1
-	~dev-python/cypari2-1.1.1[${PYTHON_USEDEP}]
+	~dev-python/cypari2-1.1.2[${PYTHON_USEDEP}]
 	~sci-mathematics/planarity-3.0.0.5
 	=sci-libs/brial-1.0*
 	=dev-python/sage-brial-1.0*[${PYTHON_USEDEP}]
@@ -118,7 +118,7 @@ RDEPEND="${CDEPEND}
 	>=sci-mathematics/nauty-2.6.1
 	>=sci-mathematics/optimal-20040603
 	>=sci-mathematics/palp-2.1
-	~sci-mathematics/pari-2.9.3
+	~sci-mathematics/pari-2.10.0_pre20170914
 	~sci-mathematics/sage-data-elliptic_curves-0.8
 	~sci-mathematics/sage-data-graphs-20161026
 	~sci-mathematics/sage-data-combinatorial_designs-20140630
