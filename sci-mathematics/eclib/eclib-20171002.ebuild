@@ -3,12 +3,9 @@
 
 EAPI=6
 
-inherit autotools
-
 DESCRIPTION="enumerating and computing with elliptic curves defined over the rational numbers"
 HOMEPAGE="http://www.warwick.ac.uk/~masgaj/mwrank/index.html"
-SRC_URI="https://github.com/JohnCremona/${PN}/archive/v${PV}.tar.gz -> ${P}.tar.gz"
-#SRC_URI="http://homepages.warwick.ac.uk/staff/J.E.Cremona/ftp/${P}.tar.bz2"
+SRC_URI="http://homepages.warwick.ac.uk/staff/J.E.Cremona/ftp/${P}.tar.bz2"
 
 LICENSE="GPL-2"
 SLOT="0/2"
@@ -22,15 +19,10 @@ RDEPEND=">=sci-mathematics/pari-2.5.0:=
 	flint? ( sci-mathematics/flint:= )"
 DEPEND="${RDEPEND}"
 
-src_prepare() {
-	default
-
-	eautoreconf
-}
-
 src_configure() {
 	econf \
 		--disable-allprogs \
+		--without-boost \
 		$(use_with flint) \
 		$(use_enable static-libs static)
 }
