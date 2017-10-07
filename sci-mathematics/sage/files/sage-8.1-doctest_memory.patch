@@ -1,5 +1,5 @@
 diff --git a/bin/sage-runtests b/bin/sage-runtests
-index 09b8aa2..ba9785d 100755
+index d94d192..fa363ca 100755
 --- a/bin/sage-runtests
 +++ b/bin/sage-runtests
 @@ -93,21 +93,6 @@ if __name__ == "__main__":
@@ -21,6 +21,6 @@ index 09b8aa2..ba9785d 100755
 -        if lim == resource.RLIM_INFINITY or lim > memlimit:
 -            resource.setrlimit(resource.RLIMIT_AS, (memlimit, hard))
 -
-     # Limit the number of OMP threads to 2 to save system resources
-     # See Trac #23892
+     # Limit the number of threads to 2 to save system resources.
+     # See Trac #23713 and #23892
      os.environ["OMP_NUM_THREADS"] = "2"
