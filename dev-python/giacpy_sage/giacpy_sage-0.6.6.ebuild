@@ -17,6 +17,6 @@ KEYWORDS="~amd64"
 IUSE=""
 
 DEPEND=">=sci-mathematics/giac-1.2.2.67
-	>=sci-mathematics/sage-6.8[${PYTHON_USEDEP}]
+	>=sci-mathematics/sage-7.6[${PYTHON_USEDEP}]
 	>=dev-python/cython-0.24[${PYTHON_USEDEP}]"
 RDEPEND="${DEPEND}"
