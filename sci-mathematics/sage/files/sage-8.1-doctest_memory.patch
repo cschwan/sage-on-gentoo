@@ -1,8 +1,8 @@
 diff --git a/bin/sage-runtests b/bin/sage-runtests
-index 09b8aa2..ba9785d 100755
+index 405c3f6..fa363ca 100755
 --- a/bin/sage-runtests
 +++ b/bin/sage-runtests
-@@ -93,21 +93,6 @@ if __name__ == "__main__":
+@@ -93,28 +93,6 @@ if __name__ == "__main__":
          parser.print_help()
          sys.exit(2)
  
@@ -19,8 +19,15 @@ index 09b8aa2..ba9785d 100755
 -        import resource
 -        lim, hard = resource.getrlimit(resource.RLIMIT_AS)
 -        if lim == resource.RLIM_INFINITY or lim > memlimit:
--            resource.setrlimit(resource.RLIMIT_AS, (memlimit, hard))
+-            try:
+-                resource.setrlimit(resource.RLIMIT_AS, (memlimit, hard))
+-            except ValueError:
+-                if sys.platform != 'cygwin':
+-                    # RLIMIT_AS is not currently supported on Cygwin so
+-                    # this will probably fail there:
+-                    # https://trac.sagemath.org/ticket/23979
+-                    raise
 -
-     # Limit the number of OMP threads to 2 to save system resources
-     # See Trac #23892
+     # Limit the number of threads to 2 to save system resources.
+     # See Trac #23713 and #23892
      os.environ["OMP_NUM_THREADS"] = "2"
