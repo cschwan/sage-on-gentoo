@@ -4,3 +4,5 @@ sci-mathematics/ecm
 # testing only
 # Work in progress it doesn't like being installed in a root location
 #dev-gap/atlasrep
+# masking until deemed safe
+=dev-python/fpylll-0.3.0
