@@ -54,6 +54,7 @@ python_prepare_all() {
 	epatch "${FILESDIR}"/${PN}-0.7.6.1-zeta.patch
 	epatch "${FILESDIR}"/PR12784.patch
 	epatch "${FILESDIR}"/PR12826.patch
+	epatch "${FILESDIR}"/PR13420.patch
 	distutils-r1_python_prepare_all
 }
 
