@@ -1,0 +1,24 @@
+Description: Update true_symbol for giac 1.2.3.57
+ Otherwise nearly all giac tests fail
+Author: Ximin Luo <infinity0@debian.org>
+Forwarded: TODO
+
+--- a/sage/interfaces/giac.py
++++ b/sage/interfaces/giac.py
+@@ -714,14 +714,14 @@ If you got giac from the spkg then ``$PREFIX`` is ``$SAGE_LOCAL``
+         EXAMPLES::
+ 
+             sage: giac._true_symbol()
+-            '1'
++            'true'
+ 
+         ::
+ 
+             sage: giac(2) == giac(2)
+             True
+         """
+-        return '1'
++        return 'true'
+ 
+     def _assign_symbol(self):
+         """

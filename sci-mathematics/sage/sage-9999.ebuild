@@ -107,7 +107,8 @@ RDEPEND="${CDEPEND}
 	>=sci-libs/scipy-0.19.1[${PYTHON_USEDEP}]
 	sci-mathematics/flintqs
 	~sci-mathematics/gap-4.8.6
-	=sci-mathematics/giac-1.2.3*
+	>=sci-mathematics/giac-1.2.3.57
+	<sci-mathematics/giac-1.4.9.0
 	~sci-mathematics/gfan-0.5
 	>=sci-mathematics/cu2-20060223
 	>=sci-mathematics/cubex-20060128
@@ -206,7 +207,9 @@ python_prepare() {
 	#
 	###############################
 
+	# upgrades compared to base sage
 	eapply "${FILESDIR}"/ipython-5.4.patch
+	eapply "${FILESDIR}"/giac-1.2.3.57.patch
 
 	# Remove sage's package management system, git capabilities and associated tests
 	eapply "${FILESDIR}"/${PN}-8.1-neutering.patch
