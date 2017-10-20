@@ -65,6 +65,8 @@ CDEPEND="dev-libs/gmp:0=
 	~sci-libs/pynac-0.7.11[-giac,${PYTHON_USEDEP}]
 	>=sci-libs/symmetrica-2.0-r3
 	>=sci-libs/zn_poly-0.9
+	>=sci-mathematics/giac-1.2.3.57
+	<sci-mathematics/giac-1.4.9.0
 	>=sci-mathematics/glpk-4.63:0=[gmp]
 	>=sci-mathematics/lcalc-1.23-r6[pari]
 	>=sci-mathematics/lrcalc-1.2-r1
@@ -107,8 +109,6 @@ RDEPEND="${CDEPEND}
 	>=sci-libs/scipy-0.19.1[${PYTHON_USEDEP}]
 	sci-mathematics/flintqs
 	~sci-mathematics/gap-4.8.6
-	>=sci-mathematics/giac-1.2.3.57
-	<sci-mathematics/giac-1.4.9.0
 	~sci-mathematics/gfan-0.5
 	>=sci-mathematics/cu2-20060223
 	>=sci-mathematics/cubex-20060128
