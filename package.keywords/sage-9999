@@ -31,7 +31,7 @@ dev-python/flask-oldsessions
 ~dev-python/flask-silk-0.2
 dev-python/terminado
 dev-python/mistune
-~dev-python/numpy-1.12.1
+~dev-python/numpy-1.13.3
 dev-python/cycler
 ~dev-python/cypari2-1.1.3
 dev-python/versioneer
@@ -92,7 +92,7 @@ sci-libs/dsdp
 ~sci-libs/m4ri-20140914
 ~sci-libs/m4rie-20150908
 ~sci-libs/mpfi-1.5.1
-~sci-libs/pynac-0.7.11
+~sci-libs/pynac-0.7.12
 =sci-libs/scipy-0.19*
 sci-libs/symmetrica
 sci-libs/vecmath-objectclub
@@ -119,7 +119,7 @@ sci-mathematics/palp
 ~sci-mathematics/pari-2.10.0_pre20170914
 sci-mathematics/pari-data
 ~sci-mathematics/planarity-3.0.0.5
-=sci-libs/brial-1.0*
+=sci-libs/brial-1.1*
 =dev-python/sage-brial-1.0*
 ~sci-mathematics/nauty-2.6.1
 sci-mathematics/ratpoints

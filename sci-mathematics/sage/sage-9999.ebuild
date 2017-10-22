@@ -39,7 +39,7 @@ CDEPEND="dev-libs/gmp:0=
 	>=dev-libs/ppl-1.1
 	~dev-lisp/ecls-16.1.2
 	>=dev-python/six-1.11.0[${PYTHON_USEDEP}]
-	>=dev-python/numpy-1.12.1-r100[${PYTHON_USEDEP}]
+	>=dev-python/numpy-1.13.3-r100[${PYTHON_USEDEP}]
 	>=dev-python/cython-0.26[${PYTHON_USEDEP}]
 	dev-python/future[${PYTHON_USEDEP}]
 	~dev-python/pkgconfig-1.2.2[${PYTHON_USEDEP}]
@@ -62,7 +62,7 @@ CDEPEND="dev-libs/gmp:0=
 	~sci-libs/m4ri-20140914
 	~sci-libs/m4rie-20150908
 	>=sci-libs/mpfi-1.5.1
-	~sci-libs/pynac-0.7.11[-giac,${PYTHON_USEDEP}]
+	~sci-libs/pynac-0.7.12[-giac,${PYTHON_USEDEP}]
 	>=sci-libs/symmetrica-2.0-r3
 	>=sci-libs/zn_poly-0.9
 	>=sci-mathematics/giac-1.2.3.57
@@ -72,7 +72,7 @@ CDEPEND="dev-libs/gmp:0=
 	>=sci-mathematics/lrcalc-1.2-r1
 	~dev-python/cypari2-1.1.3[${PYTHON_USEDEP}]
 	~sci-mathematics/planarity-3.0.0.5
-	=sci-libs/brial-1.0*
+	=sci-libs/brial-1.1*
 	=dev-python/sage-brial-1.0*[${PYTHON_USEDEP}]
 	>=sci-mathematics/rw-0.7
 	~sci-mathematics/singular-4.1.0_p3[readline]
@@ -195,7 +195,7 @@ python_prepare() {
 		bin/sage-num-threads.py
 
 	# remove developer and unsupported options
-	eapply "${FILESDIR}"/${PN}-8.0-exec.patch
+	eapply "${FILESDIR}"/${PN}-8.1-exec.patch
 	eprefixify bin/sage
 
 	# create expected folders under extcode
