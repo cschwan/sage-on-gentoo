@@ -119,7 +119,7 @@ sci-mathematics/palp
 ~sci-mathematics/pari-2.10.0_pre20170914
 sci-mathematics/pari-data
 ~sci-mathematics/planarity-3.0.0.5
-=sci-libs/brial-1.1*
+=sci-libs/brial-1.2*
 =dev-python/sage-brial-1.0*
 ~sci-mathematics/nauty-2.6.1
 sci-mathematics/ratpoints
