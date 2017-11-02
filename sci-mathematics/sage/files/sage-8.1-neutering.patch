@@ -1,8 +1,8 @@
 diff --git a/sage/doctest/control.py b/sage/doctest/control.py
-index 1e8abd1..045b2c4 100644
+index d67b556..737e976 100644
 --- a/sage/doctest/control.py
 +++ b/sage/doctest/control.py
-@@ -323,22 +323,6 @@ class DocTestController(SageObject):
+@@ -320,22 +320,6 @@ class DocTestController(SageObject):
              if "all" in options.optional:
                  # Special case to run all optional tests
                  options.optional = True
@@ -45,27 +45,28 @@ index 4607836..0dd84f6 100644
  
      sage: F = tmp_filename()
 diff --git a/sage/game_theory/normal_form_game.py b/sage/game_theory/normal_form_game.py
-index 9d6d0be..bb12062 100644
+index 2115de6..93c7d41 100644
 --- a/sage/game_theory/normal_form_game.py
 +++ b/sage/game_theory/normal_form_game.py
-@@ -603,8 +603,10 @@ from sage.rings.all import QQ
+@@ -618,9 +618,11 @@ from sage.rings.all import QQ
  from sage.structure.sage_object import SageObject
  from sage.matrix.constructor import matrix
  from sage.matrix.constructor import vector
 -from sage.misc.package import is_package_installed, PackageNotFoundError
 +from sage.misc.package import PackageNotFoundError
  from sage.misc.temporary_file import tmp_filename
+ from sage.numerical.mip import MixedIntegerLinearProgram
 +import os
 +from sage.env import SAGE_LOCAL
  
  try:
      from gambit import Game
-@@ -1306,13 +1308,13 @@ class NormalFormGame(SageObject, MutableMapping):
-             raise ValueError("utilities have not been populated")
- 
+@@ -1636,13 +1638,13 @@ class NormalFormGame(SageObject, MutableMapping):
          if not algorithm:
--            if is_package_installed('lrslib'):
-+            if os.path.isfile(os.path.join(SAGE_LOCAL, 'bin', 'lrs')):
+             if self.is_constant_sum():
+                 algorithm = "lp"
+-            elif is_package_installed('lrslib'):
++            elif os.path.isfile(os.path.join(SAGE_LOCAL, 'bin', 'lrs')):
                  algorithm = "lrs"
              else:
                  algorithm = "enumeration"
@@ -77,10 +78,10 @@ index 9d6d0be..bb12062 100644
  
              return self._solve_lrs(maximization)
 diff --git a/sage/geometry/polyhedron/base.py b/sage/geometry/polyhedron/base.py
-index 9e7ff96..2da8de4 100644
+index 589d20a..0dc0e60 100644
 --- a/sage/geometry/polyhedron/base.py
 +++ b/sage/geometry/polyhedron/base.py
-@@ -4188,7 +4188,9 @@ class Polyhedron_base(Element):
+@@ -4232,7 +4232,9 @@ class Polyhedron_base(Element):
  
               David Avis's lrs program.
          """
@@ -92,10 +93,10 @@ index 9e7ff96..2da8de4 100644
  
          from sage.misc.temporary_file import tmp_filename
 diff --git a/sage/graphs/generic_graph.py b/sage/graphs/generic_graph.py
-index 44d0323..3bffb64 100644
+index 6cc715a..2af25cb 100644
 --- a/sage/graphs/generic_graph.py
 +++ b/sage/graphs/generic_graph.py
-@@ -8077,7 +8077,7 @@ class GenericGraph(GenericGraph_pyx):
+@@ -8170,7 +8170,7 @@ class GenericGraph(GenericGraph_pyx):
             sage: abs(flow_ff-flow_igraph) < 0.00001         # optional python_igraph
             True
          """
@@ -104,7 +105,7 @@ index 44d0323..3bffb64 100644
          self._scream_if_not_simple(allow_loops=True)
          if vertex_bound and algorithm in ["FF", "igraph"]:
              raise ValueError("This method does not support both " +
-@@ -8095,10 +8095,12 @@ class GenericGraph(GenericGraph_pyx):
+@@ -8188,10 +8188,12 @@ class GenericGraph(GenericGraph_pyx):
          if algorithm is None:
              if vertex_bound:
                  algorithm = "LP"
@@ -137,7 +138,7 @@ index f150dca..de41e5f 100644
  
      g = graph.relabel(inplace=False, perm=range(1,n+1)).networkx_graph()
 diff --git a/sage/groups/generic.py b/sage/groups/generic.py
-index 32bafe9..633a659 100644
+index 23ff06b..68d144e 100644
 --- a/sage/groups/generic.py
 +++ b/sage/groups/generic.py
 @@ -1403,16 +1403,10 @@ def structure_description(G, latex=False):
@@ -159,10 +160,10 @@ index 32bafe9..633a659 100644
      description = re.sub(r"(\A|\W)D(\d+)", correct_dihedral_degree, description)
      if not latex:
 diff --git a/sage/groups/perm_gps/permgroup.py b/sage/groups/perm_gps/permgroup.py
-index 4c4c934..4adb61c 100644
+index 51541ec..816ef28 100644
 --- a/sage/groups/perm_gps/permgroup.py
 +++ b/sage/groups/perm_gps/permgroup.py
-@@ -146,7 +146,7 @@ from sage.groups.perm_gps.permgroup_element import PermutationGroupElement, stan
+@@ -145,7 +145,7 @@ from sage.groups.perm_gps.permgroup_element import PermutationGroupElement, stan
  from sage.groups.abelian_gps.abelian_group import AbelianGroup
  from sage.misc.cachefunc import cached_method
  from sage.groups.class_function import ClassFunction
@@ -171,7 +172,7 @@ index 4c4c934..4adb61c 100644
  from sage.sets.finite_enumerated_set import FiniteEnumeratedSet
  from sage.categories.all import FiniteEnumeratedSets
  from sage.groups.conjugacy_classes import ConjugacyClassGAP
-@@ -168,7 +168,10 @@ def load_hap():
+@@ -165,7 +165,10 @@ def load_hap():
      try:
          gap.load_package("hap")
      except Exception:
@@ -183,7 +184,7 @@ index 4c4c934..4adb61c 100644
  
  def hap_decorator(f):
      """
-@@ -194,9 +197,11 @@ def hap_decorator(f):
+@@ -191,9 +194,11 @@ def hap_decorator(f):
      """
      @wraps(f)
      def wrapped(self, n, p=0):
@@ -198,7 +199,7 @@ index 4c4c934..4adb61c 100644
          from sage.arith.all import is_prime
          if not (p == 0 or is_prime(p)):
              raise ValueError("p must be 0 or prime")
-@@ -1703,12 +1708,7 @@ class PermutationGroup_generic(group.FiniteGroup):
+@@ -1724,12 +1729,7 @@ class PermutationGroup_generic(group.FiniteGroup):
              sage: G.group_id()    # optional - database_gap
              [12, 4]
          """
@@ -212,7 +213,7 @@ index 4c4c934..4adb61c 100644
  
      def id(self):
          """
-@@ -1756,12 +1756,7 @@ class PermutationGroup_generic(group.FiniteGroup):
+@@ -1777,12 +1777,7 @@ class PermutationGroup_generic(group.FiniteGroup):
          if not self.is_primitive():
              raise ValueError('Group is not primitive')
  
@@ -226,7 +227,7 @@ index 4c4c934..4adb61c 100644
  
      def center(self):
          """
-@@ -4133,9 +4128,11 @@ class PermutationGroup_generic(group.FiniteGroup):
+@@ -4154,9 +4149,11 @@ class PermutationGroup_generic(group.FiniteGroup):
          - David Joyner and Graham Ellis
  
          """
@@ -242,7 +243,7 @@ index 4c4c934..4adb61c 100644
          if not (p == 0 or is_prime(p)):
              raise ValueError("p must be 0 or prime")
 diff --git a/sage/misc/all.py b/sage/misc/all.py
-index 1644b8d..2113002 100644
+index 531e33f..e71a2d9 100644
 --- a/sage/misc/all.py
 +++ b/sage/misc/all.py
 @@ -46,12 +46,6 @@ from .mrange import xmrange, mrange, xmrange_iter, mrange_iter, cartesian_produc
