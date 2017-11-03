@@ -48,8 +48,7 @@ DEPEND="${RDEPEND}
 PATCHES=(
 	"${FILESDIR}"/${P}-zeta.patch
 	"${FILESDIR}"/${PN}-1.0-doc-makefile.patch
-	"${FILESDIR}"/PR12826.patch
-	"${FILESDIR}"/PR13420.patch
+	"${FILESDIR}"/${PN}-1.1.1_undeffun_sage.patch
 )
 
 pkg_setup() {
