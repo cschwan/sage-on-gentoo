@@ -102,7 +102,7 @@ RDEPEND="${CDEPEND}
 	>=dev-python/pexpect-4.0.1-r2[${PYTHON_USEDEP}]
 	>=dev-python/pycrypto-2.1.0[${PYTHON_USEDEP}]
 	>=dev-python/rpy-2.3.8[${PYTHON_USEDEP}]
-	=dev-python/sympy-1.0-r5[${PYTHON_USEDEP}]
+	>=dev-python/sympy-1.1.1-r3[${PYTHON_USEDEP}]
 	media-gfx/tachyon[png]
 	sci-chemistry/sage-jmol-bin
 	~sci-libs/cddlib-094g
