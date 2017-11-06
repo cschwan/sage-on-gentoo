@@ -104,7 +104,7 @@ RDEPEND="${CDEPEND}
 	>=dev-python/sympy-1.1.1-r3[${PYTHON_USEDEP}]
 	media-gfx/tachyon[png]
 	sci-chemistry/sage-jmol-bin
-	~sci-libs/cddlib-094g
+	>=sci-libs/cddlib-094g[tools]
 	>=sci-libs/scipy-0.19.1[${PYTHON_USEDEP}]
 	sci-mathematics/flintqs
 	~sci-mathematics/gap-4.8.6
@@ -209,6 +209,9 @@ python_prepare() {
 	# upgrades compared to base sage
 	eapply "${FILESDIR}"/ipython-5.4.patch
 	eapply "${FILESDIR}"/giac-1.2.3.57.patch
+	if has_version ">=sci-libs/cddlib-094h"; then
+		eapply "${FILESDIR}"/cddlib-094h.patch
+	fi
 
 	# Remove sage's package management system, git capabilities and associated tests
 	eapply "${FILESDIR}"/${PN}-8.1-neutering.patch

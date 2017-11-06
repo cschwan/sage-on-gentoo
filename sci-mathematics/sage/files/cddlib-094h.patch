@@ -1,0 +1,29 @@
+Description: Use cddlib version 094h
+Author: Ximin Luo <infinity0@debian.org>
+Forwarded: TODO
+---
+This patch header follows DEP-3: http://dep.debian.net/deps/dep3/
+--- a/sage/geometry/polyhedron/backend_cdd.py
++++ b/sage/geometry/polyhedron/backend_cdd.py
+@@ -286,7 +286,9 @@
+             else:
+                 n_cdd=n;
+             self._V_adjacency_matrix = matrix(ZZ, n, n, 0)
+-            expect_in_cddout('begin')
++            if not find_in_cddout('begin'):
++                raise ValueError('Error while parsing cdd output: could not '
++                                 'find "begin" after "Vertex graph"')
+             l = cddout.pop(0).split()
+             assert int(l[0]) == n_cdd, "Not enough V-adjacencies in cdd output?"
+             for i in range(n_cdd):
+@@ -309,7 +311,9 @@
+         if find_in_cddout('Facet graph'):
+             n = len(self._Hrepresentation);
+             self._H_adjacency_matrix = matrix(ZZ, n, n, 0)
+-            expect_in_cddout('begin')
++            if not find_in_cddout('begin'):
++                raise ValueError('Error while parsing cdd output: could not '
++                                 'find "begin" after "Facet graph"')
+             l = cddout.pop(0).split()
+             assert int(l[0]) == n, "Not enough H-adjacencies in cdd output?"
+             for i in range(n):
