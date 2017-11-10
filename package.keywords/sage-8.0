@@ -16,7 +16,7 @@ dev-python/cvxopt
 ~dev-python/bottleneck-0.8.0
 >=dev-python/matplotlib-1.5.1
 ~dev-python/networkx-1.11
-~dev-python/pyopenssl-0.14
+~dev-python/pyopenssl-17.3.0
 ~dev-python/cryptography-0.6.1
 =dev-python/future-0.16*
 dev-python/imagesize
