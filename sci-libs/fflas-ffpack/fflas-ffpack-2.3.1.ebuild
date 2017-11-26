@@ -21,7 +21,7 @@ RESTRICT="mirror"
 DEPEND="virtual/cblas
 	virtual/lapack
 	>=dev-libs/gmp-4.0[cxx]
-	~sci-libs/givaro-4.0.2"
+	~sci-libs/givaro-4.0.4"
 RDEPEND="${DEPEND}"
 
 PATCHES=(
