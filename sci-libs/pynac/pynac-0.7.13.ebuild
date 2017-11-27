@@ -34,6 +34,7 @@ DOCS=( AUTHORS NEWS README )
 
 PATCHES=(
 	"${FILESDIR}"/un-pc.patch
+	"${FILESDIR}"/${PN}-0.7.13-subs-no-pattern.patch
 	)
 
 src_prepare(){
