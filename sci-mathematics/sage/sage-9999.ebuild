@@ -104,7 +104,7 @@ RDEPEND="${CDEPEND}
 	>=dev-python/sympy-1.1.1-r3[${PYTHON_USEDEP}]
 	media-gfx/tachyon[png]
 	sci-chemistry/sage-jmol-bin
-	>=sci-libs/cddlib-094g[tools]
+	|| ( ~sci-libs/cddlib-094g >=sci-libs/cddlib-094h[tools] )
 	>=sci-libs/scipy-0.19.1[${PYTHON_USEDEP}]
 	sci-mathematics/flintqs
 	~sci-mathematics/gap-4.8.6
