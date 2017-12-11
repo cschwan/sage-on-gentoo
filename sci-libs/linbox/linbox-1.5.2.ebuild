@@ -45,7 +45,7 @@ src_prepare(){
 		# patch provided by upstream to deal with some behavior in sage
 		# Some future version of linbox will enable choosing between
 		# implementations at runtime.
-		eapply "${FILESDIR}"/${PN}-1.5.1-charpoly_fullCRA.patch
+		eapply "${FILESDIR}"/${PN}-1.5.2-charpoly_fullCRA.patch
 	fi
 }
 
