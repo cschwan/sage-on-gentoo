@@ -53,12 +53,12 @@ CDEPEND="dev-libs/gmp:0=
 	>=sci-mathematics/eclib-20170330[flint]
 	~sci-mathematics/gmp-ecm-7.0.4[-openmp]
 	>=sci-mathematics/flint-2.5.2:=[ntl]
-	~sci-libs/givaro-4.0.4
+	~sci-libs/givaro-4.0.2
 	>=sci-libs/gsl-1.16
 	>=sci-libs/iml-1.0.4
 	~sci-mathematics/cliquer-1.21
 	~sci-libs/libgap-4.8.6
-	~sci-libs/linbox-1.5.2[sage]
+	~sci-libs/linbox-1.4.2[sage]
 	~sci-libs/m4ri-20140914
 	~sci-libs/m4rie-20150908
 	>=sci-libs/mpfi-1.5.1
