@@ -49,6 +49,7 @@ PATCHES=(
 	"${FILESDIR}"/${P}-zeta.patch
 	"${FILESDIR}"/${PN}-1.0-doc-makefile.patch
 	"${FILESDIR}"/${PN}-1.1.1_undeffun_sage.patch
+	"${FILESDIR}"/PR13276.patch
 )
 
 pkg_setup() {
