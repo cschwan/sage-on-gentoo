@@ -1,0 +1,33 @@
+From 268bc899b81b4ef7fbe889683197e4c235665dca Mon Sep 17 00:00:00 2001
+From: "Colin B. Macdonald" <cbm@m.fsf.org>
+Date: Fri, 8 Sep 2017 00:47:14 -0700
+Subject: [PATCH] Float: fix accidental usage of deprecated keyword
+
+I'm sure `del` is not a very pythonic thing to be doing.  But lo and
+behold, it hath caught a bug; looks like a `prec` was not renamed to
+`precision` when all the others where.
+---
+ sympy/core/numbers.py | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+
+diff --git a/sympy/core/numbers.py b/sympy/core/numbers.py
+index c9e4fc8b4d7..90840343588 100644
+--- a/sympy/core/numbers.py
++++ b/sympy/core/numbers.py
+@@ -947,6 +947,7 @@ def __new__(cls, num, dps=None, prec=None, precision=None):
+                             issue=12820,
+                             deprecated_since_version="1.1").warn()
+             dps = prec
++        del prec  # avoid using this deprecated kwarg
+ 
+         if dps is not None and precision is not None:
+             raise ValueError('Both decimal and binary precision supplied. '
+@@ -1052,7 +1053,7 @@ def __new__(cls, num, dps=None, prec=None, precision=None):
+             if precision < num._prec:
+                 _mpf_ = mpf_norm(_mpf_, precision)
+         else:
+-            _mpf_ = mpmath.mpf(num, prec=prec)._mpf_
++            _mpf_ = mpmath.mpf(num, prec=precision)._mpf_
+ 
+         # special cases
+         if _mpf_ == _mpf_zero:
