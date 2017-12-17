@@ -1,7 +1,7 @@
 # Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=5
+EAPI=6
 
 PYTHON_COMPAT=( python2_7 )
 MY_PN="sagenb"
@@ -13,7 +13,6 @@ inherit distutils-r1 eutils user
 
 DESCRIPTION="The Sage Notebook is a web-based graphical user interface for sage"
 HOMEPAGE="http://nb.sagemath.org"
-#SRC_URI="mirror://sageupstream/${MY_PN}/${MY_P}.tar.bz2"
 SRC_URI="https://github.com/sagemath/sagenb/archive/${PV}.tar.gz -> ${P}.tar.gz"
 
 LICENSE="GPL-3+"
@@ -56,7 +55,7 @@ pkg_setup() {
 
 src_prepare() {
 	# do not ship sage3d
-	epatch "${FILESDIR}"/${PN}-0.10.7-setup.py.patch
+	eapply "${FILESDIR}"/${PN}-0.10.7-setup.py.patch
 
 	# remove sage3d
 	rm -rf sagenb/data/sage3d || die "failed to remove sage3d"
@@ -65,10 +64,13 @@ src_prepare() {
 	rm -rf sagenb/data/mathjax || die "failed to remove mathjax"
 
 	# correct path for jmol
-	epatch "${FILESDIR}"/${PN}-1.0.1-base.patch
+	eapply "${FILESDIR}"/${PN}-1.0.1-base.patch
 
 	# fix SAGE_ROOT
-	epatch "${FILESDIR}"/${PN}-0.9.1-notebook.patch
+	eapply "${FILESDIR}"/${PN}-0.9.1-notebook.patch
+
+	# fix json related doctest
+	eapply "${FILESDIR}"/${PN}-1.0.1-json.patch
 
 	mkdir conf.d || die "failed to create directory"
 	mkdir init.d || die "failed to create directory"
