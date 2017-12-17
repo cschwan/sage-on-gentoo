@@ -50,8 +50,8 @@ Bug: https://trac.sagemath.org/ticket/23125
          **********************************************************************
 diff --git a/src/sage/doctest/forker.py b/src/sage/doctest/forker.py
 index 184631b..162a122 100644
---- a/src/sage/doctest/forker.py
-+++ b/src/sage/doctest/forker.py
+--- a/sage/doctest/forker.py
++++ b/sage/doctest/forker.py
 @@ -1163,7 +1163,8 @@ class SageDocTestRunner(doctest.DocTestRunner):
                  34
              **********************************************************************
