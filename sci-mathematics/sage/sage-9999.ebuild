@@ -301,6 +301,11 @@ python_prepare() {
 	# in sage-on-gentoo. This fixes issue #362.
 	eapply "${FILESDIR}"/${PN}-6.8-lazy_import_cache.patch
 
+	# sage is getting its own system to have scripts that can use either python2 or 3
+	# This is of course of dangerous and incompatible with Gentoo
+	sed -e "s:sage-python23:python:" \
+		-i bin/*
+
 	############################################################################
 	# Fixes to doctests
 	############################################################################
