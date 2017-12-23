@@ -207,7 +207,6 @@ python_prepare() {
 	###############################
 
 	# upgrades compared to base sage
-	eapply "${FILESDIR}"/ipython-5.4.patch
 	eapply "${FILESDIR}"/giac-1.2.3.57.patch
 	if has_version ">=sci-libs/cddlib-094h"; then
 		eapply "${FILESDIR}"/cddlib-094h.patch
