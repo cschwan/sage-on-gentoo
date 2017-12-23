@@ -8,7 +8,7 @@ PYTHON_REQ_USE="readline,sqlite"
 
 inherit distutils-r1 flag-o-matic multiprocessing prefix toolchain-funcs versionator git-r3
 
-EGIT_REPO_URI="git://github.com/sagemath/sage.git"
+EGIT_REPO_URI="git://github.com/vbraun/sage.git"
 EGIT_BRANCH=develop
 EGIT_CHECKOUT_DIR="${WORKDIR}/${P}"
 KEYWORDS=""
@@ -40,7 +40,7 @@ CDEPEND="dev-libs/gmp:0=
 	~dev-lisp/ecls-16.1.2
 	>=dev-python/six-1.11.0[${PYTHON_USEDEP}]
 	>=dev-python/numpy-1.13.3-r100[${PYTHON_USEDEP}]
-	>=dev-python/cython-0.26[${PYTHON_USEDEP}]
+	>=dev-python/cython-0.27.3[${PYTHON_USEDEP}]
 	dev-python/future[${PYTHON_USEDEP}]
 	~dev-python/pkgconfig-1.2.2[${PYTHON_USEDEP}]
 	=dev-python/cysignals-1.6*[${PYTHON_USEDEP}]
@@ -62,7 +62,7 @@ CDEPEND="dev-libs/gmp:0=
 	~sci-libs/m4ri-20140914
 	~sci-libs/m4rie-20150908
 	>=sci-libs/mpfi-1.5.1
-	~sci-libs/pynac-0.7.12[-giac,${PYTHON_USEDEP}]
+	~sci-libs/pynac-0.7.14[-giac,${PYTHON_USEDEP}]
 	>=sci-libs/symmetrica-2.0-r3
 	>=sci-libs/zn_poly-0.9
 	>=sci-mathematics/giac-1.2.3.57
@@ -101,7 +101,7 @@ RDEPEND="${CDEPEND}
 	>=dev-python/pexpect-4.0.1-r2[${PYTHON_USEDEP}]
 	>=dev-python/pycrypto-2.1.0[${PYTHON_USEDEP}]
 	>=dev-python/rpy-2.3.8[${PYTHON_USEDEP}]
-	>=dev-python/sympy-1.1.1-r3[${PYTHON_USEDEP}]
+	>=dev-python/sympy-1.1.1-r4[${PYTHON_USEDEP}]
 	media-gfx/tachyon[png]
 	sci-chemistry/sage-jmol-bin
 	|| ( ~sci-libs/cddlib-094g >=sci-libs/cddlib-094h[tools] )
