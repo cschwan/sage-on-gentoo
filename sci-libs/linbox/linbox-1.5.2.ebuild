@@ -18,7 +18,7 @@ RESTRICT="mirror"
 
 DEPEND="dev-libs/gmp[cxx]
 	~sci-libs/givaro-4.0.4
-	~sci-libs/fflas-ffpack-2.3.1
+	=sci-libs/fflas-ffpack-2.3*
 	virtual/cblas
 	virtual/lapack
 	opencl? ( virtual/opencl )
