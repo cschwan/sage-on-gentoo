@@ -12,9 +12,8 @@ SLOT="0"
 KEYWORDS="~amd64 ~x86"
 IUSE=""
 
-DEPEND=">=sci-mathematics/gap-4.8.3-r1
-	<=sci-mathematics/gap-4.8.7
-	!<=sci-mathematics/gap-4.8.3
+DEPEND=">=sci-mathematics/gap-4.8.9
+	!<=sci-mathematics/gap-4.8.9
 	virtual/texi2dvi"
 RDEPEND="${DEPEND}"
 
