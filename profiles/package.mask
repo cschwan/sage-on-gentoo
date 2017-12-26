@@ -4,3 +4,6 @@ sci-mathematics/ecm
 # testing only
 # Work in progress it doesn't like being installed in a root location
 #dev-gap/atlasrep
+# masking for now
+=sci-mathematics/gap-4.8.9
+=dev-gap/GAPDoc-1.6.1
