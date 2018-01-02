@@ -53,12 +53,12 @@ CDEPEND="dev-libs/gmp:0=
 	>=sci-mathematics/eclib-20170330[flint]
 	~sci-mathematics/gmp-ecm-7.0.4[-openmp]
 	>=sci-mathematics/flint-2.5.2:=[ntl]
-	~sci-libs/givaro-4.0.2
+	~sci-libs/givaro-4.0.4
 	>=sci-libs/gsl-1.16
 	>=sci-libs/iml-1.0.4
 	~sci-mathematics/cliquer-1.21
 	~sci-libs/libgap-4.8.6
-	~sci-libs/linbox-1.4.2[sage]
+	~sci-libs/linbox-1.5.2[sage]
 	~sci-libs/m4ri-20140914
 	~sci-libs/m4rie-20150908
 	>=sci-libs/mpfi-1.5.1
@@ -207,7 +207,6 @@ python_prepare() {
 	###############################
 
 	# upgrades compared to base sage
-	eapply "${FILESDIR}"/ipython-5.4.patch
 	eapply "${FILESDIR}"/giac-1.2.3.57.patch
 	if has_version ">=sci-libs/cddlib-094h"; then
 		eapply "${FILESDIR}"/cddlib-094h.patch
@@ -301,6 +300,11 @@ python_prepare() {
 	# rather than the path to the source which is a constant across versions
 	# in sage-on-gentoo. This fixes issue #362.
 	eapply "${FILESDIR}"/${PN}-6.8-lazy_import_cache.patch
+
+	# sage is getting its own system to have scripts that can use either python2 or 3
+	# This is of course of dangerous and incompatible with Gentoo
+	sed -e "s:sage-python23:python:" \
+		-i bin/*
 
 	############################################################################
 	# Fixes to doctests
