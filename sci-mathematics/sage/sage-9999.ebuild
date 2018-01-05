@@ -1,4 +1,4 @@
-# Copyright 1999-2017 Gentoo Foundation
+# Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=6
@@ -211,6 +211,9 @@ python_prepare() {
 	if has_version ">=sci-libs/cddlib-094h"; then
 		eapply "${FILESDIR}"/cddlib-094h.patch
 	fi
+	# readline 7 breaks the interaction between R and sage.
+	# patch should be sage with readline 6. Adopted from Debian
+	eapply "${FILESDIR}"/dt-r-no-readline.patch
 
 	# Remove sage's package management system, git capabilities and associated tests
 	eapply "${FILESDIR}"/${PN}-8.1-neutering.patch

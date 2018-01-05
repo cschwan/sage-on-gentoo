@@ -1,4 +1,4 @@
-# Copyright 1999-2017 Gentoo Foundation
+# Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=6
@@ -14,7 +14,7 @@ DESCRIPTION="Math software for abstract and numerical computations"
 HOMEPAGE="http://www.sagemath.org"
 SRC_URI="https://github.com/sagemath/sage/archive/${PV}.tar.gz -> ${P}.tar.gz
 	mirror://sagemath/sage-icon.tar.bz2
-	doc-html-bin? ( mirror://sagemath/${P}-r1-doc-html.tar.xz )
+	doc-html-bin? ( mirror://sagemath/${P}-doc-html.tar.xz )
 	doc-pdf-bin? ( mirror://sagemath/${P}-doc-pdf.tar.xz )"
 
 LANGS="ca de en es fr hu it ja pt ru tr"
@@ -38,15 +38,15 @@ CDEPEND="dev-libs/gmp:0=
 	>=dev-libs/ntl-9.6.2-r1:=
 	>=dev-libs/ppl-1.1
 	~dev-lisp/ecls-16.1.2
-	<dev-python/six-1.11.0[${PYTHON_USEDEP}]
-	>=dev-python/numpy-1.12.1[${PYTHON_USEDEP}]
+	>=dev-python/six-1.11.0[${PYTHON_USEDEP}]
+	>=dev-python/numpy-1.13.3-r100[${PYTHON_USEDEP}]
 	>=dev-python/cython-0.26[${PYTHON_USEDEP}]
 	dev-python/future[${PYTHON_USEDEP}]
 	~dev-python/pkgconfig-1.2.2[${PYTHON_USEDEP}]
 	=dev-python/cysignals-1.6*[${PYTHON_USEDEP}]
 	>=dev-python/docutils-0.12[${PYTHON_USEDEP}]
 	>=dev-python/psutil-4.4.0[${PYTHON_USEDEP}]
-	>=dev-python/ipython-5.1.0[notebook,${PYTHON_USEDEP}]
+	>=dev-python/ipython-5.4.0[notebook,${PYTHON_USEDEP}]
 	>=dev-python/jinja-2.8[${PYTHON_USEDEP}]
 	=dev-python/matplotlib-1.5*[${PYTHON_USEDEP}]
 	<dev-python/ipywidgets-7.0.0[${PYTHON_USEDEP}]
@@ -62,15 +62,16 @@ CDEPEND="dev-libs/gmp:0=
 	~sci-libs/m4ri-20140914
 	~sci-libs/m4rie-20150908
 	>=sci-libs/mpfi-1.5.1
-	~sci-libs/pynac-0.7.8[-giac,${PYTHON_USEDEP}]
+	~sci-libs/pynac-0.7.12[-giac,${PYTHON_USEDEP}]
 	>=sci-libs/symmetrica-2.0-r3
 	>=sci-libs/zn_poly-0.9
-	sci-mathematics/glpk:0=[gmp]
+	>=sci-mathematics/giac-1.2.3.57
+	>=sci-mathematics/glpk-4.63:0=[gmp]
 	>=sci-mathematics/lcalc-1.23-r6[pari]
 	>=sci-mathematics/lrcalc-1.2-r1
-	~dev-python/cypari2-1.0.0[${PYTHON_USEDEP}]
+	~dev-python/cypari2-1.1.3[${PYTHON_USEDEP}]
 	~sci-mathematics/planarity-3.0.0.5
-	=sci-libs/brial-1.0*
+	=sci-libs/brial-1.2*
 	=dev-python/sage-brial-1*[${PYTHON_USEDEP}]
 	>=sci-mathematics/rw-0.7
 	~sci-mathematics/singular-4.1.0_p3[readline]
@@ -80,13 +81,13 @@ CDEPEND="dev-libs/gmp:0=
 	>=sys-libs/readline-6.2
 	sys-libs/zlib
 	virtual/cblas
-	>=sci-mathematics/arb-2.8.1
+	>=sci-mathematics/arb-2.11.1
 	www-misc/thebe
 	modular_decomposition? ( sci-libs/modular_decomposition )
 	bliss? ( >=sci-libs/bliss-0.73 )
 	libhomfly? ( >=sci-libs/libhomfly-1.0.1 )
 	libbraiding? ( sci-libs/libbraiding )
-	~dev-python/sphinx-1.5.3[${PYTHON_USEDEP}]"
+	~dev-python/sphinx-1.6.3[${PYTHON_USEDEP}]"
 
 DEPEND="${CDEPEND}
 	doc-pdf? ( app-text/texlive[extra,${L10N_USEDEP}] )"
@@ -100,15 +101,13 @@ RDEPEND="${CDEPEND}
 	>=dev-python/pexpect-4.0.1-r2[${PYTHON_USEDEP}]
 	>=dev-python/pycrypto-2.1.0[${PYTHON_USEDEP}]
 	>=dev-python/rpy-2.3.8[${PYTHON_USEDEP}]
-	<=dev-python/sympy-1.0-r3[${PYTHON_USEDEP}]
+	>=dev-python/sympy-1.1.1-r3[${PYTHON_USEDEP}]
 	media-gfx/tachyon[png]
-	~sci-libs/cddlib-094g
-	>=sci-libs/scipy-0.16.1[${PYTHON_USEDEP}]
 	sci-chemistry/sage-jmol-bin
+	|| ( ~sci-libs/cddlib-094g >=sci-libs/cddlib-094h[tools] )
+	>=sci-libs/scipy-0.19.1[${PYTHON_USEDEP}]
 	sci-mathematics/flintqs
 	~sci-mathematics/gap-4.8.6
-	>=sci-mathematics/giac-1.2.3.57
-	<sci-mathematics/giac-1.4.9.0
 	~sci-mathematics/gfan-0.5
 	>=sci-mathematics/cu2-20060223
 	>=sci-mathematics/cubex-20060128
@@ -119,11 +118,11 @@ RDEPEND="${CDEPEND}
 	>=sci-mathematics/nauty-2.6.1
 	>=sci-mathematics/optimal-20040603
 	>=sci-mathematics/palp-2.1
-	=sci-mathematics/pari-2.9*
+	~sci-mathematics/pari-2.10.0_pre20170914
 	~sci-mathematics/sage-data-elliptic_curves-0.8
 	~sci-mathematics/sage-data-graphs-20161026
 	~sci-mathematics/sage-data-combinatorial_designs-20140630
-	~sci-mathematics/sage-data-polytopes_db-20120220
+	~sci-mathematics/sage-data-polytopes_db-20170220
 	~sci-mathematics/sage-data-conway_polynomials-0.5
 	>=sci-mathematics/sympow-1.018.1
 	www-servers/tornado
@@ -161,6 +160,9 @@ python_prepare() {
 	eprefixify bin/sage-env
 	sed -i "s:@GENTOO_SITEDIR@:$(python_get_sitedir):" bin/sage-env
 
+	# Do not rely on os.environ to get SAGE_SRC
+	eapply "${FILESDIR}"/${PN}-8.1-sage-cython.patch
+
 	# make .desktop file
 	cat > "${T}"/sage-sage.desktop <<-EOF
 		[Desktop Entry]
@@ -188,7 +190,7 @@ python_prepare() {
 		bin/sage-num-threads.py
 
 	# remove developer and unsupported options
-	eapply "${FILESDIR}"/${PN}-8.0-exec.patch
+	eapply "${FILESDIR}"/${PN}-8.1-exec.patch
 	eprefixify bin/sage
 
 	# create expected folders under extcode
@@ -201,13 +203,17 @@ python_prepare() {
 	###############################
 
 	# upgrades compared to base sage
+	eapply "${FILESDIR}"/ipython-5.4.patch
 	eapply "${FILESDIR}"/giac-1.2.3.57.patch
-	# early update to cython 0.26:
-	# https://trac.sagemath.org/ticket/23360
-	eapply "${FILESDIR}"/cython-0.26.patch
+	if has_version ">=sci-libs/cddlib-094h"; then
+		eapply "${FILESDIR}"/cddlib-094h.patch
+	fi
+	# readline 7 breaks the interaction between R and sage.
+	# patch should be sage with readline 6. Adopted from Debian
+	eapply "${FILESDIR}"/dt-r-no-readline.patch
 
 	# Remove sage's package management system, git capabilities and associated tests
-	eapply "${FILESDIR}"/${PN}-8.0-neutering.patch
+	eapply "${FILESDIR}"/${PN}-8.1-neutering.patch
 	cp -f "${FILESDIR}"/${PN}-7.3-package.py sage/misc/package.py
 	rm -f sage/misc/dist.py
 	rm -rf sage/dev
@@ -219,8 +225,7 @@ python_prepare() {
 	###############################
 
 	sed \
-		-e "s:libraries = pynac gmp:libraries = pynac_${MULTIBUILD_VARIANT} gmp:" \
-		-e "s:clib pynac:clib pynac_${MULTIBUILD_VARIANT}:" \
+		-e "s:libraries = pynac:libraries = pynac_${MULTIBUILD_VARIANT}:" \
 		-i sage/libs/pynac/pynac.pxd
 
 	############################################################################
@@ -244,7 +249,7 @@ python_prepare() {
 	############################################################################
 
 	# sage on gentoo env.py
-	eapply "${FILESDIR}"/${PN}-7.6-env.patch
+	eapply "${FILESDIR}"/${PN}-8.1-env.patch
 	eprefixify sage/env.py
 	# fix library path of libSingular
 	sed -i "s:lib/libSingular:$(get_libdir)/libSingular:" \
@@ -254,7 +259,7 @@ python_prepare() {
 	eapply "${FILESDIR}"/${PN}-7.4-qt4_conflict.patch
 
 	# sage-maxima.lisp really belong to /etc
-	eapply "${FILESDIR}"/${PN}-6.8-maxima.lisp.patch
+	eapply "${FILESDIR}"/${PN}-8.1-maxima.lisp.patch
 
 	# TODO: should be a patch
 	# run maxima with ecl
@@ -299,6 +304,11 @@ python_prepare() {
 	############################################################################
 	# Fixes to doctests
 	############################################################################
+
+	# https://trac.sagemath.org/ticket/23748 introduce memory limit for doctests
+	# it has a knowck down effect on various doctest in pure Gentoo as well as prefix.
+	# Disabling until it is improved
+	eapply "${FILESDIR}"/${PN}-8.1-doctest_memory.patch
 
 	# boost 1.62 leads to different results when used in polybori
 	# Using debian patch
@@ -404,7 +414,7 @@ python_compile() {
 			"${PYTHON}" sage_setup/docbuild/__main__.py --no-pdf-links all html || die "failed to produce html doc"
 		fi
 		if use doc-pdf ; then
-			export MAKE=make
+			export MAKE="make -j$(makeopts_jobs)"
 			"${PYTHON}" sage_setup/docbuild/__main__.py all pdf || die "failed to produce pdf doc"
 		fi
 	fi
@@ -473,6 +483,13 @@ python_install() {
 		doins sage_setup/docbuild/ext/inventory_builder.py
 		doins sage_setup/docbuild/ext/multidocs.py
 
+		# rst files are installed as rst.txt which prevents doctesting
+		pushd "${ED}"
+		for i in `find usr/share/doc/sage -name \*.rst.txt`; do
+			mv "${i}" "${i%.txt}"
+		done
+		popd
+
 		if use doc-html ; then
 			# Prune _static folders
 			cp -r build_doc/html/en/_static build_doc/html/ || die "failed to copy _static folder"
@@ -487,6 +504,11 @@ python_install() {
 				rm -rf "${pyfile}" || die "fail to to remove $pyfile"
 				rm -rf "${pyfile/%.py/.pdf}" "${pyfile/%.py/png}"
 			done
+			# restore .rst.txt file to .rst
+			for i in `find build_doc -name \*.rst.txt`; do
+				mv "${i}" "${i%.txt}"
+			done
+			# proceed with install
 			insinto /usr/share/doc/sage/html
 			doins -r build_doc/html/*
 			dosym ../../../doc/sage/html/en /usr/share/jupyter/kernels/sagemath/doc
