@@ -48,7 +48,7 @@ CDEPEND="dev-libs/gmp:0=
 	>=dev-python/psutil-4.4.0[${PYTHON_USEDEP}]
 	>=dev-python/ipython-5.4.0[notebook,${PYTHON_USEDEP}]
 	>=dev-python/jinja-2.8[${PYTHON_USEDEP}]
-	=dev-python/matplotlib-1.5*[${PYTHON_USEDEP}]
+	=dev-python/matplotlib-2.1*[${PYTHON_USEDEP}]
 	<dev-python/ipywidgets-7.0.0[${PYTHON_USEDEP}]
 	>=sci-mathematics/eclib-20170330[flint]
 	~sci-mathematics/gmp-ecm-7.0.4[-openmp]
@@ -214,6 +214,8 @@ python_prepare() {
 	# readline 7 breaks the interaction between R and sage.
 	# patch should be sage with readline 6. Adopted from Debian
 	eapply "${FILESDIR}"/dt-r-no-readline.patch
+	# Upgrade to matplotlib 2.1.0 early as 1.5.3 has left the main tree
+	eapply "${FILESDIR}"/MPL-2.1.0.patch
 
 	# Remove sage's package management system, git capabilities and associated tests
 	eapply "${FILESDIR}"/${PN}-8.1-neutering.patch
