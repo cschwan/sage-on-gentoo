@@ -361,6 +361,8 @@ python_prepare() {
 
 	eapply "${FILESDIR}"/${PN}-7.4-misc.patch \
 		"${FILESDIR}"/${PN}-7.1-linguas.patch
+	# Correct path to mathjax
+	eapply "${FILESDIR}"/sage-8.2-mathjax_path.patch
 }
 
 sage_build_env(){
