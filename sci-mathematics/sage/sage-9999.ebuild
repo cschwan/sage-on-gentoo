@@ -218,7 +218,7 @@ python_prepare() {
 	eapply "${FILESDIR}"/MPL-2.1.0.patch
 
 	# Remove sage's package management system, git capabilities and associated tests
-	eapply "${FILESDIR}"/${PN}-8.1-neutering.patch
+	eapply "${FILESDIR}"/${PN}-8.2-neutering.patch
 	cp -f "${FILESDIR}"/${PN}-7.3-package.py sage/misc/package.py
 	rm -f sage/misc/dist.py
 	rm -rf sage/dev
