@@ -43,6 +43,14 @@ PDEPEND="sci-mathematics/sage[${PYTHON_USEDEP}]"
 
 S="${WORKDIR}/${MY_P}"
 
+PATCHES=(
+	"${FILESDIR}"/${PN}-0.10.7-setup.py.patch
+	"${FILESDIR}"/${PN}-1.0.1-base.patch
+	"${FILESDIR}"/${PN}-0.9.1-notebook.patch
+	"${FILESDIR}"/${PN}-1.0.1-json.patch
+	"${FILESDIR}"/PR438.patch
+	)
+
 pkg_setup() {
 	python_export python2_7 EPYTHON PYTHON PYTHON_SITEDIR
 
@@ -54,23 +62,11 @@ pkg_setup() {
 }
 
 src_prepare() {
-	# do not ship sage3d
-	eapply "${FILESDIR}"/${PN}-0.10.7-setup.py.patch
-
 	# remove sage3d
 	rm -rf sagenb/data/sage3d || die "failed to remove sage3d"
 
 	# use system mathjax
 	rm -rf sagenb/data/mathjax || die "failed to remove mathjax"
-
-	# correct path for jmol
-	eapply "${FILESDIR}"/${PN}-1.0.1-base.patch
-
-	# fix SAGE_ROOT
-	eapply "${FILESDIR}"/${PN}-0.9.1-notebook.patch
-
-	# fix json related doctest
-	eapply "${FILESDIR}"/${PN}-1.0.1-json.patch
 
 	mkdir conf.d || die "failed to create directory"
 	mkdir init.d || die "failed to create directory"
