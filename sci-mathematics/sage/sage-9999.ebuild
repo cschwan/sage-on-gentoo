@@ -33,8 +33,8 @@ L10N_USEDEP="${L10N_USEDEP%?}"
 RESTRICT="mirror test"
 
 CDEPEND="dev-libs/gmp:0=
-	>=dev-libs/mpfr-3.1.0
-	>=dev-libs/mpc-1.0
+	>=dev-libs/mpfr-4.0.0
+	>=dev-libs/mpc-1.1.0
 	>=dev-libs/ntl-9.6.2-r1:=
 	>=dev-libs/ppl-1.1
 	~dev-lisp/ecls-16.1.2
@@ -61,11 +61,11 @@ CDEPEND="dev-libs/gmp:0=
 	~sci-libs/linbox-1.5.2[sage]
 	~sci-libs/m4ri-20140914
 	~sci-libs/m4rie-20150908
-	>=sci-libs/mpfi-1.5.1
-	~sci-libs/pynac-0.7.14[-giac,${PYTHON_USEDEP}]
+	>=sci-libs/mpfi-1.5.2
+	~sci-libs/pynac-0.7.15[-giac,${PYTHON_USEDEP}]
 	>=sci-libs/symmetrica-2.0-r3
 	>=sci-libs/zn_poly-0.9
-	>=sci-mathematics/giac-1.2.3.57
+	>=sci-mathematics/giac-1.4.9.45
 	>=sci-mathematics/glpk-4.63:0=[gmp]
 	>=sci-mathematics/lcalc-1.23-r6[pari]
 	>=sci-mathematics/lrcalc-1.2-r1
@@ -207,7 +207,6 @@ python_prepare() {
 	###############################
 
 	# upgrades compared to base sage
-	eapply "${FILESDIR}"/giac-1.2.3.57.patch
 	if has_version ">=sci-libs/cddlib-094h"; then
 		eapply "${FILESDIR}"/cddlib-094h.patch
 	fi
@@ -218,7 +217,7 @@ python_prepare() {
 	eapply "${FILESDIR}"/MPL-2.1.0.patch
 
 	# Remove sage's package management system, git capabilities and associated tests
-	eapply "${FILESDIR}"/${PN}-8.1-neutering.patch
+	eapply "${FILESDIR}"/${PN}-8.2-neutering.patch
 	cp -f "${FILESDIR}"/${PN}-7.3-package.py sage/misc/package.py
 	rm -f sage/misc/dist.py
 	rm -rf sage/dev
