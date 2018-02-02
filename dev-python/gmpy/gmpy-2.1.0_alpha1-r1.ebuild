@@ -1,4 +1,4 @@
-# Copyright 1999-2017 Gentoo Foundation
+# Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=5
@@ -32,6 +32,8 @@ S="${WORKDIR}"/${MY_P}
 
 PATCHES=(
 	"${FILESDIR}"/${PN}2.1.0a1-SHIFT.patch
+	"${FILESDIR}"/PR180.patch
+	"${FILESDIR}"/PR181.patch
 	)
 
 pkg_setup(){
