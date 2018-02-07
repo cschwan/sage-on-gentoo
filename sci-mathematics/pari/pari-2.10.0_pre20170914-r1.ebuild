@@ -1,4 +1,4 @@
-# Copyright 1999-2017 Gentoo Foundation
+# Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=6
@@ -14,7 +14,7 @@ EGIT_COMMIT=1280-g88fb5b3
 LICENSE="GPL-2"
 SLOT="0/0"
 KEYWORDS="~alpha ~amd64 ~hppa ~mips ~ppc ~ppc64 ~sparc ~x86 ~amd64-linux ~x86-fbsd ~x86-linux ~x86-macos ~x86-solaris"
-IUSE="data doc fltk gmp qt4 threads X"
+IUSE="data doc fltk gmp threads X"
 
 RDEPEND="
 	sys-libs/readline:0=
@@ -22,7 +22,6 @@ RDEPEND="
 	doc? ( X? ( x11-misc/xdg-utils ) )
 	fltk? ( x11-libs/fltk:1= )
 	gmp? ( dev-libs/gmp:0= )
-	qt4? ( dev-qt/qtgui:4= )
 	X? ( x11-libs/libX11:0= )"
 DEPEND="${RDEPEND}
 	doc? ( virtual/latex-base )"
@@ -32,6 +31,7 @@ PATCHES=(
 	"${FILESDIR}"/${PN}-2.3.2-ppc-powerpc-arch-fix.patch
 	"${FILESDIR}"/${PN}-2.10-no-automagic.patch
 	"${FILESDIR}"/${PN}-2.10-stackwarn.patch
+	"${FILESDIR}"/${PN}-2.10-fltk-detection.patch
 	)
 
 get_compile_dir() {
@@ -88,7 +88,7 @@ src_configure() {
 		--with-ncurses-lib="${EPREFIX}"/usr/$(get_libdir) \
 		$(use_with fltk) \
 		$(use_with gmp) \
-		$(use_with qt4 qt) \
+		--without-qt \
 		${mt_threads} \
 		|| die "./Configure failed"
 }
