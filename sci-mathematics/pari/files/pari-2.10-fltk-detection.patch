@@ -1,0 +1,12 @@
+diff --git a/config/get_graphic_lib b/config/get_graphic_lib
+index 4591f2aad..4808aab90 100644
+--- a/config/get_graphic_lib
++++ b/config/get_graphic_lib
+@@ -7,6 +7,7 @@ FLTK_LIBS QTDIR QTLIB"
+ 
+ if test -n "$with_fltk"; then which_graphic_lib=fltk; fi
+ if test -n "$with_qt";   then which_graphic_lib=Qt; fi
++if test -n "$without_fltk" -a -n "$without_qt"; then which_graphic_lib=none; fi
+ if test "$fastread" != yes; then
+   cat << EOT
+ ==========================================================================
