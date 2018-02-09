@@ -213,8 +213,6 @@ python_prepare() {
 	# readline 7 breaks the interaction between R and sage.
 	# patch should be sage with readline 6. Adopted from Debian
 	eapply "${FILESDIR}"/dt-r-no-readline.patch
-	# Upgrade to matplotlib 2.1.0 early as 1.5.3 has left the main tree
-	eapply "${FILESDIR}"/MPL-2.1.0.patch
 
 	# Remove sage's package management system, git capabilities and associated tests
 	eapply "${FILESDIR}"/${PN}-8.2-neutering.patch
