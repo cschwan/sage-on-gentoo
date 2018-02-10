@@ -172,7 +172,7 @@ python_prepare() {
 		[Desktop Entry]
 		Name=Sage Shell
 		Type=Application
-		Comment=MAth software for abstract and numerical computations
+		Comment=Math software for abstract and numerical computations
 		Exec=sage
 		TryExec=sage
 		Icon=sage
@@ -242,9 +242,6 @@ python_prepare() {
 	# Also install all appropriate sources alongside python code.
 	# get the doc building in the right place and replace relative import to the right location.
 	eapply "${FILESDIR}"/${PN}-8.2-sources.patch
-	# Create __init__.py so that this folder is installed.
-	# However it shouldn't be present in the final install.
-	use testsuite && touch sage/doctest/tests/__init__.py
 
 	############################################################################
 	# Fixes to Sage itself
@@ -456,10 +453,14 @@ python_install() {
 	if use testsuite ; then
 		# DOCTESTING helper scripts
 		python_doscript sage-runtests
-		# Remove __init__.py used to trigger installation of tests.
-		rm -f "${D}"$(python_get_sitedir)/sage/doctest/tests/__init__.*
 	fi
 	popd
+
+	if use testsuite ; then
+		# install extra testfiles under sage/doctests
+		insinto $(python_get_sitedir)/sage/doctest/tests
+		doins sage/doctest/tests/*
+	fi
 
 	if ! python_is_python3; then
 	####################################
