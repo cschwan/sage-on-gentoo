@@ -34,6 +34,7 @@ DOCS=( AUTHORS NEWS README )
 
 PATCHES=(
 	"${FILESDIR}"/un-pc.patch
+	"${FILESDIR}"/${P}-memleak.patch
 	)
 
 src_prepare(){
