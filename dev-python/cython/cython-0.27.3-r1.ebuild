@@ -1,4 +1,4 @@
-# Copyright 1999-2017 Gentoo Foundation
+# Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=6
@@ -6,7 +6,7 @@ EAPI=6
 PYTHON_COMPAT=( python2_7 python3_{4,5,6} )
 PYTHON_REQ_USE="threads(+)"
 
-inherit distutils-r1 flag-o-matic toolchain-funcs elisp-common
+inherit distutils-r1 elisp-common flag-o-matic multiprocessing toolchain-funcs
 
 MY_PN="Cython"
 MY_P="${MY_PN}-${PV/_/}"
@@ -30,6 +30,10 @@ DEPEND="${RDEPEND}
 	>=dev-python/setuptools-9.1[${PYTHON_USEDEP}]
 	doc? ( dev-python/sphinx[${PYTHON_USEDEP}] )
 	test? ( dev-python/numpy[${PYTHON_USEDEP}] )"
+
+PATCHES=(
+	"${FILESDIR}"/PR2095.patch
+	)
 
 SITEFILE=50cython-gentoo.el
 S="${WORKDIR}/${MY_PN}-${PV%_*}"
@@ -55,8 +59,9 @@ python_compile_all() {
 }
 
 python_test() {
-	tc-export CC
-	"${PYTHON}" runtests.py -vv --work-dir "${BUILD_DIR}"/tests \
+	distutils_install_for_testing
+	tc-export CC CXX
+	"${PYTHON}" runtests.py -vv --backends=c -j $(makeopts_jobs) \
 		|| die "Tests fail with ${EPYTHON}"
 }
 
