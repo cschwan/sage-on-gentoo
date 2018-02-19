@@ -458,8 +458,9 @@ python_install() {
 
 	if use testsuite ; then
 		# install extra testfiles under sage/doctests
-		insinto $(python_get_sitedir)/sage/doctest/tests
-		doins sage/doctest/tests/*
+		local testspath="${D}"/$(python_get_sitedir)/sage/doctest/tests
+		mkdir -p "${testspath}"
+		cp sage/doctest/tests/* "${testspath}"/
 	fi
 
 	if ! python_is_python3; then
