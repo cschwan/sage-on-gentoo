@@ -193,6 +193,11 @@ python_prepare() {
 	sed -i "s:os.environ\[\"MAKE\"\]:os.environ\[\"MAKEOPTS\"\]:g" \
 		bin/sage-num-threads.py
 
+	# sage is getting its own system to have scripts that can use either python2 or 3
+	# This is of course dangerous and incompatible with Gentoo
+	sed -e "s:sage-python23:python:" \
+		-i bin/*
+
 	# remove developer and unsupported options
 	eapply "${FILESDIR}"/${PN}-8.2-exec.patch
 	eprefixify bin/sage
@@ -299,11 +304,6 @@ python_prepare() {
 	# rather than the path to the source which is a constant across versions
 	# in sage-on-gentoo. This fixes issue #362.
 	eapply "${FILESDIR}"/${PN}-6.8-lazy_import_cache.patch
-
-	# sage is getting its own system to have scripts that can use either python2 or 3
-	# This is of course of dangerous and incompatible with Gentoo
-	sed -e "s:sage-python23:python:" \
-		-i bin/*
 
 	############################################################################
 	# Fixes to doctests
