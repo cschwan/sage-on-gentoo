@@ -339,7 +339,7 @@ python_prepare() {
 	eapply "${FILESDIR}"/${PN}-7.3-safepython.patch
 
 	# 'sage' is not in SAGE_ROOT, but in PATH
-	eapply "${FILESDIR}"/${PN}-5.9-fix-ostools-doctest.patch
+	eapply "${FILESDIR}"/${PN}-8.2-ostools.patch
 
 	# Do not check build documentation against the source
 	eapply "${FILESDIR}"/${PN}-7.1-sagedoc.patch
