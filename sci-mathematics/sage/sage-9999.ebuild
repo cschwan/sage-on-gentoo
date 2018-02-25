@@ -494,6 +494,13 @@ python_install() {
 					ln -rst ${sdir%_static} build_doc/html/_static
 				fi
 			done
+			# Linking to local copy of mathjax folders rather than copying them
+			local mathjax_folders="config extensions fonts jax localization unpacked"
+			for sdir in ${mathjax_folders} ; do
+				rm -rf build_doc/html/_static/${sdir} \
+					|| die "failed to remove mathjax folder $sdir"
+				ln -st build_doc/html/_static/ ../../../../mathjax/$sdir
+			done
 			# Work around for issue #402 until I understand where it comes from
 			for pyfile in `find build_doc/html -name \*.py` ; do
 				rm -rf "${pyfile}" || die "fail to to remove $pyfile"
