@@ -33,6 +33,7 @@ DEPEND="${RDEPEND}
 
 PATCHES=(
 	"${FILESDIR}"/PR2095.patch
+	"${FILESDIR}"/PR2105.patch
 	)
 
 SITEFILE=50cython-gentoo.el
@@ -61,7 +62,7 @@ python_compile_all() {
 python_test() {
 	distutils_install_for_testing
 	tc-export CC CXX
-	"${PYTHON}" runtests.py -vv --backends=c -j $(makeopts_jobs) \
+	CFLAGS="-O0 -ggdb -Wall -Wextra" "${PYTHON}" runtests.py -vv -x Debugger --backends=c -j $(makeopts_jobs) \
 		|| die "Tests fail with ${EPYTHON}"
 }
 
