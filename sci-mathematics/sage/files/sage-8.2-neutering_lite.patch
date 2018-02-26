@@ -218,3 +218,35 @@ index ca7345a..fc9492a 100644
      Check an illegal command line option.  This outputs an error to stdout,
      but we allow stderr in case this changes in the future::
  
+diff --git a/sage_setup/optional_extension.py b/sage_setup/optional_extension.py
+index ad9e10c..49072c5 100644
+--- a/sage_setup/optional_extension.py
++++ b/sage_setup/optional_extension.py
+@@ -19,10 +19,7 @@ package which must be installed.
+ 
+ 
+ from distutils.extension import Extension
+-from sage.misc.package import list_packages
+-
+-all_packages = list_packages(local=True)
+-
++import os
+ 
+ class CythonizeExtension(Extension):
+     """
+@@ -76,14 +73,7 @@ def OptionalExtension(*args, **kwds):
+         condition = kwds.pop("condition")
+     except KeyError:
+         pkg = kwds.pop("package")
+-        from sage.misc.package import is_package_installed
+-        try:
+-            pkginfo = all_packages[pkg]
+-        except KeyError:
+-            # Might be an installed old-style package
+-            condition = is_package_installed(pkg)
+-        else:
+-            condition = (pkginfo["installed_version"] == pkginfo["remote_version"])
++        condition = os.getenv('WANT_%s'%pkg,False)
+ 
+     if condition:
+         return Extension(*args, **kwds)
