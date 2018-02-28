@@ -220,7 +220,7 @@ python_prepare() {
 	eapply "${FILESDIR}"/dt-r-no-readline.patch
 
 	# Remove sage's package management system, git capabilities and associated tests
-	eapply "${FILESDIR}"/${PN}-8.2-neutering_lite.patch
+	eapply "${FILESDIR}"/${PN}-8.2-neutering.patch
 	cp -f "${FILESDIR}"/${PN}-7.3-package.py sage/misc/package.py
 	rm -f sage/misc/dist.py
 	rm -rf sage/dev
@@ -353,7 +353,7 @@ python_prepare() {
 	#
 	####################################
 
-	eapply "${FILESDIR}"/${PN}-8.2-doc_misc.patch \
+	eapply "${FILESDIR}"/${PN}-7.4-misc.patch \
 		"${FILESDIR}"/${PN}-7.1-linguas.patch
 	# Correct path to mathjax
 	eapply "${FILESDIR}"/sage-8.2-mathjax_path.patch
