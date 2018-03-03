@@ -1,0 +1,13 @@
+diff --git a/doc/en/reference/misc/index.rst b/doc/en/reference/misc/index.rst
+index 8a5e6db..b88bea6 100644
+--- a/doc/en/reference/misc/index.rst
++++ b/doc/en/reference/misc/index.rst
+@@ -231,8 +231,6 @@ Distribution
+ .. toctree::
+    :maxdepth: 1
+ 
+-   sage/misc/package
+-   sage/misc/dist
+    sage/features
+    sage/features/bliss
+    sage/features/csdp

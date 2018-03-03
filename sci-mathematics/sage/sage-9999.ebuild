@@ -193,6 +193,11 @@ python_prepare() {
 	sed -i "s:os.environ\[\"MAKE\"\]:os.environ\[\"MAKEOPTS\"\]:g" \
 		bin/sage-num-threads.py
 
+	# sage is getting its own system to have scripts that can use either python2 or 3
+	# This is of course dangerous and incompatible with Gentoo
+	sed -e "s:sage-python23:python:" \
+		-i bin/*
+
 	# remove developer and unsupported options
 	eapply "${FILESDIR}"/${PN}-8.2-exec.patch
 	eprefixify bin/sage
@@ -300,11 +305,6 @@ python_prepare() {
 	# in sage-on-gentoo. This fixes issue #362.
 	eapply "${FILESDIR}"/${PN}-6.8-lazy_import_cache.patch
 
-	# sage is getting its own system to have scripts that can use either python2 or 3
-	# This is of course of dangerous and incompatible with Gentoo
-	sed -e "s:sage-python23:python:" \
-		-i bin/*
-
 	############################################################################
 	# Fixes to doctests
 	############################################################################
@@ -339,7 +339,7 @@ python_prepare() {
 	eapply "${FILESDIR}"/${PN}-7.3-safepython.patch
 
 	# 'sage' is not in SAGE_ROOT, but in PATH
-	eapply "${FILESDIR}"/${PN}-5.9-fix-ostools-doctest.patch
+	eapply "${FILESDIR}"/${PN}-8.2-ostools.patch
 
 	# Do not check build documentation against the source
 	eapply "${FILESDIR}"/${PN}-7.1-sagedoc.patch
@@ -493,6 +493,13 @@ python_install() {
 					rm -rf $sdir || die "failed to remove $sdir"
 					ln -rst ${sdir%_static} build_doc/html/_static
 				fi
+			done
+			# Linking to local copy of mathjax folders rather than copying them
+			local mathjax_folders="config extensions fonts jax localization unpacked"
+			for sdir in ${mathjax_folders} ; do
+				rm -rf build_doc/html/_static/${sdir} \
+					|| die "failed to remove mathjax folder $sdir"
+				ln -st build_doc/html/_static/ ../../../../mathjax/$sdir
 			done
 			# Work around for issue #402 until I understand where it comes from
 			for pyfile in `find build_doc/html -name \*.py` ; do
