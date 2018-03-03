@@ -69,7 +69,7 @@ CDEPEND="dev-libs/gmp:0=
 	>=sci-mathematics/glpk-4.63:0=[gmp]
 	>=sci-mathematics/lcalc-1.23-r6[pari]
 	>=sci-mathematics/lrcalc-1.2-r1
-	=dev-python/cypari2-1.1*[${PYTHON_USEDEP}]
+	>=dev-python/cypari2-1.1.4[${PYTHON_USEDEP}]
 	~sci-mathematics/planarity-3.0.0.5
 	=sci-libs/brial-1.2*
 	=dev-python/sage-brial-1*[${PYTHON_USEDEP}]
