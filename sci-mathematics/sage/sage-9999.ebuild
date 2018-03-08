@@ -193,14 +193,14 @@ python_prepare() {
 	sed -i "s:os.environ\[\"MAKE\"\]:os.environ\[\"MAKEOPTS\"\]:g" \
 		bin/sage-num-threads.py
 
+	# remove developer and unsupported options
+	eapply "${FILESDIR}"/${PN}-8.2-exec.patch
+	eprefixify bin/sage
+
 	# sage is getting its own system to have scripts that can use either python2 or 3
 	# This is of course dangerous and incompatible with Gentoo
 	sed -e "s:sage-python23:python:" \
 		-i bin/*
-
-	# remove developer and unsupported options
-	eapply "${FILESDIR}"/${PN}-8.2-exec.patch
-	eprefixify bin/sage
 
 	# create expected folders under extcode
 	mkdir -p ext/sage
