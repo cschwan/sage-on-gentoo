@@ -1,5 +1,5 @@
 diff --git a/bin/sage b/bin/sage
-index 4cfd8c0..76c13e7 100755
+index f795182..76c13e7 100755
 --- a/bin/sage
 +++ b/bin/sage
 @@ -1,7 +1,7 @@
@@ -155,10 +155,13 @@ index 4cfd8c0..76c13e7 100755
      echo "  -search_src <string> -- search through all the Sage library code for string"
      echo "  -search_doc <string> -- search through the Sage documentation for string"
      echo "  -grep <string>      -- same as -search_src"
-@@ -226,16 +158,6 @@ usage_advanced() {
-     echo
-     ####  1.......................26..................................................78
-     ####  |.....................--.|...................................................|
+@@ -223,16 +155,6 @@ usage_advanced() {
+     echo "  -sws2rst <sws doc>  -- Generates a reStructuredText source file from"
+     echo "                         a Sage worksheet (.sws) document."
+ 
+-    echo
+-    ####  1.......................26..................................................78
+-    ####  |.....................--.|...................................................|
 -    echo "Making Sage packages or distributions:"
 -    echo "  -sdist              -- build a source distribution of Sage"
 -    echo "  -pkg <dir>          -- create Sage package dir.spkg from a given directory"
@@ -166,13 +169,10 @@ index 4cfd8c0..76c13e7 100755
 -    echo "  -fix-pkg-checksums  -- fix the checksums from build/pkgs directories from "
 -    echo "                         the packages located in upstream/"
 -
--    echo
--    ####  1.......................26..................................................78
--    ####  |.....................--.|...................................................|
-     echo "Valgrind memory debugging:"
-     echo "  -cachegrind         -- run Sage using Valgrind's cachegrind tool.  The log"
-     echo "                         files are named sage-cachegrind.PID can be found in"
-@@ -276,105 +198,15 @@ if [ "$1" = '--nodotsage' ]; then
+     echo
+     ####  1.......................26..................................................78
+     ####  |.....................--.|...................................................|
+@@ -276,108 +198,15 @@ if [ "$1" = '--nodotsage' ]; then
      exit $status
  fi
  
@@ -255,7 +255,10 @@ index 4cfd8c0..76c13e7 100755
 -    for PKG in $PACKAGES; do
 -        echo
 -        # First check that $PKG is actually a Makefile target
--        if ! grep "^$PKG: " build/make/Makefile >/dev/null; then
+-        # Since https://trac.sagemath.org/ticket/21524 there is not explicitly
+-        # a target for the package, but if it has a vers_<pkgname> variable
+-        # there will also be a generated rule for it
+-        if !grep "^vers_$PKG = " build/make/Makefile >/dev/null; then
 -            echo >&2 "Error: package '$PKG' not found"
 -            echo >&2 "Note: if it is an old-style package, use -p instead of -i to install it"
 -            exit 1
@@ -281,7 +284,7 @@ index 4cfd8c0..76c13e7 100755
      exit 1
  fi
  
-@@ -390,47 +222,13 @@ fi
+@@ -393,47 +222,13 @@ fi
  
  # Prepare for running Sage, either interactively or non-interactively.
  sage_setup() {
@@ -331,7 +334,7 @@ index 4cfd8c0..76c13e7 100755
  # Start an interactive Sage session, this function never returns.
  interactive_sage() {
      sage_setup
-@@ -490,11 +288,6 @@ if [ "$1" = '-gap' -o "$1" = '--gap' ]; then
+@@ -493,11 +288,6 @@ if [ "$1" = '-gap' -o "$1" = '--gap' ]; then
      exec gap "$@"
  fi
  
@@ -343,7 +346,7 @@ index 4cfd8c0..76c13e7 100755
  if [ "$1" = '-gp' -o "$1" = '--gp' ]; then
      shift
      exec gp "$@"
-@@ -540,11 +333,6 @@ if [ "$1" = '-kash' -o "$1" = '--kash' ]; then
+@@ -543,11 +333,6 @@ if [ "$1" = '-kash' -o "$1" = '--kash' ]; then
      exec kash "$@"
  fi
  
@@ -355,7 +358,7 @@ index 4cfd8c0..76c13e7 100755
  if [ "$1" = '-maxima' -o "$1" = '--maxima' ]; then
      shift
      exec maxima "$@"
-@@ -560,21 +348,6 @@ if [ "$1" = '-M2' -o "$1" = '--M2' ]; then
+@@ -563,21 +348,6 @@ if [ "$1" = '-M2' -o "$1" = '--M2' ]; then
      exec M2 "$@"
  fi
  
@@ -377,7 +380,7 @@ index 4cfd8c0..76c13e7 100755
  if [ "$1" = '-python' -o "$1" = '--python' ]; then
      shift
      exec python "$@"
-@@ -605,11 +378,6 @@ if [ "$1" = '-git' -o "$1" = '--git' ]; then
+@@ -608,11 +378,6 @@ if [ "$1" = '-git' -o "$1" = '--git' ]; then
      exec git "$@"
  fi
  
@@ -389,10 +392,11 @@ index 4cfd8c0..76c13e7 100755
  if [ "$1" = '-sh' -o "$1" = '--sh' ]; then
      # AUTHORS:
      # - Carl Witty and William Stein: initial version
-@@ -729,20 +497,6 @@ EOF
+@@ -731,20 +496,6 @@ EOF
+     exit $status
  fi
  
- #####################################################################
+-#####################################################################
 -# Test coverage of a module?
 -#####################################################################
 -
@@ -406,11 +410,10 @@ index 4cfd8c0..76c13e7 100755
 -    exec sage-coverageall "$@"
 -fi
 -
--#####################################################################
+ #####################################################################
  # File conversion
  #####################################################################
- 
-@@ -765,11 +519,6 @@ fi
+@@ -768,11 +519,6 @@ fi
  # Run Sage's versions of the standard Algebra/Geometry etc. software
  #####################################################################
  
@@ -422,7 +425,7 @@ index 4cfd8c0..76c13e7 100755
  if [[ "$1" =~ ^--notebook=.* || "$1" =~ ^-n=.* || "$1" =~ ^-notebook=.* ]] ; then
      sage-cleaner &>/dev/null &
      exec sage-notebook "$@"
-@@ -780,13 +529,6 @@ if [ "$1" = "-notebook" -o "$1" = '--notebook' -o "$1" = '-n' ]; then
+@@ -783,13 +529,6 @@ if [ "$1" = "-notebook" -o "$1" = '--notebook' -o "$1" = '-n' ]; then
      exec sage-notebook "$@"
  fi
  
@@ -436,7 +439,7 @@ index 4cfd8c0..76c13e7 100755
  if [ "$1" = "-inotebook" -o "$1" = '--inotebook' ]; then
      shift
      sage-cleaner &>/dev/null &
-@@ -805,34 +547,15 @@ if [ "$1" = '-grepdoc' -o "$1" = "--grepdoc" -o "$1" = "-search_doc" -o "$1" = "
+@@ -808,34 +547,15 @@ if [ "$1" = '-grepdoc' -o "$1" = "--grepdoc" -o "$1" = "-search_doc" -o "$1" = "
      exit 0
  fi
  
@@ -473,7 +476,7 @@ index 4cfd8c0..76c13e7 100755
          shift
          exec sage-runtests -p "$@"
      else
-@@ -841,16 +564,6 @@ if [ "$1" = '-t' -o "$1" = '-bt' -o "$1" = '-tp' -o "$1" = '-btp' ]; then
+@@ -844,16 +564,6 @@ if [ "$1" = '-t' -o "$1" = '-bt' -o "$1" = '-tp' -o "$1" = '-btp' ]; then
      fi
  fi
  
@@ -490,7 +493,7 @@ index 4cfd8c0..76c13e7 100755
  if [ "$1" = '-testall' -o "$1" = "--testall" ]; then
      shift
      SAGE_BANNER=no sage_setup
-@@ -865,119 +578,6 @@ if [ "$1" = '-c' ]; then
+@@ -868,119 +578,6 @@ if [ "$1" = '-c' ]; then
      exec sage-eval "$@"
  fi
  
@@ -604,13 +607,13 @@ index 4cfd8c0..76c13e7 100755
 -
 -if [ "$1" = "-docbuild" -o "$1" = "--docbuild" ]; then
 -    shift
--    exec python -m "sage_setup.docbuild" "$@"
+-    exec sage-python23 -m "sage_setup.docbuild" "$@"
 -fi
 -
  if [ "$1" = '-gdb' -o "$1" = "--gdb" ]; then
      shift
      sage_setup
-@@ -986,7 +586,7 @@ if [ "$1" = '-gdb' -o "$1" = "--gdb" ]; then
+@@ -989,7 +586,7 @@ if [ "$1" = '-gdb' -o "$1" = "--gdb" ]; then
              -args python "$SAGE_LOCAL/bin/sage-ipython" "$@" -i
      else
          # Location of cython_debug directory
@@ -619,7 +622,7 @@ index 4cfd8c0..76c13e7 100755
          cygdb "$cygdb_dir" "$SAGE_SRC/sage" \
              -- -x "$SAGE_LOCAL/bin/sage-gdb-commands" \
              -args python "$SAGE_LOCAL/bin/sage-ipython" "$@" -i
-@@ -1044,10 +644,6 @@ if [ "$1" = '-gthread' -o "$1" = '-qthread' -o "$1" = '-q4thread' -o "$1" = '-wt
+@@ -1047,10 +644,6 @@ if [ "$1" = '-gthread' -o "$1" = '-qthread' -o "$1" = '-q4thread' -o "$1" = '-wt
  fi
  
  if [ $# -ge 1 ]; then
