@@ -1,16 +1,13 @@
-# Copyright 1999-2017 Gentoo Foundation
+# Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=6
 
 inherit toolchain-funcs
 
-MY_PN="L"
-MY_P="${MY_PN}-${PV}"
-
 DESCRIPTION="A program for calculating with L-functions"
 HOMEPAGE="http://oto.math.uwaterloo.ca/~mrubinst/L_function_public/L.html"
-SRC_URI="http://oto.math.uwaterloo.ca/~mrubinst/L_function_public/CODE/${MY_P}.tar.gz"
+SRC_URI="mirror://sageupstream/${PN}/${P}.tar.bz2"
 
 LICENSE="GPL-2"
 SLOT="0"
@@ -23,8 +20,6 @@ RDEPEND="${DEPEND}"
 
 # testing does not work because archive missed test program!
 RESTRICT="mirror test"
-
-S="${WORKDIR}/${MY_P}"
 
 src_prepare() {
 	# patch for proper installation routine, flag respect and crufty linking flag removal.
