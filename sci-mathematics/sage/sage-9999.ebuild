@@ -133,7 +133,7 @@ RDEPEND="${CDEPEND}
 		|| ( app-text/dvipng[truetype] media-gfx/imagemagick[png] )
 	)"
 
-CHECKREQS_DISK_BUILD="5G"
+CHECKREQS_DISK_BUILD="8G"
 
 S="${WORKDIR}/${P}/src"
 
@@ -413,16 +413,14 @@ python_compile() {
 python_install() {
 	sage_build_env
 
-	distutils-r1_python_install
-
-	# install cython debugging files if requested
-	if use debug; then
-		# TODO make it usable if it is installed directly under src rather than src/build
-		insinto /usr/share/sage/src/build
-		pushd build/cythonized
-		doins -r cython_debug
-		popd
+	# Install cython debugging files if requested
+	# They are now produced by default
+	if ! use debug; then
+		rm -rf build/lib/sage/cython_debug || \
+			die "failed to remove cython debugging information."
 	fi
+
+	distutils-r1_python_install
 
 	##############################################
 	# install scripts and miscellanous files
