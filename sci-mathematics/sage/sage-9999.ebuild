@@ -22,7 +22,7 @@ LANGS="ca de en es fr hu it ja pt ru tr"
 LICENSE="GPL-2"
 SLOT="0"
 SAGE_USE="modular_decomposition bliss libhomfly libbraiding"
-IUSE="debug +doc-html doc-pdf latex sagenb testsuite X ${SAGE_USE}"
+IUSE="debug +doc-html doc-pdf jmol latex sagenb testsuite X ${SAGE_USE}"
 L10N_USEDEP=""
 for X in ${LANGS} ; do
 	IUSE="${IUSE} l10n_${X}"
@@ -103,7 +103,7 @@ RDEPEND="${CDEPEND}
 	>=dev-python/rpy-2.3.8[${PYTHON_USEDEP}]
 	>=dev-python/sympy-1.1.1-r4[${PYTHON_USEDEP}]
 	media-gfx/tachyon[png]
-	sci-chemistry/sage-jmol-bin
+	jmol? ( sci-chemistry/sage-jmol-bin )
 	|| ( ~sci-libs/cddlib-094g >=sci-libs/cddlib-094h[tools] )
 	>=sci-libs/scipy-0.19.1[${PYTHON_USEDEP}]
 	sci-mathematics/flintqs
@@ -139,7 +139,7 @@ S="${WORKDIR}/${P}/src"
 
 REQUIRED_USE="doc-html? ( l10n_en sagenb )
 	doc-pdf? ( sagenb )
-	testsuite? ( doc-html )"
+	testsuite? ( doc-html jmol )"
 
 pkg_setup() {
 	# needed since Ticket #14460
@@ -224,6 +224,11 @@ python_prepare() {
 	cp -f "${FILESDIR}"/${PN}-7.3-package.py sage/misc/package.py
 	rm -f sage/misc/dist.py
 	rm -rf sage/dev
+
+	# If jmol is not in useflags make tachyon the default 3D plotting engine
+	if ! use jmol ; then
+		eapply "${FILESDIR}"/${PN}-8.2-tachyon_default.patch
+	fi
 
 	###############################
 	#
