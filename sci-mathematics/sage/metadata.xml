@@ -22,6 +22,9 @@
 		<flag name='libhomfly'>
 			build the bindings to the libhomfly library
 		</flag>
+		<flag name='jmol'>
+			Make jmol the default 3D rendering engine. Tachyon will be used otherwise.
+		</flag>
 		<flag name='doc-html'>
 			build and install html documentation
 		</flag>

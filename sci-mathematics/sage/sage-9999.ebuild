@@ -22,7 +22,7 @@ LANGS="ca de en es fr hu it ja pt ru tr"
 LICENSE="GPL-2"
 SLOT="0"
 SAGE_USE="modular_decomposition bliss libhomfly libbraiding"
-IUSE="debug +doc-html doc-pdf latex sagenb testsuite X ${SAGE_USE}"
+IUSE="debug +doc-html doc-pdf jmol latex sagenb testsuite X ${SAGE_USE}"
 L10N_USEDEP=""
 for X in ${LANGS} ; do
 	IUSE="${IUSE} l10n_${X}"
@@ -40,10 +40,10 @@ CDEPEND="dev-libs/gmp:0=
 	~dev-lisp/ecls-16.1.2
 	>=dev-python/six-1.11.0[${PYTHON_USEDEP}]
 	>=dev-python/numpy-1.13.3-r100[${PYTHON_USEDEP}]
-	~dev-python/cython-0.27.3[${PYTHON_USEDEP}]
+	=dev-python/cython-0.28*[${PYTHON_USEDEP}]
 	dev-python/future[${PYTHON_USEDEP}]
 	~dev-python/pkgconfig-1.2.2[${PYTHON_USEDEP}]
-	=dev-python/cysignals-1.6*[${PYTHON_USEDEP}]
+	>=dev-python/cysignals-1.6.8[${PYTHON_USEDEP}]
 	>=dev-python/docutils-0.12[${PYTHON_USEDEP}]
 	>=dev-python/psutil-4.4.0[${PYTHON_USEDEP}]
 	>=dev-python/ipython-5.4.0[notebook,${PYTHON_USEDEP}]
@@ -103,7 +103,7 @@ RDEPEND="${CDEPEND}
 	>=dev-python/rpy-2.3.8[${PYTHON_USEDEP}]
 	>=dev-python/sympy-1.1.1-r4[${PYTHON_USEDEP}]
 	media-gfx/tachyon[png]
-	sci-chemistry/sage-jmol-bin
+	jmol? ( sci-chemistry/sage-jmol-bin )
 	|| ( ~sci-libs/cddlib-094g >=sci-libs/cddlib-094h[tools] )
 	>=sci-libs/scipy-0.19.1[${PYTHON_USEDEP}]
 	sci-mathematics/flintqs
@@ -133,13 +133,13 @@ RDEPEND="${CDEPEND}
 		|| ( app-text/dvipng[truetype] media-gfx/imagemagick[png] )
 	)"
 
-CHECKREQS_DISK_BUILD="5G"
+CHECKREQS_DISK_BUILD="8G"
 
 S="${WORKDIR}/${P}/src"
 
 REQUIRED_USE="doc-html? ( l10n_en sagenb )
 	doc-pdf? ( sagenb )
-	testsuite? ( doc-html )"
+	testsuite? ( doc-html jmol )"
 
 pkg_setup() {
 	# needed since Ticket #14460
@@ -224,6 +224,11 @@ python_prepare() {
 	cp -f "${FILESDIR}"/${PN}-7.3-package.py sage/misc/package.py
 	rm -f sage/misc/dist.py
 	rm -rf sage/dev
+
+	# If jmol is not in useflags make tachyon the default 3D plotting engine
+	if ! use jmol ; then
+		eapply "${FILESDIR}"/${PN}-8.2-tachyon_default.patch
+	fi
 
 	###############################
 	#
@@ -413,16 +418,14 @@ python_compile() {
 python_install() {
 	sage_build_env
 
-	distutils-r1_python_install
-
-	# install cython debugging files if requested
-	if use debug; then
-		# TODO make it usable if it is installed directly under src rather than src/build
-		insinto /usr/share/sage/src/build
-		pushd build/cythonized
-		doins -r cython_debug
-		popd
+	# Install cython debugging files if requested
+	# They are now produced by default
+	if ! use debug; then
+		rm -rf build/lib/sage/cython_debug || \
+			die "failed to remove cython debugging information."
 	fi
+
+	distutils-r1_python_install
 
 	##############################################
 	# install scripts and miscellanous files
