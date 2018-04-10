@@ -536,7 +536,7 @@ python_install_all(){
 
 	# install sage-env under /etc
 	insinto /etc
-	doins sage-maxima.lisp sage-env sage-banner
+	doins sage-maxima.lisp sage-env
 	newins ../../VERSION.txt sage-version.txt
 
 	if use debug ; then
