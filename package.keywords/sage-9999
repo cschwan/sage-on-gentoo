@@ -12,7 +12,7 @@ dev-libs/c-blosc
 >=dev-lisp/ecls-16.0.0::sage-on-gentoo
 dev-python/characteristic
 dev-python/cvxopt
-=dev-python/cysignals-1.6*
+=dev-python/cysignals-1.7*
 =dev-python/cython-0.28*
 ~dev-python/bottleneck-0.8.0
 ~dev-python/networkx-1.11
