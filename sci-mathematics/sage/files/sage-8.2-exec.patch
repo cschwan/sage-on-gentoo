@@ -1,5 +1,5 @@
 diff --git a/bin/sage b/bin/sage
-index 1ae77fb..2cc6c30 100755
+index 397f30c..bde91db 100755
 --- a/bin/sage
 +++ b/bin/sage
 @@ -1,7 +1,7 @@
@@ -251,14 +251,14 @@ index 1ae77fb..2cc6c30 100755
 -    # (which is a dependency of every package)
 -    $MAKE all-toolchain
 -
+-    ALL_TARGETS="$($MAKE list 2>/dev/null)"
+-
 -    # Now install the packages
 -    for PKG in $PACKAGES; do
 -        echo
 -        # First check that $PKG is actually a Makefile target
--        # Since https://trac.sagemath.org/ticket/21524 there is not explicitly
--        # a target for the package, but if it has a vers_<pkgname> variable
--        # there will also be a generated rule for it
--        if ! grep "^vers_$PKG = " build/make/Makefile >/dev/null; then
+-        # See https://trac.sagemath.org/ticket/25078
+-        if ! echo "$ALL_TARGETS" | grep "^${PKG}$" >/dev/null; then
 -            echo >&2 "Error: package '$PKG' not found"
 -            echo >&2 "Note: if it is an old-style package, use -p instead of -i to install it"
 -            exit 1
@@ -608,16 +608,7 @@ index 1ae77fb..2cc6c30 100755
  if [ "$1" = '-gdb' -o "$1" = "--gdb" ]; then
      shift
      sage_setup
-@@ -992,7 +588,7 @@ if [ "$1" = '-gdb' -o "$1" = "--gdb" ]; then
-             -args python "$SAGE_LOCAL/bin/sage-ipython" "$@" -i
-     else
-         # Location of cython_debug directory
--        cygdb_dir="$SAGE_SRC/build/cythonized"
-+        cygdb_dir="$SAGE_SHARE/src/build/"
-         cygdb "$cygdb_dir" "$SAGE_SRC/sage" \
-             -- -x "$SAGE_LOCAL/bin/sage-gdb-commands" \
-             -args python "$SAGE_LOCAL/bin/sage-ipython" "$@" -i
-@@ -1050,10 +646,6 @@ if [ "$1" = '-gthread' -o "$1" = '-qthread' -o "$1" = '-q4thread' -o "$1" = '-wt
+@@ -1049,10 +645,6 @@ if [ "$1" = '-gthread' -o "$1" = '-qthread' -o "$1" = '-q4thread' -o "$1" = '-wt
  fi
  
  if [ $# -ge 1 ]; then
