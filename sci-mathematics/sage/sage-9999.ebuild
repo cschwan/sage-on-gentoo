@@ -43,7 +43,7 @@ CDEPEND="dev-libs/gmp:0=
 	=dev-python/cython-0.28*[${PYTHON_USEDEP}]
 	dev-python/future[${PYTHON_USEDEP}]
 	~dev-python/pkgconfig-1.2.2[${PYTHON_USEDEP}]
-	>=dev-python/cysignals-1.6.8[${PYTHON_USEDEP}]
+	>=dev-python/cysignals-1.7.1[${PYTHON_USEDEP}]
 	>=dev-python/docutils-0.12[${PYTHON_USEDEP}]
 	>=dev-python/psutil-4.4.0[${PYTHON_USEDEP}]
 	>=dev-python/ipython-5.4.0[notebook,${PYTHON_USEDEP}]
