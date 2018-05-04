@@ -6,7 +6,7 @@ EAPI=6
 PYTHON_COMPAT=( python2_7 python3_6 )
 PYTHON_REQ_USE="readline,sqlite"
 
-inherit distutils-r1 flag-o-matic multiprocessing prefix toolchain-funcs versionator
+inherit desktop distutils-r1 flag-o-matic multiprocessing prefix toolchain-funcs
 
 KEYWORDS="~amd64 ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~x64-macos"
 
