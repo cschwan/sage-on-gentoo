@@ -6,7 +6,7 @@ EAPI=6
 PYTHON_COMPAT=( python2_7 python3_6 )
 PYTHON_REQ_USE="readline,sqlite"
 
-inherit distutils-r1 flag-o-matic multiprocessing prefix toolchain-funcs versionator git-r3
+inherit desktop distutils-r1 flag-o-matic multiprocessing prefix toolchain-funcs git-r3
 
 EGIT_REPO_URI="https://github.com/sagemath/sage.git"
 EGIT_BRANCH=develop
