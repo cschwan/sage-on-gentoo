@@ -7,3 +7,8 @@ sci-mathematics/ecm
 # masking for now
 =sci-mathematics/gap-4.8.9
 =dev-gap/GAPDoc-1.6.1
+
+# dev-libs/mpfr-4.0.x is currently masked but sage-8.2 depends on it.
+# therefore sage-8.2 needs to be package.masked for now.
+=sci-mathematics/sage-8.2
+
