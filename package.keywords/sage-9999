@@ -107,6 +107,7 @@ sci-mathematics/flintqs
 ~sci-mathematics/flint-2.5.2
 ~sci-mathematics/gap-4.8.6
 =sci-mathematics/giac-1.4.9*
+~sci-mathematics/gfan-0.6.2
 dev-gap/GAPDoc
 >=sci-mathematics/glpk-4.61
 >=sci-mathematics/lcalc-1.23-r6
