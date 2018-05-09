@@ -108,7 +108,7 @@ RDEPEND="${CDEPEND}
 	>=sci-libs/scipy-0.19.1[${PYTHON_USEDEP}]
 	sci-mathematics/flintqs
 	~sci-mathematics/gap-4.8.6
-	~sci-mathematics/gfan-0.5
+	~sci-mathematics/gfan-0.6.2
 	>=sci-mathematics/cu2-20060223
 	>=sci-mathematics/cubex-20060128
 	>=sci-mathematics/dikcube-20070912
@@ -118,7 +118,7 @@ RDEPEND="${CDEPEND}
 	>=sci-mathematics/nauty-2.6.1
 	>=sci-mathematics/optimal-20040603
 	>=sci-mathematics/palp-2.1
-	=sci-mathematics/pari-2.10.0_pre20170914-r1
+	=sci-mathematics/pari-2.10.0_pre20170914-r2
 	~sci-mathematics/sage-data-elliptic_curves-0.8
 	~sci-mathematics/sage-data-graphs-20161026
 	~sci-mathematics/sage-data-combinatorial_designs-20140630
@@ -220,7 +220,7 @@ python_prepare() {
 	eapply "${FILESDIR}"/dt-r-no-readline.patch
 
 	# Remove sage's package management system, git capabilities and associated tests
-	eapply "${FILESDIR}"/${PN}-8.2-neutering.patch
+	eapply "${FILESDIR}"/${PN}-8.3-neutering.patch
 	cp -f "${FILESDIR}"/${PN}-7.3-package.py sage/misc/package.py
 	rm -f sage/misc/dist.py
 	rm -rf sage/dev
@@ -319,13 +319,6 @@ python_prepare() {
 	# Disabling until it is improved
 	eapply "${FILESDIR}"/${PN}-8.2-doctest_memory.patch
 
-	# boost 1.62 leads to different results when used in polybori
-	# Using debian patch
-	# https://anonscm.debian.org/cgit/debian-science/packages/sagemath.git/tree/debian/patches/u1-version-pbori-boost1.62-hashes.patch
-	if has_version ">=dev-libs/boost-1.62.0" ; then
-		eapply "${FILESDIR}"/pbori-boost1.62-hashes.patch
-	fi
-
 	# fix all.py
 	eapply "${FILESDIR}"/${PN}-7.2-all.py.patch
 	sed -i \
@@ -354,12 +347,12 @@ python_prepare() {
 
 	####################################
 	#
-	# Fixing problems with documentation
+	# Documentation specific patch
 	#
 	####################################
 
-	eapply "${FILESDIR}"/${PN}-7.4-misc.patch \
-		"${FILESDIR}"/${PN}-7.1-linguas.patch
+	# support linguas so only requested languages are installed
+	eapply "${FILESDIR}"/${PN}-7.1-linguas.patch
 	# Correct path to mathjax
 	eapply "${FILESDIR}"/sage-8.2-mathjax_path.patch
 }
