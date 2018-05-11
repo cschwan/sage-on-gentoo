@@ -6,7 +6,7 @@ EAPI=6
 inherit flag-o-matic toolchain-funcs
 
 DESCRIPTION="computes Groebner fans and tropical varities"
-HOMEPAGE="http://www.math.tu-berlin.de/~jensen/software/gfan/gfan.html"
+HOMEPAGE="http://home.math.au.dk/jensen/software/gfan/gfan.html"
 SRC_URI="http://home.math.au.dk/jensen/software/gfan/${PN}${PV}.tar.gz"
 
 LICENSE="GPL-2"
