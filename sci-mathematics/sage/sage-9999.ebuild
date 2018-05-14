@@ -104,7 +104,7 @@ RDEPEND="${CDEPEND}
 	>=dev-python/sympy-1.1.1-r4[${PYTHON_USEDEP}]
 	media-gfx/tachyon[png]
 	jmol? ( sci-chemistry/sage-jmol-bin )
-	|| ( ~sci-libs/cddlib-094g >=sci-libs/cddlib-094h[tools] )
+	>=sci-libs/cddlib-094h[tools]
 	>=sci-libs/scipy-0.19.1[${PYTHON_USEDEP}]
 	sci-mathematics/flintqs
 	~sci-mathematics/gap-4.8.6
@@ -113,7 +113,7 @@ RDEPEND="${CDEPEND}
 	>=sci-mathematics/cubex-20060128
 	>=sci-mathematics/dikcube-20070912
 	>=sci-mathematics/ExportSageNB-3.2
-	~sci-mathematics/maxima-5.39.0[ecls]
+	>=sci-mathematics/maxima-5.41.0-r2[ecls]
 	>=sci-mathematics/mcube-20051209
 	>=sci-mathematics/nauty-2.6.1
 	>=sci-mathematics/optimal-20040603
@@ -211,10 +211,6 @@ python_prepare() {
 	#
 	###############################
 
-	# upgrades compared to base sage
-	if has_version ">=sci-libs/cddlib-094h"; then
-		eapply "${FILESDIR}"/cddlib-094h.patch
-	fi
 	# readline 7 breaks the interaction between R and sage.
 	# patch should be sage with readline 6. Adopted from Debian
 	eapply "${FILESDIR}"/dt-r-no-readline.patch
