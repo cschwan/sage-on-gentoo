@@ -194,7 +194,7 @@ python_prepare() {
 		bin/sage-num-threads.py
 
 	# remove developer and unsupported options
-	eapply "${FILESDIR}"/${PN}-8.2-exec.patch
+	eapply "${FILESDIR}"/${PN}-8.3-exec.patch
 	eprefixify bin/sage
 
 	# sage is getting its own system to have scripts that can use either python2 or 3
