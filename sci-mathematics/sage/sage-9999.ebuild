@@ -264,7 +264,7 @@ python_prepare() {
 	eapply "${FILESDIR}"/${PN}-7.4-qt4_conflict.patch
 
 	# sage-maxima.lisp really belong to /etc
-	eapply "${FILESDIR}"/${PN}-8.1-maxima.lisp.patch
+	eapply "${FILESDIR}"/${PN}-8.3-maxima.lisp.patch
 
 	# TODO: should be a patch
 	# run maxima with ecl
