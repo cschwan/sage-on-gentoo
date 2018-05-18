@@ -112,7 +112,7 @@ dev-gap/GAPDoc
 >=sci-mathematics/glpk-4.61
 >=sci-mathematics/lcalc-1.23-r6
 sci-mathematics/lrcalc
-~sci-mathematics/maxima-5.39.0::sage-on-gentoo
+~sci-mathematics/maxima-5.41.0::sage-on-gentoo
 sci-mathematics/mcube
 sci-mathematics/optimal
 sci-mathematics/palp

@@ -104,7 +104,7 @@ RDEPEND="${CDEPEND}
 	>=dev-python/sympy-1.1.1-r4[${PYTHON_USEDEP}]
 	media-gfx/tachyon[png]
 	jmol? ( sci-chemistry/sage-jmol-bin )
-	|| ( ~sci-libs/cddlib-094g >=sci-libs/cddlib-094h[tools] )
+	>=sci-libs/cddlib-094h[tools]
 	>=sci-libs/scipy-0.19.1[${PYTHON_USEDEP}]
 	sci-mathematics/flintqs
 	~sci-mathematics/gap-4.8.6
@@ -113,7 +113,7 @@ RDEPEND="${CDEPEND}
 	>=sci-mathematics/cubex-20060128
 	>=sci-mathematics/dikcube-20070912
 	>=sci-mathematics/ExportSageNB-3.2
-	~sci-mathematics/maxima-5.39.0[ecls]
+	>=sci-mathematics/maxima-5.41.0-r2[ecls]
 	>=sci-mathematics/mcube-20051209
 	>=sci-mathematics/nauty-2.6.1
 	>=sci-mathematics/optimal-20040603
@@ -211,10 +211,6 @@ python_prepare() {
 	#
 	###############################
 
-	# upgrades compared to base sage
-	if has_version ">=sci-libs/cddlib-094h"; then
-		eapply "${FILESDIR}"/cddlib-094h.patch
-	fi
 	# readline 7 breaks the interaction between R and sage.
 	# patch should be sage with readline 6. Adopted from Debian
 	eapply "${FILESDIR}"/dt-r-no-readline.patch
@@ -268,7 +264,7 @@ python_prepare() {
 	eapply "${FILESDIR}"/${PN}-7.4-qt4_conflict.patch
 
 	# sage-maxima.lisp really belong to /etc
-	eapply "${FILESDIR}"/${PN}-8.1-maxima.lisp.patch
+	eapply "${FILESDIR}"/${PN}-8.3-maxima.lisp.patch
 
 	# TODO: should be a patch
 	# run maxima with ecl
@@ -293,7 +289,7 @@ python_prepare() {
 	sed -i -e "s:/lib/LiE/:/share/lie/:" sage/interfaces/lie.py
 
 	# patching libs/gap/util.pyx so we don't get noise from missing SAGE_LOCAL/gap/latest
-	eapply "${FILESDIR}"/${PN}-8.0-libgap.patch
+	eapply "${FILESDIR}"/${PN}-8.3-libgap.patch
 
 	# The ipython kernel tries to to start a new session via $SAGE_ROOT/sage -python
 	# Since we don't have $SAGE_ROOT/sage it fails.
