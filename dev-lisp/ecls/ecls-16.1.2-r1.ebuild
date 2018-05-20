@@ -1,4 +1,4 @@
-# Copyright 1999-2017 Gentoo Foundation
+# Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=5
@@ -11,7 +11,7 @@ MY_P=ecl-${PV}
 
 DESCRIPTION="ECL is an embeddable Common Lisp implementation"
 HOMEPAGE="https://common-lisp.net/project/ecl/"
-SRC_URI="https://common-lisp.net/project/ecl/files/release/${PV}/${MY_P}.tgz"
+SRC_URI="https://common-lisp.net/project/ecl/static/files/release/${MY_P}.tgz"
 
 LICENSE="BSD LGPL-2"
 SLOT="0/${PV}"
