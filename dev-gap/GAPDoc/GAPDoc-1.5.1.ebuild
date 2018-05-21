@@ -1,11 +1,11 @@
-# Copyright 1999-2017 Gentoo Foundation
+# Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=6
 
 DESCRIPTION="A Meta Package for GAP Documentation"
 HOMEPAGE="http://www.gap-system.org/Packages/gapdoc.html"
-SRC_URI="http://www.gap-system.org/pub/gap/gap4/tar.bz2/packages/${P}.tar.bz2"
+SRC_URI="mirror://sagemath/${P}.tar.bz2"
 
 LICENSE="GPL-2+"
 SLOT="0"
