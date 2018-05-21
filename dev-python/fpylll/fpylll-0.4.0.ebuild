@@ -1,4 +1,4 @@
-# Copyright 1999-2017 Gentoo Foundation
+# Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=6
@@ -17,8 +17,7 @@ SLOT="0"
 KEYWORDS="~amd64 ~x86"
 IUSE="test"
 
-CDEPEND=">=sci-libs/fplll-5.0.3
-	<sci-libs/fplll-5.1.0
+CDEPEND=">=sci-libs/fplll-5.2.1
 	dev-python/cython[${PYTHON_USEDEP}]
 	dev-python/cysignals[${PYTHON_USEDEP}]
 	dev-python/numpy[${PYTHON_USEDEP}]"
