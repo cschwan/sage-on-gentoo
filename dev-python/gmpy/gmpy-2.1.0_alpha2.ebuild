@@ -34,6 +34,15 @@ pkg_setup(){
 	use debug || append-cflags -DNDEBUG
 }
 
+# Massive hack until I find how to do it properly.
+# gmpy2 needs to instal .pxd and .h for pplpy.
+python_prepare(){
+	cp gmpy2/* src/
+	rm -rf gmpy2
+	mv src gmpy2
+	sed -i "s:src:gmpy2:g" setup.py
+}
+
 python_compile_all() {
 	use doc && emake -C docs html
 }
