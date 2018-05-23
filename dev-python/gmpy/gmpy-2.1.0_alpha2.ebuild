@@ -1,14 +1,14 @@
 # Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=5
+EAPI=6
 
 PYTHON_COMPAT=( python2_7 python3_{4,5,6} )
 
 inherit distutils-r1 flag-o-matic versionator
 
 MY_PN="${PN}2"
-MY_P="${MY_PN}-$(get_version_component_range 1-3)a1"
+MY_P="${MY_PN}-$(get_version_component_range 1-3)a2"
 
 DESCRIPTION="Python bindings for GMP, MPC, MPFR and MPIR libraries"
 HOMEPAGE="https://github.com/aleaxit/gmpy"
@@ -29,12 +29,6 @@ DEPEND="${RDEPEND}
 	doc? ( dev-python/sphinx[${PYTHON_USEDEP}] )"
 
 S="${WORKDIR}"/${MY_P}
-
-PATCHES=(
-	"${FILESDIR}"/${PN}2.1.0a1-SHIFT.patch
-	"${FILESDIR}"/PR180.patch
-	"${FILESDIR}"/PR181.patch
-	)
 
 pkg_setup(){
 	use debug || append-cflags -DNDEBUG
