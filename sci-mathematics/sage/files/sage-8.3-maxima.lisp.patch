@@ -1,17 +1,17 @@
 diff --git a/sage/interfaces/maxima.py b/sage/interfaces/maxima.py
-index bc00756..9575d35 100644
+index 702cc74..a275423 100644
 --- a/sage/interfaces/maxima.py
 +++ b/sage/interfaces/maxima.py
-@@ -473,7 +473,7 @@ import pexpect
+@@ -472,7 +472,7 @@ import pexpect
+ 
  from random import randrange
  
- from sage.cpython.string import bytes_to_str
 -from sage.env import DOT_SAGE, SAGE_LOCAL
 +from sage.env import DOT_SAGE, SAGE_ETC
  from sage.misc.misc import ECL_TMP
  
- from .expect import (Expect, ExpectElement, FunctionElement,
-@@ -525,7 +525,7 @@ class Maxima(MaximaAbstract, Expect):
+ from .expect import (Expect, ExpectElement, gc_disabled)
+@@ -523,7 +523,7 @@ class Maxima(MaximaAbstract, Expect):
          # setting inchar and outchar..
          eval_using_file_cutoff = 256
          self.__eval_using_file_cutoff = eval_using_file_cutoff
