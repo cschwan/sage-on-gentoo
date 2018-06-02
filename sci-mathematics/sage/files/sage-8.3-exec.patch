@@ -1,17 +1,21 @@
 diff --git a/bin/sage b/bin/sage
-index 397f30c..bde91db 100755
+index d1ecee7..5e24f06 100755
 --- a/bin/sage
 +++ b/bin/sage
-@@ -1,7 +1,7 @@
- #!/usr/bin/env bash
+@@ -4,11 +4,7 @@
+ # usage: sage_version [-v]
+ #   -v    display the full version banner including release date
+ sage_version() {
+-    if [ -f "$SAGE_LOCAL/bin/sage-version.sh" ]; then
+-        . "$SAGE_LOCAL/bin/sage-version.sh"
+-    else
+-        . "$SAGE_ROOT/src/bin/sage-version.sh"
+-    fi
++    . @GENTOO_PORTAGE_EPREFIX@/usr/bin/sage-version.sh
  
- help_banner() {
--    cat "$SAGE_ROOT/VERSION.txt"
-+    cat "@GENTOO_PORTAGE_EPREFIX@/etc/sage-version.txt"
-     echo
- }
- 
-@@ -13,13 +13,9 @@ usage() {
+     if [ "$1" = "-v" ]; then
+         echo "${SAGE_VERSION_BANNER}"
+@@ -26,13 +22,9 @@ usage() {
      echo "  file.[sage|py|spyx] -- run given .sage, .py or .spyx file"
      echo "  -advanced           -- list all command line options"
      echo "  -c <cmd>            -- Evaluates cmd as sage code"
@@ -25,15 +29,15 @@ index 397f30c..bde91db 100755
      echo "  -inotebook [...]    -- start the *insecure* Sage notebook (deprecated)"
      echo "  -maxima [...]       -- run Sage's Maxima with given arguments"
      echo "  -mwrank [...]       -- run Sage's mwrank with given arguments"
-@@ -27,7 +23,6 @@ usage() {
+@@ -40,7 +32,6 @@ usage() {
      echo "                         'default', 'sagenb', 'jupyter', and 'export')"
      echo "                         Current default is 'export' from sagenb to jupyter"
      echo "  -n, --notebook      -- shortcut for --notebook=default"
 -    echo "  -optional           -- list all optional packages that can be installed"
-     echo "  -python [...]       -- run the Python 2 interpreter"
+     echo "  -python [...]       -- run the Python interpreter"
+     echo "  -python2 [...]      -- run the Python 2 interpreter"
      echo "  -python3 [...]      -- run the Python 3 interpreter"
-     echo "  -R [...]            -- run Sage's R with given arguments"
-@@ -44,10 +39,6 @@ usage() {
+@@ -58,10 +49,6 @@ usage() {
      echo "                           --optional - controls which optional tests are run"
      echo "                           --sagenb - test all sagenb files"
      echo "                           --help - show all testing options"
@@ -44,7 +48,7 @@ index 397f30c..bde91db 100755
      echo "  -v, -version        -- display Sage version information"
      exit 0
  }
-@@ -70,7 +61,6 @@ usage_advanced() {
+@@ -85,7 +72,6 @@ usage_advanced() {
      echo "                      -- pass the option through to ipython"
      echo "  -v, -version        -- display Sage version information"
      echo "  -dumpversion        -- print Sage version"
@@ -52,7 +56,7 @@ index 397f30c..bde91db 100755
  
      echo
      ####  1.......................26..................................................78
-@@ -82,8 +72,6 @@ usage_advanced() {
+@@ -97,8 +83,6 @@ usage_advanced() {
      echo "                         See the output of sage --notebook --help"
      echo "                         for more details and examples of how to pass"
      echo "                         optional arguments"
@@ -61,7 +65,7 @@ index 397f30c..bde91db 100755
      echo "  -inotebook [...]    -- start the *insecure* Sage notebook (deprecated)"
      echo "  -n, -notebook [...] -- start the default Sage notebook (options are the"
      echo "                         same as for the notebook command in Sage).  See the"
-@@ -97,7 +85,6 @@ usage_advanced() {
+@@ -112,7 +96,6 @@ usage_advanced() {
      echo "  -cython [...]       -- run Cython with given arguments"
      echo "  -ecl [...]          -- run Common Lisp"
      echo "  -gap [...]          -- run Sage's Gap with given arguments"
@@ -69,7 +73,7 @@ index 397f30c..bde91db 100755
      echo "  -gdb                -- run Sage under the control of gdb"
      echo "  -gp [...]           -- run Sage's PARI/GP calculator with given arguments"
      echo "  -ipython [...]      -- run Sage's IPython using the default environment (not"
-@@ -117,7 +104,6 @@ usage_advanced() {
+@@ -132,7 +115,6 @@ usage_advanced() {
      echo "                         (not installed currently, run sage -i polymake)"
      echo "  -python [...]       -- run the Python interpreter"
      echo "  -R [...]            -- run Sage's R with given arguments"
@@ -77,7 +81,7 @@ index 397f30c..bde91db 100755
      echo "  -sh [...]           -- run \$SHELL ($SHELL) with Sage environment variables"
      echo "  -singular [...]     -- run Sage's singular with given arguments"
      echo "  -sqlite3 [...]      -- run Sage's sqlite3 with given arguments"
-@@ -126,55 +112,7 @@ usage_advanced() {
+@@ -141,55 +123,7 @@ usage_advanced() {
      echo
      ####  1.......................26..................................................78
      ####  |.....................--.|...................................................|
@@ -134,7 +138,7 @@ index 397f30c..bde91db 100755
      echo "  -startuptime [module] -- display how long each component of Sage takes to"
      echo "                         start up; optionally specify a module to get more"
      echo "                         details about that particular module"
-@@ -183,9 +121,7 @@ usage_advanced() {
+@@ -198,9 +132,7 @@ usage_advanced() {
      echo "                         selected options:"
      echo "                           --long - include lines with the phrase 'long time'"
      echo "                           --verbose - print debugging output during the test"
@@ -144,7 +148,7 @@ index 397f30c..bde91db 100755
      echo "                           --initial - only show the first failure per block"
      echo "                           --debug - drop into PDB after an unexpected error"
      echo "                           --failed - only test files that failed last test"
-@@ -202,10 +138,6 @@ usage_advanced() {
+@@ -217,10 +149,6 @@ usage_advanced() {
      ####  1.......................26..................................................78
      ####  |.....................--.|...................................................|
      echo "Documentation:"
@@ -155,7 +159,7 @@ index 397f30c..bde91db 100755
      echo "  -search_src <string> -- search through all the Sage library code for string"
      echo "  -search_doc <string> -- search through the Sage documentation for string"
      echo "  -grep <string>      -- same as -search_src"
-@@ -224,16 +156,6 @@ usage_advanced() {
+@@ -239,16 +167,6 @@ usage_advanced() {
      echo "  -sws2rst <sws doc>  -- Generates a reStructuredText source file from"
      echo "                         a Sage worksheet (.sws) document."
  
@@ -172,7 +176,7 @@ index 397f30c..bde91db 100755
      echo
      ####  1.......................26..................................................78
      ####  |.....................--.|...................................................|
-@@ -277,108 +199,15 @@ if [ "$1" = '--nodotsage' ]; then
+@@ -292,99 +210,6 @@ if [ "$1" = '--nodotsage' ]; then
      exit $status
  fi
  
@@ -270,7 +274,21 @@ index 397f30c..bde91db 100755
 -
 -
  #####################################################################
- # Source sage-env ($0 is the name of this "sage" script, so we can just
+ # Report information about the Sage environment
+ #####################################################################
+@@ -399,11 +224,6 @@ if [ "$1" = '-v' -o "$1" = '-version' -o "$1" = '--version' ]; then
+         exit 0
+ fi
+ 
+-if [ "$1" = '-root'  -o "$1" = '--root' ]; then
+-    echo "$SAGE_ROOT"
+-    exit 0
+-fi
+-
+ if [ $# -gt 0 ]; then
+   if [ "$1" = '-h' -o "$1" = '-?' -o "$1" = '-help' -o "$1" = '--help' ]; then
+      usage
+@@ -419,54 +239,18 @@ fi
  # append -env to that). We redirect stdout to stderr, which is safer
  # for scripts.
  #####################################################################
@@ -279,12 +297,11 @@ index 397f30c..bde91db 100755
  if [ $? -ne 0 ]; then
 -    echo >&2 "Error setting environment variables by sourcing '$0-env';"
 -    echo >&2 "possibly contact sage-devel (see http://groups.google.com/group/sage-devel)."
+-    exit 1
 +    echo >&2 "Error setting environment variables by sourcing '@GENTOO_PORTAGE_EPREFIX@/etc/sage-env';"
-+    echo >&2 "possibly contact sage-on-gentoo team."
-     exit 1
++    echo >&2 "possibly contact sage-on-gentoo team."    exit 1
  fi
  
-@@ -394,44 +223,9 @@ fi
  
  # Prepare for running Sage, either interactively or non-interactively.
  sage_setup() {
@@ -329,7 +346,7 @@ index 397f30c..bde91db 100755
  # Start an interactive Sage session, this function never returns.
  interactive_sage() {
      sage_setup
-@@ -491,11 +285,6 @@ if [ "$1" = '-gap' -o "$1" = '--gap' ]; then
+@@ -505,11 +289,6 @@ if [ "$1" = '-gap' -o "$1" = '--gap' ]; then
      exec gap "$@"
  fi
  
@@ -341,7 +358,7 @@ index 397f30c..bde91db 100755
  if [ "$1" = '-gp' -o "$1" = '--gp' ]; then
      shift
      exec gp "$@"
-@@ -541,11 +330,6 @@ if [ "$1" = '-kash' -o "$1" = '--kash' ]; then
+@@ -555,11 +334,6 @@ if [ "$1" = '-kash' -o "$1" = '--kash' ]; then
      exec kash "$@"
  fi
  
@@ -353,7 +370,7 @@ index 397f30c..bde91db 100755
  if [ "$1" = '-maxima' -o "$1" = '--maxima' ]; then
      shift
      exec maxima "$@"
-@@ -561,21 +345,6 @@ if [ "$1" = '-M2' -o "$1" = '--M2' ]; then
+@@ -575,21 +349,6 @@ if [ "$1" = '-M2' -o "$1" = '--M2' ]; then
      exec M2 "$@"
  fi
  
@@ -374,8 +391,8 @@ index 397f30c..bde91db 100755
 -
  if [ "$1" = '-python' -o "$1" = '--python' ]; then
      shift
-     exec python "$@"
-@@ -611,11 +380,6 @@ if [ "$1" = '-git' -o "$1" = '--git' ]; then
+     if [ "$SAGE_PYTHON3" = 'yes' ]; then
+@@ -629,11 +388,6 @@ if [ "$1" = '-git' -o "$1" = '--git' ]; then
      exec git "$@"
  fi
  
@@ -387,7 +404,7 @@ index 397f30c..bde91db 100755
  if [ "$1" = '-sh' -o "$1" = '--sh' ]; then
      # AUTHORS:
      # - Carl Witty and William Stein: initial version
-@@ -734,20 +498,6 @@ EOF
+@@ -752,20 +506,6 @@ EOF
      exit $status
  fi
  
@@ -408,7 +425,7 @@ index 397f30c..bde91db 100755
  #####################################################################
  # File conversion
  #####################################################################
-@@ -771,11 +521,6 @@ fi
+@@ -789,11 +529,6 @@ fi
  # Run Sage's versions of the standard Algebra/Geometry etc. software
  #####################################################################
  
@@ -420,7 +437,7 @@ index 397f30c..bde91db 100755
  if [[ "$1" =~ ^--notebook=.* || "$1" =~ ^-n=.* || "$1" =~ ^-notebook=.* ]] ; then
      sage-cleaner &>/dev/null &
      exec sage-notebook "$@"
-@@ -786,13 +531,6 @@ if [ "$1" = "-notebook" -o "$1" = '--notebook' -o "$1" = '-n' ]; then
+@@ -804,13 +539,6 @@ if [ "$1" = "-notebook" -o "$1" = '--notebook' -o "$1" = '-n' ]; then
      exec sage-notebook "$@"
  fi
  
@@ -434,7 +451,7 @@ index 397f30c..bde91db 100755
  if [ "$1" = "-inotebook" -o "$1" = '--inotebook' ]; then
      shift
      sage-cleaner &>/dev/null &
-@@ -811,34 +549,15 @@ if [ "$1" = '-grepdoc' -o "$1" = "--grepdoc" -o "$1" = "-search_doc" -o "$1" = "
+@@ -829,34 +557,15 @@ if [ "$1" = '-grepdoc' -o "$1" = "--grepdoc" -o "$1" = "-search_doc" -o "$1" = "
      exit 0
  fi
  
@@ -471,7 +488,7 @@ index 397f30c..bde91db 100755
          shift
          exec sage-runtests -p "$@"
      else
-@@ -847,16 +566,6 @@ if [ "$1" = '-t' -o "$1" = '-bt' -o "$1" = '-tp' -o "$1" = '-btp' ]; then
+@@ -865,16 +574,6 @@ if [ "$1" = '-t' -o "$1" = '-bt' -o "$1" = '-tp' -o "$1" = '-btp' ]; then
      fi
  fi
  
@@ -488,7 +505,7 @@ index 397f30c..bde91db 100755
  if [ "$1" = '-testall' -o "$1" = "--testall" ]; then
      shift
      sage_setup
-@@ -871,119 +580,6 @@ if [ "$1" = '-c' ]; then
+@@ -889,119 +588,6 @@ if [ "$1" = '-c' ]; then
      exec sage-eval "$@"
  fi
  
@@ -608,7 +625,7 @@ index 397f30c..bde91db 100755
  if [ "$1" = '-gdb' -o "$1" = "--gdb" ]; then
      shift
      sage_setup
-@@ -1049,10 +645,6 @@ if [ "$1" = '-gthread' -o "$1" = '-qthread' -o "$1" = '-q4thread' -o "$1" = '-wt
+@@ -1067,10 +653,6 @@ if [ "$1" = '-gthread' -o "$1" = '-qthread' -o "$1" = '-q4thread' -o "$1" = '-wt
  fi
  
  if [ $# -ge 1 ]; then
