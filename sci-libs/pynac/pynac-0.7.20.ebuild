@@ -9,7 +9,8 @@ inherit autotools python-r1 vcs-snapshot
 
 DESCRIPTION="A modified version of GiNaC that replaces the dependency on CLN by Python"
 HOMEPAGE="http://pynac.sagemath.org/ https://github.com/pynac/pynac"
-SRC_URI="https://github.com/pynac/pynac/archive/${P}.tar.gz"
+#SRC_URI="https://github.com/pynac/pynac/archive/${P}.tar.gz"
+SRC_URI="https://github.com/pynac/pynac/releases/download/${P}/${P}.tar.bz2"
 
 LICENSE="GPL-2"
 SLOT="0"
