@@ -567,7 +567,8 @@ pkg_preinst() {
 	[[ -d "${ROOT}/usr/share/sage/src/sage" ]] \
 		&& rm -rf "${ROOT}/usr/share/sage/src/sage"
 	# remove old links if present
-	rm -rf "${EROOT}"/usr/share/jupyter/nbextensions/*
+	rm -rf "${EROOT}"/usr/share/jupyter/nbextensions/jsmol
+	rm -rf "${EROOT}"/usr/share/jupyter/nbextensions/mathjax
 	rm -rf "${EROOT}"/usr/share/jupyter/kernels/sagemath/*
 }
 
