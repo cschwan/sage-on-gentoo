@@ -22,7 +22,7 @@ LANGS="ca de en es fr hu it ja pt ru tr"
 LICENSE="GPL-2"
 SLOT="0"
 SAGE_USE="modular_decomposition bliss libhomfly libbraiding"
-IUSE="debug doc-html +doc-html-bin doc-pdf doc-pdf-bin latex sagenb testsuite X ${SAGE_USE}"
+IUSE="debug doc-html +doc-html-bin doc-pdf doc-pdf-bin jmol latex sagenb testsuite X ${SAGE_USE}"
 L10N_USEDEP=""
 for X in ${LANGS} ; do
 	IUSE="${IUSE} l10n_${X}"
@@ -33,44 +33,44 @@ L10N_USEDEP="${L10N_USEDEP%?}"
 RESTRICT="mirror test"
 
 CDEPEND="dev-libs/gmp:0=
-	>=dev-libs/mpfr-3.1.0
-	>=dev-libs/mpc-1.0
+	>=dev-libs/mpfr-4.0.0
+	>=dev-libs/mpc-1.1.0
 	>=dev-libs/ntl-9.6.2-r1:=
 	>=dev-libs/ppl-1.1
 	~dev-lisp/ecls-16.1.2
 	>=dev-python/six-1.11.0[${PYTHON_USEDEP}]
 	>=dev-python/numpy-1.13.3-r100[${PYTHON_USEDEP}]
-	=dev-python/cython-0.27*[${PYTHON_USEDEP}]
+	=dev-python/cython-0.28*[${PYTHON_USEDEP}]
 	dev-python/future[${PYTHON_USEDEP}]
 	~dev-python/pkgconfig-1.2.2[${PYTHON_USEDEP}]
-	=dev-python/cysignals-1.6*[${PYTHON_USEDEP}]
+	>=dev-python/cysignals-1.7.1[${PYTHON_USEDEP}]
 	>=dev-python/docutils-0.12[${PYTHON_USEDEP}]
 	>=dev-python/psutil-4.4.0[${PYTHON_USEDEP}]
 	>=dev-python/ipython-5.4.0[notebook,${PYTHON_USEDEP}]
 	>=dev-python/jinja-2.8[${PYTHON_USEDEP}]
 	>=dev-python/matplotlib-2.1[${PYTHON_USEDEP}]
 	<=dev-python/matplotlib-2.3[${PYTHON_USEDEP}]
-	<dev-python/ipywidgets-7.0.0[${PYTHON_USEDEP}]
+	=dev-python/ipywidgets-7*[${PYTHON_USEDEP}]
 	>=sci-mathematics/eclib-20170330[flint]
 	~sci-mathematics/gmp-ecm-7.0.4[-openmp]
 	>=sci-mathematics/flint-2.5.2:=[ntl]
-	~sci-libs/givaro-4.0.2
+	~sci-libs/givaro-4.0.4
 	>=sci-libs/gsl-1.16
 	>=sci-libs/iml-1.0.4
 	~sci-mathematics/cliquer-1.21
 	~sci-libs/libgap-4.8.6
-	~sci-libs/linbox-1.4.2[sage]
+	~sci-libs/linbox-1.5.2[sage]
 	~sci-libs/m4ri-20140914
 	~sci-libs/m4rie-20150908
-	>=sci-libs/mpfi-1.5.1
-	~sci-libs/pynac-0.7.12[-giac,${PYTHON_USEDEP}]
+	>=sci-libs/mpfi-1.5.2
+	~sci-libs/pynac-0.7.16[-giac,${PYTHON_USEDEP}]
 	>=sci-libs/symmetrica-2.0-r3
 	>=sci-libs/zn_poly-0.9
-	>=sci-mathematics/giac-1.2.3.57
+	>=sci-mathematics/giac-1.4.9.45
 	>=sci-mathematics/glpk-4.63:0=[gmp]
 	>=sci-mathematics/lcalc-1.23-r6[pari]
 	>=sci-mathematics/lrcalc-1.2-r1
-	~dev-python/cypari2-1.1.3[${PYTHON_USEDEP}]
+	>=dev-python/cypari2-1.1.4[${PYTHON_USEDEP}]
 	~sci-mathematics/planarity-3.0.0.5
 	=sci-libs/brial-1.2*
 	=dev-python/sage-brial-1*[${PYTHON_USEDEP}]
@@ -82,13 +82,14 @@ CDEPEND="dev-libs/gmp:0=
 	>=sys-libs/readline-6.2
 	sys-libs/zlib
 	virtual/cblas
-	>=sci-mathematics/arb-2.11.1
+	>=sci-mathematics/arb-2.12.0
 	www-misc/thebe
 	modular_decomposition? ( sci-libs/modular_decomposition )
 	bliss? ( >=sci-libs/bliss-0.73 )
 	libhomfly? ( >=sci-libs/libhomfly-1.0.1 )
 	libbraiding? ( sci-libs/libbraiding )
-	~dev-python/sphinx-1.6.3[${PYTHON_USEDEP}]"
+	=dev-python/sphinx-1.6*[${PYTHON_USEDEP}]
+	!!<=sci-mathematics/sage-8.1"
 
 DEPEND="${CDEPEND}
 	doc-pdf? ( app-text/texlive[extra,${L10N_USEDEP}] )"
@@ -102,9 +103,9 @@ RDEPEND="${CDEPEND}
 	>=dev-python/pexpect-4.0.1-r2[${PYTHON_USEDEP}]
 	>=dev-python/pycrypto-2.1.0[${PYTHON_USEDEP}]
 	>=dev-python/rpy-2.3.8[${PYTHON_USEDEP}]
-	>=dev-python/sympy-1.1.1-r3[${PYTHON_USEDEP}]
+	>=dev-python/sympy-1.1.1-r4[${PYTHON_USEDEP}]
 	media-gfx/tachyon[png]
-	sci-chemistry/sage-jmol-bin
+	jmol? ( sci-chemistry/sage-jmol-bin )
 	|| ( ~sci-libs/cddlib-094g >=sci-libs/cddlib-094h[tools] )
 	>=sci-libs/scipy-0.19.1[${PYTHON_USEDEP}]
 	sci-mathematics/flintqs
@@ -134,7 +135,7 @@ RDEPEND="${CDEPEND}
 		|| ( app-text/dvipng[truetype] media-gfx/imagemagick[png] )
 	)"
 
-CHECKREQS_DISK_BUILD="5G"
+CHECKREQS_DISK_BUILD="8G"
 
 S="${WORKDIR}/${P}/src"
 
@@ -169,7 +170,7 @@ python_prepare() {
 		[Desktop Entry]
 		Name=Sage Shell
 		Type=Application
-		Comment=MAth software for abstract and numerical computations
+		Comment=Math software for abstract and numerical computations
 		Exec=sage
 		TryExec=sage
 		Icon=sage
@@ -191,8 +192,13 @@ python_prepare() {
 		bin/sage-num-threads.py
 
 	# remove developer and unsupported options
-	eapply "${FILESDIR}"/${PN}-8.1-exec.patch
+	eapply "${FILESDIR}"/${PN}-8.2-exec.patch
 	eprefixify bin/sage
+
+	# sage is getting its own system to have scripts that can use either python2 or 3
+	# This is of course dangerous and incompatible with Gentoo
+	sed -e "s:sage-python23:python:" \
+		-i bin/*
 
 	# create expected folders under extcode
 	mkdir -p ext/sage
@@ -204,22 +210,23 @@ python_prepare() {
 	###############################
 
 	# upgrades compared to base sage
-	eapply "${FILESDIR}"/ipython-5.4.patch
-	eapply "${FILESDIR}"/giac-1.2.3.57.patch
 	if has_version ">=sci-libs/cddlib-094h"; then
 		eapply "${FILESDIR}"/cddlib-094h.patch
 	fi
 	# readline 7 breaks the interaction between R and sage.
 	# patch should be sage with readline 6. Adopted from Debian
 	eapply "${FILESDIR}"/dt-r-no-readline.patch
-	# Move to matplotlib 2.1.0 as 1.5.3 has left the tree.
-	eapply "${FILESDIR}"/MPL-2.1.0.patch
 
 	# Remove sage's package management system, git capabilities and associated tests
-	eapply "${FILESDIR}"/${PN}-8.1-neutering.patch
+	eapply "${FILESDIR}"/${PN}-8.2-neutering.patch
 	cp -f "${FILESDIR}"/${PN}-7.3-package.py sage/misc/package.py
 	rm -f sage/misc/dist.py
 	rm -rf sage/dev
+
+	# If jmol is not in useflags make tachyon the default 3D plotting engine
+	if ! use jmol ; then
+		eapply "${FILESDIR}"/${PN}-8.2-tachyon_default.patch
+	fi
 
 	###############################
 	#
@@ -242,10 +249,7 @@ python_prepare() {
 	# Get headers generated by cython installed and found at runtime and buildtime
 	# Also install all appropriate sources alongside python code.
 	# get the doc building in the right place and replace relative import to the right location.
-	eapply "${FILESDIR}"/${PN}-8.0-sources.patch
-	# Create __init__.py so that this folder is installed.
-	# However it shouldn't be present in the final install.
-	use testsuite && touch sage/doctest/tests/__init__.py
+	eapply "${FILESDIR}"/${PN}-8.2-sources.patch
 
 	############################################################################
 	# Fixes to Sage itself
@@ -311,7 +315,7 @@ python_prepare() {
 	# https://trac.sagemath.org/ticket/23748 introduce memory limit for doctests
 	# it has a knowck down effect on various doctest in pure Gentoo as well as prefix.
 	# Disabling until it is improved
-	eapply "${FILESDIR}"/${PN}-8.1-doctest_memory.patch
+	eapply "${FILESDIR}"/${PN}-8.2-doctest_memory.patch
 
 	# boost 1.62 leads to different results when used in polybori
 	# Using debian patch
@@ -338,7 +342,7 @@ python_prepare() {
 	eapply "${FILESDIR}"/${PN}-7.3-safepython.patch
 
 	# 'sage' is not in SAGE_ROOT, but in PATH
-	eapply "${FILESDIR}"/${PN}-5.9-fix-ostools-doctest.patch
+	eapply "${FILESDIR}"/${PN}-8.2-ostools.patch
 
 	# Do not check build documentation against the source
 	eapply "${FILESDIR}"/${PN}-7.1-sagedoc.patch
@@ -354,6 +358,8 @@ python_prepare() {
 
 	eapply "${FILESDIR}"/${PN}-7.4-misc.patch \
 		"${FILESDIR}"/${PN}-7.1-linguas.patch
+	# Correct path to mathjax
+	eapply "${FILESDIR}"/sage-8.2-mathjax_path.patch
 
 	if use doc-html-bin ; then
 		mkdir -p build_doc/html
@@ -426,16 +432,14 @@ python_compile() {
 python_install() {
 	sage_build_env
 
-	distutils-r1_python_install
-
-	# install cython debugging files if requested
-	if use debug; then
-		# TODO make it usable if it is installed directly under src rather than src/build
-		insinto /usr/share/sage/src/build
-		pushd build/cythonized
-		doins -r cython_debug
-		popd
+	# Install cython debugging files if requested
+	# They are now produced by default
+	if ! use debug; then
+		rm -rf build/lib/sage/cython_debug || \
+			die "failed to remove cython debugging information."
 	fi
+
+	distutils-r1_python_install
 
 	##############################################
 	# install scripts and miscellanous files
@@ -466,10 +470,15 @@ python_install() {
 	if use testsuite ; then
 		# DOCTESTING helper scripts
 		python_doscript sage-runtests
-		# Remove __init__.py used to trigger installation of tests.
-		rm -f "${D}"$(python_get_sitedir)/sage/doctest/tests/__init__.*
 	fi
 	popd
+
+	if use testsuite ; then
+		# install extra testfiles under sage/doctests
+		local testspath="${D}"/$(python_get_sitedir)/sage/doctest/tests
+		mkdir -p "${testspath}"
+		cp sage/doctest/tests/* "${testspath}"/
+	fi
 
 	if ! python_is_python3; then
 	####################################
@@ -501,6 +510,13 @@ python_install() {
 					rm -rf $sdir || die "failed to remove $sdir"
 					ln -rst ${sdir%_static} build_doc/html/_static
 				fi
+			done
+			# Linking to local copy of mathjax folders rather than copying them
+			local mathjax_folders="config extensions fonts jax localization unpacked"
+			for sdir in ${mathjax_folders} ; do
+				rm -rf build_doc/html/_static/${sdir} \
+					|| die "failed to remove mathjax folder $sdir"
+				ln -st build_doc/html/_static/ ../../../../mathjax/$sdir
 			done
 			# Work around for issue #402 until I understand where it comes from
 			for pyfile in `find build_doc/html -name \*.py` ; do
@@ -544,7 +560,7 @@ python_install_all(){
 
 	# install sage-env under /etc
 	insinto /etc
-	doins sage-maxima.lisp sage-env sage-banner
+	doins sage-maxima.lisp sage-env
 	newins ../../VERSION.txt sage-version.txt
 
 	if use debug ; then
@@ -585,7 +601,8 @@ pkg_preinst() {
 	[[ -d "${ROOT}/usr/share/sage/src/sage" ]] \
 		&& rm -rf "${ROOT}/usr/share/sage/src/sage"
 	# remove old links if present
-	rm -rf "${EROOT}"/usr/share/jupyter/nbextensions/*
+	rm -rf "${EROOT}"/usr/share/jupyter/nbextensions/jsmol
+	rm -rf "${EROOT}"/usr/share/jupyter/nbextensions/mathjax
 	rm -rf "${EROOT}"/usr/share/jupyter/kernels/sagemath/*
 }
 
