@@ -48,7 +48,6 @@ PATCHES=(
 	"${FILESDIR}"/${PN}-1.0.1-base.patch
 	"${FILESDIR}"/${PN}-0.9.1-notebook.patch
 	"${FILESDIR}"/${PN}-1.0.1-json.patch
-	"${FILESDIR}"/PR438.patch
 	)
 
 pkg_setup() {
