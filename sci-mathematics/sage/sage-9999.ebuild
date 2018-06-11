@@ -261,9 +261,6 @@ python_prepare() {
 	sed -i "s:lib/libSingular:$(get_libdir)/libSingular:" \
 		sage/env.py
 
-	# fix issue #363 where there is bad interaction between MPL build with qt4 support and ecls
-	eapply "${FILESDIR}"/${PN}-7.4-qt4_conflict.patch
-
 	# sage-maxima.lisp really belong to /etc
 	eapply "${FILESDIR}"/${PN}-8.3-maxima.lisp.patch
 
