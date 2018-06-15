@@ -72,7 +72,7 @@ python_prepare_all() {
 
 python_compile_all() {
 	if use doc; then
-		emake -C doc SPHINXBUILD='"${EPYTHON}" "${S}/sphinx-build.py"' html
+		emake -C doc SPHINXBUILD='"${EPYTHON}" "${S}/sphinx/cmd/build.py"' html
 		HTML_DOCS=( doc/_build/html/. )
 	fi
 }
