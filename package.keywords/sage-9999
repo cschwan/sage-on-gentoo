@@ -72,7 +72,7 @@ dev-python/simplegeneric
 =dev-python/twisted-web-15*
 dev-python/webassets
 ~dev-python/werkzeug-0.9.6
-~dev-python/sphinx-1.6.3
+~dev-python/sphinx-1.7.5
 ~dev-tex/sage-latex-3.0
 dev-tex/tkz-berge
 dev-tex/tkz-graph
@@ -131,7 +131,7 @@ sci-mathematics/rw
 ~sci-mathematics/sage-data-elliptic_curves-0.8
 ~sci-mathematics/sage-data-graphs-20161026
 ~sci-mathematics/sage-data-polytopes_db-20170220
-~sci-mathematics/sage-notebook-1.0.2
+~sci-mathematics/sage-notebook-1.0.3
 ~sci-mathematics/singular-4.1.0_p3
 sci-mathematics/sympow
 ~www-servers/tornado-3.1.1

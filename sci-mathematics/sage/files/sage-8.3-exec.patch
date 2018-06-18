@@ -1,5 +1,5 @@
 diff --git a/bin/sage b/bin/sage
-index d1ecee7..5e24f06 100755
+index a06f72b..5e24f06 100755
 --- a/bin/sage
 +++ b/bin/sage
 @@ -4,11 +4,7 @@
@@ -505,7 +505,7 @@ index d1ecee7..5e24f06 100755
  if [ "$1" = '-testall' -o "$1" = "--testall" ]; then
      shift
      sage_setup
-@@ -889,119 +588,6 @@ if [ "$1" = '-c' ]; then
+@@ -889,122 +588,6 @@ if [ "$1" = '-c' ]; then
      exec sage-eval "$@"
  fi
  
@@ -618,14 +618,17 @@ index d1ecee7..5e24f06 100755
 -fi
 -
 -if [ "$1" = "-docbuild" -o "$1" = "--docbuild" ]; then
+-    # Redirect stdin from /dev/null. This helps with running TeX which
+-    # tends to ask interactive questions if something goes wrong. These
+-    # cause the build to hang. If stdin is /dev/null, TeX just aborts.
 -    shift
--    exec sage-python23 -m "sage_setup.docbuild" "$@"
+-    exec sage-python23 -m sage_setup.docbuild "$@" </dev/null
 -fi
 -
  if [ "$1" = '-gdb' -o "$1" = "--gdb" ]; then
      shift
      sage_setup
-@@ -1067,10 +653,6 @@ if [ "$1" = '-gthread' -o "$1" = '-qthread' -o "$1" = '-q4thread' -o "$1" = '-wt
+@@ -1070,10 +653,6 @@ if [ "$1" = '-gthread' -o "$1" = '-qthread' -o "$1" = '-q4thread' -o "$1" = '-wt
  fi
  
  if [ $# -ge 1 ]; then

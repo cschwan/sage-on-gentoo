@@ -88,7 +88,7 @@ CDEPEND="dev-libs/gmp:0=
 	bliss? ( >=sci-libs/bliss-0.73 )
 	libhomfly? ( >=sci-libs/libhomfly-1.0.1 )
 	libbraiding? ( sci-libs/libbraiding )
-	=dev-python/sphinx-1.6*[${PYTHON_USEDEP}]"
+	>=dev-python/sphinx-1.7.5[${PYTHON_USEDEP}]"
 
 DEPEND="${CDEPEND}
 	doc-pdf? ( app-text/texlive[extra,${L10N_USEDEP}] )"
@@ -128,7 +128,7 @@ RDEPEND="${CDEPEND}
 	>=sci-mathematics/sympow-1.018.1
 	www-servers/tornado
 	!prefix? ( >=sys-libs/glibc-2.13-r4 )
-	sagenb? ( >=sci-mathematics/sage-notebook-1.0.1-r3[$(python_gen_usedep 'python2*')] )
+	sagenb? ( >=sci-mathematics/sage-notebook-1.0.3[$(python_gen_usedep 'python2*')] )
 	latex? (
 		~dev-tex/sage-latex-3.0
 		|| ( app-text/dvipng[truetype] media-gfx/imagemagick[png] )
@@ -260,9 +260,6 @@ python_prepare() {
 	# fix library path of libSingular
 	sed -i "s:lib/libSingular:$(get_libdir)/libSingular:" \
 		sage/env.py
-
-	# fix issue #363 where there is bad interaction between MPL build with qt4 support and ecls
-	eapply "${FILESDIR}"/${PN}-7.4-qt4_conflict.patch
 
 	# sage-maxima.lisp really belong to /etc
 	eapply "${FILESDIR}"/${PN}-8.3-maxima.lisp.patch
