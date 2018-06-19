@@ -330,8 +330,10 @@ python_prepare() {
 	# do not test safe python stuff from trac 13579. Needs to be applied after neutering.
 	eapply "${FILESDIR}"/${PN}-7.3-safepython.patch
 
-	# 'sage' is not in SAGE_ROOT, but in PATH
-	eapply "${FILESDIR}"/${PN}-8.2-ostools.patch
+	# Some SAGE_ROOT elimination
+	#'sage' is not in SAGE_ROOT, but in PATH or 
+	# alternatively in SAGE_LOCAL/bin
+	eapply "${FILESDIR}"/${PN}-8.3-SAGE_ROOT.patch
 
 	# Do not check build documentation against the source
 	eapply "${FILESDIR}"/${PN}-7.1-sagedoc.patch
