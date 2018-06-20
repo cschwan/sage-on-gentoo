@@ -408,6 +408,7 @@ python_compile() {
 
 python_install() {
 	sage_build_env
+	unset SAGE_DOC
 
 	# Install cython debugging files if requested
 	# They are now produced by default
