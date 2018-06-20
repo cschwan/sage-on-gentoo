@@ -1,0 +1,110 @@
+diff --git a/bin/sage-notebook b/bin/sage-notebook
+index 38b680d..744ac1f 100755
+--- a/bin/sage-notebook
++++ b/bin/sage-notebook
+@@ -92,7 +92,7 @@ class NotebookJupyter(object):
+ 
+     def __init__(self, argv):
+         self.print_banner()
+-        from sage.repl.ipython_kernel.install import have_prerequisites
++        from sage.repl.ipython_kernel.kernel import have_prerequisites
+         if not have_prerequisites():
+             print(self.PREREQUISITE_ERROR)
+             raise SystemExit(1)
+diff --git a/doc/en/reference/repl/index.rst b/doc/en/reference/repl/index.rst
+index e5bebd1..2e0f33a 100644
+--- a/doc/en/reference/repl/index.rst
++++ b/doc/en/reference/repl/index.rst
+@@ -95,7 +95,6 @@ Miscellaneous
+    sage/repl/ipython_kernel/interact
+    sage/repl/ipython_kernel/widgets
+    sage/repl/ipython_kernel/widgets_sagenb
+-   sage/repl/ipython_kernel/install
+    sage/repl/ipython_kernel/kernel
+    sage/repl/ipython_tests
+ 
+diff --git a/sage/repl/ipython_kernel/kernel.py b/sage/repl/ipython_kernel/kernel.py
+index 31480ea..0043045 100644
+--- a/sage/repl/ipython_kernel/kernel.py
++++ b/sage/repl/ipython_kernel/kernel.py
+@@ -96,9 +96,7 @@ class SageKernel(IPythonKernel):
+               'url': 'kernelspecs/sagemath/doc/index.html'},
+              ...]
+         """
+-        from sage.repl.ipython_kernel.install import SageKernelSpec
+-        identifier = SageKernelSpec.identifier()
+-        kernel_url = lambda x: 'kernelspecs/{0}/{1}'.format(identifier, x)
++        kernel_url = lambda x: 'kernelspecs/{0}/{1}'.format("sagemath", x)
+         return [
+             {
+                 'text': 'Sage Documentation',
+@@ -185,3 +183,34 @@ class SageKernel(IPythonKernel):
+         """
+         from cysignals import init_cysignals
+         self.saved_sigint_handler = init_cysignals()
++
++def have_prerequisites(debug=True):
++    """
++    Check that we have all prerequisites to run the Jupyter notebook.
++
++    In particular, the Jupyter notebook requires OpenSSL whether or
++    not you are using https. See :trac:`17318`.
++
++    INPUT:
++
++    ``debug`` -- boolean (default: ``True``). Whether to print debug
++    information in case that prerequisites are missing.
++
++    OUTPUT:
++
++    Boolean.
++
++    EXAMPLES::
++
++        sage: from sage.repl.ipython_kernel.kernel import have_prerequisites
++        sage: have_prerequisites(debug=False) in [True, False]
++        True
++    """
++    try:
++        from notebook.notebookapp import NotebookApp
++        return True
++    except ImportError:
++        if debug:
++            import traceback
++            traceback.print_exc()
++        return False
+diff --git a/sage_setup/jupyter/install.py b/sage_setup/jupyter/install.py
+index 5f9e99b..8d92ef0 100644
+--- a/sage_setup/jupyter/install.py
++++ b/sage_setup/jupyter/install.py
+@@ -176,8 +176,7 @@ class SageKernelSpec(object):
+              '{connection_file}']
+         """
+         return [
+-            os.path.join(SAGE_LOCAL, 'bin', 'sage'),
+-            '--python',
++            'python2.7',
+             '-m', 'sage.repl.ipython_kernel',
+             '-f', '{connection_file}',
+         ]
+@@ -261,7 +260,6 @@ class SageKernelSpec(object):
+         instance = cls(*args, **kwds)
+         instance.use_local_mathjax()
+         instance.use_local_jsmol()
+-        instance.use_local_threejs()
+         instance._install_spec()
+         instance._symlink_resources()
+ 
+diff --git a/setup.py b/setup.py
+index 68699d6..1dcd8a6 100755
+--- a/setup.py
++++ b/setup.py
+@@ -894,7 +894,7 @@ class sage_install(install):
+             The files are generated, not copied. Therefore, we cannot
+             use ``data_files`` for this.
+         """
+-        from sage.repl.ipython_kernel.install import SageKernelSpec
++        from sage_setup.jupyter.install import SageKernelSpec
+         # Jupyter packages typically use the data_files option to
+         # setup() to install kernels and nbextensions. So we should use
+         # the install_data directory for installing our Jupyter files.
