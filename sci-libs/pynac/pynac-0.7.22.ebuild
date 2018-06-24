@@ -9,8 +9,7 @@ inherit autotools python-r1 vcs-snapshot
 
 DESCRIPTION="A modified version of GiNaC that replaces the dependency on CLN by Python"
 HOMEPAGE="http://pynac.sagemath.org/ https://github.com/pynac/pynac"
-#SRC_URI="https://github.com/pynac/pynac/archive/${P}.tar.gz"
-SRC_URI="https://github.com/pynac/pynac/releases/download/${P}/${P}.tar.bz2"
+SRC_URI="https://github.com/pynac/pynac/archive/${P}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
@@ -34,7 +33,7 @@ RDEPEND="dev-libs/gmp:0=
 DOCS=( AUTHORS NEWS README )
 
 PATCHES=(
-	"${FILESDIR}"/un-pc.patch
+	"${FILESDIR}"/un-pc-0.7.22.patch
 	)
 
 src_prepare(){
