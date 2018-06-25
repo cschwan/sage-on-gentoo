@@ -350,6 +350,7 @@ python_prepare() {
 	####################################
 
 	eapply "${FILESDIR}"/${PN}-8.3-utf8.patch
+	eapply "${FILESDIR}"/${PN}-8.3-pdfbuild.patch
 	# support linguas so only requested languages are installed
 	eapply "${FILESDIR}"/${PN}-7.1-linguas.patch
 	# Correct path to mathjax
