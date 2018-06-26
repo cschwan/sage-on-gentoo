@@ -31,6 +31,7 @@ dev-python/flask-oldsessions
 dev-python/terminado
 dev-python/mistune
 ~dev-python/numpy-1.13.3
+~dev-python/networkx-2.1
 dev-python/cycler
 =dev-python/cypari2-1.1*
 dev-python/versioneer
@@ -90,7 +91,7 @@ sci-libs/dsdp
 ~sci-libs/m4ri-20140914
 ~sci-libs/m4rie-20150908
 ~sci-libs/mpfi-1.5.2
-~sci-libs/pynac-0.7.16
+~sci-libs/pynac-0.7.22
 =sci-libs/scipy-0.19*
 sci-libs/symmetrica
 sci-libs/vecmath-objectclub
