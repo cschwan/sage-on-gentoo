@@ -21,6 +21,10 @@ RDEPEND="
 
 DEPEND="${RDEPEND}"
 
+PATCHES=(
+	"${FILESDIR}"/PR210.patch
+	)
+
 src_configure() {
 	# Not an autoconf configure script.
 	# Note that it appears to have been cloned from the flint configure script
