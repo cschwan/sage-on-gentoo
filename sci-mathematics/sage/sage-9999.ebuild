@@ -63,7 +63,7 @@ CDEPEND="dev-libs/gmp:0=
 	~sci-libs/m4ri-20140914
 	~sci-libs/m4rie-20150908
 	>=sci-libs/mpfi-1.5.2
-	~sci-libs/pynac-0.7.16[-giac,${PYTHON_USEDEP}]
+	~sci-libs/pynac-0.7.22[-giac,${PYTHON_USEDEP}]
 	>=sci-libs/symmetrica-2.0-r3
 	>=sci-libs/zn_poly-0.9
 	>=sci-mathematics/giac-1.4.9.45
@@ -98,7 +98,7 @@ RDEPEND="${CDEPEND}
 	>=dev-python/cvxopt-1.1.8[glpk,${PYTHON_USEDEP}]
 	>=dev-python/fpylll-0.2.3[${PYTHON_USEDEP}]
 	>=dev-python/mpmath-0.18[${PYTHON_USEDEP}]
-	>=dev-python/networkx-1.10[${PYTHON_USEDEP}]
+	>=dev-python/networkx-2.1[${PYTHON_USEDEP}]
 	>=dev-python/pexpect-4.0.1-r2[${PYTHON_USEDEP}]
 	>=dev-python/pycrypto-2.1.0[${PYTHON_USEDEP}]
 	>=dev-python/rpy-2.3.8[${PYTHON_USEDEP}]
