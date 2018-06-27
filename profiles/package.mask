@@ -7,4 +7,4 @@ sci-mathematics/ecm
 # masking for now
 =sci-mathematics/gap-4.8.9
 =dev-gap/GAPDoc-1.6.1
-
+>=dev-python/gmpy-2.1.0_alpha2
