@@ -434,7 +434,8 @@ python_install() {
 		sage-num-threads.py \
 		sage-rst2txt \
 		sage-rst2sws \
-		sage-sws2rst
+		sage-sws2rst \
+		sage-ipynb2rst
 
 	# COMMAND helper scripts
 	python_doscript \
