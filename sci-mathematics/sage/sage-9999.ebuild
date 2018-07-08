@@ -553,16 +553,6 @@ python_install_all(){
 
 	insinto /usr/share/sage
 	doins -r ext
-
-	# install links and kernel for jupyter install
-# 	dodir /usr/share/jupyter/kernels/sagemath
-# 	insinto /usr/share/jupyter/kernels/sagemath
-# 	doins build/spec/kernels/sagemath/kernel.json
-# 	dodir /usr/share/jupyter/nbextensions
-# 	ln -sf "${EPREFIX}/usr/share/mathjax" "${ED}"/usr/share/jupyter/nbextensions/mathjax || die "die creating mathjax simlink"
-# 	ln -sf "${EPREFIX}/usr/share/jsmol" "${ED}"/usr/share/jupyter/nbextensions/jsmol || die "die creating jsmol simlink"
-# 	dosym ../../../sage/ext/notebook-ipython/logo-64x64.png /usr/share/jupyter/kernels/sagemath/logo-64x64.png
-# 	dosym ../../../sage/ext/notebook-ipython/logo.svg /usr/share/jupyter/kernels/sagemath/logo.svg
 }
 
 pkg_preinst() {
@@ -570,9 +560,9 @@ pkg_preinst() {
 	[[ -d "${ROOT}/usr/share/sage/src/sage" ]] \
 		&& rm -rf "${ROOT}/usr/share/sage/src/sage"
 	# remove old links if present
-	rm -rf "${EROOT}"/usr/share/jupyter/nbextensions/jsmol
-	rm -rf "${EROOT}"/usr/share/jupyter/nbextensions/mathjax
-	rm -rf "${EROOT}"/usr/share/jupyter/kernels/sagemath/*
+# 	rm -rf "${EROOT}"/usr/share/jupyter/nbextensions/jsmol
+# 	rm -rf "${EROOT}"/usr/share/jupyter/nbextensions/mathjax
+# 	rm -rf "${EROOT}"/usr/share/jupyter/kernels/sagemath/*
 }
 
 pkg_postinst() {
