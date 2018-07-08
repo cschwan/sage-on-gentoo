@@ -274,7 +274,7 @@ python_prepare() {
 	sed -i "s:\"jmol\", \"JmolData:\"sage-jmol-bin\", \"lib\", \"JmolData:" sage/interfaces/jmoldata.py
 
 	# Do not get the version of threejs by using sage packaging system
-	eapply "${FILESDIR}"/${PN}-8.0-threejs.patch
+	eapply "${FILESDIR}"/${PN}-8.3-threejs.patch
 
 	# Make sage-inline-fortran useless by having better fortran settings
 	sed -i \
