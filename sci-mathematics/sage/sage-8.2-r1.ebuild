@@ -107,6 +107,7 @@ RDEPEND="${CDEPEND}
 	media-gfx/tachyon[png]
 	jmol? ( sci-chemistry/sage-jmol-bin )
 	|| ( ~sci-libs/cddlib-094g >=sci-libs/cddlib-094h[tools] )
+	<sci-libs/cddlib-094j
 	>=sci-libs/scipy-0.19.1[${PYTHON_USEDEP}]
 	sci-mathematics/flintqs
 	~sci-mathematics/gap-4.8.6
