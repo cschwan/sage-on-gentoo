@@ -409,7 +409,6 @@ python_compile() {
 
 python_install() {
 	sage_build_env
-	unset SAGE_DOC
 
 	# Install cython debugging files if requested
 	# They are now produced by default
@@ -553,6 +552,13 @@ python_install_all(){
 
 	insinto /usr/share/sage
 	doins -r ext
+
+	# install links for the jupyter kernel
+	dosym ../../../sage/ext/notebook-ipython/logo-64x64.png /usr/share/jupyter/kernels/sagemath/logo-64x64.png
+	dosym ../../../sage/ext/notebook-ipython/logo.svg /usr/share/jupyter/kernels/sagemath/logo.svg
+	if use doc-html; then
+		dosym ../../../doc/sage/html/en /usr/share/jupyter/kernels/sagemath/doc
+	fi
 }
 
 pkg_preinst() {
@@ -560,9 +566,7 @@ pkg_preinst() {
 	[[ -d "${ROOT}/usr/share/sage/src/sage" ]] \
 		&& rm -rf "${ROOT}/usr/share/sage/src/sage"
 	# remove old links if present
-# 	rm -rf "${EROOT}"/usr/share/jupyter/nbextensions/jsmol
-# 	rm -rf "${EROOT}"/usr/share/jupyter/nbextensions/mathjax
-# 	rm -rf "${EROOT}"/usr/share/jupyter/kernels/sagemath/*
+	rm -rf "${EROOT}"/usr/share/jupyter/kernels/sagemath/*
 }
 
 pkg_postinst() {
