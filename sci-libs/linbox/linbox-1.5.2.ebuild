@@ -1,4 +1,4 @@
-# Copyright 1999-2017 Gentoo Foundation
+# Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=6
@@ -29,6 +29,10 @@ DEPEND="dev-libs/gmp[cxx]
 RDEPEND="${DEPEND}"
 
 DOCS=( ChangeLog TODO )
+
+PATCHES=(
+	"${FILESDIR}"/${PN}-1.5.2-fix-gcc-8.1-compat.patch
+	)
 
 # TODO: installation of documentation does not work ?
 
