@@ -8,3 +8,5 @@ sci-mathematics/ecm
 =sci-mathematics/gap-4.8.9
 =dev-gap/GAPDoc-1.6.1
 >=dev-python/gmpy-2.1.0_alpha2
+# incompatibilities because of C++11 masking until resolved
+>=dev-libs/ntl-11.0.0
