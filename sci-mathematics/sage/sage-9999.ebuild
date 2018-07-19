@@ -222,6 +222,8 @@ python_prepare() {
 	cp -f "${FILESDIR}"/${PN}-7.3-package.py sage/misc/package.py
 	rm -f sage/misc/dist.py
 	rm -rf sage/dev
+	# Detection of gmpy2 has its own scheme that assumes vanilla sage.
+	eapply "${FILESDIR}"/${PN}-8.2-gmpy2_option.patch
 
 	# If jmol is not in useflags make tachyon the default 3D plotting engine
 	if ! use jmol ; then
