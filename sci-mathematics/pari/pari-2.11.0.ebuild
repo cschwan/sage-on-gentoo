@@ -3,16 +3,14 @@
 
 EAPI=6
 
-inherit flag-o-matic toolchain-funcs versionator
+inherit flag-o-matic toolchain-funcs
 
-MY_PV=$(replace_version_separator 3 '.')
-MY_P="${PN}-${MY_PV}"
 DESCRIPTION="Computer-aided number theory C library and tools"
 HOMEPAGE="http://pari.math.u-bordeaux.fr/"
-SRC_URI="http://pari.math.u-bordeaux.fr/pub/${PN}/unstable/${MY_P}.tar.gz"
+SRC_URI="http://pari.math.u-bordeaux.fr/pub/${PN}/unix/${P}.tar.gz"
 
 LICENSE="GPL-2"
-SLOT="0/1"
+SLOT="0/6"
 KEYWORDS="~alpha ~amd64 ~hppa ~mips ~ppc ~ppc64 ~sparc ~x86 ~amd64-linux ~x86-fbsd ~x86-linux ~x86-macos ~x86-solaris"
 IUSE="data doc fltk gmp threads X"
 
@@ -32,8 +30,6 @@ PATCHES=(
 	"${FILESDIR}"/${PN}-2.10-no-automagic.patch
 	"${FILESDIR}"/${PN}-2.10-fltk-detection.patch
 	)
-
-S="${WORKDIR}/${MY_P}"
 
 get_compile_dir() {
 	"${S}"/config/objdir
