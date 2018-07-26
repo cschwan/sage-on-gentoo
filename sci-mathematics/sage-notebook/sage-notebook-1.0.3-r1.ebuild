@@ -23,10 +23,14 @@ IUSE="+java server test"
 RESTRICT="mirror test"
 
 DEPEND=">=dev-python/pexpect-4.0.1-r1[${PYTHON_USEDEP}]
-	>=dev-python/twisted-core-14.0.0[${PYTHON_USEDEP}]
-	>=dev-python/twisted-mail-14.0.0[${PYTHON_USEDEP}]
-	>=dev-python/twisted-web-14.0.0[${PYTHON_USEDEP}]
-	!dev-python/twisted-web2
+	|| (
+		>=dev-python/twisted-16.0.0[${PYTHON_USEDEP}]
+		(
+			>=dev-python/twisted-core-14.0.0[${PYTHON_USEDEP}]
+			>=dev-python/twisted-mail-14.0.0[${PYTHON_USEDEP}]
+			>=dev-python/twisted-web-14.0.0[${PYTHON_USEDEP}]
+		)
+	)
 	>=dev-python/jinja-2.5.5[${PYTHON_USEDEP}]
 	>=dev-python/docutils-0.5[${PYTHON_USEDEP}]
 	dev-python/flask[${PYTHON_USEDEP}]
