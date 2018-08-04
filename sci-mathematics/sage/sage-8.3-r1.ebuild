@@ -585,8 +585,8 @@ python_install_all(){
 	# install links for the jupyter kernel
 	dosym ../../../sage/ext/notebook-ipython/logo-64x64.png /usr/share/jupyter/kernels/sagemath/logo-64x64.png
 	dosym ../../../sage/ext/notebook-ipython/logo.svg /usr/share/jupyter/kernels/sagemath/logo.svg
-	dosym ../../../sage/threejs /usr/share/jupyter/nbextensions/threejs
-	if use doc-html; then
+	dosym ../../sage/threejs /usr/share/jupyter/nbextensions/threejs
+	if (use doc-html) || (use doc-html-bin); then
 		dosym ../../../doc/sage/html/en /usr/share/jupyter/kernels/sagemath/doc
 	fi
 }
