@@ -37,7 +37,7 @@ DEPEND="${CDEPEND}
 	dev-python/setuptools[${PYTHON_USEDEP}]
 	$(python_gen_cond_dep \
 		'dev-python/backports-shutil_get_terminal_size[${PYTHON_USEDEP}]' 'python2*')
-	dev-python/typing[${PYTHON_USEDEP}]
+	virtual/python-typing[${PYTHON_USEDEP}]
 	test? (
 		dev-python/ipykernel[${PYTHON_USEDEP}]
 		dev-python/nbformat[${PYTHON_USEDEP}]
