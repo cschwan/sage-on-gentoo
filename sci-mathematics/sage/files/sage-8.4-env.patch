@@ -102,6 +102,19 @@ index b14ee7a..cfd700f 100644
          # executable for gp ?? help
          self._eval_line('default(help, "gphelp -detex");')
          # logfile disabled since Expect already logs
+diff --git a/sage/interfaces/jmoldata.py b/sage/interfaces/jmoldata.py
+index f58b8f1..9bdb0d3 100644
+--- a/sage/interfaces/jmoldata.py
++++ b/sage/interfaces/jmoldata.py
+@@ -149,7 +149,7 @@ class JmolData(SageObject):
+             True
+         """
+         # Set up paths, file names and scripts
+-        jmolpath = os.path.join(JMOL_DIR, "JmolData.jar")
++        jmolpath = os.path.join(JMOL_DIR, 'lib', 'JmolData.jar')
+         target_native = targetfile
+ 
+         if sys.platform == 'cygwin':
 diff --git a/sage/interfaces/singular.py b/sage/interfaces/singular.py
 index f3c8162..b633488 100644
 --- a/sage/interfaces/singular.py
