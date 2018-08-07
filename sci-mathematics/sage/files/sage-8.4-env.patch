@@ -1,5 +1,5 @@
 diff --git a/sage/env.py b/sage/env.py
-index b09d6f6..73e02cf 100644
+index b09d6f6..d4894a7 100644
 --- a/sage/env.py
 +++ b/sage/env.py
 @@ -117,13 +117,11 @@ _add_variable_or_fallback('HOSTNAME',        socket.gethostname())
@@ -56,9 +56,10 @@ index b09d6f6..73e02cf 100644
  _add_variable_or_fallback('CREMONA_MINI_DATA_DIR', opj('$SAGE_SHARE','cremona'))
  _add_variable_or_fallback('CREMONA_LARGE_DATA_DIR', opj('$SAGE_SHARE', 'cremona'))
 -_add_variable_or_fallback('JMOL_DIR', opj('$SAGE_SHARE', 'jmol'))
-+_add_variable_or_fallback('JMOL_DIR', opj('$SAGE_LOCAL','share', 'sage-jmol-bin'))
- _add_variable_or_fallback('JSMOL_DIR', SAGE_ENV['JMOL_DIR'])
+-_add_variable_or_fallback('JSMOL_DIR', SAGE_ENV['JMOL_DIR'])
 -_add_variable_or_fallback('MATHJAX_DIR', opj('$SAGE_SHARE', 'mathjax'))
++_add_variable_or_fallback('JMOL_DIR', opj('$SAGE_LOCAL','share', 'sage-jmol-bin'))
++_add_variable_or_fallback('JSMOL_DIR', opj('$SAGE_LOCAL','share', 'jsmol'))
 +_add_variable_or_fallback('MATHJAX_DIR', opj('$SAGE_LOCAL','share', 'mathjax'))
  _add_variable_or_fallback('THREEJS_DIR', opj('$SAGE_SHARE', 'threejs'))
  _add_variable_or_fallback('ECLDIR', opj('$SAGE_LOCAL', 'lib', 'ecl'))
@@ -71,3 +72,44 @@ index b09d6f6..73e02cf 100644
  _add_variable_or_fallback('SAGE_STARTUP_FILE',  opj('$DOT_SAGE', 'init.sage'))
  
  # delete temporary variables used for setting up sage.env
+diff --git a/sage/interfaces/gap.py b/sage/interfaces/gap.py
+index ef378dd..2d0f889 100644
+--- a/sage/interfaces/gap.py
++++ b/sage/interfaces/gap.py
+@@ -197,8 +197,7 @@ import string
+ 
+ WORKSPACE = gap_workspace_file()
+ 
+-from sage.env import GAP_ROOT_DIR
+-GAP_BINARY = os.path.join(GAP_ROOT_DIR, 'bin', 'gap.sh')
++GAP_BINARY = os.path.join(SAGE_LOCAL, 'bin', 'gap')
+ 
+ first_try = True
+ 
+diff --git a/sage/interfaces/gp.py b/sage/interfaces/gp.py
+index b14ee7a..cfd700f 100644
+--- a/sage/interfaces/gp.py
++++ b/sage/interfaces/gp.py
+@@ -251,7 +251,7 @@ class Gp(ExtraTabCompletion, Expect):
+         # list of directories where gp will look for scripts (only current working directory)
+         self._eval_line('default(path,".");')
+         # location of elldata, seadata, galdata
+-        self._eval_line('default(datadir, "$GP_DATA_DIR");')
++        self._eval_line('default(datadir, "$SAGE_LOCAL/share/pari");')
+         # executable for gp ?? help
+         self._eval_line('default(help, "gphelp -detex");')
+         # logfile disabled since Expect already logs
+diff --git a/sage/interfaces/singular.py b/sage/interfaces/singular.py
+index f3c8162..b633488 100644
+--- a/sage/interfaces/singular.py
++++ b/sage/interfaces/singular.py
+@@ -2263,8 +2263,7 @@ def generate_docstring_dictionary():
+     nodes.clear()
+     node_names.clear()
+ 
+-    import os
+-    singular_docdir = os.environ['SINGULARPATH']+"/../info/"
++    singular_docdir = SAGE_LOCAL+"/share/info/"
+ 
+     new_node = re.compile("File: singular\.hlp,  Node: ([^,]*),.*")
+     new_lookup = re.compile("\* ([^:]*):*([^.]*)\..*")
