@@ -15,7 +15,7 @@ SLOT="0"
 KEYWORDS="~amd64 ~x86"
 IUSE=""
 
-DEPEND=">=sci-mathematics/pari-2.11.0[gmp,doc]
+DEPEND=">=sci-mathematics/pari-2.10.0[gmp,doc]
 	>=dev-python/cython-0.28
 	dev-python/cysignals"
 RDEPEND="${DEPEND}"
