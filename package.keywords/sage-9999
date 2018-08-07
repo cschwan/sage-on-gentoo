@@ -33,10 +33,10 @@ dev-python/mistune
 ~dev-python/numpy-1.13.3
 ~dev-python/networkx-2.1
 dev-python/cycler
-=dev-python/cypari2-1.1*
+=dev-python/cypari2-1.2*
 dev-python/versioneer
 =dev-python/jedi-0.10*
-=dev-python/ipython-5.5*::sage-on-gentoo
+=dev-python/ipython-5.8*::sage-on-gentoo
 >=dev-python/notebook-4.1.0
 >=dev-python/ipywidgets-7.0.0
 >=dev-python/widgetsnbextension-3.0.0
@@ -92,7 +92,7 @@ sci-libs/dsdp
 ~sci-libs/m4rie-20150908
 ~sci-libs/mpfi-1.5.2
 ~sci-libs/pynac-0.7.22
-=sci-libs/scipy-0.19*
+=sci-libs/scipy-1.1.0
 sci-libs/symmetrica
 sci-libs/vecmath-objectclub
 sci-libs/zn_poly
@@ -132,7 +132,7 @@ sci-mathematics/rw
 ~sci-mathematics/sage-data-graphs-20161026
 ~sci-mathematics/sage-data-polytopes_db-20170220
 ~sci-mathematics/sage-notebook-1.0.3
-~sci-mathematics/singular-4.1.0_p3
+~sci-mathematics/singular-4.1.1_p2
 sci-mathematics/sympow
 ~www-servers/tornado-3.1.1
 www-misc/thebe
