@@ -116,15 +116,16 @@ index f58b8f1..9bdb0d3 100644
  
          if sys.platform == 'cygwin':
 diff --git a/sage/interfaces/singular.py b/sage/interfaces/singular.py
-index f3c8162..b633488 100644
+index f3c8162..7d2f8de 100644
 --- a/sage/interfaces/singular.py
 +++ b/sage/interfaces/singular.py
-@@ -2263,8 +2263,7 @@ def generate_docstring_dictionary():
+@@ -2263,8 +2263,8 @@ def generate_docstring_dictionary():
      nodes.clear()
      node_names.clear()
  
 -    import os
 -    singular_docdir = os.environ['SINGULARPATH']+"/../info/"
++    from sage.env import SAGE_LOCAL
 +    singular_docdir = SAGE_LOCAL+"/share/info/"
  
      new_node = re.compile("File: singular\.hlp,  Node: ([^,]*),.*")
