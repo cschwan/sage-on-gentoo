@@ -47,7 +47,7 @@ CDEPEND="dev-libs/gmp:0=
 	>=dev-python/cysignals-1.7.1[${PYTHON_USEDEP}]
 	>=dev-python/docutils-0.12[${PYTHON_USEDEP}]
 	>=dev-python/psutil-4.4.0[${PYTHON_USEDEP}]
-	>=dev-python/ipython-5.5.0[notebook,${PYTHON_USEDEP}]
+	>=dev-python/ipython-5.8.0[notebook,${PYTHON_USEDEP}]
 	>=dev-python/jinja-2.8[${PYTHON_USEDEP}]
 	>=dev-python/matplotlib-2.1.1[${PYTHON_USEDEP}]
 	<=dev-python/matplotlib-2.3[${PYTHON_USEDEP}]
@@ -71,12 +71,12 @@ CDEPEND="dev-libs/gmp:0=
 	>=sci-mathematics/glpk-4.63:0=[gmp]
 	>=sci-mathematics/lcalc-1.23-r6[pari]
 	>=sci-mathematics/lrcalc-1.2-r1
-	>=dev-python/cypari2-1.1.4[${PYTHON_USEDEP}]
+	>=dev-python/cypari2-1.2.1[${PYTHON_USEDEP}]
 	~sci-mathematics/planarity-3.0.0.5
 	=sci-libs/brial-1.2*
 	=dev-python/sage-brial-1*[${PYTHON_USEDEP}]
 	>=sci-mathematics/rw-0.7
-	~sci-mathematics/singular-4.1.0_p3[readline]
+	~sci-mathematics/singular-4.1.1_p2[readline]
 	>=sci-mathematics/ratpoints-2.1.3
 	media-libs/gd[jpeg,png]
 	media-libs/libpng:0=
@@ -85,10 +85,10 @@ CDEPEND="dev-libs/gmp:0=
 	virtual/cblas
 	>=sci-mathematics/arb-2.13.0-r1
 	www-misc/thebe
+	>=sci-libs/libhomfly-1.0.1
+	sci-libs/libbraiding
 	modular_decomposition? ( sci-libs/modular_decomposition )
 	bliss? ( >=sci-libs/bliss-0.73 )
-	libhomfly? ( >=sci-libs/libhomfly-1.0.1 )
-	libbraiding? ( sci-libs/libbraiding )
 	>=dev-python/sphinx-1.7.5[${PYTHON_USEDEP}]"
 
 DEPEND="${CDEPEND}
@@ -100,14 +100,13 @@ RDEPEND="${CDEPEND}
 	>=dev-python/fpylll-0.2.3[${PYTHON_USEDEP}]
 	>=dev-python/mpmath-0.18[${PYTHON_USEDEP}]
 	>=dev-python/networkx-2.1[${PYTHON_USEDEP}]
-	>=dev-python/pexpect-4.0.1-r2[${PYTHON_USEDEP}]
+	>=dev-python/pexpect-4.2.1[${PYTHON_USEDEP}]
 	>=dev-python/rpy-2.3.8[${PYTHON_USEDEP}]
 	>=dev-python/sympy-1.1.1-r4[${PYTHON_USEDEP}]
 	media-gfx/tachyon[png]
 	jmol? ( sci-chemistry/sage-jmol-bin )
-	>=sci-libs/cddlib-094h[tools]
-	<sci-libs/cddlib-094j
-	>=sci-libs/scipy-0.19.1[${PYTHON_USEDEP}]
+	>=sci-libs/cddlib-094j[tools]
+	>=sci-libs/scipy-1.1.0[${PYTHON_USEDEP}]
 	sci-mathematics/flintqs
 	~sci-mathematics/gap-4.8.6
 	~sci-mathematics/gfan-0.6.2
@@ -196,7 +195,7 @@ python_prepare() {
 		bin/sage-num-threads.py
 
 	# remove developer and unsupported options
-	eapply "${FILESDIR}"/${PN}-8.3-exec.patch
+	eapply "${FILESDIR}"/${PN}-8.4-exec.patch
 	eprefixify bin/sage
 
 	# sage is getting its own system to have scripts that can use either python2 or 3
@@ -218,7 +217,7 @@ python_prepare() {
 	eapply "${FILESDIR}"/dt-r-no-readline.patch
 
 	# Remove sage's package management system, git capabilities and associated tests
-	eapply "${FILESDIR}"/${PN}-8.3-neutering.patch
+	eapply "${FILESDIR}"/${PN}-8.4-neutering.patch
 	cp -f "${FILESDIR}"/${PN}-7.3-package.py sage/misc/package.py
 	rm -f sage/misc/dist.py
 	rm -rf sage/dev
@@ -258,10 +257,12 @@ python_prepare() {
 	############################################################################
 
 	# sage on gentoo env.py
-	eapply "${FILESDIR}"/${PN}-8.1-env.patch
+	eapply "${FILESDIR}"/${PN}-8.4-env.patch
 	eprefixify sage/env.py
 	# fix library path of libSingular
-	sed -i "s:lib/libSingular:$(get_libdir)/libSingular:" \
+	sed -i \
+		-e "s:lib/libSingular:$(get_libdir)/libSingular:" \
+		-e "s:'lib':'$(get_libdir)':" \
 		sage/env.py
 
 	# sage-maxima.lisp really belong to /etc
