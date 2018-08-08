@@ -15,8 +15,7 @@ KEYWORDS=""
 
 DESCRIPTION="Math software for abstract and numerical computations"
 HOMEPAGE="http://www.sagemath.org"
-SRC_URI="mirror://sagemath/sage-icon.tar.bz2
-	mirror://sageupstream/threejs/threejs-r80.tar.gz"
+SRC_URI="mirror://sagemath/sage-icon.tar.bz2"
 
 LANGS="ca de en es fr hu it ja pt ru tr"
 
@@ -80,6 +79,7 @@ CDEPEND="dev-libs/gmp:0=
 	>=sci-mathematics/ratpoints-2.1.3
 	media-libs/gd[jpeg,png]
 	media-libs/libpng:0=
+	~media-gfx/threejs-sage-extension-80
 	>=sys-libs/readline-6.2
 	sys-libs/zlib
 	virtual/cblas
@@ -555,10 +555,6 @@ python_install_all(){
 
 	insinto /usr/share/sage
 	doins -r ext
-
-	# install offline threejs components for sage
-	insinto /usr/share/sage/threejs
-	doins "${WORKDIR}"/three.min.js "${WORKDIR}"/OrbitControls.js "${WORKDIR}"/LICENSE
 
 	# install links for the jupyter kernel
 	dosym ../../../sage/ext/notebook-ipython/logo-64x64.png /usr/share/jupyter/kernels/sagemath/logo-64x64.png
