@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+<maintainer type="person">
+<email>frp.bissey@gmail.com</email>
+<name>François Bissey</name>
+</maintainer>
+<longdescription lang="en">
+JavaScript 3D library. The aim of the project is to create an easy to use,
+lightweight, 3D library. The library provides "canvas", "svg", CSS3D and
+WebGL renderers.
+</longdescription>
+</pkgmetadata>
