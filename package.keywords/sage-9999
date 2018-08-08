@@ -77,6 +77,7 @@ dev-python/webassets
 dev-tex/tkz-berge
 dev-tex/tkz-graph
 media-gfx/tachyon
+~media-gfx/threejs-sage-extension-80
 sci-libs/cddlib
 sci-libs/dsdp
 ~sci-libs/fflas-ffpack-2.3.2
