@@ -89,19 +89,6 @@ index ef378dd..2d0f889 100644
  
  first_try = True
  
-diff --git a/sage/interfaces/gp.py b/sage/interfaces/gp.py
-index b14ee7a..cfd700f 100644
---- a/sage/interfaces/gp.py
-+++ b/sage/interfaces/gp.py
-@@ -251,7 +251,7 @@ class Gp(ExtraTabCompletion, Expect):
-         # list of directories where gp will look for scripts (only current working directory)
-         self._eval_line('default(path,".");')
-         # location of elldata, seadata, galdata
--        self._eval_line('default(datadir, "$GP_DATA_DIR");')
-+        self._eval_line('default(datadir, "$SAGE_LOCAL/share/pari");')
-         # executable for gp ?? help
-         self._eval_line('default(help, "gphelp -detex");')
-         # logfile disabled since Expect already logs
 diff --git a/sage/interfaces/jmoldata.py b/sage/interfaces/jmoldata.py
 index f58b8f1..9bdb0d3 100644
 --- a/sage/interfaces/jmoldata.py
