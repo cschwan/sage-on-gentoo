@@ -7,7 +7,7 @@ inherit flag-o-matic toolchain-funcs
 
 DESCRIPTION="computes Groebner fans and tropical varities"
 HOMEPAGE="http://home.math.au.dk/jensen/software/gfan/gfan.html"
-SRC_URI="http://home.math.au.dk/jensen/software/gfan/${PN}${PV}.tar.gz"
+SRC_URI="mirror://sageupstream/gfan/${PN}${PV}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
