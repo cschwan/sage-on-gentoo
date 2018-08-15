@@ -75,7 +75,7 @@ CDEPEND="dev-libs/gmp:0=
 	=sci-libs/brial-1.2*
 	=dev-python/sage-brial-1*[${PYTHON_USEDEP}]
 	>=sci-mathematics/rw-0.7
-	~sci-mathematics/singular-4.1.0_p3[readline]
+	~sci-mathematics/singular-4.1.1_p2[readline]
 	>=sci-mathematics/ratpoints-2.1.3
 	media-libs/gd[jpeg,png]
 	media-libs/libpng:0=
@@ -211,10 +211,6 @@ python_prepare() {
 	# Patches to the sage library
 	#
 	###############################
-
-	# readline 7 breaks the interaction between R and sage.
-	# patch should be sage with readline 6. Adopted from Debian
-	eapply "${FILESDIR}"/dt-r-no-readline.patch
 
 	# Remove sage's package management system, git capabilities and associated tests
 	eapply "${FILESDIR}"/${PN}-8.4-neutering.patch
