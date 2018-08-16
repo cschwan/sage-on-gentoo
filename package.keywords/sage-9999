@@ -101,7 +101,7 @@ sci-libs/zn_poly
 sci-mathematics/cu2
 sci-mathematics/cubex
 sci-mathematics/dikcube
->=sci-mathematics/eclib-20170122
+~sci-mathematics/eclib-20171002
 ~sci-mathematics/gmp-ecm-7.0.4
 sci-mathematics/flintqs
 ~sci-mathematics/flint-2.4.5
