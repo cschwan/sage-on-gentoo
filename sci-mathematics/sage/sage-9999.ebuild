@@ -168,19 +168,6 @@ python_prepare() {
 	# Do not rely on os.environ to get SAGE_SRC
 	eapply "${FILESDIR}"/${PN}-8.1-sage-cython.patch
 
-	# make .desktop file
-	cat > "${T}"/sage-sage.desktop <<-EOF
-		[Desktop Entry]
-		Name=Sage Shell
-		Type=Application
-		Comment=Math software for abstract and numerical computations
-		Exec=sage
-		TryExec=sage
-		Icon=sage
-		Categories=Education;Science;Math;
-		Terminal=true
-	EOF
-
 	# Remove useless SAGE_ROOT and SAGE_LOCAL
 	sed -i \
 		-e "s:\$SAGE_ROOT/local/bin/::" \
@@ -551,7 +538,17 @@ python_install_all(){
 
 	if use X ; then
 		doicon "${WORKDIR}"/sage.svg
-		domenu "${T}"/sage-sage.desktop
+		newmenu - sage-sage.desktop <<-EOF
+			[Desktop Entry]
+			Name=Sage Shell
+			Type=Application
+			Comment=Math software for abstract and numerical computations
+			Exec=sage
+			TryExec=sage
+			Icon=sage
+			Categories=Education;Science;Math;
+			Terminal=true
+		EOF
 	fi
 
 	insinto /usr/share/sage
