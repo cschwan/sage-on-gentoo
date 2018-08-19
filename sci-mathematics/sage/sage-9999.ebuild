@@ -51,7 +51,7 @@ CDEPEND="dev-libs/gmp:0=
 	>=dev-python/matplotlib-2.1.1[${PYTHON_USEDEP}]
 	<=dev-python/matplotlib-2.3[${PYTHON_USEDEP}]
 	=dev-python/ipywidgets-7*[${PYTHON_USEDEP}]
-	>=sci-mathematics/eclib-20170330[flint]
+	>=sci-mathematics/eclib-20180815[flint]
 	~sci-mathematics/gmp-ecm-7.0.4[-openmp]
 	>=sci-mathematics/flint-2.5.2:=[ntl]
 	~sci-libs/givaro-4.0.4
@@ -300,7 +300,7 @@ python_prepare() {
 	# https://trac.sagemath.org/ticket/23748 introduce memory limit for doctests
 	# it has a knowck down effect on various doctest in pure Gentoo as well as prefix.
 	# Disabling until it is improved
-	eapply "${FILESDIR}"/${PN}-8.2-doctest_memory.patch
+	# eapply "${FILESDIR}"/${PN}-8.2-doctest_memory.patch
 
 	# fix all.py
 	eapply "${FILESDIR}"/${PN}-7.2-all.py.patch
