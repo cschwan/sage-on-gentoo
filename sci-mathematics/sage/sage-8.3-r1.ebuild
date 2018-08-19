@@ -209,6 +209,9 @@ python_prepare() {
 	#
 	###############################
 
+	# C++11 compatibility in eclib wrappers
+	eapply "${FILESDIR}"/sage-8.3-eclib-c++11.patch
+
 	# readline 7 breaks the interaction between R and sage.
 	# patch should be sage with readline 6. Adopted from Debian
 	eapply "${FILESDIR}"/dt-r-no-readline.patch
