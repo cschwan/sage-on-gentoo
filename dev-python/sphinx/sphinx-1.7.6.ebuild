@@ -56,10 +56,6 @@ DEPEND="${RDEPEND}
 		virtual/python-enum34[${PYTHON_USEDEP}]
 	)"
 
-PATCHES=(
-	"${FILESDIR}"/PR5040.patch
-	)
-
 S="${WORKDIR}/${P^}"
 
 python_prepare_all() {
