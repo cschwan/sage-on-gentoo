@@ -73,6 +73,7 @@ dev-python/simplegeneric
 dev-python/webassets
 ~dev-python/werkzeug-0.9.6
 ~dev-python/sphinx-1.7.5
+~dev-python/sphinx-1.7.6
 ~dev-tex/sage-latex-3.0
 dev-tex/tkz-berge
 dev-tex/tkz-graph
