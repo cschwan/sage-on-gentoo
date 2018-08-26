@@ -51,7 +51,7 @@ CDEPEND="dev-libs/gmp:0=
 	>=dev-python/matplotlib-2.1.1[${PYTHON_USEDEP}]
 	<=dev-python/matplotlib-2.3[${PYTHON_USEDEP}]
 	=dev-python/ipywidgets-7*[${PYTHON_USEDEP}]
-	>=sci-mathematics/eclib-20170330[flint]
+	>=sci-mathematics/eclib-20180815[flint]
 	~sci-mathematics/gmp-ecm-7.0.4[-openmp]
 	>=sci-mathematics/flint-2.5.2:=[ntl]
 	~sci-libs/givaro-4.0.4
@@ -75,7 +75,7 @@ CDEPEND="dev-libs/gmp:0=
 	=sci-libs/brial-1.2*
 	=dev-python/sage-brial-1*[${PYTHON_USEDEP}]
 	>=sci-mathematics/rw-0.7
-	~sci-mathematics/singular-4.1.0_p3[readline]
+	~sci-mathematics/singular-4.1.1_p2[readline]
 	>=sci-mathematics/ratpoints-2.1.3
 	media-libs/gd[jpeg,png]
 	media-libs/libpng:0=
@@ -199,10 +199,6 @@ python_prepare() {
 	#
 	###############################
 
-	# readline 7 breaks the interaction between R and sage.
-	# patch should be sage with readline 6. Adopted from Debian
-	eapply "${FILESDIR}"/dt-r-no-readline.patch
-
 	# Remove sage's package management system, git capabilities and associated tests
 	eapply "${FILESDIR}"/${PN}-8.4-neutering.patch
 	cp -f "${FILESDIR}"/${PN}-7.3-package.py sage/misc/package.py
@@ -304,7 +300,7 @@ python_prepare() {
 	# https://trac.sagemath.org/ticket/23748 introduce memory limit for doctests
 	# it has a knowck down effect on various doctest in pure Gentoo as well as prefix.
 	# Disabling until it is improved
-	eapply "${FILESDIR}"/${PN}-8.2-doctest_memory.patch
+	# eapply "${FILESDIR}"/${PN}-8.2-doctest_memory.patch
 
 	# fix all.py
 	eapply "${FILESDIR}"/${PN}-7.2-all.py.patch

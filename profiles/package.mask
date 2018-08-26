@@ -12,3 +12,4 @@ sci-mathematics/ecm
 >=dev-libs/ntl-11.0.0
 # keeping it under wrap for now
 >=sci-mathematics/pari-2.11.0
+>=sci-libs/openblas-0.3.0

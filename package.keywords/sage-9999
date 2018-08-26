@@ -102,7 +102,7 @@ sci-libs/zn_poly
 sci-mathematics/cu2
 sci-mathematics/cubex
 sci-mathematics/dikcube
-~sci-mathematics/eclib-20171002
+~sci-mathematics/eclib-20180815
 ~sci-mathematics/gmp-ecm-7.0.4
 sci-mathematics/flintqs
 ~sci-mathematics/flint-2.4.5
@@ -134,7 +134,7 @@ sci-mathematics/rw
 ~sci-mathematics/sage-data-graphs-20161026
 ~sci-mathematics/sage-data-polytopes_db-20170220
 ~sci-mathematics/sage-notebook-1.0.3
-~sci-mathematics/singular-4.1.0_p3
+~sci-mathematics/singular-4.1.1_p2
 sci-mathematics/sympow
 ~www-servers/tornado-3.1.1
 www-misc/thebe
