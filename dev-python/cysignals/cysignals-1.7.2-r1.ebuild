@@ -17,7 +17,7 @@ KEYWORDS="~x86 ~amd64"
 IUSE=""
 
 DEPEND=">=dev-python/cython-0.25
-	>=sci-mathematics/pari-2.9.0"
+	>=sci-mathematics/pari-2.9.0:="
 RDEPEND="${DEPEND}"
 
 python_test(){
