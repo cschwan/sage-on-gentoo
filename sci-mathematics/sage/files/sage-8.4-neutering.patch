@@ -1,8 +1,8 @@
 diff --git a/doc/en/reference/misc/index.rst b/doc/en/reference/misc/index.rst
-index 8b438ad..e5c2ea7 100644
+index 8a5e6db..b88bea6 100644
 --- a/doc/en/reference/misc/index.rst
 +++ b/doc/en/reference/misc/index.rst
-@@ -232,8 +232,6 @@ Distribution
+@@ -231,8 +231,6 @@ Distribution
  .. toctree::
     :maxdepth: 1
  
@@ -12,10 +12,10 @@ index 8b438ad..e5c2ea7 100644
     sage/features/bliss
     sage/features/csdp
 diff --git a/sage/doctest/control.py b/sage/doctest/control.py
-index 48c875f..855713f 100644
+index 9d972b6..f420cdc 100644
 --- a/sage/doctest/control.py
 +++ b/sage/doctest/control.py
-@@ -346,22 +346,6 @@ class DocTestController(SageObject):
+@@ -335,22 +335,6 @@ class DocTestController(SageObject):
                  # Special case to run all optional tests
                  options.optional = True
              else:
@@ -35,11 +35,11 @@ index 48c875f..855713f 100644
 -                    if not optionaltag_regex.search(o):
 -                        raise ValueError('invalid optional tag {!r}'.format(o))
 -
-                 options.optional |= auto_optional_tags
+                 if "sage" in options.optional:
+                     options.optional |= auto_optional_tags
  
-         self.options = options
 diff --git a/sage/doctest/test.py b/sage/doctest/test.py
-index 9f22451..2283137 100644
+index d43c91f..73d248f 100644
 --- a/sage/doctest/test.py
 +++ b/sage/doctest/test.py
 @@ -463,14 +463,6 @@ Optional tests are run correctly::
@@ -58,7 +58,7 @@ index 9f22451..2283137 100644
  
      sage: F = tmp_filename()
 diff --git a/sage/misc/all.py b/sage/misc/all.py
-index acaa424..f0f1d96 100644
+index 5cd23ca..614f0aa 100644
 --- a/sage/misc/all.py
 +++ b/sage/misc/all.py
 @@ -46,12 +46,6 @@ from .mrange import xmrange, mrange, xmrange_iter, mrange_iter, cartesian_produc
