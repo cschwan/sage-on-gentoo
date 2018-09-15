@@ -38,7 +38,6 @@ DEPEND="${RDEPEND}
 
 PATCHES=(
 	"${FILESDIR}"/${PN}-1.2.2-gsl_lapack.patch
-	"${FILESDIR}"/${PN}-1.4.9.69-broken_integrate_test.patch
 	)
 
 S="${WORKDIR}/${PN}-${MY_PV}"
