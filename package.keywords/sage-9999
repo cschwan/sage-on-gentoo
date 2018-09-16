@@ -65,7 +65,7 @@ dev-python/rpy
 dev-python/simplegeneric
 ~dev-python/six-1.11.0
 ~dev-python/speaklater-1.3
->=dev-python/sympy-1.1.1-r4
+~dev-python/sympy-1.2
 =dev-python/twisted-names-15*
 =dev-python/twisted-core-15*
 =dev-python/twisted-mail-15*
