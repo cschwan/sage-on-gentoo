@@ -1,4 +1,4 @@
-# Copyright 1999-2017 Gentoo Foundation
+# Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=6
@@ -13,7 +13,7 @@ SRC_URI="http://www-fourier.ujf-grenoble.fr/~parisse/debian/dists/stable/main/so
 LICENSE="GPL-2"
 
 SLOT="0"
-KEYWORDS="~x86 ~amd64"
+KEYWORDS="~amd64 ~x86"
 LANGS="el en es fr pt"
 IUSE="ao doc examples fltk gc static-libs"
 for X in ${LANGS} ; do
