@@ -28,6 +28,7 @@ RDEPEND="dev-libs/gmp:=[cxx]
 	sci-libs/mpfi
 	sci-libs/gsl:=
 	>=sci-mathematics/pari-2.7:=
+	sci-mathematics/glpk
 	dev-libs/ntl:=
 	virtual/lapack
 	gc? ( dev-libs/boehm-gc )"

@@ -28,8 +28,10 @@ RDEPEND="dev-libs/gmp:=[cxx]
 	sci-libs/mpfi
 	sci-libs/gsl:=
 	>=sci-mathematics/pari-2.7:=
+	sci-mathematics/glpk
 	dev-libs/ntl:=
 	virtual/lapack
+	net-misc/curl
 	gc? ( dev-libs/boehm-gc )"
 
 DEPEND="${RDEPEND}
@@ -45,7 +47,12 @@ src_prepare(){
 	if !(use fltk); then
 		eapply "${FILESDIR}"/${PN}-1.2.2-test_with_nofltk.patch
 	fi
+	if has_version ">=sci-mathematics/pari-2.11.0" ; then
+		eapply "${FILESDIR}"/pari_2_11.patch
+	fi
 	default
+	# remove non-existant include like arch for now
+	sed -e '/curlbuild/d' -i src/misc.cc
 
 	eautoreconf
 }
