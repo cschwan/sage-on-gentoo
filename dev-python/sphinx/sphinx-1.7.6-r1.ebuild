@@ -3,10 +3,10 @@
 
 EAPI=6
 
-PYTHON_COMPAT=( python2_7 python3_{4,5,6} pypy{,3} )
+PYTHON_COMPAT=( python2_7 python3_{4,5,6,7} pypy{,3} )
 PYTHON_REQ_USE="threads(+)"
 
-inherit distutils-r1 eutils versionator
+inherit distutils-r1
 
 DESCRIPTION="Python documentation generator"
 HOMEPAGE="http://www.sphinx-doc.org/"
@@ -14,7 +14,7 @@ SRC_URI="mirror://pypi/S/${PN^}/${P^}.tar.gz"
 
 LICENSE="BSD"
 SLOT="0"
-KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~hppa ~ia64 ~ppc ~ppc64 ~sparc ~x86 ~amd64-fbsd ~amd64-linux ~x86-linux ~x64-solaris"
+KEYWORDS="~alpha ~amd64 ~amd64-fbsd ~amd64-linux ~arm ~arm64 ~hppa ~ia64 ~m68k ~mips ~ppc ~ppc-macos ~ppc64 ~s390 ~sh ~sparc ~x64-macos ~x64-solaris ~x86 ~x86-fbsd ~x86-linux ~x86-macos"
 IUSE="doc latex net test"
 
 RDEPEND="
@@ -25,9 +25,12 @@ RDEPEND="
 	dev-python/imagesize[${PYTHON_USEDEP}]
 	>=dev-python/jinja-2.3[${PYTHON_USEDEP}]
 	>=dev-python/pygments-2.0.1-r1[${PYTHON_USEDEP}]
-	dev-python/requests[${PYTHON_USEDEP}]
+	>=dev-python/requests-2.0.0[${PYTHON_USEDEP}]
 	>=dev-python/six-1.5[${PYTHON_USEDEP}]
 	>=dev-python/snowballstemmer-1.1[${PYTHON_USEDEP}]
+	>=dev-python/sphinx_rtd_theme-0.1[${PYTHON_USEDEP}]
+	<dev-python/sphinx_rtd_theme-2.0[${PYTHON_USEDEP}]
+	dev-python/packaging[${PYTHON_USEDEP}]
 	dev-python/sphinxcontrib-websupport[${PYTHON_USEDEP}]
 	virtual/python-typing[${PYTHON_USEDEP}]
 	latex? (
@@ -41,14 +44,11 @@ RDEPEND="
 	)"
 DEPEND="${RDEPEND}
 	dev-python/setuptools[${PYTHON_USEDEP}]
-	dev-python/packaging[${PYTHON_USEDEP}]
 	test? (
 		dev-python/sphinxcontrib-websupport[${PYTHON_USEDEP}]
-		dev-python/flake8[${PYTHON_USEDEP}]
 		dev-python/html5lib[${PYTHON_USEDEP}]
 		dev-python/mock[${PYTHON_USEDEP}]
 		dev-python/pytest[${PYTHON_USEDEP}]
-		dev-python/pytest-cov[${PYTHON_USEDEP}]
 		dev-python/simplejson[${PYTHON_USEDEP}]
 		>=dev-python/sqlalchemy-0.9[${PYTHON_USEDEP}]
 		>=dev-python/whoosh-2.0[${PYTHON_USEDEP}]
@@ -62,39 +62,23 @@ python_prepare_all() {
 	# remove tests that fail due to network-sandbox
 	rm tests/test_websupport.py || die "Failed to remove web tests"
 	rm tests/test_build_linkcheck.py || die "Failed to remove web tests"
+	sed -i -e 's:test_latex_remote_images:_&:' tests/test_build_latex.py || die
+
+	# fails when additional sphinx themes are installed
+	sed -i -e 's:test_theme_api:_&:' tests/test_theming.py || die
 
 	distutils-r1_python_prepare_all
 }
 
 python_compile_all() {
 	if use doc; then
-		emake -C doc SPHINXBUILD='"${EPYTHON}" "${S}/sphinx/cmd/build.py"' html
-		HTML_DOCS=( doc/_build/html/. )
+		esetup.py build_sphinx
+		HTML_DOCS=( "${BUILD_DIR}"/sphinx/html/. )
 	fi
 }
 
 python_test() {
 	mkdir -p "${BUILD_DIR}/sphinx_tempdir" || die
 	local -x SPHINX_TEST_TEMPDIR="${BUILD_DIR}/sphinx_tempdir"
-	cp -r -l tests "${BUILD_DIR}"/ || die "Failed to copy tests"
-	cp Makefile "${BUILD_DIR}"/ || die "Failed to copy Makefile"
-	emake test
-}
-
-pkg_postinst() {
-	replacing_python_eclass() {
-		local pv
-		for pv in ${REPLACING_VERSIONS}; do
-			if ! version_is_at_least 1.1.3-r4 ${pv}; then
-				return 0
-			fi
-		done
-
-		return 1
-	}
-
-	if replacing_python_eclass; then
-		ewarn "Replaced a very old sphinx version. If you are"
-		ewarn "experiencing problems, please re-emerge sphinx."
-	fi
+	py.test -vv || die "Tests fail with ${EPYTHON}"
 }
