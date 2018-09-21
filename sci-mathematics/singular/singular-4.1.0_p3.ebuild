@@ -1,17 +1,17 @@
-# Copyright 1999-2017 Gentoo Foundation
+# Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI=7
 
 PYTHON_COMPAT=( python2_7 )
 
-inherit autotools elisp-common flag-o-matic prefix python-single-r1 versionator
+inherit autotools elisp-common flag-o-matic prefix python-single-r1
 
 MY_PN=Singular
-MY_PV=$(delete_version_separator 3)
+MY_PV=$(ver_rs 3 '')
 # Consistency is different...
-MY_DIR2=$(get_version_component_range 1-3 ${PV})
-MY_DIR=$(replace_all_version_separators '-' ${MY_DIR2})
+MY_DIR2=$(ver_cut 1-3 ${PV})
+MY_DIR=$(ver_rs 1- '-' ${MY_DIR2})
 
 DESCRIPTION="Computer algebra system for polynomial computations"
 HOMEPAGE="http://www.singular.uni-kl.de/"
@@ -27,8 +27,7 @@ RDEPEND="dev-libs/gmp:0
 	emacs? ( >=virtual/emacs-22 )
 	sci-mathematics/flint
 	sci-libs/cddlib
-	python? ( ${PYTHON_DEPS} )
-	!!sci-libs/libsingular"
+	python? ( ${PYTHON_DEPS} )"
 
 DEPEND="${RDEPEND}
 	dev-lang/perl
