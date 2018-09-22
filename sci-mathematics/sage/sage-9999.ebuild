@@ -1,7 +1,7 @@
 # Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI=7
 
 PYTHON_COMPAT=( python2_7 python3_6 )
 PYTHON_REQ_USE="readline,sqlite"
@@ -102,7 +102,7 @@ RDEPEND="${CDEPEND}
 	>=dev-python/networkx-2.1[${PYTHON_USEDEP}]
 	>=dev-python/pexpect-4.2.1[${PYTHON_USEDEP}]
 	>=dev-python/rpy-2.3.8[${PYTHON_USEDEP}]
-	=dev-python/sympy-1.1.1-r4[${PYTHON_USEDEP}]
+	~dev-python/sympy-1.2[${PYTHON_USEDEP}]
 	media-gfx/tachyon[png]
 	jmol? ( sci-chemistry/sage-jmol-bin )
 	>=sci-libs/cddlib-094j[tools]
