@@ -324,9 +324,6 @@ python_prepare() {
 	# alternatively in SAGE_LOCAL/bin
 	eapply "${FILESDIR}"/${PN}-8.3-SAGE_ROOT.patch
 
-	# Do not check build documentation against the source
-	eapply "${FILESDIR}"/${PN}-8.4-sagedoc.patch
-
 	# remove the test trying to pre-compile sage's .py file with python3
 	rm sage/tests/py3_syntax.py || die "cannot remove py3_syntax test"
 
