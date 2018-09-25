@@ -30,9 +30,7 @@ RDEPEND="app-arch/bzip2:0=
 	virtual/libintl
 	berkdb? ( || (
 		sys-libs/db:5.3
-		sys-libs/db:5.2
 		sys-libs/db:5.1
-		sys-libs/db:5.0
 		sys-libs/db:4.8
 		sys-libs/db:4.7
 		sys-libs/db:4.6
@@ -105,12 +103,12 @@ src_prepare() {
 		"${FILESDIR}"/${PN}-2.7.12-issue27177.patch
 	)
 
-        # sage patches
-        # http://bugs.python.org/issue25750
+	# sage patches
+	# http://bugs.python.org/issue25750
 	# descr_ref.patch
-        # http://bugs.python.org/issue27177
-        # upstream python treats it as new feature for 3.6 only
-        # python-2.7.12-issue27177.patch
+	# http://bugs.python.org/issue27177
+	# upstream python treats it as new feature for 3.6 only
+	# python-2.7.12-issue27177.patch
 
 	default
 
