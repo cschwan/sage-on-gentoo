@@ -1,11 +1,9 @@
-# Copyright 1999-2017 Gentoo Foundation
+# Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI=7
 
-inherit versionator
-
-MY_PV=$(replace_version_separator 1 'r' $(delete_version_separator 2 ) )
+MY_PV=$(ver_rs 1 'r' $(ver_rs 2 ''))
 DESCRIPTION="A GAP Interface to the Atlas of Group Representations"
 HOMEPAGE="http://www.gap-system.org/Packages/${PN}.html"
 SRC_URI="http://www.gap-system.org/pub/gap/gap4/tar.bz2/packages/${PN}${MY_PV}.tar.bz2"

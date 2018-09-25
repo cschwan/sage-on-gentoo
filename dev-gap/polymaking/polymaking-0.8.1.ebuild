@@ -1,11 +1,9 @@
-# Copyright 1999-2017 Gentoo Foundation
+# Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI=7
 
-inherit versionator
-
-MY_PV=$(replace_all_version_separators '_' )
+MY_PV=$(ver_rs 1- '_' )
 DESCRIPTION="Interfacing the geometry software polymake"
 HOMEPAGE="http://www.gap-system.org/Packages/${PN}.html"
 SRC_URI="http://www.gap-system.org/pub/gap/gap4/tar.bz2/packages/${PN}${MY_PV}.tar.bz2"
