@@ -1,14 +1,14 @@
 # Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI=7
 
 PYTHON_COMPAT=( python2_7 python3_{4,5,6} )
 
-inherit distutils-r1 flag-o-matic versionator
+inherit distutils-r1 flag-o-matic
 
 MY_PN="${PN}2"
-MY_P="${MY_PN}-$(get_version_component_range 1-3)a2"
+MY_P="${MY_PN}-$(ver_cut 1-3)a2"
 
 DESCRIPTION="Python bindings for GMP, MPC, MPFR and MPIR libraries"
 HOMEPAGE="https://github.com/aleaxit/gmpy"
