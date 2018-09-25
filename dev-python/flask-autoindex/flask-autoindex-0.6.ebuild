@@ -1,4 +1,4 @@
-# Copyright 1999-2017 Gentoo Foundation
+# Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=5
@@ -14,7 +14,7 @@ HOMEPAGE="http://pythonhosted.org/Flask-AutoIndex"
 SRC_URI="mirror://pypi/F/${MY_PN}/${MY_P}.tar.gz"
 LICENSE="BSD"
 SLOT="0"
-KEYWORDS="~amd64 ~amd64-linux ~ppc-macos ~x86-macos ~x64-macos"
+KEYWORDS="~amd64 ~amd64-linux ~ppc-macos ~x64-macos ~x86-macos"
 IUSE=""
 
 RDEPEND=">=dev-python/flask-0.8[${PYTHON_USEDEP}]

@@ -1,4 +1,4 @@
-# Copyright 1999-2017 Gentoo Foundation
+# Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=6
@@ -11,7 +11,7 @@ SRC_URI="https://gforge.inria.fr/frs/download.php/file/36224/${P}.tar.gz"
 
 LICENSE="GPL-3 LGPL-3"
 SLOT="0"
-KEYWORDS="~amd64 ~x86 ~x86-macos ~ppc-macos ~x64-macos"
+KEYWORDS="~amd64 ~x86 ~ppc-macos ~x64-macos ~x86-macos"
 IUSE="+custom-tune gwnum -openmp static-libs cpu_flags_x86_sse2"
 
 DEPEND="

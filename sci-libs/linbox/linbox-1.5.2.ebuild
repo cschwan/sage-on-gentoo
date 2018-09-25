@@ -11,7 +11,7 @@ SRC_URI="https://github.com/linbox-team/${PN}/releases/download/v${PV}/${P}.tar.
 
 LICENSE="LGPL-2.1"
 SLOT="0"
-KEYWORDS="~amd64 ~x86 ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~x64-macos"
+KEYWORDS="~amd64 ~x86 ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos"
 IUSE="sage static-libs openmp opencl"
 
 RESTRICT="mirror"
