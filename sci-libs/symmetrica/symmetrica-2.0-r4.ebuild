@@ -1,11 +1,11 @@
 # Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI=7
 
-inherit toolchain-funcs versionator
+inherit toolchain-funcs
 
-MY_P="SYM$(replace_all_version_separators '_')"
+MY_P="SYM$(ver_rs 1- '_')"
 
 DESCRIPTION="A collection of routine to handle a variety of topics"
 HOMEPAGE="http://www.neu.uni-bayreuth.de/de/Uni_Bayreuth/Fakultaeten/1_Mathematik_Physik_und_Informatik/Fachgruppe_Informatik/prof_diskrete_algorithmen/en/research/SYMMETRICA/index.html"
