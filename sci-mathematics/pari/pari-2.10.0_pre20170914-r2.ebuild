@@ -13,7 +13,7 @@ EGIT_COMMIT=1280-g88fb5b3
 
 LICENSE="GPL-2"
 SLOT="0/0"
-KEYWORDS="~alpha ~amd64 ~hppa ~mips ~ppc ~ppc64 ~sparc ~x86 ~amd64-linux ~x86-fbsd ~x86-linux ~x86-macos ~x86-solaris"
+KEYWORDS="~alpha ~amd64 ~hppa ~mips ~ppc ~ppc64 ~sparc ~x86 ~x86-fbsd ~amd64-linux ~x86-linux ~x86-macos ~x86-solaris"
 IUSE="data doc fltk gmp threads X"
 
 RDEPEND="
