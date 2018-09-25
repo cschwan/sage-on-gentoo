@@ -1,12 +1,9 @@
-# Copyright 1999-2017 Gentoo Foundation
+# Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=5
+EAPI=7
 
-inherit versionator
-
-MY_PV=$(replace_version_separator 2 'r')
-MY_PV=$(delete_version_separator 1 ${MY_PV})
+MY_PV=$(ver_rs 1 '' $(ver_rs 2 'r'))
 
 DESCRIPTION="Computing automorphism groups of graphs and digraphs"
 HOMEPAGE="http://pallini.di.uniroma1.it/"
