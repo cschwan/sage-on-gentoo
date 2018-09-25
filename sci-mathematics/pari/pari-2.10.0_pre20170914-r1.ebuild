@@ -3,7 +3,7 @@
 
 EAPI=6
 
-inherit git-r3 flag-o-matic toolchain-funcs versionator
+inherit git-r3 flag-o-matic toolchain-funcs
 
 DESCRIPTION="Computer-aided number theory C library and tools"
 HOMEPAGE="http://pari.math.u-bordeaux.fr/"
