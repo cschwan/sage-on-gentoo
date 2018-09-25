@@ -1,12 +1,10 @@
 # Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
-
-inherit versionator
+EAPI=7
 
 MY_PN="combinatorial_designs"
-MY_P="${MY_PN}-$(replace_version_separator 1 '.')"
+MY_P="${MY_PN}-$(ver_rs 1 '.')"
 
 DESCRIPTION="Data for Combinatorial Designs"
 HOMEPAGE="http://www.sagemath.org"
