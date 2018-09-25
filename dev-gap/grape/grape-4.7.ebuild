@@ -1,11 +1,11 @@
-# Copyright 1999-2017 Gentoo Foundation
+# Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI=7
 
-inherit prefix versionator
+inherit prefix
 
-MY_PV=$(replace_version_separator 1 'r' )
+MY_PV=$(ver_rs 1 'r' )
 DESCRIPTION="GRaph Algorithms using PErmutation groups"
 HOMEPAGE="http://www.gap-system.org/Packages/${PN}.html"
 SRC_URI="http://www.gap-system.org/pub/gap/gap4/tar.bz2/packages/${PN}${MY_PV}.tar.bz2"
@@ -30,8 +30,8 @@ src_prepare(){
 	default
 
 	rm -f configure \
- 		Makefile \
- 		Makefile.in
+		Makefile \
+		Makefile.in
 
 	local nauty="true"
 	if use bliss ; then
