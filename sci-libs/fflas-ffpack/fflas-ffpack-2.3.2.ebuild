@@ -1,4 +1,4 @@
-# Copyright 1999-2017 Gentoo Foundation
+# Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=6
@@ -11,7 +11,7 @@ SRC_URI="https://github.com/linbox-team/${PN}/releases/download/v${PV}/${P}.tar.
 
 LICENSE="LGPL-2.1"
 SLOT="0"
-KEYWORDS="~amd64 ~x86 ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~x64-macos"
+KEYWORDS="~amd64 ~x86 ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos"
 IUSE="static-libs openmp cpu_flags_x86_sse4_1 cpu_flags_x86_avx cpu_flags_x86_avx2 bindist"
 
 REQUIRED_USE="bindist? ( !cpu_flags_x86_sse4_1 !cpu_flags_x86_avx !cpu_flags_x86_avx2 )"

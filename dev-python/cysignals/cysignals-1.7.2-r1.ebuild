@@ -13,7 +13,7 @@ SRC_URI="https://github.com/sagemath/cysignals/releases/download/${PV}/${P}.tar.
 
 LICENSE="LGPL-3+"
 SLOT="0"
-KEYWORDS="~x86 ~amd64"
+KEYWORDS="~amd64 ~x86"
 IUSE=""
 
 DEPEND=">=dev-python/cython-0.25
