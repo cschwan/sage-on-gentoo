@@ -33,7 +33,7 @@ DEPEND=">=dev-python/pexpect-4.0.1-r1[${PYTHON_USEDEP}]
 	)
 	>=dev-python/jinja-2.5.5[${PYTHON_USEDEP}]
 	>=dev-python/docutils-0.5[${PYTHON_USEDEP}]
-	dev-python/flask[${PYTHON_USEDEP}]
+	<dev-python/flask-1.0.0[${PYTHON_USEDEP}]
 	>=dev-python/flask-autoindex-0.5[${PYTHON_USEDEP}]
 	>=dev-python/flask-openid-1.2.3[${PYTHON_USEDEP}]
 	dev-python/flask-oldsessions[${PYTHON_USEDEP}]
