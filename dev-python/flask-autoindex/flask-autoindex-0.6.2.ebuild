@@ -17,7 +17,7 @@ SLOT="0"
 KEYWORDS="~amd64 ~amd64-linux ~ppc-macos ~x64-macos ~x86-macos"
 IUSE=""
 
-RDEPEND=">=dev-python/flask-1.0[${PYTHON_USEDEP}]
+RDEPEND=">=dev-python/flask-0.8[${PYTHON_USEDEP}]
 	dev-python/flask-silk[${PYTHON_USEDEP}]
 	dev-python/future[${PYTHON_USEDEP}]"
 DEPEND="${RDEPEND}"
