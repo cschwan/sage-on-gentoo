@@ -8,7 +8,7 @@ PYTHON_REQ_USE="readline,sqlite"
 
 inherit desktop distutils-r1 flag-o-matic multiprocessing prefix toolchain-funcs git-r3
 
-EGIT_REPO_URI="https://github.com/sagemath/sage.git"
+EGIT_REPO_URI="https://github.com/vbraun/sage.git"
 EGIT_BRANCH=develop
 EGIT_CHECKOUT_DIR="${WORKDIR}/${P}"
 KEYWORDS=""
@@ -323,9 +323,6 @@ python_prepare() {
 	#'sage' is not in SAGE_ROOT, but in PATH or 
 	# alternatively in SAGE_LOCAL/bin
 	eapply "${FILESDIR}"/${PN}-8.3-SAGE_ROOT.patch
-
-	# Do not check build documentation against the source
-	eapply "${FILESDIR}"/${PN}-8.4-sagedoc.patch
 
 	# remove the test trying to pre-compile sage's .py file with python3
 	rm sage/tests/py3_syntax.py || die "cannot remove py3_syntax test"

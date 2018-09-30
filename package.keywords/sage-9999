@@ -31,7 +31,7 @@ dev-python/flask-oldsessions
 ~dev-python/flask-silk-0.2
 dev-python/terminado
 dev-python/mistune
-~dev-python/numpy-1.13.3
+~dev-python/numpy-1.13.3::sage-on-gentoo
 ~dev-python/networkx-2.1
 dev-python/cycler
 =dev-python/cypari2-1.2*
