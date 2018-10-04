@@ -1,7 +1,7 @@
 # Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI=7
 
 PYTHON_COMPAT=( python2_7 python3_{4,5,6} )
 inherit distutils-r1
@@ -15,9 +15,8 @@ SLOT="0"
 KEYWORDS="~amd64 ~x86"
 IUSE=""
 
-DEPEND=">=sci-mathematics/pari-2.9.0[gmp,doc]
-	<sci-mathematics/pari-2.11.0
-	dev-python/cython
+DEPEND=">=sci-mathematics/pari-2.10.0_pre20170914:=[gmp,doc]
+	>=dev-python/cython-0.28
 	dev-python/cysignals"
 RDEPEND="${DEPEND}"
 
