@@ -1,4 +1,4 @@
-# Copyright 1999-2018 Gentoo Foundation
+# Copyright 1999-2018 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=6
@@ -28,6 +28,8 @@ QA_PREBUILT="*"
 S="${WORKDIR}"/${MY_SP}
 
 src_prepare(){
+	default
+
 	rm jmol.bat jmol.mac
 
 	# jsmol is zipped inside the tarball
