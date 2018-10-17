@@ -1,4 +1,4 @@
-# Copyright 1999-2018 Gentoo Foundation
+# Copyright 1999-2018 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=6
@@ -17,7 +17,7 @@ SRC_URI="https://github.com/BRiAl/BRiAl/releases/download/${PV}/${MY_P}.tar.bz2"
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64 ~amd64-linux ~x86-linux ~x64-macos ~x86-macos"
-IUSE="doc static-libs"
+IUSE=""
 
 RESTRICT="mirror"
 
