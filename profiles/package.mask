@@ -13,3 +13,4 @@ sci-mathematics/ecm
 # keeping it under wrap for now
 >=sci-libs/openblas-0.3.0
 >=sci-mathematics/giac-1.5.0.0
+>=sci-mathematics/sage-notebook-1.1.0
