@@ -293,11 +293,6 @@ python_prepare() {
 	# Fixes to doctests
 	############################################################################
 
-	# https://trac.sagemath.org/ticket/23748 introduce memory limit for doctests
-	# it has a knowck down effect on various doctest in pure Gentoo as well as prefix.
-	# Disabling until it is improved
-	# eapply "${FILESDIR}"/${PN}-8.2-doctest_memory.patch
-
 	# fix all.py
 	eapply "${FILESDIR}"/${PN}-7.2-all.py.patch
 	sed -i \
