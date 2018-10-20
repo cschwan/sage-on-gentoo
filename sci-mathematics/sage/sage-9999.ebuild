@@ -138,8 +138,7 @@ CHECKREQS_DISK_BUILD="8G"
 
 S="${WORKDIR}/${P}/src"
 
-REQUIRED_USE="doc-html? ( l10n_en sagenb )
-	doc-pdf? ( sagenb )
+REQUIRED_USE="doc-html? ( l10n_en )
 	testsuite? ( doc-html jmol )"
 
 pkg_setup() {
@@ -317,7 +316,7 @@ python_prepare() {
 	# Some SAGE_ROOT elimination
 	#'sage' is not in SAGE_ROOT, but in PATH or 
 	# alternatively in SAGE_LOCAL/bin
-	eapply "${FILESDIR}"/${PN}-8.3-SAGE_ROOT.patch
+	eapply "${FILESDIR}"/${PN}-8.5-SAGE_ROOT.patch
 
 	# remove the test trying to pre-compile sage's .py file with python3
 	rm sage/tests/py3_syntax.py || die "cannot remove py3_syntax test"
