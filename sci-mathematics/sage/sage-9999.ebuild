@@ -39,7 +39,7 @@ CDEPEND="dev-libs/gmp:0=
 	>=dev-libs/ppl-1.1
 	~dev-lisp/ecls-16.1.2
 	>=dev-python/six-1.11.0[${PYTHON_USEDEP}]
-	>=dev-python/numpy-1.13.3-r100[${PYTHON_USEDEP}]
+	>=dev-python/numpy-1.15.2[${PYTHON_USEDEP}]
 	=dev-python/cython-0.28*[${PYTHON_USEDEP}]
 	dev-python/future[${PYTHON_USEDEP}]
 	~dev-python/pkgconfig-1.2.2[${PYTHON_USEDEP}]
@@ -70,7 +70,7 @@ CDEPEND="dev-libs/gmp:0=
 	>=sci-mathematics/glpk-4.63:0=[gmp]
 	>=sci-mathematics/lcalc-1.23-r6[pari]
 	>=sci-mathematics/lrcalc-1.2-r1
-	>=dev-python/cypari2-1.2.1[${PYTHON_USEDEP}]
+	>=dev-python/cypari2-1.3.1[${PYTHON_USEDEP}]
 	~sci-mathematics/planarity-3.0.0.5
 	=sci-libs/brial-1.2*
 	=dev-python/sage-brial-1*[${PYTHON_USEDEP}]
