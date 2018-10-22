@@ -56,7 +56,6 @@ dev-python/backports-shutil_get_terminal_size
 >=dev-python/jupyter_client-4.0.0
 >=dev-python/qtconsole-4.0.0
 dev-python/mpmath
->=dev-python/pexpect-4.0.1
 ~dev-python/pkgconfig-1.2.2
 ~dev-python/pycurl-7.19.3.1
 ~dev-python/pytz-2014.2
