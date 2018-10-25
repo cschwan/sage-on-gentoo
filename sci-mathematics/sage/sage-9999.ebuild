@@ -89,7 +89,8 @@ CDEPEND="dev-libs/gmp:0=
 	sci-libs/libbraiding
 	modular_decomposition? ( sci-libs/modular_decomposition )
 	bliss? ( >=sci-libs/bliss-0.73 )
-	>=dev-python/sphinx-1.7.5[${PYTHON_USEDEP}]"
+	>=dev-python/sphinx-1.7.5[${PYTHON_USEDEP}]
+	<dev-python/sphinx-1.8.0"
 
 DEPEND="${CDEPEND}
 	doc-pdf? ( app-text/texlive[extra,${L10N_USEDEP}] )"
