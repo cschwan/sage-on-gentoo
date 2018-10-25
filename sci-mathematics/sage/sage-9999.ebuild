@@ -129,7 +129,7 @@ RDEPEND="${CDEPEND}
 	>=sci-mathematics/sympow-1.018.1
 	www-servers/tornado
 	!prefix? ( >=sys-libs/glibc-2.13-r4 )
-	sagenb? ( >=sci-mathematics/sage-notebook-1.0.3[$(python_gen_usedep 'python2*')] )
+	sagenb? ( >=sci-mathematics/sage-notebook-1.1.0[$(python_gen_usedep 'python2*')] )
 	latex? (
 		~dev-tex/sage-latex-3.0
 		|| ( app-text/dvipng[truetype] media-gfx/imagemagick[png] )
