@@ -447,7 +447,6 @@ python_install() {
 	####################################
 	# Install documentation
 	####################################
-
 		if use doc-html ; then
 			HTML_DOCS="${SAGE_SRC}/build_doc/html/*"
 			# Prune _static folders
@@ -474,9 +473,6 @@ python_install() {
 			for i in `find build_doc -name \*.rst.txt`; do
 				mv "${i}" "${i%.txt}"
 			done
-			# Put introspect in place for installation.
-			# This is needed for calls by sagedoc.py to sphinxify.
-			cp -r doc/en/introspect build_doc/en/
 		fi
 
 		if use doc-pdf ; then
@@ -534,6 +530,17 @@ python_install_all(){
 	dosym ../../../sage/ext/notebook-ipython/logo-64x64.png /usr/share/jupyter/kernels/sagemath/logo-64x64.png
 	dosym ../../../sage/ext/notebook-ipython/logo.svg /usr/share/jupyter/kernels/sagemath/logo.svg
 	dosym ../../sage/threejs /usr/share/jupyter/nbextensions/threejs
+
+	# Files needed for generating documentation on the fly
+	docompress -x /usr/share/doc/sage
+	# necessary for sagedoc.py call to sphinxify.
+	insinto /usr/share/doc/"${PF}"/en/introspect
+	doins -r doc/en/introspect/*
+	insinto /usr/share/doc/"${PF}"/common
+	doins -r doc/common/*
+	doins sage_setup/docbuild/ext/sage_autodoc.py
+	doins sage_setup/docbuild/ext/inventory_builder.py
+	doins sage_setup/docbuild/ext/multidocs.py
 
 	if use doc-html; then
 		dosym ../../../doc/"${PF}"/html/en /usr/share/jupyter/kernels/sagemath/doc
