@@ -449,6 +449,7 @@ python_install() {
 	####################################
 
 		if use doc-html ; then
+			HTML_DOCS="${SAGE_SRC}/build_doc/html/*"
 			# Prune _static folders
 			cp -r build_doc/html/en/_static build_doc/html/ || die "failed to copy _static folder"
 			for sdir in `find build_doc/html -name _static` ; do
@@ -473,7 +474,9 @@ python_install() {
 			for i in `find build_doc -name \*.rst.txt`; do
 				mv "${i}" "${i%.txt}"
 			done
-			HTML_DOCS="${SAGE_SRC}/build_doc/html/*"
+			# Put introspect in place for installation.
+			# This is needed for calls by sagedoc.py to sphinxify.
+			cp -r doc/en/introspect build_doc/en/
 		fi
 
 		if use doc-pdf ; then
