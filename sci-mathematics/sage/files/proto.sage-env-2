@@ -1,0 +1,68 @@
+#!/bin/bash
+
+if [[ -z ${SAGE_ROOT} ]]; then
+	export SAGE_ROOT="@GENTOO_PORTAGE_EPREFIX@/usr/share/sage"
+fi
+
+if [[ -z ${SAGE_LOCAL} ]]; then
+	export SAGE_LOCAL="@GENTOO_PORTAGE_EPREFIX@/usr/"
+fi
+
+if [[ -z ${SAGE_DATA} ]]; then
+	export SAGE_DATA="@GENTOO_PORTAGE_EPREFIX@/usr/share/sage"
+fi
+
+if [[ -z ${SAGE_SHARE} ]]; then
+	export SAGE_SHARE="@GENTOO_PORTAGE_EPREFIX@/usr/share/sage"
+fi
+
+if [[ -z ${SAGE_DOC} ]]; then
+	export SAGE_DOC="@GENTOO_PORTAGE_EPREFIX@/usr/share/doc/@GENTOO_PORTAGE_PF@"
+fi
+
+if [[ -z ${SAGE_DOC_SRC} ]]; then
+	export SAGE_DOC_SRC="@GENTOO_PORTAGE_EPREFIX@/usr/share/doc/@GENTOO_PORTAGE_PF@"
+fi
+
+if [[ -z ${SAGE_EXTCODE} ]]; then
+	export SAGE_EXTCODE="@GENTOO_PORTAGE_EPREFIX@/usr/share/sage/ext"
+fi
+
+if [[ -z ${DOT_SAGE} ]]; then
+	export DOT_SAGE="${HOME}/.sage"
+fi
+
+if [ "$SAGE_STARTUP_FILE" = "" ]; then
+	export SAGE_STARTUP_FILE="${DOT_SAGE}/init.sage"
+fi
+
+if [[ -z ${SAGE_TESTDIR} ]]; then
+	export SAGE_TESTDIR="${DOT_SAGE}/tmp"
+fi
+if [[ -z ${SAGE_SERVER} ]]; then
+	export SAGE_SERVER="http://www.sagemath.org/"
+fi
+
+if [ -z "$SAGE_RC_FILE" ]; then
+	export SAGE_RC_FILE="$DOT_SAGE/sagerc"
+fi
+
+if [ -r "$SAGE_RC_FILE" ]; then
+	source "$SAGE_RC_FILE"
+	if [ $? -ne 0 ]; then
+		echo >&2 "Error sourcing $SAGE_RC_FILE"
+		exit 1
+	fi
+fi
+
+# By default use python 2.7 but starting with 8.0 sage can be built with 3.6
+if [[ -z ${EPYTHON} ]]; then
+	export EPYTHON=python2.7
+fi
+
+# Allow SAGE_BROWSER to override BROWSER (Trac #22449)
+if [ -n "$SAGE_BROWSER" ]; then
+	export BROWSER="$SAGE_BROWSER"
+fi
+
+export MPMATH_NOGMPY=1
