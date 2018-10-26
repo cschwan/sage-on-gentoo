@@ -532,7 +532,7 @@ python_install_all(){
 	dosym ../../sage/threejs /usr/share/jupyter/nbextensions/threejs
 
 	# Files needed for generating documentation on the fly
-	docompress -x /usr/share/doc/sage
+	docompress -x /usr/share/doc/"${PF}"/en /usr/share/doc/"${PF}"/common
 	# necessary for sagedoc.py call to sphinxify.
 	insinto /usr/share/doc/"${PF}"/en/introspect
 	doins -r doc/en/introspect/*
