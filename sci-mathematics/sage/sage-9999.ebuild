@@ -161,7 +161,7 @@ python_prepare_all() {
 	#########################################
 
 	# ship our own version of sage-env
-	cp "${FILESDIR}"/proto.sage-env bin/sage-env
+	cp "${FILESDIR}"/proto.sage-env-2 bin/sage-env
 	eprefixify bin/sage-env
 	sed -i "s:@GENTOO_PORTAGE_PF@:${PF}:" bin/sage-env
 
