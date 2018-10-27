@@ -129,7 +129,7 @@ RDEPEND="${CDEPEND}
 	>=sci-mathematics/sympow-1.018.1
 	www-servers/tornado
 	!prefix? ( >=sys-libs/glibc-2.13-r4 )
-	sagenb? ( >=sci-mathematics/sage-notebook-1.0.3[$(python_gen_usedep 'python2*')] )
+	sagenb? ( >=sci-mathematics/sage-notebook-1.1.0[$(python_gen_usedep 'python2*')] )
 	latex? (
 		~dev-tex/sage-latex-3.0
 		|| ( app-text/dvipng[truetype] media-gfx/imagemagick[png] )
@@ -153,7 +153,7 @@ src_unpack(){
 	default
 }
 
-python_prepare() {
+python_prepare_all() {
 	#########################################
 	#
 	# scripts under src/bin and miscellanous files
@@ -161,9 +161,9 @@ python_prepare() {
 	#########################################
 
 	# ship our own version of sage-env
-	cp "${FILESDIR}"/proto.sage-env bin/sage-env
+	cp "${FILESDIR}"/proto.sage-env-2 bin/sage-env
 	eprefixify bin/sage-env
-	sed -i "s:@GENTOO_SITEDIR@:$(python_get_sitedir):" bin/sage-env
+	sed -i "s:@GENTOO_PORTAGE_PF@:${PF}:" bin/sage-env
 
 	# Do not rely on os.environ to get SAGE_SRC
 	eapply "${FILESDIR}"/${PN}-8.1-sage-cython.patch
@@ -212,16 +212,6 @@ python_prepare() {
 		eapply "${FILESDIR}"/${PN}-8.2-tachyon_default.patch
 	fi
 
-	###############################
-	#
-	# Link against appropriate pynac
-	#
-	###############################
-
-	sed \
-		-e "s:libraries = pynac:libraries = pynac_${MULTIBUILD_VARIANT}:" \
-		-i sage/libs/pynac/pynac.pxd
-
 	############################################################################
 	# Fixes to Sage's build system
 	############################################################################
@@ -240,8 +230,10 @@ python_prepare() {
 	############################################################################
 
 	# sage on gentoo env.py
-	eapply "${FILESDIR}"/${PN}-8.4-env.patch
+	eapply "${FILESDIR}"/${PN}-8.5-env.patch
 	eprefixify sage/env.py
+	# set $PF for the documentation location
+	sed -i "s:@GENTOO_PORTAGE_PF@:${PF}:" sage/env.py
 	# fix library path of libSingular
 	sed -i \
 		-e "s:lib/libSingular:$(get_libdir)/libSingular:" \
@@ -315,7 +307,7 @@ python_prepare() {
 	eapply "${FILESDIR}"/${PN}-7.3-safepython.patch
 
 	# Some SAGE_ROOT elimination
-	#'sage' is not in SAGE_ROOT, but in PATH or 
+	#'sage' is not in SAGE_ROOT, but in PATH or
 	# alternatively in SAGE_LOCAL/bin
 	eapply "${FILESDIR}"/${PN}-8.5-SAGE_ROOT.patch
 
@@ -333,6 +325,20 @@ python_prepare() {
 	eapply "${FILESDIR}"/${PN}-7.1-linguas.patch
 	# Correct path to mathjax
 	eapply "${FILESDIR}"/sage-8.2-mathjax_path.patch
+
+	distutils-r1_python_prepare_all
+}
+
+python_prepare(){
+	###############################
+	#
+	# Link against appropriate pynac
+	#
+	###############################
+	einfo "Adjusting pynac library"
+	sed \
+		-e "s:libraries = pynac:libraries = pynac_${MULTIBUILD_VARIANT}:" \
+		-i sage/libs/pynac/pynac.pxd
 }
 
 sage_build_env(){
@@ -441,25 +447,8 @@ python_install() {
 	####################################
 	# Install documentation
 	####################################
-		docompress -x /usr/share/doc/sage
-
-		# necessary for sagedoc.py call to sphinxify in sagenb for now.
-		insinto /usr/share/doc/sage/en/introspect
-		doins -r doc/en/introspect/*
-		insinto /usr/share/doc/sage/common
-		doins -r doc/common/*
-		doins sage_setup/docbuild/ext/sage_autodoc.py
-		doins sage_setup/docbuild/ext/inventory_builder.py
-		doins sage_setup/docbuild/ext/multidocs.py
-
-		# rst files are installed as rst.txt which prevents doctesting
-		pushd "${ED}"
-		for i in `find usr/share/doc/sage -name \*.rst.txt`; do
-			mv "${i}" "${i%.txt}"
-		done
-		popd
-
 		if use doc-html ; then
+			HTML_DOCS="${SAGE_SRC}/build_doc/html/*"
 			# Prune _static folders
 			cp -r build_doc/html/en/_static build_doc/html/ || die "failed to copy _static folder"
 			for sdir in `find build_doc/html -name _static` ; do
@@ -484,15 +473,10 @@ python_install() {
 			for i in `find build_doc -name \*.rst.txt`; do
 				mv "${i}" "${i%.txt}"
 			done
-			# proceed with install
-			insinto /usr/share/doc/sage/html
-			doins -r build_doc/html/*
-			dosym ../../../doc/sage/html/en /usr/share/jupyter/kernels/sagemath/doc
 		fi
 
 		if use doc-pdf ; then
-			insinto /usr/share/doc/sage/pdf
-			doins -r build_doc/pdf/*
+			DOCS="${SAGE_SRC}/build_doc/pdf"
 		fi
 	fi
 }
@@ -546,8 +530,20 @@ python_install_all(){
 	dosym ../../../sage/ext/notebook-ipython/logo-64x64.png /usr/share/jupyter/kernels/sagemath/logo-64x64.png
 	dosym ../../../sage/ext/notebook-ipython/logo.svg /usr/share/jupyter/kernels/sagemath/logo.svg
 	dosym ../../sage/threejs /usr/share/jupyter/nbextensions/threejs
+
+	# Files needed for generating documentation on the fly
+	docompress -x /usr/share/doc/"${PF}"/en /usr/share/doc/"${PF}"/common
+	# necessary for sagedoc.py call to sphinxify.
+	insinto /usr/share/doc/"${PF}"/en/introspect
+	doins -r doc/en/introspect/*
+	insinto /usr/share/doc/"${PF}"/common
+	doins -r doc/common/*
+	doins sage_setup/docbuild/ext/sage_autodoc.py
+	doins sage_setup/docbuild/ext/inventory_builder.py
+	doins sage_setup/docbuild/ext/multidocs.py
+
 	if use doc-html; then
-		dosym ../../../doc/sage/html/en /usr/share/jupyter/kernels/sagemath/doc
+		dosym ../../../doc/"${PF}"/html/en /usr/share/jupyter/kernels/sagemath/doc
 	fi
 }
 
