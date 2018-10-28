@@ -150,7 +150,7 @@ pkg_setup() {
 	tc-export CC
 }
 
-python_prepare() {
+python_prepare_all() {
 	#########################################
 	#
 	# scripts under src/bin and miscellanous files
@@ -208,16 +208,6 @@ python_prepare() {
 	if ! use jmol ; then
 		eapply "${FILESDIR}"/${PN}-8.2-tachyon_default.patch
 	fi
-
-	###############################
-	#
-	# Link against appropriate pynac
-	#
-	###############################
-
-	sed \
-		-e "s:libraries = pynac:libraries = pynac_${MULTIBUILD_VARIANT}:" \
-		-i sage/libs/pynac/pynac.pxd
 
 	############################################################################
 	# Fixes to Sage's build system
@@ -354,6 +344,18 @@ python_prepare() {
 	fi
 }
 
+python_prepare(){
+	###############################
+	#
+	# Link against appropriate pynac
+	#
+	###############################
+	einfo "Adjusting pynac library"
+	sed \
+		-e "s:libraries = pynac:libraries = pynac_${MULTIBUILD_VARIANT}:" \
+		-i sage/libs/pynac/pynac.pxd
+}
+
 sage_build_env(){
 	export SAGE_ROOT="${S}-${MULTIBUILD_VARIANT}"/..
 	export SAGE_SRC="${S}-${MULTIBUILD_VARIANT}"
@@ -470,13 +472,6 @@ python_install() {
 		doins sage_setup/docbuild/ext/sage_autodoc.py
 		doins sage_setup/docbuild/ext/inventory_builder.py
 		doins sage_setup/docbuild/ext/multidocs.py
-
-		# rst files are installed as rst.txt which prevents doctesting
-		pushd "${ED}"
-		for i in `find usr/share/doc/sage -name \*.rst.txt`; do
-			mv "${i}" "${i%.txt}"
-		done
-		popd
 
 		if use doc-html ; then
 			# Prune _static folders
