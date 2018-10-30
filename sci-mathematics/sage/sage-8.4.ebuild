@@ -161,7 +161,6 @@ python_prepare_all() {
 	# ship our own version of sage-env
 	cp "${FILESDIR}"/proto.sage-env bin/sage-env
 	eprefixify bin/sage-env
-	sed -i "s:@GENTOO_SITEDIR@:$(python_get_sitedir):" bin/sage-env
 
 	# Do not rely on os.environ to get SAGE_SRC
 	eapply "${FILESDIR}"/${PN}-8.1-sage-cython.patch
