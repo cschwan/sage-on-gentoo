@@ -342,6 +342,8 @@ python_prepare_all() {
 			use l10n_$lang && cp -r "${WORKDIR}"/pdf/${lang} build_doc/pdf/
 		done
 	fi
+
+	distutils-r1_python_prepare_all
 }
 
 python_prepare(){
