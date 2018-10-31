@@ -70,6 +70,7 @@ CDEPEND="dev-libs/gmp:0=
 	>=sci-mathematics/giac-1.4.9.45
 	>=sci-mathematics/glpk-4.63:0=[gmp]
 	>=sci-mathematics/lcalc-1.23-r6[pari]
+	<sci-mathematics/lcalc-1.23-r10
 	>=sci-mathematics/lrcalc-1.2-r1
 	~dev-python/cypari2-1.1.4[${PYTHON_USEDEP}]
 	~sci-mathematics/planarity-3.0.0.5
