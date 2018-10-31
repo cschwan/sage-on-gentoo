@@ -37,6 +37,7 @@ CDEPEND="dev-libs/gmp:0=
 	>=dev-libs/mpfr-4.0.0
 	>=dev-libs/mpc-1.1.0
 	>=dev-libs/ntl-9.6.2-r1:=
+	<dev-libs/ntl-11.0.0
 	>=dev-libs/ppl-1.1
 	~dev-lisp/ecls-16.1.2
 	>=dev-python/six-1.11.0[${PYTHON_USEDEP}]
