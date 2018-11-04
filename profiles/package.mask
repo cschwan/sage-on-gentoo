@@ -8,10 +8,7 @@ sci-mathematics/ecm
 =sci-mathematics/gap-4.8.9
 =dev-gap/GAPDoc-1.6.1
 >=dev-python/gmpy-2.1.0_alpha2
-# incompatibilities because of C++11 masking until resolved
->=dev-libs/ntl-11.0.0
 # keeping it under wrap for now
 >=sci-libs/openblas-0.3.0
 >=sci-mathematics/giac-1.5.0.0
 >=dev-python/pexpect-4.6.0
->=sci-mathematics/lcalc-1.23-r10
