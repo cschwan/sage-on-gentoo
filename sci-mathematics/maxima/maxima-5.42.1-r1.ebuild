@@ -1,9 +1,9 @@
-# Copyright 1999-2018 Gentoo Foundation
+# Copyright 1999-2018 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=6
 
-inherit autotools elisp-common eutils xdg
+inherit autotools elisp-common eutils xdg-utils
 
 DESCRIPTION="Free computer algebra environment based on Macsyma"
 HOMEPAGE="http://maxima.sourceforge.net/"
@@ -20,7 +20,7 @@ SUPP_RL=(   .    .     y               .    .         y     )
 # . - just --enable-<lisp>, <flag> - --enable-<flag>
 CONF_FLAG=( .    .     .               ecl  ccl       .     )
 # patch file version; . - no patch
-PATCH_V=(   2    1     .               2    2         1     )
+PATCH_V=(   2    1     .               3    2         1     )
 
 IUSE="emacs tk nls unicode X ${LISPS[*]}"
 
@@ -95,30 +95,31 @@ pkg_setup() {
 
 src_prepare() {
 	local n PATCHES v
-	PATCHES=( emacs-0 rmaxima-0 wish-2 xdg-utils-0
+	PATCHES=( emacs-0 rmaxima-0 wish-2 xdg-utils-1
 		${PN}-5.39.0-0001-taylor2-Avoid-blowing-the-stack-when-diff-expand-isn
 		${PN}-5.39.0-matrixexp
 		${PN}-5.39.0-undoing_true_false_printing_patch )
 
 	n=${#PATCHES[*]}
 	for ((n--; n >= 0; n--)); do
-		epatch "${FILESDIR}"/${PATCHES[${n}]}.patch
+		eapply "${FILESDIR}"/${PATCHES[${n}]}.patch
 	done
 
 	n=${#LISPS[*]}
 	for ((n--; n >= 0; n--)); do
 		v=${PATCH_V[${n}]}
 		if [ "${v}" != "." ]; then
-			epatch "${FILESDIR}"/${LISPS[${n}]}-${v}.patch
+			eapply "${FILESDIR}"/${LISPS[${n}]}-${v}.patch
 		fi
 	done
+
+	eapply_user
 
 	# bug #343331
 	rm share/Makefile.in || die
 	rm src/Makefile.in || die
 	touch src/*.mk
 	touch src/Makefile.am
-	eapply_user
 	eautoreconf
 }
 
