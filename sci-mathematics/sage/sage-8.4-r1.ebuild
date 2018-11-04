@@ -240,6 +240,10 @@ python_prepare_all() {
 	# sage-maxima.lisp really belong to /etc
 	eapply "${FILESDIR}"/${PN}-8.3-maxima.lisp.patch
 
+	# backport of trac #26625, run maxima properly in batch mode
+	# It also allow some upward compatibility with maxima
+	eapply "${FILESDIR}"/maxima-batch.patch
+
 	# TODO: should be a patch
 	# run maxima with ecl
 	sed -i "s:'maxima :'maxima -l ecl :g" \
