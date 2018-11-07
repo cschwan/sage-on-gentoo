@@ -236,11 +236,6 @@ python_prepare_all() {
 	eapply "${FILESDIR}"/${PN}-8.5-env.patch
 	# set $PF for the documentation location
 	sed -i "s:@GENTOO_PORTAGE_PF@:${PF}:" sage/env.py
-	# fix library path of libSingular
-	sed -i \
-		-e "s:lib/libSingular:$(get_libdir)/libSingular:" \
-		-e "s:'lib':'$(get_libdir)':" \
-		sage/env.py
 
 	# sage-maxima.lisp really belong to /etc
 	eapply "${FILESDIR}"/${PN}-8.3-maxima.lisp.patch
