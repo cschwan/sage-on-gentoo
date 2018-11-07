@@ -381,9 +381,43 @@ python_compile() {
 
 	if ! python_is_python3; then
 		if use doc-html ; then
+			HTML_DOCS="${WORKDIR}/build_doc/html/*"
 			"${PYTHON}" sage_setup/docbuild/__main__.py --no-pdf-links all html || die "failed to produce html doc"
+
+			####################################
+			# Prepare the html documentation for installation
+			####################################
+
+			pushd "${WORKDIR}"
+			# Prune _static folders
+			cp -r build_doc/html/en/_static build_doc/html/ || die "failed to copy _static folder"
+			for sdir in `find build_doc/html -name _static` ; do
+				if [ $sdir != "build_doc/html/_static" ] ; then
+					rm -rf $sdir || die "failed to remove $sdir"
+					ln -rst ${sdir%_static} build_doc/html/_static
+				fi
+			done
+			# Linking to local copy of mathjax folders rather than copying them
+			local mathjax_folders="config extensions fonts jax localization unpacked"
+			for sdir in ${mathjax_folders} ; do
+				rm -rf build_doc/html/_static/${sdir} \
+					|| die "failed to remove mathjax folder $sdir"
+				ln -st build_doc/html/_static/ ../../../../mathjax/$sdir
+			done
+			# Work around for issue #402 until I understand where it comes from
+			for pyfile in `find "build_doc/html -name \*.py` ; do
+				rm -rf "${pyfile}" || die "fail to to remove $pyfile"
+				rm -rf "${pyfile/%.py/.pdf}" "${pyfile/%.py/png}"
+			done
+			# restore .rst.txt file to .rst
+			for i in `find build_doc -name \*.rst.txt`; do
+				mv "${i}" "${i%.txt}"
+			done
+			popd
 		fi
+
 		if use doc-pdf ; then
+			DOCS="${WORKDIR}/build_doc/pdf"
 			export MAKE="make -j$(makeopts_jobs)"
 			"${PYTHON}" sage_setup/docbuild/__main__.py all pdf || die "failed to produce pdf doc"
 		fi
@@ -443,43 +477,6 @@ python_install() {
 }
 
 python_install_all(){
-	####################################
-	# Prepare the documentation for installation
-	####################################
-	pushd "${WORKDIR}"
-	if use doc-html ; then
-		HTML_DOCS="${WORKDIR}/build_doc/html/*"
-		# Prune _static folders
-		cp -r build_doc/html/en/_static build_doc/html/ || die "failed to copy _static folder"
-		for sdir in `find build_doc/html -name _static` ; do
-			if [ $sdir != "build_doc/html/_static" ] ; then
-				rm -rf $sdir || die "failed to remove $sdir"
-				ln -rst ${sdir%_static} build_doc/html/_static
-			fi
-		done
-		# Linking to local copy of mathjax folders rather than copying them
-		local mathjax_folders="config extensions fonts jax localization unpacked"
-		for sdir in ${mathjax_folders} ; do
-			rm -rf build_doc/html/_static/${sdir} \
-				|| die "failed to remove mathjax folder $sdir"
-			ln -st build_doc/html/_static/ ../../../../mathjax/$sdir
-		done
-		# Work around for issue #402 until I understand where it comes from
-		for pyfile in `find "build_doc/html -name \*.py` ; do
-			rm -rf "${pyfile}" || die "fail to to remove $pyfile"
-			rm -rf "${pyfile/%.py/.pdf}" "${pyfile/%.py/png}"
-		done
-		# restore .rst.txt file to .rst
-		for i in `find build_doc -name \*.rst.txt`; do
-			mv "${i}" "${i%.txt}"
-		done
-	fi
-
-	if use doc-pdf ; then
-		DOCS="${WORKDIR}/build_doc/pdf"
-	fi
-	popd
-
 	distutils-r1_python_install_all
 
 	pushd bin
