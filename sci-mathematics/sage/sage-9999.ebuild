@@ -234,7 +234,6 @@ python_prepare_all() {
 
 	# sage on gentoo env.py
 	eapply "${FILESDIR}"/${PN}-8.5-env.patch
-	eprefixify sage/env.py
 	# set $PF for the documentation location
 	sed -i "s:@GENTOO_PORTAGE_PF@:${PF}:" sage/env.py
 	# fix library path of libSingular
@@ -255,9 +254,6 @@ python_prepare_all() {
 	sed -i "s:'maxima :'maxima -l ecl :g" \
 		sage/interfaces/maxima.py \
 		sage/interfaces/maxima_abstract.py
-
-	# finding JmolData.jar in the right place
-	sed -i "s:\"jmol\", \"JmolData:\"sage-jmol-bin\", \"lib\", \"JmolData:" sage/interfaces/jmoldata.py
 
 	# Do not get the version of threejs by using sage packaging system
 	eapply "${FILESDIR}"/${PN}-8.3-threejs.patch
@@ -284,7 +280,7 @@ python_prepare_all() {
 	# https://github.com/cschwan/sage-on-gentoo/issues/376
 	mkdir sage_setup/jupyter || die "cannot create sage_setup/jupyter"
 	mv sage/repl/ipython_kernel/install.py sage_setup/jupyter/install.py || die "cannot move kernel install file"
-	touch sage_setup/jupyter/__init__.py || dir "caanot create __init__.py for jupyter"
+	touch sage_setup/jupyter/__init__.py || dir "cannot create __init__.py for jupyter"
 	eapply "${FILESDIR}"/${PN}-8.3-jupyter.patch
 
 	# Make the lazy_import pickle name versioned with the sage version number
