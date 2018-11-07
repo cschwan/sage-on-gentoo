@@ -73,7 +73,7 @@ index 77e0596..871c485 100644
 -_add_variable_or_fallback('JMOL_DIR', opj('$SAGE_SHARE', 'jmol'))
 -_add_variable_or_fallback('JSMOL_DIR', opj('$SAGE_SHARE', 'jsmol'))
 -_add_variable_or_fallback('MATHJAX_DIR', opj('$SAGE_SHARE', 'mathjax'))
-+_add_variable_or_fallback('JMOL_DIR', opj('$SAGE_SHARE', 'sage-jmol-bin'))
++_add_variable_or_fallback('JMOL_DIR', opj('$SAGE_LOCAL', 'share', 'sage-jmol-bin'))
 +_add_variable_or_fallback('JSMOL_DIR', opj('$SAGE_LOCAL', 'share', 'jsmol'))
 +_add_variable_or_fallback('MATHJAX_DIR', opj('$SAGE_LOCAL', 'share', 'mathjax'))
  _add_variable_or_fallback('THREEJS_DIR', opj('$SAGE_SHARE', 'threejs'))
