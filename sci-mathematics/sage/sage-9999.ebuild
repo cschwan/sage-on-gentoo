@@ -398,16 +398,16 @@ python_compile() {
 				fi
 			done
 			# Linking to local copy of mathjax folders rather than copying them
-			local mathjax_folders="config extensions fonts jax localization unpacked"
-			for sdir in ${mathjax_folders} ; do
-				rm -rf build_doc/html/_static/${sdir} \
-					|| die "failed to remove mathjax folder $sdir"
-				ln -st build_doc/html/_static/ ../../../../mathjax/$sdir
+			for sobject in $(ls "${EPREFIX}"/usr/share/mathjax/) ; do
+				rm -rf build_doc/html/_static/${sobject} \
+					|| die "failed to remove mathjax object $sobject"
+				ln -st build_doc/html/_static/ ../../../../mathjax/$sobject
 			done
 			# Work around for issue #402 until I understand where it comes from
-			for pyfile in `find "build_doc/html -name \*.py` ; do
+			for pyfile in `find build_doc/html -name \*.py` ; do
 				rm -rf "${pyfile}" || die "fail to to remove $pyfile"
-				rm -rf "${pyfile/%.py/.pdf}" "${pyfile/%.py/png}"
+				rm -rf "${pyfile/%.py/.pdf}" "${pyfile/%.py/.png}"
+				rm -rf "${pyfile/%.py/.hires.png}" "${pyfile/%.py/.html}"
 			done
 			# restore .rst.txt file to .rst
 			for i in `find build_doc -name \*.rst.txt`; do
