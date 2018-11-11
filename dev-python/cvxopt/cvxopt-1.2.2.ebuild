@@ -9,7 +9,7 @@ inherit distutils-r1 toolchain-funcs
 
 DESCRIPTION="Python package for convex optimization"
 HOMEPAGE="http://cvxopt.org/"
-SRC_URI="https://github.com/${PN}/${PN}/archive/${PV}.tar.gz -> ${P}.tar.gz"
+SRC_URI="mirror://pypi/${PN:0:1}/${PN}/${P}.tar.gz"
 
 LICENSE="GPL-3"
 SLOT="0"
