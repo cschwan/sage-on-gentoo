@@ -14,7 +14,7 @@ SRC_URI="mirror://pypi/${PN:0:1}/${PN}/${P}.tar.gz"
 LICENSE="GPL-3"
 SLOT="0"
 KEYWORDS="~amd64 ~x86 ~amd64-linux ~x86-linux"
-IUSE="doc +dsdp examples fftw +glpk gsl"
+IUSE="doc +dsdp examples fftw +glpk gsl test"
 
 RDEPEND="
 	virtual/blas
@@ -30,7 +30,8 @@ RDEPEND="
 	gsl? ( sci-libs/gsl:0= )"
 DEPEND="${RDEPEND}
 	virtual/pkgconfig
-	doc? ( dev-python/sphinx )"
+	doc? ( dev-python/sphinx )
+	test? ( dev-python/pytest-cov[${PYTHON_USEDEP}] )"
 
 python_prepare_all(){
 	pkg_libs() {
@@ -88,7 +89,7 @@ python_compile_all() {
 }
 
 python_test() {
-	PYTHONPATH="${BUILD_DIR}"/lib nosetests -v || die
+	PYTHONPATH="${BUILD_DIR}"/lib py.test --cov=cvxopt "${S}"/tests/ || die
 }
 
 python_install_all() {
