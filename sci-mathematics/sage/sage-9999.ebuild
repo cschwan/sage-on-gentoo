@@ -234,14 +234,8 @@ python_prepare_all() {
 
 	# sage on gentoo env.py
 	eapply "${FILESDIR}"/${PN}-8.5-env.patch
-	eprefixify sage/env.py
 	# set $PF for the documentation location
 	sed -i "s:@GENTOO_PORTAGE_PF@:${PF}:" sage/env.py
-	# fix library path of libSingular
-	sed -i \
-		-e "s:lib/libSingular:$(get_libdir)/libSingular:" \
-		-e "s:'lib':'$(get_libdir)':" \
-		sage/env.py
 
 	# sage-maxima.lisp really belong to /etc
 	eapply "${FILESDIR}"/${PN}-8.3-maxima.lisp.patch
@@ -255,9 +249,6 @@ python_prepare_all() {
 	sed -i "s:'maxima :'maxima -l ecl :g" \
 		sage/interfaces/maxima.py \
 		sage/interfaces/maxima_abstract.py
-
-	# finding JmolData.jar in the right place
-	sed -i "s:\"jmol\", \"JmolData:\"sage-jmol-bin\", \"lib\", \"JmolData:" sage/interfaces/jmoldata.py
 
 	# Do not get the version of threejs by using sage packaging system
 	eapply "${FILESDIR}"/${PN}-8.3-threejs.patch
@@ -273,7 +264,7 @@ python_prepare_all() {
 	sed -i -e "s:/lib/LiE/:/share/lie/:" sage/interfaces/lie.py
 
 	# patching libs/gap/util.pyx so we don't get noise from missing SAGE_LOCAL/gap/latest
-	eapply "${FILESDIR}"/${PN}-8.3-libgap.patch
+	eapply "${FILESDIR}"/${PN}-8.5-libgap.patch
 
 	# The ipython kernel tries to to start a new session via $SAGE_ROOT/sage -python
 	# Since we don't have $SAGE_ROOT/sage it fails.
@@ -352,12 +343,12 @@ sage_build_env(){
 	export SAGE_ROOT="${S}-${MULTIBUILD_VARIANT}"/..
 	export SAGE_SRC="${S}-${MULTIBUILD_VARIANT}"
 	export SAGE_ETC="${S}-${MULTIBUILD_VARIANT}"/bin
-	export SAGE_DOC="${S}-${MULTIBUILD_VARIANT}"/build_doc
 	export SAGE_DOC_SRC="${S}-${MULTIBUILD_VARIANT}"/doc
 }
 
 python_configure_all() {
 	export SAGE_LOCAL="${EPREFIX}"/usr
+	export SAGE_DOC="${WORKDIR}"/build_doc
 	export SAGE_DOC_MATHJAX=yes
 	export VARTEXFONTS="${T}"/fonts
 	export SAGE_VERSION=${PV}
@@ -390,9 +381,43 @@ python_compile() {
 
 	if ! python_is_python3; then
 		if use doc-html ; then
+			HTML_DOCS="${WORKDIR}/build_doc/html/*"
 			"${PYTHON}" sage_setup/docbuild/__main__.py --no-pdf-links all html || die "failed to produce html doc"
+
+			####################################
+			# Prepare the html documentation for installation
+			####################################
+
+			pushd "${WORKDIR}"
+			# Prune _static folders
+			cp -r build_doc/html/en/_static build_doc/html/ || die "failed to copy _static folder"
+			for sdir in `find build_doc/html -name _static` ; do
+				if [ $sdir != "build_doc/html/_static" ] ; then
+					rm -rf $sdir || die "failed to remove $sdir"
+					ln -rst ${sdir%_static} build_doc/html/_static
+				fi
+			done
+			# Linking to local copy of mathjax folders rather than copying them
+			for sobject in $(ls "${EPREFIX}"/usr/share/mathjax/) ; do
+				rm -rf build_doc/html/_static/${sobject} \
+					|| die "failed to remove mathjax object $sobject"
+				ln -st build_doc/html/_static/ ../../../../mathjax/$sobject
+			done
+			# Work around for issue #402 until I understand where it comes from
+			for pyfile in `find build_doc/html -name \*.py` ; do
+				rm -rf "${pyfile}" || die "fail to to remove $pyfile"
+				rm -rf "${pyfile/%.py/.pdf}" "${pyfile/%.py/.png}"
+				rm -rf "${pyfile/%.py/.hires.png}" "${pyfile/%.py/.html}"
+			done
+			# restore .rst.txt file to .rst
+			for i in `find build_doc -name \*.rst.txt`; do
+				mv "${i}" "${i%.txt}"
+			done
+			popd
 		fi
+
 		if use doc-pdf ; then
+			DOCS="${WORKDIR}/build_doc/pdf"
 			export MAKE="make -j$(makeopts_jobs)"
 			"${PYTHON}" sage_setup/docbuild/__main__.py all pdf || die "failed to produce pdf doc"
 		fi
@@ -448,43 +473,6 @@ python_install() {
 		local testspath="${D}"/$(python_get_sitedir)/sage/doctest/tests
 		mkdir -p "${testspath}"
 		cp sage/doctest/tests/* "${testspath}"/
-	fi
-
-	if ! python_is_python3; then
-	####################################
-	# Install documentation
-	####################################
-		if use doc-html ; then
-			HTML_DOCS="${SAGE_SRC}/build_doc/html/*"
-			# Prune _static folders
-			cp -r build_doc/html/en/_static build_doc/html/ || die "failed to copy _static folder"
-			for sdir in `find build_doc/html -name _static` ; do
-				if [ $sdir != "build_doc/html/_static" ] ; then
-					rm -rf $sdir || die "failed to remove $sdir"
-					ln -rst ${sdir%_static} build_doc/html/_static
-				fi
-			done
-			# Linking to local copy of mathjax folders rather than copying them
-			local mathjax_folders="config extensions fonts jax localization unpacked"
-			for sdir in ${mathjax_folders} ; do
-				rm -rf build_doc/html/_static/${sdir} \
-					|| die "failed to remove mathjax folder $sdir"
-				ln -st build_doc/html/_static/ ../../../../mathjax/$sdir
-			done
-			# Work around for issue #402 until I understand where it comes from
-			for pyfile in `find build_doc/html -name \*.py` ; do
-				rm -rf "${pyfile}" || die "fail to to remove $pyfile"
-				rm -rf "${pyfile/%.py/.pdf}" "${pyfile/%.py/png}"
-			done
-			# restore .rst.txt file to .rst
-			for i in `find build_doc -name \*.rst.txt`; do
-				mv "${i}" "${i%.txt}"
-			done
-		fi
-
-		if use doc-pdf ; then
-			DOCS="${SAGE_SRC}/build_doc/pdf"
-		fi
 	fi
 }
 
