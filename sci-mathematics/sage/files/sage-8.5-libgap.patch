@@ -21,7 +21,7 @@ index 3cb8fd3..2dd79fd 100644
          print('Unable to find LibGAP files.')
          return float('inf')
 diff --git a/sage/libs/gap/util.pyx b/sage/libs/gap/util.pyx
-index bdde6aa..db53c54 100644
+index bdde6aa..f117818 100644
 --- a/sage/libs/gap/util.pyx
 +++ b/sage/libs/gap/util.pyx
 @@ -23,7 +23,7 @@ from .element cimport *
@@ -33,7 +33,11 @@ index bdde6aa..db53c54 100644
  
  
  ############################################################################
-@@ -175,9 +175,6 @@ def gap_root():
+@@ -171,13 +171,9 @@ def gap_root():
+ 
+         sage: import os
+         sage: os.system("GAP_ROOT_DIR=/not_a_path sage -c \"sage.libs.gap.util.gap_root()\"")
+-        The gap-4.5.5.spkg (or later) seems to be not installed!
          ...
      """
      import os.path
