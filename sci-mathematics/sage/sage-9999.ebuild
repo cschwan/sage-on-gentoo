@@ -56,7 +56,7 @@ CDEPEND="dev-libs/gmp:0=
 	~sci-mathematics/gmp-ecm-7.0.4[-openmp]
 	>=sci-mathematics/flint-2.5.2:=[ntl]
 	~sci-libs/givaro-4.0.4
-	>=sci-libs/gsl-1.16
+	>=sci-libs/gsl-2.3
 	>=sci-libs/iml-1.0.4
 	~sci-mathematics/cliquer-1.21
 	~sci-libs/libgap-4.8.6
@@ -106,7 +106,7 @@ RDEPEND="${CDEPEND}
 	~dev-python/networkx-2.1[${PYTHON_USEDEP}]
 	>=dev-python/pexpect-4.2.1[${PYTHON_USEDEP}]
 	>=dev-python/rpy-2.3.8[${PYTHON_USEDEP}]
-	>=dev-python/sympy-1.2[${PYTHON_USEDEP}]
+	>=dev-python/sympy-1.3[${PYTHON_USEDEP}]
 	media-gfx/tachyon[png]
 	jmol? ( sci-chemistry/sage-jmol-bin )
 	>=sci-libs/cddlib-094j[tools]
