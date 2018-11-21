@@ -21,7 +21,7 @@ LANGS="ca de en es fr hu it ja pt ru tr"
 
 LICENSE="GPL-2"
 SLOT="0"
-SAGE_USE="modular_decomposition bliss"
+SAGE_USE="gmpy2 modular_decomposition bliss"
 IUSE="debug +doc-html doc-pdf jmol latex sagenb testsuite X ${SAGE_USE}"
 L10N_USEDEP=""
 for X in ${LANGS} ; do
@@ -72,8 +72,7 @@ CDEPEND="dev-libs/gmp:0=
 	>=sci-mathematics/lcalc-1.23-r6[pari]
 	<sci-mathematics/lcalc-1.23-r10
 	>=sci-mathematics/lrcalc-1.2-r1
-	>=dev-python/cypari2-1.3.1[${PYTHON_USEDEP}]
-	<dev-python/cypari2-2.0.0
+	>=dev-python/cypari2-2.0.1[${PYTHON_USEDEP}]
 	~sci-mathematics/planarity-3.0.0.5
 	=sci-libs/brial-1.2*
 	=dev-python/sage-brial-1*[${PYTHON_USEDEP}]
@@ -92,6 +91,7 @@ CDEPEND="dev-libs/gmp:0=
 	sci-libs/libbraiding
 	modular_decomposition? ( sci-libs/modular_decomposition )
 	bliss? ( >=sci-libs/bliss-0.73 )
+	gmpy2? ( >=dev-python/gmpy-2.1.0_alpha4[${PYTHON_USEDEP}] )
 	>=dev-python/sphinx-1.7.5[${PYTHON_USEDEP}]
 	<dev-python/sphinx-1.8.0"
 

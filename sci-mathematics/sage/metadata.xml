@@ -16,6 +16,9 @@
 		<flag name='bliss'>
 			build the bindings to the bliss library
 		</flag>
+		<flag name='gmpy2'>
+			use the gmpy2 python interface to gmp
+		</flag>
 		<flag name='libbraiding'>
 			build the bindings to the libbraiding library
 		</flag>
