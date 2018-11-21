@@ -1,4 +1,4 @@
-# Copyright 1999-2018 Gentoo Foundation
+# Copyright 1999-2018 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=7
@@ -8,7 +8,7 @@ PYTHON_COMPAT=( python2_7 python3_{4,5,6} )
 inherit distutils-r1 flag-o-matic
 
 MY_PN="${PN}2"
-MY_P="${MY_PN}-$(ver_cut 1-3)a2"
+MY_P="${MY_PN}-$(ver_cut 1-3)a4"
 
 DESCRIPTION="Python bindings for GMP, MPC, MPFR and MPIR libraries"
 HOMEPAGE="https://github.com/aleaxit/gmpy"
@@ -32,15 +32,6 @@ S="${WORKDIR}"/${MY_P}
 
 pkg_setup(){
 	use debug || append-cflags -DNDEBUG
-}
-
-# Massive hack until I find how to do it properly.
-# gmpy2 needs to instal .pxd and .h for pplpy.
-python_prepare(){
-	cp gmpy2/* src/
-	rm -rf gmpy2
-	mv src gmpy2
-	sed -i "s:src:gmpy2:g" setup.py
 }
 
 python_compile_all() {
