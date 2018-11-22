@@ -69,10 +69,10 @@ CDEPEND="dev-libs/gmp:0=
 	>=sci-libs/zn_poly-0.9
 	>=sci-mathematics/giac-1.4.9.45
 	>=sci-mathematics/glpk-4.63:0=[gmp]
-	>=sci-mathematics/lcalc-1.23-r6[pari]
-	<sci-mathematics/lcalc-1.23-r10
+	>=sci-mathematics/lcalc-1.23-r10[pari]
 	>=sci-mathematics/lrcalc-1.2-r1
-	>=dev-python/cypari2-2.0.1[${PYTHON_USEDEP}]
+	>=dev-python/cypari2-1.3.1[${PYTHON_USEDEP}]
+	<dev-python/cypari2-2.0.0
 	~sci-mathematics/planarity-3.0.0.5
 	=sci-libs/brial-1.2*
 	=dev-python/sage-brial-1*[${PYTHON_USEDEP}]
