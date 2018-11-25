@@ -7,7 +7,7 @@ index 68699d6..ff69f82 100755
              PY_VERSION_HEX=sys.hexversion,
              PY_MAJOR_VERSION=sys.version_info[0],
 -            HAVE_GMPY2=have_module("gmpy2"),
-+            HAVE_GMPY2=(os.getenv('WANT_GMPY2',False) and have_module("gmpy2")),
++            HAVE_GMPY2=(os.getenv('WANT_gmpy2',False) and have_module("gmpy2")),
          )
  
          # We check the Cython version and some relevant configuration

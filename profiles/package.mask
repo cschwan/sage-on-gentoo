@@ -7,7 +7,6 @@ sci-mathematics/ecm
 # masking for now
 >=sci-mathematics/gap-4.8.9
 =dev-gap/GAPDoc-1.6.1
->=dev-python/gmpy-2.1.0_alpha2
 # keeping it under wrap for now
 >=sci-libs/openblas-0.3.0
 >=sci-mathematics/giac-1.5.0.0

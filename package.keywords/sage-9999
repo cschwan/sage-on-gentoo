@@ -27,6 +27,7 @@ dev-python/flask-autoindex
 ~dev-python/flask-babel-0.8
 ~dev-python/flask-openid-1.2.4
 dev-python/flask-oldsessions
+=dev-python/gmpy-2.1*
 =dev-python/psutil-4.4*
 ~dev-python/flask-silk-0.2
 dev-python/terminado
@@ -34,7 +35,6 @@ dev-python/mistune
 =dev-python/numpy-1.15*::sage-on-gentoo
 ~dev-python/networkx-2.1
 dev-python/cycler
-=dev-python/cypari2-1.2*
 =dev-python/cypari2-1.3*
 dev-python/versioneer
 =dev-python/jedi-0.10*
