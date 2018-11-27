@@ -60,7 +60,7 @@ dev-python/mpmath
 ~dev-python/pycurl-7.19.3.1
 ~dev-python/pytz-2014.2
 ~dev-python/pytables-3.1.1
-dev-python/rpy
+=dev-python/rpy-2.8*
 dev-python/simplegeneric
 ~dev-python/six-1.11.0
 ~dev-python/speaklater-1.3
