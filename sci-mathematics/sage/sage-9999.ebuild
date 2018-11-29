@@ -40,7 +40,7 @@ CDEPEND="dev-libs/gmp:0=
 	~dev-lisp/ecls-16.1.2
 	>=dev-python/six-1.11.0[${PYTHON_USEDEP}]
 	>=dev-python/numpy-1.15.2[${PYTHON_USEDEP}]
-	=dev-python/cython-0.28*[${PYTHON_USEDEP}]
+	>=dev-python/cython-0.29.1[${PYTHON_USEDEP}]
 	dev-python/future[${PYTHON_USEDEP}]
 	~dev-python/pkgconfig-1.2.2[${PYTHON_USEDEP}]
 	>=dev-python/cysignals-1.7.1[${PYTHON_USEDEP}]
@@ -99,7 +99,7 @@ DEPEND="${CDEPEND}
 
 RDEPEND="${CDEPEND}
 	>=dev-lang/R-3.2.0
-	>=dev-python/cvxopt-1.1.8[glpk,${PYTHON_USEDEP}]
+	>=dev-python/cvxopt-1.2.2[glpk,${PYTHON_USEDEP}]
 	>=dev-python/fpylll-0.2.3[${PYTHON_USEDEP}]
 	>=dev-python/mpmath-0.18[${PYTHON_USEDEP}]
 	~dev-python/networkx-2.1[${PYTHON_USEDEP}]
