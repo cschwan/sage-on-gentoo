@@ -14,7 +14,7 @@ dev-libs/c-blosc
 dev-python/characteristic
 dev-python/cvxopt
 =dev-python/cysignals-1.7*
-=dev-python/cython-0.28*
+>=dev-python/cython-0.29.1
 ~dev-python/bottleneck-0.8.0
 ~dev-python/pyopenssl-17.4.0
 ~dev-python/cryptography-0.6.1
