@@ -95,7 +95,7 @@ sci-libs/dsdp
 sci-libs/symmetrica
 sci-libs/vecmath-objectclub
 sci-libs/zn_poly
-~sci-mathematics/arb-2.14.0
+~sci-mathematics/arb-2.15.1
 sci-mathematics/cu2
 sci-mathematics/cubex
 sci-mathematics/dikcube
@@ -106,6 +106,7 @@ sci-mathematics/flintqs
 ~sci-mathematics/flint-2.5.2
 ~sci-mathematics/gap-4.8.6
 =sci-mathematics/giac-1.4.9*
+=sci-mathematics/giac-1.5.0*
 ~sci-mathematics/gfan-0.6.2
 dev-gap/GAPDoc
 >=sci-mathematics/glpk-4.61
@@ -115,7 +116,7 @@ sci-mathematics/lrcalc
 sci-mathematics/mcube
 sci-mathematics/optimal
 sci-mathematics/palp
-~sci-mathematics/pari-2.11.0
+=sci-mathematics/pari-2.11*
 sci-mathematics/pari-data
 ~sci-mathematics/planarity-3.0.0.5
 =sci-libs/brial-1.2*
