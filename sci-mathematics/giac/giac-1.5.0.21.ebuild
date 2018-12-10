@@ -15,7 +15,7 @@ LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
 LANGS="el en es fr pt"
-IUSE="ao doc examples fltk gc glpk static-libs"
+IUSE="ao doc examples fltk gc +glpk static-libs"
 for X in ${LANGS} ; do
 	IUSE="${IUSE} l10n_${X}"
 done
