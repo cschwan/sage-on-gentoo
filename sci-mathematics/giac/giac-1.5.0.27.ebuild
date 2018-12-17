@@ -70,6 +70,7 @@ src_configure(){
 		$(use_enable static-libs static) \
 		$(use_enable fltk gui)  \
 		$(use_enable ao) \
+		$(use_enable ecm) \
 		$(use_enable glpk) \
 		$(use_enable gc)
 
