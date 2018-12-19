@@ -22,7 +22,8 @@ done
 
 RDEPEND="dev-libs/gmp:=[cxx]
 	sys-libs/readline:=
-	fltk? ( >=x11-libs/fltk-1.1.9 )
+	fltk? ( >=x11-libs/fltk-1.1.9
+		media-libs/libpng:= )
 	ao? ( media-libs/libao )
 	dev-libs/mpfr:=
 	sci-libs/mpfi
@@ -36,7 +37,8 @@ RDEPEND="dev-libs/gmp:=[cxx]
 	gc? ( dev-libs/boehm-gc )"
 
 DEPEND="${RDEPEND}
-	virtual/pkgconfig"
+	virtual/pkgconfig
+	virtual/yacc"
 
 PATCHES=(
 	"${FILESDIR}"/${PN}-1.2.2-gsl_lapack.patch
@@ -69,6 +71,7 @@ src_configure(){
 		--disable-samplerate \
 		$(use_enable static-libs static) \
 		$(use_enable fltk gui)  \
+		$(use_enable fltk png)  \
 		$(use_enable ao) \
 		$(use_enable ecm) \
 		$(use_enable glpk) \
