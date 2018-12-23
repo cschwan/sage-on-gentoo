@@ -325,7 +325,7 @@ python_prepare_all() {
 	# support linguas so only requested languages are installed
 	eapply "${FILESDIR}"/${PN}-7.1-linguas.patch
 	# Correct path to mathjax
-	eapply "${FILESDIR}"/sage-8.2-mathjax_path.patch
+	eapply "${FILESDIR}"/${PN}-8.2-mathjax_path.patch
 
 	#####################################
 	#
