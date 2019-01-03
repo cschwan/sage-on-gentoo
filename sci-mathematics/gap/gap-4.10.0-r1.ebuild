@@ -1,4 +1,4 @@
-# Copyright 1999-2018 Gentoo Authors
+# Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=7
@@ -7,7 +7,7 @@ inherit autotools elisp-common
 
 DESCRIPTION="System for computational discrete algebra"
 HOMEPAGE="http://www.gap-system.org/"
-SRC_URI="https://github.com/gap-system/${PN}/archive/v${PV}.tar.gz -> ${P}.tar.gz"
+SRC_URI="https://www.gap-system.org/pub/gap/${PN}-$(ver_cut 1-2)/tar.bz2/${P}.tar.bz2"
 
 LICENSE="GPL-2+"
 SLOT="0"
@@ -23,6 +23,12 @@ RDEPEND="${DEPEND}
 	emacs? ( virtual/emacs )
 	vim-syntax? ( app-vim/vim-gap )"
 
+PATCHES=(
+	"${FILESDIR}"/0001-a-version-of-the-writeandcheck.patch-from-Sage-that-.patch
+	"${FILESDIR}"/0002-kernel-add-helper-function-for-writing-error-message.patch
+	"${FILESDIR}"/0003-Prototype-for-GAP_Enter-Leave-macros-to-bracket-use-.patch
+	)
+
 pkg_setup(){
 	# make the build/install verbose
 	export V=1
@@ -33,7 +39,6 @@ src_prepare(){
 
 	rm -rf extern
 	rm -rf hpcgap/extern
-	eautoreconf
 }
 
 src_configure(){
