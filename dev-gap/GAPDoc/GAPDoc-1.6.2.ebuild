@@ -23,5 +23,5 @@ src_install(){
 	doins -r 3k+1 doc example lib styles
 	doins *.g *.dtd
 
-	dodoc CHANGES README
+	dodoc CHANGES README.md
 }
