@@ -50,6 +50,7 @@ PATCHES=(
 	"${FILESDIR}"/0001-a-version-of-the-writeandcheck.patch-from-Sage-that-.patch
 	"${FILESDIR}"/0002-kernel-add-helper-function-for-writing-error-message.patch
 	"${FILESDIR}"/0003-Prototype-for-GAP_Enter-Leave-macros-to-bracket-use-.patch
+	"${FILESDIR}"/${PN}-4.10.0-install_config.h.patch
 	)
 
 pkg_setup(){
@@ -71,6 +72,12 @@ src_configure(){
 		ABI=""
 }
 
+src_install(){
+	default
+
+	insinto /usr/share/gap/
+	doins -r doc grp lib
+}
 pkg_postinst() {
 	use emacs && elisp-site-regen
 }
