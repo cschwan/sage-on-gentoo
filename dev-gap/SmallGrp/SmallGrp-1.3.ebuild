@@ -17,10 +17,12 @@ RDEPEND="${DEPEND}"
 
 S="${WORKDIR}/gap-${SLOT}/pkg/${P}"
 
+DOCS="README.md"
+
 src_install(){
+	default
+
 	insinto /usr/share/gap/pkg/"${P}"
 	doins -r doc gap id* small*
 	doins *.g
-
-	dodoc README.md
 }
