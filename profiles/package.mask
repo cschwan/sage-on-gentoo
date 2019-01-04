@@ -12,6 +12,7 @@ dev-gap/SmallGrp
 dev-gap/transgrp
 >=dev-gap/autpgrp-1.10
 >=dev-gap/Alnuth-3.1.0
+>=dev-gap/polycyclic-2.14
 # keeping it under wrap for now
 >=sci-libs/openblas-0.3.0
 #>=sci-mathematics/giac-1.5.0.0
