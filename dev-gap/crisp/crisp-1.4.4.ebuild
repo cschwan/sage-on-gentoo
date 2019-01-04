@@ -8,13 +8,13 @@ HOMEPAGE="http://www.gap-system.org/Packages/${PN}.html"
 SLOT="4.10.0"
 SRC_URI="https://www.gap-system.org/pub/gap/gap-$(ver_cut 1-2 ${SLOT})/tar.bz2/gap-${SLOT}.tar.bz2"
 
-LICENSE="GPL-2+"
+LICENSE="BSD-2"
 KEYWORDS="~amd64 ~x86"
 IUSE=""
 
 RDEPEND="sci-mathematics/gap:${SLOT}"
 
-DOCS="README"
+DOCS="README LICENSE"
 HTML_DOCS=htm/*
 
 S="${WORKDIR}/gap-${SLOT}/pkg/${P}"
