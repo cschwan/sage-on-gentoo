@@ -45,7 +45,7 @@ RDEPEND="${DEPEND}
 	vim-syntax? ( app-vim/vim-gap )"
 
 PDEPEND="dev-gap/GAPDoc:${SLOT}
-	dev-gap/pimgrp:${SLOT}
+	dev-gap/primgrp:${SLOT}
 	dev-gap/SmallGrp:${SLOT}
 	dev-gap/transgrp:${SLOT}"
 
