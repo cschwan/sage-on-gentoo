@@ -15,8 +15,7 @@ LICENSE="GPL-3
 KEYWORDS="~amd64 ~x86"
 IUSE=""
 
-DEPEND="sci-mathematics/gap:${SLOT}"
-RDEPEND="${DEPEND}"
+RDEPEND="sci-mathematics/gap:${SLOT}"
 
 HTML_DOCS=htm/*
 DOCS="README.txt LICENSE"
