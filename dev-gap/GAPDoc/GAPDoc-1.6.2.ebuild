@@ -12,9 +12,9 @@ LICENSE="GPL-2+"
 KEYWORDS="~amd64 ~x86"
 IUSE=""
 
-DEPEND="sci-mathematics/gap:${SLOT}
-	virtual/texi2dvi"
-RDEPEND="${DEPEND}"
+DEPEND="virtual/texi2dvi"
+RDEPEND="${DEPEND}
+	sci-mathematics/gap:${SLOT}"
 
 DOCS="CHANGES README.md"
 
