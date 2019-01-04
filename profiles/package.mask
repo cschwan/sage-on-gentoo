@@ -10,6 +10,7 @@ sci-mathematics/ecm
 dev-gap/primgrp
 dev-gap/SmallGrp
 dev-gap/transgrp
+>=dev-gap/autpgrp-1.10
 # keeping it under wrap for now
 >=sci-libs/openblas-0.3.0
 #>=sci-mathematics/giac-1.5.0.0
