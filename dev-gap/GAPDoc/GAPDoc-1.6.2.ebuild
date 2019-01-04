@@ -19,8 +19,8 @@ RDEPEND="${DEPEND}"
 S="${WORKDIR}/gap-${SLOT}/pkg/${P}"
 
 src_install(){
-	insinto /usr/$(get_libdir)/gap/pkg/"${P}"
-	doins -r 3k+1 doc example lib mathml styles
+	insinto /usr/share/gap/pkg/"${P}"
+	doins -r 3k+1 doc example lib styles
 	doins *.g *.dtd
 
 	dodoc CHANGES README
