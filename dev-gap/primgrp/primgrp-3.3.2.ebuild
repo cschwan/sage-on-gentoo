@@ -12,8 +12,7 @@ LICENSE="GPL-2+"
 KEYWORDS="~amd64 ~x86"
 IUSE=""
 
-DEPEND="sci-mathematics/gap:${SLOT}"
-RDEPEND="${DEPEND}"
+RDEPEND="sci-mathematics/gap:${SLOT}"
 
 DOCS="README.md"
 
