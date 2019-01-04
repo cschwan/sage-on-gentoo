@@ -6,7 +6,10 @@ sci-mathematics/ecm
 #dev-gap/atlasrep
 # masking for now
 >=sci-mathematics/gap-4.8.9
-=dev-gap/GAPDoc-1.6.1
+>=dev-gap/GAPDoc-1.6.1
+dev-gap/primgrp
+dev-gap/SmallGrp
+dev-gap/transgrp
 # keeping it under wrap for now
 >=sci-libs/openblas-0.3.0
 #>=sci-mathematics/giac-1.5.0.0
