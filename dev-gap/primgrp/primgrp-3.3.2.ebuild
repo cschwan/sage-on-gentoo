@@ -15,12 +15,14 @@ IUSE=""
 DEPEND="sci-mathematics/gap:${SLOT}"
 RDEPEND="${DEPEND}"
 
+DOCS="README.md"
+
 S="${WORKDIR}/gap-${SLOT}/pkg/${P}"
 
 src_install(){
+	default
+
 	insinto /usr/share/gap/pkg/"${P}"
 	doins -r data doc lib
 	doins *.g
-
-	dodoc README.md
 }
