@@ -18,7 +18,10 @@ RESTRICT="mirror"
 
 DEPEND="dev-libs/gmp:=
 	readline? ( sys-libs/readline:= )
-	!sci-libs/libgap
+	!!sci-libs/libgap"
+RDEPEND="${DEPEND}
+	emacs? ( virtual/emacs )
+	vim-syntax? ( app-vim/vim-gap )
 	!dev-gap/Alnuth:0
 	!dev-gap/GUAVA:0
 	!dev-gap/HAPcryst:0
@@ -39,12 +42,8 @@ DEPEND="dev-libs/gmp:=
 	!dev-gap/polymaking:0
 	!dev-gap/sonata:0
 	!dev-gap/tomlib:0
-	!dev-gap/toric:0"
-RDEPEND="${DEPEND}
-	emacs? ( virtual/emacs )
-	vim-syntax? ( app-vim/vim-gap )"
-
-PDEPEND="dev-gap/GAPDoc:${SLOT}
+	!dev-gap/toric:0
+	dev-gap/GAPDoc:${SLOT}
 	dev-gap/primgrp:${SLOT}
 	dev-gap/SmallGrp:${SLOT}
 	dev-gap/transgrp:${SLOT}"
