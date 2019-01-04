@@ -44,7 +44,10 @@ RDEPEND="${DEPEND}
 	emacs? ( virtual/emacs )
 	vim-syntax? ( app-vim/vim-gap )"
 
-PDEPEND="dev-gap/GAPDoc:${SLOT}"
+PDEPEND="dev-gap/GAPDoc:${SLOT}
+	dev-gap/pimgrp:${SLOT}
+	dev-gap/SmallGrp:${SLOT}
+	dev-gap/transgrp:${SLOT}"
 
 PATCHES=(
 	"${FILESDIR}"/0001-a-version-of-the-writeandcheck.patch-from-Sage-that-.patch
@@ -73,11 +76,22 @@ src_configure(){
 }
 
 src_install(){
+	# Create a shell script setting the GAP_ROOT where
+	# gap's objects are located
+	newbin gap gap-bin
+	cat > gap <<-EOF
+	#!/bin/env bash
+	GAP_ROOT="${EPREFIX}/usr/share/gap/"
+	exec gap-bin -l \${GAP_ROOT} -m 64m "\$@"
+	EOF
 	default
 
+	# install the objects needed for gap to work
+	# Some like GAPDoc can be installed as PDEPEND
 	insinto /usr/share/gap/
 	doins -r doc grp lib
 }
+
 pkg_postinst() {
 	use emacs && elisp-site-regen
 }
