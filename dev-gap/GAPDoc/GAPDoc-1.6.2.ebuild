@@ -16,12 +16,14 @@ DEPEND="sci-mathematics/gap:${SLOT}
 	virtual/texi2dvi"
 RDEPEND="${DEPEND}"
 
+DOCS="CHANGES README.md"
+
 S="${WORKDIR}/gap-${SLOT}/pkg/${P}"
 
 src_install(){
+	default
+
 	insinto /usr/share/gap/pkg/"${P}"
 	doins -r 3k+1 doc example lib styles
 	doins *.g *.dtd
-
-	dodoc CHANGES README.md
 }
