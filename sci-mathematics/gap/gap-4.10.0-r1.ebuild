@@ -12,16 +12,11 @@ SRC_URI="https://www.gap-system.org/pub/gap/${PN}-$(ver_cut 1-2)/tar.bz2/${P}.ta
 LICENSE="GPL-2+"
 SLOT="4.10.0"
 KEYWORDS="~amd64 ~x86 ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos"
-IUSE="emacs readline vim-syntax"
+IUSE="emacs readline +recommended_pkgs vim-syntax"
 
 RESTRICT="mirror"
 
-DEPEND="dev-libs/gmp:=
-	readline? ( sys-libs/readline:= )
-	!!sci-libs/libgap"
-RDEPEND="${DEPEND}
-	emacs? ( virtual/emacs )
-	vim-syntax? ( app-vim/vim-gap )
+OLD_PKGS="
 	!dev-gap/Alnuth:0
 	!dev-gap/GUAVA:0
 	!dev-gap/HAPcryst:0
@@ -42,11 +37,38 @@ RDEPEND="${DEPEND}
 	!dev-gap/polymaking:0
 	!dev-gap/sonata:0
 	!dev-gap/tomlib:0
-	!dev-gap/toric:0
+	!dev-gap/toric:0"
+
+MINIMUM_PKGS="
 	dev-gap/GAPDoc:${SLOT}
 	dev-gap/primgrp:${SLOT}
 	dev-gap/SmallGrp:${SLOT}
 	dev-gap/transgrp:${SLOT}"
+
+RECOMMENDED_PKGS="
+	dev-gap/autpgrp:${SLOT}
+	dev-gap/Alnuth:${SLOT}
+	dev-gap/crisp:${SLOT}
+	dev-gap/ctbllib:${SLOT}
+	dev-gap/factint:${SLOT}
+	dev-gap/fga:${SLOT}
+	dev-gap/irredsol:${SLOT}
+	dev-gap/laguna:${SLOT}
+	dev-gap/polenta:${SLOT}
+	dev-gap/polycyclic:${SLOT}
+	dev-gap/resclasses:${SLOT}
+	dev-gap/sophus:${SLOT}
+	dev-gap/tomlib:${SLOT}"
+
+DEPEND="dev-libs/gmp:=
+	readline? ( sys-libs/readline:= )
+	!!sci-libs/libgap"
+RDEPEND="${DEPEND}
+	${OLD_PKGS}
+	${MINIMUM_PKGS}
+	recommended_pkgs? ( ${RECOMMENDED_PKGS} )
+	emacs? ( virtual/emacs )
+	vim-syntax? ( app-vim/vim-gap )"
 
 PATCHES=(
 	"${FILESDIR}"/0001-a-version-of-the-writeandcheck.patch-from-Sage-that-.patch

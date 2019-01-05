@@ -15,4 +15,11 @@
 		representations, rings, vector spaces, algebras, combinatorial
 		structures, and more.
 	</longdescription>
+	<use>
+	<flag name='recommended_pkgs'>
+		Trigger installation of the recommended default packages for GAP. 
+		This list is controlled by the "PackagesToLoad" "UserPreference"
+		inside GAP.
+	</flag>
+	</use>
 </pkgmetadata>
