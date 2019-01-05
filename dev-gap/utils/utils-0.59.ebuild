@@ -3,7 +3,7 @@
 
 EAPI=7
 
-DESCRIPTION="Generate documentation from GAP source code"
+DESCRIPTION="Utility functions in GAP"
 HOMEPAGE="http://www.gap-system.org/Packages/${PN}.html"
 SLOT="4.10.0"
 SRC_URI="https://www.gap-system.org/pub/gap/gap-$(ver_cut 1-2 ${SLOT})/tar.bz2/gap-${SLOT}.tar.bz2"
