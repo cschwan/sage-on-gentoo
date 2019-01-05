@@ -1,4 +1,4 @@
-# Copyright 1999-2017 Gentoo Foundation
+# Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=6
@@ -12,11 +12,9 @@ SLOT="0"
 KEYWORDS="~amd64 ~x86"
 IUSE=""
 
-DEPEND=">=sci-mathematics/gap-4.7.8"
-RDEPEND="${DEPEND}"
-
-PDEPEND="dev-gap/autpgrp
-	dev-gap/Alnuth"
+DEPEND="sci-mathematics/gap:0
+	dev-gap/autpgrp:0
+	dev-gap/Alnuth:0"
 
 src_install(){
 	insinto /usr/$(get_libdir)/gap/pkg/"${PN}"
