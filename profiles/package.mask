@@ -22,6 +22,11 @@ dev-gap/transgrp
 >=dev-gap/fga-1.4.0
 >=dev-gap/irredsol-1.4
 >=dev-gap/sophus-1.24
+>=dev-gap/radiroot-2.8
+>=dev-gap/polenta-1.3.8
+>=dev-gap/AutoDoc-2018.09.20
+>=dev-gap/utils-0.59
+>=dev-gap/resclasses-4.7.1
 # keeping it under wrap for now
 >=sci-libs/openblas-0.3.0
 #>=sci-mathematics/giac-1.5.0.0
