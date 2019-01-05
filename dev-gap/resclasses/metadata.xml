@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<maintainer type="person">
+		<email>frp.bissey@gmail.com</email>
+		<name>FranÃ§ois Bissey</name>
+	</maintainer>
+	<longdescription lang="en">
+		This package permits to compute with set-theoretic unions
+		of residue classes of Z and a few other rings.
+		In particular it provides methods for computing unions,
+		intersections and differences of these sets.
+	</longdescription>
+</pkgmetadata>
