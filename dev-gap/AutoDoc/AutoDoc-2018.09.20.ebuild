@@ -19,6 +19,11 @@ DOCS="ChangeLog README TODO"
 
 S="${WORKDIR}/gap-${SLOT}/pkg/${P}"
 
+src_prepare(){
+	default
+
+	rm -f makefile
+}
 src_install(){
 	default
 
