@@ -1,4 +1,4 @@
-# Copyright 1999-2018 Gentoo Foundation
+# Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=7
@@ -13,13 +13,12 @@ SLOT="0"
 KEYWORDS="~amd64 ~x86"
 IUSE=""
 
-DEPEND=">=sci-mathematics/gap-4.7.8"
-RDEPEND="${DEPEND}
-	dev-gap/hap
-	dev-gap/polycyclic
-	dev-gap/aclib
-	dev-gap/cryst
-	dev-gap/polymaking"
+RDEPEND="sci-mathematics/gap:0
+	dev-gap/hap:0
+	dev-gap/polycyclic:0
+	dev-gap/aclib:0
+	dev-gap/cryst:0
+	dev-gap/polymaking:0"
 
 S="${WORKDIR}/${PN}"
 
