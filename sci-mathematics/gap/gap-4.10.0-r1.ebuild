@@ -62,7 +62,7 @@ RECOMMENDED_PKGS="
 
 DEPEND="dev-libs/gmp:=
 	readline? ( sys-libs/readline:= )
-	!!sci-mathematic/gap:0
+	!!sci-mathematics/gap:0
 	!!sci-libs/libgap"
 RDEPEND="${DEPEND}
 	${OLD_PKGS}
