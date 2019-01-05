@@ -9,7 +9,6 @@ SLOT="4.10.0"
 SRC_URI="https://www.gap-system.org/pub/gap/gap-$(ver_cut 1-2 ${SLOT})/tar.bz2/gap-${SLOT}.tar.bz2"
 
 LICENSE="GPL-2+"
-SLOT="0"
 KEYWORDS="~amd64 ~x86"
 IUSE=""
 
