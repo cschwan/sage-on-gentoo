@@ -13,7 +13,7 @@ LICENSE="GPL-2+"
 KEYWORDS="~amd64 ~x86"
 IUSE=""
 
-RDEPEND="sci-mathematics/gap:0
+RDEPEND="sci-mathematics/gap:${SLOT}
 	net-misc/wget"
 
 S="${WORKDIR}/gap-${SLOT}/pkg/${PN}"
