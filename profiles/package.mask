@@ -13,6 +13,15 @@ dev-gap/transgrp
 >=dev-gap/autpgrp-1.10
 >=dev-gap/Alnuth-3.1.0
 >=dev-gap/polycyclic-2.14
+>=dev-gap/atlasrep-1.5_p1-r1
+>=dev-gap/tomlib-1.2.7
+>=dev-gap/ctbllib-1.2_p2-r1
+>=dev-gap/factint-1.6.2
+>=dev-gap/laguna-3.9.0
+>=dev-gap/crisp-1.4.4
+>=dev-gap/fga-1.4.0
+>=dev-gap/irredsol-1.4
+>=dev-gap/sophus-1.24
 # keeping it under wrap for now
 >=sci-libs/openblas-0.3.0
 #>=sci-mathematics/giac-1.5.0.0
