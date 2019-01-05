@@ -1,4 +1,4 @@
-# Copyright 1999-2017 Gentoo Foundation
+# Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=6
@@ -12,9 +12,8 @@ SLOT="0"
 KEYWORDS="~amd64 ~x86"
 IUSE=""
 
-DEPEND=">=sci-mathematics/gap-4.7.8"
-RDEPEND="${DEPEND}
-	dev-gap/hap"
+RDEPEND="sci-mathematics/gap:0
+	dev-gap/hap:0"
 
 S="${WORKDIR}/${PN}"
 
