@@ -1,4 +1,4 @@
-# Copyright 1999-2018 Gentoo Authors
+# Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=7
@@ -43,7 +43,7 @@ CDEPEND="dev-libs/gmp:0=
 	>=dev-python/cython-0.29.1[${PYTHON_USEDEP}]
 	dev-python/future[${PYTHON_USEDEP}]
 	~dev-python/pkgconfig-1.2.2[${PYTHON_USEDEP}]
-	>=dev-python/cysignals-1.7.1[${PYTHON_USEDEP}]
+	>=dev-python/cysignals-1.8.1[${PYTHON_USEDEP}]
 	>=dev-python/docutils-0.12[${PYTHON_USEDEP}]
 	>=dev-python/psutil-4.4.0[${PYTHON_USEDEP}]
 	>=dev-python/ipython-5.8.0[notebook,${PYTHON_USEDEP}]
@@ -58,7 +58,6 @@ CDEPEND="dev-libs/gmp:0=
 	>=sci-libs/gsl-2.3
 	>=sci-libs/iml-1.0.4
 	~sci-mathematics/cliquer-1.21
-	~sci-libs/libgap-4.8.6
 	~sci-libs/linbox-1.5.2[sage]
 	~sci-libs/m4ri-20140914
 	~sci-libs/m4rie-20150908
@@ -66,6 +65,7 @@ CDEPEND="dev-libs/gmp:0=
 	~sci-libs/pynac-0.7.22[-giac,${PYTHON_USEDEP}]
 	>=sci-libs/symmetrica-2.0-r3
 	>=sci-libs/zn_poly-0.9
+	~sci-mathematics/gap-4.10.0:4.10.0=[recommended_pkgs]
 	>=sci-mathematics/giac-1.4.9.45
 	>=sci-mathematics/glpk-4.63:0=[gmp]
 	>=sci-mathematics/lcalc-1.23-r10[pari]
@@ -112,7 +112,6 @@ RDEPEND="${CDEPEND}
 	>=sci-libs/cddlib-094j[tools]
 	>=sci-libs/scipy-1.1.0[${PYTHON_USEDEP}]
 	sci-mathematics/flintqs
-	~sci-mathematics/gap-4.8.6
 	~sci-mathematics/gfan-0.6.2
 	>=sci-mathematics/cu2-20060223
 	>=sci-mathematics/cubex-20060128
@@ -233,7 +232,7 @@ python_prepare_all() {
 	############################################################################
 
 	# sage on gentoo env.py
-	eapply "${FILESDIR}"/${PN}-8.5-env.patch
+	eapply "${FILESDIR}"/${PN}-8.6-env.patch
 	# set $PF for the documentation location
 	sed -i "s:@GENTOO_PORTAGE_PF@:${PF}:" sage/env.py
 
@@ -264,7 +263,7 @@ python_prepare_all() {
 	sed -i -e "s:/lib/LiE/:/share/lie/:" sage/interfaces/lie.py
 
 	# patching libs/gap/util.pyx so we don't get noise from missing SAGE_LOCAL/gap/latest
-	eapply "${FILESDIR}"/${PN}-8.5-libgap.patch
+	eapply "${FILESDIR}"/${PN}-8.6-libgap.patch
 
 	# The ipython kernel tries to to start a new session via $SAGE_ROOT/sage -python
 	# Since we don't have $SAGE_ROOT/sage it fails.
