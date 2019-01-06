@@ -13,7 +13,7 @@ dev-libs/c-blosc
 >=dev-lisp/ecls-16.0.0::sage-on-gentoo
 dev-python/characteristic
 dev-python/cvxopt
-=dev-python/cysignals-1.7*
+=dev-python/cysignals-1.8*
 >=dev-python/cython-0.29.1
 ~dev-python/bottleneck-0.8.0
 ~dev-python/pyopenssl-17.4.0
