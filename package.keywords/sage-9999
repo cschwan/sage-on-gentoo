@@ -85,7 +85,6 @@ sci-libs/dsdp
 >=sci-libs/gsl-1.16
 >=sci-libs/iml-1.0.4
 ~sci-mathematics/cliquer-1.21
-~sci-libs/libgap-4.8.6
 ~sci-libs/linbox-1.5.2
 ~sci-libs/m4ri-20140914
 ~sci-libs/m4rie-20150908
@@ -104,11 +103,9 @@ sci-mathematics/dikcube
 sci-mathematics/flintqs
 ~sci-mathematics/flint-2.4.5
 ~sci-mathematics/flint-2.5.2
-~sci-mathematics/gap-4.8.6
 =sci-mathematics/giac-1.4.9*
 =sci-mathematics/giac-1.5.0*
 ~sci-mathematics/gfan-0.6.2
-dev-gap/GAPDoc
 >=sci-mathematics/glpk-4.61
 >=sci-mathematics/lcalc-1.23-r6
 sci-mathematics/lrcalc
@@ -167,26 +164,30 @@ dev-libs/igraph
 #sci-libs/coinor-osi
 #sci-libs/coinor-cbc
 #####################
-# gap packages that can be used in sage
+# GAP
 #####################
-~dev-gap/aclib-1.2
-~dev-gap/Alnuth-3.0.0
-~dev-gap/autpgrp-1.5
-~dev-gap/crime-1.4
-~dev-gap/crystcat-1.1.6
-~dev-gap/ctbllib-1.2_p2
-~dev-gap/design-1.6
-~dev-gap/factint-1.5.3
-~dev-gap/grape-4.7
-~dev-gap/GUAVA-3.13
-~dev-gap/hap-1.11
-~dev-gap/HAPcryst-0.1.11
-~dev-gap/happrime-0.6
-~dev-gap/laguna-3.7.0
-~dev-gap/polycyclic-2.11
-~dev-gap/polymaking-0.8.1
-~dev-gap/sonata-2.8
-~dev-gap/cryst-4.1.12
-~dev-gap/toric-1.8
-~dev-gap/sage-meta-1.0
+~sci-mathematics/gap-4.10.0
+# compulsory packages
+dev-gap/GAPDoc
+dev-gap/primgrp
+dev-gap/SmallGrp
+dev-gap/transgrp
+# default autoloaded packages
+dev-gap/atlasrep
+dev-gap/radiroot
+dev-gap/utils
+dev-gap/polycyclic
+dev-gap/factint
+dev-gap/crisp
+dev-gap/Alnuth
+dev-gap/resclasses
+dev-gap/tomlib
+dev-gap/polenta
+dev-gap/laguna
+dev-gap/sophus
+dev-gap/AutoDoc
+dev-gap/fga
+dev-gap/ctbllib
+dev-gap/autpgrp
+dev-gap/irredsol
 

@@ -1,0 +1,25 @@
+~sci-mathematics/gap-4.10.0
+# compulsory packages
+dev-gap/GAPDoc
+dev-gap/primgrp
+dev-gap/SmallGrp
+dev-gap/transgrp
+# default autoloaded packages
+dev-gap/atlasrep
+dev-gap/radiroot
+dev-gap/utils
+dev-gap/polycyclic
+dev-gap/factint
+dev-gap/crisp
+dev-gap/Alnuth
+dev-gap/resclasses
+dev-gap/tomlib
+dev-gap/polenta
+dev-gap/laguna
+dev-gap/sophus
+dev-gap/AutoDoc
+dev-gap/fga
+dev-gap/ctbllib
+dev-gap/autpgrp
+dev-gap/irredsol
+
