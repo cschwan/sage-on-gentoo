@@ -109,9 +109,12 @@ src_install(){
 	default
 
 	# install the objects needed for gap to work
-	# Some like GAPDoc can be installed as PDEPEND
+	# Some like GAPDoc can be installed as RDEPEND
 	insinto /usr/share/gap/
 	doins -r doc grp lib
+	# Some packages still need sysinfo.gap (guava)
+	# some of the content is currently silly but harmless
+	doins sysinfo.gap
 }
 
 pkg_postinst() {
