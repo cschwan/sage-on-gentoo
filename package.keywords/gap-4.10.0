@@ -1,25 +1,25 @@
 ~sci-mathematics/gap-4.10.0
 # compulsory packages
-dev-gap/GAPDoc:4.10.0
-dev-gap/primgrp:4.10.0
-dev-gap/SmallGrp:4.10.0
-dev-gap/transgrp:4.10.0
+dev-gap/GAPDoc:0/4.10.0
+dev-gap/primgrp:0/4.10.0
+dev-gap/SmallGrp:0/4.10.0
+dev-gap/transgrp:0/4.10.0
 # default autoloaded packages
-dev-gap/atlasrep:4.10.0
-dev-gap/radiroot:4.10.0
-dev-gap/utils:4.10.0
-dev-gap/polycyclic:4.10.0
-dev-gap/factint:4.10.0
-dev-gap/crisp:4.10.0
-dev-gap/Alnuth:4.10.0
-dev-gap/resclasses:4.10.0
-dev-gap/tomlib:4.10.0
-dev-gap/polenta:4.10.0
-dev-gap/laguna:4.10.0
-dev-gap/sophus:4.10.0
-dev-gap/AutoDoc:4.10.0
-dev-gap/fga:4.10.0
-dev-gap/ctbllib:4.10.0
-dev-gap/autpgrp:4.10.0
-dev-gap/irredsol:4.10.0
+dev-gap/atlasrep:0/4.10.0
+dev-gap/radiroot:0/4.10.0
+dev-gap/utils:0/4.10.0
+dev-gap/polycyclic:0/4.10.0
+dev-gap/factint:0/4.10.0
+dev-gap/crisp:0/4.10.0
+dev-gap/Alnuth:0/4.10.0
+dev-gap/resclasses:0/4.10.0
+dev-gap/tomlib:0/4.10.0
+dev-gap/polenta:0/4.10.0
+dev-gap/laguna:0/4.10.0
+dev-gap/sophus:0/4.10.0
+dev-gap/AutoDoc:0/4.10.0
+dev-gap/fga:0/4.10.0
+dev-gap/ctbllib:0/4.10.0
+dev-gap/autpgrp:0/4.10.0
+dev-gap/irredsol:0/4.10.0
 
