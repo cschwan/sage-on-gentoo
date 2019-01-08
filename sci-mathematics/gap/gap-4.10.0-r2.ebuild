@@ -41,10 +41,10 @@ DEPEND="dev-libs/gmp:=
 	readline? ( sys-libs/readline:= )
 	!!sci-libs/libgap"
 RDEPEND="${DEPEND}
+	${MINIMUM_PKGS}
+	recommended_pkgs? ( ${RECOMMENDED_PKGS} )
 	emacs? ( virtual/emacs )
 	vim-syntax? ( app-vim/vim-gap )"
-#	${MINIMUM_PKGS}
-#	recommended_pkgs? ( ${RECOMMENDED_PKGS} )
 
 PATCHES=(
 	"${FILESDIR}"/0001-a-version-of-the-writeandcheck.patch-from-Sage-that-.patch
