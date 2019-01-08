@@ -19,10 +19,9 @@ RESTRICT="mirror"
 DEPEND="dev-libs/gmp:=
 	readline? ( sys-libs/readline:= )"
 RDEPEND="${DEPEND}
+	dev-gap/GAPDoc:${SLOT}
 	emacs? ( virtual/emacs )
 	vim-syntax? ( app-vim/vim-gap )"
-
-PDEPEND="dev-gap/GAPDoc"
 
 PATCHES=(
 	"${FILESDIR}"/${PN}-4.5.7-writeandcheck.patch
