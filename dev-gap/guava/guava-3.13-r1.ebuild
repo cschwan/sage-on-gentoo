@@ -5,19 +5,21 @@ EAPI=6
 
 inherit autotools toolchain-funcs
 
-MY_PN="${PN,,}"
+MY_PN="guava"
 MY_P="${MY_PN}-${PV}"
 
 DESCRIPTION="GAP package for computing with error-correcting codes"
 HOMEPAGE="http://www.gap-system.org/Packages/guava.html https://osj1961.github.io/guava/"
-SRC_URI="http://www.gap-system.org/pub/gap/gap4/tar.gz/packages/${MY_P}.tar.gz -> ${P}.tar.gz"
+GAP_VERSION=4.8.6
+SRC_URI="https://www.gap-system.org/pub/gap/gap48/tar.bz2/gap4r8p6_2016_11_12-14_25.tar.bz2"
 
 LICENSE="|| ( GPL-2 GPL-3 )"
-SLOT="0"
+SLOT="0/${GAP_VERSION}"
 KEYWORDS="~amd64 ~x86"
 IUSE=""
 
-RDEPEND="sci-mathematics/gap:0"
+DEPEND="sci-mathematics/gap:${SLOT}"
+RDEPEND="${DEPEND}"
 
 RESTRICT=mirror
 
@@ -27,7 +29,7 @@ PATCHES=(
 	"${FILESDIR}"/${MY_PN}-3.13-build.patch
 	)
 
-S="${WORKDIR}/${MY_P}"
+S="${WORKDIR}/gap4r8/pkg/${MY_P}"
 
 src_prepare() {
 	default

@@ -1,22 +1,16 @@
-# Copyright 1999-2018 Gentoo Foundation
+# Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI=7
 
 inherit autotools elisp-common
 
-# gap-lite is a pre-made tarball where the following has been removed:
-# 1) all pkg
-# 2) content of the bin folder - premade stuff
-# 3) gmp tarball(s) in the extern folder (don't remove the makefile)
-# sage also remove some of the database
-MY_P="gap-lite-${PV}"
 DESCRIPTION="System for computational discrete algebra"
 HOMEPAGE="http://www.gap-system.org/"
-SRC_URI="mirror://sagemath/${MY_P}.tar.xz"
+SRC_URI="https://www.gap-system.org/pub/gap/gap48/tar.bz2/gap4r8p6_2016_11_12-14_25.tar.bz2"
 
 LICENSE="GPL-2+"
-SLOT="0"
+SLOT="0/4.8.6"
 KEYWORDS="~amd64 ~x86 ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos"
 IUSE="emacs readline vim-syntax"
 
@@ -25,10 +19,9 @@ RESTRICT="mirror"
 DEPEND="dev-libs/gmp:=
 	readline? ( sys-libs/readline:= )"
 RDEPEND="${DEPEND}
+	dev-gap/GAPDoc:${SLOT}
 	emacs? ( virtual/emacs )
 	vim-syntax? ( app-vim/vim-gap )"
-
-PDEPEND="dev-gap/GAPDoc"
 
 PATCHES=(
 	"${FILESDIR}"/${PN}-4.5.7-writeandcheck.patch
@@ -36,7 +29,10 @@ PATCHES=(
 	"${FILESDIR}"/${PN}-4.8.6-no_default_package.patch
 	)
 
+S="${WORKDIR}"/${PN}$(ver_cut 1)r$(ver_cut 2)
+
 src_prepare(){
+	rm -rf pkg
 	default
 
 	eautoreconf

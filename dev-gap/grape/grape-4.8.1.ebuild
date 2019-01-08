@@ -3,7 +3,9 @@
 
 EAPI=7
 
-DESCRIPTION="Computation with polycyclic groups"
+inherit prefix
+
+DESCRIPTION="GRaph Algorithms using PErmutation groups"
 HOMEPAGE="http://www.gap-system.org/Packages/${PN}.html"
 GAP_VERSION="4.10.0"
 SLOT="0/${GAP_VERSION}"
@@ -11,20 +13,40 @@ SRC_URI="https://www.gap-system.org/pub/gap/gap-$(ver_cut 1-2 ${GAP_VERSION})/ta
 
 LICENSE="GPL-2+"
 KEYWORDS="~amd64 ~x86"
-IUSE=""
+IUSE="bliss"
 
 RDEPEND="sci-mathematics/gap:${SLOT}
-	dev-gap/autpgrp:${SLOT}
-	dev-gap/Alnuth:${SLOT}"
+	bliss? ( >=sci-libs/bliss-0.73 )
+	!bliss? ( sci-mathematics/nauty )"
 
-DOCS="CHANGES.md README"
+PATCHES=(
+	"${FILESDIR}"/${PN}-4.8.1-exec.patch
+	)
+
+DOCS="README"
+HTML_DOCS=htm/*
 
 S="${WORKDIR}/gap-${GAP_VERSION}/pkg/${P}"
+
+src_prepare(){
+	default
+
+	rm -f configure \
+		Makefile \
+		Makefile.in
+
+	local nauty="true"
+	if use bliss ; then
+		nauty="false"
+	fi
+	sed -i "s:@nauty@:$nauty:" lib/grape.g
+	eprefixify lib/grape.g
+}
 
 src_install(){
 	default
 
 	insinto /usr/share/gap/pkg/"${P}"
-	doins -r doc gap
+	doins -r doc grh lib
 	doins *.g
 }

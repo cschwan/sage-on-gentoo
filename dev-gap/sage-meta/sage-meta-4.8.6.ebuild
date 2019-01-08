@@ -1,4 +1,4 @@
-# Copyright 1999-2018 Gentoo Foundation
+# Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=6
@@ -6,29 +6,30 @@ EAPI=6
 DESCRIPTION="Meta package to install all sage optional gap packages"
 HOMEPAGE="http://www.gap-system.org/Packages/"
 
+GAP_VERSION=${PV}
 LICENSE="metapackage"
-SLOT="0"
+SLOT="0/${GAP_VERSION}"
 KEYWORDS="~amd64 ~x86"
 IUSE=""
 
-RDEPEND="~dev-gap/aclib-1.2
-	~dev-gap/Alnuth-3.0.0
-	~dev-gap/autpgrp-1.5
-	~dev-gap/crime-1.4
-	~dev-gap/crystcat-1.1.6
-	~dev-gap/ctbllib-1.2_p2
-	~dev-gap/design-1.6
-	~dev-gap/factint-1.5.3
-	~dev-gap/grape-4.7
-	~dev-gap/GUAVA-3.13
-	~dev-gap/hap-1.11
-	~dev-gap/HAPcryst-0.1.11
-	~dev-gap/happrime-0.6
-	~dev-gap/laguna-3.7.0
-	~dev-gap/polycyclic-2.11
-	~dev-gap/polymaking-0.8.1
-	~dev-gap/sonata-2.8
-	~dev-gap/toric-1.8"
+RDEPEND="dev-gap/aclib:${SLOT}
+	dev-gap/Alnuth:${SLOT}
+	dev-gap/autpgrp:${SLOT}
+	dev-gap/crime:${SLOT}
+	dev-gap/crystcat:${SLOT}
+	dev-gap/ctbllib:${SLOT}
+	dev-gap/design:${SLOT}
+	dev-gap/factint:${SLOT}
+	dev-gap/grape:${SLOT}
+	dev-gap/guava:${SLOT}
+	dev-gap/hap:${SLOT}
+	dev-gap/HAPcryst:${SLOT}
+	dev-gap/happrime:${SLOT}
+	dev-gap/laguna:${SLOT}
+	dev-gap/polycyclic:${SLOT}
+	dev-gap/polymaking:${SLOT}
+	dev-gap/sonata:${SLOT}
+	dev-gap/toric:${SLOT}"
 
 S="${WORKDIR}"
 
