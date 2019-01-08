@@ -3,24 +3,24 @@
 
 EAPI=7
 
-MY_PV=$(ver_rs 1- '_' )
 DESCRIPTION="A HAP extension for crytallographic groups"
 HOMEPAGE="http://www.gap-system.org/Packages/hapcryst.html"
-SRC_URI="http://www.gap-system.org/pub/gap/gap4/tar.bz2/packages/${PN}${MY_PV}.tar.bz2"
+GAP_VERSION=4.8.6
+SRC_URI="https://www.gap-system.org/pub/gap/gap48/tar.bz2/gap4r8p6_2016_11_12-14_25.tar.bz2"
 
 LICENSE="GPL-2+"
-SLOT="0"
+SLOT="0/${GAP_VERSION}"
 KEYWORDS="~amd64 ~x86"
 IUSE=""
 
-RDEPEND="sci-mathematics/gap:0
-	dev-gap/hap:0
-	dev-gap/polycyclic:0
-	dev-gap/aclib:0
-	dev-gap/cryst:0
-	dev-gap/polymaking:0"
+RDEPEND="sci-mathematics/gap:${SLOT}
+	dev-gap/hap:${SLOT}
+	dev-gap/polycyclic:${SLOT}
+	dev-gap/aclib:${SLOT}
+	dev-gap/cryst:${SLOT}
+	dev-gap/polymaking:${SLOT}"
 
-S="${WORKDIR}/${PN}"
+S="${WORKDIR}/gap4r8/pkg/${PN}"
 
 src_prepare(){
 	default

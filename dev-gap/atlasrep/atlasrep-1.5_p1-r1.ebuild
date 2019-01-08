@@ -6,8 +6,9 @@ EAPI=7
 MY_PV=$(ver_rs 1 'r' $(ver_rs 2 ''))
 DESCRIPTION="A GAP Interface to the Atlas of Group Representations"
 HOMEPAGE="http://www.gap-system.org/Packages/${PN}.html"
-SLOT="4.10.0"
-SRC_URI="https://www.gap-system.org/pub/gap/gap-$(ver_cut 1-2 ${SLOT})/tar.bz2/gap-${SLOT}.tar.bz2"
+GAP_VERSION="4.10.0"
+SLOT="0/${GAP_VERSION}"
+SRC_URI="https://www.gap-system.org/pub/gap/gap-$(ver_cut 1-2 ${GAP_VERSION})/tar.bz2/gap-${GAP_VERSION}.tar.bz2"
 
 LICENSE="GPL-2+"
 KEYWORDS="~amd64 ~x86"
@@ -16,7 +17,7 @@ IUSE=""
 RDEPEND="sci-mathematics/gap:${SLOT}
 	net-misc/wget"
 
-S="${WORKDIR}/gap-${SLOT}/pkg/${PN}"
+S="${WORKDIR}/gap-${GAP_VERSION}/pkg/${PN}"
 
 PATCHES=(
 	"${FILESDIR}"/${PN}-1.5_p0-local.patch

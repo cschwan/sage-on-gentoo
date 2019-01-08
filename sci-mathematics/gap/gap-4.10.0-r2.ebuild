@@ -10,34 +10,11 @@ HOMEPAGE="http://www.gap-system.org/"
 SRC_URI="https://www.gap-system.org/pub/gap/${PN}-$(ver_cut 1-2)/tar.bz2/${P}.tar.bz2"
 
 LICENSE="GPL-2+"
-SLOT="4.10.0"
+SLOT="0/4.10.0"
 KEYWORDS="~amd64 ~x86 ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos"
 IUSE="emacs readline +recommended_pkgs vim-syntax"
 
 RESTRICT="mirror"
-
-OLD_PKGS="
-	!dev-gap/Alnuth:0
-	!dev-gap/GUAVA:0
-	!dev-gap/HAPcryst:0
-	!dev-gap/aclib:0
-	!dev-gap/atlasrep:0
-	!dev-gap/autpgrp:0
-	!dev-gap/crime:0
-	!dev-gap/cryst:0
-	!dev-gap/crystcat:0
-	!dev-gap/ctbllib:0
-	!dev-gap/design:0
-	!dev-gap/factint:0
-	!dev-gap/grape:0
-	!dev-gap/hap:0
-	!dev-gap/happrime:0
-	!dev-gap/laguna:0
-	!dev-gap/polycyclic:0
-	!dev-gap/polymaking:0
-	!dev-gap/sonata:0
-	!dev-gap/tomlib:0
-	!dev-gap/toric:0"
 
 MINIMUM_PKGS="
 	dev-gap/GAPDoc:${SLOT}
@@ -62,10 +39,8 @@ RECOMMENDED_PKGS="
 
 DEPEND="dev-libs/gmp:=
 	readline? ( sys-libs/readline:= )
-	!!sci-mathematics/gap:0
 	!!sci-libs/libgap"
 RDEPEND="${DEPEND}
-	${OLD_PKGS}
 	${MINIMUM_PKGS}
 	recommended_pkgs? ( ${RECOMMENDED_PKGS} )
 	emacs? ( virtual/emacs )
@@ -109,9 +84,12 @@ src_install(){
 	default
 
 	# install the objects needed for gap to work
-	# Some like GAPDoc can be installed as PDEPEND
+	# Some like GAPDoc can be installed as RDEPEND
 	insinto /usr/share/gap/
 	doins -r doc grp lib
+	# Some packages still need sysinfo.gap (guava)
+	# some of the content is currently silly but harmless
+	doins sysinfo.gap
 }
 
 pkg_postinst() {

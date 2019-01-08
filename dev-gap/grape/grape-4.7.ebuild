@@ -8,18 +8,19 @@ inherit prefix
 MY_PV=$(ver_rs 1 'r' )
 DESCRIPTION="GRaph Algorithms using PErmutation groups"
 HOMEPAGE="http://www.gap-system.org/Packages/${PN}.html"
-SRC_URI="http://www.gap-system.org/pub/gap/gap4/tar.bz2/packages/${PN}${MY_PV}.tar.bz2"
+GAP_VERSION=4.8.6
+SRC_URI="https://www.gap-system.org/pub/gap/gap48/tar.bz2/gap4r8p6_2016_11_12-14_25.tar.bz2"
 
 LICENSE="GPL-2+"
-SLOT="0"
+SLOT="0/${GAP_VERSION}"
 KEYWORDS="~amd64 ~x86"
 IUSE="bliss"
 
-RDEPEND="sci-mathematics/gap:0
+RDEPEND="sci-mathematics/gap:${SLOT}
 	bliss? ( >=sci-libs/bliss-0.73 )
 	!bliss? ( sci-mathematics/nauty )"
 
-S="${WORKDIR}/${PN}"
+S="${WORKDIR}/gap4r8/pkg/${PN}"
 
 PATCHES=(
 	"${FILESDIR}"/${PN}-4.7-exec.patch

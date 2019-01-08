@@ -5,23 +5,26 @@ EAPI=7
 
 DESCRIPTION="The Design Package for GAP"
 HOMEPAGE="http://www.gap-system.org/Packages/${PN}.html"
-GAP_VERSION=4.8.6
-SRC_URI="https://www.gap-system.org/pub/gap/gap48/tar.bz2/gap4r8p6_2016_11_12-14_25.tar.bz2"
+GAP_VERSION="4.10.0"
+SLOT="0/${GAP_VERSION}"
+SRC_URI="https://www.gap-system.org/pub/gap/gap-$(ver_cut 1-2 ${GAP_VERSION})/tar.bz2/gap-${GAP_VERSION}.tar.bz2"
 
 LICENSE="GPL-2+"
-SLOT="0/${GAP_VERSION}"
 KEYWORDS="~amd64 ~x86"
 IUSE=""
 
 RDEPEND="sci-mathematics/gap:${SLOT}
 	dev-gap/grape:${SLOT}"
 
-S="${WORKDIR}/gap4r8/pkg/${PN}"
+S="${WORKDIR}/gap-${GAP_VERSION}/pkg/${PN}"
+
+DOCS="README"
+HTML_DOCS=htm/*
 
 src_install(){
-	insinto /usr/$(get_libdir)/gap/pkg/"${PN}"
+	default
+
+	insinto /usr/share/gap/pkg/"${PN}"
 	doins -r doc htm lib
 	doins *.g
-
-	dodoc README
 }
