@@ -73,6 +73,7 @@ dev-python/webassets
 ~dev-python/werkzeug-0.9.6
 ~dev-python/sphinx-1.7.5
 ~dev-python/sphinx-1.7.6
+=dev-python/pyzmq-17*
 ~dev-tex/sage-latex-3.0
 media-gfx/tachyon
 ~media-gfx/threejs-sage-extension-80
