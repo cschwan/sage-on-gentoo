@@ -5,8 +5,9 @@ EAPI=7
 
 DESCRIPTION="Computing with Radicals, Injectors, Schunck classes and Projectors"
 HOMEPAGE="http://www.gap-system.org/Packages/${PN}.html"
-SLOT="4.10.0"
-SRC_URI="https://www.gap-system.org/pub/gap/gap-$(ver_cut 1-2 ${SLOT})/tar.bz2/gap-${SLOT}.tar.bz2"
+GAP_VERSION="4.10.0"
+SLOT="0/${GAP_VERSION}"
+SRC_URI="https://www.gap-system.org/pub/gap/gap-$(ver_cut 1-2 ${GAP_VERSION})/tar.bz2/gap-${GAP_VERSION}.tar.bz2"
 
 LICENSE="BSD-2"
 KEYWORDS="~amd64 ~x86"
@@ -17,7 +18,7 @@ RDEPEND="sci-mathematics/gap:${SLOT}"
 DOCS="README LICENSE"
 HTML_DOCS=htm/*
 
-S="${WORKDIR}/gap-${SLOT}/pkg/${P}"
+S="${WORKDIR}/gap-${GAP_VERSION}/pkg/${P}"
 
 src_install(){
 	default

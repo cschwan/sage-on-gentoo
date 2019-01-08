@@ -5,16 +5,18 @@ EAPI=6
 
 DESCRIPTION="A Meta Package for GAP Documentation"
 HOMEPAGE="http://www.gap-system.org/Packages/gapdoc.html"
-SRC_URI="mirror://sagemath/${P}.tar.bz2"
+GAP_VERSION=4.8.6
+SRC_URI="https://www.gap-system.org/pub/gap/gap48/tar.bz2/gap4r8p6_2016_11_12-14_25.tar.bz2"
 
 LICENSE="GPL-2+"
-SLOT="0"
+SLOT="0/${GAP_VERSION}"
 KEYWORDS="~amd64 ~x86"
 IUSE=""
 
-RDEPEND=">=sci-mathematics/gap-4.8.3-r1:0
-	!<=sci-mathematics/gap-4.8.3
+RDEPEND="sci-mathematics/gap:${SLOT}
 	virtual/texi2dvi"
+
+S="${WORKDIR}/gap4r8/pkg/${P}"
 
 src_install(){
 	insinto /usr/$(get_libdir)/gap/pkg/"${P}"

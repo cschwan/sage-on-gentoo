@@ -1,38 +1,40 @@
 # Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI=7
 
 inherit autotools toolchain-funcs
 
-MY_PN="${PN,,}"
+MY_PN="guava"
 MY_P="${MY_PN}-${PV}"
 
 DESCRIPTION="GAP package for computing with error-correcting codes"
 HOMEPAGE="http://www.gap-system.org/Packages/guava.html https://osj1961.github.io/guava/"
-SRC_URI="http://www.gap-system.org/pub/gap/gap4/tar.gz/packages/${MY_P}.tar.gz -> ${P}.tar.gz"
+GAP_VERSION="4.10.0"
+SLOT="0/${GAP_VERSION}"
+SRC_URI="https://www.gap-system.org/pub/gap/gap-$(ver_cut 1-2 ${GAP_VERSION})/tar.bz2/gap-${GAP_VERSION}.tar.bz2"
 
 LICENSE="|| ( GPL-2 GPL-3 )"
-SLOT="0"
 KEYWORDS="~amd64 ~x86"
 IUSE=""
 
-RDEPEND="sci-mathematics/gap:0"
+DEPEND="sci-mathematics/gap:${SLOT}"
+RDEPEND="${DEPEND}"
 
 RESTRICT=mirror
 
 DOCS=( {CHANGES,HISTORY,README}.${MY_PN} )
 
 PATCHES=(
-	"${FILESDIR}"/${MY_PN}-3.13-build.patch
+	"${FILESDIR}"/${MY_PN}-3.14-build.patch
 	)
 
-S="${WORKDIR}/${MY_P}"
+S="${WORKDIR}/gap-${GAP_VERSION}/pkg/${MY_P}"
 
 src_prepare() {
 	default
 	# Remove temporary files in src/leon/.
-	rm -r src/leon/{autom4te.cache,src/stamp-h1} src/leon/src/*~ || die
+	rm src/leon/src/stamp-h1 || die
 
 	cd src/leon/ || die
 	eautoreconf
@@ -40,7 +42,7 @@ src_prepare() {
 
 src_configure() {
 	# Not a real autoconf configure script
-	econf "${EPREFIX}/usr/$(get_libdir)/gap"
+	econf "${EPREFIX}/usr/share/gap"
 
 	cd src/leon/ || die
 	# real autoconf configure script
@@ -55,9 +57,9 @@ src_compile() {
 }
 
 src_install() {
-	insinto /usr/$(get_libdir)/gap/pkg/${MY_P}
-	doins -r bin/ doc/ lib/ tbl/ tst/
-	doins {PackageInfo,init,read}.g
+	default
 
-	einstalldocs
+	insinto /usr/share/gap/pkg/"${MY_P}"
+	doins -r bin doc lib tbl
+	doins *.g
 }

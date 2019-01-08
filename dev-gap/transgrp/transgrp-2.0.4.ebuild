@@ -5,8 +5,9 @@ EAPI=7
 
 DESCRIPTION="GAP Transitive Groups Library"
 HOMEPAGE="http://www.gap-system.org/Packages/transgrp.html"
-SLOT="4.10.0"
-SRC_URI="https://www.gap-system.org/pub/gap/gap-$(ver_cut 1-2 ${SLOT})/tar.bz2/gap-${SLOT}.tar.bz2"
+GAP_VERSION="4.10.0"
+SLOT="0/${GAP_VERSION}"
+SRC_URI="https://www.gap-system.org/pub/gap/gap-$(ver_cut 1-2 ${GAP_VERSION})/tar.bz2/gap-${GAP_VERSION}.tar.bz2"
 
 # Data format is licensed Artistic-2
 # Code is licensed GPL-3
@@ -20,7 +21,7 @@ RDEPEND="sci-mathematics/gap:${SLOT}"
 HTML_DOCS=htm/*
 DOCS="README.txt LICENSE"
 
-S="${WORKDIR}/gap-${SLOT}/pkg/${PN}"
+S="${WORKDIR}/gap-${GAP_VERSION}/pkg/${PN}"
 
 src_install(){
 	default
