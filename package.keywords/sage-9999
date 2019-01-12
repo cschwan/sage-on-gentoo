@@ -33,7 +33,7 @@ dev-python/flask-oldsessions
 dev-python/terminado
 dev-python/mistune
 =dev-python/numpy-1.15*::sage-on-gentoo
-~dev-python/networkx-2.1
+~dev-python/networkx-2.2
 dev-python/cycler
 =dev-python/cypari2-1.3*
 dev-python/versioneer
