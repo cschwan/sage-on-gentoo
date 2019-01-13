@@ -8,7 +8,7 @@ PYTHON_REQ_USE="readline,sqlite"
 
 inherit desktop distutils-r1 flag-o-matic multiprocessing prefix toolchain-funcs git-r3
 
-EGIT_REPO_URI="https://github.com/sagemath/sage.git"
+EGIT_REPO_URI="https://github.com/vbraun/sage.git"
 EGIT_BRANCH=develop
 EGIT_CHECKOUT_DIR="${WORKDIR}/${P}"
 KEYWORDS=""
@@ -102,7 +102,7 @@ RDEPEND="${CDEPEND}
 	>=dev-python/cvxopt-1.2.2[glpk,${PYTHON_USEDEP}]
 	>=dev-python/fpylll-0.2.3[${PYTHON_USEDEP}]
 	>=dev-python/mpmath-0.18[${PYTHON_USEDEP}]
-	~dev-python/networkx-2.1[${PYTHON_USEDEP}]
+	~dev-python/networkx-2.2[${PYTHON_USEDEP}]
 	>=dev-python/pexpect-4.2.1[${PYTHON_USEDEP}]
 	>=dev-python/rpy-2.8.0[${PYTHON_USEDEP}]
 	<dev-python/rpy-2.9.0
