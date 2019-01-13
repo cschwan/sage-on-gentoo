@@ -73,13 +73,17 @@ src_configure(){
 }
 
 src_install(){
+	# Load sysinfo.gap to access its content
+	source sysinfo.gap
+	# Install the real binary in GAP_ROOT/bin/GAParch
+	exeinto /usr/share/gap/bin/${GAParch}
+	doexe gap
 	# Create a shell script setting the GAP_ROOT where
 	# gap's objects are located
-	newbin gap gap-bin
 	cat > gap <<-EOF
 	#!/bin/env bash
 	GAP_ROOT="${EPREFIX}/usr/share/gap/"
-	exec gap-bin -l \${GAP_ROOT} -m 64m "\$@"
+	exec \${GAP_ROOT}/bin/${GAParch}/gap -l \${GAP_ROOT} -m 64m "\$@"
 	EOF
 	default
 
