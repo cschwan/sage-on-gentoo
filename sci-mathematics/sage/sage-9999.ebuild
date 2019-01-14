@@ -262,9 +262,6 @@ python_prepare_all() {
 	# patch lie library path
 	sed -i -e "s:/lib/LiE/:/share/lie/:" sage/interfaces/lie.py
 
-	# patching libs/gap/util.pyx so we don't get noise from missing SAGE_LOCAL/gap/latest
-	eapply "${FILESDIR}"/${PN}-8.6-libgap.patch
-
 	# The ipython kernel tries to to start a new session via $SAGE_ROOT/sage -python
 	# Since we don't have $SAGE_ROOT/sage it fails.
 	#See https://github.com/cschwan/sage-on-gentoo/issues/342
