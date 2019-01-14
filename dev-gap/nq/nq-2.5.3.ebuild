@@ -16,7 +16,8 @@ KEYWORDS="~amd64 ~x86"
 IUSE=""
 
 DEPEND="sci-mathematics/gap:${SLOT}"
-RDEPEND="${DEPEND}"
+RDEPEND="${DEPEND}
+	dev-gap/polycyclic:${SLOT}"
 
 DOCS="CHANGES README TODO"
 
