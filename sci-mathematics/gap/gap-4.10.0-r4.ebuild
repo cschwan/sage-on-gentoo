@@ -81,9 +81,8 @@ src_install(){
 	# Create a shell script setting the GAP_ROOT where
 	# gap's objects are located
 	cat > gap <<-EOF
-	#!/bin/env bash
-	GAP_ROOT="${EPREFIX}/usr/share/gap/"
-	exec \${GAP_ROOT}/bin/${GAParch}/gap -l \${GAP_ROOT} -m 64m "\$@"
+	#!${EPREFIX}/bin/bash
+	exec \${GAP_ROOT}/bin/${GAParch}/gap -m 64m "\$@"
 	EOF
 	default
 
