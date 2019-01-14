@@ -65,7 +65,7 @@ CDEPEND="dev-libs/gmp:0=
 	~sci-libs/pynac-0.7.22[-giac,${PYTHON_USEDEP}]
 	>=sci-libs/symmetrica-2.0-r3
 	>=sci-libs/zn_poly-0.9
-	~sci-mathematics/gap-4.10.0:0/4.10.0[recommended_pkgs]
+	>=sci-mathematics/gap-4.10.0-r4:0/4.10.0[recommended_pkgs]
 	>=sci-mathematics/giac-1.4.9.45
 	>=sci-mathematics/glpk-4.63:0=[gmp]
 	>=sci-mathematics/lcalc-1.23-r10[pari]
@@ -261,9 +261,6 @@ python_prepare_all() {
 	# TODO: should be a patch
 	# patch lie library path
 	sed -i -e "s:/lib/LiE/:/share/lie/:" sage/interfaces/lie.py
-
-	# patching libs/gap/util.pyx so we don't get noise from missing SAGE_LOCAL/gap/latest
-	eapply "${FILESDIR}"/${PN}-8.6-libgap.patch
 
 	# The ipython kernel tries to to start a new session via $SAGE_ROOT/sage -python
 	# Since we don't have $SAGE_ROOT/sage it fails.
