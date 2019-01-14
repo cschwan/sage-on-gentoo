@@ -82,7 +82,7 @@ src_install(){
 	# gap's objects are located
 	cat > gap <<-EOF
 	#!${EPREFIX}/bin/bash
-	exec \${GAP_ROOT}/bin/${GAParch}/gap -m 64m "\$@"
+	exec ${EPREFIX}/usr/share/gap/bin/${GAParch}/gap -m 64m "\$@"
 	EOF
 	default
 
