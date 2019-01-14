@@ -15,7 +15,8 @@ LICENSE="GPL-2+"
 KEYWORDS="~amd64 ~x86"
 IUSE=""
 
-DEPEND="sci-mathematics/gap:${SLOT}"
+DEPEND="sci-mathematics/gap:${SLOT}
+	dev-libs/gmp:0="
 RDEPEND="${DEPEND}
 	dev-gap/polycyclic:${SLOT}"
 
