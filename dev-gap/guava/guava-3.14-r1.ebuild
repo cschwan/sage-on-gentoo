@@ -60,6 +60,10 @@ src_install() {
 	default
 
 	insinto /usr/share/gap/pkg/"${MY_P}"
-	doins -r bin doc lib tbl
+	doins -r doc lib tbl
 	doins *.g
+	# installing executables
+	source "${EPREFIX}/usr/share/gap/sysinfo.gap"
+	exeinto /usr/share/gap/pkg/"${MY_P}/bin/${GAParch}"
+	doexe bin/"${GAParch}"/*
 }
