@@ -211,7 +211,7 @@ python_prepare_all() {
 
 	# If jmol is not in useflags make tachyon the default 3D plotting engine
 	if ! use jmol ; then
-		eapply "${FILESDIR}"/${PN}-8.2-tachyon_default.patch
+		eapply "${FILESDIR}"/${PN}-8.5-tachyon_default.patch
 	fi
 
 	############################################################################
