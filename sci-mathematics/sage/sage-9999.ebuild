@@ -37,7 +37,8 @@ CDEPEND="dev-libs/gmp:0=
 	>=dev-libs/mpc-1.1.0
 	>=dev-libs/ntl-9.6.2-r1:=
 	>=dev-libs/ppl-1.1
-	~dev-lisp/ecls-16.1.2
+	>=dev-lisp/ecls-16.1.3-r100
+	<dev-lisp/ecls-16.1.4
 	>=dev-python/six-1.11.0[${PYTHON_USEDEP}]
 	>=dev-python/numpy-1.15.2[${PYTHON_USEDEP}]
 	>=dev-python/cython-0.29.1[${PYTHON_USEDEP}]
@@ -62,7 +63,7 @@ CDEPEND="dev-libs/gmp:0=
 	~sci-libs/m4ri-20140914
 	~sci-libs/m4rie-20150908
 	>=sci-libs/mpfi-1.5.2
-	~sci-libs/pynac-0.7.22[-giac,${PYTHON_USEDEP}]
+	~sci-libs/pynac-0.7.23[-giac,${PYTHON_USEDEP}]
 	>=sci-libs/symmetrica-2.0-r3
 	>=sci-libs/zn_poly-0.9
 	>=sci-mathematics/gap-4.10.0-r4:0/4.10.0[recommended_pkgs]
@@ -133,7 +134,7 @@ RDEPEND="${CDEPEND}
 	!prefix? ( >=sys-libs/glibc-2.13-r4 )
 	sagenb? ( >=sci-mathematics/sage-notebook-1.1.0[$(python_gen_usedep 'python2*')] )
 	latex? (
-		~dev-tex/sage-latex-3.0
+		~dev-tex/sage-latex-3.2
 		|| ( app-text/dvipng[truetype] media-gfx/imagemagick[png] )
 	)"
 
