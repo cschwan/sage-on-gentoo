@@ -74,7 +74,7 @@ dev-python/webassets
 ~dev-python/sphinx-1.7.5
 ~dev-python/sphinx-1.7.6
 =dev-python/pyzmq-17*
-~dev-tex/sage-latex-3.0
+~dev-tex/sage-latex-3.2
 media-gfx/tachyon
 ~media-gfx/threejs-sage-extension-80
 sci-libs/cddlib
@@ -90,7 +90,7 @@ sci-libs/dsdp
 ~sci-libs/m4ri-20140914
 ~sci-libs/m4rie-20150908
 ~sci-libs/mpfi-1.5.2
-~sci-libs/pynac-0.7.22
+~sci-libs/pynac-0.7.23
 =sci-libs/scipy-1.1.0
 sci-libs/symmetrica
 sci-libs/vecmath-objectclub
@@ -102,7 +102,6 @@ sci-mathematics/dikcube
 ~sci-mathematics/eclib-20180815
 ~sci-mathematics/gmp-ecm-7.0.4
 sci-mathematics/flintqs
-~sci-mathematics/flint-2.4.5
 ~sci-mathematics/flint-2.5.2
 =sci-mathematics/giac-1.4.9*
 =sci-mathematics/giac-1.5.0*
