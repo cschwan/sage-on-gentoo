@@ -1,4 +1,4 @@
-# Copyright 1999-2018 Gentoo Foundation
+# Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=7
@@ -39,7 +39,6 @@ S="${WORKDIR}/${PN}-${MY_DIR2}"
 
 PATCHES=(
 	"${FILESDIR}"/${PN}-4.0.3-gfan_linking.patch
-	"${FILESDIR}"/ticket-834.patch
 	)
 
 pkg_setup() {
