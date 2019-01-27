@@ -46,6 +46,7 @@ CDEPEND="dev-libs/gmp:0=
 	>=dev-python/cysignals-1.8.1[${PYTHON_USEDEP}]
 	>=dev-python/docutils-0.12[${PYTHON_USEDEP}]
 	>=dev-python/psutil-4.4.0[${PYTHON_USEDEP}]
+	dev-python/jupyter_core[${PYTHON_USEDEP}]
 	>=dev-python/ipython-5.8.0[notebook,${PYTHON_USEDEP}]
 	>=dev-python/jinja-2.8[${PYTHON_USEDEP}]
 	>=dev-python/matplotlib-2.1.1[${PYTHON_USEDEP}]
@@ -70,8 +71,8 @@ CDEPEND="dev-libs/gmp:0=
 	>=sci-mathematics/glpk-4.63:0=[gmp]
 	>=sci-mathematics/lcalc-1.23-r10[pari]
 	>=sci-mathematics/lrcalc-1.2-r1
-	>=dev-python/cypari2-1.3.1[${PYTHON_USEDEP}]
-	<dev-python/cypari2-2.0.0
+	>=dev-python/cypari2-2.0.3[${PYTHON_USEDEP}]
+	=sci-mathematics/pari-2.11*
 	~sci-mathematics/planarity-3.0.0.5
 	=sci-libs/brial-1.2*
 	=dev-python/sage-brial-1*[${PYTHON_USEDEP}]
@@ -122,7 +123,6 @@ RDEPEND="${CDEPEND}
 	>=sci-mathematics/nauty-2.6.1
 	>=sci-mathematics/optimal-20040603
 	>=sci-mathematics/palp-2.1
-	=sci-mathematics/pari-2.11*
 	~sci-mathematics/sage-data-elliptic_curves-0.8
 	~sci-mathematics/sage-data-graphs-20161026
 	~sci-mathematics/sage-data-combinatorial_designs-20140630
