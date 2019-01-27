@@ -232,7 +232,7 @@ python_prepare_all() {
 	############################################################################
 
 	# sage on gentoo env.py
-	eapply "${FILESDIR}"/${PN}-8.6-env.patch
+	eapply "${FILESDIR}"/${PN}-8.7-env.patch
 	# set $PF for the documentation location
 	sed -i "s:@GENTOO_PORTAGE_PF@:${PF}:" sage/env.py
 
@@ -273,11 +273,6 @@ python_prepare_all() {
 	mv sage/repl/ipython_kernel/install.py sage_setup/jupyter/install.py || die "cannot move kernel install file"
 	touch sage_setup/jupyter/__init__.py || die "cannot create __init__.py for jupyter"
 	eapply "${FILESDIR}"/${PN}-8.3-jupyter.patch
-
-	# Make the lazy_import pickle name versioned with the sage version number
-	# rather than the path to the source which is a constant across versions
-	# in sage-on-gentoo. This fixes issue #362.
-	eapply "${FILESDIR}"/${PN}-6.8-lazy_import_cache.patch
 
 	############################################################################
 	# Fixes to doctests
@@ -498,9 +493,6 @@ python_install_all(){
 	fi
 	popd
 
-	insinto /usr/share/sage
-	doins ../COPYING.txt
-
 	if use X ; then
 		doicon "${WORKDIR}"/sage.svg
 		newmenu - sage-sage.desktop <<-EOF
@@ -534,6 +526,10 @@ python_install_all(){
 	doins sage_setup/docbuild/ext/sage_autodoc.py
 	doins sage_setup/docbuild/ext/inventory_builder.py
 	doins sage_setup/docbuild/ext/multidocs.py
+	# copy the license in a place that copying can find
+	docompress -x /usr/share/doc/"${PF}"
+	insinto /usr/share/doc/"${PF}"
+	doins ../COPYING.txt
 
 	if use doc-html; then
 		dosym ../../../doc/"${PF}"/html/en /usr/share/jupyter/kernels/sagemath/doc
