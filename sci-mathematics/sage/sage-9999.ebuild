@@ -374,18 +374,18 @@ python_compile() {
 	sage_build_env
 
 	distutils-r1_python_compile
+}
 
-	if ! python_is_python3; then
-		if use doc-html ; then
-			HTML_DOCS="${WORKDIR}/build_doc/html/*"
-			"${PYTHON}" sage_setup/docbuild/__main__.py --no-pdf-links all html || die "failed to produce html doc"
-		fi
+python_compile_all(){
+	if use doc-html ; then
+		HTML_DOCS="${WORKDIR}/build_doc/html/*"
+		"${PYTHON}" sage_setup/docbuild/__main__.py --no-pdf-links all html || die "failed to produce html doc"
+	fi
 
-		if use doc-pdf ; then
-			DOCS="${WORKDIR}/build_doc/pdf"
-			export MAKE="make -j$(makeopts_jobs)"
-			"${PYTHON}" sage_setup/docbuild/__main__.py all pdf || die "failed to produce pdf doc"
-		fi
+	if use doc-pdf ; then
+		DOCS="${WORKDIR}/build_doc/pdf"
+		export MAKE="make -j$(makeopts_jobs)"
+		"${PYTHON}" sage_setup/docbuild/__main__.py all pdf || die "failed to produce pdf doc"
 	fi
 }
 
