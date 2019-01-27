@@ -35,7 +35,7 @@ dev-python/mistune
 =dev-python/numpy-1.15*
 ~dev-python/networkx-2.2
 dev-python/cycler
-=dev-python/cypari2-1.3*
+=dev-python/cypari2-2.0*
 dev-python/versioneer
 =dev-python/jedi-0.10*
 =dev-python/ipython-5.8*
