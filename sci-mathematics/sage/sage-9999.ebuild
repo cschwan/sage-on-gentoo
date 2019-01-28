@@ -204,9 +204,11 @@ python_prepare_all() {
 	###############################
 
 	# Remove sage's package management system, git capabilities and associated tests
-	eapply "${FILESDIR}"/${PN}-8.4-neutering.patch
+	# Also self editing tools
+	eapply "${FILESDIR}"/${PN}-8.7-neutering.patch
 	cp -f "${FILESDIR}"/${PN}-7.3-package.py sage/misc/package.py
 	rm -f sage/misc/dist.py
+	rm -f sage/misc/edit_module.py
 	rm -rf sage/dev
 	# Detection of gmpy2 has its own scheme that assumes vanilla sage.
 	eapply "${FILESDIR}"/${PN}-8.2-gmpy2_option.patch
