@@ -67,6 +67,32 @@ index 0b5952d..e69228a 100644
  from .pager import pager
  
  lazy_import('sage.misc.sagedoc', ['browse_sage_doc',
+diff --git a/sage/misc/cachefunc.pyx b/sage/misc/cachefunc.pyx
+index 67b7c67..5f12b54 100644
+--- a/sage/misc/cachefunc.pyx
++++ b/sage/misc/cachefunc.pyx
+@@ -245,7 +245,6 @@ it is empty for the other as well::
+ 
+ Introspection works::
+ 
+-    sage: from sage.misc.edit_module import file_and_line
+     sage: from sage.misc.sageinspect import sage_getdoc, sage_getfile, sage_getsource
+     sage: print(sage_getdoc(test_pfunc))
+        Some documentation
+diff --git a/sage/repl/ipython_extension.py b/sage/repl/ipython_extension.py
+index 779d83f..653c375 100644
+--- a/sage/repl/ipython_extension.py
++++ b/sage/repl/ipython_extension.py
+@@ -424,9 +424,6 @@ class SageCustomizations(object):
+         self.auto_magics = SageMagics(shell)
+         self.shell.register_magics(self.auto_magics)
+ 
+-        import sage.misc.edit_module as edit_module
+-        self.shell.set_hook('editor', edit_module.edit_devel)
+-
+         self.init_inspector()
+         self.init_line_transforms()
+ 
 diff --git a/sage/tests/cmdline.py b/sage/tests/cmdline.py
 index 9edf619..7ad6f84 100644
 --- a/sage/tests/cmdline.py
