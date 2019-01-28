@@ -163,7 +163,7 @@ python_prepare_all() {
 	#########################################
 
 	# ship our own version of sage-env
-	cp "${FILESDIR}"/proto.sage-env-2 bin/sage-env
+	cp "${FILESDIR}"/proto.sage-env-3 bin/sage-env
 	eprefixify bin/sage-env
 	sed -i "s:@GENTOO_PORTAGE_PF@:${PF}:" bin/sage-env
 
@@ -298,7 +298,8 @@ python_prepare_all() {
 	# Some SAGE_ROOT elimination
 	#'sage' is not in SAGE_ROOT, but in PATH or
 	# alternatively in SAGE_LOCAL/bin
-	eapply "${FILESDIR}"/${PN}-8.5-SAGE_ROOT.patch
+	# Migrate stuff that can to other more appropriate variable
+	eapply "${FILESDIR}"/${PN}-8.7-SAGE_ROOT.patch
 
 	# remove the test trying to pre-compile sage's .py file with python3
 	rm sage/tests/py3_syntax.py || die "cannot remove py3_syntax test"
