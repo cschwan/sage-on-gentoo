@@ -22,7 +22,7 @@ index 96143a6..8344f5a 100644
              from sage.env import SAGE_ROOT
 -            DOT_GIT = os.path.join(SAGE_ROOT, '.git')
 +            if SAGE_ROOT is None:
-+                DOT_GIT = None
++                DOT_GIT = ""
 +            else:
 +                DOT_GIT = os.path.join(SAGE_ROOT, '.git')
              if os.path.isdir(DOT_GIT):
