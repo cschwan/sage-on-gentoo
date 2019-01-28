@@ -185,8 +185,8 @@ python_prepare_all() {
 	sed -i "s:os.environ\[\"MAKE\"\]:os.environ\[\"MAKEOPTS\"\]:g" \
 		bin/sage-num-threads.py
 
-	# remove developer and unsupported options
-	eapply "${FILESDIR}"/${PN}-8.4-exec.patch
+	# ship our simplified sage shell script
+	cp "${FILESDIR}"/sage-exec bin/sage
 	eprefixify bin/sage
 
 	# sage is getting its own system to have scripts that can use either python2 or 3
