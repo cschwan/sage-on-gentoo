@@ -165,7 +165,9 @@ python_prepare_all() {
 	# ship our own version of sage-env
 	cp "${FILESDIR}"/proto.sage-env-3 bin/sage-env
 	eprefixify bin/sage-env
-	sed -i "s:@GENTOO_PORTAGE_PF@:${PF}:" bin/sage-env
+	if use debug ; then
+		sed -i "s:SAGE_DEBUG=\"no\":SAGE_DEBUG=\"yes\":" bin/sage-env
+	fi
 
 	# Do not rely on os.environ to get SAGE_SRC
 	eapply "${FILESDIR}"/${PN}-8.1-sage-cython.patch
