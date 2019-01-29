@@ -1,0 +1,392 @@
+diff --git a/doc/ca/intro/conf.py b/doc/ca/intro/conf.py
+index 63c3ec6..f77af7c 100644
+--- a/doc/ca/intro/conf.py
++++ b/doc/ca/intro/conf.py
+@@ -12,7 +12,8 @@
+ # serve to show the default.
+ 
+ import sys, os
+-sys.path.append(os.environ['SAGE_DOC_SRC'])
++from sage.env import SAGE_DOC_SRC
++sys.path.append(SAGE_DOC_SRC)
+ from common.conf import *
+ 
+ # General information about the project.
+diff --git a/doc/de/a_tour_of_sage/conf.py b/doc/de/a_tour_of_sage/conf.py
+index b0842e2..e84e90f 100644
+--- a/doc/de/a_tour_of_sage/conf.py
++++ b/doc/de/a_tour_of_sage/conf.py
+@@ -14,7 +14,8 @@
+ # serve to show the default.
+ 
+ import sys, os
+-sys.path.append(os.environ['SAGE_DOC_SRC'])
++from sage.env import SAGE_DOC_SRC
++sys.path.append(SAGE_DOC_SRC)
+ from common.conf import *
+ 
+ # General information about the project.
+diff --git a/doc/de/thematische_anleitungen/conf.py b/doc/de/thematische_anleitungen/conf.py
+index 64bd041..06da306 100644
+--- a/doc/de/thematische_anleitungen/conf.py
++++ b/doc/de/thematische_anleitungen/conf.py
+@@ -12,7 +12,8 @@
+ # serve to show the default.
+ 
+ import sys, os
+-sys.path.append(os.environ['SAGE_DOC_SRC'])
++from sage.env import SAGE_DOC_SRC
++sys.path.append(SAGE_DOC_SRC)
+ from common.conf import *
+ 
+ # General information about the project.
+diff --git a/doc/de/tutorial/conf.py b/doc/de/tutorial/conf.py
+index 3748cbf..b676264 100644
+--- a/doc/de/tutorial/conf.py
++++ b/doc/de/tutorial/conf.py
+@@ -12,7 +12,8 @@
+ # serve to show the default.
+ 
+ import sys, os
+-sys.path.append(os.environ['SAGE_DOC_SRC'])
++from sage.env import SAGE_DOC_SRC
++sys.path.append(SAGE_DOC_SRC)
+ from common.conf import *
+ 
+ # General information about the project.
+diff --git a/doc/en/a_tour_of_sage/conf.py b/doc/en/a_tour_of_sage/conf.py
+index 15eb4c8..cf0d961 100644
+--- a/doc/en/a_tour_of_sage/conf.py
++++ b/doc/en/a_tour_of_sage/conf.py
+@@ -12,7 +12,8 @@
+ # serve to show the default.
+ 
+ import sys, os
+-sys.path.append(os.environ['SAGE_DOC_SRC'])
++from sage.env import SAGE_DOC_SRC
++sys.path.append(SAGE_DOC_SRC)
+ from common.conf import *
+ 
+ # General information about the project.
+diff --git a/doc/en/constructions/conf.py b/doc/en/constructions/conf.py
+index abead3b..3a3e833 100644
+--- a/doc/en/constructions/conf.py
++++ b/doc/en/constructions/conf.py
+@@ -12,7 +12,8 @@
+ # serve to show the default.
+ 
+ import sys, os
+-sys.path.append(os.environ['SAGE_DOC_SRC'])
++from sage.env import SAGE_DOC_SRC
++sys.path.append(SAGE_DOC_SRC)
+ from common.conf import *
+ 
+ # General information about the project.
+diff --git a/doc/en/developer/conf.py b/doc/en/developer/conf.py
+index 653a8af..62b5399 100644
+--- a/doc/en/developer/conf.py
++++ b/doc/en/developer/conf.py
+@@ -12,7 +12,8 @@
+ # serve to show the default.
+ 
+ import sys, os
+-sys.path.append(os.environ['SAGE_DOC_SRC'])
++from sage.env import SAGE_DOC_SRC
++sys.path.append(SAGE_DOC_SRC)
+ from common.conf import *
+ 
+ # General information about the project.
+diff --git a/doc/en/faq/conf.py b/doc/en/faq/conf.py
+index 47447f3..343ddde 100644
+--- a/doc/en/faq/conf.py
++++ b/doc/en/faq/conf.py
+@@ -16,7 +16,8 @@
+ import os
+ import sys
+ 
+-sys.path.append(os.environ["SAGE_DOC_SRC"])
++from sage.env import SAGE_DOC_SRC
++sys.path.append(SAGE_DOC_SRC)
+ from common.conf import *
+ 
+ # General information about the project.
+diff --git a/doc/en/installation/conf.py b/doc/en/installation/conf.py
+index 69f2dad..968c672 100644
+--- a/doc/en/installation/conf.py
++++ b/doc/en/installation/conf.py
+@@ -12,7 +12,8 @@
+ # serve to show the default.
+ 
+ import sys, os
+-sys.path.append(os.environ['SAGE_DOC_SRC'])
++from sage.env import SAGE_DOC_SRC
++sys.path.append(SAGE_DOC_SRC)
+ from common.conf import *
+ 
+ # General information about the project.
+diff --git a/doc/en/introspect/conf.py b/doc/en/introspect/conf.py
+index 3181527..4c63267 100644
+--- a/doc/en/introspect/conf.py
++++ b/doc/en/introspect/conf.py
+@@ -3,7 +3,8 @@
+ # See sagenb.notebook.cell.Cell.set_introspect_html() for details.
+ 
+ import sys, os
+-sys.path.append(os.environ['SAGE_DOC_SRC'])
++from sage.env import SAGE_DOC_SRC
++sys.path.append(SAGE_DOC_SRC)
+ from common.conf import *
+ 
+ extensions = ['sphinx.ext.autodoc', 'sphinx.ext.mathjax', 'sphinx.ext.todo',
+diff --git a/doc/en/prep/conf.py b/doc/en/prep/conf.py
+index 14a0d1b..d13fbb8 100644
+--- a/doc/en/prep/conf.py
++++ b/doc/en/prep/conf.py
+@@ -12,7 +12,8 @@
+ # serve to show the default.
+ 
+ import sys, os
+-sys.path.append(os.environ['SAGE_DOC_SRC'])
++from sage.env import SAGE_DOC_SRC
++sys.path.append(SAGE_DOC_SRC)
+ from common.conf import *
+ 
+ 
+diff --git a/doc/en/thematic_tutorials/conf.py b/doc/en/thematic_tutorials/conf.py
+index f466fd7..9d9afac 100644
+--- a/doc/en/thematic_tutorials/conf.py
++++ b/doc/en/thematic_tutorials/conf.py
+@@ -15,7 +15,8 @@
+ 
+ import os
+ import sys
+-sys.path.append(os.environ["SAGE_DOC_SRC"])
++from sage.env import SAGE_DOC_SRC
++sys.path.append(SAGE_DOC_SRC)
+ from common.conf import *
+ 
+ # General information about the project.
+diff --git a/doc/en/thematic_tutorials/explicit_methods_in_number_theory/conf.py b/doc/en/thematic_tutorials/explicit_methods_in_number_theory/conf.py
+index fce2477..d057dc7 100644
+--- a/doc/en/thematic_tutorials/explicit_methods_in_number_theory/conf.py
++++ b/doc/en/thematic_tutorials/explicit_methods_in_number_theory/conf.py
+@@ -12,7 +12,8 @@
+ # serve to show the default.
+ 
+ import sys, os
+-sys.path.append(os.environ['SAGE_DOC_SRC'])
++from sage.env import SAGE_DOC_SRC
++sys.path.append(SAGE_DOC_SRC)
+ from common.conf import *
+ 
+ # General information about the project.
+diff --git a/doc/en/thematic_tutorials/numerical_sage/conf.py b/doc/en/thematic_tutorials/numerical_sage/conf.py
+index e853f37..69eec5d 100644
+--- a/doc/en/thematic_tutorials/numerical_sage/conf.py
++++ b/doc/en/thematic_tutorials/numerical_sage/conf.py
+@@ -12,7 +12,8 @@
+ # serve to show the default.
+ 
+ import sys, os
+-sys.path.append(os.environ['SAGE_DOC_SRC'])
++from sage.env import SAGE_DOC_SRC
++sys.path.append(SAGE_DOC_SRC)
+ from common.conf import *
+ 
+ # General information about the project.
+diff --git a/doc/en/tutorial/conf.py b/doc/en/tutorial/conf.py
+index 0be5db3..f5a512d 100644
+--- a/doc/en/tutorial/conf.py
++++ b/doc/en/tutorial/conf.py
+@@ -12,7 +12,8 @@
+ # serve to show the default.
+ 
+ import sys, os
+-sys.path.append(os.environ['SAGE_DOC_SRC'])
++from sage.env import SAGE_DOC_SRC
++sys.path.append(SAGE_DOC_SRC)
+ from common.conf import *
+ 
+ # General information about the project.
+diff --git a/doc/en/website/conf.py b/doc/en/website/conf.py
+index 4164c62..53a521e 100644
+--- a/doc/en/website/conf.py
++++ b/doc/en/website/conf.py
+@@ -12,7 +12,8 @@
+ # serve to show the default.
+ 
+ import sys, os
+-sys.path.append(os.environ['SAGE_DOC_SRC'])
++from sage.env import SAGE_DOC_SRC
++sys.path.append(SAGE_DOC_SRC)
+ from common.conf import *
+ 
+ # General information about the project.
+diff --git a/doc/es/a_tour_of_sage/conf.py b/doc/es/a_tour_of_sage/conf.py
+index f5bb300..1e536d4 100644
+--- a/doc/es/a_tour_of_sage/conf.py
++++ b/doc/es/a_tour_of_sage/conf.py
+@@ -15,7 +15,8 @@
+ 
+ import sys
+ import os
+-sys.path.append(os.environ['SAGE_DOC_SRC'])
++from sage.env import SAGE_DOC_SRC
++sys.path.append(SAGE_DOC_SRC)
+ from common.conf import *
+ 
+ # General information about the project.
+diff --git a/doc/es/tutorial/conf.py b/doc/es/tutorial/conf.py
+index dd484f0..e361a06 100644
+--- a/doc/es/tutorial/conf.py
++++ b/doc/es/tutorial/conf.py
+@@ -13,7 +13,8 @@
+ 
+ import sys
+ import os
+-sys.path.append(os.environ['SAGE_DOC_SRC'])
++from sage.env import SAGE_DOC_SRC
++sys.path.append(SAGE_DOC_SRC)
+ from common.conf import *
+ 
+ # General information about the project.
+diff --git a/doc/fr/a_tour_of_sage/conf.py b/doc/fr/a_tour_of_sage/conf.py
+index 6bcc344..5d36271 100644
+--- a/doc/fr/a_tour_of_sage/conf.py
++++ b/doc/fr/a_tour_of_sage/conf.py
+@@ -12,7 +12,8 @@
+ # serve to show the default.
+ 
+ import sys, os
+-sys.path.append(os.environ['SAGE_DOC_SRC'])
++from sage.env import SAGE_DOC_SRC
++sys.path.append(SAGE_DOC_SRC)
+ from common.conf import *
+ 
+ # General information about the project.
+diff --git a/doc/fr/tutorial/conf.py b/doc/fr/tutorial/conf.py
+index 35b9ad1..121541d 100644
+--- a/doc/fr/tutorial/conf.py
++++ b/doc/fr/tutorial/conf.py
+@@ -12,7 +12,8 @@
+ # serve to show the default.
+ 
+ import sys, os
+-sys.path.append(os.environ['SAGE_DOC_SRC'])
++from sage.env import SAGE_DOC_SRC
++sys.path.append(SAGE_DOC_SRC)
+ from common.conf import *
+ 
+ # General information about the project.
+diff --git a/doc/hu/a_tour_of_sage/conf.py b/doc/hu/a_tour_of_sage/conf.py
+index 00608e9..4e8f481 100644
+--- a/doc/hu/a_tour_of_sage/conf.py
++++ b/doc/hu/a_tour_of_sage/conf.py
+@@ -14,7 +14,8 @@
+ # out serve to show the default.
+ 
+ import sys, os
+-sys.path.append(os.environ['SAGE_DOC_SRC'])
++from sage.env import SAGE_DOC_SRC
++sys.path.append(SAGE_DOC_SRC)
+ from common.conf import *
+ 
+ # General information about the project.
+diff --git a/doc/it/a_tour_of_sage/conf.py b/doc/it/a_tour_of_sage/conf.py
+index 060efca..ffc0de0 100644
+--- a/doc/it/a_tour_of_sage/conf.py
++++ b/doc/it/a_tour_of_sage/conf.py
+@@ -12,7 +12,8 @@
+ # serve to show the default.
+ 
+ import sys, os
+-sys.path.append(os.environ['SAGE_DOC_SRC'])
++from sage.env import SAGE_DOC_SRC
++sys.path.append(SAGE_DOC_SRC)
+ from common.conf import *
+ 
+ # General information about the project.
+diff --git a/doc/ja/a_tour_of_sage/conf.py b/doc/ja/a_tour_of_sage/conf.py
+index 05c5654..dfa03db 100644
+--- a/doc/ja/a_tour_of_sage/conf.py
++++ b/doc/ja/a_tour_of_sage/conf.py
+@@ -12,7 +12,8 @@
+ # serve to show the default.
+ 
+ import sys, os
+-sys.path.append(os.environ['SAGE_DOC_SRC'])
++from sage.env import SAGE_DOC_SRC
++sys.path.append(SAGE_DOC_SRC)
+ from common.conf import *
+ 
+ # General information about the project.
+diff --git a/doc/ja/tutorial/conf.py b/doc/ja/tutorial/conf.py
+index 75344a9..c136e8d 100644
+--- a/doc/ja/tutorial/conf.py
++++ b/doc/ja/tutorial/conf.py
+@@ -12,7 +12,8 @@
+ # serve to show the default.
+ 
+ import sys, os
+-sys.path.append(os.environ['SAGE_DOC_SRC'])
++from sage.env import SAGE_DOC_SRC
++sys.path.append(SAGE_DOC_SRC)
+ from common.conf import *
+ 
+ # General information about the project.
+diff --git a/doc/pt/a_tour_of_sage/conf.py b/doc/pt/a_tour_of_sage/conf.py
+index c781fca..3cbd4c9 100644
+--- a/doc/pt/a_tour_of_sage/conf.py
++++ b/doc/pt/a_tour_of_sage/conf.py
+@@ -12,7 +12,8 @@
+ # serve to show the default.
+ 
+ import sys, os
+-sys.path.append(os.environ['SAGE_DOC_SRC'])
++from sage.env import SAGE_DOC_SRC
++sys.path.append(SAGE_DOC_SRC)
+ from common.conf import *
+ 
+ # General information about the project.
+diff --git a/doc/pt/tutorial/conf.py b/doc/pt/tutorial/conf.py
+index 2909bc5..c2ce9a5 100644
+--- a/doc/pt/tutorial/conf.py
++++ b/doc/pt/tutorial/conf.py
+@@ -12,7 +12,8 @@
+ # serve to show the default.
+ 
+ import sys, os
+-sys.path.append(os.environ['SAGE_DOC_SRC'])
++from sage.env import SAGE_DOC_SRC
++sys.path.append(SAGE_DOC_SRC)
+ from common.conf import *
+ 
+ # General information about the project.
+diff --git a/doc/ru/tutorial/conf.py b/doc/ru/tutorial/conf.py
+index 90d498b..3100349 100644
+--- a/doc/ru/tutorial/conf.py
++++ b/doc/ru/tutorial/conf.py
+@@ -12,7 +12,8 @@
+ # serve to show the default.
+ 
+ import sys, os
+-sys.path.append(os.environ['SAGE_DOC_SRC'])
++from sage.env import SAGE_DOC_SRC
++sys.path.append(SAGE_DOC_SRC)
+ from common.conf import *
+ 
+ # General information about the project.
+diff --git a/doc/tr/a_tour_of_sage/conf.py b/doc/tr/a_tour_of_sage/conf.py
+index 2c42640..b261560 100644
+--- a/doc/tr/a_tour_of_sage/conf.py
++++ b/doc/tr/a_tour_of_sage/conf.py
+@@ -12,7 +12,8 @@
+ # serve to show the default.
+ 
+ import sys, os
+-sys.path.append(os.environ['SAGE_DOC_SRC'])
++from sage.env import SAGE_DOC_SRC
++sys.path.append(SAGE_DOC_SRC)
+ from common.conf import *
+ 
+ # General information about the project.

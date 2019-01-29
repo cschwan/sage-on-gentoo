@@ -471,13 +471,13 @@ if [ "$1" = '-gdb' -o "$1" = "--gdb" ]; then
     shift
     sage_setup
     if [ "$SAGE_DEBUG" = "no" ]; then
-        gdb -x "$SAGE_LOCAL/bin/sage-gdb-commands" \
-            -args python "$SAGE_LOCAL/bin/sage-ipython" "$@" -i
+        gdb -x "@GENTOO_PORTAGE_EPREFIX@/usr/bin/sage-gdb-commands" \
+            -args python "@GENTOO_PORTAGE_EPREFIX@/usr/bin/sage-ipython" "$@" -i
     else
-        sage_dir=$(sage-python23 -c 'import os, sage; print(os.path.dirname(sage.__file__))')
+        sage_dir=$(python -c 'import os, sage; print(os.path.dirname(sage.__file__))')
         cygdb "$sage_dir" "$sage_dir" \
-            -- -x "$SAGE_LOCAL/bin/sage-gdb-commands" \
-            -args python "$SAGE_LOCAL/bin/sage-ipython" "$@" -i
+            -- -x "@GENTOO_PORTAGE_EPREFIX@/usr/bin/sage-gdb-commands" \
+            -args python "@GENTOO_PORTAGE_EPREFIX@/usr/bin/sage-ipython" "$@" -i
     fi
     exit $?
 fi

@@ -319,6 +319,8 @@ python_prepare_all() {
 	eapply "${FILESDIR}"/${PN}-7.1-linguas.patch
 	# Correct path to mathjax
 	eapply "${FILESDIR}"/${PN}-8.2-mathjax_path.patch
+	# Do not use os.environ to get SAGE_DOC_SRC
+	eapply "${FILESDIR}"/${PN}-8.7-doc_SAGE_DOC_SRC.patch
 
 	distutils-r1_python_prepare_all
 }

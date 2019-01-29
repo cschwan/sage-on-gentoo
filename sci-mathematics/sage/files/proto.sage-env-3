@@ -1,9 +1,5 @@
 #!/bin/bash
 
-if [[ -z ${SAGE_LOCAL} ]]; then
-	export SAGE_LOCAL="@GENTOO_PORTAGE_EPREFIX@/usr/"
-fi
-
 if [[ -z ${DOT_SAGE} ]]; then
 	export DOT_SAGE="${HOME}/.sage"
 fi
@@ -35,5 +31,3 @@ fi
 if [ -n "$SAGE_BROWSER" ]; then
 	export BROWSER="$SAGE_BROWSER"
 fi
-
-export MPMATH_NOGMPY=1
