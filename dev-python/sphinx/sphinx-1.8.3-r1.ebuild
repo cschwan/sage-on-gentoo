@@ -56,10 +56,6 @@ DEPEND="${RDEPEND}
 		virtual/python-enum34[${PYTHON_USEDEP}]
 	)"
 
-PATCHES=(
-	"${FILESDIR}"/${PN}-1.8.3-graphviz.patch
-	)
-
 S="${WORKDIR}/${P^}"
 
 python_prepare_all() {
