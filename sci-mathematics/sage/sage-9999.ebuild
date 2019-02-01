@@ -185,6 +185,10 @@ python_prepare_all() {
 	sed -i "s:os.environ\[\"MAKE\"\]:os.environ\[\"MAKEOPTS\"\]:g" \
 		bin/sage-num-threads.py
 
+	# Replace SAGE_EXTCODE with the installation location
+	sed -i "s:\$SAGE_EXTCODE:${EPREFIX}/usr/share/sage/ext:g" \
+		bin/sage-ipynb2rst
+
 	# ship our simplified sage shell script
 	cp "${FILESDIR}"/sage-exec bin/sage
 	eprefixify bin/sage
@@ -481,7 +485,7 @@ python_install_all(){
 
 	pushd bin
 
-	dobin sage-native-execute sage \
+	dobin sage-native-execute sage sage-ipynb2rst \
 		sage-python sage-version.sh
 
 	# install sage-env under /etc
