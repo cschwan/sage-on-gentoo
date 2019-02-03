@@ -46,6 +46,7 @@ CDEPEND="dev-libs/gmp:0=
 	>=dev-python/cysignals-1.8.1[${PYTHON_USEDEP}]
 	>=dev-python/docutils-0.12[${PYTHON_USEDEP}]
 	>=dev-python/psutil-4.4.0[${PYTHON_USEDEP}]
+	dev-python/jupyter_core[${PYTHON_USEDEP}]
 	>=dev-python/ipython-5.8.0[notebook,${PYTHON_USEDEP}]
 	>=dev-python/jinja-2.8[${PYTHON_USEDEP}]
 	>=dev-python/matplotlib-2.1.1[${PYTHON_USEDEP}]
@@ -70,8 +71,8 @@ CDEPEND="dev-libs/gmp:0=
 	>=sci-mathematics/glpk-4.63:0=[gmp]
 	>=sci-mathematics/lcalc-1.23-r10[pari]
 	>=sci-mathematics/lrcalc-1.2-r1
-	>=dev-python/cypari2-1.3.1[${PYTHON_USEDEP}]
-	<dev-python/cypari2-2.0.0
+	>=dev-python/cypari2-2.0.3[${PYTHON_USEDEP}]
+	=sci-mathematics/pari-2.11*
 	~sci-mathematics/planarity-3.0.0.5
 	=sci-libs/brial-1.2*
 	=dev-python/sage-brial-1*[${PYTHON_USEDEP}]
@@ -122,7 +123,6 @@ RDEPEND="${CDEPEND}
 	>=sci-mathematics/nauty-2.6.1
 	>=sci-mathematics/optimal-20040603
 	>=sci-mathematics/palp-2.1
-	=sci-mathematics/pari-2.11*
 	~sci-mathematics/sage-data-elliptic_curves-0.8
 	~sci-mathematics/sage-data-graphs-20161026
 	~sci-mathematics/sage-data-combinatorial_designs-20140630
@@ -163,9 +163,11 @@ python_prepare_all() {
 	#########################################
 
 	# ship our own version of sage-env
-	cp "${FILESDIR}"/proto.sage-env-2 bin/sage-env
+	cp "${FILESDIR}"/proto.sage-env-3 bin/sage-env
 	eprefixify bin/sage-env
-	sed -i "s:@GENTOO_PORTAGE_PF@:${PF}:" bin/sage-env
+	if use debug ; then
+		sed -i "s:SAGE_DEBUG=\"no\":SAGE_DEBUG=\"yes\":" bin/sage-env
+	fi
 
 	# Do not rely on os.environ to get SAGE_SRC
 	eapply "${FILESDIR}"/${PN}-8.1-sage-cython.patch
@@ -183,8 +185,12 @@ python_prepare_all() {
 	sed -i "s:os.environ\[\"MAKE\"\]:os.environ\[\"MAKEOPTS\"\]:g" \
 		bin/sage-num-threads.py
 
-	# remove developer and unsupported options
-	eapply "${FILESDIR}"/${PN}-8.4-exec.patch
+	# Replace SAGE_EXTCODE with the installation location
+	sed -i "s:\$SAGE_EXTCODE:${EPREFIX}/usr/share/sage/ext:g" \
+		bin/sage-ipynb2rst
+
+	# ship our simplified sage shell script
+	cp "${FILESDIR}"/sage-exec bin/sage
 	eprefixify bin/sage
 
 	# sage is getting its own system to have scripts that can use either python2 or 3
@@ -202,7 +208,7 @@ python_prepare_all() {
 	###############################
 
 	# Remove sage's package management system, git capabilities and associated tests
-	eapply "${FILESDIR}"/${PN}-8.4-neutering.patch
+	eapply "${FILESDIR}"/${PN}-8.7-neutering.patch
 	cp -f "${FILESDIR}"/${PN}-7.3-package.py sage/misc/package.py
 	rm -f sage/misc/dist.py
 	rm -rf sage/dev
@@ -232,7 +238,7 @@ python_prepare_all() {
 	############################################################################
 
 	# sage on gentoo env.py
-	eapply "${FILESDIR}"/${PN}-8.6-env.patch
+	eapply "${FILESDIR}"/${PN}-8.7-env.patch
 	# set $PF for the documentation location
 	sed -i "s:@GENTOO_PORTAGE_PF@:${PF}:" sage/env.py
 
@@ -274,11 +280,6 @@ python_prepare_all() {
 	touch sage_setup/jupyter/__init__.py || die "cannot create __init__.py for jupyter"
 	eapply "${FILESDIR}"/${PN}-8.3-jupyter.patch
 
-	# Make the lazy_import pickle name versioned with the sage version number
-	# rather than the path to the source which is a constant across versions
-	# in sage-on-gentoo. This fixes issue #362.
-	eapply "${FILESDIR}"/${PN}-6.8-lazy_import_cache.patch
-
 	############################################################################
 	# Fixes to doctests
 	############################################################################
@@ -303,7 +304,8 @@ python_prepare_all() {
 	# Some SAGE_ROOT elimination
 	#'sage' is not in SAGE_ROOT, but in PATH or
 	# alternatively in SAGE_LOCAL/bin
-	eapply "${FILESDIR}"/${PN}-8.5-SAGE_ROOT.patch
+	# Migrate stuff that can to other more appropriate variable
+	eapply "${FILESDIR}"/${PN}-8.7-SAGE_ROOT.patch
 
 	# remove the test trying to pre-compile sage's .py file with python3
 	rm sage/tests/py3_syntax.py || die "cannot remove py3_syntax test"
@@ -319,6 +321,8 @@ python_prepare_all() {
 	eapply "${FILESDIR}"/${PN}-7.1-linguas.patch
 	# Correct path to mathjax
 	eapply "${FILESDIR}"/${PN}-8.2-mathjax_path.patch
+	# Do not use os.environ to get SAGE_DOC_SRC
+	eapply "${FILESDIR}"/${PN}-8.7-doc_SAGE_DOC_SRC.patch
 
 	distutils-r1_python_prepare_all
 }
@@ -374,18 +378,18 @@ python_compile() {
 	sage_build_env
 
 	distutils-r1_python_compile
+}
 
-	if ! python_is_python3; then
-		if use doc-html ; then
-			HTML_DOCS="${WORKDIR}/build_doc/html/*"
-			"${PYTHON}" sage_setup/docbuild/__main__.py --no-pdf-links all html || die "failed to produce html doc"
-		fi
+python_compile_all(){
+	if use doc-html ; then
+		HTML_DOCS="${WORKDIR}/build_doc/html/*"
+		"${PYTHON}" sage_setup/docbuild/__main__.py --no-pdf-links all html || die "failed to produce html doc"
+	fi
 
-		if use doc-pdf ; then
-			DOCS="${WORKDIR}/build_doc/pdf"
-			export MAKE="make -j$(makeopts_jobs)"
-			"${PYTHON}" sage_setup/docbuild/__main__.py all pdf || die "failed to produce pdf doc"
-		fi
+	if use doc-pdf ; then
+		DOCS="${WORKDIR}/build_doc/pdf"
+		export MAKE="make -j$(makeopts_jobs)"
+		"${PYTHON}" sage_setup/docbuild/__main__.py all pdf || die "failed to produce pdf doc"
 	fi
 }
 
@@ -479,7 +483,7 @@ python_install_all(){
 
 	pushd bin
 
-	dobin sage-native-execute sage \
+	dobin sage-native-execute sage sage-ipynb2rst \
 		sage-python sage-version.sh
 
 	# install sage-env under /etc
@@ -497,9 +501,6 @@ python_install_all(){
 			sage-valgrind
 	fi
 	popd
-
-	insinto /usr/share/sage
-	doins ../COPYING.txt
 
 	if use X ; then
 		doicon "${WORKDIR}"/sage.svg
@@ -534,6 +535,10 @@ python_install_all(){
 	doins sage_setup/docbuild/ext/sage_autodoc.py
 	doins sage_setup/docbuild/ext/inventory_builder.py
 	doins sage_setup/docbuild/ext/multidocs.py
+	# copy the license in a place that copying can find
+	docompress -x /usr/share/doc/"${PF}"
+	insinto /usr/share/doc/"${PF}"
+	doins ../COPYING.txt
 
 	if use doc-html; then
 		dosym ../../../doc/"${PF}"/html/en /usr/share/jupyter/kernels/sagemath/doc
