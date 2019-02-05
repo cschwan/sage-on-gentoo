@@ -95,36 +95,3 @@ index 8860669..939c53b 100644
          sage: sage_makedirs(sage_executable)
          Traceback (most recent call last):
          ...
-diff --git a/sage/misc/persist.pyx b/sage/misc/persist.pyx
-index c493b20..3104e41 100644
---- a/sage/misc/persist.pyx
-+++ b/sage/misc/persist.pyx
-@@ -980,7 +980,7 @@ def picklejar(obj, dir=None):
-     environment variable ``SAGE_PICKLE_JAR``, which will make it so
-     :func:`dumps` will by default call :func:`picklejar` with the
-     default dir.  Once you do that and doctest Sage, you'll find that
--    the ``SAGE_ROOT/tmp/pickle_jar`` directory contains a bunch of
-+    the ``DOT_SAGE/tmp/pickle_jar`` directory contains a bunch of
-     pickled objects along with corresponding txt descriptions of them.
-     Use the :func:`unpickle_all` to see if they unpickle later.
- 
-@@ -989,7 +989,7 @@ def picklejar(obj, dir=None):
-     - ``obj`` -- a pickleable object
- 
-     - ``dir`` -- a string or None; if None then ``dir`` defaults to
--      ``SAGE_ROOT/tmp/pickle_jar``
-+      ``DOT_SAGE/tmp/pickle_jar``
- 
-     EXAMPLES::
- 
-@@ -1020,8 +1020,9 @@ def picklejar(obj, dir=None):
-         OSError: ...
-         sage: os.chmod(dir, 0o755)
-     """
-+    from sage.env import DOT_SAGE
-     if dir is None:
--        dir = os.path.join(os.environ['SAGE_ROOT'], '/tmp/pickle_jar/')
-+        dir = os.path.join(DOT_SAGE, '/tmp/pickle_jar/')
-     try:
-         os.makedirs(dir)
-     except OSError as err:
