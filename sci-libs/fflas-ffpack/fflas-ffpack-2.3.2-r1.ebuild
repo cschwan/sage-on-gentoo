@@ -1,4 +1,4 @@
-# Copyright 1999-2018 Gentoo Foundation
+# Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=6
@@ -12,20 +12,21 @@ SRC_URI="https://github.com/linbox-team/${PN}/releases/download/v${PV}/${P}.tar.
 LICENSE="LGPL-2.1"
 SLOT="0"
 KEYWORDS="~amd64 ~x86 ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos"
-IUSE="static-libs openmp cpu_flags_x86_sse4_1 cpu_flags_x86_avx cpu_flags_x86_avx2 bindist"
+IUSE="static-libs openmp cpu_flags_x86_fma3 cpu_flags_x86_fma4 cpu_flags_x86_sse3 cpu_flags_x86_ssse3 cpu_flags_x86_sse4_1 cpu_flags_x86_sse4_2 cpu_flags_x86_avx cpu_flags_x86_avx2 bindist"
 
-REQUIRED_USE="bindist? ( !cpu_flags_x86_sse4_1 !cpu_flags_x86_avx !cpu_flags_x86_avx2 )"
+REQUIRED_USE="bindist? ( !cpu_flags_x86_fma3 !cpu_flags_x86_fma4 !cpu_flags_x86_sse3 !cpu_flags_x86_ssse3 !cpu_flags_x86_sse4_1 !cpu_flags_x86_sse4_2 !cpu_flags_x86_avx !cpu_flags_x86_avx2 )"
 
 RESTRICT="mirror"
 
 DEPEND="virtual/cblas
+	virtual/blas
 	virtual/lapack
 	>=dev-libs/gmp-4.0[cxx]
 	~sci-libs/givaro-4.0.4"
 RDEPEND="${DEPEND}"
 
 PATCHES=(
-	"${FILESDIR}/${PN}-2.3.1-blaslapack.patch"
+	"${FILESDIR}/${PN}-2.3.2-blaslapack.patch"
 	)
 
 pkg_pretend() {
@@ -36,12 +37,6 @@ pkg_pretend() {
 
 pkg_setup(){
 	tc-export PKG_CONFIG
-	if( (use cpu_flags_x86_avx) || (use cpu_flags_x86_avx2) || (use cpu_flags_x86_sse4_1) ); then
-		einfo "You have enabled one of avx/avx2/sse4.1 useflag."
-		einfo "There is no granularity inside the package, enabling one will enable"
-		einfo "all the ones that are available on your platform."
-		einfo "You unfortunately cannot selectively turn one off."
-	fi
 	if use openmp; then
 		einfo "using openmp within fflas-ffpack can cause compilation failures"
 		einfo "with particular compilers and possibly blas/cblas implementation"
@@ -56,16 +51,17 @@ src_prepare(){
 }
 
 src_configure() {
-	local simd_opt="--disable-avx"
-	if( (use cpu_flags_x86_avx) || (use cpu_flags_x86_avx2) || (use cpu_flags_x86_sse4_1) ); then
-		simd_opt="--enable-simd"
-	fi
-
 	econf \
-		--enable-optimization \
 		--enable-precompilation \
 		$(use_enable openmp) \
-		${simd_opt} \
+		$(use_enable cpu_flags_x86_fma3 fma) \
+		$(use_enable cpu_flags_x86_fma4 fma4) \
+		$(use_enable cpu_flags_x86_sse3 sse3) \
+		$(use_enable cpu_flags_x86_ssse3 ssse3) \
+		$(use_enable cpu_flags_x86_sse4_1 sse41) \
+		$(use_enable cpu_flags_x86_sse4_2 sse42) \
+		$(use_enable cpu_flags_x86_avx avx) \
+		$(use_enable cpu_flags_x86_avx2 avx2) \
 		$(use_enable static-libs static)
 }
 
