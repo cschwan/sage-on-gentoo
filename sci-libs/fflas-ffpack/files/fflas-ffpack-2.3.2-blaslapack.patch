@@ -1,8 +1,8 @@
 diff --git a/configure.ac b/configure.ac
-index acdc248..09d22a4 100644
+index 5b46b18..5e0264a 100644
 --- a/configure.ac
 +++ b/configure.ac
-@@ -248,49 +248,22 @@ dnl echo '**********************************************************************
+@@ -248,49 +248,24 @@ dnl echo '**********************************************************************
  dnl exit 1
  dnl ])
  
@@ -51,12 +51,14 @@ index acdc248..09d22a4 100644
 -
 +PKG_PROG_PKG_CONFIG
 +
-+PKG_CHECK_MODULES([BLAS], [cblas],[
++PKG_CHECK_MODULES([BLAS], [cblas blas],[
 +    AC_DEFINE(HAVE_BLAS,1,[Define if BLAS is installed])
 +    AC_DEFINE(HAVE_CBLAS,1,[Define if C interface to BLAS is installed])
 +    HAVE_BLAS=yes
 +    BLAS_PATH=""
++    CBLAS_LIBS="${BLAS_LIBS}"
 +    AC_SUBST(BLAS_LIBS)
++    AC_SUBST(CBLAS_LIBS)
 +    AC_SUBST(BLAS_CFLAGS)
 +    AC_SUBST(BLAS_PATH)])
 +
