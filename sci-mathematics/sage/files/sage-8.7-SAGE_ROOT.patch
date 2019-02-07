@@ -28,19 +28,6 @@ index 96143a6..870511e 100644
              if os.path.isdir(DOT_GIT):
                  import subprocess
                  try:
-diff --git a/sage/homology/simplicial_set_examples.py b/sage/homology/simplicial_set_examples.py
-index f7f1c6d..e59d668 100644
---- a/sage/homology/simplicial_set_examples.py
-+++ b/sage/homology/simplicial_set_examples.py
-@@ -635,7 +635,7 @@ def simplicial_data_from_kenzo_output(filename):
-     OUTPUT: data to construct a simplicial set from the Kenzo output
- 
-     Several files with Kenzo output are in the directory
--    :file:`SAGE_ROOT/src/ext/kenzo/`.
-+    :file:`SAGE_EXTCODE/kenzo/`.
- 
-     EXAMPLES::
- 
 diff --git a/sage/misc/citation.pyx b/sage/misc/citation.pyx
 index dd59e70..3145a59 100644
 --- a/sage/misc/citation.pyx
