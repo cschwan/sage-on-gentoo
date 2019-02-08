@@ -28,21 +28,8 @@ index 96143a6..870511e 100644
              if os.path.isdir(DOT_GIT):
                  import subprocess
                  try:
-diff --git a/sage/homology/simplicial_set_examples.py b/sage/homology/simplicial_set_examples.py
-index f7f1c6d..e59d668 100644
---- a/sage/homology/simplicial_set_examples.py
-+++ b/sage/homology/simplicial_set_examples.py
-@@ -635,7 +635,7 @@ def simplicial_data_from_kenzo_output(filename):
-     OUTPUT: data to construct a simplicial set from the Kenzo output
- 
-     Several files with Kenzo output are in the directory
--    :file:`SAGE_ROOT/src/ext/kenzo/`.
-+    :file:`SAGE_EXTCODE/kenzo/`.
- 
-     EXAMPLES::
- 
 diff --git a/sage/misc/citation.pyx b/sage/misc/citation.pyx
-index 86b850a..15f2647 100644
+index dd59e70..3145a59 100644
 --- a/sage/misc/citation.pyx
 +++ b/sage/misc/citation.pyx
 @@ -5,7 +5,7 @@ Dependency usage tracking for citations
@@ -54,15 +41,15 @@ index 86b850a..15f2647 100644
  
  systems = {}
  systems['PARI'] = ['cypari2', 'sage.interfaces.gp']
-@@ -110,7 +110,7 @@ def get_systems(cmd):
+@@ -112,7 +112,7 @@ def get_systems(cmd):
      stats = pstats.Stats(filename)
  
      #Strings is a list of method names and modules which get run
--    strings = [a[0].replace(SAGE_ROOT, "") + " " + a[2] for a in stats.stats.keys()]
-+    strings = [a[0].replace(SAGE_LOCAL, "") + " " + a[2] for a in stats.stats.keys()]
+-    strings = [a[0].replace(SAGE_ROOT, "") + " " + a[2]
++    strings = [a[0].replace(SAGE_LOCAL, "") + " " + a[2]
+                for a in stats.stats]
  
      #Remove trivial functions
-     bad_res = [re.compile(r'is_.*Element'), re.compile("is_[a-z_]*_type")]
 diff --git a/sage/misc/inline_fortran.py b/sage/misc/inline_fortran.py
 index fe2565c..092b504 100644
 --- a/sage/misc/inline_fortran.py
@@ -95,36 +82,3 @@ index 8860669..939c53b 100644
          sage: sage_makedirs(sage_executable)
          Traceback (most recent call last):
          ...
-diff --git a/sage/misc/persist.pyx b/sage/misc/persist.pyx
-index c493b20..3104e41 100644
---- a/sage/misc/persist.pyx
-+++ b/sage/misc/persist.pyx
-@@ -980,7 +980,7 @@ def picklejar(obj, dir=None):
-     environment variable ``SAGE_PICKLE_JAR``, which will make it so
-     :func:`dumps` will by default call :func:`picklejar` with the
-     default dir.  Once you do that and doctest Sage, you'll find that
--    the ``SAGE_ROOT/tmp/pickle_jar`` directory contains a bunch of
-+    the ``DOT_SAGE/tmp/pickle_jar`` directory contains a bunch of
-     pickled objects along with corresponding txt descriptions of them.
-     Use the :func:`unpickle_all` to see if they unpickle later.
- 
-@@ -989,7 +989,7 @@ def picklejar(obj, dir=None):
-     - ``obj`` -- a pickleable object
- 
-     - ``dir`` -- a string or None; if None then ``dir`` defaults to
--      ``SAGE_ROOT/tmp/pickle_jar``
-+      ``DOT_SAGE/tmp/pickle_jar``
- 
-     EXAMPLES::
- 
-@@ -1020,8 +1020,9 @@ def picklejar(obj, dir=None):
-         OSError: ...
-         sage: os.chmod(dir, 0o755)
-     """
-+    from sage.env import DOT_SAGE
-     if dir is None:
--        dir = os.path.join(os.environ['SAGE_ROOT'], '/tmp/pickle_jar/')
-+        dir = os.path.join(DOT_SAGE, '/tmp/pickle_jar/')
-     try:
-         os.makedirs(dir)
-     except OSError as err:
