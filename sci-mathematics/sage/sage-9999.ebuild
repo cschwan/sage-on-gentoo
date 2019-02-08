@@ -162,6 +162,8 @@ python_prepare_all() {
 	#
 	#########################################
 
+	eapply "${FILESDIR}"/trac_27196.patch
+
 	# ship our own version of sage-env
 	cp "${FILESDIR}"/proto.sage-env-3 bin/sage-env
 	eprefixify bin/sage-env
@@ -300,12 +302,6 @@ python_prepare_all() {
 
 	# do not test safe python stuff from trac 13579. Needs to be applied after neutering.
 	eapply "${FILESDIR}"/${PN}-7.3-safepython.patch
-
-	# Some SAGE_ROOT elimination
-	#'sage' is not in SAGE_ROOT, but in PATH or
-	# alternatively in SAGE_LOCAL/bin
-	# Migrate stuff that can to other more appropriate variable
-	eapply "${FILESDIR}"/${PN}-8.7-SAGE_ROOT.patch
 
 	# remove the test trying to pre-compile sage's .py file with python3
 	rm sage/tests/py3_syntax.py || die "cannot remove py3_syntax test"
