@@ -162,8 +162,6 @@ python_prepare_all() {
 	#
 	#########################################
 
-	eapply "${FILESDIR}"/trac_27196.patch
-
 	# ship our own version of sage-env
 	cp "${FILESDIR}"/proto.sage-env-3 bin/sage-env
 	eprefixify bin/sage-env
