@@ -22,6 +22,5 @@ DEPEND=">=dev-python/gmpy-2.1.0_alpha4
 RDEPEND="${DEPEND}"
 
 python_test(){
-	cd "${S}"/tests
-	"${EPYTHON}" rundoctest.py
+	"${EPYTHON}" setup.py test
 }
