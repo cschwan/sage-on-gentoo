@@ -63,7 +63,7 @@ CDEPEND="dev-libs/gmp:0=
 	~sci-libs/m4ri-20140914
 	~sci-libs/m4rie-20150908
 	>=sci-libs/mpfi-1.5.2
-	~sci-libs/pynac-0.7.23[-giac,${PYTHON_USEDEP}]
+	~sci-libs/pynac-0.7.24[-giac,${PYTHON_USEDEP}]
 	>=sci-libs/symmetrica-2.0-r3
 	>=sci-libs/zn_poly-0.9
 	>=sci-mathematics/gap-4.10.0-r4:0/4.10.0[recommended_pkgs]
@@ -300,12 +300,6 @@ python_prepare_all() {
 
 	# do not test safe python stuff from trac 13579. Needs to be applied after neutering.
 	eapply "${FILESDIR}"/${PN}-7.3-safepython.patch
-
-	# Some SAGE_ROOT elimination
-	#'sage' is not in SAGE_ROOT, but in PATH or
-	# alternatively in SAGE_LOCAL/bin
-	# Migrate stuff that can to other more appropriate variable
-	eapply "${FILESDIR}"/${PN}-8.7-SAGE_ROOT.patch
 
 	# remove the test trying to pre-compile sage's .py file with python3
 	rm sage/tests/py3_syntax.py || die "cannot remove py3_syntax test"

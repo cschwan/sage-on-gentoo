@@ -1,8 +1,8 @@
 diff --git a/sage/env.py b/sage/env.py
-index 985fcdf..8d74f05 100644
+index 692093d..5eb61ba 100644
 --- a/sage/env.py
 +++ b/sage/env.py
-@@ -151,35 +151,33 @@ var('SAGE_VERSION_BANNER', version.banner)
+@@ -151,36 +151,34 @@ var('SAGE_VERSION_BANNER', version.banner)
  
  # bunch of sage directories and files
  var('SAGE_LOCAL',          os.path.abspath(sys.prefix))
@@ -21,6 +21,7 @@ index 985fcdf..8d74f05 100644
 -var('SAGE_DOC_SRC',        join(SAGE_SRC, 'doc'))
 -var('SAGE_PKGS',           join(SAGE_ROOT, 'build', 'pkgs'))
 +var('SAGE_DOC_SRC',        join(SAGE_DOC))
+ var('SAGE_ROOT_GIT',       join(SAGE_ROOT, '.git'))
  
  var('DOT_SAGE',            join(os.environ.get('HOME'), '.sage'))
  var('SAGE_STARTUP_FILE',   join(DOT_SAGE, 'init.sage'))
@@ -47,23 +48,6 @@ index 985fcdf..8d74f05 100644
 +var('MATHJAX_DIR',                   join(SAGE_LOCAL, 'share', 'mathjax'))
  var('THREEJS_DIR',                   join(SAGE_SHARE, 'threejs'))
  var('MAXIMA_FAS')
- 
-@@ -189,6 +187,7 @@ var('SAGE_IMPORTALL', 'yes')
- 
- 
- # locate singular shared object
-+import sysconfig
- if UNAME[:6] == "CYGWIN":
-     SINGULAR_SO = ([None] + glob.glob(os.path.join(
-         SAGE_LOCAL, "bin", "cygSingular-*.dll")))[-1]
-@@ -198,7 +197,7 @@ else:
-     else:
-         extension = "so"
-     # library name changed from libsingular to libSingular btw 3.x and 4.x
--    SINGULAR_SO = SAGE_LOCAL+"/lib/libSingular."+extension
-+    SINGULAR_SO = sysconfig.get_config_var("LIBDIR")+"/libSingular."+extension
- 
- var('SINGULAR_SO', SINGULAR_SO)
  
 diff --git a/sage/interfaces/jmoldata.py b/sage/interfaces/jmoldata.py
 index 2e88022..910be2a 100644
