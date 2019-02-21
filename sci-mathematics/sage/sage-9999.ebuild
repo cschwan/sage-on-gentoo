@@ -85,7 +85,7 @@ CDEPEND="dev-libs/gmp:0=
 	>=sys-libs/readline-6.2
 	sys-libs/zlib
 	virtual/cblas
-	~sci-mathematics/arb-2.15.1
+	~sci-mathematics/arb-2.16.0
 	www-misc/thebe
 	>=sci-libs/libhomfly-1.0.1
 	sci-libs/libbraiding
