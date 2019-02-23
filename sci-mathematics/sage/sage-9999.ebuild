@@ -284,6 +284,11 @@ python_prepare_all() {
 	# Fixes to doctests
 	############################################################################
 
+	# Remove all SAGE_LOCAL in control.py
+	sed -i \
+		"s:\$SAGE_LOCAL:${EPREFIX}/usr:g" \
+		sage/doctest/control.py
+
 	# fix all.py
 	eapply "${FILESDIR}"/${PN}-7.2-all.py.patch
 	sed -i \
