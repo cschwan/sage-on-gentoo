@@ -67,7 +67,7 @@ CDEPEND="dev-libs/gmp:0=
 	>=sci-libs/symmetrica-2.0-r3
 	>=sci-libs/zn_poly-0.9
 	>=sci-mathematics/gap-4.10.0-r4:0/4.10.0[recommended_pkgs]
-	>=sci-mathematics/giac-1.4.9.45
+	>=sci-mathematics/giac-1.5.0.43
 	>=sci-mathematics/glpk-4.63:0=[gmp]
 	>=sci-mathematics/lcalc-1.23-r10[pari]
 	>=sci-mathematics/lrcalc-1.2-r1
@@ -85,7 +85,7 @@ CDEPEND="dev-libs/gmp:0=
 	>=sys-libs/readline-6.2
 	sys-libs/zlib
 	virtual/cblas
-	~sci-mathematics/arb-2.15.1
+	~sci-mathematics/arb-2.16.0
 	www-misc/thebe
 	>=sci-libs/libhomfly-1.0.1
 	sci-libs/libbraiding
@@ -283,6 +283,11 @@ python_prepare_all() {
 	############################################################################
 	# Fixes to doctests
 	############################################################################
+
+	# Remove all SAGE_LOCAL in control.py
+	sed -i \
+		"s:\$SAGE_LOCAL:${EPREFIX}/usr:g" \
+		sage/doctest/control.py
 
 	# fix all.py
 	eapply "${FILESDIR}"/${PN}-7.2-all.py.patch

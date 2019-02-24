@@ -95,7 +95,7 @@ sci-libs/dsdp
 sci-libs/symmetrica
 sci-libs/vecmath-objectclub
 sci-libs/zn_poly
-~sci-mathematics/arb-2.15.1
+~sci-mathematics/arb-2.16.0
 sci-mathematics/cu2
 sci-mathematics/cubex
 sci-mathematics/dikcube
