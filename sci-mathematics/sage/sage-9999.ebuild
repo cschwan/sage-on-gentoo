@@ -177,6 +177,7 @@ python_prepare_all() {
 		-e "s:\$SAGE_ROOT/local/bin/::" \
 		-e "s:\$SAGE_LOCAL/bin/::" \
 		bin/sage-cachegrind \
+		bin/sage-callgrind \
 		bin/sage-massif \
 		bin/sage-omega \
 		bin/sage-valgrind
@@ -187,7 +188,8 @@ python_prepare_all() {
 
 	# Replace SAGE_EXTCODE with the installation location
 	sed -i "s:\$SAGE_EXTCODE:${EPREFIX}/usr/share/sage/ext:g" \
-		bin/sage-ipynb2rst
+		bin/sage-ipynb2rst \
+		bin/sage-valgrind
 
 	# ship our simplified sage shell script
 	cp "${FILESDIR}"/sage-exec bin/sage
