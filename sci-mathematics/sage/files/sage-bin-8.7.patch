@@ -1,0 +1,59 @@
+diff --git a/bin/sage-cachegrind b/bin/sage-cachegrind
+index f77c2a2..f5cba04 100755
+--- a/bin/sage-cachegrind
++++ b/bin/sage-cachegrind
+@@ -1,7 +1,7 @@
+ #!/usr/bin/env bash
+ 
+ # We reuse the gdb pythonstartup script.
+-PYTHONSTARTUP=$SAGE_LOCAL/bin/sage-ipython
++PYTHONSTARTUP=$(which sage-ipython)
+ export PYTHONSTARTUP
+ echo $PYTHONSTARTUP
+ if [ ! -d "$DOT_SAGE/valgrind" ]; then
+diff --git a/bin/sage-callgrind b/bin/sage-callgrind
+index 5e21d8b..d78acd6 100755
+--- a/bin/sage-callgrind
++++ b/bin/sage-callgrind
+@@ -13,4 +13,4 @@ if [ "$SAGE_CALLGRIND_FLAGS" ]; then
+     echo "Using default flags: $CALLGRIND_FLAGS"
+ fi
+ 
+-valgrind --tool=callgrind $CALLGRIND_FLAGS python "$SAGE_LOCAL/bin/sage-ipython" "$@" -i
++valgrind --tool=callgrind $CALLGRIND_FLAGS sage-ipython "$@" -i
+diff --git a/bin/sage-massif b/bin/sage-massif
+index 20082bf..6bce010 100755
+--- a/bin/sage-massif
++++ b/bin/sage-massif
+@@ -1,7 +1,7 @@
+ #!/usr/bin/env bash
+ 
+ # We reuse the gdb pythonstartup script.
+-PYTHONSTARTUP=$SAGE_LOCAL/bin/sage-ipython
++PYTHONSTARTUP=$(which sage-ipython)
+ export PYTHONSTARTUP
+ echo $PYTHONSTARTUP
+ if [ ! -d "$DOT_SAGE/valgrind" ]; then
+diff --git a/bin/sage-omega b/bin/sage-omega
+index 2b8449f..9abf966 100755
+--- a/bin/sage-omega
++++ b/bin/sage-omega
+@@ -1,7 +1,7 @@
+ #!/usr/bin/env bash
+ 
+ # We reuse the gdb pythonstartup script.
+-PYTHONSTARTUP=$SAGE_LOCAL/bin/sage-ipython
++PYTHONSTARTUP=$(which sage-ipython)
+ export PYTHONSTARTUP
+ echo $PYTHONSTARTUP
+ if [ ! -d "$DOT_SAGE/valgrind" ]; then
+diff --git a/bin/sage-valgrind b/bin/sage-valgrind
+index bba296d..f66ec34 100755
+--- a/bin/sage-valgrind
++++ b/bin/sage-valgrind
+@@ -19,4 +19,4 @@ else
+     echo "Using default flags: $MEMCHECK_FLAGS"
+ fi
+ 
+-valgrind --tool=memcheck $MEMCHECK_FLAGS python "$SAGE_LOCAL/bin/sage-ipython" "$@" -i
++valgrind --tool=memcheck $MEMCHECK_FLAGS sage-ipython "$@" -i
