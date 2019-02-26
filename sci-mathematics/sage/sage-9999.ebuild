@@ -172,15 +172,8 @@ python_prepare_all() {
 	# Do not rely on os.environ to get SAGE_SRC
 	eapply "${FILESDIR}"/${PN}-8.1-sage-cython.patch
 
-	# Remove useless SAGE_ROOT and SAGE_LOCAL
-	sed -i \
-		-e "s:\$SAGE_ROOT/local/bin/::" \
-		-e "s:\$SAGE_LOCAL/bin/::" \
-		bin/sage-cachegrind \
-		bin/sage-callgrind \
-		bin/sage-massif \
-		bin/sage-omega \
-		bin/sage-valgrind
+	# Remove useless SAGE_LOCAL
+	eapply "${FILESDIR}"/${PN}-bin-8.7.patch
 
 	# replace MAKE by MAKEOPTS in sage-num-threads.py
 	sed -i "s:os.environ\[\"MAKE\"\]:os.environ\[\"MAKEOPTS\"\]:g" \
