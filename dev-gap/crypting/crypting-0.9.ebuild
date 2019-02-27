@@ -41,7 +41,7 @@ src_prepare(){
 src_compile(){
 	default
 
-	${CC} -shared -fPIC ${CFLAGS} -o crypting$(get_libname) ${LDFLAGS} src/crypting.c
+	${CC} -shared -fPIC ${CFLAGS} -o crypting$(get_libname) -lgap ${LDFLAGS} src/crypting.c
 }
 
 src_install(){
