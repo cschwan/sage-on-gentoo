@@ -1,4 +1,4 @@
-# Copyright 1999-2018 Gentoo Authors
+# Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=6
@@ -25,6 +25,7 @@ DEPEND="${RDEPEND}
 	doc? ( virtual/latex-base )"
 
 PATCHES=(
+	"${FILESDIR}"/red_montgomery.patch
 	"${FILESDIR}"/${PN}-2.3.2-strip.patch
 	"${FILESDIR}"/${PN}-2.3.2-ppc-powerpc-arch-fix.patch
 	"${FILESDIR}"/${PN}-2.10-no-automagic.patch
