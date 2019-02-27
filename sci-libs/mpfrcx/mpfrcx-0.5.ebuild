@@ -1,7 +1,7 @@
 # Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI=7
 
 DESCRIPTION="Mpfrcx is a library for the arithmetic of univariate polynomials "
 HOMEPAGE="http://www.multiprecision.org/mpfrcx/home.html"
