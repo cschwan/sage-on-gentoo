@@ -163,13 +163,6 @@ python_prepare_all() {
 	#
 	#########################################
 
-	# ship our own version of sage-env
-	cp "${FILESDIR}"/proto.sage-env-3 bin/sage-env
-	eprefixify bin/sage-env
-	if use debug ; then
-		sed -i "s:SAGE_DEBUG=\"no\":SAGE_DEBUG=\"yes\":" bin/sage-env
-	fi
-
 	# Do not rely on os.environ to get SAGE_SRC
 	eapply "${FILESDIR}"/${PN}-8.1-sage-cython.patch
 
@@ -186,8 +179,12 @@ python_prepare_all() {
 		bin/sage-valgrind
 
 	# ship our simplified sage shell script
+	# Now including sage-env as of 8.7.beta5+
 	cp "${FILESDIR}"/sage-exec bin/sage
 	eprefixify bin/sage
+	if use debug ; then
+		sed -i "s:SAGE_DEBUG=\"no\":SAGE_DEBUG=\"yes\":" bin/sage
+	fi
 
 	# sage is getting its own system to have scripts that can use either python2 or 3
 	# This is of course dangerous and incompatible with Gentoo
@@ -479,9 +476,9 @@ python_install_all(){
 	dobin sage-native-execute sage sage-ipynb2rst \
 		sage-python sage-version.sh
 
-	# install sage-env under /etc
+	# install env files under /etc
 	insinto /etc
-	doins sage-maxima.lisp sage-env
+	doins sage-maxima.lisp
 	newins ../../VERSION.txt sage-version.txt
 
 	if use debug ; then
