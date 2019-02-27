@@ -32,6 +32,7 @@ src_configure(){
 	econf \
 		--libdir="${EPREFIX}/usr/share/gap/pkg/${P}/bin/${GAParch}" \
 		--with-gaproot="${EPREFIX}/usr/share/gap" \
+		LIBS="-lgap" \
 		ABI=""
 }
 
