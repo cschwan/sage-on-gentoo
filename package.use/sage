@@ -9,6 +9,7 @@ dev-python/ipython          notebook
 dev-python/mpmath           -gmp
 dev-python/numpy            lapack
 dev-python/gdmodule         png
+dev-python/pplpy            doc
 media-libs/gd               jpeg png
 media-gfx/tachyon           png opengl
 net-libs/zeromq             drafts
