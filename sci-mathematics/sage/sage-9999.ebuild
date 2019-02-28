@@ -53,6 +53,7 @@ CDEPEND="dev-libs/gmp:0=
 	<=dev-python/matplotlib-2.3[${PYTHON_USEDEP}]
 	=dev-python/ipywidgets-7*[${PYTHON_USEDEP}]
 	>=dev-python/gmpy-2.1.0_alpha4[${PYTHON_USEDEP}]
+	>=dev-python/pplpy-0.8.4[${PYTHON_USEDEP}]
 	>=sci-mathematics/eclib-20180815[flint]
 	<sci-mathematics/eclib-20190000
 	~sci-mathematics/gmp-ecm-7.0.4[-openmp]
