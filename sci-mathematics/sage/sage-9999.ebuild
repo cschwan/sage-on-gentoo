@@ -21,7 +21,7 @@ LANGS="ca de en es fr hu it ja pt ru tr"
 
 LICENSE="GPL-2"
 SLOT="0"
-SAGE_USE="gmpy2 modular_decomposition bliss"
+SAGE_USE="bliss"
 IUSE="debug +doc-html doc-pdf jmol latex sagenb testsuite X ${SAGE_USE}"
 L10N_USEDEP=""
 for X in ${LANGS} ; do
@@ -52,6 +52,7 @@ CDEPEND="dev-libs/gmp:0=
 	>=dev-python/matplotlib-2.1.1[${PYTHON_USEDEP}]
 	<=dev-python/matplotlib-2.3[${PYTHON_USEDEP}]
 	=dev-python/ipywidgets-7*[${PYTHON_USEDEP}]
+	>=dev-python/gmpy-2.1.0_alpha4[${PYTHON_USEDEP}]
 	>=sci-mathematics/eclib-20180815[flint]
 	<sci-mathematics/eclib-20190000
 	~sci-mathematics/gmp-ecm-7.0.4[-openmp]
@@ -90,9 +91,7 @@ CDEPEND="dev-libs/gmp:0=
 	www-misc/thebe
 	>=sci-libs/libhomfly-1.0.1
 	sci-libs/libbraiding
-	modular_decomposition? ( sci-libs/modular_decomposition )
 	bliss? ( >=sci-libs/bliss-0.73 )
-	gmpy2? ( >=dev-python/gmpy-2.1.0_alpha4[${PYTHON_USEDEP}] )
 	>=dev-python/sphinx-1.7.5[${PYTHON_USEDEP}]
 	<dev-python/sphinx-1.8.0"
 
@@ -205,8 +204,6 @@ python_prepare_all() {
 	cp -f "${FILESDIR}"/${PN}-7.3-package.py sage/misc/package.py
 	rm -f sage/misc/dist.py
 	rm -rf sage/dev
-	# Detection of gmpy2 has its own scheme that assumes vanilla sage.
-	eapply "${FILESDIR}"/${PN}-8.2-gmpy2_option.patch
 
 	# If jmol is not in useflags make tachyon the default 3D plotting engine
 	if ! use jmol ; then
@@ -297,7 +294,7 @@ python_prepare_all() {
 		-e "s:/python:/${EPYTHON}:" sage/misc/gperftools.py
 
 	# do not test safe python stuff from trac 13579. Needs to be applied after neutering.
-	eapply "${FILESDIR}"/${PN}-7.3-safepython.patch
+	eapply "${FILESDIR}"/${PN}-8.7-safepython.patch
 
 	# remove the test trying to pre-compile sage's .py file with python3
 	rm sage/tests/py3_syntax.py || die "cannot remove py3_syntax test"
