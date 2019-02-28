@@ -13,13 +13,23 @@ SRC_URI="mirror://pypi/${PN:0:1}/${PN}/${P}.tar.gz"
 LICENSE="GPL-3"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
-IUSE=""
+IUSE="doc"
 
-DEPEND=">=dev-python/gmpy-2.1.0_alpha4
-	dev-python/cysignals
-	dev-python/cython
-	>=dev-libs/ppl-1.2"
+DEPEND=">=dev-python/gmpy-2.1.0_alpha4[${PYTHON_USEDEP}]
+	dev-python/cysignals[${PYTHON_USEDEP}]
+	dev-python/cython[${PYTHON_USEDEP}]
+	>=dev-libs/ppl-1.2
+	doc? ( dev-python/sphinx[${PYTHON_USEDEP}] )"
 RDEPEND="${DEPEND}"
+
+python_compile_all() {
+	use doc && emake -C docs html
+}
+
+python_install_all(){
+	use doc && local HTML_DOCS=( docs/build/html/. )
+	distutils-r1_python_install_all
+}
 
 python_test(){
 	"${EPYTHON}" setup.py test
