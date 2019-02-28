@@ -28,6 +28,7 @@ dev-python/flask-autoindex
 ~dev-python/flask-openid-1.2.4
 dev-python/flask-oldsessions
 =dev-python/gmpy-2.1*
+=dev-python/pplpy-0.8*
 =dev-python/psutil-4.4*
 ~dev-python/flask-silk-0.2
 dev-python/terminado
