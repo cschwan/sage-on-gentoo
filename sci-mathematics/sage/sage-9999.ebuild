@@ -53,7 +53,7 @@ CDEPEND="dev-libs/gmp:0=
 	<=dev-python/matplotlib-2.3[${PYTHON_USEDEP}]
 	=dev-python/ipywidgets-7*[${PYTHON_USEDEP}]
 	>=dev-python/gmpy-2.1.0_alpha4[${PYTHON_USEDEP}]
-	>=dev-python/pplpy-0.8.4[${PYTHON_USEDEP}]
+	>=dev-python/pplpy-0.8.4[doc,${PYTHON_USEDEP}]
 	>=sci-mathematics/eclib-20180815[flint]
 	<sci-mathematics/eclib-20190000
 	~sci-mathematics/gmp-ecm-7.0.4[-openmp]
@@ -307,6 +307,13 @@ python_prepare_all() {
 	####################################
 
 	eapply "${FILESDIR}"/${PN}-8.3-pdfbuild.patch
+	# Fix finding pplpy documentation with intersphinx
+	# step 1: documentation location
+	eapply "${FILESDIR}"/${PN}-8.7-pplpy-intersphinx.patch
+	# step 2: getting the right version
+	local pplpyver="$(best_version dev-python/pplpy | sed 's:dev-python/::')"
+	# step 3 replacing. Using quotes to select the right instance of pplpy
+	sed -i "s:\"pplpy\":\"${pplpyver}\":" doc/common/conf.py
 	# support linguas so only requested languages are installed
 	eapply "${FILESDIR}"/${PN}-7.1-linguas.patch
 	# Correct path to mathjax
