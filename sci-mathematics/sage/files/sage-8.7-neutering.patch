@@ -12,7 +12,7 @@ index 8b438ad..e5c2ea7 100644
     sage/features/bliss
     sage/features/csdp
 diff --git a/sage/doctest/control.py b/sage/doctest/control.py
-index 96143a6..ae64fe2 100644
+index 8438b96..38bb47b 100644
 --- a/sage/doctest/control.py
 +++ b/sage/doctest/control.py
 @@ -347,17 +347,6 @@ class DocTestController(SageObject):
@@ -51,7 +51,7 @@ index 0b5952d..fcb90f5 100644
  
  lazy_import('sage.misc.sagedoc', ['browse_sage_doc',
 diff --git a/sage/tests/cmdline.py b/sage/tests/cmdline.py
-index 9edf619..5235be7 100644
+index 08bda7c..79edd49 100644
 --- a/sage/tests/cmdline.py
 +++ b/sage/tests/cmdline.py
 @@ -10,26 +10,20 @@ test.sage
@@ -152,7 +152,7 @@ index 9edf619..5235be7 100644
      Test ``sage-run`` on a Python file, both with an absolute and with a relative path::
  
          sage: dir = tmp_dir(); name = 'python_test_file.py'
-@@ -419,64 +365,8 @@ def test_executable(args, input="", timeout=100.0, **kwds):
+@@ -417,64 +363,8 @@ def test_executable(args, input="", timeout=100.0, **kwds):
          ...
          RuntimeError: refusing to run doctests...
  
@@ -217,7 +217,7 @@ index 9edf619..5235be7 100644
          sage: (out, err, ret) = test_executable(["sage", "--ipython"], "\n3**33\n")
          sage: out.find("5559060566555523") >= 0
          True
-@@ -612,32 +502,6 @@ def test_executable(args, input="", timeout=100.0, **kwds):
+@@ -610,32 +500,6 @@ def test_executable(args, input="", timeout=100.0, **kwds):
          sage: ret
          0
  

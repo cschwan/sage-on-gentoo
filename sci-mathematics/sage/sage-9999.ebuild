@@ -21,7 +21,7 @@ LANGS="ca de en es fr hu it ja pt ru tr"
 
 LICENSE="GPL-2"
 SLOT="0"
-SAGE_USE="gmpy2 modular_decomposition bliss"
+SAGE_USE="bliss"
 IUSE="debug +doc-html doc-pdf jmol latex sagenb testsuite X ${SAGE_USE}"
 L10N_USEDEP=""
 for X in ${LANGS} ; do
@@ -52,6 +52,8 @@ CDEPEND="dev-libs/gmp:0=
 	>=dev-python/matplotlib-2.1.1[${PYTHON_USEDEP}]
 	<=dev-python/matplotlib-2.3[${PYTHON_USEDEP}]
 	=dev-python/ipywidgets-7*[${PYTHON_USEDEP}]
+	>=dev-python/gmpy-2.1.0_alpha4[${PYTHON_USEDEP}]
+	>=dev-python/pplpy-0.8.4[doc,${PYTHON_USEDEP}]
 	>=sci-mathematics/eclib-20180815[flint]
 	<sci-mathematics/eclib-20190000
 	~sci-mathematics/gmp-ecm-7.0.4[-openmp]
@@ -90,9 +92,7 @@ CDEPEND="dev-libs/gmp:0=
 	www-misc/thebe
 	>=sci-libs/libhomfly-1.0.1
 	sci-libs/libbraiding
-	modular_decomposition? ( sci-libs/modular_decomposition )
 	bliss? ( >=sci-libs/bliss-0.73 )
-	gmpy2? ( >=dev-python/gmpy-2.1.0_alpha4[${PYTHON_USEDEP}] )
 	>=dev-python/sphinx-1.7.5[${PYTHON_USEDEP}]
 	<dev-python/sphinx-1.8.0"
 
@@ -163,13 +163,6 @@ python_prepare_all() {
 	#
 	#########################################
 
-	# ship our own version of sage-env
-	cp "${FILESDIR}"/proto.sage-env-3 bin/sage-env
-	eprefixify bin/sage-env
-	if use debug ; then
-		sed -i "s:SAGE_DEBUG=\"no\":SAGE_DEBUG=\"yes\":" bin/sage-env
-	fi
-
 	# Do not rely on os.environ to get SAGE_SRC
 	eapply "${FILESDIR}"/${PN}-8.1-sage-cython.patch
 
@@ -186,8 +179,12 @@ python_prepare_all() {
 		bin/sage-valgrind
 
 	# ship our simplified sage shell script
+	# Now including sage-env as of 8.7.beta5+
 	cp "${FILESDIR}"/sage-exec bin/sage
 	eprefixify bin/sage
+	if use debug ; then
+		sed -i "s:SAGE_DEBUG=\"no\":SAGE_DEBUG=\"yes\":" bin/sage
+	fi
 
 	# sage is getting its own system to have scripts that can use either python2 or 3
 	# This is of course dangerous and incompatible with Gentoo
@@ -208,8 +205,6 @@ python_prepare_all() {
 	cp -f "${FILESDIR}"/${PN}-7.3-package.py sage/misc/package.py
 	rm -f sage/misc/dist.py
 	rm -rf sage/dev
-	# Detection of gmpy2 has its own scheme that assumes vanilla sage.
-	eapply "${FILESDIR}"/${PN}-8.2-gmpy2_option.patch
 
 	# If jmol is not in useflags make tachyon the default 3D plotting engine
 	if ! use jmol ; then
@@ -300,7 +295,7 @@ python_prepare_all() {
 		-e "s:/python:/${EPYTHON}:" sage/misc/gperftools.py
 
 	# do not test safe python stuff from trac 13579. Needs to be applied after neutering.
-	eapply "${FILESDIR}"/${PN}-7.3-safepython.patch
+	eapply "${FILESDIR}"/${PN}-8.7-safepython.patch
 
 	# remove the test trying to pre-compile sage's .py file with python3
 	rm sage/tests/py3_syntax.py || die "cannot remove py3_syntax test"
@@ -312,6 +307,13 @@ python_prepare_all() {
 	####################################
 
 	eapply "${FILESDIR}"/${PN}-8.3-pdfbuild.patch
+	# Fix finding pplpy documentation with intersphinx
+	# step 1: documentation location
+	eapply "${FILESDIR}"/${PN}-8.7-pplpy-intersphinx.patch
+	# step 2: getting the right version
+	local pplpyver="$(best_version dev-python/pplpy | sed 's:dev-python/::')"
+	# step 3 replacing. Using quotes to select the right instance of pplpy
+	sed -i "s:\"pplpy\":\"${pplpyver}\":" doc/common/conf.py
 	# support linguas so only requested languages are installed
 	eapply "${FILESDIR}"/${PN}-7.1-linguas.patch
 	# Correct path to mathjax
@@ -479,9 +481,9 @@ python_install_all(){
 	dobin sage-native-execute sage sage-ipynb2rst \
 		sage-python sage-version.sh
 
-	# install sage-env under /etc
+	# install env files under /etc
 	insinto /etc
-	doins sage-maxima.lisp sage-env
+	doins sage-maxima.lisp
 	newins ../../VERSION.txt sage-version.txt
 
 	if use debug ; then
