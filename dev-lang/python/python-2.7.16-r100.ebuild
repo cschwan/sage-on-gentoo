@@ -1,13 +1,13 @@
-# Copyright 1999-2018 Gentoo Foundation
+# Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI="5"
+EAPI="6"
 WANT_LIBTOOL="none"
 
-inherit autotools eutils flag-o-matic multilib pax-utils python-utils-r1 toolchain-funcs multiprocessing
+inherit autotools flag-o-matic pax-utils python-utils-r1 toolchain-funcs
 
 MY_P="Python-${PV}"
-PATCHSET_VERSION="2.7.14-0"
+PATCHSET_VERSION="2.7.16"
 
 DESCRIPTION="An interpreted, interactive, object-oriented programming language"
 HOMEPAGE="https://www.python.org/"
@@ -17,7 +17,7 @@ SRC_URI="https://www.python.org/ftp/python/${PV}/${MY_P}.tar.xz
 LICENSE="PSF-2"
 SLOT="2.7"
 KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~hppa ~ia64 ~m68k ~mips ~ppc ~ppc64 ~s390 ~sh ~sparc ~x86 ~amd64-fbsd ~x86-fbsd"
-IUSE="-berkdb build doc elibc_uclibc examples gdbm hardened ipv6 libressl +ncurses +readline sqlite +ssl +threads tk +wide-unicode wininst +xml"
+IUSE="-berkdb bluetooth build doc elibc_uclibc examples gdbm hardened ipv6 libressl +ncurses +readline sqlite +ssl +threads tk +wide-unicode wininst +xml"
 
 # Do not add a dependency on dev-lang/python to this ebuild.
 # If you need to apply a patch which requires python for bootstrapping, please
@@ -26,7 +26,7 @@ IUSE="-berkdb build doc elibc_uclibc examples gdbm hardened ipv6 libressl +ncurs
 
 RDEPEND="app-arch/bzip2:0=
 	>=sys-libs/zlib-1.1.3:0=
-	virtual/libffi
+	virtual/libffi:=
 	virtual/libintl
 	berkdb? ( || (
 		sys-libs/db:5.3
@@ -40,14 +40,12 @@ RDEPEND="app-arch/bzip2:0=
 		sys-libs/db:4.2
 	) )
 	gdbm? ( sys-libs/gdbm:0=[berkdb] )
-	ncurses? (
-		>=sys-libs/ncurses-5.2:0=
-		readline? ( >=sys-libs/readline-4.1:0= )
-	)
+	ncurses? ( >=sys-libs/ncurses-5.2:0= )
+	readline? ( >=sys-libs/readline-4.1:0= )
 	sqlite? ( >=dev-db/sqlite-3.3.8:3= )
 	ssl? (
 		!libressl? ( dev-libs/openssl:0= )
-		libressl? ( dev-libs/libressl:= )
+		libressl? ( dev-libs/libressl:0= )
 	)
 	tk? (
 		>=dev-lang/tcl-8.0:0=
@@ -57,7 +55,9 @@ RDEPEND="app-arch/bzip2:0=
 	)
 	xml? ( >=dev-libs/expat-2.1 )
 	!!<sys-apps/portage-2.1.9"
+# bluetooth requires headers from bluez
 DEPEND="${RDEPEND}
+	bluetooth? ( net-wireless/bluez )
 	virtual/pkgconfig
 	>=sys-devel/autoconf-2.65
 	!sys-devel/gcc[libffi(-)]"
@@ -89,26 +89,25 @@ src_prepare() {
 	rm -r Modules/zlib || die
 
 	if tc-is-cross-compiler; then
-		local EPATCH_EXCLUDE="*_regenerate_platform-specific_modules.patch"
+		rm "${WORKDIR}/patches/0006-Regenerate-platform-specific-modules.patch" || die
 	fi
 
-	EPATCH_SUFFIX="patch" epatch "${WORKDIR}/patches"
-
-	# Fix for cross-compiling.
-	epatch "${FILESDIR}/python-2.7.5-nonfatal-compileall.patch"
-	epatch "${FILESDIR}/python-2.7.9-ncurses-pkg-config.patch"
-	epatch "${FILESDIR}/python-2.7.10-cross-compile-warn-test.patch"
-	epatch "${FILESDIR}/python-2.7.10-system-libffi.patch"
-	epatch "${FILESDIR}/2.7-disable-nis.patch"
+	local PATCHES=(
+		"${WORKDIR}/patches"
+		# Fix for cross-compiling.
+		"${FILESDIR}/python-2.7.5-nonfatal-compileall.patch"
+		"${FILESDIR}/python-2.7.9-ncurses-pkg-config.patch"
+		"${FILESDIR}/python-2.7.10-cross-compile-warn-test.patch"
+		"${FILESDIR}/python-2.7.10-system-libffi.patch"
+		"${FILESDIR}"/${PN}-2.7.12-issue27177.patch
+	)
 
 	# sage patches
-	# http://bugs.python.org/issue25750
-	epatch "${FILESDIR}"/descr_ref.patch
 	# http://bugs.python.org/issue27177
 	# upstream python treats it as new feature for 3.6 only
-	epatch "${FILESDIR}"/${PN}-2.7.12-issue27177.patch
+	# python-2.7.12-issue27177.patch
 
-	epatch_user
+	default
 
 	sed -i -e "s:@@GENTOO_LIBDIR@@:$(get_libdir):g" \
 		Lib/distutils/command/install.py \
@@ -130,6 +129,8 @@ src_configure() {
 		local disable
 		use berkdb   || use gdbm || disable+=" dbm"
 		use berkdb   || disable+=" _bsddb"
+		# disable automagic bluetooth headers detection
+		use bluetooth || export ac_cv_header_bluetooth_bluetooth_h=no
 		use gdbm     || disable+=" gdbm"
 		use ncurses  || disable+=" _curses _curses_panel"
 		use readline || disable+=" readline"
@@ -186,26 +187,24 @@ src_configure() {
 		dbmliborder+="${dbmliborder:+:}bdb"
 	fi
 
-	BUILD_DIR="${WORKDIR}/${CHOST}"
-	mkdir -p "${BUILD_DIR}" || die
-	cd "${BUILD_DIR}" || die
-
-	ECONF_SOURCE="${S}" OPT="" \
-	econf \
-		--with-fpectl \
-		--enable-shared \
-		$(use_enable ipv6) \
-		$(use_with threads) \
-		$(use wide-unicode && echo "--enable-unicode=ucs4" || echo "--enable-unicode=ucs2") \
-		--infodir='${prefix}/share/info' \
-		--mandir='${prefix}/share/man' \
-		--with-computed-gotos \
-		--with-dbmliborder="${dbmliborder}" \
-		--with-libc="" \
-		--enable-loadable-sqlite-extensions \
-		--with-system-expat \
-		--with-system-ffi \
+	local myeconfargs=(
+		--with-fpectl
+		--enable-shared
+		$(use_enable ipv6)
+		$(use_with threads)
+		$(use wide-unicode && echo "--enable-unicode=ucs4" || echo "--enable-unicode=ucs2")
+		--infodir='${prefix}/share/info'
+		--mandir='${prefix}/share/man'
+		--with-computed-gotos
+		--with-dbmliborder="${dbmliborder}"
+		--with-libc=
+		--enable-loadable-sqlite-extensions
+		--with-system-expat
+		--with-system-ffi
 		--without-ensurepip
+	)
+
+	OPT= econf "${myeconfargs[@]}"
 
 	if use threads && grep -q "#define POSIX_SEMAPHORES_NOT_ENABLED 1" pyconfig.h; then
 		eerror "configure has detected that the sem_open function is broken."
@@ -218,7 +217,6 @@ src_compile() {
 	# Avoid invoking pgen for cross-compiles.
 	touch Include/graminit.h Python/graminit.c
 
-	cd "${BUILD_DIR}" || die
 	emake
 
 	# Work around bug 329499. See also bug 413751 and 457194.
@@ -236,14 +234,15 @@ src_test() {
 		return
 	fi
 
-	cd "${BUILD_DIR}" || die
-
 	# Skip failing tests.
 	local skipped_tests="distutils gdb"
 
 	for test in ${skipped_tests}; do
 		mv "${S}"/Lib/test/test_${test}.py "${T}"
 	done
+
+	# bug 660358
+	local -x COLUMNS=80
 
 	# Daylight saving time problem
 	# https://bugs.python.org/issue22067
@@ -275,7 +274,6 @@ src_test() {
 src_install() {
 	local libdir=${ED}/usr/$(get_libdir)/python${SLOT}
 
-	cd "${BUILD_DIR}" || die
 	emake DESTDIR="${D}" altinstall
 
 	sed -e "s/\(LDFLAGS=\).*/\1/" -i "${libdir}/config/Makefile" || die "sed failed"
@@ -331,24 +329,17 @@ src_install() {
 	local pymajor=${SLOT%.*}
 	mkdir -p "${D}${PYTHON_SCRIPTDIR}" || die
 	# python and pythonX
-	ln -s "../../../bin/python${SLOT}" \
-		"${D}${PYTHON_SCRIPTDIR}/python${pymajor}" || die
-	ln -s "python${pymajor}" \
-		"${D}${PYTHON_SCRIPTDIR}/python" || die
+	ln -s "../../../bin/python${SLOT}" "${D}${PYTHON_SCRIPTDIR}/python${pymajor}" || die
+	ln -s "python${pymajor}" "${D}${PYTHON_SCRIPTDIR}/python" || die
 	# python-config and pythonX-config
-	ln -s "../../../bin/python${SLOT}-config" \
-		"${D}${PYTHON_SCRIPTDIR}/python${pymajor}-config" || die
-	ln -s "python${pymajor}-config" \
-		"${D}${PYTHON_SCRIPTDIR}/python-config" || die
+	ln -s "../../../bin/python${SLOT}-config" "${D}${PYTHON_SCRIPTDIR}/python${pymajor}-config" || die
+	ln -s "python${pymajor}-config" "${D}${PYTHON_SCRIPTDIR}/python-config" || die
 	# 2to3, pydoc, pyvenv
-	ln -s "../../../bin/2to3-${SLOT}" \
-		"${D}${PYTHON_SCRIPTDIR}/2to3" || die
-	ln -s "../../../bin/pydoc${SLOT}" \
-		"${D}${PYTHON_SCRIPTDIR}/pydoc" || die
+	ln -s "../../../bin/2to3-${SLOT}" "${D}${PYTHON_SCRIPTDIR}/2to3" || die
+	ln -s "../../../bin/pydoc${SLOT}" "${D}${PYTHON_SCRIPTDIR}/pydoc" || die
 	# idle
 	if use tk; then
-		ln -s "../../../bin/idle${SLOT}" \
-			"${D}${PYTHON_SCRIPTDIR}/idle" || die
+		ln -s "../../../bin/idle${SLOT}" "${D}${PYTHON_SCRIPTDIR}/idle" || die
 	fi
 }
 
