@@ -54,9 +54,9 @@ dev-gap/sonata:0/4.10.0
 dev-gap/toric:0/4.10.0
 dev-gap/orb:0/4.10.0
 sci-libs/bliss # dependency of digraphs
-dev-gap/digraphs:4.10.0
-dev-gap/genss:4.10.0
+dev-gap/digraphs:0/4.10.0
+dev-gap/genss:0/4.10.0
 sci-libs/libsemigroups # dependency of semigroups
-dev-gap/semigroups:4.10.0
+dev-gap/semigroups:0/4.10.0
 # packages needing more testing
 #dev-gap/polymaking:0/4.10.0
