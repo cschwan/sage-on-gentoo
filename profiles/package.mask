@@ -1,11 +1,5 @@
 ~sci-mathematics/sage-9999
-# preparing ecm for removal. I only keep it in case it solves some OS X problems
-sci-mathematics/ecm
-# testing only
 # Work in progress it doesn't like being installed in a root location
 #dev-gap/atlasrep
 # keeping it under wrap for now
->=sci-libs/openblas-0.3.0
-#>=sci-mathematics/giac-1.5.0.0
->=dev-python/pexpect-4.6.0
 >=sci-mathematics/glpk-4.65
