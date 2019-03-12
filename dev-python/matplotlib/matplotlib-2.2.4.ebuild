@@ -47,7 +47,6 @@ COMMON_DEPEND="
 	media-fonts/stix-fonts
 	media-libs/freetype:2
 	media-libs/libpng:0
-	>=media-libs/qhull-2013
 	>=dev-python/kiwisolver-1.0.0[${PYTHON_USEDEP}]
 	cairo? ( dev-python/cairocffi[${PYTHON_USEDEP}] )
 	gtk2? (
@@ -108,6 +107,11 @@ RDEPEND="${COMMON_DEPEND}
 # Other than that, the ebuild shall be fit for out-of-source build.
 DISTUTILS_IN_SOURCE_BUILD=1
 
+PATCHES=(
+	"${FILESDIR}"/${PN}-2.2.2-doc-make.patch
+	"${FILESDIR}"/${PN}-2.2.4-jqueryui_no_download.patch
+	)
+
 pkg_setup() {
 	unset DISPLAY # bug #278524
 }
@@ -124,21 +128,6 @@ use_setup() {
 }
 
 python_prepare_all() {
-# Generates test failures, but fedora does it
-#	local PATCHES=(
-#		"${FILESDIR}"/${P}-unbundle-pycxx.patch
-#		"${FILESDIR}"/${P}-unbundle-agg.patch
-#	)
-#	rm -r agg24 CXX || die
-#	rm -r agg24 || die
-
-#	cat > lib/${PN}/externals/six.py <<-EOF
-#	from __future__ import absolute_import
-#	from six import *
-#	EOF
-
-	local PATCHES=( "${FILESDIR}"/${PN}-2.2.2-doc-make.patch )
-
 	sed \
 		-e 's/matplotlib.pyparsing_py[23]/pyparsing/g' \
 		-i lib/matplotlib/{mathtext,fontconfig_pattern}.py \
