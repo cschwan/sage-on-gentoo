@@ -13,7 +13,7 @@ dev-libs/c-blosc
 >=dev-lisp/ecls-16.0.0::sage-on-gentoo
 dev-python/characteristic
 dev-python/cvxopt
-=dev-python/cysignals-1.8*
+=dev-python/cysignals-1.10*
 >=dev-python/cython-0.29.1
 ~dev-python/bottleneck-0.8.0
 ~dev-python/pyopenssl-17.4.0
@@ -100,7 +100,7 @@ sci-libs/zn_poly
 sci-mathematics/cu2
 sci-mathematics/cubex
 sci-mathematics/dikcube
-~sci-mathematics/eclib-20180815
+~sci-mathematics/eclib-20190226
 ~sci-mathematics/gmp-ecm-7.0.4
 sci-mathematics/flintqs
 ~sci-mathematics/flint-2.5.2
