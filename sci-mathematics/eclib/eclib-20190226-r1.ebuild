@@ -1,7 +1,9 @@
 # Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI=7
+
+inherit autotools
 
 DESCRIPTION="enumerating and computing with elliptic curves defined over the rational numbers"
 HOMEPAGE="http://www.warwick.ac.uk/~masgaj/mwrank/index.html"
@@ -19,6 +21,15 @@ RDEPEND=">=sci-mathematics/pari-2.5.0:=
 	flint? ( sci-mathematics/flint:= )"
 DEPEND="${RDEPEND}"
 
+PATCHES=(
+	"${FILESDIR}"/${PN}-20190226-docdir.patch
+	)
+
+src_prepare(){
+	default
+
+	eautoreconf
+}
 src_configure() {
 	econf \
 		--disable-allprogs \
