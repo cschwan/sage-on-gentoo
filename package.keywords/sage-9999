@@ -93,7 +93,7 @@ sci-libs/dsdp
 ~sci-libs/m4rie-20150908
 ~sci-libs/mpfi-1.5.2
 ~sci-libs/pynac-0.7.24
-=sci-libs/scipy-1.1.0
+=sci-libs/scipy-1.2*
 sci-libs/symmetrica
 sci-libs/vecmath-objectclub
 sci-libs/zn_poly
