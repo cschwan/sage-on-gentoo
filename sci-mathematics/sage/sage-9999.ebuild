@@ -39,23 +39,21 @@ CDEPEND="dev-libs/gmp:0=
 	>=dev-libs/ppl-1.1
 	~dev-lisp/ecls-16.1.2
 	>=dev-python/six-1.11.0[${PYTHON_USEDEP}]
-	>=dev-python/numpy-1.15.2[${PYTHON_USEDEP}]
+	>=dev-python/numpy-1.16.1[${PYTHON_USEDEP}]
 	>=dev-python/cython-0.29.1[${PYTHON_USEDEP}]
 	dev-python/future[${PYTHON_USEDEP}]
 	~dev-python/pkgconfig-1.2.2[${PYTHON_USEDEP}]
-	>=dev-python/cysignals-1.8.1[${PYTHON_USEDEP}]
+	>=dev-python/cysignals-1.10.0[${PYTHON_USEDEP}]
 	>=dev-python/docutils-0.12[${PYTHON_USEDEP}]
 	>=dev-python/psutil-4.4.0[${PYTHON_USEDEP}]
 	dev-python/jupyter_core[${PYTHON_USEDEP}]
 	>=dev-python/ipython-5.8.0[notebook,${PYTHON_USEDEP}]
 	>=dev-python/jinja-2.8[${PYTHON_USEDEP}]
-	>=dev-python/matplotlib-2.1.1[${PYTHON_USEDEP}]
-	<=dev-python/matplotlib-2.3[${PYTHON_USEDEP}]
+	=dev-python/matplotlib-2.2*[${PYTHON_USEDEP}]
 	=dev-python/ipywidgets-7*[${PYTHON_USEDEP}]
 	>=dev-python/gmpy-2.1.0_alpha4[${PYTHON_USEDEP}]
 	>=dev-python/pplpy-0.8.4:=[doc,${PYTHON_USEDEP}]
-	>=sci-mathematics/eclib-20180815[flint]
-	<sci-mathematics/eclib-20190000
+	~sci-mathematics/eclib-20190226[flint]
 	~sci-mathematics/gmp-ecm-7.0.4[-openmp]
 	>=sci-mathematics/flint-2.5.2:=[ntl]
 	~sci-libs/givaro-4.0.4
