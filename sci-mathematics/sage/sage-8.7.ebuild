@@ -21,7 +21,7 @@ LANGS="ca de en es fr hu it ja pt ru tr"
 
 LICENSE="GPL-2"
 SLOT="0"
-SAGE_USE="gmpy2 modular_decomposition bliss"
+SAGE_USE="bliss"
 IUSE="debug doc-html +doc-html-bin doc-pdf doc-pdf-bin jmol latex sagenb testsuite X ${SAGE_USE}"
 L10N_USEDEP=""
 for X in ${LANGS} ; do
@@ -39,40 +39,41 @@ CDEPEND="dev-libs/gmp:0=
 	>=dev-libs/ppl-1.1
 	~dev-lisp/ecls-16.1.2
 	>=dev-python/six-1.11.0[${PYTHON_USEDEP}]
-	>=dev-python/numpy-1.15.2[${PYTHON_USEDEP}]
+	>=dev-python/numpy-1.16.1[${PYTHON_USEDEP}]
 	>=dev-python/cython-0.29.1[${PYTHON_USEDEP}]
 	dev-python/future[${PYTHON_USEDEP}]
 	~dev-python/pkgconfig-1.2.2[${PYTHON_USEDEP}]
-	>=dev-python/cysignals-1.7.1[${PYTHON_USEDEP}]
+	>=dev-python/cysignals-1.10.0[${PYTHON_USEDEP}]
 	>=dev-python/docutils-0.12[${PYTHON_USEDEP}]
 	>=dev-python/psutil-4.4.0[${PYTHON_USEDEP}]
+	dev-python/jupyter_core[${PYTHON_USEDEP}]
 	>=dev-python/ipython-5.8.0[notebook,${PYTHON_USEDEP}]
 	>=dev-python/jinja-2.8[${PYTHON_USEDEP}]
-	>=dev-python/matplotlib-2.1.1[${PYTHON_USEDEP}]
-	<=dev-python/matplotlib-2.3[${PYTHON_USEDEP}]
+	=dev-python/matplotlib-2.2*[${PYTHON_USEDEP}]
 	=dev-python/ipywidgets-7*[${PYTHON_USEDEP}]
-	>=sci-mathematics/eclib-20180815[flint]
-	<sci-mathematics/eclib-20190000
+	>=dev-python/gmpy-2.1.0_alpha4[${PYTHON_USEDEP}]
+	>=dev-python/pplpy-0.8.4:=[doc,${PYTHON_USEDEP}]
+	~sci-mathematics/eclib-20190226[flint]
 	~sci-mathematics/gmp-ecm-7.0.4[-openmp]
 	>=sci-mathematics/flint-2.5.2:=[ntl]
 	~sci-libs/givaro-4.0.4
 	>=sci-libs/gsl-2.3
 	>=sci-libs/iml-1.0.4
 	~sci-mathematics/cliquer-1.21
-	~sci-libs/libgap-4.8.6
 	~sci-libs/linbox-1.5.2[sage]
 	~sci-libs/m4ri-20140914
 	~sci-libs/m4rie-20150908
 	>=sci-libs/mpfi-1.5.2
-	~sci-libs/pynac-0.7.22[-giac,${PYTHON_USEDEP}]
+	~sci-libs/pynac-0.7.24[-giac,${PYTHON_USEDEP}]
 	>=sci-libs/symmetrica-2.0-r3
 	>=sci-libs/zn_poly-0.9
-	>=sci-mathematics/giac-1.4.9.45
+	>=sci-mathematics/gap-4.10.0-r4:0/4.10.0[recommended_pkgs]
+	>=sci-mathematics/giac-1.5.0.43
 	>=sci-mathematics/glpk-4.63:0=[gmp]
 	>=sci-mathematics/lcalc-1.23-r10[pari]
 	>=sci-mathematics/lrcalc-1.2-r1
-	>=dev-python/cypari2-1.3.1[${PYTHON_USEDEP}]
-	<dev-python/cypari2-2.0.0
+	>=dev-python/cypari2-2.1.0[${PYTHON_USEDEP}]
+	=sci-mathematics/pari-2.11*
 	~sci-mathematics/planarity-3.0.0.5
 	=sci-libs/brial-1.2*
 	=dev-python/sage-brial-1*[${PYTHON_USEDEP}]
@@ -85,17 +86,16 @@ CDEPEND="dev-libs/gmp:0=
 	>=sys-libs/readline-6.2
 	sys-libs/zlib
 	virtual/cblas
-	~sci-mathematics/arb-2.15.1
+	~sci-mathematics/arb-2.16.0
 	www-misc/thebe
 	>=sci-libs/libhomfly-1.0.1
 	sci-libs/libbraiding
-	modular_decomposition? ( sci-libs/modular_decomposition )
 	bliss? ( >=sci-libs/bliss-0.73 )
-	gmpy2? ( >=dev-python/gmpy-2.1.0_alpha4[${PYTHON_USEDEP}] )
 	>=dev-python/sphinx-1.7.5[${PYTHON_USEDEP}]
 	<dev-python/sphinx-1.8.0"
 
 DEPEND="${CDEPEND}
+	app-portage/gentoolkit
 	doc-pdf? ( app-text/texlive[extra,${L10N_USEDEP}] )"
 
 RDEPEND="${CDEPEND}
@@ -103,7 +103,7 @@ RDEPEND="${CDEPEND}
 	>=dev-python/cvxopt-1.2.2[glpk,${PYTHON_USEDEP}]
 	>=dev-python/fpylll-0.2.3[${PYTHON_USEDEP}]
 	>=dev-python/mpmath-0.18[${PYTHON_USEDEP}]
-	~dev-python/networkx-2.1[${PYTHON_USEDEP}]
+	~dev-python/networkx-2.2[${PYTHON_USEDEP}]
 	>=dev-python/pexpect-4.2.1[${PYTHON_USEDEP}]
 	>=dev-python/rpy-2.8.0[${PYTHON_USEDEP}]
 	<dev-python/rpy-2.9.0
@@ -113,7 +113,6 @@ RDEPEND="${CDEPEND}
 	>=sci-libs/cddlib-094j[tools]
 	>=sci-libs/scipy-1.1.0[${PYTHON_USEDEP}]
 	sci-mathematics/flintqs
-	~sci-mathematics/gap-4.8.6
 	~sci-mathematics/gfan-0.6.2
 	>=sci-mathematics/cu2-20060223
 	>=sci-mathematics/cubex-20060128
@@ -124,7 +123,6 @@ RDEPEND="${CDEPEND}
 	>=sci-mathematics/nauty-2.6.1
 	>=sci-mathematics/optimal-20040603
 	>=sci-mathematics/palp-2.1
-	=sci-mathematics/pari-2.11*
 	~sci-mathematics/sage-data-elliptic_curves-0.8
 	~sci-mathematics/sage-data-graphs-20161026
 	~sci-mathematics/sage-data-combinatorial_designs-20140630
@@ -133,9 +131,10 @@ RDEPEND="${CDEPEND}
 	>=sci-mathematics/sympow-1.018.1
 	www-servers/tornado
 	!prefix? ( >=sys-libs/glibc-2.13-r4 )
-	sagenb? ( >=sci-mathematics/sage-notebook-1.1.0[$(python_gen_usedep 'python2*')] )
+	doc-html-bin? ( =dev-python/pplpy-0.8.4-r2[doc,${PYTHON_USEDEP}] )
+	sagenb? ( >=sci-mathematics/sage-notebook-1.1.2[$(python_gen_usedep 'python2*')] )
 	latex? (
-		~dev-tex/sage-latex-3.0
+		~dev-tex/sage-latex-3.2
 		|| ( app-text/dvipng[truetype] media-gfx/imagemagick[png] )
 	)"
 
@@ -161,30 +160,28 @@ python_prepare_all() {
 	#
 	#########################################
 
-	# ship our own version of sage-env
-	cp "${FILESDIR}"/proto.sage-env-2 bin/sage-env
-	eprefixify bin/sage-env
-	sed -i "s:@GENTOO_PORTAGE_PF@:${PF}:" bin/sage-env
-
 	# Do not rely on os.environ to get SAGE_SRC
 	eapply "${FILESDIR}"/${PN}-8.1-sage-cython.patch
 
-	# Remove useless SAGE_ROOT and SAGE_LOCAL
-	sed -i \
-		-e "s:\$SAGE_ROOT/local/bin/::" \
-		-e "s:\$SAGE_LOCAL/bin/::" \
-		bin/sage-cachegrind \
-		bin/sage-massif \
-		bin/sage-omega \
-		bin/sage-valgrind
+	# Remove useless SAGE_LOCAL
+	eapply "${FILESDIR}"/${PN}-bin-8.7.patch
 
 	# replace MAKE by MAKEOPTS in sage-num-threads.py
 	sed -i "s:os.environ\[\"MAKE\"\]:os.environ\[\"MAKEOPTS\"\]:g" \
 		bin/sage-num-threads.py
 
-	# remove developer and unsupported options
-	eapply "${FILESDIR}"/${PN}-8.4-exec.patch
+	# Replace SAGE_EXTCODE with the installation location
+	sed -i "s:\$SAGE_EXTCODE:${EPREFIX}/usr/share/sage/ext:g" \
+		bin/sage-ipynb2rst \
+		bin/sage-valgrind
+
+	# ship our simplified sage shell script
+	# Now including sage-env as of 8.7.beta5+
+	cp "${FILESDIR}"/sage-exec bin/sage
 	eprefixify bin/sage
+	if use debug ; then
+		sed -i "s:SAGE_DEBUG=\"no\":SAGE_DEBUG=\"yes\":" bin/sage
+	fi
 
 	# sage is getting its own system to have scripts that can use either python2 or 3
 	# This is of course dangerous and incompatible with Gentoo
@@ -201,12 +198,10 @@ python_prepare_all() {
 	###############################
 
 	# Remove sage's package management system, git capabilities and associated tests
-	eapply "${FILESDIR}"/${PN}-8.4-neutering.patch
+	eapply "${FILESDIR}"/${PN}-8.7-neutering.patch
 	cp -f "${FILESDIR}"/${PN}-7.3-package.py sage/misc/package.py
 	rm -f sage/misc/dist.py
 	rm -rf sage/dev
-	# Detection of gmpy2 has its own scheme that assumes vanilla sage.
-	eapply "${FILESDIR}"/${PN}-8.2-gmpy2_option.patch
 
 	# If jmol is not in useflags make tachyon the default 3D plotting engine
 	if ! use jmol ; then
@@ -224,14 +219,14 @@ python_prepare_all() {
 	# Get headers generated by cython installed and found at runtime and buildtime
 	# Also install all appropriate sources alongside python code.
 	# get the doc building in the right place and replace relative import to the right location.
-	eapply "${FILESDIR}"/${PN}-8.3-sources.patch
+	eapply "${FILESDIR}"/${PN}-8.7-sources.patch
 
 	############################################################################
 	# Fixes to Sage itself
 	############################################################################
 
 	# sage on gentoo env.py
-	eapply "${FILESDIR}"/${PN}-8.5-env.patch
+	eapply "${FILESDIR}"/${PN}-8.7-env.patch
 	# set $PF for the documentation location
 	sed -i "s:@GENTOO_PORTAGE_PF@:${PF}:" sage/env.py
 
@@ -261,9 +256,6 @@ python_prepare_all() {
 	# patch lie library path
 	sed -i -e "s:/lib/LiE/:/share/lie/:" sage/interfaces/lie.py
 
-	# patching libs/gap/util.pyx so we don't get noise from missing SAGE_LOCAL/gap/latest
-	eapply "${FILESDIR}"/${PN}-8.5-libgap.patch
-
 	# The ipython kernel tries to to start a new session via $SAGE_ROOT/sage -python
 	# Since we don't have $SAGE_ROOT/sage it fails.
 	#See https://github.com/cschwan/sage-on-gentoo/issues/342
@@ -276,14 +268,14 @@ python_prepare_all() {
 	touch sage_setup/jupyter/__init__.py || die "cannot create __init__.py for jupyter"
 	eapply "${FILESDIR}"/${PN}-8.3-jupyter.patch
 
-	# Make the lazy_import pickle name versioned with the sage version number
-	# rather than the path to the source which is a constant across versions
-	# in sage-on-gentoo. This fixes issue #362.
-	eapply "${FILESDIR}"/${PN}-6.8-lazy_import_cache.patch
-
 	############################################################################
 	# Fixes to doctests
 	############################################################################
+
+	# Remove all SAGE_LOCAL in control.py
+	sed -i \
+		"s:\$SAGE_LOCAL:${EPREFIX}/usr:g" \
+		sage/doctest/control.py
 
 	# fix all.py
 	eapply "${FILESDIR}"/${PN}-7.2-all.py.patch
@@ -300,12 +292,7 @@ python_prepare_all() {
 		-e "s:/python:/${EPYTHON}:" sage/misc/gperftools.py
 
 	# do not test safe python stuff from trac 13579. Needs to be applied after neutering.
-	eapply "${FILESDIR}"/${PN}-7.3-safepython.patch
-
-	# Some SAGE_ROOT elimination
-	#'sage' is not in SAGE_ROOT, but in PATH or
-	# alternatively in SAGE_LOCAL/bin
-	eapply "${FILESDIR}"/${PN}-8.5-SAGE_ROOT.patch
+	eapply "${FILESDIR}"/${PN}-8.7-safepython.patch
 
 	# remove the test trying to pre-compile sage's .py file with python3
 	rm sage/tests/py3_syntax.py || die "cannot remove py3_syntax test"
@@ -317,6 +304,11 @@ python_prepare_all() {
 	####################################
 
 	eapply "${FILESDIR}"/${PN}-8.3-pdfbuild.patch
+	# Fix finding pplpy documentation with intersphinx
+	local pplpyver=`equery -q l -F '$name-$fullversion' pplpy:0`
+	sed -i \
+		"s:SAGE_SHARE, \"doc\", \"pplpy\":\"${EPREFIX}/usr/share/doc\", \"${pplpyver}\", \"html\":" \
+		doc/common/conf.py
 	# support linguas so only requested languages are installed
 	eapply "${FILESDIR}"/${PN}-7.1-linguas.patch
 	# Correct path to mathjax
@@ -400,18 +392,18 @@ python_compile() {
 	sage_build_env
 
 	distutils-r1_python_compile
+}
 
-	if ! python_is_python3; then
-		if use doc-html ; then
-			HTML_DOCS="${WORKDIR}/build_doc/html/*"
-			"${PYTHON}" sage_setup/docbuild/__main__.py --no-pdf-links all html || die "failed to produce html doc"
-		fi
+python_compile_all(){
+	if use doc-html ; then
+		HTML_DOCS="${WORKDIR}/build_doc/html/*"
+		"${PYTHON}" sage_setup/docbuild/__main__.py --no-pdf-links all html || die "failed to produce html doc"
+	fi
 
-		if use doc-pdf ; then
-			DOCS="${WORKDIR}/build_doc/pdf"
-			export MAKE="make -j$(makeopts_jobs)"
-			"${PYTHON}" sage_setup/docbuild/__main__.py all pdf || die "failed to produce pdf doc"
-		fi
+	if use doc-pdf ; then
+		DOCS="${WORKDIR}/build_doc/pdf"
+		export MAKE="make -j$(makeopts_jobs)"
+		"${PYTHON}" sage_setup/docbuild/__main__.py all pdf || die "failed to produce pdf doc"
 	fi
 }
 
@@ -505,12 +497,12 @@ python_install_all(){
 
 	pushd bin
 
-	dobin sage-native-execute sage \
+	dobin sage-native-execute sage sage-ipynb2rst \
 		sage-python sage-version.sh
 
-	# install sage-env under /etc
+	# install env files under /etc
 	insinto /etc
-	doins sage-maxima.lisp sage-env
+	doins sage-maxima.lisp
 	newins ../../VERSION.txt sage-version.txt
 
 	if use debug ; then
@@ -523,9 +515,6 @@ python_install_all(){
 			sage-valgrind
 	fi
 	popd
-
-	insinto /usr/share/sage
-	doins ../COPYING.txt
 
 	if use X ; then
 		doicon "${WORKDIR}"/sage.svg
@@ -560,8 +549,12 @@ python_install_all(){
 	doins sage_setup/docbuild/ext/sage_autodoc.py
 	doins sage_setup/docbuild/ext/inventory_builder.py
 	doins sage_setup/docbuild/ext/multidocs.py
+	# copy the license in a place that copying can find
+	docompress -x /usr/share/doc/"${PF}"
+	insinto /usr/share/doc/"${PF}"
+	doins ../COPYING.txt
 
-	if use doc-html; then
+	if use doc-html || use doc-html-bin; then
 		dosym ../../../doc/"${PF}"/html/en /usr/share/jupyter/kernels/sagemath/doc
 	fi
 }
