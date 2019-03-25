@@ -6,9 +6,8 @@ EAPI=7
 MY_P="alnuth-${PV}"
 DESCRIPTION="Algebraic number theory and an interface to PARI/GP"
 HOMEPAGE="http://www.gap-system.org/Packages/alnuth.html"
-GAP_VERSION="4.10.1"
-SLOT="0/${GAP_VERSION}"
-SRC_URI="https://www.gap-system.org/pub/gap/gap-$(ver_cut 1-2 ${GAP_VERSION})/tar.bz2/gap-${GAP_VERSION}.tar.bz2"
+SLOT="0"
+SRC_URI="https://github.com/gap-packages/alnuth/releases/download/v${PV}/${MY_P}.tar.gz"
 
 LICENSE="GPL-2+"
 KEYWORDS="~amd64 ~x86"
@@ -17,11 +16,11 @@ IUSE=""
 DOCS="CHANGES README.md"
 HTML_DOCS=htm/*
 
-RDEPEND="sci-mathematics/gap:${SLOT}
+RDEPEND=">=sci-mathematics/gap-4.10.1
 	>=sci-mathematics/pari-2.5.0
-	dev-gap/polycyclic:${SLOT}"
+	>=dev-gap/polycyclic-2.14"
 
-S="${WORKDIR}/gap-${GAP_VERSION}/pkg/${MY_P}"
+S="${WORKDIR}/${MY_P}"
 
 src_install(){
 	default
