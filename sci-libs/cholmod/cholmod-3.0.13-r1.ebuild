@@ -36,9 +36,12 @@ src_configure() {
 		lapack_libs=$($(tc-getPKG_CONFIG) --libs lapack)
 	fi
 
+	local cudaconfargs=( $(use_with cuda) )
 	if use cuda ; then
-		export CUBLAS_LIBS="-L${EPREFIX}/opt/cuda/lib64 -lcublas"
-		export CUBLAS_CFLAGS="-I${EPREFIX}/opt/cuda/include"
+		cudaconfargs+=(
+			--with-cublas-libs="-L${EPREFIX}/opt/cuda/$(get_libdir) -lcublas"
+			--with-cublas-cflags="-I${EPREFIX}/opt/cuda/include"
+		)
 	fi
 
 	econf \
@@ -51,5 +54,5 @@ src_configure() {
 		$(use_with metis camd) \
 		$(use_with metis partition) \
 		$(use_with lapack supernodal) \
-		$(use_with cuda)
+		"${cudaconfargs[@]}"
 }
