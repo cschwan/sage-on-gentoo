@@ -18,25 +18,25 @@ IUSE="emacs readline +recommended_pkgs vim-syntax"
 RESTRICT="mirror"
 
 MINIMUM_PKGS="
-	dev-gap/GAPDoc:${SLOT}
-	dev-gap/primgrp:${SLOT}
-	dev-gap/SmallGrp:${SLOT}
-	dev-gap/transgrp:${SLOT}"
+	~dev-gap/GAPDoc-1.6.2
+	~dev-gap/primgrp-3.3.2
+	~dev-gap/SmallGrp-1.3
+	~dev-gap/transgrp-2.0.4"
 
 RECOMMENDED_PKGS="
-	dev-gap/autpgrp:${SLOT}
-	dev-gap/Alnuth:${SLOT}
-	dev-gap/crisp:${SLOT}
-	dev-gap/ctbllib:${SLOT}
-	dev-gap/factint:${SLOT}
-	dev-gap/fga:${SLOT}
-	dev-gap/irredsol:${SLOT}
-	dev-gap/laguna:${SLOT}
-	dev-gap/polenta:${SLOT}
-	dev-gap/polycyclic:${SLOT}
-	dev-gap/resclasses:${SLOT}
-	dev-gap/sophus:${SLOT}
-	dev-gap/tomlib:${SLOT}"
+	>=dev-gap/autpgrp-1.10
+	>=dev-gap/Alnuth-3.1.0
+	>=dev-gap/crisp-1.4.4
+	>=dev-gap/ctbllib-1.2_p2
+	>=dev-gap/factint-1.6.2
+	>=dev-gap/fga-1.4.0
+	>=dev-gap/irredsol-1.4
+	>=dev-gap/laguna-3.9.2
+	>=dev-gap/polenta-1.3.8
+	>=dev-gap/polycyclic-2.14
+	>=dev-gap/resclasses-4.7.1
+	>=dev-gap/sophus-1.24
+	>=dev-gap/tomlib-1.2.7"
 
 DEPEND="dev-libs/gmp:=
 	readline? ( sys-libs/readline:= )
