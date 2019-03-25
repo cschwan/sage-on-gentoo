@@ -1,4 +1,4 @@
-# Copyright 1999-2017 Gentoo Foundation
+# Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=6
@@ -19,3 +19,7 @@ IUSE=""
 DEPEND="dev-libs/igraph
 	virtual/pkgconfig"
 RDEPEND="dev-libs/igraph"
+
+PATCHES=(
+	"${FILESDIR}"/${PN}-0.7.0-issue636.patch
+	)
