@@ -5,20 +5,17 @@ EAPI=7
 
 DESCRIPTION="Almost Crystallographic Groups - A Library and Algorithms"
 HOMEPAGE="http://www.gap-system.org/Packages/${PN}.html"
-GAP_VERSION="4.10.1"
-SLOT="0/${GAP_VERSION}"
-SRC_URI="https://www.gap-system.org/pub/gap/gap-$(ver_cut 1-2 ${GAP_VERSION})/tar.bz2/gap-${GAP_VERSION}.tar.bz2"
+SRC_URI="https://github.com/gap-packages/${PN}/releases/download/v${PV}/${P}.tar.gz"
 
 LICENSE="GPL-2+"
+SLOT="0"
 KEYWORDS="~amd64 ~x86"
 IUSE=""
 
-RDEPEND="sci-mathematics/gap:${SLOT}"
+RDEPEND=">=sci-mathematics/gap-4.10.1"
 
 HTML_DOCS=htm/*
 DOCS="README"
-
-S="${WORKDIR}/gap-${GAP_VERSION}/pkg/${P}"
 
 src_install(){
 	default
