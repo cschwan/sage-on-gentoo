@@ -1,0 +1,14 @@
+diff --git a/sage/repl/ipython_kernel/install.py b/sage/repl/ipython_kernel/install.py
+index dc3dd6e..788b147 100644
+--- a/sage/repl/ipython_kernel/install.py
++++ b/sage/repl/ipython_kernel/install.py
+@@ -188,8 +188,7 @@ class SageKernelSpec(object):
+              '{connection_file}']
+         """
+         return [
+-            os.path.join(SAGE_LOCAL, 'bin', 'sage'),
+-            '--python',
++            'python',
+             '-m', 'sage.repl.ipython_kernel',
+             '-f', '{connection_file}',
+         ]
