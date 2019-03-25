@@ -1,8 +1,17 @@
 diff --git a/sage/repl/ipython_kernel/install.py b/sage/repl/ipython_kernel/install.py
-index dc3dd6e..788b147 100644
+index dc3dd6e..3717aab 100644
 --- a/sage/repl/ipython_kernel/install.py
 +++ b/sage/repl/ipython_kernel/install.py
-@@ -188,8 +188,7 @@ class SageKernelSpec(object):
+@@ -180,16 +180,14 @@ class SageKernelSpec(object):
+             sage: from sage.repl.ipython_kernel.install import SageKernelSpec
+             sage: spec = SageKernelSpec(prefix=tmp_dir())
+             sage: spec._kernel_cmd()
+-            ['/.../sage',
+-             '--python',
++            ['python',
+              '-m',
+              'sage.repl.ipython_kernel',
+              '-f',
               '{connection_file}']
          """
          return [
