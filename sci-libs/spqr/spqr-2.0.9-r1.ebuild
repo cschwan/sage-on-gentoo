@@ -12,7 +12,7 @@ SLOT="0"
 KEYWORDS="~amd64 ~arm ~hppa ~ppc ~ppc64 ~x86 ~amd64-linux ~x86-linux"
 IUSE="doc metis static-libs tbb"
 
-# spqr requires the supernodal module from cholmod 
+# spqr requires the supernodal module from cholmod
 # enabled by the lapack useflag.
 RDEPEND="
 	virtual/lapack
@@ -25,6 +25,7 @@ DEPEND="${RDEPEND}
 src_configure() {
 	econf \
 		$(use_with doc) \
+		$(use_enable static-libs static) \
 		$(use_with metis partition) \
 		$(use_with tbb)
 }
