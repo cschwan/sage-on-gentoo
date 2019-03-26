@@ -27,5 +27,6 @@ src_configure() {
 	econf \
 		--with-blas="$($(tc-getPKG_CONFIG) --libs blas)" \
 		$(use_with doc) \
+		$(use_enable static-libs static) \
 		$(use_with cholmod)
 }
