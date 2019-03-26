@@ -22,5 +22,6 @@ DEPEND="${RDEPEND}
 
 src_configure() {
 	econf \
+		$(use_enable static-libs static) \
 		$(use_with doc)
 }
