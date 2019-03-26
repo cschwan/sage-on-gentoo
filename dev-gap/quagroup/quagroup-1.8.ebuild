@@ -13,8 +13,7 @@ LICENSE="GPL-2+"
 KEYWORDS="~amd64 ~x86"
 IUSE=""
 
-RDEPEND="sci-mathematics/gap:${SLOT}
-	dev-gap/sla:${SLOT}"
+RDEPEND="sci-mathematics/gap:${SLOT}"
 
 DOCS="README.quagroup changes.log"
 
