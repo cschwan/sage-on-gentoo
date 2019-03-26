@@ -15,7 +15,6 @@ KEYWORDS=""
 
 DESCRIPTION="Math software for abstract and numerical computations"
 HOMEPAGE="http://www.sagemath.org"
-SRC_URI="mirror://sagemath/sage-icon.tar.bz2"
 
 LANGS="ca de en es fr hu it ja pt ru tr"
 
@@ -265,10 +264,11 @@ python_prepare_all() {
 	# it tries to link in the filesystem in ways that are difficult to support
 	# in a global install from a pure python perspective. See also
 	# https://github.com/cschwan/sage-on-gentoo/issues/376
-	mkdir sage_setup/jupyter || die "cannot create sage_setup/jupyter"
-	mv sage/repl/ipython_kernel/install.py sage_setup/jupyter/install.py || die "cannot move kernel install file"
-	touch sage_setup/jupyter/__init__.py || die "cannot create __init__.py for jupyter"
-	eapply "${FILESDIR}"/${PN}-8.3-jupyter.patch
+# 	mkdir sage_setup/jupyter || die "cannot create sage_setup/jupyter"
+# 	mv sage/repl/ipython_kernel/install.py sage_setup/jupyter/install.py || die "cannot move kernel install file"
+# 	touch sage_setup/jupyter/__init__.py || die "cannot create __init__.py for jupyter"
+# 	eapply "${FILESDIR}"/${PN}-8.3-jupyter.patch
+	eapply "${FILESDIR}"/${PN}-8.8-jupyter.patch
 
 	############################################################################
 	# Fixes to doctests
@@ -294,7 +294,7 @@ python_prepare_all() {
 		-e "s:/python:/${EPYTHON}:" sage/misc/gperftools.py
 
 	# do not test safe python stuff from trac 13579. Needs to be applied after neutering.
-	eapply "${FILESDIR}"/${PN}-8.7-safepython.patch
+	eapply "${FILESDIR}"/${PN}-8.8-safepython.patch
 
 	# remove the test trying to pre-compile sage's .py file with python3
 	rm sage/tests/py3_syntax.py || die "cannot remove py3_syntax test"
@@ -395,6 +395,9 @@ python_install() {
 			die "failed to remove cython debugging information."
 	fi
 
+	# For installation of jupyter extensions SAGE_DOC 
+	# needs to point to the final installation point
+	export SAGE_DOC="${EPREFIX}/usr/share/doc/${PF}"
 	distutils-r1_python_install
 
 	##############################################
@@ -495,7 +498,7 @@ python_install_all(){
 	popd
 
 	if use X ; then
-		doicon "${WORKDIR}"/sage.svg
+		doicon "${S}"/ext/notebook-ipython/logo.svg
 		newmenu - sage-sage.desktop <<-EOF
 			[Desktop Entry]
 			Name=Sage Shell
@@ -512,11 +515,6 @@ python_install_all(){
 	insinto /usr/share/sage
 	doins -r ext
 
-	# install links for the jupyter kernel
-	dosym ../../../sage/ext/notebook-ipython/logo-64x64.png /usr/share/jupyter/kernels/sagemath/logo-64x64.png
-	dosym ../../../sage/ext/notebook-ipython/logo.svg /usr/share/jupyter/kernels/sagemath/logo.svg
-	dosym ../../sage/threejs /usr/share/jupyter/nbextensions/threejs
-
 	# Files needed for generating documentation on the fly
 	docompress -x /usr/share/doc/"${PF}"/en /usr/share/doc/"${PF}"/common
 	# necessary for sagedoc.py call to sphinxify.
@@ -532,9 +530,12 @@ python_install_all(){
 	insinto /usr/share/doc/"${PF}"
 	doins ../COPYING.txt
 
-	if use doc-html; then
-		dosym ../../../doc/"${PF}"/html/en /usr/share/jupyter/kernels/sagemath/doc
-	fi
+	# install links for the jupyter kernel
+#	dosym ../../../sage/ext/notebook-ipython/logo-64x64.png /usr/share/jupyter/kernels/sagemath/logo-64x64.png
+#	dosym ../../../sage/ext/notebook-ipython/logo.svg /usr/share/jupyter/kernels/sagemath/logo.svg
+#	if use doc-html; then
+#		dosym ../../../doc/"${PF}"/html/en /usr/share/jupyter/kernels/sagemath/doc
+#	fi
 }
 
 pkg_preinst() {

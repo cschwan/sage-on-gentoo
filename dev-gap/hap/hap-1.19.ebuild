@@ -14,10 +14,10 @@ KEYWORDS="~amd64 ~x86"
 IUSE=""
 
 RDEPEND="sci-mathematics/gap:${SLOT}
-	dev-gap/aclib:${SLOT}
-	dev-gap/polycyclic:${SLOT}
+	>=dev-gap/aclib-1.3.1
+	>=dev-gap/polycyclic-2.14
 	dev-gap/crystcat:${SLOT}
-	dev-gap/fga:${SLOT}"
+	>=dev-gap/fga-1.4.0"
 
 S="${WORKDIR}/gap-${GAP_VERSION}/pkg/Hap${PV}"
 
