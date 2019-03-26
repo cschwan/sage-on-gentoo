@@ -48,6 +48,7 @@ src_configure() {
 		--with-blas="${blas_libs}" \
 		--with-lapack="${lapack_libs}" \
 		$(use_with doc) \
+		$(use_enable static-libs static) \
 		$(use_with !minimal modify) \
 		$(use_with !minimal matrixops) \
 		$(use_with !minimal partition) \
