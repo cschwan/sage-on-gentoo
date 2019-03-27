@@ -260,14 +260,6 @@ python_prepare_all() {
 	# The ipython kernel tries to to start a new session via $SAGE_ROOT/sage -python
 	# Since we don't have $SAGE_ROOT/sage it fails.
 	#See https://github.com/cschwan/sage-on-gentoo/issues/342
-	# There are a lot of issue with that file during building and installation.
-	# it tries to link in the filesystem in ways that are difficult to support
-	# in a global install from a pure python perspective. See also
-	# https://github.com/cschwan/sage-on-gentoo/issues/376
-# 	mkdir sage_setup/jupyter || die "cannot create sage_setup/jupyter"
-# 	mv sage/repl/ipython_kernel/install.py sage_setup/jupyter/install.py || die "cannot move kernel install file"
-# 	touch sage_setup/jupyter/__init__.py || die "cannot create __init__.py for jupyter"
-# 	eapply "${FILESDIR}"/${PN}-8.3-jupyter.patch
 	eapply "${FILESDIR}"/${PN}-8.8-jupyter.patch
 
 	############################################################################
@@ -529,13 +521,6 @@ python_install_all(){
 	docompress -x /usr/share/doc/"${PF}"
 	insinto /usr/share/doc/"${PF}"
 	doins ../COPYING.txt
-
-	# install links for the jupyter kernel
-#	dosym ../../../sage/ext/notebook-ipython/logo-64x64.png /usr/share/jupyter/kernels/sagemath/logo-64x64.png
-#	dosym ../../../sage/ext/notebook-ipython/logo.svg /usr/share/jupyter/kernels/sagemath/logo.svg
-#	if use doc-html; then
-#		dosym ../../../doc/"${PF}"/html/en /usr/share/jupyter/kernels/sagemath/doc
-#	fi
 }
 
 pkg_preinst() {
