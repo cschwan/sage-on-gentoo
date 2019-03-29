@@ -66,7 +66,7 @@ CDEPEND="dev-libs/gmp:0=
 	~sci-libs/pynac-0.7.24[-giac,${PYTHON_USEDEP}]
 	>=sci-libs/symmetrica-2.0-r3
 	>=sci-libs/zn_poly-0.9
-	>=sci-mathematics/gap-4.10.0-r4:0/4.10.0[recommended_pkgs]
+	>=sci-mathematics/gap-4.10.1:0/4.10.1[recommended_pkgs]
 	>=sci-mathematics/giac-1.5.0.43
 	>=sci-mathematics/glpk-4.63:0=[gmp]
 	>=sci-mathematics/lcalc-1.23-r10[pari]
@@ -286,7 +286,7 @@ python_prepare_all() {
 		-e "s:/python:/${EPYTHON}:" sage/misc/gperftools.py
 
 	# do not test safe python stuff from trac 13579. Needs to be applied after neutering.
-	eapply "${FILESDIR}"/${PN}-8.8-safepython.patch
+	eapply "${FILESDIR}"/${PN}-8.7-safepython.patch
 
 	# remove the test trying to pre-compile sage's .py file with python3
 	rm sage/tests/py3_syntax.py || die "cannot remove py3_syntax test"
