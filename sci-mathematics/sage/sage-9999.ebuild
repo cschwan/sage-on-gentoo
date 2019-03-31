@@ -245,7 +245,7 @@ python_prepare_all() {
 		sage/interfaces/maxima_abstract.py
 
 	# Do not get the version of threejs by using sage packaging system
-	eapply "${FILESDIR}"/${PN}-8.3-threejs.patch
+	eapply "${FILESDIR}"/${PN}-8.8-threejs.patch
 
 	# Make sage-inline-fortran useless by having better fortran settings
 	sed -i \
@@ -259,7 +259,8 @@ python_prepare_all() {
 
 	# The ipython kernel tries to to start a new session via $SAGE_ROOT/sage -python
 	# Since we don't have $SAGE_ROOT/sage it fails.
-	#See https://github.com/cschwan/sage-on-gentoo/issues/342
+	# See https://github.com/cschwan/sage-on-gentoo/issues/342
+	# Also some symlinks are created to an absolute path that doesn't exist yet.
 	eapply "${FILESDIR}"/${PN}-8.8-jupyter.patch
 
 	############################################################################
@@ -387,9 +388,6 @@ python_install() {
 			die "failed to remove cython debugging information."
 	fi
 
-	# For installation of jupyter extensions SAGE_DOC 
-	# needs to point to the final installation point
-	export SAGE_DOC="${EPREFIX}/usr/share/doc/${PF}"
 	distutils-r1_python_install
 
 	##############################################
@@ -521,6 +519,13 @@ python_install_all(){
 	docompress -x /usr/share/doc/"${PF}"
 	insinto /usr/share/doc/"${PF}"
 	doins ../COPYING.txt
+
+	# install links for the jupyter kernel
+	dosym ../../../sage/ext/notebook-ipython/logo-64x64.png /usr/share/jupyter/kernels/sagemath/logo-64x64.png
+	dosym ../../../sage/ext/notebook-ipython/logo.svg /usr/share/jupyter/kernels/sagemath/logo.svg
+	if use doc-html; then
+		dosym ../../../doc/"${PF}"/html/en /usr/share/jupyter/kernels/sagemath/doc
+	fi
 }
 
 pkg_preinst() {
