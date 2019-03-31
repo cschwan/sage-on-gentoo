@@ -253,14 +253,13 @@ python_prepare_all() {
 		-e "s:--f90exec=sage-inline-fortran:--f90exec=$(tc-getFC):g" \
 		sage/misc/inline_fortran.py
 
-	# TODO: should be a patch
 	# patch lie library path
-	sed -i -e "s:/lib/LiE/:/share/lie/:" sage/interfaces/lie.py
+	eapply "${FILESDIR}"/${PN}-8.8-lie-interface.patch
 
 	# The ipython kernel tries to to start a new session via $SAGE_ROOT/sage -python
 	# Since we don't have $SAGE_ROOT/sage it fails.
 	# See https://github.com/cschwan/sage-on-gentoo/issues/342
-	# Also some symlinks are created to an absolute path that doesn't exist yet.
+	# Also some symlinks are created to absolute paths that don't exist yet.
 	eapply "${FILESDIR}"/${PN}-8.8-jupyter.patch
 
 	############################################################################
