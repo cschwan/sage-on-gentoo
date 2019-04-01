@@ -32,11 +32,11 @@ src_install(){
 
 	insinto /usr/share/gap/pkg/"${P}"
 	doins -r doc gap testdata
+	doins *.g
 	# do not install standalone/progs.d - it the source code as
 	# well as compiled objects for the executables.
 	insinto /usr/share/gap/pkg/"${P}"/standalone
 	doins -r standalone/data.d standalone/info.d
-	doins *.g
 	# installing executables
 	source "${EPREFIX}/usr/share/gap/sysinfo.gap"
 	exeinto /usr/share/gap/pkg/"${P}/bin/${GAParch}"
