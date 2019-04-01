@@ -14,7 +14,7 @@ LICENSE="BSD-3"
 KEYWORDS="~amd64 ~x86"
 IUSE=""
 
-DEPEND=">=sci-mathematics/gap-4.10.1"
+DEPEND=">=sci-mathematics/gap-4.10.1:="
 RDEPEND="${DEPEND}
 	>=dev-gap/GAPDoc-1.6.2"
 
