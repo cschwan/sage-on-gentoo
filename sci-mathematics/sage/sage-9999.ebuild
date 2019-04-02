@@ -90,8 +90,8 @@ CDEPEND="dev-libs/gmp:0=
 	>=sci-libs/libhomfly-1.0.1
 	sci-libs/libbraiding
 	bliss? ( >=sci-libs/bliss-0.73 )
-	>=dev-python/sphinx-1.7.5[${PYTHON_USEDEP}]
-	<dev-python/sphinx-1.8.0"
+	>=dev-python/sphinx-1.8.5[${PYTHON_USEDEP}]
+	<dev-python/sphinx-2.0.0"
 
 DEPEND="${CDEPEND}
 	app-portage/gentoolkit
