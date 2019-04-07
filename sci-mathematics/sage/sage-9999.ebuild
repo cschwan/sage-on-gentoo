@@ -286,7 +286,7 @@ python_prepare_all() {
 		-e "s:/python:/${EPYTHON}:" sage/misc/gperftools.py
 
 	# do not test safe python stuff from trac 13579. Needs to be applied after neutering.
-	eapply "${FILESDIR}"/${PN}-8.8-safepython.patch
+	eapply "${FILESDIR}"/${PN}-8.7-safepython.patch
 
 	# remove the test trying to pre-compile sage's .py file with python3
 	rm sage/tests/py3_syntax.py || die "cannot remove py3_syntax test"
