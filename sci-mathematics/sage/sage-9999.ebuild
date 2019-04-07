@@ -66,7 +66,7 @@ CDEPEND="dev-libs/gmp:0=
 	~sci-libs/pynac-0.7.24[-giac,${PYTHON_USEDEP}]
 	>=sci-libs/symmetrica-2.0-r3
 	>=sci-libs/zn_poly-0.9
-	>=sci-mathematics/gap-4.10.0-r4:0/4.10.0[recommended_pkgs]
+	>=sci-mathematics/gap-4.10.1:0/4.10.1[recommended_pkgs]
 	>=sci-mathematics/giac-1.5.0.43
 	>=sci-mathematics/glpk-4.63:0=[gmp]
 	>=sci-mathematics/lcalc-1.23-r10[pari]
@@ -90,8 +90,8 @@ CDEPEND="dev-libs/gmp:0=
 	>=sci-libs/libhomfly-1.0.1
 	sci-libs/libbraiding
 	bliss? ( >=sci-libs/bliss-0.73 )
-	>=dev-python/sphinx-1.7.5[${PYTHON_USEDEP}]
-	<dev-python/sphinx-1.8.0"
+	>=dev-python/sphinx-1.8.5[${PYTHON_USEDEP}]
+	<dev-python/sphinx-2.0.0"
 
 DEPEND="${CDEPEND}
 	app-portage/gentoolkit
@@ -245,7 +245,7 @@ python_prepare_all() {
 		sage/interfaces/maxima_abstract.py
 
 	# Do not get the version of threejs by using sage packaging system
-	eapply "${FILESDIR}"/${PN}-8.3-threejs.patch
+	eapply "${FILESDIR}"/${PN}-8.8-threejs.patch
 
 	# Make sage-inline-fortran useless by having better fortran settings
 	sed -i \
@@ -253,21 +253,13 @@ python_prepare_all() {
 		-e "s:--f90exec=sage-inline-fortran:--f90exec=$(tc-getFC):g" \
 		sage/misc/inline_fortran.py
 
-	# TODO: should be a patch
 	# patch lie library path
-	sed -i -e "s:/lib/LiE/:/share/lie/:" sage/interfaces/lie.py
+	eapply "${FILESDIR}"/${PN}-8.8-lie-interface.patch
 
 	# The ipython kernel tries to to start a new session via $SAGE_ROOT/sage -python
 	# Since we don't have $SAGE_ROOT/sage it fails.
-	#See https://github.com/cschwan/sage-on-gentoo/issues/342
-	# There are a lot of issue with that file during building and installation.
-	# it tries to link in the filesystem in ways that are difficult to support
-	# in a global install from a pure python perspective. See also
-	# https://github.com/cschwan/sage-on-gentoo/issues/376
-# 	mkdir sage_setup/jupyter || die "cannot create sage_setup/jupyter"
-# 	mv sage/repl/ipython_kernel/install.py sage_setup/jupyter/install.py || die "cannot move kernel install file"
-# 	touch sage_setup/jupyter/__init__.py || die "cannot create __init__.py for jupyter"
-# 	eapply "${FILESDIR}"/${PN}-8.3-jupyter.patch
+	# See https://github.com/cschwan/sage-on-gentoo/issues/342
+	# Also some symlinks are created to absolute paths that don't exist yet.
 	eapply "${FILESDIR}"/${PN}-8.8-jupyter.patch
 
 	############################################################################
@@ -531,11 +523,11 @@ python_install_all(){
 	doins ../COPYING.txt
 
 	# install links for the jupyter kernel
-#	dosym ../../../sage/ext/notebook-ipython/logo-64x64.png /usr/share/jupyter/kernels/sagemath/logo-64x64.png
-#	dosym ../../../sage/ext/notebook-ipython/logo.svg /usr/share/jupyter/kernels/sagemath/logo.svg
-#	if use doc-html; then
-#		dosym ../../../doc/"${PF}"/html/en /usr/share/jupyter/kernels/sagemath/doc
-#	fi
+	dosym ../../../sage/ext/notebook-ipython/logo-64x64.png /usr/share/jupyter/kernels/sagemath/logo-64x64.png
+	dosym ../../../sage/ext/notebook-ipython/logo.svg /usr/share/jupyter/kernels/sagemath/logo.svg
+	if use doc-html; then
+		dosym ../../../doc/"${PF}"/html/en /usr/share/jupyter/kernels/sagemath/doc
+	fi
 }
 
 pkg_preinst() {
