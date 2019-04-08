@@ -1,0 +1,31 @@
+Title: gap-4.10.1 upgrade
+Author: Francois Bissey <frp.bissey@gmail.com>
+Content-Type: text/plain
+Posted: 2019-04-08
+Revision: 1
+News-Item-Format: 2.0
+Disply-If-Installed: sci-mathematics/gap
+
+Gap-4.10.1 is ready and unfortunately upgrading is still painful.
+I am hopeful that these pains will finally ease in future release.
+
+If on upgrading gap (as a sage dependency or stand alone) gap-4.10.1
+is not offered because of conflicting dependencies the quickest
+way to resolve the conflict is to uninstall gap and all the gap
+packages before re-installing again.
+
+The following commands will un-install gap and all the gap packages
+from your system
+
+emerge -C gap
+emerge -C `equery -q l  -F '$category/$name' dev-gap/*`
+
+If you want to preserve your list of gap packages for quick
+re-install after upgrading run
+
+equery -q l  -F '$category/$name' dev-gap/* > gap_pkg.txt
+
+prior to un-install. You can then use the saved file to re-install
+your old list of gap packages.
+
+emerge -v `cat gap_pkg.txt`
