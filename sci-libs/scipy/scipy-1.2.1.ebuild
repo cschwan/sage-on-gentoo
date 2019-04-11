@@ -107,9 +107,10 @@ python_prepare_all() {
 python_compile() {
 	# FIXME: parallel python building fails, bug #614464
 	# $(usex python_targets_python3_5 "" "-j $(makeopts_jobs)") \
+	# add -j1 as python3.7 automatical picks up MAKEOPTS
 	${EPYTHON} tools/cythonize.py || die
 	distutils-r1_python_compile \
-		${SCIPY_FCONFIG}
+		-j1 ${SCIPY_FCONFIG}
 }
 
 python_test() {
