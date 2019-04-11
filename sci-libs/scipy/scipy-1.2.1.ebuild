@@ -109,8 +109,11 @@ python_compile() {
 	# $(usex python_targets_python3_5 "" "-j $(makeopts_jobs)") \
 	# add -j1 as python3.7 automatical picks up MAKEOPTS
 	${EPYTHON} tools/cythonize.py || die
+	local myj=$(usex python_targets_python3_5 "" "-j 1")
+	myj="${myj} $(usex python_targets_python3_6 "" "-j 1")"
+	myj="${myj} $(usex python_targets_python3_7 "" "-j 1")"
 	distutils-r1_python_compile \
-		-j1 ${SCIPY_FCONFIG}
+		${myj} ${SCIPY_FCONFIG}
 }
 
 python_test() {
