@@ -3,7 +3,7 @@
 
 EAPI=6
 
-PYTHON_COMPAT=( python2_7 python3_6 )
+PYTHON_COMPAT=( python2_7 python3_{6,7} )
 inherit distutils-r1
 
 DESCRIPTION="A Python wrapper for the Parma Polyhedra Library (PPL)"
@@ -21,6 +21,11 @@ DEPEND=">=dev-python/gmpy-2.1.0_alpha4[${PYTHON_USEDEP}]
 	>=dev-libs/ppl-1.2
 	doc? ( dev-python/sphinx[${PYTHON_USEDEP}] )"
 RDEPEND="${DEPEND}"
+
+python_compile() {
+	# automatic parallel building with python3.7 is not safe
+	distutils-r1_python_compile -j1
+}
 
 python_compile_all() {
 	use doc && emake -C docs html
