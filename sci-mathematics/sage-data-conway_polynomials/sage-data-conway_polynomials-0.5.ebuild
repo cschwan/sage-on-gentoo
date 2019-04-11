@@ -1,9 +1,9 @@
-# Copyright 1999-2018 Gentoo Foundation
+# Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=6
 
-PYTHON_COMPAT=( python2_7 )
+PYTHON_COMPAT=( python2_7 python3_{6,7} )
 
 inherit python-any-r1
 
@@ -20,7 +20,7 @@ IUSE=""
 
 RESTRICT="mirror"
 
-DEPEND=""
+DEPEND="${PYTHON_DEPS}"
 RDEPEND=""
 
 S="${WORKDIR}"
