@@ -1,7 +1,7 @@
 # Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI=7
 
 PYTHON_COMPAT=( python2_7 python3_{6,7} )
 inherit distutils-r1
@@ -23,8 +23,10 @@ DEPEND=">=dev-python/gmpy-2.1.0_alpha4[${PYTHON_USEDEP}]
 RDEPEND="${DEPEND}"
 
 python_compile() {
-	# automatic parallel building with python3.7 is not safe
-	distutils-r1_python_compile -j1
+	# automatic parallel building with python3.5+ is not safe
+	local myj=""
+	python_is_python3 && myj="-j 1"
+	distutils-r1_python_compile ${myj}
 }
 
 python_compile_all() {
