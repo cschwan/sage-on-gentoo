@@ -1,9 +1,9 @@
 # Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI=7
 
-PYTHON_COMPAT=( python2_7 python3_{4,5,6,7} )
+PYTHON_COMPAT=( python2_7 python3_{5,6,7} )
 PYTHON_REQ_USE="threads(+)"
 
 DOC_PV=${PV}
@@ -109,9 +109,8 @@ python_compile() {
 	# $(usex python_targets_python3_5 "" "-j $(makeopts_jobs)") \
 	# add -j1 as python3.7 automatical picks up MAKEOPTS
 	${EPYTHON} tools/cythonize.py || die
-	local myj=$(usex python_targets_python3_5 "" "-j 1")
-	myj="${myj} $(usex python_targets_python3_6 "" "-j 1")"
-	myj="${myj} $(usex python_targets_python3_7 "" "-j 1")"
+	local myj=""
+	python_is_python3 && myj="-j 1"
 	distutils-r1_python_compile \
 		${myj} ${SCIPY_FCONFIG}
 }
