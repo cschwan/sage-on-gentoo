@@ -3,7 +3,7 @@
 
 EAPI=7
 
-PYTHON_COMPAT=( python2_7 python3_6 )
+PYTHON_COMPAT=( python2_7 python3_7 )
 PYTHON_REQ_USE="readline,sqlite"
 
 inherit desktop distutils-r1 flag-o-matic multiprocessing prefix toolchain-funcs git-r3
@@ -41,7 +41,7 @@ CDEPEND="dev-libs/gmp:0=
 	>=dev-python/numpy-1.16.1[${PYTHON_USEDEP}]
 	>=dev-python/cython-0.29.1[${PYTHON_USEDEP}]
 	dev-python/future[${PYTHON_USEDEP}]
-	~dev-python/pkgconfig-1.2.2[${PYTHON_USEDEP}]
+	>=dev-python/pkgconfig-1.2.2[${PYTHON_USEDEP}]
 	>=dev-python/cysignals-1.10.0[${PYTHON_USEDEP}]
 	>=dev-python/docutils-0.12[${PYTHON_USEDEP}]
 	>=dev-python/psutil-4.4.0[${PYTHON_USEDEP}]
