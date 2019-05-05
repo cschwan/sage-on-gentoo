@@ -3,7 +3,7 @@
 
 EAPI=7
 
-PYTHON_COMPAT=( python2_7 python3_6 )
+PYTHON_COMPAT=( python2_7 python3_{6,7} )
 PYTHON_REQ_USE="readline,sqlite"
 
 inherit desktop distutils-r1 flag-o-matic multiprocessing prefix toolchain-funcs git-r3
@@ -41,7 +41,7 @@ CDEPEND="dev-libs/gmp:0=
 	>=dev-python/numpy-1.16.1[${PYTHON_USEDEP}]
 	>=dev-python/cython-0.29.1[${PYTHON_USEDEP}]
 	dev-python/future[${PYTHON_USEDEP}]
-	~dev-python/pkgconfig-1.2.2[${PYTHON_USEDEP}]
+	>=dev-python/pkgconfig-1.2.2[${PYTHON_USEDEP}]
 	>=dev-python/cysignals-1.10.0[${PYTHON_USEDEP}]
 	>=dev-python/docutils-0.12[${PYTHON_USEDEP}]
 	>=dev-python/psutil-4.4.0[${PYTHON_USEDEP}]
@@ -199,7 +199,7 @@ python_prepare_all() {
 	###############################
 
 	# Remove sage's package management system, git capabilities and associated tests
-	eapply "${FILESDIR}"/${PN}-8.7-neutering.patch
+	eapply "${FILESDIR}"/${PN}-8.8-neutering.patch
 	cp -f "${FILESDIR}"/${PN}-7.3-package.py sage/misc/package.py
 	rm -f sage/misc/dist.py
 	rm -rf sage/dev
@@ -272,7 +272,6 @@ python_prepare_all() {
 		sage/doctest/control.py
 
 	# fix all.py
-	eapply "${FILESDIR}"/${PN}-7.2-all.py.patch
 	sed -i \
 		-e "s:\"lib\",\"python\":\"$(get_libdir)\",\"${EPYTHON}\":" \
 		-e "s:\"bin\":\"lib\",\"python-exec\",\"${EPYTHON}\":" sage/all.py
@@ -301,8 +300,8 @@ python_prepare_all() {
 	# Fix finding pplpy documentation with intersphinx
 	local pplpyver=`equery -q l -F '$name-$fullversion' pplpy:0`
 	sed -i \
-		"s:SAGE_SHARE, \"doc\", \"pplpy\":\"${EPREFIX}/usr/share/doc\", \"${pplpyver}\", \"html\":" \
-		doc/common/conf.py
+		"s:SAGE_SHARE, 'doc', 'pplpy':SAGE_LOCAL, 'share', 'doc', '${pplpyver}', 'html':" \
+		sage/env.py
 	# support linguas so only requested languages are installed
 	eapply "${FILESDIR}"/${PN}-7.1-linguas.patch
 	# Correct path to mathjax
