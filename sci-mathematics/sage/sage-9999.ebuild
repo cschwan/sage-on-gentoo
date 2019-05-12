@@ -386,9 +386,6 @@ python_install() {
 			die "failed to remove cython debugging information."
 	fi
 
-	# For installation of jupyter extensions SAGE_DOC 
-	# needs to point to the final installation point
-	export SAGE_DOC="${EPREFIX}/usr/share/doc/${PF}"
 	distutils-r1_python_install
 
 	##############################################
