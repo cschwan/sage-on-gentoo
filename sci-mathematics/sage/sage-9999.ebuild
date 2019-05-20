@@ -266,6 +266,12 @@ python_prepare_all() {
 	# Fixes to doctests
 	############################################################################
 
+	# gcc 9.1 cause doctests breakages because of unsafe brial headers
+	# See https://trac.sagemath.org/ticket/27676
+	if has_version ">=sys-devel/gcc-9.1.0" ; then
+		eapply "${FILESDIR}"/gcc-9.1-brial.patch
+	fi
+
 	# Remove all SAGE_LOCAL in control.py
 	sed -i \
 		"s:\$SAGE_LOCAL:${EPREFIX}/usr:g" \
