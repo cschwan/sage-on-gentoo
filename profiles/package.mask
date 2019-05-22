@@ -3,3 +3,4 @@
 #dev-gap/atlasrep
 # keeping it under wrap for now
 >=sci-mathematics/glpk-4.65
+>=dev-python/gmpy-2.1.0_beta1
