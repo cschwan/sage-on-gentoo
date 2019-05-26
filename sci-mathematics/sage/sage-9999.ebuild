@@ -50,7 +50,7 @@ CDEPEND="dev-libs/gmp:0=
 	>=dev-python/jinja-2.8[${PYTHON_USEDEP}]
 	=dev-python/matplotlib-2.2*[${PYTHON_USEDEP}]
 	=dev-python/ipywidgets-7*[${PYTHON_USEDEP}]
-	>=dev-python/gmpy-2.1.0_alpha4[${PYTHON_USEDEP}]
+	>=dev-python/gmpy-2.1.0_beta1[${PYTHON_USEDEP}]
 	>=dev-python/pplpy-0.8.4:=[doc,${PYTHON_USEDEP}]
 	~sci-mathematics/eclib-20190226[flint]
 	~sci-mathematics/gmp-ecm-7.0.4[-openmp]
@@ -117,7 +117,7 @@ RDEPEND="${CDEPEND}
 	>=sci-mathematics/cubex-20060128
 	>=sci-mathematics/dikcube-20070912
 	>=sci-mathematics/ExportSageNB-3.2
-	>=sci-mathematics/maxima-5.41.0-r2[ecls]
+	>=sci-mathematics/maxima-5.42.2[ecls]
 	>=sci-mathematics/mcube-20051209
 	>=sci-mathematics/nauty-2.6.1
 	>=sci-mathematics/optimal-20040603
@@ -233,10 +233,6 @@ python_prepare_all() {
 
 	# sage-maxima.lisp really belong to /etc
 	eapply "${FILESDIR}"/${PN}-8.3-maxima.lisp.patch
-
-	# backport of trac #26625, run maxima properly in batch mode
-	# It also allow some upward compatibility with maxima
-	eapply "${FILESDIR}"/maxima-batch.patch
 
 	# TODO: should be a patch
 	# run maxima with ecl
