@@ -59,7 +59,7 @@ CDEPEND="dev-libs/gmp:0=
 	>=sci-libs/gsl-2.3
 	>=sci-libs/iml-1.0.4
 	~sci-mathematics/cliquer-1.21
-	~sci-libs/linbox-1.5.2[sage]
+	~sci-libs/linbox-1.5.2
 	~sci-libs/m4ri-20140914
 	~sci-libs/m4rie-20150908
 	>=sci-libs/mpfi-1.5.2
@@ -74,7 +74,7 @@ CDEPEND="dev-libs/gmp:0=
 	>=dev-python/cypari2-2.1.0[${PYTHON_USEDEP}]
 	=sci-mathematics/pari-2.11*
 	~sci-mathematics/planarity-3.0.0.5
-	=sci-libs/brial-1.2*
+	>=sci-libs/brial-1.2.5
 	=dev-python/sage-brial-1*[${PYTHON_USEDEP}]
 	>=sci-mathematics/rw-0.7
 	~sci-mathematics/singular-4.1.1_p2[readline]
@@ -261,12 +261,6 @@ python_prepare_all() {
 	############################################################################
 	# Fixes to doctests
 	############################################################################
-
-	# gcc 9.1 cause doctests breakages because of unsafe brial headers
-	# See https://trac.sagemath.org/ticket/27676
-	if has_version ">=sys-devel/gcc-9.1.0" ; then
-		eapply "${FILESDIR}"/gcc-9.1-brial.patch
-	fi
 
 	# Remove all SAGE_LOCAL in control.py
 	sed -i \

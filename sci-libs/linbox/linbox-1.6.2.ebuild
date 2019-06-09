@@ -12,7 +12,7 @@ SRC_URI="https://github.com/linbox-team/${PN}/releases/download/v${PV}/${P}.tar.
 LICENSE="LGPL-2.1"
 SLOT="0"
 KEYWORDS="~amd64 ~x86 ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos"
-IUSE="sage static-libs openmp opencl cpu_flags_x86_fma3 cpu_flags_x86_fma4 cpu_flags_x86_sse3 cpu_flags_x86_ssse3 cpu_flags_x86_sse4_1 cpu_flags_x86_sse4_2 cpu_flags_x86_avx cpu_flags_x86_avx2 bindist"
+IUSE="static-libs openmp opencl cpu_flags_x86_fma3 cpu_flags_x86_fma4 cpu_flags_x86_sse3 cpu_flags_x86_ssse3 cpu_flags_x86_sse4_1 cpu_flags_x86_sse4_2 cpu_flags_x86_avx cpu_flags_x86_avx2 bindist"
 
 REQUIRED_USE="bindist? ( !cpu_flags_x86_fma3 !cpu_flags_x86_fma4 !cpu_flags_x86_sse3 !cpu_flags_x86_ssse3 !cpu_flags_x86_sse4_1 !cpu_flags_x86_sse4_2 !cpu_flags_x86_avx !cpu_flags_x86_avx2 )"
 
@@ -30,7 +30,7 @@ DEPEND="dev-libs/gmp[cxx]
 	sci-mathematics/flint"
 RDEPEND="${DEPEND}"
 
-DOCS=( ChangeLog TODO )
+DOCS=( ChangeLog )
 
 # TODO: installation of documentation does not work ?
 
