@@ -212,6 +212,11 @@ python_prepare_all() {
 		eapply "${FILESDIR}"/${PN}-8.5-tachyon_default.patch
 	fi
 
+	# Because lib doesn´t always point to lib64 the following line in cython.py
+	# cause very verbose message from the linker in turn triggering doctest failures.
+	sed -i "s:SAGE_LOCAL, \"lib\":SAGE_LOCAL, \"$(get_libdir)\":" \
+		sage/misc/cython.py
+
 	############################################################################
 	# Fixes to Sage's build system
 	############################################################################
