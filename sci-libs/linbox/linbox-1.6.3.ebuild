@@ -1,7 +1,7 @@
 # Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI=7
 
 inherit toolchain-funcs
 
@@ -19,7 +19,7 @@ REQUIRED_USE="bindist? ( !cpu_flags_x86_fma3 !cpu_flags_x86_fma4 !cpu_flags_x86_
 RESTRICT="mirror"
 
 DEPEND="dev-libs/gmp[cxx]
-	~sci-libs/givaro-4.1.0
+	=sci-libs/givaro-4.1*
 	=sci-libs/fflas-ffpack-2.4*
 	virtual/cblas
 	virtual/lapack
