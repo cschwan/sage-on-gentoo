@@ -1,7 +1,7 @@
 # Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI=7
 
 inherit autotools toolchain-funcs
 
@@ -22,7 +22,7 @@ DEPEND="virtual/cblas
 	virtual/blas
 	virtual/lapack
 	>=dev-libs/gmp-4.0[cxx]
-	~sci-libs/givaro-4.1.0"
+	=sci-libs/givaro-4.1*"
 RDEPEND="${DEPEND}"
 
 PATCHES=(
