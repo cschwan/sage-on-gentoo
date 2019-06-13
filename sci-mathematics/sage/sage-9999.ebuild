@@ -230,6 +230,9 @@ python_prepare_all() {
 	# Mirroring the the fact that lib is not a link to lib64 anymore in the build system
 	sed -i "s:SAGE_LOCAL, \"lib\":SAGE_LOCAL, \"$(get_libdir)\":" setup.py
 
+	# upstream patch for deprecated sphinx function
+	eapply "${FILESDIR}"/trac27971.patch
+
 	############################################################################
 	# Fixes to Sage itself
 	############################################################################
