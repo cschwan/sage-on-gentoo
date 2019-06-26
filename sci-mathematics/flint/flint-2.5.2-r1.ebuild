@@ -32,6 +32,18 @@ PATCHES=(
 	"${FILESDIR}"/${PN}-2.5.2-utf8.patch
 	)
 
+src_prepare(){
+	default
+
+	# By default "lib" is found first and in case of gc 
+	# it is the only one searched for.
+	sed -e "s:{GMP_DIR}/lib\":{GMP_DIR}/$(get_libdir)\":g" \
+		-e "s:{MPFR_DIR}/lib\":{MPFR_DIR}/$(get_libdir)\":g" \
+		-e "s:{NTL_DIR}/lib\":{NTL_DIR}/$(get_libdir)\":g" \
+		-e "s:{GC_DIR}/lib\":{GC_DIR}/$(get_libdir)\":g" \
+		-i configure
+}
+
 src_configure() {
 	./configure \
 		--prefix="${EPREFIX}/usr" \
