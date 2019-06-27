@@ -75,9 +75,9 @@ dev-python/webassets
 ~dev-python/werkzeug-0.9.6
 =dev-python/sphinx-1.8*
 =dev-python/pyzmq-17*
-~dev-tex/sage-latex-3.2
+~dev-tex/sage-latex-3.3
 media-gfx/tachyon
-~media-gfx/threejs-sage-extension-100
+~media-gfx/threejs-sage-extension-105
 sci-libs/cddlib
 sci-libs/dsdp
 ~sci-libs/fflas-ffpack-2.3.2
