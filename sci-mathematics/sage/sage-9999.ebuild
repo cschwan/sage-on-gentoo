@@ -81,7 +81,7 @@ CDEPEND="dev-libs/gmp:0=
 	>=sci-mathematics/ratpoints-2.1.3
 	media-libs/gd[jpeg,png]
 	media-libs/libpng:0=
-	~media-gfx/threejs-sage-extension-100
+	~media-gfx/threejs-sage-extension-105
 	>=sys-libs/readline-6.2
 	sys-libs/zlib
 	virtual/cblas
@@ -132,7 +132,7 @@ RDEPEND="${CDEPEND}
 	!prefix? ( >=sys-libs/glibc-2.13-r4 )
 	sagenb? ( >=sci-mathematics/sage-notebook-1.1.2[$(python_gen_usedep 'python2*')] )
 	latex? (
-		~dev-tex/sage-latex-3.2
+		~dev-tex/sage-latex-3.3
 		|| ( app-text/dvipng[truetype] media-gfx/imagemagick[png] )
 	)"
 
@@ -229,9 +229,6 @@ python_prepare_all() {
 
 	# Mirroring the the fact that lib is not a link to lib64 anymore in the build system
 	sed -i "s:SAGE_LOCAL, \"lib\":SAGE_LOCAL, \"$(get_libdir)\":" setup.py
-
-	# upstream patch for deprecated sphinx function
-	eapply "${FILESDIR}"/trac27971.patch
 
 	############################################################################
 	# Fixes to Sage itself
