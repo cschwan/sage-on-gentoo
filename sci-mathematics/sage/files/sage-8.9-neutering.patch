@@ -12,10 +12,10 @@ index 8b438ad..e5c2ea7 100644
     sage/features/bliss
     sage/features/csdp
 diff --git a/sage/doctest/control.py b/sage/doctest/control.py
-index 548173e..112829d 100644
+index 8438b96..38bb47b 100644
 --- a/sage/doctest/control.py
 +++ b/sage/doctest/control.py
-@@ -336,17 +336,6 @@ class DocTestController(SageObject):
+@@ -347,17 +347,6 @@ class DocTestController(SageObject):
                  # Special case to run all optional tests
                  options.optional = True
              else:
@@ -34,7 +34,7 @@ index 548173e..112829d 100644
                  for o in options.optional:
                      if not optionaltag_regex.search(o):
 diff --git a/sage/misc/all.py b/sage/misc/all.py
-index acaa424..f0f1d96 100644
+index d3ea945..6dc25d0 100644
 --- a/sage/misc/all.py
 +++ b/sage/misc/all.py
 @@ -46,12 +46,6 @@ from .mrange import xmrange, mrange, xmrange_iter, mrange_iter, cartesian_produc
@@ -43,19 +43,22 @@ index acaa424..f0f1d96 100644
  
 -from .dist import install_scripts
 -
--from .package import (installed_packages, is_package_installed,
--        standard_packages, optional_packages, experimental_packages,
--        package_versions)
+-lazy_import('sage.misc.package', ('installed_packages', 'is_package_installed',
+-                                  'standard_packages', 'optional_packages',
+-                                  'experimental_packages', 'package_versions'))
 -
- from .pager import pager
+ lazy_import('sage.misc.pager', 'pager')
  
  lazy_import('sage.misc.sagedoc', ['browse_sage_doc',
 diff --git a/sage/tests/cmdline.py b/sage/tests/cmdline.py
-index 9edf619..7ad6f84 100644
+index bd6b76a..8cf0028 100644
 --- a/sage/tests/cmdline.py
 +++ b/sage/tests/cmdline.py
-@@ -13,23 +13,18 @@ test.spyx
- --advanced
+@@ -10,13 +10,9 @@ test.sage
+ /path/to/test.sage
+ test.spyx
+ /path/to/test.spyx
+---advanced
  -c
  --cython
 ---dev
@@ -65,12 +68,7 @@ index 9edf619..7ad6f84 100644
  --gap
  --gdb
  --gp
- -h
- --help
----info
- --ipython
- --kash
- --lisp
+@@ -29,7 +25,6 @@ test.spyx
  --maxima
  --min
  --mwrank
@@ -78,52 +76,33 @@ index 9edf619..7ad6f84 100644
  --preparse
  --python
  --python3
-@@ -43,7 +38,6 @@ test.spyx
- --sh
+@@ -40,10 +35,8 @@ test.spyx
+ --ipynb2rst
+ --rst2txt
+ --rst2sws
+---sh
  --singular
  --sqlite3
 ---standard
  --startuptime
  -t
  -v
-@@ -203,36 +197,6 @@ def test_executable(args, input="", timeout=100.0, **kwds):
+@@ -177,14 +170,6 @@ def test_executable(args, input="", timeout=100.0, **kwds):
          sage: ret
          0
  
--    Test ``sage --info [packages]`` and the equivalent
--    ``sage -p --info --info [packages]`` (the doubling of ``--info``
--    is intentional, that option should be idempotent)::
--
--        sage: out, err, ret = test_executable(["sage", "--info", "sqlite"])
--        sage: print(out)
--        Found local metadata for sqlite-...
--        = SQLite =
--        ...
--        SQLite is a software library that implements a self-contained,
--        serverless, zero-configuration, transactional SQL database engine.
--        ...
+-        sage: (out, err, ret) = test_executable(["sage", "--advanced"])
+-        sage: out.find("search through the Sage documentation") >= 0
+-        True
 -        sage: err
 -        ''
 -        sage: ret
 -        0
 -
--        sage: out, err, ret = test_executable(["sage", "-p", "--info", "--info", "sqlite"])
--        sage: print(out)
--        Found local metadata for sqlite-...
--        = SQLite =
--        ...
--        SQLite is a software library that implements a self-contained,
--        serverless, zero-configuration, transactional SQL database engine.
--        ...
--        sage: err
--        ''
--        sage: ret
--        0
--
-     Test ``sage-run`` on a Python file, both with an absolute and with a relative path::
+     Basic information about the Sage installation::
  
-         sage: dir = tmp_dir(); name = 'python_test_file.py'
-@@ -419,50 +383,6 @@ def test_executable(args, input="", timeout=100.0, **kwds):
+         sage: (out, err, ret) = test_executable(["sage", "-v"])
+@@ -417,64 +402,8 @@ def test_executable(args, input="", timeout=100.0, **kwds):
          ...
          RuntimeError: refusing to run doctests...
  
@@ -173,8 +152,22 @@ index 9edf619..7ad6f84 100644
 -
      Test external programs being called by Sage::
  
-         sage: (out, err, ret) = test_executable(["sage", "--sh"], "echo Hello World\nexit 42\n")
-@@ -612,32 +532,6 @@ def test_executable(args, input="", timeout=100.0, **kwds):
+-        sage: (out, err, ret) = test_executable(["sage", "--sh"], "echo Hello World\nexit 42\n")
+-        sage: out.find("Hello World\n") >= 0
+-        True
+-        sage: ret
+-        42
+-
+-        sage: (out, err, ret) = test_executable(["sage", "--sh", "-c", "echo Hello World; exit 42"])
+-        sage: out.find("Hello World\n") >= 0
+-        True
+-        sage: ret
+-        42
+-
+         sage: (out, err, ret) = test_executable(["sage", "--ipython"], "\n3**33\n")
+         sage: out.find("5559060566555523") >= 0
+         True
+@@ -610,32 +539,6 @@ def test_executable(args, input="", timeout=100.0, **kwds):
          sage: ret
          0
  
@@ -208,7 +201,7 @@ index 9edf619..7ad6f84 100644
      but we allow stderr in case this changes in the future::
  
 diff --git a/sage_setup/optional_extension.py b/sage_setup/optional_extension.py
-index ad9e10c..49072c5 100644
+index ae75e55..89201b7 100644
 --- a/sage_setup/optional_extension.py
 +++ b/sage_setup/optional_extension.py
 @@ -19,10 +19,7 @@ package which must be installed.

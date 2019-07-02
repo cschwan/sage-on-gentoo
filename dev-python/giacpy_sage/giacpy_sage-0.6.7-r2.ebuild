@@ -20,3 +20,7 @@ DEPEND=">=sci-mathematics/giac-1.5.0.43
 	>=sci-mathematics/sage-9999[${PYTHON_USEDEP}]
 	>=dev-python/cython-0.24[${PYTHON_USEDEP}]"
 RDEPEND="${DEPEND}"
+
+PATCHES=(
+	"${FILESDIR}"/${PN}-0.6.7-nolibdir.patch
+	)
