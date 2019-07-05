@@ -3,4 +3,3 @@
 #dev-gap/atlasrep
 # keeping it under wrap for now
 >=sci-mathematics/glpk-4.65
-~sci-mathematics/gap-4.10.2
