@@ -4,8 +4,8 @@
 EAPI=7
 
 DESCRIPTION="libsemigroups is a C++ library for semigroups and monoids"
-HOMEPAGE="https://james-d-mitchell.github.io/libsemigroups/"
-SRC_URI="https://github.com/james-d-mitchell/${PN}/releases/download/v${PV}/${P}.tar.gz"
+HOMEPAGE="https://libsemigroups.github.io/libsemigroups/"
+SRC_URI="https://github.com/${PN}/${PN}/releases/download/v${PV}/${P}.tar.gz"
 
 LICENSE="GPL-3"
 SLOT="0"
