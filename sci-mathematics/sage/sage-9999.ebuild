@@ -248,9 +248,6 @@ python_prepare_all() {
 		sage/interfaces/maxima.py \
 		sage/interfaces/maxima_abstract.py
 
-	# Do not get the version of threejs by using sage packaging system
-	eapply "${FILESDIR}"/${PN}-8.8-threejs.patch
-
 	# Make sage-inline-fortran useless by having better fortran settings
 	sed -i \
 		-e "s:--f77exec=sage-inline-fortran:--f77exec=$(tc-getF77):g" \
