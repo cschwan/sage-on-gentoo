@@ -42,10 +42,10 @@ DEPEND="dev-libs/gmp:=
 	readline? ( sys-libs/readline:= )
 	!!sci-libs/libgap"
 RDEPEND="${DEPEND}
-	${MINIMUM_PKGS}
-	recommended_pkgs? ( ${RECOMMENDED_PKGS} )
 	emacs? ( virtual/emacs )
 	vim-syntax? ( app-vim/vim-gap )"
+PDEPEND="${MINIMUM_PKGS}
+	recommended_pkgs? ( ${RECOMMENDED_PKGS} )"
 
 PATCHES=(
 	"${FILESDIR}"/${PN}-4.10.1-install.patch
