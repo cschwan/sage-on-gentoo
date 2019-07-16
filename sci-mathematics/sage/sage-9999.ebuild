@@ -55,19 +55,19 @@ CDEPEND="dev-libs/gmp:0=
 	~sci-mathematics/eclib-20190226[flint]
 	~sci-mathematics/gmp-ecm-7.0.4[-openmp]
 	>=sci-mathematics/flint-2.5.2:=[ntl]
-	~sci-libs/givaro-4.0.4
+	~sci-libs/givaro-4.1.1
 	>=sci-libs/gsl-2.3
 	>=sci-libs/iml-1.0.4
 	~sci-mathematics/cliquer-1.21
-	~sci-libs/linbox-1.5.2
+	~sci-libs/linbox-1.6.3
 	~sci-libs/m4ri-20140914
 	~sci-libs/m4rie-20150908
 	>=sci-libs/mpfi-1.5.2
 	~sci-libs/pynac-0.7.24[-giac,${PYTHON_USEDEP}]
 	>=sci-libs/symmetrica-2.0-r3
 	>=sci-libs/zn_poly-0.9
-	>=sci-mathematics/gap-4.10.1:0/4.10.1[recommended_pkgs]
-	>=sci-mathematics/giac-1.5.0.43
+	>=sci-mathematics/gap-4.10.2:0/4.10.2[recommended_pkgs]
+	>=sci-mathematics/giac-1.5.0.63
 	>=sci-mathematics/glpk-4.63:0=[gmp]
 	>=sci-mathematics/lcalc-1.23-r10[pari]
 	>=sci-mathematics/lrcalc-1.2-r1
