@@ -300,6 +300,10 @@ python_prepare_all() {
 	#
 	####################################
 
+	# Upstream patches
+	rm -rf doc/introspect
+	eapply "${FILESDIR}"/${PN}-8.9-introspection.patch
+
 	eapply "${FILESDIR}"/${PN}-8.3-pdfbuild.patch
 	# Fix finding pplpy documentation with intersphinx
 	local pplpyver=`equery -q l -F '$name-$fullversion' pplpy:0`
@@ -510,8 +514,8 @@ python_install_all(){
 	# Files needed for generating documentation on the fly
 	docompress -x /usr/share/doc/"${PF}"/en /usr/share/doc/"${PF}"/common
 	# necessary for sagedoc.py call to sphinxify.
-	insinto /usr/share/doc/"${PF}"/en/introspect
-	doins -r doc/en/introspect/*
+	#insinto /usr/share/doc/"${PF}"/en/introspect
+	#doins -r doc/en/introspect/*
 	insinto /usr/share/doc/"${PF}"/common
 	doins -r doc/common/*
 	doins sage_setup/docbuild/ext/sage_autodoc.py
