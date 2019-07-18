@@ -1,7 +1,7 @@
-# Copyright 1999-2018 Gentoo Authors
+# Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI=7
 inherit flag-o-matic toolchain-funcs
 
 DESCRIPTION="High-performance and portable Number Theory C++ library"
@@ -22,6 +22,8 @@ DEPEND="${RDEPEND}
 S="${WORKDIR}/${P}/src"
 
 REQUIRED_USE="bindist? ( !cpu_flags_x86_avx2 )"
+
+DOCS=( "${WORKDIR}/${P}"/README )
 
 pkg_setup() {
 	replace-flags -O[3-9] -O2
@@ -45,21 +47,19 @@ src_configure() {
 		$(usex cpu_flags_x86_avx2 NTL_ENABLE_AVX_FFT= NTL_ENABLE_AVX_FFT= on off) \
 		$(usex bindist NATIVE= NATIVE= off on) \
 		|| die "DoConfig failed"
+
+	if use doc; then
+		DOCS+=( "${WORKDIR}/${P}"/doc/*.txt )
+		HTML_DOCS=( "${WORKDIR}/${P}"/doc/*.html "${WORKDIR}/${P}"/doc/*.gif )
+	fi
 }
 
 src_install() {
 	default
 	if ! use static-libs; then
-		prune_libtool_files --all
-		rm -f "${ED}"/usr/$(get_libdir)/libntl.a
+		rm -f "${ED}"/usr/$(get_libdir)/libntl.{la,a}
 	fi
 
 	cd ..
 	rm -rf "${ED}"/usr/share/doc/NTL
-	dodoc README
-	if use doc ; then
-		dodoc doc/*.txt
-		docinto html
-		dodoc doc/*.html doc/*.gif
-	fi
 }
