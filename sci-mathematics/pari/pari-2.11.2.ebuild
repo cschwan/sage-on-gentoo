@@ -93,7 +93,7 @@ src_compile() {
 }
 
 src_test() {
-	emake ${mymake} ${mycxxmake} dobench
+	emake ${mymake} dobench
 }
 
 src_install() {
