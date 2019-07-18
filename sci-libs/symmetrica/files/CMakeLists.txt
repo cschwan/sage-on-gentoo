@@ -29,6 +29,8 @@ target_compile_definitions(symmetrica PRIVATE -DFAST -DALLTRUE)
 if (NOT WIN32)
     target_link_libraries(symmetrica -lm)
 endif()
+set_property(TARGET symmetrica PROPERTY VERSION "2.0.0")
+set_property(TARGET symmetrica PROPERTY SOVERSION 2.0 )
 
 add_executable(test test.c)
 target_link_libraries(test PRIVATE symmetrica)
