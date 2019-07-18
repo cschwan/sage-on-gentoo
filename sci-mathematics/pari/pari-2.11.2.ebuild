@@ -84,9 +84,7 @@ src_compile() {
 	use hppa && \
 		mymake=DLLD\="${EPREFIX}"/usr/bin/gcc\ DLLDFLAGS\=-shared\ -Wl,-soname=\$\(LIBPARI_SONAME\)\ -lm
 
-	mycxxmake=LD\=$(tc-getCXX)
-
-	emake ${mymake} ${mycxxmake} gp
+	emake ${mymake} gp
 
 	if use doc; then
 		# To prevent sandbox violations by metafont
@@ -99,7 +97,7 @@ src_test() {
 }
 
 src_install() {
-	emake ${mymake} ${mycxxmake} \
+	emake ${mymake} \
 		DESTDIR="${D}" \
 		install
 
