@@ -94,7 +94,6 @@ python_test() {
 
 python_install_all() {
 	use doc && HTML_DOCS=( doc/build/html/. )
-	insinto /usr/share/doc/${PF}
 	distutils-r1_python_install_all
 	if use examples; then
 		insinto /usr/share/doc/${PF}
