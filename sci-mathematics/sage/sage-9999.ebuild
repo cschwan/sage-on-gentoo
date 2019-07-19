@@ -8,7 +8,7 @@ PYTHON_REQ_USE="readline,sqlite"
 
 inherit desktop distutils-r1 flag-o-matic multiprocessing prefix toolchain-funcs git-r3
 
-EGIT_REPO_URI="https://github.com/sagemath/sage.git"
+EGIT_REPO_URI="https://github.com/vbraun/sage.git"
 EGIT_BRANCH=develop
 EGIT_CHECKOUT_DIR="${WORKDIR}/${P}"
 KEYWORDS=""
@@ -66,8 +66,8 @@ CDEPEND="dev-libs/gmp:0=
 	~sci-libs/pynac-0.7.24[-giac,${PYTHON_USEDEP}]
 	>=sci-libs/symmetrica-2.0-r3
 	>=sci-libs/zn_poly-0.9
-	>=sci-mathematics/gap-4.10.1:0/4.10.1[recommended_pkgs]
-	>=sci-mathematics/giac-1.5.0.43
+	>=sci-mathematics/gap-4.10.2:0/4.10.2[recommended_pkgs]
+	>=sci-mathematics/giac-1.5.0.63
 	>=sci-mathematics/glpk-4.63:0=[gmp]
 	>=sci-mathematics/lcalc-1.23-r10[pari]
 	>=sci-mathematics/lrcalc-1.2-r1
@@ -247,9 +247,6 @@ python_prepare_all() {
 	sed -i "s:'maxima :'maxima -l ecl :g" \
 		sage/interfaces/maxima.py \
 		sage/interfaces/maxima_abstract.py
-
-	# Do not get the version of threejs by using sage packaging system
-	eapply "${FILESDIR}"/${PN}-8.8-threejs.patch
 
 	# Make sage-inline-fortran useless by having better fortran settings
 	sed -i \
