@@ -508,7 +508,7 @@ python_install_all(){
 	docompress -x /usr/share/doc/"${PF}"/en /usr/share/doc/"${PF}"/common
 	# necessary for sagedoc.py call to sphinxify.
 	insinto /usr/share/doc/"${PF}"/common
-	doins -r doc/common/*
+	doins -r doc/common/themes
 	# copy the license in a place that copying can find
 	docompress -x /usr/share/doc/"${PF}"
 	insinto /usr/share/doc/"${PF}"
