@@ -506,6 +506,9 @@ python_install_all(){
 
 	# Files needed for generating documentation on the fly
 	docompress -x /usr/share/doc/"${PF}"/en /usr/share/doc/"${PF}"/common
+	# necessary for sagedoc.py call to sphinxify.
+	insinto /usr/share/doc/"${PF}"/common
+	doins -r doc/common/*
 	# copy the license in a place that copying can find
 	docompress -x /usr/share/doc/"${PF}"
 	insinto /usr/share/doc/"${PF}"
