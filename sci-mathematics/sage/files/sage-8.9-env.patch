@@ -13,7 +13,7 @@ index 453ccd7..2c119dd 100644
 -var('SAGE_DOC',            join(SAGE_SHARE, 'doc', 'sage'))
 -var('SAGE_SPKG_INST',      join(SAGE_LOCAL, 'var', 'lib', 'sage', 'installed'))
 +var('SAGE_SHARE',          join(SAGE_LOCAL, 'share', 'sage'))
-+var('SAGE_DOC',            join(SAGE_SHARE, 'share', 'doc', '@GENTOO_PORTAGE_PF@'))
++var('SAGE_DOC',            join(SAGE_LOCAL, 'share', 'doc', '@GENTOO_PORTAGE_PF@'))
  var('SAGE_LIB',            os.path.dirname(os.path.dirname(sage.__file__)))
  
  var('SAGE_ROOT')           # no fallback for SAGE_ROOT
