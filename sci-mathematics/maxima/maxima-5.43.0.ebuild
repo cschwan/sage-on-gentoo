@@ -97,7 +97,9 @@ pkg_setup() {
 src_prepare() {
 	local n PATCHES v
 	PATCHES=( emacs-0 rmaxima-0 wish-2 xdg-utils-1
-		${PN}-5.39.0-0001-taylor2-Avoid-blowing-the-stack-when-diff-expand-isn )
+		${PN}-5.39.0-0001-taylor2-Avoid-blowing-the-stack-when-diff-expand-isn
+		${PN}-5.39.0-matrixexp
+		${PN}-5.39.0-undoing_true_false_printing_patch )
 
 	n=${#PATCHES[*]}
 	for ((n--; n >= 0; n--)); do
