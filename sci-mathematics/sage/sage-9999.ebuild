@@ -161,20 +161,9 @@ python_prepare_all() {
 	#
 	#########################################
 
-	# Do not rely on os.environ to get SAGE_SRC
-	eapply "${FILESDIR}"/${PN}-8.1-sage-cython.patch
-
-	# Remove useless SAGE_LOCAL
-	eapply "${FILESDIR}"/${PN}-bin-8.7.patch
-
 	# replace MAKE by MAKEOPTS in sage-num-threads.py
 	sed -i "s:os.environ\[\"MAKE\"\]:os.environ\[\"MAKEOPTS\"\]:g" \
 		bin/sage-num-threads.py
-
-	# Replace SAGE_EXTCODE with the installation location
-	sed -i "s:\$SAGE_EXTCODE:${EPREFIX}/usr/share/sage/ext:g" \
-		bin/sage-ipynb2rst \
-		bin/sage-valgrind
 
 	# ship our simplified sage shell script
 	# Now including sage-env as of 8.7.beta5+
@@ -267,11 +256,6 @@ python_prepare_all() {
 	# Fixes to doctests
 	############################################################################
 
-	# Remove all SAGE_LOCAL in control.py
-	sed -i \
-		"s:\$SAGE_LOCAL:${EPREFIX}/usr:g" \
-		sage/doctest/control.py
-
 	# fix all.py
 	sed -i \
 		-e "s:\"lib\",\"python\":\"$(get_libdir)\",\"${EPYTHON}\":" \
@@ -327,7 +311,6 @@ sage_build_env(){
 	export SAGE_ROOT="${S}-${MULTIBUILD_VARIANT}"/..
 	export SAGE_SRC="${S}-${MULTIBUILD_VARIANT}"
 	export SAGE_ETC="${S}-${MULTIBUILD_VARIANT}"/bin
-	export SAGE_DOC_SRC="${S}-${MULTIBUILD_VARIANT}"/doc
 }
 
 python_configure_all() {

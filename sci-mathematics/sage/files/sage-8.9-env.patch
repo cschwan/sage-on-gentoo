@@ -1,5 +1,5 @@
 diff --git a/sage/env.py b/sage/env.py
-index 453ccd7..2c119dd 100644
+index 15f7a4d..6eabdb9 100644
 --- a/sage/env.py
 +++ b/sage/env.py
 @@ -152,37 +152,35 @@ var('SAGE_VERSION_BANNER', version.banner)
@@ -18,9 +18,8 @@ index 453ccd7..2c119dd 100644
  
  var('SAGE_ROOT')           # no fallback for SAGE_ROOT
  var('SAGE_SRC',            join(SAGE_ROOT, 'src'), SAGE_LIB)
--var('SAGE_DOC_SRC',        join(SAGE_SRC, 'doc'))
+ var('SAGE_DOC_SRC',        join(SAGE_SRC, 'doc'))
 -var('SAGE_PKGS',           join(SAGE_ROOT, 'build', 'pkgs'))
-+var('SAGE_DOC_SRC',        join(SAGE_DOC))
  var('SAGE_ROOT_GIT',       join(SAGE_ROOT, '.git'))
  
  var('DOT_SAGE',            join(os.environ.get('HOME'), '.sage'))
@@ -49,8 +48,8 @@ index 453ccd7..2c119dd 100644
 +var('MATHJAX_DIR',                   join(SAGE_LOCAL, 'share', 'mathjax'))
 +var('MTXLIB',                        join(SAGE_LOCAL, 'share', 'meataxe'))
  var('THREEJS_DIR',                   join(SAGE_SHARE, 'threejs'))
+ var('SINGULARPATH',                  join(SAGE_SHARE, 'singular'))
  var('PPLPY_DOCS',                    join(SAGE_SHARE, 'doc', 'pplpy'))
- var('MAXIMA_FAS')
 diff --git a/sage/interfaces/jmoldata.py b/sage/interfaces/jmoldata.py
 index 2e88022..910be2a 100644
 --- a/sage/interfaces/jmoldata.py
@@ -64,20 +63,6 @@ index 2e88022..910be2a 100644
          target_native = targetfile
  
          if sys.platform == 'cygwin':
-diff --git a/sage/interfaces/singular.py b/sage/interfaces/singular.py
-index 513994c..7ee9d42 100644
---- a/sage/interfaces/singular.py
-+++ b/sage/interfaces/singular.py
-@@ -2261,7 +2261,8 @@ def generate_docstring_dictionary():
-     nodes.clear()
-     node_names.clear()
- 
--    singular_docdir = os.environ['SINGULARPATH']+"/../info/"
-+    from sage.env import SAGE_LOCAL
-+    singular_docdir = SAGE_LOCAL+"/share/info/"
- 
-     new_node = re.compile(r"File: singular\.hlp,  Node: ([^,]*),.*")
-     new_lookup = re.compile(r"\* ([^:]*):*([^.]*)\..*")
 diff --git a/sage/misc/copying.py b/sage/misc/copying.py
 index ce345d8..65f5bb7 100644
 --- a/sage/misc/copying.py
