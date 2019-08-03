@@ -55,11 +55,11 @@ CDEPEND="dev-libs/gmp:0=
 	~sci-mathematics/eclib-20190226[flint]
 	~sci-mathematics/gmp-ecm-7.0.4[-openmp]
 	>=sci-mathematics/flint-2.5.2:=[ntl]
-	~sci-libs/givaro-4.0.4
+	~sci-libs/givaro-4.1.1
 	>=sci-libs/gsl-2.3
 	>=sci-libs/iml-1.0.4
 	~sci-mathematics/cliquer-1.21
-	~sci-libs/linbox-1.5.2
+	~sci-libs/linbox-1.6.3
 	~sci-libs/m4ri-20140914
 	~sci-libs/m4rie-20150908
 	>=sci-libs/mpfi-1.5.2
@@ -161,20 +161,9 @@ python_prepare_all() {
 	#
 	#########################################
 
-	# Do not rely on os.environ to get SAGE_SRC
-	eapply "${FILESDIR}"/${PN}-8.1-sage-cython.patch
-
-	# Remove useless SAGE_LOCAL
-	eapply "${FILESDIR}"/${PN}-bin-8.7.patch
-
 	# replace MAKE by MAKEOPTS in sage-num-threads.py
 	sed -i "s:os.environ\[\"MAKE\"\]:os.environ\[\"MAKEOPTS\"\]:g" \
 		bin/sage-num-threads.py
-
-	# Replace SAGE_EXTCODE with the installation location
-	sed -i "s:\$SAGE_EXTCODE:${EPREFIX}/usr/share/sage/ext:g" \
-		bin/sage-ipynb2rst \
-		bin/sage-valgrind
 
 	# ship our simplified sage shell script
 	# Now including sage-env as of 8.7.beta5+
@@ -235,7 +224,7 @@ python_prepare_all() {
 	############################################################################
 
 	# sage on gentoo env.py
-	eapply "${FILESDIR}"/${PN}-8.7-env.patch
+	eapply "${FILESDIR}"/${PN}-8.9-env.patch
 	# set $PF for the documentation location
 	sed -i "s:@GENTOO_PORTAGE_PF@:${PF}:" sage/env.py
 
@@ -266,11 +255,6 @@ python_prepare_all() {
 	############################################################################
 	# Fixes to doctests
 	############################################################################
-
-	# Remove all SAGE_LOCAL in control.py
-	sed -i \
-		"s:\$SAGE_LOCAL:${EPREFIX}/usr:g" \
-		sage/doctest/control.py
 
 	# fix all.py
 	sed -i \
