@@ -74,12 +74,14 @@ src_configure() {
 		mt_threads="--mt=pthread"
 	fi
 
-	# sysdatadir installs a pari.cfg stuff which is informative only
+	# sysdatadir installs a pari.cfg stuff which is informative only.
+	# It is supposed to be for "architecture-dependent" data.
+	# It needs to be easily discoverable for downstream packages such as gp2c.
 	./Configure \
 		--prefix="${EPREFIX}"/usr \
 		--datadir="${EPREFIX}"/usr/share/${PN} \
 		--libdir="${EPREFIX}"/usr/$(get_libdir) \
-		--sysdatadir="${EPREFIX}"/usr/share/doc/${PF} \
+		--sysdatadir="${EPREFIX}"/usr/share/pari \
 		--mandir="${EPREFIX}"/usr/share/man/man1 \
 		--with-readline="${EPREFIX}"/usr \
 		--with-readline-lib="${EPREFIX}"/usr/$(get_libdir) \
