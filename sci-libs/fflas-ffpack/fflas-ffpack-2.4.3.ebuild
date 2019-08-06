@@ -12,9 +12,9 @@ SRC_URI="https://github.com/linbox-team/${PN}/releases/download/${PV}/${P}.tar.g
 LICENSE="LGPL-2.1"
 SLOT="0"
 KEYWORDS="~amd64 ~x86 ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos"
-IUSE="static-libs openmp cpu_flags_x86_fma3 cpu_flags_x86_fma4 cpu_flags_x86_sse3 cpu_flags_x86_ssse3 cpu_flags_x86_sse4_1 cpu_flags_x86_sse4_2 cpu_flags_x86_avx cpu_flags_x86_avx2 bindist"
+IUSE="static-libs openmp cpu_flags_x86_fma3 cpu_flags_x86_fma4 cpu_flags_x86_sse3 cpu_flags_x86_ssse3 cpu_flags_x86_sse4_1 cpu_flags_x86_sse4_2 cpu_flags_x86_avx cpu_flags_x86_avx2 cpu_flags_x86_avx512f cpu_flags_x86_avx512dq cpu_flags_x86_avx512vl bindist"
 
-REQUIRED_USE="bindist? ( !cpu_flags_x86_fma3 !cpu_flags_x86_fma4 !cpu_flags_x86_sse3 !cpu_flags_x86_ssse3 !cpu_flags_x86_sse4_1 !cpu_flags_x86_sse4_2 !cpu_flags_x86_avx !cpu_flags_x86_avx2 )"
+REQUIRED_USE="bindist? ( !cpu_flags_x86_fma3 !cpu_flags_x86_fma4 !cpu_flags_x86_sse3 !cpu_flags_x86_ssse3 !cpu_flags_x86_sse4_1 !cpu_flags_x86_sse4_2 !cpu_flags_x86_avx !cpu_flags_x86_avx2 !cpu_flags_x86_avx512f !cpu_flags_x86_avx512dq !cpu_flags_x86_avx512vl )"
 
 RESTRICT="mirror"
 
@@ -62,6 +62,9 @@ src_configure() {
 		$(use_enable cpu_flags_x86_sse4_2 sse42) \
 		$(use_enable cpu_flags_x86_avx avx) \
 		$(use_enable cpu_flags_x86_avx2 avx2) \
+		$(use_enable cpu_flags_x86_avx512f avx512f) \
+		$(use_enable cpu_flags_x86_avx512dq avx512dq) \
+		$(use_enable cpu_flags_x86_avx512vl avx512vl) \
 		$(use_enable static-libs static)
 }
 
