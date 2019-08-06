@@ -1,8 +1,8 @@
 diff --git a/sage/env.py b/sage/env.py
-index 15f7a4d..d3e8492 100644
+index 15f7a4d..4a335b7 100644
 --- a/sage/env.py
 +++ b/sage/env.py
-@@ -152,37 +152,35 @@ var('SAGE_VERSION_BANNER', version.banner)
+@@ -152,39 +152,37 @@ var('SAGE_VERSION_BANNER', version.banner)
  
  # bunch of sage directories and files
  var('SAGE_LOCAL',          os.path.abspath(sys.prefix))
@@ -49,8 +49,11 @@ index 15f7a4d..d3e8492 100644
 +var('MATHJAX_DIR',                   join(SAGE_LOCAL, 'share', 'mathjax'))
 +var('MTXLIB',                        join(SAGE_LOCAL, 'share', 'meataxe'))
  var('THREEJS_DIR',                   join(SAGE_SHARE, 'threejs'))
- var('SINGULARPATH',                  join(SAGE_SHARE, 'singular'))
+-var('SINGULARPATH',                  join(SAGE_SHARE, 'singular'))
++var('SINGULARPATH',                  join(SAGE_LOCAL, 'share', 'singular'))
  var('PPLPY_DOCS',                    join(SAGE_SHARE, 'doc', 'pplpy'))
+ var('MAXIMA_FAS')
+ 
 diff --git a/sage/interfaces/jmoldata.py b/sage/interfaces/jmoldata.py
 index 2e88022..910be2a 100644
 --- a/sage/interfaces/jmoldata.py
