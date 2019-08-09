@@ -1,0 +1,26 @@
+diff --git a/sage/calculus/calculus.py b/sage/calculus/calculus.py
+index ec7d7cc..de4fe71 100644
+--- a/sage/calculus/calculus.py
++++ b/sage/calculus/calculus.py
+@@ -1204,7 +1204,7 @@ def limit(ex, dir=None, taylor=False, algorithm='maxima', **argv):
+         constraints; using the 'assume' command before evaluation *may* help
+         (example of legal syntax is 'assume(a>0)', see `assume?` for
+          more details)
+-        Is a an even number?
++        Is a an even\ number?
+         sage: assume(a,'even')
+         sage: limit(x^a,x=0)
+         0
+diff --git a/sage/matrix/matrix_symbolic_dense.pyx b/sage/matrix/matrix_symbolic_dense.pyx
+index 1996b2a..65f03f5 100644
+--- a/sage/matrix/matrix_symbolic_dense.pyx
++++ b/sage/matrix/matrix_symbolic_dense.pyx
+@@ -380,7 +380,7 @@ cdef class Matrix_symbolic_dense(Matrix_generic_dense):
+         # so we automatically convert floats to rationals by passing
+         # keepfloat: false
+         m = self._maxima_(maxima)
+-        z = maxima('matrixexp(%s), keepfloat: false' % m.name())
++        z = maxima('matrixexp(%s), keepfloat: false, ratmx=true' % m.name())
+         if self.nrows() == 1:
+             # We do the following, because Maxima stupidly exp's 1x1
+             # matrices into non-matrices!

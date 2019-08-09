@@ -187,6 +187,9 @@ python_prepare_all() {
 	#
 	###############################
 
+	# Less patching of Maxima - testing
+	eapply "${FILESDIR}"/maxima-5.43.0-lesspatching.patch
+
 	# Remove sage's package management system, git capabilities and associated tests
 	eapply "${FILESDIR}"/${PN}-8.9-neutering.patch
 	cp -f "${FILESDIR}"/${PN}-7.3-package.py sage/misc/package.py
