@@ -281,6 +281,11 @@ python_prepare_all() {
 	#
 	####################################
 
+	# waiting for #28341
+	sed -i \
+		"s:os.environ\['SAGE_PARI_CFG'\]:os.environ.get\('SAGE_PARI_CFG'\):" \
+		sage_setup/docbuild/__init__.py
+
 	eapply "${FILESDIR}"/${PN}-8.3-pdfbuild.patch
 	# Fix finding pplpy documentation with intersphinx
 	local pplpyver=`equery -q l -F '$name-$fullversion' pplpy:0`
