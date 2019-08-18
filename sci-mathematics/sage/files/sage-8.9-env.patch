@@ -1,5 +1,5 @@
 diff --git a/sage/env.py b/sage/env.py
-index 15f7a4d..4a335b7 100644
+index cf83545..4a335b7 100644
 --- a/sage/env.py
 +++ b/sage/env.py
 @@ -152,39 +152,37 @@ var('SAGE_VERSION_BANNER', version.banner)
@@ -18,9 +18,8 @@ index 15f7a4d..4a335b7 100644
  
  var('SAGE_ROOT')           # no fallback for SAGE_ROOT
  var('SAGE_SRC',            join(SAGE_ROOT, 'src'), SAGE_LIB)
--var('SAGE_DOC_SRC',        join(SAGE_SRC, 'doc'))
+ var('SAGE_DOC_SRC',        join(SAGE_ROOT, 'src', 'doc'), SAGE_DOC)
 -var('SAGE_PKGS',           join(SAGE_ROOT, 'build', 'pkgs'))
-+var('SAGE_DOC_SRC',        join(SAGE_ROOT, 'src', 'doc'), SAGE_DOC)
  var('SAGE_ROOT_GIT',       join(SAGE_ROOT, '.git'))
  
  var('DOT_SAGE',            join(os.environ.get('HOME'), '.sage'))
