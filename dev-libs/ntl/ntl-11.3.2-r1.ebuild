@@ -44,6 +44,7 @@ src_configure() {
 		SHARED=on \
 		NTL_GMP_LIP=on NTL_GF2X_LIB=on \
 		$(usex threads NTL_THREADS= NTL_THREADS= on off) \
+		$(usex threads LDLIBS= LDLIBS= -lpthread "") \
 		$(usex cpu_flags_x86_avx2 NTL_ENABLE_AVX_FFT= NTL_ENABLE_AVX_FFT= on off) \
 		$(usex bindist NATIVE= NATIVE= off on) \
 		|| die "DoConfig failed"
