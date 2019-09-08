@@ -35,11 +35,6 @@ QUICK INSTALLATION GUIDE
 
      layman -L
 
-   This overlay now depends on the science overlay. So you will need to add it as well
-   if it is not already installed::
-
-     layman -a science
-
    Finally add this overlay::
 
      layman -a sage-on-gentoo
