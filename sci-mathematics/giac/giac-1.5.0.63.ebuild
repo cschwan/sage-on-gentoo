@@ -31,6 +31,7 @@ RDEPEND="dev-libs/gmp:=[cxx]
 	>=sci-mathematics/pari-2.7:=
 	dev-libs/ntl:=
 	virtual/lapack
+	virtual/blas
 	net-misc/curl
 	ecm? ( >=sci-mathematics/gmp-ecm-7.0.0 )
 	glpk? ( sci-mathematics/glpk )
@@ -41,7 +42,7 @@ DEPEND="${RDEPEND}
 	virtual/yacc"
 
 PATCHES=(
-	"${FILESDIR}"/${PN}-1.2.2-gsl_lapack.patch
+	"${FILESDIR}"/${PN}-1.5.0-gsl_lapack.patch
 	)
 
 S="${WORKDIR}/${PN}-${MY_PV}"
