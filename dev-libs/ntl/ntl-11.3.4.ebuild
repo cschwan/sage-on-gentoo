@@ -9,7 +9,7 @@ HOMEPAGE="http://shoup.net/ntl/"
 SRC_URI="http://www.shoup.net/ntl/${P}.tar.gz"
 
 LICENSE="GPL-2"
-SLOT="0/40"
+SLOT="0/41"
 KEYWORDS="~amd64 ~ppc ~x86 ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos"
 IUSE="bindist doc static-libs test threads cpu_flags_x86_avx2"
 
@@ -44,7 +44,6 @@ src_configure() {
 		SHARED=on \
 		NTL_GMP_LIP=on NTL_GF2X_LIB=on \
 		$(usex threads NTL_THREADS= NTL_THREADS= on off) \
-		$(usex threads LDLIBS= LDLIBS= -lpthread "") \
 		$(usex cpu_flags_x86_avx2 NTL_ENABLE_AVX_FFT= NTL_ENABLE_AVX_FFT= on off) \
 		$(usex bindist NATIVE= NATIVE= off on) \
 		|| die "DoConfig failed"
