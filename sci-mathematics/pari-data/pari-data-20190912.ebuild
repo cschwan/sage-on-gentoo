@@ -16,7 +16,7 @@ SLOT="0"
 KEYWORDS="~alpha ~amd64 ~arm ~hppa ~mips ~ppc ~ppc64 ~sparc ~x86 ~x86-fbsd ~amd64-linux ~x86-linux ~x86-macos ~x86-solaris"
 IUSE=""
 
-RDEPEND="!<sci-libs/pari-2.5.0-r1"
+RDEPEND="sci-mathematics/pari"
 DEPEND="${RDEPEND}"
 S="${WORKDIR}"
 
