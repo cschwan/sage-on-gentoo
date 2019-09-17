@@ -7,7 +7,7 @@ inherit autotools
 
 DESCRIPTION="enumerating and computing with elliptic curves defined over the rational numbers"
 HOMEPAGE="http://www.warwick.ac.uk/~masgaj/mwrank/index.html"
-SRC_URI="http://homepages.warwick.ac.uk/staff/J.E.Cremona/ftp/${P}.tar.bz2"
+SRC_URI="mirror://sagemath/${P}.tar.bz2"
 
 LICENSE="GPL-2"
 SLOT="0/4"
