@@ -142,7 +142,7 @@ www-misc/thebe
 # optional dependencies
 ##########################
 sci-mathematics/ExportSageNB
-~sci-chemistry/sage-jmol-bin-14.2.11
+~sci-chemistry/sage-jmol-bin-14.29.52
 virtual/jre:1.7
 virtual/jdk:1.7
 dev-python/giacpy_sage
