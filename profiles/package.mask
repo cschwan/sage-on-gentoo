@@ -1,5 +1,3 @@
 ~sci-mathematics/sage-9999
 # Work in progress it doesn't like being installed in a root location
 #dev-gap/atlasrep
-# keeping it under wrap for now
->=sci-mathematics/glpk-4.65
