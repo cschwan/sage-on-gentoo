@@ -196,6 +196,9 @@ python_prepare_all() {
 	#
 	###############################
 
+	# giac 1.5.0.65+ latex output
+	eapply "${FILESDIR}"/giac-1.5.0.65.patch
+
 	# Remove sage's package management system, git capabilities and associated tests
 	eapply "${FILESDIR}"/${PN}-8.8-neutering.patch
 	cp -f "${FILESDIR}"/${PN}-7.3-package.py sage/misc/package.py
