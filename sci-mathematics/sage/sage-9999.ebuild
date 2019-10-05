@@ -25,7 +25,7 @@ IUSE="debug +doc-html doc-pdf jmol latex sagenb testsuite X ${SAGE_USE}"
 L10N_USEDEP=""
 for X in ${LANGS} ; do
 	IUSE="${IUSE} l10n_${X}"
-	L10N_USEDEP="${L10N_USEDEP}l10n_${X}=,"
+	L10N_USEDEP="${L10N_USEDEP}l10n_${X}?,"
 done
 L10N_USEDEP="${L10N_USEDEP%?}"
 
@@ -52,7 +52,7 @@ CDEPEND="dev-libs/gmp:0=
 	=dev-python/ipywidgets-7*[${PYTHON_USEDEP}]
 	>=dev-python/gmpy-2.1.0_beta1[${PYTHON_USEDEP}]
 	>=dev-python/pplpy-0.8.4:=[doc,${PYTHON_USEDEP}]
-	~sci-mathematics/eclib-20190226[flint]
+	~sci-mathematics/eclib-20190909[flint]
 	~sci-mathematics/gmp-ecm-7.0.4[-openmp]
 	>=sci-mathematics/flint-2.5.2:=[ntl]
 	~sci-libs/givaro-4.1.1
@@ -68,7 +68,7 @@ CDEPEND="dev-libs/gmp:0=
 	>=sci-libs/zn_poly-0.9
 	>=sci-mathematics/gap-4.10.2:0/4.10.2[recommended_pkgs]
 	>=sci-mathematics/giac-1.5.0.63
-	>=sci-mathematics/glpk-4.63:0=[gmp]
+	>=sci-mathematics/glpk-4.65:0=[gmp]
 	>=sci-mathematics/lcalc-1.23-r10[pari]
 	>=sci-mathematics/lrcalc-1.2-r1
 	>=dev-python/cypari2-2.1.0[${PYTHON_USEDEP}]
@@ -196,11 +196,6 @@ python_prepare_all() {
 	rm -f sage/misc/dist.py
 	rm -rf sage/dev
 
-	# If jmol is not in useflags make tachyon the default 3D plotting engine
-	if ! use jmol ; then
-		eapply "${FILESDIR}"/${PN}-8.5-tachyon_default.patch
-	fi
-
 	# Because lib doesn´t always point to lib64 the following line in cython.py
 	# cause very verbose message from the linker in turn triggering doctest failures.
 	sed -i "s:SAGE_LOCAL, \"lib\":SAGE_LOCAL, \"$(get_libdir)\":" \
@@ -268,9 +263,6 @@ python_prepare_all() {
 	# Test looking for "python"
 	sed -i \
 		-e "s:/python:/${EPYTHON}:" sage/misc/gperftools.py
-
-	# do not test safe python stuff from trac 13579. Needs to be applied after neutering.
-	eapply "${FILESDIR}"/${PN}-8.7-safepython.patch
 
 	# remove the test trying to pre-compile sage's .py file with python3
 	rm sage/tests/py3_syntax.py || die "cannot remove py3_syntax test"
