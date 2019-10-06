@@ -281,8 +281,6 @@ python_prepare_all() {
 		sage/env.py
 	# support linguas so only requested languages are installed
 	eapply "${FILESDIR}"/${PN}-7.1-linguas.patch
-	# Correct path to mathjax
-	eapply "${FILESDIR}"/${PN}-8.9-mathjax_path.patch
 
 	distutils-r1_python_prepare_all
 }
