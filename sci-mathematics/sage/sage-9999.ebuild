@@ -367,7 +367,6 @@ python_install() {
 	# install scripts and miscellanous files
 	##############################################
 
-	# core scripts which are needed in every case
 	pushd bin
 	python_doscript \
 		sage-cleaner \
@@ -375,19 +374,19 @@ python_install() {
 		sage-ipython \
 		sage-run \
 		sage-num-threads.py \
-		sage-rst2txt \
-		sage-rst2sws \
-		sage-sws2rst
-
-	# COMMAND helper scripts
-	python_doscript \
+		sage-preparse \
+		sage-startuptime.py \
 		sage-cython \
 		sage-notebook \
 		sage-run-cython \
 		math-readline
 
-	# additonal helper scripts
-	python_doscript sage-preparse sage-startuptime.py
+		# Use sagenb which is python2 only
+		if ! python_is_python3; then
+		dobin sage-rst2txt \
+			sage-rst2sws \
+			sage-sws2rst
+	fi
 
 	if use testsuite ; then
 		# DOCTESTING helper scripts
