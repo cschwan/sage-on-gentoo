@@ -81,7 +81,7 @@ CDEPEND="dev-libs/gmp:0=
 	>=sci-mathematics/ratpoints-2.1.3
 	media-libs/gd[jpeg,png]
 	media-libs/libpng:0=
-	~media-gfx/threejs-sage-extension-105
+	~media-gfx/threejs-sage-extension-110
 	>=sys-libs/readline-6.2
 	sys-libs/zlib
 	virtual/cblas
@@ -175,8 +175,11 @@ python_prepare_all() {
 
 	# sage is getting its own system to have scripts that can use either python2 or 3
 	# This is of course dangerous and incompatible with Gentoo
-	sed -e "s:sage-python23:python:" \
-		-i bin/*
+	sed -e "s:sage-python:python:" \
+		-e "s:sage-system-python:python:" \
+		-i bin/* \
+			ext/nbconvert/postprocess.py \
+			sage/doctest/control.py
 
 	# create expected folders under extcode
 	mkdir -p ext/sage
