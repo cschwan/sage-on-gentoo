@@ -175,7 +175,7 @@ python_prepare_all() {
 
 	# sage is getting its own system to have scripts that can use either python2 or 3
 	# This is of course dangerous and incompatible with Gentoo
-	sed -e "s:sage-python:python:" \
+	sed -e "s:sage-python:python:g" \
 		-e "s:sage-system-python:python:" \
 		-i bin/* \
 			ext/nbconvert/postprocess.py \
@@ -444,7 +444,7 @@ python_install_all(){
 	pushd bin
 
 	dobin sage-native-execute sage sage-ipynb2rst \
-		sage-python sage-version.sh
+		sage-version.sh
 
 	# install env files under /etc
 	insinto /etc
