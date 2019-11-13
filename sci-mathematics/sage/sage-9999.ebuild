@@ -181,6 +181,12 @@ python_prepare_all() {
 			ext/nbconvert/postprocess.py \
 			sage/doctest/control.py
 
+	# The following scripts are python2 only since they rely on sagenb
+	sed -e "s:/usr/bin/env python:/usr/bin/env python2:" \
+		-i bin/sage-rst2txt \
+			bin/sage-rst2sws \
+			bin/sage-sws2rst
+
 	# create expected folders under extcode
 	mkdir -p ext/sage
 
