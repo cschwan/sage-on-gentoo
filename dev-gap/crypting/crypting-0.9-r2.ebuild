@@ -10,7 +10,7 @@ HOMEPAGE="http://www.gap-system.org/Packages/${PN}.html"
 SLOT="0"
 SRC_URI="https://github.com/gap-packages/${PN}/releases/download/v${PV}/${P}.tar.gz"
 
-LICENSE="BSD-3"
+LICENSE="BSD"
 KEYWORDS="~amd64 ~x86"
 IUSE=""
 
