@@ -11,7 +11,7 @@ SRC_URI="mirror://sagemath/${P}.tar.bz2"
 
 LICENSE="minimal? ( LGPL-2.1 ) !minimal? ( GPL-2 )"
 SLOT="0"
-KEYWORDS="~amd64 ~arm ~arm64 ~hppa ~ia64 ~mips ~ppc ~ppc64 ~sparc ~x86 ~amd64-fbsd ~x86-fbsd ~amd64-linux ~x86-linux ~x86-macos"
+KEYWORDS="~amd64 ~arm ~arm64 ~hppa ~ia64 ~mips ~ppc ~ppc64 ~sparc ~x86 ~amd64-linux ~x86-linux ~x86-macos"
 IUSE="cuda doc +lapack metis minimal static-libs"
 
 RDEPEND="
