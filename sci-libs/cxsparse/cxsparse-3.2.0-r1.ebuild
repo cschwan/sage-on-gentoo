@@ -11,12 +11,16 @@ SRC_URI="mirror://sagemath/${P}.tar.bz2"
 
 LICENSE="LGPL-2.1"
 SLOT="0"
-KEYWORDS="~amd64 ~arm ~hppa ~ppc ~ppc64 ~sparc ~x86 ~x86-fbsd ~amd64-linux ~x86-linux ~x86-macos"
+KEYWORDS="~amd64 ~arm ~hppa ~ppc ~ppc64 ~sparc ~x86 ~amd64-linux ~x86-linux ~x86-macos"
 IUSE="static-libs"
 
 RDEPEND=">=sci-libs/suitesparseconfig-5.4.0[${MULTILIB_USEDEP}]"
 DEPEND="${RDEPEND}
 	virtual/pkgconfig"
+
+PATCHES=(
+	"${FILESDIR}"/${PN}-3.2.0-header.patch
+	)
 
 multilib_src_configure() {
 	ECONF_SOURCE="${S}" econf \
