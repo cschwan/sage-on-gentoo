@@ -8,7 +8,7 @@ PYTHON_REQ_USE="readline,sqlite"
 
 inherit desktop distutils-r1 flag-o-matic multiprocessing prefix toolchain-funcs git-r3
 
-EGIT_REPO_URI="https://github.com/sagemath/sage.git"
+EGIT_REPO_URI="https://github.com/vbraun/sage.git"
 EGIT_BRANCH=develop
 EGIT_CHECKOUT_DIR="${WORKDIR}/${P}"
 KEYWORDS=""
@@ -132,7 +132,7 @@ RDEPEND="${CDEPEND}
 	!prefix? ( >=sys-libs/glibc-2.13-r4 )
 	sagenb? ( >=sci-mathematics/sage-notebook-1.1.2[$(python_gen_usedep 'python2*')] )
 	latex? (
-		~dev-tex/sage-latex-3.3
+		~dev-tex/sage-latex-3.4
 		|| ( app-text/dvipng[truetype] media-gfx/imagemagick[png] )
 	)"
 
@@ -178,8 +178,13 @@ python_prepare_all() {
 	sed -e "s:sage-python:python:g" \
 		-e "s:sage-system-python:python:" \
 		-i bin/* \
-			ext/nbconvert/postprocess.py \
-			sage/doctest/control.py
+			ext/nbconvert/postprocess.py
+
+	# The following scripts are python2 only since they rely on sagenb
+	sed -e "s:/usr/bin/env python:/usr/bin/env python2:" \
+		-i bin/sage-rst2txt \
+			bin/sage-rst2sws \
+			bin/sage-sws2rst
 
 	# create expected folders under extcode
 	mkdir -p ext/sage
