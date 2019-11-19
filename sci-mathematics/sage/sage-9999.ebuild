@@ -133,7 +133,8 @@ RDEPEND="${CDEPEND}
 	latex? (
 		~dev-tex/sage-latex-3.4
 		|| ( app-text/dvipng[truetype] media-gfx/imagemagick[png] )
-	)"
+	)
+	!sci-mathematics/sage-notebook"
 
 CHECKREQS_DISK_BUILD="8G"
 
