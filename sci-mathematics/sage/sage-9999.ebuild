@@ -3,7 +3,7 @@
 
 EAPI=7
 
-PYTHON_COMPAT=( python2_7 python3_{6,7} )
+PYTHON_COMPAT=( python3_{6,7} )
 PYTHON_REQ_USE="readline,sqlite"
 
 inherit desktop distutils-r1 flag-o-matic multiprocessing prefix toolchain-funcs git-r3
@@ -21,7 +21,7 @@ LANGS="ca de en es fr hu it ja pt ru tr"
 LICENSE="GPL-2"
 SLOT="0"
 SAGE_USE="bliss"
-IUSE="debug +doc-html doc-pdf jmol latex sagenb testsuite X ${SAGE_USE}"
+IUSE="debug +doc-html doc-pdf jmol latex testsuite X ${SAGE_USE}"
 L10N_USEDEP=""
 for X in ${LANGS} ; do
 	IUSE="${IUSE} l10n_${X}"
@@ -130,7 +130,6 @@ RDEPEND="${CDEPEND}
 	>=sci-mathematics/sympow-1.018.1
 	www-servers/tornado
 	!prefix? ( >=sys-libs/glibc-2.13-r4 )
-	sagenb? ( >=sci-mathematics/sage-notebook-1.1.2[$(python_gen_usedep 'python2*')] )
 	latex? (
 		~dev-tex/sage-latex-3.4
 		|| ( app-text/dvipng[truetype] media-gfx/imagemagick[png] )
@@ -179,12 +178,6 @@ python_prepare_all() {
 		-e "s:sage-system-python:python:" \
 		-i bin/* \
 			ext/nbconvert/postprocess.py
-
-	# The following scripts are python2 only since they rely on sagenb
-	sed -e "s:/usr/bin/env python:/usr/bin/env python2:" \
-		-i bin/sage-rst2txt \
-			bin/sage-rst2sws \
-			bin/sage-sws2rst
 
 	# create expected folders under extcode
 	mkdir -p ext/sage
@@ -388,13 +381,6 @@ python_install() {
 		sage-notebook \
 		sage-run-cython \
 		math-readline
-
-		# Use sagenb which is python2 only
-		if ! python_is_python3; then
-		dobin sage-rst2txt \
-			sage-rst2sws \
-			sage-sws2rst
-	fi
 
 	if use testsuite ; then
 		# DOCTESTING helper scripts
