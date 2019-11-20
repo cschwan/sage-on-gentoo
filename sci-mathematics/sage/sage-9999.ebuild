@@ -167,7 +167,7 @@ python_prepare_all() {
 
 	# ship our simplified sage shell script
 	# Now including sage-env as of 8.7.beta5+
-	cp "${FILESDIR}"/sage-exec bin/sage
+	cp "${FILESDIR}"/sage-exec-9.0 bin/sage
 	eprefixify bin/sage
 	if use debug ; then
 		sed -i "s:SAGE_DEBUG=\"no\":SAGE_DEBUG=\"yes\":" bin/sage
@@ -193,7 +193,8 @@ python_prepare_all() {
 	eapply "${FILESDIR}"/giac-1.5.0.65.patch
 
 	# Remove sage's package management system, git capabilities and associated tests
-	eapply "${FILESDIR}"/${PN}-8.9-neutering.patch
+	# Added some python2 only tests that overlapped other tests for 9.0+
+	eapply "${FILESDIR}"/${PN}-9.0-neutering.patch
 	cp -f "${FILESDIR}"/${PN}-7.3-package.py sage/misc/package.py
 	rm -f sage/misc/dist.py
 	rm -rf sage/dev
