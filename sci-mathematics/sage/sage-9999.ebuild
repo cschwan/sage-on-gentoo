@@ -193,8 +193,7 @@ python_prepare_all() {
 	eapply "${FILESDIR}"/giac-1.5.0.65.patch
 
 	# Remove sage's package management system, git capabilities and associated tests
-	# Added some python2 only tests that overlapped other tests for 9.0+
-	eapply "${FILESDIR}"/${PN}-9.0-neutering.patch
+	eapply "${FILESDIR}"/${PN}-8.9-neutering.patch
 	cp -f "${FILESDIR}"/${PN}-7.3-package.py sage/misc/package.py
 	rm -f sage/misc/dist.py
 	rm -rf sage/dev
