@@ -3,7 +3,7 @@
 
 EAPI=7
 
-PYTHON_COMPAT=( python2_7 python3_{6,7} )
+PYTHON_COMPAT=( python3_{6,7} )
 PYTHON_REQ_USE="readline,sqlite"
 
 inherit desktop distutils-r1 flag-o-matic multiprocessing prefix toolchain-funcs
@@ -105,8 +105,7 @@ RDEPEND="${CDEPEND}
 	>=dev-python/mpmath-0.18[${PYTHON_USEDEP}]
 	~dev-python/networkx-2.2[${PYTHON_USEDEP}]
 	>=dev-python/pexpect-4.2.1[${PYTHON_USEDEP}]
-	>=dev-python/rpy-2.8.0[${PYTHON_USEDEP}]
-	<dev-python/rpy-2.9.0
+	=dev-python/rpy-2.8*[${PYTHON_USEDEP}]
 	~dev-python/sympy-1.4[${PYTHON_USEDEP}]
 	media-gfx/tachyon[png]
 	jmol? ( sci-chemistry/sage-jmol-bin )
@@ -131,7 +130,6 @@ RDEPEND="${CDEPEND}
 	>=sci-mathematics/sympow-1.018.1
 	www-servers/tornado
 	!prefix? ( >=sys-libs/glibc-2.13-r4 )
-	sagenb? ( >=sci-mathematics/sage-notebook-1.1.2[$(python_gen_usedep 'python2*')] )
 	latex? (
 		~dev-tex/sage-latex-3.3
 		|| ( app-text/dvipng[truetype] media-gfx/imagemagick[png] )
@@ -406,10 +404,7 @@ python_install() {
 		sage-eval \
 		sage-ipython \
 		sage-run \
-		sage-num-threads.py \
-		sage-rst2txt \
-		sage-rst2sws \
-		sage-sws2rst
+		sage-num-threads.py
 
 	# COMMAND helper scripts
 	python_doscript \
