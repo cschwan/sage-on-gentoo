@@ -45,7 +45,7 @@ dev-python/versioneer
 >=dev-python/notebook-4.1.0
 >=dev-python/ipywidgets-7.0.0
 >=dev-python/widgetsnbextension-3.0.0
->=dev-python/ipykernel-4.0.0
+=dev-python/ipykernel-4*
 =dev-python/nbformat-4.3*
 =dev-python/path-py-7*
 >=dev-python/ipyparallel-4.0.0
