@@ -28,8 +28,6 @@ dev-python/wcwidth
 >=dev-python/jupyter_client-4.0.0
 dev-python/mpmath
 ~dev-python/pkgconfig-1.2.2
-=dev-python/rpy-2.8*
-~dev-python/sympy-1.4::sage-on-gentoo
 =dev-python/sphinx-1.8*
 =dev-python/pyzmq-17*
 =dev-tex/sage-latex-3*
