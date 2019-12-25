@@ -100,11 +100,11 @@ DEPEND="${CDEPEND}
 RDEPEND="${CDEPEND}
 	>=dev-lang/R-3.2.0
 	>=dev-python/cvxopt-1.2.2[glpk,${PYTHON_USEDEP}]
-	>=dev-python/fpylll-0.2.3[${PYTHON_USEDEP}]
+	>=dev-python/fpylll-0.5.1[${PYTHON_USEDEP}]
 	>=dev-python/mpmath-0.18[${PYTHON_USEDEP}]
 	~dev-python/networkx-2.2[${PYTHON_USEDEP}]
 	>=dev-python/pexpect-4.2.1[${PYTHON_USEDEP}]
-	=dev-python/rpy-2.8*[${PYTHON_USEDEP}]
+	>=dev-python/rpy-2.8.6[${PYTHON_USEDEP}]
 	~dev-python/sympy-1.4[${PYTHON_USEDEP}]
 	media-gfx/tachyon[png]
 	jmol? ( sci-chemistry/sage-jmol-bin )
