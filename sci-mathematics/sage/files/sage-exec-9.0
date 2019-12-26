@@ -253,11 +253,6 @@ fi
 
 export SAGE_DEBUG="no"
 
-# By default use python 2.7 but starting with 8.0 sage can be built with 3.6
-if [[ -z ${EPYTHON} ]]; then
-	export EPYTHON=python2.7
-fi
-
 # Allow SAGE_BROWSER to override BROWSER (Trac #22449)
 if [ -n "$SAGE_BROWSER" ]; then
 	export BROWSER="$SAGE_BROWSER"
