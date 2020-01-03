@@ -47,6 +47,9 @@ CDEPEND="dev-libs/gmp:0=
 	>=dev-python/psutil-4.4.0[${PYTHON_USEDEP}]
 	dev-python/jupyter_core[${PYTHON_USEDEP}]
 	>=dev-python/ipython-5.8.0[notebook,${PYTHON_USEDEP}]
+	<dev-python/ipython-6.0.0
+	>=dev-python/ipykernel-4.6.0[${PYTHON_USEDEP}]
+	<dev-python/ipykernel-5.0.0
 	>=dev-python/jinja-2.8[${PYTHON_USEDEP}]
 	=dev-python/matplotlib-2.2*[${PYTHON_USEDEP}]
 	=dev-python/ipywidgets-7*[${PYTHON_USEDEP}]
