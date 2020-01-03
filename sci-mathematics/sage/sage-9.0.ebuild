@@ -53,7 +53,7 @@ CDEPEND="dev-libs/gmp:0=
 	=dev-python/ipywidgets-7*[${PYTHON_USEDEP}]
 	>=dev-python/gmpy-2.1.0_beta1[${PYTHON_USEDEP}]
 	>=dev-python/pplpy-0.8.4:=[doc,${PYTHON_USEDEP}]
-	~sci-mathematics/eclib-20190226[flint]
+	~sci-mathematics/eclib-20190909[flint]
 	~sci-mathematics/gmp-ecm-7.0.4[-openmp]
 	>=sci-mathematics/flint-2.5.2:=[ntl]
 	~sci-libs/givaro-4.1.1
@@ -69,7 +69,7 @@ CDEPEND="dev-libs/gmp:0=
 	>=sci-libs/zn_poly-0.9
 	>=sci-mathematics/gap-4.10.2:0/4.10.2[recommended_pkgs]
 	>=sci-mathematics/giac-1.5.0.63
-	>=sci-mathematics/glpk-4.63:0=[gmp]
+	>=sci-mathematics/glpk-4.65:0=[gmp]
 	>=sci-mathematics/lcalc-1.23-r10[pari]
 	>=sci-mathematics/lrcalc-1.2-r1
 	>=dev-python/cypari2-2.1.0[${PYTHON_USEDEP}]
@@ -82,7 +82,7 @@ CDEPEND="dev-libs/gmp:0=
 	>=sci-mathematics/ratpoints-2.1.3
 	media-libs/gd[jpeg,png]
 	media-libs/libpng:0=
-	~media-gfx/threejs-sage-extension-105
+	~media-gfx/threejs-sage-extension-110
 	>=sys-libs/readline-6.2
 	sys-libs/zlib
 	virtual/cblas
@@ -101,11 +101,11 @@ DEPEND="${CDEPEND}
 RDEPEND="${CDEPEND}
 	>=dev-lang/R-3.2.0
 	>=dev-python/cvxopt-1.2.2[glpk,${PYTHON_USEDEP}]
-	>=dev-python/fpylll-0.2.3[${PYTHON_USEDEP}]
+	>=dev-python/fpylll-0.5.1[${PYTHON_USEDEP}]
 	>=dev-python/mpmath-0.18[${PYTHON_USEDEP}]
 	~dev-python/networkx-2.2[${PYTHON_USEDEP}]
 	>=dev-python/pexpect-4.2.1[${PYTHON_USEDEP}]
-	=dev-python/rpy-2.8*[${PYTHON_USEDEP}]
+	>=dev-python/rpy-2.8.6[${PYTHON_USEDEP}]
 	~dev-python/sympy-1.4[${PYTHON_USEDEP}]
 	media-gfx/tachyon[png]
 	jmol? ( sci-chemistry/sage-jmol-bin )
@@ -116,7 +116,7 @@ RDEPEND="${CDEPEND}
 	>=sci-mathematics/cu2-20060223
 	>=sci-mathematics/cubex-20060128
 	>=sci-mathematics/dikcube-20070912
-	>=sci-mathematics/ExportSageNB-3.2
+	>=sci-mathematics/ExportSageNB-3.3
 	>=sci-mathematics/maxima-5.42.2[ecls]
 	>=sci-mathematics/mcube-20051209
 	>=sci-mathematics/nauty-2.6.1
@@ -131,9 +131,10 @@ RDEPEND="${CDEPEND}
 	www-servers/tornado
 	!prefix? ( >=sys-libs/glibc-2.13-r4 )
 	latex? (
-		~dev-tex/sage-latex-3.3
+		~dev-tex/sage-latex-3.4
 		|| ( app-text/dvipng[truetype] media-gfx/imagemagick[png] )
-	)"
+	)
+	!sci-mathematics/sage-notebook"
 
 CHECKREQS_DISK_BUILD="8G"
 
@@ -162,7 +163,7 @@ python_prepare_all() {
 
 	# ship our simplified sage shell script
 	# Now including sage-env as of 8.7.beta5+
-	cp "${FILESDIR}"/sage-exec bin/sage
+	cp "${FILESDIR}"/sage-exec-9.0 bin/sage
 	eprefixify bin/sage
 	if use debug ; then
 		sed -i "s:SAGE_DEBUG=\"no\":SAGE_DEBUG=\"yes\":" bin/sage
@@ -170,8 +171,10 @@ python_prepare_all() {
 
 	# sage is getting its own system to have scripts that can use either python2 or 3
 	# This is of course dangerous and incompatible with Gentoo
-	sed -e "s:sage-python23:python:" \
-		-i bin/*
+	sed -e "s:sage-python:python:g" \
+		-e "s:sage-system-python:python:" \
+		-i bin/* \
+			ext/nbconvert/postprocess.py
 
 	# create expected folders under extcode
 	mkdir -p ext/sage
@@ -182,7 +185,7 @@ python_prepare_all() {
 	#
 	###############################
 
-	# Patch latex output for giac 1.5.0.65+
+	# patch latex output for giac 1.5.0.65+
 	eapply "${FILESDIR}"/giac-1.5.0.65.patch
 
 	# Remove sage's package management system, git capabilities and associated tests
@@ -190,11 +193,6 @@ python_prepare_all() {
 	cp -f "${FILESDIR}"/${PN}-7.3-package.py sage/misc/package.py
 	rm -f sage/misc/dist.py
 	rm -rf sage/dev
-
-	# If jmol is not in useflags make tachyon the default 3D plotting engine
-	if ! use jmol ; then
-		eapply "${FILESDIR}"/${PN}-8.5-tachyon_default.patch
-	fi
 
 	# Because lib doesn´t always point to lib64 the following line in cython.py
 	# cause very verbose message from the linker in turn triggering doctest failures.
@@ -219,7 +217,7 @@ python_prepare_all() {
 	############################################################################
 
 	# sage on gentoo env.py
-	eapply "${FILESDIR}"/${PN}-8.9-env.patch
+	eapply "${FILESDIR}"/${PN}-9.0-env.patch
 	# set $PF for the documentation location
 	sed -i "s:@GENTOO_PORTAGE_PF@:${PF}:" sage/env.py
 
@@ -264,9 +262,6 @@ python_prepare_all() {
 	sed -i \
 		-e "s:/python:/${EPYTHON}:" sage/misc/gperftools.py
 
-	# do not test safe python stuff from trac 13579. Needs to be applied after neutering.
-	eapply "${FILESDIR}"/${PN}-8.7-safepython.patch
-
 	# remove the test trying to pre-compile sage's .py file with python3
 	rm sage/tests/py3_syntax.py || die "cannot remove py3_syntax test"
 
@@ -284,8 +279,6 @@ python_prepare_all() {
 		sage/env.py
 	# support linguas so only requested languages are installed
 	eapply "${FILESDIR}"/${PN}-7.1-linguas.patch
-	# Correct path to mathjax
-	eapply "${FILESDIR}"/${PN}-8.9-mathjax_path.patch
 
 	#####################################
 	#
@@ -396,24 +389,19 @@ python_install() {
 	# install scripts and miscellanous files
 	##############################################
 
-	# core scripts which are needed in every case
 	pushd bin
 	python_doscript \
 		sage-cleaner \
 		sage-eval \
 		sage-ipython \
 		sage-run \
-		sage-num-threads.py
-
-	# COMMAND helper scripts
-	python_doscript \
+		sage-num-threads.py \
+		sage-preparse \
+		sage-startuptime.py \
 		sage-cython \
 		sage-notebook \
 		sage-run-cython \
 		math-readline
-
-	# additonal helper scripts
-	python_doscript sage-preparse sage-startuptime.py
 
 	if use testsuite ; then
 		# DOCTESTING helper scripts
@@ -468,7 +456,7 @@ python_install_all(){
 	pushd bin
 
 	dobin sage-native-execute sage sage-ipynb2rst \
-		sage-python sage-version.sh
+		sage-version.sh
 
 	# install env files under /etc
 	insinto /etc
