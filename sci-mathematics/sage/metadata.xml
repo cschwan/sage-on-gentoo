@@ -28,9 +28,5 @@
 		<flag name='doc-pdf-bin'>
 			install pre-built pdf documentation
 		</flag>
-		<flag name='sagenb'>
-			Trigger the installation of the historic sage-notebook (a jupyter notebook
-			is installed with sage)
-		</flag>
 	</use>
 </pkgmetadata>
