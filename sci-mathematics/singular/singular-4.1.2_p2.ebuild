@@ -1,4 +1,4 @@
-# Copyright 1999-2019 Gentoo Authors
+# Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=7
@@ -41,6 +41,7 @@ S="${WORKDIR}/${PN}-${MY_DIR2}"
 PATCHES=(
 	"${FILESDIR}"/${PN}-4.0.3-gfan_linking.patch
 	"${FILESDIR}"/${PN}-4.1.2_p2-doc_install.patch
+	"${FILESDIR}"/${PN}-4.1.2_p2-missingheader.patch
 	)
 
 pkg_setup() {
