@@ -108,7 +108,7 @@ RDEPEND="${CDEPEND}
 	~dev-python/networkx-2.2[${PYTHON_USEDEP}]
 	>=dev-python/pexpect-4.2.1[${PYTHON_USEDEP}]
 	>=dev-python/rpy-2.8.6[${PYTHON_USEDEP}]
-	~dev-python/sympy-1.4[${PYTHON_USEDEP}]
+	~dev-python/sympy-1.5[${PYTHON_USEDEP}]
 	media-gfx/tachyon[png]
 	jmol? ( sci-chemistry/sage-jmol-bin )
 	>=sci-libs/cddlib-094j[tools]
