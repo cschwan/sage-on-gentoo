@@ -3,9 +3,7 @@ dev-libs/boost              python
 dev-libs/boehm-gc           threads
 dev-python/cvxopt           glpk gsl
 dev-python/cython           -numpy
-dev-python/fpylll           sage
 dev-python/ipython          notebook
-dev-python/mpmath           -gmp
 dev-python/numpy            lapack
 dev-python/gdmodule         png
 dev-python/pplpy            doc
@@ -14,8 +12,6 @@ media-gfx/tachyon           png opengl
 net-libs/zeromq             drafts
 sci-mathematics/flint       ntl
 sci-libs/cddlib             tools
-sci-libs/linbox             sage
-sci-libs/libsingular        flint
 sci-libs/pynac              -giac
 sci-mathematics/eclib       flint
 sci-mathematics/glpk        gmp
@@ -23,23 +19,10 @@ sci-mathematics/gmp-ecm     -openmp
 sci-mathematics/maxima      ecls
 sci-mathematics/lcalc       pari
 sci-mathematics/pari        data gmp doc
-sci-mathematics/polybori    gd
 sys-libs/zlib               minizip
 
-################################################
-# Recomended flags for optional dependency jmol
-################################################
-sci-chemistry/jmol          client-only
 # bliss seems to be broken with latest gmp at least in sage doctests
 sci-libs/bliss              -gmp
 
 # matplotlib (testing)
 x11-base/xorg-server        xvfb
-
-##################################
-# ipython update will break stuff wanting python 3.2
-# So putting useflags for stuff pulling ipython
-#################################
-dev-python/sympy            -python_targets_python3_2
-dev-python/matplotlib       -python_targets_python3_2
-dev-python/ipython          -python_targets_python3_2
