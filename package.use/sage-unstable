@@ -1,9 +1,0 @@
-# Use in addition to ./sage when running Gentoo unstable
-app-text/ghostscript-gpl    cups
-##################################
-# ipython update will break stuff wanting python 3.2
-# So putting useflags for stuff pulling ipython
-#################################
-dev-python/sympy -python_targets_python3_2
-dev-python/matplotlib -python_targets_python3_2
-dev-python/ipython -python_targets_python3_2
