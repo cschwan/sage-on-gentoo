@@ -1,7 +1,7 @@
-# Copyright 1999-2019 Gentoo Authors
+# Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI=7
 
 inherit toolchain-funcs
 
@@ -13,12 +13,12 @@ SRC_URI="https://github.com/BRiAl/BRiAl/releases/download/${PV}/${P}.tar.bz2"
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64 ~x86 ~amd64-linux ~x86-linux ~x64-macos ~x86-macos"
-IUSE="doc static-libs"
+IUSE="png static-libs"
 
 RESTRICT="mirror"
 
 CDEPEND=">=dev-libs/boost-1.58.0
-	>=sci-libs/m4ri-20140914
+	>=sci-libs/m4ri-20140914[png=]
 	!sci-mathematics/brial"
 
 DEPEND="virtual/pkgconfig
