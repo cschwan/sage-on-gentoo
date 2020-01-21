@@ -1,9 +1,9 @@
-# Copyright 1999-2019 Gentoo Authors
+# Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=6
 
-PYTHON_COMPAT=( python{2_7,3_5,3_6,3_7} )
+PYTHON_COMPAT=( python{3_6,3_7} )
 
 inherit distutils-r1 eutils virtualx
 
@@ -21,7 +21,8 @@ REQUIRED_USE="${PYTHON_REQUIRED_USE}
 	ipython? ( || ( $(python_gen_useflags -3) ) )"
 
 RESTRICT="test"
-# some oddities, possibly with gmpy
+# All tests actually pass, except a bunch of tests related to the deprecated pygletplot
+# It is a non-trivial work to wipe out all such tests :-(
 
 RDEPEND="dev-python/mpmath[${PYTHON_USEDEP}]
 	dev-python/pexpect[${PYTHON_USEDEP}]
@@ -48,6 +49,10 @@ RDEPEND="dev-python/mpmath[${PYTHON_USEDEP}]
 DEPEND="${RDEPEND}
 	doc? ( dev-python/sphinx[${PYTHON_USEDEP}] app-text/docbook2X )
 	test? ( ${RDEPEND} dev-python/pytest[${PYTHON_USEDEP}] )"
+
+PATCHES=(
+	"${FILESDIR}"/${PN}-1.4_undeffun_sage.patch
+	)
 
 pkg_setup() {
 	use doc && DISTUTILS_ALL_SUBPHASE_IMPLS=( 'python2*' )
