@@ -5,4 +5,9 @@
 	<email>frp.bissey@gmail.com</email>
 	<name>Francois Bissey</name>
 </maintainer>
+<longdescription>
+	M4RIE is a library for fast arithmetic with dense matrices over 
+	GF(2^e) for 2 ≤ e ≤ 16. The name stems from the fact that it 
+	relies heavily on M4RI.
+</longdescription>
 </pkgmetadata>
