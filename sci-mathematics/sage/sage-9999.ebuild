@@ -232,6 +232,8 @@ python_prepare_all() {
 	sed -i "s:@PPLY_DOC_VERS@:${pplpyver}:" sage/sage_conf.py
 	# Adjust variables in other files than sage_conf.py
 	eapply "${FILESDIR}"/${PN}-9.1-env.patch
+	# linking to the top directory for build issues
+	ln -s sage/sage_conf.py
 
 	# TODO: should be a patch
 	# run maxima with ecl
