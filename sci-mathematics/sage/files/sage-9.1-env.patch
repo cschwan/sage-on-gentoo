@@ -1,0 +1,57 @@
+diff --git a/sage/interfaces/jmoldata.py b/sage/interfaces/jmoldata.py
+index 8f291fb..39a84f2 100644
+--- a/sage/interfaces/jmoldata.py
++++ b/sage/interfaces/jmoldata.py
+@@ -149,7 +149,7 @@ class JmolData(SageObject):
+             True
+         """
+         # Set up paths, file names and scripts
+-        jmolpath = os.path.join(JMOL_DIR, "JmolData.jar")
++        jmolpath = os.path.join(JMOL_DIR, 'lib', 'JmolData.jar')
+         target_native = targetfile
+ 
+         if sys.platform == 'cygwin':
+diff --git a/sage/misc/copying.py b/sage/misc/copying.py
+index ec1b032..dab0918 100644
+--- a/sage/misc/copying.py
++++ b/sage/misc/copying.py
+@@ -4,7 +4,7 @@ from __future__ import absolute_import
+ import os
+ from . import pager
+ 
+-from sage.env import SAGE_ROOT
++from sage.env import SAGE_DOC
+ 
+ 
+ class License:
+@@ -15,7 +15,7 @@ class License:
+         return "Type license() to see the full license text."
+ 
+     def __str__(self):
+-        with open(os.path.join(SAGE_ROOT,'COPYING.txt')) as f:
++        with open(os.path.join(SAGE_DOC,'COPYING.txt')) as f:
+             return f.read()
+ 
+ 
+diff --git a/sage/interfaces/maxima.py b/sage/interfaces/maxima.py
+index d6d37fe..c87ce2a 100644
+--- a/sage/interfaces/maxima.py
++++ b/sage/interfaces/maxima.py
+@@ -472,7 +472,7 @@ import pexpect
+ 
+ from random import randrange
+ 
+-from sage.env import DOT_SAGE, SAGE_LOCAL, MAXIMA
++from sage.env import DOT_SAGE, SAGE_ETC, MAXIMA
+ from sage.misc.misc import ECL_TMP
+ 
+ from .expect import (Expect, ExpectElement, gc_disabled)
+@@ -523,7 +523,7 @@ class Maxima(MaximaAbstract, Expect):
+         # setting inchar and outchar..
+         eval_using_file_cutoff = 256
+         self.__eval_using_file_cutoff = eval_using_file_cutoff
+-        STARTUP = os.path.join(SAGE_LOCAL,'bin','sage-maxima.lisp')
++        STARTUP = os.path.join(SAGE_ETC, 'sage-maxima.lisp')
+ 
+         if not os.path.exists(STARTUP):
+             raise RuntimeError('You must get the file local/bin/sage-maxima.lisp')

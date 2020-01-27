@@ -195,7 +195,7 @@ python_prepare_all() {
 	eapply "${FILESDIR}"/giac-1.5.0.65.patch
 
 	# Remove sage's package management system, git capabilities and associated tests
-	eapply "${FILESDIR}"/${PN}-8.9-neutering.patch
+	eapply "${FILESDIR}"/${PN}-9.1-neutering.patch
 	cp -f "${FILESDIR}"/${PN}-7.3-package.py sage/misc/package.py
 	rm -f sage/misc/dist.py
 	rm -rf sage/dev
@@ -222,13 +222,16 @@ python_prepare_all() {
 	# Fixes to Sage itself
 	############################################################################
 
-	# sage on gentoo env.py
-	eapply "${FILESDIR}"/${PN}-9.0-env.patch
+	# sage on gentoo environment variables
+	cp -f "${FILESDIR}"/sage_conf.py sage/sage_conf.py
+	eprefixify sage/sage_conf.py
 	# set $PF for the documentation location
-	sed -i "s:@GENTOO_PORTAGE_PF@:${PF}:" sage/env.py
-
-	# sage-maxima.lisp really belong to /etc
-	eapply "${FILESDIR}"/${PN}-8.3-maxima.lisp.patch
+	sed -i "s:@GENTOO_PORTAGE_PF@:${PF}:" sage/sage_conf.py
+		# Fix finding pplpy documentation with intersphinx
+	local pplpyver=`equery -q l -F '$name-$fullversion' pplpy:0`
+	sed -i "s:@PPLY_DOC_VERS@:${pplpyver}:" sage/sage_conf.py
+	# Adjust variables in other files than sage_conf.py
+	eapply "${FILESDIR}"/${PN}-9.1-env.patch
 
 	# TODO: should be a patch
 	# run maxima with ecl
@@ -278,11 +281,6 @@ python_prepare_all() {
 	####################################
 
 	eapply "${FILESDIR}"/${PN}-8.3-pdfbuild.patch
-	# Fix finding pplpy documentation with intersphinx
-	local pplpyver=`equery -q l -F '$name-$fullversion' pplpy:0`
-	sed -i \
-		"s:SAGE_SHARE, 'doc', 'pplpy':SAGE_LOCAL, 'share', 'doc', '${pplpyver}', 'html':" \
-		sage/env.py
 	# support linguas so only requested languages are installed
 	eapply "${FILESDIR}"/${PN}-7.1-linguas.patch
 
