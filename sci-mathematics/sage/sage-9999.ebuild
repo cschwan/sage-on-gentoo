@@ -193,6 +193,8 @@ python_prepare_all() {
 
 	# patch latex output for giac 1.5.0.65+
 	eapply "${FILESDIR}"/giac-1.5.0.65.patch
+	# patch for scipy 1.4+
+	eapply "${FILESDIR}"/scipy-1.4.patch
 
 	# Remove sage's package management system, git capabilities and associated tests
 	eapply "${FILESDIR}"/${PN}-9.1-neutering.patch
