@@ -1,9 +1,9 @@
-# Copyright 1999-2019 Gentoo Authors
+# Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI=7
 
-PYTHON_COMPAT=( python2_7 python3_{5,6,7} )
+PYTHON_COMPAT=( python3_{6,7} )
 
 inherit distutils-r1 toolchain-funcs
 
@@ -30,16 +30,9 @@ RDEPEND="
 	gsl? ( sci-libs/gsl:0= )"
 DEPEND="${RDEPEND}
 	virtual/pkgconfig
-	doc? ( dev-python/sphinx )
-	test? ( dev-python/pytest-cov[${PYTHON_USEDEP}] )"
+	doc? ( dev-python/sphinx )"
 
 python_prepare_all(){
-	pkg_libs() {
-		$(tc-getPKG_CONFIG) --libs-only-l $* | \
-			sed -e 's:[ ]-l*\(pthread\|m\)\([ ]\|$\)::g' -e 's:[ ]*$::' | \
-			tr ' ' '\n' | sort -u | sed -e "s:^-l\(.*\):\1:g" | \
-			tr '\n' ';' | sed -e 's:;$::'
-	}
 	pkg_libdir() {
 		$(tc-getPKG_CONFIG) --libs-only-L $* | \
 			sed -e 's:[ ]*$::' | \
@@ -54,9 +47,9 @@ python_prepare_all(){
 	}
 
 	# mandatory dependencies
-	export CVXOPT_BLAS_LIB="$(pkg_libs blas)"
+	export CVXOPT_BLAS_LIB="blas"
 	export CVXOPT_BLAS_LIB_DIR="$(pkg_libdir blas)"
-	export CVXOPT_LAPACK_LIB="$(pkg_libs lapack)"
+	export CVXOPT_LAPACK_LIB="lapack"
 	export CVXOPT_SUITESPARSE_LIB_DIR="$(pkg_libdir umfpack cholmod amd colamd suitesparseconfig)"
 	export CVXOPT_SUITESPARSE_INC_DIR="$(pkg_incdir umfpack cholmod amd colamd suitesparseconfig)"
 
@@ -89,7 +82,7 @@ python_compile_all() {
 }
 
 python_test() {
-	PYTHONPATH="${BUILD_DIR}"/lib py.test --cov=cvxopt "${S}"/tests/ || die
+	PYTHONPATH="${BUILD_DIR}"/lib py.test "${S}"/tests/ || die
 }
 
 python_install_all() {
