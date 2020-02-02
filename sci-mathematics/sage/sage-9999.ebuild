@@ -51,7 +51,7 @@ CDEPEND="dev-libs/gmp:0=
 	>=dev-python/ipykernel-4.6.0[${PYTHON_USEDEP}]
 	<dev-python/ipykernel-5.0.0
 	>=dev-python/jinja-2.8[${PYTHON_USEDEP}]
-	=dev-python/matplotlib-2.2*[${PYTHON_USEDEP}]
+	>=dev-python/matplotlib-2.2.4[${PYTHON_USEDEP}]
 	=dev-python/ipywidgets-7*[${PYTHON_USEDEP}]
 	>=dev-python/gmpy-2.1.0_beta1[${PYTHON_USEDEP}]
 	>=dev-python/pplpy-0.8.4:=[doc,${PYTHON_USEDEP}]
