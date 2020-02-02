@@ -1,7 +1,7 @@
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI=7
 
 PYTHON_COMPAT=( python{3_6,3_7} )
 
@@ -50,15 +50,6 @@ DEPEND="${RDEPEND}
 PATCHES=(
 	"${FILESDIR}"/${PN}-1.4_undeffun_sage.patch
 	)
-
-python_compile_all() {
-	if use doc; then
-		export XDG_CONFIG_HOME="${T}/config-dir"
-		mkdir "${XDG_CONFIG_HOME}" || die
-		chmod 0700 "${XDG_CONFIG_HOME}" || die
-		emake -j1 -C doc html info man cheatsheet
-	fi
-}
 
 python_test() {
 	virtx "${PYTHON}" setup.py test
