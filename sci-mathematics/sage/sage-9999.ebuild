@@ -105,7 +105,7 @@ RDEPEND="${CDEPEND}
 	>=dev-python/cvxopt-1.2.2[glpk,${PYTHON_USEDEP}]
 	>=dev-python/fpylll-0.5.1[${PYTHON_USEDEP}]
 	>=dev-python/mpmath-0.18[${PYTHON_USEDEP}]
-	~dev-python/networkx-2.2[${PYTHON_USEDEP}]
+	>=dev-python/networkx-2.4[${PYTHON_USEDEP}]
 	>=dev-python/pexpect-4.2.1[${PYTHON_USEDEP}]
 	>=dev-python/rpy-2.8.6[${PYTHON_USEDEP}]
 	=dev-python/sympy-1.5*[${PYTHON_USEDEP}]
@@ -195,6 +195,8 @@ python_prepare_all() {
 	eapply "${FILESDIR}"/giac-1.5.0.65.patch
 	# patch for scipy 1.4+
 	eapply "${FILESDIR}"/scipy-1.4.patch
+	# patch for networkx 2.4
+	eapply "${FILESDIR}"/networkx-2.4.patch
 
 	# Remove sage's package management system, git capabilities and associated tests
 	eapply "${FILESDIR}"/${PN}-9.1-neutering.patch
