@@ -1,7 +1,0 @@
-diff --git a/doc/Makefile.am b/doc/Makefile.am
-index 317a41b..37d87a2 100644
---- a/doc/Makefile.am
-+++ b/doc/Makefile.am
-@@ -1,2 +1 @@
--docdir = $(datadir)/doc/@PACKAGE@
- nobase_dist_doc_DATA = g0n.txt  howto.txt progs.txt mwrank/mwrank.changes  mwrank/mwrank.info  mwrank/mwrank.options  mwrank/mwrank.readme
