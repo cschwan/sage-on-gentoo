@@ -24,7 +24,7 @@ dev-python/versioneer
 >=dev-python/widgetsnbextension-3.0.0
 =dev-python/path-py-7*
 dev-python/wcwidth
->=dev-python/jupyter_client-4.0.0
+=dev-python/jupyter_client-5.2*
 dev-python/mpmath
 ~dev-python/pkgconfig-1.2.2
 =dev-python/sphinx-1.8*
