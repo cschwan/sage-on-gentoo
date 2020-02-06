@@ -1,16 +1,16 @@
 diff --git a/setup.py b/setup.py
-index 617e76e..1b413b2 100644
+index 9af1270..43f320b 100644
 --- a/setup.py
 +++ b/setup.py
-@@ -12,7 +12,6 @@ from Cython.Build import cythonize
- conf = {'CXXFLAGS' : [], 'LDFLAGS' : []}
+@@ -15,7 +15,6 @@ from Cython.Build import cythonize
+ conf = {'CXXFLAGS' : ['-std=c++11'], 'LDFLAGS' : []}
  
  libraries=['giac']
 -library_dirs=[SAGE_LOCAL+'/lib']
  # in sage 6.7 cimport Integer needs ccobject.h but it was moved to SAGE_SRC/sage/ext
  # But in sage 6.8>= the function sage_include_directories was introduced to gives the includes.
  try:
-@@ -40,7 +39,6 @@ ext_modules+=cythonize([Extension(
+@@ -43,7 +42,6 @@ ext_modules+=cythonize([Extension(
                     "giacpy_sage",                 # name of extension
                     ["giacpy_sage.pyx"], #  our Cython source
                     libraries=libraries,
