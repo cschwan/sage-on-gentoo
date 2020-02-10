@@ -281,12 +281,6 @@ python_prepare_all() {
 	# remove the test trying to pre-compile sage's .py file with python3
 	rm sage/tests/py3_syntax.py || die "cannot remove py3_syntax test"
 
-	# Help install some tests portage complains about files not being
-	# byte compiled if added manually.
-	if use testsuite ; then
-		touch sage/doctest/tests/__init__.py
-	fi
-
 	####################################
 	#
 	# Documentation specific patch
@@ -405,7 +399,10 @@ python_install() {
 	if use testsuite ; then
 		# install extra rst testfiles under sage/doctests/tests
 		local testspath="${D}"/$(python_get_sitedir)/sage/doctest/tests
-		cp sage/doctest/tests/*.rst "${testspath}"/
+		mkdir -p "${testspath}"
+		cp sage/doctest/tests/* "${testspath}"/
+		# manual byte compiling
+		"${PYTHON}" -O -m compileall -f -d "$(python_get_sitedir)/sage/doctest/tests" "${testspath}"
 	fi
 }
 
