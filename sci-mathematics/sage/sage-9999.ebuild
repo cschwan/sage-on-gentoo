@@ -403,7 +403,7 @@ python_install() {
 		cp sage/doctest/tests/* "${testspath}"/
 		# manual byte compiling
 		for myopt in {0..2} ; do
-			"${PYTHON}" -O$"{myopt}" -m compileall -f -d "$(python_get_sitedir)/sage/doctest/tests" "${testspath}"
+			"${PYTHON}" -O"${myopt}" -m compileall -f -d "$(python_get_sitedir)/sage/doctest/tests" "${testspath}"
 		done
 	fi
 }
