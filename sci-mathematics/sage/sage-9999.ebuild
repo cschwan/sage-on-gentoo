@@ -402,7 +402,9 @@ python_install() {
 		mkdir -p "${testspath}"
 		cp sage/doctest/tests/* "${testspath}"/
 		# manual byte compiling
-		"${PYTHON}" -O -m compileall -f -d "$(python_get_sitedir)/sage/doctest/tests" "${testspath}"
+		for myopt in {0..2} ; do
+			"${PYTHON}" -O$"{myopt}" -m compileall -f -d "$(python_get_sitedir)/sage/doctest/tests" "${testspath}"
+		done
 	fi
 }
 
