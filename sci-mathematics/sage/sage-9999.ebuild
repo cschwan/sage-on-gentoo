@@ -5,6 +5,7 @@ EAPI=7
 
 PYTHON_COMPAT=( python3_{6,7} )
 PYTHON_REQ_USE="readline,sqlite"
+DISTUTILS_USE_SETUPTOOLS=no
 
 inherit desktop distutils-r1 flag-o-matic multiprocessing prefix toolchain-funcs git-r3
 
@@ -34,7 +35,7 @@ RESTRICT="mirror test"
 CDEPEND="dev-libs/gmp:0=
 	>=dev-libs/mpfr-4.0.0
 	>=dev-libs/mpc-1.1.0
-	>=dev-libs/ntl-10.2.0:=
+	>=dev-libs/ntl-11.4.3:=
 	>=dev-libs/ppl-1.1
 	~dev-lisp/ecls-16.1.2
 	>=dev-python/six-1.11.0[${PYTHON_USEDEP}]
@@ -51,7 +52,7 @@ CDEPEND="dev-libs/gmp:0=
 	>=dev-python/ipykernel-4.6.0[${PYTHON_USEDEP}]
 	<dev-python/ipykernel-5.0.0
 	>=dev-python/jinja-2.8[${PYTHON_USEDEP}]
-	=dev-python/matplotlib-2.2*[${PYTHON_USEDEP}]
+	>=dev-python/matplotlib-2.2.4[${PYTHON_USEDEP}]
 	=dev-python/ipywidgets-7*[${PYTHON_USEDEP}]
 	>=dev-python/gmpy-2.1.0_beta1[${PYTHON_USEDEP}]
 	>=dev-python/pplpy-0.8.4:=[doc,${PYTHON_USEDEP}]
@@ -105,7 +106,7 @@ RDEPEND="${CDEPEND}
 	>=dev-python/cvxopt-1.2.2[glpk,${PYTHON_USEDEP}]
 	>=dev-python/fpylll-0.5.1[${PYTHON_USEDEP}]
 	>=dev-python/mpmath-0.18[${PYTHON_USEDEP}]
-	~dev-python/networkx-2.2[${PYTHON_USEDEP}]
+	>=dev-python/networkx-2.4[${PYTHON_USEDEP}]
 	>=dev-python/pexpect-4.2.1[${PYTHON_USEDEP}]
 	>=dev-python/rpy-2.8.6[${PYTHON_USEDEP}]
 	=dev-python/sympy-1.5*[${PYTHON_USEDEP}]
@@ -193,8 +194,8 @@ python_prepare_all() {
 
 	# patch latex output for giac 1.5.0.65+
 	eapply "${FILESDIR}"/giac-1.5.0.65.patch
-	# patch for scipy 1.4+
-	eapply "${FILESDIR}"/scipy-1.4.patch
+	# patch for networkx 2.4
+	eapply "${FILESDIR}"/networkx-2.4.patch
 
 	# Remove sage's package management system, git capabilities and associated tests
 	eapply "${FILESDIR}"/${PN}-9.1-neutering.patch
@@ -394,10 +395,14 @@ python_install() {
 	popd
 
 	if use testsuite ; then
-		# install extra testfiles under sage/doctests
+		# install extra rst testfiles under sage/doctests/tests
 		local testspath="${D}"/$(python_get_sitedir)/sage/doctest/tests
 		mkdir -p "${testspath}"
 		cp sage/doctest/tests/* "${testspath}"/
+		# manual byte compiling
+		for myopt in '' -O -OO ; do
+			"${PYTHON}" ${myopt} -m compileall -f -d "$(python_get_sitedir)/sage/doctest/tests" "${testspath}"
+		done
 	fi
 }
 
