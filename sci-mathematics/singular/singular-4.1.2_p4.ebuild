@@ -25,7 +25,7 @@ IUSE="emacs examples python +readline static-libs"
 
 RDEPEND="dev-libs/gmp:0
 	dev-libs/ntl:=
-	emacs? ( >=virtual/emacs-22 )
+	emacs? ( >=app-editors/emacs-23.1:* )
 	sci-mathematics/flint
 	sci-libs/cddlib
 	python? ( ${PYTHON_DEPS} )"
@@ -41,7 +41,6 @@ S="${WORKDIR}/${PN}-${MY_DIR2}"
 PATCHES=(
 	"${FILESDIR}"/${PN}-4.0.3-gfan_linking.patch
 	"${FILESDIR}"/${PN}-4.1.2_p2-doc_install.patch
-	"${FILESDIR}"/${PN}-4.1.2_p2-missingheader.patch
 	)
 
 pkg_setup() {
