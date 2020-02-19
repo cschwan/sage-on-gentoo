@@ -103,6 +103,13 @@ src_install() {
 	find "${ED}" -name '*.la' -delete || die
 }
 
+src_test() {
+	# SINGULAR_PROCS_DIR need to be set to "" otherwise plugins from
+	# an already installed version of singular may be used and cause segfault
+	# See https://github.com/Singular/Sources/issues/980
+	SINGULAR_PROCS_DIR="" emake check
+}
+
 pkg_postinst() {
 	einfo "The authors ask you to register as a SINGULAR user."
 	einfo "Please check the license file for details."
