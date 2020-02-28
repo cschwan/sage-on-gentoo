@@ -458,7 +458,7 @@ python_install_all(){
 	popd
 
 	if use X ; then
-		doicon "${S}"/ext/notebook-ipython/logo.svg
+		doicon "${S}"/sage/ext_data/notebook-ipython/logo.svg
 		newmenu - sage-sage.desktop <<-EOF
 			[Desktop Entry]
 			Name=Sage Shell
