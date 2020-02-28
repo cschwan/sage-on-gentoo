@@ -286,6 +286,14 @@ python_prepare_all() {
 	# support linguas so only requested languages are installed
 	eapply "${FILESDIR}"/${PN}-7.1-linguas.patch
 
+	####################################
+	#
+	# Bootstrap
+	#
+	####################################
+
+	SAGE_ROOT="${S}"/.. PATH="${S}/../build/bin:${PATH}" doc/bootstrap || die "cannot bootstrap the documentation"
+
 	distutils-r1_python_prepare_all
 }
 
