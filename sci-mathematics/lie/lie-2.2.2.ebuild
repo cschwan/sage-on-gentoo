@@ -1,4 +1,4 @@
-# Copyright 1999-2019 Gentoo Authors
+# Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=7
@@ -9,7 +9,7 @@ DESCRIPTION="A Computer algebra package for Lie group computations"
 HOMEPAGE="http://www-math.univ-poitiers.fr/~maavl/LiE/"
 SRC_URI="http://wwwmathlabo.univ-poitiers.fr/~maavl/LiE/conLiE.tar.gz -> ${P}.tar.gz"
 #### Remove the following line when moving this ebuild to the main tree!
-RESTRICT="mirror"
+RESTRICT=primaryuri
 
 LICENSE="LGPL-2.1"
 ##### See http://packages.debian.org/changelogs/pool/main/l/lie/lie_2.2.2+dfsg-1/lie.copyright

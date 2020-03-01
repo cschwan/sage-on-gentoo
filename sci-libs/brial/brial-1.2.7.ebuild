@@ -15,7 +15,7 @@ SLOT="0"
 KEYWORDS="~amd64 ~x86 ~amd64-linux ~x86-linux ~x64-macos ~x86-macos"
 IUSE="png static-libs"
 
-RESTRICT="mirror"
+RESTRICT=primaryuri
 
 CDEPEND=">=dev-libs/boost-1.58.0
 	>=sci-libs/m4ri-20140914[png=]
