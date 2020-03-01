@@ -1,4 +1,4 @@
-# Copyright 1999-2018 Gentoo Foundation
+# Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=6
@@ -15,7 +15,7 @@ KEYWORDS="~amd64 ~x86 ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos"
 IUSE="debug openmp static-libs"
 
 # TODO: tests do not compile since m4rie expects header already being installed
-RESTRICT="mirror"
+RESTRICT=primaryuri
 
 DEPEND=">=sci-libs/m4ri-20140914[openmp?]"
 RDEPEND="${DEPEND}"

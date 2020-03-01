@@ -12,7 +12,7 @@ SLOT="0"
 KEYWORDS="~amd64 ~x86 ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos"
 IUSE="debug static-libs"
 
-RESTRICT="mirror"
+RESTRICT=primaryuri
 
 DEPEND=">=sci-libs/m4ri-20140914"
 RDEPEND="${DEPEND}"

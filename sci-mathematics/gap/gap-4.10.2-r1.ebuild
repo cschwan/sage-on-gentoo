@@ -15,7 +15,7 @@ SLOT="0/${PV}"
 KEYWORDS="~amd64 ~x86 ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos"
 IUSE="emacs readline +recommended_pkgs vim-syntax"
 
-RESTRICT="mirror"
+RESTRICT=primaryuri
 
 MINIMUM_PKGS="
 	~dev-gap/GAPDoc-1.6.2
