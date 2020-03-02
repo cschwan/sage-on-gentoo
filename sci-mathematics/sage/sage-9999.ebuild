@@ -398,6 +398,10 @@ python_install() {
 		python_doscript sage-runtests
 	fi
 	popd
+
+	# Creating missing files
+	touch "${D}/"$(python_get_sitedir)/sage/doctest/tests/.nodoctest
+	touch "${D}/"$(python_get_sitedir)/sage/ext_data/.nodoctest
 }
 
 python_install_all(){
