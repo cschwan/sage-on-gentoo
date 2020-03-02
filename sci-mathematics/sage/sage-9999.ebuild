@@ -181,10 +181,7 @@ python_prepare_all() {
 	sed -e "s:sage-python:python:g" \
 		-e "s:sage-system-python:python:" \
 		-i bin/* \
-			ext/nbconvert/postprocess.py
-
-	# create expected folders under extcode
-	mkdir -p ext/sage
+			sage/ext_data/nbconvert/postprocess.py
 
 	###############################
 	#
@@ -226,7 +223,7 @@ python_prepare_all() {
 	############################################################################
 
 	# sage on gentoo environment variables
-	cp -f "${FILESDIR}"/sage_conf.py sage/sage_conf.py
+	cp -f "${FILESDIR}"/sage_conf.py-9.1 sage/sage_conf.py
 	eprefixify sage/sage_conf.py
 	# set $PF for the documentation location
 	sed -i "s:@GENTOO_PORTAGE_PF@:${PF}:" sage/sage_conf.py
@@ -288,6 +285,14 @@ python_prepare_all() {
 	eapply "${FILESDIR}"/${PN}-9.1-pdfbuild.patch
 	# support linguas so only requested languages are installed
 	eapply "${FILESDIR}"/${PN}-7.1-linguas.patch
+
+	####################################
+	#
+	# Bootstrap
+	#
+	####################################
+
+	SAGE_ROOT="${S}"/.. PATH="${S}/../build/bin:${PATH}" doc/bootstrap || die "cannot bootstrap the documentation"
 
 	distutils-r1_python_prepare_all
 }
@@ -394,16 +399,9 @@ python_install() {
 	fi
 	popd
 
-	if use testsuite ; then
-		# install extra rst testfiles under sage/doctests/tests
-		local testspath="${D}"/$(python_get_sitedir)/sage/doctest/tests
-		mkdir -p "${testspath}"
-		cp sage/doctest/tests/* "${testspath}"/
-		# manual byte compiling
-		for myopt in '' -O -OO ; do
-			"${PYTHON}" ${myopt} -m compileall -f -d "$(python_get_sitedir)/sage/doctest/tests" "${testspath}"
-		done
-	fi
+	# Creating missing files
+	touch "${D}/"$(python_get_sitedir)/sage/doctest/tests/.nodoctest
+	touch "${D}/"$(python_get_sitedir)/sage/ext_data/.nodoctest
 }
 
 python_install_all(){
@@ -464,7 +462,7 @@ python_install_all(){
 	popd
 
 	if use X ; then
-		doicon "${S}"/ext/notebook-ipython/logo.svg
+		doicon "${S}"/sage/ext_data/notebook-ipython/logo.svg
 		newmenu - sage-sage.desktop <<-EOF
 			[Desktop Entry]
 			Name=Sage Shell
@@ -478,9 +476,6 @@ python_install_all(){
 		EOF
 	fi
 
-	insinto /usr/share/sage
-	doins -r ext
-
 	# Files needed for generating documentation on the fly
 	docompress -x /usr/share/doc/"${PF}"/en /usr/share/doc/"${PF}"/common
 	# necessary for sagedoc.py call to sphinxify.
@@ -492,8 +487,10 @@ python_install_all(){
 	doins ../COPYING.txt
 
 	# install links for the jupyter kernel
-	dosym ../../../sage/ext/notebook-ipython/logo-64x64.png /usr/share/jupyter/kernels/sagemath/logo-64x64.png
-	dosym ../../../sage/ext/notebook-ipython/logo.svg /usr/share/jupyter/kernels/sagemath/logo.svg
+	dosym ../../../../../$(python_get_sitedir)/sage/ext_data/notebook-ipython/logo-64x64.png \
+		/usr/share/jupyter/kernels/sagemath/logo-64x64.png
+	dosym ../../../../../$(python_get_sitedir)/sage/ext_data/notebook-ipython/logo.svg \
+		/usr/share/jupyter/kernels/sagemath/logo.svg
 	if use doc-html; then
 		dosym ../../../doc/"${PF}"/html/en /usr/share/jupyter/kernels/sagemath/doc
 	fi
