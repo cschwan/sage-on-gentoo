@@ -42,7 +42,3 @@ src_install(){
 	find "${ED}" -name '*.la' -delete || die
 }
 
-src_test(){
-	# race condition between linking the test program and its sources
-	emake -j1 check
-}
