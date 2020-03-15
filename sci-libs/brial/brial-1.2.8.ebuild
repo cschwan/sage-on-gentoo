@@ -17,19 +17,19 @@ IUSE="png static-libs"
 
 RESTRICT=primaryuri
 
-CDEPEND=">=dev-libs/boost-1.58.0
-	>=sci-libs/m4ri-20140914[png=]
-	!sci-mathematics/brial"
+DEPEND=">=dev-libs/boost-1.58.0
+	>=sci-libs/m4ri-20140914[png=]"
 
-DEPEND="virtual/pkgconfig
-	${CDEPEND}"
-RDEPEND="${CDEPEND}"
+BDEPEND="virtual/pkgconfig"
+RDEPEND="${DEPEND}"
 
 pkg_setup(){
 	tc-export PKG_CONFIG
 }
 
 src_configure(){
+	# with-boost-libdir added to deal with some rather quirky setups
+	# see https://github.com/cschwan/sage-on-gentoo/issues/551
 	econf \
 		--with-boost="${EPREFIX}"/usr \
 		--with-boost-libdir="${EPREFIX}"/usr/$(get_libdir) \
