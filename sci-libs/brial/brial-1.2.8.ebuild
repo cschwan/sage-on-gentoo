@@ -41,4 +41,3 @@ src_install(){
 
 	find "${ED}" -name '*.la' -delete || die
 }
-
