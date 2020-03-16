@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+<maintainer type="person">
+<email>frp.bissey@gmail.com</email>
+<name>FranÃ§ois Bissey</name>
+</maintainer>
+<longdescription lang="en">Arb is a C library for arbitrary-precision floating-point ball arithmetic. 
+It supports real and complex numbers, polynomials, power series, matrices, and evaluation of many transcendental functions. 
+All is done with automatic, rigorous error bounds.
+</longdescription>
+</pkgmetadata>
