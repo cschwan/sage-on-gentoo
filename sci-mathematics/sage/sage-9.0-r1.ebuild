@@ -32,7 +32,7 @@ L10N_USEDEP="${L10N_USEDEP%?}"
 
 RESTRICT="mirror test"
 
-CDEPEND="dev-libs/gmp:0=
+DEPEND="dev-libs/gmp:0=
 	>=dev-libs/mpfr-4.0.0
 	>=dev-libs/mpc-1.1.0
 	>=dev-libs/ntl-10.2.0:=
@@ -47,10 +47,8 @@ CDEPEND="dev-libs/gmp:0=
 	>=dev-python/docutils-0.12[${PYTHON_USEDEP}]
 	>=dev-python/psutil-4.4.0[${PYTHON_USEDEP}]
 	dev-python/jupyter_core[${PYTHON_USEDEP}]
-	>=dev-python/ipython-5.8.0[notebook,${PYTHON_USEDEP}]
-	<dev-python/ipython-6.0.0
+	>=dev-python/ipython-7.0.0[notebook,${PYTHON_USEDEP}]
 	>=dev-python/ipykernel-4.6.0[${PYTHON_USEDEP}]
-	<dev-python/ipykernel-5.0.0
 	>=dev-python/jinja-2.8[${PYTHON_USEDEP}]
 	=dev-python/matplotlib-2.2*[${PYTHON_USEDEP}]
 	=dev-python/ipywidgets-7*[${PYTHON_USEDEP}]
@@ -97,11 +95,10 @@ CDEPEND="dev-libs/gmp:0=
 	>=dev-python/sphinx-1.8.5[${PYTHON_USEDEP}]
 	<dev-python/sphinx-2.0.0"
 
-DEPEND="${CDEPEND}
-	app-portage/gentoolkit
+BDEPEND="app-portage/gentoolkit
 	doc-pdf? ( app-text/texlive[extra,${L10N_USEDEP}] )"
 
-RDEPEND="${CDEPEND}
+RDEPEND="${DEPEND}
 	>=dev-lang/R-3.2.0
 	>=dev-python/cvxopt-1.2.2[glpk,${PYTHON_USEDEP}]
 	>=dev-python/fpylll-0.5.1[${PYTHON_USEDEP}]
@@ -190,6 +187,8 @@ python_prepare_all() {
 
 	# patch latex output for giac 1.5.0.65+
 	eapply "${FILESDIR}"/giac-1.5.0.65.patch
+	# move to ipython-7
+	eapply "${FILESDIR}"/ipython-7.10.patch
 
 	# Remove sage's package management system, git capabilities and associated tests
 	eapply "${FILESDIR}"/${PN}-8.9-neutering.patch

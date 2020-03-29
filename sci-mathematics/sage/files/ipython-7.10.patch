@@ -1,0 +1,34 @@
+diff --git a/sage/repl/display/fancy_repr.py b/sage/repl/display/fancy_repr.py
+index c72ad3f..43b5471 100644
+--- a/sage/repl/display/fancy_repr.py
++++ b/sage/repl/display/fancy_repr.py
+@@ -15,10 +15,12 @@ Representations of objects
+ import types
+ 
+ from IPython.lib.pretty import (
+-    _safe_getattr, _baseclass_reprs,
++    _safe_getattr,
+     _type_pprinters,
+ )
+ 
++_baseclass_reprs = (object.__repr__,)
++
+ from sage.repl.display.util import format_list
+ 
+ 
+diff --git a/sage/repl/ipython_extension.py b/sage/repl/ipython_extension.py
+index f44d532..3693640 100644
+--- a/sage/repl/ipython_extension.py
++++ b/sage/repl/ipython_extension.py
+@@ -512,8 +512,9 @@ class SageCustomizations(object):
+                                  SagePromptTransformer)
+ 
+         for s in (self.shell.input_splitter, self.shell.input_transformer_manager):
+-            s.physical_line_transforms.insert(1, SagePromptTransformer())
+-            s.python_line_transforms.append(SagePreparseTransformer())
++            # s.physical_line_transforms.insert(1, SagePromptTransformer())
++            # s.python_line_transforms.append(SagePreparseTransformer())
++            pass
+ 
+ 
+ class SageJupyterCustomizations(SageCustomizations):
