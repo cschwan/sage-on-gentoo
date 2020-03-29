@@ -12,7 +12,7 @@ index 8b438ad..e5c2ea7 100644
     sage/features/bliss
     sage/features/csdp
 diff --git a/sage/doctest/control.py b/sage/doctest/control.py
-index d408b18..e65ad2f 100644
+index 7b72280..60e73c4 100644
 --- a/sage/doctest/control.py
 +++ b/sage/doctest/control.py
 @@ -348,17 +348,6 @@ class DocTestController(SageObject):
@@ -27,14 +27,14 @@ index d408b18..e65ad2f 100644
 -                    options.optional.discard('optional')
 -                    from sage.misc.package import list_packages
 -                    for pkg in list_packages('optional', local=True).values():
--                        if pkg['installed_version'] == pkg['remote_version']:
+-                        if pkg['installed'] and pkg['installed_version'] == pkg['remote_version']:
 -                            options.optional.add(pkg['name'])
 -
                  # Check that all tags are valid
                  for o in options.optional:
                      if not optionaltag_regex.search(o):
 diff --git a/sage/misc/all.py b/sage/misc/all.py
-index d3ea945..6dc25d0 100644
+index 75d8295..8aa02c8 100644
 --- a/sage/misc/all.py
 +++ b/sage/misc/all.py
 @@ -46,12 +46,6 @@ from .mrange import xmrange, mrange, xmrange_iter, mrange_iter, cartesian_produc
@@ -51,7 +51,7 @@ index d3ea945..6dc25d0 100644
  
  lazy_import('sage.misc.sagedoc', ['browse_sage_doc',
 diff --git a/sage/tests/cmdline.py b/sage/tests/cmdline.py
-index 3838866..efb0b94 100644
+index 0e367a5..55d1970 100644
 --- a/sage/tests/cmdline.py
 +++ b/sage/tests/cmdline.py
 @@ -10,13 +10,9 @@ test.sage
@@ -102,9 +102,9 @@ index 3838866..efb0b94 100644
      Basic information about the Sage installation::
  
          sage: (out, err, ret) = test_executable(["sage", "-v"])
-@@ -427,64 +412,8 @@ def test_executable(args, input="", timeout=100.0, pydebug_ignore_warnings=False
-         ...
-         RuntimeError: refusing to run doctests...
+@@ -409,64 +394,8 @@ def test_executable(args, input="", timeout=100.0, pydebug_ignore_warnings=False
+         sage: ret
+         1
  
 -    Now run a test for the fixdoctests script and, in particular, check that the
 -    issues raised in :trac:`10589` are fixed. We have to go to slightly silly
@@ -167,7 +167,7 @@ index 3838866..efb0b94 100644
          sage: (out, err, ret) = test_executable(["sage", "--ipython"], "\n3**33\n", pydebug_ignore_warnings=True)
          sage: out.find("5559060566555523") >= 0
          True
-@@ -620,32 +549,6 @@ def test_executable(args, input="", timeout=100.0, pydebug_ignore_warnings=False
+@@ -602,32 +531,6 @@ def test_executable(args, input="", timeout=100.0, pydebug_ignore_warnings=False
          sage: ret
          0
  
