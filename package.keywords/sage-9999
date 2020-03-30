@@ -18,13 +18,10 @@ dev-python/terminado
 ~dev-python/networkx-2.4
 =dev-python/cypari2-2.1*
 dev-python/versioneer
-=dev-python/ipython-5.8*
->=dev-python/notebook-4.1.0
 >=dev-python/ipywidgets-7.0.0
 >=dev-python/widgetsnbextension-3.0.0
 =dev-python/path-py-7*
 dev-python/wcwidth
-=dev-python/jupyter_client-5.2*
 dev-python/mpmath
 ~dev-python/pkgconfig-1.2.2
 =dev-python/sphinx-1.8*
