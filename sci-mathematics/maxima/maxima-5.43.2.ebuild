@@ -31,7 +31,7 @@ for lang in ${LANGS}; do
 done
 
 # texlive-latexrecommended needed by imaxima for breqn.sty
-RDEPEND="!app-emacs/imaxima
+RDEPEND="
 	X? ( x11-misc/xdg-utils
 		 sci-visualization/gnuplot[gd]
 		 tk? ( dev-lang/tk:0 ) )
@@ -96,7 +96,7 @@ pkg_setup() {
 
 src_prepare() {
 	local n PATCHES v
-	PATCHES=( emacs-0 rmaxima-0 wish-2 xdg-utils-1
+	PATCHES=( emacs-0 rmaxima-0 wish-2 xdg-utils-1 texinfo-0
 		${PN}-5.39.0-0001-taylor2-Avoid-blowing-the-stack-when-diff-expand-isn
 		${PN}-5.39.0-matrixexp
 		${PN}-5.39.0-undoing_true_false_printing_patch )
@@ -131,8 +131,18 @@ src_configure() {
 		if [ ${CONF} = . ]; then
 			CONF=${LISPS[${n}]}
 		fi
+		if [[ ${CONF} == ccl ]]; then
+			# 64-bit version of clozurecl is enabled
+			# by --enable-ccl64, not by --enable-ccl.
+			# bug #665364
+			use amd64 && CONF=ccl64
+		fi
 		CONFS="${CONFS} --enable-${CONF}"
 	done
+
+	# Gentoo calls 'ccl' both 32-bit and 64-bit version of clozurecl.
+	# bug #665364
+	CONFS="${CONFS} --with-ccl64=ccl"
 
 	# enable existing translated doc
 	if use nls; then
