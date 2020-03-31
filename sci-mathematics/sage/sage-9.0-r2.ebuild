@@ -103,7 +103,7 @@ RDEPEND="${DEPEND}
 	>=dev-python/cvxopt-1.2.2[glpk,${PYTHON_USEDEP}]
 	>=dev-python/fpylll-0.5.1[${PYTHON_USEDEP}]
 	>=dev-python/mpmath-0.18[${PYTHON_USEDEP}]
-	~dev-python/networkx-2.2[${PYTHON_USEDEP}]
+	>=dev-python/networkx-2.4[${PYTHON_USEDEP}]
 	>=dev-python/pexpect-4.2.1[${PYTHON_USEDEP}]
 	>=dev-python/rpy-2.8.6[${PYTHON_USEDEP}]
 	~dev-python/sympy-1.4[${PYTHON_USEDEP}]
@@ -187,6 +187,8 @@ python_prepare_all() {
 
 	# patch latex output for giac 1.5.0.65+
 	eapply "${FILESDIR}"/giac-1.5.0.65.patch
+	# patch for networkx 2.4
+	eapply "${FILESDIR}"/networkx-2.4.patch
 	# move to ipython-7
 	eapply "${FILESDIR}"/ipython-7.10.patch
 
