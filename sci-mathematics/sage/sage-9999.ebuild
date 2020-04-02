@@ -140,7 +140,8 @@ CHECKREQS_DISK_BUILD="8G"
 
 S="${WORKDIR}/${P}/src"
 
-REQUIRED_USE="doc-html? ( l10n_en )
+REQUIRED_USE="doc-html? ( jmol l10n_en )
+	doc-pdf? ( jmol l10n_en )
 	testsuite? ( doc-html jmol )"
 
 pkg_setup() {
