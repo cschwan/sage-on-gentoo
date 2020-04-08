@@ -1,12 +1,12 @@
-# Copyright 1999-2019 Gentoo Authors
+# Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=7
 inherit flag-o-matic toolchain-funcs
 
 DESCRIPTION="High-performance and portable Number Theory C++ library"
-HOMEPAGE="http://shoup.net/ntl/"
-SRC_URI="http://www.shoup.net/ntl/${P}.tar.gz"
+HOMEPAGE="https://shoup.net/ntl/"
+SRC_URI="https://www.shoup.net/ntl/${P}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0/41"

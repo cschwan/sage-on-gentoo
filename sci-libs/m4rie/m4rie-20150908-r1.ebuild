@@ -6,7 +6,7 @@ EAPI=6
 inherit autotools flag-o-matic toolchain-funcs
 
 DESCRIPTION="Method of four russian for inversion (M4RI)"
-HOMEPAGE="http://m4ri.sagemath.org/"
+HOMEPAGE="https://m4ri.sagemath.org/"
 SRC_URI="mirror://sageupstream/${PN}/${P}.tar.gz"
 
 LICENSE="GPL-2"

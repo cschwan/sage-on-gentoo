@@ -6,7 +6,7 @@ EAPI=7
 inherit autotools toolchain-funcs
 
 DESCRIPTION="GAP package for computing with error-correcting codes"
-HOMEPAGE="http://www.gap-system.org/Packages/guava.html https://osj1961.github.io/guava/"
+HOMEPAGE="https://www.gap-system.org/Packages/guava.html https://osj1961.github.io/guava/"
 SLOT="0"
 SRC_URI="https://github.com/gap-packages/${PN}/releases/download/v${PV}/${P}.tar.gz"
 

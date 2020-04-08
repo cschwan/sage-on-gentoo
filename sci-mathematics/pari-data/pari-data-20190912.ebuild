@@ -4,10 +4,10 @@
 EAPI=7
 
 DESCRIPTION="Data sets for pari"
-HOMEPAGE="http://pari.math.u-bordeaux.fr/"
+HOMEPAGE="https://pari.math.u-bordeaux.fr/"
 
 for p in elldata galdata galpol seadata nftables; do
-	SRC_URI="${SRC_URI} http://pari.math.u-bordeaux.fr/pub/pari/packages/${p}.tgz -> ${p}-${PV}.tgz"
+	SRC_URI="${SRC_URI} https://pari.math.u-bordeaux.fr/pub/pari/packages/${p}.tgz -> ${p}-${PV}.tgz"
 done
 RESTRICT=primaryuri
 

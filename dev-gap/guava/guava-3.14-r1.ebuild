@@ -9,7 +9,7 @@ MY_PN="guava"
 MY_P="${MY_PN}-${PV}"
 
 DESCRIPTION="GAP package for computing with error-correcting codes"
-HOMEPAGE="http://www.gap-system.org/Packages/guava.html https://osj1961.github.io/guava/"
+HOMEPAGE="https://www.gap-system.org/Packages/guava.html https://osj1961.github.io/guava/"
 GAP_VERSION="4.10.0"
 SLOT="0/${GAP_VERSION}"
 SRC_URI="https://www.gap-system.org/pub/gap/gap-$(ver_cut 1-2 ${GAP_VERSION})/tar.bz2/gap-${GAP_VERSION}.tar.bz2"

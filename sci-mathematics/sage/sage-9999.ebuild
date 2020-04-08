@@ -15,7 +15,7 @@ EGIT_CHECKOUT_DIR="${WORKDIR}/${P}"
 KEYWORDS=""
 
 DESCRIPTION="Math software for abstract and numerical computations"
-HOMEPAGE="http://www.sagemath.org"
+HOMEPAGE="https://www.sagemath.org"
 
 LANGS="ca de en es fr hu it ja pt ru tr"
 
@@ -518,10 +518,10 @@ pkg_postinst() {
 	einfo ""
 
 	einfo "Vanilla Sage comes with the 'Standard' set of Sage Packages, i.e."
-	einfo "those listed at: http://sagemath.org/packages/standard/ which are"
+	einfo "those listed at: https://sagemath.org/packages/standard/ which are"
 	einfo "installed now."
 	einfo "There are also some packages of the 'Optional' set (which consists"
-	einfo "of the these: http://sagemath.org/packages/optional/) available"
+	einfo "of the these: https://sagemath.org/packages/optional/) available"
 	einfo "which may be installed with portage as usual."
 
 	if use testsuite ; then

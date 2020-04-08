@@ -1,11 +1,11 @@
-# Copyright 1999-2019 Gentoo Authors
+# Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=7
 
 MY_PN="hapcryst"
 DESCRIPTION="A HAP extension for crytallographic groups"
-HOMEPAGE="http://www.gap-system.org/Packages/hapcryst.html"
+HOMEPAGE="https://www.gap-system.org/Packages/hapcryst.html"
 SRC_URI="https://github.com/gap-packages/${MY_PN}/archive/v${PV}.tar.gz -> ${P}.tar.gz"
 
 LICENSE="GPL-2+"

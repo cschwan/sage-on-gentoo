@@ -11,7 +11,7 @@ inherit distutils-r1 latex-package
 MY_PN="sagetex"
 MY_P="${MY_PN}-${PV}"
 DESCRIPTION="SageTeX allows you to embed Sage code into LaTeX documents"
-HOMEPAGE="http://www.sagemath.org https://github.com/dandrake/sagetex"
+HOMEPAGE="https://www.sagemath.org https://github.com/dandrake/sagetex"
 SRC_URI="https://github.com/sagemath/${MY_PN}/releases/download/v${PV}/${MY_P}.tar.gz"
 
 LICENSE="GPL-2+"

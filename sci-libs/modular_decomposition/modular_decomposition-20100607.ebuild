@@ -1,4 +1,4 @@
-# Copyright 1999-2018 Gentoo Foundation
+# Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=6
@@ -6,7 +6,7 @@ EAPI=6
 inherit toolchain-funcs multilib
 
 DESCRIPTION="This is an implementation of a modular decomposition algorithm."
-HOMEPAGE="http://www.liafa.jussieu.fr/~fm/"
+HOMEPAGE="https://www.liafa.jussieu.fr/~fm/"
 SRC_URI="mirror://sageupstream/${PN}/${P}.tar.bz2"
 
 LICENSE="GPL-2"

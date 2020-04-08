@@ -1,4 +1,4 @@
-# Copyright 1999-2018 Gentoo Authors
+# Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=6
@@ -10,7 +10,7 @@ MY_PM="jmol"
 MY_P=${MY_PN}-${PV}_2015.01.20
 MY_SP=${MY_PM}-${PV}_2015.01.20
 DESCRIPTION="Jmol is a java molecular viever for 3-D chemical structures."
-HOMEPAGE="http://jmol.sourceforge.net/"
+HOMEPAGE="https://jmol.sourceforge.net/"
 SRC_URI="mirror://sourceforge/jmol/Jmol/${MY_P}-binary.tar.gz"
 
 LICENSE="LGPL-2.1"

@@ -1,11 +1,11 @@
-# Copyright 1999-2019 Gentoo Authors
+# Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=7
 
 MY_P="alnuth-${PV}"
 DESCRIPTION="Algebraic number theory and an interface to PARI/GP"
-HOMEPAGE="http://www.gap-system.org/Packages/alnuth.html"
+HOMEPAGE="https://www.gap-system.org/Packages/alnuth.html"
 SLOT="0"
 SRC_URI="https://github.com/gap-packages/alnuth/releases/download/v${PV}/${MY_P}.tar.gz"
 

@@ -6,7 +6,7 @@ EAPI=6
 inherit flag-o-matic toolchain-funcs
 
 DESCRIPTION="Computes special values of symmetric power elliptic curve L-functions"
-HOMEPAGE="http://www.sagemath.org"
+HOMEPAGE="https://www.sagemath.org"
 SRC_URI="mirror://sageupstream/${PN}/${P}.tar.bz2"
 
 LICENSE="BSD"

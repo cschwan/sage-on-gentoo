@@ -5,8 +5,8 @@ EAPI=7
 inherit flag-o-matic toolchain-funcs
 
 DESCRIPTION="High-performance and portable Number Theory C++ library"
-HOMEPAGE="http://shoup.net/ntl/"
-SRC_URI="http://www.shoup.net/ntl/${P}.tar.gz"
+HOMEPAGE="https://shoup.net/ntl/"
+SRC_URI="https://www.shoup.net/ntl/${P}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0/43"

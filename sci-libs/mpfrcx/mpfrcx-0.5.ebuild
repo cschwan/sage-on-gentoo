@@ -4,8 +4,8 @@
 EAPI=7
 
 DESCRIPTION="Mpfrcx is a library for the arithmetic of univariate polynomials "
-HOMEPAGE="http://www.multiprecision.org/mpfrcx/home.html"
-SRC_URI="http://www.multiprecision.org/downloads/${P}.tar.gz"
+HOMEPAGE="https://www.multiprecision.org/mpfrcx/home.html"
+SRC_URI="https://www.multiprecision.org/downloads/${P}.tar.gz"
 
 LICENSE="LGPL-2.1+"
 SLOT="0"

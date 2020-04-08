@@ -1,10 +1,10 @@
-# Copyright 2019 Gentoo Authors
+# Copyright 2019-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=7
 
 DESCRIPTION="Sparse matrices Rutherford/Boeing format tools"
-HOMEPAGE="http://faculty.cse.tamu.edu/davis/suitesparse.html"
+HOMEPAGE="https://faculty.cse.tamu.edu/davis/suitesparse.html"
 SRC_URI="mirror://sagemath/${P}.tar.bz2"
 
 LICENSE="GPL-2+"

@@ -7,7 +7,7 @@ MY_PN="combinatorial_designs"
 MY_P="${MY_PN}-$(ver_rs 1 '.')"
 
 DESCRIPTION="Data for Combinatorial Designs"
-HOMEPAGE="http://www.sagemath.org"
+HOMEPAGE="https://www.sagemath.org"
 SRC_URI="mirror://sageupstream/${MY_PN}/${MY_P}.tar.bz2"
 
 LICENSE="GPL-2"
