@@ -106,7 +106,7 @@ RDEPEND="${DEPEND}
 	>=dev-python/networkx-2.4[${PYTHON_USEDEP}]
 	>=dev-python/pexpect-4.2.1[${PYTHON_USEDEP}]
 	>=dev-python/rpy-2.8.6[${PYTHON_USEDEP}]
-	~dev-python/sympy-1.4[${PYTHON_USEDEP}]
+	=dev-python/sympy-1.5*[${PYTHON_USEDEP}]
 	media-gfx/tachyon[png]
 	jmol? ( sci-chemistry/sage-jmol-bin )
 	>=sci-libs/cddlib-094j[tools]
@@ -192,6 +192,8 @@ python_prepare_all() {
 	eapply "${FILESDIR}"/networkx-2.4.patch
 	# move to ipython-7
 	eapply "${FILESDIR}"/ipython-7.10.patch
+	# move to sympy 1.5
+	eapply "${FILESDIR}"/sympy-1.5.patch
 	# patch for pari 2.11.3 if used
 	if has_version ">=sci-mathematics/pari-2.11.3" ; then
 		eapply "${FILESDIR}"/pari-2.11.3.patch
