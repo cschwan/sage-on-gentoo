@@ -11,7 +11,7 @@ inherit desktop distutils-r1 flag-o-matic multiprocessing prefix toolchain-funcs
 KEYWORDS="~amd64 ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos"
 
 DESCRIPTION="Math software for abstract and numerical computations"
-HOMEPAGE="http://www.sagemath.org"
+HOMEPAGE="https://www.sagemath.org"
 SRC_URI="https://github.com/sagemath/sage/archive/${PV}.tar.gz -> ${P}.tar.gz
 	mirror://sagemath/sage-icon.tar.bz2
 	doc-html-bin? ( mirror://sagemath/${P}-doc-html.tar.xz )
@@ -539,10 +539,10 @@ pkg_postinst() {
 	einfo ""
 
 	einfo "Vanilla Sage comes with the 'Standard' set of Sage Packages, i.e."
-	einfo "those listed at: http://sagemath.org/packages/standard/ which are"
+	einfo "those listed at: https://sagemath.org/packages/standard/ which are"
 	einfo "installed now."
 	einfo "There are also some packages of the 'Optional' set (which consists"
-	einfo "of the these: http://sagemath.org/packages/optional/) available"
+	einfo "of the these: https://sagemath.org/packages/optional/) available"
 	einfo "which may be installed with portage as usual."
 
 	if use testsuite ; then

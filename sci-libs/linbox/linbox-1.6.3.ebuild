@@ -6,7 +6,7 @@ EAPI=7
 inherit toolchain-funcs
 
 DESCRIPTION="A C++ template library for linear algebra over integers and over finite fields"
-HOMEPAGE="http://linalg.org/"
+HOMEPAGE="https://linalg.org/"
 SRC_URI="https://github.com/linbox-team/${PN}/releases/download/v${PV}/${P}.tar.gz"
 
 LICENSE="LGPL-2.1"

@@ -14,8 +14,8 @@ MY_DIR2=$(ver_cut 1-3 ${PV})
 MY_DIR=$(ver_rs 1- '-' ${MY_DIR2})
 
 DESCRIPTION="Computer algebra system for polynomial computations"
-HOMEPAGE="http://www.singular.uni-kl.de/"
-SRC_URI="http://www.mathematik.uni-kl.de/ftp/pub/Math/${MY_PN}/SOURCES/${MY_DIR}/${PN}-${MY_PV}.tar.gz"
+HOMEPAGE="https://www.singular.uni-kl.de/"
+SRC_URI="https://www.mathematik.uni-kl.de/ftp/pub/Math/${MY_PN}/SOURCES/${MY_DIR}/${PN}-${MY_PV}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"

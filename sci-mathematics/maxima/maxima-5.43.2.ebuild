@@ -6,7 +6,7 @@ EAPI=6
 inherit autotools elisp-common eutils xdg-utils
 
 DESCRIPTION="Free computer algebra environment based on Macsyma"
-HOMEPAGE="http://maxima.sourceforge.net/"
+HOMEPAGE="https://maxima.sourceforge.net/"
 SRC_URI="mirror://sourceforge/${PN}/${P}.tar.gz"
 
 LICENSE="GPL-2 GPL-2+"

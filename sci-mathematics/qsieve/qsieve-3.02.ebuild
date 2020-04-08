@@ -4,8 +4,8 @@
 EAPI=6
 
 DESCRIPTION="A program for factoring numbers"
-HOMEPAGE="http://www.thorstenreinecke.de/qsieve/"
-SRC_URI="http://www.thorstenreinecke.de/downloads/${P}.tar.bz2"
+HOMEPAGE="https://www.thorstenreinecke.de/qsieve/"
+SRC_URI="https://www.thorstenreinecke.de/downloads/${P}.tar.bz2"
 
 LICENSE="GPL-2"
 SLOT="0"

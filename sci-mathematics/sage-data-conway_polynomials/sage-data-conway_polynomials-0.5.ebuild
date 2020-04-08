@@ -10,7 +10,7 @@ inherit python-any-r1
 MY_P="conway_polynomials-${PV}"
 
 DESCRIPTION="Sage's conway polynomial database"
-HOMEPAGE="http://www.sagemath.org"
+HOMEPAGE="https://www.sagemath.org"
 SRC_URI="mirror://sageupstream/conway_polynomials/${MY_P}.tar.bz2"
 
 LICENSE="GPL-2"

@@ -1,4 +1,4 @@
-# Copyright 1999-2019 Gentoo Authors
+# Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=7
@@ -6,7 +6,7 @@ EAPI=7
 inherit multilib toolchain-funcs
 
 DESCRIPTION="Sparse Cholesky factorization and update/downdate library"
-HOMEPAGE="http://faculty.cse.tamu.edu/davis/suitesparse.html"
+HOMEPAGE="https://faculty.cse.tamu.edu/davis/suitesparse.html"
 SRC_URI="mirror://sagemath/${P}.tar.bz2"
 
 LICENSE="minimal? ( LGPL-2.1 ) !minimal? ( GPL-2 )"

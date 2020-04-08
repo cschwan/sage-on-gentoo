@@ -1,10 +1,10 @@
-# Copyright 1999-2019 Gentoo Authors
+# Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=6
 
 DESCRIPTION="Meta package to install all sage optional gap packages"
-HOMEPAGE="http://www.gap-system.org/Packages/"
+HOMEPAGE="https://www.gap-system.org/Packages/"
 
 GAP_VERSION=${PV}
 LICENSE="metapackage"

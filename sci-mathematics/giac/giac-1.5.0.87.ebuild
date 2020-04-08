@@ -8,8 +8,8 @@ inherit autotools flag-o-matic pax-utils
 FETCH_P="${PN}_"$(ver_rs  3 '-')
 MY_PV=$(ver_cut 1-3)
 DESCRIPTION="A free C++ CAS (Computer Algebra System) library and its interfaces"
-HOMEPAGE="http://www-fourier.ujf-grenoble.fr/~parisse/giac.html"
-SRC_URI="http://www-fourier.ujf-grenoble.fr/~parisse/debian/dists/stable/main/source/${FETCH_P}.tar.gz"
+HOMEPAGE="https://www-fourier.ujf-grenoble.fr/~parisse/giac.html"
+SRC_URI="https://www-fourier.ujf-grenoble.fr/~parisse/debian/dists/stable/main/source/${FETCH_P}.tar.gz"
 LICENSE="GPL-2"
 
 SLOT="0"

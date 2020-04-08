@@ -1,4 +1,4 @@
-# Copyright 1999-2018 Gentoo Authors
+# Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=7
@@ -6,7 +6,7 @@ EAPI=7
 inherit toolchain-funcs
 
 DESCRIPTION="A program for calculating with L-functions"
-HOMEPAGE="http://oto.math.uwaterloo.ca/~mrubinst/L_function_public/L.html"
+HOMEPAGE="https://oto.math.uwaterloo.ca/~mrubinst/L_function_public/L.html"
 SRC_URI="mirror://sageupstream/${PN}/${P}.tar.bz2"
 
 LICENSE="GPL-2"

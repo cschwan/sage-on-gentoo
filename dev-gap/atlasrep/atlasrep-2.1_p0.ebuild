@@ -1,11 +1,11 @@
-# Copyright 1999-2019 Gentoo Authors
+# Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=7
 
 MY_PV=$(ver_rs 1 'r' $(ver_rs 2 ''))
 DESCRIPTION="A GAP Interface to the Atlas of Group Representations"
-HOMEPAGE="http://www.gap-system.org/Packages/${PN}.html"
+HOMEPAGE="https://www.gap-system.org/Packages/${PN}.html"
 GAP_VERSION="4.10.2"
 SLOT="0/${GAP_VERSION}"
 SRC_URI="https://www.gap-system.org/pub/gap/gap-$(ver_cut 1-2 ${GAP_VERSION})/tar.bz2/gap-${GAP_VERSION}.tar.bz2"

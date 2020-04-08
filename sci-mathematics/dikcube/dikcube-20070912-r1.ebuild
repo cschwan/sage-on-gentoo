@@ -8,7 +8,7 @@ inherit flag-o-matic
 MY_P="rubiks-${PV}"
 
 DESCRIPTION="Dik T. Winter's rubik's cube solver and related tools"
-HOMEPAGE="http://www.sagemath.org"
+HOMEPAGE="https://www.sagemath.org"
 SRC_URI="mirror://sageupstream/rubiks/${MY_P}.tar.bz2"
 
 LICENSE="MIT"

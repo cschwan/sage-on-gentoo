@@ -6,7 +6,7 @@ EAPI=7
 inherit autotools elisp-common
 
 DESCRIPTION="System for computational discrete algebra"
-HOMEPAGE="http://www.gap-system.org/"
+HOMEPAGE="https://www.gap-system.org/"
 #SRC_URI="https://www.gap-system.org/pub/gap/${PN}-$(ver_cut 1-2)/tar.bz2/${P}.tar.bz2"
 SRC_URI="https://github.com/gap-system/${PN}/releases/download/v${PV}/${P}.tar.bz2"
 

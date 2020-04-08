@@ -1,4 +1,4 @@
-# Copyright 1999-2018 Gentoo Authors
+# Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=7
@@ -6,8 +6,8 @@ EAPI=7
 MY_PV=$(ver_rs 1 '' $(ver_rs 2 'r'))
 
 DESCRIPTION="Computing automorphism groups of graphs and digraphs"
-HOMEPAGE="http://pallini.di.uniroma1.it/"
-SRC_URI="http://pallini.di.uniroma1.it/${PN}${MY_PV}.tar.gz"
+HOMEPAGE="https://pallini.di.uniroma1.it/"
+SRC_URI="https://pallini.di.uniroma1.it/${PN}${MY_PV}.tar.gz"
 
 LICENSE="nauty"
 SLOT="0"

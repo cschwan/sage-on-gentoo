@@ -8,7 +8,7 @@ PYTHON_COMPAT=( python3_{6,7} )
 inherit autotools python-r1 vcs-snapshot
 
 DESCRIPTION="A modified version of GiNaC that replaces the dependency on CLN by Python"
-HOMEPAGE="http://pynac.sagemath.org/ https://github.com/pynac/pynac"
+HOMEPAGE="https://pynac.sagemath.org/ https://github.com/pynac/pynac"
 SRC_URI="https://github.com/pynac/pynac/archive/${P}.tar.gz"
 
 LICENSE="GPL-2"

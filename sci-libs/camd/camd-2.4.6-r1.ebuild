@@ -6,7 +6,7 @@ EAPI=7
 inherit autotools
 
 DESCRIPTION="Library to order a sparse matrix prior to Cholesky factorization"
-HOMEPAGE="http://faculty.cse.tamu.edu/davis/suitesparse.html"
+HOMEPAGE="https://faculty.cse.tamu.edu/davis/suitesparse.html"
 SRC_URI="mirror://sagemath/${P}.tar.bz2"
 
 LICENSE="LGPL-2.1"
