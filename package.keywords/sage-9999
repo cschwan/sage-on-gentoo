@@ -27,7 +27,6 @@ dev-python/mpmath
 =dev-python/sphinx-1.8*
 =dev-python/pyzmq-17*
 =dev-tex/sage-latex-3*
-~dev-python/sympy-1.5
 media-gfx/tachyon
 ~media-gfx/threejs-sage-extension-110
 sci-libs/cddlib
