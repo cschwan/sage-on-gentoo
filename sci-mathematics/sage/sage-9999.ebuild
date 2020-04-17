@@ -62,8 +62,8 @@ DEPEND="dev-libs/gmp:0=
 	>=sci-libs/iml-1.0.4
 	~sci-mathematics/cliquer-1.21
 	~sci-libs/linbox-1.6.3
-	~sci-libs/m4ri-20200115
-	~sci-libs/m4rie-20200115
+	sci-libs/m4ri
+	sci-libs/m4rie
 	>=sci-libs/mpfi-1.5.2
 	~sci-libs/pynac-0.7.26[-giac,${PYTHON_USEDEP}]
 	>=sci-libs/symmetrica-2.0-r3
@@ -193,6 +193,8 @@ python_prepare_all() {
 	eapply "${FILESDIR}"/networkx-2.4.patch
 	# Move to ipython-7
 	eapply "${FILESDIR}"/ipython-7.10_b.patch
+	# sphinx 3
+	#eapply "${FILESDIR}"/sphinx-3.0.patch
 	# patch for pari 2.11.3 if used
 	if has_version ">=sci-mathematics/pari-2.11.3" ; then
 		eapply "${FILESDIR}"/pari-2.11.3.patch
