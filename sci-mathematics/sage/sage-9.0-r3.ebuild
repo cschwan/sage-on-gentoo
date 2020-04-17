@@ -62,8 +62,8 @@ DEPEND="dev-libs/gmp:0=
 	>=sci-libs/iml-1.0.4
 	~sci-mathematics/cliquer-1.21
 	~sci-libs/linbox-1.6.3
-	~sci-libs/m4ri-20140914
-	~sci-libs/m4rie-20150908
+	sci-libs/m4ri
+	sci-libs/m4rie
 	>=sci-libs/mpfi-1.5.2
 	~sci-libs/pynac-0.7.26[-giac,${PYTHON_USEDEP}]
 	>=sci-libs/symmetrica-2.0-r3
