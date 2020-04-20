@@ -14,10 +14,10 @@ Subject: Adjust doctests for new output with pari 2.11.3
  src/sage/schemes/elliptic_curves/ell_number_field.py  | 13 +++++++------
  8 files changed, 29 insertions(+), 28 deletions(-)
 
-diff --git a/src/sage/lfunctions/dokchitser.py b/src/sage/lfunctions/dokchitser.py
+diff --git a/sage/lfunctions/dokchitser.py b/sage/lfunctions/dokchitser.py
 index 680ac17..1bf8953 100644
---- a/src/sage/lfunctions/dokchitser.py
-+++ b/src/sage/lfunctions/dokchitser.py
+--- a/sage/lfunctions/dokchitser.py
++++ b/sage/lfunctions/dokchitser.py
 @@ -111,7 +111,7 @@ class Dokchitser(SageObject):
          0.000000000000000 + 0.305999773834052*z + 0.186547797268162*z^2 - 0.136791463097188*z^3 + O(z^4)
          sage: L.check_functional_equation()
@@ -36,10 +36,10 @@ index 680ac17..1bf8953 100644
  
          If we choose the sign in functional equation for the
          `\zeta` function incorrectly, the functional equation
-diff --git a/src/sage/lfunctions/pari.py b/src/sage/lfunctions/pari.py
+diff --git a/sage/lfunctions/pari.py b/sage/lfunctions/pari.py
 index c60f944..1daa219 100644
---- a/src/sage/lfunctions/pari.py
-+++ b/src/sage/lfunctions/pari.py
+--- a/sage/lfunctions/pari.py
++++ b/sage/lfunctions/pari.py
 @@ -423,7 +423,7 @@ class LFunction(SageObject):
          sage: L.taylor_series(1,4)
          0.000000000000000 + 0.305999773834052*z + 0.186547797268162*z^2 - 0.136791463097188*z^3 + O(z^4)
@@ -49,10 +49,10 @@ index c60f944..1daa219 100644
  
      .. RUBRIC:: Rank 2 elliptic curve
  
-diff --git a/src/sage/rings/number_field/number_field.py b/src/sage/rings/number_field/number_field.py
+diff --git a/sage/rings/number_field/number_field.py b/sage/rings/number_field/number_field.py
 index 4908fd2..a052995 100644
---- a/src/sage/rings/number_field/number_field.py
-+++ b/src/sage/rings/number_field/number_field.py
+--- a/sage/rings/number_field/number_field.py
++++ b/sage/rings/number_field/number_field.py
 @@ -4383,7 +4383,7 @@ class NumberField_generic(WithEqualityById, number_field_base.NumberField):
                -1/13*a^2 + 6/13*a + 345/13,
                -1,
@@ -116,10 +116,10 @@ index 4908fd2..a052995 100644
          """
          if name is None:
              name = self.variable_names()
-diff --git a/src/sage/rings/number_field/number_field_element.pyx b/src/sage/rings/number_field/number_field_element.pyx
+diff --git a/sage/rings/number_field/number_field_element.pyx b/sage/rings/number_field/number_field_element.pyx
 index 59bab07..079eaaa 100644
---- a/src/sage/rings/number_field/number_field_element.pyx
-+++ b/src/sage/rings/number_field/number_field_element.pyx
+--- a/sage/rings/number_field/number_field_element.pyx
++++ b/sage/rings/number_field/number_field_element.pyx
 @@ -1733,7 +1733,7 @@ cdef class NumberFieldElement(FieldElement):
              sage: P.<X> = K[]
              sage: L = NumberField(X^2 + a^2 + 2*a + 1, 'b')
@@ -129,10 +129,10 @@ index 59bab07..079eaaa 100644
  
              sage: K.<a> = NumberField(x^3 + x + 1)
              sage: Q.<X> = K[]
-diff --git a/src/sage/rings/number_field/number_field_ideal.py b/src/sage/rings/number_field/number_field_ideal.py
+diff --git a/sage/rings/number_field/number_field_ideal.py b/sage/rings/number_field/number_field_ideal.py
 index b4eabe8..d746dcb 100644
---- a/src/sage/rings/number_field/number_field_ideal.py
-+++ b/src/sage/rings/number_field/number_field_ideal.py
+--- a/sage/rings/number_field/number_field_ideal.py
++++ b/sage/rings/number_field/number_field_ideal.py
 @@ -1827,7 +1827,7 @@ class NumberFieldFractionalIdeal(MultiplicativeGroupElement, NumberFieldIdeal):
  
              sage: F.<a> = NumberField(2*x^3 + x + 1)
@@ -151,10 +151,10 @@ index b4eabe8..d746dcb 100644
              sage: (lam*A).is_coprime(B)
              True
  
-diff --git a/src/sage/rings/number_field/unit_group.py b/src/sage/rings/number_field/unit_group.py
+diff --git a/sage/rings/number_field/unit_group.py b/sage/rings/number_field/unit_group.py
 index 6ed0aea..529e23a 100644
---- a/src/sage/rings/number_field/unit_group.py
-+++ b/src/sage/rings/number_field/unit_group.py
+--- a/sage/rings/number_field/unit_group.py
++++ b/sage/rings/number_field/unit_group.py
 @@ -279,7 +279,7 @@ class UnitGroup(AbelianGroupWithValues_class):
              sage: K.unit_group()
              Unit group with structure C2 x Z x Z of Number Field in a with defining polynomial 7/9*x^3 + 7/3*x^2 - 56*x + 123
@@ -164,10 +164,10 @@ index 6ed0aea..529e23a 100644
  
          Conversion from unit group to a number field and back
          gives the right results (:trac:`25874`)::
-diff --git a/src/sage/rings/polynomial/polynomial_quotient_ring.py b/src/sage/rings/polynomial/polynomial_quotient_ring.py
+diff --git a/sage/rings/polynomial/polynomial_quotient_ring.py b/sage/rings/polynomial/polynomial_quotient_ring.py
 index 397e92d..1974eaa 100644
---- a/src/sage/rings/polynomial/polynomial_quotient_ring.py
-+++ b/src/sage/rings/polynomial/polynomial_quotient_ring.py
+--- a/sage/rings/polynomial/polynomial_quotient_ring.py
++++ b/sage/rings/polynomial/polynomial_quotient_ring.py
 @@ -1296,9 +1296,9 @@ class PolynomialQuotientRing_generic(CommutativeRing):
                 1/16*a*xbar^3 + (-1/16*a - 1/8)*xbar^2 + 23/16*a*xbar - 23/16*a - 23/8),
                6),
@@ -194,10 +194,10 @@ index 397e92d..1974eaa 100644
                2)]
  
          Note that all the returned values live where we expect them to::
-diff --git a/src/sage/schemes/elliptic_curves/ell_number_field.py b/src/sage/schemes/elliptic_curves/ell_number_field.py
+diff --git a/sage/schemes/elliptic_curves/ell_number_field.py b/sage/schemes/elliptic_curves/ell_number_field.py
 index 2967f08..300278b 100644
---- a/src/sage/schemes/elliptic_curves/ell_number_field.py
-+++ b/src/sage/schemes/elliptic_curves/ell_number_field.py
+--- a/sage/schemes/elliptic_curves/ell_number_field.py
++++ b/sage/schemes/elliptic_curves/ell_number_field.py
 @@ -302,7 +302,8 @@ class EllipticCurve_number_field(EllipticCurve_field):
              (3,
               3,
