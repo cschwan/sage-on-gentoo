@@ -92,8 +92,7 @@ DEPEND="dev-libs/gmp:0=
 	>=sci-libs/libhomfly-1.0.1
 	sci-libs/libbraiding
 	bliss? ( >=sci-libs/bliss-0.73 )
-	>=dev-python/sphinx-1.8.5[${PYTHON_USEDEP}]
-	<dev-python/sphinx-2.0.0"
+	>=dev-python/sphinx-3.0.1[${PYTHON_USEDEP}]"
 
 BDEPEND="app-portage/gentoolkit
 	doc-pdf? ( app-text/texlive[extra,${L10N_USEDEP}] )"
@@ -194,7 +193,7 @@ python_prepare_all() {
 	# Move to ipython-7
 	eapply "${FILESDIR}"/ipython-7.10_b.patch
 	# sphinx 3
-	#eapply "${FILESDIR}"/sphinx-3.0.patch
+	eapply "${FILESDIR}"/sphinx-3.0.patch
 	# patch for pari 2.11.3 if used
 	if has_version ">=sci-mathematics/pari-2.11.3" ; then
 		eapply "${FILESDIR}"/pari-2.11.3.patch
