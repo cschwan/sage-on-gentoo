@@ -186,7 +186,7 @@ index 71a08cd..722a2b6 100644
          cache = cPickle.load(f)
      logger.info("done (%s citations)."%len(cache))
 -    cite = env.domaindata["std"]["citations"]
-+    cite = env.domaindata["std"].get("citations", dict())
++    cite = env.domaindata['citation'].get('citations', dict())
      for ind, (path, tag, lineno) in six.iteritems(cache):
          if ind not in cite: # don't override local citation
              cite[ind] = (os.path.join("..", path), tag, lineno)
