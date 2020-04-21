@@ -239,3 +239,16 @@ index bba274f..179fc25 100644
          else:
              memberlist = self.options.members or []
          ret = []
+diff --git a/doc/en/thematic_tutorials/structures_in_coding_theory.rst b/doc/en/thematic_tutorials/structures_in_coding_theory.rst
+index 13f1a83..4726bce 100644
+--- a/doc/en/thematic_tutorials/structures_in_coding_theory.rst
++++ b/doc/en/thematic_tutorials/structures_in_coding_theory.rst
+@@ -721,8 +721,6 @@ derive from the one that follows.
+ 
+ .. CODE-BLOCK:: python
+ 
+-    :class:`sage.coding.repetition_code.BinaryRepetitionCode <sage.coding.repetition_code.BinaryRepetitionCode>`
+-    #the line above creates a link to the class in the html documentation of coding theory library
+     from sage.coding.repetition_code import BinaryRepetitionCode
+ 
+ ``encoders_catalog.py`` (continued):
