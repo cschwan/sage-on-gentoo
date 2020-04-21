@@ -92,8 +92,7 @@ DEPEND="dev-libs/gmp:0=
 	>=sci-libs/libhomfly-1.0.1
 	sci-libs/libbraiding
 	bliss? ( >=sci-libs/bliss-0.73 )
-	>=dev-python/sphinx-1.8.5[${PYTHON_USEDEP}]
-	<dev-python/sphinx-2.0.0"
+	>=dev-python/sphinx-3.0.1[${PYTHON_USEDEP}]"
 
 BDEPEND="app-portage/gentoolkit
 	doc-pdf? ( app-text/texlive[extra,${L10N_USEDEP}] )"
