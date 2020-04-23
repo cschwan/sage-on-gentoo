@@ -60,7 +60,12 @@ index 10664c6..768729f 100644
  
  # By default document are not master.
  multidocs_is_master = True
-@@ -669,7 +670,7 @@ def call_intersphinx(app, env, node, contnode):
+@@ -669,11 +670,11 @@ def call_intersphinx(app, env, node, contnode):
+         sage: for line in open(thematic_index).readlines():  # optional - dochtml
+         ....:     if "padics" in line:
+         ....:         _ = sys.stdout.write(line)
+-        <li><a class="reference external" href="../reference/padics/sage/rings/padics/tutorial.html#sage-rings-padics-tutorial" title="(in Sage... Reference Manual: p-Adics v...)"><span>Introduction to the p-adics</span></a></li>
++        <li><p><a class="reference external" href="../reference/padics/sage/rings/padics/tutorial.html#sage-rings-padics-tutorial" title="(in Sage... Reference Manual: p-Adics v...)"><span>Introduction to the p-adics</span></a></p></li>
      """
      debug_inf(app, "???? Trying intersphinx for %s" % node['reftarget'])
      builder = app.builder
@@ -69,7 +74,7 @@ index 10664c6..768729f 100644
          app, env, node, contnode)
      if res:
          # Replace absolute links to $SAGE_DOC by relative links: this
-@@ -852,11 +853,10 @@ def setup(app):
+@@ -856,11 +857,10 @@ def setup(app):
      if app.srcdir.startswith(SAGE_DOC_SRC):
          app.add_config_value('intersphinx_mapping', {}, False)
          app.add_config_value('intersphinx_cache_limit', 5, False)
@@ -83,6 +88,19 @@ index 10664c6..768729f 100644
 -        app.connect('builder-inited', set_intersphinx_mappings)
 -        app.connect('builder-inited', sphinx.ext.intersphinx.load_mappings)
          app.connect('builder-inited', nitpick_patch_config)
+diff --git a/sage/misc/sagedoc.py b/sage/misc/sagedoc.py
+index 85ee764..795dfd3 100644
+--- a/sage/misc/sagedoc.py
++++ b/sage/misc/sagedoc.py
+@@ -24,7 +24,7 @@ see :trac:`12849`::
+     ....:     for line in fobj:
+     ....:         if "#sage.symbolic.expression.Expression.numerical_approx" in line:
+     ....:             print(line)
+-    <code class="descname">numerical_approx</code><span class="sig-paren">(</span><em>prec=None</em>, <em>digits=None</em>, <em>algorithm=None</em><span class="sig-paren">)</span>...
++    <code class="sig-name descname">numerical_approx</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">prec</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">digits</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">algorithm</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span>...
+ 
+ Check that sphinx is not imported at Sage start-up::
+ 
 diff --git a/sage_setup/docbuild/__init__.py b/sage_setup/docbuild/__init__.py
 index 128117b..5aad13c 100644
 --- a/sage_setup/docbuild/__init__.py
