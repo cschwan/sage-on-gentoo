@@ -1,0 +1,43 @@
+diff --git a/sage/combinat/root_system/root_lattice_realizations.py b/sage/combinat/root_system/root_lattice_realizations.py
+index f55c24f..16d3ca5 100644
+--- a/sage/combinat/root_system/root_lattice_realizations.py
++++ b/sage/combinat/root_system/root_lattice_realizations.py
+@@ -3131,8 +3131,8 @@ class RootLatticeRealizations(Category_over_base_ring):
+ 
+                 sage: L = RootSystem(['A',2]).ambient_space()
+                 sage: C = crystals.Tableaux(['A',2], shape=[2,1])
+-                sage: L.plot_crystal(C)
+-                Graphics object consisting of 16 graphics primitives
++                sage: L.plot_crystal(C, plot_labels='multiplicities')
++                Graphics object consisting of 15 graphics primitives
+                 sage: C = crystals.Tableaux(['A',2], shape=[8,4])
+                 sage: p = L.plot_crystal(C, plot_labels='circles')
+                 sage: p.show(figsize=15)
+diff --git a/sage/plot/multigraphics.py b/sage/plot/multigraphics.py
+index 3135ceb..184a97c 100644
+--- a/sage/plot/multigraphics.py
++++ b/sage/plot/multigraphics.py
+@@ -1295,15 +1295,15 @@ class GraphicsArray(MultiGraphics):
+             sage: g2 = circle((0,1), 1.)
+             sage: G = graphics_array([g1, g2])
+             sage: G.position(0)  # tol 1.0e-13
+-            (0.028906249999999998,
+-             0.038541666666666696,
+-             0.45390624999999996,
+-             0.9229166666666667)
++            (0.023437500000000003,
++             0.03415488992713045,
++             0.4627803348994754,
++             0.9345951100728696)
+             sage: G.position(1)  # tol 1.0e-13
+-            (0.5171874999999999,
+-             0.038541666666666696,
+-             0.45390624999999996,
+-             0.9229166666666667)
++            (0.5136230468749999,
++             0.19293222169724827,
++             0.46278033489947534,
++             0.617040446532634)
+ 
+         """
+         if not self._positions:

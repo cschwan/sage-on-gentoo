@@ -192,6 +192,8 @@ python_prepare_all() {
 	eapply "${FILESDIR}"/networkx-2.4.patch
 	# Move to ipython-7
 	eapply "${FILESDIR}"/ipython-7.10_b.patch
+	# doctests with MPL 3.1
+	eapply "${FILESDIR}"/MPL-3.1.patch
 	# sphinx 3
 	eapply "${FILESDIR}"/sphinx-3.0.patch
 	# patch for pari 2.11.3 if used
