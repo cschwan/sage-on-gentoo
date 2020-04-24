@@ -28,6 +28,10 @@ DEPEND="dev-libs/gmp[cxx]
 	sci-mathematics/flint"
 RDEPEND="${DEPEND}"
 
+PATCHES=(
+	"${FILESDIR}"/${PN}-1.6.3-pc.patch
+)
+
 DOCS=( ChangeLog )
 
 # TODO: installation of documentation does not work ?
