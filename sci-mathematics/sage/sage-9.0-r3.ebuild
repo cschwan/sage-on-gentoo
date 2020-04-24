@@ -61,7 +61,7 @@ DEPEND="dev-libs/gmp:0=
 	>=sci-libs/gsl-2.3
 	>=sci-libs/iml-1.0.4
 	~sci-mathematics/cliquer-1.21
-	~sci-libs/linbox-1.6.3
+	>=sci-libs/linbox-1.6.3-r1
 	sci-libs/m4ri
 	sci-libs/m4rie
 	>=sci-libs/mpfi-1.5.2
