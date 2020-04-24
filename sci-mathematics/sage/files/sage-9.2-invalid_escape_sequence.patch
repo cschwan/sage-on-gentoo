@@ -1,0 +1,26 @@
+diff --git a/sage/rings/function_field/ideal.py b/sage/rings/function_field/ideal.py
+index 6b7b530b11..e51cd77627 100644
+--- a/sage/rings/function_field/ideal.py
++++ b/sage/rings/function_field/ideal.py
+@@ -2167,7 +2167,7 @@ class FunctionFieldIdeal_global(FunctionFieldIdeal_polymod):
+             return self.gens_over_base()
+ 
+     def gens_two(self):
+-        """
++        r"""
+         Return two generators of this fractional ideal.
+ 
+         If the ideal is principal, one generator *may* be returned.
+diff --git a/sage/rings/quotient_ring.py b/sage/rings/quotient_ring.py
+index 7ea0845b39..ea2a847474 100644
+--- a/sage/rings/quotient_ring.py
++++ b/sage/rings/quotient_ring.py
+@@ -1302,7 +1302,7 @@ class QuotientRing_generic(QuotientRing_nc, ring.CommutativeRing):
+         QuotientRing_nc.__init__(self, R, I, names, category=category)
+ 
+     def _macaulay2_init_(self, macaulay2=None):
+-        """
++        r"""
+         EXAMPLES:
+ 
+         Quotients of multivariate polynomial rings over `\QQ`, `\ZZ` and
