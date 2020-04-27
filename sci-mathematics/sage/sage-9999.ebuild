@@ -194,6 +194,10 @@ python_prepare_all() {
 	eapply "${FILESDIR}"/ipython-7.10_b.patch
 	# doctests with MPL 3.1
 	eapply "${FILESDIR}"/MPL-3.1.patch
+	# patch for matplotlib 3.2 if used
+	if has_version ">=dev-python/matplotlib-3.2.1" ; then
+		eapply "${FILESDIR}"/MPL-3.2.1.patch
+	fi
 	# sphinx 3
 	eapply "${FILESDIR}"/sphinx-3.0.patch
 	# patch for pari 2.11.3 if used
