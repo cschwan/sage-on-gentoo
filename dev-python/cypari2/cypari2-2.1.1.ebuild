@@ -1,4 +1,4 @@
-# Copyright 1999-2019 Gentoo Authors
+# Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=7
@@ -20,7 +20,16 @@ DEPEND=">=sci-mathematics/pari-2.10.0_pre20170914:=[gmp,doc]
 	dev-python/cysignals"
 RDEPEND="${DEPEND}"
 
+PATCHES=(
+	"${FILESDIR}"/0001-move-rebuild-out-of-build_ext-so-it-is-run-before-ev.patch
+)
+
 python_test(){
 	cd "${S}"/tests
 	${EPYTHON} rundoctest.py
+}
+
+python_install() {
+	distutils-r1_python_install
+	python_optimize
 }
