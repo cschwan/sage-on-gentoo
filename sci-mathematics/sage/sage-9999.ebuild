@@ -490,9 +490,11 @@ python_install_all(){
 	doins ../COPYING.txt
 
 	# install links for the jupyter kernel
-	dosym ../../../../../$(python_get_sitedir)/sage/ext_data/notebook-ipython/logo-64x64.png \
+	# We have to be careful of removing prefix if present
+	PYTHON_SITEDIR=$(python_get_sitedir)
+	dosym ../../../../../"${PYTHON_SITEDIR#${EPREFIX}}"/sage/ext_data/notebook-ipython/logo-64x64.png \
 		/usr/share/jupyter/kernels/sagemath/logo-64x64.png
-	dosym ../../../../../$(python_get_sitedir)/sage/ext_data/notebook-ipython/logo.svg \
+	dosym ../../../../../"${PYTHON_SITEDIR#${EPREFIX}}"/sage/ext_data/notebook-ipython/logo.svg \
 		/usr/share/jupyter/kernels/sagemath/logo.svg
 	if use doc-html; then
 		dosym ../../../doc/"${PF}"/html/en /usr/share/jupyter/kernels/sagemath/doc
