@@ -6,8 +6,8 @@ EAPI=6
 inherit flag-o-matic toolchain-funcs
 
 DESCRIPTION="Ratpoints tries to find all rational points on a hyperelliptic curve"
-HOMEPAGE="https://www.mathe2.uni-bayreuth.de/stoll/programs/index.html"
-SRC_URI="https://www.mathe2.uni-bayreuth.de/stoll/programs/${P}.tar.gz"
+HOMEPAGE="http://www.mathe2.uni-bayreuth.de/stoll/programs/index.html"
+SRC_URI="http://www.mathe2.uni-bayreuth.de/stoll/programs/${P}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
