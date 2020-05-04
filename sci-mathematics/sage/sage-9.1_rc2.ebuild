@@ -7,22 +7,24 @@ PYTHON_COMPAT=( python3_{6,7} )
 PYTHON_REQ_USE="readline,sqlite"
 DISTUTILS_USE_SETUPTOOLS=no
 
-inherit desktop distutils-r1 flag-o-matic multiprocessing prefix toolchain-funcs git-r3
+inherit desktop distutils-r1 flag-o-matic multiprocessing prefix toolchain-funcs
 
-EGIT_REPO_URI="https://github.com/sagemath/sage.git"
-EGIT_BRANCH=develop
-EGIT_CHECKOUT_DIR="${WORKDIR}/${P}"
-KEYWORDS=""
+KEYWORDS="~amd64 ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos"
 
+MY_PV="9.1.rc2"
 DESCRIPTION="Math software for abstract and numerical computations"
 HOMEPAGE="https://www.sagemath.org"
+SRC_URI="https://github.com/sagemath/sage/archive/${MY_PV}.tar.gz -> ${P}.tar.gz
+	mirror://sagemath/sage-icon.tar.bz2
+	doc-html-bin? ( mirror://sagemath/${P}-doc-html.tar.xz )
+	doc-pdf-bin? ( mirror://sagemath/${P}-doc-pdf.tar.xz )"
 
 LANGS="ca de en es fr hu it ja pt ru tr"
 
 LICENSE="GPL-2"
 SLOT="0"
 SAGE_USE="bliss"
-IUSE="debug +doc-html doc-pdf jmol latex testsuite X ${SAGE_USE}"
+IUSE="debug  doc-html +doc-html-bin doc-pdf doc-pdf-bin jmol latex testsuite X ${SAGE_USE}"
 L10N_USEDEP=""
 for X in ${LANGS} ; do
 	IUSE="${IUSE} l10n_${X}"
@@ -137,21 +139,17 @@ RDEPEND="${DEPEND}
 
 CHECKREQS_DISK_BUILD="8G"
 
-S="${WORKDIR}/${P}/src"
+S="${WORKDIR}/${PN}-${MY_PV}/src"
 
 REQUIRED_USE="doc-html? ( jmol l10n_en )
 	doc-pdf? ( jmol l10n_en )
-	testsuite? ( doc-html jmol )"
+	testsuite? ( || ( doc-html doc-html-bin ) )
+	doc-html-bin? ( !doc-html !doc-pdf l10n_en )
+	doc-pdf-bin? ( !doc-html !doc-pdf l10n_en )"
 
 pkg_setup() {
 	# needed since Ticket #14460
 	tc-export CC
-}
-
-src_unpack(){
-	git-r3_src_unpack
-
-	default
 }
 
 python_prepare_all() {
@@ -297,13 +295,39 @@ python_prepare_all() {
 	# support linguas so only requested languages are installed
 	eapply "${FILESDIR}"/${PN}-7.1-linguas.patch
 
+	#####################################
+	#
+	# Putting binary documentation in place if used.
+	#
+	#####################################
+
+	if use doc-html-bin ; then
+		HTML_DOCS="${WORKDIR}/build_doc/html/*"
+		mkdir -p "${WORKDIR}"/build_doc/html
+		# Don't forget to also copy the _static folder in place
+		cp -r "${WORKDIR}"/html/_static "${WORKDIR}"/build_doc/html/
+		for lang in ${LANGS} ; do
+			use l10n_$lang && cp -r "${WORKDIR}"/html/${lang} "${WORKDIR}"/build_doc/html/
+		done
+	fi
+
+	if use doc-pdf-bin ; then
+		DOCS="${WORKDIR}/build_doc/pdf"
+		mkdir -p "${WORKDIR}"/build_doc/pdf
+		for lang in ${LANGS} ; do
+			use l10n_$lang && cp -r "${WORKDIR}"/pdf/${lang} "${WORKDIR}"/build_doc/pdf/
+		done
+	fi
+
 	####################################
 	#
 	# Bootstrap
 	#
 	####################################
 
-	SAGE_ROOT="${S}"/.. PATH="${S}/../build/bin:${PATH}" doc/bootstrap || die "cannot bootstrap the documentation"
+	if use doc-html || use doc-pdf ; then
+		SAGE_ROOT="${S}"/.. PATH="${S}/../build/bin:${PATH}" doc/bootstrap || die "cannot bootstrap the documentation"
+	fi
 
 	distutils-r1_python_prepare_all
 }
@@ -500,7 +524,7 @@ python_install_all(){
 		/usr/share/jupyter/kernels/sagemath/logo-64x64.png
 	dosym ../../../../../"${PYTHON_SITEDIR#${EPREFIX}}"/sage/ext_data/notebook-ipython/logo.svg \
 		/usr/share/jupyter/kernels/sagemath/logo.svg
-	if use doc-html; then
+	if use doc-html || use doc-html-bin ; then
 		dosym ../../../doc/"${PF}"/html/en /usr/share/jupyter/kernels/sagemath/doc
 	fi
 }
@@ -545,8 +569,10 @@ pkg_postinst() {
 	fi
 
 	if ! use doc-html ; then
-		ewarn "You haven't requested the html documentation."
-		ewarn "The html version of the sage manual won't be available in the sage notebook."
+		if ! use doc-html-bin ; then
+			ewarn "You haven't requested the html documentation."
+			ewarn "The html version of the sage manual won't be available in the sage notebook."
+		fi
 	fi
 
 	einfo ""
