@@ -15,9 +15,9 @@ MY_PV="9.1.rc2"
 DESCRIPTION="Math software for abstract and numerical computations"
 HOMEPAGE="https://www.sagemath.org"
 SRC_URI="https://github.com/sagemath/sage/archive/${MY_PV}.tar.gz -> ${P}.tar.gz
-        mirror://sagemath/sage-icon.tar.bz2
-        doc-html-bin? ( mirror://sagemath/${P}-doc-html.tar.xz )
-        doc-pdf-bin? ( mirror://sagemath/${P}-doc-pdf.tar.xz )"
+	mirror://sagemath/sage-icon.tar.bz2
+	doc-html-bin? ( mirror://sagemath/${P}-doc-html.tar.xz )
+	doc-pdf-bin? ( mirror://sagemath/${P}-doc-pdf.tar.xz )"
 
 LANGS="ca de en es fr hu it ja pt ru tr"
 
@@ -142,10 +142,10 @@ CHECKREQS_DISK_BUILD="8G"
 S="${WORKDIR}/${PN}-${MY_PV}/src"
 
 REQUIRED_USE="doc-html? ( jmol l10n_en )
-        doc-pdf? ( jmol l10n_en )
-        testsuite? ( || ( doc-html doc-html-bin ) )
-        doc-html-bin? ( !doc-html !doc-pdf l10n_en )
-        doc-pdf-bin? ( !doc-html !doc-pdf l10n_en )"
+	doc-pdf? ( jmol l10n_en )
+	testsuite? ( || ( doc-html doc-html-bin ) )
+	doc-html-bin? ( !doc-html !doc-pdf l10n_en )
+	doc-pdf-bin? ( !doc-html !doc-pdf l10n_en )"
 
 pkg_setup() {
 	# needed since Ticket #14460
