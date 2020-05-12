@@ -112,7 +112,7 @@ sci-libs/coinor-dylp
 sci-libs/coinor-osi
 sci-libs/coinor-utils
 sci-libs/coinor-vol
-sci-mathematics/sage_numerical_backend_coin
+sci-mathematics/sage_numerical_backends_coin
 #####################
 # GAP
 #####################
