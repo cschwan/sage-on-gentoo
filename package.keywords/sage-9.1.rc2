@@ -105,13 +105,14 @@ sci-libs/modular_decomposition
 dev-libs/igraph
 ~dev-python/python-igraph-0.7.0
 # coinor-cbc
-#sci-libs/coinor-clp
-#sci-libs/coinor-dylp
-#sci-libs/coinor-vol
-#sci-libs/coinor-cgl
-#sci-libs/coinor-utils
-#sci-libs/coinor-osi
-#sci-libs/coinor-cbc
+sci-libs/coinor-cbc
+sci-libs/coinor-clp
+sci-libs/coinor-cgl
+sci-libs/coinor-dylp
+sci-libs/coinor-osi
+sci-libs/coinor-utils
+sci-libs/coinor-vol
+sci-mathematics/sage_numerical_backends_coin
 #####################
 # GAP
 #####################
