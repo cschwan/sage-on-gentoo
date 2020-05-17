@@ -22,6 +22,7 @@ RDEPEND="${DEPEND}"
 
 PATCHES=(
 	"${FILESDIR}"/${PN}-2.0-gnumakefile.patch
+	"${FILESDIR}"/${PN}-2.1-fno-common.patch
 	)
 
 # this flag break the executable with certain versions of gcc
