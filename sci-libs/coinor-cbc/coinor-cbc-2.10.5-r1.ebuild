@@ -49,8 +49,8 @@ src_prepare() {
 	# Linking against librt causes trouble with sage. Possibly because of
 	# mixing threading models
 	sed -e "s/clock\_gettime ()/Grrrrrrrrrrrr\ ()/g" \
-		-i Cbc/configure \
-		|| die "failed to remove librt test in ${S}/Cbc/configure"
+		-i configure \
+		|| die "failed to remove librt test in ${S}/configure"
 
 	default
 }
