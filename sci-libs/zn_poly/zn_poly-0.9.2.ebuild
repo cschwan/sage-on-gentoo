@@ -9,7 +9,7 @@ DESCRIPTION="A library for polynomial arithmetic"
 HOMEPAGE="https://gitlab.com/sagemath/zn_poly"
 SRC_URI="https://gitlab.com/sagemath/${PN}/-/archive/${PV}/${P}.tar.bz2"
 
-LICENSE="GPL-2"
+LICENSE="GPL-2 GPL-3"
 SLOT="0"
 KEYWORDS="~amd64 ~x86 ~amd64-linux ~x86-linux ~x64-macos ~x86-macos"
 IUSE=""
