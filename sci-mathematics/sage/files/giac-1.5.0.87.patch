@@ -7,7 +7,7 @@ index 68c9527..3c5fd12 100644
  
              sage: print(latex(giac('(x^4 - y)/(y^2-3*x)')))
 -            "\frac{(x^{4}-y)}{(y^{2}-3\cdot x)}"
-+            "\frac{x^{4}-y}{y^{2}-3\,x}"
++            "\frac{x^{4}-y}{y^{2}-3 x}"
  
          """
          return self.parent().eval('latex(%s)'%self.name())
