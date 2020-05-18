@@ -184,8 +184,8 @@ python_prepare_all() {
 	#
 	###############################
 
-	# patch latex output for giac 1.5.0.65+
-	eapply "${FILESDIR}"/giac-1.5.0.65.patch
+	# patch latex output for giac 1.5.0.87+
+	eapply "${FILESDIR}"/giac-1.5.0.87.patch
 	# patch for networkx 2.4
 	eapply "${FILESDIR}"/networkx-2.4.patch
 	# Move to ipython-7
