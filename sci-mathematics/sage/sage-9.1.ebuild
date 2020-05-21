@@ -11,10 +11,9 @@ inherit desktop distutils-r1 flag-o-matic multiprocessing prefix toolchain-funcs
 
 KEYWORDS="~amd64 ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos"
 
-MY_PV="9.1.rc2"
 DESCRIPTION="Math software for abstract and numerical computations"
 HOMEPAGE="https://www.sagemath.org"
-SRC_URI="https://github.com/sagemath/sage/archive/${MY_PV}.tar.gz -> ${P}.tar.gz
+SRC_URI="https://github.com/sagemath/sage/archive/${PV}.tar.gz -> ${P}.tar.gz
 	mirror://sagemath/sage-icon.tar.bz2
 	doc-html-bin? ( mirror://sagemath/${P}-doc-html.tar.xz )
 	doc-pdf-bin? ( mirror://sagemath/${P}-doc-pdf.tar.xz )"
@@ -139,7 +138,7 @@ RDEPEND="${DEPEND}
 
 CHECKREQS_DISK_BUILD="8G"
 
-S="${WORKDIR}/${PN}-${MY_PV}/src"
+S="${WORKDIR}/${P}/src"
 
 REQUIRED_USE="doc-html? ( jmol l10n_en )
 	doc-pdf? ( jmol l10n_en )
