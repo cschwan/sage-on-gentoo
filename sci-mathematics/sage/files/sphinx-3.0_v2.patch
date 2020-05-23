@@ -434,7 +434,7 @@ index ff7b828..534e6d6 100644
              newcite = {}
 -            citations = docenv.domaindata["std"]["citations"]
 -            for ind, (path, tag, lineno) in docenv.domaindata["std"]["citations"].items():
-+            for ind, (path, tag, lineno) in citations:
++            for ind, (path, tag, lineno) in citations.items():
                  # TODO: Warn on conflicts
                  newcite[ind] = (fixpath(path), tag, lineno)
 -            env.domaindata["std"]["citations"].update(newcite)
