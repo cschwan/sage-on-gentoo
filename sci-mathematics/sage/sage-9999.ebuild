@@ -199,7 +199,7 @@ python_prepare_all() {
 		eapply "${FILESDIR}"/MPL-3.2.1.patch
 	fi
 	# sphinx 3
-	eapply "${FILESDIR}"/sphinx-3.0.patch
+	eapply "${FILESDIR}"/sphinx-3.0_v2.patch
 	# patch for pari 2.11.3 if used
 	if has_version ">=sci-mathematics/pari-2.11.3" ; then
 		eapply "${FILESDIR}"/pari-2.11.3.patch
