@@ -5,7 +5,7 @@ EAPI=7
 
 PYTHON_COMPAT=( python2_7 )
 
-inherit autotools elisp-common flag-o-matic prefix python-single-r1
+inherit autotools elisp-common python-single-r1
 
 MY_PN=Singular
 MY_PV=$(ver_rs 3 '')
@@ -14,11 +14,10 @@ MY_DIR2=$(ver_cut 1-3 ${PV})
 MY_DIR=$(ver_rs 1- '-' ${MY_DIR2})
 
 DESCRIPTION="Computer algebra system for polynomial computations"
-HOMEPAGE="https://www.singular.uni-kl.de/"
-#SRC_URI="https://www.mathematik.uni-kl.de/ftp/pub/Math/${MY_PN}/SOURCES/${MY_DIR}/${PN}-${MY_PV}.tar.gz"
+HOMEPAGE="https://www.singular.uni-kl.de/ https://github.com/Singular/Sources"
 SRC_URI="ftp://jim.mathematik.uni-kl.de/pub/Math/${MY_PN}/SOURCES/${MY_DIR}/${PN}-${MY_PV}.tar.gz"
 
-LICENSE="GPL-2"
+LICENSE="GPL-2 GPL-3"
 SLOT="0"
 KEYWORDS="~amd64 ~ppc ~x86 ~x86-linux ~x86-macos"
 IUSE="emacs examples python +readline static-libs"
@@ -44,15 +43,6 @@ PATCHES=(
 	)
 
 pkg_setup() {
-	append-flags "-fPIC"
-	append-ldflags "-fPIC"
-	tc-export AR CC CPP CXX
-
-	# Ensure that >=emacs-22 is selected
-	if use emacs; then
-		elisp-need-emacs 22 || die "Emacs version too low"
-	fi
-
 	use python && python-single-r1_pkg_setup
 }
 
@@ -90,7 +80,7 @@ src_compile() {
 }
 
 src_install() {
-	# Do not compress ssingular's info file (singular.hlp)
+	# Do not compress singular's info file (singular.hlp)
 	# some consumer of that file do not know how to deal with compression
 	docompress -x /usr/share/info
 
