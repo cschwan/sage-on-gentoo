@@ -27,11 +27,11 @@ RDEPEND="dev-libs/gmp:0
 	emacs? ( >=app-editors/emacs-23.1:* )
 	sci-mathematics/flint
 	sci-libs/cddlib
+	dev-lang/perl
+	readline? ( sys-libs/readline )
 	python? ( ${PYTHON_DEPS} )"
 
-DEPEND="${RDEPEND}
-	dev-lang/perl
-	readline? ( sys-libs/readline )"
+DEPEND="${RDEPEND}"
 
 SITEFILE=60${PN}-gentoo.el
 
