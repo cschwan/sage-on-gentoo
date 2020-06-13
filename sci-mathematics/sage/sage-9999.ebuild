@@ -50,7 +50,7 @@ DEPEND="dev-libs/gmp:0=
 	>=dev-python/ipython-7.0.0[notebook,${PYTHON_USEDEP}]
 	>=dev-python/ipykernel-4.6.0[${PYTHON_USEDEP}]
 	>=dev-python/jinja-2.8[${PYTHON_USEDEP}]
-	>=dev-python/matplotlib-3.1.2[${PYTHON_USEDEP}]
+	>=dev-python/matplotlib-3.2.1[${PYTHON_USEDEP}]
 	=dev-python/ipywidgets-7*[${PYTHON_USEDEP}]
 	>=dev-python/gmpy-2.1.0_beta1[${PYTHON_USEDEP}]
 	>=dev-python/pplpy-0.8.4:=[doc,${PYTHON_USEDEP}]
@@ -192,12 +192,7 @@ python_prepare_all() {
 	eapply "${FILESDIR}"/networkx-2.4.patch
 	# Move to ipython-7
 	eapply "${FILESDIR}"/ipython-7.10_b.patch
-	# doctests with MPL 3.1
-	eapply "${FILESDIR}"/MPL-3.1.patch
-	# patch for matplotlib 3.2 if used
-	if has_version ">=dev-python/matplotlib-3.2.1" ; then
-		eapply "${FILESDIR}"/MPL-3.2.1.patch
-	fi
+	eapply "${FILESDIR}"/ipython7-dict.patch
 	# sphinx 3
 	eapply "${FILESDIR}"/sphinx-3.0_v2.patch
 	# patch for pari 2.11.3 if used
@@ -225,9 +220,6 @@ python_prepare_all() {
 	# Also install all appropriate sources alongside python code.
 	# get the doc building in the right place and replace relative import to the right location.
 	eapply "${FILESDIR}"/${PN}-8.7-sources.patch
-
-	# Mirroring the the fact that lib is not a link to lib64 anymore in the build system
-	sed -i "s:SAGE_LOCAL, \"lib\":SAGE_LOCAL, \"$(get_libdir)\":" setup.py
 
 	############################################################################
 	# Fixes to Sage itself
