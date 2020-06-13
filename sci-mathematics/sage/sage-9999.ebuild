@@ -192,9 +192,6 @@ python_prepare_all() {
 	eapply "${FILESDIR}"/networkx-2.4.patch
 	# Move to ipython-7
 	eapply "${FILESDIR}"/ipython-7.10_b.patch
-	eapply "${FILESDIR}"/ipython7-dict.patch
-	# sphinx 3
-	eapply "${FILESDIR}"/sphinx-3.0_v2.patch
 	# patch for pari 2.11.3 if used
 	if has_version ">=sci-mathematics/pari-2.11.3" ; then
 		eapply "${FILESDIR}"/pari-2.11.3.patch
