@@ -165,7 +165,7 @@ python_prepare_all() {
 
 	# ship our simplified sage shell script
 	# Now including sage-env as of 8.7.beta5+
-	cp "${FILESDIR}"/sage-exec-9.0 bin/sage
+	cp "${FILESDIR}"/sage-exec-9.1 bin/sage
 	eprefixify bin/sage
 	if use debug ; then
 		sed -i "s:SAGE_DEBUG=\"no\":SAGE_DEBUG=\"yes\":" bin/sage
