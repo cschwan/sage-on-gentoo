@@ -29,27 +29,29 @@ pkg_setup() {
 	tc-export CC
 }
 
-palp_prepare(){
-	sed -i "s:^#define[^a-zA-Z]*POLY_Dmax.*:#define POLY_Dmax ${MULTIBUILD_VARIANT}:" Global.h
-}
-
 src_prepare(){
 	default
 
 	multibuild_copy_sources
+}
 
-	multibuild_foreach_variant palp_prepare
+palp_compile(){
+	pushd "${BUILD_DIR}"
+	CPPFLAGS=-DPOLY_Dmax="${MULTIBUILD_VARIANT}" emake
+	popd
 }
 
 src_compile(){
-	multibuild_foreach_variant emake
+	multibuild_foreach_variant palp_compile
 }
 
 palp_install(){
+	pushd "${BUILD_DIR}"
 	local prog
 	for prog in class cws nef poly; do
 		newbin "${prog}.x" "${prog}-${MULTIBUILD_VARIANT}d.x"
 	done
+	popd
 }
 
 src_install() {
