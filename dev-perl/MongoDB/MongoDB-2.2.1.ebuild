@@ -74,8 +74,3 @@ DEPEND="${RDEPEND}
 		virtual/perl-threads-shared
 	)
 "
-
-pkg_setup() {
-	# https://jira.mongodb.org/browse/PERL-766
-	LDFLAGS="${LDFLAGS} -lpthread"
-}
