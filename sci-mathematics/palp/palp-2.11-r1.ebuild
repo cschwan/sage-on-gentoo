@@ -36,26 +36,22 @@ src_prepare(){
 }
 
 palp_compile(){
-	pushd "${BUILD_DIR}"
 	CPPFLAGS=-DPOLY_Dmax="${MULTIBUILD_VARIANT}" emake
-	popd
 }
 
 src_compile(){
-	multibuild_foreach_variant palp_compile
+	multibuild_foreach_variant run_in_build_dir palp_compile
 }
 
 palp_install(){
-	pushd "${BUILD_DIR}"
 	local prog
 	for prog in class cws nef poly; do
 		newbin "${prog}.x" "${prog}-${MULTIBUILD_VARIANT}d.x"
 	done
-	popd
 }
 
 src_install() {
-	multibuild_foreach_variant palp_install
+	multibuild_foreach_variant run_in_build_dir palp_install
 
 	dosym class-6d.x /usr/bin/class.x
 	dosym cws-6d.x /usr/bin/cws.x
