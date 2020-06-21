@@ -88,7 +88,7 @@ DEPEND="dev-libs/gmp:0=
 	>=sys-libs/readline-6.2
 	sys-libs/zlib
 	virtual/cblas
-	~sci-mathematics/arb-2.16.0
+	~sci-mathematics/arb-2.18.0
 	www-misc/thebe
 	>=sci-libs/libhomfly-1.0.1
 	sci-libs/libbraiding
@@ -106,7 +106,7 @@ RDEPEND="${DEPEND}
 	>=dev-python/networkx-2.4[${PYTHON_USEDEP}]
 	>=dev-python/pexpect-4.2.1[${PYTHON_USEDEP}]
 	>=dev-python/rpy-2.8.6[${PYTHON_USEDEP}]
-	=dev-python/sympy-1.5*[${PYTHON_USEDEP}]
+	=dev-python/sympy-1.6*[${PYTHON_USEDEP}]
 	media-gfx/tachyon[png]
 	jmol? ( sci-chemistry/sage-jmol-bin )
 	>=sci-libs/cddlib-094j[tools]
@@ -193,10 +193,6 @@ python_prepare_all() {
 	eapply "${FILESDIR}"/networkx-2.4.patch
 	# Move to ipython-7
 	eapply "${FILESDIR}"/ipython-7.10_b.patch
-	# patch for pari 2.11.3 if used
-	if has_version ">=sci-mathematics/pari-2.11.3" ; then
-		eapply "${FILESDIR}"/pari-2.11.3.patch
-	fi
 
 	# Remove sage's package management system, git capabilities and associated tests
 	eapply "${FILESDIR}"/${PN}-9.1-neutering.patch
