@@ -50,7 +50,7 @@ python_test() {
 }
 
 python_install_all() {
-	local DOCS=( AUTHORS README.rst )
+	local DOCS=( AUTHORS README.md )
 	if use examples; then
 		dodoc -r examples
 		docompress -x /usr/share/doc/${PF}/examples
