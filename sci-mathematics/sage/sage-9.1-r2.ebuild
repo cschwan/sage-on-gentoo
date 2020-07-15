@@ -42,7 +42,6 @@ DEPEND="dev-libs/gmp:0=
 	>=dev-python/six-1.11.0[${PYTHON_USEDEP}]
 	>=dev-python/numpy-1.16.1[${PYTHON_USEDEP}]
 	>=dev-python/cython-0.29.1[${PYTHON_USEDEP}]
-	<dev-python/cython-0.29.20
 	dev-python/future[${PYTHON_USEDEP}]
 	>=dev-python/pkgconfig-1.2.2[${PYTHON_USEDEP}]
 	>=dev-python/cysignals-1.10.0[${PYTHON_USEDEP}]
@@ -184,6 +183,8 @@ python_prepare_all() {
 	#
 	###############################
 
+	# patch for cython 0.29.20+
+	eapply "${FILESDIR}"/cython-0.29.20.patch
 	# patch latex output for giac 1.5.0.87+
 	eapply "${FILESDIR}"/giac-1.5.0.87.patch
 	# patch for networkx 2.4
