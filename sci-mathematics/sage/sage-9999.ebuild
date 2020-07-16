@@ -37,7 +37,7 @@ DEPEND="dev-libs/gmp:0=
 	>=dev-libs/mpc-1.1.0
 	>=dev-libs/ntl-11.4.3:=
 	>=dev-libs/ppl-1.1
-	~dev-lisp/ecls-16.1.2
+	~dev-lisp/ecls-20.4.24
 	>=dev-python/six-1.11.0[${PYTHON_USEDEP}]
 	>=dev-python/numpy-1.16.1[${PYTHON_USEDEP}]
 	>=dev-python/cython-0.29.1[${PYTHON_USEDEP}]
@@ -92,7 +92,7 @@ DEPEND="dev-libs/gmp:0=
 	>=sci-libs/libhomfly-1.0.1
 	sci-libs/libbraiding
 	bliss? ( >=sci-libs/bliss-0.73 )
-	>=dev-python/sphinx-3.0.1[${PYTHON_USEDEP}]"
+	>=dev-python/sphinx-3.1.0[${PYTHON_USEDEP}]"
 
 BDEPEND="app-portage/gentoolkit
 	doc-pdf? ( app-text/texlive[extra,${L10N_USEDEP}] )"
@@ -194,7 +194,7 @@ python_prepare_all() {
 	eapply "${FILESDIR}"/ipython-7.10_b.patch
 
 	# Remove sage's package management system, git capabilities and associated tests
-	eapply "${FILESDIR}"/${PN}-9.1-neutering.patch
+	eapply "${FILESDIR}"/${PN}-9.2-neutering.patch
 	cp -f "${FILESDIR}"/${PN}-7.3-package.py sage/misc/package.py
 	rm -f sage/misc/dist.py
 	rm -rf sage/dev
@@ -227,7 +227,7 @@ python_prepare_all() {
 	local pplpyver=`equery -q l -F '$name-$fullversion' pplpy:0`
 	sed -i "s:@PPLY_DOC_VERS@:${pplpyver}:" sage/sage_conf.py
 	# Adjust variables in other files than sage_conf.py
-	eapply "${FILESDIR}"/${PN}-9.1-env.patch
+	eapply "${FILESDIR}"/${PN}-9.2-env.patch
 	# getting sage_conf from the right spot
 	sed -i "s:sage_conf:sage.sage_conf:g" sage/env.py
 
