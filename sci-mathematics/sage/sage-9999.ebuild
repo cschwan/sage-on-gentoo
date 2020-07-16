@@ -370,30 +370,6 @@ python_install() {
 	fi
 
 	distutils-r1_python_install
-
-	##############################################
-	# install scripts and miscellanous files
-	##############################################
-
-	pushd bin
-	python_doscript \
-		sage-cleaner \
-		sage-eval \
-		sage-ipython \
-		sage-run \
-		sage-num-threads.py \
-		sage-preparse \
-		sage-startuptime.py \
-		sage-cython \
-		sage-notebook \
-		sage-run-cython \
-		math-readline
-
-	if use testsuite ; then
-		# DOCTESTING helper scripts
-		python_doscript sage-runtests
-	fi
-	popd
 }
 
 python_install_all(){
@@ -432,26 +408,9 @@ python_install_all(){
 
 	distutils-r1_python_install_all
 
-	pushd bin
-
-	dobin sage-native-execute sage sage-ipynb2rst \
-		sage-version.sh
-
 	# install env files under /etc
 	insinto /etc
-	doins sage-maxima.lisp
-	newins ../../VERSION.txt sage-version.txt
-
-	if use debug ; then
-		# GNU DEBUGGER helper schripts
-		insinto /usr/bin
-		doins sage-gdb-commands
-
-		# VALGRIND helper scripts
-		dobin sage-cachegrind sage-callgrind sage-massif sage-omega \
-			sage-valgrind
-	fi
-	popd
+	newins ../VERSION.txt sage-version.txt
 
 	if use X ; then
 		doicon "${S}"/sage/ext_data/notebook-ipython/logo.svg

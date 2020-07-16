@@ -197,3 +197,51 @@ index 546191f..dc72b54 100644
  
      if condition:
          return Extension(*args, **kwds)
+diff --git a/setup.py b/setup.py
+index 4b82e1a..19abde5 100755
+--- a/setup.py
++++ b/setup.py
+@@ -129,43 +129,19 @@ code = setup(name = 'sage',
+                  'bin/sage-valgrind',
+                  'bin/sage-version.sh',
+                  'bin/sage-cleaner',
+-                 ## Only makes sense in sage-the-distribution. TODO: Move to another installation script.
+-                 'bin/sage-list-packages',
+-                 'bin/sage-clone-source',
+-                 'bin/sage-download-upstream',
+-                 'bin/sage-sdist',
+-                 'bin/sage-location',
+                  ## Uncategorized scripts in alphabetical order
+                  'bin/math-readline',
+-                 'bin/sage-env',
+-                 'bin/sage-env-config',
+                  # sage-env-config.in -- not to be installed',
+                  'bin/sage-gdb-commands',
+-                 'bin/sage-grep',
+-                 'bin/sage-grepdoc',
+-                 'bin/sage-inline-fortran',
+                  'bin/sage-ipynb2rst',
+                  'bin/sage-ipython',
+                  'bin/sage-native-execute',
+                  'bin/sage-notebook',
+                  'bin/sage-num-threads.py',
+-                 'bin/sage-open',
+                  'bin/sage-preparse',
+-                 'bin/sage-pypkg-location',
+-                 'bin/sage-python',
+-                 'bin/sage-rebase.bat',
+-                 'bin/sage-rebase.sh',
+-                 'bin/sage-rebaseall.bat',
+-                 'bin/sage-rebaseall.sh',
+-                 'bin/sage-rst2sws',
+-                 'bin/sage-rst2txt',
+                  'bin/sage-run',
+                  'bin/sage-run-cython',
+                  'bin/sage-startuptime.py',
+-                 'bin/sage-sws2rst',
+-                 'bin/sage-update-src',
+-                 'bin/sage-update-version',
+-                 'bin/sage-upgrade',
+                  ],
+       cmdclass = dict(build=sage_build,
+                       build_cython=sage_build_cython,
