@@ -61,9 +61,11 @@ src_prepare() {
 }
 
 src_configure() {
+	# maxima won't start without defsystem
 	econf \
 		--enable-gmp=system \
 		--enable-boehm=system \
+		--with-defsystem \
 		--with-dffi \
 		$(use_with cxx) \
 		$(use_enable gengc) \
