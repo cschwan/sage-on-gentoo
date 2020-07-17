@@ -3,7 +3,7 @@
 
 EAPI=7
 
-inherit autotools multilib
+inherit autotools
 
 # test phase only works if ecls already installed #516876
 RESTRICT="test"
@@ -89,8 +89,7 @@ src_compile() {
 		touch build/TAGS
 	fi
 
-	#parallel make fails
-	emake -j1
+	emake
 }
 
 src_install() {
