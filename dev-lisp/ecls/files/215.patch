@@ -1,3 +1,29 @@
+diff --git a/src/aclocal.m4 b/src/aclocal.m4
+index 6adc5c63d7c60cf34ac7cee372158d617143191b..cf011efd016a20d5685c12bbac7d1d731eaa755e 100644
+--- a/src/aclocal.m4
++++ b/src/aclocal.m4
+@@ -665,6 +665,21 @@ case "${ECL_STACK_DIR}" in
+   up|UP) AC_MSG_RESULT(no) ;;
+   *) AC_MSG_ERROR(Unable to determine stack growth direction)
+ esac])
++
++dnl
++dnl --------------------------------------------------------------
++dnl Check if we can determine the stack size at runtime
++dnl
++AC_DEFUN(ECL_STACK_SIZE,[
++AC_CHECK_HEADER([sys/resource.h],
++                [AC_DEFINE([HAVE_SYS_RESOURCE_H], [], [Define to 1 if you have the <sys/resource.h> header file.])
++                 AC_CHECK_DECL([RLIMIT_STACK],
++                               [AC_DEFINE([ECL_CAN_SET_STACK_SIZE], [], [Define to 1 if we can set the stack size at runtime.])],
++                               [],
++                               [#include <sys/resource.h>])],
++                [],[])
++])
++
+ dnl
+ dnl ------------------------------------------------------------
+ dnl Find out a setjmp() that does not save signals. It is called
 diff --git a/src/c/stacks.d b/src/c/stacks.d
 index d985766ba5e03b07d6a25e31e9880576250038aa..c0125ed2bc8ec9d1712e5e71f3c91edb1bc7c12a 100644
 --- a/src/c/stacks.d
