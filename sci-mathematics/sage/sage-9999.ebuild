@@ -70,7 +70,7 @@ DEPEND="dev-libs/gmp:0=
 	>=sci-libs/symmetrica-2.0-r3
 	>=sci-libs/zn_poly-0.9
 	>=sci-mathematics/gap-4.10.2:0/4.10.2[recommended_pkgs]
-	>=sci-mathematics/giac-1.5.0.63
+	=sci-mathematics/giac-1.5.0*
 	>=sci-mathematics/glpk-4.65:0=[gmp]
 	>=sci-mathematics/lcalc-1.23-r10[pari]
 	>=sci-mathematics/lrcalc-1.2
