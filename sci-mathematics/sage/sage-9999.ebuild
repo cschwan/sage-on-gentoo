@@ -40,7 +40,7 @@ DEPEND="dev-libs/gmp:0=
 	~dev-lisp/ecls-20.4.24
 	>=dev-python/six-1.11.0[${PYTHON_USEDEP}]
 	>=dev-python/numpy-1.16.1[${PYTHON_USEDEP}]
-	>=dev-python/cython-0.29.1[${PYTHON_USEDEP}]
+	>=dev-python/cython-0.29.21[${PYTHON_USEDEP}]
 	dev-python/future[${PYTHON_USEDEP}]
 	>=dev-python/pkgconfig-1.2.2[${PYTHON_USEDEP}]
 	>=dev-python/cysignals-1.10.0[${PYTHON_USEDEP}]
@@ -321,6 +321,8 @@ python_configure_all() {
 	export SAGE_NUM_THREADS=$(makeopts_jobs)
 	# try to fix random sphinx crash during the building of the documentation
 	export MPLCONFIGDIR="${T}"/matplotlib
+	# Avoid spurious message from the gtk backend by making sure it is never tried
+	export MPLBACKEND=Agg
 	for option in ${SAGE_USE}; do
 		use $option && export WANT_$option="True"
 	done
