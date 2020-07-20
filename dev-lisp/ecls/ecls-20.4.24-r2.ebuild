@@ -41,7 +41,9 @@ PATCHES=(
 	"${FILESDIR}/216.patch"
 	"${FILESDIR}/ECL_WITH_LISP_FPE.patch"
 	"${FILESDIR}/write_error.patch"
-
+	"${FILESDIR}/0001-unicode-fix-ecl_string_case-for-non-ascii-characters.patch"
+	"${FILESDIR}/0002-cosmetic-fix-some-compiler-warnings.patch"
+	"${FILESDIR}/0003-printer-fix-printing-of-symbols-with-non-ascii-names.patch"
 )
 
 pkg_setup() {
