@@ -1,9 +1,9 @@
-# Copyright 1999-2019 Gentoo Authors
+# Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=7
 
-PYTHON_COMPAT=( python3_{6,7} )
+PYTHON_COMPAT=( python3_{6,7,8} )
 inherit distutils-r1
 
 DESCRIPTION="A Python wrapper for the Parma Polyhedra Library (PPL)"
@@ -24,9 +24,7 @@ RDEPEND="${DEPEND}"
 
 python_compile() {
 	# automatic parallel building with python3.5+ is not safe
-	local myj=""
-	python_is_python3 && myj="-j 1"
-	distutils-r1_python_compile ${myj}
+	distutils-r1_python_compile -j 1
 }
 
 python_compile_all() {
