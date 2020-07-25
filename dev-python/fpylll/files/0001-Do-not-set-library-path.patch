@@ -1,0 +1,38 @@
+From f25a4fcbe7fbaa40da301698910b30ff532b6ef4 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Fran=C3=A7ois=20Bissey?= <frp.bissey@gmail.com>
+Date: Sat, 25 Jul 2020 14:35:13 +1200
+Subject: [PATCH] Do not set library path
+
+---
+ setup.py | 3 ---
+ 1 file changed, 3 deletions(-)
+
+diff --git a/setup.py b/setup.py
+index feb3c5d..fca980b 100755
+--- a/setup.py
++++ b/setup.py
+@@ -65,13 +65,11 @@ class build_ext(_build_ext, object):
+         def_vars = self._generate_config_pxi()
+ 
+         include_dirs = [os.path.join(sys.prefix, "include")]
+-        library_dirs = [os.path.join(sys.exec_prefix, "lib")]
+         cxxflags = list(filter(None, os.environ.get("CXXFLAGS", "").split()))
+ 
+         if self.fplll is None:
+             self.fplll = {
+                 "include_dirs": include_dirs,
+-                "library_dirs": library_dirs,
+                 "language": "c++",
+                 "libraries": ["gmp", "mpfr", "fplll"],
+                 "extra_compile_args": ["-std=c++11"] + cxxflags,
+@@ -84,7 +82,6 @@ class build_ext(_build_ext, object):
+         if self.other is None:
+             self.other = {
+                 "include_dirs": include_dirs,
+-                "library_dirs": library_dirs,
+                 "libraries": ["gmp"],
+             }
+ 
+-- 
+2.26.2
+
