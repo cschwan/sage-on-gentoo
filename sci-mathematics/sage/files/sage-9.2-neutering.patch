@@ -12,10 +12,10 @@ index 9a7702b..4639d03 100644
     sage/features/bliss
     sage/features/csdp
 diff --git a/sage/doctest/control.py b/sage/doctest/control.py
-index cd5ab59..c7d2c6c 100644
+index a03f6cb..40dde5e 100644
 --- a/sage/doctest/control.py
 +++ b/sage/doctest/control.py
-@@ -351,17 +351,6 @@ class DocTestController(SageObject):
+@@ -352,17 +352,6 @@ class DocTestController(SageObject):
                  # Special case to run all optional tests
                  options.optional = True
              else:
@@ -51,21 +51,20 @@ index 46765a0..1eb5772 100644
  
  lazy_import('sage.misc.sagedoc', ['browse_sage_doc',
 diff --git a/sage/tests/cmdline.py b/sage/tests/cmdline.py
-index 310e55d..8300371 100644
+index 6e034dc..32dd4b7 100644
 --- a/sage/tests/cmdline.py
 +++ b/sage/tests/cmdline.py
-@@ -13,10 +13,7 @@ test.spyx
+@@ -13,9 +13,7 @@ test.spyx
  --advanced
  -c
  --cython
 ---dev
  --ecl
 ---experimental
----fixdoctests
+ --fixdoctests
  --gap
  --gdb
- --gp
-@@ -29,7 +26,6 @@ test.spyx
+@@ -28,7 +26,6 @@ test.spyx
  --maxima
  --min
  --mwrank
@@ -73,7 +72,7 @@ index 310e55d..8300371 100644
  --preparse
  --python
  --python3
-@@ -43,7 +39,6 @@ test.spyx
+@@ -41,7 +38,6 @@ test.spyx
  --sh
  --singular
  --sqlite3
@@ -81,58 +80,7 @@ index 310e55d..8300371 100644
  --startuptime
  -t
  -v
-@@ -413,50 +408,6 @@ def test_executable(args, input="", timeout=100.0, pydebug_ignore_warnings=False
-         sage: ret
-         1
- 
--    Now run a test for the fixdoctests script and, in particular, check that the
--    issues raised in :trac:`10589` are fixed. We have to go to slightly silly
--    lengths to doctest the output.::
--
--        sage: test='r\"\"\"Add a doc-test for the fixdoctest command line option and, in particular, check that\n:trac:`10589` is fixed.\n\nEXAMPLES::\n\n    sage: 1+1              # incorrect output\n    3\n    sage: m=matrix(ZZ,3)   # output when none is expected\n    [0 0 0]\n    [0 0 0]\n    [1 0 0]\n    sage: (2/3)*m          # no output when it is expected\n    sage: mu=PartitionTuple([[4,4],[3,3,2,1],[1,1]])   # output when none is expected\n    [4, 4, 3, 3, 2, 1, 1]\n    sage: mu.pp()          # uneven indentation\n    ****\n    ****\n    sage: PartitionTuples.options(convention="French")\n    sage: mu.pp()         # fix doctest with uneven indentation\n    sage: PartitionTuples.options._reset()\n\"\"\"\n'
--        sage: test_file = os.path.join(tmp_dir(), 'test_file.py')
--        sage: F = open(test_file, 'w')
--        sage: _ = F.write(test)
--        sage: F.close()
--        sage: (out, err, ret) = test_executable(["sage", "--fixdoctests", test_file])
--        sage: with open(test_file, 'r') as f:
--        ....:     fixed_test = f.read()
--        sage: import difflib
--        sage: list(difflib.unified_diff(test.splitlines(), fixed_test.splitlines()))[2:-1]
--        ['@@ -4,18 +4,23 @@\n',
--         ' EXAMPLES::',
--         ' ',
--         '     sage: 1+1              # incorrect output',
--         '-    3',
--         '+    2',
--         '     sage: m=matrix(ZZ,3)   # output when none is expected',
--         '+    sage: (2/3)*m          # no output when it is expected',
--         '     [0 0 0]',
--         '     [0 0 0]',
--         '-    [1 0 0]',
--         '-    sage: (2/3)*m          # no output when it is expected',
--         '+    [0 0 0]',
--         '     sage: mu=PartitionTuple([[4,4],[3,3,2,1],[1,1]])   # output when none is expected',
--         '-    [4, 4, 3, 3, 2, 1, 1]',
--         '     sage: mu.pp()          # uneven indentation',
--         '-    ****',
--         '-    ****',
--         '+       ****   ***   *',
--         '+       ****   ***   *',
--         '+              **',
--         '+              *',
--         '     sage: PartitionTuples.options(convention="French")',
--         '     sage: mu.pp()         # fix doctest with uneven indentation',
--         '+    *',
--         '+    **',
--         '+    ****   ***   *',
--         '+    ****   ***   *',
--         '     sage: PartitionTuples.options._reset()']
--
-     Test external programs being called by Sage::
- 
-         sage: (out, err, ret) = test_executable(["sage", "--sh"], "echo Hello World\nexit 42\n")
-@@ -606,32 +557,6 @@ def test_executable(args, input="", timeout=100.0, pydebug_ignore_warnings=False
+@@ -596,32 +592,6 @@ def test_executable(args, input="", timeout=100.0, pydebug_ignore_warnings=False
          sage: ret
          0
  
@@ -166,22 +114,22 @@ index 310e55d..8300371 100644
      but we allow stderr in case this changes in the future::
  
 diff --git a/sage_setup/optional_extension.py b/sage_setup/optional_extension.py
-index 546191f..dc72b54 100644
+index 546191f..2b53d1b 100644
 --- a/sage_setup/optional_extension.py
 +++ b/sage_setup/optional_extension.py
-@@ -19,10 +19,7 @@ package which must be installed.
+@@ -19,10 +19,8 @@ package which must be installed.
  
  
  from distutils.extension import Extension
 -from sage.misc.package import list_packages
 -
 -all_packages = list_packages(local=True)
--
+ 
 +import os
  
  class CythonizeExtension(Extension):
      """
-@@ -76,14 +73,7 @@ def OptionalExtension(*args, **kwds):
+@@ -76,14 +74,7 @@ def OptionalExtension(*args, **kwds):
          condition = kwds.pop("condition")
      except KeyError:
          pkg = kwds.pop("package")
@@ -198,10 +146,10 @@ index 546191f..dc72b54 100644
      if condition:
          return Extension(*args, **kwds)
 diff --git a/setup.py b/setup.py
-index 4b82e1a..19abde5 100755
+index ac9cfb6..19abde5 100755
 --- a/setup.py
 +++ b/setup.py
-@@ -129,43 +129,19 @@ code = setup(name = 'sage',
+@@ -129,41 +129,19 @@ code = setup(name = 'sage',
                   'bin/sage-valgrind',
                   'bin/sage-version.sh',
                   'bin/sage-cleaner',
@@ -233,12 +181,10 @@ index 4b82e1a..19abde5 100755
 -                 'bin/sage-rebase.sh',
 -                 'bin/sage-rebaseall.bat',
 -                 'bin/sage-rebaseall.sh',
--                 'bin/sage-rst2sws',
 -                 'bin/sage-rst2txt',
                   'bin/sage-run',
                   'bin/sage-run-cython',
                   'bin/sage-startuptime.py',
--                 'bin/sage-sws2rst',
 -                 'bin/sage-update-src',
 -                 'bin/sage-update-version',
 -                 'bin/sage-upgrade',
