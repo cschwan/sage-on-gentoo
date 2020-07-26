@@ -6,7 +6,7 @@ dev-java/asm:2
 ~dev-libs/mpc-1.1.0
 >=dev-libs/ntl-9.8.1
 ~dev-libs/ppl-1.2
->=dev-lisp/ecls-16.0.0::sage-on-gentoo
+~dev-lisp/ecls-20.4.24::sage-on-gentoo
 dev-python/cvxopt
 =dev-python/cysignals-1.10*
 >=dev-python/cython-0.29.1
@@ -24,7 +24,7 @@ dev-python/versioneer
 dev-python/wcwidth
 dev-python/mpmath
 ~dev-python/pkgconfig-1.2.2
-=dev-python/sphinx-3.0*
+=dev-python/sphinx-3.1*
 =dev-python/pyzmq-17*
 =dev-python/sympy-1.6*
 =dev-tex/sage-latex-3*

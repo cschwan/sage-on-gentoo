@@ -37,11 +37,10 @@ DEPEND="dev-libs/gmp:0=
 	>=dev-libs/mpc-1.1.0
 	>=dev-libs/ntl-11.4.3:=
 	>=dev-libs/ppl-1.1
-	~dev-lisp/ecls-16.1.2
+	~dev-lisp/ecls-20.4.24
 	>=dev-python/six-1.11.0[${PYTHON_USEDEP}]
 	>=dev-python/numpy-1.16.1[${PYTHON_USEDEP}]
-	>=dev-python/cython-0.29.1[${PYTHON_USEDEP}]
-	<dev-python/cython-0.29.20
+	>=dev-python/cython-0.29.21[${PYTHON_USEDEP}]
 	dev-python/future[${PYTHON_USEDEP}]
 	>=dev-python/pkgconfig-1.2.2[${PYTHON_USEDEP}]
 	>=dev-python/cysignals-1.10.0[${PYTHON_USEDEP}]
@@ -93,7 +92,7 @@ DEPEND="dev-libs/gmp:0=
 	>=sci-libs/libhomfly-1.0.1
 	sci-libs/libbraiding
 	bliss? ( >=sci-libs/bliss-0.73 )
-	>=dev-python/sphinx-3.0.1[${PYTHON_USEDEP}]"
+	>=dev-python/sphinx-3.1.0[${PYTHON_USEDEP}]"
 
 BDEPEND="app-portage/gentoolkit
 	doc-pdf? ( app-text/texlive[extra,${L10N_USEDEP}] )"
@@ -195,7 +194,7 @@ python_prepare_all() {
 	eapply "${FILESDIR}"/ipython-7.10_b.patch
 
 	# Remove sage's package management system, git capabilities and associated tests
-	eapply "${FILESDIR}"/${PN}-9.1-neutering.patch
+	eapply "${FILESDIR}"/${PN}-9.2-neutering.patch
 	cp -f "${FILESDIR}"/${PN}-7.3-package.py sage/misc/package.py
 	rm -f sage/misc/dist.py
 	rm -rf sage/dev
@@ -228,7 +227,7 @@ python_prepare_all() {
 	local pplpyver=`equery -q l -F '$name-$fullversion' pplpy:0`
 	sed -i "s:@PPLY_DOC_VERS@:${pplpyver}:" sage/sage_conf.py
 	# Adjust variables in other files than sage_conf.py
-	eapply "${FILESDIR}"/${PN}-9.1-env.patch
+	eapply "${FILESDIR}"/${PN}-9.2-env.patch
 	# getting sage_conf from the right spot
 	sed -i "s:sage_conf:sage.sage_conf:g" sage/env.py
 
@@ -322,6 +321,8 @@ python_configure_all() {
 	export SAGE_NUM_THREADS=$(makeopts_jobs)
 	# try to fix random sphinx crash during the building of the documentation
 	export MPLCONFIGDIR="${T}"/matplotlib
+	# Avoid spurious message from the gtk backend by making sure it is never tried
+	export MPLBACKEND=Agg
 	for option in ${SAGE_USE}; do
 		use $option && export WANT_$option="True"
 	done
@@ -371,30 +372,6 @@ python_install() {
 	fi
 
 	distutils-r1_python_install
-
-	##############################################
-	# install scripts and miscellanous files
-	##############################################
-
-	pushd bin
-	python_doscript \
-		sage-cleaner \
-		sage-eval \
-		sage-ipython \
-		sage-run \
-		sage-num-threads.py \
-		sage-preparse \
-		sage-startuptime.py \
-		sage-cython \
-		sage-notebook \
-		sage-run-cython \
-		math-readline
-
-	if use testsuite ; then
-		# DOCTESTING helper scripts
-		python_doscript sage-runtests
-	fi
-	popd
 }
 
 python_install_all(){
@@ -433,26 +410,9 @@ python_install_all(){
 
 	distutils-r1_python_install_all
 
-	pushd bin
-
-	dobin sage-native-execute sage sage-ipynb2rst \
-		sage-version.sh
-
 	# install env files under /etc
 	insinto /etc
-	doins sage-maxima.lisp
-	newins ../../VERSION.txt sage-version.txt
-
-	if use debug ; then
-		# GNU DEBUGGER helper schripts
-		insinto /usr/bin
-		doins sage-gdb-commands
-
-		# VALGRIND helper scripts
-		dobin sage-cachegrind sage-callgrind sage-massif sage-omega \
-			sage-valgrind
-	fi
-	popd
+	newins ../VERSION.txt sage-version.txt
 
 	if use X ; then
 		doicon "${S}"/sage/ext_data/notebook-ipython/logo.svg

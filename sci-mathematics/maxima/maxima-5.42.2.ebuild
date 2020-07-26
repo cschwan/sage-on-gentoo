@@ -100,6 +100,10 @@ src_prepare() {
 		${PN}-5.39.0-matrixexp
 		${PN}-5.39.0-undoing_true_false_printing_patch )
 
+	if has_version ">=dev-lisp/ecls-20.4.24" ; then
+		PATCHES+=( bugfix3629 )
+	fi
+
 	n=${#PATCHES[*]}
 	for ((n--; n >= 0; n--)); do
 		eapply "${FILESDIR}"/${PATCHES[${n}]}.patch
