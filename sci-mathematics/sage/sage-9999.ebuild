@@ -169,8 +169,6 @@ python_prepare_all() {
 	# Also remove some unappropriate bits.
 	# We used to provide our own but upstream is making it more distro friendly.
 	eapply "${FILESDIR}"/sage_exec-9.2.patch
-	# Prune SAGE_LOCAL
-	sed "s:exec \"\$SAGE_LOCAL\"/bin/:exec :g" -i bin/sage
 	if use debug ; then
 		sed -i "s:SAGE_DEBUG=\"no\":SAGE_DEBUG=\"yes\":" bin/sage
 	fi
