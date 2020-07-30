@@ -24,6 +24,7 @@ dev-python/versioneer
 dev-python/wcwidth
 dev-python/mpmath
 ~dev-python/pkgconfig-1.2.2
+dev-python/rpy::sage-on-gentoo
 =dev-python/sphinx-3.1*
 =dev-python/pyzmq-17*
 =dev-python/sympy-1.6*
