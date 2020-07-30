@@ -3,7 +3,7 @@
 
 EAPI=7
 
-PYTHON_COMPAT=( python3_{6,7,8} )
+PYTHON_COMPAT=( python3_{7,8} )
 DISTUTILS_USE_SETUPTOOLS=bdepend
 inherit distutils-r1
 
@@ -24,9 +24,7 @@ PATCHES=(
 
 DOCS=( README.md )
 
-#RESTRICT="!test? ( test )"
-# Restrict testing until sympy has a py3.8 ebuild
-RESTRICT="test"
+RESTRICT="!test? ( test )"
 
 # Note that the version of symengine officially supported is encoded
 # in the file symengine_version.txt
@@ -36,11 +34,10 @@ RDEPEND="
 	~sci-libs/symengine-0.6.0"
 DEPEND="${RDEPEND}
 	dev-python/cython[${PYTHON_USEDEP}]
-	"
-# 	test? (
-# 		dev-python/nose[${PYTHON_USEDEP}]
-# 		dev-python/sympy[${PYTHON_USEDEP}]
-# 	)"
+	test? (
+		dev-python/nose[${PYTHON_USEDEP}]
+		dev-python/sympy[${PYTHON_USEDEP}]
+	)"
 
 S="${WORKDIR}/${MYP}"
 
