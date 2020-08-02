@@ -3,7 +3,7 @@
 
 EAPI=7
 
-PYTHON_COMPAT=( python3_{6,7} )
+PYTHON_COMPAT=( python3_{7,8} )
 PYTHON_REQ_USE="readline,sqlite"
 DISTUTILS_USE_SETUPTOOLS=no
 
@@ -165,10 +165,10 @@ python_prepare_all() {
 	sed -i "s:os.environ\[\"MAKE\"\]:os.environ\[\"MAKEOPTS\"\]:g" \
 		bin/sage-num-threads.py
 
-	# ship our simplified sage shell script
-	# Now including sage-env as of 8.7.beta5+
-	cp "${FILESDIR}"/sage-exec-9.1 bin/sage
-	eprefixify bin/sage
+	# Patch the sage script to including our own environment
+	# Also remove some unappropriate bits.
+	# We used to provide our own but upstream is making it more distro friendly.
+	eapply "${FILESDIR}"/sage_exec-9.2.patch
 	if use debug ; then
 		sed -i "s:SAGE_DEBUG=\"no\":SAGE_DEBUG=\"yes\":" bin/sage
 	fi

@@ -1,0 +1,142 @@
+diff --git a/bin/sage b/bin/sage
+index e637892..4e0b1b1 100755
+--- a/bin/sage
++++ b/bin/sage
+@@ -196,20 +196,39 @@ fi
+ # append -env to that). We redirect stdout to stderr, which is safer
+ # for scripts.
+ #####################################################################
+-if [ -f "$0-env-config" ] && [ -f "$0-env" ]; then
+-    . "$0-env-config" >&2
+-    . "$0-env" >&2
+-    if [ $? -ne 0 ]; then
+-        echo >&2 "Error setting environment variables by sourcing '$0-env';"
+-        echo >&2 "possibly contact sage-devel (see http://groups.google.com/group/sage-devel)."
+-        exit 1
+-    fi
++#####################################################################
++# setup variables usually established by sage-env/sage-env-config.
++#####################################################################
++if [[ -z ${DOT_SAGE} ]]; then
++	export DOT_SAGE="${HOME}/.sage"
+ fi
+ 
+-if [ -z "$DOT_SAGE" ]; then
+-    export DOT_SAGE="$HOME/.sage"
++if [ "$SAGE_STARTUP_FILE" = "" ]; then
++	export SAGE_STARTUP_FILE="${DOT_SAGE}/init.sage"
+ fi
+ 
++if [ -z "$SAGE_RC_FILE" ]; then
++	export SAGE_RC_FILE="$DOT_SAGE/sagerc"
++fi
++
++if [ -r "$SAGE_RC_FILE" ]; then
++	source "$SAGE_RC_FILE"
++	if [ $? -ne 0 ]; then
++		echo >&2 "Error sourcing $SAGE_RC_FILE"
++		exit 1
++	fi
++fi
++
++export SAGE_DEBUG="no"
++
++# Allow SAGE_BROWSER to override BROWSER (Trac #22449)
++if [ -n "$SAGE_BROWSER" ]; then
++	export BROWSER="$SAGE_BROWSER"
++fi
++#####################################################################
++# End of sage-env block
++#####################################################################
++
+ 
+ #####################################################################
+ # Helper functions
+@@ -217,44 +236,10 @@ fi
+ 
+ # Prepare for running Sage, either interactively or non-interactively.
+ sage_setup() {
+-    # Check that we're not in a source tarball which hasn't been built yet (#13561).
+-    if [ ! -z "$SAGE_LOCAL" ] && [ ! -x "$SAGE_LOCAL/bin/sage" ]; then
+-        echo >&2 '************************************************************************'
+-        echo >&2 'It seems that you are attempting to run Sage from an unpacked source'
+-        echo >&2 'tarball, but you have not compiled it yet (or maybe the build has not'
+-        echo >&2 'finished). You should run `make` in the Sage root directory first.'
+-        echo >&2 'If you did not intend to build Sage from source, you should download'
+-        echo >&2 'a binary tarball instead. Read README.txt for more information.'
+-        echo >&2 '************************************************************************'
+-        exit 1
+-    fi
+-
+-    maybe_sage_location
+-
+-    if [ ! -d "$IPYTHONDIR" ]; then
+-        # make sure that $DOT_SAGE exists so that ipython will happily
+-        # create its config directories there.  If DOT_SAGE doesn't
+-        # exist, ipython complains.
+-        mkdir -p -m 700 "$DOT_SAGE"
+-    fi
+     sage-cleaner &>/dev/null &
+ }
+ 
+ 
+-# Check to see if the whole Sage install tree has moved.  If so,
+-# change various hardcoded paths.  Skip this if we don't have write
+-# access to $SAGE_LOCAL (e.g. when running as a different user) or
+-# if Python and sage-location haven't been installed yet.
+-maybe_sage_location()
+-{
+-    if [ -w "$SAGE_LOCAL" ]; then
+-        if [ -x "$SAGE_LOCAL/bin/python" ] && [ -x "$SAGE_LOCAL/bin/sage-location" ]; then
+-            sage-location || exit $?
+-        fi
+-    fi
+-}
+-
+-
+ # Start an interactive Sage session, this function never returns.
+ interactive_sage() {
+     sage_setup
+@@ -507,36 +492,32 @@ fi
+ 
+ if [ "$1" = '--pip3' ]; then
+     shift
+-    exec "$SAGE_LOCAL"/bin/python3 -m pip "$@"
++    exec python3 -m pip "$@"
+ fi
+ 
+ if [ "$1" = '-python' -o "$1" = '--python' ]; then
+     shift
+-    if [ "$SAGE_PYTHON3" = 'yes' ]; then
+-        exec "$SAGE_LOCAL"/bin/python3 "$@"
+-    else
+-        exec "$SAGE_LOCAL"/bin/python2 "$@"
+-    fi
++    exec python3 "$@"
+ fi
+ 
+ if [ "$1" = '-python3' -o "$1" = '--python3' ]; then
+     shift
+-    exec "$SAGE_LOCAL"/bin/python3 "$@"
++    exec python3 "$@"
+ fi
+ 
+ if [ "$1" = '-ipython' -o "$1" = '--ipython' ]; then
+     shift
+-    exec "$SAGE_LOCAL"/bin/ipython "$@"
++    exec ipython "$@"
+ fi
+ 
+ if [ "$1" = '-ipython3' -o "$1" = '--ipython3' ]; then
+     shift
+-    exec "$SAGE_LOCAL"/bin/ipython3 "$@"
++    exec ipython3 "$@"
+ fi
+ 
+ if [ "$1" = '-jupyter' -o "$1" = '--jupyter' ]; then
+     shift
+-    exec "$SAGE_LOCAL"/bin/jupyter "$@"
++    exec jupyter "$@"
+ fi
+ 
+ #####################################################################
