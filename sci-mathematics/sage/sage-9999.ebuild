@@ -50,7 +50,7 @@ DEPEND="dev-libs/gmp:0=
 	>=dev-python/ipython-7.0.0[notebook,${PYTHON_USEDEP}]
 	>=dev-python/ipykernel-4.6.0[${PYTHON_USEDEP}]
 	>=dev-python/jinja-2.8[${PYTHON_USEDEP}]
-	=dev-python/matplotlib-3.2*[${PYTHON_USEDEP}]
+	=dev-python/matplotlib-3.3*[${PYTHON_USEDEP}]
 	=dev-python/ipywidgets-7*[${PYTHON_USEDEP}]
 	>=dev-python/gmpy-2.1.0_beta1[${PYTHON_USEDEP}]
 	>=dev-python/pplpy-0.8.4:=[doc,${PYTHON_USEDEP}]
@@ -188,8 +188,6 @@ python_prepare_all() {
 
 	# patch latex output for giac 1.5.0.87+
 	eapply "${FILESDIR}"/giac-1.5.0.87.patch
-	# patch for networkx 2.4
-	eapply "${FILESDIR}"/networkx-2.4.patch
 	# Move to ipython-7
 	eapply "${FILESDIR}"/ipython-7.10_b.patch
 
