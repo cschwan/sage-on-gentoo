@@ -65,7 +65,7 @@ DEPEND="dev-libs/gmp:0=
 	sci-libs/m4ri
 	sci-libs/m4rie
 	>=sci-libs/mpfi-1.5.2
-	~sci-libs/pynac-0.7.26[-giac,${PYTHON_USEDEP}]
+	=sci-libs/pynac-0.7.26-r1[-giac,${PYTHON_USEDEP}]
 	>=sci-libs/symmetrica-2.0-r3
 	>=sci-libs/zn_poly-0.9
 	>=sci-mathematics/gap-4.10.2:0/4.10.2[recommended_pkgs]
@@ -138,6 +138,8 @@ RDEPEND="${DEPEND}
 CHECKREQS_DISK_BUILD="8G"
 
 S="${WORKDIR}/${P}/src"
+
+DISTUTILS_ALL_SUBPHASE_IMPLS=( python3_7 )
 
 REQUIRED_USE="doc-html? ( jmol l10n_en )
 	doc-pdf? ( jmol l10n_en )
