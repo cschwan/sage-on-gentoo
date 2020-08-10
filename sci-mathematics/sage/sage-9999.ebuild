@@ -139,8 +139,6 @@ CHECKREQS_DISK_BUILD="8G"
 
 S="${WORKDIR}/${P}/src"
 
-DISTUTILS_ALL_SUBPHASE_IMPLS=( python3_7 )
-
 REQUIRED_USE="doc-html? ( jmol l10n_en )
 	doc-pdf? ( jmol l10n_en )
 	testsuite? ( doc-html jmol )"
