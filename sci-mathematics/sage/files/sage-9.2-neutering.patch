@@ -114,7 +114,7 @@ index 6e034dc..32dd4b7 100644
      but we allow stderr in case this changes in the future::
  
 diff --git a/sage_setup/optional_extension.py b/sage_setup/optional_extension.py
-index 546191f..2b53d1b 100644
+index 2f7e8f7..76a6d97 100644
 --- a/sage_setup/optional_extension.py
 +++ b/sage_setup/optional_extension.py
 @@ -19,10 +19,8 @@ package which must be installed.
@@ -129,35 +129,60 @@ index 546191f..2b53d1b 100644
  
  class CythonizeExtension(Extension):
      """
-@@ -76,14 +74,7 @@ def OptionalExtension(*args, **kwds):
+@@ -40,17 +38,6 @@ class CythonizeExtension(Extension):
+     """
+     skip_build = True
+ 
+-def is_package_installed_and_updated(pkg):
+-    from sage.misc.package import is_package_installed
+-    try:
+-        pkginfo = all_packages[pkg]
+-    except KeyError:
+-        # Might be an installed old-style package
+-        condition = is_package_installed(pkg)
+-    else:
+-        condition = (pkginfo["installed_version"] == pkginfo["remote_version"])
+-    return condition
+-
+ def OptionalExtension(*args, **kwds):
+     """
+     If some condition (see INPUT) is satisfied, return an ``Extension``.
+@@ -86,7 +73,7 @@ def OptionalExtension(*args, **kwds):
          condition = kwds.pop("condition")
      except KeyError:
          pkg = kwds.pop("package")
--        from sage.misc.package import is_package_installed
--        try:
--            pkginfo = all_packages[pkg]
--        except KeyError:
--            # Might be an installed old-style package
--            condition = is_package_installed(pkg)
--        else:
--            condition = (pkginfo["installed_version"] == pkginfo["remote_version"])
+-        condition = is_package_installed_and_updated(pkg)
 +        condition = os.getenv('WANT_%s'%pkg,False)
- 
      if condition:
          return Extension(*args, **kwds)
+     else:
 diff --git a/setup.py b/setup.py
-index ac9cfb6..19abde5 100755
+index f7e04e6..d428077 100755
 --- a/setup.py
 +++ b/setup.py
-@@ -129,41 +129,19 @@ code = setup(name = 'sage',
+@@ -53,14 +53,12 @@ t = time.time()
+ 
+ distributions = ['']
+ 
+-from sage_setup.optional_extension import is_package_installed_and_updated
+-
+ optional_packages_with_extensions = ['mcqd', 'bliss', 'tdlib', 'primecount',
+                                      'coxeter3', 'fes', 'sirocco', 'meataxe']
+ 
+ distributions += ['sage-{}'.format(pkg)
+                   for pkg in optional_packages_with_extensions
+-                  if is_package_installed_and_updated(pkg)]
++                  if os.getenv('WANT_%s'%pkg,False)]
+ 
+ log.warn('distributions = {0}'.format(distributions))
+ 
+@@ -134,39 +132,19 @@ code = setup(name = 'sage',
                   'bin/sage-valgrind',
                   'bin/sage-version.sh',
                   'bin/sage-cleaner',
 -                 ## Only makes sense in sage-the-distribution. TODO: Move to another installation script.
 -                 'bin/sage-list-packages',
--                 'bin/sage-clone-source',
 -                 'bin/sage-download-upstream',
--                 'bin/sage-sdist',
 -                 'bin/sage-location',
                   ## Uncategorized scripts in alphabetical order
                   'bin/math-readline',

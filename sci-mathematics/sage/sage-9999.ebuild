@@ -50,7 +50,7 @@ DEPEND="dev-libs/gmp:0=
 	>=dev-python/ipython-7.0.0[notebook,${PYTHON_USEDEP}]
 	>=dev-python/ipykernel-4.6.0[${PYTHON_USEDEP}]
 	>=dev-python/jinja-2.8[${PYTHON_USEDEP}]
-	=dev-python/matplotlib-3.2*[${PYTHON_USEDEP}]
+	=dev-python/matplotlib-3.3*[${PYTHON_USEDEP}]
 	=dev-python/ipywidgets-7*[${PYTHON_USEDEP}]
 	>=dev-python/gmpy-2.1.0_beta1[${PYTHON_USEDEP}]
 	>=dev-python/pplpy-0.8.4:=[doc,${PYTHON_USEDEP}]
@@ -65,7 +65,7 @@ DEPEND="dev-libs/gmp:0=
 	sci-libs/m4ri
 	sci-libs/m4rie
 	>=sci-libs/mpfi-1.5.2
-	~sci-libs/pynac-0.7.26[-giac,${PYTHON_USEDEP}]
+	=sci-libs/pynac-0.7.26-r1[-giac,${PYTHON_USEDEP}]
 	>=sci-libs/symmetrica-2.0-r3
 	>=sci-libs/zn_poly-0.9
 	>=sci-mathematics/gap-4.10.2:0/4.10.2[recommended_pkgs]
@@ -188,10 +188,6 @@ python_prepare_all() {
 
 	# patch latex output for giac 1.5.0.87+
 	eapply "${FILESDIR}"/giac-1.5.0.87.patch
-	# patch for networkx 2.4
-	eapply "${FILESDIR}"/networkx-2.4.patch
-	# Move to ipython-7
-	eapply "${FILESDIR}"/ipython-7.10_b.patch
 
 	# Remove sage's package management system, git capabilities and associated tests
 	eapply "${FILESDIR}"/${PN}-9.2-neutering.patch
