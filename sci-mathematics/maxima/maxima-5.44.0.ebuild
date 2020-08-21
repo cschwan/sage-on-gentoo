@@ -20,7 +20,7 @@ SUPP_RL=(   .    .     y               .    .         y     )
 # . - just --enable-<lisp>, <flag> - --enable-<flag>
 CONF_FLAG=( .    .     .               ecl  ccl       .     )
 # patch file version; . - no patch
-PATCH_V=(   2    1     .               .    3         1     )
+PATCH_V=(   2    1     .               4    3         1     )
 
 IUSE="emacs tk nls unicode X test ${LISPS[*]}"
 RESTRICT="!test? ( test )"
@@ -100,10 +100,6 @@ src_prepare() {
 	PATCHES=( emacs-0 rmaxima-0 wish-2 xdg-utils-1
 		${PN}-5.39.0-matrixexp
 		${PN}-5.39.0-undoing_true_false_printing_patch )
-
-	if has_version ">=dev-lisp/ecls-20.4.24" ; then
-		PATCHES+=( bugfix3629 )
-	fi
 
 	n=${#PATCHES[*]}
 	for ((n--; n >= 0; n--)); do
@@ -193,6 +189,13 @@ src_install() {
 		insinto /usr/share/${PN}/${PV}/doc/imaxima
 		doins interfaces/emacs/imaxima/README
 		doins -r interfaces/emacs/imaxima/imath-example
+	fi
+
+	# if we use ecls, build an ecls library for maxima
+	if use ecls; then
+		ECLLIB=`ecl -eval "(princ (SI:GET-LIBRARY-PATHNAME))" -eval "(quit)"`
+		insinto "${ECLLIB#${EPREFIX}}"
+		doins src/binary-ecl/maxima.fas
 	fi
 }
 
