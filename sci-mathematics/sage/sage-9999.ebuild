@@ -50,7 +50,7 @@ DEPEND="dev-libs/gmp:0=
 	>=dev-python/ipython-7.0.0[notebook,${PYTHON_USEDEP}]
 	>=dev-python/ipykernel-4.6.0[${PYTHON_USEDEP}]
 	>=dev-python/jinja-2.8[${PYTHON_USEDEP}]
-	=dev-python/matplotlib-3.3*[${PYTHON_USEDEP}]
+	>=dev-python/matplotlib-3.3.1[${PYTHON_USEDEP}]
 	=dev-python/ipywidgets-7*[${PYTHON_USEDEP}]
 	>=dev-python/gmpy-2.1.0_beta1[${PYTHON_USEDEP}]
 	>=dev-python/pplpy-0.8.4:=[doc,${PYTHON_USEDEP}]
@@ -116,7 +116,7 @@ RDEPEND="${DEPEND}
 	>=sci-mathematics/cubex-20060128
 	>=sci-mathematics/dikcube-20070912
 	>=sci-mathematics/ExportSageNB-3.3
-	>=sci-mathematics/maxima-5.42.2[ecls]
+	>=sci-mathematics/maxima-5.44.0[ecls]
 	>=sci-mathematics/mcube-20051209
 	>=sci-mathematics/nauty-2.6.1
 	>=sci-mathematics/optimal-20040603
@@ -185,9 +185,6 @@ python_prepare_all() {
 	# Patches to the sage library
 	#
 	###############################
-
-	# patch latex output for giac 1.5.0.87+
-	eapply "${FILESDIR}"/giac-1.5.0.87.patch
 
 	# Remove sage's package management system, git capabilities and associated tests
 	eapply "${FILESDIR}"/${PN}-9.2-neutering.patch

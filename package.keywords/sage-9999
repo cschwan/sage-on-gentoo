@@ -14,7 +14,7 @@ dev-python/cvxopt
 =dev-python/pplpy-0.8*
 dev-python/terminado
 =dev-python/numpy-1.16*
-=dev-python/matplotlib-3.3*
+>=dev-python/matplotlib-3.3.1
 ~dev-python/networkx-2.4
 =dev-python/cypari2-2.1*
 dev-python/versioneer
@@ -61,7 +61,7 @@ sci-mathematics/flintqs
 >=sci-mathematics/glpk-4.61
 >=sci-mathematics/lcalc-1.23-r6
 sci-mathematics/lrcalc
-~sci-mathematics/maxima-5.42.2::sage-on-gentoo
+~sci-mathematics/maxima-5.44.0::sage-on-gentoo
 sci-mathematics/mcube
 sci-mathematics/optimal
 sci-mathematics/palp
