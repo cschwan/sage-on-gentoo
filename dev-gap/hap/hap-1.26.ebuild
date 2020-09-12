@@ -5,31 +5,29 @@ EAPI=7
 
 DESCRIPTION="Homological Algebra Programming"
 HOMEPAGE="https://www.gap-system.org/Packages/${PN}.html"
-GAP_VERSION=4.10.2
-SRC_URI="https://www.gap-system.org/pub/gap/gap-$(ver_cut 1-2 ${GAP_VERSION})/tar.bz2/gap-${GAP_VERSION}.tar.bz2"
+SRC_URI="https://github.com/gap-packages/${PN}/releases/download/v${PV}/${P}.tar.gz"
 
 LICENSE="GPL-2+"
-SLOT="0/${GAP_VERSION}"
+SLOT="0"
 KEYWORDS="~amd64 ~x86"
 IUSE=""
 
-RDEPEND="sci-mathematics/gap:${SLOT}
+RDEPEND=">=sci-mathematics/gap-4.10.0
 	>=dev-gap/aclib-1.3.1
 	>=dev-gap/polycyclic-2.14
 	>=dev-gap/crystcat-1.1.9
-	>=dev-gap/fga-1.4.0"
+	>=dev-gap/fga-1.4.0
+	>=dev-gap/nq-2.5.4"
 
-S="${WORKDIR}/gap-${GAP_VERSION}/pkg/Hap${PV}"
-
-DOCS="README.HAP"
+DOCS="README.md"
 HTML_DOCS=www/*
 
 src_install(){
 	default
 
-	insinto /usr/share/gap/pkg/Hap"${PV}"
-	doins -r doc lib pdfdoc
-	doins *.g boolean
+	insinto /usr/share/gap/pkg/"${P}"
+	doins -r doc lib
+	doins *.g boolean version
 }
 
 pkg_postinst(){

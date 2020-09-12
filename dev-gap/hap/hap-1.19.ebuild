@@ -16,7 +16,7 @@ IUSE=""
 RDEPEND="sci-mathematics/gap:${SLOT}
 	>=dev-gap/aclib-1.3.1
 	>=dev-gap/polycyclic-2.14
-	dev-gap/crystcat:${SLOT}
+	>=dev-gap/crystcat-1.1.9
 	>=dev-gap/fga-1.4.0"
 
 S="${WORKDIR}/gap-${GAP_VERSION}/pkg/Hap${PV}"
