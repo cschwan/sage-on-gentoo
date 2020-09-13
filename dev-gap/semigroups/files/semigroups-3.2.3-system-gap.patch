@@ -1,0 +1,143 @@
+diff --git a/src/bipart.cc b/src/bipart.cc
+index 59bb4c1..7e1aa84 100644
+--- a/src/bipart.cc
++++ b/src/bipart.cc
+@@ -28,7 +28,7 @@
+ #include <utility>
+ #include <vector>
+ 
+-#include "src/compiled.h"
++#include "gap/compiled.h"
+ 
+ #include "libsemigroups/blocks.hpp"
+ #include "libsemigroups/froidure-pin.hpp"
+diff --git a/src/bipart.h b/src/bipart.h
+index f50f1d0..e208506 100644
+--- a/src/bipart.h
++++ b/src/bipart.h
+@@ -20,7 +20,7 @@
+ #define SEMIGROUPS_SRC_BIPART_H_
+ 
+ // GAP headers
+-#include "src/compiled.h"
++#include "gap/compiled.h"
+ 
+ // Semigroups pkg headers
+ #include "pkg.h"
+diff --git a/src/congpairs.h b/src/congpairs.h
+index ce50bd6..5eb5fb9 100644
+--- a/src/congpairs.h
++++ b/src/congpairs.h
+@@ -31,7 +31,7 @@
+ 
+ #include <cstddef>
+ 
+-#include "src/compiled.h"
++#include "gap/compiled.h"
+ 
+ // GAP level functions
+ 
+diff --git a/src/converter.h b/src/converter.h
+index af5e5d8..68ce105 100644
+--- a/src/converter.h
++++ b/src/converter.h
+@@ -34,7 +34,7 @@
+ #include <algorithm>
+ #include <vector>
+ 
+-#include "src/compiled.h"
++#include "gap/compiled.h"
+ 
+ #include "pkg.h"
+ #include "semigroups-debug.h"
+diff --git a/src/fropin.h b/src/fropin.h
+index 1181694..739faa5 100644
+--- a/src/fropin.h
++++ b/src/fropin.h
+@@ -20,7 +20,7 @@
+ #define SEMIGROUPS_SRC_FROPIN_H_
+ 
+ #include "pkg.h"
+-#include "src/compiled.h"
++#include "gap/compiled.h"
+ 
+ #define ELM_PLIST2(plist, i, j) ELM_PLIST(ELM_PLIST(plist, i), j)
+ 
+diff --git a/src/pkg.h b/src/pkg.h
+index a80a959..1f46eee 100644
+--- a/src/pkg.h
++++ b/src/pkg.h
+@@ -43,7 +43,7 @@
+ #include <iostream>
+ #include <vector>
+ 
+-#include "src/compiled.h"
++#include "gap/compiled.h"
+ 
+ #include "rnams.h"
+ #include "semigroups-debug.h"
+diff --git a/src/rnams.h b/src/rnams.h
+index 834c0c4..7756fe5 100644
+--- a/src/rnams.h
++++ b/src/rnams.h
+@@ -21,7 +21,7 @@
+ #ifndef SEMIGROUPS_SRC_RNAMS_H_
+ #define SEMIGROUPS_SRC_RNAMS_H_
+ 
+-#include "src/compiled.h"  // GAP headers
++#include "gap/compiled.h"  // GAP headers
+ 
+ static Int RNam_batch_size        = 0;
+ static Int RNam_cong              = 0;
+diff --git a/src/semigrp.cc b/src/semigrp.cc
+index c659dfa..863d6e4 100644
+--- a/src/semigrp.cc
++++ b/src/semigrp.cc
+@@ -28,7 +28,7 @@
+ #include "fropin.h"
+ #include "libsemigroups/froidure-pin-base.hpp"
+ #include "pkg.h"
+-#include "src/compiled.h"
++#include "gap/compiled.h"
+ 
+ using libsemigroups::Integers;
+ using libsemigroups::LIMIT_MAX;
+diff --git a/src/semigrp.h b/src/semigrp.h
+index 7e41e8f..645aa57 100644
+--- a/src/semigrp.h
++++ b/src/semigrp.h
+@@ -21,7 +21,7 @@
+ #ifndef SEMIGROUPS_SRC_SEMIGRP_H_
+ #define SEMIGROUPS_SRC_SEMIGRP_H_
+ 
+-#include "src/compiled.h"  // GAP headers
++#include "gap/compiled.h"  // GAP headers
+ 
+ #include "libsemigroups/froidure-pin.hpp"
+ 
+diff --git a/src/uf.cc b/src/uf.cc
+index b7fd7c9..d95206f 100644
+--- a/src/uf.cc
++++ b/src/uf.cc
+@@ -24,7 +24,7 @@
+ 
+ #include "pkg.h"
+ #include "semigroups-debug.h"
+-#include "src/compiled.h"
++#include "gap/compiled.h"
+ 
+ #include "libsemigroups/uf.hpp"
+ 
+diff --git a/src/uf.h b/src/uf.h
+index 8a194a0..ac78195 100644
+--- a/src/uf.h
++++ b/src/uf.h
+@@ -24,7 +24,7 @@
+ #define SEMIGROUPS_SRC_UF_H_
+ 
+ #include "pkg.h"
+-#include "src/compiled.h"
++#include "gap/compiled.h"
+ 
+ // GAP level functions
+ 
