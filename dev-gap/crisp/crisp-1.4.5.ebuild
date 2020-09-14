@@ -5,9 +5,9 @@ EAPI=7
 
 DESCRIPTION="Computing with Radicals, Injectors, Schunck classes and Projectors"
 HOMEPAGE="https://www.gap-system.org/Packages/${PN}.html"
-GAP_VERSION="4.11.0"
-SLOT="0/${GAP_VERSION}"
-SRC_URI="https://www.gap-system.org/pub/gap/gap-$(ver_cut 1-2 ${GAP_VERSION})/tar.bz2/gap-${GAP_VERSION}.tar.bz2"
+SLOT="0"
+SRC_URI="mirror://sagemath/${P}.tar.bz2"
+RESTRICT=mirror
 
 LICENSE="BSD-2"
 KEYWORDS="~amd64 ~x86"
@@ -17,8 +17,6 @@ RDEPEND="sci-mathematics/gap:${SLOT}"
 
 DOCS="README LICENSE"
 HTML_DOCS=htm/*
-
-S="${WORKDIR}/gap-${GAP_VERSION}/pkg/${P}"
 
 src_install(){
 	default
