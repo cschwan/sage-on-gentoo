@@ -18,10 +18,10 @@ IUSE="emacs readline +recommended_pkgs vim-syntax"
 RESTRICT=primaryuri
 
 MINIMUM_PKGS="
-	~dev-gap/GAPDoc-1.6.3
-	~dev-gap/primgrp-3.4.0
-	~dev-gap/SmallGrp-1.4.1
-	~dev-gap/transgrp-2.0.5"
+	>=dev-gap/GAPDoc-1.6.3
+	>=dev-gap/primgrp-3.4.0
+	>=dev-gap/SmallGrp-1.4.1
+	>=dev-gap/transgrp-2.0.5"
 
 RECOMMENDED_PKGS="
 	>=dev-gap/autpgrp-1.10.2
@@ -39,8 +39,7 @@ RECOMMENDED_PKGS="
 	>=dev-gap/tomlib-1.2.9"
 
 DEPEND="dev-libs/gmp:=
-	readline? ( sys-libs/readline:= )
-	!!sci-libs/libgap"
+	readline? ( sys-libs/readline:= )"
 RDEPEND="${DEPEND}
 	emacs? ( >=app-editors/emacs-23.1:* )
 	vim-syntax? ( app-vim/vim-gap )"
