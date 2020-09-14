@@ -11,7 +11,7 @@ HOMEPAGE="https://www.gap-system.org/"
 SRC_URI="https://github.com/gap-system/${PN}/releases/download/v${PV}/${P}.tar.bz2"
 
 LICENSE="GPL-2+"
-SLOT="0/${PV}"
+SLOT="0"
 KEYWORDS="~amd64 ~x86 ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos"
 IUSE="emacs readline +recommended_pkgs vim-syntax"
 
