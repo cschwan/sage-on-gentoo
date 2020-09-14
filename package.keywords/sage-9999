@@ -152,7 +152,7 @@ dev-gap/irredsol:0/4.10.2
 ~dev-gap/corelg-1.20
 ~dev-gap/crime-1.5
 ~dev-gap/crypting-0.9
-dev-gap/cryst:0/4.10.2
+~dev-gap/cryst-4.1.23
 ~dev-gap/crystcat-1.1.9
 ~dev-gap/design-1.7
 ~dev-gap/gbnp-1.0.3
