@@ -1,0 +1,40 @@
+diff --git a/src/sage/calculus/test_sympy.py b/src/sage/calculus/test_sympy.py
+index 9fb9358cb2b..86f93667040 100644
+--- a/sage/calculus/test_sympy.py
++++ b/sage/calculus/test_sympy.py
+@@ -109,7 +109,7 @@
+ 
+     sage: e = (1/cos(x)^3)._sympy_(); e
+     cos(x)**(-3)
+-    sage: f = e.series(x, 0, 10); f
++    sage: f = e.series(x, 0, int(10)); f
+     1 + 3*x**2/2 + 11*x**4/8 + 241*x**6/240 + 8651*x**8/13440 + O(x**10)
+ 
+ And the pretty-printer.  Since unicode characters are not working on
+diff --git a/src/sage/manifolds/calculus_method.py b/src/sage/manifolds/calculus_method.py
+index 7042afe77a5..a658551ee9f 100644
+--- a/sage/manifolds/calculus_method.py
++++ b/sage/manifolds/calculus_method.py
+@@ -65,7 +65,7 @@ def _SR_to_Sympy(expression):
+ 
+     """
+     # Nothing to do if expression is already a SymPy object:
+-    if type(expression) in sympy.core.all_classes:
++    if type(expression) in sympy.core.core.all_classes:
+         return expression
+     return SR(expression)._sympy_()
+ 
+diff --git a/src/sage/symbolic/relation.py b/src/sage/symbolic/relation.py
+index 028f6287971..d252434d523 100644
+--- a/sage/symbolic/relation.py
++++ b/sage/symbolic/relation.py
+@@ -914,7 +914,8 @@ def solve(f, *args, **kwds):
+     print them::
+ 
+         sage: solve(sinh(x) - 2*cosh(x),x,algorithm='sympy')
+-        ConditionSet(x, Eq((-exp(2*x) - 3)*exp(-x)/2, 0), Reals)
++        [ImageSet(Lambda(_n, I*(2*_n*pi + pi/2) + log(sqrt(3))), Integers),
++         ImageSet(Lambda(_n, I*(2*_n*pi - pi/2) + log(sqrt(3))), Integers)]
+         sage: solve(2*sin(x) - 2*sin(2*x), x,algorithm='sympy')
+         [ImageSet(Lambda(_n, 2*_n*pi), Integers),
+          ImageSet(Lambda(_n, 2*_n*pi + pi), Integers),
