@@ -30,7 +30,7 @@ COMMON_DEPEND="
 	pandas? (
 		$(python_gen_cond_dep '>=dev-python/pandas-0.23.3[${PYTHON_USEDEP}]' python3_{6,7})
 	)
-	scipy? ( >=sci-libs/scipy-1.1.0[${PYTHON_USEDEP}] )
+	scipy? ( >=dev-python/scipy-1.1.0[${PYTHON_USEDEP}] )
 	xml? ( >=dev-python/lxml-4.2.3[${PYTHON_USEDEP}] )
 	yaml? ( >=dev-python/pyyaml-3.13[${PYTHON_USEDEP}] )"
 DEPEND="
