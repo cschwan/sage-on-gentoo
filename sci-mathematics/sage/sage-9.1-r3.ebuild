@@ -111,7 +111,7 @@ RDEPEND="${DEPEND}
 	media-gfx/tachyon[png]
 	jmol? ( sci-chemistry/sage-jmol-bin )
 	>=sci-libs/cddlib-094j[tools]
-	>=sci-libs/scipy-1.1.0[${PYTHON_USEDEP}]
+	>=dev-python/scipy-1.1.0[${PYTHON_USEDEP}]
 	sci-mathematics/flintqs
 	~sci-mathematics/gfan-0.6.2
 	>=sci-mathematics/cu2-20060223
