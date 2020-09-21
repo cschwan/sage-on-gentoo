@@ -5,21 +5,20 @@ EAPI=7
 
 DESCRIPTION="The crystallographic groups catalog"
 HOMEPAGE="https://www.gap-system.org/Packages/${PN}.html"
-GAP_VERSION="4.10.2"
-SLOT="0/${GAP_VERSION}"
-SRC_URI="https://www.gap-system.org/pub/gap/gap-$(ver_cut 1-2 ${GAP_VERSION})/tar.bz2/gap-${GAP_VERSION}.tar.bz2"
+GIT_TAG="13964998becf4ba9f3e4befdfb16fb50a1293094"
+SLOT="0"
+SRC_URI="https://github.com/gap-packages/crystcat/archive/${GIT_TAG}.tar.gz -> ${P}.tar.gz"
 
 LICENSE="GPL-2+"
 KEYWORDS="~amd64 ~x86"
 IUSE=""
 
-RDEPEND="sci-mathematics/gap:${SLOT}
-	dev-gap/cryst:${SLOT}"
+RDEPEND=">=sci-mathematics/gap-4.10.2
+	>=dev-gap/cryst-4.1.23"
 
-S="${WORKDIR}/gap-${GAP_VERSION}/pkg/${PN}"
+S="${WORKDIR}/${PN}-${GIT_TAG}"
 
 DOCS="Changelog README"
-HTML_DOCS=htm/*
 
 src_install(){
 	default

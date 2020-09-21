@@ -1,0 +1,43 @@
+diff --git a/Makefile.rules b/Makefile.rules
+index c2971b24..e513e6d9 100644
+--- a/Makefile.rules
++++ b/Makefile.rules
+@@ -483,9 +483,7 @@ clean:
+ 
+ LTINSTALL=$(LIBTOOL) --mode=install $(INSTALL)
+ 
+-install:
+-	@echo "Error, 'make install' has not yet been implemented"
+-	exit 1
++install: install-gaproot install-headers install-libgap
+ 
+ install-bin:
+ 	@echo "Warning, 'make install-bin' is incomplete"
+@@ -503,15 +501,6 @@ install-gaproot:
+ 	$(INSTALL) -d -m 0755 $(DESTDIR)$(datarootdir)/gap
+ 	# TODO: update paths and FLAGS in sysinfo.gap
+ 	$(INSTALL) -m 0644 $(srcdir)/sysinfo.gap $(DESTDIR)$(datarootdir)/gap
+-	# the following lines should not use `cp -r`, which is not quite portable,
+-	# and which also may not deal with file permissions correctly
+-	cp -r $(srcdir)/doc $(DESTDIR)$(datarootdir)/gap/  # FIXME: don't use `cp -r`
+-	cp -r $(srcdir)/grp $(DESTDIR)$(datarootdir)/gap/  # FIXME: don't use `cp -r`
+-	cp -r $(srcdir)/lib $(DESTDIR)$(datarootdir)/gap/  # FIXME: don't use `cp -r`
+-	cp -r $(srcdir)/tst $(DESTDIR)$(datarootdir)/gap/  # FIXME: don't use `cp -r`
+-	# TODO: what about CITATION, CONTRIBUTING.md, COPYRIGHT, INSTALL.md,
+-	# LICENSE, README* ? Copy them also here? Or into some other path?
+-	# TODO: also copy bin/BuildPackage.sh, as it is very useful?
+ 
+ install-pkg:
+ 	@echo "Warning, 'make install-pkg' is incomplete"
+@@ -533,10 +522,10 @@ install-headers:
+ 	@echo "Warning, 'make install-headers' is incomplete"
+ 	$(INSTALL) -d -m 0755 $(DESTDIR)$(includedir)/gap
+ 	$(INSTALL) -m 0644 $(srcdir)/src/*.h $(DESTDIR)$(includedir)/gap
++	$(INSTALL) -m 0644 $(srcdir)/gen/config.h $(DESTDIR)$(includedir)/gap
+ 	# TODO: run the following only if HPC-GAP is enabled?
+ 	$(INSTALL) -d -m 0755 $(DESTDIR)$(includedir)/gap/hpc
+ 	$(INSTALL) -m 0644 $(srcdir)/src/hpc/*.h $(DESTDIR)$(includedir)/gap/hpc
+-	# TODO: take care of config.h, this is difficult
+ 
+ install-libgap: libgap.la
+ 	@echo "Warning, 'make install-libgap' is incomplete"

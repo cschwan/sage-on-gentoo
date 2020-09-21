@@ -5,21 +5,20 @@ EAPI=7
 
 DESCRIPTION="The GAP Character Table Library"
 HOMEPAGE="https://www.gap-system.org/Packages/${PN}.html"
-GAP_VERSION="4.10.2"
-SLOT="0/${GAP_VERSION}"
-SRC_URI="https://www.gap-system.org/pub/gap/gap-$(ver_cut 1-2 ${GAP_VERSION})/tar.bz2/gap-${GAP_VERSION}.tar.bz2"
+SLOT="0"
+SRC_URI="https://files.gap-system.org/gap4/tar.bz2/packages/ctbllib-1r2p2.tar.bz2 -> ${P}.tar.bz2"
 
 LICENSE="GPL-2+"
 KEYWORDS="~amd64 ~x86"
 IUSE=""
 
-RDEPEND="sci-mathematics/gap:${SLOT}
+RDEPEND="sci-mathematics/gap
 	>=dev-gap/GAPDoc-1.6.2"
 
 DOCS="README"
 HTML_DOCS=htm/*
 
-S="${WORKDIR}/gap-${GAP_VERSION}/pkg/${PN}"
+S="${WORKDIR}/${PN}"
 
 src_install(){
 	default

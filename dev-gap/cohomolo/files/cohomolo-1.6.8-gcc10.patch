@@ -1,0 +1,27 @@
+diff --git a/standalone/progs.d/crp2.c b/standalone/progs.d/crp2.c
+index 872b095..5b406f9 100644
+--- a/standalone/progs.d/crp2.c
++++ b/standalone/progs.d/crp2.c
+@@ -9,7 +9,8 @@ extern short sp[],**mat[],*psp[],**imcos[],**cpco[],lorb[],pinv[],
+                *spst,**pspst,npt,nb,nph,nph2,rno,orno,coh_index,*invg;
+ short *wd1,*wd2;
+ short *gno,*cord,cl,dim,prime,**vec,**spm,*spv,wv,*val;
+-FILE  *ipr,*op,*ipx,*ip;
++extern FILE  *ip,*op;
++FILE *ipr,*ipx;
+ 
+ int 
+ crprog2 (void)
+diff --git a/standalone/progs.d/nqmfns.c b/standalone/progs.d/nqmfns.c
+index 0896551..8d68763 100644
+--- a/standalone/progs.d/nqmfns.c
++++ b/standalone/progs.d/nqmfns.c
+@@ -9,7 +9,7 @@ extern short  intexp,mexp,mng,wksp,
+        spugen[],*tlintg[];
+ extern int ptrsp,rsp;
+ short  fac;
+-FILE *ip,*op;
++extern FILE *ip,*op;
+ 
+ int 
+ ingp (void)

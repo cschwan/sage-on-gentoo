@@ -42,7 +42,7 @@ DEPEND="${RDEPEND}
 	virtual/yacc"
 
 PATCHES=(
-	"${FILESDIR}"/${PN}-1.5.0.87-gsl_lapack.patch
+	"${FILESDIR}"/${PN}-1.6.0.17-gsl_lapack.patch
 	)
 
 REQUIRED_USE="test? ( fltk )"
