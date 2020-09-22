@@ -52,7 +52,7 @@ DEPEND="dev-libs/gmp:0=
 	>=dev-python/jinja-2.8[${PYTHON_USEDEP}]
 	>=dev-python/matplotlib-3.3.1[${PYTHON_USEDEP}]
 	=dev-python/ipywidgets-7*[${PYTHON_USEDEP}]
-	>=dev-python/gmpy-2.1.0_beta1[${PYTHON_USEDEP}]
+	>=dev-python/gmpy-2.1.0_beta5[${PYTHON_USEDEP}]
 	>=dev-python/pplpy-0.8.4:=[doc,${PYTHON_USEDEP}]
 	~sci-mathematics/eclib-20190909[flint]
 	~sci-mathematics/gmp-ecm-7.0.4[-openmp]
