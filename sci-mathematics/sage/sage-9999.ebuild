@@ -86,7 +86,7 @@ DEPEND="dev-libs/gmp:0=
 	>=sys-libs/readline-6.2
 	sys-libs/zlib
 	virtual/cblas
-	~sci-mathematics/arb-2.16.0
+	>=sci-mathematics/arb-2.16.0
 	www-misc/thebe
 	>=sci-libs/libhomfly-1.0.1
 	sci-libs/libbraiding
@@ -211,7 +211,7 @@ python_prepare_all() {
 	############################################################################
 
 	# sage on gentoo environment variables
-	cp -f "${FILESDIR}"/sage_conf.py-9.1 sage/sage_conf.py
+	cp -f "${FILESDIR}"/sage_conf.py-9.2 sage/sage_conf.py
 	eprefixify sage/sage_conf.py
 	# set $PF for the documentation location
 	sed -i "s:@GENTOO_PORTAGE_PF@:${PF}:" sage/sage_conf.py
@@ -222,12 +222,6 @@ python_prepare_all() {
 	eapply "${FILESDIR}"/${PN}-9.2-env.patch
 	# getting sage_conf from the right spot
 	sed -i "s:sage_conf:sage.sage_conf:g" sage/env.py
-
-	# TODO: should be a patch
-	# run maxima with ecl
-	sed -i "s:'maxima :'maxima -l ecl :g" \
-		sage/interfaces/maxima.py \
-		sage/interfaces/maxima_abstract.py
 
 	# Make sage-inline-fortran useless by having better fortran settings
 	sed -i \
@@ -260,9 +254,6 @@ python_prepare_all() {
 	# Test looking for "python"
 	sed -i \
 		-e "s:/python:/${EPYTHON}:" sage/misc/gperftools.py
-
-	# remove the test trying to pre-compile sage's .py file with python3
-	rm sage/tests/py3_syntax.py || die "cannot remove py3_syntax test"
 
 	####################################
 	#
