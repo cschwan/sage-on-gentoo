@@ -179,6 +179,9 @@ python_prepare_all() {
 		-i bin/* \
 			sage/ext_data/nbconvert/postprocess.py
 
+	# trac #30596 introduced a compilation problem with gcc 10 on gentoo
+	eapply "${FILESDIR}"/${PN}-9.2-bitset.patch
+
 	###############################
 	#
 	# Patches to the sage library

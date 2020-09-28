@@ -1,5 +1,5 @@
 diff --git a/bin/sage b/bin/sage
-index e637892..4e0b1b1 100755
+index 5ac6b4d..f8d1c1c 100755
 --- a/bin/sage
 +++ b/bin/sage
 @@ -196,20 +196,39 @@ fi
@@ -19,18 +19,18 @@ index e637892..4e0b1b1 100755
 +#####################################################################
 +if [[ -z ${DOT_SAGE} ]]; then
 +	export DOT_SAGE="${HOME}/.sage"
- fi
- 
--if [ -z "$DOT_SAGE" ]; then
--    export DOT_SAGE="$HOME/.sage"
++fi
++
 +if [ "$SAGE_STARTUP_FILE" = "" ]; then
 +	export SAGE_STARTUP_FILE="${DOT_SAGE}/init.sage"
  fi
  
+-if [ -z "$DOT_SAGE" ]; then
+-    export DOT_SAGE="$HOME/.sage"
 +if [ -z "$SAGE_RC_FILE" ]; then
 +	export SAGE_RC_FILE="$DOT_SAGE/sagerc"
-+fi
-+
+ fi
+ 
 +if [ -r "$SAGE_RC_FILE" ]; then
 +	source "$SAGE_RC_FILE"
 +	if [ $? -ne 0 ]; then
@@ -97,7 +97,7 @@ index e637892..4e0b1b1 100755
  # Start an interactive Sage session, this function never returns.
  interactive_sage() {
      sage_setup
-@@ -507,36 +492,32 @@ fi
+@@ -524,32 +509,32 @@ fi
  
  if [ "$1" = '--pip3' ]; then
      shift
@@ -107,11 +107,7 @@ index e637892..4e0b1b1 100755
  
  if [ "$1" = '-python' -o "$1" = '--python' ]; then
      shift
--    if [ "$SAGE_PYTHON3" = 'yes' ]; then
--        exec "$SAGE_LOCAL"/bin/python3 "$@"
--    else
--        exec "$SAGE_LOCAL"/bin/python2 "$@"
--    fi
+-    exec "$SAGE_LOCAL"/bin/python3 "$@"
 +    exec python3 "$@"
  fi
  
