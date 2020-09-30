@@ -18,7 +18,7 @@ sci-mathematics/glpk        gmp
 sci-mathematics/gmp-ecm     -openmp
 sci-mathematics/maxima      ecls
 sci-mathematics/lcalc       pari
-sci-mathematics/pari        data gmp doc
+sci-mathematics/pari        data gmp doc threads
 sys-libs/zlib               minizip
 sys-devel/gcc               fortran
 

@@ -28,7 +28,7 @@ RDEPEND="dev-libs/gmp:=[cxx]
 	dev-libs/mpfr:=
 	sci-libs/mpfi
 	sci-libs/gsl:=
-	>=sci-mathematics/pari-2.7:=
+	>=sci-mathematics/pari-2.7:=[threads]
 	dev-libs/ntl:=
 	virtual/lapack
 	virtual/blas
