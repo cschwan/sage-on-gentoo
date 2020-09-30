@@ -181,6 +181,8 @@ python_prepare_all() {
 
 	# trac #30596 introduced a compilation problem with gcc 10 on gentoo
 	eapply "${FILESDIR}"/${PN}-9.2-bitset.patch
+	# trac #30676 maxima -l ecl doesn't work yet out of the box.
+	eapply "${FILESDIR}"/${PN}-9.2-maxima-quotes.patch
 
 	###############################
 	#
