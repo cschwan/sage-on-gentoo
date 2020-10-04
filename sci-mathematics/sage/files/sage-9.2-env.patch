@@ -1,16 +1,3 @@
-diff --git a/sage/interfaces/jmoldata.py b/sage/interfaces/jmoldata.py
-index 8f291fb..39a84f2 100644
---- a/sage/interfaces/jmoldata.py
-+++ b/sage/interfaces/jmoldata.py
-@@ -149,7 +149,7 @@ class JmolData(SageObject):
-             True
-         """
-         # Set up paths, file names and scripts
--        jmolpath = os.path.join(JMOL_DIR, "JmolData.jar")
-+        jmolpath = os.path.join(JMOL_DIR, 'lib', 'JmolData.jar')
-         target_native = targetfile
- 
-         if sys.platform == 'cygwin':
 diff --git a/sage/misc/copying.py b/sage/misc/copying.py
 index ec1b032..dab0918 100644
 --- a/sage/misc/copying.py

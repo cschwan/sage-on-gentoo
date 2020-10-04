@@ -18,12 +18,12 @@ index 726049b..0929818 100644
      def install_kernel_spec(self):
          """
 diff --git a/sage_setup/docbuild/__init__.py b/sage_setup/docbuild/__init__.py
-index aee7d60..6f01e91 100644
+index 910e414..6119d29 100644
 --- a/sage_setup/docbuild/__init__.py
 +++ b/sage_setup/docbuild/__init__.py
-@@ -62,7 +62,7 @@ from sage.misc.cachefunc import cached_method
+@@ -60,7 +60,7 @@ from sage.misc.cachefunc import cached_method
  from sage.misc.misc import sage_makedirs
- from sage.env import SAGE_DOC_SRC, SAGE_DOC, SAGE_SRC
+ from sage.env import SAGE_DOC_SRC, SAGE_DOC, SAGE_SRC, DOT_SAGE
  
 -from .build_options import (LANGUAGES, SPHINXOPTS, PAPER, OMIT,
 +from sage_setup.docbuild.build_options import (LANGUAGES, SPHINXOPTS, PAPER, OMIT,
@@ -39,10 +39,10 @@ index 031df43..e68b438 100644
 +from sage_setup.docbuild import main
  main()
 diff --git a/setup.py b/setup.py
-index f7e04e6..70986bf 100755
+index 01dd6c9..c1b2fe4 100755
 --- a/setup.py
 +++ b/setup.py
-@@ -66,7 +66,7 @@ log.warn('distributions = {0}'.format(distributions))
+@@ -72,7 +72,7 @@ log.warn('distributions = {0}'.format(distributions))
  
  from sage_setup.find import find_python_sources
  python_packages, python_modules, cython_modules = find_python_sources(
