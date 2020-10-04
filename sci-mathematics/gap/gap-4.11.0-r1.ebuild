@@ -81,6 +81,8 @@ src_install(){
 	#!${EPREFIX}/bin/bash
 	exec ${EPREFIX}/usr/share/gap/bin/${GAParch}/gap -m 64m "\$@"
 	EOF
+	# Install target for binaries is currently broken
+	dobin gap
 	default
 
 	# install the objects needed for gap to work
