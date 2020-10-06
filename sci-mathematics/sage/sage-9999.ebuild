@@ -68,7 +68,7 @@ DEPEND="dev-libs/gmp:0=
 	=sci-libs/pynac-0.7.26-r1[-giac,${PYTHON_USEDEP}]
 	>=sci-libs/symmetrica-2.0-r3
 	>=sci-libs/zn_poly-0.9
-	>=sci-mathematics/gap-4.10.2:0/4.10.2[recommended_pkgs]
+	~sci-mathematics/gap-4.10.2[recommended_pkgs]
 	=sci-mathematics/giac-1.5.0*
 	>=sci-mathematics/glpk-4.65:0=[gmp]
 	>=sci-mathematics/lcalc-1.23-r10[pari]
@@ -178,11 +178,6 @@ python_prepare_all() {
 		-e "s:sage-system-python:python:" \
 		-i bin/* \
 			sage/ext_data/nbconvert/postprocess.py
-
-	# trac #30596 introduced a compilation problem with gcc 10 on gentoo
-	eapply "${FILESDIR}"/${PN}-9.2-bitset.patch
-	# trac #30676 maxima -l ecl doesn't work yet out of the box.
-	eapply "${FILESDIR}"/${PN}-9.2-maxima-quotes.patch
 
 	###############################
 	#
