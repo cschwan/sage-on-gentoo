@@ -24,7 +24,7 @@ RDEPEND="${DEPEND}
 	dev-tex/pgf"
 
 PATCHES=(
-	"${FILESDIR}"/${PN}-3.0-install-python-files-only.patch
+	"${FILESDIR}"/${PN}-3.4-install-python-files-only.patch
 	)
 
 src_prepare() {
