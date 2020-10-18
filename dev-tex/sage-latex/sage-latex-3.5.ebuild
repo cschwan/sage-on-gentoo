@@ -8,11 +8,9 @@ DISTUTILS_USE_SETUPTOOLS=no
 
 inherit distutils-r1 latex-package
 
-MY_PN="sagetex"
-MY_P="${MY_PN}-${PV}"
 DESCRIPTION="SageTeX allows you to embed Sage code into LaTeX documents"
 HOMEPAGE="https://www.sagemath.org https://github.com/dandrake/sagetex"
-SRC_URI="https://github.com/sagemath/${MY_PN}/releases/download/v${PV}/${MY_P}.tar.gz"
+SRC_URI="https://github.com/sagemath/${PN}/releases/download/v${PV}/${P}.tar.gz"
 
 LICENSE="GPL-2+"
 SLOT="0"
@@ -28,8 +26,6 @@ RDEPEND="${DEPEND}
 PATCHES=(
 	"${FILESDIR}"/${PN}-3.0-install-python-files-only.patch
 	)
-
-S="${WORKDIR}"/${MY_P}
 
 src_prepare() {
 	# Remove pre-made objects
@@ -68,7 +64,7 @@ src_install() {
 }
 
 pkg_install() {
-	einfo "sage-latex needs to connect to sage to work properly."
+	einfo "sagetex needs to connect to sage to work properly."
 	einfo "This connection can be local, with a copy of sage installed via"
 	einfo "portage, or a remote session of sage thanks to the"
 	einfo "\"remote-sagetex.py\" script."
