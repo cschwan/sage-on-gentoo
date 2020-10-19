@@ -132,7 +132,7 @@ RDEPEND="${DEPEND}
 	www-servers/tornado
 	!prefix? ( >=sys-libs/glibc-2.13-r4 )
 	latex? (
-		~dev-tex/sage-latex-3.4
+		~dev-tex/sagetex-3.4
 		|| ( app-text/dvipng[truetype] media-gfx/imagemagick[png] )
 	)
 	!sci-mathematics/sage-notebook"
