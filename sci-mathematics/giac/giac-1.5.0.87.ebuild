@@ -33,11 +33,14 @@ RDEPEND="dev-libs/gmp:=[cxx]
 	virtual/lapack
 	virtual/blas
 	net-misc/curl
+	>=sci-mathematics/nauty-2.6.7
 	ecm? ( >=sci-mathematics/gmp-ecm-7.0.0 )
 	glpk? ( sci-mathematics/glpk )
 	gc? ( dev-libs/boehm-gc )"
 
-DEPEND="${RDEPEND}
+DEPEND="${RDEPEND}"
+
+BDEPEND="dev-tex/hevea
 	virtual/pkgconfig
 	virtual/yacc"
 
@@ -56,6 +59,8 @@ src_prepare(){
 	fi
 	default
 
+	# no rpath please
+	rm config/config.rpath
 	eautoreconf
 }
 
