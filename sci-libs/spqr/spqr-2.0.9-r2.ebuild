@@ -29,3 +29,10 @@ src_configure() {
 		$(use_with metis partition) \
 		$(use_with tbb)
 }
+
+src_install() {
+	default
+
+	# remove .la file
+	find "${ED}" -name '*.la' -delete || die
+}
