@@ -40,8 +40,7 @@ RDEPEND="dev-libs/gmp:=[cxx]
 
 DEPEND="${RDEPEND}"
 
-BDEPEND="dev-tex/hevea
-	virtual/pkgconfig
+BDEPEND="virtual/pkgconfig
 	virtual/yacc"
 
 PATCHES=(
