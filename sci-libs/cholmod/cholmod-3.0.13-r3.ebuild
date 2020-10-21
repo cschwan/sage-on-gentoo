@@ -57,3 +57,10 @@ src_configure() {
 		$(use_with lapack supernodal) \
 		"${cudaconfargs[@]}"
 }
+
+src_install() {
+	default
+
+	# remove .la file
+	find "${ED}" -name '*.la' -delete || die
+}
