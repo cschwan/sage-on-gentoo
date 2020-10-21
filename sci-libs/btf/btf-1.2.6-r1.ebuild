@@ -21,3 +21,10 @@ src_configure() {
 	econf \
 		$(use_enable static-libs static)
 }
+
+src_install() {
+	default
+
+	# remove .la file
+	find "${ED}" -name '*.la' -delete || die
+}
