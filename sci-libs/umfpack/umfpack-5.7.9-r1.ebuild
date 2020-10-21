@@ -30,3 +30,10 @@ src_configure() {
 		$(use_enable static-libs static) \
 		$(use_with cholmod)
 }
+
+src_install() {
+	default
+
+	# remove .la file
+	find "${ED}" -name '*.la' -delete || die
+}

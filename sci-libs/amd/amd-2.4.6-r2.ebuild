@@ -3,7 +3,7 @@
 
 EAPI=7
 
-inherit autotools
+inherit autotools fortran-2
 
 DESCRIPTION="Library to order a sparse matrix prior to Cholesky factorization"
 HOMEPAGE="https://faculty.cse.tamu.edu/davis/suitesparse.html"
@@ -11,9 +11,8 @@ SRC_URI="mirror://sagemath/${P}.tar.bz2"
 
 LICENSE="LGPL-2.1"
 SLOT="0"
-
 KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~hppa ~ia64 ~mips ~ppc ~ppc64 ~sparc ~x86 ~amd64-linux ~x86-linux ~x86-macos"
-IUSE="doc static-libs"
+IUSE="doc fortran static-libs"
 
 RDEPEND=">=sci-libs/suitesparseconfig-5.4.0"
 DEPEND="${RDEPEND}
@@ -32,6 +31,15 @@ src_prepare() {
 
 src_configure() {
 	econf \
+		$(use_enable fortran) \
 		$(use_with doc) \
 		$(use_enable static-libs static)
 }
+
+src_install() {
+	default
+
+	# remove .la file
+	find "${ED}" -name '*.la' -delete || die
+}
+
