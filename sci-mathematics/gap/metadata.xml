@@ -21,5 +21,7 @@
 		This list is controlled by the "PackagesToLoad" "UserPreference"
 		inside GAP.
 	</flag>
+	<flag name="memcheck">Enable memory checking</flag>
+	<flag name="valgrind">Build symbols to be used by valgrind</flag>		
 	</use>
 </pkgmetadata>
