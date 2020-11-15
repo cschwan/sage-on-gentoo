@@ -5,6 +5,3 @@
 # sage and coinor threading don't mesh nicely.
 # Vanilla sage does somthing to the whole coinor stack somehow.
 sci-mathematics/sage_numerical_backends_coin
-# Needs care in the test suite see https://github.com/rpy2/rpy2/issues/720
-# amongst other
-~dev-python/rpy-3.3.5
