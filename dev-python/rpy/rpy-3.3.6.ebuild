@@ -30,7 +30,10 @@ RDEPEND="
 	dev-python/tzlocal[${PYTHON_USEDEP}]
 "
 DEPEND="${RDEPEND}
-	test? ( >=dev-lang/R-3.3[png] )
+	test? (
+		>=dev-lang/R-3.3[png]
+		dev-python/hypothesis
+	 )
 	dev-python/setuptools[${PYTHON_USEDEP}]"
 PDEPEND="dev-python/ipython[${PYTHON_USEDEP}]"
 
