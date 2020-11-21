@@ -1,0 +1,50 @@
+diff --git a/bin/sage b/bin/sage
+index 3846836..fd82631 100755
+--- a/bin/sage
++++ b/bin/sage
+@@ -193,20 +193,34 @@ if [ "$1" = '-root'  -o "$1" = '--root' ]; then
+     exit 0
+ fi
+ 
+-
+ #####################################################################
+-# Source sage-env ($0 is the name of this "sage" script, so we can just
+-# append -env to that). We redirect stdout to stderr, which is safer
+-# for scripts.
++# setup variables usually established by sage-env/sage-env-config.
+ #####################################################################
+-if [ -f "$0-env" ]; then
+-    . "$0-env" >&2
+-    if [ $? -ne 0 ]; then
+-        echo >&2 "Error setting environment variables by sourcing '$0-env';"
+-        echo >&2 "possibly contact sage-devel (see http://groups.google.com/group/sage-devel)."
+-        exit 1
+-    fi
++if [ "$SAGE_STARTUP_FILE" = "" ]; then
++       export SAGE_STARTUP_FILE="${DOT_SAGE}/init.sage"
++fi
++
++if [ -z "$SAGE_RC_FILE" ]; then
++       export SAGE_RC_FILE="$DOT_SAGE/sagerc"
++fi
++
++if [ -r "$SAGE_RC_FILE" ]; then
++       source "$SAGE_RC_FILE"
++       if [ $? -ne 0 ]; then
++               echo >&2 "Error sourcing $SAGE_RC_FILE"
++               exit 1
++       fi
++fi
++
++export SAGE_DEBUG="no"
++
++# Allow SAGE_BROWSER to override BROWSER (Trac #22449)
++if [ -n "$SAGE_BROWSER" ]; then
++       export BROWSER="$SAGE_BROWSER"
+ fi
++#####################################################################
++# End of sage-env block
++#####################################################################
+ 
+ if [ -z "$DOT_SAGE" ]; then
+     export DOT_SAGE="$HOME/.sage"
