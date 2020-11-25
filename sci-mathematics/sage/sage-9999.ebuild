@@ -167,7 +167,7 @@ python_prepare_all() {
 	# Patch the sage script to including our own environment
 	# Also remove some unappropriate bits.
 	# We used to provide our own but upstream is making it more distro friendly.
-	eapply "${FILESDIR}"/sage_exec-9.3.patch
+	eapply "${FILESDIR}"/sage_exec-9.2.patch
 	if use debug ; then
 		sed -i "s:SAGE_DEBUG=\"no\":SAGE_DEBUG=\"yes\":" bin/sage
 	fi
@@ -236,7 +236,7 @@ python_prepare_all() {
 	# Since we don't have $SAGE_ROOT/sage it fails.
 	# See https://github.com/cschwan/sage-on-gentoo/issues/342
 	# Also some symlinks are created to absolute paths that don't exist yet.
-	eapply "${FILESDIR}"/${PN}-9.3-jupyter.patch
+	eapply "${FILESDIR}"/${PN}-8.8-jupyter.patch
 
 	############################################################################
 	# Fixes to doctests

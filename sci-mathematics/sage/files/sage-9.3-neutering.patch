@@ -12,7 +12,7 @@ index 9a7702b..4639d03 100644
     sage/features/bliss
     sage/features/csdp
 diff --git a/sage/doctest/control.py b/sage/doctest/control.py
-index 853964b..7057546 100644
+index 973a90a..2d1f794 100644
 --- a/sage/doctest/control.py
 +++ b/sage/doctest/control.py
 @@ -362,11 +362,6 @@ class DocTestController(SageObject):
@@ -151,7 +151,7 @@ index 2f7e8f7..76a6d97 100644
          return Extension(*args, **kwds)
      else:
 diff --git a/setup.py b/setup.py
-index cad807e..a160afb 100755
+index 3202909..a160afb 100755
 --- a/setup.py
 +++ b/setup.py
 @@ -59,14 +59,12 @@ t = time.time()
@@ -170,13 +170,12 @@ index cad807e..a160afb 100755
  
  log.warn('distributions = {0}'.format(distributions))
  
-@@ -140,37 +138,19 @@ code = setup(name = 'sage',
+@@ -140,36 +138,19 @@ code = setup(name = 'sage',
                   'bin/sage-valgrind',
                   'bin/sage-version.sh',
                   'bin/sage-cleaner',
 -                 ## Only makes sense in sage-the-distribution. TODO: Move to another installation script.
 -                 'bin/sage-list-packages',
--                 'bin/sage-download-upstream',
 -                 'bin/sage-location',
                   ## Uncategorized scripts in alphabetical order
                   'bin/math-readline',
