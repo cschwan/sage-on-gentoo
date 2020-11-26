@@ -30,7 +30,7 @@ sci-libs/m4rie
 ~sci-libs/pynac-0.7.26
 sci-libs/symmetrica
 sci-libs/zn_poly
-~sci-mathematics/arb-2.16.0
+=sci-mathematics/arb-2.18*
 sci-mathematics/cu2
 sci-mathematics/cubex
 sci-mathematics/dikcube
