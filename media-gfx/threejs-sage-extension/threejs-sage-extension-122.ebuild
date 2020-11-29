@@ -24,5 +24,6 @@ S="${WORKDIR}/threejs-sage-r${PV}"
 src_install(){
 	default
 	insinto /usr/share/sage/threejs
+	doins version
 	doins -r build
 }
