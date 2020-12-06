@@ -82,7 +82,7 @@ DEPEND="dev-libs/gmp:0=
 	>=sci-mathematics/ratpoints-2.1.3
 	media-libs/gd[jpeg,png]
 	media-libs/libpng:0=
-	~media-gfx/threejs-sage-extension-117
+	~media-gfx/threejs-sage-extension-122
 	>=sys-libs/readline-6.2
 	sys-libs/zlib
 	virtual/cblas
