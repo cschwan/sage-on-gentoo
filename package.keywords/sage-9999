@@ -15,6 +15,7 @@ dev-python/terminado
 =dev-python/cypari2-2.1*
 ~dev-python/pkgconfig-1.2.2
 dev-python/rpy::sage-on-gentoo
+=dev-python/sympy-1.7*
 =dev-tex/sagetex-3*
 media-gfx/tachyon
 ~media-gfx/threejs-sage-extension-122
