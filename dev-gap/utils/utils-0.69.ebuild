@@ -12,7 +12,7 @@ LICENSE="GPL-2"
 KEYWORDS="~amd64 ~x86"
 IUSE=""
 
-RDEPEND=">=sci-mathematics/gap-4.10.2
+RDEPEND=">=sci-mathematics/gap-core-4.11.0
 	>=dev-gap/GAPDoc-1.6.2
 	>=dev-gap/AutoDoc-2019.05.20
 	>=dev-gap/polycyclic-2.14"
