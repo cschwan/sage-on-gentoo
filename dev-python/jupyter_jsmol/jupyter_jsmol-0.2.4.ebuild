@@ -29,9 +29,11 @@ BDEPEND=">=net-libs/nodejs-15.2.0[npm]"
 
 distutils_enable_tests pytest
 
+python_compile(){
+	distutils-r1_python_compile --skip-npm
+}
+
 python_install_all(){
 	insinto /usr/share/jupyter/nbextension/jupyter_jsmol
 	doins -r jupyter_jsmol/nbextension/static/*
-	insinto /usr/share/jupyter/lab/extensions/
-	doins jupyter_jsmol/labextension/jupyter-jsmol-0.2.4.tgz
 }
