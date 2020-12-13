@@ -243,10 +243,6 @@ python_prepare_all() {
 	# Fixes to doctests
 	############################################################################
 
-	# install book doctests
-	touch sage/tests/books/judson-abstract-algebra/__init__.py
-	touch sage/tests/books/computational-mathematics-with-sagemath/__init__.py
-	touch sage/tests/books/computational-mathematics-with-sagemath/sol/__init__.py
 	# fix all.py
 	sed -i \
 		-e "s:\"lib\",\"python\":\"$(get_libdir)\",\"${EPYTHON}\":" \
