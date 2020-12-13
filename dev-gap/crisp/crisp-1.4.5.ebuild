@@ -13,7 +13,7 @@ LICENSE="BSD-2"
 KEYWORDS="~amd64 ~x86"
 IUSE=""
 
-RDEPEND="sci-mathematics/gap:${SLOT}"
+RDEPEND="sci-mathematics/gap-core"
 
 DOCS="README LICENSE"
 HTML_DOCS=htm/*
