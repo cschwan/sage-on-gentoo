@@ -5,9 +5,13 @@ EAPI=7
 
 inherit autotools elisp-common
 
+MY_P="gap-${PV}"
 DESCRIPTION="System for computational discrete algebra. Core functionality."
 HOMEPAGE="https://www.gap-system.org/"
-SRC_URI="https://github.com/gap-system/gap/releases/download/v${PV}/gap-${PV}-core.tar.bz2"
+# We need the full release tarball as the core one doesn't include pre-build
+# html documentation. Building the html documentation in turns requires GAPDoc to
+# be present in the source tree.
+SRC_URI="https://github.com/gap-system/gap/releases/download/v${PV}/${MY_P}.tar.bz2"
 
 LICENSE="GPL-2+"
 SLOT="0"
@@ -53,7 +57,7 @@ PATCHES=(
 	"${FILESDIR}"/${PN}-4.11.0-autoconf.patch
 )
 
-S="${WORKDIR}/gap-${PV}"
+S="${WORKDIR}/${MY_P}"
 
 pkg_setup(){
 	if use valgrind; then
