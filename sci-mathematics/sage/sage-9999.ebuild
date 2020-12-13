@@ -266,7 +266,6 @@ python_prepare_all() {
 	#
 	####################################
 
-	eapply "${FILESDIR}"/${PN}-9.1-pdfbuild.patch
 	# support linguas so only requested languages are installed
 	eapply "${FILESDIR}"/${PN}-7.1-linguas.patch
 
