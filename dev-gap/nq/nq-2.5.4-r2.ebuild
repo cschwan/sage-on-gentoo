@@ -14,7 +14,7 @@ LICENSE="GPL-2+"
 KEYWORDS="~amd64 ~x86"
 IUSE=""
 
-DEPEND=">=sci-mathematics/gap-4.10.1
+DEPEND="|| ( =sci-mathematics/gap-4.10* >=sci-mathematics/gap-core-4.11.0 )
 	dev-libs/gmp:0="
 RDEPEND="${DEPEND}
 	>=dev-gap/polycyclic-2.14"
