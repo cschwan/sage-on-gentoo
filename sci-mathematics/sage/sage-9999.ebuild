@@ -47,6 +47,7 @@ DEPEND="dev-libs/gmp:0=
 	>=dev-python/docutils-0.12[${PYTHON_USEDEP}]
 	>=dev-python/psutil-4.4.0[${PYTHON_USEDEP}]
 	dev-python/jupyter_core[${PYTHON_USEDEP}]
+	dev-python/jupyter_jsmol[${PYTHON_USEDEP}]
 	>=dev-python/ipython-7.0.0[notebook,${PYTHON_USEDEP}]
 	>=dev-python/ipykernel-4.6.0[${PYTHON_USEDEP}]
 	>=dev-python/jinja-2.8[${PYTHON_USEDEP}]
@@ -68,7 +69,7 @@ DEPEND="dev-libs/gmp:0=
 	=sci-libs/pynac-0.7.26-r1[-giac,${PYTHON_USEDEP}]
 	>=sci-libs/symmetrica-2.0-r3
 	>=sci-libs/zn_poly-0.9
-	~sci-mathematics/gap-4.10.2[recommended_pkgs]
+	~sci-mathematics/gap-4.11.0[recommended_pkgs]
 	=sci-mathematics/giac-1.5.0*
 	>=sci-mathematics/glpk-4.65:0=[gmp]
 	>=sci-mathematics/lcalc-1.23-r10[pari]
@@ -211,7 +212,7 @@ python_prepare_all() {
 	############################################################################
 
 	# sage on gentoo environment variables
-	cp -f "${FILESDIR}"/sage_conf.py-9.2 sage/sage_conf.py
+	cp -f "${FILESDIR}"/sage_conf.py-9.3 sage/sage_conf.py
 	eprefixify sage/sage_conf.py
 	# set $PF for the documentation location
 	sed -i "s:@GENTOO_PORTAGE_PF@:${PF}:" sage/sage_conf.py
