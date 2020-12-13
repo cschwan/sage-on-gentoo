@@ -13,7 +13,7 @@ LICENSE="GPL-2+"
 KEYWORDS="~amd64 ~x86"
 IUSE=""
 
-RDEPEND=">=sci-mathematics/gap-4.10.2
+RDEPEND="|| ( ~sci-mathematics/gap-4.10.2 >=sci-mathematics/gap-core-4.11.0 )
 	>=dev-gap/cryst-4.1.23"
 
 S="${WORKDIR}/${PN}-${GIT_TAG}"
