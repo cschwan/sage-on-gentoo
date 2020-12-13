@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+<maintainer type="person">
+	<email>frp.bissey@gmail.com</email>
+	<name>Francois Bissey</name>
+</maintainer>
+	<longdescription lang="en">
+		Groups, Algorithms, Programming is a system for computational
+		discrete algebra, with particular emphasis on Computational Group
+		Theory. GAP provides a  programming language, a library of thousands
+		of functions implementing algebraic algorithms written in the GAP
+		language as well as large data libraries of algebraic objects. GAP
+		is used in research and teaching for studying groups and their
+		representations, rings, vector spaces, algebras, combinatorial
+		structures, and more.
+		This ebuild provide core functionality.
+	</longdescription>
+	<use>
+	<flag name='recommended_pkgs'>
+		Trigger installation of the recommended default packages for GAP. 
+		This list is controlled by the "PackagesToLoad" "UserPreference"
+		inside GAP.
+	</flag>
+	<flag name="memcheck">Enable memory checking</flag>
+	<flag name="valgrind">Build symbols to be used by valgrind</flag>		
+	</use>
+</pkgmetadata>

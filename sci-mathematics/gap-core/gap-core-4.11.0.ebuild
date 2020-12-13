@@ -5,7 +5,7 @@ EAPI=7
 
 inherit autotools elisp-common
 
-DESCRIPTION="System for computational discrete algebra"
+DESCRIPTION="System for computational discrete algebra. Core functionality."
 HOMEPAGE="https://www.gap-system.org/"
 SRC_URI="https://github.com/gap-system/gap/releases/download/v${PV}/gap-${PV}-core.tar.bz2"
 
@@ -52,6 +52,8 @@ PATCHES=(
 	"${FILESDIR}"/${PN}-4.11.0-install.patch
 	"${FILESDIR}"/${PN}-4.11.0-autoconf.patch
 )
+
+S="${WORKDIR}/gap-${PV}"
 
 pkg_setup(){
 	if use valgrind; then

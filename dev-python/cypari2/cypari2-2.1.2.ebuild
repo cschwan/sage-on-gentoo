@@ -4,6 +4,7 @@
 EAPI=7
 
 PYTHON_COMPAT=( python3_{6..9} )
+
 inherit distutils-r1
 
 DESCRIPTION="A Python interface to the number theory library libpari"
