@@ -13,7 +13,7 @@ SLOT="0"
 KEYWORDS="~amd64 ~x86"
 IUSE=""
 
-RDEPEND=">=sci-mathematics/gap-4.10.1
+RDEPEND=">=sci-mathematics/gap-core-4.11.0
 	>=dev-gap/hap-1.19
 	>=dev-gap/polycyclic-2.14
 	>=dev-gap/aclib-1.3.1
