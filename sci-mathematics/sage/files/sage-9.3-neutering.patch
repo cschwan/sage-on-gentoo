@@ -151,7 +151,7 @@ index 2f7e8f7..76a6d97 100644
          return Extension(*args, **kwds)
      else:
 diff --git a/setup.py b/setup.py
-index ef91acd..182afb3 100755
+index ef91acd..a160afb 100755
 --- a/setup.py
 +++ b/setup.py
 @@ -59,14 +59,12 @@ t = time.time()
@@ -170,8 +170,11 @@ index ef91acd..182afb3 100755
  
  log.warn('distributions = {0}'.format(distributions))
  
-@@ -141,36 +139,19 @@ code = setup(name = 'sage',
-                  'bin/sage-venv-config',
+@@ -138,39 +136,21 @@ code = setup(name = 'sage',
+                  'bin/sage-massif',
+                  'bin/sage-omega',
+                  'bin/sage-valgrind',
+-                 'bin/sage-venv-config',
                   'bin/sage-version.sh',
                   'bin/sage-cleaner',
 -                 ## Only makes sense in sage-the-distribution. TODO: Move to another installation script.
