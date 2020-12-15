@@ -25,7 +25,6 @@ RDEPEND=">=dev-python/ipykernel-4.5.1[${PYTHON_USEDEP}]
 	>=dev-python/traitlets-4.3.1[${PYTHON_USEDEP}]
 	>=dev-python/widgetsnbextension-3.5.0[${PYTHON_USEDEP}]
 	dev-python/ipywidgets[${PYTHON_USEDEP}]"
-BDEPEND=">=net-libs/nodejs-15.2.0[npm]"
 
 distutils_enable_tests pytest
 
