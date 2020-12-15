@@ -3,23 +3,23 @@
 
 EAPI=7
 
-DESCRIPTION="Computing with quasigroups and loops in GAP"
+DESCRIPTION="Free Group Algorithms"
 HOMEPAGE="https://www.gap-system.org/Packages/${PN}.html"
 SLOT="0"
-SRC_URI="https://github.com/gap-packages/${PN}/releases/download/v${PV}/${P}.tar.gz"
+SRC_URI="https://github.com/chsievers/${PN}/archive/v${PV}.tar.gz -> ${P}.tar.gz"
 
-LICENSE="GPL-3"
+LICENSE="GPL-2+"
 KEYWORDS="~amd64 ~x86"
 IUSE=""
 
-RDEPEND=">=sci-mathematics/gap-4.10.1"
+RDEPEND="|| ( =sci-mathematics/gap-4.10* >=sci-mathematics/gap-core-4.11.0 )"
 
 DOCS="README"
 
 src_install(){
 	default
 
-	insinto /usr/share/gap/pkg/"${P}"
-	doins -r data doc gap
+	insinto /usr/share/gap/pkg/"${PN}"
+	doins -r doc lib
 	doins *.g
 }

@@ -3,19 +3,19 @@
 
 EAPI=7
 
-DESCRIPTION="Computing with Radicals, Injectors, Schunck classes and Projectors"
+DESCRIPTION="Interfacing the geometry software polymake"
 HOMEPAGE="https://www.gap-system.org/Packages/${PN}.html"
-SLOT="0"
 SRC_URI="https://github.com/gap-packages/${PN}/releases/download/v${PV}/${P}.tar.gz"
 
-LICENSE="GPL-2"
+LICENSE="GPL-2+"
+SLOT="0"
 KEYWORDS="~amd64 ~x86"
 IUSE=""
 
-RDEPEND=">=sci-mathematics/gap-4.10.1
-	>=dev-gap/Alnuth-3.1.0"
+RDEPEND="|| ( =sci-mathematics/gap-4.10* >=sci-mathematics/gap-core-4.11.0 )
+	sci-mathematics/polymake"
 
-DOCS="README CHANGES"
+DOCS="CHANGES README"
 
 src_install(){
 	default

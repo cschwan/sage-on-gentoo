@@ -14,7 +14,7 @@ LICENSE="GPL-2+"
 KEYWORDS="~amd64 ~x86"
 IUSE="bliss"
 
-RDEPEND=">=sci-mathematics/gap-4.10.1
+RDEPEND=">=sci-mathematics/gap-core-4.11.0
 	bliss? ( >=sci-libs/bliss-0.73 )
 	!bliss? ( sci-mathematics/nauty )"
 

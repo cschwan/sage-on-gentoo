@@ -9,7 +9,7 @@ DISTUTILS_USE_SETUPTOOLS=no
 
 inherit desktop distutils-r1 flag-o-matic multiprocessing prefix toolchain-funcs git-r3
 
-EGIT_REPO_URI="https://github.com/sagemath/sage.git"
+EGIT_REPO_URI="https://github.com/vbraun/sage.git"
 EGIT_BRANCH=develop
 EGIT_CHECKOUT_DIR="${WORKDIR}/${P}"
 KEYWORDS=""
@@ -47,6 +47,7 @@ DEPEND="dev-libs/gmp:0=
 	>=dev-python/docutils-0.12[${PYTHON_USEDEP}]
 	>=dev-python/psutil-4.4.0[${PYTHON_USEDEP}]
 	dev-python/jupyter_core[${PYTHON_USEDEP}]
+	dev-python/jupyter_jsmol[${PYTHON_USEDEP}]
 	>=dev-python/ipython-7.0.0[notebook,${PYTHON_USEDEP}]
 	>=dev-python/ipykernel-4.6.0[${PYTHON_USEDEP}]
 	>=dev-python/jinja-2.8[${PYTHON_USEDEP}]
@@ -68,7 +69,7 @@ DEPEND="dev-libs/gmp:0=
 	=sci-libs/pynac-0.7.26-r1[-giac,${PYTHON_USEDEP}]
 	>=sci-libs/symmetrica-2.0-r3
 	>=sci-libs/zn_poly-0.9
-	~sci-mathematics/gap-4.10.2[recommended_pkgs]
+	~sci-mathematics/gap-4.11.0[recommended_pkgs]
 	=sci-mathematics/giac-1.5.0*
 	>=sci-mathematics/glpk-4.65:0=[gmp]
 	>=sci-mathematics/lcalc-1.23-r10[pari]
@@ -104,7 +105,7 @@ RDEPEND="${DEPEND}
 	>=dev-python/networkx-2.4[${PYTHON_USEDEP}]
 	>=dev-python/pexpect-4.2.1[${PYTHON_USEDEP}]
 	>=dev-python/rpy-2.8.6[${PYTHON_USEDEP}]
-	=dev-python/sympy-1.6*[${PYTHON_USEDEP}]
+	=dev-python/sympy-1.7*[${PYTHON_USEDEP}]
 	media-gfx/tachyon[png]
 	jmol? ( sci-chemistry/sage-jmol-bin )
 	>=sci-libs/cddlib-094j[tools]
@@ -211,7 +212,7 @@ python_prepare_all() {
 	############################################################################
 
 	# sage on gentoo environment variables
-	cp -f "${FILESDIR}"/sage_conf.py-9.2 sage/sage_conf.py
+	cp -f "${FILESDIR}"/sage_conf.py-9.3 sage/sage_conf.py
 	eprefixify sage/sage_conf.py
 	# set $PF for the documentation location
 	sed -i "s:@GENTOO_PORTAGE_PF@:${PF}:" sage/sage_conf.py
@@ -261,7 +262,6 @@ python_prepare_all() {
 	#
 	####################################
 
-	eapply "${FILESDIR}"/${PN}-9.1-pdfbuild.patch
 	# support linguas so only requested languages are installed
 	eapply "${FILESDIR}"/${PN}-7.1-linguas.patch
 

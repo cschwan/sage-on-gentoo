@@ -1,8 +1,8 @@
 diff --git a/sage/repl/ipython_kernel/install.py b/sage/repl/ipython_kernel/install.py
-index 59285a7..29b2ce8 100644
+index fa3cf87..c0fcc83 100644
 --- a/sage/repl/ipython_kernel/install.py
 +++ b/sage/repl/ipython_kernel/install.py
-@@ -180,16 +180,14 @@ class SageKernelSpec(object):
+@@ -161,16 +161,14 @@ class SageKernelSpec(object):
              sage: from sage.repl.ipython_kernel.install import SageKernelSpec
              sage: spec = SageKernelSpec(prefix=tmp_dir())
              sage: spec._kernel_cmd()
@@ -21,8 +21,8 @@ index 59285a7..29b2ce8 100644
              '-m', 'sage.repl.ipython_kernel',
              '-f', '{connection_file}',
          ]
-@@ -278,7 +276,6 @@ class SageKernelSpec(object):
-         instance.use_local_jsmol()
+@@ -258,7 +256,6 @@ class SageKernelSpec(object):
+         instance.use_local_mathjax()
          instance.use_local_threejs()
          instance._install_spec()
 -        instance._symlink_resources()

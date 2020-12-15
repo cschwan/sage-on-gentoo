@@ -14,7 +14,7 @@ SLOT="0"
 KEYWORDS="~amd64 ~x86"
 IUSE=""
 
-RDEPEND=">=sci-mathematics/gap-4.10.1"
+RDEPEND=">=sci-mathematics/gap-core-4.11.0"
 
 S="${WORKDIR}/${MY_P}"
 

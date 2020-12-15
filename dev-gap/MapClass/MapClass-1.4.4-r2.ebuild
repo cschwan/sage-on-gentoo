@@ -3,23 +3,23 @@
 
 EAPI=7
 
-DESCRIPTION="A GAP Package to Calculate Group Cohomology and Massey Products"
+DESCRIPTION="A Package For Mapping Class Orbit Computation"
 HOMEPAGE="https://www.gap-system.org/Packages/${PN}.html"
 SLOT="0"
 SRC_URI="https://github.com/gap-packages/${PN}/releases/download/v${PV}/${P}.tar.gz"
 
-LICENSE="GPL-2+"
+LICENSE="GPL-2"
 KEYWORDS="~amd64 ~x86"
 IUSE=""
 
-RDEPEND=">=sci-mathematics/gap-4.10.1"
+RDEPEND="|| ( =sci-mathematics/gap-4.10* >=sci-mathematics/gap-core-4.11.0 )"
 
-DOCS="CHANGES.md README.md"
+DOCS="README.md"
 
 src_install(){
 	default
 
 	insinto /usr/share/gap/pkg/"${P}"
-	doins -r doc gap
+	doins -r doc lib
 	doins *.g
 }

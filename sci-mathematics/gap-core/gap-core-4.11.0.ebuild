@@ -5,9 +5,13 @@ EAPI=7
 
 inherit autotools elisp-common
 
-DESCRIPTION="System for computational discrete algebra"
+MY_P="gap-${PV}"
+DESCRIPTION="System for computational discrete algebra. Core functionality."
 HOMEPAGE="https://www.gap-system.org/"
-SRC_URI="https://github.com/gap-system/gap/releases/download/v${PV}/gap-${PV}-core.tar.bz2"
+# We need the full release tarball as the core one doesn't include pre-build
+# html documentation. Building the html documentation in turns requires GAPDoc to
+# be present in the source tree.
+SRC_URI="https://github.com/gap-system/gap/releases/download/v${PV}/${MY_P}.tar.bz2"
 
 LICENSE="GPL-2+"
 SLOT="0"
@@ -38,13 +42,25 @@ RECOMMENDED_PKGS="
 	>=dev-gap/sophus-1.24
 	>=dev-gap/tomlib-1.2.9"
 
+# The following packages are slotted with 0/4.10.2 and need unmerging first.
+# Slot blockers for earlier version of gap are not considered.
+SLOT_BLOCKERS="
+	!!<=dev-gap/atlasrep-2.1_p0
+	!!<=dev-gap/crisp-1.4.4-r2
+	!!<=dev-gap/cryst-4.1.19
+	!!<=dev-gap/hap-1.19-r1
+	!!<=dev-gap/irredsol-1.4-r2
+	!!<=dev-gap/transgrp-2.0.4-r2"
+
 DEPEND="dev-libs/gmp:=
 	sys-libs/zlib
 	valgrind? ( dev-util/valgrind )
-	readline? ( sys-libs/readline:= )"
+	readline? ( sys-libs/readline:= )
+	${SLOT_BLOCKERS}"
 RDEPEND="${DEPEND}
 	emacs? ( >=app-editors/emacs-23.1:* )
-	vim-syntax? ( app-vim/vim-gap )"
+	vim-syntax? ( app-vim/vim-gap )
+	!<sci-mathematics/gap-4.11.0"
 PDEPEND="${MINIMUM_PKGS}
 	recommended_pkgs? ( ${RECOMMENDED_PKGS} )"
 
@@ -52,6 +68,8 @@ PATCHES=(
 	"${FILESDIR}"/${PN}-4.11.0-install.patch
 	"${FILESDIR}"/${PN}-4.11.0-autoconf.patch
 )
+
+S="${WORKDIR}/${MY_P}"
 
 pkg_setup(){
 	if use valgrind; then

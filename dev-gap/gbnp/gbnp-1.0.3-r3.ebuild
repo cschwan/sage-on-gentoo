@@ -12,7 +12,7 @@ LICENSE="LGPL-2.1+"
 KEYWORDS="~amd64 ~x86"
 IUSE=""
 
-RDEPEND=">=sci-mathematics/gap-4.10.1
+RDEPEND="|| ( =sci-mathematics/gap-4.10* >=sci-mathematics/gap-core-4.11.0 )
 	>=dev-gap/GAPDoc-1.6.2"
 
 DOCS="README README_AUTHORS TODO Changelog COPYRIGHT"

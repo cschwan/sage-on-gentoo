@@ -13,7 +13,7 @@ LICENSE="GPL-2+"
 KEYWORDS="~amd64 ~x86"
 IUSE=""
 
-RDEPEND="sci-mathematics/gap
+RDEPEND="sci-mathematics/gap-core
 	>=dev-gap/polycyclic-2.14"
 
 DOCS="Changelog README.md"

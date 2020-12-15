@@ -12,10 +12,10 @@ index 9a7702b..4639d03 100644
     sage/features/bliss
     sage/features/csdp
 diff --git a/sage/doctest/control.py b/sage/doctest/control.py
-index 973a90a..2d1f794 100644
+index 3adad7b..1d075ef 100644
 --- a/sage/doctest/control.py
 +++ b/sage/doctest/control.py
-@@ -362,11 +362,6 @@ class DocTestController(SageObject):
+@@ -361,11 +361,6 @@ class DocTestController(SageObject):
                  # that the package is actually installed).
                  if 'optional' in options.optional:
                      options.optional.discard('optional')
@@ -28,10 +28,10 @@ index 973a90a..2d1f794 100644
                      options.optional.update(system.name for system in package_systems())
  
 diff --git a/sage/misc/all.py b/sage/misc/all.py
-index 46765a0..1eb5772 100644
+index 4fc863d..368a49d 100644
 --- a/sage/misc/all.py
 +++ b/sage/misc/all.py
-@@ -52,12 +52,6 @@ from .mrange import xmrange, mrange, xmrange_iter, mrange_iter, cartesian_produc
+@@ -51,12 +51,6 @@ from .mrange import xmrange, mrange, xmrange_iter, mrange_iter, cartesian_produc
  
  from .fpickle import pickle_function, unpickle_function
  
@@ -151,7 +151,7 @@ index 2f7e8f7..76a6d97 100644
          return Extension(*args, **kwds)
      else:
 diff --git a/setup.py b/setup.py
-index 3202909..a160afb 100755
+index ef91acd..a160afb 100755
 --- a/setup.py
 +++ b/setup.py
 @@ -59,14 +59,12 @@ t = time.time()
@@ -170,8 +170,11 @@ index 3202909..a160afb 100755
  
  log.warn('distributions = {0}'.format(distributions))
  
-@@ -140,36 +138,19 @@ code = setup(name = 'sage',
+@@ -138,39 +136,21 @@ code = setup(name = 'sage',
+                  'bin/sage-massif',
+                  'bin/sage-omega',
                   'bin/sage-valgrind',
+-                 'bin/sage-venv-config',
                   'bin/sage-version.sh',
                   'bin/sage-cleaner',
 -                 ## Only makes sense in sage-the-distribution. TODO: Move to another installation script.
@@ -180,8 +183,8 @@ index 3202909..a160afb 100755
                   ## Uncategorized scripts in alphabetical order
                   'bin/math-readline',
 -                 'bin/sage-env',
--                 'bin/sage-env-config',
--                 # sage-env-config.in -- not to be installed',
+-                 # sage-env-config -- installed by sage_conf
+-                 # sage-env-config.in -- not to be installed
                   'bin/sage-gdb-commands',
 -                 'bin/sage-grep',
 -                 'bin/sage-grepdoc',

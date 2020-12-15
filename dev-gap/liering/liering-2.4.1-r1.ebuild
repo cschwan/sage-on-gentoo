@@ -3,16 +3,16 @@
 
 EAPI=7
 
-DESCRIPTION="Database and algorithms for Lie p-rings"
+DESCRIPTION="finitely presented Lie rings"
 HOMEPAGE="https://www.gap-system.org/Packages/${PN}.html"
 SLOT="0"
 SRC_URI="https://github.com/gap-packages/${PN}/releases/download/v${PV}/${P}.tar.gz"
 
-LICENSE="GPL-2"
+LICENSE="GPL-2+"
 KEYWORDS="~amd64 ~x86"
 IUSE=""
 
-RDEPEND=">=sci-mathematics/gap-4.10.1"
+RDEPEND="|| ( =sci-mathematics/gap-4.10* >=sci-mathematics/gap-core-4.11.0 )"
 
 DOCS="README.md"
 
@@ -20,6 +20,6 @@ src_install(){
 	default
 
 	insinto /usr/share/gap/pkg/"${P}"
-	doins -r doc gap lib
+	doins -r doc gap
 	doins *.g
 }

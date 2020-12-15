@@ -1,4 +1,5 @@
 ~sci-mathematics/gap-4.11.0
+~sci-mathematics/gap-core-4.11.0
 # compulsory packages
 ~dev-gap/GAPDoc-1.6.3
 ~dev-gap/primgrp-3.4.0
