@@ -14,7 +14,8 @@ LICENSE="GPL-2"
 
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
-LANGS="el en es fr pt"
+# French documentation is not GPL, and is subject to a non commercial use license, so skipping it.
+LANGS="el en es pt"
 IUSE="ao doc +ecm examples fltk gc +glpk static-libs test"
 for X in ${LANGS} ; do
 	IUSE="${IUSE} l10n_${X}"
@@ -46,6 +47,7 @@ BDEPEND="dev-tex/hevea
 
 PATCHES=(
 	"${FILESDIR}"/${PN}-1.6.0.17-gsl_lapack.patch
+	"${FILESDIR}"/pari_2_11.patch
 	)
 
 REQUIRED_USE="test? ( fltk )"
@@ -54,9 +56,6 @@ RESTRICT="!test? ( test )"
 S="${WORKDIR}/${PN}-${MY_PV}"
 
 src_prepare(){
-	if has_version ">=sci-mathematics/pari-2.11.0" ; then
-		eapply "${FILESDIR}"/pari_2_11.patch
-	fi
 	default
 
 	eautoreconf
@@ -80,7 +79,6 @@ src_configure(){
 		$(use_enable ecm) \
 		$(use_enable glpk) \
 		$(use_enable gc)
-
 }
 
 src_install() {
