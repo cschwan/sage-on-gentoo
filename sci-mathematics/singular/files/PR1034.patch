@@ -1,0 +1,29 @@
+From bd6f95c1de88e955376dc98f4153ef21f9c427f4 Mon Sep 17 00:00:00 2001
+From: Antonio Rojas <arojas@archlinux.org>
+Date: Fri, 18 Dec 2020 20:04:22 +0100
+Subject: [PATCH] Fix broken GMP_HOME check
+
+Add a missing test for gmp.h, otherwise GMP_HOME gets unconditionally set to /opt/local, producing a broken RPATH in the compiled library and in the pc file
+
+Fixes https://www.singular.uni-kl.de:8002/trac/ticket/870
+---
+ factory/configure.ac | 6 ++++--
+ 1 file changed, 4 insertions(+), 2 deletions(-)
+
+diff --git a/factory/configure.ac b/factory/configure.ac
+index cd35dd297d..0c40dd9af2 100644
+--- a/factory/configure.ac
++++ b/factory/configure.ac
+@@ -225,8 +225,10 @@ BACKUP_LIBS=${LIBS}
+ for GMP_HOME in ${GMP_HOME_PATH}
+ do
+   if test "x$GMP_HOME" != "x/usr"; then
+-    GMP_CPPFLAGS="-I${GMP_HOME}/include"
+-    GMP_LIBS="-L${GMP_HOME}/lib -Wl,-rpath -Wl,${GMP_HOME}/lib -lgmp"
++    if test -e ${GMP_HOME}/include/gmp.h; then
++      GMP_CPPFLAGS="-I${GMP_HOME}/include"
++      GMP_LIBS="-L${GMP_HOME}/lib -Wl,-rpath -Wl,${GMP_HOME}/lib -lgmp"
++    fi
+   else
+     GMP_CPPFLAGS=""
+     GMP_LIBS="-lgmp"
