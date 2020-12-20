@@ -3,7 +3,7 @@
 
 EAPI=7
 
-inherit autotools flag-o-matic pax-utils
+inherit autotools flag-o-matic
 
 FETCH_P="${PN}_"$(ver_rs  3 '-')
 MY_PV=$(ver_cut 1-3)
@@ -16,14 +16,14 @@ SLOT="0"
 KEYWORDS="~amd64 ~x86"
 # French documentation is not GPL, and is subject to a non commercial use license, so skipping it.
 LANGS="el en es pt"
-IUSE="ao doc +ecm examples fltk gc +glpk static-libs test"
+IUSE="ao doc +ecm examples gc +glpk gui static-libs test"
 for X in ${LANGS} ; do
 	IUSE="${IUSE} l10n_${X}"
 done
 
 RDEPEND="dev-libs/gmp:=[cxx]
 	sys-libs/readline:=
-	fltk? ( >=x11-libs/fltk-1.1.9
+	gui? ( >=x11-libs/fltk-1.1.9
 		media-libs/libpng:= )
 	ao? ( media-libs/libao )
 	dev-libs/mpfr:=
@@ -50,7 +50,7 @@ PATCHES=(
 	"${FILESDIR}"/pari_2_11.patch
 	)
 
-REQUIRED_USE="test? ( fltk )"
+REQUIRED_USE="test? ( gui )"
 RESTRICT="!test? ( test )"
 
 S="${WORKDIR}/${PN}-${MY_PV}"
@@ -62,7 +62,7 @@ src_prepare(){
 }
 
 src_configure(){
-	if use fltk; then
+	if use gui; then
 		append-cppflags -I$(fltk-config --includedir)
 		append-lfs-flags
 		append-libs $(fltk-config --ldflags | sed -e 's/\(-L\S*\)\s.*/\1/') || die
@@ -73,8 +73,8 @@ src_configure(){
 		--enable-gmpxx \
 		--disable-samplerate \
 		$(use_enable static-libs static) \
-		$(use_enable fltk gui)  \
-		$(use_enable fltk png)  \
+		$(use_enable gui)  \
+		$(use_enable gui png)  \
 		$(use_enable ao) \
 		$(use_enable ecm) \
 		$(use_enable glpk) \
@@ -84,11 +84,7 @@ src_configure(){
 src_install() {
 	emake install DESTDIR="${D}"
 	dodoc AUTHORS ChangeLog INSTALL NEWS README TROUBLES
-	if use fltk; then
-		if host-is-pax; then
-			pax-mark -m "${ED}"/usr/bin/x*
-		fi
-	else
+	if !(use gui); then
 		rm -rf \
 			"${ED}"/usr/bin/x* \
 			"${ED}"/usr/share/application-registry \
@@ -106,6 +102,8 @@ src_install() {
 				rm -rf "${ED}"/usr/share/giac/doc/"${lang}"
 			fi
 		done
+		# Deleting French documentation for copyright reasons
+		rm -rf "${ED}"/usr/share/giac/doc/fr
 	fi
 
 	if use !examples; then
