@@ -71,7 +71,7 @@ DEPEND="dev-libs/gmp:0=
 	>=sci-libs/zn_poly-0.9
 	~sci-mathematics/gap-4.11.0[recommended_pkgs]
 	=sci-mathematics/giac-1.5.0*
-	>=sci-mathematics/glpk-4.65:0=[gmp]
+	>=sci-mathematics/glpk-5.0:0=[gmp]
 	>=sci-mathematics/lcalc-1.23-r10[pari]
 	>=sci-mathematics/lrcalc-1.2
 	~dev-python/cypari2-2.1.1[${PYTHON_USEDEP}]
@@ -100,7 +100,7 @@ BDEPEND="app-portage/gentoolkit
 RDEPEND="${DEPEND}
 	>=dev-lang/R-3.2.0
 	>=dev-python/cvxopt-1.2.2[glpk,${PYTHON_USEDEP}]
-	>=dev-python/fpylll-0.5.1[${PYTHON_USEDEP}]
+	>=dev-python/fpylll-0.5.4[${PYTHON_USEDEP}]
 	>=dev-python/mpmath-0.18[${PYTHON_USEDEP}]
 	>=dev-python/networkx-2.4[${PYTHON_USEDEP}]
 	>=dev-python/pexpect-4.2.1[${PYTHON_USEDEP}]
