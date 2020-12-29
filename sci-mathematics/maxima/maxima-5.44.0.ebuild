@@ -3,7 +3,7 @@
 
 EAPI=6
 
-inherit autotools elisp-common eutils xdg-utils
+inherit autotools elisp-common eutils xdg-utils flag-o-matic
 
 DESCRIPTION="Free computer algebra environment based on Macsyma"
 HOMEPAGE="http://maxima.sourceforge.net/"
@@ -145,6 +145,7 @@ src_configure() {
 	fi
 
 	econf ${CONFS} \
+		LDFLAGS="$(raw-ldflags)" \
 		$(use_with tk wish) \
 		$(use_enable emacs) \
 		--with-lispdir="${EPREFIX}/${SITELISP}/${PN}"
