@@ -77,11 +77,6 @@ QUICK INSTALLATION GUIDE
      ln -s <path-to-layman>/sage-on-gentoo/package.use/sage \
            /etc/portage/package.use/sage
 
-   If you are using unstable or Funtoo you may also need the following file::
-
-     ln -s <path-to-layman>/sage-on-gentoo/package.use/sage-unstable \
-           /etc/portage/package.use/sage-unstable
-
    <path-to-layman> is usually /var/lib/layman (this path used to be
    /usr/local/portage/layman for older version of layman).
 
