@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<maintainer type="person">
+		<email>frp.bissey@gmail.com</email>
+		<name>François Bissey</name>
+	</maintainer>
+	<longdescription lang="en">
+LattE integrale, the official new version of LattE.
+In addition to the traditional LattE function of counting lattice
+points in polytopes by variants of Barvinok's algorithm, LattE
+integrale can also compute volumes and integrate polynomial functions
+over polytopes.  It supersedes LattE macchiato, an improved version of 
+LattE.
+	</longdescription>
+</pkgmetadata>
