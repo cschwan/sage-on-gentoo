@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<maintainer type="person">
+		<email>frp.bissey@gmail.com</email>
+		<name>Francois Bissey</name>
+	</maintainer>
+	<longdescription lang="en">
+This is a software package for working with flat surfaces in SageMath.
+We aim for this package to support the investigation of geometric, algebraic 
+and dynamical questions related to flat surfaces. By flat surface we mean a 
+surface modeled on the plane with monodromy given by similarities of the 
+plane, though current efforts are focused on translation surfaces and 
+half-translation surfaces.
+Currently, the package can generate images of flat surfaces, 
+plot straight-line trajectories, deform surfaces through the SL(2,R) action, 
+and compute Delaunay decompositions. SageMath is used to perform exact 
+arithmetic.
+	</longdescription>
+</pkgmetadata>
