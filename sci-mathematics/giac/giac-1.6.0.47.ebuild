@@ -1,4 +1,4 @@
-# Copyright 1999-2020 Gentoo Authors
+# Copyright 1999-2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=7
@@ -21,6 +21,7 @@ for X in ${LANGS} ; do
 	IUSE="${IUSE} l10n_${X}"
 done
 
+# nauty and cliquer are automagical dependencies
 RDEPEND="dev-libs/gmp:=[cxx]
 	sys-libs/readline:=
 	gui? ( >=x11-libs/fltk-1.1.9
@@ -35,6 +36,7 @@ RDEPEND="dev-libs/gmp:=[cxx]
 	virtual/blas
 	net-misc/curl
 	>=sci-mathematics/nauty-2.6.7
+	sci-mathematics/cliquer
 	ecm? ( >=sci-mathematics/gmp-ecm-7.0.0 )
 	glpk? ( sci-mathematics/glpk )
 	gc? ( dev-libs/boehm-gc )"
@@ -47,6 +49,7 @@ BDEPEND="dev-tex/hevea
 
 PATCHES=(
 	"${FILESDIR}"/${PN}-1.6.0.17-gsl_lapack.patch
+	"${FILESDIR}"/${PN}-1.6.0.47-micropy.patch
 	"${FILESDIR}"/pari_2_11.patch
 	)
 
@@ -69,9 +72,11 @@ src_configure(){
 	fi
 
 	# Using libsamplerate is currently broken
+	# micropython is for specific use in an upstream project
 	econf \
 		--enable-gmpxx \
 		--disable-samplerate \
+		--disable-micropy \
 		$(use_enable static-libs static) \
 		$(use_enable gui)  \
 		$(use_enable gui png)  \
