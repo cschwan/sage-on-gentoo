@@ -265,6 +265,9 @@ python_prepare_all() {
 	# support linguas so only requested languages are installed
 	eapply "${FILESDIR}"/${PN}-7.1-linguas.patch
 
+	# Force the value of user homedir in call to jmol. jmol sometimes violate the sandbox
+	eapply "${FILESDIR}"/${PN}-9.3-forcejavatmp.patch
+
 	####################################
 	#
 	# Bootstrap
