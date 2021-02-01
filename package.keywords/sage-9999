@@ -85,6 +85,7 @@ sci-libs/modular_decomposition
 =sci-libs/cxsparse-3.1*
 dev-libs/igraph
 ~dev-python/python-igraph-0.7.0
+sci-mathematics/shared_meataxe
 # coinor-cbc
 sci-libs/coinor-cbc
 sci-libs/coinor-clp
