@@ -1,0 +1,13 @@
+diff --git a/src/Makefile.am b/src/Makefile.am
+index 6e5f732..b0d25f2 100644
+--- a/src/Makefile.am
++++ b/src/Makefile.am
+@@ -43,7 +43,7 @@ TESTS                       = $(check_SCRIPTS)
+ 
+ mnttest.sh: test.reg
+ 	test -r ./test.reg || cp $(srcdir)/test.reg .
+-	@echo './makeNontips -O RLL 2 test && groupInfo test | grep -Fxq "Size of Groebner basis: 3"' > mnttest.sh
++	@echo './makeNontips -O RLL 2 test && ./groupInfo test | grep -Fxq "Size of Groebner basis: 3"' > mnttest.sh
+ 	@chmod +x mnttest.sh
+ 
+ CLEANFILES                  = mnttest.sh test.nontips
