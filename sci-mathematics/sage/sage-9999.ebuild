@@ -21,7 +21,7 @@ LANGS="ca de en es fr hu it ja pt ru tr"
 
 LICENSE="GPL-2"
 SLOT="0"
-SAGE_USE="bliss"
+SAGE_USE="bliss meataxe"
 IUSE="debug +doc-html doc-pdf jmol latex testsuite X ${SAGE_USE}"
 L10N_USEDEP=""
 for X in ${LANGS} ; do
@@ -92,6 +92,7 @@ DEPEND="dev-libs/gmp:0=
 	>=sci-libs/libhomfly-1.0.1
 	sci-libs/libbraiding
 	bliss? ( >=sci-libs/bliss-0.73 )
+	meataxe? ( sci-mathematics/shared_meataxe )
 	>=dev-python/sphinx-3.1.0[${PYTHON_USEDEP}]"
 
 BDEPEND="app-portage/gentoolkit
