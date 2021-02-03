@@ -18,7 +18,7 @@ SLOT="0"
 KEYWORDS=""
 #KEYWORDS="~amd64 ~x86"
 
-DEPEND=">=sci-mathematics/sage-9.3[${PYTHON_USEDEP}]
+DEPEND=">=sci-mathematics/sage-9.3[meataxe,${PYTHON_USEDEP}]
 	dev-python/cython[${PYTHON_USEDEP}]
 	sci-mathematics/shared_meataxe
 	sci-mathematics/modular_resolution"
