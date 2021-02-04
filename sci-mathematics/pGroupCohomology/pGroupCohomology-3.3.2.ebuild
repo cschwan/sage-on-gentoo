@@ -26,10 +26,7 @@ RDEPEND="${DEPEND}
 	dev-gap/p_group_cohomology_helper
 	sci-mathematics/singular"
 
-PATCHES=( 
-	"${FILESDIR}"/${PN}-3.3.2-local.patch
-	"${FILESDIR}"/${PN}-3.3.2-pyx.patch
-)
+PATCHES=( "${FILESDIR}"/${PN}-3.3.2-pyx.patch )
 
 S="${WORKDIR}/${Parent_P}/${P}"
 
@@ -40,4 +37,6 @@ python_install_all(){
 	# install singular helper
 	insinto /usr/share/singular/LIB
 	doins "${WORKDIR}/${Parent_P}"/singular_helper/dickson.lib
+	# create the pGroupCohomology sage share folder
+	keepdir /usr/share/sage/pGroupCohomology
 }
