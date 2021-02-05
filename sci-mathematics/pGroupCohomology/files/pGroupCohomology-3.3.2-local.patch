@@ -1,3 +1,25 @@
+diff --git a/pGroupCohomology/cohomology.pyx b/pGroupCohomology/cohomology.pyx
+index 8e37be9..429fcc8 100644
+--- a/pGroupCohomology/cohomology.pyx
++++ b/pGroupCohomology/cohomology.pyx
+@@ -2811,15 +2811,9 @@ class COHO(Ring):
+     workspace = os.path.join(DOT_SAGE,'pGroupCohomology','db')
+ 
+     # local
+-    try:
+-        from sage.env import SAGE_SHARE
+-    except ImportError:
+-        try:
+-            from sage.misc.misc import SAGE_SHARE
+-        except ImportError:
+-            from sage.misc.misc import SAGE_DATA as SAGE_SHARE
++    from sage.env import SAGE_LOCAL
+ 
+-    local_sources = os.path.join(SAGE_SHARE,'pGroupCohomology')
++    local_sources = os.path.join(SAGE_LOCAL,'share','pGroupCohomology')
+ 
+     # remote
+     remote_sources = ('http://cohomology.uni-jena.de/db/',)
 diff --git a/pGroupCohomology/factory.py b/pGroupCohomology/factory.py
 index 19c4e5b..bea36a2 100644
 --- a/pGroupCohomology/factory.py
