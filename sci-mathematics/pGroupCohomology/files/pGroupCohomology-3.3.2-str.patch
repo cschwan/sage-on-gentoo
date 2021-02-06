@@ -1,0 +1,22 @@
+diff --git a/pGroupCohomology/cohomology.pyx b/pGroupCohomology/cohomology.pyx
+index 8e37be9..4d63caa 100644
+--- a/pGroupCohomology/cohomology.pyx
++++ b/pGroupCohomology/cohomology.pyx
+@@ -3942,7 +3942,7 @@ class COHO(Ring):
+             True
+ 
+         """
+-        return os.path.join(self.gps_folder,'H'+self.GStem+'.sobj')
++        return os.path.join(self.gps_folder,'H{}.sobj'.format(self.GStem))
+ 
+ ####################################
+ 
+@@ -4725,7 +4725,7 @@ Minimal list of algebraic relations:
+                 coho_logger.warning("The data for the cohomology ring at <%x> have apparently been moved.", "Loading a cohomology ring", id(self))
+                 if isinstance(self._property_dict['_need_new_root'], (str, unicode)):
+                     newroot = str(self._property_dict['_need_new_root'])
+-                    default_name = str(os.path.join(newroot,self.GStem,'H'+self.GStem+'.sobj'))
++                    default_name = os.path.join(newroot,self.GStem,'H{}.sobj'.format(self.GStem))
+                 else:
+                     # try to infer the new location from the file this ring was loaded from
+                     newroot = os.path.split(os.path.split(defaultname)[0])[0]

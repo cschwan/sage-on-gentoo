@@ -29,6 +29,7 @@ RDEPEND="${DEPEND}
 PATCHES=(
 	"${FILESDIR}"/${PN}-3.3.2-pyx.patch
 	"${FILESDIR}"/${PN}-3.3.2-local.patch
+	"${FILESDIR}"/${PN}-3.3.2-str.patch
 )
 
 S="${WORKDIR}/${Parent_P}/${P}"
