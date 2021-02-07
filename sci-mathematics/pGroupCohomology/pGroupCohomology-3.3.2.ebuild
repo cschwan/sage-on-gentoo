@@ -26,6 +26,12 @@ RDEPEND="${DEPEND}
 	dev-gap/p_group_cohomology_helper
 	sci-mathematics/singular"
 
+PATCHES=(
+	"${FILESDIR}"/${PN}-3.3.2-pyx.patch
+	"${FILESDIR}"/${PN}-3.3.2-local.patch
+	"${FILESDIR}"/${PN}-3.3.2-str.patch
+)
+
 S="${WORKDIR}/${Parent_P}/${P}"
 
 # NOTE: building html doc would require installing sage_setup.

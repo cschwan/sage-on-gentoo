@@ -1,0 +1,79 @@
+diff --git a/pGroupCohomology/cohomology.pyx b/pGroupCohomology/cohomology.pyx
+index 8e37be9..429fcc8 100644
+--- a/pGroupCohomology/cohomology.pyx
++++ b/pGroupCohomology/cohomology.pyx
+@@ -2811,15 +2811,9 @@ class COHO(Ring):
+     workspace = os.path.join(DOT_SAGE,'pGroupCohomology','db')
+ 
+     # local
+-    try:
+-        from sage.env import SAGE_SHARE
+-    except ImportError:
+-        try:
+-            from sage.misc.misc import SAGE_SHARE
+-        except ImportError:
+-            from sage.misc.misc import SAGE_DATA as SAGE_SHARE
++    from sage.env import SAGE_LOCAL
+ 
+-    local_sources = os.path.join(SAGE_SHARE,'pGroupCohomology')
++    local_sources = os.path.join(SAGE_LOCAL,'share','pGroupCohomology')
+ 
+     # remote
+     remote_sources = ('http://cohomology.uni-jena.de/db/',)
+diff --git a/pGroupCohomology/factory.py b/pGroupCohomology/factory.py
+index 19c4e5b..bea36a2 100644
+--- a/pGroupCohomology/factory.py
++++ b/pGroupCohomology/factory.py
+@@ -523,14 +523,8 @@ class CohomologyRingFactory:
+ 
+             sage: from pGroupCohomology import CohomologyRing
+             sage: CohomologyRing.reset()
+-            sage: try:
+-            ....:     from sage.env import SAGE_SHARE
+-            ....: except ImportError:
+-            ....:     try:
+-            ....:         from sage.misc.misc import SAGE_SHARE
+-            ....:     except ImportError:
+-            ....:         from sage.misc.misc import SAGE_DATA as SAGE_SHARE
+-            sage: CohomologyRing.get_local_sources().startswith(os.path.realpath(SAGE_SHARE))
++            sage: from sage.env import SAGE_LOCAL
++            sage: CohomologyRing.get_local_sources().startswith(os.path.realpath(SAGE_LOCAL))
+             True
+             sage: tmp = tmp_dir()
+             sage: CohomologyRing.set_local_sources(tmp)
+@@ -575,7 +569,7 @@ class CohomologyRingFactory:
+           cohomology data, but all new computations will still be done in
+           the user's workspace.
+         - If ``folder`` is ``True`` then the default location of the local
+-          sources is reset; this is a sub-directory of ``SAGE_SHARE``.
++          sources is reset; this is a sub-directory of ``SAGE_LOCAL/share``.
+         - If ``bool(folder)`` is ``False`` then the user's workspace will
+           be used to create new data in subsequent computations, even if
+           the user has write permission for the local sources.
+@@ -609,22 +603,16 @@ class CohomologyRingFactory:
+         ``CohomologyRing.set_local_sources(True)`` does::
+ 
+             sage: CohomologyRing.set_local_sources(True)
+-            sage: from sage.env import SAGE_SHARE
+-            sage: CohomologyRing.get_local_sources().startswith(os.path.realpath(SAGE_SHARE))
++            sage: from sage.env import SAGE_LOCAL
++            sage: CohomologyRing.get_local_sources().startswith(os.path.realpath(SAGE_LOCAL))
+             True
+ 
+         """
+         if folder:
+             self._create_local_sources = True
+             if not isinstance(folder, (str,unicode)):
+-                try:
+-                    from sage.env import SAGE_SHARE
+-                except ImportError:
+-                    try:
+-                        from sage.misc.misc import SAGE_SHARE
+-                    except ImportError:
+-                        from sage.misc.misc import SAGE_DATA as SAGE_SHARE
+-                folder = os.path.realpath(os.path.join(SAGE_SHARE,'pGroupCohomology'))
++                from sage.env import SAGE_LOCAL
++                folder = os.path.realpath(os.path.join(SAGE_LOCAL,'share','pGroupCohomology'))
+             else:
+                 folder = os.path.realpath(str(folder))
+             if os.path.exists(folder):

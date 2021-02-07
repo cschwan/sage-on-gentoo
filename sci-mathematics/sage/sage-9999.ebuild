@@ -54,7 +54,7 @@ DEPEND="dev-libs/gmp:0=
 	>=dev-python/matplotlib-3.3.1[${PYTHON_USEDEP}]
 	=dev-python/ipywidgets-7*[${PYTHON_USEDEP}]
 	>=dev-python/gmpy-2.1.0_beta5[${PYTHON_USEDEP}]
-	~dev-python/pplpy-0.8.4:=[doc,${PYTHON_USEDEP}]
+	~dev-python/pplpy-0.8.7:=[doc,${PYTHON_USEDEP}]
 	~sci-mathematics/eclib-20190909[flint]
 	~sci-mathematics/gmp-ecm-7.0.4[-openmp]
 	=sci-mathematics/flint-2.6*:=[ntl]
@@ -74,7 +74,7 @@ DEPEND="dev-libs/gmp:0=
 	>=sci-mathematics/glpk-5.0:0=[gmp]
 	>=sci-mathematics/lcalc-1.23-r10[pari]
 	>=sci-mathematics/lrcalc-1.2
-	~dev-python/cypari2-2.1.1[${PYTHON_USEDEP}]
+	~dev-python/cypari2-2.1.2[${PYTHON_USEDEP}]
 	=sci-mathematics/pari-2.11*
 	~sci-mathematics/planarity-3.0.0.5
 	>=sci-libs/brial-1.2.5
@@ -265,6 +265,9 @@ python_prepare_all() {
 
 	# support linguas so only requested languages are installed
 	eapply "${FILESDIR}"/${PN}-7.1-linguas.patch
+
+	# Force the value of user homedir in call to jmol. jmol sometimes violate the sandbox
+	eapply "${FILESDIR}"/${PN}-9.3-forcejavatmp.patch
 
 	####################################
 	#
