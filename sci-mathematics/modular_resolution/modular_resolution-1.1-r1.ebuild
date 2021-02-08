@@ -44,7 +44,4 @@ src_install(){
 
 	# remove .la file
 	find "${ED}" -name '*.la' -delete || die
-
-	# fix database ownership
-	fowners -R root:root /usr/share/pGroupCohomology/*
 }
