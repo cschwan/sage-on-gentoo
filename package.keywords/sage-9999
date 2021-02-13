@@ -42,7 +42,6 @@ sci-mathematics/flintqs
 =sci-mathematics/giac-1.5.0*
 >=sci-mathematics/glpk-4.61
 >=sci-mathematics/lcalc-1.23-r6
-sci-mathematics/lrcalc
 ~sci-mathematics/maxima-5.44.0::sage-on-gentoo
 sci-mathematics/mcube
 sci-mathematics/nauty
