@@ -5,7 +5,7 @@ EAPI=7
 
 PYTHON_COMPAT=( python3_{7..9} )
 PYTHON_REQ_USE="readline,sqlite"
-DISTUTILS_USE_SETUPTOOLS=no
+DISTUTILS_USE_SETUPTOOLS=bdepend
 
 inherit desktop distutils-r1 flag-o-matic multiprocessing prefix toolchain-funcs git-r3
 
@@ -359,6 +359,9 @@ python_install() {
 	fi
 
 	distutils-r1_python_install
+
+	# Optimize lone postprocess.py script
+	python_optimize "${D}/$(python_get_sitedir)/sage/ext_data/nbconvert"
 }
 
 python_install_all(){
