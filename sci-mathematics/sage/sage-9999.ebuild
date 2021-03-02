@@ -66,11 +66,11 @@ DEPEND="dev-libs/gmp:0=
 	sci-libs/m4ri
 	sci-libs/m4rie
 	>=sci-libs/mpfi-1.5.2
-	=sci-libs/pynac-0.7.26-r1[-giac,${PYTHON_USEDEP}]
+	~sci-libs/pynac-0.7.27[-giac,${PYTHON_USEDEP}]
 	>=sci-libs/symmetrica-2.0-r3
 	>=sci-libs/zn_poly-0.9
 	~sci-mathematics/gap-4.11.0[recommended_pkgs]
-	=sci-mathematics/giac-1.5.0*
+	=sci-mathematics/giac-1.6.0*
 	>=sci-mathematics/glpk-5.0:0=[gmp]
 	>=sci-mathematics/lcalc-1.23-r10[pari]
 	~sci-mathematics/lrcalc-1.2
