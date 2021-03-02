@@ -34,6 +34,7 @@ DOCS=( AUTHORS NEWS README )
 
 PATCHES=(
 	"${FILESDIR}"/un-pc-0.7.27.patch
+	"${FILESDIR}"/trac-30688.patch
 	)
 
 src_prepare(){
