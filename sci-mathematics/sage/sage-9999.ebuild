@@ -5,7 +5,7 @@ EAPI=7
 
 PYTHON_COMPAT=( python3_{7..9} )
 PYTHON_REQ_USE="readline,sqlite"
-DISTUTILS_USE_SETUPTOOLS=no
+DISTUTILS_USE_SETUPTOOLS=bdepend
 
 inherit desktop distutils-r1 flag-o-matic multiprocessing prefix toolchain-funcs git-r3
 
@@ -66,11 +66,11 @@ DEPEND="dev-libs/gmp:0=
 	sci-libs/m4ri
 	sci-libs/m4rie
 	>=sci-libs/mpfi-1.5.2
-	=sci-libs/pynac-0.7.26-r1[-giac,${PYTHON_USEDEP}]
+	~sci-libs/pynac-0.7.27[-giac,${PYTHON_USEDEP}]
 	>=sci-libs/symmetrica-2.0-r3
 	>=sci-libs/zn_poly-0.9
 	~sci-mathematics/gap-4.11.0[recommended_pkgs]
-	=sci-mathematics/giac-1.5.0*
+	=sci-mathematics/giac-1.6.0*
 	>=sci-mathematics/glpk-5.0:0=[gmp]
 	>=sci-mathematics/lcalc-1.23-r10[pari]
 	~sci-mathematics/lrcalc-1.2
@@ -359,6 +359,9 @@ python_install() {
 	fi
 
 	distutils-r1_python_install
+
+	# Optimize lone postprocess.py script
+	python_optimize "${D}/$(python_get_sitedir)/sage/ext_data/nbconvert"
 }
 
 python_install_all(){

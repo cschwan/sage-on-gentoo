@@ -29,7 +29,7 @@ sci-libs/dsdp
 ~sci-libs/linbox-1.6.3
 sci-libs/m4ri
 sci-libs/m4rie
-~sci-libs/pynac-0.7.26
+~sci-libs/pynac-0.7.27
 sci-libs/symmetrica
 sci-libs/zn_poly
 =sci-mathematics/arb-2.18*
@@ -39,7 +39,7 @@ sci-mathematics/dikcube
 ~sci-mathematics/gmp-ecm-7.0.4
 sci-mathematics/flintqs
 =sci-mathematics/flint-2.6*
-=sci-mathematics/giac-1.5.0*
+=sci-mathematics/giac-1.6.0*
 >=sci-mathematics/glpk-4.61
 >=sci-mathematics/lcalc-1.23-r6
 ~sci-mathematics/maxima-5.44.0::sage-on-gentoo

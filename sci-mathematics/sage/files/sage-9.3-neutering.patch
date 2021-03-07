@@ -1,5 +1,5 @@
 diff --git a/doc/en/reference/misc/index.rst b/doc/en/reference/misc/index.rst
-index 9a7702b..4639d03 100644
+index f1f2438..6fe097e 100644
 --- a/doc/en/reference/misc/index.rst
 +++ b/doc/en/reference/misc/index.rst
 @@ -226,8 +226,6 @@ Distribution
@@ -12,7 +12,7 @@ index 9a7702b..4639d03 100644
     sage/features/bliss
     sage/features/csdp
 diff --git a/sage/doctest/control.py b/sage/doctest/control.py
-index 3adad7b..1d075ef 100644
+index 7d2b84b..4f61381 100644
 --- a/sage/doctest/control.py
 +++ b/sage/doctest/control.py
 @@ -361,11 +361,6 @@ class DocTestController(SageObject):
@@ -45,7 +45,7 @@ index 4fc863d..368a49d 100644
  
  lazy_import('sage.misc.sagedoc', ['browse_sage_doc',
 diff --git a/sage/tests/cmdline.py b/sage/tests/cmdline.py
-index 6e034dc..32dd4b7 100644
+index 0867043..be7cd21 100644
 --- a/sage/tests/cmdline.py
 +++ b/sage/tests/cmdline.py
 @@ -13,9 +13,7 @@ test.spyx
@@ -74,7 +74,7 @@ index 6e034dc..32dd4b7 100644
  --startuptime
  -t
  -v
-@@ -596,32 +592,6 @@ def test_executable(args, input="", timeout=100.0, pydebug_ignore_warnings=False
+@@ -590,32 +586,6 @@ def test_executable(args, input="", timeout=100.0, pydebug_ignore_warnings=False
          sage: ret
          0
  
@@ -108,13 +108,13 @@ index 6e034dc..32dd4b7 100644
      but we allow stderr in case this changes in the future::
  
 diff --git a/sage_setup/optional_extension.py b/sage_setup/optional_extension.py
-index 2f7e8f7..76a6d97 100644
+index 06586f1..dacf6ee 100644
 --- a/sage_setup/optional_extension.py
 +++ b/sage_setup/optional_extension.py
-@@ -19,10 +19,8 @@ package which must be installed.
+@@ -18,10 +18,8 @@ package which must be installed.
+ # ****************************************************************************
  
- 
- from distutils.extension import Extension
+ from setuptools.extension import Extension
 -from sage.misc.package import list_packages
 -
 -all_packages = list_packages(local=True)
@@ -123,9 +123,9 @@ index 2f7e8f7..76a6d97 100644
  
  class CythonizeExtension(Extension):
      """
-@@ -40,17 +38,6 @@ class CythonizeExtension(Extension):
-     """
+@@ -40,18 +38,6 @@ class CythonizeExtension(Extension):
      skip_build = True
+ 
  
 -def is_package_installed_and_updated(pkg):
 -    from sage.misc.package import is_package_installed
@@ -138,10 +138,11 @@ index 2f7e8f7..76a6d97 100644
 -        condition = (pkginfo["installed_version"] == pkginfo["remote_version"])
 -    return condition
 -
+-
  def OptionalExtension(*args, **kwds):
      """
      If some condition (see INPUT) is satisfied, return an ``Extension``.
-@@ -86,7 +73,7 @@ def OptionalExtension(*args, **kwds):
+@@ -87,7 +73,7 @@ def OptionalExtension(*args, **kwds):
          condition = kwds.pop("condition")
      except KeyError:
          pkg = kwds.pop("package")
@@ -151,7 +152,7 @@ index 2f7e8f7..76a6d97 100644
          return Extension(*args, **kwds)
      else:
 diff --git a/setup.py b/setup.py
-index ef91acd..a160afb 100755
+index 458a9d7..ccc2a0d 100755
 --- a/setup.py
 +++ b/setup.py
 @@ -59,14 +59,12 @@ t = time.time()
@@ -170,7 +171,7 @@ index ef91acd..a160afb 100755
  
  log.warn('distributions = {0}'.format(distributions))
  
-@@ -138,39 +136,21 @@ code = setup(name = 'sage',
+@@ -132,39 +130,21 @@ code = setup(
                   'bin/sage-massif',
                   'bin/sage-omega',
                   'bin/sage-valgrind',

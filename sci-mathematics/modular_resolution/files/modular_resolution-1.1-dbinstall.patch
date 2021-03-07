@@ -1,0 +1,13 @@
+diff --git a/Makefile.am b/Makefile.am
+index 9b36a73..2b98041 100644
+--- a/Makefile.am
++++ b/Makefile.am
+@@ -22,7 +22,7 @@ dbdir           = $(datadir)/pGroupCohomology
+ dist_db_DATA    = group_cohomology_database.tar
+ 
+ install-data-hook:
+-	cd $(DESTDIR)$(dbdir) && tar xf $(dist_db_DATA) && rm $(dist_db_DATA)
++	cd $(DESTDIR)$(dbdir) && tar -x --no-same-owner -f $(dist_db_DATA) && rm $(dist_db_DATA)
+ 
+ uninstall-hook:
+ 	rm -r $(DESTDIR)$(dbdir)
