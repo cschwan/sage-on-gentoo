@@ -1,34 +1,22 @@
 diff --git a/sage_setup/docbuild/__init__.py b/sage_setup/docbuild/__init__.py
 index b07e9c1..0786c08 100644
---- a/sage_setup/docbuild/__init__.py
-+++ b/sage_setup/docbuild/__init__.py
+--- a/sage_docbuild/__init__.py
++++ b/sage_docbuild/__init__.py
 @@ -59,7 +59,7 @@ from sage.misc.cachefunc import cached_method
  from sage.misc.misc import sage_makedirs
  from sage.env import SAGE_DOC_SRC, SAGE_DOC, SAGE_SRC, DOT_SAGE
  
 -from .build_options import (LANGUAGES, SPHINXOPTS, PAPER, OMIT,
-+from sage_setup.docbuild.build_options import (LANGUAGES, SPHINXOPTS, PAPER, OMIT,
++from sage_docbuild.build_options import (LANGUAGES, SPHINXOPTS, PAPER, OMIT,
       PAPEROPTS, ALLSPHINXOPTS, NUM_THREADS, WEBSITESPHINXOPTS,
       INCREMENTAL_BUILD, ABORT_ON_ERROR)
  
 diff --git a/sage_setup/docbuild/__main__.py b/sage_setup/docbuild/__main__.py
 index 031df43..e68b438 100644
---- a/sage_setup/docbuild/__main__.py
-+++ b/sage_setup/docbuild/__main__.py
+--- a/sage_docbuild/__main__.py
++++ b/sage_docbuild/__main__.py
 @@ -1,2 +1,2 @@
 -from . import main
-+from sage_setup.docbuild import main
++from sage_docbuild import main
  main()
-diff --git a/setup.py b/setup.py
-index cad807e..0bf8ecf 100755
---- a/setup.py
-+++ b/setup.py
-@@ -72,7 +72,7 @@ log.warn('distributions = {0}'.format(distributions))
- 
- from sage_setup.find import find_python_sources
- python_packages, python_modules, cython_modules = find_python_sources(
--    SAGE_SRC, ['sage', 'sage_setup'], distributions=distributions)
-+    SAGE_SRC, ['sage'], distributions=distributions)
- 
- log.debug('python_packages = {0}'.format(python_packages))
  

@@ -1,0 +1,24 @@
+diff --git a/sage_docbuild/build_options.py b/sage_docbuild/build_options.py
+index ddc88a3..772d824 100644
+--- a/sage_docbuild/build_options.py
++++ b/sage_docbuild/build_options.py
+@@ -6,7 +6,18 @@ import os, re
+ 
+ from sage.env import SAGE_DOC_SRC, SAGE_DOC
+ 
+-LANGUAGES = [d for d in os.listdir(SAGE_DOC_SRC) if re.match('^[a-z][a-z]$', d)]
++LANGUAGELIST = [d for d in os.listdir(SAGE_DOC_SRC) if re.match('^[a-z][a-z]$', d)]
++try:
++    DESIRED_LANGUAGES = list(set((os.environ['LANGUAGES']).split()))
++except KeyError:
++    DESIRED_LANGUAGES = LANGUAGELIST
++LANGUAGES = []
++for d in DESIRED_LANGUAGES:
++    if d in LANGUAGELIST:
++        LANGUAGES.append(d)
++if not LANGUAGES:
++    LANGUAGES=LANGUAGELIST
++
+ SPHINXOPTS = ""
+ PAPER = ""
+ OMIT = ["introspect"]  # docs/dirs to omit when listing and building 'all'

@@ -12,10 +12,10 @@ index f1f2438..6fe097e 100644
     sage/features/bliss
     sage/features/csdp
 diff --git a/sage/doctest/control.py b/sage/doctest/control.py
-index 7d2b84b..4f61381 100644
+index f96074f..eae2462 100644
 --- a/sage/doctest/control.py
 +++ b/sage/doctest/control.py
-@@ -361,11 +361,6 @@ class DocTestController(SageObject):
+@@ -364,11 +364,6 @@ class DocTestController(SageObject):
                  # that the package is actually installed).
                  if 'optional' in options.optional:
                      options.optional.discard('optional')
@@ -108,10 +108,10 @@ index 0867043..be7cd21 100644
      but we allow stderr in case this changes in the future::
  
 diff --git a/sage_setup/optional_extension.py b/sage_setup/optional_extension.py
-index 06586f1..dacf6ee 100644
+index 06586f1..e131630 100644
 --- a/sage_setup/optional_extension.py
 +++ b/sage_setup/optional_extension.py
-@@ -18,10 +18,8 @@ package which must be installed.
+@@ -18,9 +18,6 @@ package which must be installed.
  # ****************************************************************************
  
  from setuptools.extension import Extension
@@ -119,15 +119,12 @@ index 06586f1..dacf6ee 100644
 -
 -all_packages = list_packages(local=True)
  
-+import os
  
  class CythonizeExtension(Extension):
-     """
-@@ -40,18 +38,6 @@ class CythonizeExtension(Extension):
-     skip_build = True
+@@ -41,14 +38,8 @@ class CythonizeExtension(Extension):
  
  
--def is_package_installed_and_updated(pkg):
+ def is_package_installed_and_updated(pkg):
 -    from sage.misc.package import is_package_installed
 -    try:
 -        pkginfo = all_packages[pkg]
@@ -136,78 +133,51 @@ index 06586f1..dacf6ee 100644
 -        condition = is_package_installed(pkg)
 -    else:
 -        condition = (pkginfo["installed_version"] == pkginfo["remote_version"])
--    return condition
--
--
- def OptionalExtension(*args, **kwds):
-     """
-     If some condition (see INPUT) is satisfied, return an ``Extension``.
-@@ -87,7 +73,7 @@ def OptionalExtension(*args, **kwds):
-         condition = kwds.pop("condition")
-     except KeyError:
-         pkg = kwds.pop("package")
--        condition = is_package_installed_and_updated(pkg)
-+        condition = os.getenv('WANT_%s'%pkg,False)
-     if condition:
-         return Extension(*args, **kwds)
-     else:
++    import os
++    condition = os.getenv('WANT_%s'%pkg,False)
+     return condition
+ 
+ 
 diff --git a/setup.py b/setup.py
-index 458a9d7..ccc2a0d 100755
+index df8242c..8f40e3f 100755
 --- a/setup.py
 +++ b/setup.py
-@@ -59,14 +59,12 @@ t = time.time()
- 
- distributions = ['']
- 
--from sage_setup.optional_extension import is_package_installed_and_updated
--
- optional_packages_with_extensions = ['mcqd', 'bliss', 'tdlib', 'primecount',
-                                      'coxeter3', 'fes', 'sirocco', 'meataxe']
- 
- distributions += ['sage-{}'.format(pkg)
-                   for pkg in optional_packages_with_extensions
--                  if is_package_installed_and_updated(pkg)]
-+                  if os.getenv('WANT_%s'%pkg,False)]
- 
- log.warn('distributions = {0}'.format(distributions))
- 
-@@ -132,39 +130,21 @@ code = setup(
-                  'bin/sage-massif',
-                  'bin/sage-omega',
-                  'bin/sage-valgrind',
--                 'bin/sage-venv-config',
-                  'bin/sage-version.sh',
-                  'bin/sage-cleaner',
--                 ## Only makes sense in sage-the-distribution. TODO: Move to another installation script.
--                 'bin/sage-list-packages',
--                 'bin/sage-location',
-                  ## Uncategorized scripts in alphabetical order
-                  'bin/math-readline',
--                 'bin/sage-env',
--                 # sage-env-config -- installed by sage_conf
--                 # sage-env-config.in -- not to be installed
-                  'bin/sage-gdb-commands',
--                 'bin/sage-grep',
--                 'bin/sage-grepdoc',
--                 'bin/sage-inline-fortran',
-                  'bin/sage-ipynb2rst',
-                  'bin/sage-ipython',
-                  'bin/sage-native-execute',
-                  'bin/sage-notebook',
-                  'bin/sage-num-threads.py',
--                 'bin/sage-open',
-                  'bin/sage-preparse',
-                  'bin/sage-python',
--                 'bin/sage-rebase.bat',
--                 'bin/sage-rebase.sh',
--                 'bin/sage-rebaseall.bat',
--                 'bin/sage-rebaseall.sh',
--                 'bin/sage-rst2txt',
-                  'bin/sage-run',
-                  'bin/sage-run-cython',
-                  'bin/sage-startuptime.py',
--                 'bin/sage-update-src',
--                 'bin/sage-update-version',
-                  ],
-       cmdclass = dict(build=sage_build,
-                       build_cython=sage_build_cython,
+@@ -157,21 +157,11 @@ code = setup(
+         'bin/sage-massif',
+         'bin/sage-omega',
+         'bin/sage-valgrind',
+-        'bin/sage-venv-config',
+         'bin/sage-version.sh',
+         'bin/sage-cleaner',
+-        # Only makes sense in sage-the-distribution. TODO: Move to another installation script.
+-        'bin/sage-list-packages',
+-        'bin/sage-location',
+         # Uncategorized scripts in alphabetical order
+         'bin/math-readline',
+-        'bin/sage-env',
+-        # sage-env-config -- installed by sage_conf
+-        # sage-env-config.in -- not to be installed
+         'bin/sage-gdb-commands',
+-        'bin/sage-grep',
+-        'bin/sage-grepdoc',
+-        'bin/sage-inline-fortran',
+         'bin/sage-ipynb2rst',
+         'bin/sage-ipython',
+         'bin/sage-native-execute',
+@@ -180,16 +170,10 @@ code = setup(
+         'bin/sage-open',
+         'bin/sage-preparse',
+         'bin/sage-python',
+-        'bin/sage-rebase.bat',
+-        'bin/sage-rebase.sh',
+-        'bin/sage-rebaseall.bat',
+-        'bin/sage-rebaseall.sh',
+         'bin/sage-rst2txt',
+         'bin/sage-run',
+         'bin/sage-run-cython',
+         'bin/sage-startuptime.py',
+-        'bin/sage-update-src',
+-        'bin/sage-update-version',
+     ],
+     cmdclass={
+         "build_ext": sage_build_ext_minimal,
