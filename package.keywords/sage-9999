@@ -3,7 +3,7 @@
 ~dev-libs/mpc-1.1.0
 >=dev-libs/ntl-9.8.1
 ~dev-libs/ppl-1.2
-~dev-lisp/ecls-20.4.24::sage-on-gentoo
+~dev-lisp/ecls-21.2.1
 dev-python/cvxopt
 =dev-python/cysignals-1.10*
 >=dev-python/cython-0.29.1
