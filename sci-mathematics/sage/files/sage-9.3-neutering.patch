@@ -28,7 +28,7 @@ index f96074f..eae2462 100644
                      options.optional.update(system.name for system in package_systems())
  
 diff --git a/sage/misc/all.py b/sage/misc/all.py
-index 4fc863d..368a49d 100644
+index aef8d85..e96b3c7 100644
 --- a/sage/misc/all.py
 +++ b/sage/misc/all.py
 @@ -51,12 +51,6 @@ from .mrange import xmrange, mrange, xmrange_iter, mrange_iter, cartesian_produc
@@ -139,45 +139,45 @@ index 06586f1..e131630 100644
  
  
 diff --git a/setup.py b/setup.py
-index df8242c..8f40e3f 100755
+index 0d7c29d..3abe69f 100755
 --- a/setup.py
 +++ b/setup.py
-@@ -157,21 +157,11 @@ code = setup(
-         'bin/sage-massif',
-         'bin/sage-omega',
-         'bin/sage-valgrind',
--        'bin/sage-venv-config',
-         'bin/sage-version.sh',
-         'bin/sage-cleaner',
--        # Only makes sense in sage-the-distribution. TODO: Move to another installation script.
--        'bin/sage-list-packages',
--        'bin/sage-location',
-         # Uncategorized scripts in alphabetical order
-         'bin/math-readline',
--        'bin/sage-env',
--        # sage-env-config -- installed by sage_conf
--        # sage-env-config.in -- not to be installed
-         'bin/sage-gdb-commands',
--        'bin/sage-grep',
--        'bin/sage-grepdoc',
--        'bin/sage-inline-fortran',
-         'bin/sage-ipynb2rst',
-         'bin/sage-ipython',
-         'bin/sage-native-execute',
-@@ -180,16 +170,10 @@ code = setup(
-         'bin/sage-open',
-         'bin/sage-preparse',
-         'bin/sage-python',
--        'bin/sage-rebase.bat',
--        'bin/sage-rebase.sh',
--        'bin/sage-rebaseall.bat',
--        'bin/sage-rebaseall.sh',
-         'bin/sage-rst2txt',
-         'bin/sage-run',
-         'bin/sage-run-cython',
-         'bin/sage-startuptime.py',
--        'bin/sage-update-src',
--        'bin/sage-update-version',
-     ],
-     cmdclass={
-         "build_ext": sage_build_ext_minimal,
+@@ -133,21 +133,11 @@ code = setup(
+                  'bin/sage-massif',
+                  'bin/sage-omega',
+                  'bin/sage-valgrind',
+-                 'bin/sage-venv-config',
+                  'bin/sage-version.sh',
+                  'bin/sage-cleaner',
+-                 ## Only makes sense in sage-the-distribution. TODO: Move to another installation script.
+-                 'bin/sage-list-packages',
+-                 'bin/sage-location',
+                  ## Uncategorized scripts in alphabetical order
+                  'bin/math-readline',
+-                 'bin/sage-env',
+-                 # sage-env-config -- installed by sage_conf
+-                 # sage-env-config.in -- not to be installed',
+                  'bin/sage-gdb-commands',
+-                 'bin/sage-grep',
+-                 'bin/sage-grepdoc',
+-                 'bin/sage-inline-fortran',
+                  'bin/sage-ipynb2rst',
+                  'bin/sage-ipython',
+                  'bin/sage-native-execute',
+@@ -156,16 +146,10 @@ code = setup(
+                  'bin/sage-open',
+                  'bin/sage-preparse',
+                  'bin/sage-python',
+-                 'bin/sage-rebase.bat',
+-                 'bin/sage-rebase.sh',
+-                 'bin/sage-rebaseall.bat',
+-                 'bin/sage-rebaseall.sh',
+                  'bin/sage-rst2txt',
+                  'bin/sage-run',
+                  'bin/sage-run-cython',
+                  'bin/sage-startuptime.py',
+-                 'bin/sage-update-src',
+-                 'bin/sage-update-version',
+                  ],
+       cmdclass = dict(build=sage_build,
+                       build_cython=sage_build_cython,
