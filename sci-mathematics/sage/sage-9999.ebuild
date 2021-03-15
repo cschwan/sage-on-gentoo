@@ -187,6 +187,9 @@ python_prepare_all() {
 	#
 	###############################
 
+	# From sage 9.3 the official setup.py is in build/pkg/sagelib/src
+	cp -f ../build/pkgs/sagelib/src/setup.py setup.py
+
 	# Remove sage's package management system, git capabilities and associated tests
 	eapply "${FILESDIR}"/${PN}-9.3-neutering.patch
 	cp -f "${FILESDIR}"/${PN}-7.3-package.py sage/misc/package.py
@@ -201,9 +204,6 @@ python_prepare_all() {
 	############################################################################
 	# Fixes to Sage's build system
 	############################################################################
-
-	# From sage 9.3 the official setup.py is in build/pkg/sagelib/src
-	cp -f ../build/pkgs/sagelib/src/setup.py setup.py
 
 	# Hack to get the doc building by replacing relative import to the right location.
 	eapply "${FILESDIR}"/${PN}-9.3-sources.patch
