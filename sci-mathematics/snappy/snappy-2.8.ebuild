@@ -4,6 +4,7 @@
 EAPI=7
 
 PYTHON_COMPAT=( python3_{7..9} )
+PYTHON_REQ_USE="tk"
 DISTUTILS_USE_SETUPTOOLS=rdepend
 
 inherit distutils-r1
@@ -23,6 +24,7 @@ DEPEND="dev-python/cython[${PYTHON_USEDEP}]
 	virtual/opengl"
 RDEPEND="${DEPEND}
 	sci-mathematics/spherogram[${PYTHON_USEDEP}]
+	sci-mathematics/plink[${PYTHON_USEDEP}]
 	sci-mathematics/snappy_manifolds[${PYTHON_USEDEP}]
 	!!dev-python/snappy"
 BDEPEND=""
