@@ -27,4 +27,6 @@ BDEPEND=""
 
 PATCHES=( "${FILESDIR}"/${PN}-1.8.3-unsage.patch )
 
-distutils_enable_tests setup.py
+python_test(){
+	python -m spherogram.test
+}
