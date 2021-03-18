@@ -453,6 +453,9 @@ python_install_all(){
 	if use doc-html || use doc-html-bin ; then
 		dosym ../../../doc/"${PF}"/html/en /usr/share/jupyter/kernels/sagemath/doc
 	fi
+
+	# mpmath 1.2.0+ requires this to work with sage
+	echo "MPMATH_SAGE=1" | newenvd - 99"${PN}"
 }
 
 pkg_preinst() {
