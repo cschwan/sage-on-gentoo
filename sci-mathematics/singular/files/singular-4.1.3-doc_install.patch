@@ -11,7 +11,7 @@ index c21b6ba..ea61758 100644
 -	   mkdir $(DESTDIR)$(datadir)/doc;\
 -	   mv  $(DESTDIR)$(datadir)/singular/singular.hlp  $(DESTDIR)$(datadir)/info/.;\
 +	   mkdir -p $(DESTDIR)$(docdir);\
-+	  (cat ${top_srcdir}/doc/doc.tbz2| (cd $(DESTDIR)$(docdir); tar jxf -));\
++	  (cat ${top_srcdir}/doc/doc.tbz2| (cd $(DESTDIR)$(docdir); tar -jx --no-same-owner -f -));\
 +	   mv  $(DESTDIR)$(docdir)/singular.hlp  $(DESTDIR)$(datadir)/info/.;\
 +	   @INSTALL_DATA@ doc/singular.idx  $(DESTDIR)$(datadir)/singular/.;\
  	fi
