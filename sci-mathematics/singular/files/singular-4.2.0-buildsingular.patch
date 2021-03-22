@@ -1,0 +1,13 @@
+diff --git a/Singular/Makefile.am b/Singular/Makefile.am
+index 7fe43bf..48e1d9f 100644
+--- a/Singular/Makefile.am
++++ b/Singular/Makefile.am
+@@ -153,7 +153,7 @@ Singular_SOURCES = tesths.cc fegetopt.c fegetopt.h utils.cc  utils.h
+ 
+ Singular_LDADD = libSingular.la ${OMALLOC_LIBS} ${BUILTIN_FLAGS}
+ 
+-Singular_LDFLAGS = -static ${AM_LDFLAGS} ${BUILTIN_FLAGS}
++Singular_LDFLAGS = -shared ${AM_LDFLAGS} ${BUILTIN_FLAGS}
+ 
+ Singulard_SOURCES = tesths.cc fegetopt.c fegetopt.h utils.cc  utils.h
+ 
