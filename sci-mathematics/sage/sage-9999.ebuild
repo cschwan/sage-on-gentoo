@@ -43,7 +43,7 @@ DEPEND="dev-libs/gmp:0=
 	>=dev-python/cython-0.29.21[${PYTHON_USEDEP}]
 	dev-python/future[${PYTHON_USEDEP}]
 	>=dev-python/pkgconfig-1.2.2[${PYTHON_USEDEP}]
-	>=dev-python/cysignals-1.10.0[${PYTHON_USEDEP}]
+	>=dev-python/cysignals-1.10.3[${PYTHON_USEDEP}]
 	>=dev-python/docutils-0.12[${PYTHON_USEDEP}]
 	>=dev-python/psutil-4.4.0[${PYTHON_USEDEP}]
 	dev-python/jupyter_core[${PYTHON_USEDEP}]
@@ -79,7 +79,7 @@ DEPEND="dev-libs/gmp:0=
 	~sci-mathematics/planarity-3.0.0.5
 	>=sci-libs/brial-1.2.5
 	>=sci-mathematics/rw-0.7
-	~sci-mathematics/singular-4.1.1_p2[readline]
+	~sci-mathematics/singular-4.2.0_p1[readline]
 	>=sci-mathematics/ratpoints-2.1.3
 	media-libs/gd[jpeg,png]
 	media-libs/libpng:0=
@@ -123,7 +123,7 @@ RDEPEND="${DEPEND}
 	>=sci-mathematics/optimal-20040603
 	>=sci-mathematics/palp-2.1
 	~sci-mathematics/sage-data-elliptic_curves-0.8
-	~sci-mathematics/sage-data-graphs-20161026
+	~sci-mathematics/sage-data-graphs-20210214
 	~sci-mathematics/sage-data-combinatorial_designs-20140630
 	~sci-mathematics/sage-data-polytopes_db-20170220
 	~sci-mathematics/sage-data-conway_polynomials-0.5
