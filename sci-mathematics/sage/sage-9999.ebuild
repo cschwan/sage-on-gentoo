@@ -109,7 +109,7 @@ RDEPEND="${DEPEND}
 	=dev-python/sympy-1.7*[${PYTHON_USEDEP}]
 	media-gfx/tachyon[png]
 	jmol? ( sci-chemistry/sage-jmol-bin )
-	>=sci-libs/cddlib-094j[tools]
+	>=sci-libs/cddlib-094m[tools]
 	>=dev-python/scipy-1.1.0[${PYTHON_USEDEP}]
 	sci-mathematics/flintqs
 	~sci-mathematics/gfan-0.6.2
