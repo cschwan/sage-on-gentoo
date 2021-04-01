@@ -20,6 +20,7 @@ dev-python/rpy::sage-on-gentoo
 =dev-tex/sagetex-3*
 media-gfx/tachyon
 ~media-gfx/threejs-sage-extension-122
+~sci-libs/cddlib-094m
 sci-libs/dsdp
 ~sci-libs/fflas-ffpack-2.4.3
 >=sci-libs/fplll-5.1.0
