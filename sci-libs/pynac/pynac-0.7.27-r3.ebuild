@@ -36,6 +36,7 @@ PATCHES=(
 	"${FILESDIR}"/un-pc-0.7.27.patch
 	"${FILESDIR}"/trac-30688.patch
 	"${FILESDIR}"/trac31479.patch
+	"${FILESDIR}"/trac31530.patch
 	)
 
 src_prepare(){
