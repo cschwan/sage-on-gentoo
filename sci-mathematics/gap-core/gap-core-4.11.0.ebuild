@@ -64,6 +64,8 @@ RDEPEND="${DEPEND}
 PDEPEND="${MINIMUM_PKGS}
 	recommended_pkgs? ( ${RECOMMENDED_PKGS} )"
 
+REQUIRED_USE="?? ( memcheck valgrind )"
+
 PATCHES=(
 	"${FILESDIR}"/${PN}-4.11.0-install.patch
 	"${FILESDIR}"/${PN}-4.11.0-autoconf.patch
