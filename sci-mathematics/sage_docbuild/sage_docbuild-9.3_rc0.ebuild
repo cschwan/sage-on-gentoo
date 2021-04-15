@@ -24,4 +24,6 @@ RDEPEND=">=dev-python/sphinx-3.1.0[${PYTHON_USEDEP}]"
 PDEPEND=">=sci-mathematics/sage-9.3[${PYTHON_USEDEP}]"
 BDEPEND=""
 
+PATCHES=( "${FILESDIR}/sage-9.3-linguas.patch" )
+
 S="${WORKDIR}/${MY_P}"
