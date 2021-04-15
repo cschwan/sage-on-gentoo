@@ -38,3 +38,5 @@ RDEPEND="
 	${MINIMUM_PKGS}
 	recommended_pkgs? ( ${RECOMMENDED_PKGS} )
 "
+
+REQUIRED_USE="?? ( memcheck valgrind )"
