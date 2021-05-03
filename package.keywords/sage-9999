@@ -1,6 +1,4 @@
 >=dev-libs/mathjax-2.5.0
-=dev-libs/mpfr-4.0*
-~dev-libs/mpc-1.1.0
 >=dev-libs/ntl-9.8.1
 ~dev-libs/ppl-1.2
 ~dev-lisp/ecls-21.2.1
@@ -10,10 +8,8 @@ dev-python/cvxopt
 =dev-python/gmpy-2.1*
 =dev-python/pplpy-0.8*
 dev-python/terminado
-=dev-python/numpy-1.16*
 >=dev-python/matplotlib-3.3.1
 =dev-python/cypari2-2.1*
-~dev-python/pkgconfig-1.2.2
 dev-python/jupyter_jsmol
 dev-python/rpy::sage-on-gentoo
 =dev-python/sympy-1.7*
@@ -53,7 +49,6 @@ sci-mathematics/pari-data
 ~sci-mathematics/planarity-3.0.0.5
 =sci-libs/brial-1.2*
 sci-mathematics/ratpoints
-sci-mathematics/rubiks
 sci-mathematics/rw
 ~sci-mathematics/sage-9999 **
 ~sci-mathematics/sage-data-conway_polynomials-0.5
@@ -65,16 +60,10 @@ sci-mathematics/rw
 sci-mathematics/sympow
 www-misc/thebe
 ##########################
-# dependencies required by nbconvert 5.2.1
-##########################
-~dev-python/pandocfilters-1.4.1
-##########################
 # optional dependencies
 ##########################
 sci-mathematics/ExportSageNB
 ~sci-chemistry/sage-jmol-bin-14.29.52
-virtual/jre:1.7
-virtual/jdk:1.7
 #########################
 # sage optional binding
 #########################
@@ -82,9 +71,7 @@ sci-libs/libbraiding
 sci-libs/libhomfly
 sci-libs/modular_decomposition
 ~sci-libs/bliss-0.73
-=sci-libs/cxsparse-3.1*
 dev-libs/igraph
-~dev-python/python-igraph-0.7.0
 sci-mathematics/shared_meataxe
 # coinor-cbc
 sci-libs/coinor-cbc
