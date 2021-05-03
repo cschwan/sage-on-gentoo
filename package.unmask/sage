@@ -1,3 +1,0 @@
-# Funtoo mask that's irrelevant to users (masked due to Gentoo bug #431978
-# affecting Metro builds of Funtoo stage tarballs)
-=dev-libs/mpc-1.0.1
