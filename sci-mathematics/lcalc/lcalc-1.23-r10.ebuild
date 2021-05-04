@@ -23,7 +23,7 @@ RESTRICT="mirror test"
 
 PATCHES=(
 	"${FILESDIR}"/${PN}-1.23-makefile-v2.patch
-	"${FILESDIR}"/${PN}-1.23-gcc-4.6-fix.patch
+	"${FILESDIR}"/${PN}-1.23-gcc11.patch
 	"${FILESDIR}"/${PN}-1.23-fix-default-argument.patch
 	"${FILESDIR}"/${PN}-1.23_default_parameters_2.patch
 	"${FILESDIR}"/${PN}-1.23-c++11.patch
