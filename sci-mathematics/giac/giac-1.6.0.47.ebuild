@@ -71,6 +71,9 @@ src_configure(){
 		append-libs $(fltk-config --ldflags | sed -e 's/\(-L\S*\)\s.*/\1/') || die
 	fi
 
+	# giac doesn't like sdt=c++17 the default in gcc-11. Enforce std=c++14
+	append-cxxflags -std=c++14
+
 	# Using libsamplerate is currently broken
 	# micropython is for specific use in an upstream project
 	econf \
