@@ -37,6 +37,7 @@ PATCHES=(
 	"${FILESDIR}"/trac-30688.patch
 	"${FILESDIR}"/trac31479.patch
 	"${FILESDIR}"/trac31530.patch
+	"${FILESDIR}"/trac31645.patch
 	"${FILESDIR}"/${PN}-0.7.27-gcc11.patch
 	)
 
