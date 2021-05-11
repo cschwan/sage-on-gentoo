@@ -1,0 +1,31 @@
+diff --git a/sage/repl/ipython_kernel/install.py b/sage/repl/ipython_kernel/install.py
+index a1d3ec7..9bbaeae 100644
+--- a/sage/repl/ipython_kernel/install.py
++++ b/sage/repl/ipython_kernel/install.py
+@@ -144,16 +144,14 @@ class SageKernelSpec(object):
+             sage: from sage.repl.ipython_kernel.install import SageKernelSpec
+             sage: spec = SageKernelSpec(prefix=tmp_dir())
+             sage: spec._kernel_cmd()
+-            ['/.../sage',
+-             '--python',
++            ['python',
+              '-m',
+              'sage.repl.ipython_kernel',
+              '-f',
+              '{connection_file}']
+         """
+         return [
+-            os.path.join(SAGE_VENV, 'bin', 'sage'),
+-            '--python',
++            'python',
+             '-m', 'sage.repl.ipython_kernel',
+             '-f', '{connection_file}',
+         ]
+@@ -240,7 +238,6 @@ class SageKernelSpec(object):
+         instance = cls(*args, **kwds)
+         instance.use_local_threejs()
+         instance._install_spec()
+-        instance._symlink_resources()
+ 
+ 
+ def have_prerequisites(debug=True):

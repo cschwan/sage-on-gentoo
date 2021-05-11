@@ -1,0 +1,22 @@
+diff --git a/sage/interfaces/lie.py b/sage/interfaces/lie.py
+index 6db2763..3a4de5b 100644
+--- a/sage/interfaces/lie.py
++++ b/sage/interfaces/lie.py
+@@ -402,7 +402,7 @@ class LiE(ExtraTabCompletion, Expect):
+ 
+ 
+         for f in filenames:
+-            filename = SAGE_LOCAL + "/lib/LiE/" + f
++            filename = SAGE_LOCAL + "/share/lie/" + f
+             info = open(filename)
+             prev_command = ""
+             help_text = ""
+@@ -954,7 +954,7 @@ def lie_version():
+         sage: lie_version() # optional - lie
+         '2.1'
+     """
+-    f = open(os.path.join(SAGE_LOCAL, 'lib', 'LiE', 'INFO.0'))
++    f = open(os.path.join(SAGE_LOCAL, 'share', 'lie', 'INFO.0'))
+     lines = f.readlines()
+     f.close()
+     i = lines.index('@version()\n')
