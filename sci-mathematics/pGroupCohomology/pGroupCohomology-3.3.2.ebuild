@@ -16,7 +16,7 @@ SRC_URI="https://github.com/sagemath/${Parent_PN}/releases/download/v${PV}/${Par
 LICENSE="GPL-2+"
 SLOT="0"
 KEYWORDS=""
-#KEYWORDS="~amd64 ~x86"
+KEYWORDS="~amd64"
 
 DEPEND=">=sci-mathematics/sage-9.3[meataxe,${PYTHON_USEDEP}]
 	dev-python/cython[${PYTHON_USEDEP}]
