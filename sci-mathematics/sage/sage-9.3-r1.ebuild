@@ -106,7 +106,7 @@ RDEPEND="${DEPEND}
 	>=dev-python/networkx-2.4[${PYTHON_USEDEP}]
 	>=dev-python/pexpect-4.2.1[${PYTHON_USEDEP}]
 	>=dev-python/rpy-2.8.6[${PYTHON_USEDEP}]
-	=dev-python/sympy-1.7*[${PYTHON_USEDEP}]
+	=dev-python/sympy-1.8*[${PYTHON_USEDEP}]
 	media-gfx/tachyon[png]
 	jmol? ( sci-chemistry/sage-jmol-bin )
 	>=sci-libs/cddlib-094m[tools]
@@ -185,6 +185,8 @@ python_prepare_all() {
 
 	# Compatibility with MPL-3.4.0
 	eapply "${FILESDIR}"/MPL-3.4.0.patch
+	# use sympy 1.8
+	eapply "${FILESDIR}"/sympy-1.8.patch
 
 	# From sage 9.3 the official setup.py is in build/pkg/sagelib/src
 	cp -f ../build/pkgs/sagelib/src/setup.py setup.py
