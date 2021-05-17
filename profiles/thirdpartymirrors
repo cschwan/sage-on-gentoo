@@ -1,2 +1,2 @@
 sageupstream http://files.sagemath.org//spkg/upstream/ http://ftp.riken.jp/sagemath/spkg/upstream/ http://echidna.maths.usyd.edu.au/sage/spkg/upstream http://www-ftp.lip6.fr/pub/math/sagemath/spkg/upstream ftp://ftp.fu-berlin.de/unix/misc/sage/spkg/upstream
-sagemath http://202.36.178.9/sage/ http://sagetrac.lipn.univ-paris13.fr/sage/
+sagemath http://202.36.178.9/sage/ https://sage-on-gentoo.lipn.univ-paris13.fr/sage/
