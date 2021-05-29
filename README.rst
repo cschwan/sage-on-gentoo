@@ -1,9 +1,9 @@
-# PROJECT SUMMARY
+* PROJECT SUMMARY *
 
 Sage-on-Gentoo provides split ebuilds (http://www.gentoo.org) for the computer
 algebra system SAGE (http://www.sagemath.org).
 
-# CONTACT
+* CONTACT *
 
 If you have problems with sage-on-gentoo or have suggestions talk to us on
 #gentoo-science on freenode
@@ -18,47 +18,43 @@ An archive listing past mails may be found at
 
   http://archives.gentoo.org/gentoo-science/
 
-# QUICK INSTALLATION GUIDE
+* QUICK INSTALLATION GUIDE *
 
-## Installation of the overlay
+** Installation of the overlay **
 
-### Eselect-repository install
+*** Eselect-repository install ***
 
-The easiest way to enable the overlay is to:
-```console
-emerge --noreplace eselect-repository && eselect repository enable sage-on-gentoo && emerge --sync
-```
+The easiest way to enable the overlay is to::
+
+    emerge --noreplace eselect-repository && eselect repository enable sage-on-gentoo && emerge --sync
+
 and emerge the package as usual.
 
-### Manual Install
+*** Manual Install ***
 
 As per the current [Portage specifications](https://dev.gentoo.org/~zmedico/portage/doc/man/portage.5.html), ebuild repositories (a.k.a. overlays) can be managed via file collections under `/etc/portage/repos.conf/`, via the new [plug-in sync system](https://wiki.gentoo.org/wiki/Project:Portage/Sync).
 
-To enable the overlay without the need for additional software, you first need to have `git` installed:
+To enable the overlay without the need for additional software, you first need to have `git` installed::
 
-```console
-emerge --ask --verbose dev-vcs/git
-````
+    emerge --ask --verbose dev-vcs/git
 
-Then you need to add the science repository configuration by downloading the [sage-on-gentoo.conf](metadata/sage-on-gentoo.conf) file:
+Then you need to add the science repository configuration by downloading the [sage-on-gentoo.conf](metadata/sage-on-gentoo.conf) file::
 
-```console
-wget https://raw.githubusercontent.com/cschwan/sage-on-gentoo/master/metadata/sage-on-gentoo.conf \
-	-O /etc/portage/repos.conf/sage-on-gentoo
-```
+    wget https://raw.githubusercontent.com/cschwan/sage-on-gentoo/master/metadata/sage-on-gentoo.conf \
+	    -O /etc/portage/repos.conf/sage-on-gentoo
 
-### Manual Uninstall
 
-To uninstall the overlay, simply run:
+*** Manual Uninstall ***
 
-```console
-rm /etc/portage/repos.conf/sage-on-gentoo
-rm /var/db/repos/sage-on-gentoo -rf
-```
+To uninstall the overlay, simply run::
 
-# USING the overlay to install sage(math)
+    rm /etc/portage/repos.conf/sage-on-gentoo
+    rm /var/db/repos/sage-on-gentoo -rf
 
-## UNMASK EBUILDS
+
+* USING the overlay to install sage(math) *
+
+** UNMASK EBUILDS **
 
    Before being able to install you may need to unmask the required ebuilds. If
    you are using Gentoo/unstable or Funtoo (i.e. you have a line like
@@ -86,7 +82,7 @@ rm /var/db/repos/sage-on-gentoo -rf
    The sage.prefix files contains keywords for ebuilds lacking any prefix 
    keywords.
 
-## ADD USE-FLAGS FOR EBUILDS
+** ADD USE-FLAGS FOR EBUILDS **
 
    Since Sage's ebuild requires its dependencies to be built with several USE-
    flags we provide a standard package.use file as well::
@@ -102,7 +98,7 @@ rm /var/db/repos/sage-on-gentoo -rf
    version of sage (sage-9999 ebuild) need to build their own documentation from scratch
    if they need it.
 
-## INSTALL SAGE
+** INSTALL SAGE **
 
    Type::
 
@@ -112,7 +108,7 @@ rm /var/db/repos/sage-on-gentoo -rf
    you can not proceed with this step (because of circular dependencies, missing
    USE-flags, and so on) please report this behavior.
 
-# SAGE ON GENTOO PREFIX
+* SAGE ON GENTOO PREFIX *
 
 A Prefix enables you to install Gentoo on different OS (e.g Linux, FreeBSD,
 MacOS, Solaris and even Windows). Thus, you may be able to run Sage on Gentoo
