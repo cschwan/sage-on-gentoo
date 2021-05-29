@@ -57,7 +57,7 @@ DEPEND="dev-libs/gmp:0=
 	~dev-python/pplpy-0.8.7:=[doc,${PYTHON_USEDEP}]
 	~sci-mathematics/eclib-20190909[flint]
 	~sci-mathematics/gmp-ecm-7.0.4[-openmp]
-	=sci-mathematics/flint-2.6*:=[ntl]
+	=sci-mathematics/flint-2.7*:=[ntl]
 	~sci-libs/givaro-4.1.1
 	>=sci-libs/gsl-2.3
 	>=sci-libs/iml-1.0.4
