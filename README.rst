@@ -1,11 +1,9 @@
-PROJECT SUMMARY
-===============
+# PROJECT SUMMARY
 
 Sage-on-Gentoo provides split ebuilds (http://www.gentoo.org) for the computer
 algebra system SAGE (http://www.sagemath.org).
 
-CONTACT
-=======
+# CONTACT
 
 If you have problems with sage-on-gentoo or have suggestions talk to us on
 #gentoo-science on freenode
@@ -20,30 +18,48 @@ An archive listing past mails may be found at
 
   http://archives.gentoo.org/gentoo-science/
 
-QUICK INSTALLATION GUIDE
-========================
+# QUICK INSTALLATION GUIDE
 
-1. *INSTALL AND CONFIGURE LAYMAN*:
-   The preferred way of getting sage-on-gentoo is layman. Make sure layman is
-   installed with USE=git and correctly configured. You may find a guide for
-   layman at:
+## Installation of the overlay
 
-     http://www.gentoo.org/proj/en/overlays/userguide.xml
+### Eselect-repository install
 
-2. *ADD OUR OVERLAY*:
-   Update your layman list:: 
+The easiest way to enable the overlay is to:
+```console
+emerge --noreplace eselect-repository && eselect repository enable sage-on-gentoo && emerge --sync
+```
+and emerge the package as usual.
 
-     layman -L
+### Manual Install
 
-   Finally add this overlay::
+As per the current [Portage specifications](https://dev.gentoo.org/~zmedico/portage/doc/man/portage.5.html), ebuild repositories (a.k.a. overlays) can be managed via file collections under `/etc/portage/repos.conf/`, via the new [plug-in sync system](https://wiki.gentoo.org/wiki/Project:Portage/Sync).
 
-     layman -a sage-on-gentoo
+To enable the overlay without the need for additional software, you first need to have `git` installed:
 
-.. note:: Steps 3 and 4 may not be fully or at all necessary on your system. You
-          might want to try skipping to step 5 first, and if it doesn't work,
-          coming back and doing steps 3 and 4.
+```console
+emerge --ask --verbose dev-vcs/git
+````
 
-3. *UNMASK EBUILDS*:
+Then you need to add the science repository configuration by downloading the [sage-on-gentoo.conf](metadata/sage-on-gentoo.conf) file:
+
+```console
+wget https://raw.githubusercontent.com/cschwan/sage-on-gentoo/master/metadata/sage-on-gentoo.conf \
+	-O /etc/portage/repos.conf/sage-on-gentoo
+```
+
+### Manual Uninstall
+
+To uninstall the overlay, simply run:
+
+```console
+rm /etc/portage/repos.conf/sage-on-gentoo
+rm /var/db/repos/sage-on-gentoo -rf
+```
+
+# USING the overlay to install sage(math)
+
+## UNMASK EBUILDS
+
    Before being able to install you may need to unmask the required ebuilds. If
    you are using Gentoo/unstable or Funtoo (i.e. you have a line like
    ``ACCEPT_KEYWORDS=~arch`` in your /etc/portage/make.conf) you can at least
@@ -57,11 +73,11 @@ QUICK INSTALLATION GUIDE
 
    To use these files permanently, place symbolic links to those files into your
    ``/etc/portage/package.unmask`` and ``/etc/portage/package.keywords/``
-   directories, respectively::
+   directories, respectively (prefix users should adjust with their prefix)::
 
-     ln -s <path-to-layman>/sage-on-gentoo/package.unmask/sage \
+     ln -s /var/db/repos/sage-on-gentoo/package.unmask/sage \
            /etc/portage/package.unmask/sage
-     ln -s <path-to-layman>/sage-on-gentoo/package.keywords/sage \
+     ln -s /var/db/repos/sage-on-gentoo/package.keywords/sage \
            /etc/portage/package.keywords/sage
 
    Otherwise, simply copy them into the respective directories for a one-time
@@ -70,15 +86,13 @@ QUICK INSTALLATION GUIDE
    The sage.prefix files contains keywords for ebuilds lacking any prefix 
    keywords.
 
-4. *ADD USE-FLAGS FOR EBUILDS*:
+## ADD USE-FLAGS FOR EBUILDS
+
    Since Sage's ebuild requires its dependencies to be built with several USE-
    flags we provide a standard package.use file as well::
 
-     ln -s <path-to-layman>/sage-on-gentoo/package.use/sage \
+     ln -s /var/db/repos/sage-on-gentoo/package.use/sage \
            /etc/portage/package.use/sage
-
-   <path-to-layman> is usually /var/lib/layman (this path used to be
-   /usr/local/portage/layman for older version of layman).
 
    You should also consider linking in the same way the file ``99sage-doc-bin``.
    This file sets sane default options for installing html documentation from a binary
@@ -88,7 +102,8 @@ QUICK INSTALLATION GUIDE
    version of sage (sage-9999 ebuild) need to build their own documentation from scratch
    if they need it.
 
-5. *INSTALL SAGE*:
+## INSTALL SAGE
+
    Type::
 
      emerge -va sage
@@ -97,23 +112,7 @@ QUICK INSTALLATION GUIDE
    you can not proceed with this step (because of circular dependencies, missing
    USE-flags, and so on) please report this behavior.
 
-6. *UPDATE YOUR LOCAL OVERLAY*:
-   To update your local copy of sage-on-gentoo simply type::
-
-     layman -S
-
-   Do not forget to update the main portage tree as well::
-
-     emerge --sync
-
-   After that you may run::
-
-     emerge -vuDNa world
-
-   or a similar command to check for updates.
-
-SAGE ON GENTOO PREFIX
-=====================
+# SAGE ON GENTOO PREFIX
 
 A Prefix enables you to install Gentoo on different OS (e.g Linux, FreeBSD,
 MacOS, Solaris and even Windows). Thus, you may be able to run Sage on Gentoo
@@ -125,8 +124,7 @@ to set it up visit
 After having a working Prefix you may setup sage-on-gentoo in a Prefix by
 following the quick installation guide.
 
-Currently, we support every Linux running with x86 or amd64 instruction sets, in
+Currently, we support every Linux running with amd64 instruction sets, in
 particular the following architectures:
 
   - ~amd64-linux
-  - ~x86-linux
