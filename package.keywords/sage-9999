@@ -35,7 +35,6 @@ sci-mathematics/cubex
 sci-mathematics/dikcube
 ~sci-mathematics/gmp-ecm-7.0.4
 sci-mathematics/flintqs
-=sci-mathematics/flint-2.6*
 =sci-mathematics/giac-1.6.0*
 >=sci-mathematics/glpk-4.61
 >=sci-mathematics/lcalc-1.23-r6
