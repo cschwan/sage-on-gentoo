@@ -16,7 +16,7 @@ RDEPEND="|| ( >=sci-mathematics/gap-4.11.0 >=sci-mathematics/gap-core-4.11.0 )
 	>=dev-gap/GAPDoc-1.6.2
 	>=dev-gap/atlasrep-2.1"
 
-DOCS="README"
+DOCS="README.md"
 HTML_DOCS=htm/*
 
 src_install(){
