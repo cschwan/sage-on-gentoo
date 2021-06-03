@@ -22,8 +22,8 @@ REQUIRED_USE="valgrind? ( memcheck )"
 RESTRICT=primaryuri
 
 MINIMUM_PKGS="
-	>=dev-gap/GAPDoc-1.6.3
-	>=dev-gap/primgrp-3.4.0
+	>=dev-gap/GAPDoc-1.6.4
+	>=dev-gap/primgrp-3.4.1
 	>=dev-gap/SmallGrp-1.4.1
 	>=dev-gap/transgrp-2.0.5"
 
@@ -46,6 +46,7 @@ RDEPEND="${DEPEND}
 	emacs? ( >=app-editors/emacs-23.1:* )
 	vim-syntax? ( app-vim/vim-gap )
 	!<sci-mathematics/gap-4.11.0"
+PDEPEND="${MINIMUM_PKGS}"
 
 REQUIRED_USE="?? ( memcheck valgrind )"
 
