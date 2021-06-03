@@ -38,7 +38,7 @@ index 92c05995..e2076dc6 100644
  libtool="$SHELL $abs_top_builddir/libtool"
 +else
 +# assume installed location
-+libtool="SHELL $gapshare/libtool"
++libtool="$SHELL $gapshare/libtool"
 +fi
  CC="@CC@"
  
