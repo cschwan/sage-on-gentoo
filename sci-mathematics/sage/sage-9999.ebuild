@@ -9,7 +9,7 @@ DISTUTILS_USE_SETUPTOOLS=bdepend
 
 inherit desktop distutils-r1 flag-o-matic multiprocessing prefix toolchain-funcs git-r3
 
-EGIT_REPO_URI="https://github.com/sagemath/sage.git"
+EGIT_REPO_URI="https://github.com/vbraun/sage.git"
 EGIT_BRANCH=develop
 EGIT_CHECKOUT_DIR="${WORKDIR}/${P}"
 KEYWORDS=""
@@ -57,7 +57,7 @@ DEPEND="dev-libs/gmp:0=
 	~dev-python/pplpy-0.8.7:=[doc,${PYTHON_USEDEP}]
 	~sci-mathematics/eclib-20190909[flint]
 	~sci-mathematics/gmp-ecm-7.0.4[-openmp]
-	=sci-mathematics/flint-2.6*:=[ntl]
+	=sci-mathematics/flint-2.7*:=[ntl]
 	~sci-libs/givaro-4.1.1
 	>=sci-libs/gsl-2.3
 	>=sci-libs/iml-1.0.4
@@ -87,7 +87,7 @@ DEPEND="dev-libs/gmp:0=
 	>=sys-libs/readline-6.2
 	sys-libs/zlib
 	virtual/cblas
-	>=sci-mathematics/arb-2.18.0
+	>=sci-mathematics/arb-2.19.0
 	www-misc/thebe
 	>=sci-libs/libhomfly-1.0.1
 	sci-libs/libbraiding
@@ -99,11 +99,11 @@ BDEPEND="app-portage/gentoolkit
 	doc-pdf? ( app-text/texlive[extra,${L10N_USEDEP}] )"
 
 RDEPEND="${DEPEND}
-	>=dev-lang/R-3.2.0
-	>=dev-python/cvxopt-1.2.2[glpk,${PYTHON_USEDEP}]
+	>=dev-lang/R-4.0.4
+	>=dev-python/cvxopt-1.2.6[glpk,${PYTHON_USEDEP}]
 	>=dev-python/fpylll-0.5.4[${PYTHON_USEDEP}]
 	>=dev-python/mpmath-0.18[${PYTHON_USEDEP}]
-	>=dev-python/networkx-2.4[${PYTHON_USEDEP}]
+	>=dev-python/networkx-2.5[${PYTHON_USEDEP}]
 	>=dev-python/pexpect-4.2.1[${PYTHON_USEDEP}]
 	>=dev-python/rpy-2.8.6[${PYTHON_USEDEP}]
 	=dev-python/sympy-1.8*[${PYTHON_USEDEP}]
@@ -189,8 +189,6 @@ python_prepare_all() {
 
 	# Compatibility with MPL-3.4.0
 	eapply "${FILESDIR}"/MPL-3.4.0.patch
-	# use sympy 1.8
-	eapply "${FILESDIR}"/sympy-1.8.patch
 
 	# From sage 9.3 the official setup.py is in build/pkg/sagelib/src
 	cp -f ../build/pkgs/sagelib/src/setup.py setup.py

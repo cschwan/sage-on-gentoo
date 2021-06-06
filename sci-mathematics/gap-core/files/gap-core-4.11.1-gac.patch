@@ -1,0 +1,54 @@
+diff --git a/cnf/.gac.in.kate-swp b/cnf/.gac.in.kate-swp
+deleted file mode 100644
+index adb11bde..00000000
+Binary files a/cnf/.gac.in.kate-swp and /dev/null differ
+diff --git a/cnf/gac.in b/cnf/gac.in
+index 92c05995..e2076dc6 100644
+--- a/cnf/gac.in
++++ b/cnf/gac.in
+@@ -64,19 +64,41 @@ abs_top_srcdir="@abs_top_srcdir@"
+ #
+ libdir="@libdir@"
+ 
+-# path to the GAP executable
++# path to the installed dataroot directory
++gapshare="@datadir@/gap"
++
++# check for an in source sysinfo.gap first
++if [ -f "${abs_top_builddir}/sysinfo.gap" ]; then
++. "${abs_top_builddir}/sysinfo.gap"
++# then try for an installed location
++elif [ -f "${gapshare}/sysinfo.gap" ]; then
++. "${gapshare}/sysinfo.gap"
++else
++echo "sysinfo.gap not found. Aborting"
++exit 1
++fi
++
++# path to the GAP executable - testing in source first
++if [ -f "${abs_top_builddir}/gap" ]; then
+ gap_compiler="${abs_top_builddir}/gap"
++else
++# assume installed location
++gap_compiler="${gapshare}/bin/${GAParch}/gap"
++fi
+ 
++# path to libtoll - testing in source location first
++if [ -f "$abs_top_builddir/libtool" ]; then
+ libtool="$SHELL $abs_top_builddir/libtool"
++else
++# assume installed location
++libtool="$SHELL $gapshare/libtool"
++fi
+ CC="@CC@"
+ 
+ # These three should be filled in by the standard autoconf procedures 
+ c_compiler="$libtool --mode=compile $CC"
+ c_linker="$libtool --mode=link $CC -export-dynamic"
+ 
+-# read sysinfo.gap, which should set GAP_CFLAGS, GAP_CPPFLAGS, GAP_LDFLAGS, GAP_LIBS
+-. "${abs_top_builddir}/sysinfo.gap"
+-
+ # These will need special care
+ c_dyn_linker="$libtool --mode=link $CC -module -avoid-version -rpath $libdir"
+ c_addlibs=""
