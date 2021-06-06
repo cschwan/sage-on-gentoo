@@ -75,7 +75,7 @@ DEPEND="dev-libs/gmp:0=
 	>=sci-mathematics/lcalc-1.23-r10[pari]
 	~sci-mathematics/lrcalc-1.2
 	~dev-python/cypari2-2.1.2[${PYTHON_USEDEP}]
-	>=sci-mathematics/pari-2.13.1-r1
+	=sci-mathematics/pari-2.11*
 	~sci-mathematics/planarity-3.0.0.5
 	>=sci-libs/brial-1.2.5
 	>=sci-mathematics/rw-0.7
@@ -189,8 +189,6 @@ python_prepare_all() {
 
 	# Compatibility with MPL-3.4.0
 	eapply "${FILESDIR}"/MPL-3.4.0.patch
-	# use sympy 1.8
-	eapply "${FILESDIR}"/sympy-1.8.patch
 
 	# From sage 9.3 the official setup.py is in build/pkg/sagelib/src
 	cp -f ../build/pkgs/sagelib/src/setup.py setup.py
