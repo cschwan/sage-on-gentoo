@@ -36,7 +36,7 @@ and emerge the package as usual.
 
 **Manual Install**
 
-As per the current [Portage specifications](https://dev.gentoo.org/~zmedico/portage/doc/man/portage.5.html), ebuild repositories (a.k.a. overlays) can be managed via file collections under `/etc/portage/repos.conf/`, via the new [plug-in sync system](https://wiki.gentoo.org/wiki/Project:Portage/Sync).
+As per the current Portage specifications (https://dev.gentoo.org/~zmedico/portage/doc/man/portage.5.html), ebuild repositories (a.k.a. overlays) can be managed via file collections under `/etc/portage/repos.conf/`, via the new plug-in sync system (https://wiki.gentoo.org/wiki/Project:Portage/Sync).
 
 To enable the overlay without the need for additional software, you first need to have `git` installed::
 
@@ -54,6 +54,13 @@ To uninstall the overlay, simply run::
 
     rm /etc/portage/repos.conf/sage-on-gentoo
     rm /var/db/repos/sage-on-gentoo -rf
+
+
+**Synchronising the overlay**
+
+The overlay is synced each time you run `emerge --sync` or the equivalent `eix-sync` if you are using it. Off course it synchronises the wall tree which could be undesirable if you have already synced recently. To synchronise only the overlay use::
+
+    emaint sync -r sage-on-gentoo
 
 
 USING the overlay to install sage(math)
