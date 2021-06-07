@@ -14,7 +14,7 @@ IUSE=""
 
 DEPEND=""
 RDEPEND="${DEPEND}
-	>=sci-mathematics/gap-core-4.11.0"
+	>=sci-mathematics/gap-core-4.11.1"
 
 DOCS="CHANGES README.md"
 
