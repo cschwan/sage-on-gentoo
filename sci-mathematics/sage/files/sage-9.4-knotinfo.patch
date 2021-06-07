@@ -1,17 +1,28 @@
+diff --git a/sage/databases/knotinfo_db.py b/sage/databases/knotinfo_db.py
+index 29433f9ee5..9eb36c4d57 100644
+--- a/sage/databases/knotinfo_db.py
++++ b/sage/databases/knotinfo_db.py
+@@ -370,8 +370,9 @@ class KnotInfoDataBase(SageObject, UniqueRepresentation):
+         self._num_knots = None
+ 
+         from sage.features.databases import DatabaseKnotInfo
++        from sage.env import DOT_SAGE
+         self._feature   = DatabaseKnotInfo()
+-        self._sobj_path = self._feature._sobj_path
++        self._sobj_path = os.path.join(DOT_SAGE, 'knotinfo')
+ 
+     def reset_filecache(self):
+         r"""
 diff --git a/sage/features/databases.py b/sage/features/databases.py
-index 82d81be..c21aa40 100644
+index 82d81be8c8..0dcef2751e 100644
 --- a/sage/features/databases.py
 +++ b/sage/features/databases.py
-@@ -87,7 +87,10 @@ class DatabaseKnotInfo(PythonModule):
+@@ -87,7 +87,4 @@ class DatabaseKnotInfo(PythonModule):
              sage: isinstance(DatabaseKnotInfo(), DatabaseKnotInfo)
              True
          """
 -        PythonModule.__init__(self, 'sage.knots.knotinfo', spkg='database_knotinfo',)
 -        import os
-         from sage.env import SAGE_SHARE
-+        StaticFile.__init__(self, "Knot info database",
-+                      filename='knotinfo/num_knots.sobj',
-+                      search_path=SAGE_SHARE,
-+                      spkg='database_knotinfo')
-+        import os
-         self._sobj_path = os.path.join(SAGE_SHARE, 'knotinfo')
+-        from sage.env import SAGE_SHARE
+-        self._sobj_path = os.path.join(SAGE_SHARE, 'knotinfo')
++        PythonModule.__init__(self, 'database_knotinfo', spkg='database_knotinfo')
