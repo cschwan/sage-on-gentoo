@@ -41,6 +41,7 @@ DEPEND="dev-libs/gmp:0=
 	>=dev-python/six-1.11.0[${PYTHON_USEDEP}]
 	>=dev-python/numpy-1.16.1[${PYTHON_USEDEP}]
 	>=dev-python/cython-0.29.21[${PYTHON_USEDEP}]
+	dev-python/memory_allocator[${PYTHON_USEDEP}]
 	dev-python/future[${PYTHON_USEDEP}]
 	>=dev-python/pkgconfig-1.2.2[${PYTHON_USEDEP}]
 	>=dev-python/cysignals-1.10.3[${PYTHON_USEDEP}]
@@ -55,7 +56,7 @@ DEPEND="dev-libs/gmp:0=
 	=dev-python/ipywidgets-7*[${PYTHON_USEDEP}]
 	>=dev-python/gmpy-2.1.0_beta5[${PYTHON_USEDEP}]
 	~dev-python/pplpy-0.8.7:=[doc,${PYTHON_USEDEP}]
-	~sci-mathematics/eclib-20190909[flint]
+	~sci-mathematics/eclib-20210503[flint]
 	~sci-mathematics/gmp-ecm-7.0.4[-openmp]
 	=sci-mathematics/flint-2.7*:=[ntl]
 	~sci-libs/givaro-4.1.1
@@ -189,8 +190,6 @@ python_prepare_all() {
 
 	# Compatibility with MPL-3.4.0
 	eapply "${FILESDIR}"/MPL-3.4.0.patch
-	# knotinfo presence issue
-	eapply "${FILESDIR}"/${PN}-9.4-knotinfo.patch
 
 	# From sage 9.3 the official setup.py is in build/pkg/sagelib/src
 	cp -f ../build/pkgs/sagelib/src/setup.py setup.py
