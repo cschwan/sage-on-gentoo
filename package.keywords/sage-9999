@@ -5,6 +5,7 @@
 dev-python/cvxopt
 =dev-python/cysignals-1.10*
 >=dev-python/cython-0.29.1
+dev-python/memory_allocator
 =dev-python/gmpy-2.1*
 =dev-python/pplpy-0.8*
 dev-python/terminado
@@ -32,6 +33,7 @@ sci-libs/zn_poly
 sci-mathematics/cu2
 sci-mathematics/cubex
 sci-mathematics/dikcube
+~sci-mathematics/eclib-20210503
 ~sci-mathematics/gmp-ecm-7.0.4
 sci-mathematics/flintqs
 =sci-mathematics/giac-1.6.0*
