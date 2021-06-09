@@ -54,6 +54,7 @@ PATCHES=(
 	"${FILESDIR}"/${PN}-4.11.1-install.patch
 	"${FILESDIR}"/${PN}-4.11.1-autoconf.patch
 	"${FILESDIR}"/${PN}-4.11.1-gac.patch
+	"${FILESDIR}"/${PN}-4.11.1-pkgbuild.patch
 )
 
 S="${WORKDIR}/${MY_P}"
@@ -117,6 +118,9 @@ src_install(){
 	# Some like GAPDoc can be installed as RDEPEND
 	insinto /usr/share/gap/
 	doins -r doc grp lib
+	# install extra object for building some packages
+	insinto /usr/share/gap/etc/
+	doins etc/Makefile.gappkg
 }
 
 pkg_postinst() {
