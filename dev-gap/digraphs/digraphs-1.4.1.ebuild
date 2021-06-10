@@ -3,8 +3,6 @@
 
 EAPI=7
 
-inherit flag-o-matic
-
 DESCRIPTION="Graphs, digraphs, and multidigraphs in GAP"
 HOMEPAGE="https://www.gap-system.org/Packages/${PN}.html"
 SLOT="0"
@@ -27,9 +25,6 @@ DOCS="CHANGELOG.md README.md"
 PATCHES=(
 	"${FILESDIR}"/${PN}-1.4.1-gap_headers.patch
 )
-
-# Package currently relies on uninstalled sources to be present.
-append-cppflags -I"${EPREFIX}/usr/include/gap"
 
 src_configure(){
 	# We need to know GAParch to install the dynamic object in the expected location
