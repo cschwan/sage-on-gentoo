@@ -1,9 +1,5 @@
-diff --git a/cnf/.gac.in.kate-swp b/cnf/.gac.in.kate-swp
-deleted file mode 100644
-index adb11bde..00000000
-Binary files a/cnf/.gac.in.kate-swp and /dev/null differ
 diff --git a/cnf/gac.in b/cnf/gac.in
-index 92c05995..e2076dc6 100644
+index 92c0599..edb1149 100644
 --- a/cnf/gac.in
 +++ b/cnf/gac.in
 @@ -64,19 +64,41 @@ abs_top_srcdir="@abs_top_srcdir@"
@@ -52,3 +48,16 @@ index 92c05995..e2076dc6 100644
  # These will need special care
  c_dyn_linker="$libtool --mode=link $CC -module -avoid-version -rpath $libdir"
  c_addlibs=""
+@@ -115,10 +137,10 @@ c_compile () {
+ #F  c_link_dyn <output> <input>
+ ##
+ c_link_dyn () {
+-    echo ${c_dyn_linker} ${GAP_LDFLAGS} -o $1 $2 ${c_addlibs}
++    echo ${c_dyn_linker} ${GAP_LDFLAGS} -o $1 $2 ${c_addlibs} ${GAP_LIBS}
+     output_la=${1%.so}.la
+     output_dir=$(dirname $1)
+-    ${c_dyn_linker} ${GAP_LDFLAGS} -o "$output_la" $2 ${c_addlibs} || exit 1
++    ${c_dyn_linker} ${GAP_LDFLAGS} -o "$output_la" $2 ${c_addlibs} ${GAP_LIBS} || exit 1
+     if [ X"$SYS_IS_CYGWIN32" = X"yes" ] ; then
+         # GAP assumes shared libraries end in .so
+         for dllfile in `cd $output_dir/.libs; ls *.dll`; do
