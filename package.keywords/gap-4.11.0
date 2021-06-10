@@ -22,7 +22,7 @@
 >=dev-gap/sophus-1.24
 >=dev-gap/AutoDoc-2019.09.04
 >=dev-gap/fga-1.4.0
->=dev-gap/ctbllib-1.2_p2-r5
+~dev-gap/ctbllib-1.2_p2
 >=dev-gap/autpgrp-1.10.2
 >=dev-gap/irredsol-1.4.1
 # other packages
