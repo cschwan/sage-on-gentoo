@@ -1,0 +1,142 @@
+diff --git a/src/avl.c b/src/avl.c
+index 437175e..073adca 100644
+--- a/src/avl.c
++++ b/src/avl.c
+@@ -5,7 +5,7 @@
+ 
+ #include "avl.h"
+ 
+-#include "src/debug.h"
++#include "gap/debug.h"
+ 
+ enum {
+     AVL_LEFT = 1,
+diff --git a/src/binaryheap.c b/src/binaryheap.c
+index db4b0f6..600bd42 100644
+--- a/src/binaryheap.c
++++ b/src/binaryheap.c
+@@ -15,7 +15,7 @@
+ //   <https://stackoverflow.com/questions/6531543>
+ //
+ 
+-#include "compiled.h" // GAP headers
++#include "gap/compiled.h" // GAP headers
+ #include "binaryheap.h"
+ 
+ #define DS_BINARYHEAP_ISLESS(heap) ELM_PLIST(heap, 1)
+diff --git a/src/datastructures.c b/src/datastructures.c
+index 42d2c9d..d451c36 100644
+--- a/src/datastructures.c
++++ b/src/datastructures.c
+@@ -17,7 +17,7 @@
+ #include "avl.h"
+ #include "uf.h"
+ 
+-#include <src/gaputils.h>
++#include <gap/gaputils.h>
+ 
+ #include "hashfunctions.h"
+ 
+diff --git a/src/datastructures.h b/src/datastructures.h
+index 5104cc0..596a0ac 100644
+--- a/src/datastructures.h
++++ b/src/datastructures.h
+@@ -11,7 +11,7 @@
+ #ifndef DATASTRUCTURES_H
+ #define DATASTRUCTURES_H
+ 
+-#include "compiled.h" // GAP headers
++#include "gap/compiled.h" // GAP headers
+ 
+ // Helper macro to simplify initialization of StructGVarFunc records
+ #define GVARFUNC(name, nparam, params)                                       \
+diff --git a/src/hashfunctions.c b/src/hashfunctions.c
+index 9f8271b..440d97f 100644
+--- a/src/hashfunctions.c
++++ b/src/hashfunctions.c
+@@ -13,10 +13,10 @@
+ 
+ #include "hashfunctions.h"
+ 
+-#include "src/objects.h"
+-#include "src/permutat.h"
+-#include "src/trans.h"
+-#include "src/pperm.h"
++#include "gap/objects.h"
++#include "gap/permutat.h"
++#include "gap/trans.h"
++#include "gap/pperm.h"
+ 
+ #include <stdlib.h> // for labs
+ 
+diff --git a/src/hashfunctions.h b/src/hashfunctions.h
+index 7d31e89..040d992 100644
+--- a/src/hashfunctions.h
++++ b/src/hashfunctions.h
+@@ -15,7 +15,7 @@
+ #define HASHFUNCTIONS_H
+ 
+ #include "datastructures.h"
+-#include "src/intfuncs.h"
++#include "gap/intfuncs.h"
+ 
+ extern struct DatastructuresModule HashFunctionsModule;
+ 
+diff --git a/src/hashmap.c b/src/hashmap.c
+index b40f717..fb65735 100644
+--- a/src/hashmap.c
++++ b/src/hashmap.c
+@@ -9,10 +9,10 @@
+ 
+ #include "hashmap.h"
+ 
+-#include "src/debug.h"
+-#include "src/ariths.h"
+-#include "src/intfuncs.h"
+-#include "src/objects.h"
++#include "gap/debug.h"
++#include "gap/ariths.h"
++#include "gap/intfuncs.h"
++#include "gap/objects.h"
+ 
+ enum {
+     // offsets in the hashmap positional object
+diff --git a/src/pairingheap.c b/src/pairingheap.c
+index 041c57d..7e41752 100644
+--- a/src/pairingheap.c
++++ b/src/pairingheap.c
+@@ -12,7 +12,7 @@
+ // Helper function for pairing heaps implementation.
+ //
+ 
+-#include "compiled.h" // GAP headers
++#include "gap/compiled.h" // GAP headers
+ #include "pairingheap.h"
+ 
+ enum {
+diff --git a/src/skiplist.c b/src/skiplist.c
+index df99a89..06fdd47 100644
+--- a/src/skiplist.c
++++ b/src/skiplist.c
+@@ -5,7 +5,7 @@
+ 
+ #include "skiplist.h"
+ 
+-#include "src/debug.h"
++#include "gap/debug.h"
+ 
+ 
+ static Obj DS_Skiplist_RemoveNode(Obj self, Obj lst, Obj nx)
+diff --git a/src/uf.c b/src/uf.c
+index ff9263c..159eac7 100644
+--- a/src/uf.c
++++ b/src/uf.c
+@@ -5,7 +5,7 @@
+ 
+ #include "uf.h"
+ 
+-#include "src/debug.h"
++#include "gap/debug.h"
+ 
+ #ifdef SYS_IS_64_BIT
+ #define RANKBITS 6
