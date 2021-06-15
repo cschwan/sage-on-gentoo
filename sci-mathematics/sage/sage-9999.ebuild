@@ -94,7 +94,7 @@ DEPEND="dev-libs/gmp:0=
 	sci-libs/libbraiding
 	bliss? ( >=sci-libs/bliss-0.73 )
 	meataxe? ( sci-mathematics/shared_meataxe )
-	>=dev-python/sphinx-3.1.0[${PYTHON_USEDEP}]"
+	>=dev-python/sphinx-4.0.2[${PYTHON_USEDEP}]"
 
 BDEPEND="app-portage/gentoolkit
 	doc-pdf? ( app-text/texlive[extra,${L10N_USEDEP}] )"
@@ -190,6 +190,8 @@ python_prepare_all() {
 
 	# Compatibility with MPL-3.4.0
 	eapply "${FILESDIR}"/MPL-3.4.0.patch
+	# upgrade sphinx to 4.0
+	eapply "${FILESDIR}"/sphinx-4.patch
 
 	# From sage 9.3 the official setup.py is in build/pkg/sagelib/src
 	cp -f ../build/pkgs/sagelib/src/setup.py setup.py
