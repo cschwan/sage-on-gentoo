@@ -56,7 +56,7 @@ DEPEND="dev-libs/gmp:0=
 	=dev-python/ipywidgets-7*[${PYTHON_USEDEP}]
 	>=dev-python/gmpy-2.1.0_beta5[${PYTHON_USEDEP}]
 	~dev-python/pplpy-0.8.7:=[doc,${PYTHON_USEDEP}]
-	~sci-mathematics/eclib-20190909[flint]
+	~sci-mathematics/eclib-20210503[flint]
 	~sci-mathematics/gmp-ecm-7.0.4[-openmp]
 	=sci-mathematics/flint-2.7*:=[ntl]
 	~sci-libs/givaro-4.1.1
@@ -70,7 +70,8 @@ DEPEND="dev-libs/gmp:0=
 	=sci-libs/pynac-0.7.27-r5[-giac,${PYTHON_USEDEP}]
 	>=sci-libs/symmetrica-2.0-r3
 	>=sci-libs/zn_poly-0.9
-	~sci-mathematics/gap-4.11.0[recommended_pkgs]
+	~sci-mathematics/gap-4.11.1
+	~dev-gap/gap-recommended-4.11.1
 	|| ( =sci-mathematics/giac-1.6.0* =sci-mathematics/giac-1.7.0* )
 	>=sci-mathematics/glpk-5.0:0=[gmp]
 	>=sci-mathematics/lcalc-1.23-r10[pari]
