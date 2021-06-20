@@ -56,7 +56,7 @@ DEPEND="dev-libs/gmp:0=
 	=dev-python/ipywidgets-7*[${PYTHON_USEDEP}]
 	>=dev-python/gmpy-2.1.0_beta5[${PYTHON_USEDEP}]
 	~dev-python/pplpy-0.8.7:=[doc,${PYTHON_USEDEP}]
-	~sci-mathematics/eclib-20210503[flint]
+	~sci-mathematics/eclib-20190909[flint]
 	~sci-mathematics/gmp-ecm-7.0.4[-openmp]
 	=sci-mathematics/flint-2.7*:=[ntl]
 	~sci-libs/givaro-4.1.1
@@ -81,7 +81,7 @@ DEPEND="dev-libs/gmp:0=
 	~sci-mathematics/planarity-3.0.0.5
 	>=sci-libs/brial-1.2.5
 	>=sci-mathematics/rw-0.7
-	~sci-mathematics/singular-4.2.0_p1[readline]
+	~sci-mathematics/singular-4.2.0_p3[readline]
 	>=sci-mathematics/ratpoints-2.1.3
 	media-libs/gd[jpeg,png]
 	media-libs/libpng:0=
@@ -104,7 +104,7 @@ RDEPEND="${DEPEND}
 	>=dev-lang/R-4.0.4
 	>=dev-python/cvxopt-1.2.6[glpk,${PYTHON_USEDEP}]
 	>=dev-python/fpylll-0.5.4[${PYTHON_USEDEP}]
-	>=dev-python/mpmath-0.18[${PYTHON_USEDEP}]
+	>=dev-python/mpmath-1.2.1[${PYTHON_USEDEP}]
 	>=dev-python/networkx-2.5[${PYTHON_USEDEP}]
 	>=dev-python/pexpect-4.2.1[${PYTHON_USEDEP}]
 	>=dev-python/rpy-2.8.6[${PYTHON_USEDEP}]
@@ -119,7 +119,7 @@ RDEPEND="${DEPEND}
 	>=sci-mathematics/cubex-20060128
 	>=sci-mathematics/dikcube-20070912
 	>=sci-mathematics/ExportSageNB-3.3
-	>=sci-mathematics/maxima-5.44.0[ecls]
+	>=sci-mathematics/maxima-5.45.0[ecls]
 	>=sci-mathematics/mcube-20051209
 	>=sci-mathematics/nauty-2.6.1
 	>=sci-mathematics/optimal-20040603
@@ -189,8 +189,6 @@ python_prepare_all() {
 	#
 	###############################
 
-	# Compatibility with MPL-3.4.0
-	eapply "${FILESDIR}"/MPL-3.4.0.patch
 	# upgrade sphinx to 4.0
 	eapply "${FILESDIR}"/sphinx-4.patch
 
