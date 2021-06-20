@@ -44,6 +44,7 @@ sci-mathematics/mcube
 sci-mathematics/nauty
 sci-mathematics/optimal
 sci-mathematics/palp
+=sci-mathematics/pari-2.13*
 sci-mathematics/pari-data
 ~sci-mathematics/planarity-3.0.0.5
 =sci-libs/brial-1.2*
