@@ -1,0 +1,52 @@
+diff --git a/src/cliques.c b/src/cliques.c
+index 4bcf821..f7f3472 100644
+--- a/src/cliques.c
++++ b/src/cliques.c
+@@ -15,7 +15,7 @@
+ #include <stdlib.h>   // for malloc, NULL
+ 
+ // GAP headers
+-#include "src/compiled.h"
++#include "compiled.h"
+ 
+ // Digraphs package headers
+ #include "bitarray.h"        // for BitArray
+diff --git a/src/cliques.h b/src/cliques.h
+index d953121..909c791 100644
+--- a/src/cliques.h
++++ b/src/cliques.h
+@@ -12,7 +12,7 @@
+ #define DIGRAPHS_SRC_CLIQUES_H_
+ 
+ // GAP headers
+-#include "src/compiled.h"
++#include "compiled.h"
+ 
+ Obj FuncDigraphsCliquesFinder(Obj self, Obj args);
+ 
+diff --git a/src/conditions.h b/src/conditions.h
+index b4e1c4d..bd185db 100644
+--- a/src/conditions.h
++++ b/src/conditions.h
+@@ -17,7 +17,7 @@
+ #include <string.h>   // for NULL, memcpy, size_t
+ 
+ // GAP headers
+-#include "src/system.h"  // for ALWAYS_INLINE
++#include "system.h"  // for ALWAYS_INLINE
+ 
+ // Digraphs headers
+ #include "bitarray.h"        // for BitArray, intersect_bit_arrays, size_b...
+diff --git a/src/perms.h b/src/perms.h
+index fedbb01..707b015 100644
+--- a/src/perms.h
++++ b/src/perms.h
+@@ -23,7 +23,7 @@
+ 
+ // GAP headers
+ #include "compiled.h"      // for Obj, Int
+-#include "src/permutat.h"  // for ADDR_PERM, IS_PERM
++#include "permutat.h"  // for ADDR_PERM, IS_PERM
+ 
+ #define MAXVERTS 512
+ #define UNDEFINED MAXVERTS + 1

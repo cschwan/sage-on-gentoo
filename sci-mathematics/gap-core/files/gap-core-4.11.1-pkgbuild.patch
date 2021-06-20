@@ -1,0 +1,40 @@
+diff --git a/Makefile.rules b/Makefile.rules
+index a4fabafa..13ffb2c4 100644
+--- a/Makefile.rules
++++ b/Makefile.rules
+@@ -725,16 +725,16 @@ GAP_BUILD_VERSION="$(GAP_BUILD_VERSION)"
+ GAP_KERNEL_MAJOR_VERSION=$(GAP_KERNEL_MAJOR_VERSION)
+ GAP_KERNEL_MINOR_VERSION=$(GAP_KERNEL_MINOR_VERSION)
+ 
+-GAP_BIN_DIR="$(abs_builddir)"
+-GAP_LIB_DIR="$(abs_srcdir)"
++GAP_BIN_DIR="$(bindir)"
++GAP_LIB_DIR="$(libdir)"
+ 
+ GAP_CC="$(CC)"
+ GAP_CXX="$(CXX)"
+ GAP_CFLAGS="$(GAP_CFLAGS)"
+ GAP_CXXFLAGS="$(GAP_CXXFLAGS)"
+-GAP_CPPFLAGS="$(GAP_PKG_CPPFLAGS)"
++GAP_CPPFLAGS="-I$(includedir)/gap"
+ GAP_LDFLAGS="$(GAP_LDFLAGS)"
+-GAP_LIBS="$(GAP_LIBS)"
++GAP_LIBS="-lgap $(GAP_LIBS)"
+ 
+ GAP_OBJS="$(OBJS)"
+ 
+diff --git a/etc/Makefile.gappkg b/etc/Makefile.gappkg
+index 09e86f32..0a7ed141 100644
+--- a/etc/Makefile.gappkg
++++ b/etc/Makefile.gappkg
+@@ -50,8 +50,8 @@ endif
+ KEXT_BINARCHDIR = bin/$(GAParch)
+ KEXT_SO = $(KEXT_BINARCHDIR)/$(KEXT_NAME).so
+ 
+-GAP ?= $(GAPPATH)/gap
+-GAC ?= $(GAPPATH)/gac
++GAP ?= gap
++GAC ?= gac
+ 
+ # override KEXT_RECONF if your package needs a different invocation
+ # for reconfiguring (e.g. `./config.status --recheck` for autoconf)

@@ -5,12 +5,14 @@
 dev-python/cvxopt
 =dev-python/cysignals-1.10*
 >=dev-python/cython-0.29.1
+dev-python/memory_allocator
 =dev-python/gmpy-2.1*
 =dev-python/pplpy-0.8*
 dev-python/terminado
 =dev-python/cypari2-2.1*
 dev-python/jupyter_jsmol
 dev-python/rpy::sage-on-gentoo
+=dev-python/sphinx-4.0*
 =dev-python/sympy-1.7*
 =dev-tex/sagetex-3*
 media-gfx/tachyon
