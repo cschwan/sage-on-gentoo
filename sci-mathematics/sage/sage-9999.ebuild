@@ -76,7 +76,7 @@ DEPEND="dev-libs/gmp:0=
 	>=sci-mathematics/lcalc-1.23-r10[pari]
 	~sci-mathematics/lrcalc-1.2
 	~dev-python/cypari2-2.1.2[${PYTHON_USEDEP}]
-	=sci-mathematics/pari-2.11*
+	=sci-mathematics/pari-2.13*
 	~sci-mathematics/planarity-3.0.0.5
 	>=sci-libs/brial-1.2.5
 	>=sci-mathematics/rw-0.7
