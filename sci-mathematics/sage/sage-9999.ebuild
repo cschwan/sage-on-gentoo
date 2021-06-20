@@ -56,7 +56,7 @@ DEPEND="dev-libs/gmp:0=
 	=dev-python/ipywidgets-7*[${PYTHON_USEDEP}]
 	>=dev-python/gmpy-2.1.0_beta5[${PYTHON_USEDEP}]
 	~dev-python/pplpy-0.8.7:=[doc,${PYTHON_USEDEP}]
-	~sci-mathematics/eclib-20210503[flint]
+	~sci-mathematics/eclib-20190909[flint]
 	~sci-mathematics/gmp-ecm-7.0.4[-openmp]
 	=sci-mathematics/flint-2.7*:=[ntl]
 	~sci-libs/givaro-4.1.1
