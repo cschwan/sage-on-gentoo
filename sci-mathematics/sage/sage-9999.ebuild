@@ -94,7 +94,7 @@ DEPEND="dev-libs/gmp:0=
 	sci-libs/libbraiding
 	bliss? ( >=sci-libs/bliss-0.73 )
 	meataxe? ( sci-mathematics/shared_meataxe )
-	>=dev-python/sphinx-4.0.2[${PYTHON_USEDEP}]"
+	>=dev-python/sphinx-3.5.4[${PYTHON_USEDEP}]"
 
 BDEPEND="app-portage/gentoolkit
 	doc-pdf? ( app-text/texlive[extra,${L10N_USEDEP}] )"
