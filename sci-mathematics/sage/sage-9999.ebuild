@@ -70,13 +70,14 @@ DEPEND="dev-libs/gmp:0=
 	=sci-libs/pynac-0.7.27-r5[-giac,${PYTHON_USEDEP}]
 	>=sci-libs/symmetrica-2.0-r3
 	>=sci-libs/zn_poly-0.9
-	~sci-mathematics/gap-4.11.0[recommended_pkgs]
+	~sci-mathematics/gap-4.11.1
+	~dev-gap/gap-recommended-4.11.1
 	|| ( =sci-mathematics/giac-1.6.0* =sci-mathematics/giac-1.7.0* )
 	>=sci-mathematics/glpk-5.0:0=[gmp]
 	>=sci-mathematics/lcalc-1.23-r10[pari]
 	~sci-mathematics/lrcalc-1.2
 	~dev-python/cypari2-2.1.2[${PYTHON_USEDEP}]
-	=sci-mathematics/pari-2.11*
+	=sci-mathematics/pari-2.13*
 	~sci-mathematics/planarity-3.0.0.5
 	>=sci-libs/brial-1.2.5
 	>=sci-mathematics/rw-0.7
@@ -94,7 +95,7 @@ DEPEND="dev-libs/gmp:0=
 	sci-libs/libbraiding
 	bliss? ( >=sci-libs/bliss-0.73 )
 	meataxe? ( sci-mathematics/shared_meataxe )
-	>=dev-python/sphinx-3.5.4[${PYTHON_USEDEP}]"
+	>=dev-python/sphinx-4.0.2[${PYTHON_USEDEP}]"
 
 BDEPEND="app-portage/gentoolkit
 	doc-pdf? ( app-text/texlive[extra,${L10N_USEDEP}] )"
@@ -103,7 +104,7 @@ RDEPEND="${DEPEND}
 	>=dev-lang/R-4.0.4
 	>=dev-python/cvxopt-1.2.6[glpk,${PYTHON_USEDEP}]
 	>=dev-python/fpylll-0.5.4[${PYTHON_USEDEP}]
-	>=dev-python/mpmath-0.18[${PYTHON_USEDEP}]
+	>=dev-python/mpmath-1.2.1[${PYTHON_USEDEP}]
 	>=dev-python/networkx-2.5[${PYTHON_USEDEP}]
 	>=dev-python/pexpect-4.2.1[${PYTHON_USEDEP}]
 	>=dev-python/rpy-2.8.6[${PYTHON_USEDEP}]
@@ -118,7 +119,7 @@ RDEPEND="${DEPEND}
 	>=sci-mathematics/cubex-20060128
 	>=sci-mathematics/dikcube-20070912
 	>=sci-mathematics/ExportSageNB-3.3
-	>=sci-mathematics/maxima-5.44.0[ecls]
+	>=sci-mathematics/maxima-5.45.0[ecls]
 	>=sci-mathematics/mcube-20051209
 	>=sci-mathematics/nauty-2.6.1
 	>=sci-mathematics/optimal-20040603
@@ -188,8 +189,8 @@ python_prepare_all() {
 	#
 	###############################
 
-	# Compatibility with MPL-3.4.0
-	eapply "${FILESDIR}"/MPL-3.4.0.patch
+	# upgrade sphinx to 4.0
+	eapply "${FILESDIR}"/sphinx-4.patch
 
 	# From sage 9.3 the official setup.py is in build/pkg/sagelib/src
 	cp -f ../build/pkgs/sagelib/src/setup.py setup.py
