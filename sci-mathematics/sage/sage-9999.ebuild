@@ -81,7 +81,7 @@ DEPEND="dev-libs/gmp:0=
 	~sci-mathematics/planarity-3.0.0.5
 	>=sci-libs/brial-1.2.5
 	>=sci-mathematics/rw-0.7
-	~sci-mathematics/singular-4.2.0_p3[readline]
+	~sci-mathematics/singular-4.2.0_p1[readline]
 	>=sci-mathematics/ratpoints-2.1.3
 	media-libs/gd[jpeg,png]
 	media-libs/libpng:0=
