@@ -48,17 +48,23 @@ src_prepare() {
 
 src_configure() {
 	econf --with-gmp \
-		--with-ntl="${EPREFIX}"/usr \
+		--with-ntl \
 		--with-flint \
 		--enable-gfanlib \
 		--disable-debug \
 		--disable-doc \
+		--enable-Singular \
 		--enable-factory \
 		--enable-libfac \
-		--enable-IntegerProgramming \
 		--disable-polymake \
 		--disable-optimizationflags \
 		--with-libparse \
+		--without-python \
+		--without-pythonmodule \
+		--disable-python \
+		--disable-python-module \
+		--disable-python_module \
+		--disable-pyobject-module \
 		$(use_enable static-libs static) \
 		$(use_enable emacs) \
 		$(use_with readline)
