@@ -1,0 +1,28 @@
+diff --git a/sage_setup/setenv.py b/sage_setup/setenv.py
+index c8b9d22..27b70b6 100644
+--- a/sage_setup/setenv.py
++++ b/sage_setup/setenv.py
+@@ -22,23 +22,3 @@ def setenv():
+     if 'ARCHFLAGS' not in os.environ and SAGE_ARCHFLAGS != "unset":
+         os.environ['ARCHFLAGS'] = SAGE_ARCHFLAGS
+     _environ_prepend('PKG_CONFIG_PATH', SAGE_PKG_CONFIG_PATH)
+-    if SAGE_LOCAL:
+-        _environ_prepend('PATH',         f'{SAGE_LOCAL}/bin')
+-        _environ_prepend('LIBRARY_PATH', f'{SAGE_LOCAL}/lib')
+-        _environ_prepend('CPATH',        f'{SAGE_LOCAL}/include')
+-        _environ_prepend('LDFLAGS',      f'-L{SAGE_LOCAL}/lib -Wl,-rpath,{SAGE_LOCAL}/lib',
+-                         separator=' ')
+-        if UNAME == 'Linux':
+-            _environ_prepend('LDFLAGS',      f'-Wl,-rpath-link,{SAGE_LOCAL}/lib',
+-                             separator=' ')
+-        if Path(SAGE_VENV).resolve() != Path(SAGE_LOCAL).resolve():
+-            _environ_prepend('PATH',         f'{SAGE_VENV}/bin')
+-            # the following two are not done by sage-env
+-            #_environ_prepend('LIBRARY_PATH', f'{SAGE_VENV}/lib')
+-            #_environ_prepend('CPATH',        f'{SAGE_VENV}/include')
+-
+-    # not done: PATH prepend of SAGE_SRC/bin, SAGE_ROOT/build/bin
+-    # not done: MACOSX_DEPLOYMENT_TARGET
+-    # not done: PATH prepend for ccache & CCACHE_BASEDIR
+-    # not done: Cygwin LD_LIBRARY_PATH
+-    # not done: OPENBLAS_NUM_THREADS

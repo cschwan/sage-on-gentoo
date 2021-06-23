@@ -213,6 +213,9 @@ python_prepare_all() {
 	# Hack to get the doc building by replacing relative import to the right location.
 	eapply "${FILESDIR}"/${PN}-9.3-sources.patch
 
+	# sage_setup/setenv.py adds numerous useless flags for distros
+	eapply "${FILESDIR}"/${PN}-9.4-noextraflags.patch
+
 	############################################################################
 	# Fixes to Sage itself
 	############################################################################
@@ -305,7 +308,6 @@ sage_build_env(){
 }
 
 python_configure_all() {
-	export SAGE_LOCAL="${EPREFIX}"/usr
 	export SAGE_DOC="${WORKDIR}"/build_doc
 	export SAGE_DOC_MATHJAX=yes
 	export VARTEXFONTS="${T}"/fonts
