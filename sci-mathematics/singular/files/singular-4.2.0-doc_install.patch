@@ -1,22 +1,8 @@
-From 74ec250d3d89d0125c409b3340aca50a00b067ad Mon Sep 17 00:00:00 2001
-From: Michael Orlitzky <michael@orlitzky.com>
-Date: Sun, 30 May 2021 08:28:41 -0400
-Subject: [PATCH 3/3] autotools: support docdir and htmldir.
-
-Instead of hard-coding the "doc" and "html" subdirectories,
-allow them to be ./configured.
----
- Makefile.am             | 8 ++++----
- configure.ac            | 5 +++++
- resources/configure.ac  | 4 ++++
- resources/feResource.cc | 2 +-
- 4 files changed, 14 insertions(+), 5 deletions(-)
-
 diff --git a/Makefile.am b/Makefile.am
-index fbea51d..c5d78a7 100644
+index fbea51d..e9365ab 100644
 --- a/Makefile.am
 +++ b/Makefile.am
-@@ -16,10 +16,10 @@ bin_SCRIPTS = libsingular-config
+@@ -16,10 +16,11 @@ bin_SCRIPTS = libsingular-config
  
  install-data-local:
  	if test -e $(srcdir)/doc/doc.tbz2; then\
@@ -25,6 +11,7 @@ index fbea51d..c5d78a7 100644
 -	   mkdir $(DESTDIR)$(datadir)/doc;\
 -	   mv  $(DESTDIR)$(datadir)/singular/singular.hlp  $(DESTDIR)$(datadir)/info/.;\
 +	   mkdir -p $(DESTDIR)$(docdir);\
++	   mkdir -p $(DESTDIR)$(datadir)/info;\
 +	   (cat ${top_srcdir}/doc/doc.tbz2| (cd $(DESTDIR)$(docdir); tar -jx --no-same-owner -f -));\
 +	   mv  $(DESTDIR)$(docdir)/singular.hlp  $(DESTDIR)$(datadir)/info/.;\
 +	   @INSTALL_DATA@ doc/singular.idx  $(DESTDIR)$(datadir)/singular/.;\
@@ -74,6 +61,3 @@ index 3d75bc9..7e4fc8c 100644
    {"ManualUrl", 'u',    feResUrl,   "SINGULAR_URL",         "https://www.singular.uni-kl.de/Manual/",    (char *)""},
    {"ExDir",     'm',    feResDir,   "SINGULAR_EXAMPLES_DIR","%r/examples",          (char *)""},
    {"Path",      'p',    feResPath,  NULL,                   "%b;%P;$PATH",             (char *)""},
--- 
-2.31.1
-
