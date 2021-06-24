@@ -196,7 +196,7 @@ python_prepare_all() {
 	cp -f ../build/pkgs/sagelib/src/setup.py setup.py
 
 	# Remove sage's package management system, git capabilities and associated tests
-	eapply "${FILESDIR}"/${PN}-9.3-neutering.patch
+	eapply "${FILESDIR}"/${PN}-9.4-neutering.patch
 	cp -f "${FILESDIR}"/${PN}-7.3-package.py sage/misc/package.py
 	rm -f sage/misc/dist.py
 	rm -rf sage/dev
@@ -221,7 +221,7 @@ python_prepare_all() {
 	############################################################################
 
 	# sage on gentoo environment variables
-	cp -f "${FILESDIR}"/sage_conf.py-9.3 sage/sage_conf.py
+	cp -f "${FILESDIR}"/sage_conf.py-9.4 sage/sage_conf.py
 	eprefixify sage/sage_conf.py
 	# set $PF for the documentation location
 	sed -i "s:@GENTOO_PORTAGE_PF@:${PF}:" sage/sage_conf.py
@@ -233,12 +233,6 @@ python_prepare_all() {
 	# getting sage_conf from the right spot
 	sed -i "s:sage_conf:sage.sage_conf:g" sage/env.py
 
-	# Make sage-inline-fortran useless by having better fortran settings
-	sed -i \
-		-e "s:--f77exec=sage-inline-fortran:--f77exec=$(tc-getF77):g" \
-		-e "s:--f90exec=sage-inline-fortran:--f90exec=$(tc-getFC):g" \
-		sage/misc/inline_fortran.py
-
 	# patch lie library path
 	eapply "${FILESDIR}"/${PN}-8.8-lie-interface.patch
 
@@ -247,23 +241,6 @@ python_prepare_all() {
 	# See https://github.com/cschwan/sage-on-gentoo/issues/342
 	# Also some symlinks are created to absolute paths that don't exist yet.
 	eapply "${FILESDIR}"/${PN}-9.3-jupyter.patch
-
-	############################################################################
-	# Fixes to doctests
-	############################################################################
-
-	# fix all.py
-	sed -i \
-		-e "s:\"lib\",\"python\":\"$(get_libdir)\",\"${EPYTHON}\":" \
-		-e "s:\"bin\":\"lib\",\"python-exec\",\"${EPYTHON}\":" sage/all.py
-
-	# Test looking for "/usr/bin/env python" when we are using python-exec
-	sed -i \
-		-e "s:env python:python-exec2c:" sage/tests/cmdline.py
-
-	# Test looking for "python"
-	sed -i \
-		-e "s:/python:/${EPYTHON}:" sage/misc/gperftools.py
 
 	####################################
 	#
@@ -303,7 +280,6 @@ python_prepare(){
 sage_build_env(){
 	export SAGE_ROOT="${S}-${MULTIBUILD_VARIANT}"/..
 	export SAGE_SRC="${S}-${MULTIBUILD_VARIANT}"
-	export SAGE_ETC="${S}-${MULTIBUILD_VARIANT}"/bin
 	export SAGE_DOC_SRC="${S}-${MULTIBUILD_VARIANT}"/doc
 }
 
