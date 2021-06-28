@@ -1,4 +1,4 @@
-# Copyright 2020 Gentoo Authors
+# Copyright 2020-2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=7
@@ -33,6 +33,6 @@ python_compile(){
 }
 
 python_install_all(){
-	insinto /usr/share/jupyter/nbextension/jupyter_jsmol
-	doins -r jupyter_jsmol/nbextension/static/*
+	insinto /usr/share/jupyter/nbextensions/jupyter_jsmol
+	doins -r jupyter_jsmol/nbextensions/static/*
 }
