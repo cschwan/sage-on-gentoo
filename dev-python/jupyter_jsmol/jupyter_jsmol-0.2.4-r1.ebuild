@@ -34,5 +34,5 @@ python_compile(){
 
 python_install_all(){
 	insinto /usr/share/jupyter/nbextensions/jupyter_jsmol
-	doins -r jupyter_jsmol/nbextensions/static/*
+	doins -r jupyter_jsmol/nbextension/static/*
 }
