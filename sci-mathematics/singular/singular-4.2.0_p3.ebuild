@@ -3,7 +3,7 @@
 
 EAPI=7
 
-inherit autotools elisp-common
+inherit autotools elisp-common flag-o-matic
 
 MY_PN=Singular
 MY_PV=$(ver_rs 3 '')
@@ -40,6 +40,8 @@ PATCHES=(
 	"${FILESDIR}/${PN}-4.2.0-no-static.patch"
 )
 
+append-cxxflags $(test-flags-CXX -fno-delete-null-pointer-checks)
+
 src_prepare() {
 	default
 
@@ -63,6 +65,7 @@ src_configure() {
 		--disable-python-module \
 		--disable-python_module \
 		--disable-pyobject-module \
+		--disable-optimizationflags \
 		$(use_enable static-libs static) \
 		$(use_enable emacs) \
 		$(use_with readline)
