@@ -40,8 +40,6 @@ PATCHES=(
 	"${FILESDIR}/${PN}-4.2.0-no-static.patch"
 )
 
-append-cxxflags $(test-flags-CXX -fno-delete-null-pointer-checks)
-
 src_prepare() {
 	default
 
@@ -49,6 +47,8 @@ src_prepare() {
 }
 
 src_configure() {
+	append-cxxflags $(test-flags-CXX -fno-delete-null-pointer-checks)
+
 	econf --with-gmp \
 		--with-ntl \
 		--with-flint \
