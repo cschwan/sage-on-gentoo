@@ -56,7 +56,7 @@ DEPEND="dev-libs/gmp:0=
 	=dev-python/ipywidgets-7*[${PYTHON_USEDEP}]
 	>=dev-python/gmpy-2.1.0_beta5[${PYTHON_USEDEP}]
 	~dev-python/pplpy-0.8.7:=[doc,${PYTHON_USEDEP}]
-	~sci-mathematics/eclib-20190909[flint]
+	~sci-mathematics/eclib-20210625[flint]
 	~sci-mathematics/gmp-ecm-7.0.4[-openmp]
 	=sci-mathematics/flint-2.7*:=[ntl]
 	~sci-libs/givaro-4.1.1
@@ -67,7 +67,7 @@ DEPEND="dev-libs/gmp:0=
 	sci-libs/m4ri
 	sci-libs/m4rie
 	>=sci-libs/mpfi-1.5.2
-	=sci-libs/pynac-0.7.27-r5[-giac,${PYTHON_USEDEP}]
+	~sci-libs/pynac-0.7.29[-giac,${PYTHON_USEDEP}]
 	>=sci-libs/symmetrica-2.0-r3
 	>=sci-libs/zn_poly-0.9
 	~sci-mathematics/gap-4.11.1
@@ -82,7 +82,7 @@ DEPEND="dev-libs/gmp:0=
 	~sci-mathematics/planarity-3.0.0.5
 	>=sci-libs/brial-1.2.5
 	>=sci-mathematics/rw-0.7
-	~sci-mathematics/singular-4.2.0_p1[readline]
+	=sci-mathematics/singular-4.2.0*[readline]
 	>=sci-mathematics/ratpoints-2.1.3
 	media-libs/gd[jpeg,png]
 	media-libs/libpng:0=
@@ -190,14 +190,11 @@ python_prepare_all() {
 	#
 	###############################
 
-	# upgrade sphinx to 4.0
-	eapply "${FILESDIR}"/sphinx-4.patch
-
 	# From sage 9.3 the official setup.py is in build/pkg/sagelib/src
 	cp -f ../build/pkgs/sagelib/src/setup.py setup.py
 
 	# Remove sage's package management system, git capabilities and associated tests
-	eapply "${FILESDIR}"/${PN}-9.3-neutering.patch
+	eapply "${FILESDIR}"/${PN}-9.4-neutering.patch
 	cp -f "${FILESDIR}"/${PN}-7.3-package.py sage/misc/package.py
 	rm -f sage/misc/dist.py
 	rm -rf sage/dev
@@ -214,12 +211,15 @@ python_prepare_all() {
 	# Hack to get the doc building by replacing relative import to the right location.
 	eapply "${FILESDIR}"/${PN}-9.3-sources.patch
 
+	# sage_setup/setenv.py adds numerous useless flags for distros
+	eapply "${FILESDIR}"/${PN}-9.4-noextraflags.patch
+
 	############################################################################
 	# Fixes to Sage itself
 	############################################################################
 
 	# sage on gentoo environment variables
-	cp -f "${FILESDIR}"/sage_conf.py-9.3 sage/sage_conf.py
+	cp -f "${FILESDIR}"/sage_conf.py-9.4 sage/sage_conf.py
 	eprefixify sage/sage_conf.py
 	# set $PF for the documentation location
 	sed -i "s:@GENTOO_PORTAGE_PF@:${PF}:" sage/sage_conf.py
@@ -231,12 +231,6 @@ python_prepare_all() {
 	# getting sage_conf from the right spot
 	sed -i "s:sage_conf:sage.sage_conf:g" sage/env.py
 
-	# Make sage-inline-fortran useless by having better fortran settings
-	sed -i \
-		-e "s:--f77exec=sage-inline-fortran:--f77exec=$(tc-getF77):g" \
-		-e "s:--f90exec=sage-inline-fortran:--f90exec=$(tc-getFC):g" \
-		sage/misc/inline_fortran.py
-
 	# patch lie library path
 	eapply "${FILESDIR}"/${PN}-8.8-lie-interface.patch
 
@@ -245,23 +239,6 @@ python_prepare_all() {
 	# See https://github.com/cschwan/sage-on-gentoo/issues/342
 	# Also some symlinks are created to absolute paths that don't exist yet.
 	eapply "${FILESDIR}"/${PN}-9.3-jupyter.patch
-
-	############################################################################
-	# Fixes to doctests
-	############################################################################
-
-	# fix all.py
-	sed -i \
-		-e "s:\"lib\",\"python\":\"$(get_libdir)\",\"${EPYTHON}\":" \
-		-e "s:\"bin\":\"lib\",\"python-exec\",\"${EPYTHON}\":" sage/all.py
-
-	# Test looking for "/usr/bin/env python" when we are using python-exec
-	sed -i \
-		-e "s:env python:python-exec2c:" sage/tests/cmdline.py
-
-	# Test looking for "python"
-	sed -i \
-		-e "s:/python:/${EPYTHON}:" sage/misc/gperftools.py
 
 	####################################
 	#
@@ -301,12 +278,10 @@ python_prepare(){
 sage_build_env(){
 	export SAGE_ROOT="${S}-${MULTIBUILD_VARIANT}"/..
 	export SAGE_SRC="${S}-${MULTIBUILD_VARIANT}"
-	export SAGE_ETC="${S}-${MULTIBUILD_VARIANT}"/bin
 	export SAGE_DOC_SRC="${S}-${MULTIBUILD_VARIANT}"/doc
 }
 
 python_configure_all() {
-	export SAGE_LOCAL="${EPREFIX}"/usr
 	export SAGE_DOC="${WORKDIR}"/build_doc
 	export SAGE_DOC_MATHJAX=yes
 	export VARTEXFONTS="${T}"/fonts

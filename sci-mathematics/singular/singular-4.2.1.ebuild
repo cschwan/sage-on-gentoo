@@ -35,9 +35,7 @@ SITEFILE=60${PN}-gentoo.el
 S="${WORKDIR}/${PN}-${MY_DIR2}"
 
 PATCHES=(
-	"${FILESDIR}/${PN}-4.2.0-gfan_linking.patch"
 	"${FILESDIR}/${PN}-4.2.0-doc_install.patch"
-	"${FILESDIR}/${PN}-4.2.0-no-static.patch"
 )
 
 src_prepare() {
@@ -53,11 +51,9 @@ src_configure() {
 		--enable-gfanlib \
 		--disable-debug \
 		--disable-doc \
-		--enable-Singular \
 		--enable-factory \
 		--enable-libfac \
 		--disable-polymake \
-		--disable-optimizationflags \
 		--with-libparse \
 		--without-python \
 		--without-pythonmodule \

@@ -1,0 +1,182 @@
+diff --git a/doc/en/reference/misc/index.rst b/doc/en/reference/misc/index.rst
+index f1f2438..6fe097e 100644
+--- a/doc/en/reference/misc/index.rst
++++ b/doc/en/reference/misc/index.rst
+@@ -226,8 +226,6 @@ Distribution
+ .. toctree::
+    :maxdepth: 1
+ 
+-   sage/misc/package
+-   sage/misc/dist
+    sage/features
+    sage/features/bliss
+    sage/features/csdp
+diff --git a/sage/doctest/control.py b/sage/doctest/control.py
+index afb0d6c..f80f8d6 100644
+--- a/sage/doctest/control.py
++++ b/sage/doctest/control.py
+@@ -363,11 +363,6 @@ class DocTestController(SageObject):
+                 # that the package is actually installed).
+                 if 'optional' in options.optional:
+                     options.optional.discard('optional')
+-                    from sage.misc.package import list_packages
+-                    for pkg in list_packages('optional', local=True).values():
+-                        if pkg['installed'] and pkg['installed_version'] == pkg['remote_version']:
+-                            options.optional.add(pkg['name'])
+-
+                     from sage.features import package_systems
+                     options.optional.update(system.name for system in package_systems())
+ 
+diff --git a/sage/misc/all.py b/sage/misc/all.py
+index d108d4e..4dabb23 100644
+--- a/sage/misc/all.py
++++ b/sage/misc/all.py
+@@ -51,12 +51,6 @@ from .mrange import xmrange, mrange, xmrange_iter, mrange_iter, cartesian_produc
+ 
+ from .fpickle import pickle_function, unpickle_function
+ 
+-from .dist import install_scripts
+-
+-lazy_import('sage.misc.package', ('installed_packages', 'is_package_installed',
+-                                  'standard_packages', 'optional_packages',
+-                                  'experimental_packages', 'package_versions'))
+-
+ lazy_import('sage.misc.pager', 'pager')
+ 
+ lazy_import('sage.misc.sagedoc', ['browse_sage_doc',
+diff --git a/sage/tests/cmdline.py b/sage/tests/cmdline.py
+index 4443185..c015ed2 100644
+--- a/sage/tests/cmdline.py
++++ b/sage/tests/cmdline.py
+@@ -13,9 +13,7 @@ test.spyx
+ --advanced
+ -c
+ --cython
+---dev
+ --ecl
+---experimental
+ --fixdoctests
+ --gap
+ --gdb
+@@ -28,7 +26,6 @@ test.spyx
+ --maxima
+ --min
+ --mwrank
+---optional
+ --preparse
+ --python
+ --python3
+@@ -41,7 +38,6 @@ test.spyx
+ --sh
+ --singular
+ --sqlite3
+---standard
+ --startuptime
+ -t
+ -v
+@@ -591,32 +587,6 @@ def test_executable(args, input="", timeout=100.0, pydebug_ignore_warnings=False
+         sage: ret
+         0
+ 
+-    Check some things requiring an internet connection::
+-
+-        sage: (out, err, ret) = test_executable(["sage", "--standard"])  # optional - internet
+-        sage: out.find("cython") >= 0  # optional - internet
+-        True
+-        sage: err  # optional - internet
+-        ''
+-        sage: ret  # optional - internet
+-        0
+-
+-        sage: (out, err, ret) = test_executable(["sage", "--optional"])  # optional - internet
+-        sage: out.find("database_cremona_ellcurve") >= 0  # optional - internet
+-        True
+-        sage: err  # optional - internet
+-        ''
+-        sage: ret  # optional - internet
+-        0
+-
+-        sage: (out, err, ret) = test_executable(["sage", "--experimental"])  # optional - internet
+-        sage: out.find("valgrind") >= 0  # optional - internet
+-        True
+-        sage: err  # optional - internet
+-        ''
+-        sage: ret  # optional - internet
+-        0
+-
+     Check an illegal command line option.  This outputs an error to stdout,
+     but we allow stderr in case this changes in the future::
+ 
+diff --git a/sage_setup/optional_extension.py b/sage_setup/optional_extension.py
+index 06586f1..e131630 100644
+--- a/sage_setup/optional_extension.py
++++ b/sage_setup/optional_extension.py
+@@ -18,9 +18,6 @@ package which must be installed.
+ # ****************************************************************************
+ 
+ from setuptools.extension import Extension
+-from sage.misc.package import list_packages
+-
+-all_packages = list_packages(local=True)
+ 
+ 
+ class CythonizeExtension(Extension):
+@@ -41,14 +38,8 @@ class CythonizeExtension(Extension):
+ 
+ 
+ def is_package_installed_and_updated(pkg):
+-    from sage.misc.package import is_package_installed
+-    try:
+-        pkginfo = all_packages[pkg]
+-    except KeyError:
+-        # Might be an installed old-style package
+-        condition = is_package_installed(pkg)
+-    else:
+-        condition = (pkginfo["installed_version"] == pkginfo["remote_version"])
++    import os
++    condition = os.getenv('WANT_%s'%pkg,False)
+     return condition
+ 
+ 
+diff --git a/setup.py b/setup.py
+index 2abfa33..b2d8ea1 100755
+--- a/setup.py
++++ b/setup.py
+@@ -142,20 +142,11 @@ code = setup(
+                  'bin/sage-massif',
+                  'bin/sage-omega',
+                  'bin/sage-valgrind',
+-                 'bin/sage-venv-config',
+                  'bin/sage-version.sh',
+                  'bin/sage-cleaner',
+-                 ## Only makes sense in sage-the-distribution. TODO: Move to another installation script.
+-                 'bin/sage-list-packages',
+-                 'bin/sage-location',
+                  ## Uncategorized scripts in alphabetical order
+                  'bin/math-readline',
+-                 'bin/sage-env',
+-                 # sage-env-config -- installed by sage_conf
+-                 # sage-env-config.in -- not to be installed',
+                  'bin/sage-gdb-commands',
+-                 'bin/sage-grep',
+-                 'bin/sage-grepdoc',
+                  'bin/sage-inline-fortran',
+                  'bin/sage-ipynb2rst',
+                  'bin/sage-ipython',
+@@ -165,16 +156,10 @@ code = setup(
+                  'bin/sage-open',
+                  'bin/sage-preparse',
+                  'bin/sage-python',
+-                 'bin/sage-rebase.bat',
+-                 'bin/sage-rebase.sh',
+-                 'bin/sage-rebaseall.bat',
+-                 'bin/sage-rebaseall.sh',
+                  'bin/sage-rst2txt',
+                  'bin/sage-run',
+                  'bin/sage-run-cython',
+                  'bin/sage-startuptime.py',
+-                 'bin/sage-update-src',
+-                 'bin/sage-update-version',
+                  ],
+       cmdclass = dict(build=sage_build,
+                       build_cython=sage_build_cython,
