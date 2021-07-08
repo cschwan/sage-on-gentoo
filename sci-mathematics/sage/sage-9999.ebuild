@@ -191,18 +191,13 @@ python_prepare_all() {
 	###############################
 
 	# From sage 9.3 the official setup.py is in build/pkg/sagelib/src
-	cp -f ../build/pkgs/sagelib/src/setup.py setup.py
+	cp ../pkgs/sagemath-standard/setup.py setup.py || die "failed to copy the right setup.py"
 
 	# Remove sage's package management system, git capabilities and associated tests
 	eapply "${FILESDIR}"/${PN}-9.4-neutering.patch
 	cp -f "${FILESDIR}"/${PN}-7.3-package.py sage/misc/package.py
 	rm -f sage/misc/dist.py
 	rm -rf sage/dev
-
-	# Because lib doesn´t always point to lib64 the following line in cython.py
-	# cause very verbose message from the linker in turn triggering doctest failures.
-	sed -i "s:SAGE_LOCAL, \"lib\":SAGE_LOCAL, \"$(get_libdir)\":" \
-		sage/misc/cython.py
 
 	############################################################################
 	# Fixes to Sage's build system
@@ -227,9 +222,6 @@ python_prepare_all() {
 	eapply "${FILESDIR}"/${PN}-9.2-env.patch
 	# getting sage_conf from the right spot
 	sed -i "s:sage_conf:sage.sage_conf:g" sage/env.py
-
-	# patch lie library path
-	eapply "${FILESDIR}"/${PN}-8.8-lie-interface.patch
 
 	# The ipython kernel tries to to start a new session via $SAGE_ROOT/sage -python
 	# Since we don't have $SAGE_ROOT/sage it fails.
