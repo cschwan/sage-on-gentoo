@@ -45,7 +45,7 @@ index d108d4e..4dabb23 100644
  
  lazy_import('sage.misc.sagedoc', ['browse_sage_doc',
 diff --git a/sage/tests/cmdline.py b/sage/tests/cmdline.py
-index 4443185..c015ed2 100644
+index c8d0e26..898ade3 100644
 --- a/sage/tests/cmdline.py
 +++ b/sage/tests/cmdline.py
 @@ -13,9 +13,7 @@ test.spyx
@@ -66,7 +66,7 @@ index 4443185..c015ed2 100644
  --preparse
  --python
  --python3
-@@ -41,7 +38,6 @@ test.spyx
+@@ -40,7 +37,6 @@ test.spyx
  --sh
  --singular
  --sqlite3
@@ -74,7 +74,7 @@ index 4443185..c015ed2 100644
  --startuptime
  -t
  -v
-@@ -591,32 +587,6 @@ def test_executable(args, input="", timeout=100.0, pydebug_ignore_warnings=False
+@@ -590,32 +586,6 @@ def test_executable(args, input="", timeout=100.0, pydebug_ignore_warnings=False
          sage: ret
          0
  
@@ -139,7 +139,7 @@ index 06586f1..e131630 100644
  
  
 diff --git a/setup.py b/setup.py
-index 2abfa33..b2d8ea1 100755
+index 974e04d..7c5660d 100755
 --- a/setup.py
 +++ b/setup.py
 @@ -142,20 +142,11 @@ code = setup(
@@ -163,7 +163,7 @@ index 2abfa33..b2d8ea1 100755
                   'bin/sage-inline-fortran',
                   'bin/sage-ipynb2rst',
                   'bin/sage-ipython',
-@@ -165,16 +156,10 @@ code = setup(
+@@ -165,15 +156,9 @@ code = setup(
                   'bin/sage-open',
                   'bin/sage-preparse',
                   'bin/sage-python',
@@ -171,7 +171,6 @@ index 2abfa33..b2d8ea1 100755
 -                 'bin/sage-rebase.sh',
 -                 'bin/sage-rebaseall.bat',
 -                 'bin/sage-rebaseall.sh',
-                  'bin/sage-rst2txt',
                   'bin/sage-run',
                   'bin/sage-run-cython',
                   'bin/sage-startuptime.py',

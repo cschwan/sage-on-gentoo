@@ -67,7 +67,7 @@ DEPEND="dev-libs/gmp:0=
 	sci-libs/m4ri
 	sci-libs/m4rie
 	>=sci-libs/mpfi-1.5.2
-	~sci-libs/pynac-0.7.29[-giac,${PYTHON_USEDEP}]
+	=sci-libs/pynac-0.7.29-r1[-giac,${PYTHON_USEDEP}]
 	>=sci-libs/symmetrica-2.0-r3
 	>=sci-libs/zn_poly-0.9
 	~sci-mathematics/gap-4.11.1
@@ -147,6 +147,15 @@ REQUIRED_USE="doc-html? ( jmol l10n_en )
 	doc-pdf? ( jmol l10n_en )
 	testsuite? ( doc-html jmol )"
 
+PATCHES=(
+	"${FILESDIR}"/${PN}-9.2-env.patch
+	"${FILESDIR}"/sage_exec-9.3.patch
+	"${FILESDIR}"/${PN}-9.3-sources.patch
+	"${FILESDIR}"/${PN}-9.3-jupyter.patch
+	"${FILESDIR}"/${PN}-9.3-linguas.patch
+	"${FILESDIR}"/${PN}-9.3-forcejavatmp.patch
+)
+
 pkg_setup() {
 	# needed since Ticket #14460
 	tc-export CC
@@ -159,20 +168,11 @@ src_unpack(){
 }
 
 python_prepare_all() {
-	#########################################
-	#
-	# scripts under src/bin and miscellanous files
-	#
-	#########################################
-
 	# replace MAKE by MAKEOPTS in sage-num-threads.py
 	sed -i "s:os.environ\[\"MAKE\"\]:os.environ\[\"MAKEOPTS\"\]:g" \
 		bin/sage-num-threads.py
 
-	# Patch the sage script to including our own environment
-	# Also remove some unappropriate bits.
-	# We used to provide our own but upstream is making it more distro friendly.
-	eapply "${FILESDIR}"/sage_exec-9.3.patch
+	# Turn on debugging capability if required
 	if use debug ; then
 		sed -i "s:SAGE_DEBUG=\"no\":SAGE_DEBUG=\"yes\":" bin/sage
 	fi
@@ -184,38 +184,18 @@ python_prepare_all() {
 		-i bin/* \
 			sage/ext_data/nbconvert/postprocess.py
 
-	###############################
-	#
-	# Patches to the sage library
-	#
-	###############################
+	# From sage 9.4 the official setup.py is in pkgs/sagemath-standard
+	cp ../pkgs/sagemath-standard/setup.py setup.py || die "failed to copy the right setup.py"
 
-	# From sage 9.3 the official setup.py is in build/pkg/sagelib/src
-	cp -f ../build/pkgs/sagelib/src/setup.py setup.py
-
-	# Remove sage's package management system, git capabilities and associated tests
+	# Remove sage's package management system, git capabilities and associated tests.
+	# The patch has to be applied on top of the previously copied setup.py which is why it is not moved to PATCHES.
 	eapply "${FILESDIR}"/${PN}-9.4-neutering.patch
 	cp -f "${FILESDIR}"/${PN}-7.3-package.py sage/misc/package.py
 	rm -f sage/misc/dist.py
 	rm -rf sage/dev
 
-	# Because lib doesn´t always point to lib64 the following line in cython.py
-	# cause very verbose message from the linker in turn triggering doctest failures.
-	sed -i "s:SAGE_LOCAL, \"lib\":SAGE_LOCAL, \"$(get_libdir)\":" \
-		sage/misc/cython.py
-
 	############################################################################
-	# Fixes to Sage's build system
-	############################################################################
-
-	# Hack to get the doc building by replacing relative import to the right location.
-	eapply "${FILESDIR}"/${PN}-9.3-sources.patch
-
-	# sage_setup/setenv.py adds numerous useless flags for distros
-	eapply "${FILESDIR}"/${PN}-9.4-noextraflags.patch
-
-	############################################################################
-	# Fixes to Sage itself
+	# sage's configuration variables for Gentoo
 	############################################################################
 
 	# sage on gentoo environment variables
@@ -226,38 +206,19 @@ python_prepare_all() {
 		# Fix finding pplpy documentation with intersphinx
 	local pplpyver=`equery -q l -F '$name-$fullversion' pplpy:0`
 	sed -i "s:@PPLY_DOC_VERS@:${pplpyver}:" sage/sage_conf.py
-	# Adjust variables in other files than sage_conf.py
-	eapply "${FILESDIR}"/${PN}-9.2-env.patch
 	# getting sage_conf from the right spot
 	sed -i "s:sage_conf:sage.sage_conf:g" sage/env.py
 
-	# patch lie library path
-	eapply "${FILESDIR}"/${PN}-8.8-lie-interface.patch
-
-	# The ipython kernel tries to to start a new session via $SAGE_ROOT/sage -python
-	# Since we don't have $SAGE_ROOT/sage it fails.
-	# See https://github.com/cschwan/sage-on-gentoo/issues/342
-	# Also some symlinks are created to absolute paths that don't exist yet.
-	eapply "${FILESDIR}"/${PN}-9.3-jupyter.patch
+	# Because lib doesn´t always point to lib64 the following line in cython.py
+	# cause very verbose message from the linker in turn triggering doctest failures.
+	sed -i "s:SAGE_LOCAL, \"lib\":SAGE_LOCAL, \"$(get_libdir)\":" \
+		sage/misc/cython.py
 
 	####################################
-	#
-	# Documentation specific patch
-	#
-	####################################
-
-	# support linguas so only requested languages are installed
-	eapply "${FILESDIR}"/${PN}-9.3-linguas.patch
-
-	# Force the value of user homedir in call to jmol. jmol sometimes violate the sandbox
-	eapply "${FILESDIR}"/${PN}-9.3-forcejavatmp.patch
-
-	####################################
-	#
 	# Bootstrap
-	#
 	####################################
 
+	einfo "bootstrapping the documentation - be patient"
 	SAGE_ROOT="${S}"/.. PATH="${S}/../build/bin:${PATH}" doc/bootstrap || die "cannot bootstrap the documentation"
 
 	distutils-r1_python_prepare_all
@@ -265,9 +226,7 @@ python_prepare_all() {
 
 python_prepare(){
 	###############################
-	#
 	# Link against appropriate pynac
-	#
 	###############################
 	einfo "Adjusting pynac library"
 	sed \
