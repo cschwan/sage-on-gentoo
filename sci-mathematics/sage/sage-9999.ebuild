@@ -16,14 +16,14 @@ KEYWORDS=""
 
 DESCRIPTION="Math software for abstract and numerical computations"
 HOMEPAGE="https://www.sagemath.org"
-
-LANGS="ca de en es fr hu it ja pt ru tr"
+S="${WORKDIR}/${P}/src"
 
 LICENSE="GPL-2"
 SLOT="0"
 SAGE_USE="bliss meataxe"
 IUSE="debug +doc-html doc-pdf jmol latex testsuite X ${SAGE_USE}"
 L10N_USEDEP=""
+LANGS="ca de en es fr hu it ja pt ru tr"
 for X in ${LANGS} ; do
 	IUSE="${IUSE} l10n_${X}"
 	L10N_USEDEP="${L10N_USEDEP}l10n_${X}?,"
@@ -32,37 +32,59 @@ L10N_USEDEP="${L10N_USEDEP%?}"
 
 RESTRICT="mirror test"
 
-DEPEND="dev-libs/gmp:0=
-	>=dev-libs/mpfr-4.0.0
+DEPEND="
+	~dev-gap/gap-recommended-4.11.1
+	dev-libs/gmp:0=
 	>=dev-libs/mpc-1.1.0
+	>=dev-libs/mpfr-4.0.0
 	>=dev-libs/ntl-11.4.3:=
 	>=dev-libs/ppl-1.1
 	~dev-lisp/ecls-21.2.1
-	>=dev-python/six-1.11.0[${PYTHON_USEDEP}]
-	>=dev-python/numpy-1.16.1[${PYTHON_USEDEP}]
-	>=dev-python/cython-0.29.21[${PYTHON_USEDEP}]
-	dev-python/memory_allocator[${PYTHON_USEDEP}]
-	dev-python/future[${PYTHON_USEDEP}]
-	>=dev-python/pkgconfig-1.2.2[${PYTHON_USEDEP}]
+	~dev-python/cypari2-2.1.2[${PYTHON_USEDEP}]
 	>=dev-python/cysignals-1.10.3[${PYTHON_USEDEP}]
+	>=dev-python/cython-0.29.21[${PYTHON_USEDEP}]
 	>=dev-python/docutils-0.12[${PYTHON_USEDEP}]
-	>=dev-python/psutil-4.4.0[${PYTHON_USEDEP}]
+	dev-python/future[${PYTHON_USEDEP}]
+	>=dev-python/gmpy-2.1.0_beta5[${PYTHON_USEDEP}]
+	>=dev-python/ipykernel-4.6.0[${PYTHON_USEDEP}]
+	>=dev-python/ipython-7.0.0[notebook,${PYTHON_USEDEP}]
+	=dev-python/ipywidgets-7*[${PYTHON_USEDEP}]
+	>=dev-python/jinja-2.8[${PYTHON_USEDEP}]
 	dev-python/jupyter_core[${PYTHON_USEDEP}]
 	dev-python/jupyter_jsmol[${PYTHON_USEDEP}]
-	>=dev-python/ipython-7.0.0[notebook,${PYTHON_USEDEP}]
-	>=dev-python/ipykernel-4.6.0[${PYTHON_USEDEP}]
-	>=dev-python/jinja-2.8[${PYTHON_USEDEP}]
 	>=dev-python/matplotlib-3.3.1[${PYTHON_USEDEP}]
-	=dev-python/ipywidgets-7*[${PYTHON_USEDEP}]
-	>=dev-python/gmpy-2.1.0_beta5[${PYTHON_USEDEP}]
+	dev-python/memory_allocator[${PYTHON_USEDEP}]
+	>=dev-python/numpy-1.16.1[${PYTHON_USEDEP}]
+	>=dev-python/pkgconfig-1.2.2[${PYTHON_USEDEP}]
 	~dev-python/pplpy-0.8.7:=[doc,${PYTHON_USEDEP}]
+	>=dev-python/psutil-4.4.0[${PYTHON_USEDEP}]
+	>=dev-python/six-1.11.0[${PYTHON_USEDEP}]
+	>=dev-python/sphinx-4.0.2[${PYTHON_USEDEP}]
+	=media-gfx/threejs-sage-extension-122-r1
+	media-libs/gd[jpeg,png]
+	media-libs/libpng:0=
+	>=sci-mathematics/arb-2.19.0
+	~sci-mathematics/cliquer-1.21
 	~sci-mathematics/eclib-20210625[flint]
-	~sci-mathematics/gmp-ecm-7.0.4[-openmp]
 	=sci-mathematics/flint-2.7*:=[ntl]
+	~sci-mathematics/gap-4.11.1
+	|| ( =sci-mathematics/giac-1.6.0* =sci-mathematics/giac-1.7.0* )
+	>=sci-mathematics/glpk-5.0:0=[gmp]
+	~sci-mathematics/gmp-ecm-7.0.4[-openmp]
+	>=sci-mathematics/lcalc-1.23-r10[pari]
+	<sci-mathematics/lcalc-2.0.0
+	~sci-mathematics/lrcalc-1.2
+	=sci-mathematics/pari-2.13*
+	~sci-mathematics/planarity-3.0.0.5
+	>=sci-mathematics/ratpoints-2.1.3
+	>=sci-mathematics/rw-0.7
+	=sci-mathematics/singular-4.2.0*[readline]
+	>=sci-libs/brial-1.2.5
 	~sci-libs/givaro-4.1.1
 	>=sci-libs/gsl-2.3
 	>=sci-libs/iml-1.0.4
-	~sci-mathematics/cliquer-1.21
+	sci-libs/libbraiding
+	>=sci-libs/libhomfly-1.0.1
 	>=sci-libs/linbox-1.6.3
 	sci-libs/m4ri
 	sci-libs/m4rie
@@ -70,38 +92,19 @@ DEPEND="dev-libs/gmp:0=
 	=sci-libs/pynac-0.7.29-r1[-giac,${PYTHON_USEDEP}]
 	>=sci-libs/symmetrica-2.0-r3
 	>=sci-libs/zn_poly-0.9
-	~sci-mathematics/gap-4.11.1
-	~dev-gap/gap-recommended-4.11.1
-	|| ( =sci-mathematics/giac-1.6.0* =sci-mathematics/giac-1.7.0* )
-	>=sci-mathematics/glpk-5.0:0=[gmp]
-	>=sci-mathematics/lcalc-1.23-r10[pari]
-	<sci-mathematics/lcalc-2.0.0
-	~sci-mathematics/lrcalc-1.2
-	~dev-python/cypari2-2.1.2[${PYTHON_USEDEP}]
-	=sci-mathematics/pari-2.13*
-	~sci-mathematics/planarity-3.0.0.5
-	>=sci-libs/brial-1.2.5
-	>=sci-mathematics/rw-0.7
-	=sci-mathematics/singular-4.2.0*[readline]
-	>=sci-mathematics/ratpoints-2.1.3
-	media-libs/gd[jpeg,png]
-	media-libs/libpng:0=
-	=media-gfx/threejs-sage-extension-122-r1
 	>=sys-libs/readline-6.2
 	sys-libs/zlib
 	virtual/cblas
-	>=sci-mathematics/arb-2.19.0
 	www-misc/thebe
-	>=sci-libs/libhomfly-1.0.1
-	sci-libs/libbraiding
+
 	bliss? ( >=sci-libs/bliss-0.73 )
 	meataxe? ( sci-mathematics/shared_meataxe )
-	>=dev-python/sphinx-4.0.2[${PYTHON_USEDEP}]"
-
+"
 BDEPEND="app-portage/gentoolkit
 	doc-pdf? ( app-text/texlive[extra,${L10N_USEDEP}] )"
 
-RDEPEND="${DEPEND}
+RDEPEND="
+	${DEPEND}
 	>=dev-lang/R-4.0.4
 	>=dev-python/cvxopt-1.2.6[glpk,${PYTHON_USEDEP}]
 	>=dev-python/fpylll-0.5.4[${PYTHON_USEDEP}]
@@ -109,39 +112,38 @@ RDEPEND="${DEPEND}
 	>=dev-python/networkx-2.5[${PYTHON_USEDEP}]
 	>=dev-python/pexpect-4.2.1[${PYTHON_USEDEP}]
 	>=dev-python/rpy-2.8.6[${PYTHON_USEDEP}]
+	>=dev-python/scipy-1.1.0[${PYTHON_USEDEP}]
 	=dev-python/sympy-1.8*[${PYTHON_USEDEP}]
 	media-gfx/tachyon[png]
-	jmol? ( sci-chemistry/sage-jmol-bin )
 	>=sci-libs/cddlib-094m[tools]
-	>=dev-python/scipy-1.1.0[${PYTHON_USEDEP}]
-	sci-mathematics/flintqs
-	~sci-mathematics/gfan-0.6.2
 	>=sci-mathematics/cu2-20060223
 	>=sci-mathematics/cubex-20060128
 	>=sci-mathematics/dikcube-20070912
 	>=sci-mathematics/ExportSageNB-3.3
+	sci-mathematics/flintqs
+	~sci-mathematics/gfan-0.6.2
 	>=sci-mathematics/maxima-5.45.0[ecls]
 	>=sci-mathematics/mcube-20051209
 	>=sci-mathematics/nauty-2.6.1
 	>=sci-mathematics/optimal-20040603
 	>=sci-mathematics/palp-2.1
+	~sci-mathematics/sage-data-combinatorial_designs-20140630
+	~sci-mathematics/sage-data-conway_polynomials-0.5
 	~sci-mathematics/sage-data-elliptic_curves-0.8
 	~sci-mathematics/sage-data-graphs-20210214
-	~sci-mathematics/sage-data-combinatorial_designs-20140630
 	~sci-mathematics/sage-data-polytopes_db-20170220
-	~sci-mathematics/sage-data-conway_polynomials-0.5
+	!sci-mathematics/sage-notebook
 	>=sci-mathematics/sympow-1.018.1
 	www-servers/tornado
-	!prefix? ( >=sys-libs/glibc-2.13-r4 )
+
+	jmol? ( sci-chemistry/sage-jmol-bin )
 	latex? (
 		~dev-tex/sagetex-3.5
 		|| ( app-text/dvipng[truetype] media-gfx/imagemagick[png] )
 	)
-	!sci-mathematics/sage-notebook"
-
+	!prefix? ( >=sys-libs/glibc-2.13-r4 )
+"
 CHECKREQS_DISK_BUILD="8G"
-
-S="${WORKDIR}/${P}/src"
 
 REQUIRED_USE="doc-html? ( jmol l10n_en )
 	doc-pdf? ( jmol l10n_en )
