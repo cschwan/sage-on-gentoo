@@ -156,6 +156,7 @@ PATCHES=(
 	"${FILESDIR}"/${PN}-9.3-jupyter.patch
 	"${FILESDIR}"/${PN}-9.3-linguas.patch
 	"${FILESDIR}"/${PN}-9.3-forcejavatmp.patch
+	"${FILESDIR}"/trac31626.patch
 )
 
 pkg_setup() {
