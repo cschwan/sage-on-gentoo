@@ -26,3 +26,8 @@ sci-libs/bliss              -gmp
 
 # matplotlib (testing)
 x11-base/xorg-server        xvfb
+
+# sage doc pdf generation
+app-text/texlive extra
+app-text/texlive-core cjk xetex
+
