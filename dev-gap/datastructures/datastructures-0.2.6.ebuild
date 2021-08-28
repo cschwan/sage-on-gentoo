@@ -12,7 +12,7 @@ LICENSE="GPL-2+"
 KEYWORDS="~amd64 ~x86"
 IUSE=""
 
-DEPEND=""
+DEPEND=">=sci-mathematics/gap-core-4.11.0"
 RDEPEND="${DEPEND}
 	|| ( >=sci-mathematics/gap-core-4.11.0 >=sci-mathematics/gap-4.11.0 )
 	>=dev-gap/GAPDoc-1.6.4"
@@ -24,7 +24,7 @@ PATCHES=( "${FILESDIR}"/${PN}-0.2.6-headers.patch )
 src_prepare(){
 	default
 
-	cp -f "${EPREFIX}/usr/share/gap/etc/Makefile.gappkg" .
+	cp "${EPREFIX}/usr/share/gap/etc/Makefile.gappkg" . || die "failed to replace Makefile.gappkg"
 }
 
 src_configure(){
