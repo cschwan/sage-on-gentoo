@@ -42,7 +42,7 @@ DEPEND="
 	~dev-lisp/ecls-21.2.1
 	~dev-python/cypari2-2.1.2[${PYTHON_USEDEP}]
 	>=dev-python/cysignals-1.10.3[${PYTHON_USEDEP}]
-	>=dev-python/cython-0.29.21[${PYTHON_USEDEP}]
+	>=dev-python/cython-0.29.24[${PYTHON_USEDEP}]
 	>=dev-python/docutils-0.12[${PYTHON_USEDEP}]
 	dev-python/future[${PYTHON_USEDEP}]
 	>=dev-python/gmpy-2.1.0_beta5[${PYTHON_USEDEP}]
@@ -78,7 +78,7 @@ DEPEND="
 	~sci-mathematics/planarity-3.0.0.5
 	>=sci-mathematics/ratpoints-2.1.3
 	>=sci-mathematics/rw-0.7
-	=sci-mathematics/singular-4.2.0*[readline]
+	=sci-mathematics/singular-4.2.1*[readline]
 	>=sci-libs/brial-1.2.5
 	~sci-libs/givaro-4.1.1
 	>=sci-libs/gsl-2.3

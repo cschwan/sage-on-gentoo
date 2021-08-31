@@ -4,7 +4,7 @@
 ~dev-lisp/ecls-21.2.1
 dev-python/cvxopt
 =dev-python/cysignals-1.10*
->=dev-python/cython-0.29.1
+>=dev-python/cython-0.29.24
 dev-python/memory_allocator
 =dev-python/gmpy-2.1*
 =dev-python/pplpy-0.8*
@@ -57,7 +57,7 @@ sci-mathematics/rw
 ~sci-mathematics/sage-data-elliptic_curves-0.8
 ~sci-mathematics/sage-data-graphs-20210214
 ~sci-mathematics/sage-data-polytopes_db-20170220
-~sci-mathematics/singular-4.2.0_p3
+~sci-mathematics/singular-4.2.1
 sci-mathematics/sympow
 www-misc/thebe
 ##########################
