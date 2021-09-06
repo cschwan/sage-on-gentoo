@@ -150,7 +150,6 @@ REQUIRED_USE="doc-html? ( jmol l10n_en )
 	testsuite? ( doc-html jmol )"
 
 PATCHES=(
-	"${FILESDIR}"/networkx-2.6.patch
 	"${FILESDIR}"/${PN}-9.2-env.patch
 	"${FILESDIR}"/sage_exec-9.3.patch
 	"${FILESDIR}"/${PN}-9.3-sources.patch
