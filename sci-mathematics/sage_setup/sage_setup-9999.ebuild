@@ -30,7 +30,9 @@ DEPEND="
 "
 RDEPEND="
 	${DEPEND}
+	!<=sci-mathematics/sage-9.4
 "
+
 PATCHES=(
 	"${FILESDIR}"/${PN}-9.5-options.patch
 )
