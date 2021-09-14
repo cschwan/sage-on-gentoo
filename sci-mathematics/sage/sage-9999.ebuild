@@ -78,6 +78,7 @@ DEPEND="
 	~sci-mathematics/planarity-3.0.0.5
 	>=sci-mathematics/ratpoints-2.1.3
 	>=sci-mathematics/rw-0.7
+	~sci-mathematics/sage_setup-${PV}[${PYTHON_USEDEP}]
 	=sci-mathematics/singular-4.2.1*[readline]
 	>=sci-libs/brial-1.2.5
 	~sci-libs/givaro-4.1.1
@@ -150,7 +151,6 @@ REQUIRED_USE="doc-html? ( jmol l10n_en )
 	testsuite? ( doc-html jmol )"
 
 PATCHES=(
-	"${FILESDIR}"/networkx-2.6.patch
 	"${FILESDIR}"/${PN}-9.2-env.patch
 	"${FILESDIR}"/sage_exec-9.3.patch
 	"${FILESDIR}"/${PN}-9.3-sources.patch
@@ -172,6 +172,9 @@ src_unpack(){
 }
 
 python_prepare_all() {
+	# Remove sage_setup to make sure the already installed one is used.
+	rm -rf sage_setup
+
 	# replace MAKE by MAKEOPTS in sage-num-threads.py
 	sed -i "s:os.environ\[\"MAKE\"\]:os.environ\[\"MAKEOPTS\"\]:g" \
 		bin/sage-num-threads.py
@@ -193,7 +196,7 @@ python_prepare_all() {
 
 	# Remove sage's package management system, git capabilities and associated tests.
 	# The patch has to be applied on top of the previously copied setup.py which is why it is not moved to PATCHES.
-	eapply "${FILESDIR}"/${PN}-9.4-neutering.patch
+	eapply "${FILESDIR}"/${PN}-9.5-neutering.patch
 	cp -f "${FILESDIR}"/${PN}-7.3-package.py sage/misc/package.py
 	rm -f sage/misc/dist.py
 	rm -rf sage/dev
