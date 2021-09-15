@@ -90,7 +90,6 @@ DEPEND="
 	sci-libs/m4ri
 	sci-libs/m4rie
 	>=sci-libs/mpfi-1.5.2
-	=sci-libs/pynac-0.7.29-r1[-giac,${PYTHON_USEDEP}]
 	>=sci-libs/symmetrica-2.0-r3
 	>=sci-libs/zn_poly-0.9
 	>=sys-libs/readline-6.2
@@ -229,16 +228,6 @@ python_prepare_all() {
 	SAGE_ROOT="${S}"/.. PATH="${S}/../build/bin:${PATH}" doc/bootstrap || die "cannot bootstrap the documentation"
 
 	distutils-r1_python_prepare_all
-}
-
-python_prepare(){
-	###############################
-	# Link against appropriate pynac
-	###############################
-	einfo "Adjusting pynac library"
-	sed \
-		-e "s:libraries = pynac:libraries = pynac_${MULTIBUILD_VARIANT}:" \
-		-i sage/libs/pynac/pynac.pxd
 }
 
 sage_build_env(){
