@@ -231,9 +231,9 @@ python_prepare_all() {
 }
 
 sage_build_env(){
-	export SAGE_ROOT="${S}-${MULTIBUILD_VARIANT}"/..
-	export SAGE_SRC="${S}-${MULTIBUILD_VARIANT}"
-	export SAGE_DOC_SRC="${S}-${MULTIBUILD_VARIANT}"/doc
+	export SAGE_ROOT="${S}"/..
+	export SAGE_SRC="${S}"
+	export SAGE_DOC_SRC="${S}"/doc
 }
 
 python_configure_all() {
