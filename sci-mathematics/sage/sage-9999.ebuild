@@ -230,14 +230,9 @@ python_prepare_all() {
 	distutils-r1_python_prepare_all
 }
 
-sage_build_env(){
-	export SAGE_ROOT="${S}"/..
-	export SAGE_SRC="${S}"
-	export SAGE_DOC_SRC="${S}"/doc
-}
-
 python_configure_all() {
 	export SAGE_DOC="${WORKDIR}"/build_doc
+	export SAGE_DOC_SRC="${S}"/doc
 	export SAGE_DOC_MATHJAX=yes
 	export VARTEXFONTS="${T}"/fonts
 	export SAGE_VERSION=${PV}
@@ -265,12 +260,6 @@ python_configure(){
 		|| die "failed to touch *pyx files"
 }
 
-python_compile() {
-	sage_build_env
-
-	distutils-r1_python_compile
-}
-
 python_compile_all(){
 	if use doc-html ; then
 		HTML_DOCS="${WORKDIR}/build_doc/html/*"
@@ -285,8 +274,6 @@ python_compile_all(){
 }
 
 python_install() {
-	sage_build_env
-
 	# Install cython debugging files if requested
 	# They are now produced by default
 	if ! use debug; then
