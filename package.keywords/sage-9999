@@ -53,6 +53,7 @@ sci-mathematics/ratpoints
 sci-mathematics/rw
 ~sci-mathematics/sage-9999 **
 ~sci-mathematics/sage_setup-9999 **
+~sci-mathematics/sage_docbuild-9999 **
 ~sci-mathematics/sage-data-conway_polynomials-0.5
 ~sci-mathematics/sage-data-combinatorial_designs-20140630
 ~sci-mathematics/sage-data-elliptic_curves-0.8
