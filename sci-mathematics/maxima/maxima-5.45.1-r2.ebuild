@@ -3,7 +3,7 @@
 
 EAPI=7
 
-PYTHON_COMPAT=( python3_{7,8} )
+PYTHON_COMPAT=( python3_{7..9} )
 
 inherit autotools elisp-common flag-o-matic python-single-r1 xdg-utils
 
@@ -25,13 +25,13 @@ for lang in ${LANGS}; do
 done
 
 LISP_DEPEND="
-	clisp? ( dev-lisp/clisp )
+	clisp? ( dev-lisp/clisp:= )
 	clozurecl? ( dev-lisp/clozurecl app-misc/rlwrap )
 	clozurecl64? ( dev-lisp/clozurecl app-misc/rlwrap )
 	cmucl? ( dev-lisp/cmucl app-misc/rlwrap )
-	ecls? ( dev-lisp/ecls app-misc/rlwrap )
+	ecls? ( dev-lisp/ecls:= app-misc/rlwrap )
 	gcl? ( dev-lisp/gcl[ansi,readline] )
-	sbcl? ( dev-lisp/sbcl app-misc/rlwrap )
+	sbcl? ( dev-lisp/sbcl:= app-misc/rlwrap )
 "
 
 # Python is used in e.g. doc/info/build_html.sh to build the docs.
@@ -47,6 +47,7 @@ BDEPEND="
 
 DEPEND="
 	${LISP_DEPEND}
+	virtual/libcrypt:=
 	emacs? ( >=app-editors/emacs-26:* )
 	gui? ( dev-lang/tk:0 )
 "

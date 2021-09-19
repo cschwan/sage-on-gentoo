@@ -47,6 +47,7 @@ BDEPEND="
 
 DEPEND="
 	${LISP_DEPEND}
+	virtual/libcrypt:=
 	emacs? ( >=app-editors/emacs-23.1:* )
 	gui? ( dev-lang/tk:0 )
 "
