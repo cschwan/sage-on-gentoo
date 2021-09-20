@@ -174,9 +174,6 @@ python_prepare_all() {
 	# Remove sage_setup to make sure the already installed one is used.
 	rm -rf sage_setup
 
-	# trac #32530
-	echo "from .matrix2 cimport Matrix" > sage/matrix/matrix.pxd
-
 	# replace MAKE by MAKEOPTS in sage-num-threads.py
 	sed -i "s:os.environ\[\"MAKE\"\]:os.environ\[\"MAKEOPTS\"\]:g" \
 		bin/sage-num-threads.py
@@ -236,7 +233,6 @@ python_prepare_all() {
 python_configure_all() {
 	export SAGE_DOC="${WORKDIR}"/build_doc
 	export SAGE_DOC_SRC="${S}"/doc
-	export SAGE_SRC="${S}"
 	export SAGE_DOC_MATHJAX=yes
 	export VARTEXFONTS="${T}"/fonts
 	export SAGE_VERSION=${PV}
