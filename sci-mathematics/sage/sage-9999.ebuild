@@ -314,10 +314,6 @@ python_install_all(){
 			rm -rf "${pyfile/%.py/.pdf}" "${pyfile/%.py/.png}"
 			rm -rf "${pyfile/%.py/.hires.png}" "${pyfile/%.py/.html}"
 		done
-		# restore .rst.txt file to .rst
-		for i in `find build_doc -name \*.rst.txt`; do
-			mv "${i}" "${i%.txt}"
-		done
 		popd
 	fi
 
