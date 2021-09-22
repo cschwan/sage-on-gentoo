@@ -39,7 +39,7 @@ src_configure() {
 
 	# this command actually calls a python script
 	./configure \
-		--prefix="${ED}"/usr \
+		--prefix="${EPREFIX}"/usr \
 		--cflags="${CFLAGS}" \
 		--ldflags="${LDFLAGS}" \
 		--gmp-prefix="${EPREFIX}"/usr \
