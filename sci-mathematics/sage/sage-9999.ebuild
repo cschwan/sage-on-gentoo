@@ -141,7 +141,6 @@ RDEPEND="
 		~dev-tex/sagetex-3.5
 		|| ( app-text/dvipng[truetype] media-gfx/imagemagick[png] )
 	)
-	!prefix? ( >=sys-libs/glibc-2.13-r4 )
 "
 CHECKREQS_DISK_BUILD="8G"
 
