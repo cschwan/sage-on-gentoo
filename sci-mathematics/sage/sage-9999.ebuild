@@ -173,10 +173,6 @@ python_prepare_all() {
 	# Remove sage_setup to make sure the already installed one is used.
 	rm -rf sage_setup
 
-	# replace MAKE by MAKEOPTS in sage-num-threads.py
-	sed -i "s:os.environ\[\"MAKE\"\]:os.environ\[\"MAKEOPTS\"\]:g" \
-		bin/sage-num-threads.py
-
 	# Turn on debugging capability if required
 	if use debug ; then
 		sed -i "s:SAGE_DEBUG=\"no\":SAGE_DEBUG=\"yes\":" bin/sage
