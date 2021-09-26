@@ -90,7 +90,6 @@ DEPEND="
 	sci-libs/m4ri
 	sci-libs/m4rie
 	>=sci-libs/mpfi-1.5.2
-	=sci-libs/pynac-0.7.29-r1[-giac,${PYTHON_USEDEP}]
 	>=sci-libs/symmetrica-2.0-r3
 	>=sci-libs/zn_poly-0.9
 	>=sys-libs/readline-6.2
@@ -142,7 +141,6 @@ RDEPEND="
 		~dev-tex/sagetex-3.5
 		|| ( app-text/dvipng[truetype] media-gfx/imagemagick[png] )
 	)
-	!prefix? ( >=sys-libs/glibc-2.13-r4 )
 "
 CHECKREQS_DISK_BUILD="8G"
 
@@ -231,24 +229,9 @@ python_prepare_all() {
 	distutils-r1_python_prepare_all
 }
 
-python_prepare(){
-	###############################
-	# Link against appropriate pynac
-	###############################
-	einfo "Adjusting pynac library"
-	sed \
-		-e "s:libraries = pynac:libraries = pynac_${MULTIBUILD_VARIANT}:" \
-		-i sage/libs/pynac/pynac.pxd
-}
-
-sage_build_env(){
-	export SAGE_ROOT="${S}-${MULTIBUILD_VARIANT}"/..
-	export SAGE_SRC="${S}-${MULTIBUILD_VARIANT}"
-	export SAGE_DOC_SRC="${S}-${MULTIBUILD_VARIANT}"/doc
-}
-
 python_configure_all() {
 	export SAGE_DOC="${WORKDIR}"/build_doc
+	export SAGE_DOC_SRC="${S}"/doc
 	export SAGE_DOC_MATHJAX=yes
 	export VARTEXFONTS="${T}"/fonts
 	export SAGE_VERSION=${PV}
@@ -276,12 +259,6 @@ python_configure(){
 		|| die "failed to touch *pyx files"
 }
 
-python_compile() {
-	sage_build_env
-
-	distutils-r1_python_compile
-}
-
 python_compile_all(){
 	if use doc-html ; then
 		HTML_DOCS="${WORKDIR}/build_doc/html/*"
@@ -296,8 +273,6 @@ python_compile_all(){
 }
 
 python_install() {
-	sage_build_env
-
 	# Install cython debugging files if requested
 	# They are now produced by default
 	if ! use debug; then
@@ -337,10 +312,6 @@ python_install_all(){
 			rm -rf "${pyfile}" || die "fail to to remove $pyfile"
 			rm -rf "${pyfile/%.py/.pdf}" "${pyfile/%.py/.png}"
 			rm -rf "${pyfile/%.py/.hires.png}" "${pyfile/%.py/.html}"
-		done
-		# restore .rst.txt file to .rst
-		for i in `find build_doc -name \*.rst.txt`; do
-			mv "${i}" "${i%.txt}"
 		done
 		popd
 	fi
