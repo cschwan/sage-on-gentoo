@@ -32,19 +32,22 @@ RESTRICT="mirror test"
 
 BDEPEND="$(python_gen_any_dep '
 	>=dev-python/sphinx-4.1.0[${PYTHON_USEDEP}]
-	>=sci-mathematics/sage-9.5[${PYTHON_USEDEP}]
+	>=sci-mathematics/sage-9.5[${PYTHON_USEDEP},jmol]
 	')
 	doc-pdf? ( app-text/texlive[extra,${L10N_USEDEP}] )"
 RDEPEND=""
 
-PATCHES=(
+REQUIRED_USE="doc-html? ( l10n_en )
+	doc-pdf? ( l10n_en )"
+
+	PATCHES=(
 	"${FILESDIR}"/${PN}-9.5-neutering.patch
 	"${FILESDIR}"/${PN}-9.5-makefile.patch
 )
 
 python_check_deps() {
 	has_version ">=dev-python/sphinx-4.1.0[${PYTHON_USEDEP}]" &&
-	has_version ">=sci-mathematics/sage-9.5[${PYTHON_USEDEP}]"
+	has_version ">=sci-mathematics/sage-9.5[${PYTHON_USEDEP},jmol]"
 }
 
 src_unpack(){
