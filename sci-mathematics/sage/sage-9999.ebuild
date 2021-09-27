@@ -199,8 +199,8 @@ python_prepare_all() {
 	# sage on gentoo environment variables
 	cp -f "${FILESDIR}"/sage_conf.py-9.4 sage/sage_conf.py
 	eprefixify sage/sage_conf.py
-	# set $PF for the documentation location
-	sed -i "s:@GENTOO_PORTAGE_PF@:${PF}:" sage/sage_conf.py
+	# set the documentation location to the externally provided sage-doc package
+	sed -i "s:@GENTOO_PORTAGE_PF@:sage-doc-${PV}:" sage/sage_conf.py
 		# Fix finding pplpy documentation with intersphinx
 	local pplpyver=`equery -q l -F '$name-$fullversion' pplpy:0`
 	sed -i "s:@PPLY_DOC_VERS@:${pplpyver}:" sage/sage_conf.py
