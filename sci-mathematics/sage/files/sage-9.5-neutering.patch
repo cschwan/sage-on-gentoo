@@ -1,16 +1,3 @@
-diff --git a/doc/en/reference/misc/index.rst b/doc/en/reference/misc/index.rst
-index f1f2438..6fe097e 100644
---- a/doc/en/reference/misc/index.rst
-+++ b/doc/en/reference/misc/index.rst
-@@ -226,8 +226,6 @@ Distribution
- .. toctree::
-    :maxdepth: 1
- 
--   sage/misc/package
--   sage/misc/dist
-    sage/features
-    sage/features/bliss
-    sage/features/csdp
 diff --git a/sage/doctest/control.py b/sage/doctest/control.py
 index afb0d6c..f80f8d6 100644
 --- a/sage/doctest/control.py
