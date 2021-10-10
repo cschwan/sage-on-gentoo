@@ -9,7 +9,7 @@ DISTUTILS_USE_SETUPTOOLS=bdepend
 
 inherit distutils-r1 prefix toolchain-funcs git-r3
 
-EGIT_REPO_URI="https://github.com/vbraun/sage.git"
+EGIT_REPO_URI="https://github.com/sagemath/sage.git"
 EGIT_BRANCH=develop
 EGIT_CHECKOUT_DIR="${WORKDIR}/${P}"
 KEYWORDS=""
