@@ -22,13 +22,6 @@ LICENSE="GPL-2"
 SLOT="0"
 SAGE_USE="bliss meataxe"
 IUSE="debug +doc-html doc-pdf jmol latex testsuite X ${SAGE_USE}"
-L10N_USEDEP=""
-LANGS="ca de en es fr hu it ja pt ru tr"
-for X in ${LANGS} ; do
-	IUSE="${IUSE} l10n_${X}"
-	L10N_USEDEP="${L10N_USEDEP}l10n_${X}?,"
-done
-L10N_USEDEP="${L10N_USEDEP%?}"
 
 RESTRICT="mirror test"
 
@@ -100,8 +93,7 @@ DEPEND="
 	bliss? ( >=sci-libs/bliss-0.73 )
 	meataxe? ( sci-mathematics/shared_meataxe )
 "
-BDEPEND="app-portage/gentoolkit
-	doc-pdf? ( app-text/texlive[extra,${L10N_USEDEP}] )"
+BDEPEND="app-portage/gentoolkit"
 
 RDEPEND="
 	${DEPEND}
@@ -122,7 +114,7 @@ RDEPEND="
 	>=sci-mathematics/ExportSageNB-3.3
 	sci-mathematics/flintqs
 	~sci-mathematics/gfan-0.6.2
-	>=sci-mathematics/maxima-5.45.0[ecls]
+	>=sci-mathematics/maxima-5.45.1-r3[ecls]
 	>=sci-mathematics/mcube-20051209
 	>=sci-mathematics/nauty-2.6.1
 	>=sci-mathematics/optimal-20040603
@@ -142,19 +134,23 @@ RDEPEND="
 		|| ( app-text/dvipng[truetype] media-gfx/imagemagick[png] )
 	)
 "
+
+PDEPEND="
+	doc-html? ( ~sci-mathematics/sage-doc-${PV}[doc-html=,doc-pdf=] )
+	doc-pdf? ( ~sci-mathematics/sage-doc-${PV}[doc-html=,doc-pdf=] )"
+
 CHECKREQS_DISK_BUILD="8G"
 
-REQUIRED_USE="doc-html? ( jmol l10n_en )
-	doc-pdf? ( jmol l10n_en )
-	testsuite? ( doc-html jmol )"
+REQUIRED_USE="doc-html? ( jmol )
+	doc-pdf? ( jmol )
+	testsuite? ( jmol )"
 
 PATCHES=(
 	"${FILESDIR}"/${PN}-9.2-env.patch
 	"${FILESDIR}"/sage_exec-9.3.patch
-	"${FILESDIR}"/${PN}-9.3-sources.patch
 	"${FILESDIR}"/${PN}-9.3-jupyter.patch
-	"${FILESDIR}"/${PN}-9.3-linguas.patch
 	"${FILESDIR}"/${PN}-9.3-forcejavatmp.patch
+	"${FILESDIR}"/${PN}-9.5-neutering.patch
 	"${FILESDIR}"/trac31626.patch
 )
 
@@ -173,10 +169,6 @@ python_prepare_all() {
 	# Remove sage_setup to make sure the already installed one is used.
 	rm -rf sage_setup
 
-	# replace MAKE by MAKEOPTS in sage-num-threads.py
-	sed -i "s:os.environ\[\"MAKE\"\]:os.environ\[\"MAKEOPTS\"\]:g" \
-		bin/sage-num-threads.py
-
 	# Turn on debugging capability if required
 	if use debug ; then
 		sed -i "s:SAGE_DEBUG=\"no\":SAGE_DEBUG=\"yes\":" bin/sage
@@ -192,9 +184,10 @@ python_prepare_all() {
 	# From sage 9.4 the official setup.py is in pkgs/sagemath-standard
 	cp ../pkgs/sagemath-standard/setup.py setup.py || die "failed to copy the right setup.py"
 
+	# patching as to take place after copying setup.py since it is patched.
+	distutils-r1_python_prepare_all
+
 	# Remove sage's package management system, git capabilities and associated tests.
-	# The patch has to be applied on top of the previously copied setup.py which is why it is not moved to PATCHES.
-	eapply "${FILESDIR}"/${PN}-9.5-neutering.patch
 	cp -f "${FILESDIR}"/${PN}-7.3-package.py sage/misc/package.py
 	rm -f sage/misc/dist.py
 	rm -rf sage/dev
@@ -204,10 +197,10 @@ python_prepare_all() {
 	############################################################################
 
 	# sage on gentoo environment variables
-	cp -f "${FILESDIR}"/sage_conf.py-9.4 sage/sage_conf.py
+	cp -f "${FILESDIR}"/sage_conf.py-9.5 sage/sage_conf.py
 	eprefixify sage/sage_conf.py
-	# set $PF for the documentation location
-	sed -i "s:@GENTOO_PORTAGE_PF@:${PF}:" sage/sage_conf.py
+	# set the documentation location to the externally provided sage-doc package
+	sed -i "s:@GENTOO_PORTAGE_PF@:sage-doc-${PV}:" sage/sage_conf.py
 		# Fix finding pplpy documentation with intersphinx
 	local pplpyver=`equery -q l -F '$name-$fullversion' pplpy:0`
 	sed -i "s:@PPLY_DOC_VERS@:${pplpyver}:" sage/sage_conf.py
@@ -218,58 +211,17 @@ python_prepare_all() {
 	# cause very verbose message from the linker in turn triggering doctest failures.
 	sed -i "s:SAGE_LOCAL, \"lib\":SAGE_LOCAL, \"$(get_libdir)\":" \
 		sage/misc/cython.py
-
-	####################################
-	# Bootstrap
-	####################################
-
-	einfo "bootstrapping the documentation - be patient"
-	SAGE_ROOT="${S}"/.. PATH="${S}/../build/bin:${PATH}" doc/bootstrap || die "cannot bootstrap the documentation"
-
-	distutils-r1_python_prepare_all
 }
 
 python_configure_all() {
-	export SAGE_DOC="${WORKDIR}"/build_doc
-	export SAGE_DOC_SRC="${S}"/doc
-	export SAGE_DOC_MATHJAX=yes
-	export VARTEXFONTS="${T}"/fonts
 	export SAGE_VERSION=${PV}
 	export SAGE_NUM_THREADS=$(makeopts_jobs)
-	# try to fix random sphinx crash during the building of the documentation
-	export MPLCONFIGDIR="${T}"/matplotlib
-	# Avoid spurious message from the gtk backend by making sure it is never tried
-	export MPLBACKEND=Agg
-	for option in ${SAGE_USE}; do
-		use $option && export WANT_$option="True"
-	done
-	local mylang
-	for lang in ${LANGS} ; do
-		use l10n_$lang && mylang+="$lang "
-	done
-	export LANGUAGES="${mylang}"
-	if use debug; then
-		export SAGE_DEBUG=1
-	fi
 }
 
 python_configure(){
 	# files are not built unless they are touched
 	find sage -name "*pyx" -exec touch '{}' \; \
 		|| die "failed to touch *pyx files"
-}
-
-python_compile_all(){
-	if use doc-html ; then
-		HTML_DOCS="${WORKDIR}/build_doc/html/*"
-		"${PYTHON}" sage_docbuild/__main__.py --no-pdf-links all html || die "failed to produce html doc"
-	fi
-
-	if use doc-pdf ; then
-		DOCS="${WORKDIR}/build_doc/pdf"
-		export MAKE="make -j$(makeopts_jobs)"
-		"${PYTHON}" sage_docbuild/__main__.py all pdf || die "failed to produce pdf doc"
-	fi
 }
 
 python_install() {
@@ -287,35 +239,6 @@ python_install() {
 }
 
 python_install_all(){
-	if use doc-html ; then
-		####################################
-		# Prepare the html documentation for installation
-		####################################
-
-		pushd "${WORKDIR}"
-		# Prune _static folders
-		cp -r build_doc/html/en/_static build_doc/html/ || die "failed to copy _static folder"
-		for sdir in `find build_doc/html -name _static` ; do
-			if [ $sdir != "build_doc/html/_static" ] ; then
-				rm -rf $sdir || die "failed to remove $sdir"
-				ln -rst ${sdir%_static} build_doc/html/_static
-			fi
-		done
-		# Linking to local copy of mathjax folders rather than copying them
-		for sobject in $(ls "${EPREFIX}"/usr/share/mathjax/) ; do
-			rm -rf build_doc/html/_static/${sobject} \
-				|| die "failed to remove mathjax object $sobject"
-			ln -st build_doc/html/_static/ ../../../../mathjax/$sobject
-		done
-		# Work around for issue #402 until I understand where it comes from
-		for pyfile in `find build_doc/html -name \*.py` ; do
-			rm -rf "${pyfile}" || die "fail to to remove $pyfile"
-			rm -rf "${pyfile/%.py/.pdf}" "${pyfile/%.py/.png}"
-			rm -rf "${pyfile/%.py/.hires.png}" "${pyfile/%.py/.html}"
-		done
-		popd
-	fi
-
 	distutils-r1_python_install_all
 
 	# install env files under /etc
@@ -337,13 +260,6 @@ python_install_all(){
 		EOF
 	fi
 
-	# Files needed for generating documentation on the fly
-	docompress -x /usr/share/doc/"${PF}"/en /usr/share/doc/"${PF}"/common
-	# necessary for sagedoc.py call to sphinxify.
-	insinto /usr/share/doc/"${PF}"/common
-	doins -r doc/common/themes
-	# copy the license in a place that copying can find
-	docompress -x /usr/share/doc/"${PF}"
 	insinto /usr/share/doc/"${PF}"
 	doins ../COPYING.txt
 
@@ -354,9 +270,6 @@ python_install_all(){
 		/usr/share/jupyter/kernels/sagemath/logo-64x64.png
 	dosym ../../../../../"${PYTHON_SITEDIR#${EPREFIX}}"/sage/ext_data/notebook-ipython/logo.svg \
 		/usr/share/jupyter/kernels/sagemath/logo.svg
-	if use doc-html; then
-		dosym ../../../doc/"${PF}"/html/en /usr/share/jupyter/kernels/sagemath/doc
-	fi
 
 	# mpmath 1.2.0+ requires this to work with sage
 	echo "MPMATH_SAGE=1" | newenvd - 99"${PN}"
