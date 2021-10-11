@@ -114,7 +114,7 @@ RDEPEND="
 	>=sci-mathematics/ExportSageNB-3.3
 	sci-mathematics/flintqs
 	~sci-mathematics/gfan-0.6.2
-	>=sci-mathematics/maxima-5.45.0[ecls]
+	>=sci-mathematics/maxima-5.45.1-r3[ecls]
 	>=sci-mathematics/mcube-20051209
 	>=sci-mathematics/nauty-2.6.1
 	>=sci-mathematics/optimal-20040603
@@ -197,7 +197,7 @@ python_prepare_all() {
 	############################################################################
 
 	# sage on gentoo environment variables
-	cp -f "${FILESDIR}"/sage_conf.py-9.4 sage/sage_conf.py
+	cp -f "${FILESDIR}"/sage_conf.py-9.5 sage/sage_conf.py
 	eprefixify sage/sage_conf.py
 	# set the documentation location to the externally provided sage-doc package
 	sed -i "s:@GENTOO_PORTAGE_PF@:sage-doc-${PV}:" sage/sage_conf.py
