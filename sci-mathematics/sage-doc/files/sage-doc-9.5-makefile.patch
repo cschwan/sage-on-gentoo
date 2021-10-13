@@ -48,7 +48,7 @@ index 304d5aca14..c991613f38 100644
  # Matches doc-pdf--developer, doc-pdf--reference-manifolds etc.
  doc-pdf--%:
 -	cd $(SAGE_ROOT) && ./sage --docbuild $(subst -,/,$(subst doc-pdf--,,$@)) pdf $(SAGE_DOCBUILD_OPTS)
-+	$(PYTHON) -m sage_docbuild $(subst -,/,$(subst doc-pdf--,,$@)) pdf $(SAGE_DOCBUILD_OPTS)
++	MAKE=$(MAKE) $(PYTHON) -m sage_docbuild $(subst -,/,$(subst doc-pdf--,,$@)) pdf $(SAGE_DOCBUILD_OPTS)
  
  # reference manual, pdf
  doc-pdf-reference: doc-inventory-reference
