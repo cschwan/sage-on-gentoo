@@ -37,7 +37,7 @@ sci-mathematics/cubex
 sci-mathematics/dikcube
 ~sci-mathematics/gmp-ecm-7.0.4
 sci-mathematics/flintqs
-<sci-mathematics/giac-1.7.0.14
+<sci-mathematics/giac-1.7.0.13
 >=sci-mathematics/glpk-4.61
 ~sci-mathematics/lcalc-1.23
 ~sci-mathematics/maxima-5.45.1::sage-on-gentoo
