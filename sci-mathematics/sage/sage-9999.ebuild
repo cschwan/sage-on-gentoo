@@ -184,6 +184,11 @@ python_prepare_all() {
 	# From sage 9.4 the official setup.py is in pkgs/sagemath-standard
 	cp ../pkgs/sagemath-standard/setup.py setup.py || die "failed to copy the right setup.py"
 
+	einfo "generating setup.cfg and al. - be patient"
+	pushd "${S}/../build/pkgs/sagelib"
+	SAGE_ROOT="${S}/.." PATH="${S}/../build/bin:${PATH}"  ./bootstrap || die "cannot generate setup.cfg and al."
+	popd
+
 	# patching as to take place after copying setup.py since it is patched.
 	distutils-r1_python_prepare_all
 
