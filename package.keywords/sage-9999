@@ -68,6 +68,7 @@ www-misc/thebe
 ##########################
 sci-mathematics/ExportSageNB
 ~sci-chemistry/sage-jmol-bin-14.29.52
+~sci-mathematics/database-knotinfo-2021.9.1
 #########################
 # sage optional binding
 #########################
