@@ -23,7 +23,7 @@ index 06586f1..e131630 100644
 -        # Might be an installed old-style package
 -        condition = is_package_installed(pkg)
 -    else:
--        condition = (pkginfo["installed_version"] == pkginfo["remote_version"])
+-        condition = (pkginfo.installed_version == pkginfo.remote_version)
 +    import os
 +    condition = os.getenv('WANT_%s'%pkg,False)
      return condition
