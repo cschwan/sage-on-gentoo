@@ -275,9 +275,6 @@ python_install_all(){
 		/usr/share/jupyter/kernels/sagemath/logo-64x64.png
 	dosym ../../../../../"${PYTHON_SITEDIR#${EPREFIX}}"/sage/ext_data/notebook-ipython/logo.svg \
 		/usr/share/jupyter/kernels/sagemath/logo.svg
-
-	# mpmath 1.2.0+ requires this to work with sage
-	echo "MPMATH_SAGE=1" | newenvd - 99"${PN}"
 }
 
 pkg_preinst() {
