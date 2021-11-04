@@ -64,7 +64,7 @@ DEPEND="
 	media-libs/gd[jpeg,png]
 	media-libs/libpng:0=
 	>=sci-mathematics/arb-2.19.0
-	~sci-mathematics/cliquer-1.21
+	sci-mathematics/cliquer
 	~sci-mathematics/eclib-20210625[flint]
 	=sci-mathematics/flint-2.7*:=[ntl]
 	~sci-mathematics/gap-4.11.1
@@ -75,7 +75,7 @@ DEPEND="
 	<sci-mathematics/lcalc-2.0.0
 	~sci-mathematics/lrcalc-1.2
 	=sci-mathematics/pari-2.13*
-	~sci-mathematics/planarity-3.0.0.5
+	=sci-mathematics/planarity-3.0*
 	>=sci-mathematics/ratpoints-2.1.3
 	>=sci-mathematics/rw-0.7
 	=sci-mathematics/singular-4.2.0*[readline]
