@@ -159,7 +159,7 @@ pkg_setup() {
 	tc-export CC
 }
 
-src_unpack(){
+src_unpack() {
 	git-r3_src_unpack
 
 	default
@@ -223,7 +223,7 @@ python_configure_all() {
 	export SAGE_NUM_THREADS=$(makeopts_jobs)
 }
 
-python_configure(){
+python_configure() {
 	# files are not built unless they are touched
 	find sage -name "*pyx" -exec touch '{}' \; \
 		|| die "failed to touch *pyx files"
@@ -243,7 +243,7 @@ python_install() {
 	python_optimize "${D}/$(python_get_sitedir)/sage/ext_data/nbconvert"
 }
 
-python_install_all(){
+python_install_all() {
 	distutils-r1_python_install_all
 
 	# install env files under /etc
