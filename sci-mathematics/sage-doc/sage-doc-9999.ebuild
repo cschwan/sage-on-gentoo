@@ -101,6 +101,7 @@ src_compile(){
 
 	if use doc-pdf ; then
 		DOCS="${SAGE_DOC}/pdf"
+		export SPHINXBUILD=-j$(makeopts_jobs)
 		emake doc-pdf PYTHON=${PYTHON}
 	fi
 }
