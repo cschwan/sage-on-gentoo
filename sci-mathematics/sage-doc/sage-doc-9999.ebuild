@@ -102,10 +102,10 @@ src_compile(){
 
 	if use doc-pdf ; then
 		DOCS="${SAGE_DOC}/pdf"
-		export SPHINXBUILD=-j1
 		target="${target}doc-pdf"
 	fi
 
+	# Do not double quote target. We need spaces to be considered spaces and not part of a target name.
 	emake ${target} PYTHON=${PYTHON}
 }
 
