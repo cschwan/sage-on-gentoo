@@ -1,0 +1,23 @@
+diff --git a/setup.py b/setup.py
+index a1d9559..60e69b7 100644
+--- a/setup.py
++++ b/setup.py
+@@ -13,17 +13,4 @@ setup(name='sagetex',
+       license='GPLv2+',
+       py_modules=['sagetex', 'sagetexparse'],
+       scripts=['sagetex-run', 'sagetex-extract', 'sagetex-makestatic', 'sagetex-remote'],
+-      install_requires=['pyparsing'],
+-      data_files = [('share/texmf/tex/latex/sagetex',
+-        ['example.tex',
+-         'CONTRIBUTORS',
+-         'scripts.dtx',
+-         'remote-sagetex.dtx',
+-         'py-and-sty.dtx',
+-         'sagetex.dtx',
+-         'sagetex.ins',
+-         'sagetex.sty']),
+-      ('share/doc/sagetex', [
+-         'example.tex',
+-         'sagetex.pdf',
+-         'example.pdf'])])
++      install_requires=['pyparsing'])
