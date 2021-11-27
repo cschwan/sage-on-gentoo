@@ -29,5 +29,5 @@ src_install(){
 	# fro sage 9.4 onwards we need a versionned folder
 	# to preserve compatibility with 9.3 in this release, 
 	# we provide it as a symlink
-	dosym ../ /usr/share/sage/threejs/r${PV}
+	dosym build /usr/share/sage/threejs/r${PV}
 }
