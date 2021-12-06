@@ -68,7 +68,7 @@ DEPEND="
 	~sci-mathematics/lrcalc-1.2
 	=sci-mathematics/pari-2.13*
 	=sci-mathematics/planarity-3.0*
-	>=sci-mathematics/primecount-7.6
+	>=sci-mathematics/primecount-7.2
 	>=sci-mathematics/ratpoints-2.1.3
 	>=sci-mathematics/rw-0.7
 	~sci-mathematics/sage_setup-${PV}[${PYTHON_USEDEP}]
