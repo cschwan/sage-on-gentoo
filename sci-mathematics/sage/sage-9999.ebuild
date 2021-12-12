@@ -64,11 +64,11 @@ DEPEND="
 	|| ( =sci-mathematics/giac-1.6.0* =sci-mathematics/giac-1.7.0* )
 	>=sci-mathematics/glpk-5.0:0=[gmp]
 	~sci-mathematics/gmp-ecm-7.0.4[-openmp]
-	>=sci-mathematics/lcalc-1.23-r10[pari]
-	<sci-mathematics/lcalc-2.0.0
+	=sci-mathematics/lcalc-2.0*
 	~sci-mathematics/lrcalc-1.2
 	=sci-mathematics/pari-2.13*
 	=sci-mathematics/planarity-3.0*
+	>=sci-mathematics/primecount-7.2
 	>=sci-mathematics/ratpoints-2.1.3
 	>=sci-mathematics/rw-0.7
 	~sci-mathematics/sage_setup-${PV}[${PYTHON_USEDEP}]

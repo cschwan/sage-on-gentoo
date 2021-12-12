@@ -47,6 +47,8 @@ sci-mathematics/optimal
 sci-mathematics/palp
 =sci-mathematics/pari-2.13*
 sci-mathematics/pari-data
+~sci-mathematics/primecount-7.2
+~sci-mathematics/primesieve-7.7
 =sci-libs/brial-1.2*
 sci-mathematics/ratpoints
 sci-mathematics/rw
