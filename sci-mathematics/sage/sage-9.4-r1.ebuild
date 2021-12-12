@@ -153,6 +153,7 @@ REQUIRED_USE="doc-html? ( jmol l10n_en )
 
 PATCHES=(
 	"${FILESDIR}"/networkx-2.6.patch
+	"${FILESDIR}"/sphinx-4.3.patch
 	"${FILESDIR}"/${PN}-9.2-env.patch
 	"${FILESDIR}"/sage_exec-9.3.patch
 	"${FILESDIR}"/${PN}-9.3-sources.patch
