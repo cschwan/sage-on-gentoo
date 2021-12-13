@@ -1,13 +1,21 @@
 diff --git a/src/doc/en/reference/misc/index.rst b/src/doc/en/reference/misc/index.rst
-index f1f2438..6fe097e 100644
+index 1d15621f8b..1e5a4dda8b 100644
 --- a/src/doc/en/reference/misc/index.rst
 +++ b/src/doc/en/reference/misc/index.rst
-@@ -226,8 +226,6 @@ Distribution
- .. toctree::
-    :maxdepth: 1
+@@ -260,16 +260,6 @@ Interactive Sage Sessions
+    sage/misc/sagedoc
+    sage/misc/sphinxify
  
+-Distribution
+-~~~~~~~~~~~~
+-
+-.. toctree::
+-   :maxdepth: 1
+-
 -   sage/misc/package
 -   sage/misc/dist
-    sage/features
-    sage/features/bliss
-    sage/features/csdp
+-
+-
+ Credits
+ ~~~~~~~
+ 
