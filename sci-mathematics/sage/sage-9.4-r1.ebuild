@@ -63,7 +63,7 @@ DEPEND="
 	=media-gfx/threejs-sage-extension-122-r1
 	media-libs/gd[jpeg,png]
 	media-libs/libpng:0=
-	>=sci-mathematics/arb-2.19.0
+	=sci-mathematics/arb-2.19*
 	sci-mathematics/cliquer
 	~sci-mathematics/eclib-20210625[flint]
 	=sci-mathematics/flint-2.7*:=[ntl]
