@@ -32,7 +32,7 @@ index ca8374d..6dc9ef3 100644
  
  lazy_import('sage.misc.sagedoc', ['browse_sage_doc',
 diff --git a/sage/tests/cmdline.py b/sage/tests/cmdline.py
-index e6b480d..d0f028f 100644
+index ef86dc4..9d46410 100644
 --- a/sage/tests/cmdline.py
 +++ b/sage/tests/cmdline.py
 @@ -13,9 +13,7 @@ test.spyx
@@ -94,44 +94,44 @@ index e6b480d..d0f028f 100644
      Check an illegal command line option.  This outputs an error to stdout,
      but we allow stderr in case this changes in the future::
  
-diff --git a/setup.py b/setup.py
-index b94f197..967811c 100755
---- a/setup.py
-+++ b/setup.py
-@@ -146,20 +146,11 @@ code = setup(
-                  'bin/sage-massif',
-                  'bin/sage-omega',
-                  'bin/sage-valgrind',
--                 'bin/sage-venv-config',
-                  'bin/sage-version.sh',
-                  'bin/sage-cleaner',
--                 ## Only makes sense in sage-the-distribution. TODO: Move to another installation script.
--                 'bin/sage-list-packages',
--                 'bin/sage-location',
-                  ## Uncategorized scripts in alphabetical order
-                  'bin/math-readline',
--                 'bin/sage-env',
--                 # sage-env-config -- installed by sage_conf
--                 # sage-env-config.in -- not to be installed',
-                  'bin/sage-gdb-commands',
--                 'bin/sage-grep',
--                 'bin/sage-grepdoc',
-                  'bin/sage-inline-fortran',
-                  'bin/sage-ipynb2rst',
-                  'bin/sage-ipython',
-@@ -169,15 +160,9 @@ code = setup(
-                  'bin/sage-open',
-                  'bin/sage-preparse',
-                  'bin/sage-python',
--                 'bin/sage-rebase.bat',
--                 'bin/sage-rebase.sh',
--                 'bin/sage-rebaseall.bat',
--                 'bin/sage-rebaseall.sh',
-                  'bin/sage-run',
-                  'bin/sage-run-cython',
-                  'bin/sage-startuptime.py',
--                 'bin/sage-update-src',
--                 'bin/sage-update-version',
-                  ],
-       cmdclass = cmdclass,
-       ext_modules = cython_modules)
+diff --git a/setup.cfg.m4 b/setup.cfg.m4
+index 5c866c8..f583feb 100644
+--- a/setup.cfg.m4
++++ b/setup.cfg.m4
+@@ -88,20 +88,11 @@ scripts =
+     bin/sage-massif
+     bin/sage-omega
+     bin/sage-valgrind
+-    bin/sage-venv-config
+     bin/sage-version.sh
+     bin/sage-cleaner
+-    # Only makes sense in sage-the-distribution. TODO: Move to another installation script.
+-    bin/sage-list-packages
+-    bin/sage-location
+     # Uncategorized scripts in alphabetical order
+     bin/math-readline
+-    bin/sage-env
+-    # sage-env-config -- installed by sage_conf
+-    # sage-env-config.in -- not to be installed
+     bin/sage-gdb-commands
+-    bin/sage-grep
+-    bin/sage-grepdoc
+     bin/sage-inline-fortran
+     bin/sage-ipynb2rst
+     bin/sage-ipython
+@@ -111,15 +102,9 @@ scripts =
+     bin/sage-open
+     bin/sage-preparse
+     bin/sage-python
+-    bin/sage-rebase.bat
+-    bin/sage-rebase.sh
+-    bin/sage-rebaseall.bat
+-    bin/sage-rebaseall.sh
+     bin/sage-run
+     bin/sage-run-cython
+     bin/sage-startuptime.py
+-    bin/sage-update-src
+-    bin/sage-update-version
+ 
+ [options.package_data]
+ 
