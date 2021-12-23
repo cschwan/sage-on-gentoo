@@ -3,11 +3,10 @@
 
 EAPI=7
 
-PYTHON_COMPAT=( python3_{7..9} )
-PYTHON_REQ_USE="readline,sqlite"
+PYTHON_COMPAT=( python3_{8..9} )
 DISTUTILS_USE_SETUPTOOLS=bdepend
 
-inherit distutils-r1 prefix toolchain-funcs git-r3
+inherit distutils-r1 git-r3
 
 EGIT_REPO_URI="https://github.com/sagemath/sage.git"
 EGIT_BRANCH=develop
@@ -26,7 +25,7 @@ RESTRICT="mirror test"
 
 DEPEND=""
 RDEPEND="
-	>=dev-python/sphinx-4.1.0[${PYTHON_USEDEP}]
+	>=dev-python/sphinx-4.3.1[${PYTHON_USEDEP}]
 "
 PDEPEND=">=sci-mathematics/sage-9.5[${PYTHON_USEDEP}]"
 

@@ -1,8 +1,8 @@
 diff --git a/sage/doctest/control.py b/sage/doctest/control.py
-index afb0d6c..f80f8d6 100644
+index 88bdb6e..6bfd0b4 100644
 --- a/sage/doctest/control.py
 +++ b/sage/doctest/control.py
-@@ -363,11 +363,6 @@ class DocTestController(SageObject):
+@@ -400,11 +400,6 @@ class DocTestController(SageObject):
                  # that the package is actually installed).
                  if 'optional' in options.optional:
                      options.optional.discard('optional')
@@ -12,13 +12,13 @@ index afb0d6c..f80f8d6 100644
 -                            options.optional.add(pkg.name)
 -
                      from sage.features import package_systems
-                     options.optional.update(system.name for system in package_systems())
- 
+                     options.optional.update(system.name
+                                             for system in package_systems())
 diff --git a/sage/misc/all.py b/sage/misc/all.py
-index d108d4e..4dabb23 100644
+index ca8374d..6dc9ef3 100644
 --- a/sage/misc/all.py
 +++ b/sage/misc/all.py
-@@ -51,12 +51,6 @@ from .mrange import xmrange, mrange, xmrange_iter, mrange_iter, cartesian_produc
+@@ -53,12 +53,6 @@ from .mrange import xmrange, mrange, xmrange_iter, mrange_iter, cartesian_produc
  
  from .fpickle import pickle_function, unpickle_function
  
@@ -32,7 +32,7 @@ index d108d4e..4dabb23 100644
  
  lazy_import('sage.misc.sagedoc', ['browse_sage_doc',
 diff --git a/sage/tests/cmdline.py b/sage/tests/cmdline.py
-index c8d0e26..898ade3 100644
+index ef86dc4..9d46410 100644
 --- a/sage/tests/cmdline.py
 +++ b/sage/tests/cmdline.py
 @@ -13,9 +13,7 @@ test.spyx
@@ -94,44 +94,44 @@ index c8d0e26..898ade3 100644
      Check an illegal command line option.  This outputs an error to stdout,
      but we allow stderr in case this changes in the future::
  
-diff --git a/setup.py b/setup.py
-index 974e04d..7c5660d 100755
---- a/setup.py
-+++ b/setup.py
-@@ -142,20 +142,11 @@ code = setup(
-                  'bin/sage-massif',
-                  'bin/sage-omega',
-                  'bin/sage-valgrind',
--                 'bin/sage-venv-config',
-                  'bin/sage-version.sh',
-                  'bin/sage-cleaner',
--                 ## Only makes sense in sage-the-distribution. TODO: Move to another installation script.
--                 'bin/sage-list-packages',
--                 'bin/sage-location',
-                  ## Uncategorized scripts in alphabetical order
-                  'bin/math-readline',
--                 'bin/sage-env',
--                 # sage-env-config -- installed by sage_conf
--                 # sage-env-config.in -- not to be installed',
-                  'bin/sage-gdb-commands',
--                 'bin/sage-grep',
--                 'bin/sage-grepdoc',
-                  'bin/sage-inline-fortran',
-                  'bin/sage-ipynb2rst',
-                  'bin/sage-ipython',
-@@ -165,15 +156,9 @@ code = setup(
-                  'bin/sage-open',
-                  'bin/sage-preparse',
-                  'bin/sage-python',
--                 'bin/sage-rebase.bat',
--                 'bin/sage-rebase.sh',
--                 'bin/sage-rebaseall.bat',
--                 'bin/sage-rebaseall.sh',
-                  'bin/sage-run',
-                  'bin/sage-run-cython',
-                  'bin/sage-startuptime.py',
--                 'bin/sage-update-src',
--                 'bin/sage-update-version',
-                  ],
-       cmdclass = dict(build=sage_build,
-                       build_cython=sage_build_cython,
+diff --git a/setup.cfg.m4 b/setup.cfg.m4
+index 5c866c8..f583feb 100644
+--- a/setup.cfg.m4
++++ b/setup.cfg.m4
+@@ -88,20 +88,11 @@ scripts =
+     bin/sage-massif
+     bin/sage-omega
+     bin/sage-valgrind
+-    bin/sage-venv-config
+     bin/sage-version.sh
+     bin/sage-cleaner
+-    # Only makes sense in sage-the-distribution. TODO: Move to another installation script.
+-    bin/sage-list-packages
+-    bin/sage-location
+     # Uncategorized scripts in alphabetical order
+     bin/math-readline
+-    bin/sage-env
+-    # sage-env-config -- installed by sage_conf
+-    # sage-env-config.in -- not to be installed
+     bin/sage-gdb-commands
+-    bin/sage-grep
+-    bin/sage-grepdoc
+     bin/sage-inline-fortran
+     bin/sage-ipynb2rst
+     bin/sage-ipython
+@@ -111,15 +102,9 @@ scripts =
+     bin/sage-open
+     bin/sage-preparse
+     bin/sage-python
+-    bin/sage-rebase.bat
+-    bin/sage-rebase.sh
+-    bin/sage-rebaseall.bat
+-    bin/sage-rebaseall.sh
+     bin/sage-run
+     bin/sage-run-cython
+     bin/sage-startuptime.py
+-    bin/sage-update-src
+-    bin/sage-update-version
+ 
+ [options.package_data]
+ 

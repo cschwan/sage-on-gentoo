@@ -50,6 +50,7 @@ DEPEND="
 	>=dev-python/numpy-1.16.1[${PYTHON_USEDEP}]
 	>=dev-python/pkgconfig-1.2.2[${PYTHON_USEDEP}]
 	~dev-python/pplpy-0.8.7:=[doc,${PYTHON_USEDEP}]
+	dev-python/primecountpy[${PYTHON_USEDEP}]
 	>=dev-python/psutil-4.4.0[${PYTHON_USEDEP}]
 	>=dev-python/six-1.11.0[${PYTHON_USEDEP}]
 	>=dev-python/sphinx-4.0.2[${PYTHON_USEDEP}]
@@ -68,7 +69,6 @@ DEPEND="
 	~sci-mathematics/lrcalc-1.2
 	=sci-mathematics/pari-2.13*
 	=sci-mathematics/planarity-3.0*
-	>=sci-mathematics/primecount-7.2
 	>=sci-mathematics/ratpoints-2.1.3
 	>=sci-mathematics/rw-0.7
 	~sci-mathematics/sage_setup-${PV}[${PYTHON_USEDEP}]
@@ -167,8 +167,18 @@ src_unpack() {
 }
 
 python_prepare_all() {
+	distutils-r1_python_prepare_all
+
 	# Remove sage_setup to make sure the already installed one is used.
 	rm -rf sage_setup
+
+	# From sage 9.4 the official setup.py is in pkgs/sagemath-standard
+	cp ../pkgs/sagemath-standard/setup.py setup.py || die "failed to copy the right setup.py"
+
+	einfo "generating setup.cfg and al. - be patient"
+	pushd "${S}/../build/pkgs/sagelib"
+	SAGE_ROOT="${S}/.." PATH="${S}/../build/bin:${PATH}"  ./bootstrap || die "cannot generate setup.cfg and al."
+	popd
 
 	# Turn on debugging capability if required
 	if use debug ; then
@@ -181,17 +191,6 @@ python_prepare_all() {
 		-e "s:sage-system-python:python:" \
 		-i bin/* \
 			sage/ext_data/nbconvert/postprocess.py
-
-	# From sage 9.4 the official setup.py is in pkgs/sagemath-standard
-	cp ../pkgs/sagemath-standard/setup.py setup.py || die "failed to copy the right setup.py"
-
-	einfo "generating setup.cfg and al. - be patient"
-	pushd "${S}/../build/pkgs/sagelib"
-	SAGE_ROOT="${S}/.." PATH="${S}/../build/bin:${PATH}"  ./bootstrap || die "cannot generate setup.cfg and al."
-	popd
-
-	# patching as to take place after copying setup.py since it is patched.
-	distutils-r1_python_prepare_all
 
 	# Remove sage's package management system, git capabilities and associated tests.
 	cp -f "${FILESDIR}"/${PN}-7.3-package.py sage/misc/package.py
