@@ -72,7 +72,7 @@ DEPEND="
 	>=sci-mathematics/ratpoints-2.1.3
 	>=sci-mathematics/rw-0.7
 	~sci-mathematics/sage_setup-${PV}[${PYTHON_USEDEP}]
-	=sci-mathematics/singular-4.2.1*[readline]
+	~sci-mathematics/singular-4.2.1_p3[readline]
 	>=sci-libs/brial-1.2.5
 	~sci-libs/givaro-4.1.1
 	>=sci-libs/gsl-2.3
