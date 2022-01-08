@@ -1,7 +1,7 @@
 # Copyright 1999-2022 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=7
+EAPI=8
 
 PYTHON_COMPAT=( python3_{7..9} )
 PYTHON_REQ_USE="readline,sqlite"
@@ -21,7 +21,7 @@ S="${WORKDIR}/${P}/src"
 LICENSE="GPL-2"
 SLOT="0"
 SAGE_USE="bliss meataxe"
-IUSE="debug +doc-html doc-pdf jmol latex testsuite X ${SAGE_USE}"
+IUSE="debug +doc jmol latex testsuite X ${SAGE_USE}"
 
 RESTRICT="mirror test"
 
@@ -135,14 +135,11 @@ RDEPEND="
 	)
 "
 
-PDEPEND="
-	doc-html? ( ~sci-mathematics/sage-doc-${PV}[doc-html=,doc-pdf=] )
-	doc-pdf? ( ~sci-mathematics/sage-doc-${PV}[doc-html=,doc-pdf=] )"
+PDEPEND="doc? ( ~sci-mathematics/sage-doc-${PV} )"
 
 CHECKREQS_DISK_BUILD="8G"
 
-REQUIRED_USE="doc-html? ( jmol )
-	doc-pdf? ( jmol )
+REQUIRED_USE="doc? ( jmol )
 	testsuite? ( jmol )"
 
 PATCHES=(
@@ -316,9 +313,10 @@ pkg_postinst() {
 
 	fi
 
-	if ! use doc-html ; then
-		ewarn "You haven't requested the html documentation."
+	if ! use doc ; then
+		ewarn "You haven't requested the documentation."
 		ewarn "The html version of the sage manual won't be available in the sage notebook."
+		ewarn "It can still be installed by building sage-doc[html] separately."
 	fi
 
 	einfo ""
