@@ -1,1 +1,5 @@
+# sage 9.5 onwards
+sci-mathematics/sage doc
+sci-mathematics/sage-doc doc-html-bin -doc-html -doc-pdf l10n_en
+# sage 9.4 and under
 sci-mathematics/sage doc-html-bin -doc-html -doc-pdf l10n_en
