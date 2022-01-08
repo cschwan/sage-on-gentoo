@@ -1,7 +1,7 @@
-# Copyright 1999-2021 Gentoo Authors
+# Copyright 1999-2022 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=7
+EAPI=8
 
 PYTHON_COMPAT=( python3_{7..9} )
 PYTHON_REQ_USE="readline,sqlite"
@@ -39,7 +39,8 @@ BDEPEND="$(python_gen_any_dep "
 RDEPEND=""
 
 REQUIRED_USE="doc-html? ( l10n_en )
-	doc-pdf? ( l10n_en )"
+	doc-pdf? ( l10n_en )
+	|| ( doc-html doc-pdf )"
 
 PATCHES=(
 	"${FILESDIR}"/${PN}-9.5-neutering.patch
