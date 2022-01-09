@@ -19,9 +19,9 @@ S="${WORKDIR}/${P}"
 
 LICENSE="GPL-2"
 SLOT="0"
-IUSE="+doc-html doc-pdf"
-L10N_USEDEP=""
-LANGS="ca de en es fr hu it ja pt ru tr"
+IUSE="doc-pdf"
+L10N_USEDEP="l10n_en,"
+LANGS="ca de es fr hu it ja pt ru tr"
 for X in ${LANGS} ; do
 	IUSE="${IUSE} l10n_${X}"
 	L10N_USEDEP="${L10N_USEDEP}l10n_${X}?,"
@@ -38,14 +38,12 @@ BDEPEND="$(python_gen_any_dep "
 	doc-pdf? ( app-text/texlive[extra,${L10N_USEDEP}] )"
 RDEPEND=""
 
-REQUIRED_USE="doc-html? ( l10n_en )
-	doc-pdf? ( l10n_en )
-	|| ( doc-html doc-pdf )"
-
 PATCHES=(
 	"${FILESDIR}"/${PN}-9.5-neutering.patch
 	"${FILESDIR}"/${PN}-9.5-makefile.patch
 )
+
+HTML_DOCS="${WORKDIR}/build_doc/html/*"
 
 python_check_deps() {
 	has_version ">=dev-python/sphinx-4.1.0[${PYTHON_USEDEP}]" &&
@@ -82,7 +80,7 @@ src_configure(){
 	export MPLCONFIGDIR="${T}"/matplotlib
 	# Avoid spurious message from the gtk backend by making sure it is never tried
 	export MPLBACKEND=Agg
-	local mylang
+	local mylang="en "
 	for lang in ${LANGS} ; do
 		use l10n_$lang && mylang+="$lang "
 	done
@@ -95,11 +93,7 @@ src_compile(){
 	# Needs to be created beforehand or it gets created as a file with the content of _static/plot_directive.css
 	mkdir -p "${SAGE_DOC}"/html/en/reference/_static
 
-	target=""
-	if use doc-html ; then
-		HTML_DOCS="${SAGE_DOC}/html/*"
-		target="doc-html "
-	fi
+	target="doc-html "
 
 	if use doc-pdf ; then
 		DOCS="${SAGE_DOC}/pdf"
@@ -111,34 +105,32 @@ src_compile(){
 }
 
 src_install(){
-	if use doc-html ; then
-		####################################
-		# Prepare the html documentation for installation
-		####################################
+	####################################
+	# Prepare the documentation for installation
+	####################################
 
-		pushd "${WORKDIR}"
-		# Prune _static folders
-		cp -r build_doc/html/en/_static build_doc/html/ || die "failed to copy _static folder"
-		for sdir in `find build_doc/html -name _static` ; do
-			if [ $sdir != "build_doc/html/_static" ] ; then
-				rm -rf $sdir || die "failed to remove $sdir"
-				ln -rst ${sdir%_static} build_doc/html/_static
-			fi
-		done
-		# Linking to local copy of mathjax folders rather than copying them
-		for sobject in $(ls "${EPREFIX}"/usr/share/mathjax/) ; do
-			rm -rf build_doc/html/_static/${sobject} \
-				|| die "failed to remove mathjax object $sobject"
-			ln -st build_doc/html/_static/ ../../../../mathjax/$sobject
-		done
-		# Work around for issue #402 until I understand where it comes from
-		for pyfile in `find build_doc/html -name \*.py` ; do
-			rm -rf "${pyfile}" || die "fail to to remove $pyfile"
-			rm -rf "${pyfile/%.py/.pdf}" "${pyfile/%.py/.png}"
-			rm -rf "${pyfile/%.py/.hires.png}" "${pyfile/%.py/.html}"
-		done
-		popd
-	fi
+	pushd "${WORKDIR}"
+	# Prune _static folders
+	cp -r build_doc/html/en/_static build_doc/html/ || die "failed to copy _static folder"
+	for sdir in `find build_doc -name _static` ; do
+		if [ $sdir != "build_doc/html/_static" ] ; then
+			rm -rf $sdir || die "failed to remove $sdir"
+			ln -rst ${sdir%_static} build_doc/html/_static
+		fi
+	done
+	# Linking to local copy of mathjax folders rather than copying them
+	for sobject in $(ls "${EPREFIX}"/usr/share/mathjax/) ; do
+		rm -rf build_doc/html/_static/${sobject} \
+			|| die "failed to remove mathjax object $sobject"
+		ln -st build_doc/html/_static/ ../../../../mathjax/$sobject
+	done
+	# Work around for issue #402 until I understand where it comes from
+	for pyfile in `find build_doc/html -name \*.py` ; do
+		rm -rf "${pyfile}" || die "fail to to remove $pyfile"
+		rm -rf "${pyfile/%.py/.pdf}" "${pyfile/%.py/.png}"
+		rm -rf "${pyfile/%.py/.hires.png}" "${pyfile/%.py/.html}"
+	done
+	popd
 
 	einstalldocs
 
@@ -148,7 +140,5 @@ src_install(){
 	insinto /usr/share/doc/"${PF}"/common
 	doins -r src/doc/common/themes
 
-	if use doc-html; then
-		dosym ../../../doc/"${PF}"/html/en /usr/share/jupyter/kernels/sagemath/doc
-	fi
+	dosym ../../../doc/"${PF}"/html/en /usr/share/jupyter/kernels/sagemath/doc
 }
