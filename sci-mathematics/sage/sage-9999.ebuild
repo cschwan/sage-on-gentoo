@@ -34,7 +34,7 @@ DEPEND="
 	>=dev-libs/ppl-1.1
 	~dev-lisp/ecls-21.2.1
 	~dev-python/cypari2-2.1.2[${PYTHON_USEDEP}]
-	>=dev-python/cysignals-1.10.3[${PYTHON_USEDEP}]
+	>=dev-python/cysignals-1.11.2[${PYTHON_USEDEP}]
 	>=dev-python/cython-0.29.24[${PYTHON_USEDEP}]
 	>=dev-python/docutils-0.12[${PYTHON_USEDEP}]
 	dev-python/future[${PYTHON_USEDEP}]
