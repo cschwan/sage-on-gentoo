@@ -3,7 +3,7 @@
 ~dev-libs/ppl-1.2
 ~dev-lisp/ecls-21.2.1
 dev-python/cvxopt
-=dev-python/cysignals-1.10*
+=dev-python/cysignals-1.11*
 >=dev-python/cython-0.29.24
 dev-python/memory_allocator
 =dev-python/gmpy-2.1*
