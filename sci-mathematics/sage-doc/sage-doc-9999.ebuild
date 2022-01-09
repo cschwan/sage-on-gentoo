@@ -130,6 +130,8 @@ src_install(){
 		rm -rf "${pyfile/%.py/.pdf}" "${pyfile/%.py/.png}"
 		rm -rf "${pyfile/%.py/.hires.png}" "${pyfile/%.py/.html}"
 	done
+	# prune .buildinfo files, those are internal to sphinx and are not used after building.
+	find build_doc -name .buildinfo -delete || die "failed to prune buildinfo files"
 	popd
 
 	einstalldocs
