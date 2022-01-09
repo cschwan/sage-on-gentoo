@@ -1,9 +1,9 @@
 # Copyright 1999-2022 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=7
+EAPI=8
 
-PYTHON_COMPAT=( python3_{7..9} )
+PYTHON_COMPAT=( python3_{8..10} )
 PYTHON_REQ_USE="readline,sqlite"
 DISTUTILS_USE_SETUPTOOLS=bdepend
 
@@ -21,7 +21,7 @@ S="${WORKDIR}/${P}/src"
 LICENSE="GPL-2"
 SLOT="0"
 SAGE_USE="bliss meataxe"
-IUSE="debug +doc-html doc-pdf jmol latex testsuite X ${SAGE_USE}"
+IUSE="debug +doc jmol latex testsuite X ${SAGE_USE}"
 
 RESTRICT="mirror test"
 
@@ -34,7 +34,7 @@ DEPEND="
 	>=dev-libs/ppl-1.1
 	~dev-lisp/ecls-21.2.1
 	~dev-python/cypari2-2.1.2[${PYTHON_USEDEP}]
-	>=dev-python/cysignals-1.10.3[${PYTHON_USEDEP}]
+	>=dev-python/cysignals-1.11.2[${PYTHON_USEDEP}]
 	>=dev-python/cython-0.29.24[${PYTHON_USEDEP}]
 	>=dev-python/docutils-0.12[${PYTHON_USEDEP}]
 	dev-python/future[${PYTHON_USEDEP}]
@@ -72,7 +72,7 @@ DEPEND="
 	>=sci-mathematics/ratpoints-2.1.3
 	>=sci-mathematics/rw-0.7
 	~sci-mathematics/sage_setup-${PV}[${PYTHON_USEDEP}]
-	=sci-mathematics/singular-4.2.1*[readline]
+	~sci-mathematics/singular-4.2.1_p3[readline]
 	>=sci-libs/brial-1.2.5
 	~sci-libs/givaro-4.1.1
 	>=sci-libs/gsl-2.3
@@ -135,14 +135,11 @@ RDEPEND="
 	)
 "
 
-PDEPEND="
-	doc-html? ( ~sci-mathematics/sage-doc-${PV}[doc-html=,doc-pdf=] )
-	doc-pdf? ( ~sci-mathematics/sage-doc-${PV}[doc-html=,doc-pdf=] )"
+PDEPEND="doc? ( ~sci-mathematics/sage-doc-${PV} )"
 
 CHECKREQS_DISK_BUILD="8G"
 
-REQUIRED_USE="doc-html? ( jmol )
-	doc-pdf? ( jmol )
+REQUIRED_USE="doc? ( jmol )
 	testsuite? ( jmol )"
 
 PATCHES=(
@@ -316,9 +313,10 @@ pkg_postinst() {
 
 	fi
 
-	if ! use doc-html ; then
-		ewarn "You haven't requested the html documentation."
+	if ! use doc ; then
+		ewarn "You haven't requested the documentation."
 		ewarn "The html version of the sage manual won't be available in the sage notebook."
+		ewarn "It can still be installed by building sage-doc[html] separately."
 	fi
 
 	einfo ""

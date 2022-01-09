@@ -6,9 +6,6 @@
 		<name>Francois Bissey</name>
 	</maintainer>
 	<use>
-		<flag name='doc-html'>
-			build and install html documentation
-		</flag>
 		<flag name='doc-pdf'>
 			build and install documentation in pdf format
 		</flag>
