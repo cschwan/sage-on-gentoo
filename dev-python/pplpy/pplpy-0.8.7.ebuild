@@ -1,9 +1,9 @@
-# Copyright 1999-2021 Gentoo Authors
+# Copyright 1999-2022 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=7
+EAPI=8
 
-PYTHON_COMPAT=( python3_{6..9} )
+PYTHON_COMPAT=( python3_{7..10} )
 inherit distutils-r1
 
 DESCRIPTION="A Python wrapper for the Parma Polyhedra Library (PPL)"
@@ -15,7 +15,7 @@ SLOT="0/${PVR}"
 KEYWORDS="~amd64 ~x86"
 IUSE="doc"
 
-DEPEND=">=dev-python/gmpy-2.1.0_alpha4[${PYTHON_USEDEP}]
+DEPEND=">=dev-python/gmpy-2.1.0[${PYTHON_USEDEP}]
 	dev-python/cysignals[${PYTHON_USEDEP}]
 	dev-python/cython[${PYTHON_USEDEP}]
 	>=dev-libs/ppl-1.2
