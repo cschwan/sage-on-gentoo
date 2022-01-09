@@ -12,7 +12,7 @@ dev-python/terminado
 =dev-python/cypari2-2.1*
 =dev-python/jupyter_jsmol-0.2.4-r1
 dev-python/primecountpy
-dev-python/rpy::sage-on-gentoo
+>=dev-python/rpy-3.4.5
 =dev-python/sphinx-4.0*
 ~dev-python/traitlets-5.1.1
 =dev-tex/sagetex-3*
