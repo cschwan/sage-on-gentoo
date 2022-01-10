@@ -1,0 +1,19 @@
+diff --git a/sage/env.py b/sage/env.py
+index c4953cfa65..178e678f65 100644
+--- a/sage/env.py
++++ b/sage/env.py
+@@ -372,12 +372,12 @@ def sage_include_directories(use_sources=False):
+         sage: any(os.path.isfile(os.path.join(d, file)) for d in dirs)
+         True
+     """
+-    import distutils.sysconfig
++    import sysconfig
+ 
+     TOP = SAGE_SRC if use_sources else SAGE_LIB
+ 
+     dirs = [TOP,
+-            distutils.sysconfig.get_python_inc()]
++            sysconfig.get_config_var('INCLUDEPY')]
+     try:
+         import numpy
+         dirs.append(numpy.get_include())
