@@ -142,5 +142,5 @@ src_install(){
 	insinto /usr/share/doc/"${PF}"/common
 	doins -r src/doc/common/themes
 
-	dosym ../../../doc/"${PF}"/html/en /usr/share/jupyter/kernels/sagemath/doc
+	dosym -r /usr/share/doc/"${PF}"/html/en /usr/share/jupyter/kernels/sagemath/doc
 }
