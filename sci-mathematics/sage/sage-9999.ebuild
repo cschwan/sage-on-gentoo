@@ -150,7 +150,6 @@ PATCHES=(
 	"${FILESDIR}"/${PN}-9.3-forcejavatmp.patch
 	"${FILESDIR}"/${PN}-9.5-neutering.patch
 	"${FILESDIR}"/${PN}-9.5-distutils.patch
-	"${FILESDIR}"/${PN}-9.5-doctest.patch
 	"${FILESDIR}"/trac31626.patch
 )
 
