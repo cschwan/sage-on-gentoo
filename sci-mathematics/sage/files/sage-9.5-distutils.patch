@@ -17,16 +17,3 @@ index c4953cfa65..178e678f65 100644
      try:
          import numpy
          dirs.append(numpy.get_include())
-diff --git a/sage/all.py b/sage/all.py
-index 01ef327..19ca3d4 100644
---- a/sage/all.py
-+++ b/sage/all.py
-@@ -96,6 +96,10 @@ warnings.filterwarnings('ignore', category=DeprecationWarning,
- warnings.filterwarnings('ignore', category=DeprecationWarning,
-                         module='pythran')
- 
-+warnings.filterwarnings('ignore', category=DeprecationWarning,
-+                        message='The distutils(.sysconfig module| package) is deprecated',
-+                        module='numpy|sage.env|sage.features')
-+
- ################ end setup warnings ###############################
