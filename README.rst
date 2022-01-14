@@ -81,13 +81,13 @@ required entries::
      sage-on-gentoo/package.keywords/sage.prefix (for prefix users only)
 
 To use these files permanently, place symbolic links to those files into your
-``/etc/portage/package.unmask`` and ``/etc/portage/package.keywords/``
+``/etc/portage/package.unmask`` and ``/etc/portage/package.accept_keywords/``
 directories, respectively (prefix users should adjust with their prefix)::
 
      ln -s /var/db/repos/sage-on-gentoo/package.unmask/sage \
            /etc/portage/package.unmask/sage
      ln -s /var/db/repos/sage-on-gentoo/package.keywords/sage \
-           /etc/portage/package.keywords/sage
+           /etc/portage/package.accept_keywords/sage
 
 Otherwise, simply copy them into the respective directories for a one-time fix.
 
