@@ -1,0 +1,41 @@
+Title: sage 9.5 and after
+Author: Francois Bissey <frp.bissey@gmail.com>
+Content-Type: text/plain
+Posted: 2022-01-22
+Revision: 1
+News-Item-Format: 2.0
+Display-If-Installed: sci-mathematics/sage
+
+sage 9.5 is in its release candidate as I am writing this.
+Some important changes are coming to the way sage is distributed upstream and 
+in sage-on-gentoo. Upstream is taking steps to modularise sage and I am 
+following their lead.
+People who have been using this overlay for a long time will remember that
+sage was split in several ebuilds before being stitched together in a
+single one. In some way we are going back to that time.
+Compared to sage 9.4, sage 9.5 will be split into the following ebuilds
+ * sage_setup
+ * sage
+ * sage_docbuild
+ * sage-doc
+There will probably be at least a "sage_conf" ebuild for sage-9.6.
+I didn't think it was mature enough to split it in 9.5.
+
+To help manage these ebuilds a sagemath set has been created and is stored
+in the overlay at sets/sagemath, see
+http://wiki.gentoo.org/wiki//etc/portage/sets
+for more informations about sets. The set can be linked in similar way 
+that keyword and use files are to become usable. There will be updated
+instructions for it in the overlay README.
+
+There will be some changes to use flags as well. "doc-html", "doc-html-bin" and
+"doc-pdf-bin" will be removed. The sage ebuild will have a standard "doc" flag 
+to trigger the installation of sage-doc. html documentation will be installed 
+by default. As it turns out it is a requirement to build the pdf documentation.
+Binary documentation install will be triggered by a new "prebuild" flag.
+
+Note for people brave enough to build the documentation in html and pdf in all
+available languages: There is a race condition in make that manifest itself 
+when building html and pdf for many languages. It became apparent when we
+fixed parallel make for the documentation. Building with a few less threads
+usually works.
