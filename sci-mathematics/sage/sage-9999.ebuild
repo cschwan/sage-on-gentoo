@@ -299,6 +299,12 @@ pkg_postinst() {
 	einfo "of the these: https://sagemath.org/packages/optional/) available"
 	einfo "which may be installed with portage as usual."
 
+	einfo ""
+	einfo "* Displaying plots *"
+	einfo "if you want sage to display plots while working from a terminal,"
+	einfo "you should make sure that matplotlib is installed with at least"
+	einfo "one graphical backend such as gtk3 or qt5."
+
 	if use testsuite ; then
 
 	einfo ""
