@@ -110,6 +110,10 @@ This is only available for stable realease of sage (sage-X.Y). User of the devel
 version of sage (sage-9999 ebuild) need to build their own documentation from scratch
 if they need it.
 
+NOTE: if you want sage to display plots while working from a terminal, you should 
+make sure that matplotlib is installed with at least one graphical backend such as
+gtk3 or qt5.
+
 INSTALL SAGE
 ------------
 
