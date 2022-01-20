@@ -1,8 +1,8 @@
 Title: sage 9.5 and after
 Author: Francois Bissey <frp.bissey@gmail.com>
 Content-Type: text/plain
-Posted: 2022-01-22
-Revision: 1
+Posted: 2022-01-20
+Revision: 2
 News-Item-Format: 2.0
 Display-If-Installed: sci-mathematics/sage
 
