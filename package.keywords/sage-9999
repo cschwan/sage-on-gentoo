@@ -1,57 +1,30 @@
->=dev-libs/mathjax-2.5.0
->=dev-libs/ntl-9.8.1
-~dev-libs/ppl-1.2
-~dev-lisp/ecls-21.2.1
 dev-python/cvxopt
 =dev-python/cysignals-1.11*
->=dev-python/cython-0.29.24
 dev-python/memory_allocator
-=dev-python/gmpy-2.1*
 =dev-python/pplpy-0.8*
-dev-python/terminado
 =dev-python/cypari2-2.1*
 =dev-python/jupyter_jsmol-0.2.4-r1
 dev-python/primecountpy
 >=dev-python/rpy-3.4.5
-=dev-python/sphinx-4.0*
-~dev-python/traitlets-5.1.1
 =dev-tex/sagetex-3*
 media-gfx/tachyon
 ~media-gfx/threejs-sage-extension-122
-~sci-libs/cddlib-094m
 sci-libs/dsdp
-~sci-libs/fflas-ffpack-2.4.3
->=sci-libs/fplll-5.1.0
 >=dev-python/fpylll-0.2.4
-~sci-libs/givaro-4.1.1
-~sci-mathematics/eclib-20210625
-~sci-libs/linbox-1.6.3
-sci-libs/m4ri
-sci-libs/m4rie
 ~sci-libs/pynac-0.7.29
-sci-libs/symmetrica
 sci-libs/zn_poly
-=sci-mathematics/arb-2.19*
 sci-mathematics/cu2
 sci-mathematics/cubex
 sci-mathematics/dikcube
-~sci-mathematics/gmp-ecm-7.0.4
-sci-mathematics/flintqs
 <sci-mathematics/giac-1.7.0.13
->=sci-mathematics/glpk-4.61
 ~sci-mathematics/lcalc-1.23
 ~sci-mathematics/maxima-5.45.1::sage-on-gentoo
 sci-mathematics/mcube
-sci-mathematics/nauty
 sci-mathematics/optimal
 sci-mathematics/palp
-=sci-mathematics/pari-2.13*
-sci-mathematics/pari-data
 ~sci-mathematics/primecount-7.2
 ~sci-mathematics/primesieve-7.7
-=sci-libs/brial-1.2*
 sci-mathematics/ratpoints
-sci-mathematics/rw
 ~sci-mathematics/sage-9999 **
 ~sci-mathematics/sage_setup-9999 **
 ~sci-mathematics/sage_docbuild-9999 **
@@ -62,7 +35,6 @@ sci-mathematics/rw
 ~sci-mathematics/sage-data-graphs-20210214
 ~sci-mathematics/sage-data-polytopes_db-20170220
 ~sci-mathematics/singular-4.2.1_p3
-sci-mathematics/sympow
 www-misc/thebe
 ##########################
 # optional dependencies
@@ -73,8 +45,6 @@ sci-mathematics/ExportSageNB
 #########################
 # sage optional binding
 #########################
-sci-libs/libbraiding
-sci-libs/libhomfly
 sci-libs/modular_decomposition
 ~sci-libs/bliss-0.73
 dev-libs/igraph
