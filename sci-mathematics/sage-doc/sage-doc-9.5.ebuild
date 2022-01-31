@@ -43,11 +43,11 @@ S="${WORKDIR}/sage-${PV}"
 
 HTML_DOCS="${WORKDIR}/build_doc/html/*"
 
-#python_check_deps() {
-#	has_version ">=dev-python/sphinx-4.1.0[${PYTHON_USEDEP}]" &&
-#	has_version "~sci-mathematics/sage-${PV}[${PYTHON_USEDEP},jmol]" &&
-#	has_version "~sci-mathematics/sage_docbuild-${PV}[${PYTHON_USEDEP}]"
-#}
+python_check_deps() {
+	has_version ">=dev-python/sphinx-4.1.0[${PYTHON_USEDEP}]" &&
+	has_version "~sci-mathematics/sage-${PV}[${PYTHON_USEDEP},jmol]" &&
+	has_version "~sci-mathematics/sage_docbuild-${PV}[${PYTHON_USEDEP}]"
+}
 
 src_prepare(){
 	einfo "bootstrapping the documentation - be patient"
