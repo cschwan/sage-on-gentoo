@@ -190,7 +190,7 @@ python_prepare_all() {
 			sage/ext_data/nbconvert/postprocess.py
 
 	# Remove sage's package management system, git capabilities and associated tests.
-	cp -f "${FILESDIR}"/${PN}-7.3-package.py sage/misc/package.py
+	cp -f "${FILESDIR}"/${PN}-9.6-package.py sage/misc/package.py
 	rm -f sage/misc/dist.py
 	rm -rf sage/dev
 
