@@ -58,7 +58,7 @@ class PackageNotFoundError(RuntimeError):
             "It may or may not be available in portage"
             .format(self.args[0]))
 
-def is_package_installed_and_updated(package: str) -> bool:
+def is_package_installed_and_updated(pkg: str) -> bool:
 
     import os
     condition = os.getenv('WANT_%s'%pkg,False)
