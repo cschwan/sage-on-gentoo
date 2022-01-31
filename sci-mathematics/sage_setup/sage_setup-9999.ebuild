@@ -33,10 +33,6 @@ RDEPEND="
 	!<=sci-mathematics/sage-9.4
 "
 
-PATCHES=(
-	"${FILESDIR}"/${PN}-9.5-options.patch
-)
-
 src_unpack(){
 	git-r3_src_unpack
 
