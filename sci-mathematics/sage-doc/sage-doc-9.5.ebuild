@@ -8,11 +8,9 @@ PYTHON_REQ_USE="readline,sqlite"
 
 inherit python-any-r1 multiprocessing
 
-MY_PN="sagemath-standard"
-MY_P="${MY_PN}-${PV}"
 DESCRIPTION="Build the sage documentation"
 HOMEPAGE="https://www.sagemath.org"
-SRC_URI="mirror://pypi/${MY_PN:0:1}/${MY_PN}/${MY_P}.tar.gz"
+SRC_URI="https://github.com/sagemath/sage/archive/${PV}.tar.gz -> ${P}.tar.gz"
 KEYWORDS="~amd64 ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos"
 
 LICENSE="GPL-2"
@@ -41,20 +39,23 @@ PATCHES=(
 	"${FILESDIR}"/${PN}-9.5-makefile.patch
 )
 
-S="${WORKDIR}/${MY_P}"
+S="${WORKDIR}/sage-${PV}"
 
 HTML_DOCS="${WORKDIR}/build_doc/html/*"
 
-python_check_deps() {
-	has_version ">=dev-python/sphinx-4.1.0[${PYTHON_USEDEP}]" &&
-	has_version "~sci-mathematics/sage-${PV}[${PYTHON_USEDEP},jmol]" &&
-	has_version "~sci-mathematics/sage_docbuild-${PV}[${PYTHON_USEDEP}]"
-}
+#python_check_deps() {
+#	has_version ">=dev-python/sphinx-4.1.0[${PYTHON_USEDEP}]" &&
+#	has_version "~sci-mathematics/sage-${PV}[${PYTHON_USEDEP},jmol]" &&
+#	has_version "~sci-mathematics/sage_docbuild-${PV}[${PYTHON_USEDEP}]"
+#}
 
 src_prepare(){
+	einfo "bootstrapping the documentation - be patient"
+	SAGE_ROOT="${S}" PATH="${S}/build/bin:${PATH}" src/doc/bootstrap || die "cannot bootstrap the documentation"
+
 	# remove all the sources outside of src/doc to avoid interferences
-	for object in * ; do
-		if [ $object != "doc" ] ; then
+	for object in src/* ; do
+		if [ $object != "src/doc" ] ; then
 			rm -rf $object || die "failed to remove $object"
 		fi
 	done
@@ -79,7 +80,7 @@ src_configure(){
 }
 
 src_compile(){
-	cd doc
+	cd src/doc
 
 	# Needs to be created beforehand or it gets created as a file with the content of _static/plot_directive.css
 	mkdir -p "${SAGE_DOC}"/html/en/reference/_static
