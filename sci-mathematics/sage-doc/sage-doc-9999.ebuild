@@ -45,6 +45,9 @@ PATCHES=(
 
 HTML_DOCS="${WORKDIR}/build_doc/html/*"
 
+# for some reason opened for write during inventory of reference/plotting(?) - no write happens.
+addpredict "${EPREFIX}/usr/share/sage/cremona/cremona_mini.db"
+
 python_check_deps() {
 	has_version ">=dev-python/sphinx-4.1.0[${PYTHON_USEDEP}]" &&
 	has_version "~sci-mathematics/sage-${PV}[${PYTHON_USEDEP},jmol]" &&
@@ -132,6 +135,12 @@ src_install(){
 	done
 	# prune .buildinfo files, those are internal to sphinx and are not used after building.
 	find build_doc -name .buildinfo -delete || die "failed to prune buildinfo files"
+
+	# Replace full "build" path to html index in pdf doc
+	if use doc-pdf ; then
+		sed -e "s:${WORKDIR}/build_doc:../../..:g" -i \
+			build_doc/pdf/en/reference/index.html
+	fi
 	popd
 
 	einstalldocs
