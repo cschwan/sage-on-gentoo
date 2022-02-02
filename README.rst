@@ -71,19 +71,19 @@ UNMASK EBUILDS
 
 Before being able to install you may need to unmask the required ebuilds. If
 you are using Gentoo/unstable or Funtoo (i.e. you have a line like
-``ACCEPT_KEYWORDS=~arch`` in your ``/etc/portage/make.conf``) you can skip this step.
+``ACCEPT_KEYWORDS=~arch`` in your ``/etc/portage/make.conf``) you can skip this step::
 
      sage-on-gentoo/package.keywords/sage
      sage-on-gentoo/package.keywords/sage.prefix (for prefix users only)
 
-To use these files permanently, place symbolic links to one of those files into your
+To use these files permanently, place symbolic link to the one of those files into your
 ``/etc/portage/package.accept_keywords/`` directory
 (prefix users should adjust with their prefix)::
 
      ln -s /var/db/repos/sage-on-gentoo/package.keywords/sage \
            /etc/portage/package.accept_keywords/sage
 
-Otherwise, simply copy them into the respective directories for a one-time fix.
+Otherwise, simply copy it into the directory for a one-time fix.
 
 The sage.prefix files contains keywords for ebuilds lacking any prefix keywords.
 
