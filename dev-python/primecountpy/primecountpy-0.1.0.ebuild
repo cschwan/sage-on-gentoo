@@ -16,5 +16,6 @@ KEYWORDS="~amd64"
 IUSE=""
 
 DEPEND=">=sci-mathematics/primecount-7.2
-	>=dev-python/cython-0.29.25[${PYTHON_USEDEP}]"
+	>=dev-python/cython-0.29.25[${PYTHON_USEDEP}]
+	>=dev-python/cysignals-1.11.2[${PYTHON_USEDEP}]"
 RDEPEND="${DEPEND}"
