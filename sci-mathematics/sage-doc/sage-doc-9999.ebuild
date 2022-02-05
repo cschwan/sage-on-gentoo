@@ -139,7 +139,7 @@ src_install(){
 
 	# Replace full "build" path to html index in pdf doc
 	if use doc-pdf ; then
-		sed -e "s:${WORKDIR}/build_doc:../../..:g" -i \
+		sed -e "s:${WORKDIR}/build_doc:${EPREFIX}/usr/share/doc/${P}:g" -i \
 			build_doc/pdf/en/reference/index.html
 	fi
 	popd
