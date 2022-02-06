@@ -143,7 +143,6 @@ REQUIRED_USE="doc? ( jmol )
 	testsuite? ( jmol )"
 
 PATCHES=(
-	"${FILESDIR}"/sphinx-4.3.patch
 	"${FILESDIR}"/${PN}-9.2-env.patch
 	"${FILESDIR}"/sage_exec-9.3.patch
 	"${FILESDIR}"/${PN}-9.3-jupyter.patch
@@ -191,7 +190,7 @@ python_prepare_all() {
 			sage/ext_data/nbconvert/postprocess.py
 
 	# Remove sage's package management system, git capabilities and associated tests.
-	cp -f "${FILESDIR}"/${PN}-7.3-package.py sage/misc/package.py
+	cp -f "${FILESDIR}"/${PN}-9.6-package.py sage/misc/package.py
 	rm -f sage/misc/dist.py
 	rm -rf sage/dev
 
