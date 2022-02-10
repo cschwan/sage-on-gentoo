@@ -31,7 +31,6 @@ PDEPEND=">=sci-mathematics/sage-9.5[${PYTHON_USEDEP}]"
 
 PATCHES=(
 	"${FILESDIR}"/sage-9.3-linguas.patch
-	"${FILESDIR}"/track33085.patch
 )
 
 src_unpack(){
