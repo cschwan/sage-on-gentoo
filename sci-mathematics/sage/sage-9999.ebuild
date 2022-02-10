@@ -150,7 +150,6 @@ PATCHES=(
 	"${FILESDIR}"/${PN}-9.5-neutering.patch
 	"${FILESDIR}"/${PN}-9.5-distutils.patch
 	"${FILESDIR}"/trac31626.patch
-	"${FILESDIR}"/track33085.patch
 )
 
 pkg_setup() {
