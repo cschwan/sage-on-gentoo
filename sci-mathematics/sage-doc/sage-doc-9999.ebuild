@@ -96,12 +96,11 @@ src_compile(){
 	# Needs to be created beforehand or it gets created as a file with the content of _static/plot_directive.css
 	mkdir -p "${SAGE_DOC}"/html/en/reference/_static
 
-	target="doc-html"
+	target="doc-html "
 
 	if use doc-pdf ; then
 		DOCS="${SAGE_DOC}/pdf"
-		# make doc-pdf also make html somehow.
-		target="doc-pdf"
+		target="${target}doc-pdf"
 	fi
 
 	# Do not double quote target. We need spaces to be considered spaces and not part of a target name.
