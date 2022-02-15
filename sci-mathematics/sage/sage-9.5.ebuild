@@ -52,7 +52,7 @@ DEPEND="
 	>=dev-python/psutil-4.4.0[${PYTHON_USEDEP}]
 	>=dev-python/six-1.11.0[${PYTHON_USEDEP}]
 	>=dev-python/sphinx-4.0.2[${PYTHON_USEDEP}]
-	=media-gfx/threejs-sage-extension-122-r1
+	~media-gfx/threejs-sage-extension-122
 	media-libs/gd[jpeg,png]
 	media-libs/libpng:0=
 	=sci-mathematics/arb-2.19*
