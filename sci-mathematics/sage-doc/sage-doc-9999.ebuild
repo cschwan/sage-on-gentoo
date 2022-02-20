@@ -39,9 +39,10 @@ BDEPEND="$(python_gen_any_dep "
 RDEPEND=""
 
 PATCHES=(
+	"${FILESDIR}"/${PN}-9.6-extlinks.patch
 	"${FILESDIR}"/sphinx-4.4.patch
 	"${FILESDIR}"/${PN}-9.5-neutering.patch
-	"${FILESDIR}"/${PN}-9.5-makefile.patch
+	"${FILESDIR}"/${PN}-9.6-makefile.patch
 )
 
 HTML_DOCS="${WORKDIR}/build_doc/html/*"
@@ -50,7 +51,7 @@ HTML_DOCS="${WORKDIR}/build_doc/html/*"
 addpredict "${EPREFIX}/usr/share/sage/cremona/cremona_mini.db"
 
 python_check_deps() {
-	has_version ">=dev-python/sphinx-4.1.0[${PYTHON_USEDEP}]" &&
+	has_version ">=dev-python/sphinx-4.4.0[${PYTHON_USEDEP}]" &&
 	has_version "~sci-mathematics/sage-${PV}[${PYTHON_USEDEP},jmol]" &&
 	has_version "~sci-mathematics/sage_docbuild-${PV}[${PYTHON_USEDEP}]"
 }
