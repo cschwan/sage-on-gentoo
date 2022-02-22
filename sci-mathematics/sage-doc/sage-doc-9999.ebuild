@@ -39,8 +39,7 @@ BDEPEND="$(python_gen_any_dep "
 RDEPEND=""
 
 PATCHES=(
-	"${FILESDIR}"/${PN}-9.6-extlinks.patch
-	"${FILESDIR}"/sphinx-4.4.patch
+	"${FILESDIR}"/${PN}-9.5-sphinx-4.4.patch
 	"${FILESDIR}"/${PN}-9.5-neutering.patch
 	"${FILESDIR}"/${PN}-9.6-makefile.patch
 )
