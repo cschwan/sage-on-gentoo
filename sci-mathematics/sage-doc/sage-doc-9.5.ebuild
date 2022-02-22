@@ -35,6 +35,7 @@ BDEPEND="$(python_gen_any_dep "
 RDEPEND=""
 
 PATCHES=(
+	"${FILESDIR}"/${PN}-9.5-sphinx-4.4.patch
 	"${FILESDIR}"/${PN}-9.5-neutering.patch
 	"${FILESDIR}"/${PN}-9.5-makefile.patch
 )
@@ -50,6 +51,8 @@ python_check_deps() {
 }
 
 src_prepare(){
+	default
+
 	einfo "bootstrapping the documentation - be patient"
 	SAGE_ROOT="${S}" PATH="${S}/build/bin:${PATH}" src/doc/bootstrap || die "cannot bootstrap the documentation"
 
@@ -59,8 +62,6 @@ src_prepare(){
 			rm -rf $object || die "failed to remove $object"
 		fi
 	done
-
-	default
 }
 
 src_configure(){
