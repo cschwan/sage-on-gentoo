@@ -1,0 +1,103 @@
+diff --git a/sage/graphs/generators/distance_regular.pyx b/sage/graphs/generators/distance_regular.pyx
+index e97241cece..e8a731b682 100644
+--- a/sage/graphs/generators/distance_regular.pyx
++++ b/sage/graphs/generators/distance_regular.pyx
+@@ -985,7 +985,7 @@ def HalfCube(const int n):
+ 
+     See [BCN1989]_ pp. 264, 265 or [VDKT2016]_ p. 21.
+     This construction can be found on
+-    https://en.wikipedia.org/wiki/Halved_cube_graph#Equivalent_constructions
++    :wikipedia:`Halved_cube_graph#Equivalent_constructions`
+ 
+     TESTS:
+ 
+diff --git a/sage/knots/knotinfo.py b/sage/knots/knotinfo.py
+index facc4ad667..527406c638 100644
+--- a/sage/knots/knotinfo.py
++++ b/sage/knots/knotinfo.py
+@@ -42,7 +42,7 @@ Also, note that the braid notation is used according to Sage, even thought in
+ the source where it is taken from, the braid generators are assumed to have a
+ negative crossing which would be opposite to the convention in Sage (see definition
+ 3 of `Gittings, T., "Minimum Braids: A Complete Invariant of Knots and Links
+-<https://arxiv.org/abs/math/0401051>`__).
++<:arxiv:`math/0401051`>`__).
+ 
+ For different conventions regarding normalization of the polynomial invariants see
+ the according documentation of :meth:`KnotInfoBase.homfly_polynomial`,
+diff --git a/sage/matrix/matrix_polynomial_dense.pyx b/sage/matrix/matrix_polynomial_dense.pyx
+index 566077bde7..80e8d3470c 100644
+--- a/sage/matrix/matrix_polynomial_dense.pyx
++++ b/sage/matrix/matrix_polynomial_dense.pyx
+@@ -781,7 +781,7 @@ cdef class Matrix_polynomial_dense(Matrix_generic_dense):
+             2021), it would be highly beneficial to use conversions and rely on
+             polynomials with matrix coefficients when the matrix size is
+             "large" and the degree "small", see
+-            [https://trac.sagemath.org/ticket/31472#comment:5].
++            :trac:`31472#comment:5`.
+         """
+         if d <= 0:
+             raise ValueError("the precision must be positive")
+diff --git a/sage/misc/sagedoc.py b/sage/misc/sagedoc.py
+index 583ca06945..4b3853f3e8 100644
+--- a/sage/misc/sagedoc.py
++++ b/sage/misc/sagedoc.py
+@@ -495,13 +495,13 @@ def process_dollars(s):
+ pythonversion = sys.version.split(' ')[0]
+ extlinks = {
+     'python': ('https://docs.python.org/release/'+pythonversion+'/%s', ''),
+-    'trac': ('https://trac.sagemath.org/%s', 'trac ticket #'),
+-    'wikipedia': ('https://en.wikipedia.org/wiki/%s', 'Wikipedia article '),
+-    'arxiv': ('https://arxiv.org/abs/%s', 'arXiv '),
+-    'oeis': ('https://oeis.org/%s', 'OEIS sequence '),
+-    'doi': ('https://doi.org/%s', 'doi:'),
+-    'pari': ('https://pari.math.u-bordeaux.fr/dochtml/help/%s', 'pari:'),
+-    'mathscinet': ('https://www.ams.org/mathscinet-getitem?mr=%s', 'MathSciNet ')
++    'trac': ('https://trac.sagemath.org/%s', 'trac ticket #%s'),
++    'wikipedia': ('https://en.wikipedia.org/wiki/%s', 'Wikipedia article %s'),
++    'arxiv': ('https://arxiv.org/abs/%s', 'arXiv %s'),
++    'oeis': ('https://oeis.org/%s', 'OEIS sequence %s'),
++    'doi': ('https://doi.org/%s', 'doi:%s'),
++    'pari': ('https://pari.math.u-bordeaux.fr/dochtml/help/%s', 'pari:%s'),
++    'mathscinet': ('https://www.ams.org/mathscinet-getitem?mr=%s', 'MathSciNet %s')
+ }
+ 
+ def process_extlinks(s, embedded=False):
+diff --git a/sage/modules/with_basis/invariant.py b/sage/modules/with_basis/invariant.py
+index ff4388bb1d..eaf4ce2079 100644
+--- a/sage/modules/with_basis/invariant.py
++++ b/sage/modules/with_basis/invariant.py
+@@ -205,7 +205,7 @@ class FiniteDimensionalInvariantModule(SubmoduleWithBasis):
+         Extend when `M` does not have a basis and `S` is a permutation
+         group using:
+ 
+-        - https://arxiv.org/abs/0812.3082
++        - :arxiv:`0812.3082`
+         - https://www.dmtcs.org/pdfpapers/dmAA0123.pdf
+     """
+     def __init__(self, M, S, action=operator.mul, side='left', *args, **kwargs):
+diff --git a/sage/rings/function_field/order.py b/sage/rings/function_field/order.py
+index ebe610bc50..7b0841e235 100644
+--- a/sage/rings/function_field/order.py
++++ b/sage/rings/function_field/order.py
+@@ -1772,7 +1772,7 @@ class FunctionFieldMaximalOrder_polymod(FunctionFieldMaximalOrder):
+         finite-dimensional algebra, a construct for which we do
+         support primary decomposition.
+ 
+-        See https://trac.sagemath.org/attachment/ticket/28094/decomposition.pdf
++        See :trac:`attachment/ticket/28094/decomposition.pdf`
+ 
+         .. TODO::
+ 
+diff --git a/sage/sat/solvers/satsolver.pyx b/sage/sat/solvers/satsolver.pyx
+index 3f7b7224a5..352f0dde9f 100644
+--- a/sage/sat/solvers/satsolver.pyx
++++ b/sage/sat/solvers/satsolver.pyx
+@@ -316,7 +316,7 @@ def SAT(solver=None, *args, **kwds):
+     Return a :class:`SatSolver` instance.
+ 
+     Through this class, one can define and solve `SAT
+-    <https://en.wikipedia.org/wiki/Boolean_satisfiability_problem>`__ problems.
++    <:wikipedia:`Boolean_satisfiability_problem`>`__ problems.
+ 
+     INPUT:
+ 
