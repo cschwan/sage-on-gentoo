@@ -1,7 +1,46 @@
-diff --git a/sage/graphs/generators/distance_regular.pyx b/sage/graphs/generators/distance_regular.pyx
+diff --git a/src/sage/categories/category_singleton.pyx b/src/sage/categories/category_singleton.pyx
+index cf612f9a44..7c02aad63e 100644
+--- a/src/sage/categories/category_singleton.pyx
++++ b/src/sage/categories/category_singleton.pyx
+@@ -89,7 +89,7 @@ class Category_singleton(Category):
+ 
+     A *singleton* category is a category whose class takes no
+     parameters like ``Fields()`` or ``Rings()``. See also the
+-    `Singleton design pattern <https://en.wikipedia.org/wiki/Singleton_pattern>`_.
++    :wikipedia:`Singleton design pattern <Singleton_pattern>`.
+ 
+     This is a subclass of :class:`Category`, with a couple
+     optimizations for singleton categories.
+diff --git a/src/sage/coding/linear_rank_metric.py b/src/sage/coding/linear_rank_metric.py
+index c06b16aa05..68d8cc4edf 100644
+--- a/src/sage/coding/linear_rank_metric.py
++++ b/src/sage/coding/linear_rank_metric.py
+@@ -86,7 +86,7 @@ Further references
+ ------------------
+ 
+ Read more about
+-`rank metric and Gabidulin codes <https://en.wikipedia.org/wiki/Rank_error-correcting_code>`_
++:wikipedia:`rank metric and Gabidulin codes <Rank_error-correcting_code>`
+ 
+ AUTHORS:
+ 
+diff --git a/src/sage/databases/oeis.py b/src/sage/databases/oeis.py
+index 2018635bf2..00cbb30e6d 100644
+--- a/src/sage/databases/oeis.py
++++ b/src/sage/databases/oeis.py
+@@ -1023,7 +1023,7 @@ class OEISSequence(SageObject, UniqueRepresentation):
+         .. TODO::
+ 
+             - ask OEIS to add a keyword telling whether the sequence comes from
+-              a power series, e.g. for https://oeis.org/A000182
++              a power series, e.g. for :oeis:`A000182`
+             - discover other possible conversions.
+ 
+         EXAMPLES::
+diff --git a/src/sage/graphs/generators/distance_regular.pyx b/src/sage/graphs/generators/distance_regular.pyx
 index e97241cece..e8a731b682 100644
---- a/sage/graphs/generators/distance_regular.pyx
-+++ b/sage/graphs/generators/distance_regular.pyx
+--- a/src/sage/graphs/generators/distance_regular.pyx
++++ b/src/sage/graphs/generators/distance_regular.pyx
 @@ -985,7 +985,7 @@ def HalfCube(const int n):
  
      See [BCN1989]_ pp. 264, 265 or [VDKT2016]_ p. 21.
@@ -11,23 +50,25 @@ index e97241cece..e8a731b682 100644
  
      TESTS:
  
-diff --git a/sage/knots/knotinfo.py b/sage/knots/knotinfo.py
-index facc4ad667..527406c638 100644
---- a/sage/knots/knotinfo.py
-+++ b/sage/knots/knotinfo.py
-@@ -42,7 +42,7 @@ Also, note that the braid notation is used according to Sage, even thought in
+diff --git a/src/sage/knots/knotinfo.py b/src/sage/knots/knotinfo.py
+index facc4ad667..9a07897fdc 100644
+--- a/src/sage/knots/knotinfo.py
++++ b/src/sage/knots/knotinfo.py
+@@ -41,8 +41,8 @@ exchanged mirror versions.
+ Also, note that the braid notation is used according to Sage, even thought in
  the source where it is taken from, the braid generators are assumed to have a
  negative crossing which would be opposite to the convention in Sage (see definition
- 3 of `Gittings, T., "Minimum Braids: A Complete Invariant of Knots and Links
+-3 of `Gittings, T., "Minimum Braids: A Complete Invariant of Knots and Links
 -<https://arxiv.org/abs/math/0401051>`__).
-+<:arxiv:`math/0401051`>`__).
++3 of
++:arxiv:`Gittings, T., "Minimum Braids: A Complete Invariant of Knots and Links" <math/0401051>`).
  
  For different conventions regarding normalization of the polynomial invariants see
  the according documentation of :meth:`KnotInfoBase.homfly_polynomial`,
-diff --git a/sage/matrix/matrix_polynomial_dense.pyx b/sage/matrix/matrix_polynomial_dense.pyx
+diff --git a/src/sage/matrix/matrix_polynomial_dense.pyx b/src/sage/matrix/matrix_polynomial_dense.pyx
 index 566077bde7..80e8d3470c 100644
---- a/sage/matrix/matrix_polynomial_dense.pyx
-+++ b/sage/matrix/matrix_polynomial_dense.pyx
+--- a/src/sage/matrix/matrix_polynomial_dense.pyx
++++ b/src/sage/matrix/matrix_polynomial_dense.pyx
 @@ -781,7 +781,7 @@ cdef class Matrix_polynomial_dense(Matrix_generic_dense):
              2021), it would be highly beneficial to use conversions and rely on
              polynomials with matrix coefficients when the matrix size is
@@ -37,10 +78,10 @@ index 566077bde7..80e8d3470c 100644
          """
          if d <= 0:
              raise ValueError("the precision must be positive")
-diff --git a/sage/misc/sagedoc.py b/sage/misc/sagedoc.py
+diff --git a/src/sage/misc/sagedoc.py b/src/sage/misc/sagedoc.py
 index 583ca06945..4b3853f3e8 100644
---- a/sage/misc/sagedoc.py
-+++ b/sage/misc/sagedoc.py
+--- a/src/sage/misc/sagedoc.py
++++ b/src/sage/misc/sagedoc.py
 @@ -495,13 +495,13 @@ def process_dollars(s):
  pythonversion = sys.version.split(' ')[0]
  extlinks = {
@@ -62,10 +103,10 @@ index 583ca06945..4b3853f3e8 100644
  }
  
  def process_extlinks(s, embedded=False):
-diff --git a/sage/modules/with_basis/invariant.py b/sage/modules/with_basis/invariant.py
+diff --git a/src/sage/modules/with_basis/invariant.py b/src/sage/modules/with_basis/invariant.py
 index ff4388bb1d..eaf4ce2079 100644
---- a/sage/modules/with_basis/invariant.py
-+++ b/sage/modules/with_basis/invariant.py
+--- a/src/sage/modules/with_basis/invariant.py
++++ b/src/sage/modules/with_basis/invariant.py
 @@ -205,7 +205,7 @@ class FiniteDimensionalInvariantModule(SubmoduleWithBasis):
          Extend when `M` does not have a basis and `S` is a permutation
          group using:
@@ -75,10 +116,10 @@ index ff4388bb1d..eaf4ce2079 100644
          - https://www.dmtcs.org/pdfpapers/dmAA0123.pdf
      """
      def __init__(self, M, S, action=operator.mul, side='left', *args, **kwargs):
-diff --git a/sage/rings/function_field/order.py b/sage/rings/function_field/order.py
+diff --git a/src/sage/rings/function_field/order.py b/src/sage/rings/function_field/order.py
 index ebe610bc50..7b0841e235 100644
---- a/sage/rings/function_field/order.py
-+++ b/sage/rings/function_field/order.py
+--- a/src/sage/rings/function_field/order.py
++++ b/src/sage/rings/function_field/order.py
 @@ -1772,7 +1772,7 @@ class FunctionFieldMaximalOrder_polymod(FunctionFieldMaximalOrder):
          finite-dimensional algebra, a construct for which we do
          support primary decomposition.
@@ -88,16 +129,18 @@ index ebe610bc50..7b0841e235 100644
  
          .. TODO::
  
-diff --git a/sage/sat/solvers/satsolver.pyx b/sage/sat/solvers/satsolver.pyx
-index 3f7b7224a5..352f0dde9f 100644
---- a/sage/sat/solvers/satsolver.pyx
-+++ b/sage/sat/solvers/satsolver.pyx
-@@ -316,7 +316,7 @@ def SAT(solver=None, *args, **kwds):
+diff --git a/src/sage/sat/solvers/satsolver.pyx b/src/sage/sat/solvers/satsolver.pyx
+index 3f7b7224a5..d93181c142 100644
+--- a/src/sage/sat/solvers/satsolver.pyx
++++ b/src/sage/sat/solvers/satsolver.pyx
+@@ -315,8 +315,8 @@ def SAT(solver=None, *args, **kwds):
+     r"""
      Return a :class:`SatSolver` instance.
  
-     Through this class, one can define and solve `SAT
+-    Through this class, one can define and solve `SAT
 -    <https://en.wikipedia.org/wiki/Boolean_satisfiability_problem>`__ problems.
-+    <:wikipedia:`Boolean_satisfiability_problem`>`__ problems.
++    Through this class, one can define and solve
++    :wikipedia:`SAT problems <Boolean_satisfiability_problem>`.
  
      INPUT:
  
