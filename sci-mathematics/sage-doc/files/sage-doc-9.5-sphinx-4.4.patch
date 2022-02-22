@@ -27,7 +27,7 @@ index 4db21dd6c4..7b626e7523 100644
  .. NOTE::
  
 diff --git a/src/doc/en/developer/packaging_sage_library.rst b/src/doc/en/developer/packaging_sage_library.rst
-index 172e7a9db0..ac1c49402b 100644
+index 172e7a9db0..1addb4905e 100644
 --- a/src/doc/en/developer/packaging_sage_library.rst
 +++ b/src/doc/en/developer/packaging_sage_library.rst
 @@ -204,7 +204,7 @@ that are imposed by the build-time dependencies.
@@ -35,7 +35,7 @@ index 172e7a9db0..ac1c49402b 100644
  We can define some meaningful small distributions that just consist of
  a single or a few Cython modules. For example, **sagemath-tdlib**
 -(https://trac.sagemath.org/ticket/29864) would just package the single
-+(:trac:`ticket/29864`) would just package the single
++(:trac:`29864`) would just package the single
  Cython module that must be linked with ``tdlib``,
  :mod:`sage.graphs.graph_decompositions.tdlib`. Starting with the Sage
  9.6 development cycle, as soon as namespace packages are activated, we
@@ -77,7 +77,7 @@ index 7b3f38bea2..e72ffc0170 100644
      sage: numerical_approx( (-1)^(1/3) )
      0.500000000000000 + 0.866025403784439*I
 diff --git a/src/doc/en/installation/source.rst b/src/doc/en/installation/source.rst
-index d3787d337c..7f3781e0d5 100644
+index d3787d337c..dfa20abe3f 100644
 --- a/src/doc/en/installation/source.rst
 +++ b/src/doc/en/installation/source.rst
 @@ -15,7 +15,7 @@ Install from Source Code
@@ -85,90 +85,81 @@ index d3787d337c..7f3781e0d5 100644
  
  More familiarity with computers may be required to build Sage from
 -the `source code <https://en.wikipedia.org/wiki/Source_code>`_.
-+the `source code <:wikipedia:`Source_code`>`_.
++the :wikipedia:`source code <Source_code>`.
  If you do have all the :ref:`pre-requisite tools <section-prereqs>`,
  the process should be completely
  painless, basically consisting in extracting the source tarball and typing
-@@ -43,13 +43,13 @@ for some operating systems, rather than compiling from source.
+@@ -43,13 +43,12 @@ for some operating systems, rather than compiling from source.
  Supported platforms
  -------------------
  
 -Sage runs on all major `Linux <https://en.wikipedia.org/wiki/Linux>`_
-+Sage runs on all major `Linux <:wikipedia:`Linux`>`_
++Sage runs on all major :wikipedia:`Linux <Linux>`
  distributions, `macOS <https://www.apple.com/macosx/>`_ , and Windows
  (via the `Cygwin <https://cygwin.com/>`_ Linux API layer).
  
  Other installation options for Windows are using the Windows Subsystem
- for Linux (WSL), or with the aid of a `virtual machine
+-for Linux (WSL), or with the aid of a `virtual machine
 -<https://en.wikipedia.org/wiki/Virtual_machine>`_.
-+<:wikipedia:`Virtual_machine`>`_.
++for Linux (WSL), or with the aid of a :wikipedia:`virtual machine <Virtual_machine>`.
  
  .. _section-prereqs:
  
-@@ -72,8 +72,8 @@ with less (be sure to have some swap space in this case).
+@@ -72,8 +71,8 @@ with less (be sure to have some swap space in this case).
  Command-line tools
  ^^^^^^^^^^^^^^^^^^
  
 -In addition to standard `POSIX <https://en.wikipedia.org/wiki/POSIX>`_ utilities
 -and the `bash <https://en.wikipedia.org/wiki/Bash_(Unix_shell)>`_ shell,
-+In addition to standard `POSIX <:wikipedia:`POSIX`>`_ utilities
-+and the `bash <:wikipedia:`Bash_(Unix_shell)`>`_ shell,
++In addition to standard :wikipedia:`POSIX <POSIX>` utilities
++and the :wikipedia:`bash <Bash_(Unix_shell)>` shell,
  the following standard command-line development tools must be installed on your
  computer:
  
-@@ -203,7 +203,7 @@ or::
+@@ -203,7 +202,7 @@ or::
  
  on the command line. If it gives an error (or returns nothing), then
  either ``perl`` is not installed, or it is installed but not in your
 -`PATH <https://en.wikipedia.org/wiki/PATH_%28variable%29>`_.
-+`PATH <:wikipedia:`PATH_%28variable%29`>`_.
++:wikipedia:`PATH <PATH_%28variable%29>`.
  
  .. _sec-installation-from-sources-linux-recommended-installation:
  
-@@ -224,7 +224,7 @@ The method of installing additional software varies from distribution to
+@@ -224,7 +223,7 @@ The method of installing additional software varies from distribution to
  distribution, but on a `Debian <https://www.debian.org/>`_ based system (e.g.
  `Ubuntu <https://www.ubuntu.com/>`_ or `Mint <https://www.linuxmint.com/>`_),
  you would use
 -`apt-get <https://en.wikipedia.org/wiki/Advanced_Packaging_Tool>`_.
-+`apt-get <:wikipedia:`Advanced_Packaging_Tool`>`_.
++:wikipedia:`apt-get <Advanced_Packaging_Tool>`.
  
  On Debian ("buster" or newer) or Ubuntu ("bionic" or newer):
  
-@@ -246,7 +246,7 @@ On Arch Linux:
- .. literalinclude:: arch.txt
- 
- In addition to these, if you don't want Sage to build optional packages that might
--be available from your OS, cf. the growing list of such packages on :trac:`27330`,
-+be available from your OS, cf. the growing list of such packages on ssfdsfsfsf,
- install on Debian ("buster" or newer) or Ubuntu ("bionic" or newer):
- 
- .. literalinclude:: debian-optional.txt
-@@ -260,8 +260,8 @@ On Arch Linux:
+@@ -260,8 +259,8 @@ On Arch Linux:
  .. literalinclude:: arch-optional.txt
  
  On other Linux systems, you might use
 -`rpm <https://en.wikipedia.org/wiki/RPM_Package_Manager>`_,
 -`yum <https://en.wikipedia.org/wiki/Yellowdog_Updater,_Modified>`_,
-+`rpm <:wikipedia:`RPM_Package_Manager`>`_,
-+`yum <:wikipedia:`Yellowdog_Updater,_Modified`>`_,
++:wikipedia:`rpm <RPM_Package_Manager>`,
++:wikipedia:`yum <Yellowdog_Updater,_Modified>`,
  or other package managers.
  
  .. _section_macprereqs:
-@@ -589,7 +589,7 @@ but provide additional capabilities:
+@@ -589,7 +588,7 @@ but provide additional capabilities:
  - **LaTeX**: highly recommended.
  
  It is highly recommended that you have
 -`LaTeX <https://en.wikipedia.org/wiki/LaTeX>`_
-+`LaTeX <:wikipedia:`LaTeX`>`_
++:wikipedia:`LaTeX <LaTeX>`
  installed, but it is not required.
  The most popular packaging is `TeX Live <https://www.tug.org/texlive/>`_,
  which can be installed following the directions on their web site.
-@@ -908,7 +908,7 @@ Make targets
+@@ -908,7 +907,7 @@ Make targets
  ------------
  
  To build Sage from scratch, you would typically execute ``make`` in Sage's home
 -directory to build Sage and its `HTML <https://en.wikipedia.org/wiki/HTML>`_
-+directory to build Sage and its `HTML <:wikipedia:`HTML`>`_
++directory to build Sage and its :wikipedia:`HTML <HTML>`
  documentation.
  The ``make`` command is pretty smart, so if your build of Sage is interrupted,
  then running ``make`` again should cause it to pick up where it left off.
@@ -295,24 +286,26 @@ index bf7650d220..104933d7bc 100644
  
  Let us introduce spherical and cylindrical coordinates on
 diff --git a/src/doc/en/thematic_tutorials/vector_calculus/vector_calc_curvilinear.rst b/src/doc/en/thematic_tutorials/vector_calculus/vector_calc_curvilinear.rst
-index 9661713597..2025e9d7df 100644
+index 9661713597..bdcff4b9af 100644
 --- a/src/doc/en/thematic_tutorials/vector_calculus/vector_calc_curvilinear.rst
 +++ b/src/doc/en/thematic_tutorials/vector_calculus/vector_calc_curvilinear.rst
-@@ -278,7 +278,7 @@ We may expand each component::
+@@ -277,8 +277,7 @@ We may expand each component::
+      + d^2(u_phi)/dph^2/(r^2*sin(th)^2) + d^2(u_phi)/dr^2
  
  As a test, we may check that these formulas coincide with those of Wikipedia's
- article `Del in cylindrical and spherical coordinates
+-article `Del in cylindrical and spherical coordinates
 -<https://en.wikipedia.org/wiki/Del_in_cylindrical_and_spherical_coordinates#Del_formula>`__.
-+<:wikipedia:`Del_in_cylindrical_and_spherical_coordinates#Del_formula`>`__.
++article :wikipedia:`Del in cylindrical and spherical coordinates <Del_in_cylindrical_and_spherical_coordinates#Del_formula>`.
  
  Using cylindrical coordinates
  -----------------------------
-@@ -393,7 +393,7 @@ The Laplacian of a vector field::
+@@ -392,8 +391,7 @@ The Laplacian of a vector field::
+     Delta(u)^3 = d(u_z)/drh/rh + d^2(u_z)/dph^2/rh^2 + d^2(u_z)/drh^2 + d^2(u_z)/dz^2
  
  Again, we may check that the above formulas coincide with those of Wikipedia's
- article `Del in cylindrical and spherical coordinates
+-article `Del in cylindrical and spherical coordinates
 -<https://en.wikipedia.org/wiki/Del_in_cylindrical_and_spherical_coordinates#Del_formula>`__.
-+<:wikipedia:`Del_in_cylindrical_and_spherical_coordinates#Del_formula`>`__.
++article :wikipedia:`Del in cylindrical and spherical coordinates <Del_in_cylindrical_and_spherical_coordinates#Del_formula>`.
  
  Changing coordinates
  --------------------
@@ -330,15 +323,16 @@ index d5e35cc552..59c4270bad 100644
  
  The user atlas of `\mathbb{E}^2` has two charts::
 diff --git a/src/doc/it/faq/faq-usage.rst b/src/doc/it/faq/faq-usage.rst
-index c1362a1e84..114c6e5284 100644
+index c1362a1e84..8d81273d69 100644
 --- a/src/doc/it/faq/faq-usage.rst
 +++ b/src/doc/it/faq/faq-usage.rst
-@@ -591,7 +591,7 @@ produce il grafico corretto solo per valori di `x` positivi. La
+@@ -590,8 +590,7 @@ Tuttavia, nota che il metodo più diretto::
+ produce il grafico corretto solo per valori di `x` positivi. La
  *ragione* per cui ciò avviene è che Sage restituisce dei numeri
  complessi per le radici dispari di numeri negativi, quando queste sono
- approssimate, il che è una `convenzione standard
+-approssimate, il che è una `convenzione standard
 -<https://en.wikipedia.org/wiki/Cube_root#Complex_numbers>`_::
-+<:wikipedia:`Cube_root#Complex_numbers`>`_::
++approssimate, il che è una :wikipedia:`convenzione standard <Cube_root#Complex_numbers>`::
  
      sage: numerical_approx( (-1)^(1/3) )
      0.500000000000000 + 0.866025403784439*I
