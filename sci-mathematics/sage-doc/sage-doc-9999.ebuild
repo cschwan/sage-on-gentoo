@@ -31,7 +31,7 @@ L10N_USEDEP="${L10N_USEDEP%?}"
 RESTRICT="mirror test"
 
 BDEPEND="$(python_gen_any_dep "
-	>=dev-python/sphinx-4.1.0[\${PYTHON_USEDEP}]
+	>=dev-python/sphinx-4.4.0[\${PYTHON_USEDEP}]
 	~sci-mathematics/sage-${PV}[\${PYTHON_USEDEP},jmol]
 	~sci-mathematics/sage_docbuild-${PV}[\${PYTHON_USEDEP}]
 	")
@@ -39,8 +39,9 @@ BDEPEND="$(python_gen_any_dep "
 RDEPEND=""
 
 PATCHES=(
+	"${FILESDIR}"/${PN}-9.5-sphinx-4.4.patch
 	"${FILESDIR}"/${PN}-9.5-neutering.patch
-	"${FILESDIR}"/${PN}-9.5-makefile.patch
+	"${FILESDIR}"/${PN}-9.6-makefile.patch
 )
 
 HTML_DOCS="${WORKDIR}/build_doc/html/*"
@@ -49,7 +50,7 @@ HTML_DOCS="${WORKDIR}/build_doc/html/*"
 addpredict "${EPREFIX}/usr/share/sage/cremona/cremona_mini.db"
 
 python_check_deps() {
-	has_version ">=dev-python/sphinx-4.1.0[${PYTHON_USEDEP}]" &&
+	has_version ">=dev-python/sphinx-4.4.0[${PYTHON_USEDEP}]" &&
 	has_version "~sci-mathematics/sage-${PV}[${PYTHON_USEDEP},jmol]" &&
 	has_version "~sci-mathematics/sage_docbuild-${PV}[${PYTHON_USEDEP}]"
 }
@@ -61,6 +62,8 @@ src_unpack(){
 }
 
 src_prepare(){
+	default
+
 	einfo "bootstrapping the documentation - be patient"
 	SAGE_ROOT="${S}" PATH="${S}/build/bin:${PATH}" src/doc/bootstrap || die "cannot bootstrap the documentation"
 
@@ -70,8 +73,6 @@ src_prepare(){
 			rm -rf $object || die "failed to remove $object"
 		fi
 	done
-
-	default
 }
 
 src_configure(){

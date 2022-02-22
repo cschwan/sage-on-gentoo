@@ -53,7 +53,7 @@ DEPEND="
 	dev-python/primecountpy[${PYTHON_USEDEP}]
 	>=dev-python/psutil-4.4.0[${PYTHON_USEDEP}]
 	>=dev-python/six-1.11.0[${PYTHON_USEDEP}]
-	>=dev-python/sphinx-4.0.2[${PYTHON_USEDEP}]
+	>=dev-python/sphinx-4.4.0[${PYTHON_USEDEP}]
 	~media-gfx/threejs-sage-extension-122
 	media-libs/gd[jpeg,png]
 	media-libs/libpng:0=
@@ -143,6 +143,7 @@ REQUIRED_USE="doc? ( jmol )
 	testsuite? ( jmol )"
 
 PATCHES=(
+	"${FILESDIR}"/sage-9.5-sphinx-4.4.patch
 	"${FILESDIR}"/${PN}-9.2-env.patch
 	"${FILESDIR}"/sage_exec-9.3.patch
 	"${FILESDIR}"/${PN}-9.3-jupyter.patch
