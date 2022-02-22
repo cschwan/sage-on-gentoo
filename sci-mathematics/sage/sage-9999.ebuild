@@ -143,7 +143,7 @@ REQUIRED_USE="doc? ( jmol )
 	testsuite? ( jmol )"
 
 PATCHES=(
-	"${FILESDIR}"/sphinx-4.4.patch
+	"${FILESDIR}"/sage-9.5-sphinx-4.4.patch
 	"${FILESDIR}"/${PN}-9.2-env.patch
 	"${FILESDIR}"/sage_exec-9.3.patch
 	"${FILESDIR}"/${PN}-9.3-jupyter.patch
