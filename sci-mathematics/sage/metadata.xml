@@ -19,17 +19,5 @@
 		<flag name='jmol'>
 			Make jmol the default 3D rendering engine. Tachyon will be used otherwise.
 		</flag>
-		<flag name='doc-html'>
-			build and install html documentation
-		</flag>
-		<flag name='doc-pdf'>
-			build and install documentation in pdf format
-		</flag>
-		<flag name='doc-html-bin'>
-			install pre-built html documentation
-		</flag>
-		<flag name='doc-pdf-bin'>
-			install pre-built pdf documentation
-		</flag>
 	</use>
 </pkgmetadata>
