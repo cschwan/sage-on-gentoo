@@ -143,12 +143,11 @@ REQUIRED_USE="doc? ( jmol )
 	testsuite? ( jmol )"
 
 PATCHES=(
-	"${FILESDIR}"/sage-9.5-sphinx-4.4.patch
 	"${FILESDIR}"/${PN}-9.2-env.patch
 	"${FILESDIR}"/sage_exec-9.3.patch
 	"${FILESDIR}"/${PN}-9.3-jupyter.patch
 	"${FILESDIR}"/${PN}-9.3-forcejavatmp.patch
-	"${FILESDIR}"/${PN}-9.5-neutering.patch
+	"${FILESDIR}"/${PN}-9.6-neutering.patch
 	"${FILESDIR}"/${PN}-9.5-distutils.patch
 	"${FILESDIR}"/trac31626.patch
 )
