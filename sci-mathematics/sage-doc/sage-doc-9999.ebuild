@@ -40,7 +40,7 @@ RDEPEND=""
 
 PATCHES=(
 	"${FILESDIR}"/${PN}-9.5-neutering.patch
-	"${FILESDIR}"/${PN}-9.5-makefile.patch
+	"${FILESDIR}"/${PN}-9.6-makefile.patch
 )
 
 HTML_DOCS="${WORKDIR}/build_doc/html/*"
