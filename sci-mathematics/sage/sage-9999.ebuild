@@ -45,6 +45,7 @@ DEPEND="
 	>=dev-python/jinja-2.8[${PYTHON_USEDEP}]
 	dev-python/jupyter_core[${PYTHON_USEDEP}]
 	dev-python/jupyter_jsmol[${PYTHON_USEDEP}]
+	dev-python/lrcalc[${PYTHON_USEDEP}]
 	>=dev-python/matplotlib-3.3.1[${PYTHON_USEDEP}]
 	dev-python/memory_allocator[${PYTHON_USEDEP}]
 	>=dev-python/numpy-1.16.1[${PYTHON_USEDEP}]
@@ -66,7 +67,6 @@ DEPEND="
 	>=sci-mathematics/glpk-5.0:0=[gmp]
 	~sci-mathematics/gmp-ecm-7.0.4[-openmp]
 	=sci-mathematics/lcalc-2.0*
-	~sci-mathematics/lrcalc-1.2
 	=sci-mathematics/pari-2.13*
 	=sci-mathematics/planarity-3.0*
 	>=sci-mathematics/ratpoints-2.1.3
@@ -143,12 +143,11 @@ REQUIRED_USE="doc? ( jmol )
 	testsuite? ( jmol )"
 
 PATCHES=(
-	"${FILESDIR}"/sage-9.5-sphinx-4.4.patch
 	"${FILESDIR}"/${PN}-9.2-env.patch
 	"${FILESDIR}"/sage_exec-9.3.patch
 	"${FILESDIR}"/${PN}-9.3-jupyter.patch
 	"${FILESDIR}"/${PN}-9.3-forcejavatmp.patch
-	"${FILESDIR}"/${PN}-9.5-neutering.patch
+	"${FILESDIR}"/${PN}-9.6-neutering.patch
 	"${FILESDIR}"/${PN}-9.5-distutils.patch
 	"${FILESDIR}"/trac31626.patch
 )
