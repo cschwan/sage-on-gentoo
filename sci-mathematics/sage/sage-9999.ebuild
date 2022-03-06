@@ -69,7 +69,6 @@ DEPEND="
 	=sci-mathematics/lcalc-2.0*
 	=sci-mathematics/pari-2.13*
 	=sci-mathematics/planarity-3.0*
-	>=sci-mathematics/ratpoints-2.1.3
 	>=sci-mathematics/rw-0.7
 	~sci-mathematics/sage_setup-${PV}[${PYTHON_USEDEP}]
 	~sci-mathematics/singular-4.2.1_p3[readline]
