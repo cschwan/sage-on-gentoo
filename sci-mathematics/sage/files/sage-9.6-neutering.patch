@@ -95,7 +95,7 @@ index fccba3f..6236eb4 100644
      but we allow stderr in case this changes in the future::
  
 diff --git a/setup.cfg.m4 b/setup.cfg.m4
-index 2f9a27e..99981eb 100644
+index f63c72b..88825e1 100644
 --- a/setup.cfg.m4
 +++ b/setup.cfg.m4
 @@ -89,19 +89,11 @@ scripts =
@@ -118,8 +118,8 @@ index 2f9a27e..99981eb 100644
      bin/sage-inline-fortran
      bin/sage-ipynb2rst
      bin/sage-ipython
-@@ -111,15 +103,9 @@ scripts =
-     bin/sage-open
+@@ -109,10 +101,6 @@ scripts =
+     bin/sage-num-threads.py
      bin/sage-preparse
      bin/sage-python
 -    bin/sage-rebase.bat
@@ -129,8 +129,3 @@ index 2f9a27e..99981eb 100644
      bin/sage-run
      bin/sage-run-cython
      bin/sage-startuptime.py
--    bin/sage-update-src
--    bin/sage-update-version
- 
- [options.package_data]
- 
