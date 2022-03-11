@@ -44,6 +44,7 @@ PATCHES=(
 )
 
 HTML_DOCS="${WORKDIR}/build_doc/html/*"
+DOCS=( "${WORKDIR}/build_doc/index.html" )
 
 # for some reason opened for write during inventory of reference/plotting(?) - no write happens.
 addpredict "${EPREFIX}/usr/share/sage/cremona/cremona_mini.db"
@@ -107,7 +108,7 @@ src_compile(){
 # 	emake ${target} PYTHON=${PYTHON}
 	emake doc-html
 	if use doc-pdf ; then
-		DOCS="${SAGE_DOC}/pdf"
+		DOCS+=( "${SAGE_DOC}/pdf" )
 		emake doc-pdf
 	fi
 }
@@ -156,5 +157,5 @@ src_install(){
 	insinto /usr/share/doc/"${PF}"/common
 	doins -r src/doc/common/themes
 
-	dosym -r /usr/share/doc/"${PF}"/html/en /usr/share/jupyter/kernels/sagemath/doc
+	dosym -r /usr/share/doc/"${PF}" /usr/share/jupyter/kernels/sagemath/doc
 }
