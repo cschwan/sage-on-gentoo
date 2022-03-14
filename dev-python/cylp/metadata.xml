@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+<maintainer type="person">
+<email>frp.bissey@gmail.com</email>
+<name>François Bissey</name>
+</maintainer>
+<longdescription lang="en">
+A python interface to coinor cbc, clp and cgl.
+</longdescription>
+</pkgmetadata>
