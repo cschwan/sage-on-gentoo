@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "https://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+  <maintainer type="person">
+    <email>frp.bissey@gmail.com</email>
+    <name>François Bissey</name>
+  </maintainer>
+  <stabilize-allarches/>
+  <upstream>
+    <remote-id type="pypi">jupyter-spinx</remote-id>
+    <remote-id type="github">jupyter/jupyter-sphinx</remote-id>
+  </upstream>
+</pkgmetadata>
