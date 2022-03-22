@@ -165,6 +165,7 @@ src_unpack() {
 python_prepare_all() {
 	distutils-r1_python_prepare_all
 
+	rm -rf sage_setup sage_docbuild
 	# From sage 9.4 the official setup.py is in pkgs/sagemath-standard
 	cp ../pkgs/sagemath-standard/setup.py setup.py || die "failed to copy the right setup.py"
 
