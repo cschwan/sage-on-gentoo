@@ -1,0 +1,12 @@
+diff --git a/sage_setup/command/sage_build_ext.py b/sage_setup/command/sage_build_ext.py
+index 9cca775..3a2358d 100644
+--- a/sage_setup/command/sage_build_ext.py
++++ b/sage_setup/command/sage_build_ext.py
+@@ -143,6 +143,7 @@ class sage_build_ext(build_ext):
+     def build_extension(self, p):
+ 
+         sources, ext, ext_filename = p
++        log.set_verbosity(1)
+ 
+         # First, scan the sources for SWIG definition files (.i), run
+         # SWIG on 'em to create .c files, and modify the sources list

@@ -33,6 +33,10 @@ RDEPEND="
 	!<=sci-mathematics/sage-9.4
 "
 
+PATCHES=(
+	"${FILESDIR}"/${PN}-9.6-verbosity.patch
+)
+
 src_unpack(){
 	git-r3_src_unpack
 
