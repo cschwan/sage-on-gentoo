@@ -165,7 +165,7 @@ src_unpack() {
 python_prepare_all() {
 	distutils-r1_python_prepare_all
 
-	rm -rf sage_setup sage_docbuild
+	mv sage_setup no_sage_setup || die "cannot rename sage_setup"
 	# From sage 9.4 the official setup.py is in pkgs/sagemath-standard
 	cp ../pkgs/sagemath-standard/setup.py setup.py || die "failed to copy the right setup.py"
 
@@ -271,6 +271,9 @@ python_install_all() {
 }
 
 python_test() {
+	# move sage_setup back before potential testing
+	[[ -d "${S}/no_sage_setup" ]] && mv "${S}/no_sage_setup" "${S}/sage_setup"
+
 	SAGE_SRC="${S}" SAGE_DOC_SRC="${S}/doc" \
 		sage -tp $(makeopts_jobs) --all --long --baseline-stats-path "${FILESDIR}"/${PN}-9.6-testfailures.json || die
 }
