@@ -1,0 +1,147 @@
+diff --git a/bin/sage-runtests b/bin/sage-runtests
+index bc8032f..ea4392f 100755
+--- a/bin/sage-runtests
++++ b/bin/sage-runtests
+@@ -90,7 +90,9 @@ if __name__ == "__main__":
+         help="print a summary at the end of each file of optional tests that were skipped")
+ 
+     parser.add_argument("--stats_path", "--stats-path", default=os.path.join(DOT_SAGE, "timings2.json"),
+-                        help="path to a json dictionary for the latest run storing a timing for each file")
++                        help="path to a json dictionary for timings and failure status for each file from previous runs; it will be updated in this run")
++    parser.add_argument("--baseline_stats_path", "--baseline-stats-path", default=None,
++                        help="path to a json dictionary for timings and failure status for each file, to be used as a baseline; it will not be updated")
+ 
+     class GCAction(argparse.Action):
+         def __call__(self, parser, namespace, values, option_string=None):
+diff --git a/sage/doctest/control.py b/sage/doctest/control.py
+index 79fd572..214aff1 100644
+--- a/sage/doctest/control.py
++++ b/sage/doctest/control.py
+@@ -125,6 +125,7 @@ class DocTestDefaults(SageObject):
+         self.new = False
+         self.show_skipped = False
+         self.target_walltime = -1
++        self.baseline_stats_path = None
+ 
+         # sage-runtests contains more optional tags. Technically, adding
+         # auto_optional_tags here is redundant, since that is added
+@@ -457,6 +458,9 @@ class DocTestController(SageObject):
+ 
+         self.stats = {}
+         self.load_stats(options.stats_path)
++        self.baseline_stats = {}
++        if options.baseline_stats_path:
++            self.load_baseline_stats(options.baseline_stats_path)
+         self._init_warn_long()
+ 
+         if self.options.random_seed is None:
+@@ -569,6 +573,45 @@ class DocTestController(SageObject):
+         from importlib import import_module
+         return import_module(self.options.environment)
+ 
++    def load_baseline_stats(self, filename):
++        """
++        Load baseline stats.
++
++        This must be a JSON file in the same format that :meth:`load_stats`
++        expects.
++
++        EXAMPLES::
++
++            sage: from sage.doctest.control import DocTestDefaults, DocTestController
++            sage: DC = DocTestController(DocTestDefaults(), [])
++            sage: import json
++            sage: filename = tmp_filename()
++            sage: with open(filename, 'w') as stats_file:
++            ....:     json.dump({'sage.doctest.control':{'failed':True}}, stats_file)
++            sage: DC.load_baseline_stats(filename)
++            sage: DC.baseline_stats['sage.doctest.control']
++            {'failed': True}
++
++        If the file doesn't exist, nothing happens. If there is an
++        error, print a message. In any case, leave the stats alone::
++
++            sage: d = tmp_dir()
++            sage: DC.load_baseline_stats(os.path.join(d))  # Cannot read a directory
++            Error loading baseline stats from ...
++            sage: DC.load_baseline_stats(os.path.join(d, "no_such_file"))
++            sage: DC.baseline_stats['sage.doctest.control']
++            {'failed': True}
++        """
++        # Simply ignore non-existing files
++        if not os.path.exists(filename):
++            return
++
++        try:
++            with open(filename) as stats_file:
++                self.baseline_stats.update(json.load(stats_file))
++        except Exception:
++            self.log("Error loading baseline stats from %s"%filename)
++
+     def load_stats(self, filename):
+         """
+         Load stats from the most recent run(s).
+diff --git a/sage/doctest/reporting.py b/sage/doctest/reporting.py
+index e8ec7029..51c6ea5 100644
+--- a/sage/doctest/reporting.py
++++ b/sage/doctest/reporting.py
+@@ -381,6 +381,10 @@ class DocTestReporter(SageObject):
+             postscript = self.postscript
+             stats = self.stats
+             basename = source.basename
++            if self.controller.baseline_stats:
++                the_baseline_stats = self.controller.baseline_stats.get(basename, {})
++            else:
++                the_baseline_stats = {}
+             cmd = self.report_head(source)
+             try:
+                 ntests, result_dict = results
+@@ -401,12 +405,15 @@ class DocTestReporter(SageObject):
+                         fail_msg += " (and interrupt failed)"
+                     else:
+                         fail_msg += " (with %s after interrupt)"%signal_name(sig)
++                if the_baseline_stats.get('failed', False):
++                    fail_msg += " [failed in baseline]"
+                 log("    %s\n%s\nTests run before %s timed out:"%(fail_msg, "*"*70, process_name))
+                 log(output)
+                 log("*"*70)
+                 postscript['lines'].append(cmd + "  # %s"%fail_msg)
+                 stats[basename] = dict(failed=True, walltime=1e6)
+-                self.error_status |= 4
++                if not the_baseline_stats.get('failed', False):
++                    self.error_status |= 4
+             elif return_code:
+                 if return_code > 0:
+                     fail_msg = "Bad exit: %s"%return_code
+@@ -414,12 +421,15 @@ class DocTestReporter(SageObject):
+                     fail_msg = "Killed due to %s"%signal_name(-return_code)
+                 if ntests > 0:
+                     fail_msg += " after testing finished"
++                if the_baseline_stats.get('failed', False):
++                    fail_msg += " [failed in baseline]"
+                 log("    %s\n%s\nTests run before %s failed:"%(fail_msg,"*"*70, process_name))
+                 log(output)
+                 log("*"*70)
+                 postscript['lines'].append(cmd + "  # %s" % fail_msg)
+                 stats[basename] = dict(failed=True, walltime=1e6)
+-                self.error_status |= (8 if return_code > 0 else 16)
++                if not the_baseline_stats.get('failed', False):
++                    self.error_status |= (8 if return_code > 0 else 16)
+             else:
+                 if hasattr(result_dict, 'walltime') and hasattr(result_dict.walltime, '__len__') and len(result_dict.walltime) > 0:
+                     wall = sum(result_dict.walltime) / len(result_dict.walltime)
+@@ -480,8 +490,12 @@ class DocTestReporter(SageObject):
+                 if result_dict.err is None or result_dict.err == 'tab':
+                     f = result_dict.failures
+                     if f:
+-                        postscript['lines'].append(cmd + "  # %s failed" % (count_noun(f, "doctest")))
+-                        self.error_status |= 1
++                        fail_msg = "%s failed" % (count_noun(f, "doctest"))
++                        if the_baseline_stats.get('failed', False):
++                            fail_msg += " [failed in baseline]"
++                        postscript['lines'].append(cmd + "  # %s" % fail_msg)
++                        if not the_baseline_stats.get('failed', False):
++                            self.error_status |= 1
+                     if f or result_dict.err == 'tab':
+                         stats[basename] = dict(failed=True, walltime=wall)
+                     else:

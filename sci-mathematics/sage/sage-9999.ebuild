@@ -5,7 +5,7 @@ EAPI=8
 
 PYTHON_COMPAT=( python3_{8..10} )
 PYTHON_REQ_USE="readline,sqlite"
-DISTUTILS_USE_SETUPTOOLS=bdepend
+DISTUTILS_USE_PEP517=setuptools
 
 inherit desktop distutils-r1 flag-o-matic multiprocessing prefix toolchain-funcs git-r3
 
@@ -23,7 +23,7 @@ SLOT="0"
 SAGE_USE="bliss meataxe"
 IUSE="debug +doc jmol latex testsuite X ${SAGE_USE}"
 
-RESTRICT="mirror test"
+RESTRICT="mirror"
 
 DEPEND="
 	~dev-gap/gap-recommended-4.11.1
@@ -165,9 +165,7 @@ src_unpack() {
 python_prepare_all() {
 	distutils-r1_python_prepare_all
 
-	# Remove sage_setup to make sure the already installed one is used.
-	rm -rf sage_setup
-
+	mv sage_setup no_sage_setup || die "cannot rename sage_setup"
 	# From sage 9.4 the official setup.py is in pkgs/sagemath-standard
 	cp ../pkgs/sagemath-standard/setup.py setup.py || die "failed to copy the right setup.py"
 
@@ -215,7 +213,6 @@ python_prepare_all() {
 }
 
 python_configure_all() {
-	export SAGE_VERSION=${PV}
 	export SAGE_NUM_THREADS=$(makeopts_jobs)
 }
 
@@ -273,6 +270,14 @@ python_install_all() {
 		/usr/share/jupyter/kernels/sagemath/logo.svg
 }
 
+python_test() {
+	# move sage_setup back before potential testing
+	[[ -d "${S}/no_sage_setup" ]] && mv "${S}/no_sage_setup" "${S}/sage_setup"
+
+	SAGE_SRC="${S}" SAGE_DOC_SRC="${S}/doc" \
+		sage -tp $(makeopts_jobs) --all --long --baseline-stats-path "${FILESDIR}"/${PN}-9.6-testfailures.json || die
+}
+
 pkg_preinst() {
 	# remove old sage source folder if present
 	[[ -d "${ROOT}/usr/share/sage/src/sage" ]] \
@@ -321,7 +326,7 @@ pkg_postinst() {
 	if ! use doc ; then
 		ewarn "You haven't requested the documentation."
 		ewarn "The html version of the sage manual won't be available in the sage notebook."
-		ewarn "It can still be installed by building sage-doc[html] separately."
+		ewarn "It can still be installed by building sage-doc separately."
 	fi
 
 	einfo ""
