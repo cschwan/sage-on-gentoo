@@ -46,7 +46,7 @@ DEPEND="
 	dev-python/jupyter_core[${PYTHON_USEDEP}]
 	dev-python/jupyter_jsmol[${PYTHON_USEDEP}]
 	dev-python/lrcalc[${PYTHON_USEDEP}]
-	>=dev-python/matplotlib-3.3.1[${PYTHON_USEDEP}]
+	>=dev-python/matplotlib-3.5.0[${PYTHON_USEDEP}]
 	dev-python/memory_allocator[${PYTHON_USEDEP}]
 	>=dev-python/numpy-1.16.1[${PYTHON_USEDEP}]
 	>=dev-python/pkgconfig-1.2.2[${PYTHON_USEDEP}]
