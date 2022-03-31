@@ -61,13 +61,13 @@ index 4bfa7a9..4e99958 100644
  --startuptime
  -t
  -v
-@@ -577,32 +573,6 @@ def _test_executable(args, input="", timeout=100.0, pydebug_ignore_warnings=Fals
+@@ -577,32 +573,6 @@ def test_executable(args, input="", timeout=100.0, pydebug_ignore_warnings=Fals
          sage: ret
          0
  
 -    Check some things requiring an internet connection::
 -
--        sage: (out, err, ret) = _test_executable(["sage", "--standard"])  # optional - internet
+-        sage: (out, err, ret) = test_executable(["sage", "--standard"])  # optional - internet
 -        sage: out.find("cython") >= 0  # optional - internet
 -        True
 -        sage: err  # optional - internet
@@ -75,7 +75,7 @@ index 4bfa7a9..4e99958 100644
 -        sage: ret  # optional - internet
 -        0
 -
--        sage: (out, err, ret) = _test_executable(["sage", "--optional"])  # optional - internet
+-        sage: (out, err, ret) = test_executable(["sage", "--optional"])  # optional - internet
 -        sage: out.find("database_cremona_ellcurve") >= 0  # optional - internet
 -        True
 -        sage: err  # optional - internet
@@ -83,7 +83,7 @@ index 4bfa7a9..4e99958 100644
 -        sage: ret  # optional - internet
 -        0
 -
--        sage: (out, err, ret) = _test_executable(["sage", "--experimental"])  # optional - internet
+-        sage: (out, err, ret) = test_executable(["sage", "--experimental"])  # optional - internet
 -        sage: out.find("valgrind") >= 0  # optional - internet
 -        True
 -        sage: err  # optional - internet
