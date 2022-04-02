@@ -1,8 +1,8 @@
 diff --git a/sage/doctest/control.py b/sage/doctest/control.py
-index 79fd572..ce75200 100644
+index 3244c13..0995f88 100644
 --- a/sage/doctest/control.py
 +++ b/sage/doctest/control.py
-@@ -401,11 +401,6 @@ class DocTestController(SageObject):
+@@ -408,11 +408,6 @@ class DocTestController(SageObject):
                  # that the package is actually installed).
                  if 'optional' in options.optional:
                      options.optional.discard('optional')
@@ -32,7 +32,7 @@ index 56d66f0..a56a56b 100644
  
  lazy_import('sage.misc.sagedoc', ['browse_sage_doc',
 diff --git a/sage/tests/cmdline.py b/sage/tests/cmdline.py
-index fccba3f..6236eb4 100644
+index 4bfa7a9..4e99958 100644
 --- a/sage/tests/cmdline.py
 +++ b/sage/tests/cmdline.py
 @@ -13,9 +13,7 @@ test.spyx
@@ -61,7 +61,7 @@ index fccba3f..6236eb4 100644
  --startuptime
  -t
  -v
-@@ -577,32 +573,6 @@ def test_executable(args, input="", timeout=100.0, pydebug_ignore_warnings=False
+@@ -577,32 +573,6 @@ def test_executable(args, input="", timeout=100.0, pydebug_ignore_warnings=Fals
          sage: ret
          0
  
@@ -95,10 +95,10 @@ index fccba3f..6236eb4 100644
      but we allow stderr in case this changes in the future::
  
 diff --git a/setup.cfg.m4 b/setup.cfg.m4
-index f63c72b..88825e1 100644
+index aff2e5d..676544a 100644
 --- a/setup.cfg.m4
 +++ b/setup.cfg.m4
-@@ -89,19 +89,11 @@ scripts =
+@@ -93,19 +93,11 @@ scripts =
      bin/sage-massif
      bin/sage-omega
      bin/sage-valgrind
@@ -118,7 +118,7 @@ index f63c72b..88825e1 100644
      bin/sage-inline-fortran
      bin/sage-ipynb2rst
      bin/sage-ipython
-@@ -109,10 +101,6 @@ scripts =
+@@ -113,10 +105,6 @@ scripts =
      bin/sage-num-threads.py
      bin/sage-preparse
      bin/sage-python
