@@ -49,7 +49,6 @@ BDEPEND="dev-tex/hevea
 PATCHES=(
 	"${FILESDIR}/${PN}-1.7.0.1-gsl_lapack.patch"
 	"${FILESDIR}/pari_2_11.patch"
-	"${FILESDIR}/${PN}-1.7.0.53-micropython.patch"
 )
 
 REQUIRED_USE="test? ( gui )"
