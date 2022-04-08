@@ -6,7 +6,7 @@ index 1aab3453..92c49a12 100644
  
  AC_CONFIG_SRCDIR([src/gap.c])
  AC_CONFIG_AUX_DIR([cnf])
-+AC_CONFIG_MACRO_DIR([m4])
++AC_CONFIG_MACRO_DIR([cnf/m4])
  
  AC_CONFIG_HEADERS([gen/config.h:src/config.h.in])
  AC_CONFIG_COMMANDS([gen/stamp-h], [echo timestamp > gen/stamp-h])
