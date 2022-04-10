@@ -58,10 +58,10 @@ DEPEND="
 	~media-gfx/threejs-sage-extension-122
 	media-libs/gd[jpeg,png]
 	media-libs/libpng:0=
-	=sci-mathematics/arb-2.19*
+	>=sci-mathematics/arb-2.19.0
 	sci-mathematics/cliquer
 	~sci-mathematics/eclib-20210625[flint]
-	=sci-mathematics/flint-2.7*:=[ntl]
+	>=sci-mathematics/flint-2.7.1:=[ntl]
 	~sci-mathematics/gap-4.11.1
 	=sci-mathematics/giac-1.7.0*
 	>=sci-mathematics/glpk-5.0:0=[gmp]
