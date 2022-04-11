@@ -134,14 +134,10 @@ src_install(){
 			|| die "failed to remove mathjax object $sobject"
 		ln -st build_doc/html/_static/ ../../../../mathjax/$sobject
 	done
-	# Work around for issue #402 until I understand where it comes from
-	for pyfile in `find build_doc/html -name \*.py` ; do
-		rm -rf "${pyfile}" || die "fail to to remove $pyfile"
-		rm -rf "${pyfile/%.py/.pdf}" "${pyfile/%.py/.png}"
-		rm -rf "${pyfile/%.py/.hires.png}" "${pyfile/%.py/.html}"
-	done
 	# prune .buildinfo files, those are internal to sphinx and are not used after building.
 	find build_doc -name .buildinfo -delete || die "failed to prune buildinfo files"
+	# prune the jupyter_execute folder created by jupyter_sphinx
+	rm -rf build_doc/html/en/reference/jupyter_execute
 
 	# Replace full "build" path to html index in pdf doc
 	if use doc-pdf ; then
