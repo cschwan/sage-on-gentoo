@@ -32,6 +32,7 @@ BDEPEND=""
 distutils_enable_tests setup.py
 
 src_prepare(){
+	default
 	# TODO completely unvendor togl.
 	# Removing vendored togl binaries from the wrong archs
 	if use amd64 || use linux-amd64 ; then
