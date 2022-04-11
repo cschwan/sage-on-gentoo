@@ -50,9 +50,10 @@ sci-mathematics/ExportSageNB
 # sage optional binding
 #########################
 sci-libs/modular_decomposition
-~sci-libs/bliss-0.73
+sci-libs/bliss
 dev-libs/igraph
 sci-mathematics/shared_meataxe
+sci-mathematics/database_knotinfo
 # coinor-cbc
 sci-libs/coinor-cbc
 sci-libs/coinor-clp
