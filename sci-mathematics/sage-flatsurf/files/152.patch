@@ -1,0 +1,271 @@
+From bdd8eab9e9b8cbd79273c715ba82bed1aad62631 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Julian=20R=C3=BCth?= <julian.rueth@fsfe.org>
+Date: Mon, 21 Mar 2022 17:10:05 -0600
+Subject: [PATCH 1/2] Remove unused methods
+
+fixes #151.
+---
+ doc/news/unused-matrix.rst              |   4 +
+ flatsurf/geometry/matrix_2x2.py         | 136 +-----------------------
+ flatsurf/geometry/similarity_surface.py |  22 +---
+ 3 files changed, 12 insertions(+), 150 deletions(-)
+ create mode 100644 doc/news/unused-matrix.rst
+
+diff --git a/doc/news/unused-matrix.rst b/doc/news/unused-matrix.rst
+new file mode 100644
+index 0000000..0389d42
+--- /dev/null
++++ b/doc/news/unused-matrix.rst
+@@ -0,0 +1,4 @@
++**Removed:**
++
++* Removed unused functions from matrix_2x2, namely, `number_field_to_AA`,
++  `homothety_rotation_decomposition`, `is_similarity`, `rotation_matrix_angle`.
+diff --git a/flatsurf/geometry/matrix_2x2.py b/flatsurf/geometry/matrix_2x2.py
+index 2d01b49..357bf2c 100644
+--- a/flatsurf/geometry/matrix_2x2.py
++++ b/flatsurf/geometry/matrix_2x2.py
+@@ -6,7 +6,7 @@
+ #  This file is part of sage-flatsurf.
+ #
+ #        Copyright (C) 2016-2020 Vincent Delecroix
+-#                      2020      Julian Rüth
++#                      2020-2022 Julian Rüth
+ #
+ #  sage-flatsurf is free software: you can redistribute it and/or modify
+ #  it under the terms of the GNU General Public License as published by
+@@ -22,87 +22,14 @@
+ #  along with sage-flatsurf. If not, see <https://www.gnu.org/licenses/>.
+ ######################################################################
+ from __future__ import absolute_import, print_function, division
+-from six.moves import range, map, filter, zip
+ 
+-from sage.misc.cachefunc import cached_function
++from sage.rings.all import AA, QQbar, RR
+ 
+-from sage.rings.all import ZZ, QQ, AA, QQbar, RR, CC, RDF, CDF, RIF, CIF
+-from sage.rings.rational import Rational
+-from sage.rings.complex_interval_field import ComplexIntervalField
+-
+-from math import pi as pi_float
+-
+-from sage.symbolic.constants import pi
+ from sage.matrix.constructor import matrix, identity_matrix
+ from sage.modules.free_module_element import vector
+ 
+-def number_field_to_AA(a):
+-    r"""
+-    It is a mess to convert an element of a number field to the algebraic field
+-    ``AA``. This is a temporary fix.
+-    """
+-    try:
+-        return AA(a)
+-    except TypeError:
+-        return AA.polynomial_root(a.minpoly(), RIF(a))
+ 
+-def is_similarity(m):
+-    r"""
+-    Return ``True`` if ``m`` is a similarity and ``False`` otherwise.
+-
+-    EXAMPLES::
+-
+-        sage: from flatsurf.geometry.matrix_2x2 import is_similarity
+-
+-        sage: is_similarity(matrix([[0,1],[1,0]]))
+-        True
+-        sage: is_similarity(matrix([[0,-2],[2,0]]))
+-        True
+-        sage: is_similarity(matrix([[1,1],[0,1]]))
+-        False
+-    """
+-    n = m * m.transpose()
+-    return n[0,1].is_zero() and n[1,0].is_zero()
+-
+-def homothety_rotation_decomposition(m):
+-    r"""
+-    Return a couple composed of the homothety and a rotation matrix.
+-
+-    The coefficients of the returned pair are either in the ground field of
+-    ``m`` or in the algebraic field ``AA``.
+-
+-    EXAMPLES::
+-
+-        sage: from flatsurf.geometry.matrix_2x2 import homothety_rotation_decomposition
+-
+-        sage: R.<x> = PolynomialRing(QQ)
+-        sage: K.<sqrt2> = NumberField(x^2 - 2, embedding=1.4142)
+-        sage: m = matrix([[sqrt2, -sqrt2],[sqrt2,sqrt2]])
+-        sage: a,rot = homothety_rotation_decomposition(m)
+-        sage: a
+-        2
+-        sage: rot
+-        [ 1/2*sqrt2 -1/2*sqrt2]
+-        [ 1/2*sqrt2  1/2*sqrt2]
+-    """
+-    if not is_similarity(m):
+-        raise ValueError("the matrix must be a similarity")
+-
+-    det = m.det()
+-
+-    if not det.is_square():
+-        if not AA.has_coerce_map_from(m.base_ring()):
+-            l = map(number_field_to_AA,m.list())
+-            M = MatrixSpace(AA,2)
+-            m = M(l)
+-        else:
+-            m = m.change_ring(AA)
+-
+-    sqrt_det = det.sqrt()
+-
+-    return sqrt_det, m / sqrt_det
+-
+-def similarity_from_vectors(u,v):
++def similarity_from_vectors(u, v):
+     r"""
+     Return the unique similarity matrix that maps ``u`` to ``v``.
+ 
+@@ -183,62 +110,6 @@ def similarity_from_vectors(u,v):
+     return matrix([[cos_uv, -sin_uv],[sin_uv, cos_uv]])
+ 
+ 
+-def rotation_matrix_angle(r, check=False):
+-    r"""
+-    Return the angle of the rotation matrix ``r`` divided by ``2 pi``.
+-
+-    EXAMPLES::
+-
+-        sage: from flatsurf.geometry.matrix_2x2 import rotation_matrix_angle
+-
+-        sage: def rot_matrix(p, q):
+-        ....:     z = QQbar.zeta(q) ** p
+-        ....:     c = z.real()
+-        ....:     s = z.imag()
+-        ....:     return matrix(AA, 2, [c,-s,s,c])
+-        sage: [rotation_matrix_angle(rot_matrix(i, 5)) for i in range(1,5)]
+-        [1/5, 2/5, 3/5, 4/5]
+-        sage: [rotation_matrix_angle(rot_matrix(i, 5)) for i in range(1,5)]
+-        [1/5, 2/5, 3/5, 4/5]
+-        sage: [rotation_matrix_angle(rot_matrix(i,7)) for i in range(1,7)]
+-        [1/7, 2/7, 3/7, 4/7, 5/7, 6/7]
+-
+-    Some random tests::
+-
+-        sage: for _ in range(100):
+-        ....:     r = QQ.random_element(x=0,y=500)
+-        ....:     r -= r.floor()
+-        ....:     m = rot_matrix(r.numerator(), r.denominator())
+-        ....:     assert rotation_matrix_angle(m) == r
+-
+-    .. NOTE::
+-
+-        This is using floating point arithmetic and might be wrong.
+-    """
+-    e0,e1 = r.change_ring(CDF).eigenvalues()
+-    m0 = (e0.log() / 2 / CDF.pi()).imag()
+-    m1 = (e1.log() / 2 / CDF.pi()).imag()
+-    r0 = RR(m0).nearby_rational(max_denominator=10000)
+-    r1 = RR(m1).nearby_rational(max_denominator=10000)
+-    if r0 != -r1:
+-        raise RuntimeError
+-    r0 = r0.abs()
+-    if r[0][1] > 0:
+-        return QQ.one() - r0
+-    else:
+-        return r0
+-
+-    if check:
+-        e = r.change_ring(AA).eigenvalues()[0]
+-        if e.minpoly() != ZZ['x'].cyclotomic_polynomial()(r.denominator()):
+-            raise RuntimeError
+-        z = QQbar.zeta(r.denominator())
+-        if z**r.numerator() != e:
+-            raise RuntimeError
+-
+-    return r
+-
+-
+ def is_cosine_sine_of_rational(c, s):
+     r"""
+     Check whether the given pair is a cosine and sine of a same rational angle.
+@@ -278,6 +149,7 @@ def is_cosine_sine_of_rational(c, s):
+     """
+     return (QQbar(c) + QQbar.gen() * QQbar(s)).minpoly().is_cyclotomic()
+ 
++
+ def angle(u, v, numerical=False, assume_rational=False):
+     r"""
+     Return the angle between the vectors ``u`` and ``v`` divided by `2 \pi`.
+diff --git a/flatsurf/geometry/similarity_surface.py b/flatsurf/geometry/similarity_surface.py
+index 0ddfee8..8c9ec6b 100644
+--- a/flatsurf/geometry/similarity_surface.py
++++ b/flatsurf/geometry/similarity_surface.py
+@@ -6,7 +6,7 @@
+ #  This file is part of sage-flatsurf.
+ #
+ #        Copyright (C) 2016-2020 Vincent Delecroix
+-#                      2020-2021 Julian Rüth
++#                      2020-2022 Julian Rüth
+ #
+ #  sage-flatsurf is free software: you can redistribute it and/or modify
+ #  it under the terms of the GNU General Public License as published by
+@@ -23,35 +23,21 @@
+ #*********************************************************************
+ 
+ from __future__ import absolute_import, print_function, division
+-from six.moves import range, map, filter, zip
++from six.moves import range
+ from six import iteritems
+ 
+-import itertools
+-
+-from sage.misc.cachefunc import cached_method
+ from sage.misc.sage_unittest import TestSuite
+ 
+ from sage.structure.sage_object import SageObject
+ 
+ from sage.rings.infinity import Infinity
+ 
+-from sage.rings.all import ZZ, QQ, AA, RIF, RR, NumberField
++from sage.rings.all import ZZ, QQ, AA, NumberField
+ 
+ from sage.modules.free_module_element import vector
+ 
+-from sage.matrix.constructor import matrix, identity_matrix
+-from sage.modules.free_module import VectorSpace
+-
+-from sage.all import FreeModule
+-
+-from .matrix_2x2 import (is_similarity,
+-                    homothety_rotation_decomposition,
+-                    similarity_from_vectors,
+-                    rotation_matrix_angle,
+-                    is_cosine_sine_of_rational)
+-
+ from .similarity import SimilarityGroup
+-from .polygon import ConvexPolygons, wedge_product, triangulate, build_faces
++from .polygon import ConvexPolygons, wedge_product
+ 
+ from .surface import Surface, Surface_dict, Surface_list, LabelComparator
+ from .surface_objects import Singularity, SaddleConnection, SurfacePoint
+
+From 44bdb08b859e2fe2bf34fb15f3e902635a6fc6f5 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Julian=20R=C3=BCth?= <julian.rueth@fsfe.org>
+Date: Mon, 21 Mar 2022 17:20:10 -0600
+Subject: [PATCH 2/2] Fix missing import
+
+---
+ flatsurf/geometry/similarity_surface.py | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/flatsurf/geometry/similarity_surface.py b/flatsurf/geometry/similarity_surface.py
+index 8c9ec6b..ce2e02e 100644
+--- a/flatsurf/geometry/similarity_surface.py
++++ b/flatsurf/geometry/similarity_surface.py
+@@ -42,6 +42,7 @@
+ from .surface import Surface, Surface_dict, Surface_list, LabelComparator
+ from .surface_objects import Singularity, SaddleConnection, SurfacePoint
+ from .circle import Circle
++from .matrix_2x2 import similarity_from_vectors
+ 
+ ZZ_1 = ZZ.one()
+ ZZ_2 = ZZ_1 + ZZ_1
