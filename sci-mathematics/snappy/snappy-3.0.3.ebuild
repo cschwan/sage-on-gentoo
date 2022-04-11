@@ -26,6 +26,7 @@ RDEPEND="${DEPEND}
 	>=sci-mathematics/spherogram-2.1[${PYTHON_USEDEP}]
 	>=sci-mathematics/plink-2.4.1[${PYTHON_USEDEP}]
 	sci-mathematics/snappy_manifolds[${PYTHON_USEDEP}]
+	sci-mathematics/FXrays[${PYTHON_USEDEP}]
 	!!dev-python/snappy"
 BDEPEND=""
 
