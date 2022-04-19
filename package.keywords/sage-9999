@@ -45,14 +45,24 @@ www-misc/thebe
 ##########################
 sci-mathematics/ExportSageNB
 ~sci-chemistry/sage-jmol-bin-14.29.52
-~sci-mathematics/database-knotinfo-2021.9.1
 #########################
 # sage optional binding
 #########################
 sci-libs/modular_decomposition
-~sci-libs/bliss-0.73
+sci-libs/bliss
 dev-libs/igraph
 sci-mathematics/shared_meataxe
+# optional packages
+sci-mathematics/database_knotinfo
+sci-mathematics/surface_dynamics
+sci-mathematics/sage-flatsurf
+# "downstream" snappy packages
+sci-mathematics/snappy_manifolds
+sci-mathematics/knot_floer_homology
+sci-mathematics/spherogram
+sci-mathematics/plink
+sci-mathematics/snappy
+sci-mathematics/FXrays
 # coinor-cbc
 sci-libs/coinor-cbc
 sci-libs/coinor-clp
