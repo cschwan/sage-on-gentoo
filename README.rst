@@ -42,7 +42,7 @@ To enable the overlay without the need for additional software, you first need t
 
     emerge --ask --verbose dev-vcs/git
 
-Then you need to add the science repository configuration by downloading the [sage-on-gentoo.conf](metadata/sage-on-gentoo.conf) file::
+Then you need to add the sage-on-gentoo repository configuration by downloading the [sage-on-gentoo.conf](metadata/sage-on-gentoo.conf) file::
 
     wget https://raw.githubusercontent.com/cschwan/sage-on-gentoo/master/metadata/sage-on-gentoo.conf \
 	    -O /etc/portage/repos.conf/sage-on-gentoo
@@ -58,7 +58,7 @@ To uninstall the overlay, simply run::
 
 **Synchronising the overlay**
 
-The overlay is synced each time you run `emerge --sync` or the equivalent `eix-sync` if you are using it. Off course it synchronises the wall tree which could be undesirable if you have already synced recently. To synchronise only the overlay use::
+The overlay is synced each time you run `emerge --sync` or the equivalent `eix-sync` if you are using it. Off course it synchronises the whole tree which could be undesirable if you have already synced recently. To synchronise only the overlay use::
 
     emaint sync -r sage-on-gentoo
 
@@ -96,6 +96,7 @@ we provide a standard package.use file as well::
      ln -s /var/db/repos/sage-on-gentoo/package.use/sage \
            /etc/portage/package.use/sage
 
+The following section is currently not fully applicable from sage 9.5 onward. I currently do not provide binary documentation but I am hoping to restore this service at some point in time.
 You should also consider linking in the same way the file ``99sage-doc-bin``.
 This file sets sane default options for installing html documentation from a binary
 tarball. Building the sage documentation from scratch is memory hungry and you
