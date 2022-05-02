@@ -1,5 +1,5 @@
 diff --git a/src/doc/Makefile b/src/doc/Makefile
-index 90bea5dfac..051a74f68f 100644
+index 90bea5dfac..48b7f3097e 100644
 --- a/src/doc/Makefile
 +++ b/src/doc/Makefile
 @@ -17,31 +17,26 @@ clean:
@@ -80,9 +80,8 @@ index 90bea5dfac..051a74f68f 100644
  	$(MAKE) SAGE_DOCBUILD_OPTS="$(SAGE_DOCBUILD_OPTS) --no-prune-empty-dirs" $(foreach doc, $(wordlist 2, 100, $(DOCS)), doc-pdf--$(subst /,-,$(doc)))
  
  # website with pdf links
--doc-pdf-website:
+ doc-pdf-website:
 -	cd $(SAGE_ROOT) && ./sage --docbuild website html $(SAGE_DOCBUILD_OPTS)
-+doc-pdf-website: doc-pdf-reference doc-pdf-other
 +	$(PYTHON) -m sage_docbuild website html $(SAGE_DOCBUILD_OPTS)
  
  doc-pdf: doc-pdf-reference doc-pdf-other doc-pdf-website
