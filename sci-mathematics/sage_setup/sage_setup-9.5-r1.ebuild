@@ -33,6 +33,7 @@ RDEPEND="
 
 PATCHES=(
 	"${FILESDIR}"/${PN}-9.5-options.patch
+	"${FILESDIR}"/${PN}-9.6-no_build.patch
 )
 
 S="${WORKDIR}/${MY_P}"
