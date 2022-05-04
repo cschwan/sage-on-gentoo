@@ -216,12 +216,6 @@ python_configure_all() {
 	export SAGE_NUM_THREADS=$(makeopts_jobs)
 }
 
-python_configure() {
-	# files are not built unless they are touched
-	find sage -name "*pyx" -exec touch '{}' \; \
-		|| die "failed to touch *pyx files"
-}
-
 python_install() {
 	# Install cython debugging files if requested
 	# They are now produced by default
