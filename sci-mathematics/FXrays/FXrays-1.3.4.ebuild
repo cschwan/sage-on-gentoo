@@ -10,7 +10,7 @@ inherit distutils-r1
 
 DESCRIPTION="Finding extremal rays of a polyhedral cone"
 HOMEPAGE="https://github.com/3-manifolds/FXrays
-	https://pypi.org/project/FXrays"
+	https://pypi.org/project/FXrays/"
 SRC_URI="mirror://pypi/${PN:0:1}/${PN}/${P}.tar.gz"
 
 LICENSE="GPL-2+"
