@@ -5,9 +5,9 @@ EAPI=8
 
 PYTHON_COMPAT=( python3_{8..10} )
 PYTHON_REQ_USE="readline,sqlite"
-DISTUTILS_USE_SETUPTOOLS=bdepend
+DISTUTILS_USE_PEP517=setuptools
 
-inherit distutils-r1 prefix toolchain-funcs git-r3
+inherit distutils-r1 git-r3
 
 EGIT_REPO_URI="https://github.com/vbraun/sage.git"
 EGIT_BRANCH=develop
@@ -30,7 +30,6 @@ DEPEND="
 "
 RDEPEND="
 	${DEPEND}
-	!<=sci-mathematics/sage-9.4
 "
 
 PATCHES=(
