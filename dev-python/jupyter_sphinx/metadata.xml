@@ -7,7 +7,7 @@
   </maintainer>
   <stabilize-allarches/>
   <upstream>
-    <remote-id type="pypi">jupyter-spinx</remote-id>
+    <remote-id type="pypi">jupyter-sphinx</remote-id>
     <remote-id type="github">jupyter/jupyter-sphinx</remote-id>
   </upstream>
 </pkgmetadata>
