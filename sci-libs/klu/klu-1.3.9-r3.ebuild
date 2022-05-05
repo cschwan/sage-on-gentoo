@@ -6,7 +6,7 @@ EAPI=7
 inherit autotools
 
 DESCRIPTION="Sparse LU factorization for circuit simulation"
-HOMEPAGE="https://faculty.cse.tamu.edu/davis/suitesparse.html"
+HOMEPAGE="https://people.engr.tamu.edu/davis/suitesparse.html"
 SRC_URI="mirror://sagemath/${P}.tar.bz2"
 
 LICENSE="LGPL-2.1"
