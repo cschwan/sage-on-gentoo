@@ -1,9 +1,8 @@
-Author: Lost in the mist of times
-Respect LDFLAGS
-
---- a/makefile	2014-05-24 19:12:58.281288745 +1200
-+++ b/makefile	2014-05-24 19:25:19.141594193 +1200
-@@ -9,40 +9,40 @@
+diff --git a/makefile b/makefile
+index 4245744..dba23f9 100644
+--- a/makefile
++++ b/makefile
+@@ -9,40 +9,40 @@ OBJS =	cube.o \
  	globals.o
  
  cube:	$(OBJS)
@@ -30,8 +29,7 @@ Respect LDFLAGS
  	size sizesquare
  
  sizedom.o:	sizedom.c
--	$(CC) $(CFLAGS) -DCCPERM -DIPERM -c sizedom.c
-+	$(CC) $(CFLAGS)  -DCCPERM -DIPERM -c sizedom.c
+ 	$(CC) $(CFLAGS) -DCCPERM -DIPERM -c sizedom.c
  
  sizedom:	sizedom.o
 -	$(CC) $(CFLAGS) -o sizedom sizedom.o
