@@ -8,8 +8,7 @@ inherit toolchain-funcs
 MY_PN="${PN}-src"
 
 DESCRIPTION="An non-optimal 2x2x2 rubik's cube solver"
-HOMEPAGE="https://www.wrongway.org/?rubiksource"
-#SRC_URI="https://www.wrongway.org/work/${MY_PN}.zip"
+HOMEPAGE="https://web.archive.org/web/20121212175710/http://www.wrongway.org/?rubiksource"
 SRC_URI="mirror://sagemath/${MY_PN}.zip"
 
 LICENSE="GPL-2"
