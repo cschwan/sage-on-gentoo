@@ -6,7 +6,7 @@ EAPI=8
 PYTHON_COMPAT=( python3_{8..10} )
 PYTHON_REQ_USE="readline,sqlite"
 
-inherit python-any-r1 multiprocessing git-r3
+inherit python-any-r1 git-r3
 
 EGIT_REPO_URI="https://github.com/sagemath/sage.git"
 EGIT_BRANCH=develop
@@ -98,15 +98,6 @@ src_compile(){
 	# Needs to be created beforehand or it gets created as a file with the content of _static/plot_directive.css
 	mkdir -p "${SAGE_DOC}"/html/en/reference/_static
 
-# 	target="doc-html "
-# 
-# 	if use doc-pdf ; then
-# 		DOCS="${SAGE_DOC}/pdf"
-# 		target="${target}doc-pdf"
-# 	fi
-# 
-# 	# Do not double quote target. We need spaces to be considered spaces and not part of a target name.
-# 	emake ${target} PYTHON=${PYTHON}
 	emake doc-html
 	if use doc-pdf ; then
 		DOCS+=( "${SAGE_DOC}/pdf" )
@@ -151,8 +142,8 @@ src_install(){
 	# Files needed for generating documentation on the fly
 	docompress -x /usr/share/doc/"${PF}"/en /usr/share/doc/"${PF}"/common
 	# necessary for sagedoc.py call to sphinxify.
-	insinto /usr/share/doc/"${PF}"/common
-	doins -r src/doc/common/themes
+	docinto /usr/share/doc/"${PF}"/common
+	dodoc -r src/doc/common/themes
 
 	dosym -r /usr/share/doc/"${PF}" /usr/share/jupyter/kernels/sagemath/doc
 }

@@ -1,59 +1,138 @@
-Author: Lost in the mist of times.
-fixes a lot of QA warnings
-
---- a/globals.h	2010-07-10 06:57:48.222825644 +0000
-+++ b/globals.h	2010-07-10 06:57:59.560923806 +0000
+diff --git a/cube.c b/cube.c
+index 082785f..16d7639 100644
+--- a/cube.c
++++ b/cube.c
+@@ -1,4 +1,5 @@
+ #include "globals.h"
++#include <string.h>
+ 
+ static void def_cube();
+ static void read_cube();
+diff --git a/globals.h b/globals.h
+index 433d446..64cd025 100644
+--- a/globals.h
++++ b/globals.h
 @@ -1,4 +1,5 @@
  #include <stdio.h>
 +#include <stdlib.h>
  
  #define MAX_MOVES	30
  
---- a/size222.c	2010-07-10 07:04:23.699920314 +0000
-+++ b/size222.c	2010-07-10 07:04:45.329921850 +0000
+diff --git a/setcube.c b/setcube.c
+index 9536cbd..53caca0 100644
+--- a/setcube.c
++++ b/setcube.c
+@@ -1,4 +1,5 @@
+ #include "globals.h"
++#include <string.h>
+ 
+ static char corners[8][3][3] = {
+     {"ULB", "BUL", "LBU"},
+diff --git a/size222.c b/size222.c
+index 082bf54..1156f79 100644
+--- a/size222.c
++++ b/size222.c
 @@ -1,4 +1,5 @@
  #include <stdio.h>
 +#include <stdlib.h>
  
  #define NOMAX
  #include "trans/perm7.a"
---- a/size333c.c	2010-07-10 07:05:04.117920454 +0000
-+++ b/size333c.c	2010-07-10 07:05:18.097921921 +0000
+@@ -8,6 +9,7 @@
+ #define MAX_TURNS    (MAX_TWISTS * MAX_CPERMS)
+ 
+ #include "longtype.h"
++#include <string.h>
+ 
+ TYPE turns1[MT];
+ TYPE turns2[MT];
+diff --git a/size333c.c b/size333c.c
+index 9a897b9..ef5ecef 100644
+--- a/size333c.c
++++ b/size333c.c
 @@ -1,4 +1,5 @@
  #include <stdio.h>
 +#include <stdlib.h>
  
  #define EQUIV
  #define NOMAX
---- a/sizedom.c	2010-07-10 07:06:00.091931699 +0000
-+++ b/sizedom.c	2010-07-10 07:06:14.611922549 +0000
+@@ -29,6 +30,7 @@
+ #endif /* CCPERM */
+ 
+ #include "longtype.h"
++#include <string.h>
+ 
+ TYPE turns1[MT];
+ TYPE turns2[MT];
+diff --git a/sizedom.c b/sizedom.c
+index 534c98b..fe724f9 100644
+--- a/sizedom.c
++++ b/sizedom.c
 @@ -1,4 +1,5 @@
  #include <stdio.h>
 +#include <stdlib.h>
  
  #define SUBGROUP
  #define EQUIV
---- a/sizekoc1.c	2010-07-10 07:06:31.014920384 +0000
-+++ b/sizekoc1.c	2010-07-10 07:13:28.597920314 +0000
+@@ -30,6 +31,7 @@
+ #endif /* CEPERM */
+ 
+ #include "longtype.h"
++#include <string.h>
+ 
+ TYPE turns1[MT];
+ TYPE turns2[MT];
+diff --git a/sizekoc1.c b/sizekoc1.c
+index 4e8f97a..39c6ab7 100644
+--- a/sizekoc1.c
++++ b/sizekoc1.c
 @@ -1,4 +1,5 @@
  #include <stdio.h>
 +#include <stdlib.h>
  
  #define EQUIV
  #define NOMAX
---- a/sizekoc2.c	2010-07-10 07:07:00.874920593 +0000
-+++ b/sizekoc2.c	2010-07-10 07:07:23.061921431 +0000
+@@ -19,6 +20,7 @@
+ #define MAX_TURNS    (TWIST_MAGIC * MAX_FLIPS * MAX_CHOICES)
+ 
+ #include "longtype.h"
++#include <string.h>
+ 
+ TYPE turns1[MT];
+ TYPE turns2[MT];
+diff --git a/sizekoc2.c b/sizekoc2.c
+index 90c4b46..2062f8d 100644
+--- a/sizekoc2.c
++++ b/sizekoc2.c
 @@ -1,4 +1,5 @@
  #include <stdio.h>
 +#include <stdlib.h>
  
  #define EQUIV
  #define NOMAX
---- a/sizesquare.c	2010-07-10 07:05:34.616921013 +0000
-+++ b/sizesquare.c	2010-07-10 07:05:49.479922060 +0000
+@@ -19,6 +20,7 @@
+ #define MAX_TURNS    (CPERM_MAGIC * MAX_EPERMS * MAX_SPERMS)
+ 
+ #include "longtype.h"
++#include <string.h>
+ 
+ TYPE turns1[MT];
+ TYPE turns2[MT];
+diff --git a/sizesquare.c b/sizesquare.c
+index 89503ef..521ede4 100644
+--- a/sizesquare.c
++++ b/sizesquare.c
 @@ -1,4 +1,5 @@
  #include <stdio.h>
 +#include <stdlib.h>
  
  #define NOMAX
  #include "trans/perm4.a"
+@@ -8,6 +9,7 @@
+ #define MAX_TURNS    (MAX_EPERMS2 * MAX_CPERMS2)
+ 
+ #include "longtype.h"
++#include <string.h>
+ 
+ TYPE turns1[MT];
+ TYPE turns2[MT];

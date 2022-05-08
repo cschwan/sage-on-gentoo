@@ -6,7 +6,7 @@ EAPI=7
 inherit toolchain-funcs
 
 DESCRIPTION="A Computer algebra package for Lie group computations"
-HOMEPAGE="https://www-math.univ-poitiers.fr/~maavl/LiE/"
+HOMEPAGE="http://www-math.univ-poitiers.fr/~maavl/LiE/"
 SRC_URI="http://www-math.univ-poitiers.fr/~maavl/LiE/conLiE.tar.gz -> ${P}.tar.gz"
 #### Remove the following line when moving this ebuild to the main tree!
 RESTRICT=primaryuri

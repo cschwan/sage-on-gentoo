@@ -6,7 +6,7 @@ EAPI=6
 inherit toolchain-funcs flag-o-matic multibuild
 
 DESCRIPTION="A Package for Analyzing Lattice Polytopes"
-HOMEPAGE="https://hep.itp.tuwien.ac.at/~kreuzer/CY/CYpalp.html"
+HOMEPAGE="http://hep.itp.tuwien.ac.at/~kreuzer/CY/CYpalp.html"
 SRC_URI="http://hep.itp.tuwien.ac.at/~kreuzer/CY/palp/${P}.tar.gz"
 #SRC_URI="mirror://sagemath/${P}.tar.gz"
 

@@ -7,7 +7,7 @@ PYTHON_COMPAT=( python3_{8..10} )
 PYTHON_REQ_USE="readline,sqlite"
 DISTUTILS_USE_PEP517=setuptools
 
-inherit desktop distutils-r1 flag-o-matic multiprocessing prefix toolchain-funcs git-r3
+inherit desktop distutils-r1 multiprocessing prefix toolchain-funcs git-r3
 
 EGIT_REPO_URI="https://github.com/sagemath/sage.git"
 EGIT_BRANCH=develop
@@ -123,7 +123,6 @@ RDEPEND="
 	~sci-mathematics/sage-data-elliptic_curves-0.8
 	~sci-mathematics/sage-data-graphs-20210214
 	~sci-mathematics/sage-data-polytopes_db-20170220
-	!sci-mathematics/sage-notebook
 	>=sci-mathematics/sympow-1.018.1
 	www-servers/tornado
 
@@ -252,8 +251,7 @@ python_install_all() {
 		EOF
 	fi
 
-	insinto /usr/share/doc/"${PF}"
-	doins ../COPYING.txt
+	dodoc ../COPYING.txt
 
 	# install links for the jupyter kernel
 	# We have to be careful of removing prefix if present

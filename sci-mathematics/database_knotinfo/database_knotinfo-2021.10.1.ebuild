@@ -10,7 +10,7 @@ inherit distutils-r1
 
 DESCRIPTION="Content of the KnotInfo & LinkInfo databases as lists of dictionaries"
 KEYWORDS="~amd64 ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos"
-HOMEPAGE="https://pypi.org/project/database-knotinfo"
+HOMEPAGE="https://pypi.org/project/database-knotinfo/"
 SRC_URI="mirror://pypi/${PN:0:1}/${PN}/${P}.tar.gz"
 IUSE="test"
 

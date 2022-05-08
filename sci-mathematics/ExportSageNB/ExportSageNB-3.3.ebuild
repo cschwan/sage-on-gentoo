@@ -17,7 +17,6 @@ SRC_URI="mirror://sageupstream/${MY_PN}/${MY_P}.tar.gz"
 LICENSE="GPL-3+"
 SLOT="0"
 KEYWORDS="~amd64"
-IUSE="test"
 
 RDEPEND=">=dev-python/ipython-4.0.1[${PYTHON_USEDEP}]
 	>=dev-python/nbconvert-4.1.0[${PYTHON_USEDEP}]"

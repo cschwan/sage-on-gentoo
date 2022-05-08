@@ -9,7 +9,7 @@ DISTUTILS_USE_PEP517=setuptools
 inherit distutils-r1
 
 DESCRIPTION="Python interface to coinor-cbc"
-HOMEPAGE="https://github.com/coinor-or/CyLP"
+HOMEPAGE="https://github.com/coin-or/CyLP"
 SRC_URI="mirror://pypi/${PN:0:1}/${PN}/${P}.tar.gz"
 
 LICENSE="EPL-2.0"

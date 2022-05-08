@@ -1,15 +1,14 @@
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI=8
 
 inherit toolchain-funcs
 
 MY_PN="${PN}10-src"
 
 DESCRIPTION="An non-optimal 4x4x4 rubik's cube solver"
-HOMEPAGE="https://www.wrongway.org/?rubiksource"
-#SRC_URI="https://www.wrongway.org/work/${MY_PN}.zip"
+HOMEPAGE="https://web.archive.org/web/20121212175710/http://www.wrongway.org/?rubiksource"
 SRC_URI="mirror://sagemath/${MY_PN}.zip"
 
 LICENSE="GPL-2"
