@@ -34,7 +34,6 @@ RDEPEND="
 
 PATCHES=(
 	"${FILESDIR}"/${PN}-9.6-verbosity.patch
-	"${FILESDIR}"/${PN}-9.6-no_build.patch
 )
 
 src_unpack(){
