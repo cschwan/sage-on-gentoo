@@ -21,8 +21,6 @@ SLOT="0"
 SAGE_USE="bliss meataxe"
 IUSE="debug +doc jmol latex test X ${SAGE_USE}"
 
-DOCS="LICENSE.txt COPYING.txt"
-
 DEPEND="
 	~dev-gap/gap-recommended-4.11.1
 	dev-libs/gmp:0=
@@ -220,8 +218,9 @@ python_install() {
 }
 
 python_install_all() {
-	docompress -x /usr/share/doc/"${PF}"
 	distutils-r1_python_install_all
+	docompress -x /usr/share/doc/"${PF}"
+	newdoc LICENSE.txt COPYING.txt
 
 	# install env files under /etc
 	insinto /etc
