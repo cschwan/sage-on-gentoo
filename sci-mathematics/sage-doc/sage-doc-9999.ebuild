@@ -45,7 +45,10 @@ PATCHES=(
 )
 
 HTML_DOCS="${WORKDIR}/build_doc/html/*"
-DOCS=( "${WORKDIR}/build_doc/index.html" )
+DOCS=(
+	"${WORKDIR}/build_doc/index.html"
+	"${S}/src/doc/common"
+)
 
 # for some reason opened for write during inventory of reference/plotting(?) - no write happens.
 addpredict "${EPREFIX}/usr/share/sage/cremona/cremona_mini.db"
@@ -137,13 +140,8 @@ src_install(){
 	fi
 	popd
 
+	docompress -x /usr/share/doc/"${PF}"/common
 	einstalldocs
-
-	# Files needed for generating documentation on the fly
-	docompress -x /usr/share/doc/"${PF}"/en /usr/share/doc/"${PF}"/common
-	# necessary for sagedoc.py call to sphinxify.
-	docinto /usr/share/doc/"${PF}"/common
-	dodoc -r src/doc/common/themes
 
 	dosym -r /usr/share/doc/"${PF}" /usr/share/jupyter/kernels/sagemath/doc
 }

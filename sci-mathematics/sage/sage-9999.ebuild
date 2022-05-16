@@ -147,6 +147,7 @@ PATCHES=(
 	"${FILESDIR}"/${PN}-9.3-forcejavatmp.patch
 	"${FILESDIR}"/${PN}-9.6-neutering.patch
 	"${FILESDIR}"/${PN}-9.5-distutils.patch
+	"${FILESDIR}"/${PN}-9.6-sagebuild_redux.patch
 	"${FILESDIR}"/trac31626.patch
 )
 
@@ -162,11 +163,13 @@ src_unpack() {
 }
 
 python_prepare_all() {
+	# From sage 9.4 the official setup.py is in pkgs/sagemath-standard
+	# We need it in place before patching in 9.6 because of issue #693
+	cp ../pkgs/sagemath-standard/setup.py setup.py || die "failed to copy the right setup.py"
+
 	distutils-r1_python_prepare_all
 
 	mv sage_setup no_sage_setup || die "cannot rename sage_setup"
-	# From sage 9.4 the official setup.py is in pkgs/sagemath-standard
-	cp ../pkgs/sagemath-standard/setup.py setup.py || die "failed to copy the right setup.py"
 
 	einfo "generating setup.cfg and al. - be patient"
 	pushd "${S}/../build/pkgs/sagelib"
