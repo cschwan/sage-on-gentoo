@@ -65,7 +65,7 @@ DEPEND="
 	~sci-mathematics/gap-4.11.1
 	>=sci-mathematics/giac-1.7.0
 	>=sci-mathematics/glpk-5.0:0=[gmp]
-	~sci-mathematics/gmp-ecm-7.0.4[-openmp]
+	~sci-mathematics/gmp-ecm-7.0.5[-openmp]
 	=sci-mathematics/lcalc-2.0*
 	=sci-mathematics/pari-2.13*
 	=sci-mathematics/planarity-3.0*
