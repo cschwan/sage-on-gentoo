@@ -21,7 +21,7 @@ S="${WORKDIR}/${P}/src"
 LICENSE="GPL-2"
 SLOT="0"
 SAGE_USE="bliss meataxe"
-IUSE="debug +doc jmol latex testsuite X ${SAGE_USE}"
+IUSE="debug +doc jmol latex test X ${SAGE_USE}"
 
 RESTRICT="mirror"
 
@@ -89,6 +89,7 @@ DEPEND="
 	virtual/cblas
 	www-misc/thebe
 
+	test? ( ~sci-mathematics/sage_docbuild-${PV}[${PYTHON_USEDEP}] )
 	bliss? ( >=sci-libs/bliss-0.73 )
 	meataxe? ( sci-mathematics/shared_meataxe )
 "
@@ -137,8 +138,10 @@ PDEPEND="doc? ( ~sci-mathematics/sage-doc-${PV} )"
 
 CHECKREQS_DISK_BUILD="8G"
 
+RESTRICT="!test? ( test )"
+
 REQUIRED_USE="doc? ( jmol )
-	testsuite? ( jmol )"
+	test? ( jmol )"
 
 PATCHES=(
 	"${FILESDIR}"/${PN}-9.2-env.patch
@@ -168,8 +171,6 @@ python_prepare_all() {
 	cp ../pkgs/sagemath-standard/setup.py setup.py || die "failed to copy the right setup.py"
 
 	distutils-r1_python_prepare_all
-
-	mv sage_setup no_sage_setup || die "cannot rename sage_setup"
 
 	einfo "generating setup.cfg and al. - be patient"
 	pushd "${S}/../build/pkgs/sagelib"
@@ -266,11 +267,8 @@ python_install_all() {
 }
 
 python_test() {
-	# move sage_setup back before potential testing
-	[[ -d "${S}/no_sage_setup" ]] && mv "${S}/no_sage_setup" "${S}/sage_setup"
-
-	SAGE_SRC="${S}" SAGE_DOC_SRC="${S}/doc" \
-		sage -tp $(makeopts_jobs) --all --long --baseline-stats-path "${FILESDIR}"/${PN}-9.6-testfailures.json || die
+	SAGE_DOC_SRC="${S}/doc" \
+		sage -tp $(makeopts_jobs) --installed --long --baseline-stats-path "${FILESDIR}"/${PN}-9.6-testfailures.json || die
 }
 
 pkg_preinst() {
@@ -303,10 +301,8 @@ pkg_postinst() {
 	einfo "you should make sure that matplotlib is installed with at least"
 	einfo "one graphical backend such as gtk3 or qt5."
 
-	if use testsuite ; then
-
 	einfo ""
-	einfo "To test Sage with 4 parallel processes run the following command:"
+	einfo "To test a Sage installation with 4 parallel processes run the following command:"
 	einfo ""
 	einfo "  sage -tp 4 --all"
 	einfo ""
@@ -315,8 +311,6 @@ pkg_postinst() {
 	einfo "such as version mismatches and numerical noise. Since Sage is"
 	einfo "changing constantly we do not maintain an up-to-date list of known"
 	einfo "failures."
-
-	fi
 
 	if ! use doc ; then
 		ewarn "You haven't requested the documentation."
