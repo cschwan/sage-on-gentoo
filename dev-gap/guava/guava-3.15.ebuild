@@ -1,9 +1,9 @@
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=7
+EAPI=8
 
-inherit autotools toolchain-funcs
+inherit toolchain-funcs
 
 DESCRIPTION="GAP package for computing with error-correcting codes"
 HOMEPAGE="https://www.gap-system.org/Packages/guava.html https://osj1961.github.io/guava/"
