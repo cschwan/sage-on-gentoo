@@ -65,7 +65,7 @@ DEPEND="
 	~sci-mathematics/gap-4.11.1
 	>=sci-mathematics/giac-1.7.0
 	>=sci-mathematics/glpk-5.0:0=[gmp]
-	~sci-mathematics/gmp-ecm-7.0.4[-openmp]
+	~sci-mathematics/gmp-ecm-7.0.5[-openmp]
 	=sci-mathematics/lcalc-2.0*
 	=sci-mathematics/pari-2.13*
 	=sci-mathematics/planarity-3.0*
@@ -150,7 +150,7 @@ PATCHES=(
 	"${FILESDIR}"/${PN}-9.3-forcejavatmp.patch
 	"${FILESDIR}"/${PN}-9.6-neutering.patch
 	"${FILESDIR}"/${PN}-9.5-distutils.patch
-	"${FILESDIR}"/${PN}-9.6-sagebuild_redux.patch
+	"${FILESDIR}"/${PN}-9.7-sagebuild_redux.patch
 	"${FILESDIR}"/trac31626.patch
 )
 
@@ -260,9 +260,9 @@ python_install_all() {
 	# install links for the jupyter kernel
 	# We have to be careful of removing prefix if present
 	PYTHON_SITEDIR=$(python_get_sitedir)
-	dosym ../../../../../"${PYTHON_SITEDIR#${EPREFIX}}"/sage/ext_data/notebook-ipython/logo-64x64.png \
+	dosym ../../../../.."${PYTHON_SITEDIR#${EPREFIX}}"/sage/ext_data/notebook-ipython/logo-64x64.png \
 		/usr/share/jupyter/kernels/sagemath/logo-64x64.png
-	dosym ../../../../../"${PYTHON_SITEDIR#${EPREFIX}}"/sage/ext_data/notebook-ipython/logo.svg \
+	dosym ../../../../.."${PYTHON_SITEDIR#${EPREFIX}}"/sage/ext_data/notebook-ipython/logo.svg \
 		/usr/share/jupyter/kernels/sagemath/logo.svg
 }
 
