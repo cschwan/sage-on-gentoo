@@ -25,6 +25,7 @@ DEPEND=""
 RDEPEND="
 	>=dev-python/sphinx-4.4.0[${PYTHON_USEDEP}]
 	dev-python/jupyter_sphinx[${PYTHON_USEDEP}]
+	!<=sci-mathematics/sage-9.4
 "
 PDEPEND=">=sci-mathematics/sage-9.6[${PYTHON_USEDEP}]"
 
