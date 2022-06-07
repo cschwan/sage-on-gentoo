@@ -27,7 +27,9 @@ DEPEND="
 	>=dev-python/pkgconfig-1.2.2[${PYTHON_USEDEP}]
 "
 RDEPEND="
-	${DEPEND}"
+	${DEPEND}
+	!<=sci-mathematics/sage-9.4
+"
 
 PATCHES=(
 	"${FILESDIR}"/${PN}-9.6-verbosity.patch
