@@ -1,0 +1,30 @@
+diff --git a/setup.cfg b/setup.cfg
+index a024eb9..5f14583 100644
+--- a/setup.cfg
++++ b/setup.cfg
+@@ -11,6 +11,3 @@ url = https://www.sagemath.org
+ [options]
+ py_modules =
+     sage_conf
+-
+-scripts =
+-    bin/sage-env-config
+diff --git a/setup.py b/setup.py
+index f16019c..808724d 100644
+--- a/setup.py
++++ b/setup.py
+@@ -74,7 +74,6 @@ class build_py(setuptools_build_py):
+ class build_scripts(distutils_build_scripts):
+ 
+     def run(self):
+-        self.distribution.scripts.append(os.path.join('bin', 'sage-env-config'))
+         if not self.distribution.entry_points:
+             self.entry_points = self.distribution.entry_points = dict()
+         if 'console_scripts' not in self.distribution.entry_points:
+@@ -83,5 +82,5 @@ class build_scripts(distutils_build_scripts):
+         distutils_build_scripts.run(self)
+ 
+ setup(
+-    cmdclass=dict(build_py=build_py, build_scripts=build_scripts)
++    cmdclass=dict(build_scripts=build_scripts)
+ )

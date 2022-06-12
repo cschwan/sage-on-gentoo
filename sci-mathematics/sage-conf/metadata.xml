@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<maintainer type="person">
+		<email>frp.bissey@gmail.com</email>
+		<name>Francois Bissey</name>
+	</maintainer>
+	<use>
+		<flag name='bliss'>
+			build the bindings to the bliss library
+		</flag>
+		<flag name='meataxe'>
+			build the bindings to the shared_meataxe library
+		</flag>
+		<flag name='jmol'>
+			Make jmol the default 3D rendering engine. Tachyon will be used otherwise.
+		</flag>
+	</use>
+</pkgmetadata>
