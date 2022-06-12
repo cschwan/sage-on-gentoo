@@ -30,6 +30,7 @@ DEPEND="
 "
 RDEPEND="
 	${DEPEND}
+	dev-python/jinja[${PYTHON_USEDEP}]
 "
 
 PATCHES=(
