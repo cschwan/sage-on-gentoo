@@ -6,10 +6,6 @@
 		<name>Francois Bissey</name>
 	</maintainer>
 	<use>
-		<flag name='testsuite'>
-			If activated installs tools to runs the testsuite and insure that all
-			the files needed are present.
-		</flag>
 		<flag name='bliss'>
 			build the bindings to the bliss library
 		</flag>

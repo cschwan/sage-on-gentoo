@@ -1,10 +1,10 @@
-# Copyright 1999-2020 Gentoo Authors
+# Copyright 1999-2022 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=7
+EAPI=8
 
-PYTHON_COMPAT=( python3_{6..9} )
-DISTUTILS_USE_SETUPTOOLS=no
+PYTHON_COMPAT=( python3_{8..10} )
+DISTUTILS_USE_PEP517=setuptools
 inherit distutils-r1
 
 DESCRIPTION="A Python (2 and 3) wrapper for fplll."
@@ -16,7 +16,7 @@ SLOT="0"
 KEYWORDS="~amd64 ~x86"
 IUSE="test"
 
-CDEPEND="~sci-libs/fplll-5.4.0
+CDEPEND="=sci-libs/fplll-5.4*
 	dev-python/cython[${PYTHON_USEDEP}]
 	dev-python/cysignals[${PYTHON_USEDEP}]
 	dev-python/numpy[${PYTHON_USEDEP}]"
@@ -29,3 +29,7 @@ PATCHES=(
 )
 
 distutils_enable_tests pytest
+
+src_test() {
+	PY_IGNORE_IMPORTMISMATCH=1 distutils-r1_src_test
+}
