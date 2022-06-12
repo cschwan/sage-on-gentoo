@@ -31,6 +31,7 @@ sci-mathematics/palp
 ~sci-mathematics/primecount-7.2
 ~sci-mathematics/primesieve-7.7
 ~sci-mathematics/sage-9999 **
+~sci-mathematics/sage-conf-9999 **
 ~sci-mathematics/sage_setup-9999 **
 ~sci-mathematics/sage_docbuild-9999 **
 ~sci-mathematics/sage-doc-9999 **
