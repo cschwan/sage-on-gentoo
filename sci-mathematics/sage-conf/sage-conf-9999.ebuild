@@ -27,7 +27,7 @@ RESTRICT="test mirror"
 # pplpy needs to be installed to get documentation folder right :(
 DEPEND="~dev-python/pplpy-0.8.7:=[doc,${PYTHON_USEDEP}]"
 BDEPEND="app-portage/gentoolkit"
-RDEPEND="~sci-mathematics/sage-${PV}"
+RDEPEND=""
 
 PATCHES=(
 	"${FILESDIR}/${PN}-9.7.patch"
