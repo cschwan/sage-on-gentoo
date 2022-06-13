@@ -71,6 +71,7 @@ DEPEND="
 	=sci-mathematics/planarity-3.0*
 	>=sci-mathematics/rw-0.7
 	~sci-mathematics/sage_setup-${PV}[${PYTHON_USEDEP}]
+	~sci-mathematics/sage-conf-${PV}[${PYTHON_USEDEP}]
 	~sci-mathematics/singular-4.2.1_p3[readline]
 	>=sci-libs/brial-1.2.5
 	~sci-libs/givaro-4.1.1
@@ -93,7 +94,6 @@ DEPEND="
 	bliss? ( >=sci-libs/bliss-0.73 )
 	meataxe? ( sci-mathematics/shared_meataxe )
 "
-BDEPEND="app-portage/gentoolkit"
 
 RDEPEND="
 	${DEPEND}
@@ -192,21 +192,6 @@ python_prepare_all() {
 	cp -f "${FILESDIR}"/${PN}-9.6-package.py sage/misc/package.py
 	rm -f sage/misc/dist.py
 	rm -rf sage/dev
-
-	############################################################################
-	# sage's configuration variables for Gentoo
-	############################################################################
-
-	# sage on gentoo environment variables
-	cp -f "${FILESDIR}"/sage_conf.py-9.5 sage/sage_conf.py
-	eprefixify sage/sage_conf.py
-	# set the documentation location to the externally provided sage-doc package
-	sed -i "s:@GENTOO_PORTAGE_PF@:sage-doc-${PV}:" sage/sage_conf.py
-		# Fix finding pplpy documentation with intersphinx
-	local pplpyver=`equery -q l -F '$name-$fullversion' pplpy:0`
-	sed -i "s:@PPLY_DOC_VERS@:${pplpyver}:" sage/sage_conf.py
-	# getting sage_conf from the right spot
-	sed -i "s:sage_conf:sage.sage_conf:g" sage/env.py
 
 	# Because lib doesn´t always point to lib64 the following line in cython.py
 	# cause very verbose message from the linker in turn triggering doctest failures.
