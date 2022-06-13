@@ -24,7 +24,8 @@ SLOT="0"
 # No real tests here in spite of QA warnings.
 RESTRICT="test mirror"
 
-DEPEND=""
+# pplpy needs to be installed to get documentation folder right :(
+DEPEND="~dev-python/pplpy-0.8.7:=[doc,${PYTHON_USEDEP}]"
 BDEPEND="app-portage/gentoolkit"
 RDEPEND="~sci-mathematics/sage-${PV}"
 
@@ -44,4 +45,9 @@ python_prepare_all() {
 	# sage on gentoo environment variables
 	cp -f "${FILESDIR}"/${PN}.py.in-9.7 sage_conf.py
 	eprefixify sage_conf.py
+	# set the documentation location to the externally provided sage-doc package
+	sed -i "s:@GENTOO_PORTAGE_PF@:sage-doc-${PV}:" sage_conf.py
+		# Fix finding pplpy documentation with intersphinx
+	local pplpyver=`equery -q l -F '$name-$fullversion' pplpy:0`
+	sed -i "s:@PPLY_DOC_VERS@:${pplpyver}:" sage_conf.py
 }
