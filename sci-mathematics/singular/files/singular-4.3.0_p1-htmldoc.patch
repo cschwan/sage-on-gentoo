@@ -6,7 +6,7 @@ index fa91f635a..6443a4267 100644
    AC_SUBST(RESOURCES_INCLUDES)
    AC_SUBST(RESOURCES_LIBS)
  
-+  if test "x$htmldir" = "x\${docdir}"; then 
++  if test "x$htmldir" = "x\${docdir}"; then
 +    DEFAULT_HTMLDIR="--htmldir=$datarootdir/doc/singular"
 +  fi
 +
@@ -57,7 +57,7 @@ index dd8957d59..829e291b5 100644
 -	   mkdir $(DESTDIR)$(datadir)/doc;\
 +	   $(INSTALL) -d -v $(DESTDIR)$(datadir)/info;\
 +	   $(INSTALL) -d -v $(DESTDIR)$(datadir)/doc;\
-+	   $(INSTALL) -d -D -v `dirname $(DESTDIR)$(htmldir)`;\
++	   $(INSTALL) -d -v `dirname $(DESTDIR)$(htmldir)`;\
  	   mv  $(DESTDIR)$(datadir)/singular/singular.info  $(DESTDIR)$(datadir)/info/.;\
 +	   -mv  $(DESTDIR)$(datadir)/singular/html $(DESTDIR)$(htmldir);\
  	fi
