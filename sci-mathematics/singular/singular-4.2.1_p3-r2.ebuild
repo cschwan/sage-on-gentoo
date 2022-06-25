@@ -54,6 +54,7 @@ src_configure() {
 	append-cxxflags $(test-flags-CXX -fno-delete-null-pointer-checks)
 
 	local myconf=(
+		--config-cache
 		--disable-debug
 		--disable-doc
 		--disable-optimizationflags
