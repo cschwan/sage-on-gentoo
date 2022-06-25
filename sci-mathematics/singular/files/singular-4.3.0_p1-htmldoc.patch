@@ -59,7 +59,7 @@ index dd8957d59..829e291b5 100644
 +	   $(INSTALL) -d -v $(DESTDIR)$(datadir)/doc;\
 +	   $(INSTALL) -d -v `dirname $(DESTDIR)$(htmldir)`;\
  	   mv  $(DESTDIR)$(datadir)/singular/singular.info  $(DESTDIR)$(datadir)/info/.;\
-+	   -mv  $(DESTDIR)$(datadir)/singular/html $(DESTDIR)$(htmldir);\
++	   mv  $(DESTDIR)$(datadir)/singular/html $(DESTDIR)$(htmldir);\
  	fi
  
  uninstall-local:
