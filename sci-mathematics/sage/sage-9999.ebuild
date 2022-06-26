@@ -169,6 +169,9 @@ python_prepare_all() {
 	# We need it in place before patching in 9.6 because of issue #693
 	cp ../pkgs/sagemath-standard/setup.py setup.py || die "failed to copy the right setup.py"
 
+	# get rid of sage_setup so the installed is used
+	rm -rf sage_setup
+
 	distutils-r1_python_prepare_all
 
 	einfo "generating setup.cfg and al. - be patient"
