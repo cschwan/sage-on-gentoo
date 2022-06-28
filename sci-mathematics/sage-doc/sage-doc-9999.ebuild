@@ -51,8 +51,8 @@ DOCS=(
 )
 
 # for some reason opened for write during inventory of reference/plotting(?) - no write happens.
-# gone for now. Keeping as a reference in case it shows up again.y
-# addpredict "${EPREFIX}/usr/share/sage/cremona/cremona_mini.db"
+# This manufest as root
+addpredict "${EPREFIX}/usr/share/sage/cremona/cremona_mini.db"
 
 python_check_deps() {
 	has_version ">=dev-python/sphinx-4.4.0[${PYTHON_USEDEP}]" &&
