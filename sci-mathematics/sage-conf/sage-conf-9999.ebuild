@@ -42,6 +42,11 @@ src_unpack() {
 python_prepare_all() {
 	distutils-r1_python_prepare_all
 
+	# Get the real README.rst, not just a link. 
+	# If we don't, a link to a file that doesn't exist is installed - not the file.
+	rm README.rst
+	cp ../sage-conf/README.rst .
+
 	# sage on gentoo environment variables
 	cp -f "${FILESDIR}"/${PN}.py.in-9.7 sage_conf.py
 	eprefixify sage_conf.py
