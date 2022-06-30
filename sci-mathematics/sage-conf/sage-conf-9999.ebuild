@@ -39,20 +39,31 @@ src_unpack() {
 	default
 }
 
-python_prepare_all() {
-	distutils-r1_python_prepare_all
+prepare_for_git_snapshot() {
+	# specific setup for sage-conf-9999
+	einfo "preparing the git snapshot"
 
 	# Get the real README.rst, not just a link. 
 	# If we don't, a link to a file that doesn't exist is installed - not the file.
 	rm README.rst
 	cp ../sage-conf/README.rst .
 
+	# get the real setup.cfg otherwise it won't be patched
+	rm setup.cfg
+	cp ../sage-conf/setup.cfg setup.cfg
+}
+
+python_prepare_all() {
+	prepare_for_git_snapshot
+
+	distutils-r1_python_prepare_all
+
 	# sage on gentoo environment variables
-	cp -f "${FILESDIR}"/${PN}.py.in-9.7 sage_conf.py
-	eprefixify sage_conf.py
+	cp -f "${FILESDIR}"/${PN}.py-9.7 _sage_conf/_conf.py
+	eprefixify _sage_conf/_conf.py
 	# set the documentation location to the externally provided sage-doc package
-	sed -i "s:@GENTOO_PORTAGE_PF@:sage-doc-${PV}:" sage_conf.py
+	sed -i "s:@GENTOO_PORTAGE_PF@:sage-doc-${PV}:" _sage_conf/_conf.py
 		# Fix finding pplpy documentation with intersphinx
 	local pplpyver=`equery -q l -F '$name-$fullversion' pplpy:0`
-	sed -i "s:@PPLY_DOC_VERS@:${pplpyver}:" sage_conf.py
+	sed -i "s:@PPLY_DOC_VERS@:${pplpyver}:" _sage_conf/_conf.py
 }
