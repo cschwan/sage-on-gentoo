@@ -7,16 +7,22 @@ PYTHON_COMPAT=( python3_{8..10} )
 PYTHON_REQ_USE="readline,sqlite"
 DISTUTILS_USE_PEP517=setuptools
 
-inherit distutils-r1 prefix git-r3
+inherit distutils-r1 prefix
 
-EGIT_REPO_URI="https://github.com/vbraun/sage.git"
-EGIT_BRANCH=develop
-EGIT_CHECKOUT_DIR="${WORKDIR}/${P}"
-KEYWORDS=""
+if [[ ${PV} == 9999 ]]; then
+	inherit git-r3
+	EGIT_REPO_URI="https://github.com/vbraun/sage.git"
+	EGIT_BRANCH=develop
+	EGIT_CHECKOUT_DIR="${WORKDIR}/${P}"
+	KEYWORDS=""
+	S="${WORKDIR}/${P}/pkgs/${PN}_pypi"
+else
+	SRC_URI="mirror://pypi/${PN:0:1}/${PN}/${P}.tar.gz"
+	KEYWORDS="~amd64 ~amd64-linux ~ppc-macos ~x64-macos"
+fi
 
 DESCRIPTION="Math software for abstract and numerical computations"
 HOMEPAGE="https://www.sagemath.org"
-S="${WORKDIR}/${P}/pkgs/${PN}_pypi"
 
 LICENSE="GPL-2"
 SLOT="0"
@@ -34,7 +40,9 @@ PATCHES=(
 )
 
 src_unpack() {
-	git-r3_src_unpack
+	if [[ ${PV} == 9999 ]]; then
+		git-r3_src_unpack
+	fi
 
 	default
 }
@@ -54,7 +62,9 @@ prepare_for_git_snapshot() {
 }
 
 python_prepare_all() {
-	prepare_for_git_snapshot
+	if [[ ${PV} == 9999 ]]; then
+		prepare_for_git_snapshot
+	fi
 
 	distutils-r1_python_prepare_all
 
