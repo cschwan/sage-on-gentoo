@@ -1,5 +1,5 @@
 diff --git a/setup.cfg b/setup.cfg
-index f961254..1b4be48 100644
+index f961254..61d00f6 100644
 --- a/setup.cfg
 +++ b/setup.cfg
 @@ -15,9 +15,6 @@ packages =
@@ -11,7 +11,8 @@ index f961254..1b4be48 100644
 -
  [options.entry_points]
  console_scripts =
-     sage-config = sage_conf.__main__:_main
+-    sage-config = sage_conf.__main__:_main
++    sage-config = _sage_conf.__main__:_main
 diff --git a/setup.py b/setup.py
 index a689f4d..60f964e 100644
 --- a/setup.py
