@@ -1,11 +1,11 @@
-# Copyright 1999-2021 Gentoo Authors
+# Copyright 1999-2022 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=7
+EAPI=8
 
-PYTHON_COMPAT=( python3_{7..9} )
+PYTHON_COMPAT=( python3_{8..10} )
 
-inherit autotools elisp-common flag-o-matic python-single-r1 xdg-utils
+inherit autotools elisp-common flag-o-matic python-any-r1 xdg-utils
 
 DESCRIPTION="Free computer algebra environment based on Macsyma"
 HOMEPAGE="http://maxima.sourceforge.net/"
@@ -15,7 +15,7 @@ LICENSE="GPL-2 GPL-2+"
 SLOT="0"
 KEYWORDS="~amd64 ~x86 ~amd64-linux ~x86-linux"
 
-IUSE="clisp clozurecl clozurecl64 cmucl ecls emacs gcl gui nls +sbcl unicode vtk X test"
+IUSE="clisp clozurecl clozurecl64 cmucl ecls emacs gcl gui nls +sbcl unicode X test"
 RESTRICT="!test? ( test )"
 
 # Languages
@@ -54,12 +54,8 @@ DEPEND="
 
 # texlive-latexrecommended needed by imaxima for breqn.sty
 #
-# VTK is an optional plotting backend that can be enabled by
-# running "draw_renderer: 'vtk;" within maxima.
-#
-# It's NON-optional for the scene() command, but that command is
-# currently useless since Tcl/Tk support was dropped in sci-libs/vtk.
-# Thus we include VTK only as an optional dependency.
+# VTK support is fully dropped in this release since it is in a non working state
+# in the tree
 #
 # We require app-misc/rlwrap for any lisps that don't support readline
 # themselves.
@@ -68,10 +64,6 @@ RDEPEND="
 	X? (
 		x11-misc/xdg-utils
 		sci-visualization/gnuplot[gd]
-		vtk? (
-			${PYTHON_DEPS}
-			sci-libs/vtk[python,rendering,${PYTHON_SINGLE_USEDEP}]
-		)
 	)
 	emacs? (
 		virtual/latex-base
@@ -83,19 +75,13 @@ RDEPEND="
 # Maxima can make use of X features like plotting (and launching a PNG
 # viewer) from the console, but you can't use the xmaxima GUI without X.
 REQUIRED_USE="
-	${PYTHON_REQUIRED_USE}
 	|| ( clisp clozurecl clozurecl64 cmucl ecls gcl sbcl )
 	gui? ( X )"
 
 TEXMF="${EPREFIX}"/usr/share/texmf-site
 
-pkg_setup() {
-	# Set the PYTHON variable to whatever it should be.
-	python-single-r1_pkg_setup
-}
-
 PATCHES=(
-	"${FILESDIR}/dont-hardcode-python.patch"
+	"${FILESDIR}/dont_detect_python.patch"
 	"${FILESDIR}/imaxima-0.patch"
 	"${FILESDIR}/xdg-utils-1.patch"
 	"${FILESDIR}/wish-2.patch"
@@ -117,6 +103,9 @@ src_prepare() {
 	rm src/Makefile.in || die
 	touch src/*.mk
 	touch src/Makefile.am
+
+	# use selected python for documentation
+	sed -e "s:python:${PYTHON}:" -i doc/info/build_html.sh.in
 
 	eautoreconf
 }
