@@ -1,11 +1,9 @@
 # Copyright 1999-2022 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=7
+EAPI=8
 
-PYTHON_COMPAT=( python3_{8..10} )
-
-inherit autotools elisp-common flag-o-matic python-single-r1 xdg-utils
+inherit autotools elisp-common flag-o-matic xdg-utils
 
 DESCRIPTION="Free computer algebra environment based on Macsyma"
 HOMEPAGE="http://maxima.sourceforge.net/"
@@ -52,13 +50,6 @@ DEPEND="
 
 # texlive-latexrecommended needed by imaxima for breqn.sty
 #
-# VTK is an optional plotting backend that can be enabled by
-# running "draw_renderer: 'vtk;" within maxima.
-#
-# It's NON-optional for the scene() command, but that command is
-# currently useless since Tcl/Tk support was dropped in sci-libs/vtk.
-# Thus we include VTK only as an optional dependency.
-#
 # We require app-misc/rlwrap for any lisps that don't support readline
 # themselves.
 RDEPEND="
@@ -66,10 +57,6 @@ RDEPEND="
 	X? (
 		x11-misc/xdg-utils
 		sci-visualization/gnuplot[gd]
-		vtk? (
-			${PYTHON_DEPS}
-			sci-libs/vtk[python,rendering,${PYTHON_SINGLE_USEDEP}]
-		)
 	)
 	emacs? (
 		virtual/latex-base
@@ -81,16 +68,10 @@ RDEPEND="
 # Maxima can make use of X features like plotting (and launching a PNG
 # viewer) from the console, but you can't use the xmaxima GUI without X.
 REQUIRED_USE="
-	vtk? ( ${PYTHON_REQUIRED_USE} )
 	|| ( clisp clozurecl clozurecl64 cmucl ecls gcl sbcl )
 	gui? ( X )"
 
 TEXMF="${EPREFIX}"/usr/share/texmf-site
-
-pkg_setup() {
-	# Set the PYTHON variable to whatever it should be.
-	use vtk && python-single-r1_pkg_setup
-}
 
 PATCHES=(
 	"${FILESDIR}/imaxima-0.patch"
