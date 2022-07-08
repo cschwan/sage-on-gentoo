@@ -1,0 +1,50 @@
+r"""
+Sage variables definitions for Gentoo
+"""
+SAGE_SHARE   = "@GENTOO_PORTAGE_EPREFIX@/usr/share/sage"
+SAGE_DOC     = "@GENTOO_PORTAGE_EPREFIX@/usr/share/doc/@GENTOO_PORTAGE_PF@"
+
+GAP_ROOT_DIR = "@GENTOO_PORTAGE_EPREFIX@/usr/share/gap"
+THEBE_DIR    = "@GENTOO_PORTAGE_EPREFIX@/usr/share/thebe"
+JMOL_DIR     = "@GENTOO_PORTAGE_EPREFIX@/usr/share/sage-jmol-bin/lib"
+MATHJAX_DIR  = "@GENTOO_PORTAGE_EPREFIX@/usr/share/mathjax"
+MTXLIB       = "@GENTOO_PORTAGE_EPREFIX@/usr/share/meataxe"
+SINGULARPATH = "@GENTOO_PORTAGE_EPREFIX@/usr/share/singular"
+PPLPY_DOCS   = "@GENTOO_PORTAGE_EPREFIX@/usr/share/doc/@PPLY_DOC_VERS@/html"
+THREEJS_DIR  = "@GENTOO_PORTAGE_EPREFIX@/usr/share/sage/threejs"
+
+LIE_INFO_DIR = "@GENTOO_PORTAGE_EPREFIX@/usr/share/lie"
+
+MAXIMA       = "maxima -l ecl"
+
+# Names or paths of the 4ti2 executables
+FOURTITWO_HILBERT = "hilbert"
+FOURTITWO_MARKOV = "markov"
+FOURTITWO_GRAVER = "graver"
+FOURTITWO_ZSOLVE = "zsolve"
+FOURTITWO_QSOLVE = "qsolve"
+FOURTITWO_RAYS = "rays"
+FOURTITWO_PPI = "ppi"
+FOURTITWO_CIRCUITS = "circuits"
+FOURTITWO_GROEBNER = "groebner"
+
+# Entry point 'sage-config'.  It does not depend on any packages.
+
+def _main():
+    from argparse import ArgumentParser
+    from sys import exit, stdout
+    parser = ArgumentParser()
+    parser.add_argument('--version', help="show version", action="version",
+                       version='%(prog)s ' + VERSION)
+    parser.add_argument("VARIABLE", nargs='?', help="output the value of VARIABLE")
+    args = parser.parse_args()
+    d = globals()
+    if args.VARIABLE:
+        stdout.write('{}\n'.format(d[args.VARIABLE]))
+    else:
+        for k, v in d.items():
+            if not k.startswith('_'):
+                stdout.write('{}={}\n'.format(k, v))
+
+if __name__ == "__main__":
+    _main()
