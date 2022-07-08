@@ -60,7 +60,7 @@ DEPEND="
 	media-libs/libpng:0=
 	>=sci-mathematics/arb-2.19.0
 	sci-mathematics/cliquer
-	~sci-mathematics/eclib-20210625[flint]
+	~sci-mathematics/eclib-20220621[flint]
 	>=sci-mathematics/flint-2.7.1:=[ntl]
 	~sci-mathematics/gap-4.11.1
 	>=sci-mathematics/giac-1.7.0
