@@ -51,6 +51,7 @@ DOCS=(
 )
 
 # for some reason opened for write during inventory of reference/plotting(?) - no write happens.
+# This manufest as root
 addpredict "${EPREFIX}/usr/share/sage/cremona/cremona_mini.db"
 
 python_check_deps() {

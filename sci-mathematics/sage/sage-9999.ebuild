@@ -60,7 +60,7 @@ DEPEND="
 	media-libs/libpng:0=
 	>=sci-mathematics/arb-2.19.0
 	sci-mathematics/cliquer
-	~sci-mathematics/eclib-20210625[flint]
+	~sci-mathematics/eclib-20220621[flint]
 	>=sci-mathematics/flint-2.7.1:=[ntl]
 	~sci-mathematics/gap-4.11.1
 	>=sci-mathematics/giac-1.7.0
@@ -72,7 +72,8 @@ DEPEND="
 	>=sci-mathematics/rw-0.7
 	~sci-mathematics/sage_setup-${PV}[${PYTHON_USEDEP}]
 	~sci-mathematics/sage-conf-${PV}[${PYTHON_USEDEP}]
-	~sci-mathematics/singular-4.2.1_p3[readline]
+	>=sci-mathematics/singular-4.2.1_p3[readline]
+	<=sci-mathematics/singular-4.3.0_p1-r1[readline]
 	>=sci-libs/brial-1.2.5
 	~sci-libs/givaro-4.1.1
 	>=sci-libs/gsl-2.3

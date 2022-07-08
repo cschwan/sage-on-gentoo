@@ -7,16 +7,22 @@ PYTHON_COMPAT=( python3_{8..10} )
 PYTHON_REQ_USE="readline,sqlite"
 DISTUTILS_USE_PEP517=setuptools
 
-inherit distutils-r1 prefix git-r3
+inherit distutils-r1 prefix
 
-EGIT_REPO_URI="https://github.com/vbraun/sage.git"
-EGIT_BRANCH=develop
-EGIT_CHECKOUT_DIR="${WORKDIR}/${P}"
-KEYWORDS=""
+if [[ ${PV} == 9999 ]]; then
+	inherit git-r3
+	EGIT_REPO_URI="https://github.com/vbraun/sage.git"
+	EGIT_BRANCH=develop
+	EGIT_CHECKOUT_DIR="${WORKDIR}/${P}"
+	KEYWORDS=""
+	S="${WORKDIR}/${P}/pkgs/${PN}_pypi"
+else
+	SRC_URI="mirror://pypi/${PN:0:1}/${PN}/${P}.tar.gz"
+	KEYWORDS="~amd64 ~amd64-linux ~ppc-macos ~x64-macos"
+fi
 
 DESCRIPTION="Math software for abstract and numerical computations"
 HOMEPAGE="https://www.sagemath.org"
-S="${WORKDIR}/${P}/pkgs/${PN}_pypi"
 
 LICENSE="GPL-2"
 SLOT="0"
@@ -34,13 +40,42 @@ PATCHES=(
 )
 
 src_unpack() {
-	git-r3_src_unpack
+	if [[ ${PV} == 9999 ]]; then
+		git-r3_src_unpack
+	fi
 
 	default
 }
 
+prepare_for_git_snapshot() {
+	# specific setup for sage-conf-9999
+	einfo "preparing the git snapshot"
+
+	# Get the real README.rst, not just a link.
+	# If we don't, a link to a file that doesn't exist is installed - not the file.
+	rm README.rst
+	cp ../sage-conf/README.rst .
+
+	# get the real setup.cfg otherwise it won't be patched
+	#rm setup.cfg
+	#cp ../sage-conf/setup.cfg setup.cfg
+}
+
 python_prepare_all() {
+	if [[ ${PV} == 9999 ]]; then
+		prepare_for_git_snapshot
+	fi
+
 	distutils-r1_python_prepare_all
+
+	# sage on gentoo environment variables
+	#cp -f "${FILESDIR}"/${PN}.py-9.7 _sage_conf/_conf.py
+	#eprefixify _sage_conf/_conf.py
+	# set the documentation location to the externally provided sage-doc package
+	#sed -i "s:@GENTOO_PORTAGE_PF@:sage-doc-${PV}:" _sage_conf/_conf.py
+	# Fix finding pplpy documentation with intersphinx
+	#local pplpyver=`equery -q l -F '$name-$fullversion' pplpy:0`
+	#sed -i "s:@PPLY_DOC_VERS@:${pplpyver}:" _sage_conf/_conf.py
 
 	# sage on gentoo environment variables
 	cp -f "${FILESDIR}"/${PN}.py.in-9.7 sage_conf.py
