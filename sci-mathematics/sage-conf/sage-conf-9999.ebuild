@@ -57,8 +57,8 @@ prepare_for_git_snapshot() {
 	cp ../sage-conf/README.rst .
 
 	# get the real setup.cfg otherwise it won't be patched
-	#rm setup.cfg
-	#cp ../sage-conf/setup.cfg setup.cfg
+	rm setup.cfg
+	cp ../sage-conf/setup.cfg setup.cfg
 }
 
 python_prepare_all() {
@@ -69,20 +69,11 @@ python_prepare_all() {
 	distutils-r1_python_prepare_all
 
 	# sage on gentoo environment variables
-	#cp -f "${FILESDIR}"/${PN}.py-9.7 _sage_conf/_conf.py
-	#eprefixify _sage_conf/_conf.py
+	cp -f "${FILESDIR}"/${PN}.py-9.7 _sage_conf/_conf.py
+	eprefixify _sage_conf/_conf.py
 	# set the documentation location to the externally provided sage-doc package
-	#sed -i "s:@GENTOO_PORTAGE_PF@:sage-doc-${PV}:" _sage_conf/_conf.py
+	sed -i "s:@GENTOO_PORTAGE_PF@:sage-doc-${PV}:" _sage_conf/_conf.py
 	# Fix finding pplpy documentation with intersphinx
-	#local pplpyver=`equery -q l -F '$name-$fullversion' pplpy:0`
-	#sed -i "s:@PPLY_DOC_VERS@:${pplpyver}:" _sage_conf/_conf.py
-
-	# sage on gentoo environment variables
-	cp -f "${FILESDIR}"/${PN}.py.in-9.7 sage_conf.py
-	eprefixify sage_conf.py
-	# set the documentation location to the externally provided sage-doc package
-	sed -i "s:@GENTOO_PORTAGE_PF@:sage-doc-${PV}:" sage_conf.py
-		# Fix finding pplpy documentation with intersphinx
 	local pplpyver=`equery -q l -F '$name-$fullversion' pplpy:0`
-	sed -i "s:@PPLY_DOC_VERS@:${pplpyver}:" sage_conf.py
+	sed -i "s:@PPLY_DOC_VERS@:${pplpyver}:" _sage_conf/_conf.py
 }
