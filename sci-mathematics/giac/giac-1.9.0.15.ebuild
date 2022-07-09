@@ -74,6 +74,8 @@ src_configure() {
 
 		# Get the big-L flags from fltk's LDFLAGS.
 		append-ldflags $(fltk-config --ldflags | sed -e 's/\(-L\S*\)\s.*/\1/')
+	else
+		append-cppflags -DUSE_OBJET_BIDON=1
 	fi
 
 	# Using libsamplerate is currently broken
