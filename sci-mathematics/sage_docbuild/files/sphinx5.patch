@@ -1,13 +1,12 @@
-diff --git a/sage_docbuild/ext/sage_autodoc.py b/sage_docbuild/ext/sage_autodoc.py
-index 399ac1532e..7f2e39f927 100644
---- a/sage_docbuild/ext/sage_autodoc.py
-+++ b/sage_docbuild/ext/sage_autodoc.py
-@@ -35,7 +35,8 @@ from docutils.statemachine import ViewList
+diff --git a/src/sage_docbuild/ext/sage_autodoc.py b/src/sage_docbuild/ext/sage_autodoc.py
+index 399ac1532e..9ff8610659 100644
+--- a/src/sage_docbuild/ext/sage_autodoc.py
++++ b/src/sage_docbuild/ext/sage_autodoc.py
+@@ -35,7 +35,7 @@ from docutils.statemachine import ViewList
  
  import sphinx
  from sphinx.ext.autodoc import mock, ObjectMember
 -from sphinx.ext.autodoc.importer import import_object, get_object_members, get_module_members
-+from sphinx.ext.autodoc import get_module_members
 +from sphinx.ext.autodoc.importer import import_object, get_object_members
  from sphinx.locale import _, __
  from sphinx.pycode import ModuleAnalyzer
