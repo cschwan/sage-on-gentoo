@@ -32,6 +32,7 @@ PDEPEND="~sci-mathematics/sage-${PV}[${PYTHON_USEDEP}]"
 
 PATCHES=(
 	"${FILESDIR}"/sage-9.3-linguas.patch
+	"${FILESDIR}"/sphinx5.patch
 )
 
 src_unpack(){
