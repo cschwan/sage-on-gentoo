@@ -1,7 +1,7 @@
 diff --git a/src/sage_docbuild/ext/sage_autodoc.py b/src/sage_docbuild/ext/sage_autodoc.py
 index 399ac1532e..9ff8610659 100644
---- a/src/sage_docbuild/ext/sage_autodoc.py
-+++ b/src/sage_docbuild/ext/sage_autodoc.py
+--- a/sage_docbuild/ext/sage_autodoc.py
++++ b/sage_docbuild/ext/sage_autodoc.py
 @@ -35,7 +35,7 @@ from docutils.statemachine import ViewList
  
  import sphinx
