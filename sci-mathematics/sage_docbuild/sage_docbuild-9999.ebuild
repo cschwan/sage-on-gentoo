@@ -28,7 +28,7 @@ RDEPEND="
 	>=dev-python/sphinx-4.3.1[${PYTHON_USEDEP}]
 	dev-python/jupyter_sphinx[${PYTHON_USEDEP}]
 "
-PDEPEND=">=sci-mathematics/sage-9.5[${PYTHON_USEDEP}]"
+PDEPEND="~sci-mathematics/sage-${PV}[${PYTHON_USEDEP}]"
 
 PATCHES=(
 	"${FILESDIR}"/sage-9.3-linguas.patch
