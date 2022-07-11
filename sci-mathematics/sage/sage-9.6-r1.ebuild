@@ -141,6 +141,7 @@ REQUIRED_USE="doc? ( jmol )
 	test? ( jmol )"
 
 PATCHES=(
+	"${FILESDIR}"/sphinx5.patch
 	"${FILESDIR}"/${PN}-9.2-env.patch
 	"${FILESDIR}"/sage_exec-9.3.patch
 	"${FILESDIR}"/${PN}-9.3-jupyter.patch
