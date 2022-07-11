@@ -11,3 +11,19 @@ index 399ac1532e..9ff8610659 100644
  from sphinx.locale import _, __
  from sphinx.pycode import ModuleAnalyzer
  from sphinx.errors import PycodeError
+diff --git a/src/sage_docbuild/ext/sage_autodoc.py b/src/sage_docbuild/ext/sage_autodoc.py
+index 9ff8610659..39a198e88a 100644
+--- a/sage_docbuild/ext/sage_autodoc.py
++++ b/sage_docbuild/ext/sage_autodoc.py
+@@ -786,9 +786,9 @@ class Documenter(object):
+                 except PycodeError:
+                     pass
+             if fname is not None:
+-                self.directive.filename_set.add(fname)
++                self.directive.record_dependencies.add(fname)
+         else:
+-            self.directive.filename_set.add(self.analyzer.srcname)
++            self.directive.record_dependencies.add(self.analyzer.srcname)
+ 
+         # check __module__ of object (for members not given explicitly)
+         if check_module:
