@@ -7,7 +7,7 @@ index 644341f36b..84306be417 100644
  pythonversion = sys.version.split(' ')[0]
  extlinks = {
 -    'python': ('https://docs.python.org/release/'+pythonversion+'/%s', ''),
-+    'python': ('https://docs.python.org/release/'+pythonversion+'/%s', None),
++    'python': (f'https://docs.python.org/release/{pythonversion}/%s', None),
      'trac': ('https://trac.sagemath.org/%s', 'trac ticket #%s'),
      'wikipedia': ('https://en.wikipedia.org/wiki/%s', 'Wikipedia article %s'),
      'arxiv': ('https://arxiv.org/abs/%s', 'arXiv %s'),
