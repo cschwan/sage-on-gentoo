@@ -44,7 +44,7 @@ DEPEND="
 	=dev-python/ipywidgets-7*[${PYTHON_USEDEP}]
 	>=dev-python/jinja-2.8[${PYTHON_USEDEP}]
 	dev-python/jupyter_core[${PYTHON_USEDEP}]
-	dev-python/jupyter_jsmol[${PYTHON_USEDEP}]
+	~dev-python/jupyter_jsmol-2022.1.0[${PYTHON_USEDEP}]
 	dev-python/lrcalc[${PYTHON_USEDEP}]
 	>=dev-python/matplotlib-3.5.0[${PYTHON_USEDEP}]
 	dev-python/memory_allocator[${PYTHON_USEDEP}]
@@ -72,9 +72,8 @@ DEPEND="
 	>=sci-mathematics/rw-0.7
 	~sci-mathematics/sage_setup-${PV}[${PYTHON_USEDEP}]
 	~sci-mathematics/sage-conf-${PV}[${PYTHON_USEDEP}]
-	>=sci-mathematics/singular-4.2.1_p3[readline]
-	<=sci-mathematics/singular-4.3.0_p1-r1[readline]
-	>=sci-libs/brial-1.2.5
+	~sci-mathematics/singular-4.3.1_p1[readline]
+	>=sci-libs/brial-1.2.10
 	~sci-libs/givaro-4.1.1
 	>=sci-libs/gsl-2.3
 	>=sci-libs/iml-1.0.4
@@ -145,7 +144,6 @@ REQUIRED_USE="doc? ( jmol )
 	test? ( jmol )"
 
 PATCHES=(
-	"${FILESDIR}"/sphinx5.patch
 	"${FILESDIR}"/${PN}-9.2-env.patch
 	"${FILESDIR}"/sage_exec-9.3.patch
 	"${FILESDIR}"/${PN}-9.3-jupyter.patch
