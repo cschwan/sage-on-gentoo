@@ -3,7 +3,7 @@ dev-python/cvxopt
 dev-python/memory_allocator
 =dev-python/pplpy-0.8*
 =dev-python/cypari2-2.1*
-=dev-python/jupyter_jsmol-0.2.4-r1
+~dev-python/jupyter_jsmol-2022.1.0
 dev-python/jupyter_sphinx
 dev-python/lrcalc
 dev-python/primecountpy
@@ -41,8 +41,7 @@ sci-mathematics/palp
 ~sci-mathematics/sage-data-elliptic_curves-0.8
 ~sci-mathematics/sage-data-graphs-20210214
 ~sci-mathematics/sage-data-polytopes_db-20170220
-~sci-mathematics/singular-4.2.1_p3
-~sci-mathematics/singular-4.3.0_p1
+~sci-mathematics/singular-4.3.1_p1
 www-misc/thebe
 ##########################
 # optional dependencies
