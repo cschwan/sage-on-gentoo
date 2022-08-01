@@ -246,9 +246,9 @@ python_install_all() {
 	# install links for the jupyter kernel
 	# We have to be careful of removing prefix if present
 	PYTHON_SITEDIR=$(python_get_sitedir)
-	dosym ../../../../.."${PYTHON_SITEDIR#${EPREFIX}}"/sage/ext_data/notebook-ipython/logo-64x64.png \
+	dosym ../../../../.."${PYTHON_SITEDIR#${ESYSROOT}}"/sage/ext_data/notebook-ipython/logo-64x64.png \
 		/usr/share/jupyter/kernels/sagemath/logo-64x64.png
-	dosym ../../../../.."${PYTHON_SITEDIR#${EPREFIX}}"/sage/ext_data/notebook-ipython/logo.svg \
+	dosym ../../../../.."${PYTHON_SITEDIR#${ESYSROOT}}"/sage/ext_data/notebook-ipython/logo.svg \
 		/usr/share/jupyter/kernels/sagemath/logo.svg
 }
 
