@@ -124,7 +124,7 @@ src_install(){
 		fi
 	done
 	# Linking to local copy of mathjax folders rather than copying them
-	for sobject in $(ls "${EPREFIX}"/usr/share/mathjax/) ; do
+	for sobject in $(ls "${ESYSROOT}"/usr/share/mathjax/) ; do
 		rm -rf build_doc/html/_static/${sobject} \
 			|| die "failed to remove mathjax object $sobject"
 		ln -st build_doc/html/_static/ ../../../../mathjax/$sobject
@@ -136,7 +136,7 @@ src_install(){
 
 	# Replace full "build" path to html index in pdf doc
 	if use doc-pdf ; then
-		sed -e "s:${WORKDIR}/build_doc:${EPREFIX}/usr/share/doc/${P}:g" -i \
+		sed -e "s:${WORKDIR}/build_doc:${ESYSROOT}/usr/share/doc/${P}:g" -i \
 			build_doc/pdf/en/reference/index.html
 	fi
 	popd
