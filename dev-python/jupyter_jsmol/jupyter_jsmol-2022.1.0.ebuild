@@ -34,4 +34,6 @@ python_install_all() {
 	dodir /etc/jupyter/nbconfig/notebook.d
 	mv "${ED}"/usr/etc/jupyter/nbconfig/notebook.d/jupyter-jsmol.json \
 		"${ED}"/etc/jupyter/nbconfig/notebook.d/jupyter-jsmol.json
+	# Remove /usr/etc to keep QA happy
+	rm -rf "${ED}"/usr/etc
 }

@@ -5,8 +5,4 @@
 <email>frp.bissey@gmail.com</email>
 <name>François Bissey</name>
 </maintainer>
-<longdescription lang="en">
-This is JSmol viewer widget which can be used in Jupyter Notebooks and 
-JupyterLab.
-</longdescription>
 </pkgmetadata>
