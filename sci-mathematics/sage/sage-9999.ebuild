@@ -7,7 +7,7 @@ PYTHON_COMPAT=( python3_{8..10} )
 PYTHON_REQ_USE="readline,sqlite"
 DISTUTILS_USE_PEP517=setuptools
 
-inherit desktop distutils-r1 multiprocessing prefix toolchain-funcs git-r3
+inherit desktop distutils-r1 multiprocessing toolchain-funcs git-r3
 
 EGIT_REPO_URI="https://github.com/sagemath/sage.git"
 EGIT_BRANCH=develop
@@ -203,6 +203,10 @@ python_prepare_all() {
 
 python_configure_all() {
 	export SAGE_NUM_THREADS=$(makeopts_jobs)
+
+	for option in ${SAGE_USE}; do
+		use $option && export WANT_$option="True"
+	done
 }
 
 python_install() {
