@@ -1,20 +1,18 @@
 diff --git a/setup.cfg b/setup.cfg
-index 8946cbf..21f3093 100644
+index dac401c..1a80b1d 100644
 --- a/setup.cfg
 +++ b/setup.cfg
-@@ -13,12 +13,6 @@ packages =
- 	_sage_conf
- py_modules = 
- 	sage_conf
--scripts = 
--	bin/sage-env-config
+@@ -14,10 +14,3 @@ packages =
+ 
+ py_modules =
+     sage_conf
+-
+-scripts =
+-    bin/sage-env-config
 -
 -[options.entry_points]
--console_scripts = 
--	sage-config = sage_conf:_main
- 
- [egg_info]
- tag_build = 
+-console_scripts =
+-    sage-config = sage_conf:_main
 diff --git a/setup.py b/setup.py
 index a689f4d..60f964e 100644
 --- a/setup.py
