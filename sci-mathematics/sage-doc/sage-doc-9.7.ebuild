@@ -6,16 +6,12 @@ EAPI=8
 PYTHON_COMPAT=( python3_{8..10} )
 PYTHON_REQ_USE="readline,sqlite"
 
-inherit python-any-r1 git-r3
-
-EGIT_REPO_URI="https://github.com/sagemath/sage.git"
-EGIT_BRANCH=develop
-EGIT_CHECKOUT_DIR="${WORKDIR}/${P}"
-KEYWORDS=""
+inherit python-any-r1
 
 DESCRIPTION="Build the sage documentation"
 HOMEPAGE="https://www.sagemath.org"
-S="${WORKDIR}/${P}"
+SRC_URI="https://github.com/sagemath/sage/archive/${PV}.tar.gz -> ${P}.tar.gz"
+KEYWORDS="~amd64 ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos"
 
 LICENSE="GPL-2"
 SLOT="0"
@@ -51,22 +47,18 @@ DOCS=(
 	"${S}/src/doc/common"
 )
 
+S="${WORKDIR}/sage-${PV}"
+
 # for some reason opened for write during inventory of reference/plotting(?) - no write happens.
-# This manufest as root
+# This manifest as root
 addpredict "${EPREFIX}/usr/share/sage/cremona/cremona_mini.db"
 
 python_check_deps() {
 	python_has_version -b "dev-python/sphinx[${PYTHON_USEDEP}]" &&
-	python_has_version -b "~sci-mathematics/sage-${PV}[${PYTHON_USEDEP},jmol]" &&
-	python_has_version -b "~sci-mathematics/sage_docbuild-${PV}[${PYTHON_USEDEP}]" &&
 	python_has_version -b "dev-python/furo[${PYTHON_USEDEP}]" &&
-	python_has_version -b "dev-python/jupyter_sphinx[${PYTHON_USEDEP}]"
-}
-
-src_unpack(){
-	git-r3_src_unpack
-
-	default
+	python_has_version -b "dev-python/jupyter_sphinx[${PYTHON_USEDEP}]" &&
+	python_has_version -b "~sci-mathematics/sage-${PV}[${PYTHON_USEDEP},jmol]" &&
+	python_has_version -b "~sci-mathematics/sage_docbuild-${PV}[${PYTHON_USEDEP}]"
 }
 
 src_prepare(){
