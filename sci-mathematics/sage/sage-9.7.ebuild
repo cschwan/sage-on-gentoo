@@ -156,7 +156,6 @@ pkg_setup() {
 	tc-export CC
 }
 
-
 python_prepare_all() {
 	distutils-r1_python_prepare_all
 
