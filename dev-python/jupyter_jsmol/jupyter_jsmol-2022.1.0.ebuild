@@ -27,6 +27,12 @@ RDEPEND=">=dev-python/ipykernel-4.5.1[${PYTHON_USEDEP}]
 
 distutils_enable_tests pytest
 
+src_configure() {
+	DISTUTILS_ARGS=(
+		--skip-npm
+	)
+}
+
 python_install_all() {
 	distutils-r1_python_install_all
 
