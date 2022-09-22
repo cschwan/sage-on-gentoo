@@ -3,12 +3,12 @@
 
 EAPI=8
 
-PYTHON_COMPAT=( python3_{8..10} )
+PYTHON_COMPAT=( python3_{8..11} )
 DISTUTILS_USE_SETUPTOOLS=bdepend
 inherit distutils-r1
 
 DESCRIPTION="An extension class for memory aalocation in cython"
-HOMEPAGE="https://pypi.org/project/memory_allocator/
+HOMEPAGE="https://pypi.org/project/memory-allocator/
 	https://github.com/sagemath/memory_allocator"
 SRC_URI="mirror://pypi/${PN:0:1}/${PN}/${P}.tar.gz"
 

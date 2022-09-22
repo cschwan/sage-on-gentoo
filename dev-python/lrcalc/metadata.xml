@@ -5,7 +5,4 @@
 <email>frp.bissey@gmail.com</email>
 <name>François Bissey</name>
 </maintainer>
-<longdescription lang="en">
-This are the python bindings for sci-mathematics/lrcalc.
-</longdescription>
 </pkgmetadata>

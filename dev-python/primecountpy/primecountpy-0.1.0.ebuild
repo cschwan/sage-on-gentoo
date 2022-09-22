@@ -3,11 +3,11 @@
 
 EAPI=8
 
-PYTHON_COMPAT=( python3_{8..10} )
+PYTHON_COMPAT=( python3_{8..11} )
 inherit distutils-r1
 
 DESCRIPTION="cython interface to primecount"
-HOMEPAGE="https://github.com/dimpase/primecountpy https://pypi.org/project/primecountpy"
+HOMEPAGE="https://github.com/dimpase/primecountpy https://pypi.org/project/primecountpy/"
 SRC_URI="mirror://pypi/${PN:0:1}/${PN}/${P}.tar.gz"
 
 LICENSE="GPL-3"

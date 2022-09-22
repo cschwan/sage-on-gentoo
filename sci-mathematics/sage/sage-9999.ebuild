@@ -105,7 +105,7 @@ RDEPEND="
 	>=dev-python/pexpect-4.2.1[${PYTHON_USEDEP}]
 	>=dev-python/rpy-2.8.6[${PYTHON_USEDEP}]
 	>=dev-python/scipy-1.1.0[${PYTHON_USEDEP}]
-	=dev-python/sympy-1.10*[${PYTHON_USEDEP}]
+	~dev-python/sympy-1.11.1[${PYTHON_USEDEP}]
 	media-gfx/tachyon[png]
 	>=sci-libs/cddlib-094m[tools]
 	>=sci-mathematics/cu2-20060223

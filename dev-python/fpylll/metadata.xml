@@ -5,7 +5,4 @@
 <email>frp.bissey@gmail.com</email>
 <name>François Bissey</name>
 </maintainer>
-<longdescription lang="en">
-A Python (2 and 3) wrapper for fplll.
-</longdescription>
 </pkgmetadata>

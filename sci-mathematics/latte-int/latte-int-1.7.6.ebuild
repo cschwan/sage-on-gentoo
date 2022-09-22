@@ -1,7 +1,7 @@
 # Copyright 1999-2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=7
+EAPI=8
 
 DESCRIPTION="latte-int(egrale) consists of tools for lattice point enumeration"
 HOMEPAGE="https://github.com/latte-int/latte"
@@ -10,7 +10,7 @@ SRC_URI="https://github.com/${PN}/latte/releases/download/version_$(ver_rs 1-2 _
 SLOT="0"
 LICENSE="GPL-2"
 KEYWORDS="~amd64"
-IUSE="static-libs"
+IUSE=""
 
 DEPEND="
 	dev-libs/gmp:0=[cxx]
@@ -20,9 +20,12 @@ DEPEND="
 	>=sci-libs/cddlib-094f"
 RDEPEND="${DEPEND}"
 
+PATCHES=(
+	"${FILESDIR}/${PN}-1.7.6-c++17.patch"
+)
+
 src_configure(){
 	econf \
-		$(use_enable static-libs static) \
 		--with-gmp \
 		--with-ntl \
 		--with-cddlib \

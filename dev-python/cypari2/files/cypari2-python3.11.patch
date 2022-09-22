@@ -1,0 +1,39 @@
+From 396634a9d55df9174d6d084b20750a79ef9bf527 Mon Sep 17 00:00:00 2001
+From: Jerry James <loganjerry@gmail.com>
+Date: Mon, 16 Nov 2020 08:59:54 -0700
+Subject: [PATCH 01/12] Python 3.10 compatibility
+
+---
+ cypari2/convert.pyx | 10 ++++------
+ 1 file changed, 4 insertions(+), 6 deletions(-)
+
+diff --git a/cypari2/convert.pyx b/cypari2/convert.pyx
+index 1165031..587ecba 100644
+--- a/cypari2/convert.pyx
++++ b/cypari2/convert.pyx
+@@ -59,7 +59,7 @@ cdef extern from *:
+     ctypedef struct PyLongObject:
+         digit* ob_digit
+ 
+-    Py_ssize_t* Py_SIZE_PTR "&Py_SIZE"(object)
++    void __Pyx_SET_SIZE(object, Py_ssize_t)
+ 
+ 
+ ########################################################################
+@@ -450,13 +450,11 @@ cdef PyLong_FromINT(GEN g):
+         if d:
+             sizedigits_final = i+1
+ 
+-    # Set correct size (use a pointer to hack around Cython's
+-    # non-support for lvalues).
+-    cdef Py_ssize_t* sizeptr = Py_SIZE_PTR(x)
++    # Set correct size
+     if signe(g) > 0:
+-        sizeptr[0] = sizedigits_final
++        __Pyx_SET_SIZE(x, sizedigits_final)
+     else:
+-        sizeptr[0] = -sizedigits_final
++        __Pyx_SET_SIZE(x, -sizedigits_final)
+ 
+     return x
+
