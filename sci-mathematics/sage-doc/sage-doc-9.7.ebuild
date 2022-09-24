@@ -41,17 +41,17 @@ PATCHES=(
 	"${FILESDIR}"/${PN}-9.7-makefile_and_parallel.patch
 )
 
+S="${WORKDIR}/sage-${PV}"
+
 HTML_DOCS="${WORKDIR}/build_doc/html/*"
 DOCS=(
 	"${WORKDIR}/build_doc/index.html"
 	"${S}/src/doc/common"
 )
 
-S="${WORKDIR}/sage-${PV}"
-
 # for some reason opened for write during inventory of reference/plotting(?) - no write happens.
 # This manifest as root
-addpredict "${EPREFIX}/usr/share/sage/cremona/cremona_mini.db"
+addpredict "${ESYSROOT}/usr/share/sage/cremona/cremona_mini.db"
 
 python_check_deps() {
 	python_has_version -b "dev-python/sphinx[${PYTHON_USEDEP}]" &&
