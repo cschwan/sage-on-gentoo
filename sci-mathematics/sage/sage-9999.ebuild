@@ -127,7 +127,7 @@ RDEPEND="
 	~sci-mathematics/sage-data-graphs-20210214
 	~sci-mathematics/sage-data-polytopes_db-20170220
 	>=sci-mathematics/sympow-1.018.1
-	www-servers/tornado
+	dev-python/tornado
 
 	jmol? ( sci-chemistry/sage-jmol-bin )
 	latex? (
