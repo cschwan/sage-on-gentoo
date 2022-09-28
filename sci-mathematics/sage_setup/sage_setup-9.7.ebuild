@@ -23,11 +23,11 @@ IUSE=""
 RESTRICT="test"
 
 DEPEND="
-	>=dev-python/cython-0.29.24[${PYTHON_USEDEP}]
 	>=dev-python/pkgconfig-1.2.2[${PYTHON_USEDEP}]
 "
 RDEPEND="
 	${DEPEND}
+	>=dev-python/cython-0.29.24[${PYTHON_USEDEP}]
 	dev-python/jinja[${PYTHON_USEDEP}]
 "
 
