@@ -92,7 +92,7 @@ DEPEND="
 	www-misc/thebe
 
 	test? ( ~sci-mathematics/sage_docbuild-${PV}[${PYTHON_USEDEP}] )
-	bliss? ( >=sci-libs/bliss-0.73 )
+	bliss? ( ~sci-libs/bliss-0.73 )
 	meataxe? ( sci-mathematics/shared_meataxe )
 "
 
