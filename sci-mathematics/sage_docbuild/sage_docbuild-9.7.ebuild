@@ -33,3 +33,12 @@ PATCHES=(
 )
 
 S="${WORKDIR}/${MY_P}"
+
+src_prepare() {
+	# only apply for sphinx 5.2+ - there are incompatibilities with older versions
+	if has_version -r ">=dev-python/sphinx-5.2.0" ; then
+		PATCHES+=( "${FILESDIR}/sphinx-5.2.patch" )
+	fi
+
+	default
+}
