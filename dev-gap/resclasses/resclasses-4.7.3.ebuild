@@ -16,7 +16,7 @@ IUSE=""
 
 RDEPEND="~sci-mathematics/gap-4.12.0
 	>=dev-gap/GAPDoc-1.6.6
-	>=dev-gap/utils-0.73
+	>=dev-gap/utils-0.76
 	>=dev-gap/polycyclic-2.16"
 
 DOCS="CHANGES README"
