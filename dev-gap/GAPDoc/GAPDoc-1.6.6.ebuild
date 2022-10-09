@@ -1,7 +1,9 @@
 # Copyright 1999-2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=7
+EAPI=8
+
+inherit gap-pkg
 
 DESCRIPTION="A Meta Package for GAP Documentation"
 HOMEPAGE="https://www.gap-system.org/Packages/gapdoc.html"
@@ -20,10 +22,10 @@ DOCS="CHANGES README.md"
 
 S="${WORKDIR}"/${PN}-relv${PV}
 
+GAP_PKG_OBJS="3k+1 doc example lib styles *.dtd version"
+
 src_install(){
 	default
 
-	insinto /usr/$(get_libdir)/gap/pkg/`echo "${PN}" | tr '[:upper:]' '[:lower:]'`
-	doins -r 3k+1 doc example lib styles
-	doins *.g *.dtd version
+	gap-pkg_src_install
 }
