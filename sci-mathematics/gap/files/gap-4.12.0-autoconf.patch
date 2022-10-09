@@ -1,0 +1,40 @@
+diff --git a/configure.ac b/configure.ac
+index fb2627bd..15864a0b 100644
+--- a/configure.ac
++++ b/configure.ac
+@@ -40,6 +40,7 @@ AC_INIT([GAP],
+ 
+ AC_CONFIG_SRCDIR([src/gap.c])
+ AC_CONFIG_AUX_DIR([cnf])
++AC_CONFIG_MACRO_DIR([cnf/m4])
+ 
+ AC_CONFIG_HEADERS([build/config.h:src/config.h.in])
+ AC_CONFIG_COMMANDS([build/stamp-h], [echo timestamp > build/stamp-h])
+@@ -772,10 +773,9 @@ AS_IF([test "x$with_gc" = xboehm],
+   #
+   # As a side benefit, users do not have to worry about installing dependencies.
+ 
+-  BUILD_LIBATOMIC_OPS=yes
+-  LIBATOMIC_OPS_CPPFLAGS='-I${abs_builddir}/extern/install/libatomic_ops/include'
+-  LIBATOMIC_OPS_LDFLAGS='${abs_builddir}/extern/install/libatomic_ops/lib/libatomic_ops.la'
+-  LIBATOMIC_OPS_LIBS=
++  BUILD_LIBATOMIC_OPS=no
++  #PKG_CHECK_MODULES([LIBATOMIC_OPS], [atomic_ops])
++
+   AC_SUBST([BUILD_LIBATOMIC_OPS])
+   AC_SUBST([LIBATOMIC_OPS_CPPFLAGS])
+   AC_SUBST([LIBATOMIC_OPS_LDFLAGS])
+@@ -784,11 +784,8 @@ AS_IF([test "x$with_gc" = xboehm],
+   ATOMIC_OPS_CFLAGS=$LIBATOMIC_OPS_CPPFLAGS
+   ATOMIC_OPS_LIBS=$LIBATOMIC_OPS_LDFLAGS
+ 
+-
+-  BUILD_BOEHM_GC=yes
+-  BOEHM_GC_CPPFLAGS='-I${abs_builddir}/extern/install/gc/include'
+-  BOEHM_GC_LDFLAGS='${abs_builddir}/extern/install/gc/lib/libgc.la'
+-  BOEHM_GC_LIBS=
++  BUILD_BOEHM_GC=no
++  #PKG_CHECK_MODULES([BOEHM_GC], [bdw-gc])
+   AC_SUBST([BUILD_BOEHM_GC])
+   AC_SUBST([BOEHM_GC_CPPFLAGS])
+   AC_SUBST([BOEHM_GC_LDFLAGS])
