@@ -17,7 +17,7 @@ IUSE=""
 RDEPEND=">=sci-mathematics/gap-4.12.0
 	>=dev-gap/GAPDoc-1.6.6"
 
-DOCS="CHANGES README.md TODO LICENSE"
+DOCS="CHANGES README.md TODO"
 
 GAP_PKG_OBJS="doc gap"
 
@@ -25,10 +25,4 @@ src_prepare() {
 	default
 
 	rm -f makefile
-}
-
-src_install() {
-	default
-
-	gap-pkg_src_install
 }
