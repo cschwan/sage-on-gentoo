@@ -1,0 +1,12 @@
+diff --git a/Makefile.in b/Makefile.in
+index 6178401..a34ac31 100644
+--- a/Makefile.in
++++ b/Makefile.in
+@@ -37,4 +37,7 @@ doc:
+ Makefile: configure Makefile.in $(GAPPATH)/sysinfo.gap
+ 	./configure $(GAPPATH)
+ 
++# Empty recipe so that there will be no error when it is called in src_install
++install: ;
++
+ .PHONY: all clean distclean doc
