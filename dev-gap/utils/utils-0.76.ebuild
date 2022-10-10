@@ -19,12 +19,6 @@ RDEPEND=">=sci-mathematics/gap-4.12.0
 	>=dev-gap/AutoDoc-2022.07.10
 	>=dev-gap/polycyclic-2.16"
 
-DOCS="CHANGES.md README.md LICENSE.txt"
+DOCS="CHANGES.md README.md"
 
 GAP_PKG_OBJS="doc lib"
-
-src_install(){
-	default
-
-	gap-pkg_src_install
-}
