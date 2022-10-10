@@ -20,14 +20,8 @@ IUSE=""
 RDEPEND=">=sci-mathematics/gap-4.12.0"
 
 HTML_DOCS=htm/*
-DOCS="README.md LICENSE"
+DOCS="README.md"
 
 S="${WORKDIR}"/${PN}
 
 GAP_PKG_OBJS="data doc lib"
-
-src_install(){
-	default
-
-	gap-pkg_src_install
-}
