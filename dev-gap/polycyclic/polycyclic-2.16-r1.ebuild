@@ -14,16 +14,10 @@ LICENSE="GPL-2+"
 KEYWORDS="~amd64 ~x86"
 IUSE=""
 
-RDEPEND="~sci-mathematics/gap-core-4.12.0
+RDEPEND=">=sci-mathematics/gap-4.12.0
 	>=dev-gap/autpgrp-1.11
 	>=dev-gap/Alnuth-3.2.1"
 
 DOCS="CHANGES.md README.md"
 
 GAP_PKG_OBJS="doc gap"
-
-src_install(){
-	default
-
-	gap-pkg_src_install
-}
