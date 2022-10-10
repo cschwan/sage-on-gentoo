@@ -20,9 +20,3 @@ RDEPEND=">=sci-mathematics/gap-4.12.0
 DOCS="README"
 
 GAP_PKG_OBJS="doc gap"
-
-src_install() {
-	default
-
-	gap-pkg_src_install
-}
