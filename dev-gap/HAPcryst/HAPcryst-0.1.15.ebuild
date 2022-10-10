@@ -24,6 +24,8 @@ RDEPEND=">=sci-mathematics/gap-4.12.0
 
 DOCS="README CHANGES"
 
+GAP_PKG_OBJS="doc examples lib"
+
 S="${WORKDIR}"/${MY_PN}-${PV}
 
 src_install(){
