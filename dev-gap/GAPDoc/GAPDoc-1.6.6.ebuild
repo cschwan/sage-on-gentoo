@@ -15,17 +15,10 @@ KEYWORDS="~amd64 ~x86"
 IUSE=""
 
 DEPEND=""
-RDEPEND="${DEPEND}
-	>=sci-mathematics/gap-4.12.0"
+RDEPEND=">=sci-mathematics/gap-4.12.0"
 
 DOCS="CHANGES README.md"
 
 S="${WORKDIR}"/${PN}-relv${PV}
 
 GAP_PKG_OBJS="3k+1 doc example lib styles *.dtd version"
-
-src_install(){
-	default
-
-	gap-pkg_src_install
-}
