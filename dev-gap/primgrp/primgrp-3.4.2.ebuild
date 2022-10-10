@@ -17,12 +17,6 @@ IUSE=""
 RDEPEND="~sci-mathematics/gap--4.12.0
 	>=dev-gap/GAPDoc-1.6.6"
 
-DOCS="README.md CHANGES.md LICENSE"
+DOCS="README.md CHANGES.md"
 
 GAP_PKG_OBJS="data doc lib"
-
-src_install(){
-	default
-
-	gap-pkg_src_install
-}
