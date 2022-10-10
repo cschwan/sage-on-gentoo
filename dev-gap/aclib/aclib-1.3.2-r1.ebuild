@@ -20,9 +20,3 @@ HTML_DOCS=htm/*
 DOCS="README"
 
 GAP_PKG_OBJS="doc gap"
-
-src_install(){
-	default
-
-	gap-pkg_src_install
-}
