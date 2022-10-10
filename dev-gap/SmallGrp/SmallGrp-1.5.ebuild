@@ -17,14 +17,12 @@ IUSE=""
 RDEPEND=">=sci-mathematics/gap-4.12.0
 	>=dev-gap/GAPDoc-1.6.6"
 
-DOCS="README.md COPYRIGHT.md LICENSE"
+DOCS="README.md"
 
 GAP_PKG_OBJS="doc gap id* small*"
 
-src_install(){
-	default
-
+pkg_postinst() {
 	einfo "Disregard QA message about .la files."
-	einfo "No libtool files are installed but one file has a matching extension by coincidence."
-	gap-pkg_src_install
+	einfo "No libtool files are installed but one file installed in a tested location"
+	einfo "has a matching extension by coincidence."
 }
