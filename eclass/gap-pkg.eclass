@@ -24,10 +24,25 @@ gap-pkg_path() {
 	echo "usr/$(get_libdir)/gap/pkg/${lower_case_pn}"
 }
 
+# @FUNCTION: gap-pkg_gaparch
+# @USAGE:
+# @DESCRIPTION:
+# Return the variable GAParch from sysinfo.gap
+
+gap-pkg_gaparch() {
+	. $(gap-pkg_path)/sysinfo.gap
+	echo "${GAParch}"
+}
+
 # @VARIABLE: GAP_PKG_OBJS
 # @REQUIRED
 # @DESCRIPTION:
 # List directories to be installed (recursively) and list of other objects to be installed apart from .g objects in S.
+
+# @VARIABLE: GAP_PKG_EXE
+# @REQUIRED
+# @DESCRIPTION:
+# List of gap executables to be installed and that are not already in bin/$GAParch.
 
 # @FUNCTION: gap-pkg_src_install
 # @USAGE:
@@ -44,6 +59,16 @@ gap-pkg_src_install() {
 		else
 			doins ${obj}
 		fi
+	done
+
+	# install executables
+	exeinto $(gap-pkg_path)/bin/$(gap-pkg_gaparch)
+	if [ -d bin ]; then
+		doexe bin/$(gap-pkg_gaparch)/*
+	fi
+
+	for exec in ${GAP_PKG_EXE}; do
+		doexe ${exec}
 	done
 }
 
