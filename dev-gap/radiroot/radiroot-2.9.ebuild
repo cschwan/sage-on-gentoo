@@ -17,13 +17,7 @@ IUSE=""
 RDEPEND=">=sci-mathematics/gap-4.12.0
 	>=dev-gap/Alnuth-3.2.1"
 
-DOCS="README CHANGES LICENSE"
+DOCS="README CHANGES"
 HTML_DOCS="htm"
 
 GAP_PKG_OBJS="doc lib"
-
-src_install() {
-	default
-
-	gap-pkg_src_install
-}
