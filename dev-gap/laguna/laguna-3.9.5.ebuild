@@ -20,9 +20,3 @@ RDEPEND=">=sci-mathematics/gap-4.12.0
 DOCS="ChangeLog README.md"
 
 GAP_PKG_OBJS="doc lib"
-
-src_install() {
-	default
-
-	gap-pkg_src_install
-}
