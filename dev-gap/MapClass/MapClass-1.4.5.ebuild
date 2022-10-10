@@ -19,9 +19,3 @@ RDEPEND=">=sci-mathematics/gap-core-4.11.0"
 DOCS="README.md"
 
 GAP_PKG_OBJS="doc lib"
-
-src_install() {
-	default
-
-	gap-pkg_src_install
-}
