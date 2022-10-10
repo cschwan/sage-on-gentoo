@@ -25,9 +25,3 @@ RDEPEND=">=sci-mathematics/gap-4.12.0
 GAP_PKG_OBJS="doc exam gap gp"
 
 S="${WORKDIR}/${MY_P}"
-
-src_install(){
-	default
-
-	gap-pkg_src_install
-}
