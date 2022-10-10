@@ -24,9 +24,3 @@ S="${WORKDIR}/${MY_P}"
 DOCS="README.md CHANGES"
 
 GAP_PKG_OBJS="doc lib tables"
-
-src_install(){
-	default
-
-	gap-pkg_src_install
-}
