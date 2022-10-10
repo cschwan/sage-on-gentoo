@@ -17,13 +17,7 @@ IUSE=""
 
 RDEPEND=">=sci-mathematics/gap-4.12.0"
 
-DOCS="README LICENSE"
+DOCS="README"
 HTML_DOCS=htm/*
 
 GAP_PKG_OBJS="doc lib"
-
-src_install(){
-	default
-
-	gap-pkg_src_install
-}
