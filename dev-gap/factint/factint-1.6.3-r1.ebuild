@@ -16,7 +16,7 @@ LICENSE="GPL-2+"
 KEYWORDS="~amd64 ~x86"
 IUSE=""
 
-RDEPEND="~sci-mathematics/gap-4.12.0
+RDEPEND=">=sci-mathematics/gap-4.12.0
 	>=dev-gap/GAPDoc-1.6.6"
 
 S="${WORKDIR}/${MY_P}"

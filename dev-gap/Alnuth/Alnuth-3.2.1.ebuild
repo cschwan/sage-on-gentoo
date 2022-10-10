@@ -18,7 +18,7 @@ IUSE=""
 DOCS="CHANGES.md README.md"
 HTML_DOCS=htm/*
 
-RDEPEND="~sci-mathematics/gap-4.12.0
+RDEPEND=">=sci-mathematics/gap-4.12.0
 	>=sci-mathematics/pari-2.5.0
 	>=dev-gap/polycyclic-2.16"
 
