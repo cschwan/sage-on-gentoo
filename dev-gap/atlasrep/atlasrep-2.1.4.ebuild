@@ -26,9 +26,3 @@ PATCHES=(
 	)
 
 GAP_PKG_OBJS="bibl dataext datagens datapkg dataword doc gap atlasprm.json atlasprm_SHA.json"
-
-src_install() {
-	default
-
-	gap-pkg_src_install
-}
