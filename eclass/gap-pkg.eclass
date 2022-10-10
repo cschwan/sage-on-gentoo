@@ -30,7 +30,7 @@ gap-pkg_path() {
 # Return the variable GAParch from sysinfo.gap
 
 gap-pkg_gaparch() {
-	. $(gap-pkg_path)/sysinfo.gap
+	. "${ESYSROOT}"/usr/$(get_libdir)/gap/sysinfo.gap
 	echo "${GAParch}"
 }
 
@@ -47,9 +47,19 @@ gap-pkg_gaparch() {
 # @FUNCTION: gap-pkg_src_install
 # @USAGE:
 # @DESCRIPTION:
-# Create the package directory and install all .g file in ${S} and all objects in GAP_PKGS_OBJS
+# Perform the standard install of src_install and then perform specific gap package installation steps.
+# Create the package directory and install all .g file in ${S} and all objects in GAP_PKG_OBJS
+# Inside the package directory, create the folder bin/$GAParch and install any executables found inside
+# bin/$GAParch inside $S. Install any other objects listed in GAP_PKG_EXE in that folder.
 
 gap-pkg_src_install() {
+	# standard src_install
+	if [[ -f Makefile ]] || [[ -f GNUmakefile ]] || [[ -f makefile ]] ; then
+		emake DESTDIR="${D}" install
+	fi
+	einstalldocs
+
+	# gap package specific install steps
 	insinto $(gap-pkg_path)
 
 	doins *.g
@@ -72,3 +82,4 @@ gap-pkg_src_install() {
 	done
 }
 
+EXPORT_FUNCTIONS src_install
