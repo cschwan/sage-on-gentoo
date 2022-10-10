@@ -27,9 +27,3 @@ DOCS="README CHANGES"
 GAP_PKG_OBJS="doc examples lib"
 
 S="${WORKDIR}"/${MY_PN}-${PV}
-
-src_install(){
-	default
-
-	gap-pkg_install_src
-}
