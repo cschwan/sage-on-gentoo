@@ -22,9 +22,3 @@ RDEPEND=">=sci-mathematics/gap-4.12.0
 DOCS="README.md CHANGES TODO"
 
 GAP_PKG_OBJS="doc exam lib"
-
-src_install(){
-	default
-
-	gap-pkg_src_install
-}
