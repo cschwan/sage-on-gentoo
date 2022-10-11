@@ -24,13 +24,22 @@ gap-pkg_path() {
 	echo "usr/$(get_libdir)/gap/pkg/${lower_case_pn}"
 }
 
+# @FUNCTION: gap_sysinfo_loc
+# @USAGE:
+# @DESCRIPTION:
+# Return the folder holding the file sysinfo.gap for gap-4.12.0 and later
+
+gap_sysinfo_loc() {
+	echo "${ESYSROOT}/usr/$(get_libdir)/gap"
+}
+
 # @FUNCTION: gap-pkg_gaparch
 # @USAGE:
 # @DESCRIPTION:
 # Return the variable GAParch from sysinfo.gap
 
 gap-pkg_gaparch() {
-	. "${ESYSROOT}"/usr/$(get_libdir)/gap/sysinfo.gap
+	. $(gap_sysinfo_gap)/sysinfo.gap
 	echo "${GAParch}"
 }
 
