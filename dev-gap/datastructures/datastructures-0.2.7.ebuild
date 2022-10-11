@@ -33,7 +33,7 @@ src_prepare() {
 src_configure() {
 	# Not a real configure script
 	# The argument is the folder with sysinfo.gap
-	./configure "${EPREFIX}/usr/$(get_libdir)/gap"
+	./configure $(gap_sysinfo_loc)
 }
 
 src_compile() {
