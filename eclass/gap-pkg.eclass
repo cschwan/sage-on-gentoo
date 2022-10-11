@@ -47,16 +47,16 @@ gap-pkg_gaparch() {
 # @FUNCTION: gap-pkg_src_install
 # @USAGE:
 # @DESCRIPTION:
-# Perform the standard install of src_install and then perform specific gap package installation steps.
+# Perform some of the standard install of src_install and then perform specific gap package installation steps.
 # Create the package directory and install all .g file in ${S} and all objects in GAP_PKG_OBJS
 # Inside the package directory, create the folder bin/$GAParch and install any executables found inside
 # bin/$GAParch inside $S. Install any other objects listed in GAP_PKG_EXE in that folder.
+# From the standard src_install, we do not run "make install" as most makefiles distributed with gap packages
+# lack one. It only leads to errors. If a package does have a genuine "make install" step, it needs to be run separately
+# and then gap-pkg_src_install needs to be called explicitely.
 
 gap-pkg_src_install() {
-	# standard src_install
-	if [[ -f Makefile ]] || [[ -f GNUmakefile ]] || [[ -f makefile ]] ; then
-		emake DESTDIR="${D}" install
-	fi
+	# standard documentation install from src_install
 	einstalldocs
 
 	# gap package specific install steps
