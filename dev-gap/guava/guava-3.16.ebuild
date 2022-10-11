@@ -36,7 +36,7 @@ src_prepare() {
 src_configure() {
 	# Not a real autoconf configure script
 	# The argument is the folder containing sysinfo.gap
-	./configure "${ESYSROOT}/usr/$(get_libdir)/gap"
+	./configure $(gap_sysinfo_loc)
 
 	cd src/leon/ || die
 	# real autoconf configure script
