@@ -20,10 +20,6 @@ RDEPEND="${DEPEND}"
 DOCS="CHANGES README.md"
 HTML_DOCS=htm/*
 
-PATCHES=(
-	"${FILESDIR}"/${PN}-1.6.10-make_install.patch
-	)
-
 GAP_PKG_OBJS="doc gap testdata standalone"
 
 pkg_setup() {
