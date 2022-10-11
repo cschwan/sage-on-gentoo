@@ -39,7 +39,7 @@ gap_sysinfo_loc() {
 # Return the variable GAParch from sysinfo.gap
 
 gap-pkg_gaparch() {
-	. $(gap_sysinfo_gap)/sysinfo.gap
+	. $(gap_sysinfo_loc)/sysinfo.gap
 	echo "${GAParch}"
 }
 
