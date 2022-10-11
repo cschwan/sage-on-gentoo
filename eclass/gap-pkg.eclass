@@ -80,6 +80,12 @@ gap-pkg_src_install() {
 	for exec in ${GAP_PKG_EXE}; do
 		doexe ${exec}
 	done
+
+	# remove any stray .la files from bin/$GAParch.
+	# some other places may have file with .la extension that are not libtool files.
+	if [ -d "${ED}/$(gap-pkg_path)/bin" ]; then
+		find "${ED}/$(gap-pkg_path)/bin" -name '*.la' -delete || die
+	fi
 }
 
 EXPORT_FUNCTIONS src_install
