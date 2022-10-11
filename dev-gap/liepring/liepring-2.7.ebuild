@@ -17,5 +17,6 @@ IUSE=""
 RDEPEND=">=sci-mathematics/gap-4.12.0"
 
 DOCS="README.md"
+HTML_DOCS="htm/*"
 
 GAP_PKG_OBJS="doc gap lib"
