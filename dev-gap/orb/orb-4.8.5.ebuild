@@ -3,7 +3,7 @@
 
 EAPI=8
 
-inherit gap-pkg toolchain-funcs multilib
+inherit gap-pkg toolchain-funcs
 
 DESCRIPTION="Methods to enumerate orbits"
 HOMEPAGE="https://www.gap-system.org/Packages/${PN}.html"
