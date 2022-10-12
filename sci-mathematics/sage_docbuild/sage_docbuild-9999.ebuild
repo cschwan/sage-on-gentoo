@@ -25,7 +25,7 @@ RESTRICT="mirror test"
 
 DEPEND=""
 RDEPEND="
-	>=dev-python/sphinx-4.3.1[${PYTHON_USEDEP}]
+	>=dev-python/sphinx-5.2.0[${PYTHON_USEDEP}]
 	dev-python/jupyter_sphinx[${PYTHON_USEDEP}]
 "
 PDEPEND="~sci-mathematics/sage-${PV}[${PYTHON_USEDEP}]"
@@ -44,11 +44,6 @@ src_prepare(){
 	# Replace setup.* with the file files from the appropriate package.
 	# We don't point S to build/pkgs/${PN}/src because patch doesn't work on links
 	cp "${WORKDIR}/${P}/build/pkgs/${PN}"/src/setup.* . || die "failed to copy appropriate setuo files"
-
-	# only apply for sphinx 5.2+ - there are incompatibilities with older versions
-	if has_version -r ">=dev-python/sphinx-5.2.0" ; then
-		PATCHES+=( "${FILESDIR}/sphinx-5.2.patch" )
-	fi
 
 	default
 }
