@@ -30,7 +30,7 @@ PATCHES=(
 
 GAP_PKG_OBJS="data doc gap notebooks"
 
-src_configure(){
+src_configure() {
 	# We need to know GAParch to install the dynamic object in the expected location
 	# Unsetting ABI as gap use the variable internally.
 	econf \
