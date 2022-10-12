@@ -8,7 +8,7 @@ inherit gap-pkg flag-o-matic toolchain-funcs
 DESCRIPTION="A package for semigroups and monoids"
 HOMEPAGE="https://www.gap-system.org/Packages/${PN}.html"
 SLOT="0"
-SRC_URI="https://github.com/gap-packages/Semigroups/releases/download/v${PV}/${P}.tar.gz"
+SRC_URI="https://github.com/semigroups/Semigroups/releases/download/v${PV}/${P}.tar.gz"
 
 LICENSE="GPL-3+"
 KEYWORDS="~amd64 ~x86"
@@ -24,7 +24,6 @@ RDEPEND="${DEPEND}
 	>=dev-gap/digraphs-1.5.0
 	>=dev-gap/genss-1.6.5"
 BDEPEND="virtual/pkgconfig"
-
 
 DOCS="CHANGELOG.md README.md CONTRIBUTING.md"
 
