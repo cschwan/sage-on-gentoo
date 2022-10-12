@@ -26,7 +26,7 @@ HTML_DOCS="www/* tutorial"
 
 GAP_PKG_OBJS="doc lib"
 
-pkg_postinst(){
+pkg_postinst() {
 	elog "Some optional functions, require the following"
 	elog "dependencies to be installed at runtime:"
 	elog ""
