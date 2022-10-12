@@ -5,7 +5,4 @@
 		<email>frp.bissey@gmail.com</email>
 		<name>FranÃ§ois Bissey</name>
 	</maintainer>
-	<longdescription lang="en">
-		The TransGrp package provides the library of transitive groups.
-	</longdescription>
 </pkgmetadata>

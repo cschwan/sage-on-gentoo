@@ -6,6 +6,6 @@
 		<name>Coacher</name>
 	</maintainer>
 	<upstream>
-		<remote-id type="github">osj1961/guava</remote-id>
+		<remote-id type="github">gap-packages/guava</remote-id>
 	</upstream>
 </pkgmetadata>

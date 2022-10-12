@@ -5,8 +5,4 @@
 		<email>frp.bissey@gmail.com</email>
 		<name>FranÃ§ois Bissey</name>
 	</maintainer>
-	<longdescription lang="en">
-		The package CoReLG contains functionality for working with real
-		semisimple Lie algebras.
-	</longdescription>
 </pkgmetadata>

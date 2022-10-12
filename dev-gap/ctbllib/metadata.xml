@@ -5,7 +5,4 @@
 		<email>frp.bissey@gmail.com</email>
 		<name>FranÃ§ois Bissey</name>
 	</maintainer>
-	<longdescription lang="en">
-		The package contains the GAP Character Table Library
-	</longdescription>
 </pkgmetadata>

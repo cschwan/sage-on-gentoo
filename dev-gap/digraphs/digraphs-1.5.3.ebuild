@@ -8,7 +8,7 @@ inherit gap-pkg
 DESCRIPTION="Graphs, digraphs, and multidigraphs in GAP"
 HOMEPAGE="https://www.gap-system.org/Packages/${PN}.html"
 SLOT="0"
-SRC_URI="https://github.com/gap-packages/Digraphs/releases/download/v${PV}/${P}.tar.gz"
+SRC_URI="https://github.com/digraphs/Digraphs/releases/download/v${PV}/${P}.tar.gz"
 
 LICENSE="GPL-3+"
 KEYWORDS="~amd64 ~x86"

@@ -5,7 +5,4 @@
 		<email>frp.bissey@gmail.com</email>
 		<name>FranÃ§ois Bissey</name>
 	</maintainer>
-	<longdescription lang="en">
-		The Digraphs package is a GAP package for digraphs and multidigraphs.
-	</longdescription>
 </pkgmetadata>

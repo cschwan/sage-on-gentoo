@@ -5,7 +5,4 @@
 		<email>frp.bissey@gmail.com</email>
 		<name>FranÃ§ois Bissey</name>
 	</maintainer>
-	<longdescription lang="en">
-		This package computes the cohomology rings of finite p-groups, induced maps, and Massey products.
-	</longdescription>
 </pkgmetadata>
