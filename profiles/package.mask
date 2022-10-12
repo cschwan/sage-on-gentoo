@@ -8,7 +8,8 @@
 >=dev-gap/GAPDoc-1.6.6
 >=dev-gap/primgrp-3.4.2
 >=dev-gap/SmallGrp-1.5
->=dev-gap/transgrp-3.6.3>=dev-gap/autpgrp-1.11
+>=dev-gap/transgrp-3.6.3
+>=dev-gap/autpgrp-1.11
 >=dev-gap/Alnuth-3.2.1
 >=dev-gap/crisp-1.4.5-r1
 >=dev-gap/ctbllib-1.2_p2
