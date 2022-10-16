@@ -5,8 +5,4 @@
 		<email>frp.bissey@gmail.com</email>
 		<name>FranÃ§ois Bissey</name>
 	</maintainer>
-	<longdescription lang="en">
-		The Utils package provides a collection of utility functions
-		gleaned from many packages.
-	</longdescription>
 </pkgmetadata>

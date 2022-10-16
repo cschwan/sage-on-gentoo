@@ -5,7 +5,4 @@
 		<email>frp.bissey@gmail.com</email>
 		<name>FranÃ§ois Bissey</name>
 	</maintainer>
-	<longdescription lang="en">
-		Collection of standard data structures for GAP
-	</longdescription>
 </pkgmetadata>

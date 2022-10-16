@@ -25,7 +25,7 @@ RESTRICT="mirror test"
 
 DEPEND=""
 RDEPEND="
-	>=dev-python/sphinx-4.3.1[${PYTHON_USEDEP}]
+	>=dev-python/sphinx-5.2.0[${PYTHON_USEDEP}]
 	dev-python/jupyter_sphinx[${PYTHON_USEDEP}]
 "
 PDEPEND="~sci-mathematics/sage-${PV}[${PYTHON_USEDEP}]"

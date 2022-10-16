@@ -33,6 +33,6 @@ RECOMMENDED_PKGS="
 	>=dev-gap/tomlib-1.2.9"
 
 RDEPEND="
-	|| ( >=sci-mathematics/gap-core-4.11.1 >=sci-mathematics/gap-4.11.1 )
+	~sci-mathematics/gap-core-4.11.1
 	${RECOMMENDED_PKGS}
 "

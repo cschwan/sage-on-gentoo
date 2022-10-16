@@ -14,7 +14,6 @@ IUSE=""
 
 DEPEND=">=sci-mathematics/gap-core-4.11.1"
 RDEPEND="${DEPEND}
-	|| ( >=sci-mathematics/gap-core-4.11.1 >=sci-mathematics/gap-4.11.1 )
 	>=dev-gap/GAPDoc-1.6.4"
 
 DOCS="CHANGES.md README.md"

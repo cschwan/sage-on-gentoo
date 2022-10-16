@@ -5,7 +5,4 @@
 		<email>frp.bissey@gmail.com</email>
 		<name>FranÃ§ois Bissey</name>
 	</maintainer>
-	<longdescription lang="en">
-		toric is a GAPpackage for computing with toric varieties.
-	</longdescription>
 </pkgmetadata>

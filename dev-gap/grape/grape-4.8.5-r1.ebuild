@@ -1,9 +1,9 @@
-# Copyright 1999-2020 Gentoo Authors
+# Copyright 1999-2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=7
+EAPI=8
 
-inherit prefix
+inherit gap-pkg prefix
 
 DESCRIPTION="GRaph Algorithms using PErmutation groups"
 HOMEPAGE="https://www.gap-system.org/Packages/${PN}.html"
@@ -14,7 +14,7 @@ LICENSE="GPL-2+"
 KEYWORDS="~amd64 ~x86"
 IUSE="bliss"
 
-RDEPEND=">=sci-mathematics/gap-core-4.11.0
+RDEPEND=">=sci-mathematics/gap-4.12.0
 	bliss? ( >=sci-libs/bliss-0.73 )
 	!bliss? ( sci-mathematics/nauty )"
 
@@ -25,7 +25,9 @@ PATCHES=(
 DOCS="README.md CHANGES.md"
 HTML_DOCS=htm/*
 
-src_prepare(){
+GAP_PKG_OBJS="doc grh lib"
+
+src_prepare() {
 	default
 
 	rm -f configure \
@@ -38,12 +40,4 @@ src_prepare(){
 	fi
 	sed -i "s:@nauty@:$nauty:" lib/grape.g
 	eprefixify lib/grape.g
-}
-
-src_install(){
-	default
-
-	insinto /usr/share/gap/pkg/"${P}"
-	doins -r doc grh lib
-	doins *.g
 }

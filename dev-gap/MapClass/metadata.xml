@@ -5,8 +5,4 @@
 		<email>frp.bissey@gmail.com</email>
 		<name>FranÃ§ois Bissey</name>
 	</maintainer>
-	<longdescription lang="en">
-		The MapClass package calculates the mapping class group
-		orbits for a given finite group.
-	</longdescription>
 </pkgmetadata>
