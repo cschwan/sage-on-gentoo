@@ -17,7 +17,8 @@ IUSE=""
 
 RDEPEND=">=sci-mathematics/gap-4.12.0
 	>=dev-gap/GAPDoc-1.6.6
-	>=dev-gap/io-4.7.2"
+	>=dev-gap/io-4.7.2
+	>=dev-gap/utils-0.77"
 
 DOCS="README.md"
 
