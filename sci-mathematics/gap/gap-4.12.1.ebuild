@@ -43,7 +43,7 @@ REQUIRED_USE="?? ( memcheck valgrind )"
 PATCHES=(
 	"${FILESDIR}"/${PN}-4.12.0-autoconf.patch
 	"${FILESDIR}"/${PN}-4.12.0-no-doc-autoinstall.patch
-	"${FILESDIR}"/${PN}-4.12.0-nostrip.patch
+	"${FILESDIR}"/${PN}-4.12.1-nostrip.patch
 )
 
 pkg_setup() {
