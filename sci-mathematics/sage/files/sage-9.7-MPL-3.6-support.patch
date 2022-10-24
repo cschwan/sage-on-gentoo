@@ -52,10 +52,10 @@ index e779e12..8d620b5 100644
              <matplotlib.ticker.MaxNLocator object at ...>,
              <matplotlib.ticker.ScalarFormatter object at ...>,
 diff --git a/sage/plot/plot.py b/sage/plot/plot.py
-index b36ee57..5301a05 100644
+index d41b4ba..a8f9bdb 100644
 --- a/sage/plot/plot.py
 +++ b/sage/plot/plot.py
-@@ -1741,7 +1741,7 @@ def plot(funcs, *args, **kwds):
+@@ -1741,14 +1741,9 @@ def plot(funcs, *args, **kwds):
  
      ::
  
@@ -63,4 +63,11 @@ index b36ee57..5301a05 100644
 +        sage: plot(2*x+1,(x,0,5),ticks=[[0,1,e,pi,sqrt(20)],2],tick_formatter="latex") # not tested (broken with matplotlib 3.6)
          Graphics object consisting of 1 graphics primitive
  
-     .. PLOT::
+-    .. PLOT::
+-
+-        g = plot(2*x+1,(x,0,5),ticks=[[0,1,e,pi,sqrt(20)],2],tick_formatter="latex")
+-        sphinx_plot(g)
+-
+     This is particularly useful when setting custom ticks in multiples of `pi`.
+ 
+     ::

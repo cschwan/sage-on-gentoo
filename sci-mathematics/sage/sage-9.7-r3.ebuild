@@ -148,7 +148,7 @@ PATCHES=(
 	"${FILESDIR}"/${PN}-9.3-forcejavatmp.patch
 	"${FILESDIR}"/${PN}-9.7-neutering.patch
 	"${FILESDIR}"/${PN}-9.5-distutils.patch
-	"${FILESDIR}"/MPL-3.6-support.patch
+	"${FILESDIR}"/${PN}-9.7-MPL-3.6-support.patch
 	"${WORKDIR}"/ipywidget8.patch
 )
 
