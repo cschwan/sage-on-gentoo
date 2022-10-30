@@ -6,7 +6,7 @@ EAPI=7
 DESCRIPTION="The GAP Character Table Library"
 HOMEPAGE="https://www.gap-system.org/Packages/${PN}.html"
 SLOT="0"
-SRC_URI="https://files.gap-system.org/gap4/tar.bz2/packages/ctbllib-1r2p2.tar.bz2 -> ${P}.tar.bz2"
+SRC_URI="mirror://sagemath/${P}.tar.bz2"
 
 LICENSE="GPL-2+"
 KEYWORDS="~amd64 ~x86"
