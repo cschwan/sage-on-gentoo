@@ -1,19 +1,19 @@
 diff --git a/Makefile.rules b/Makefile.rules
-index e0c46d2..886b977 100644
+index 368814d..c7ecd4c 100644
 --- a/Makefile.rules
 +++ b/Makefile.rules
-@@ -583,7 +583,7 @@ install-bin: gap
- 	@echo "Warning, 'make install-bin' is incomplete"
+@@ -586,7 +586,7 @@ export gap_wrapper
+ install-bin: gap
  	# install the real GAP executable as $(libdir)/gap/gap
  	$(INSTALL) -d -m 0755 $(DESTDIR)$(libdir)/gap
--	$(INSTALL) -m 0755 -s gap $(DESTDIR)$(libdir)/gap
-+	$(INSTALL) -m 0755 gap $(DESTDIR)$(libdir)/gap
+-	$(LTINSTALL) -s gap $(DESTDIR)$(libdir)/gap
++	$(LTINSTALL) gap $(DESTDIR)$(libdir)/gap
  	
  	# install a wrapper shell script invoking the real GAP executable as $(bindir)/gap
  	$(INSTALL) -d -m 0755 $(DESTDIR)$(bindir)
-@@ -661,7 +661,7 @@ install-headers: $(FFDATA_H) build/version.h
+@@ -663,7 +663,7 @@ install-headers: $(FFDATA_H) build/version.h
+ 
  install-libgap: libgap.la
- 	@echo "Warning, 'make install-libgap' is incomplete"
  	$(INSTALL) -d -m 0755 $(DESTDIR)$(libdir)
 -	$(LTINSTALL) -s libgap.la $(DESTDIR)$(libdir)
 +	$(LTINSTALL) libgap.la $(DESTDIR)$(libdir)

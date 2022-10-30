@@ -3,7 +3,7 @@
 
 EAPI=8
 
-PYTHON_COMPAT=( python3_{9..10} )
+PYTHON_COMPAT=( python3_{9..11} )
 PYTHON_REQ_USE="readline,sqlite"
 DISTUTILS_USE_PEP517=setuptools
 
@@ -12,7 +12,6 @@ inherit desktop distutils-r1 multiprocessing toolchain-funcs git-r3
 EGIT_REPO_URI="https://github.com/sagemath/sage.git"
 EGIT_BRANCH=develop
 EGIT_CHECKOUT_DIR="${WORKDIR}/${P}"
-SRC_URI="mirror://sagemath/ipywidget8.patch.xz"
 KEYWORDS=""
 
 DESCRIPTION="Math software for abstract and numerical computations"
@@ -153,7 +152,7 @@ PATCHES=(
 	"${FILESDIR}"/${PN}-9.7-neutering.patch
 	"${FILESDIR}"/${PN}-9.5-distutils.patch
 	"${FILESDIR}"/${PN}-9.8-MPL3.6-badplot.patch
-	"${WORKDIR}"/ipywidget8.patch
+	"${FILESDIR}"/python-3.11.patch
 )
 
 pkg_setup() {

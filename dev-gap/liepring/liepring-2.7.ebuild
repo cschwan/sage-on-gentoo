@@ -14,7 +14,9 @@ LICENSE="GPL-2"
 KEYWORDS="~amd64 ~x86"
 IUSE=""
 
-RDEPEND=">=sci-mathematics/gap-4.12.0"
+RDEPEND=">=sci-mathematics/gap-4.12.0
+	>=dev-gap/liering-2.4.2
+	>=dev-gap/singular-2022.09.23"
 
 DOCS="README.md"
 HTML_DOCS="htm/*"

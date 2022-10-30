@@ -1,0 +1,219 @@
+diff --git a/sage/cpython/cython_metaclass.h b/sage/cpython/cython_metaclass.h
+index cc620a4..6487342 100644
+--- a/sage/cpython/cython_metaclass.h
++++ b/sage/cpython/cython_metaclass.h
+@@ -66,7 +66,7 @@ static CYTHON_INLINE int Sage_PyType_Ready(PyTypeObject* t)
+         }
+ 
+         /* Now, set t.__class__ to metaclass */
+-        Py_TYPE(t) = metaclass;
++        Py_SET_TYPE(t, metaclass);
+         PyType_Modified(t);
+     }
+     else
+diff --git a/sage/features/__init__.py b/sage/features/__init__.py
+index fd899aa..404571e 100644
+--- a/sage/features/__init__.py
++++ b/sage/features/__init__.py
+@@ -768,8 +768,8 @@ class CythonFeature(Feature):
+             from distutils.errors import CCompilerError
+         with open(tmp_filename(ext=".pyx"), 'w') as pyx:
+             pyx.write(self.test_code)
+-        from sage.misc.cython import cython_import
+         try:
++            from sage.misc.cython import cython_import
+             cython_import(pyx.name, verbose=-1)
+         except CCompilerError:
+             return FeatureTestResult(self, False, reason="Failed to compile test code.")
+diff --git a/sage/libs/gmp/pylong.pyx b/sage/libs/gmp/pylong.pyx
+index 388be32..e772b60 100644
+--- a/sage/libs/gmp/pylong.pyx
++++ b/sage/libs/gmp/pylong.pyx
+@@ -32,7 +32,7 @@ from cpython.longintrepr cimport _PyLong_New, py_long, digit, PyLong_SHIFT
+ from .mpz cimport *
+ 
+ cdef extern from *:
+-    Py_ssize_t* Py_SIZE_PTR "&Py_SIZE"(object)
++    void Py_SET_SIZE(object, Py_ssize_t)
+     int hash_bits """
+         #ifdef _PyHASH_BITS
+         _PyHASH_BITS         /* Python 3 */
+@@ -57,10 +57,8 @@ cdef mpz_get_pylong_large(mpz_srcptr z):
+     mpz_export(L.ob_digit, NULL,
+             -1, sizeof(digit), 0, PyLong_nails, z)
+     if mpz_sgn(z) < 0:
+-        # Set correct size (use a pointer to hack around Cython's
+-        # non-support for lvalues).
+-        sizeptr = Py_SIZE_PTR(L)
+-        sizeptr[0] = -pylong_size
++        # Set correct size
++        Py_SET_SIZE(L, -pylong_size)
+     return L
+ 
+ 
+diff --git a/sage/misc/cachefunc.pyx b/sage/misc/cachefunc.pyx
+index 9fa967c..72042ef 100644
+--- a/sage/misc/cachefunc.pyx
++++ b/sage/misc/cachefunc.pyx
+@@ -2818,7 +2818,7 @@ cdef class CachedMethod():
+                 except Exception:
+                     pass
+             if self.nargs == 0:
+-                args, varargs, keywords, defaults = sage_getargspec(f)
++                args, varargs, keywords, defaults, kwonlyargs, kwonlydefaults, annotations = sage_getargspec(f)
+                 if varargs is None and keywords is None and len(args)<=1:
+                     self.nargs = 1
+                 else:
+@@ -2954,7 +2954,7 @@ cdef class CachedSpecialMethod(CachedMethod):
+         # we need to analyse the argspec
+         f = self._cachedfunc.f
+         if self.nargs == 0:
+-            args, varargs, keywords, defaults = sage_getargspec(f)
++            args, varargs, keywords, defaults, kwonlyargs, kwonlydefaults, annotations = sage_getargspec(f)
+             if varargs is None and keywords is None and len(args)<=1:
+                 self.nargs = 1
+                 Caller = CachedMethodCallerNoArgs(inst, f, name=name, do_pickle=self._cachedfunc.do_pickle)
+diff --git a/sage/misc/decorators.py b/sage/misc/decorators.py
+index 28c5244..311a510 100644
+--- a/sage/misc/decorators.py
++++ b/sage/misc/decorators.py
+@@ -32,7 +32,8 @@ from copy import copy
+ 
+ from sage.misc.sageinspect import (sage_getsource, sage_getsourcelines,
+                                    sage_getargspec)
+-from inspect import ArgSpec
++
++from inspect import FullArgSpec
+ 
+ 
+ def sage_wraps(wrapped, assigned=WRAPPER_ASSIGNMENTS, updated=WRAPPER_UPDATES):
+@@ -499,7 +500,8 @@ class options():
+                     list(self.options))
+             defaults = (argspec.defaults or ()) + tuple(self.options.values())
+             # Note: argspec.defaults is not always a tuple for some reason
+-            return ArgSpec(args, argspec.varargs, argspec.keywords, defaults)
++            return FullArgSpec(args, argspec.varargs, argspec.keywords, defaults,
++                               kwonlyargs=[], kwonlydefaults={}, annotations={})
+ 
+         wrapper._sage_argspec_ = argspec
+ 
+diff --git a/sage/misc/function_mangling.pyx b/sage/misc/function_mangling.pyx
+index 0ac03cf..e1bb797 100644
+--- a/sage/misc/function_mangling.pyx
++++ b/sage/misc/function_mangling.pyx
+@@ -116,7 +116,7 @@ cdef class ArgumentFixer:
+     """
+     def __init__(self, f, classmethod = False):
+         try:
+-            arg_names, varargs, varkw, defaults = sage_getargspec(f)
++            arg_names, varargs, varkw, defaults, kwonlyargs, kwonlydefaults, annotations = sage_getargspec(f)
+         except AttributeError:
+             # This error occurs if f is defined in a Cython file and the
+             # source file has gone.
+diff --git a/sage/misc/sageinspect.py b/sage/misc/sageinspect.py
+index fbca2de..a3821cb 100644
+--- a/sage/misc/sageinspect.py
++++ b/sage/misc/sageinspect.py
+@@ -359,7 +359,7 @@ def _extract_embedded_signature(docstring, name):
+         docstring = L[1] if len(L) > 1 else ''  # Remove first line, keep the rest
+         def_string = "def " + name + signature + ": pass"
+         try:
+-            return docstring, inspect.ArgSpec(*_sage_getargspec_cython(def_string))
++            return docstring, inspect.FullArgSpec(*_sage_getargspec_cython(def_string))
+         except SyntaxError:
+             docstring = os.linesep.join(L)
+     return docstring, None
+@@ -1135,8 +1135,9 @@ def _sage_getargspec_from_ast(source):
+     vararg = getattr(ast_args.vararg, 'arg', None)
+     kwarg = getattr(ast_args.kwarg, 'arg', None)
+ 
+-    return inspect.ArgSpec(args, vararg, kwarg,
+-                           tuple(defaults) if defaults else None)
++    return inspect.FullArgSpec(args, vararg, kwarg,
++                               tuple(defaults) if defaults else None,
++                               kwonlyargs=[], kwonlydefaults={}, annotations={})
+ 
+ 
+ def _sage_getargspec_cython(source):
+@@ -1152,7 +1153,7 @@ def _sage_getargspec_cython(source):
+ 
+     OUTPUT:
+ 
+-    - an instance of :obj:`inspect.ArgSpec`, i.e., a named tuple
++    - an instance of :class:`inspect.FullArgSpec`, i.e., a named tuple
+ 
+     EXAMPLES::
+ 
+@@ -1662,11 +1663,11 @@ def sage_getargspec(obj):
+         return sage_getargspec(obj.__call__)
+     if isinstance(obj, (lazy_attribute, AbstractMethod)):
+         source = sage_getsource(obj)
+-        return inspect.ArgSpec(*_sage_getargspec_cython(source))
++        return inspect.FullArgSpec(*_sage_getargspec_cython(source))
+     if not callable(obj):
+         raise TypeError("obj is not a code object")
+     try:
+-        return inspect.ArgSpec(*obj._sage_argspec_())
++        return inspect.FullArgSpec(*obj._sage_argspec_())
+     except (AttributeError, TypeError):
+         pass
+     # If we are lucky, the function signature is embedded in the docstring.
+@@ -1682,7 +1683,7 @@ def sage_getargspec(obj):
+         # Note that this may give a wrong result for the constants!
+         try:
+             args, varargs, varkw = inspect.getargs(obj.__code__)
+-            return inspect.ArgSpec(args, varargs, varkw, obj.__defaults__)
++            return inspect.FullArgSpec(args, varargs, varkw, obj.__defaults__)
+         except (TypeError, AttributeError):
+             pass
+     if isclassinstance(obj):
+@@ -1717,7 +1718,7 @@ def sage_getargspec(obj):
+         except TypeError: # happens for Python builtins
+             source = ''
+         if source:
+-            return inspect.ArgSpec(*_sage_getargspec_cython(source))
++            return inspect.FullArgSpec(*_sage_getargspec_cython(source))
+         else:
+             func_obj = obj
+ 
+@@ -1730,7 +1731,7 @@ def sage_getargspec(obj):
+         except TypeError: # arg is not a code object
+             # The above "hopefully" was wishful thinking:
+             try:
+-                return inspect.ArgSpec(*_sage_getargspec_cython(sage_getsource(obj)))
++                return inspect.FullArgSpec(*_sage_getargspec_cython(sage_getsource(obj)))
+             except TypeError: # This happens for Python builtins
+                 # The best we can do is to return a generic argspec
+                 args = []
+@@ -1740,7 +1741,8 @@ def sage_getargspec(obj):
+         defaults = func_obj.__defaults__
+     except AttributeError:
+         defaults = None
+-    return inspect.ArgSpec(args, varargs, varkw, defaults)
++    return inspect.FullArgSpec(args, varargs, varkw, defaults,
++                               kwonlyargs=[], kwonlydefaults={}, annotations={})
+ 
+ 
+ def formatannotation(annotation, base_module=None):
+@@ -1811,7 +1813,7 @@ def sage_formatargspec(args, varargs=None, varkw=None, defaults=None,
+     :func:`sage_getargspec`. Since :func:`sage_getargspec` works for
+     Cython functions while Python's inspect module does not, it makes
+     sense to keep this function for formatting instances of
+-    ``inspect.ArgSpec``.
++    ``inspect.FullArgSpec``.
+ 
+     EXAMPLES::
+ 
+diff --git a/sage/symbolic/ginac/numeric.cpp b/sage/symbolic/ginac/numeric.cpp
+index 2206044..b40ed64 100644
+--- a/sage/symbolic/ginac/numeric.cpp
++++ b/sage/symbolic/ginac/numeric.cpp
+@@ -52,7 +52,6 @@
+ #define register
+ #define PY_SSIZE_T_CLEAN
+ #include <Python.h>
+-#include <longintrepr.h>
+ #include "flint/fmpz.h"
+ #include "flint/fmpz_factor.h"
+ 
+
