@@ -16,6 +16,7 @@ SLOT="0/4"
 KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~hppa ~ia64 ~mips ~ppc ~ppc64 ~sparc ~x86 ~amd64-linux ~x86-linux"
 
 DEPEND="~sci-libs/suitesparseconfig-${PV}"
+RDEPEND="${DEPEND}"
 
 S="${WORKDIR}/${TOPNAME}/CXSparse"
 
