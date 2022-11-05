@@ -3,7 +3,7 @@
 
 EAPI=8
 
-inherit cmake-multilib toolchain-funcs
+inherit cmake-multilib
 
 MY_PV=$(ver_rs 3 '-')
 TOPNAME="SuiteSparse-${MY_PV}"
@@ -15,7 +15,7 @@ LICENSE="BSD"
 SLOT="0"
 KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~hppa ~ia64 ~mips ~ppc ~ppc64 ~sparc ~x86 ~amd64-linux ~x86-linux"
 
-DEPEND="~sci-libs/suitespasreconfig-${PV}"
+DEPEND="~sci-libs/suitesparseconfig-${PV}"
 
 S="${WORKDIR}/${TOPNAME}/AMD"
 
