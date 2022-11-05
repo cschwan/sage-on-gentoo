@@ -17,7 +17,7 @@ KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~hppa ~ia64 ~mips ~ppc ~ppc64 ~sparc ~x86 ~a
 
 DEPEND="~sci-libs/suitesparseconfig-${PV}"
 
-S="${WORKDIR}/${TOPNAME}/AMD"
+S="${WORKDIR}/${TOPNAME}/${PN^^}"
 
 multilib_src_configure() {
 	local mycmakeargs=(
