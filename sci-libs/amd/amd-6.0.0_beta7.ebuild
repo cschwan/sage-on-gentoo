@@ -3,7 +3,7 @@
 
 EAPI=8
 
-inherit cmake-multilib
+inherit cmake-multilib fortran-2
 
 MY_PV=$(ver_rs 3 '-')
 TOPNAME="SuiteSparse-${MY_PV}"
