@@ -20,8 +20,7 @@ esac
 # usr/$(get_libdir)/gap/pkg
 
 gap-pkg_path() {
-	local lower_case_pn=`echo "${PN}" | tr '[:upper:]' '[:lower:]'`
-	echo "usr/$(get_libdir)/gap/pkg/${lower_case_pn}"
+	echo "usr/$(get_libdir)/gap/pkg/${PN,,}"
 }
 
 # @FUNCTION: gap_sysinfo_loc
