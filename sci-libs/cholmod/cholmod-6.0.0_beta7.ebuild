@@ -14,7 +14,8 @@ SRC_URI="https://github.com/DrTimothyAldenDavis/SuiteSparse/archive/refs/tags/v$
 LICENSE="LGPL-2.1+ modify? ( GPL-2+ ) matrixops? ( GPL-2+ )"
 SLOT="0/4"
 KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~hppa ~ia64 ~mips ~ppc ~ppc64 ~sparc ~x86 ~amd64-linux ~x86-linux"
-IUSE="+cholesky cuda openmp +matrixops +modify +partition +supernodal"
+IUSE="+cholesky cuda openmp +matrixops +modify +partition +supernodal test"
+RESTRICT="!test? ( test )"
 
 DEPEND="~sci-libs/suitesparseconfig-${PV}
 	~sci-libs/amd-${PV}
@@ -30,8 +31,8 @@ DEPEND="~sci-libs/suitesparseconfig-${PV}
 	)"
 RDEPEND="${DEPEND}"
 
-REQUIRED_USE="cholesky? ( modify supernodal )
-	"
+REQUIRED_USE="supernodal? ( cholesky )
+	modify? ( cholesky )"
 
 S="${WORKDIR}/${TOPNAME}/${PN^^}"
 
@@ -44,15 +45,32 @@ pkg_setup() {
 }
 
 multilib_src_configure() {
-	# Not that N prefixed options are negative options
+	# Not that "N" prefixed options are negative options
 	# so they need to be turned OFF if you want that option.
 	local mycmakeargs=(
 		-DNSTATIC=ON
 		-DENABLE_CUDA=$(usex cuda)
+		-DNCHOLESKY=$(usex cholesky OFF ON)
 		-DNMATRIXOPS=$(usex matrixops OFF ON)
 		-DNMODIFY=$(usex modify OFF ON)
 		-DNPARTITION=$(usex partition OFF ON)
 		-DNSUPERNODAL=$(usex supernodal OFF ON)
+		-DDEMO=$(usex test)
 	)
 	cmake_src_configure
+}
+
+multilib_src_test() {
+	# Run demo files
+	./cholmod_demo   < "${S}"/Demo/Matrix/bcsstk01.tri || die "failed testing"
+	./cholmod_l_demo < "${S}"/Demo/Matrix/bcsstk01.tri || die "failed testing"
+	./cholmod_demo   < "${S}"/Demo/Matrix/lp_afiro.tri || die "failed testing"
+	./cholmod_l_demo < "${S}"/Demo/Matrix/lp_afiro.tri || die "failed testing"
+	./cholmod_demo   < "${S}"/Demo/Matrix/can___24.mtx || die "failed testing"
+	./cholmod_l_demo < "${S}"/Demo/Matrix/can___24.mtx || die "failed testing"
+	./cholmod_demo   < "${S}"/Demo/Matrix/c.tri || die "failed testing"
+	./cholmod_l_demo < "${S}"/Demo/Matrix/c.tri || die "failed testing"
+	./cholmod_simple < "${S}"/Demo/Matrix/c.tri || die "failed testing"
+	./cholmod_simple < "${S}"/Demo/Matrix/can___24.mtx || die "failed testing"
+	./cholmod_simple < "${S}"/Demo/Matrix/bcsstk01.tri || die "failed testing"
 }
