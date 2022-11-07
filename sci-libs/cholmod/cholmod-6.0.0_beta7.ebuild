@@ -44,13 +44,15 @@ pkg_setup() {
 }
 
 multilib_src_configure() {
+	# Not that N prefixed options are negative options
+	# so they need to be turned OFF if you want that option.
 	local mycmakeargs=(
 		-DNSTATIC=ON
 		-DENABLE_CUDA=$(usex cuda)
-		-DNMATRIXOPS=$(usex matrixops)
-		-DNMODIFY=$(usex modify)
-		-DNPARTITION=$(usex partition)
-		-DNSUPERNODAL=$(usex supernodal)
+		-DNMATRIXOPS=$(usex matrixops OFF ON)
+		-DNMODIFY=$(usex modify OFF ON)
+		-DNPARTITION=$(usex partition OFF ON)
+		-DNSUPERNODAL=$(usex supernodal OFF ON)
 	)
 	cmake_src_configure
 }
