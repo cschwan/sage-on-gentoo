@@ -14,6 +14,8 @@ SRC_URI="https://github.com/DrTimothyAldenDavis/SuiteSparse/archive/refs/tags/v$
 LICENSE="BSD"
 SLOT="0/3"
 KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~hppa ~ia64 ~mips ~ppc ~ppc64 ~sparc ~x86 ~amd64-linux ~x86-linux"
+IUSE="test"
+RESTRICT="!test? ( test )"
 
 DEPEND="~sci-libs/suitesparseconfig-${PV}"
 RDEPEND="${DEPEND}"
@@ -23,6 +25,15 @@ S="${WORKDIR}/${TOPNAME}/${PN^^}"
 multilib_src_configure() {
 	local mycmakeargs=(
 		-DNSTATIC=ON
+		-DDEMO=$(usex test)
 	)
 	cmake_src_configure
+}
+
+multilib_src_test() {
+	# Run demo files
+	./colamd_example > colamd_example.out
+	diff "${S}"/Demo/colamd_example.out colamd_example.out || die "failed testing"
+	./colamd_l_example > colamd_l_example.out
+	diff "${S}"/Demo/colamd_l_example.out colamd_l_example.out || die "failed testing"
 }
