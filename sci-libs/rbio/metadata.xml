@@ -5,8 +5,4 @@
     <email>frp.bissey@gmail.com</email>
     <name>Francois Bissey</name>
   </maintainer>
-  <longdescription lang="en">
-    Toolbox for reading/writing sparse matrices in Rutherford/Boeing
-    format.
-  </longdescription>
 </pkgmetadata>
