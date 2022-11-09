@@ -5,18 +5,18 @@ EAPI=8
 
 inherit cmake-multilib toolchain-funcs
 
-MY_PV=$(ver_rs 3 '-')
-TOPNAME="SuiteSparse-${MY_PV}"
+Sparse_PV=$(ver_rs 3 '-')
+Sparse_PN="SuiteSparse-${Sparse_PV}"
 DESCRIPTION="Common configurations for all packages in suitesparse"
 HOMEPAGE="https://people.engr.tamu.edu/davis/suitesparse.html"
-SRC_URI="https://github.com/DrTimothyAldenDavis/SuiteSparse/archive/refs/tags/v${MY_PV}.tar.gz -> ${TOPNAME}.gh.tar.gz"
+SRC_URI="https://github.com/DrTimothyAldenDavis/SuiteSparse/archive/refs/tags/v${Sparse_PV}.tar.gz -> ${Sparse_PN}.gh.tar.gz"
 
 LICENSE="BSD"
 SLOT="0/6"
 KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~hppa ~ia64 ~mips ~ppc ~ppc64 ~sparc ~x86 ~amd64-linux ~x86-linux"
 IUSE="openmp"
 
-S="${WORKDIR}/${TOPNAME}/SuiteSparse_config"
+S="${WORKDIR}/${Sparse_PN}/SuiteSparse_config"
 
 pkg_pretend() {
 	[[ ${MERGE_TYPE} != binary ]] && use openmp && tc-check-openmp

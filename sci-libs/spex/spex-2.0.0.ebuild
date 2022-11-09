@@ -5,11 +5,11 @@ EAPI=8
 
 inherit cmake-multilib
 
-MY_PV="6.0.0-beta7"
-TOPNAME="SuiteSparse-${MY_PV}"
+Sparse_PV="6.0.0-beta7"
+Sparse_PN="SuiteSparse-${Sparse_PV}"
 DESCRIPTION="a software package for SParse EXact algebra"
 HOMEPAGE="https://people.engr.tamu.edu/davis/suitesparse.html"
-SRC_URI="https://github.com/DrTimothyAldenDavis/SuiteSparse/archive/refs/tags/v${MY_PV}.tar.gz -> ${TOPNAME}.gh.tar.gz"
+SRC_URI="https://github.com/DrTimothyAldenDavis/SuiteSparse/archive/refs/tags/v${Sparse_PV}.tar.gz -> ${Sparse_PN}.gh.tar.gz"
 
 LICENSE="BSD"
 SLOT="0/2"
@@ -29,7 +29,7 @@ PATCHES=(
 	"${FILESDIR}/${PN}-2.0.0-demo_location.patch"
 	)
 
-S="${WORKDIR}/${TOPNAME}/${PN^^}"
+S="${WORKDIR}/${Sparse_PN}/${PN^^}"
 
 multilib_src_configure() {
 	local mycmakeargs=(

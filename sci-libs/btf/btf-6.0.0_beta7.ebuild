@@ -5,11 +5,11 @@ EAPI=8
 
 inherit cmake-multilib
 
-MY_PV=$(ver_rs 3 '-')
-TOPNAME="SuiteSparse-${MY_PV}"
+Sparse_PV=$(ver_rs 3 '-')
+Sparse_PN="SuiteSparse-${Sparse_PV}"
 DESCRIPTION="Algorithm for matrix permutation into block triangular form"
 HOMEPAGE="https://people.engr.tamu.edu/davis/suitesparse.html"
-SRC_URI="https://github.com/DrTimothyAldenDavis/SuiteSparse/archive/refs/tags/v${MY_PV}.tar.gz -> ${TOPNAME}.gh.tar.gz"
+SRC_URI="https://github.com/DrTimothyAldenDavis/SuiteSparse/archive/refs/tags/v${Sparse_PV}.tar.gz -> ${Sparse_PN}.gh.tar.gz"
 
 LICENSE="LGPL-2.1"
 SLOT="0/2"
@@ -18,7 +18,7 @@ KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~hppa ~ia64 ~mips ~ppc ~ppc64 ~sparc ~x86 ~a
 DEPEND="~sci-libs/suitesparseconfig-${PV}"
 RDEPEND="${DEPEND}"
 
-S="${WORKDIR}/${TOPNAME}/${PN^^}"
+S="${WORKDIR}/${Sparse_PN}/${PN^^}"
 
 multilib_src_configure() {
 	local mycmakeargs=(

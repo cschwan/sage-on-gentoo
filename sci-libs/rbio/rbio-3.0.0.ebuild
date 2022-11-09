@@ -5,11 +5,11 @@ EAPI=8
 
 inherit cmake-multilib
 
-MY_PV="6.0.0-beta7"
-TOPNAME="SuiteSparse-${MY_PV}"
+Sparse_PV="6.0.0-beta7"
+Sparse_PN="SuiteSparse-${Sparse_PV}"
 DESCRIPTION="Sparse matrices Rutherford/Boeing format tools"
 HOMEPAGE="https://people.engr.tamu.edu/davis/suitesparse.html"
-SRC_URI="https://github.com/DrTimothyAldenDavis/SuiteSparse/archive/refs/tags/v${MY_PV}.tar.gz -> ${TOPNAME}.gh.tar.gz"
+SRC_URI="https://github.com/DrTimothyAldenDavis/SuiteSparse/archive/refs/tags/v${Sparse_PV}.tar.gz -> ${Sparse_PN}.gh.tar.gz"
 
 LICENSE="GPL-2+"
 SLOT="0/3"
@@ -20,7 +20,7 @@ RESTRICT="!test? ( test )"
 DEPEND="~sci-libs/suitesparseconfig-6.0.0_beta7"
 RDEPEND="${DEPEND}"
 
-S="${WORKDIR}/${TOPNAME}/RBio"
+S="${WORKDIR}/${Sparse_PN}/RBio"
 
 multilib_src_configure() {
 	local mycmakeargs=(

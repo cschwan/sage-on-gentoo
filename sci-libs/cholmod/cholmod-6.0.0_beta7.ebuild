@@ -5,11 +5,11 @@ EAPI=8
 
 inherit cmake-multilib fortran-2 toolchain-funcs
 
-MY_PV=$(ver_rs 3 '-')
-TOPNAME="SuiteSparse-${MY_PV}"
+Sparse_PV=$(ver_rs 3 '-')
+Sparse_PN="SuiteSparse-${Sparse_PV}"
 DESCRIPTION="Sparse Cholesky factorization and update/downdate library"
 HOMEPAGE="https://people.engr.tamu.edu/davis/suitesparse.html"
-SRC_URI="https://github.com/DrTimothyAldenDavis/SuiteSparse/archive/refs/tags/v${MY_PV}.tar.gz -> ${TOPNAME}.gh.tar.gz"
+SRC_URI="https://github.com/DrTimothyAldenDavis/SuiteSparse/archive/refs/tags/v${Sparse_PV}.tar.gz -> ${Sparse_PN}.gh.tar.gz"
 
 LICENSE="LGPL-2.1+ modify? ( GPL-2+ ) matrixops? ( GPL-2+ )"
 SLOT="0/4"
@@ -36,7 +36,7 @@ REQUIRED_USE="supernodal? ( cholesky )
 	modify? ( cholesky )
 	test? ( cholesky matrixops supernodal )"
 
-S="${WORKDIR}/${TOPNAME}/${PN^^}"
+S="${WORKDIR}/${Sparse_PN}/${PN^^}"
 
 pkg_pretend() {
 	[[ ${MERGE_TYPE} != binary ]] && use openmp && tc-check-openmp
