@@ -48,15 +48,14 @@ multilib_src_test() {
 	einfo "All tests passed"
 }
 
-# need doc fix to be released
-#multilib_src_install() {
-# 	if use doc; then
-# 		pushd "${S}/Doc"
-# 		emake clean
-# 		rm -rf AMD_UserGuide.pdf
-# 		emake
-# 		popd
-# 		DOCS="${S}/Doc/AMD_UserGuide.pdf"
-# 	fi
-#	cmake_src_install
-#}
+multilib_src_install() {
+	if use doc; then
+		pushd "${S}/Doc"
+		emake clean
+		rm -rf *.pdf
+		emake
+		popd
+		DOCS="${S}/Doc/*.pdf"
+	fi
+	cmake_src_install
+}

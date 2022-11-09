@@ -14,7 +14,7 @@ SRC_URI="https://github.com/DrTimothyAldenDavis/SuiteSparse/archive/refs/tags/v$
 LICENSE="LGPL-2.1+"
 SLOT="0/2"
 KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~hppa ~ia64 ~mips ~ppc ~ppc64 ~sparc ~x86 ~amd64-linux ~x86-linux"
-IUSE="test"
+IUSE="doc test"
 RESTRICT="!test? ( test )"
 
 DEPEND=">=sci-libs/suitesparseconfig-6.0.0_beta7
@@ -23,6 +23,7 @@ DEPEND=">=sci-libs/suitesparseconfig-6.0.0_beta7
 	>=sci-libs/colamd-3.0.0
 	>=sci-libs/cholmod-4.0.0"
 RDEPEND="${DEPEND}"
+BDEPEND="doc? ( virtual/latex-base )"
 
 S="${WORKDIR}/${Sparse_P}/${PN^^}"
 
@@ -49,4 +50,16 @@ multilib_src_test() {
 	./kluldemo < "${S}"/Matrix/impcol_a.mtx || die "failed testing"
 	./kluldemo < "${S}"/Matrix/w156.mtx || die "failed testing"
 	./kluldemo < "${S}"/Matrix/ctina.mtx || die "failed testing"
+}
+
+multilib_src_install() {
+	if use doc; then
+		pushd "${S}/Doc"
+		emake clean
+		rm -rf *.pdf
+		emake
+		popd
+		DOCS="${S}/Doc/*.pdf"
+	fi
+	cmake_src_install
 }

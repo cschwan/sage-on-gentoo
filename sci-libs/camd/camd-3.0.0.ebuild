@@ -14,11 +14,12 @@ SRC_URI="https://github.com/DrTimothyAldenDavis/SuiteSparse/archive/refs/tags/v$
 LICENSE="BSD"
 SLOT="0/3"
 KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~hppa ~ia64 ~mips ~ppc ~ppc64 ~sparc ~x86 ~amd64-linux ~x86-linux"
-IUSE="test"
+IUSE="doc test"
 RESTRICT="!test? ( test )"
 
 DEPEND=">=sci-libs/suitesparseconfig-6.0.0_beta7"
 RDEPEND="${DEPEND}"
+BDEPEND="doc? ( virtual/latex-base )"
 
 S="${WORKDIR}/${Sparse_P}/${PN^^}"
 
@@ -40,4 +41,16 @@ multilib_src_test() {
 	diff "${S}"/Demo/camd_demo2.out camd_demo2.out || die "failed testing"
 	./camd_simple > camd_simple.out
 	diff "${S}"/Demo/camd_simple.out camd_simple.out || die "failed testing"
+}
+
+multilib_src_install() {
+	if use doc; then
+		pushd "${S}/Doc"
+		emake clean
+		rm -rf *.pdf
+		emake
+		popd
+		DOCS="${S}/Doc/*.pdf"
+	fi
+	cmake_src_install
 }
