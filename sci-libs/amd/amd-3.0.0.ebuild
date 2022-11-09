@@ -5,11 +5,11 @@ EAPI=8
 
 inherit cmake-multilib fortran-2
 
-Sparse_PV=$(ver_rs 3 '-')
-Sparse_PN="SuiteSparse-${Sparse_PV}"
+Sparse_PV="6.0.0-beta7"
+Sparse_P="SuiteSparse-${Sparse_PV}"
 DESCRIPTION="Library to order a sparse matrix prior to Cholesky factorization"
 HOMEPAGE="https://people.engr.tamu.edu/davis/suitesparse.html"
-SRC_URI="https://github.com/DrTimothyAldenDavis/SuiteSparse/archive/refs/tags/v${Sparse_PV}.tar.gz -> ${Sparse_PN}.gh.tar.gz"
+SRC_URI="https://github.com/DrTimothyAldenDavis/SuiteSparse/archive/refs/tags/v${Sparse_PV}.tar.gz -> ${Sparse_P}.gh.tar.gz"
 
 LICENSE="BSD"
 SLOT="0/3"
@@ -17,11 +17,11 @@ KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~hppa ~ia64 ~mips ~ppc ~ppc64 ~sparc ~x86 ~a
 IUSE="doc test"
 RESTRICT="!test? ( test )"
 
-DEPEND="~sci-libs/suitesparseconfig-${PV}"
+DEPEND=">=sci-libs/suitesparseconfig-6.0.0_beta7"
 RDEPEND="${DEPEND}"
 BDEPEND="doc? ( virtual/latex-base )"
 
-S="${WORKDIR}/${Sparse_PN}/${PN^^}"
+S="${WORKDIR}/${Sparse_P}/${PN^^}"
 
 multilib_src_configure() {
 	local mycmakeargs=(
