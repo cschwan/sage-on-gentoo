@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "https://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+  <maintainer type="project">
+    <email>sci@gentoo.org</email>
+    <name>Gentoo Science Project</name>
+  </maintainer>
+  <use>
+    <flag name="cuda">Use nvidia cuda toolkit for speeding up computations</flag>
+    <flag name="cholesky">
+      Enable sparse Cholesky factorisation
+    </flag>
+    <flag name="matrixops">
+      Support basic sparse and dense matrix operations (add, multiply,
+      scale, et cetera)
+    </flag>
+    <flag name="modify">
+      Enable Cholesky-modification routines like update, downdate,
+      row-add, and row-delete
+    </flag>
+    <flag name="partition">
+      Previously called "partition", enable graph partitioning and graph-partition-based
+      orderings through of a modified copy of <pkg>sci-libs/metis</pkg>.
+    </flag>
+    <flag name="supernodal">
+      supernodal cholesky factorisation
+    </flag>
+  </use>
+</pkgmetadata>

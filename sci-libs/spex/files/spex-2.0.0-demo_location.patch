@@ -1,0 +1,30 @@
+diff --git a/SPEX_Left_LU/Demo/example2.c b/SPEX_Left_LU/Demo/example2.c
+index 955a6830d..3dfca888d 100644
+--- a/SPEX_Left_LU/Demo/example2.c
++++ b/SPEX_Left_LU/Demo/example2.c
+@@ -43,8 +43,8 @@ int main (int argc, char **argv)
+     // Get matrix and right hand side file names
+     //--------------------------------------------------------------------------
+     char *mat_name, *rhs_name;
+-    mat_name = "../ExampleMats/10teams_mat.txt";
+-    rhs_name = "../ExampleMats/10teams_v.txt";
++    mat_name = "ExampleMats/10teams_mat.txt";
++    rhs_name = "ExampleMats/10teams_v.txt";
+     if (argc > 2)
+     {
+         mat_name = argv[1];
+diff --git a/SPEX_Left_LU/Demo/spexlu_demo.c b/SPEX_Left_LU/Demo/spexlu_demo.c
+index b6ca44fa5..b38e4aaf2 100644
+--- a/SPEX_Left_LU/Demo/spexlu_demo.c
++++ b/SPEX_Left_LU/Demo/spexlu_demo.c
+@@ -132,8 +132,8 @@ int main (int argc, char* argv[])
+     // Extra parameters used to obtain A, b, etc
+     char *mat_name, *rhs_name;
+     SPEX_type rat;
+-    mat_name = "../ExampleMats/10teams_mat.txt";// Set demo matrix and RHS name
+-    rhs_name = "../ExampleMats/10teams_v.txt";
++    mat_name = "ExampleMats/10teams_mat.txt";// Set demo matrix and RHS name
++    rhs_name = "ExampleMats/10teams_v.txt";
+     
+     //--------------------------------------------------------------------------
+     // After initializing memory, we process the command line for this function.
