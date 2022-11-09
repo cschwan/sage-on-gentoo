@@ -27,11 +27,11 @@ IUSE="+dsdp examples fftw +glpk gsl"
 DEPEND="
 	virtual/blas
 	virtual/lapack
-	sci-libs/amd:0=
-	sci-libs/cholmod:0=
-	sci-libs/colamd:0=
-	sci-libs/suitesparseconfig:0=
-	sci-libs/umfpack:0=
+	sci-libs/amd:=
+	sci-libs/cholmod:=
+	sci-libs/colamd:=
+	sci-libs/suitesparseconfig:=
+	sci-libs/umfpack:=
 	dsdp? ( sci-libs/dsdp:0= )
 	fftw? ( sci-libs/fftw:3.0= )
 	glpk? ( >=sci-mathematics/glpk-4.49:0= )
