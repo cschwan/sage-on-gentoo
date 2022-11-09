@@ -29,6 +29,7 @@ pkg_setup() {
 multilib_src_configure() {
 	local mycmakeargs=(
 		-DNSTATIC=ON
+		-DNOPENMP=$(usex openmp OFF ON)
 	)
 	cmake_src_configure
 }

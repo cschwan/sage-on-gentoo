@@ -5,7 +5,7 @@ EAPI=8
 
 inherit cmake-multilib fortran-2 toolchain-funcs
 
-Sparse_PV="6.0.0-beta8"
+Sparse_PV="6.0.0-beta9"
 Sparse_P="SuiteSparse-${Sparse_PV}"
 DESCRIPTION="Sparse Cholesky factorization and update/downdate library"
 HOMEPAGE="https://people.engr.tamu.edu/davis/suitesparse.html"
@@ -52,6 +52,7 @@ multilib_src_configure() {
 	local mycmakeargs=(
 		-DNSTATIC=ON
 		-DENABLE_CUDA=$(usex cuda)
+		-DNOPENMP=$(usex openmp OFF ON)
 		-DNCHOLESKY=$(usex cholesky OFF ON)
 		-DNMATRIXOPS=$(usex matrixops OFF ON)
 		-DNMODIFY=$(usex modify OFF ON)

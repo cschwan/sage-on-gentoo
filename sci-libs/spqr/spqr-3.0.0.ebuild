@@ -5,7 +5,7 @@ EAPI=8
 
 inherit cmake-multilib toolchain-funcs
 
-Sparse_PV="6.0.0-beta8"
+Sparse_PV="6.0.0-beta9"
 Sparse_P="SuiteSparse-${Sparse_PV}"
 DESCRIPTION="Multithreaded multifrontal sparse QR factorization library"
 HOMEPAGE="https://people.engr.tamu.edu/davis/suitesparse.html"
@@ -38,6 +38,7 @@ pkg_setup() {
 multilib_src_configure() {
 	local mycmakeargs=(
 		-DNSTATIC=ON
+		-DNOPENMP=$(usex openmp OFF ON)
 		-DDEMO=$(usex test)
 	)
 	cmake_src_configure
