@@ -5,7 +5,7 @@ EAPI=8
 
 inherit cmake-multilib fortran-2 toolchain-funcs
 
-Sparse_PV="6.0.0-beta9"
+Sparse_PV="6.0.0"
 Sparse_P="SuiteSparse-${Sparse_PV}"
 DESCRIPTION="Unsymmetric multifrontal sparse LU factorization library"
 HOMEPAGE="https://people.engr.tamu.edu/davis/suitesparse.html"

@@ -5,7 +5,7 @@ EAPI=8
 
 inherit cmake-multilib fortran-2
 
-Sparse_PV="6.0.0-beta9"
+Sparse_PV="6.0.0"
 Sparse_P="SuiteSparse-${Sparse_PV}"
 DESCRIPTION="Sparse LU factorization for circuit simulation"
 HOMEPAGE="https://people.engr.tamu.edu/davis/suitesparse.html"

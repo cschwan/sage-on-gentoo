@@ -5,7 +5,7 @@ EAPI=8
 
 inherit cmake-multilib
 
-Sparse_PV="6.0.0-beta9"
+Sparse_PV="6.0.0"
 Sparse_P="SuiteSparse-${Sparse_PV}"
 DESCRIPTION="a software package for SParse EXact algebra"
 HOMEPAGE="https://people.engr.tamu.edu/davis/suitesparse.html"

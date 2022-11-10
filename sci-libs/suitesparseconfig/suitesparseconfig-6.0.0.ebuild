@@ -5,7 +5,7 @@ EAPI=8
 
 inherit cmake-multilib toolchain-funcs
 
-Sparse_PV=$(ver_rs 3 '-')
+Sparse_PV="${PV}"
 Sparse_P="SuiteSparse-${Sparse_PV}"
 DESCRIPTION="Common configurations for all packages in suitesparse"
 HOMEPAGE="https://people.engr.tamu.edu/davis/suitesparse.html"
