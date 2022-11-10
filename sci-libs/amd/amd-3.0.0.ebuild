@@ -5,7 +5,7 @@ EAPI=8
 
 inherit cmake-multilib fortran-2
 
-Sparse_PV="6.0.0-beta9"
+Sparse_PV="6.0.0"
 Sparse_P="SuiteSparse-${Sparse_PV}"
 DESCRIPTION="Library to order a sparse matrix prior to Cholesky factorization"
 HOMEPAGE="https://people.engr.tamu.edu/davis/suitesparse.html"
