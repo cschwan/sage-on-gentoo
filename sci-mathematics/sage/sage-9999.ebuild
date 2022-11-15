@@ -33,7 +33,7 @@ DEPEND="
 	>=dev-libs/ntl-11.4.3:=
 	>=dev-libs/ppl-1.1
 	~dev-lisp/ecls-21.2.1
-	~dev-python/cypari2-2.1.2[${PYTHON_USEDEP}]
+	>=dev-python/cypari2-2.1.3[${PYTHON_USEDEP}]
 	>=dev-python/cysignals-1.11.2[${PYTHON_USEDEP}]
 	>=dev-python/cython-0.29.24[${PYTHON_USEDEP}]
 	>=dev-python/docutils-0.12[${PYTHON_USEDEP}]
