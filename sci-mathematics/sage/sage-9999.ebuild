@@ -3,7 +3,7 @@
 
 EAPI=8
 
-PYTHON_COMPAT=( python3_{9..10} )
+PYTHON_COMPAT=( python3_{9..11} )
 PYTHON_REQ_USE="readline,sqlite"
 DISTUTILS_USE_PEP517=setuptools
 
@@ -150,7 +150,6 @@ PATCHES=(
 	"${FILESDIR}"/${PN}-9.3-forcejavatmp.patch
 	"${FILESDIR}"/${PN}-9.7-neutering.patch
 	"${FILESDIR}"/${PN}-9.5-distutils.patch
-	"${FILESDIR}"/${PN}-9.8-MPL3.6-badplot.patch
 )
 
 pkg_setup() {
