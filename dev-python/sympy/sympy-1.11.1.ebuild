@@ -16,7 +16,7 @@ S="${WORKDIR}/${PN}-${P}"
 LICENSE="BSD"
 SLOT="0"
 KEYWORDS="~amd64 ~arm ~arm64 ~riscv ~x86 ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos"
-IUSE="aesara examples imaging ipython latex mathml opengl pdf png pyglet symengine test texmacs"
+IUSE="aesara examples imaging ipython latex mathml pdf png pyglet symengine test texmacs"
 
 RDEPEND="
 	dev-python/mpmath[${PYTHON_USEDEP}]
@@ -31,7 +31,6 @@ RDEPEND="
 		pdf? ( app-text/ghostscript-gpl )
 	)
 	mathml? ( dev-libs/libxml2:2[${PYTHON_USEDEP}] )
-	opengl? ( dev-python/pyopengl[${PYTHON_USEDEP}] )
 	pyglet? ( dev-python/pyglet[${PYTHON_USEDEP}] )
 	symengine? ( dev-python/symengine[${PYTHON_USEDEP}] )
 	texmacs? ( app-office/texmacs )
