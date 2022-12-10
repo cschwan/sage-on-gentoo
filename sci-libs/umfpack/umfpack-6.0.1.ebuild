@@ -39,6 +39,7 @@ multilib_src_configure() {
 		-DNSTATIC=ON
 		-DNOPENMP=$(usex openmp OFF ON)
 		-DDEMO=$(usex test)
+		-DFDEMO=$(usex test)
 	)
 	cmake_src_configure
 }
