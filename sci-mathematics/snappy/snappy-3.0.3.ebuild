@@ -21,6 +21,7 @@ KEYWORDS="~amd64"
 DEPEND="dev-python/cython[${PYTHON_USEDEP}]
 	dev-python/cypari2[${PYTHON_USEDEP}]
 	dev-python/ipython[${PYTHON_USEDEP}]
+	dev-python/pypng[${PYTHON_USEDEP}]
 	virtual/opengl"
 RDEPEND="${DEPEND}
 	>=sci-mathematics/spherogram-2.1[${PYTHON_USEDEP}]

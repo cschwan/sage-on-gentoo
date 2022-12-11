@@ -1,3 +1,4 @@
+=dev-python/Babel-2.11*
 dev-python/cvxopt
 =dev-python/cysignals-1.11*
 dev-python/memory_allocator

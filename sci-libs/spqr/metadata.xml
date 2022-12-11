@@ -12,4 +12,7 @@
   Blocks. It can obtain a substantial fraction of the theoretical
   peak performance of a multicore computer.
 </longdescription>
+<upstream>
+  <remote-id type="github">DrTimothyAldenDavis/SuiteSparse</remote-id>
+</upstream>
 </pkgmetadata>
