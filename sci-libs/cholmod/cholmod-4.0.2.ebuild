@@ -5,7 +5,7 @@ EAPI=8
 
 inherit cmake-multilib fortran-2 toolchain-funcs
 
-Sparse_PV="6.0.2.beta1"
+Sparse_PV="6.0.2"
 Sparse_P="SuiteSparse-${Sparse_PV}"
 DESCRIPTION="Sparse Cholesky factorization and update/downdate library"
 HOMEPAGE="https://people.engr.tamu.edu/davis/suitesparse.html"
@@ -17,7 +17,7 @@ KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~hppa ~ia64 ~mips ~ppc ~ppc64 ~sparc ~x86 ~a
 IUSE="+cholesky cuda doc openmp +matrixops +modify +partition +supernodal test"
 RESTRICT="!test? ( test )"
 
-DEPEND=">=sci-libs/suitesparseconfig-6.0.2_beta1
+DEPEND=">=sci-libs/suitesparseconfig-6.0.2
 	>=sci-libs/amd-3.0.2
 	>=sci-libs/colamd-3.0.2
 	supernodal? ( virtual/lapack )
