@@ -17,7 +17,6 @@ media-gfx/tachyon
 sci-libs/dsdp
 >=dev-python/fpylll-0.2.4
 ~sci-libs/pynac-0.7.29
-sci-libs/zn_poly
 =sci-mathematics/arb-2.22*
 sci-mathematics/cu2
 sci-mathematics/cubex
