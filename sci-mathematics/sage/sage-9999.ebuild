@@ -225,10 +225,6 @@ python_install() {
 python_install_all() {
 	distutils-r1_python_install_all
 
-	# install env files under /etc
-	insinto /etc
-	newins ../VERSION.txt sage-version.txt
-
 	if use X ; then
 		doicon "${S}"/sage/ext_data/notebook-ipython/logo.svg
 		newmenu - sage-sage.desktop <<-EOF
