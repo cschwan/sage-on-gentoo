@@ -84,7 +84,6 @@ DEPEND="
 	sci-libs/m4rie
 	>=sci-libs/mpfi-1.5.2
 	>=sci-libs/symmetrica-2.0-r3
-	>=sci-libs/zn_poly-0.9
 	>=sys-libs/readline-6.2
 	sys-libs/zlib
 	virtual/cblas
@@ -225,10 +224,6 @@ python_install() {
 
 python_install_all() {
 	distutils-r1_python_install_all
-
-	# install env files under /etc
-	insinto /etc
-	newins ../VERSION.txt sage-version.txt
 
 	if use X ; then
 		doicon "${S}"/sage/ext_data/notebook-ipython/logo.svg
