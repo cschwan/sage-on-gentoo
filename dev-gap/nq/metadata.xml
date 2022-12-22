@@ -3,11 +3,14 @@
 <pkgmetadata>
 	<maintainer type="person">
 		<email>frp.bissey@gmail.com</email>
-		<name>FranÃ§ois Bissey</name>
+		<name>François Bissey</name>
 	</maintainer>
 	<longdescription lang="en">
 		This package provides access to the ANU nilpotent quotient
 		program for computing nilpotent factor groups of finitely
 		presented groups.
 	</longdescription>
+	<upstream>
+		<remote-id type="github">gap-packages/nq</remote-id>
+	</upstream>
 </pkgmetadata>
