@@ -3,7 +3,7 @@
 <pkgmetadata>
 	<maintainer type="person">
 		<email>frp.bissey@gmail.com</email>
-		<name>FranÃ§ois Bissey</name>
+		<name>François Bissey</name>
 	</maintainer>
 	<longdescription lang="en">
 		This package provides a catalog of crystallographic groups of dimensions 2, 3, and 4 
@@ -11,4 +11,7 @@
 		four-dimensional space by H. Brown, R. Bülow, J. Neubüser, H. Wondratschek, and 
 		H. Zassenhaus (John Wiley, New York, 1978).
 	</longdescription>
+	<upstream>
+		<remote-id type="github">gap-packages/crystcat</remote-id>
+	</upstream>
 </pkgmetadata>
