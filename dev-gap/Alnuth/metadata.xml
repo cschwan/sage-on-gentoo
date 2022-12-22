@@ -3,11 +3,14 @@
 <pkgmetadata>
 	<maintainer type="person">
 		<email>frp.bissey@gmail.com</email>
-		<name>FranÃ§ois Bissey</name>
+		<name>François Bissey</name>
 	</maintainer>
 	<longdescription lang="en">
 		The Alnuth package provides various methods to compute with number fields which are given by a defining polynomial 
 		or by generators. Some of the methods provided in this package are written in GAP code. The other part of the 
 		methods is imported from the computer algebra system PARI/GP.
 	</longdescription>
+	<upstream>
+		<remote-id type="github">gap-packages/alnuth</remote-id>
+	</upstream>
 </pkgmetadata>

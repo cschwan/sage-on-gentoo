@@ -5,7 +5,7 @@ EAPI=8
 
 inherit gap-pkg
 
-MY_P="alnuth-${PV}"
+MY_P="${P,,}"
 DESCRIPTION="Algebraic number theory and an interface to PARI/GP"
 HOMEPAGE="https://www.gap-system.org/Packages/alnuth.html"
 SLOT="0"
