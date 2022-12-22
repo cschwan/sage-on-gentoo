@@ -9,4 +9,7 @@
 		The crypting package provides some cryptographic primitives
 		so that the JuptyerKernel package works.
 	</longdescription>
+	<upstream>
+		<remote-id type="github">gap-packages/crypting</remote-id>
+	</upstream>
 </pkgmetadata>
