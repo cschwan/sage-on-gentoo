@@ -3,7 +3,7 @@
 <pkgmetadata>
 	<maintainer type="person">
 		<email>frp.bissey@gmail.com</email>
-		<name>FranÃ§ois Bissey</name>
+		<name>François Bissey</name>
 	</maintainer>
 	<longdescription lang="en">
 		This package provides routines for factoring integers, in particular:
@@ -14,4 +14,7 @@
 		Multiple Polynomial Quadratic Sieve (MPQS)
 		It also provides access to Richard P. Brent's tables of factors of integers of the form b^k +/- 1.
 	</longdescription>
+	<upstream>
+		<remote-id type="github">gap-packages/FactInt</remote-id>
+	</upstream>
 </pkgmetadata>

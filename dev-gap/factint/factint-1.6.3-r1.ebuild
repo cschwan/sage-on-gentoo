@@ -8,7 +8,7 @@ inherit gap-pkg
 MY_PN="FactInt"
 MY_P="${MY_PN}-${PV}"
 DESCRIPTION="Advanced Methods for Factoring Integers"
-HOMEPAGE="https://www.gap-system.org/Packages/${PN}.html"
+HOMEPAGE="https://www.gap-system.org/Packages/factint.html"
 SLOT="0"
 SRC_URI="https://github.com/gap-packages/${MY_PN}/releases/download/v${PV}/${MY_P}.tar.gz"
 
