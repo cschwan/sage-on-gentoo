@@ -6,7 +6,7 @@ EAPI=8
 inherit gap-pkg
 
 DESCRIPTION="Computing with quasigroups and loops in GAP"
-HOMEPAGE="https://www.gap-system.org/Packages/${PN}.html"
+HOMEPAGE="https://www.gap-system.org/Packages/loops.html"
 SLOT="0"
 SRC_URI="https://github.com/gap-packages/${PN}/releases/download/v${PV}/${P}.tar.gz"
 
