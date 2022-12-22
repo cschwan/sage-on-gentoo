@@ -6,7 +6,7 @@ EAPI=8
 inherit gap-pkg
 
 DESCRIPTION="The GAP Character Table Library"
-HOMEPAGE="https://www.gap-system.org/Packages/${PN}.html"
+HOMEPAGE="https://www.gap-system.org/Packages/ctbllib.html"
 SLOT="0"
 SRC_URI="mirror://sagemath/${P}.tar.gz"
 
