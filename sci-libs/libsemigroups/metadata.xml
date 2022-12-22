@@ -5,7 +5,7 @@
 <email>frp.bissey@gmail.com</email>
 <name>François Bissey</name>
 </maintainer>
-<longdescription lang="en">
-libsemigroups is a C++ library for semigroups and monoids using C++11.
-</longdescription>
+<upstream>
+	<remote-id type="github">libsemigroups/libsemigroups</remote-id>
+</upstream>
 </pkgmetadata>
