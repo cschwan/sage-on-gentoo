@@ -6,7 +6,7 @@ EAPI=8
 inherit gap-pkg flag-o-matic toolchain-funcs
 
 DESCRIPTION="A package for semigroups and monoids"
-HOMEPAGE="https://www.gap-system.org/Packages/${PN}.html"
+HOMEPAGE="https://www.gap-system.org/Packages/semigroups.html"
 SLOT="0"
 SRC_URI="https://github.com/semigroups/Semigroups/releases/download/v${PV}/${P}.tar.gz"
 
@@ -15,7 +15,7 @@ KEYWORDS="~amd64 ~x86"
 IUSE=""
 
 DEPEND=">=sci-mathematics/gap-4.12.0:=
-	>=sci-libs/libsemigroups-2.2.1:="
+	>=sci-libs/libsemigroups-2.3.2:="
 RDEPEND="${DEPEND}
 	>=dev-gap/orb-4.8.2
 	>=dev-gap/io-4.5.4
@@ -30,7 +30,7 @@ DOCS="CHANGELOG.md README.md CONTRIBUTING.md"
 GAP_PKG_OBJS="data doc gap"
 
 pkg_setup() {
-	# work around that should go to libsemigroups
+	# work around that should go to libsemigroups - fixed in libsemigroups 2.5.0
 	append-cppflags $($(tc-getPKG_CONFIG) --cflags eigen3 || die)
 }
 
