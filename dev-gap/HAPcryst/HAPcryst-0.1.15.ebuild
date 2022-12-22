@@ -5,7 +5,7 @@ EAPI=8
 
 inherit gap-pkg
 
-MY_PN="hapcryst"
+MY_PN="${PN,,}"
 DESCRIPTION="A HAP extension for crytallographic groups"
 HOMEPAGE="https://www.gap-system.org/Packages/hapcryst.html"
 SRC_URI="https://github.com/gap-packages/${MY_PN}/archive/v${PV}.tar.gz -> ${P}.tar.gz"
