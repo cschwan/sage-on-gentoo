@@ -16,4 +16,7 @@
 		algorithm to terminate, as it would imply solvability of the
 		word problem for finitely presented (semi)groups.
 	</longdescription>
+	<upstream>
+		<remote-id type="github">gap-packages/gbnp</remote-id>
+	</upstream>
 </pkgmetadata>
