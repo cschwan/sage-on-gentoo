@@ -10,4 +10,7 @@
 		to compute a stabiliser chain and a base and strong generating set
 		for arbitrary finite groups.
 	</longdescription>
+	<upstream>
+		<remote-id type="github">gap-packages/genss</remote-id>
+	</upstream>
 </pkgmetadata>
