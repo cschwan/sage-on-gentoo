@@ -3,11 +3,14 @@
 <pkgmetadata>
 	<maintainer type="person">
 		<email>frp.bissey@gmail.com</email>
-		<name>FranÃ§ois Bissey</name>
+		<name>François Bissey</name>
 	</maintainer>
 	<longdescription lang="en">
 		The Hecke package provides functions for calculating
 		decomposition matrices of Hecke algebras of the symmetric
 		groups and q-Schur algebras.
 	</longdescription>
+	<upstream>
+		<remote-id type="github">gap-packages/hecke</remote-id>
+	</upstream>
 </pkgmetadata>
