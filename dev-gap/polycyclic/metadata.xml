@@ -3,9 +3,12 @@
 <pkgmetadata>
 	<maintainer type="person">
 		<email>frp.bissey@gmail.com</email>
-		<name>FranÃ§ois Bissey</name>
+		<name>François Bissey</name>
 	</maintainer>
 	<longdescription lang="en">
 		This package provides various algorithms for computations with polycyclic groups defined by polycyclic presentations.
 	</longdescription>
+	<upstream>
+		<remote-id type="github">gap-packages/polycyclic</remote-id>
+	</upstream>
 </pkgmetadata>
