@@ -6,7 +6,7 @@ EAPI=8
 inherit gap-pkg
 
 DESCRIPTION="Interfacing the geometry software polymake"
-HOMEPAGE="https://www.gap-system.org/Packages/${PN}.html"
+HOMEPAGE="https://www.gap-system.org/Packages/polymaking.html"
 SRC_URI="https://github.com/gap-packages/${PN}/releases/download/v${PV}/${P}.tar.gz"
 
 LICENSE="GPL-2+"
