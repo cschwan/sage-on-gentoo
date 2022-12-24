@@ -6,7 +6,7 @@ EAPI=8
 inherit gap-pkg
 
 DESCRIPTION="A database of Lie algebras"
-HOMEPAGE="https://www.gap-system.org/Packages/gapdoc.html"
+HOMEPAGE="https://www.gap-system.org/Packages/liealgdb.html"
 SLOT="0"
 SRC_URI="https://github.com/gap-packages/${PN}/releases/download/v${PV}/${P}.tar.gz"
 
