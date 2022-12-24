@@ -3,7 +3,7 @@
 <pkgmetadata>
 	<maintainer type="person">
 		<email>frp.bissey@gmail.com</email>
-		<name>FranÃ§ois Bissey</name>
+		<name>François Bissey</name>
 	</maintainer>
 	<longdescription lang="en">
 		The PrimGrp package provides the library of primitive 
@@ -12,4 +12,7 @@
 		symmetric group), all primitive permutation groups of 
 		degree less than 4096.
 	</longdescription>
+	<upstream>
+		<remote-id type="github">gap-packages/primgrp</remote-id>
+	</upstream>
 </pkgmetadata>
