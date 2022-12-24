@@ -8,7 +8,7 @@ inherit gap-pkg
 MY_PN="Toric"
 MY_P="${MY_PN}-${PV}"
 DESCRIPTION="toric varieties and some combinatorial geometry computations"
-HOMEPAGE="https://www.gap-system.org/Packages/${PN}.html"
+HOMEPAGE="https://www.gap-system.org/Packages/toric.html"
 SRC_URI="https://github.com/gap-packages/${PN}/releases/download/v${PV}/${MY_P}.tar.gz"
 
 LICENSE="MIT"

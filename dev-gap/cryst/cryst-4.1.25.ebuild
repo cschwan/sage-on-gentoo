@@ -6,7 +6,7 @@ EAPI=8
 inherit gap-pkg
 
 DESCRIPTION="Computing with crystallographic groups"
-HOMEPAGE="https://www.gap-system.org/Packages/${PN}.html"
+HOMEPAGE="https://www.gap-system.org/Packages/cryst.html"
 SLOT="0"
 GIT_TAG="dd6c82a292a23c0f70f79a9b2ae8d9299c1efad5"
 SRC_URI="https://github.com/gap-packages/cryst/archive/${GIT_TAG}.tar.gz -> ${P}.tar.gz"

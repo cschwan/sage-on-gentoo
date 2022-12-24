@@ -6,7 +6,7 @@ EAPI=8
 inherit gap-pkg
 
 DESCRIPTION="computation with real Lie groups"
-HOMEPAGE="https://www.gap-system.org/Packages/${PN}.html"
+HOMEPAGE="https://www.gap-system.org/Packages/corelg.html"
 SLOT="0"
 SRC_URI="https://github.com/gap-packages/${PN}/archive/v${PV}.tar.gz -> ${P}.tar.gz"
 

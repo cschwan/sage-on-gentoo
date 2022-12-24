@@ -6,7 +6,7 @@ EAPI=8
 inherit gap-pkg
 
 DESCRIPTION="Calculating decomposition matrices of Hecke algebras"
-HOMEPAGE="https://www.gap-system.org/Packages/autpgrp.html"
+HOMEPAGE="https://www.gap-system.org/Packages/hecke.html"
 SLOT="0"
 SRC_URI="https://github.com/gap-packages/${PN}/releases/download/v${PV}/${P}.tar.gz"
 

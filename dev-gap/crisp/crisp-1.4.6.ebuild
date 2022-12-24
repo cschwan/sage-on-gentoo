@@ -6,9 +6,9 @@ EAPI=8
 inherit gap-pkg
 
 DESCRIPTION="Computing with Radicals, Injectors, Schunck classes and Projectors"
-HOMEPAGE="https://www.gap-system.org/Packages/${PN}.html"
+HOMEPAGE="https://www.gap-system.org/Packages/crisp.html"
 SLOT="0"
-SRC_URI="mirror://sagemath/${P}.tar.bz2"
+SRC_URI="https://github.com/bh11/${PN}/releases/download/${P^^}/${P}.tar.bz2"
 RESTRICT=mirror
 
 LICENSE="BSD-2"
@@ -17,7 +17,7 @@ IUSE=""
 
 RDEPEND=">=sci-mathematics/gap-4.12.0"
 
-DOCS="README"
+DOCS="README.txt"
 HTML_DOCS=htm/*
 
 GAP_PKG_OBJS="doc lib"

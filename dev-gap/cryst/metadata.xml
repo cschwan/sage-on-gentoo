@@ -3,7 +3,7 @@
 <pkgmetadata>
 	<maintainer type="person">
 		<email>frp.bissey@gmail.com</email>
-		<name>FranÃ§ois Bissey</name>
+		<name>François Bissey</name>
 	</maintainer>
 	<longdescription lang="en">
 		This package, previously known as CrystGAP, provides a rich set of methods for the computation with 
@@ -12,4 +12,7 @@
 		preferred by crystallographers. Functions to determine representatives of all space group types of 
 		a given dimension are also provided.
 	</longdescription>
+	<upstream>
+		<remote-id type="github">gap-packages/cryst</remote-id>
+	</upstream>
 </pkgmetadata>

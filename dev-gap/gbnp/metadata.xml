@@ -3,7 +3,7 @@
 <pkgmetadata>
 	<maintainer type="person">
 		<email>frp.bissey@gmail.com</email>
-		<name>FranÃ§ois Bissey</name>
+		<name>François Bissey</name>
 	</maintainer>
 	<longdescription lang="en">
 		The GBNP package provides algorithms for computing Grobner
@@ -16,4 +16,7 @@
 		algorithm to terminate, as it would imply solvability of the
 		word problem for finitely presented (semi)groups.
 	</longdescription>
+	<upstream>
+		<remote-id type="github">gap-packages/gbnp</remote-id>
+	</upstream>
 </pkgmetadata>

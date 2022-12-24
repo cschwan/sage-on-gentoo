@@ -3,6 +3,9 @@
 <pkgmetadata>
 	<maintainer type="person">
 		<email>frp.bissey@gmail.com</email>
-		<name>FranÃ§ois Bissey</name>
+		<name>François Bissey</name>
 	</maintainer>
+	<upstream>
+		<remote-id type="github">digraphs/Digraphs</remote-id>
+	</upstream>
 </pkgmetadata>

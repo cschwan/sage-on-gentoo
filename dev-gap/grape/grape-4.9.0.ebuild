@@ -6,7 +6,7 @@ EAPI=8
 inherit gap-pkg prefix
 
 DESCRIPTION="GRaph Algorithms using PErmutation groups"
-HOMEPAGE="https://www.gap-system.org/Packages/${PN}.html"
+HOMEPAGE="https://www.gap-system.org/Packages/grape.html"
 SLOT="0"
 SRC_URI="https://github.com/gap-packages/${PN}/releases/download/v${PV}/${P}.tar.gz"
 
@@ -19,7 +19,7 @@ RDEPEND=">=sci-mathematics/gap-4.12.0
 	!bliss? ( sci-mathematics/nauty )"
 
 PATCHES=(
-	"${FILESDIR}"/${PN}-4.8.1-exec.patch
+	"${FILESDIR}"/${PN}-4.9.0-exec.patch
 	)
 
 DOCS="README.md CHANGES.md"

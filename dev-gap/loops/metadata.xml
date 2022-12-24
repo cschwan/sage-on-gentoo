@@ -3,7 +3,7 @@
 <pkgmetadata>
 	<maintainer type="person">
 		<email>frp.bissey@gmail.com</email>
-		<name>FranÃ§ois Bissey</name>
+		<name>François Bissey</name>
 	</maintainer>
 	<longdescription lang="en">
 		The LOOPS package provides researchers in nonassociative
@@ -12,4 +12,7 @@
 		group-theoretical algorithms of GAP. The package also expands
 		GAP toward nonassociative structures.
 	</longdescription>
+	<upstream>
+		<remote-id type="github">gap-packages/loops</remote-id>
+	</upstream>
 </pkgmetadata>

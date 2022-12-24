@@ -3,7 +3,7 @@
 <pkgmetadata>
 	<maintainer type="person">
 		<email>frp.bissey@gmail.com</email>
-		<name>FranÃ§ois Bissey</name>
+		<name>François Bissey</name>
 	</maintainer>
 	<longdescription lang="en">
 		The GAP package CRISP provides algorithms for computing
@@ -21,4 +21,7 @@
 		subgroups, minimal normal subgroups and the socle and p-socles
 		for given primes p.
 	</longdescription>
+	<upstream>
+		<remote-id type="github">bh11/crisp</remote-id>
+	</upstream>
 </pkgmetadata>

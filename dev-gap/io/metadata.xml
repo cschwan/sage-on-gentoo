@@ -3,11 +3,14 @@
 <pkgmetadata>
 	<maintainer type="person">
 		<email>frp.bissey@gmail.com</email>
-		<name>FranÃ§ois Bissey</name>
+		<name>François Bissey</name>
 	</maintainer>
 	<longdescription lang="en">
 		The IO package, as its name suggests, provides bindings
 		for GAP to the lower levels of Input/Output functionality
 		in the C library.
 	</longdescription>
+	<upstream>
+		<remote-id type="github">gap-packages/io</remote-id>
+	</upstream>
 </pkgmetadata>

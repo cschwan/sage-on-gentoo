@@ -6,7 +6,7 @@ EAPI=8
 inherit gap-pkg toolchain-funcs
 
 DESCRIPTION="Cohomology groups of finite groups on finite modules"
-HOMEPAGE="https://www.gap-system.org/Packages/${PN}.html"
+HOMEPAGE="https://www.gap-system.org/Packages/cohomolo.html"
 SLOT="0"
 SRC_URI="https://github.com/gap-packages/${PN}/releases/download/v${PV}/${P}.tar.gz"
 

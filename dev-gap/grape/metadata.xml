@@ -3,7 +3,7 @@
 <pkgmetadata>
 	<maintainer type="person">
 		<email>frp.bissey@gmail.com</email>
-		<name>Francois Bissey</name>
+		<name>François Bissey</name>
 	</maintainer>
 	<longdescription lang="en">
 		GRAPE is a package for computing with graphs and groups, and is primarily designed for
@@ -14,4 +14,7 @@
 			Use bliss instead of nauty's dreadnaut as the back end for grape.
 		</flag>
 	</use>
+	<upstream>
+		<remote-id type="github">gap-packages/grape</remote-id>
+	</upstream>
 </pkgmetadata>

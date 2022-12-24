@@ -22,8 +22,8 @@ RESTRICT=primaryuri
 
 MINIMUM_PKGS="
 	>=dev-gap/GAPDoc-1.6.6
-	>=dev-gap/primgrp-3.4.2
-	>=dev-gap/SmallGrp-1.5
+	>=dev-gap/primgrp-3.4.3
+	>=dev-gap/SmallGrp-1.5.1
 	>=dev-gap/transgrp-3.6.3"
 
 DEPEND="dev-libs/gmp:=
@@ -43,7 +43,6 @@ REQUIRED_USE="?? ( memcheck valgrind )"
 PATCHES=(
 	"${FILESDIR}"/${PN}-4.12.0-autoconf.patch
 	"${FILESDIR}"/${PN}-4.12.0-no-doc-autoinstall.patch
-	"${FILESDIR}"/${PN}-4.12.1-nostrip.patch
 )
 
 pkg_setup() {

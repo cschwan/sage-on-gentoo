@@ -1,0 +1,26 @@
+diff --git a/src/conditions.h b/src/conditions.h
+index b4e1c4d..bd185db 100644
+--- a/src/conditions.h
++++ b/src/conditions.h
+@@ -17,7 +17,7 @@
+ #include <string.h>   // for NULL, memcpy, size_t
+ 
+ // GAP headers
+-#include "src/system.h"  // for ALWAYS_INLINE
++#include "system.h"  // for ALWAYS_INLINE
+ 
+ // Digraphs headers
+ #include "bitarray.h"        // for BitArray, intersect_bit_arrays, size_b...
+diff --git a/src/perms.h b/src/perms.h
+index 06f9230..bb96801 100644
+--- a/src/perms.h
++++ b/src/perms.h
+@@ -23,7 +23,7 @@
+ 
+ // GAP headers
+ #include "compiled.h"      // for Obj, Int
+-#include "src/permutat.h"  // for ADDR_PERM, IS_PERM
++#include "permutat.h"  // for ADDR_PERM, IS_PERM
+ 
+ #define MAXVERTS 512
+ #define UNDEFINED MAXVERTS + 1

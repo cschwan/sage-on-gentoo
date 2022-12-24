@@ -5,12 +5,12 @@ EAPI=8
 
 inherit gap-pkg
 
-DESCRIPTION="Computing with quasigroups and loops in GAP"
-HOMEPAGE="https://www.gap-system.org/Packages/${PN}.html"
-SLOT="0"
+DESCRIPTION="System of nearrings and their applications"
+HOMEPAGE="https://www.gap-system.org/Packages/sonata.html"
 SRC_URI="https://github.com/gap-packages/${PN}/releases/download/v${PV}/${P}.tar.gz"
 
-LICENSE="GPL-3"
+LICENSE="GPL-2+"
+SLOT="0"
 KEYWORDS="~amd64 ~x86"
 IUSE=""
 
@@ -18,4 +18,4 @@ RDEPEND=">=sci-mathematics/gap-4.12.0"
 
 DOCS="README"
 
-GAP_PKG_OBJS="data doc gap"
+GPK_PKG_OBJS="doc grp lib nr nri"

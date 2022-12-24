@@ -6,7 +6,7 @@ EAPI=8
 inherit gap-pkg
 
 DESCRIPTION="A GAP Interface to the Atlas of Group Representations"
-HOMEPAGE="https://www.gap-system.org/Packages/${PN}.html"
+HOMEPAGE="https://www.gap-system.org/Packages/atlasrep.html"
 SLOT="0"
 SRC_URI="mirror://sagemath/${P}.tar.gz"
 RESTRICT=mirror

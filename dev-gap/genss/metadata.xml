@@ -3,11 +3,14 @@
 <pkgmetadata>
 	<maintainer type="person">
 		<email>frp.bissey@gmail.com</email>
-		<name>FranÃ§ois Bissey</name>
+		<name>François Bissey</name>
 	</maintainer>
 	<longdescription lang="en">
 		The genss package implements the randomised Schreier-Sims algorithm
 		to compute a stabiliser chain and a base and strong generating set
 		for arbitrary finite groups.
 	</longdescription>
+	<upstream>
+		<remote-id type="github">gap-packages/genss</remote-id>
+	</upstream>
 </pkgmetadata>

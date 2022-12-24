@@ -17,8 +17,6 @@ IUSE=""
 DEPEND=">=sci-mathematics/gap-core-4.11.0"
 RDEPEND="${DEPEND}"
 
-RESTRICT=primaryuri
-
 DOCS=( README.md {CHANGES,HISTORY,README}.${PN} )
 
 PATCHES=(

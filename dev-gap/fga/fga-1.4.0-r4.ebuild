@@ -6,7 +6,7 @@ EAPI=8
 inherit gap-pkg
 
 DESCRIPTION="Free Group Algorithms"
-HOMEPAGE="https://www.gap-system.org/Packages/${PN}.html"
+HOMEPAGE="https://www.gap-system.org/Packages/fga.html"
 SLOT="0"
 SRC_URI="https://github.com/chsievers/${PN}/archive/v${PV}.tar.gz -> ${P}.tar.gz"
 

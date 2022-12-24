@@ -20,8 +20,6 @@ RDEPEND="${DEPEND}
 
 DOCS="CHANGES.md README.md"
 
-PATCHES=( "${FILESDIR}"/${PN}-0.2.6-headers.patch )
-
 GAP_PKG_OBJS="doc gap"
 
 src_prepare() {

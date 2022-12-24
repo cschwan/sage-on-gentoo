@@ -3,11 +3,14 @@
 <pkgmetadata>
 	<maintainer type="person">
 		<email>frp.bissey@gmail.com</email>
-		<name>FranÃ§ois Bissey</name>
+		<name>François Bissey</name>
 	</maintainer>
 	<longdescription lang="en">
 		The package QuaGroup contains functionality for working with
 		quantized enveloping algebras of finite-dimensional semisimple
 		Lie algebras.
 	</longdescription>
+	<upstream>
+		<remote-id type="github">gap-packages/quagroup</remote-id>
+	</upstream>
 </pkgmetadata>

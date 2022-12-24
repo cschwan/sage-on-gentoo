@@ -6,7 +6,7 @@ EAPI=8
 inherit gap-pkg
 
 DESCRIPTION="Graphs, digraphs, and multidigraphs in GAP"
-HOMEPAGE="https://www.gap-system.org/Packages/${PN}.html"
+HOMEPAGE="https://www.gap-system.org/Packages/digraphs.html"
 SLOT="0"
 SRC_URI="https://github.com/digraphs/Digraphs/releases/download/v${PV}/${P}.tar.gz"
 
@@ -25,7 +25,7 @@ RDEPEND="${DEPEND}
 DOCS="CHANGELOG.md README.md"
 
 PATCHES=(
-	"${FILESDIR}"/${PN}-1.4.1-gap_headers.patch
+	"${FILESDIR}/${PN}-1.6.1-gap_headers.patch"
 )
 
 GAP_PKG_OBJS="data doc gap notebooks"
