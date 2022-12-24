@@ -3,7 +3,7 @@
 <pkgmetadata>
 	<maintainer type="person">
 		<email>frp.bissey@gmail.com</email>
-		<name>FranÃ§ois Bissey</name>
+		<name>François Bissey</name>
 	</maintainer>
 	<longdescription lang="en">
 		The Polenta package provides methods to compute polycyclic
@@ -14,4 +14,7 @@
 		we can compute the radical series of the natural 
 		Q[G]-module Q^d.
 	</longdescription>
+	<upstream>
+		<remote-id type="github">gap-packages/polenta</remote-id>
+	</upstream>
 </pkgmetadata>
