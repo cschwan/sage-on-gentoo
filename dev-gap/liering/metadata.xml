@@ -3,10 +3,13 @@
 <pkgmetadata>
 	<maintainer type="person">
 		<email>frp.bissey@gmail.com</email>
-		<name>FranÃ§ois Bissey</name>
+		<name>François Bissey</name>
 	</maintainer>
 	<longdescription lang="en">
 		The package LieRing contains functionality for working with
 		finitely presented Lie rings and the Lazard correspondence.
 	</longdescription>
+	<upstream>
+		<remote-id type="github">gap-packages/liering</remote-id>
+	</upstream>
 </pkgmetadata>
