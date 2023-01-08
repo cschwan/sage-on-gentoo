@@ -10,4 +10,7 @@
 			build and install documentation in pdf format
 		</flag>
 	</use>
+	<upstream>
+		<remote-id type="github">sagemath/sage</remote-id>
+	</upstream>
 </pkgmetadata>
