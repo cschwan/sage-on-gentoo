@@ -4,10 +4,11 @@
 EAPI=8
 
 PYTHON_COMPAT=( python3_{9..11} )
+DISTUTILS_USE_PEP517=setuptools
 inherit distutils-r1
 
 DESCRIPTION="A Python wrapper for the Parma Polyhedra Library (PPL)"
-HOMEPAGE="https://gitlab.com/videlec/pplpy"
+HOMEPAGE="https://github.com/sagemath/pplpy"
 SRC_URI="mirror://pypi/${PN:0:1}/${PN}/${P}.tar.gz"
 
 LICENSE="GPL-3"
