@@ -8,4 +8,7 @@
 <longdescription lang="en">
 This is a tool to convert SageNB notebooks to other formats, in particular IPython/Jupyter notebooks.
 </longdescription>
+<upstream>
+	<remote-id type="github">vbraun/ExportSageNB</remote-id>
+</upstream>
 </pkgmetadata>
