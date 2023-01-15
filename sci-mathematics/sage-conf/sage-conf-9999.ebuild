@@ -47,7 +47,7 @@ src_unpack() {
 	default
 }
 
-prepare_for_git_snapshot() {
+git_snapshot_prepare() {
 	# specific setup for sage-conf-9999
 	einfo "preparing the git snapshot"
 
@@ -63,7 +63,7 @@ prepare_for_git_snapshot() {
 
 python_prepare_all() {
 	if [[ ${PV} == 9999 ]]; then
-		prepare_for_git_snapshot
+		git_snapshot_prepare
 	fi
 
 	distutils-r1_python_prepare_all
