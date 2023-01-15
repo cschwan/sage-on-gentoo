@@ -1,9 +1,10 @@
 # Copyright 2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=7
+EAPI=8
 
-PYTHON_COMPAT=( python3_{7..9} )
+PYTHON_COMPAT=( python3_{9..11} )
+DISTUTILS_USE_PEP517=setuptools
 
 inherit distutils-r1
 
@@ -15,7 +16,6 @@ SRC_URI="https://github.com/sagemath/${Parent_PN}/releases/download/v${PV}/${Par
 
 LICENSE="GPL-2+"
 SLOT="0"
-KEYWORDS=""
 KEYWORDS="~amd64"
 
 DEPEND=">=sci-mathematics/sage-9.3[meataxe,${PYTHON_USEDEP}]
