@@ -13,4 +13,7 @@ integrale can also compute volumes and integrate polynomial functions
 over polytopes.  It supersedes LattE macchiato, an improved version of 
 LattE.
 	</longdescription>
+	<upstream>
+		<remote-id type="github">latte-int/latte</remote-id>
+	</upstream>
 </pkgmetadata>
