@@ -127,7 +127,7 @@ RDEPEND="
 
 	jmol? ( sci-chemistry/sage-jmol-bin )
 	latex? (
-		~dev-tex/sagetex-3.5
+		~dev-tex/sagetex-3.6
 		|| ( app-text/dvipng[truetype] media-gfx/imagemagick[png] )
 	)
 "
