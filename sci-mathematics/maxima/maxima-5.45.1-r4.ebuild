@@ -8,7 +8,7 @@ PYTHON_COMPAT=( python3_{9..10} )
 inherit autotools elisp-common flag-o-matic python-any-r1 xdg-utils
 
 DESCRIPTION="Free computer algebra environment based on Macsyma"
-HOMEPAGE="http://maxima.sourceforge.net/"
+HOMEPAGE="https://maxima.sourceforge.io/"
 SRC_URI="mirror://sourceforge/${PN}/${P}.tar.gz"
 
 LICENSE="GPL-2 GPL-2+"
