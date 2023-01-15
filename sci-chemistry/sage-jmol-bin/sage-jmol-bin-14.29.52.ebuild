@@ -1,7 +1,7 @@
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI=8
 
 inherit java-pkg-2
 
@@ -21,6 +21,8 @@ IUSE=""
 DEPEND="app-arch/unzip"
 RDEPEND=">=virtual/jre-1.7"
 
+DOCS="*.txt"
+
 QA_PREBUILT="*"
 
 S="${WORKDIR}"/${MY_SP}
@@ -37,9 +39,9 @@ src_prepare(){
 src_compile() { :; }
 
 src_install() {
-	dodoc *.txt || die
+	einstalldocs
 
-	# The order seems to be important, Jmol.jar needs to be first. 
+	# The order seems to be important, Jmol.jar needs to be first.
 	# Using *.jar puts JSpecView.jar first and leads to breakages.
 	java-pkg_dojar Jmol.jar JmolData.jar JmolLib.jar JSpecView.jar
 	java-pkg_dolauncher ${MY_PM} --main org.openscience.jmol.app.Jmol \
