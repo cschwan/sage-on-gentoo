@@ -10,4 +10,8 @@ The surface_dynamics package for SageMath adds functionality related to
 interval exchange transformations, translation surfaces, mapping classes
 and more.
 	</longdescription>
+	<upstream>
+		<remote-id type="github">flatsurf/surface-dynamics</remote-id>
+		<remote-id type="pypi">surface-dynamics</remote-id>
+	</upstream>
 </pkgmetadata>
