@@ -10,7 +10,7 @@ inherit distutils-r1
 
 DESCRIPTION="This sagemath package adds various functionality"
 HOMEPAGE="https://github.com/flatsurf/surface-dynamics
-	https://pypi.org/project/surface-dynamics"
+	https://pypi.org/project/surface-dynamics/"
 SRC_URI="mirror://pypi/${PN:0:1}/${PN}/${P}.tar.gz"
 
 LICENSE="GPL-2"
