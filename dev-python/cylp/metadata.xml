@@ -5,7 +5,8 @@
 <email>frp.bissey@gmail.com</email>
 <name>François Bissey</name>
 </maintainer>
-<longdescription lang="en">
-A python interface to coinor cbc, clp and cgl.
-</longdescription>
+<upstream>
+	<remote-id type="github">coin-or/CyLP</remote-id>
+	<remote-id type="pypi">cylp</remote-id>
+</upstream>
 </pkgmetadata>
