@@ -87,7 +87,6 @@ DEPEND="
 	>=sys-libs/readline-6.2
 	sys-libs/zlib
 	virtual/cblas
-	www-misc/thebe
 
 	test? ( ~sci-mathematics/sage_docbuild-${PV}[${PYTHON_USEDEP}] )
 	bliss? ( ~sci-libs/bliss-0.73 )
