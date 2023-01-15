@@ -17,4 +17,8 @@ plot straight-line trajectories, deform surfaces through the SL(2,R) action,
 and compute Delaunay decompositions. SageMath is used to perform exact 
 arithmetic.
 	</longdescription>
+	<upstream>
+		<remote-id type="github">flatsurf/sage-flatsurf</remote-id>
+		<remote-id type="pypi">sage-flatsurf</remote-id>
+	</upstream>
 </pkgmetadata>
