@@ -13,7 +13,7 @@ DESCRIPTION="Python wrappers to the symengine C++ library"
 HOMEPAGE="https://github.com/symengine/symengine.py/"
 SRC_URI="
 	https://github.com/symengine/symengine.py/archive/v${PV}.tar.gz
-		-> ${MY_P}.tar.gz"
+		-> ${MY_P}.gh.tar.gz"
 S="${WORKDIR}/${MY_P}"
 
 LICENSE="MIT"
