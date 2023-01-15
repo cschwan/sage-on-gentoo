@@ -4,7 +4,7 @@
 EAPI=8
 
 PYTHON_COMPAT=( python3_{9..11} )
-DISTUTILS_USE_SETUPTOOLS=bdepend
+DISTUTILS_USE_PEP517=setuptools
 inherit distutils-r1
 
 DESCRIPTION="An extension class for memory aalocation in cython"
@@ -21,7 +21,7 @@ RDEPEND=">=dev-python/cython-0.29.30[${PYTHON_USEDEP}]"
 BDEPEND=""
 
 python_test() {
-	# . is search before PYTHONPATH
+	# . is searched before PYTHONPATH
 	mv memory_allocator mv_memory_allocator
 	${EPYTHON} test.py
 	mv mv_memory_allocator memory_allocator
