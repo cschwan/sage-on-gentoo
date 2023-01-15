@@ -19,7 +19,7 @@ RDEPEND="${DEPEND}"
 
 src_compile(){
 	if [[ ${CHOST} == *-darwin* ]] ; then
-		sharedopt=-install_name ${ESYSROOT}/usr/$(get_libdir)/libmodulardecomposition$(get_libname)
+		sharedopt=-install_name "${ESYSROOT}"/usr/$(get_libdir)/libmodulardecomposition$(get_libname)
 	else
 		sharedopt=-Wl,-soname=libmodulardecomposition$(get_libname)
 	fi
