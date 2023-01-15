@@ -5,7 +5,7 @@ EAPI=8
 
 PYTHON_COMPAT=( python3_{9..10} )
 PYTHON_REQ_USE="tk"
-DISTUTILS_USE_SETUPTOOLS=rdepend
+DISTUTILS_USE_PEP517=setuptools
 
 inherit distutils-r1
 
@@ -30,6 +30,10 @@ RDEPEND="${DEPEND}
 	sci-mathematics/FXrays[${PYTHON_USEDEP}]
 	!!dev-python/snappy"
 BDEPEND=""
+
+PATCHES=(
+	"${FILESDIR}/setuptools-65.1.patch"
+	)
 
 distutils_enable_tests setup.py
 

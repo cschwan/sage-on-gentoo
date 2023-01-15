@@ -5,4 +5,8 @@
 <email>frp.bissey@gmail.com</email>
 <name>François Bissey</name>
 </maintainer>
+<upstream>
+	<remote-id type="github">3-manifolds/SnapPy</remote-id>
+	<remote-id type="pypi">snappy</remote-id>
+</upstream>
 </pkgmetadata>

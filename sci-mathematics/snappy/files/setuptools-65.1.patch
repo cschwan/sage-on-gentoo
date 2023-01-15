@@ -1,0 +1,23 @@
+From 68d4a89f2a3560666e0543b291edffb33be22f22 Mon Sep 17 00:00:00 2001
+From: Nathan Dunfield <nathan@dunfield.info>
+Date: Tue, 13 Sep 2022 12:01:29 -0500
+Subject: [PATCH] Make compatible with setuptools 65.1
+
+Cf https://github.com/pypa/setuptools/issues/3583
+---
+ setup.py | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/setup.py b/setup.py
+index 0c415c26..9bf408dd 100644
+--- a/setup.py
++++ b/setup.py
+@@ -49,7 +49,7 @@
+ 
+ import os, platform, shutil, site, subprocess, sys, sysconfig, re
+ from os.path import getmtime, exists
+-get_default_compiler = setuptools.distutils.ccompiler.get_default_compiler
++from distutils.ccompiler import get_default_compiler
+ from glob import glob
+ 
+ if sys.platform == 'darwin':
