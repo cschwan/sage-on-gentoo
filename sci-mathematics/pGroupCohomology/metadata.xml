@@ -5,4 +5,7 @@
 <email>frp.bissey@gmail.com</email>
 <name>François Bissey</name>
 </maintainer>
+<upstream>
+	<remote-id type="github">sagemath/p_group_cohomology</remote-id>
+</upstream>
 </pkgmetadata>
