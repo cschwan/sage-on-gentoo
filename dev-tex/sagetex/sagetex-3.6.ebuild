@@ -3,7 +3,7 @@
 
 EAPI=7
 
-PYTHON_COMPAT=( python3_{8..10} )
+PYTHON_COMPAT=( python3_{9..10} )
 DISTUTILS_USE_SETUPTOOLS=no
 
 inherit distutils-r1 latex-package
@@ -16,8 +16,6 @@ LICENSE="GPL-2+"
 SLOT="0"
 KEYWORDS="~amd64 ~x86 ~amd64-linux ~x86-linux ~x64-macos"
 IUSE="examples"
-
-RESTRICT=primaryuri
 
 DEPEND="app-text/texlive[extra]"
 RDEPEND="${DEPEND}
