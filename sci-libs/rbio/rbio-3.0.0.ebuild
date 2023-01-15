@@ -17,7 +17,7 @@ KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~hppa ~ia64 ~mips ~ppc ~ppc64 ~sparc ~x86 ~a
 IUSE="test"
 RESTRICT="!test? ( test )"
 
-DEPEND="~sci-libs/suitesparseconfig-6.0.1_beta7"
+DEPEND=">=sci-libs/suitesparseconfig-6.0.1"
 RDEPEND="${DEPEND}"
 
 S="${WORKDIR}/${Sparse_P}/RBio"
