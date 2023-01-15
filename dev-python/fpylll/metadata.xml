@@ -5,4 +5,8 @@
 <email>frp.bissey@gmail.com</email>
 <name>François Bissey</name>
 </maintainer>
+<upstream>
+	<remote-id type="github">fplll/fpylll</remote-id>
+	<remote-id type="pypi">fpylll</remote-id>
+</upstream>
 </pkgmetadata>
