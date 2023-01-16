@@ -10,7 +10,7 @@ inherit distutils-r1 latex-package
 
 DESCRIPTION="SageTeX allows you to embed Sage code into LaTeX documents"
 HOMEPAGE="https://www.sagemath.org https://github.com/dandrake/sagetex"
-SRC_URI="https://github.com/sagemath/${PN}/releases/download/v${PV}/${P}.tar.gz"
+SRC_URI="mirror://pypi/${PN:0:1}/${PN}/${P}.tar.gz"
 
 LICENSE="GPL-2+"
 SLOT="0"
@@ -24,8 +24,6 @@ RDEPEND="${DEPEND}
 PATCHES=(
 	"${FILESDIR}"/${PN}-3.6-install-python-files-only.patch
 	)
-
-DOCS="sagetex.pdf"
 
 src_prepare() {
 	# Remove some pre-made objects
@@ -47,10 +45,7 @@ src_install() {
 		DOCS+=" example.pdf example.tex"
 	fi
 
-	# do not rely on latex-package_src_install as it will try building things not meant to be built
-	einstalldocs
-
-	latex-package_src_doinstall sty
+	latex-package_src_install
 	distutils-r1_src_install
 }
 
