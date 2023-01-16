@@ -42,10 +42,7 @@ src_compile() {
 }
 
 src_install() {
-	latex-package_src_install
-	# remove installed python file
-	rm "${ED}/usr/share/texmf-site/tex/latex/sagetex/setup.cfg" || \
-		die "cannot remove generated python file from texmf-site"
+	latex-package_src_doinstall sty
 
 	distutils-r1_src_install
 }
