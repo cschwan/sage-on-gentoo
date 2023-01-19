@@ -125,13 +125,15 @@ RDEPEND="
 	dev-python/tornado
 
 	jmol? ( sci-chemistry/sage-jmol-bin )
+"
+
+PDEPEND="
+	doc? ( ~sci-mathematics/sage-doc-${PV} )
 	latex? (
 		~dev-tex/sagetex-3.6
 		|| ( app-text/dvipng[truetype] media-gfx/imagemagick[png] )
 	)
 "
-
-PDEPEND="doc? ( ~sci-mathematics/sage-doc-${PV} )"
 
 CHECKREQS_DISK_BUILD="8G"
 
