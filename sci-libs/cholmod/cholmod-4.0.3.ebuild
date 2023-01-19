@@ -3,9 +3,10 @@
 
 EAPI=8
 
+FORTRAN_NEEDED="fortran"
 inherit cmake-multilib fortran-2 toolchain-funcs
 
-Sparse_PV="6.0.2"
+Sparse_PV="7.0.0"
 Sparse_P="SuiteSparse-${Sparse_PV}"
 DESCRIPTION="Sparse Cholesky factorization and update/downdate library"
 HOMEPAGE="https://people.engr.tamu.edu/davis/suitesparse.html"
@@ -14,16 +15,16 @@ SRC_URI="https://github.com/DrTimothyAldenDavis/SuiteSparse/archive/refs/tags/v$
 LICENSE="LGPL-2.1+ modify? ( GPL-2+ ) matrixops? ( GPL-2+ )"
 SLOT="0/4"
 KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~hppa ~ia64 ~mips ~ppc ~ppc64 ~sparc ~x86 ~amd64-linux ~x86-linux"
-IUSE="+cholesky cuda doc openmp +matrixops +modify +partition +supernodal test"
+IUSE="+cholesky cuda doc fortran openmp +matrixops +modify +partition +supernodal test"
 RESTRICT="!test? ( test )"
 
-DEPEND=">=sci-libs/suitesparseconfig-6.0.2
-	>=sci-libs/amd-3.0.2
-	>=sci-libs/colamd-3.0.2
+DEPEND=">=sci-libs/suitesparseconfig-${Sparse_PV}
+	>=sci-libs/amd-3.0.3
+	>=sci-libs/colamd-3.0.3
 	supernodal? ( virtual/lapack )
 	partition? (
-		>=sci-libs/camd-3.0.2
-		>=sci-libs/ccolamd-3.0.2
+		>=sci-libs/camd-3.0.3
+		>=sci-libs/ccolamd-3.0.3
 	)
 	cuda? (
 		dev-util/nvidia-cuda-toolkit
@@ -53,6 +54,7 @@ multilib_src_configure() {
 		-DNSTATIC=ON
 		-DENABLE_CUDA=$(usex cuda)
 		-DNOPENMP=$(usex openmp OFF ON)
+		-DNFORTRAN=$(usex fortran OFF ON)
 		-DNCHOLESKY=$(usex cholesky OFF ON)
 		-DNMATRIXOPS=$(usex matrixops OFF ON)
 		-DNMODIFY=$(usex modify OFF ON)
