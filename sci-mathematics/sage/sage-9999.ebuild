@@ -66,7 +66,8 @@ DEPEND="
 	>=sci-mathematics/glpk-5.0:0=[gmp]
 	~sci-mathematics/gmp-ecm-7.0.5[-openmp]
 	=sci-mathematics/lcalc-2.0*
-	=sci-mathematics/pari-2.13*
+	>=sci-mathematics/pari-2.15.2
+	<sci-mathematics/pari-2.16.0
 	=sci-mathematics/planarity-3.0*
 	>=sci-mathematics/rw-0.7
 	~sci-mathematics/sage_setup-${PV}[${PYTHON_USEDEP}]
@@ -96,7 +97,7 @@ RDEPEND="
 	${DEPEND}
 	>=dev-lang/R-4.0.4
 	>=dev-python/cvxopt-1.2.6[glpk,${PYTHON_USEDEP}]
-	>=dev-python/fpylll-0.5.4[${PYTHON_USEDEP}]
+	>=dev-python/fpylll-0.5.9[${PYTHON_USEDEP}]
 	>=dev-python/mpmath-1.2.1[${PYTHON_USEDEP}]
 	>=dev-python/networkx-2.6[${PYTHON_USEDEP}]
 	>=dev-python/pexpect-4.2.1[${PYTHON_USEDEP}]
