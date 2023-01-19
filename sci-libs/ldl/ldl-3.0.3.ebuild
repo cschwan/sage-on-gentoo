@@ -5,19 +5,20 @@ EAPI=8
 
 inherit cmake-multilib
 
-Sparse_PV="6.0.2"
+Sparse_PV="7.0.0"
 Sparse_P="SuiteSparse-${Sparse_PV}"
-DESCRIPTION="Library to order a sparse matrix prior to Cholesky factorization"
+DESCRIPTION="Simple but educational LDL^T matrix factorization algorithm"
 HOMEPAGE="https://people.engr.tamu.edu/davis/suitesparse.html"
 SRC_URI="https://github.com/DrTimothyAldenDavis/SuiteSparse/archive/refs/tags/v${Sparse_PV}.tar.gz -> ${Sparse_P}.gh.tar.gz"
 
-LICENSE="BSD"
+LICENSE="LGPL-2.1+"
 SLOT="0/3"
 KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~hppa ~ia64 ~mips ~ppc ~ppc64 ~sparc ~x86 ~amd64-linux ~x86-linux"
 IUSE="doc test"
 RESTRICT="!test? ( test )"
 
-DEPEND=">=sci-libs/suitesparseconfig-6.0.2"
+DEPEND=">=sci-libs/suitesparseconfig-${Sparse_PV}
+	>=sci-libs/amd-3.0.3"
 RDEPEND="${DEPEND}"
 BDEPEND="doc? ( virtual/latex-base )"
 
@@ -32,21 +33,26 @@ multilib_src_configure() {
 }
 
 multilib_src_test() {
+	# Some programs assume that they can access the Matrix folder in ${S}
+	ln -s "${S}/Matrix"
 	# Run demo files
-	./camd_demo > camd_demo.out
-	diff "${S}"/Demo/camd_demo.out camd_demo.out || die "failed testing"
-	./camd_l_demo > camd_l_demo.out
-	diff "${S}"/Demo/camd_l_demo.out camd_l_demo.out || die "failed testing"
-	./camd_demo2 > camd_demo2.out
-	diff "${S}"/Demo/camd_demo2.out camd_demo2.out || die "failed testing"
-	./camd_simple > camd_simple.out
-	diff "${S}"/Demo/camd_simple.out camd_simple.out || die "failed testing"
+	local demofiles=(
+		ldlsimple
+		ldllsimple
+		ldlmain
+		ldllmain
+		ldlamd
+		ldllamd
+	)
+	for i in ${demofiles}; do
+		./"${i}" > "${i}.out"
+		diff "${S}/Demo/${i}.out" "${i}.out" || die "failed testing ${i}"
+	done
 }
 
 multilib_src_install() {
 	if use doc; then
 		pushd "${S}/Doc"
-		emake clean
 		rm -rf *.pdf
 		emake
 		popd

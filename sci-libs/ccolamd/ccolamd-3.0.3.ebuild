@@ -5,9 +5,9 @@ EAPI=8
 
 inherit cmake-multilib
 
-Sparse_PV="6.0.2"
+Sparse_PV="7.0.0"
 Sparse_P="SuiteSparse-${Sparse_PV}"
-DESCRIPTION="Column approximate minimum degree ordering algorithm"
+DESCRIPTION="Constrained Column approximate minimum degree ordering algorithm"
 HOMEPAGE="https://people.engr.tamu.edu/davis/suitesparse.html"
 SRC_URI="https://github.com/DrTimothyAldenDavis/SuiteSparse/archive/refs/tags/v${Sparse_PV}.tar.gz -> ${Sparse_P}.gh.tar.gz"
 
@@ -17,7 +17,7 @@ KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~hppa ~ia64 ~mips ~ppc ~ppc64 ~sparc ~x86 ~a
 IUSE="test"
 RESTRICT="!test? ( test )"
 
-DEPEND=">=sci-libs/suitesparseconfig-6.0.2"
+DEPEND=">=sci-libs/suitesparseconfig-7.0.0"
 RDEPEND="${DEPEND}"
 
 S="${WORKDIR}/${Sparse_P}/${PN^^}"
@@ -32,8 +32,8 @@ multilib_src_configure() {
 
 multilib_src_test() {
 	# Run demo files
-	./colamd_example > colamd_example.out
-	diff "${S}"/Demo/colamd_example.out colamd_example.out || die "failed testing"
-	./colamd_l_example > colamd_l_example.out
-	diff "${S}"/Demo/colamd_l_example.out colamd_l_example.out || die "failed testing"
+	./ccolamd_example > ccolamd_example.out
+	diff "${S}"/Demo/ccolamd_example.out ccolamd_example.out || die "failed testing ccolamd_example"
+	./ccolamd_l_example > ccolamd_l_example.out
+	diff "${S}"/Demo/ccolamd_l_example.out ccolamd_l_example.out || die "failed testing ccolamd_l_example"
 }

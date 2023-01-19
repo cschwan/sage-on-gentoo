@@ -3,9 +3,9 @@
 
 EAPI=8
 
-inherit cmake-multilib fortran-2
+inherit cmake-multilib
 
-Sparse_PV="6.0.2"
+Sparse_PV="7.0.0"
 Sparse_P="SuiteSparse-${Sparse_PV}"
 DESCRIPTION="Sparse LU factorization for circuit simulation"
 HOMEPAGE="https://people.engr.tamu.edu/davis/suitesparse.html"
@@ -17,11 +17,11 @@ KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~hppa ~ia64 ~mips ~ppc ~ppc64 ~sparc ~x86 ~a
 IUSE="doc test"
 RESTRICT="!test? ( test )"
 
-DEPEND=">=sci-libs/suitesparseconfig-6.0.2
-	>=sci-libs/amd-3.0.2
-	>=sci-libs/btf-2.0.2
-	>=sci-libs/colamd-3.0.2
-	>=sci-libs/cholmod-4.0.2"
+DEPEND=">=sci-libs/suitesparseconfig-7.0.0
+	>=sci-libs/amd-3.0.3
+	>=sci-libs/btf-2.0.3
+	>=sci-libs/colamd-3.0.3
+	>=sci-libs/cholmod-4.0.3"
 RDEPEND="${DEPEND}"
 BDEPEND="doc? ( virtual/latex-base )"
 

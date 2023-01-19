@@ -3,9 +3,9 @@
 
 EAPI=8
 
-inherit cmake-multilib fortran-2 toolchain-funcs
+inherit cmake-multilib toolchain-funcs
 
-Sparse_PV="6.0.2"
+Sparse_PV="7.0.0"
 Sparse_P="SuiteSparse-${Sparse_PV}"
 DESCRIPTION="Sparse Cholesky factorization and update/downdate library"
 HOMEPAGE="https://people.engr.tamu.edu/davis/suitesparse.html"
@@ -17,13 +17,13 @@ KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~hppa ~ia64 ~mips ~ppc ~ppc64 ~sparc ~x86 ~a
 IUSE="+cholesky cuda doc openmp +matrixops +modify +partition +supernodal test"
 RESTRICT="!test? ( test )"
 
-DEPEND=">=sci-libs/suitesparseconfig-6.0.2
-	>=sci-libs/amd-3.0.2
-	>=sci-libs/colamd-3.0.2
+DEPEND=">=sci-libs/suitesparseconfig-${Sparse_PV}
+	>=sci-libs/amd-3.0.3
+	>=sci-libs/colamd-3.0.3
 	supernodal? ( virtual/lapack )
 	partition? (
-		>=sci-libs/camd-3.0.2
-		>=sci-libs/ccolamd-3.0.2
+		>=sci-libs/camd-3.0.3
+		>=sci-libs/ccolamd-3.0.3
 	)
 	cuda? (
 		dev-util/nvidia-cuda-toolkit
@@ -49,10 +49,12 @@ pkg_setup() {
 multilib_src_configure() {
 	# Not that "N" prefixed options are negative options
 	# so they need to be turned OFF if you want that option.
+	# Fortran is turned off as it is only used to compile (untested) demo programs.
 	local mycmakeargs=(
 		-DNSTATIC=ON
 		-DENABLE_CUDA=$(usex cuda)
 		-DNOPENMP=$(usex openmp OFF ON)
+		-DNFORTRAN=ON
 		-DNCHOLESKY=$(usex cholesky OFF ON)
 		-DNMATRIXOPS=$(usex matrixops OFF ON)
 		-DNMODIFY=$(usex modify OFF ON)

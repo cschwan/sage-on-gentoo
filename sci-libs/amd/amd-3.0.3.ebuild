@@ -3,9 +3,10 @@
 
 EAPI=8
 
+FORTRAN_NEEDED="fortran"
 inherit cmake-multilib fortran-2
 
-Sparse_PV="6.0.2"
+Sparse_PV="7.0.0"
 Sparse_P="SuiteSparse-${Sparse_PV}"
 DESCRIPTION="Library to order a sparse matrix prior to Cholesky factorization"
 HOMEPAGE="https://people.engr.tamu.edu/davis/suitesparse.html"
@@ -14,10 +15,10 @@ SRC_URI="https://github.com/DrTimothyAldenDavis/SuiteSparse/archive/refs/tags/v$
 LICENSE="BSD"
 SLOT="0/3"
 KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~hppa ~ia64 ~mips ~ppc ~ppc64 ~sparc ~x86 ~amd64-linux ~x86-linux"
-IUSE="doc test"
+IUSE="doc fortran test"
 RESTRICT="!test? ( test )"
 
-DEPEND=">=sci-libs/suitesparseconfig-6.0.2"
+DEPEND=">=sci-libs/suitesparseconfig-${Sparse_PV}"
 RDEPEND="${DEPEND}"
 BDEPEND="doc? ( virtual/latex-base )"
 
@@ -26,6 +27,7 @@ S="${WORKDIR}/${Sparse_P}/${PN^^}"
 multilib_src_configure() {
 	local mycmakeargs=(
 		-DNSTATIC=ON
+		-DNFORTRAN=$(usex fortran OFF ON)
 		-DDEMO=$(usex test)
 	)
 	cmake_src_configure
@@ -33,18 +35,22 @@ multilib_src_configure() {
 
 multilib_src_test() {
 	# Run demo files
-	./amd_demo > amd_demo.out
-	diff "${S}"/Demo/amd_demo.out amd_demo.out || die "failed testing"
-	./amd_l_demo > amd_l_demo.out
-	diff "${S}"/Demo/amd_l_demo.out amd_l_demo.out || die "failed testing"
-	./amd_demo2 > amd_demo2.out
-	diff "${S}"/Demo/amd_demo2.out amd_demo2.out || die "failed testing"
-	./amd_simple > amd_simple.out
-	diff "${S}"/Demo/amd_simple.out amd_simple.out || die "failed testing"
-	./amd_f77simple > amd_f77simple.out
-	diff "${S}"/Demo/amd_f77simple.out amd_f77simple.out || die "failed testing"
-	./amd_f77demo > amd_f77demo.out
-	diff "${S}"/Demo/amd_f77demo.out amd_f77demo.out || die "failed testing"
+	local demofiles=(
+		amd_demo
+		amd_l_demo
+		amd_demo2
+		amd_simple
+	)
+	if use fortran; then
+		demofiles+=(
+			amd_f77simple
+			amd_f77demo
+		)
+	fi
+	for i in ${demofiles}; do
+		./"${i}" > "${i}.out"
+		diff "${S}/Demo/${i}.out" "${i}.out" || die "failed testing ${i}"
+	done
 	einfo "All tests passed"
 }
 

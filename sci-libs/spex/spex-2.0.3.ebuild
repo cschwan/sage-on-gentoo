@@ -5,22 +5,31 @@ EAPI=8
 
 inherit cmake-multilib
 
-Sparse_PV="6.0.1"
+Sparse_PV="7.0.0"
 Sparse_P="SuiteSparse-${Sparse_PV}"
-DESCRIPTION="Sparse matrices Rutherford/Boeing format tools"
+DESCRIPTION="a software package for SParse EXact algebra"
 HOMEPAGE="https://people.engr.tamu.edu/davis/suitesparse.html"
 SRC_URI="https://github.com/DrTimothyAldenDavis/SuiteSparse/archive/refs/tags/v${Sparse_PV}.tar.gz -> ${Sparse_P}.gh.tar.gz"
 
-LICENSE="GPL-2+"
-SLOT="0/3"
+LICENSE="BSD"
+SLOT="0/2"
 KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~hppa ~ia64 ~mips ~ppc ~ppc64 ~sparc ~x86 ~amd64-linux ~x86-linux"
-IUSE="test"
+IUSE="doc test"
 RESTRICT="!test? ( test )"
 
-DEPEND=">=sci-libs/suitesparseconfig-6.0.1"
+DEPEND=">=sci-libs/suitesparseconfig-${Sparse_PV}
+	>=sci-libs/amd-3.0.3
+	>=sci-libs/colamd-3.0.3
+	dev-libs/gmp
+	dev-libs/mpfr"
 RDEPEND="${DEPEND}"
+BDEPEND="doc? ( virtual/latex-base )"
 
-S="${WORKDIR}/${Sparse_P}/RBio"
+PATCHES=(
+	"${FILESDIR}/${PN}-2.0.0-demo_location.patch"
+	)
+
+S="${WORKDIR}/${Sparse_P}/${PN^^}"
 
 multilib_src_configure() {
 	local mycmakeargs=(
@@ -31,6 +40,21 @@ multilib_src_configure() {
 }
 
 multilib_src_test() {
+	# Programs expect to find ExampleMats
+	ln -s "${S}/SPEX_Left_LU/ExampleMats"
 	# Run demo files
-	./RBdemo < "${S}"/RBio/private/west0479.rua
+	./example
+	./example2
+	./spexlu_demo
+}
+
+multilib_src_install() {
+	if use doc; then
+		pushd "${S}/Doc"
+		rm -rf *.pdf
+		emake
+		popd
+		DOCS="${S}/Doc/*.pdf"
+	fi
+	cmake_src_install
 }
