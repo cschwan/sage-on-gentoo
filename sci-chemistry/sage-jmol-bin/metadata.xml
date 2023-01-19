@@ -3,8 +3,9 @@
 <pkgmetadata>
 <maintainer type="person">
 <email>frp.bissey@gmail.com</email>
-<name>FranÃ§ois Bissey</name>
+<name>François Bissey</name>
 </maintainer>
-<longdescription lang="en">Jmol is a java molecular viever for 3-D chemical structures, this is the version shipped with sage.
-</longdescription>
+<upstream>
+<remote-id type="sourceforge">jmol</remote-id>
+</upstream>
 </pkgmetadata>

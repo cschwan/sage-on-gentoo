@@ -3,7 +3,7 @@
 
 EAPI=8
 
-PYTHON_COMPAT=( python3_{9..10} )
+PYTHON_COMPAT=( python3_{9..11} )
 PYTHON_REQ_USE="readline,sqlite"
 DISTUTILS_USE_PEP517=setuptools
 
@@ -37,7 +37,6 @@ DEPEND="
 	>=dev-python/cysignals-1.11.2[${PYTHON_USEDEP}]
 	>=dev-python/cython-0.29.24[${PYTHON_USEDEP}]
 	>=dev-python/docutils-0.12[${PYTHON_USEDEP}]
-	dev-python/future[${PYTHON_USEDEP}]
 	>=dev-python/gmpy-2.1.0_beta5[${PYTHON_USEDEP}]
 	>=dev-python/ipykernel-4.6.0[${PYTHON_USEDEP}]
 	>=dev-python/ipython-7.0.0[notebook,${PYTHON_USEDEP}]
@@ -101,6 +100,7 @@ RDEPEND="
 	>=dev-python/mpmath-1.2.1[${PYTHON_USEDEP}]
 	>=dev-python/networkx-2.6[${PYTHON_USEDEP}]
 	>=dev-python/pexpect-4.2.1[${PYTHON_USEDEP}]
+	>=dev-python/rpy-3.5.7[${PYTHON_USEDEP}]
 	>=dev-python/scipy-1.1.0[${PYTHON_USEDEP}]
 	~dev-python/sympy-1.11.1[${PYTHON_USEDEP}]
 	media-gfx/tachyon[png]

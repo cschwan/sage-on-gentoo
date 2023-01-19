@@ -16,4 +16,8 @@
 			Make jmol the default 3D rendering engine. Tachyon will be used otherwise.
 		</flag>
 	</use>
+	<upstream>
+		<remote-id type="pypi">sagemath-standard</remote-id>
+		<remote-id type="github">sagemath/sage</remote-id>
+	</upstream>
 </pkgmetadata>
