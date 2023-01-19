@@ -5,7 +5,7 @@ EAPI=8
 
 inherit cmake-multilib
 
-Sparse_PV="6.0.2"
+Sparse_PV="7.0.0"
 Sparse_P="SuiteSparse-${Sparse_PV}"
 DESCRIPTION="Simple but educational LDL^T matrix factorization algorithm"
 HOMEPAGE="https://people.engr.tamu.edu/davis/suitesparse.html"
@@ -17,8 +17,8 @@ KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~hppa ~ia64 ~mips ~ppc ~ppc64 ~sparc ~x86 ~a
 IUSE="doc test"
 RESTRICT="!test? ( test )"
 
-DEPEND=">=sci-libs/suitesparseconfig-6.0.2
-	>=sci-libs/amd-3.0.2"
+DEPEND=">=sci-libs/suitesparseconfig-${Sparse_PV}
+	>=sci-libs/amd-3.0.3"
 RDEPEND="${DEPEND}"
 BDEPEND="doc? ( virtual/latex-base )"
 
@@ -36,18 +36,18 @@ multilib_src_test() {
 	# Some programs assume that they can access the Matrix folder in ${S}
 	ln -s "${S}/Matrix"
 	# Run demo files
-	./ldlsimple > ldlsimple.out
-	diff "${S}"/Demo/ldlsimple.out ldlsimple.out || die "failed testing"
-	./ldllsimple > ldllsimple.out
-	diff "${S}"/Demo/ldllsimple.out ldllsimple.out || die "failed testing"
-	./ldlmain > ldlmain.out
-	diff "${S}"/Demo/ldlmain.out ldlmain.out || die "failed testing"
-	./ldllmain > ldllmain.out
-	diff "${S}"/Demo/ldlmain.out ldllmain.out || die "failed testing"
-	./ldlamd  > ldlamd.out
-	diff "${S}"/Demo/ldlamd.out ldlamd.out || die "failed testing"
-	./ldllamd  > ldllamd.out
-	diff "${S}"/Demo/ldllamd.out ldllamd.out || die "failed testing"
+	local demofiles=(
+		ldlsimple
+		ldllsimple
+		ldlmain
+		ldllmain
+		ldlamd
+		ldllamd
+	)
+	for i in ${demofiles}; do
+		./"${i}" > "${i}.out"
+		diff "${S}/Demo/${i}.out" "${i}.out" || die "failed testing ${i}"
+	done
 }
 
 multilib_src_install() {
