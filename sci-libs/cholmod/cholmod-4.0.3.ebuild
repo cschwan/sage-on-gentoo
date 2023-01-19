@@ -3,8 +3,7 @@
 
 EAPI=8
 
-FORTRAN_NEEDED="fortran"
-inherit cmake-multilib fortran-2 toolchain-funcs
+inherit cmake-multilib toolchain-funcs
 
 Sparse_PV="7.0.0"
 Sparse_P="SuiteSparse-${Sparse_PV}"
@@ -15,7 +14,7 @@ SRC_URI="https://github.com/DrTimothyAldenDavis/SuiteSparse/archive/refs/tags/v$
 LICENSE="LGPL-2.1+ modify? ( GPL-2+ ) matrixops? ( GPL-2+ )"
 SLOT="0/4"
 KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~hppa ~ia64 ~mips ~ppc ~ppc64 ~sparc ~x86 ~amd64-linux ~x86-linux"
-IUSE="+cholesky cuda doc fortran openmp +matrixops +modify +partition +supernodal test"
+IUSE="+cholesky cuda doc openmp +matrixops +modify +partition +supernodal test"
 RESTRICT="!test? ( test )"
 
 DEPEND=">=sci-libs/suitesparseconfig-${Sparse_PV}
@@ -50,11 +49,12 @@ pkg_setup() {
 multilib_src_configure() {
 	# Not that "N" prefixed options are negative options
 	# so they need to be turned OFF if you want that option.
+	# Fortran is turned off as it is only used to compile (untested) demo programs.
 	local mycmakeargs=(
 		-DNSTATIC=ON
 		-DENABLE_CUDA=$(usex cuda)
 		-DNOPENMP=$(usex openmp OFF ON)
-		-DNFORTRAN=$(usex fortran OFF ON)
+		-DNFORTRAN=ON
 		-DNCHOLESKY=$(usex cholesky OFF ON)
 		-DNMATRIXOPS=$(usex matrixops OFF ON)
 		-DNMODIFY=$(usex modify OFF ON)
