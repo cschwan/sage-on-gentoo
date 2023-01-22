@@ -26,7 +26,7 @@ IUSE="debug +doc jmol latex test X ${SAGE_USE}"
 RESTRICT="mirror"
 
 DEPEND="
-	~dev-gap/gap-recommended-4.11.1
+	~dev-gap/gap-recommended-4.12.2
 	dev-libs/gmp:0=
 	>=dev-libs/mpc-1.1.0
 	>=dev-libs/mpfr-4.0.0
@@ -61,7 +61,7 @@ DEPEND="
 	sci-mathematics/cliquer
 	~sci-mathematics/eclib-20220621[flint]
 	>=sci-mathematics/flint-2.7.1:=[ntl]
-	~sci-mathematics/gap-4.11.1
+	~sci-mathematics/gap-4.12.2
 	>=sci-mathematics/giac-1.9.0
 	>=sci-mathematics/glpk-5.0:0=[gmp]
 	~sci-mathematics/gmp-ecm-7.0.5[-openmp]
@@ -72,7 +72,7 @@ DEPEND="
 	>=sci-mathematics/rw-0.7
 	~sci-mathematics/sage_setup-${PV}[${PYTHON_USEDEP}]
 	~sci-mathematics/sage-conf-${PV}[${PYTHON_USEDEP}]
-	~sci-mathematics/singular-4.3.1_p1[readline]
+	~sci-mathematics/singular-4.3.1_p3[readline]
 	>=sci-libs/brial-1.2.10
 	~sci-libs/givaro-4.1.1
 	>=sci-libs/gsl-2.3
