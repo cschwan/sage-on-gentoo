@@ -57,10 +57,13 @@ pkg_setup() {
 }
 
 src_prepare() {
-	default
-
+	# remove some directories so they are not used or explored
+	rm -rf pkg
 	rm -rf extern
 	rm -rf hpcgap/extern
+
+	default
+
 	# use GNUmakefile
 	rm Makefile || die
 	# Regenerate aclocal from scratch
@@ -85,6 +88,11 @@ src_configure() {
 src_install() {
 	default
 
+	# Manually install Makefile.gappkg
+	insinto usr/share/gap/etc
+	doins etc/Makefile.gappkg
+
+	# la files removal
 	find "${ED}" -name '*.la' -delete || die
 }
 
