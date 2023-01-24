@@ -35,7 +35,7 @@ src_configure() {
 	# Unsetting ABI as gap use the variable internally.
 	econf \
 		--libdir="${ESYSROOT}/$(gap-pkg_path)/bin/$(gap-pkg_gaparch)" \
-		--with-gaproot="${EPREFIX}/usr/share/gap" \
+		--with-gaproot="$(gap_sysinfo_loc)" \
 		--with-external-planarity \
 		--with-external-bliss \
 		LIBS="-lgap" \
