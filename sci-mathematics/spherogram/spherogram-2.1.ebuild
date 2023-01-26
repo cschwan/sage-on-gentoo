@@ -3,7 +3,7 @@
 
 EAPI=8
 
-PYTHON_COMPAT=( python3_{9..10} )
+PYTHON_COMPAT=( python3_{9..11} )
 DISTUTILS_USE_PEP517=setuptools
 
 inherit distutils-r1
@@ -11,7 +11,8 @@ inherit distutils-r1
 DESCRIPTION="Python module for dealing with planar diagrams arising in 3-dimensional topology"
 HOMEPAGE="https://github.com/3-manifolds/Spherogram
 	https://pypi.org/project/spherogram/"
-SRC_URI="mirror://pypi/${PN:0:1}/${PN}/${P}.tar.gz"
+# Not using pypi. Ship with cythonized files without the sources.
+SRC_URI="https://github.com/3-manifolds/Spherogram/archive/refs/tags/${PV}_as_released.tar.gz -> ${P}.gh.tar.gz"
 
 LICENSE="GPL-2+"
 SLOT="0"
@@ -31,6 +32,8 @@ BDEPEND="test? ( sci-mathematics/snappy_manifolds[${PYTHON_USEDEP}]
 RESTRICT="!test? ( test )"
 
 PATCHES=( "${FILESDIR}"/${PN}-1.8.3-unsage.patch )
+
+S="${WORKDIR}/Spherogram-${PV}_as_released"
 
 python_test(){
 	"${EPYTHON}" -m spherogram.test || die "test failed with ${EPYTHON}"
