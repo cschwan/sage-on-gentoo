@@ -12,6 +12,7 @@ inherit desktop distutils-r1 multiprocessing toolchain-funcs git-r3
 EGIT_REPO_URI="https://github.com/vbraun/sage.git"
 EGIT_BRANCH=develop
 EGIT_CHECKOUT_DIR="${WORKDIR}/${P}"
+SRC_URI="mirror://sagemath/gap-4.12.2.patch.xz"
 KEYWORDS=""
 
 DESCRIPTION="Math software for abstract and numerical computations"
@@ -151,6 +152,7 @@ PATCHES=(
 	"${FILESDIR}"/${PN}-9.3-forcejavatmp.patch
 	"${FILESDIR}"/${PN}-9.7-neutering.patch
 	"${FILESDIR}"/${PN}-9.5-distutils.patch
+	"${WORKDIR}"/gap-4.12.2.patch
 )
 
 pkg_setup() {
