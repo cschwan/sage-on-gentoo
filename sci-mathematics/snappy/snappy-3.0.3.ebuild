@@ -3,7 +3,7 @@
 
 EAPI=8
 
-PYTHON_COMPAT=( python3_{9..10} )
+PYTHON_COMPAT=( python3_{9..11} )
 PYTHON_REQ_USE="tk"
 DISTUTILS_USE_PEP517=setuptools
 
@@ -12,7 +12,8 @@ inherit distutils-r1
 DESCRIPTION="SnapPy is for studying the topology and geometry of 3-manifolds"
 HOMEPAGE="https://github.com/3-manifolds/SnapPy
 	https://pypi.org/project/snappy/"
-SRC_URI="mirror://pypi/${PN:0:1}/${PN}/${P}.tar.gz"
+# Not using pypi. Ship with cythonized files without the sources.
+SRC_URI="https://github.com/3-manifolds/SnapPy/archive/refs/tags/${PV}_as_released.tar.gz -> ${P}.gh.tar.gz"
 
 LICENSE="GPL-2+ BSD"
 SLOT="0"
@@ -37,6 +38,8 @@ PATCHES=(
 
 distutils_enable_tests setup.py
 
+S="${WORKDIR}/SnapPy-${PV}_as_released"
+
 src_prepare(){
 	default
 	# TODO completely unvendor togl.
@@ -45,4 +48,7 @@ src_prepare(){
 		rm -rf python/togl/darwin*
 		rm -rf python/togl/win32*
 	fi
+	# Remove doc_src. If found building doc will be attempted and fail
+	# as it requires snappy to be installed
+	rm -rf doc_src
 }
