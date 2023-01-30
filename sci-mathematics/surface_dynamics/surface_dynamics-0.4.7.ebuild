@@ -3,7 +3,7 @@
 
 EAPI=8
 
-PYTHON_COMPAT=( python3_{9..10} )
+PYTHON_COMPAT=( python3_{9..11} )
 DISTUTILS_USE_PEP517=setuptools
 
 inherit distutils-r1
@@ -17,8 +17,13 @@ LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64"
 
-DEPEND=">=sci-mathematics/sage-9.5[${PYTHON_USEDEP}]
+DEPEND=">=sci-mathematics/sage-9.7[${PYTHON_USEDEP}]
 	dev-python/pplpy[${PYTHON_USEDEP}]
 	dev-python/cython[${PYTHON_USEDEP}]"
 RDEPEND="${DEPEND}"
 BDEPEND=""
+
+PATCHES=(
+	"${FILESDIR}"/${PN}-0.4.7-sage9.7compat.patch
+	)
+

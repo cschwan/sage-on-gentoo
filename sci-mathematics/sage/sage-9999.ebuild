@@ -12,6 +12,7 @@ inherit desktop distutils-r1 multiprocessing toolchain-funcs git-r3
 EGIT_REPO_URI="https://github.com/sagemath/sage.git"
 EGIT_BRANCH=develop
 EGIT_CHECKOUT_DIR="${WORKDIR}/${P}"
+SRC_URI="mirror://sagemath/gap-4.12.2.patch.xz"
 KEYWORDS=""
 
 DESCRIPTION="Math software for abstract and numerical computations"
@@ -26,7 +27,7 @@ IUSE="debug +doc jmol latex test X ${SAGE_USE}"
 RESTRICT="mirror"
 
 DEPEND="
-	~dev-gap/gap-recommended-4.11.1
+	~dev-gap/gap-recommended-4.12.2
 	dev-libs/gmp:0=
 	>=dev-libs/mpc-1.1.0
 	>=dev-libs/mpfr-4.0.0
@@ -61,17 +62,18 @@ DEPEND="
 	sci-mathematics/cliquer
 	~sci-mathematics/eclib-20220621[flint]
 	>=sci-mathematics/flint-2.7.1:=[ntl]
-	~sci-mathematics/gap-4.11.1
+	~sci-mathematics/gap-4.12.2
 	>=sci-mathematics/giac-1.9.0
 	>=sci-mathematics/glpk-5.0:0=[gmp]
 	~sci-mathematics/gmp-ecm-7.0.5[-openmp]
 	=sci-mathematics/lcalc-2.0*
-	=sci-mathematics/pari-2.13*
+	>=sci-mathematics/pari-2.15.2
+	<sci-mathematics/pari-2.16.0
 	=sci-mathematics/planarity-3.0*
 	>=sci-mathematics/rw-0.7
 	~sci-mathematics/sage_setup-${PV}[${PYTHON_USEDEP}]
 	~sci-mathematics/sage-conf-${PV}[${PYTHON_USEDEP}]
-	~sci-mathematics/singular-4.3.1_p1[readline]
+	~sci-mathematics/singular-4.3.1_p3[readline]
 	>=sci-libs/brial-1.2.10
 	~sci-libs/givaro-4.1.1
 	>=sci-libs/gsl-2.3
@@ -96,7 +98,7 @@ RDEPEND="
 	${DEPEND}
 	>=dev-lang/R-4.0.4
 	>=dev-python/cvxopt-1.2.6[glpk,${PYTHON_USEDEP}]
-	>=dev-python/fpylll-0.5.4[${PYTHON_USEDEP}]
+	>=dev-python/fpylll-0.5.9[${PYTHON_USEDEP}]
 	>=dev-python/mpmath-1.2.1[${PYTHON_USEDEP}]
 	>=dev-python/networkx-2.6[${PYTHON_USEDEP}]
 	>=dev-python/pexpect-4.2.1[${PYTHON_USEDEP}]
@@ -150,6 +152,8 @@ PATCHES=(
 	"${FILESDIR}"/${PN}-9.3-forcejavatmp.patch
 	"${FILESDIR}"/${PN}-9.7-neutering.patch
 	"${FILESDIR}"/${PN}-9.5-distutils.patch
+	"${FILESDIR}"/singular-4.3.1p3.patch
+	"${WORKDIR}"/gap-4.12.2.patch
 )
 
 pkg_setup() {
