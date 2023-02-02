@@ -14,7 +14,8 @@ MY_P="${MY_PN}-${PV}"
 DESCRIPTION="Math software for abstract and numerical computations"
 HOMEPAGE="https://www.sagemath.org"
 SRC_URI="mirror://pypi/${PN:0:1}/${MY_PN}/${MY_P}.tar.gz
-	mirror://sagemath/ipywidget8.patch.xz"
+	mirror://sagemath/ipywidget8.patch.xz
+	mirror://sagemath/gap-4.12.2.patch.xz"
 KEYWORDS="~amd64 ~amd64-linux ~ppc-macos ~x64-macos"
 
 LICENSE="GPL-2"
@@ -23,7 +24,7 @@ SAGE_USE="bliss meataxe"
 IUSE="debug +doc jmol latex test X ${SAGE_USE}"
 
 DEPEND="
-	~dev-gap/gap-recommended-4.11.1
+	~dev-gap/gap-recommended-4.12.2
 	dev-libs/gmp:0=
 	>=dev-libs/mpc-1.1.0
 	>=dev-libs/mpfr-4.0.0
@@ -59,7 +60,7 @@ DEPEND="
 	sci-mathematics/cliquer
 	~sci-mathematics/eclib-20220621[flint]
 	>=sci-mathematics/flint-2.7.1:=[ntl]
-	~sci-mathematics/gap-4.11.1
+	~sci-mathematics/gap-4.12.2
 	>=sci-mathematics/giac-1.7.0
 	>=sci-mathematics/glpk-5.0:0=[gmp]
 	~sci-mathematics/gmp-ecm-7.0.5[-openmp]
@@ -151,6 +152,7 @@ PATCHES=(
 	"${FILESDIR}"/${PN}-9.5-distutils.patch
 	"${FILESDIR}"/${PN}-9.7-MPL-3.6-support.patch
 	"${WORKDIR}"/ipywidget8.patch
+	"${WORKDIR}"/gap-4.12.2.patch
 )
 
 S="${WORKDIR}/${MY_P}"
