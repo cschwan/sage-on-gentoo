@@ -69,10 +69,12 @@ python_prepare_all() {
 	distutils-r1_python_prepare_all
 
 	# sage on gentoo environment variables
-	cp -f "${FILESDIR}"/${PN}.py-9.7 _sage_conf/_conf.py
+	cp -f "${FILESDIR}"/${PN}.py-9.8 _sage_conf/_conf.py
 	eprefixify _sage_conf/_conf.py
 	# set the documentation location to the externally provided sage-doc package
 	sed -i "s:@GENTOO_PORTAGE_PF@:sage-doc-${PV}:" _sage_conf/_conf.py
+	# set lib/lib64 - only useful for GAP_LIB_DIR for now
+	sed -i "s:@libdir@:$(get_libdir):g" _sage_conf/_conf.py
 	# Fix finding pplpy documentation with intersphinx
 	local pplpyver=`equery -q l -F '$name-$fullversion' pplpy:0`
 	sed -i "s:@PPLY_DOC_VERS@:${pplpyver}:" _sage_conf/_conf.py
