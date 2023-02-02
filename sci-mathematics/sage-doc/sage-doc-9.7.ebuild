@@ -39,6 +39,7 @@ RDEPEND=""
 PATCHES=(
 	"${FILESDIR}"/${PN}-9.5-neutering.patch
 	"${FILESDIR}"/${PN}-9.7-makefile_and_parallel.patch
+	"${FILESDIR}"/gap-4.12.2.patch
 )
 
 S="${WORKDIR}/sage-${PV}"
