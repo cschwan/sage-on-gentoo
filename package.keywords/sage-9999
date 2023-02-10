@@ -19,7 +19,6 @@ sci-libs/dsdp
 sci-mathematics/cu2
 sci-mathematics/cubex
 sci-mathematics/dikcube
-~sci-mathematics/eclib-20220621
 >sci-mathematics/giac-1.9.0.0
 ~sci-mathematics/gmp-ecm-7.0.5
 ~sci-mathematics/lcalc-1.23
