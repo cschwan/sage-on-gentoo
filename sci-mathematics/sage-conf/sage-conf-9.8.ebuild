@@ -36,7 +36,7 @@ BDEPEND="app-portage/gentoolkit"
 RDEPEND=""
 
 PATCHES=(
-	"${FILESDIR}/${PN}-9.8.patch"
+	"${FILESDIR}/${PN}-9.7.patch"
 )
 
 src_unpack() {
