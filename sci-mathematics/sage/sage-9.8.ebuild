@@ -106,7 +106,7 @@ RDEPEND="
 	>=sci-mathematics/cu2-20060223
 	>=sci-mathematics/cubex-20060128
 	>=sci-mathematics/dikcube-20070912
-	>=sci-mathematics/ExportSageNB-3.3
+	>=sci-mathematics/ExportSageNB-3.3[${PYTHON_USEDEP}]
 	sci-mathematics/flintqs
 	~sci-mathematics/gfan-0.6.2
 	>=sci-mathematics/maxima-5.45.1-r3[ecls]
