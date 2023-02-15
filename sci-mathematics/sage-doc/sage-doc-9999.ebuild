@@ -30,13 +30,12 @@ L10N_USEDEP="${L10N_USEDEP%?}"
 
 RESTRICT="mirror test"
 
-BDEPEND="$(python_gen_any_dep "
-	dev-python/sphinx[\${PYTHON_USEDEP}]
-	dev-python/furo[\${PYTHON_USEDEP}]
-	dev-python/jupyter_sphinx[\${PYTHON_USEDEP}]
-	~sci-mathematics/sage-${PV}[\${PYTHON_USEDEP},jmol]
-	~sci-mathematics/sage_docbuild-${PV}[\${PYTHON_USEDEP}]
-	")
+BDEPEND="$(python_gen_any_dep '
+	dev-python/sphinx[${PYTHON_USEDEP}]
+	dev-python/furo[${PYTHON_USEDEP}]
+	dev-python/jupyter_sphinx[${PYTHON_USEDEP}]
+	~sci-mathematics/sage-9999[${PYTHON_USEDEP},jmol]
+	~sci-mathematics/sage_docbuild-9999[${PYTHON_USEDEP}]
 	>=dev-python/cvxopt-1.2.6[glpk,${PYTHON_USEDEP}]
 	>=dev-python/fpylll-0.5.9[${PYTHON_USEDEP}]
 	>=dev-python/mpmath-1.2.1[${PYTHON_USEDEP}]
@@ -44,12 +43,13 @@ BDEPEND="$(python_gen_any_dep "
 	>=dev-python/pexpect-4.2.1[${PYTHON_USEDEP}]
 	>=dev-python/scipy-1.1.0[${PYTHON_USEDEP}]
 	~dev-python/sympy-1.11.1[${PYTHON_USEDEP}]
+	>=sci-mathematics/ExportSageNB-3.3[${PYTHON_USEDEP}]
+	')
 	media-gfx/tachyon[png]
 	>=sci-libs/cddlib-094m[tools]
 	>=sci-mathematics/cu2-20060223
 	>=sci-mathematics/cubex-20060128
 	>=sci-mathematics/dikcube-20070912
-	>=sci-mathematics/ExportSageNB-3.3
 	sci-mathematics/flintqs
 	~sci-mathematics/gfan-0.6.2
 	>=sci-mathematics/maxima-5.45.1-r3[ecls]
@@ -85,10 +85,18 @@ addpredict "${ESYSROOT}/usr/share/sage/cremona/cremona_mini.db"
 
 python_check_deps() {
 	python_has_version -b "dev-python/sphinx[${PYTHON_USEDEP}]" &&
-	python_has_version -b "~sci-mathematics/sage-${PV}[${PYTHON_USEDEP},jmol]" &&
-	python_has_version -b "~sci-mathematics/sage_docbuild-${PV}[${PYTHON_USEDEP}]" &&
+	python_has_version -b "~sci-mathematics/sage-9999[${PYTHON_USEDEP},jmol]" &&
+	python_has_version -b "~sci-mathematics/sage_docbuild-9999[${PYTHON_USEDEP}]" &&
 	python_has_version -b "dev-python/furo[${PYTHON_USEDEP}]" &&
-	python_has_version -b "dev-python/jupyter_sphinx[${PYTHON_USEDEP}]"
+	python_has_version -b "dev-python/jupyter_sphinx[${PYTHON_USEDEP}]" &&
+	python_has_version -b ">=dev-python/cvxopt-1.2.6[glpk,${PYTHON_USEDEP}]" &&
+	python_has_version -b ">=dev-python/fpylll-0.5.9[${PYTHON_USEDEP}]" &&
+	python_has_version -b ">=dev-python/mpmath-1.2.1[${PYTHON_USEDEP}]" &&
+	python_has_version -b ">=dev-python/networkx-2.6[${PYTHON_USEDEP}]" &&
+	python_has_version -b ">=dev-python/pexpect-4.2.1[${PYTHON_USEDEP}]" &&
+	python_has_version -b ">=dev-python/scipy-1.1.0[${PYTHON_USEDEP}]" &&
+	python_has_version -b "~dev-python/sympy-1.11.1[${PYTHON_USEDEP}]" &&
+	python_has_version -b ">=sci-mathematics/ExportSageNB-3.3[${PYTHON_USEDEP}]"
 }
 
 src_unpack(){
