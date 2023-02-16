@@ -18,12 +18,17 @@ SLOT="0"
 KEYWORDS="~amd64 ~x86 ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos"
 IUSE=""
 
-RESTRICT=primaryuri
-
+BDEPEND="$(python_gen_any_dep '
+	dev-python/six[${PYTHON_USEDEP}]
+	')"
 DEPEND="${PYTHON_DEPS}"
 RDEPEND=""
 
 S="${WORKDIR}"
+
+python_check_deps() {
+	python_has_version -b "dev-python/six[${PYTHON_USEDEP}]"
+}
 
 src_prepare() {
 	ln -s ${MY_P} src
@@ -33,5 +38,5 @@ src_prepare() {
 }
 
 src_install() {
-	SAGE_SHARE="${ED}/usr/share/sage" "${PYTHON}" spkg-install
+	SAGE_SHARE="${ED}/usr/share/sage" "${PYTHON}" spkg-install || die "install failed"
 }
