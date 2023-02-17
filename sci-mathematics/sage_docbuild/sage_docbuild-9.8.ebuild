@@ -3,7 +3,7 @@
 
 EAPI=8
 
-PYTHON_COMPAT=( python3_{9..10} )
+PYTHON_COMPAT=( python3_{9..11} )
 DISTUTILS_USE_PEP517=setuptools
 
 inherit distutils-r1
@@ -24,6 +24,7 @@ RESTRICT="mirror test"
 DEPEND=""
 RDEPEND="
 	>=dev-python/sphinx-5.2.0[${PYTHON_USEDEP}]
+	<dev-python/sphinx-6.0.0
 	dev-python/jupyter_sphinx[${PYTHON_USEDEP}]
 "
 PDEPEND="~sci-mathematics/sage-${PV}[${PYTHON_USEDEP}]"
