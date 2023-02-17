@@ -55,6 +55,7 @@ DEPEND="
 	>=dev-python/psutil-4.4.0[${PYTHON_USEDEP}]
 	>=dev-python/six-1.11.0[${PYTHON_USEDEP}]
 	>=dev-python/sphinx-5.2.0[${PYTHON_USEDEP}]
+	<dev-python/sphinx-6.0.0
 	~media-gfx/threejs-sage-extension-122
 	media-libs/gd[jpeg,png]
 	media-libs/libpng:0=
