@@ -31,7 +31,7 @@ L10N_USEDEP="${L10N_USEDEP%?}"
 RESTRICT="mirror test"
 
 BDEPEND="$(python_gen_any_dep '
-	dev-python/sphinx[${PYTHON_USEDEP}]
+	<dev-python/sphinx-6.0.0[${PYTHON_USEDEP}]
 	dev-python/furo[${PYTHON_USEDEP}]
 	dev-python/jupyter_sphinx[${PYTHON_USEDEP}]
 	~sci-mathematics/sage-9999[${PYTHON_USEDEP},jmol]
@@ -84,7 +84,7 @@ DOCS=(
 addpredict "${ESYSROOT}/usr/share/sage/cremona/cremona_mini.db"
 
 python_check_deps() {
-	python_has_version -b "dev-python/sphinx[${PYTHON_USEDEP}]" &&
+	python_has_version -b "<dev-python/sphinx-6.0.0[${PYTHON_USEDEP}]" &&
 	python_has_version -b "~sci-mathematics/sage-9999[${PYTHON_USEDEP},jmol]" &&
 	python_has_version -b "~sci-mathematics/sage_docbuild-9999[${PYTHON_USEDEP}]" &&
 	python_has_version -b "dev-python/furo[${PYTHON_USEDEP}]" &&
