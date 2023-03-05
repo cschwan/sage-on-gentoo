@@ -2,13 +2,15 @@ dev-python/cvxopt
 =dev-python/cysignals-1.11*
 dev-python/memory_allocator
 =dev-python/pplpy-0.8*
+# default sympy py3.11 useflag - mysteriously prevent updating otherwise
+dev-python/pyopengl
 =dev-python/cypari2-2.1*
 ~dev-python/jupyter_jsmol-2022.1.0
 dev-python/jupyter_sphinx
 dev-python/lrcalc
 dev-python/primecountpy
 >=dev-python/rpy-3.5.7
-~dev-python/sympy-1.11.1::sage-on-gentoo
+~dev-python/sympy-1.11.1
 =dev-tex/sagetex-3*
 media-gfx/tachyon
 ~media-gfx/threejs-sage-extension-122
