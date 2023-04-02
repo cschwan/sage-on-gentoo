@@ -10,4 +10,7 @@ JavaScript 3D library. The aim of the project is to create an easy to use,
 lightweight, 3D library. The library provides "canvas", "svg", CSS3D and
 WebGL renderers.
 </longdescription>
+<upstream>
+<remote-id type="github">sagemath/threejs-sage</remote-id>
+</upstream>
 </pkgmetadata>

@@ -14,7 +14,7 @@ SLOT="0"
 KEYWORDS="~amd64 ~x86"
 IUSE=""
 
-RDEPEND=">=sci-mathematics/gap-core-4.11.0"
+RDEPEND=">=sci-mathematics/gap-4.12.2"
 
 HTML_DOCS=htm/*
 DOCS="README"

@@ -10,6 +10,7 @@ dev-python/jupyter_sphinx
 dev-python/lrcalc
 dev-python/primecountpy
 >=dev-python/rpy-3.5.7
+dev-python/sphinx-copybutton
 ~dev-python/sympy-1.11.1
 =dev-tex/sagetex-3*
 media-gfx/tachyon

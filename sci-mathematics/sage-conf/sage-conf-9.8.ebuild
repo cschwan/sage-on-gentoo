@@ -17,7 +17,8 @@ if [[ ${PV} == 9999 ]]; then
 	KEYWORDS=""
 	S="${WORKDIR}/${P}/pkgs/${PN}_pypi"
 else
-	SRC_URI="mirror://pypi/${PN:0:1}/${PN}/${P}.tar.gz"
+	PYPI_NO_NORMALIZE=1
+	inherit pypi
 	KEYWORDS="~amd64 ~amd64-linux ~ppc-macos ~x64-macos"
 fi
 

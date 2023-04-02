@@ -9,8 +9,6 @@ HOMEPAGE="https://pari.math.u-bordeaux.fr/"
 for p in elldata galdata galpol seadata nftables; do
 	SRC_URI="${SRC_URI} https://pari.math.u-bordeaux.fr/pub/pari/packages/${p}.tgz -> ${p}-${PV}.tgz"
 done
-RESTRICT=primaryuri
-
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~alpha ~amd64 ~hppa ~mips ~ppc ~ppc64 ~sparc ~x86 ~amd64-linux ~x86-linux ~x86-solaris"

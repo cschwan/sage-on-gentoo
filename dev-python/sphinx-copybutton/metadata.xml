@@ -6,6 +6,7 @@
 <name>François Bissey</name>
 </maintainer>
 <upstream>
-<remote-id type="github">sagemath/p_group_cohomology</remote-id>
+	<remote-id type="github">executablebooks/sphinx-copybutton</remote-id>
+	<remote-id type="pypi">sphinx-copybutton</remote-id>
 </upstream>
 </pkgmetadata>

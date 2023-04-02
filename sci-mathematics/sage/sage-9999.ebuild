@@ -90,7 +90,7 @@ DEPEND="
 	virtual/cblas
 
 	test? ( ~sci-mathematics/sage_docbuild-${PV}[${PYTHON_USEDEP}] )
-	bliss? ( ~sci-libs/bliss-0.73 )
+	bliss? ( ~sci-libs/bliss-0.77 )
 	meataxe? ( sci-mathematics/shared_meataxe )
 "
 
@@ -152,6 +152,7 @@ PATCHES=(
 	"${FILESDIR}"/${PN}-9.3-forcejavatmp.patch
 	"${FILESDIR}"/${PN}-9.7-neutering.patch
 	"${FILESDIR}"/${PN}-9.8-build_ext.patch
+	"${FILESDIR}"/35344.patch
 )
 
 pkg_setup() {

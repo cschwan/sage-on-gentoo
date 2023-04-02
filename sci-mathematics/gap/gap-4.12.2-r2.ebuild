@@ -18,8 +18,6 @@ KEYWORDS="~amd64 ~x86 ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos"
 IUSE="cpu_flags_x86_popcnt debug emacs memcheck readline valgrind vim-syntax"
 REQUIRED_USE="valgrind? ( memcheck )"
 
-RESTRICT=primaryuri
-
 MINIMUM_PKGS="
 	>=dev-gap/GAPDoc-1.6.6
 	>=dev-gap/primgrp-3.4.3

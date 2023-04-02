@@ -6,12 +6,12 @@ EAPI=8
 PYTHON_COMPAT=( python3_{9..11} )
 DISTUTILS_USE_PEP517=setuptools
 
-inherit distutils-r1
+inherit distutils-r1 pypi
 
 MY_PV="${PV}b1"
 DESCRIPTION="Custom build of Three.js for SageMath"
 HOMEPAGE="https://github.com/sagemath/threejs-sage"
-SRC_URI="mirror://pypi/${PN:0:1}/${PN}/${PN}-${MY_PV}.tar.gz"
+SRC_URI="$(pypi_sdist_url --no-normalize "${PN}" "${MY_PV}")"
 
 LICENSE="MIT"
 SLOT="0"

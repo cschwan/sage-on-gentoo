@@ -6,13 +6,10 @@ EAPI=8
 PYTHON_COMPAT=( python3_{9..11} )
 DISTUTILS_USE_PEP517=setuptools
 
-inherit distutils-r1
+inherit distutils-r1 pypi
 
-MY_PN="sage_flatsurf"
-MY_P="${MY_PN}-${PV}"
 DESCRIPTION="package for working with flat surfaces in SageMath."
 HOMEPAGE="https://github.com/flatsurf/sage-flatsurf"
-SRC_URI="mirror://pypi/${PN:0:1}/${PN}/${MY_P}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
@@ -26,8 +23,6 @@ BDEPEND=""
 PATCHES=(
 	"${FILESDIR}"/152.patch
 	)
-
-S="${WORKDIR}/${MY_P}"
 
 python_test(){
 	sage -t --long flatsurf || die "test failed"
