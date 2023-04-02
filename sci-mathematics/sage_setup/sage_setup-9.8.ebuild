@@ -7,13 +7,13 @@ PYTHON_COMPAT=( python3_{9..11} )
 PYTHON_REQ_USE="readline,sqlite"
 DISTUTILS_USE_PEP517=setuptools
 
-inherit distutils-r1
+inherit distutils-r1 pypi
 
 MY_PN="sage-setup"
 MY_P="${MY_PN}-${PV}"
 DESCRIPTION="Tool to help install sage and sage related packages"
 HOMEPAGE="https://www.sagemath.org"
-SRC_URI="mirror://pypi/${PN:0:1}/${MY_PN}/${MY_P}.tar.gz"
+SRC_URI="$(pypi_sdist_url --no-normalize "${MY_PN}")"
 KEYWORDS="~amd64 ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos"
 
 LICENSE="GPL-2"

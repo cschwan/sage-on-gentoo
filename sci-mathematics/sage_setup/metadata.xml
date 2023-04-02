@@ -5,4 +5,7 @@
 		<email>frp.bissey@gmail.com</email>
 		<name>Francois Bissey</name>
 	</maintainer>
+	<upstream>
+		<remote-id type="pypi">sage-setup</remote-id>
+	</upstream>
 </pkgmetadata>
