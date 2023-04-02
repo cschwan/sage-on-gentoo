@@ -5,11 +5,10 @@ EAPI=8
 
 PYTHON_COMPAT=( python3_{9..11} )
 DISTUTILS_USE_PEP517=setuptools
-inherit distutils-r1 latex-package
+inherit distutils-r1 latex-package pypi
 
 DESCRIPTION="SageTeX allows you to embed Sage code into LaTeX documents"
 HOMEPAGE="https://github.com/sagemath/sagetex https://pypi.org/project/sagetex/"
-SRC_URI="mirror://pypi/${PN:0:1}/${PN}/${P}.tar.gz"
 
 LICENSE="GPL-2+"
 SLOT="0"
