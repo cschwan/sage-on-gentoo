@@ -9,8 +9,6 @@ DESCRIPTION="A Computer algebra package for Lie group computations"
 HOMEPAGE="http://www-math.univ-poitiers.fr/~maavl/LiE/"
 SRC_URI="http://www-math.univ-poitiers.fr/~maavl/LiE/conLiE.tar.gz -> ${P}.tar.gz"
 #### Remove the following line when moving this ebuild to the main tree!
-RESTRICT=primaryuri
-
 LICENSE="LGPL-2.1"
 ##### See https://packages.debian.org/changelogs/pool/main/l/lie/lie_2.2.2+dfsg-1/lie.copyright
 SLOT="0"
