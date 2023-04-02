@@ -34,36 +34,10 @@ BDEPEND="$(python_gen_any_dep '
 	<dev-python/sphinx-6.0.0[${PYTHON_USEDEP}]
 	dev-python/furo[${PYTHON_USEDEP}]
 	dev-python/jupyter_sphinx[${PYTHON_USEDEP}]
+	dev-python/sphinx-copybutton[${PYTHON_USEDEP}]
 	~sci-mathematics/sage-9999[${PYTHON_USEDEP},jmol]
 	~sci-mathematics/sage_docbuild-9999[${PYTHON_USEDEP}]
-	>=dev-python/cvxopt-1.2.6[glpk,${PYTHON_USEDEP}]
-	>=dev-python/fpylll-0.5.9[${PYTHON_USEDEP}]
-	>=dev-python/mpmath-1.2.1[${PYTHON_USEDEP}]
-	>=dev-python/networkx-2.6[${PYTHON_USEDEP}]
-	>=dev-python/pexpect-4.2.1[${PYTHON_USEDEP}]
-	>=dev-python/scipy-1.1.0[${PYTHON_USEDEP}]
-	~dev-python/sympy-1.11.1[${PYTHON_USEDEP}]
-	>=sci-mathematics/ExportSageNB-3.3[${PYTHON_USEDEP}]
 	')
-	media-gfx/tachyon[png]
-	>=sci-libs/cddlib-094m[tools]
-	>=sci-mathematics/cu2-20060223
-	>=sci-mathematics/cubex-20060128
-	>=sci-mathematics/dikcube-20070912
-	sci-mathematics/flintqs
-	~sci-mathematics/gfan-0.6.2
-	>=sci-mathematics/maxima-5.45.1-r3[ecls]
-	<sci-mathematics/maxima-5.46.0
-	>=sci-mathematics/mcube-20051209
-	>=sci-mathematics/nauty-2.6.1
-	>=sci-mathematics/optimal-20040603
-	>=sci-mathematics/palp-2.1
-	~sci-mathematics/sage-data-combinatorial_designs-20140630
-	~sci-mathematics/sage-data-conway_polynomials-0.5
-	~sci-mathematics/sage-data-elliptic_curves-0.8
-	~sci-mathematics/sage-data-graphs-20210214
-	~sci-mathematics/sage-data-polytopes_db-20170220
-	>=sci-mathematics/sympow-1.018.1
 	doc-pdf? ( app-text/texlive[extra,${L10N_USEDEP}] )"
 RDEPEND=""
 
@@ -88,14 +62,7 @@ python_check_deps() {
 	python_has_version -b "~sci-mathematics/sage_docbuild-9999[${PYTHON_USEDEP}]" &&
 	python_has_version -b "dev-python/furo[${PYTHON_USEDEP}]" &&
 	python_has_version -b "dev-python/jupyter_sphinx[${PYTHON_USEDEP}]" &&
-	python_has_version -b ">=dev-python/cvxopt-1.2.6[glpk,${PYTHON_USEDEP}]" &&
-	python_has_version -b ">=dev-python/fpylll-0.5.9[${PYTHON_USEDEP}]" &&
-	python_has_version -b ">=dev-python/mpmath-1.2.1[${PYTHON_USEDEP}]" &&
-	python_has_version -b ">=dev-python/networkx-2.6[${PYTHON_USEDEP}]" &&
-	python_has_version -b ">=dev-python/pexpect-4.2.1[${PYTHON_USEDEP}]" &&
-	python_has_version -b ">=dev-python/scipy-1.1.0[${PYTHON_USEDEP}]" &&
-	python_has_version -b "~dev-python/sympy-1.11.1[${PYTHON_USEDEP}]" &&
-	python_has_version -b ">=sci-mathematics/ExportSageNB-3.3[${PYTHON_USEDEP}]"
+	python_has_version -b "dev-python/sphinx-copybutton[${PYTHON_USEDEP}]"
 }
 
 src_unpack(){
