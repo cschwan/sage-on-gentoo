@@ -7,13 +7,13 @@ PYTHON_COMPAT=( python3_{9..11} )
 PYTHON_REQ_USE="readline,sqlite"
 DISTUTILS_USE_PEP517=setuptools
 
-inherit desktop distutils-r1 multiprocessing toolchain-funcs
+inherit desktop distutils-r1 multiprocessing pypi toolchain-funcs
 
 MY_PN="sagemath-standard"
 MY_P="${MY_PN}-${PV}"
 DESCRIPTION="Math software for abstract and numerical computations"
 HOMEPAGE="https://www.sagemath.org"
-SRC_URI="mirror://pypi/${PN:0:1}/${MY_PN}/${MY_P}.tar.gz
+SRC_URI="$(pypi_sdist_url --no-normalize "${MY_PN}")
 	mirror://sagemath/gap-4.12.2.patch.xz"
 KEYWORDS="~amd64 ~amd64-linux ~ppc-macos ~x64-macos"
 
