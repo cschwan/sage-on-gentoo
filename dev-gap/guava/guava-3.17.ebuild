@@ -14,7 +14,7 @@ LICENSE="|| ( GPL-2 GPL-3 )"
 KEYWORDS="~amd64 ~x86"
 IUSE=""
 
-DEPEND=">=sci-mathematics/gap-core-4.11.0"
+DEPEND=">=sci-mathematics/gap-4.12.2"
 RDEPEND="${DEPEND}"
 
 DOCS=( README.md {CHANGES,HISTORY,README}.${PN} )
