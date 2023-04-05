@@ -8,7 +8,6 @@ dev-python/numpy            lapack
 dev-python/pplpy            doc
 media-libs/gd               jpeg png
 media-gfx/tachyon           png opengl
-net-libs/zeromq             drafts
 sci-mathematics/flint       ntl
 sci-libs/cddlib             tools
 sci-libs/pynac              -giac
