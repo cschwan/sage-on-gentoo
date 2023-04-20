@@ -38,10 +38,6 @@ PDEPEND="${MINIMUM_PKGS}"
 
 REQUIRED_USE="?? ( memcheck valgrind )"
 
-PATCHES=(
-	"${FILESDIR}"/${PN}-4.12.0-autoconf.patch
-)
-
 pkg_setup() {
 	if use valgrind; then
 		elog "If you enable the use of valgrind duing building"
@@ -63,10 +59,6 @@ src_prepare() {
 
 	# use GNUmakefile
 	rm Makefile || die
-	# Regenerate aclocal from scratch
-	rm aclocal.m4 || die
-
-	eautoreconf -f -i
 }
 
 src_configure() {
