@@ -7,10 +7,7 @@ inherit autotools elisp-common
 
 DESCRIPTION="System for computational discrete algebra. Core functionality."
 HOMEPAGE="https://www.gap-system.org/"
-# We need the full release tarball as the core one doesn't include pre-build
-# html documentation. Building the html documentation in turns requires GAPDoc to
-# be present in the source tree.
-SRC_URI="https://github.com/gap-system/gap/releases/download/v${PV}/${P}.tar.gz"
+SRC_URI="https://github.com/gap-system/gap/releases/download/v${PV}/${P}-core.tar.gz"
 
 LICENSE="GPL-2+"
 SLOT="0/8"
@@ -55,7 +52,6 @@ pkg_setup() {
 
 src_prepare() {
 	# remove some directories so they are not used or explored
-	rm -rf pkg
 	rm -rf extern
 	rm -rf hpcgap/extern
 
