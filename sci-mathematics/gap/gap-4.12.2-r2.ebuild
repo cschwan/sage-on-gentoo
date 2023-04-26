@@ -3,7 +3,7 @@
 
 EAPI=8
 
-inherit autotools elisp-common
+inherit elisp-common
 
 DESCRIPTION="System for computational discrete algebra. Core functionality."
 HOMEPAGE="https://www.gap-system.org/"
