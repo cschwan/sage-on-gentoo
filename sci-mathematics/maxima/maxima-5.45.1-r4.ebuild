@@ -3,7 +3,7 @@
 
 EAPI=8
 
-PYTHON_COMPAT=( python3_{9..10} )
+PYTHON_COMPAT=( python3_{10..11} )
 
 inherit autotools elisp-common flag-o-matic python-any-r1 xdg-utils
 
