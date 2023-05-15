@@ -5,7 +5,7 @@ dev-python/memory_allocator
 # default sympy py3.11 useflag - mysteriously prevent updating otherwise
 dev-python/pyopengl
 =dev-python/cypari2-2.1*
-~dev-python/jupyter_jsmol-2022.1.0
+~dev-python/jupyter-jsmol-2022.1.0
 dev-python/jupyter_sphinx
 dev-python/lrcalc
 dev-python/primecountpy

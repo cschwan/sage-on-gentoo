@@ -43,7 +43,7 @@ DEPEND="
 	dev-python/ipywidgets[${PYTHON_USEDEP}]
 	>=dev-python/jinja-2.8[${PYTHON_USEDEP}]
 	dev-python/jupyter-core[${PYTHON_USEDEP}]
-	~dev-python/jupyter_jsmol-2022.1.0[${PYTHON_USEDEP}]
+	~dev-python/jupyter-jsmol-2022.1.0[${PYTHON_USEDEP}]
 	dev-python/lrcalc[${PYTHON_USEDEP}]
 	>=dev-python/matplotlib-3.5.0[${PYTHON_USEDEP}]
 	dev-python/memory_allocator[${PYTHON_USEDEP}]
