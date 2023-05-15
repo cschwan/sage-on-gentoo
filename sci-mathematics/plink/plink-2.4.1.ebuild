@@ -18,6 +18,6 @@ KEYWORDS="~amd64 ~x86"
 
 DEPEND=""
 RDEPEND="${DEPEND}"
-BDEPEND=""
+BDEPEND="dev-python/sphinx[${PYTHON_USEDEP}]"
 
 distutils_enable_tests setup.py
