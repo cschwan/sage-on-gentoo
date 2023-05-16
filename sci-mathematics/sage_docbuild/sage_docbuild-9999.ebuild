@@ -27,7 +27,7 @@ DEPEND=""
 RDEPEND="
 	>=dev-python/sphinx-5.2.0[${PYTHON_USEDEP}]
 	<dev-python/sphinx-6.0.0
-	dev-python/jupyter_sphinx[${PYTHON_USEDEP}]
+	dev-python/jupyter-sphinx[${PYTHON_USEDEP}]
 "
 PDEPEND="~sci-mathematics/sage-${PV}[${PYTHON_USEDEP}]"
 

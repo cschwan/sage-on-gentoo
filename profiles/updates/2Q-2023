@@ -1,1 +1,2 @@
 move dev-python/jupyter_jsmol dev-python/jupyter-jsmol
+move dev-python/jupyter_sphinx dev-python/jupyter-sphinx
