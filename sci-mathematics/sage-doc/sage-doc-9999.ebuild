@@ -33,7 +33,7 @@ RESTRICT="mirror test"
 BDEPEND="$(python_gen_any_dep '
 	<dev-python/sphinx-6.0.0[${PYTHON_USEDEP}]
 	dev-python/furo[${PYTHON_USEDEP}]
-	dev-python/jupyter_sphinx[${PYTHON_USEDEP}]
+	dev-python/jupyter-sphinx[${PYTHON_USEDEP}]
 	dev-python/sphinx-copybutton[${PYTHON_USEDEP}]
 	~sci-mathematics/sage-9999[${PYTHON_USEDEP},jmol]
 	~sci-mathematics/sage_docbuild-9999[${PYTHON_USEDEP}]
@@ -61,7 +61,7 @@ python_check_deps() {
 	python_has_version -b "~sci-mathematics/sage-9999[${PYTHON_USEDEP},jmol]" &&
 	python_has_version -b "~sci-mathematics/sage_docbuild-9999[${PYTHON_USEDEP}]" &&
 	python_has_version -b "dev-python/furo[${PYTHON_USEDEP}]" &&
-	python_has_version -b "dev-python/jupyter_sphinx[${PYTHON_USEDEP}]" &&
+	python_has_version -b "dev-python/jupyter-sphinx[${PYTHON_USEDEP}]" &&
 	python_has_version -b "dev-python/sphinx-copybutton[${PYTHON_USEDEP}]"
 }
 
@@ -136,7 +136,7 @@ src_install(){
 	done
 	# prune .buildinfo files, those are internal to sphinx and are not used after building.
 	find build_doc -name .buildinfo -delete || die "failed to prune buildinfo files"
-	# prune the jupyter_execute folder created by jupyter_sphinx
+	# prune the jupyter_execute folder created by jupyter-sphinx
 	rm -rf build_doc/html/en/reference/jupyter_execute
 
 	# Replace full "build" path to html index in pdf doc
