@@ -32,5 +32,5 @@ multilib_src_configure() {
 
 multilib_src_test() {
 	# Run demo files
-	./RBdemo < "${S}"/RBio/private/west0479.rua
+	./RBdemo < "${S}"/RBio/private/west0479.rua || die "failed testing"
 }
