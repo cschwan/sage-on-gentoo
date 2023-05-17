@@ -26,7 +26,7 @@ sci-mathematics/dikcube
 ~sci-mathematics/gmp-ecm-7.0.5
 ~sci-mathematics/lcalc-1.23
 ~sci-mathematics/lrcalc-2.1
-~sci-mathematics/maxima-5.45.1::sage-on-gentoo
+~sci-mathematics/maxima-5.46.0::sage-on-gentoo
 sci-mathematics/mcube
 sci-mathematics/optimal
 sci-mathematics/palp
