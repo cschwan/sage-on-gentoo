@@ -13,8 +13,8 @@ LICENSE="GPL-2 GPL-2+"
 SLOT="0"
 KEYWORDS="~amd64 ~x86 ~amd64-linux ~x86-linux"
 
-IUSE="clisp clozurecl clozurecl64 cmucl ecls emacs gcl gui nls +sbcl vtk X test"
-RESTRICT="!test? ( test )"
+IUSE="clisp clozurecl clozurecl64 cmucl ecls emacs gcl gui nls +sbcl X test"
+RESTRICT="test" # bug 838202
 
 # Languages
 LANGS="de es pt pt_BR"
@@ -28,7 +28,7 @@ LISP_DEPEND="
 	clozurecl64? ( dev-lisp/clozurecl app-misc/rlwrap )
 	cmucl? ( dev-lisp/cmucl app-misc/rlwrap )
 	ecls? ( dev-lisp/ecls:= app-misc/rlwrap )
-	gcl? ( dev-lisp/gcl[ansi,readline] )
+	gcl? ( <dev-lisp/gcl-2.6.14[ansi,readline] )
 	sbcl? ( dev-lisp/sbcl:= app-misc/rlwrap )
 "
 
@@ -83,7 +83,6 @@ PATCHES=(
 	"${FILESDIR}/clozurecl-3.patch"
 	"${FILESDIR}/cmucl-1.patch"
 	"${FILESDIR}/sbcl-2.patch"
-	"${FILESDIR}/${PN}-5.39.0-matrixexp.patch"
 )
 
 src_prepare() {
