@@ -43,9 +43,9 @@ multilib_src_test() {
 	# Programs expect to find ExampleMats
 	ln -s "${S}/SPEX_Left_LU/ExampleMats"
 	# Run demo files
-	./example
-	./example2
-	./spexlu_demo
+	./example || die "failed testing"
+	./example2 || die "failed testing"
+	./spexlu_demo || die "failed testing"
 }
 
 multilib_src_install() {

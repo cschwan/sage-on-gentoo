@@ -31,11 +31,11 @@ sci-mathematics/mcube
 sci-mathematics/optimal
 sci-mathematics/palp
 =sci-mathematics/pari-2.15*
-~sci-mathematics/sage-9999 **
-~sci-mathematics/sage-conf-9999 **
-~sci-mathematics/sage_setup-9999 **
-~sci-mathematics/sage_docbuild-9999 **
-~sci-mathematics/sage-doc-9999 **
+~sci-mathematics/sage-10.0
+~sci-mathematics/sage-conf-10.0
+~sci-mathematics/sage_setup-10.0
+~sci-mathematics/sage_docbuild-10.0
+~sci-mathematics/sage-doc-10.0
 ~sci-mathematics/sage-data-conway_polynomials-0.5
 ~sci-mathematics/sage-data-combinatorial_designs-20140630
 ~sci-mathematics/sage-data-elliptic_curves-0.8

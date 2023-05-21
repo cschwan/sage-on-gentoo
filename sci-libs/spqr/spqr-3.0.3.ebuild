@@ -46,66 +46,66 @@ multilib_src_configure() {
 
 multilib_src_test() {
 	# Run demo files
-	./qrsimple  < "${S}"/Matrix/ash219.mtx
-	./qrsimplec < "${S}"/Matrix/ash219.mtx
-	./qrsimple  < "${S}"/Matrix/west0067.mtx
-	./qrsimplec < "${S}"/Matrix/west0067.mtx
-	./qrdemo < "${S}"/Matrix/a2.mtx
-	./qrdemo < "${S}"/Matrix/r2.mtx
-	./qrdemo < "${S}"/Matrix/a04.mtx
-	./qrdemo < "${S}"/Matrix/a2.mtx
-	./qrdemo < "${S}"/Matrix/west0067.mtx
-	./qrdemo < "${S}"/Matrix/c2.mtx
-	./qrdemo < "${S}"/Matrix/a0.mtx
-	./qrdemo < "${S}"/Matrix/lfat5b.mtx
-	./qrdemo < "${S}"/Matrix/bfwa62.mtx
-	./qrdemo < "${S}"/Matrix/LFAT5.mtx
-	./qrdemo < "${S}"/Matrix/b1_ss.mtx
-	./qrdemo < "${S}"/Matrix/bcspwr01.mtx
-	./qrdemo < "${S}"/Matrix/lpi_galenet.mtx
-	./qrdemo < "${S}"/Matrix/lpi_itest6.mtx
-	./qrdemo < "${S}"/Matrix/ash219.mtx
-	./qrdemo < "${S}"/Matrix/a4.mtx
-	./qrdemo < "${S}"/Matrix/s32.mtx
-	./qrdemo < "${S}"/Matrix/c32.mtx
-	./qrdemo < "${S}"/Matrix/lp_share1b.mtx
-	./qrdemo < "${S}"/Matrix/a1.mtx
-	./qrdemo < "${S}"/Matrix/GD06_theory.mtx
-	./qrdemo < "${S}"/Matrix/GD01_b.mtx
-	./qrdemo < "${S}"/Matrix/Tina_AskCal_perm.mtx
-	./qrdemo < "${S}"/Matrix/Tina_AskCal.mtx
-	./qrdemo < "${S}"/Matrix/GD98_a.mtx
-	./qrdemo < "${S}"/Matrix/Ragusa16.mtx
-	./qrdemo < "${S}"/Matrix/young1c.mtx
-	./qrdemo < "${S}"/Matrix/lp_e226_transposed.mtx
-	./qrdemoc < "${S}"/Matrix/a2.mtx
-	./qrdemoc < "${S}"/Matrix/r2.mtx
-	./qrdemoc < "${S}"/Matrix/a04.mtx
-	./qrdemoc < "${S}"/Matrix/a2.mtx
-	./qrdemoc < "${S}"/Matrix/west0067.mtx
-	./qrdemoc < "${S}"/Matrix/c2.mtx
-	./qrdemoc < "${S}"/Matrix/a0.mtx
-	./qrdemoc < "${S}"/Matrix/lfat5b.mtx
-	./qrdemoc < "${S}"/Matrix/bfwa62.mtx
-	./qrdemoc < "${S}"/Matrix/LFAT5.mtx
-	./qrdemoc < "${S}"/Matrix/b1_ss.mtx
-	./qrdemoc < "${S}"/Matrix/bcspwr01.mtx
-	./qrdemoc < "${S}"/Matrix/lpi_galenet.mtx
-	./qrdemoc < "${S}"/Matrix/lpi_itest6.mtx
-	./qrdemoc < "${S}"/Matrix/ash219.mtx
-	./qrdemoc < "${S}"/Matrix/a4.mtx
-	./qrdemoc < "${S}"/Matrix/s32.mtx
-	./qrdemoc < "${S}"/Matrix/c32.mtx
-	./qrdemoc < "${S}"/Matrix/lp_share1b.mtx
-	./qrdemoc < "${S}"/Matrix/a1.mtx
-	./qrdemoc < "${S}"/Matrix/GD06_theory.mtx
-	./qrdemoc < "${S}"/Matrix/GD01_b.mtx
-	./qrdemoc < "${S}"/Matrix/Tina_AskCal_perm.mtx
-	./qrdemoc < "${S}"/Matrix/Tina_AskCal.mtx
-	./qrdemoc < "${S}"/Matrix/GD98_a.mtx
-	./qrdemoc < "${S}"/Matrix/Ragusa16.mtx
-	./qrdemoc < "${S}"/Matrix/young1c.mtx
-	./qrdemoc < "${S}"/Matrix/lp_e226_transposed.mtx
+	./qrsimple  < "${S}"/Matrix/ash219.mtx || die "failed testing"
+	./qrsimplec < "${S}"/Matrix/ash219.mtx || die "failed testing"
+	./qrsimple  < "${S}"/Matrix/west0067.mtx || die "failed testing"
+	./qrsimplec < "${S}"/Matrix/west0067.mtx || die "failed testing"
+	./qrdemo < "${S}"/Matrix/a2.mtx || die "failed testing"
+	./qrdemo < "${S}"/Matrix/r2.mtx || die "failed testing"
+	./qrdemo < "${S}"/Matrix/a04.mtx || die "failed testing"
+	./qrdemo < "${S}"/Matrix/a2.mtx || die "failed testing"
+	./qrdemo < "${S}"/Matrix/west0067.mtx || die "failed testing"
+	./qrdemo < "${S}"/Matrix/c2.mtx || die "failed testing"
+	./qrdemo < "${S}"/Matrix/a0.mtx || die "failed testing"
+	./qrdemo < "${S}"/Matrix/lfat5b.mtx || die "failed testing"
+	./qrdemo < "${S}"/Matrix/bfwa62.mtx || die "failed testing"
+	./qrdemo < "${S}"/Matrix/LFAT5.mtx || die "failed testing"
+	./qrdemo < "${S}"/Matrix/b1_ss.mtx || die "failed testing"
+	./qrdemo < "${S}"/Matrix/bcspwr01.mtx || die "failed testing"
+	./qrdemo < "${S}"/Matrix/lpi_galenet.mtx || die "failed testing"
+	./qrdemo < "${S}"/Matrix/lpi_itest6.mtx || die "failed testing"
+	./qrdemo < "${S}"/Matrix/ash219.mtx || die "failed testing"
+	./qrdemo < "${S}"/Matrix/a4.mtx || die "failed testing"
+	./qrdemo < "${S}"/Matrix/s32.mtx || die "failed testing"
+	./qrdemo < "${S}"/Matrix/c32.mtx || die "failed testing"
+	./qrdemo < "${S}"/Matrix/lp_share1b.mtx || die "failed testing"
+	./qrdemo < "${S}"/Matrix/a1.mtx || die "failed testing"
+	./qrdemo < "${S}"/Matrix/GD06_theory.mtx || die "failed testing"
+	./qrdemo < "${S}"/Matrix/GD01_b.mtx || die "failed testing"
+	./qrdemo < "${S}"/Matrix/Tina_AskCal_perm.mtx || die "failed testing"
+	./qrdemo < "${S}"/Matrix/Tina_AskCal.mtx || die "failed testing"
+	./qrdemo < "${S}"/Matrix/GD98_a.mtx || die "failed testing"
+	./qrdemo < "${S}"/Matrix/Ragusa16.mtx || die "failed testing"
+	./qrdemo < "${S}"/Matrix/young1c.mtx || die "failed testing"
+	./qrdemo < "${S}"/Matrix/lp_e226_transposed.mtx || die "failed testing"
+	./qrdemoc < "${S}"/Matrix/a2.mtx || die "failed testing"
+	./qrdemoc < "${S}"/Matrix/r2.mtx || die "failed testing"
+	./qrdemoc < "${S}"/Matrix/a04.mtx || die "failed testing"
+	./qrdemoc < "${S}"/Matrix/a2.mtx || die "failed testing"
+	./qrdemoc < "${S}"/Matrix/west0067.mtx || die "failed testing"
+	./qrdemoc < "${S}"/Matrix/c2.mtx || die "failed testing"
+	./qrdemoc < "${S}"/Matrix/a0.mtx || die "failed testing"
+	./qrdemoc < "${S}"/Matrix/lfat5b.mtx || die "failed testing"
+	./qrdemoc < "${S}"/Matrix/bfwa62.mtx || die "failed testing"
+	./qrdemoc < "${S}"/Matrix/LFAT5.mtx || die "failed testing"
+	./qrdemoc < "${S}"/Matrix/b1_ss.mtx || die "failed testing"
+	./qrdemoc < "${S}"/Matrix/bcspwr01.mtx || die "failed testing"
+	./qrdemoc < "${S}"/Matrix/lpi_galenet.mtx || die "failed testing"
+	./qrdemoc < "${S}"/Matrix/lpi_itest6.mtx || die "failed testing"
+	./qrdemoc < "${S}"/Matrix/ash219.mtx || die "failed testing"
+	./qrdemoc < "${S}"/Matrix/a4.mtx || die "failed testing"
+	./qrdemoc < "${S}"/Matrix/s32.mtx || die "failed testing"
+	./qrdemoc < "${S}"/Matrix/c32.mtx || die "failed testing"
+	./qrdemoc < "${S}"/Matrix/lp_share1b.mtx || die "failed testing"
+	./qrdemoc < "${S}"/Matrix/a1.mtx || die "failed testing"
+	./qrdemoc < "${S}"/Matrix/GD06_theory.mtx || die "failed testing"
+	./qrdemoc < "${S}"/Matrix/GD01_b.mtx || die "failed testing"
+	./qrdemoc < "${S}"/Matrix/Tina_AskCal_perm.mtx || die "failed testing"
+	./qrdemoc < "${S}"/Matrix/Tina_AskCal.mtx || die "failed testing"
+	./qrdemoc < "${S}"/Matrix/GD98_a.mtx || die "failed testing"
+	./qrdemoc < "${S}"/Matrix/Ragusa16.mtx || die "failed testing"
+	./qrdemoc < "${S}"/Matrix/young1c.mtx || die "failed testing"
+	./qrdemoc < "${S}"/Matrix/lp_e226_transposed.mtx || die "failed testing"
 }
 
 multilib_src_install() {

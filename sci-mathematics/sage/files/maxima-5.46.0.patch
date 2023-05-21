@@ -1,0 +1,358 @@
+diff --git a/sage/calculus/calculus.py b/sage/calculus/calculus.py
+index dae380180ac..1384c2a1cd2 100644
+--- a/sage/calculus/calculus.py
++++ b/sage/calculus/calculus.py
+@@ -136,10 +136,11 @@
+     [          1/2*(e^(2*sqrt(x)) + 1)*e^(x - sqrt(x)) 1/2*(x*e^(2*sqrt(x)) - x)*sqrt(x)*e^(x - sqrt(x))]
+     [  1/2*(e^(2*sqrt(x)) - 1)*e^(x - sqrt(x))/x^(3/2)           1/2*(e^(2*sqrt(x)) + 1)*e^(x - sqrt(x))]
+ 
+-And complex exponentiation works now::
++Complex exponentiation works, but may require a patched version of
++maxima (:trac:`32898`) for now::
+ 
+     sage: M = i*matrix([[pi]])
+-    sage: e^M
++    sage: e^M # not tested, requires patched maxima
+     [-1]
+     sage: M = i*matrix([[pi,0],[0,2*pi]])
+     sage: e^M
+diff --git a/sage/matrix/matrix2.pyx b/sage/matrix/matrix2.pyx
+index e2e6449dfa9..c66e6d1606a 100644
+--- a/sage/matrix/matrix2.pyx
++++ b/sage/matrix/matrix2.pyx
+@@ -15425,9 +15425,10 @@ cdef class Matrix(Matrix1):
+ 
+         TESTS:
+ 
+-        Check that sparse matrices are handled correctly (:trac:`28935`)::
++        Sparse matrices are handled correctly (:trac:`28935`), but may
++        require a patched version of maxima (:trac:`32898`) for now::
+ 
+-            sage: matrix.diagonal([0], sparse=True).exp()
++            sage: matrix.diagonal([0], sparse=True).exp() # not tested, requires patched maxima
+             [1]
+             sage: matrix.zero(CBF, 2, sparse=True).exp()
+             [1.000000000000000                 0]
+diff --git a/sage/matrix/matrix_symbolic_dense.pyx b/sage/matrix/matrix_symbolic_dense.pyx
+index 19ca5c85cb2..58a25e002f6 100644
+--- a/sage/matrix/matrix_symbolic_dense.pyx
++++ b/sage/matrix/matrix_symbolic_dense.pyx
+@@ -402,7 +402,8 @@ cdef class Matrix_symbolic_dense(Matrix_generic_dense):
+             [1/2*(e^(2*x) + 1)*e^(-x) 1/2*(e^(2*x) - 1)*e^(-x)]
+             [1/2*(e^(2*x) - 1)*e^(-x) 1/2*(e^(2*x) + 1)*e^(-x)]
+ 
+-        Exp works on 0x0 and 1x1 matrices::
++        Exponentiation works on 0x0 and 1x1 matrices, but the 1x1 example
++        requires a patched version of maxima (:trac:`32898`) for now::
+ 
+             sage: m = matrix(SR,0,[]); m
+             []
+@@ -410,7 +411,7 @@ cdef class Matrix_symbolic_dense(Matrix_generic_dense):
+             []
+             sage: m = matrix(SR,1,[2]); m
+             [2]
+-            sage: m.exp()
++            sage: m.exp()  # not tested, requires patched maxima
+             [e^2]
+ 
+         Commuting matrices `m, n` have the property that
+@@ -451,7 +452,6 @@ cdef class Matrix_symbolic_dense(Matrix_generic_dense):
+             [                       0 1/2*(e^(2*x) + 1)*e^(-x) 1/2*(e^(2*x) - 1)*e^(-x)                        0]
+             [                       0 1/2*(e^(2*x) - 1)*e^(-x) 1/2*(e^(2*x) + 1)*e^(-x)                        0]
+             [1/2*(e^(2*x) - 1)*e^(-x)                        0                        0 1/2*(e^(2*x) + 1)*e^(-x)]
+-
+         """
+         if not self.is_square():
+             raise ValueError("exp only defined on square matrices")
+
+
+diff --git a/sage/interfaces/maxima.py b/sage/interfaces/maxima.py
+index 27b1e98a6ac..4829560f98b 100644
+--- a/sage/interfaces/maxima.py
++++ b/sage/interfaces/maxima.py
+@@ -622,11 +622,6 @@ def _start(self):
+             sage: m.is_running()
+             True
+ 
+-        Test that we can use more than 256MB RAM (see :trac:`6772`)::
+-
+-            sage: a = maxima(10)^(10^5)
+-            sage: b = a^600              # long time -- about 10-15 seconds
+-
+         """
+         Expect._start(self)
+         self._sendline(r":lisp (defun tex-derivative (x l r) (tex (if $derivabbrev (tex-dabbrev x) (tex-d x '\\partial)) l r lop rop ))")
+@@ -634,9 +629,6 @@ def _start(self):
+         # Don't use ! for factorials (#11539)
+         self._sendline(":lisp (remprop 'mfactorial 'grind)")
+ 
+-        # Remove limit on the max heapsize (since otherwise it defaults
+-        # to 256MB with ECL).
+-        self._sendline(":lisp (ext:set-limit 'ext:heap-size 0)")
+         self._eval_line('0;')
+ 
+         # set random seed
+
+diff --git a/sage/interfaces/expect.py b/sage/interfaces/expect.py
+index 68ae715e4c3..84adf0341b5 100644
+--- a/sage/interfaces/expect.py
++++ b/sage/interfaces/expect.py
+@@ -620,7 +620,7 @@ def quit(self, verbose=False):
+ 
+             sage: a = maxima('y')
+             sage: maxima.quit(verbose=True)
+-            Exiting Maxima with PID ... running .../bin/maxima...
++            Exiting Maxima with PID ... running ...maxima...
+             sage: a._check_valid()
+             Traceback (most recent call last):
+             ...
+
+diff --git a/sage/calculus/calculus.py b/sage/calculus/calculus.py
+index 1384c2a1cd2..e34a70d59b0 100644
+--- a/sage/calculus/calculus.py
++++ b/sage/calculus/calculus.py
+@@ -1187,8 +1187,18 @@ def limit(ex, dir=None, taylor=False, algorithm='maxima', **argv):
+         e
+         sage: f.limit(x=5)
+         7776/3125
+-        sage: f.limit(x=1.2)
++
++    Domain to real, a regression in 5.46.0, see https://sf.net/p/maxima/bugs/4138 ::
++
++        sage: maxima_calculus.eval("domain:real")
++        ...
++        sage: f.limit(x=1.2).n()
+         2.06961575467...
++        sage: maxima_calculus.eval("domain:complex");
++        ...
++
++    Otherwise, it works ::
++
+         sage: f.limit(x=I, taylor=True)
+         (-I + 1)^I
+         sage: f(x=1.2)
+@@ -1204,7 +1214,7 @@ def limit(ex, dir=None, taylor=False, algorithm='maxima', **argv):
+ 
+         sage: var('a')
+         a
+-        sage: limit(x^a,x=0)
++        sage: limit(x^a,x=0) # random - maxima 5.46.0 does not need extra assumption
+         Traceback (most recent call last):
+         ...
+         ValueError: Computation failed since Maxima requested additional
+@@ -1216,7 +1226,7 @@ def limit(ex, dir=None, taylor=False, algorithm='maxima', **argv):
+     With this example, Maxima is looking for a LOT of information::
+ 
+         sage: assume(a>0)
+-        sage: limit(x^a,x=0)
++        sage: limit(x^a,x=0) # random - maxima 5.46.0 does not need extra assumption
+         Traceback (most recent call last):
+         ...
+         ValueError: Computation failed since Maxima requested additional
+@@ -1225,7 +1235,7 @@ def limit(ex, dir=None, taylor=False, algorithm='maxima', **argv):
+          more details)
+         Is a an integer?
+         sage: assume(a,'integer')
+-        sage: limit(x^a, x=0)
++        sage: limit(x^a, x=0) # random - maxima 5.46.0 does not need extra assumption
+         Traceback (most recent call last):
+         ...
+         ValueError: Computation failed since Maxima requested additional
+@@ -2252,10 +2262,10 @@ def symbolic_expression_from_maxima_string(x, equals_sub=False, maxima=maxima):
+         True
+         sage: sefms("x # 3") == SR(x != 3)
+         True
+-        sage: solve([x != 5], x)
+-        [[x - 5 != 0]]
++        sage: solve([x != 5], x) in [[[x - 5 != 0]], [[x < 5], [5 < x]]]
++        True
+         sage: solve([2*x==3, x != 5], x)
+-        [[x == (3/2), (-7/2) != 0]]
++        [[x == (3/2)...
+ 
+     Make sure that we don't accidentally pick up variables in the maxima namespace (:trac:`8734`)::
+ 
+diff --git a/sage/functions/exp_integral.py b/sage/functions/exp_integral.py
+index e6c888c64b6..fb0e2235e2b 100644
+--- a/sage/functions/exp_integral.py
++++ b/sage/functions/exp_integral.py
+@@ -601,8 +601,8 @@ class Function_log_integral_offset(BuiltinFunction):
+         1/log(x)
+         sage: f.integrate(x)
+         -x*log_integral(2) + x*log_integral(x) - Ei(2*log(x))
+-        sage: Li(x).integrate(x,2.0,4.5)
+-        -2.5*log_integral(2) + 5.799321147411334
++        sage: Li(x).integrate(x,2.0,4.5).n()
++        3.18641169711760
+         sage: N(f.integrate(x,2.0,3.0))   # abs tol 1e-15
+         0.601621785860587
+ 
+diff --git a/sage/interfaces/maxima_lib.py b/sage/interfaces/maxima_lib.py
+index c263ac65f02..d6313cba055 100644
+--- a/sage/interfaces/maxima_lib.py
++++ b/sage/interfaces/maxima_lib.py
+@@ -934,8 +934,15 @@ def sr_limit(self, expr, v, a, dir=None):
+             e
+             sage: limit(f,x = 5)
+             7776/3125
+-            sage: limit(f,x = 1.2)
++
++        Domain to real, a regression in 5.46.0, see https://sf.net/p/maxima/bugs/4138 ::
++
++            sage: maxima_calculus.eval("domain:real")
++            ...
++            sage: limit(f,x = 1.2).n()
+             2.06961575467...
++            sage: maxima_calculus.eval("domain:complex");
++            ...
+             sage: var('a')
+             a
+             sage: limit(x^a,x=0)
+@@ -947,7 +954,7 @@ def sr_limit(self, expr, v, a, dir=None):
+             for more details)
+             Is a positive, negative or zero?
+             sage: assume(a>0)
+-            sage: limit(x^a,x=0)
++            sage: limit(x^a,x=0) # random - not needed for maxima 5.46.0
+             Traceback (most recent call last):
+             ...
+             ValueError: Computation failed ...
+diff --git a/sage/symbolic/integration/integral.py b/sage/symbolic/integration/integral.py
+index c82e9ed73c3..e84ad357ee2 100644
+--- a/sage/symbolic/integration/integral.py
++++ b/sage/symbolic/integration/integral.py
+@@ -741,14 +741,14 @@ def integrate(expression, v=None, a=None, b=None, algorithm=None, hold=False):
+ 
+         sage: _ = var('x,y')
+         sage: f = log(x^2+y^2)
+-        sage: res = integral(f,x,0.0001414, 1.); res
++        sage: res = integral(f,x,1414/10^7, 1); res
+         Traceback (most recent call last):
+         ...
+-        ValueError: Computation failed since Maxima requested additional constraints; using the 'assume' command before evaluation *may* help (example of legal syntax is 'assume(50015104*y^2-50015103>0)', see `assume?` for more details)
+-        Is 50015104*y^2-50015103 positive, negative or zero?
++        ValueError: Computation failed since Maxima requested additional constraints; using the 'assume' command before evaluation *may* help ...
++        Is ... positive, negative or zero?
+         sage: assume(y>1)
+-        sage: res = integral(f,x,0.0001414, 1.); res
+-        2*y*arctan(1.0/y) - 2*y*arctan(0.0001414/y) + 1.0*log(1.0*y^2 + 1.0) - 0.0001414*log(1.0*y^2 + 1.9993959999999997e-08) - 1.9997172
++        sage: res = integral(f,x,1414/10^7, 1); res
++        -2*y*arctan(707/5000000/y) + 2*y*arctan(1/y) + log(y^2 + 1) - 707/5000000*log(y^2 + 499849/25000000000000) - 4999293/2500000
+         sage: nres = numerical_integral(f.subs(y=2), 0.0001414, 1.); nres
+         (1.4638323264144..., 1.6251803529759...e-14)
+         sage: res.subs(y=2).n()
+diff --git a/sage/symbolic/relation.py b/sage/symbolic/relation.py
+index 94813315181..a72ab547c76 100644
+--- a/sage/symbolic/relation.py
++++ b/sage/symbolic/relation.py
+@@ -1787,8 +1787,8 @@ def solve_ineq_fourier(ineq, vars=None):
+         sage: y = var('y')
+         sage: solve_ineq_fourier([x+y<9,x-y>4],[x,y])
+         [[y + 4 < x, x < -y + 9, y < (5/2)]]
+-        sage: solve_ineq_fourier([x+y<9,x-y>4],[y,x])
+-        [[y < min(x - 4, -x + 9)]]
++        sage: solve_ineq_fourier([x+y<9,x-y>4],[y,x])[0][0](x=42)
++        y < -33
+ 
+         sage: solve_ineq_fourier([x^2>=0])
+         [[x < +Infinity]]
+
+diff --git a/sage/calculus/calculus.py b/sage/calculus/calculus.py
+index e34a70d59b0..0051f7afd33 100644
+--- a/sage/calculus/calculus.py
++++ b/sage/calculus/calculus.py
+@@ -140,7 +140,7 @@
+ maxima (:trac:`32898`) for now::
+ 
+     sage: M = i*matrix([[pi]])
+-    sage: e^M # not tested, requires patched maxima
++    sage: e^M  # not tested, requires patched maxima
+     [-1]
+     sage: M = i*matrix([[pi,0],[0,2*pi]])
+     sage: e^M
+
+diff --git a/sage/calculus/calculus.py b/sage/calculus/calculus.py
+index 0051f7afd33..b766ffb50f5 100644
+--- a/sage/calculus/calculus.py
++++ b/sage/calculus/calculus.py
+@@ -1214,7 +1214,7 @@ def limit(ex, dir=None, taylor=False, algorithm='maxima', **argv):
+ 
+         sage: var('a')
+         a
+-        sage: limit(x^a,x=0) # random - maxima 5.46.0 does not need extra assumption
++        sage: limit(x^a,x=0)  # random - maxima 5.46.0 does not need extra assumption
+         Traceback (most recent call last):
+         ...
+         ValueError: Computation failed since Maxima requested additional
+
+diff --git a/sage/calculus/calculus.py b/sage/calculus/calculus.py
+index b766ffb50f5..4ae0efd31b2 100644
+--- a/sage/calculus/calculus.py
++++ b/sage/calculus/calculus.py
+@@ -1226,7 +1226,7 @@ def limit(ex, dir=None, taylor=False, algorithm='maxima', **argv):
+     With this example, Maxima is looking for a LOT of information::
+ 
+         sage: assume(a>0)
+-        sage: limit(x^a,x=0) # random - maxima 5.46.0 does not need extra assumption
++        sage: limit(x^a,x=0)  # random - maxima 5.46.0 does not need extra assumption
+         Traceback (most recent call last):
+         ...
+         ValueError: Computation failed since Maxima requested additional
+
+diff --git a/sage/calculus/calculus.py b/sage/calculus/calculus.py
+index 4ae0efd31b2..ccb8219062b 100644
+--- a/sage/calculus/calculus.py
++++ b/sage/calculus/calculus.py
+@@ -1235,7 +1235,7 @@ def limit(ex, dir=None, taylor=False, algorithm='maxima', **argv):
+          more details)
+         Is a an integer?
+         sage: assume(a,'integer')
+-        sage: limit(x^a, x=0) # random - maxima 5.46.0 does not need extra assumption
++        sage: limit(x^a, x=0)  # random - maxima 5.46.0 does not need extra assumption
+         Traceback (most recent call last):
+         ...
+         ValueError: Computation failed since Maxima requested additional
+
+diff --git a/sage/interfaces/maxima_lib.py b/sage/interfaces/maxima_lib.py
+index d6313cba055..bba8504aa92 100644
+--- a/sage/interfaces/maxima_lib.py
++++ b/sage/interfaces/maxima_lib.py
+@@ -954,7 +954,7 @@ def sr_limit(self, expr, v, a, dir=None):
+             for more details)
+             Is a positive, negative or zero?
+             sage: assume(a>0)
+-            sage: limit(x^a,x=0) # random - not needed for maxima 5.46.0
++            sage: limit(x^a,x=0)  # random - not needed for maxima 5.46.0
+             Traceback (most recent call last):
+             ...
+             ValueError: Computation failed ...
+
+diff --git a/sage/matrix/matrix2.pyx b/sage/matrix/matrix2.pyx
+index c66e6d1606a..15914b0be3e 100644
+--- a/sage/matrix/matrix2.pyx
++++ b/sage/matrix/matrix2.pyx
+@@ -15428,7 +15428,7 @@ cdef class Matrix(Matrix1):
+         Sparse matrices are handled correctly (:trac:`28935`), but may
+         require a patched version of maxima (:trac:`32898`) for now::
+ 
+-            sage: matrix.diagonal([0], sparse=True).exp() # not tested, requires patched maxima
++            sage: matrix.diagonal([0], sparse=True).exp()  # not tested, requires patched maxima
+             [1]
+             sage: matrix.zero(CBF, 2, sparse=True).exp()
+             [1.000000000000000                 0]
+
+diff --git a/sage/functions/exp_integral.py b/sage/functions/exp_integral.py
+index fb0e2235e2b..f314e525145 100644
+--- a/sage/functions/exp_integral.py
++++ b/sage/functions/exp_integral.py
+@@ -601,8 +601,8 @@ class Function_log_integral_offset(BuiltinFunction):
+         1/log(x)
+         sage: f.integrate(x)
+         -x*log_integral(2) + x*log_integral(x) - Ei(2*log(x))
+-        sage: Li(x).integrate(x,2.0,4.5).n()
+-        3.18641169711760
++        sage: Li(x).integrate(x,2.0,4.5).n(digits=10)
++        3.186411697
+         sage: N(f.integrate(x,2.0,3.0))   # abs tol 1e-15
+         0.601621785860587
+ 

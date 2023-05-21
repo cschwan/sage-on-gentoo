@@ -7,23 +7,20 @@ PYTHON_COMPAT=( python3_{9..11} )
 PYTHON_REQ_USE="readline,sqlite"
 DISTUTILS_USE_PEP517=setuptools
 
-inherit desktop distutils-r1 multiprocessing toolchain-funcs git-r3
+inherit desktop distutils-r1 multiprocessing pypi toolchain-funcs
 
-EGIT_REPO_URI="https://github.com/sagemath/sage.git"
-EGIT_BRANCH=develop
-EGIT_CHECKOUT_DIR="${WORKDIR}/${P}"
-KEYWORDS=""
-
+MY_PN="sagemath-standard"
+MY_P="${MY_PN}-${PV}"
 DESCRIPTION="Math software for abstract and numerical computations"
 HOMEPAGE="https://www.sagemath.org"
-S="${WORKDIR}/${P}/src"
+SRC_URI="$(pypi_sdist_url --no-normalize "${MY_PN}")
+        mirror://sagemath/gap-4.12.2.patch.xz"
+KEYWORDS="~amd64 ~amd64-linux ~ppc-macos ~x64-macos"
 
 LICENSE="GPL-2"
 SLOT="0"
-SAGE_USE="bliss meataxe"
+SAGE_USE=""
 IUSE="debug +doc jmol latex test X ${SAGE_USE}"
-
-RESTRICT="mirror"
 
 DEPEND="
 	~dev-gap/gap-recommended-4.12.2
@@ -90,8 +87,6 @@ DEPEND="
 	virtual/cblas
 
 	test? ( ~sci-mathematics/sage_docbuild-${PV}[${PYTHON_USEDEP}] )
-	bliss? ( ~sci-libs/bliss-0.77 )
-	meataxe? ( sci-mathematics/shared_meataxe )
 "
 
 RDEPEND="
@@ -149,37 +144,20 @@ PATCHES=(
 	"${FILESDIR}"/sage_exec-9.3.patch
 	"${FILESDIR}"/${PN}-9.3-jupyter.patch
 	"${FILESDIR}"/${PN}-9.3-forcejavatmp.patch
-	"${FILESDIR}"/${PN}-9.7-neutering.patch
+	"${FILESDIR}"/${PN}-9.8-neutering.patch
 	"${FILESDIR}"/${PN}-9.8-build_ext.patch
-	"${FILESDIR}"/35344.patch
 	"${FILESDIR}"/maxima-5.46.0.patch
 )
+
+S="${WORKDIR}/${MY_P}"
 
 pkg_setup() {
 	# needed since Ticket #14460
 	tc-export CC
 }
 
-src_unpack() {
-	git-r3_src_unpack
-
-	default
-}
-
 python_prepare_all() {
-	# From sage 9.4 the official setup.py is in pkgs/sagemath-standard
-	# We need it in place before patching in 9.6 because of issue #693
-	cp ../pkgs/sagemath-standard/setup.py setup.py || die "failed to copy the right setup.py"
-
-	# get rid of sage_setup so the installed is used
-	rm -rf sage_setup
-
 	distutils-r1_python_prepare_all
-
-	einfo "generating setup.cfg and al. - be patient"
-	pushd "${S}/../build/pkgs/sagelib"
-	SAGE_ROOT="${S}/.." PATH="${S}/../build/bin:${PATH}"  ./bootstrap || die "cannot generate setup.cfg and al."
-	popd
 
 	# Turn on debugging capability if required
 	if use debug ; then
@@ -229,6 +207,10 @@ python_install() {
 python_install_all() {
 	distutils-r1_python_install_all
 
+        # install license - uncompressed as it can be read.
+        docompress -x /usr/share/doc/"${PF}"
+        newdoc LICENSE.txt COPYING.txt
+
 	if use X ; then
 		doicon "${S}"/sage/ext_data/notebook-ipython/logo.svg
 		newmenu - sage-sage.desktop <<-EOF
@@ -243,8 +225,6 @@ python_install_all() {
 			Terminal=true
 		EOF
 	fi
-
-	dodoc ../COPYING.txt
 
 	# install links for the jupyter kernel
 	# We have to be careful of removing prefix if present
@@ -293,7 +273,7 @@ pkg_postinst() {
 	einfo ""
 	einfo "To test a Sage installation with 4 parallel processes run the following command:"
 	einfo ""
-	einfo "  sage -tp 4 --all"
+	einfo "  sage -tp 4 --installed"
 	einfo ""
 	einfo "Note that testing Sage may take more than an hour depending on your"
 	einfo "processor(s). You _will_ see failures but many of them are harmless"

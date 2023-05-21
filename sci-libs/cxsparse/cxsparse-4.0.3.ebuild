@@ -34,65 +34,65 @@ multilib_src_test() {
 	# Programs assume that they can access the Matrix folder in ${S}
 	ln -s "${S}/Matrix"
 	# Run demo files
-	./cs_idemo < Matrix/t2
-	./cs_ldemo < Matrix/t2
-	./cs_demo1 < Matrix/t1
-	./cs_demo2 < Matrix/t1
-	./cs_demo2 < Matrix/fs_183_1
-	./cs_demo2 < Matrix/west0067
-	./cs_demo2 < Matrix/lp_afiro
-	./cs_demo2 < Matrix/ash219
-	./cs_demo2 < Matrix/mbeacxc
-	./cs_demo2 < Matrix/bcsstk01
-	./cs_demo3 < Matrix/bcsstk01
-	./cs_demo2 < Matrix/bcsstk16
-	./cs_demo3 < Matrix/bcsstk16
-	./cs_di_demo1 < Matrix/t1
-	./cs_di_demo2 < Matrix/t1
-	./cs_di_demo2 < Matrix/fs_183_1
-	./cs_di_demo2 < Matrix/west0067
-	./cs_di_demo2 < Matrix/lp_afiro
-	./cs_di_demo2 < Matrix/ash219
-	./cs_di_demo2 < Matrix/mbeacxc
-	./cs_di_demo2 < Matrix/bcsstk01
-	./cs_di_demo3 < Matrix/bcsstk01
-	./cs_di_demo2 < Matrix/bcsstk16
-	./cs_di_demo3 < Matrix/bcsstk16
-	./cs_dl_demo1 < Matrix/t1
-	./cs_dl_demo2 < Matrix/t1
-	./cs_dl_demo2 < Matrix/fs_183_1
-	./cs_dl_demo2 < Matrix/west0067
-	./cs_dl_demo2 < Matrix/lp_afiro
-	./cs_dl_demo2 < Matrix/ash219
-	./cs_dl_demo2 < Matrix/mbeacxc
-	./cs_dl_demo2 < Matrix/bcsstk01
-	./cs_dl_demo3 < Matrix/bcsstk01
-	./cs_dl_demo2 < Matrix/bcsstk16
-	./cs_dl_demo3 < Matrix/bcsstk16
-	./cs_ci_demo1 < Matrix/t2
-	./cs_ci_demo2 < Matrix/t2
-	./cs_ci_demo2 < Matrix/t3
-	./cs_ci_demo2 < Matrix/t4
-	./cs_ci_demo2 < Matrix/c_west0067
-	./cs_ci_demo2 < Matrix/c_mbeacxc
-	./cs_ci_demo2 < Matrix/young1c
-	./cs_ci_demo2 < Matrix/qc324
-	./cs_ci_demo2 < Matrix/neumann
-	./cs_ci_demo2 < Matrix/c4
-	./cs_ci_demo3 < Matrix/c4
-	./cs_ci_demo2 < Matrix/mhd1280b
-	./cs_ci_demo3 < Matrix/mhd1280b
-	./cs_cl_demo1 < Matrix/t2
-	./cs_cl_demo2 < Matrix/t2
-	./cs_cl_demo2 < Matrix/t3
-	./cs_cl_demo2 < Matrix/t4
-	./cs_cl_demo2 < Matrix/c_west0067
-	./cs_cl_demo2 < Matrix/c_mbeacxc
-	./cs_cl_demo2 < Matrix/young1c
-	./cs_cl_demo2 < Matrix/qc324
-	./cs_cl_demo2 < Matrix/neumann
-	./cs_cl_demo2 < Matrix/c4
-	./cs_cl_demo3 < Matrix/c4
-	./cs_cl_demo2 < Matrix/mhd1280b
-	./cs_cl_demo3 < Matrix/mhd1280b
+	./cs_idemo < Matrix/t2 || die "failed testing"
+	./cs_ldemo < Matrix/t2 || die "failed testing"
+	./cs_demo1 < Matrix/t1 || die "failed testing"
+	./cs_demo2 < Matrix/t1 || die "failed testing"
+	./cs_demo2 < Matrix/fs_183_1 || die "failed testing"
+	./cs_demo2 < Matrix/west0067 || die "failed testing"
+	./cs_demo2 < Matrix/lp_afiro || die "failed testing"
+	./cs_demo2 < Matrix/ash219 || die "failed testing"
+	./cs_demo2 < Matrix/mbeacxc || die "failed testing"
+	./cs_demo2 < Matrix/bcsstk01 || die "failed testing"
+	./cs_demo3 < Matrix/bcsstk01 || die "failed testing"
+	./cs_demo2 < Matrix/bcsstk16 || die "failed testing"
+	./cs_demo3 < Matrix/bcsstk16 || die "failed testing"
+	./cs_di_demo1 < Matrix/t1 || die "failed testing"
+	./cs_di_demo2 < Matrix/t1 || die "failed testing"
+	./cs_di_demo2 < Matrix/fs_183_1 || die "failed testing"
+	./cs_di_demo2 < Matrix/west0067 || die "failed testing"
+	./cs_di_demo2 < Matrix/lp_afiro || die "failed testing"
+	./cs_di_demo2 < Matrix/ash219 || die "failed testing"
+	./cs_di_demo2 < Matrix/mbeacxc || die "failed testing"
+	./cs_di_demo2 < Matrix/bcsstk01 || die "failed testing"
+	./cs_di_demo3 < Matrix/bcsstk01 || die "failed testing"
+	./cs_di_demo2 < Matrix/bcsstk16 || die "failed testing"
+	./cs_di_demo3 < Matrix/bcsstk16 || die "failed testing"
+	./cs_dl_demo1 < Matrix/t1 || die "failed testing"
+	./cs_dl_demo2 < Matrix/t1 || die "failed testing"
+	./cs_dl_demo2 < Matrix/fs_183_1 || die "failed testing"
+	./cs_dl_demo2 < Matrix/west0067 || die "failed testing"
+	./cs_dl_demo2 < Matrix/lp_afiro || die "failed testing"
+	./cs_dl_demo2 < Matrix/ash219 || die "failed testing"
+	./cs_dl_demo2 < Matrix/mbeacxc || die "failed testing"
+	./cs_dl_demo2 < Matrix/bcsstk01 || die "failed testing"
+	./cs_dl_demo3 < Matrix/bcsstk01 || die "failed testing"
+	./cs_dl_demo2 < Matrix/bcsstk16 || die "failed testing"
+	./cs_dl_demo3 < Matrix/bcsstk16 || die "failed testing"
+	./cs_ci_demo1 < Matrix/t2 || die "failed testing"
+	./cs_ci_demo2 < Matrix/t2 || die "failed testing"
+	./cs_ci_demo2 < Matrix/t3 || die "failed testing"
+	./cs_ci_demo2 < Matrix/t4 || die "failed testing"
+	./cs_ci_demo2 < Matrix/c_west0067 || die "failed testing"
+	./cs_ci_demo2 < Matrix/c_mbeacxc || die "failed testing"
+	./cs_ci_demo2 < Matrix/young1c || die "failed testing"
+	./cs_ci_demo2 < Matrix/qc324 || die "failed testing"
+	./cs_ci_demo2 < Matrix/neumann || die "failed testing"
+	./cs_ci_demo2 < Matrix/c4 || die "failed testing"
+	./cs_ci_demo3 < Matrix/c4 || die "failed testing"
+	./cs_ci_demo2 < Matrix/mhd1280b || die "failed testing"
+	./cs_ci_demo3 < Matrix/mhd1280b || die "failed testing"
+	./cs_cl_demo1 < Matrix/t2 || die "failed testing"
+	./cs_cl_demo2 < Matrix/t2 || die "failed testing"
+	./cs_cl_demo2 < Matrix/t3 || die "failed testing"
+	./cs_cl_demo2 < Matrix/t4 || die "failed testing"
+	./cs_cl_demo2 < Matrix/c_west0067 || die "failed testing"
+	./cs_cl_demo2 < Matrix/c_mbeacxc || die "failed testing"
+	./cs_cl_demo2 < Matrix/young1c || die "failed testing"
+	./cs_cl_demo2 < Matrix/qc324 || die "failed testing"
+	./cs_cl_demo2 < Matrix/neumann || die "failed testing"
+	./cs_cl_demo2 < Matrix/c4 || die "failed testing"
+	./cs_cl_demo3 < Matrix/c4 || die "failed testing"
+	./cs_cl_demo2 < Matrix/mhd1280b || die "failed testing"
+	./cs_cl_demo3 < Matrix/mhd1280b || die "failed testing"
 }
