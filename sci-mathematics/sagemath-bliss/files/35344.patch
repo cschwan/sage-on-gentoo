@@ -1,0 +1,151 @@
+From 321bd7e95a62953df6a95a9d9d206e61559a13d1 Mon Sep 17 00:00:00 2001
+From: Antonio Rojas <arojas@archlinux.org>
+Date: Fri, 10 Dec 2021 18:54:53 +0100
+Subject: [PATCH 2/6] Port to changes in canonical_form
+
+---
+ src/sage/graphs/bliss.pyx | 26 +++++++++++---------------
+ 1 file changed, 11 insertions(+), 15 deletions(-)
+
+diff --git a/sage/graphs/bliss.pyx b/sage/graphs/bliss.pyx
+index 8c99ae1a184..717edd0b41b 100644
+--- a/sage/graphs/bliss.pyx
++++ b/sage/graphs/bliss.pyx
+@@ -47,22 +47,22 @@ cdef extern from "bliss/graph.hh" namespace "bliss":
+     cdef cppclass Graph(AbstractGraph):
+         Graph(const unsigned int)
+         void add_edge(const unsigned int, const unsigned int)
+-        void find_automorphisms(Stats&, void (*)(void*, unsigned int,
+-                                                 const unsigned int*), void*)
+         void change_color(const unsigned int, const unsigned int)
+-        const unsigned int* canonical_form(Stats&, void (*)(void*, unsigned int,
+-                                                            const unsigned int*), void*)
++        const unsigned int* canonical_form(Stats&)
++
++cdef extern from "bliss/digraph.hh" namespace "bliss":
+ 
+     cdef cppclass Digraph(AbstractGraph):
+         Digraph(const unsigned int)
+         void add_edge(const unsigned int, const unsigned int)
+-        void find_automorphisms(Stats&, void (*)(void*, unsigned int,
+-                                                 const unsigned int*), void*)
+-        void change_color(const unsigned int, const unsigned int)
+-        const unsigned int* canonical_form(Stats&, void (*)(void*, unsigned int,
+-                                                            const unsigned int*), void*)
++        void change_color(const unsigned int, const unsigned int);
++        const unsigned int* canonical_form(Stats&)
+         unsigned int get_hash()
+ 
++cdef extern from "bliss_find_automorphisms.h":
++
++    void bliss_find_automorphisms(Graph*, void (*)(void*, unsigned int, const unsigned int*), void*, Stats&)
++    void bliss_find_automorphisms(Digraph*, void (*)(void*, unsigned int, const unsigned int*), void*, Stats&)
+ 
+ cdef int encoding_numbits(int n):
+     r"""
+@@ -124,10 +124,6 @@ cdef void add_gen(void *user_param, unsigned int n, const unsigned int *aut):
+ 
+     sig_free(done)
+ 
+-
+-cdef void empty_hook(void *user_param, unsigned int n, const unsigned int *aut):
+-    return
+-
+ #####################################################
+ # constructing bliss graphs from edge lists
+ #####################################################
+@@ -346,10 +342,10 @@ cdef canonical_form_from_edge_list(int Vnr, list Vout, list Vin, int Lnr=1, list
+ 
+     if directed:
+         d = bliss_digraph_from_labelled_edges(Vnr, Lnr, Vout, Vin, labels, partition)
+-        aut = d.canonical_form(s, empty_hook, NULL)
++        aut = d.canonical_form(s)
+     else:
+         g = bliss_graph_from_labelled_edges(Vnr, Lnr, Vout, Vin, labels, partition)
+-        aut = g.canonical_form(s, empty_hook, NULL)
++        aut = g.canonical_form(s)
+ 
+     for i in range(len(Vout)):
+         x = Vout[i]
+
+From d0bc4ed984b3e2a73eef358482d8678892bd36b2 Mon Sep 17 00:00:00 2001
+From: Antonio Rojas <arojas@archlinux.org>
+Date: Sun, 26 Dec 2021 14:05:37 +0100
+Subject: [PATCH 3/6] Reimplement old find_automorphisms API in an external
+ header
+
+---
+ src/sage/graphs/bliss.pyx                  |  4 ++--
+ src/sage/graphs/bliss_find_automorphisms.h | 22 ++++++++++++++++++++++
+ 2 files changed, 24 insertions(+), 2 deletions(-)
+ create mode 100644 src/sage/graphs/bliss_find_automorphisms.h
+
+diff --git a/sage/graphs/bliss.pyx b/sage/graphs/bliss.pyx
+index 717edd0b41b..0670069067d 100644
+--- a/sage/graphs/bliss.pyx
++++ b/sage/graphs/bliss.pyx
+@@ -639,11 +639,11 @@ cdef automorphism_group_gens_from_edge_list(int Vnr, Vout, Vin, int Lnr=1, label
+ 
+     if directed:
+         d = bliss_digraph_from_labelled_edges(Vnr, Lnr, Vout, Vin, labels, partition)
+-        d.find_automorphisms(s, add_gen, <void*>data)
++        bliss_find_automorphisms(d, add_gen, <void*>data, s)
+         del d
+     else:
+         g = bliss_graph_from_labelled_edges(Vnr, Lnr, Vout, Vin, labels, partition)
+-        g.find_automorphisms(s, add_gen, <void*>data)
++        bliss_find_automorphisms(g, add_gen, <void*>data, s)
+         del g
+ 
+     return [[cyc for cyc in gen if cyc[0] is not None] for gen in gens]
+diff --git a/sage/graphs/bliss_find_automorphisms.h b/sage/graphs/bliss_find_automorphisms.h
+new file mode 100644
+index 00000000000..a2c084a163e
+--- /dev/null
++++ b/sage/graphs/bliss_find_automorphisms.h
+@@ -0,0 +1,22 @@
++#include <bliss/graph.hh>
++#include <bliss/digraph.hh>
++
++inline void bliss_find_automorphisms(bliss::Graph *graph, void (*hook)(void *user_param, unsigned int n, const unsigned int *aut), void *hook_user_param, bliss::Stats s)
++{
++  auto report_aut = [&](unsigned int n, const unsigned int *aut) -> void {
++    if(hook)
++      (*hook)(hook_user_param, n, aut);
++  };
++
++  graph->find_automorphisms(s, report_aut);
++}
++
++inline void bliss_find_automorphisms(bliss::Digraph *graph, void (*hook)(void *user_param, unsigned int n, const unsigned int *aut), void *hook_user_param, bliss::Stats s)
++{
++  auto report_aut = [&](unsigned int n, const unsigned int *aut) -> void {
++    if(hook)
++      (*hook)(hook_user_param, n, aut);
++  };
++
++  graph->find_automorphisms(s, report_aut);
++}
+
+From 363cdb986b06fcdc9920f6facdb3a820f68f1b1a Mon Sep 17 00:00:00 2001
+From: Antonio Rojas <arojas@archlinux.org>
+Date: Sat, 25 Mar 2023 11:35:16 +0100
+Subject: [PATCH 6/6] Fix pycodestyle
+
+---
+ src/sage/graphs/bliss.pyx | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/sage/graphs/bliss.pyx b/sage/graphs/bliss.pyx
+index 0670069067d..f64be1c4d30 100644
+--- a/sage/graphs/bliss.pyx
++++ b/sage/graphs/bliss.pyx
+@@ -55,7 +55,7 @@ cdef extern from "bliss/digraph.hh" namespace "bliss":
+     cdef cppclass Digraph(AbstractGraph):
+         Digraph(const unsigned int)
+         void add_edge(const unsigned int, const unsigned int)
+-        void change_color(const unsigned int, const unsigned int);
++        void change_color(const unsigned int, const unsigned int)
+         const unsigned int* canonical_form(Stats&)
+         unsigned int get_hash()
+ 
