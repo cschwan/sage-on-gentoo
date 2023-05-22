@@ -18,10 +18,8 @@ KEYWORDS="~amd64 ~amd64-linux ~ppc-macos ~x64-macos"
 LICENSE="GPL-2+"
 SLOT="0"
 
-# No real tests here in spite of QA warnings.
 RESTRICT="test mirror"
 
-# pplpy needs to be installed to get documentation folder right :(
 DEPEND="~sci-mathematics/sage-${PV}[${PYTHON_USEDEP}]
 	~sci-libs/bliss-0.77"
 BDEPEND=""
