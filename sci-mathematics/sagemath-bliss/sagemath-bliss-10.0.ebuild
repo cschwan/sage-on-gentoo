@@ -30,7 +30,7 @@ PATCHES=(
 )
 
 python_install() {
-        distutils-r1_python_install
+	distutils-r1_python_install
 
-        find "${ED}$(python_get_sitedir)/sage" -name interpreter -delete
+	find "${D}$(python_get_sitedir)/sage" -name interpreter -delete
 }
