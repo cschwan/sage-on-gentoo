@@ -56,6 +56,8 @@ sci-libs/bliss
 dev-libs/igraph
 sci-mathematics/shared_meataxe
 ~sci-mathematics/sagemath-meataxe-10.0
+sci-libs/libsirocco
+~sci-mathematics/sagemath-sirocco-10.0
 # optional packages
 ~sci-mathematics/database_knotinfo-2022.7.1
 sci-mathematics/surface_dynamics
