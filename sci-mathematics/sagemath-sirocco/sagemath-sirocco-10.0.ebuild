@@ -18,9 +18,15 @@ KEYWORDS="~amd64 ~amd64-linux ~ppc-macos ~x64-macos"
 LICENSE="GPL-2+"
 SLOT="0"
 
-RESTRICT="test mirror"
+RESTRICT="test"
 
 DEPEND="~sci-mathematics/sage-${PV}[${PYTHON_USEDEP}]
 	sci-libs/libsirocco"
 BDEPEND=""
 RDEPEND="${DEPEND}"
+
+python_install() {
+	distutils-r1_python_install
+
+	find "${D}$(python_get_sitedir)/sage" -name interpreter -delete
+}
