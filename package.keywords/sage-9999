@@ -54,6 +54,7 @@ sci-libs/modular_decomposition
 sci-libs/bliss
 dev-libs/igraph
 sci-mathematics/shared_meataxe
+sci-libs/libsirocco
 # optional packages
 ~sci-mathematics/database_knotinfo-2022.7.1
 sci-mathematics/surface_dynamics
