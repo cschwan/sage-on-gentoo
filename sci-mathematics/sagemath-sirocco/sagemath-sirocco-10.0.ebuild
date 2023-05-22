@@ -11,8 +11,8 @@ PYPI_NO_NORMALIZE=1
 
 inherit distutils-r1 pypi
 
-DESCRIPTION="Matrices over small finite fields with meataxe in sage"
-HOMEPAGE="https://www.sagemath.org"
+DESCRIPTION="Certified root continuation with sirocco in sage"
+HOMEPAGE="https://www.sagemath.org https://pypi.org/project/sagemath-sirocco/"
 KEYWORDS="~amd64 ~amd64-linux ~ppc-macos ~x64-macos"
 
 LICENSE="GPL-2+"
@@ -21,6 +21,6 @@ SLOT="0"
 RESTRICT="test mirror"
 
 DEPEND="~sci-mathematics/sage-${PV}[${PYTHON_USEDEP}]
-	sci-mathematics/shared_meataxe"
+	sci-libs/libsirocco"
 BDEPEND=""
 RDEPEND="${DEPEND}"
