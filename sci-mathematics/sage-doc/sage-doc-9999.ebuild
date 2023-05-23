@@ -15,7 +15,6 @@ KEYWORDS=""
 
 DESCRIPTION="Build the sage documentation"
 HOMEPAGE="https://www.sagemath.org"
-S="${WORKDIR}/${P}"
 
 LICENSE="GPL-2"
 SLOT="0"
@@ -43,7 +42,7 @@ RDEPEND=""
 
 PATCHES=(
 	"${FILESDIR}"/${PN}-9.5-neutering.patch
-	"${FILESDIR}"/${PN}-9.7-makefile_and_parallel.patch
+	"${FILESDIR}"/${PN}-10.1-makefile.patch
 )
 
 HTML_DOCS="${WORKDIR}/build_doc/html/*"
