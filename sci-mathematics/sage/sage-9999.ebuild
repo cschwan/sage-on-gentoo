@@ -6,6 +6,7 @@ EAPI=8
 PYTHON_COMPAT=( python3_{9..11} )
 PYTHON_REQ_USE="readline,sqlite"
 DISTUTILS_USE_PEP517=setuptools
+DISTUTILS_EXT=1
 
 inherit desktop distutils-r1 multiprocessing toolchain-funcs git-r3
 
@@ -149,7 +150,6 @@ PATCHES=(
 	"${FILESDIR}"/${PN}-9.3-jupyter.patch
 	"${FILESDIR}"/${PN}-9.3-forcejavatmp.patch
 	"${FILESDIR}"/${PN}-9.7-neutering.patch
-	"${FILESDIR}"/${PN}-9.8-build_ext.patch
 	"${FILESDIR}"/35344.patch
 	"${FILESDIR}"/maxima-5.46.0.patch
 )
