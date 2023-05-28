@@ -148,6 +148,7 @@ PATCHES=(
 	"${FILESDIR}"/sage_exec-9.3.patch
 	"${FILESDIR}"/${PN}-9.3-forcejavatmp.patch
 	"${FILESDIR}"/${PN}-9.7-neutering.patch
+	"${FILESDIR}"/${PN}-9.8-build_ext.patch
 	"${FILESDIR}"/35344.patch
 )
 
