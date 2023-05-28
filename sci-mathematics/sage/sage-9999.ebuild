@@ -6,6 +6,7 @@ EAPI=8
 PYTHON_COMPAT=( python3_{9..11} )
 PYTHON_REQ_USE="readline,sqlite"
 DISTUTILS_USE_PEP517=setuptools
+DISTUTILS_EXT=1
 
 inherit desktop distutils-r1 multiprocessing toolchain-funcs git-r3
 
@@ -54,7 +55,6 @@ DEPEND="
 	>=dev-python/psutil-4.4.0[${PYTHON_USEDEP}]
 	>=dev-python/six-1.11.0[${PYTHON_USEDEP}]
 	>=dev-python/sphinx-5.2.0[${PYTHON_USEDEP}]
-	<dev-python/sphinx-6.0.0
 	~media-gfx/threejs-sage-extension-122
 	media-libs/gd[jpeg,png]
 	media-libs/libpng:0=
@@ -146,12 +146,9 @@ REQUIRED_USE="doc? ( jmol )
 PATCHES=(
 	"${FILESDIR}"/${PN}-9.2-env.patch
 	"${FILESDIR}"/sage_exec-9.3.patch
-	"${FILESDIR}"/${PN}-9.3-jupyter.patch
 	"${FILESDIR}"/${PN}-9.3-forcejavatmp.patch
 	"${FILESDIR}"/${PN}-9.7-neutering.patch
-	"${FILESDIR}"/${PN}-9.8-build_ext.patch
 	"${FILESDIR}"/35344.patch
-	"${FILESDIR}"/maxima-5.46.0.patch
 )
 
 pkg_setup() {
@@ -292,7 +289,7 @@ pkg_postinst() {
 	einfo ""
 	einfo "To test a Sage installation with 4 parallel processes run the following command:"
 	einfo ""
-	einfo "  sage -tp 4 --all"
+	einfo "  sage -tp 4 --installed"
 	einfo ""
 	einfo "Note that testing Sage may take more than an hour depending on your"
 	einfo "processor(s). You _will_ see failures but many of them are harmless"
