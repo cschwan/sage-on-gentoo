@@ -149,7 +149,6 @@ PATCHES=(
 	"${FILESDIR}"/${PN}-9.3-forcejavatmp.patch
 	"${FILESDIR}"/${PN}-9.7-neutering.patch
 	"${FILESDIR}"/35344.patch
-	"${FILESDIR}"/maxima-5.46.0.patch
 )
 
 pkg_setup() {
@@ -290,7 +289,7 @@ pkg_postinst() {
 	einfo ""
 	einfo "To test a Sage installation with 4 parallel processes run the following command:"
 	einfo ""
-	einfo "  sage -tp 4 --all"
+	einfo "  sage -tp 4 --installed"
 	einfo ""
 	einfo "Note that testing Sage may take more than an hour depending on your"
 	einfo "processor(s). You _will_ see failures but many of them are harmless"
