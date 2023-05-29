@@ -16,7 +16,7 @@ KEYWORDS="~amd64 ~x86"
 IUSE="test"
 
 DEPEND="
-	>=dev-python/jupyter_packaging-0.12.2[${PYTHON_USEDEP}]
+	>=dev-python/jupyter-packaging-0.12.2[${PYTHON_USEDEP}]
 	test? ( dev-python/hypothesis[${PYTHON_USEDEP}] )"
 RDEPEND=">=dev-python/ipykernel-4.5.1[${PYTHON_USEDEP}]
 	>=dev-python/nbformat-4.2.0[${PYTHON_USEDEP}]
