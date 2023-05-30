@@ -33,7 +33,6 @@ RESTRICT="test mirror"
 
 # pplpy needs to be installed to get documentation folder right :(
 DEPEND="~dev-python/pplpy-0.8.7:=[doc,${PYTHON_USEDEP}]"
-BDEPEND="app-portage/gentoolkit"
 RDEPEND=""
 
 PATCHES=(
@@ -77,6 +76,7 @@ python_prepare_all() {
 	# set lib/lib64 - only useful for GAP_LIB_DIR for now
 	sed -i "s:@libdir@:$(get_libdir):g" _sage_conf/_conf.py
 	# Fix finding pplpy documentation with intersphinx
-	local pplpyver=`equery -q l -F '$name-$fullversion' pplpy:0`
-	sed -i "s:@PPLY_DOC_VERS@:${pplpyver}:" _sage_conf/_conf.py
+	local pplpyver=$(best_version dev-python/pplpy)
+	# using pplpyver from character 11 to remove "dev-python/"
+	sed -i "s:@PPLY_DOC_VERS@:${pplpyver:11}:" _sage_conf/_conf.py
 }
