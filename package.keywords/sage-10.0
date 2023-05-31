@@ -63,7 +63,7 @@ sci-libs/libsirocco
 sci-mathematics/surface_dynamics
 sci-mathematics/sage-flatsurf
 # "downstream" snappy packages
-sci-mathematics/snappy_manifolds
+sci-mathematics/snappy-manifolds
 sci-mathematics/knot_floer_homology
 sci-mathematics/spherogram
 sci-mathematics/plink
