@@ -23,10 +23,10 @@ DEPEND="sci-mathematics/planarity
 	dev-python/cython[${PYTHON_USEDEP}]"
 RDEPEND="${DEPEND}
 	>=sci-mathematics/snappy-3.0[${PYTHON_USEDEP}]
-	>=sci-mathematics/snappy_manifolds-1.1.2[${PYTHON_USEDEP}]
+	>=sci-mathematics/snappy-manifolds-1.1.2[${PYTHON_USEDEP}]
 	>=sci-mathematics/knot_floer_homology-1.1[${PYTHON_USEDEP}]"
 # uses sage as a proxy for planarity install detection
-BDEPEND="test? ( sci-mathematics/snappy_manifolds[${PYTHON_USEDEP}]
+BDEPEND="test? ( sci-mathematics/snappy-manifolds[${PYTHON_USEDEP}]
 		sci-mathematics/knot_floer_homology[${PYTHON_USEDEP}] )"
 
 RESTRICT="!test? ( test )"
