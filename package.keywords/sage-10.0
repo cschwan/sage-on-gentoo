@@ -60,7 +60,7 @@ sci-libs/libsirocco
 ~sci-mathematics/sagemath-sirocco-10.0
 # optional packages
 ~sci-mathematics/database_knotinfo-2022.7.1
-sci-mathematics/surface_dynamics
+sci-mathematics/surface-dynamics
 sci-mathematics/sage-flatsurf
 # "downstream" snappy packages
 sci-mathematics/snappy-manifolds
