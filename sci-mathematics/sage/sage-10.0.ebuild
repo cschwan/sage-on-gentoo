@@ -13,8 +13,7 @@ MY_PN="sagemath-standard"
 MY_P="${MY_PN}-${PV}"
 DESCRIPTION="Math software for abstract and numerical computations"
 HOMEPAGE="https://www.sagemath.org"
-SRC_URI="$(pypi_sdist_url --no-normalize "${MY_PN}")
-        mirror://sagemath/gap-4.12.2.patch.xz"
+SRC_URI="$(pypi_sdist_url --no-normalize "${MY_PN}")"
 KEYWORDS="~amd64 ~amd64-linux ~ppc-macos ~x64-macos"
 
 LICENSE="GPL-2"
