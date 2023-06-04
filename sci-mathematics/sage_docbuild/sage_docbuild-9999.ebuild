@@ -8,7 +8,7 @@ DISTUTILS_USE_PEP517=setuptools
 
 inherit distutils-r1 git-r3
 
-EGIT_REPO_URI="https://github.com/sagemath/sage.git"
+EGIT_REPO_URI="https://github.com/vbraun/sage.git"
 EGIT_BRANCH=develop
 EGIT_CHECKOUT_DIR="${WORKDIR}/${P}"
 KEYWORDS=""
@@ -32,7 +32,6 @@ PDEPEND="~sci-mathematics/sage-${PV}[${PYTHON_USEDEP}]"
 
 PATCHES=(
 	"${FILESDIR}"/sage-9.3-linguas.patch
-	"${FILESDIR}"/sphinx-7.patch
 )
 
 src_unpack(){
