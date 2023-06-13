@@ -73,7 +73,8 @@ DEPEND="
 	>=sci-mathematics/rw-0.7
 	~sci-mathematics/sage_setup-${PV}[${PYTHON_USEDEP}]
 	~sci-mathematics/sage-conf-${PV}[${PYTHON_USEDEP}]
-	~sci-mathematics/singular-4.3.1_p3[readline]
+	>=sci-mathematics/singular-4.3.1_p3[readline]
+	<sci-mathematics/singular-4.3.2_p2
 	>=sci-libs/brial-1.2.10
 	~sci-libs/givaro-4.1.1
 	>=sci-libs/gsl-2.3
