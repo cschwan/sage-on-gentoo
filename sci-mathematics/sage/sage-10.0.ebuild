@@ -69,7 +69,8 @@ DEPEND="
 	>=sci-mathematics/rw-0.7
 	~sci-mathematics/sage_setup-${PV}[${PYTHON_USEDEP}]
 	~sci-mathematics/sage-conf-${PV}[${PYTHON_USEDEP}]
-	~sci-mathematics/singular-4.3.1_p3[readline]
+	>=sci-mathematics/singular-4.3.1_p3[readline]
+	<sci-mathematics/singular-4.3.2_p2
 	>=sci-libs/brial-1.2.10
 	~sci-libs/givaro-4.1.1
 	>=sci-libs/gsl-2.3
@@ -205,9 +206,9 @@ python_install() {
 python_install_all() {
 	distutils-r1_python_install_all
 
-        # install license - uncompressed as it can be read.
-        docompress -x /usr/share/doc/"${PF}"
-        newdoc LICENSE.txt COPYING.txt
+	# install license - uncompressed as it can be read.
+	docompress -x /usr/share/doc/"${PF}"
+	newdoc LICENSE.txt COPYING.txt
 
 	if use X ; then
 		doicon "${S}"/sage/ext_data/notebook-ipython/logo.svg
