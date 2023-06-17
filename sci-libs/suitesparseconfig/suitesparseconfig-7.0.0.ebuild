@@ -16,6 +16,11 @@ SLOT="0/7"
 KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~hppa ~ia64 ~mips ~ppc ~ppc64 ~sparc ~x86 ~amd64-linux ~x86-linux"
 IUSE="openmp"
 
+# we need to depend on blas as the cmake file looks for it.
+# It is also a runtime dependency as it has headers to link with blas
+DEPEND="virtual/blas"
+RDEPEND="${DEPEND}"
+
 S="${WORKDIR}/${Sparse_P}/SuiteSparse_config"
 
 pkg_pretend() {
