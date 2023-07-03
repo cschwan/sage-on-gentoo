@@ -1,0 +1,131 @@
+diff --git a/sage/doctest/control.py b/sage/doctest/control.py
+index 5aae3f0..0e16179 100644
+--- a/sage/doctest/control.py
++++ b/sage/doctest/control.py
+@@ -436,12 +436,6 @@ class DocTestController(SageObject):
+                 # that the package is actually installed).
+                 if 'optional' in options.optional:
+                     options.optional.discard('optional')
+-                    from sage.misc.package import list_packages
+-                    for pkg in list_packages('optional', local=True).values():
+-                        if pkg.name in options.hide:
+-                            continue
+-                        if pkg.is_installed() and pkg.installed_version == pkg.remote_version:
+-                            options.optional.add(pkg.name)
+ 
+                     from sage.features import package_systems
+                     options.optional.update(system.name
+diff --git a/sage/misc/all.py b/sage/misc/all.py
+index da4bebd..101885e 100644
+--- a/sage/misc/all.py
++++ b/sage/misc/all.py
+@@ -39,12 +39,6 @@ from .mrange import xmrange, mrange, xmrange_iter, mrange_iter, cartesian_produc
+ 
+ from .fpickle import pickle_function, unpickle_function
+ 
+-from .dist import install_scripts
+-
+-lazy_import('sage.misc.package', ('installed_packages', 'is_package_installed',
+-                                  'standard_packages', 'optional_packages',
+-                                  'experimental_packages', 'package_versions'))
+-
+ lazy_import('sage.misc.pager', 'pager')
+ 
+ lazy_import('sage.misc.sagedoc', ['browse_sage_doc',
+diff --git a/sage/tests/cmdline.py b/sage/tests/cmdline.py
+index bfb3dfa..c7a190c 100644
+--- a/sage/tests/cmdline.py
++++ b/sage/tests/cmdline.py
+@@ -13,9 +13,7 @@ test.spyx
+ --advanced
+ -c
+ --cython
+---dev
+ --ecl
+---experimental
+ --fixdoctests
+ --gap
+ --gdb
+@@ -28,7 +26,6 @@ test.spyx
+ --maxima
+ --min
+ --mwrank
+---optional
+ --preparse
+ --python
+ --python3
+@@ -40,7 +37,6 @@ test.spyx
+ --sh
+ --singular
+ --sqlite3
+---standard
+ --startuptime
+ -t
+ -v
+@@ -594,32 +590,6 @@ def test_executable(args, input="", timeout=100.0, pydebug_ignore_warnings=False
+         sage: ret
+         0
+ 
+-    Check some things requiring an internet connection::
+-
+-        sage: (out, err, ret) = test_executable(["sage", "--standard"])  # optional - internet
+-        sage: out.find("cython") >= 0  # optional - internet
+-        True
+-        sage: err  # optional - internet
+-        ''
+-        sage: ret  # optional - internet
+-        0
+-
+-        sage: (out, err, ret) = test_executable(["sage", "--optional"])  # optional - internet
+-        sage: out.find("database_cremona_ellcurve") >= 0  # optional - internet
+-        True
+-        sage: err  # optional - internet
+-        ''
+-        sage: ret  # optional - internet
+-        0
+-
+-        sage: (out, err, ret) = test_executable(["sage", "--experimental"])  # optional - internet
+-        sage: out.find("valgrind") >= 0  # optional - internet
+-        True
+-        sage: err  # optional - internet
+-        ''
+-        sage: ret  # optional - internet
+-        0
+-
+     Check an illegal command line option.  This outputs an error to stdout,
+     but we allow stderr in case this changes in the future::
+ 
+diff --git a/setup.cfg.m4 b/setup.cfg.m4
+index bbd9133..03603c1 100644
+--- a/setup.cfg.m4
++++ b/setup.cfg.m4
+@@ -98,18 +98,10 @@ scripts =
+     bin/sage-massif
+     bin/sage-omega
+     bin/sage-valgrind
+-    bin/sage-venv-config
+     bin/sage-version.sh
+     bin/sage-cleaner
+-    # Only makes sense in sage-the-distribution. TODO: Move to another installation script.
+-    bin/sage-list-packages
+     # Uncategorized scripts in alphabetical order
+     bin/math-readline
+-    bin/sage-env
+-    # sage-env-config -- installed by sage_conf
+-    # sage-env-config.in -- not to be installed
+-    bin/sage-grep
+-    bin/sage-grepdoc
+     bin/sage-inline-fortran
+     bin/sage-ipynb2rst
+     bin/sage-ipython
+@@ -117,10 +109,6 @@ scripts =
+     bin/sage-num-threads.py
+     bin/sage-preparse
+     bin/sage-python
+-    bin/sage-rebase.bat
+-    bin/sage-rebase.sh
+-    bin/sage-rebaseall.bat
+-    bin/sage-rebaseall.sh
+     bin/sage-run
+     bin/sage-run-cython
+     bin/sage-startuptime.py
