@@ -129,6 +129,8 @@ RDEPEND="
 	jmol? ( sci-chemistry/sage-jmol-bin )
 "
 
+BDEPEND="sys-devel/autoconf"
+
 PDEPEND="
 	doc? ( ~sci-mathematics/sage-doc-${PV} )
 	latex? (
@@ -163,6 +165,14 @@ src_unpack() {
 	default
 }
 
+bootstrap_sage_m4() {
+	einfo "generating setup.cfg and al. - be patient"
+	pushd "${S}"/../
+	./bootstrap
+	popd
+}
+
+
 python_prepare_all() {
 	# From sage 9.4 the official setup.py is in pkgs/sagemath-standard
 	# We need it in place before patching in 9.6 because of issue #693
@@ -173,10 +183,7 @@ python_prepare_all() {
 
 	distutils-r1_python_prepare_all
 
-	einfo "generating setup.cfg and al. - be patient"
-	pushd "${S}/../build/pkgs/sagelib"
-	SAGE_ROOT="${S}/.." PATH="${S}/../build/bin:${PATH}"  ./bootstrap || die "cannot generate setup.cfg and al."
-	popd
+	bootstrap_sage_m4
 
 	# Turn on debugging capability if required
 	if use debug ; then
