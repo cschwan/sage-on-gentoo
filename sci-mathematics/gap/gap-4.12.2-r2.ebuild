@@ -12,7 +12,7 @@ SRC_URI="https://github.com/gap-system/gap/releases/download/v${PV}/${P}-core.ta
 LICENSE="GPL-2+"
 SLOT="0/8"
 KEYWORDS="~amd64 ~x86 ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos"
-IUSE="cpu_flags_x86_popcnt debug emacs memcheck readline valgrind vim-syntax"
+IUSE="cpu_flags_x86_popcnt debug emacs memcheck readline valgrind"
 REQUIRED_USE="valgrind? ( memcheck )"
 
 MINIMUM_PKGS="
@@ -28,7 +28,6 @@ DEPEND="dev-libs/gmp:=
 
 RDEPEND="${DEPEND}
 	emacs? ( >=app-editors/emacs-23.1:* )
-	vim-syntax? ( app-vim/vim-gap )
 	!<sci-mathematics/gap-4.12.0
 	!sci-mathematics/gap-core"
 PDEPEND="${MINIMUM_PKGS}"
