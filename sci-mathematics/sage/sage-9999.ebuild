@@ -21,8 +21,7 @@ S="${WORKDIR}/${P}/src"
 
 LICENSE="GPL-2"
 SLOT="0"
-SAGE_USE="bliss meataxe"
-IUSE="debug +doc jmol latex test X ${SAGE_USE}"
+IUSE="debug +doc jmol latex test X"
 
 RESTRICT="mirror"
 
@@ -91,8 +90,6 @@ DEPEND="
 	virtual/cblas
 
 	test? ( ~sci-mathematics/sage_docbuild-${PV}[${PYTHON_USEDEP}] )
-	bliss? ( ~sci-libs/bliss-0.77 )
-	meataxe? ( sci-mathematics/shared_meataxe )
 "
 
 RDEPEND="
@@ -172,7 +169,6 @@ bootstrap_sage_m4() {
 	popd
 }
 
-
 python_prepare_all() {
 	# From sage 9.4 the official setup.py is in pkgs/sagemath-standard
 	# We need it in place before patching in 9.6 because of issue #693
@@ -198,7 +194,7 @@ python_prepare_all() {
 			sage/ext_data/nbconvert/postprocess.py
 
 	# Remove sage's package management system, git capabilities and associated tests.
-	cp -f "${FILESDIR}"/${PN}-9.6-package.py sage/misc/package.py
+	cp -f "${FILESDIR}"/${PN}-10.1-package.py sage/misc/package.py
 	rm -f sage/misc/dist.py
 	rm -rf sage/dev
 
@@ -210,10 +206,6 @@ python_prepare_all() {
 
 python_configure_all() {
 	export SAGE_NUM_THREADS=$(makeopts_jobs)
-
-	for option in ${SAGE_USE}; do
-		use $option && export WANT_$option="True"
-	done
 }
 
 python_install() {
