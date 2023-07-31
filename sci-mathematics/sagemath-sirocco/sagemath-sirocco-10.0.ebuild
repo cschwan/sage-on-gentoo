@@ -22,7 +22,7 @@ RESTRICT="test"
 
 DEPEND="~sci-mathematics/sage-${PV}[${PYTHON_USEDEP}]
 	sci-libs/libsirocco"
-BDEPEND=""
+BDEPEND="dev-python/cython[${PYTHON_USEDEP}]"
 RDEPEND="${DEPEND}"
 
 python_install() {
