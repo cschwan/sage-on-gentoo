@@ -52,12 +52,12 @@ sci-mathematics/ExportSageNB
 #########################
 sci-libs/modular_decomposition
 sci-libs/bliss
-sci-mathematics/sagemath-bliss
+~sci-mathematics/sagemath-bliss-9999 **
 dev-libs/igraph
 sci-mathematics/shared_meataxe
-sci-mathematics/sagemath-meataxe
+~sci-mathematics/sagemath-meataxe-9999 **
 sci-libs/libsirocco
-sci-mathematics/sagemath-sirocco
+~sci-mathematics/sagemath-sirocco-9999 **
 # optional packages
 ~sci-mathematics/database_knotinfo-2023.6.1
 sci-mathematics/surface-dynamics
