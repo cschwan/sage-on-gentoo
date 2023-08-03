@@ -162,11 +162,21 @@ src_unpack() {
 	default
 }
 
-bootstrap_sage_m4() {
+git_snapshot_prepare() {
 	einfo "generating setup.cfg and al. - be patient"
 	pushd "${S}"/../
 	./bootstrap
 	popd
+
+	einfo "getting into the sdist state"
+	# removing file excluded by MANIFEST.in.
+	# Those files are not included in released in pypi sdist tarball but
+	# present in git snapshot and and up being installed if not removed.
+	local files_to_remove=$(sed -e '/^exclude/!d' -e "s/exclude //" MANIFEST.in)
+	for i in "${files_to_remove}"; do
+		echo "Removing ${i}"
+		rm "${i}"
+	done
 }
 
 python_prepare_all() {
@@ -179,7 +189,7 @@ python_prepare_all() {
 
 	distutils-r1_python_prepare_all
 
-	bootstrap_sage_m4
+	git_snapshot_prepare
 
 	# Turn on debugging capability if required
 	if use debug ; then
