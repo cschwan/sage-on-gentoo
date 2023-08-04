@@ -17,6 +17,14 @@ case ${EAPI} in
 	*) die "${ECLASS}: EAPI ${EAPI:-0} not supported" ;;
 esac
 
+BDEPEND="
+	sys-devel/autoconf
+	dev-python/build[${PYTHON_USEDEP}]
+"
+
+# Standard variable for all sagemath git checkout packages
+EGIT_CHECKOUT_DIR="${WORKDIR}/git_checkout"
+
 # @FUNCTION: sage_git_to_sdist
 # @USAGE: <optional sagemath package name>
 # @DESCRIPTION:
