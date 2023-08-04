@@ -8,16 +8,19 @@ PYTHON_REQ_USE="readline,sqlite"
 DISTUTILS_USE_PEP517=setuptools
 DISTUTILS_EXT=1
 
-inherit desktop distutils-r1 multiprocessing toolchain-funcs git-r3
+inherit desktop distutils-r1 multiprocessing toolchain-funcs git-r3 sage-git
+
+MY_PN="sagemath-standard"
+MY_P="${MY_PN}-${PV}"
 
 EGIT_REPO_URI="https://github.com/vbraun/sage.git"
 EGIT_BRANCH=develop
-EGIT_CHECKOUT_DIR="${WORKDIR}/${P}"
+EGIT_CHECKOUT_DIR="${WORKDIR}/git_checkout"
 KEYWORDS=""
 
 DESCRIPTION="Math software for abstract and numerical computations"
 HOMEPAGE="https://www.sagemath.org"
-S="${WORKDIR}/${P}/src"
+S="${WORKDIR}/${MY_P}"
 
 LICENSE="GPL-2"
 SLOT="0"
@@ -126,7 +129,8 @@ RDEPEND="
 	jmol? ( sci-chemistry/sage-jmol-bin )
 "
 
-BDEPEND="sys-devel/autoconf"
+BDEPEND="sys-devel/autoconf
+	dev-python/build[${PYTHON_USEDEP}]"
 
 PDEPEND="
 	doc? ( ~sci-mathematics/sage-doc-${PV} )
@@ -158,38 +162,13 @@ pkg_setup() {
 
 src_unpack() {
 	git-r3_src_unpack
+	sage-git_src_unpack "${MY_PN}"
 
 	default
 }
 
-git_snapshot_prepare() {
-	einfo "generating setup.cfg and al. - be patient"
-	pushd "${S}"/../
-	./bootstrap
-	popd
-
-	einfo "getting into the sdist state"
-	# removing file excluded by MANIFEST.in.
-	# Those files are not included in released in pypi sdist tarball but
-	# present in git snapshot and and up being installed if not removed.
-	local files_to_remove=$(sed -e '/^exclude/!d' -e "s/exclude //" MANIFEST.in)
-	for i in "${files_to_remove}"; do
-		echo "Removing ${i}"
-		rm "${i}"
-	done
-}
-
 python_prepare_all() {
-	# From sage 9.4 the official setup.py is in pkgs/sagemath-standard
-	# We need it in place before patching in 9.6 because of issue #693
-	cp ../pkgs/sagemath-standard/setup.py setup.py || die "failed to copy the right setup.py"
-
-	# get rid of sage_setup so the installed is used
-	rm -rf sage_setup
-
 	distutils-r1_python_prepare_all
-
-	git_snapshot_prepare
 
 	# Turn on debugging capability if required
 	if use debug ; then
@@ -235,6 +214,10 @@ python_install() {
 python_install_all() {
 	distutils-r1_python_install_all
 
+	# install license - uncompressed as it can be read.
+	docompress -x /usr/share/doc/"${PF}"
+	newdoc LICENSE.txt COPYING.txt
+
 	if use X ; then
 		doicon "${S}"/sage/ext_data/notebook-ipython/logo.svg
 		newmenu - sage-sage.desktop <<-EOF
@@ -249,8 +232,6 @@ python_install_all() {
 			Terminal=true
 		EOF
 	fi
-
-	dodoc ../COPYING.txt
 
 	# install links for the jupyter kernel
 	# We have to be careful of removing prefix if present
