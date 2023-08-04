@@ -44,7 +44,7 @@ sage-git_src_unpack() {
 	einfo "generating setup.cfg and al. - be patient"
 	./bootstrap || die "boostrap failed"
 	einfo "creating a ${my_pkg} sdist"
-	python -m build -n -s \
+	python -m build -n -x -s \
 		"pkgs/${my_pkg}" \
 		--outdir "${WORKDIR}" || die "failed to create sdist"
 	popd
