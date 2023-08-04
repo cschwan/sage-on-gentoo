@@ -15,7 +15,6 @@ MY_P="${MY_PN}-${PV}"
 
 EGIT_REPO_URI="https://github.com/vbraun/sage.git"
 EGIT_BRANCH=develop
-EGIT_CHECKOUT_DIR="${WORKDIR}/git_checkout"
 KEYWORDS=""
 
 DESCRIPTION="Math software for abstract and numerical computations"
@@ -38,7 +37,6 @@ DEPEND="
 	~dev-lisp/ecls-21.2.1
 	>=dev-python/cypari2-2.1.3[${PYTHON_USEDEP}]
 	>=dev-python/cysignals-1.11.2[${PYTHON_USEDEP}]
-	>=dev-python/cython-0.29.24[${PYTHON_USEDEP}]
 	>=dev-python/docutils-0.12[${PYTHON_USEDEP}]
 	>=dev-python/gmpy-2.1.0_beta5[${PYTHON_USEDEP}]
 	>=dev-python/ipykernel-4.6.0[${PYTHON_USEDEP}]
@@ -129,8 +127,7 @@ RDEPEND="
 	jmol? ( sci-chemistry/sage-jmol-bin )
 "
 
-BDEPEND="sys-devel/autoconf
-	dev-python/build[${PYTHON_USEDEP}]"
+BDEPEND=">=dev-python/cython-0.29.24[${PYTHON_USEDEP}]"
 
 PDEPEND="
 	doc? ( ~sci-mathematics/sage-doc-${PV} )
