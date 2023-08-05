@@ -18,8 +18,7 @@ KEYWORDS="~amd64 ~amd64-linux ~ppc-macos ~x64-macos"
 
 LICENSE="GPL-2"
 SLOT="0"
-SAGE_USE=""
-IUSE="debug +doc jmol latex test X ${SAGE_USE}"
+IUSE="debug +doc jmol latex test X"
 
 DEPEND="
 	~dev-gap/gap-recommended-4.12.2
@@ -183,10 +182,6 @@ python_prepare_all() {
 
 python_configure_all() {
 	export SAGE_NUM_THREADS=$(makeopts_jobs)
-
-	for option in ${SAGE_USE}; do
-		use $option && export WANT_$option="True"
-	done
 }
 
 python_install() {
