@@ -8,12 +8,20 @@ PYTHON_REQ_USE="readline,sqlite"
 DISTUTILS_USE_PEP517=setuptools
 DISTUTILS_EXT=1
 
-inherit desktop distutils-r1 multiprocessing toolchain-funcs git-r3 sage-git
+inherit desktop distutils-r1 multiprocessing toolchain-funcs
 
 MY_PN="sagemath-standard"
 MY_P="${MY_PN}-${PV}"
 
-EGIT_REPO_URI="https://github.com/vbraun/sage.git"
+if [[ ${PV} == 9999 ]]; then
+	inherit git-r3 sage-git
+	EGIT_REPO_URI="https://github.com/vbraun/sage.git"
+else
+	inherit pypi
+	SRC_URI="$(pypi_sdist_url --no-normalize "${MY_PN}")"
+	KEYWORDS="~amd64 ~amd64-linux ~ppc-macos ~x64-macos"
+	S="${WORKDIR}/${MY_P}"
+fi
 
 DESCRIPTION="Math software for abstract and numerical computations"
 HOMEPAGE="https://www.sagemath.org"
@@ -156,8 +164,10 @@ pkg_setup() {
 }
 
 src_unpack() {
-	git-r3_src_unpack
-	sage-git_src_unpack "${MY_PN}"
+	if [[ ${PV} == 9999 ]]; then
+		git-r3_src_unpack
+		sage-git_src_unpack "${MY_PN}"
+	fi
 
 	default
 }
