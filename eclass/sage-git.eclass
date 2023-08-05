@@ -23,7 +23,13 @@ BDEPEND="
 "
 
 # Standard variable for all sagemath git checkout packages
-EGIT_CHECKOUT_DIR="${WORKDIR}/git_checkout"
+if [[ -z ${EGIT_CHECKOUT_DIR} ]]; then
+	EGIT_CHECKOUT_DIR="${WORKDIR}/git_checkout"
+fi
+if [[ -z ${EGIT_BRANCH} ]]; then
+	EGIT_BRANCH=develop
+fi
+KEYWORDS=""
 
 # @FUNCTION: sage_git_to_sdist
 # @USAGE: <optional sagemath package name>
@@ -40,9 +46,9 @@ sage-git_src_unpack() {
 	fi
 
 	# Checking the requested distribution exists
-	[[ -d "${WORKDIR}/git_checkout/pkgs/${my_pkg}" ]] || die "${my_pkg} is not a valid sagemath subpackage"
+	[[ -d "${EGIT_CHECKOUT_DIR}/pkgs/${my_pkg}" ]] || die "${my_pkg} is not a valid sagemath subpackage"
 
-	pushd "${WORKDIR}/git_checkout"
+	pushd "${EGIT_CHECKOUT_DIR}"
 	einfo "Apply sdist patch if found"
 	# This is to apply any patch that will change the sdist
 	if [[ -e "${FILESDIR}/${my_pkg}-sdist.patch" ]]; then
