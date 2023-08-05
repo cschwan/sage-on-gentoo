@@ -19,6 +19,7 @@ else
 	inherit pypi
 	SRC_URI="$(pypi_sdist_url --no-normalize "${MY_PN}")"
 	KEYWORDS="~amd64 ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos"
+	S="${WORKDIR}/${MY_P}"
 fi
 
 DESCRIPTION="Tool to help install sage and sage related packages"
