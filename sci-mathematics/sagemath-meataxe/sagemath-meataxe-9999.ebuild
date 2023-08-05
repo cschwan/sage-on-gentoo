@@ -13,8 +13,6 @@ inherit distutils-r1
 if [[ ${PV} == 9999 ]]; then
 	inherit git-r3 sage-git
 	EGIT_REPO_URI="https://github.com/vbraun/sage.git"
-	EGIT_BRANCH=develop
-	KEYWORDS=""
 else
 	PYPI_NO_NORMALIZE=1
 	inherit pypi
