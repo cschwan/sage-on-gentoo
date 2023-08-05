@@ -6,16 +6,23 @@ EAPI=8
 PYTHON_COMPAT=( python3_{9..11} )
 DISTUTILS_USE_PEP517=setuptools
 
-inherit distutils-r1 git-r3
+inherit distutils-r1
 
-EGIT_REPO_URI="https://github.com/vbraun/sage.git"
-EGIT_BRANCH=develop
-EGIT_CHECKOUT_DIR="${WORKDIR}/${P}"
-KEYWORDS=""
+MY_PN="sage-docbuild"
+MY_P="${MY_PN}-${PV}"
+
+if [[ ${PV} == 9999 ]]; then
+	inherit git-r3 sage-git
+	EGIT_REPO_URI="https://github.com/vbraun/sage.git"
+else
+	inherit pypi
+	SRC_URI="$(pypi_sdist_url --no-normalize "${MY_PN}")"
+	KEYWORDS="~amd64 ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos"
+	S="${WORKDIR}/${MY_P}"
+fi
 
 DESCRIPTION="Tool to help install sage and sage related packages"
 HOMEPAGE="https://www.sagemath.org"
-S="${WORKDIR}/${P}/src"
 
 LICENSE="GPL-2"
 SLOT="0"
@@ -34,16 +41,11 @@ PATCHES=(
 	"${FILESDIR}"/sage-9.3-linguas.patch
 )
 
-src_unpack(){
-	git-r3_src_unpack
-
-	default
-}
-
-src_prepare(){
-	# Replace setup.* with the file files from the appropriate package.
-	# We don't point S to build/pkgs/${PN}/src because patch doesn't work on links
-	cp "${WORKDIR}/${P}/build/pkgs/${PN}"/src/setup.* . || die "failed to copy appropriate setuo files"
+src_unpack() {
+	if [[ ${PV} == 9999 ]]; then
+		git-r3_src_unpack
+		sage-git_src_unpack "${MY_PN}"
+	fi
 
 	default
 }
