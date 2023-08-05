@@ -14,8 +14,6 @@ MY_PN="sagemath-standard"
 MY_P="${MY_PN}-${PV}"
 
 EGIT_REPO_URI="https://github.com/vbraun/sage.git"
-EGIT_BRANCH=develop
-KEYWORDS=""
 
 DESCRIPTION="Math software for abstract and numerical computations"
 HOMEPAGE="https://www.sagemath.org"
