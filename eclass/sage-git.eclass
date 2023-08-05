@@ -68,7 +68,8 @@ sage-git_src_unpack() {
 	# "${S}" does not exist yet
 	mkdir -p "${S}"
 	# unpack
+	# Note that we catch the special case sage-conf/sage-conf_pypi here.
 	tar --strip-components=1 -C "${S}" \
-		-xvzf "${my_pkg}"-*.tar.gz || die "failed to unpack sdist"
+		-xvzf "${my_pkg%_pypi}"-*.tar.gz || die "failed to unpack sdist"
 	popd
 }
