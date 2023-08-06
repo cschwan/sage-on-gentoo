@@ -1,8 +1,8 @@
 diff --git a/sage/doctest/control.py b/sage/doctest/control.py
-index 5aae3f0..0e16179 100644
+index 4844662..d09f251 100644
 --- a/sage/doctest/control.py
 +++ b/sage/doctest/control.py
-@@ -436,12 +436,6 @@ class DocTestController(SageObject):
+@@ -473,12 +473,6 @@ class DocTestController(SageObject):
                  # that the package is actually installed).
                  if 'optional' in options.optional:
                      options.optional.discard('optional')
@@ -15,6 +15,22 @@ index 5aae3f0..0e16179 100644
  
                      from sage.features import package_systems
                      options.optional.update(system.name
+diff --git a/sage/misc/all.py b/sage/misc/all.py
+index e5a6418..d32ccbe 100644
+--- a/sage/misc/all.py
++++ b/sage/misc/all.py
+@@ -134,11 +134,6 @@ lazy_import('sage.misc.banner', 'banner', deprecation=34259)
+ lazy_import('sage.misc.dev_tools', 'runsnake', deprecation=34259)
+ lazy_import('sage.misc.edit_module', 'set_edit_template', deprecation=34259)
+ lazy_import('sage.misc.profiler', 'Profiler', deprecation=34259)
+-lazy_import('sage.misc.dist', 'install_scripts', deprecation=34259)
+ lazy_import('sage.misc.trace', 'trace', deprecation=34259)
+-lazy_import('sage.misc.package', ('installed_packages', 'is_package_installed',
+-                                  'standard_packages', 'optional_packages',
+-                                  'experimental_packages', 'package_versions'),
+-            deprecation=34259)
+ lazy_import('sage.misc.benchmark', 'benchmark', deprecation=34259)
+ lazy_import('sage.repl.interpreter', 'logstr', deprecation=34259)
 diff --git a/sage/tests/cmdline.py b/sage/tests/cmdline.py
 index bfb3dfa..c7a190c 100644
 --- a/sage/tests/cmdline.py
@@ -78,53 +94,33 @@ index bfb3dfa..c7a190c 100644
      Check an illegal command line option.  This outputs an error to stdout,
      but we allow stderr in case this changes in the future::
  
-diff --git a/setup.cfg.m4 b/setup.cfg.m4
-index bbd9133..03603c1 100644
---- a/setup.cfg.m4
-+++ b/setup.cfg.m4
-@@ -98,18 +98,10 @@ scripts =
-     bin/sage-massif
-     bin/sage-omega
-     bin/sage-valgrind
--    bin/sage-venv-config
-     bin/sage-version.sh
-     bin/sage-cleaner
--    # Only makes sense in sage-the-distribution. TODO: Move to another installation script.
--    bin/sage-list-packages
-     # Uncategorized scripts in alphabetical order
-     bin/math-readline
--    bin/sage-env
--    # sage-env-config -- installed by sage_conf
--    # sage-env-config.in -- not to be installed
--    bin/sage-grep
--    bin/sage-grepdoc
-     bin/sage-inline-fortran
-     bin/sage-ipynb2rst
-     bin/sage-ipython
-@@ -117,10 +109,6 @@ scripts =
-     bin/sage-num-threads.py
-     bin/sage-preparse
-     bin/sage-python
--    bin/sage-rebase.bat
--    bin/sage-rebase.sh
--    bin/sage-rebaseall.bat
--    bin/sage-rebaseall.sh
-     bin/sage-run
-     bin/sage-run-cython
-     bin/sage-startuptime.py
-diff --git a/sage/misc/all.py b/sage/misc/all.py
-index e5a6418..d32ccbe 100644
---- a/sage/misc/all.py
-+++ b/sage/misc/all.py
-@@ -134,11 +134,6 @@ lazy_import('sage.misc.banner', 'banner', deprecation=34259)
- lazy_import('sage.misc.dev_tools', 'runsnake', deprecation=34259)
- lazy_import('sage.misc.edit_module', 'set_edit_template', deprecation=34259)
- lazy_import('sage.misc.profiler', 'Profiler', deprecation=34259)
--lazy_import('sage.misc.dist', 'install_scripts', deprecation=34259)
- lazy_import('sage.misc.trace', 'trace', deprecation=34259)
--lazy_import('sage.misc.package', ('installed_packages', 'is_package_installed',
--                                  'standard_packages', 'optional_packages',
--                                  'experimental_packages', 'package_versions'),
--            deprecation=34259)
- lazy_import('sage.misc.benchmark', 'benchmark', deprecation=34259)
- lazy_import('sage.repl.interpreter', 'logstr', deprecation=34259)
+diff --git a/setup.cfg b/setup.cfg
+index 03a90b6..93534da 100644
+--- a/setup.cfg
++++ b/setup.cfg
+@@ -71,14 +71,9 @@ scripts =
+ 	bin/sage-massif
+ 	bin/sage-omega
+ 	bin/sage-valgrind
+-	bin/sage-venv-config
+ 	bin/sage-version.sh
+ 	bin/sage-cleaner
+-	bin/sage-list-packages
+ 	bin/math-readline
+-	bin/sage-env
+-	bin/sage-grep
+-	bin/sage-grepdoc
+ 	bin/sage-inline-fortran
+ 	bin/sage-ipynb2rst
+ 	bin/sage-ipython
+@@ -86,10 +81,6 @@ scripts =
+ 	bin/sage-num-threads.py
+ 	bin/sage-preparse
+ 	bin/sage-python
+-	bin/sage-rebase.bat
+-	bin/sage-rebase.sh
+-	bin/sage-rebaseall.bat
+-	bin/sage-rebaseall.sh
+ 	bin/sage-run
+ 	bin/sage-run-cython
+ 	bin/sage-startuptime.py

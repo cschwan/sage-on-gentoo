@@ -8,16 +8,24 @@ PYTHON_REQ_USE="readline,sqlite"
 DISTUTILS_USE_PEP517=setuptools
 DISTUTILS_EXT=1
 
-inherit desktop distutils-r1 multiprocessing toolchain-funcs git-r3
+inherit desktop distutils-r1 multiprocessing toolchain-funcs
 
-EGIT_REPO_URI="https://github.com/sagemath/sage.git"
-EGIT_BRANCH=develop
-EGIT_CHECKOUT_DIR="${WORKDIR}/${P}"
-KEYWORDS=""
+MY_PN="sagemath-standard"
+MY_P="${MY_PN}-${PV}"
+
+if [[ ${PV} == 9999 ]]; then
+	inherit git-r3 sage-git
+	EGIT_REPO_URI="https://github.com/vbraun/sage.git"
+else
+	inherit pypi
+	SRC_URI="$(pypi_sdist_url --no-normalize "${MY_PN}")"
+	KEYWORDS="~amd64 ~amd64-linux ~ppc-macos ~x64-macos"
+	S="${WORKDIR}/${MY_P}"
+fi
 
 DESCRIPTION="Math software for abstract and numerical computations"
 HOMEPAGE="https://www.sagemath.org"
-S="${WORKDIR}/${P}/src"
+S="${WORKDIR}/${MY_P}"
 
 LICENSE="GPL-2"
 SLOT="0"
@@ -35,7 +43,6 @@ DEPEND="
 	~dev-lisp/ecls-21.2.1
 	>=dev-python/cypari2-2.1.3[${PYTHON_USEDEP}]
 	>=dev-python/cysignals-1.11.2[${PYTHON_USEDEP}]
-	>=dev-python/cython-0.29.24[${PYTHON_USEDEP}]
 	>=dev-python/docutils-0.12[${PYTHON_USEDEP}]
 	>=dev-python/gmpy-2.1.0_beta5[${PYTHON_USEDEP}]
 	>=dev-python/ipykernel-4.6.0[${PYTHON_USEDEP}]
@@ -126,7 +133,7 @@ RDEPEND="
 	jmol? ( sci-chemistry/sage-jmol-bin )
 "
 
-BDEPEND="sys-devel/autoconf"
+BDEPEND=">=dev-python/cython-0.29.24[${PYTHON_USEDEP}]"
 
 PDEPEND="
 	doc? ( ~sci-mathematics/sage-doc-${PV} )
@@ -157,29 +164,16 @@ pkg_setup() {
 }
 
 src_unpack() {
-	git-r3_src_unpack
+	if [[ ${PV} == 9999 ]]; then
+		git-r3_src_unpack
+		sage-git_src_unpack "${MY_PN}"
+	fi
 
 	default
 }
 
-bootstrap_sage_m4() {
-	einfo "generating setup.cfg and al. - be patient"
-	pushd "${S}"/../
-	./bootstrap
-	popd
-}
-
 python_prepare_all() {
-	# From sage 9.4 the official setup.py is in pkgs/sagemath-standard
-	# We need it in place before patching in 9.6 because of issue #693
-	cp ../pkgs/sagemath-standard/setup.py setup.py || die "failed to copy the right setup.py"
-
-	# get rid of sage_setup so the installed is used
-	rm -rf sage_setup
-
 	distutils-r1_python_prepare_all
-
-	bootstrap_sage_m4
 
 	# Turn on debugging capability if required
 	if use debug ; then
@@ -225,6 +219,10 @@ python_install() {
 python_install_all() {
 	distutils-r1_python_install_all
 
+	# install license - uncompressed as it can be read.
+	docompress -x /usr/share/doc/"${PF}"
+	newdoc LICENSE.txt COPYING.txt
+
 	if use X ; then
 		doicon "${S}"/sage/ext_data/notebook-ipython/logo.svg
 		newmenu - sage-sage.desktop <<-EOF
@@ -239,8 +237,6 @@ python_install_all() {
 			Terminal=true
 		EOF
 	fi
-
-	dodoc ../COPYING.txt
 
 	# install links for the jupyter kernel
 	# We have to be careful of removing prefix if present

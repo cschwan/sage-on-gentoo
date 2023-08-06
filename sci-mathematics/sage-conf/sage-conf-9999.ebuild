@@ -10,15 +10,11 @@ DISTUTILS_USE_PEP517=setuptools
 inherit distutils-r1 prefix
 
 if [[ ${PV} == 9999 ]]; then
-	inherit git-r3
-	EGIT_REPO_URI="https://github.com/sagemath/sage.git"
-	EGIT_BRANCH=develop
-	EGIT_CHECKOUT_DIR="${WORKDIR}/${P}"
-	KEYWORDS=""
-	S="${WORKDIR}/${P}/pkgs/${PN}_pypi"
+	inherit git-r3 sage-git
+	EGIT_REPO_URI="https://github.com/vbraun/sage.git"
 else
-	PYPI_NO_NORMALIZE=1
 	inherit pypi
+	PYPI_NO_NORMALIZE=1
 	KEYWORDS="~amd64 ~amd64-linux ~ppc-macos ~x64-macos"
 fi
 
@@ -36,36 +32,19 @@ DEPEND="~dev-python/pplpy-0.8.7:=[doc,${PYTHON_USEDEP}]"
 RDEPEND=""
 
 PATCHES=(
-	"${FILESDIR}/${PN}-10.0.patch"
+	"${FILESDIR}/${PN}-9.7.patch"
 )
 
 src_unpack() {
 	if [[ ${PV} == 9999 ]]; then
 		git-r3_src_unpack
+		sage-git_src_unpack "${PN}_pypi"
 	fi
 
 	default
 }
 
-git_snapshot_prepare() {
-	# specific setup for sage-conf-9999
-	einfo "preparing the git snapshot"
-
-	# Get the real README.rst, not just a link.
-	# If we don't, a link to a file that doesn't exist is installed - not the file.
-	rm README.rst
-	cp ../sage-conf/README.rst .
-
-	# get the real setup.cfg otherwise it won't be patched
-	rm setup.cfg
-	cp ../sage-conf/setup.cfg setup.cfg
-}
-
 python_prepare_all() {
-	if [[ ${PV} == 9999 ]]; then
-		git_snapshot_prepare
-	fi
-
 	distutils-r1_python_prepare_all
 
 	# sage on gentoo environment variables
