@@ -17,10 +17,10 @@ SLOT="0"
 KEYWORDS="~amd64"
 
 DEPEND=">=sci-mathematics/sage-9.7[${PYTHON_USEDEP}]
-	dev-python/pplpy[${PYTHON_USEDEP}]
-	dev-python/cython[${PYTHON_USEDEP}]"
+	dev-python/pplpy[${PYTHON_USEDEP}]"
 RDEPEND="${DEPEND}"
-BDEPEND=""
+BDEPEND="dev-python/cython[${PYTHON_USEDEP}]
+	<dev-python/cython-3.0.0"
 
 PATCHES=(
 	"${FILESDIR}"/${PN}-0.4.7-sage9.7compat.patch
