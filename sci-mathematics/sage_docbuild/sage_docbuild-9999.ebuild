@@ -13,7 +13,7 @@ MY_P="${MY_PN}-${PV}"
 
 if [[ ${PV} == 9999 ]]; then
 	inherit git-r3 sage-git
-	EGIT_REPO_URI="https://github.com/sagemath/sage.git"
+	EGIT_REPO_URI="https://github.com/vbraun/sage.git"
 else
 	inherit pypi
 	SRC_URI="$(pypi_sdist_url --no-normalize "${MY_PN}")"
