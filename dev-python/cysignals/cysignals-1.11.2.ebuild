@@ -16,9 +16,10 @@ SLOT="0"
 KEYWORDS="~amd64 ~x86"
 IUSE=""
 
-DEPEND=">=dev-python/cython-0.29.24[${PYTHON_USEDEP}]
-	>=sci-mathematics/pari-2.13.0:="
+DEPEND=">=sci-mathematics/pari-2.13.0:="
 RDEPEND="${DEPEND}"
+BDEPEND=">=dev-python/cython-0.29.24[${PYTHON_USEDEP}]
+	<dev-python/cython-3.0.0"
 
 PATCHES=(
 	"${FILESDIR}"/${PN}-1.11.0-helper_loc.patch
