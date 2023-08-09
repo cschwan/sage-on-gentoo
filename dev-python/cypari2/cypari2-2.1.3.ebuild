@@ -17,9 +17,11 @@ KEYWORDS="~amd64 ~x86"
 IUSE=""
 
 DEPEND=">=sci-mathematics/pari-2.13:=[gmp,doc]
-	>=dev-python/cython-0.28[${PYTHON_USEDEP}]
 	dev-python/cysignals[${PYTHON_USEDEP}]"
 RDEPEND="${DEPEND}"
+BDEPEND=">=dev-python/cython-0.28[${PYTHON_USEDEP}]
+	<dev-python/cython-3.0.0"
+
 
 PATCHES=(
 	"${FILESDIR}"/0001-move-rebuild-out-of-build_ext-so-it-is-run-before-ev.patch
