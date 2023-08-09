@@ -19,12 +19,13 @@ SLOT="0"
 KEYWORDS="~amd64"
 
 DEPEND=">=sci-mathematics/sage-9.3[meataxe,${PYTHON_USEDEP}]
-	dev-python/cython[${PYTHON_USEDEP}]
 	sci-mathematics/shared_meataxe
 	sci-mathematics/modular_resolution"
 RDEPEND="${DEPEND}
 	dev-gap/p_group_cohomology_helper
 	sci-mathematics/singular"
+BDEPEND="dev-python/cython[${PYTHON_USEDEP}]
+	<dev-python/cython-3.0.0"
 
 PATCHES=(
 	"${FILESDIR}"/${PN}-3.3.2-pyx.patch
