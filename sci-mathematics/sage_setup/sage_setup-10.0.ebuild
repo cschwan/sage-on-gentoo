@@ -28,6 +28,7 @@ DEPEND="
 RDEPEND="
 	${DEPEND}
 	>=dev-python/cython-0.29.24[${PYTHON_USEDEP}]
+	<dev-python/cython-3.0.0
 	dev-python/jinja[${PYTHON_USEDEP}]
 "
 
