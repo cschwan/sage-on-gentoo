@@ -19,8 +19,7 @@ LICENSE="GPL-2+ BSD"
 SLOT="0"
 KEYWORDS="~amd64"
 
-DEPEND="dev-python/cython[${PYTHON_USEDEP}]
-	dev-python/cypari2[${PYTHON_USEDEP}]
+DEPEND="dev-python/cypari2[${PYTHON_USEDEP}]
 	dev-python/ipython[${PYTHON_USEDEP}]
 	dev-python/pypng[${PYTHON_USEDEP}]
 	virtual/opengl"
@@ -30,7 +29,8 @@ RDEPEND="${DEPEND}
 	sci-mathematics/snappy-manifolds[${PYTHON_USEDEP}]
 	sci-mathematics/FXrays[${PYTHON_USEDEP}]
 	!!dev-python/python-snappy"
-BDEPEND=""
+BDEPEND="dev-python/cython[${PYTHON_USEDEP}]
+	<dev-python/cython-3.0.0"
 
 PATCHES=(
 	"${FILESDIR}/setuptools-65.1.patch"
