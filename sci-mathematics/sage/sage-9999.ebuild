@@ -133,7 +133,8 @@ RDEPEND="
 	jmol? ( sci-chemistry/sage-jmol-bin )
 "
 
-BDEPEND=">=dev-python/cython-0.29.24[${PYTHON_USEDEP}]"
+BDEPEND=">=dev-python/cython-0.29.24[${PYTHON_USEDEP}]
+	<dev-python/cython-3.0.0"
 
 PDEPEND="
 	doc? ( ~sci-mathematics/sage-doc-${PV} )

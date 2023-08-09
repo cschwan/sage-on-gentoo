@@ -30,7 +30,6 @@ DEPEND="
 	~dev-lisp/ecls-21.2.1
 	>=dev-python/cypari2-2.1.3[${PYTHON_USEDEP}]
 	>=dev-python/cysignals-1.11.2[${PYTHON_USEDEP}]
-	>=dev-python/cython-0.29.24[${PYTHON_USEDEP}]
 	>=dev-python/docutils-0.12[${PYTHON_USEDEP}]
 	>=dev-python/gmpy-2.1.0_beta5[${PYTHON_USEDEP}]
 	>=dev-python/ipykernel-4.6.0[${PYTHON_USEDEP}]
@@ -121,6 +120,8 @@ RDEPEND="
 
 	jmol? ( sci-chemistry/sage-jmol-bin )
 "
+BDEPEND=">=dev-python/cython-0.29.24[${PYTHON_USEDEP}]
+	<dev-python/cython-3.0.0"
 
 PDEPEND="
 	doc? ( ~sci-mathematics/sage-doc-${PV} )
