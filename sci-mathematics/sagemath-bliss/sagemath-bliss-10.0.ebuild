@@ -22,7 +22,8 @@ RESTRICT="test"
 
 DEPEND="~sci-mathematics/sage-${PV}[${PYTHON_USEDEP}]
 	~sci-libs/bliss-0.77"
-BDEPEND="dev-python/cython[${PYTHON_USEDEP}]"
+BDEPEND="dev-python/cython[${PYTHON_USEDEP}]
+	<dev-python/cython-3.0.0"
 RDEPEND="${DEPEND}"
 
 PATCHES=(
