@@ -22,7 +22,8 @@ RESTRICT="test"
 
 DEPEND="~sci-mathematics/sage-${PV}[${PYTHON_USEDEP}]
 	sci-libs/libsirocco"
-BDEPEND="dev-python/cython[${PYTHON_USEDEP}]"
+BDEPEND="dev-python/cython[${PYTHON_USEDEP}]
+	<dev-python/cython-3.0.0"
 RDEPEND="${DEPEND}"
 
 python_install() {
