@@ -19,14 +19,15 @@ SLOT="0"
 KEYWORDS="~amd64"
 IUSE="test"
 
-DEPEND="sci-mathematics/planarity
-	dev-python/cython[${PYTHON_USEDEP}]"
+DEPEND="sci-mathematics/planarity"
 RDEPEND="${DEPEND}
 	>=sci-mathematics/snappy-3.0[${PYTHON_USEDEP}]
 	>=sci-mathematics/snappy-manifolds-1.1.2[${PYTHON_USEDEP}]
 	>=sci-mathematics/knot_floer_homology-1.1[${PYTHON_USEDEP}]"
 # uses sage as a proxy for planarity install detection
-BDEPEND="test? ( sci-mathematics/snappy-manifolds[${PYTHON_USEDEP}]
+BDEPEND="dev-python/cython[${PYTHON_USEDEP}]
+	<dev-python/cython-3.0.0
+	test? ( sci-mathematics/snappy-manifolds[${PYTHON_USEDEP}]
 		sci-mathematics/knot_floer_homology[${PYTHON_USEDEP}] )"
 
 RESTRICT="!test? ( test )"
