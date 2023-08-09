@@ -17,10 +17,11 @@ IUSE="doc"
 
 DEPEND=">=dev-python/gmpy-2.1.0[${PYTHON_USEDEP}]
 	dev-python/cysignals[${PYTHON_USEDEP}]
-	dev-python/cython[${PYTHON_USEDEP}]
 	>=dev-libs/ppl-1.2
 	doc? ( dev-python/sphinx[${PYTHON_USEDEP}] )"
 RDEPEND="${DEPEND}"
+BDEPEND="dev-python/cython[${PYTHON_USEDEP}]
+	dev-python/cython-3.0.0"
 
 python_compile() {
 	# automatic parallel building with python3.5+ is not safe
