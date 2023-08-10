@@ -30,16 +30,14 @@ RESTRICT="test"
 DEPEND="~sci-mathematics/sage-${PV}[${PYTHON_USEDEP}]
 	sci-mathematics/shared_meataxe"
 RDEPEND="${DEPEND}"
-BDEPEND="dev-python/cython[${PYTHON_USEDEP}]
-	<dev-python/cython-3.0.0"
+BDEPEND="<dev-python/cython-3.0.0[${PYTHON_USEDEP}]"
 
-src_unpack() {
+python_prepare_all() {
 	if [[ ${PV} == 9999 ]]; then
-		git-r3_src_unpack
-		sage-git_src_unpack
+		sage-git_src_prepare
 	fi
 
-	default
+	distutils-r1_python_prepare_all
 }
 
 python_install() {
