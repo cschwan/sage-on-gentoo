@@ -8,9 +8,9 @@
 # @BLURB: Create sdist from a git snapshot of sage
 # @DESCRIPTION:
 # sagemath packages are developed from a common git tree.
-# It makes it hawkward when checking individual package.
+# It makes it hawkward when checking individual packages.
 # This eclass helps creating appropriate package sdist 
-# from sage git snapshot and then properly unpacking them in S.
+# from a sage git snapshot and then properly unpacking them in S.
 
 inherit git-r3 python-r1
 
@@ -24,13 +24,16 @@ BDEPEND="
 	dev-python/build[${PYTHON_USEDEP}]
 "
 
-# Standard variables for all sagemath git checkout packages
+# Standard variables for ebuild using sage-git
 # @VARIABLE: EGIT_CHECKOUT_DIR
 # @REQUIRED
 # @DESCRIPTION:
-# This variable is from the git-r3 eclass
+# This variable is from the git-r3 eclass, we set it to a meaningful default
+# for this eclass. It can still be overriden but should not be set to S
 if [[ -z ${EGIT_CHECKOUT_DIR} ]]; then
 	EGIT_CHECKOUT_DIR="${WORKDIR}/git_checkout"
+elif [[ "${EGIT_CHECKOUT_DIR}" == "${S}" ]]; then
+	die "EGIT_CHECKOUT_DIR and S are the same (${EGIT_CHECKOUT_DIR} and ${S}) which is not supported"
 fi
 KEYWORDS=""
 
@@ -89,8 +92,6 @@ sage-git_src_prepare() {
 
 	einfo "unpacking sdist to ${S}"
 	pushd "${WORKDIR}"
-	# "${S}" does not exist yet
-	mkdir -p "${S}"
 	# unpack
 	# Note that we catch the special case sage-conf/sage-conf_pypi here.
 	tar --strip-components=1 -C "${S}" \
