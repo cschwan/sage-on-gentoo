@@ -36,8 +36,7 @@ DEPEND="
 "
 RDEPEND="
 	${DEPEND}
-	>=dev-python/cython-0.29.24[${PYTHON_USEDEP}]
-	<dev-python/cython-3.0.0
+	<dev-python/cython-3.0.0[${PYTHON_USEDEP}]
 	dev-python/jinja[${PYTHON_USEDEP}]
 "
 
@@ -45,11 +44,10 @@ PATCHES=(
 	"${FILESDIR}"/${PN}-9.6-verbosity.patch
 )
 
-src_unpack() {
+python_prepare_all() {
 	if [[ ${PV} == 9999 ]]; then
-		git-r3_src_unpack
-		sage-git_src_unpack "${MY_PN}"
+		sage-git_src_prepare "${MY_PN}"
 	fi
 
-	default
+	distutils-r1_python_prepare_all
 }
