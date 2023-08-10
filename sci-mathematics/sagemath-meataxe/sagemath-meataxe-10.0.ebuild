@@ -30,4 +30,8 @@ python_install() {
 	distutils-r1_python_install
 
 	find "${D}$(python_get_sitedir)/sage" -name interpreter -delete
+	# collision with sage due to uncorrect MANIFEST.in
+	# will be gone in 10.1
+	find "${D}$(python_get_sitedir)/sage" -name meataxe.pxd -delete
+	find "${D}$(python_get_sitedir)/sage" -name matrix_gfpn_dense.pxd -delete
 }
