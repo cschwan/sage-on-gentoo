@@ -35,16 +35,11 @@ PATCHES=(
 	"${FILESDIR}/${PN}-9.7.patch"
 )
 
-src_unpack() {
+python_prepare_all() {
 	if [[ ${PV} == 9999 ]]; then
-		git-r3_src_unpack
-		sage-git_src_unpack "${PN}_pypi"
+		sage-git_src_prepare "${PN}_pypi"
 	fi
 
-	default
-}
-
-python_prepare_all() {
 	distutils-r1_python_prepare_all
 
 	# sage on gentoo environment variables
