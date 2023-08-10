@@ -5,7 +5,7 @@
 # @MAINTAINER:
 # François Bissey <frp.bissey@gmail.com>
 # @SUPPORTED_EAPIS: 7 8
-# @BLURB: Create sdist froma git snapshot of sage
+# @BLURB: Create sdist from a git snapshot of sage
 # @DESCRIPTION:
 # sagemath packages are developed from a common git tree.
 # It makes it hawkward when checking individual package.
