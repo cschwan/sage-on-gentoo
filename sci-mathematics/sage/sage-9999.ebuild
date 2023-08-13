@@ -15,7 +15,7 @@ MY_P="${MY_PN}-${PV}"
 
 if [[ ${PV} == 9999 ]]; then
 	inherit git-r3 sage-git
-	EGIT_REPO_URI="https://github.com/sagemath/sage.git"
+	EGIT_REPO_URI="https://github.com/vbraun/sage.git"
 else
 	inherit pypi
 	SRC_URI="$(pypi_sdist_url --no-normalize "${MY_PN}")"
@@ -164,16 +164,11 @@ pkg_setup() {
 	tc-export CC
 }
 
-src_unpack() {
+python_prepare_all() {
 	if [[ ${PV} == 9999 ]]; then
-		git-r3_src_unpack
-		sage-git_src_unpack "${MY_PN}"
+		sage-git_src_prepare "${MY_PN}"
 	fi
 
-	default
-}
-
-python_prepare_all() {
 	distutils-r1_python_prepare_all
 
 	# Turn on debugging capability if required
