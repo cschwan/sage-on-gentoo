@@ -15,6 +15,7 @@ if [[ ${PV} == 9999 ]]; then
 else
 	PYPI_NO_NORMALIZE=1
 	inherit pypi
+	KEYWORDS="~amd64 ~amd64-linux ~ppc-macos ~x64-macos"
 fi
 
 DESCRIPTION="Math software for abstract and numerical computations"
