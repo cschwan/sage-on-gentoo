@@ -6,12 +6,19 @@ EAPI=8
 PYTHON_COMPAT=( python3_{9..11} )
 PYTHON_REQ_USE="readline,sqlite"
 
-inherit python-any-r1 git-r3
+inherit python-any-r1
 
-EGIT_REPO_URI="https://github.com/sagemath/sage.git"
-EGIT_BRANCH=develop
-EGIT_CHECKOUT_DIR="${WORKDIR}/${P}"
-KEYWORDS=""
+if [[ ${PV} == 9999 ]]; then
+	inherit git-r3
+	EGIT_REPO_URI="https://github.com/vbraun/sage.git"
+	EGIT_BRANCH=develop
+	EGIT_CHECKOUT_DIR="${WORKDIR}/${P}"
+	KEYWORDS=""
+else
+	SRC_URI="https://github.com/sagemath/sage/archive/${PV}.tar.gz -> ${P}.tar.gz"
+	KEYWORDS="~amd64 ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos"
+	S="${WORKDIR}/sage-${PV}"
+fi
 
 DESCRIPTION="Build the sage documentation"
 HOMEPAGE="https://www.sagemath.org"
@@ -29,6 +36,8 @@ L10N_USEDEP="${L10N_USEDEP%?}"
 
 RESTRICT="mirror test"
 
+# cannot use $PV in python_gen_any_deps :(
+# This section to checked on release for sage/sage_docbuild versions
 BDEPEND="$(python_gen_any_dep '
 	<dev-python/sphinx-7.1.0[${PYTHON_USEDEP}]
 	dev-python/furo[${PYTHON_USEDEP}]
@@ -55,6 +64,7 @@ DOCS=(
 # This manifest as root
 addpredict "${ESYSROOT}/usr/share/sage/cremona/cremona_mini.db"
 
+# python_check_deps happilly processes $PV.
 python_check_deps() {
 	python_has_version -b "<dev-python/sphinx-7.1.0[${PYTHON_USEDEP}]" &&
 	python_has_version -b "~sci-mathematics/sage-${PV}[${PYTHON_USEDEP},jmol]" &&
@@ -65,7 +75,9 @@ python_check_deps() {
 }
 
 src_unpack(){
-	git-r3_src_unpack
+	if [[ ${PV} == 9999 ]]; then
+		git-r3_src_unpack
+	fi
 
 	default
 }
