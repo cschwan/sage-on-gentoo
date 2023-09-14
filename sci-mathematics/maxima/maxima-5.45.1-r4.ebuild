@@ -29,7 +29,7 @@ LISP_DEPEND="
 	clozurecl? ( dev-lisp/clozurecl app-misc/rlwrap )
 	clozurecl64? ( dev-lisp/clozurecl app-misc/rlwrap )
 	cmucl? ( dev-lisp/cmucl app-misc/rlwrap )
-	ecls? ( dev-lisp/ecls:= app-misc/rlwrap )
+	ecls? ( dev-lisp/ecl:= app-misc/rlwrap )
 	gcl? ( dev-lisp/gcl[ansi,readline] )
 	sbcl? ( dev-lisp/sbcl:= app-misc/rlwrap )
 "
