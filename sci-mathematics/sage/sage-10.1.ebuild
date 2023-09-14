@@ -40,7 +40,7 @@ DEPEND="
 	>=dev-libs/mpfr-4.0.0
 	>=dev-libs/ntl-11.4.3:=
 	>=dev-libs/ppl-1.1
-	~dev-lisp/ecls-21.2.1
+	~dev-lisp/ecl-21.2.1
 	>=dev-python/cypari2-2.1.3[${PYTHON_USEDEP}]
 	>=dev-python/cysignals-1.11.2[${PYTHON_USEDEP}]
 	>=dev-python/docutils-0.12[${PYTHON_USEDEP}]
