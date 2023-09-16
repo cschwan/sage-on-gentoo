@@ -5,7 +5,8 @@
 # @MAINTAINER:
 # François Bissey <frp.bissey@gmail.com>
 # @SUPPORTED_EAPIS: 7 8
-# @BLURB: help standardize the installation of gap package from gap 4.12.0 and over
+# @BLURB: help standardize the installation of gap package from
+# gap 4.12.0 and over
 
 case ${EAPI} in
 	7|8) ;;
@@ -16,8 +17,8 @@ esac
 # @USAGE:
 # @DESCRIPTION:
 # Return the path into which the gap package should be installed.
-# The legacy location is usr/share/gap/pkg and the accepted current location is
-# usr/$(get_libdir)/gap/pkg
+# The legacy location is usr/share/gap/pkg and the accepted current
+# location is usr/$(get_libdir)/gap/pkg
 
 gap-pkg_path() {
 	echo "usr/$(get_libdir)/gap/pkg/${PN,,}"
@@ -26,7 +27,8 @@ gap-pkg_path() {
 # @FUNCTION: gap_sysinfo_loc
 # @USAGE:
 # @DESCRIPTION:
-# Return the folder holding the file sysinfo.gap for gap-4.12.0 and later
+# Return the folder holding the file sysinfo.gap for
+# gap-4.12.0 and later
 
 gap_sysinfo_loc() {
 	echo "${ESYSROOT}/usr/$(get_libdir)/gap"
@@ -45,23 +47,31 @@ gap-pkg_gaparch() {
 # @VARIABLE: GAP_PKG_OBJS
 # @REQUIRED
 # @DESCRIPTION:
-# List directories to be installed (recursively) and list of other objects to be installed apart from .g objects in S.
+# List directories to be installed (recursively) and list of other
+# objects to be installed apart from .g objects in ${S}.
 
 # @VARIABLE: GAP_PKG_EXE
 # @REQUIRED
 # @DESCRIPTION:
-# List of gap executables to be installed and that are not already in bin/$GAParch.
+# List of gap executables to be installed and that are not already
+# in bin/$GAParch.
 
 # @FUNCTION: gap-pkg_src_install
 # @USAGE:
 # @DESCRIPTION:
-# Perform some of the standard install of src_install and then perform specific gap package installation steps.
-# Create the package directory and install all .g file in ${S} and all objects in GAP_PKG_OBJS
-# Inside the package directory, create the folder bin/$GAParch and install any executables found inside
-# bin/$GAParch inside $S. Install any other objects listed in GAP_PKG_EXE in that folder.
-# From the standard src_install, we do not run "make install" as most makefiles distributed with gap packages
-# lack one. It only leads to errors. If a package does have a genuine "make install" step, it needs to be run separately
-# and then gap-pkg_src_install needs to be called explicitely.
+# Perform some of the standard install of src_install and then perform
+# specific gap package installation steps.
+# Create the package directory and install all .g file in ${S} and all
+# objects listed in the GAP_PKG_OBJS variable.
+# Inside the package directory, create the folder bin/$GAParch and
+# install any executables found inside bin/$GAParch inside ${S}.
+# Install any other objects listed in the variable GAP_PKG_EXE in that
+# folder.
+# From the standard src_install, we do not run "make install" as most
+# makefiles distributed with gap packages lack one. It only leads to
+# errors. If a package does have a genuine "make install" step,
+# it needs to be run separately and then gap-pkg_src_install needs to
+# be called explicitely.
 
 gap-pkg_src_install() {
 	# standard documentation install from src_install
@@ -72,7 +82,7 @@ gap-pkg_src_install() {
 
 	doins *.g
 	for obj in ${GAP_PKG_OBJS}; do
-		if [ -d ${obj} ]; then
+		if [[ -d ${obj} ]]; then
 			doins -r ${obj}
 		else
 			doins ${obj}
@@ -81,7 +91,7 @@ gap-pkg_src_install() {
 
 	# install executables
 	exeinto $(gap-pkg_path)/bin/$(gap-pkg_gaparch)
-	if [ -d bin ]; then
+	if [[ -d bin ]]; then
 		doexe bin/$(gap-pkg_gaparch)/*
 	fi
 
@@ -90,10 +100,9 @@ gap-pkg_src_install() {
 	done
 
 	# remove any stray .la files from bin/$GAParch.
-	# some other places may have file with .la extension that are not libtool files.
-	if [ -d "${ED}/$(gap-pkg_path)/bin" ]; then
-		find "${ED}/$(gap-pkg_path)/bin" -name '*.la' -delete || die
-	fi
+	# some other places may have file with .la extension
+	# that are not libtool files.
+	find "${ED}/$(gap-pkg_path)/bin" -name '*.la' -delete
 }
 
 EXPORT_FUNCTIONS src_install
