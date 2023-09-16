@@ -117,7 +117,7 @@ RDEPEND="
 	>=sci-mathematics/dikcube-20070912
 	>=sci-mathematics/ExportSageNB-3.3[${PYTHON_USEDEP}]
 	~sci-mathematics/gfan-0.6.2
-	>=sci-mathematics/maxima-5.46.0[ecls]
+	>=sci-mathematics/maxima-5.46.0[ecl]
 	>=sci-mathematics/mcube-20051209
 	>=sci-mathematics/nauty-2.6.1
 	>=sci-mathematics/optimal-20040603

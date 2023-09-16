@@ -14,7 +14,7 @@ sci-libs/pynac              -giac
 sci-mathematics/eclib       flint
 sci-mathematics/glpk        gmp
 sci-mathematics/gmp-ecm     -openmp
-sci-mathematics/maxima      ecls
+sci-mathematics/maxima      ecl
 sci-mathematics/lcalc       pari
 sci-mathematics/pari        data gmp doc threads
 sys-libs/zlib               minizip
