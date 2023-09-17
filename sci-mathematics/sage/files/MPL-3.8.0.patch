@@ -1,0 +1,33 @@
+From 92a8a969f75851770455ac071e23f03e7c87463a Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Gonzalo=20Tornar=C3=ADa?= <tornaria@cmat.edu.uy>
+Date: Sat, 16 Sep 2023 12:13:36 -0300
+Subject: [PATCH] Support for matplotlib-3.8.0
+
+---
+ src/sage/plot/graphics.py | 6 ++++++
+ 1 file changed, 6 insertions(+)
+
+diff --git a/sage/plot/graphics.py b/sage/plot/graphics.py
+index 59f10f6b13f..adcccff059b 100644
+--- a/sage/plot/graphics.py
++++ b/sage/plot/graphics.py
+@@ -36,6 +36,7 @@
+ # ****************************************************************************
+ 
+ import os
++from numbers import Integral
+ from collections.abc import Iterable
+ from math import isnan
+ import sage.misc.verbose
+@@ -2874,6 +2875,11 @@ def matplotlib(self, filename=None,
+                 weight=lopts.pop('font_weight', 'medium'),
+                 variant=lopts.pop('font_variant', 'normal'))
+             color = lopts.pop('back_color', 'white')
++            if 'loc' in lopts:
++                loc = lopts['loc']
++                if isinstance(loc, Integral):
++                    # matplotlib 3.8 doesn't support sage integers
++                    lopts['loc'] = int(loc)
+             leg = subplot.legend(prop=prop, **lopts)
+             if leg is None:
+                 from warnings import warn
