@@ -3,9 +3,9 @@
 
 EAPI=8
 
-inherit cmake-multilib
+inherit cmake
 
-Sparse_PV="7.0.0"
+Sparse_PV="7.2.0"
 Sparse_P="SuiteSparse-${Sparse_PV}"
 DESCRIPTION="Algorithm for matrix permutation into block triangular form"
 HOMEPAGE="https://people.engr.tamu.edu/davis/suitesparse.html"
@@ -20,7 +20,7 @@ RDEPEND="${DEPEND}"
 
 S="${WORKDIR}/${Sparse_P}/${PN^^}"
 
-multilib_src_configure() {
+src_configure() {
 	local mycmakeargs=(
 		-DNSTATIC=ON
 	)
