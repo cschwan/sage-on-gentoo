@@ -3,9 +3,9 @@
 
 EAPI=8
 
-inherit cmake-multilib
+inherit cmake
 
-Sparse_PV="7.0.0"
+Sparse_PV="7.2.0"
 Sparse_P="SuiteSparse-${Sparse_PV}"
 DESCRIPTION="a software package for SParse EXact algebra"
 HOMEPAGE="https://people.engr.tamu.edu/davis/suitesparse.html"
@@ -31,7 +31,7 @@ PATCHES=(
 
 S="${WORKDIR}/${Sparse_P}/${PN^^}"
 
-multilib_src_configure() {
+src_configure() {
 	local mycmakeargs=(
 		-DNSTATIC=ON
 		-DDEMO=$(usex test)
@@ -39,7 +39,10 @@ multilib_src_configure() {
 	cmake_src_configure
 }
 
-multilib_src_test() {
+src_test() {
+	# Because we are not using cmake_src_test,
+	# we have to manually go to BUILD_DIR
+	cd "${BUILD_DIR}"
 	# Programs expect to find ExampleMats
 	ln -s "${S}/SPEX_Left_LU/ExampleMats"
 	# Run demo files
@@ -48,7 +51,7 @@ multilib_src_test() {
 	./spexlu_demo || die "failed testing"
 }
 
-multilib_src_install() {
+src_install() {
 	if use doc; then
 		pushd "${S}/Doc"
 		rm -rf *.pdf
