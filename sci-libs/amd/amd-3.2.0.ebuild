@@ -4,9 +4,9 @@
 EAPI=8
 
 FORTRAN_NEEDED="fortran"
-inherit cmake-multilib fortran-2
+inherit cmake fortran-2
 
-Sparse_PV="7.0.0"
+Sparse_PV="7.2.0"
 Sparse_P="SuiteSparse-${Sparse_PV}"
 DESCRIPTION="Library to order a sparse matrix prior to Cholesky factorization"
 HOMEPAGE="https://people.engr.tamu.edu/davis/suitesparse.html"
@@ -24,7 +24,7 @@ BDEPEND="doc? ( virtual/latex-base )"
 
 S="${WORKDIR}/${Sparse_P}/${PN^^}"
 
-multilib_src_configure() {
+src_configure() {
 	local mycmakeargs=(
 		-DNSTATIC=ON
 		-DNFORTRAN=$(usex fortran OFF ON)
@@ -33,7 +33,8 @@ multilib_src_configure() {
 	cmake_src_configure
 }
 
-multilib_src_test() {
+src_test() {
+	cd "${BUILD_DIR}"
 	# Run demo files
 	local demofiles=(
 		amd_demo
@@ -54,7 +55,7 @@ multilib_src_test() {
 	einfo "All tests passed"
 }
 
-multilib_src_install() {
+src_install() {
 	if use doc; then
 		pushd "${S}/Doc"
 		emake clean
