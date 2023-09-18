@@ -3,9 +3,9 @@
 
 EAPI=8
 
-inherit cmake-multilib
+inherit cmake
 
-Sparse_PV="7.0.0"
+Sparse_PV="7.2.0"
 Sparse_P="SuiteSparse-${Sparse_PV}"
 DESCRIPTION="Extended sparse matrix package"
 HOMEPAGE="https://people.engr.tamu.edu/davis/suitesparse.html"
@@ -22,7 +22,7 @@ RDEPEND="${DEPEND}"
 
 S="${WORKDIR}/${Sparse_P}/CXSparse"
 
-multilib_src_configure() {
+src_configure() {
 	local mycmakeargs=(
 		-DNSTATIC=ON
 		-DDEMO=$(usex test)
@@ -30,7 +30,10 @@ multilib_src_configure() {
 	cmake_src_configure
 }
 
-multilib_src_test() {
+src_test() {
+	# Because we are not using cmake_src_test,
+	# we have to manually go to BUILD_DIR
+	cd "${BUILD_DIR}"
 	# Programs assume that they can access the Matrix folder in ${S}
 	ln -s "${S}/Matrix"
 	# Run demo files
