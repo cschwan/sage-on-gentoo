@@ -3,9 +3,9 @@
 
 EAPI=8
 
-inherit cmake-multilib
+inherit cmake
 
-Sparse_PV="7.0.0"
+Sparse_PV="7.2.0"
 Sparse_P="SuiteSparse-${Sparse_PV}"
 DESCRIPTION="Simple but educational LDL^T matrix factorization algorithm"
 HOMEPAGE="https://people.engr.tamu.edu/davis/suitesparse.html"
@@ -18,13 +18,13 @@ IUSE="doc test"
 RESTRICT="!test? ( test )"
 
 DEPEND=">=sci-libs/suitesparseconfig-${Sparse_PV}
-	>=sci-libs/amd-3.0.3"
+	>=sci-libs/amd-3.2.0"
 RDEPEND="${DEPEND}"
 BDEPEND="doc? ( virtual/latex-base )"
 
 S="${WORKDIR}/${Sparse_P}/${PN^^}"
 
-multilib_src_configure() {
+src_configure() {
 	local mycmakeargs=(
 		-DNSTATIC=ON
 		-DDEMO=$(usex test)
@@ -32,7 +32,10 @@ multilib_src_configure() {
 	cmake_src_configure
 }
 
-multilib_src_test() {
+src_test() {
+	# Because we are not using cmake_src_test,
+	# we have to manually go to BUILD_DIR
+	cd "${BUILD_DIR}"
 	# Some programs assume that they can access the Matrix folder in ${S}
 	ln -s "${S}/Matrix"
 	# Run demo files
@@ -50,7 +53,7 @@ multilib_src_test() {
 	done
 }
 
-multilib_src_install() {
+src_install() {
 	if use doc; then
 		pushd "${S}/Doc"
 		rm -rf *.pdf
