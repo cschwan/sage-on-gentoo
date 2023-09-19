@@ -18,12 +18,12 @@ IUSE="+cholesky cuda doc openmp +matrixops +modify +partition +supernodal test"
 RESTRICT="!test? ( test )"
 
 DEPEND=">=sci-libs/suitesparseconfig-${Sparse_PV}
-	>=sci-libs/amd-3.0.3
-	>=sci-libs/colamd-3.0.3
+	>=sci-libs/amd-3.2.0
+	>=sci-libs/colamd-3.2.0
 	supernodal? ( virtual/lapack )
 	partition? (
-		>=sci-libs/camd-3.0.3
-		>=sci-libs/ccolamd-3.0.3
+		>=sci-libs/camd-3.2.0
+		>=sci-libs/ccolamd-3.2.0
 	)
 	cuda? (
 		dev-util/nvidia-cuda-toolkit

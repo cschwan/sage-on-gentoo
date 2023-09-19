@@ -18,10 +18,10 @@ IUSE="doc test"
 RESTRICT="!test? ( test )"
 
 DEPEND=">=sci-libs/suitesparseconfig-7.0.0
-	>=sci-libs/amd-3.0.3
-	>=sci-libs/btf-2.0.3
-	>=sci-libs/colamd-3.0.3
-	>=sci-libs/cholmod-4.0.3"
+	>=sci-libs/amd-3.2.0
+	>=sci-libs/btf-2.2.0
+	>=sci-libs/colamd-2.2.0
+	>=sci-libs/cholmod-4.2.0"
 RDEPEND="${DEPEND}"
 BDEPEND="doc? ( virtual/latex-base )"
 

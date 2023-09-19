@@ -18,9 +18,9 @@ IUSE="doc openmp test"
 RESTRICT="!test? ( test )"
 
 DEPEND=">=sci-libs/suitesparseconfig-${Sparse_PV}
-	>=sci-libs/amd-3.0.3
-	>=sci-libs/colamd-3.0.3
-	>=sci-libs/cholmod-4.0.3
+	>=sci-libs/amd-3.2.0
+	>=sci-libs/colamd-3.2.0
+	>=sci-libs/cholmod-4.2.0
 	virtual/blas"
 RDEPEND="${DEPEND}"
 BDEPEND="doc? ( virtual/latex-base )"
