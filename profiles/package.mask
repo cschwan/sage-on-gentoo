@@ -3,3 +3,8 @@
 #dev-gap/atlasrep
 # dev-gap/ctbllib-1.3.1+ is broken to build sage
 #>=dev-gap/ctbllib-1.3.1
+# cython 3 development
+=dev-python/cysignals-1.11.2-r1
+=dev-python/cypari2-2.1.3-r1
+=dev-python/pplpy-0.8.7-r2
+=dev-python/fpylll-0.5.9-r1
