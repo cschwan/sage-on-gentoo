@@ -48,6 +48,10 @@ python_prepare_all() {
 	if [[ ${PV} == 9999 ]]; then
 		sage-git_src_prepare "${MY_PN}"
 	fi
+	
+	if has_version ">=dev-python/cython-3.0.0"; then
+		PATCHES+=( "${FILESDIR}"/cython-3.patch )
+	fi
 
 	distutils-r1_python_prepare_all
 }
