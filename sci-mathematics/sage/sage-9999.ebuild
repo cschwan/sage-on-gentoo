@@ -200,6 +200,9 @@ python_prepare_all() {
 
 python_configure_all() {
 	export SAGE_NUM_THREADS=$(makeopts_jobs)
+	if has_version ">=dev-python/cython-3.0.0"; then
+		export SAGE_DEBUG=no
+	fi
 }
 
 python_install() {
