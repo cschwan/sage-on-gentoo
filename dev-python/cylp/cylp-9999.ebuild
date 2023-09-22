@@ -3,8 +3,9 @@
 
 EAPI=8
 
-PYTHON_COMPAT=( python3_{9..10} )
+PYTHON_COMPAT=( python3_{9..11} )
 DISTUTILS_USE_PEP517=setuptools
+DISTUTILS_EXT=1
 
 inherit distutils-r1 git-r3
 
@@ -23,6 +24,7 @@ DEPEND="dev-python/numpy[${PYTHON_USEDEP}]
 	dev-python/scipy[${PYTHON_USEDEP}]
 	=sci-libs/coinor-cbc-2.10*"
 RDEPEND="${DEPEND}"
+BDEPEND="<dev-python/cython-3.0.0[${PYTHON_USEDEP}]"
 
 # unittest but doesn't seem to be able to find compiled modules.
 RESTRICT="test"
