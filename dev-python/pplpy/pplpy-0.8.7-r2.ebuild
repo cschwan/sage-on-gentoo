@@ -22,11 +22,15 @@ DEPEND=">=dev-python/gmpy-2.1.0[${PYTHON_USEDEP}]
 	>=dev-libs/ppl-1.2
 	doc? ( dev-python/sphinx[${PYTHON_USEDEP}] )"
 RDEPEND="${DEPEND}"
-BDEPEND=">dev-python/cython-3.0.0[${PYTHON_USEDEP}]"
+BDEPEND="dev-python/cython[${PYTHON_USEDEP}]"
 
-PATCHES=(
-	"${FILESDIR}"/cython-3.patch
-)
+src_prepare() {
+	if has_version ">=dev-python/cython-3.0.0"; then
+		PATCHES+=( "${FILESDIR}"/cython-3.patch )
+	fi
+
+	distutils-r1_python_prepare_all
+}
 
 python_compile() {
 	# automatic parallel building with python3.5+ is not safe
