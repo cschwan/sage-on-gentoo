@@ -15,8 +15,7 @@ LICENSE="GPL-3"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
 
-BDEPEND=">=dev-python/cython-0.29.30[${PYTHON_USEDEP}]
-	<dev-python/cython-3.0.0"
+BDEPEND=">=dev-python/cython-0.29.30[${PYTHON_USEDEP}]"
 
 python_test() {
 	# . is searched before PYTHONPATH
