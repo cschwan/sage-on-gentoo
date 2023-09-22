@@ -5,6 +5,7 @@ EAPI=8
 
 PYTHON_COMPAT=( python3_{9..11} )
 DISTUTILS_USE_PEP517=setuptools
+DISTUTILS_EXT=1
 inherit distutils-r1 pypi
 
 DESCRIPTION="Python bindings for lrcalc"
@@ -17,6 +18,6 @@ SLOT="0"
 KEYWORDS="~amd64"
 IUSE=""
 
-DEPEND="~sci-mathematics/lrcalc-${PV}
-	>=dev-python/cython-0.29.25[${PYTHON_USEDEP}]"
+DEPEND="~sci-mathematics/lrcalc-${PV}"
 RDEPEND="${DEPEND}"
+BDEPEND=">=dev-python/cython-0.29.25[${PYTHON_USEDEP}]"
