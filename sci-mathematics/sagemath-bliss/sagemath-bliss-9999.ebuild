@@ -30,7 +30,7 @@ RESTRICT="test"
 DEPEND="~sci-mathematics/sage-${PV}[${PYTHON_USEDEP}]
 	~sci-libs/bliss-0.77"
 RDEPEND="${DEPEND}"
-BDEPEND="<dev-python/cython-3.0.0[${PYTHON_USEDEP}]"
+BDEPEND="dev-python/cython[${PYTHON_USEDEP}]"
 
 python_prepare_all() {
 	if [[ ${PV} == 9999 ]]; then
