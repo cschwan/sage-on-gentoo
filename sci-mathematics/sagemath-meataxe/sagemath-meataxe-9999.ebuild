@@ -30,7 +30,16 @@ RESTRICT="test"
 DEPEND="~sci-mathematics/sage-${PV}[${PYTHON_USEDEP}]
 	sci-mathematics/shared_meataxe"
 RDEPEND="${DEPEND}"
-BDEPEND="<dev-python/cython-3.0.0[${PYTHON_USEDEP}]"
+BDEPEND="dev-python/cython[${PYTHON_USEDEP}]"
+
+PATCHES=(
+	"${FILESDIR}"/sm-meataxe-10.2-relative-import.patch
+)
+
+pkg_setup() {
+	# for cython 3
+	export SAGE_DEBUG=no
+}
 
 python_prepare_all() {
 	if [[ ${PV} == 9999 ]]; then
