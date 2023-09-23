@@ -3,7 +3,7 @@
 
 EAPI=8
 
-inherit cmake-multilib toolchain-funcs
+inherit cmake toolchain-funcs
 
 Sparse_PV=$(ver_rs 3 '.')
 Sparse_P="SuiteSparse-${Sparse_PV}"
@@ -31,7 +31,7 @@ pkg_setup() {
 	[[ ${MERGE_TYPE} != binary ]] && use openmp && tc-check-openmp
 }
 
-multilib_src_configure() {
+src_configure() {
 	# Make sure we always include the Fortran interface.
 	# It doesn't require a Fortran compiler to be present
 	# and simplifies the configuration for dependencies.

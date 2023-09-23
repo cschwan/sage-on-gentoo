@@ -3,9 +3,9 @@
 
 EAPI=8
 
-inherit cmake-multilib toolchain-funcs
+inherit cmake toolchain-funcs
 
-Sparse_PV="7.0.0"
+Sparse_PV="7.2.0"
 Sparse_P="SuiteSparse-${Sparse_PV}"
 DESCRIPTION="Sparse Cholesky factorization and update/downdate library"
 HOMEPAGE="https://people.engr.tamu.edu/davis/suitesparse.html"
@@ -18,12 +18,12 @@ IUSE="+cholesky cuda doc openmp +matrixops +modify +partition +supernodal test"
 RESTRICT="!test? ( test )"
 
 DEPEND=">=sci-libs/suitesparseconfig-${Sparse_PV}
-	>=sci-libs/amd-3.0.3
-	>=sci-libs/colamd-3.0.3
+	>=sci-libs/amd-3.2.0
+	>=sci-libs/colamd-3.2.0
 	supernodal? ( virtual/lapack )
 	partition? (
-		>=sci-libs/camd-3.0.3
-		>=sci-libs/ccolamd-3.0.3
+		>=sci-libs/camd-3.2.0
+		>=sci-libs/ccolamd-3.2.0
 	)
 	cuda? (
 		dev-util/nvidia-cuda-toolkit
@@ -46,7 +46,7 @@ pkg_setup() {
 	[[ ${MERGE_TYPE} != binary ]] && use openmp && tc-check-openmp
 }
 
-multilib_src_configure() {
+src_configure() {
 	# Not that "N" prefixed options are negative options
 	# so they need to be turned OFF if you want that option.
 	# Fortran is turned off as it is only used to compile (untested) demo programs.
@@ -65,7 +65,10 @@ multilib_src_configure() {
 	cmake_src_configure
 }
 
-multilib_src_test() {
+src_test() {
+	# Because we are not using cmake_src_test,
+	# we have to manually go to BUILD_DIR
+	cd "${BUILD_DIR}"
 	# Run demo files
 	./cholmod_demo   < "${S}"/Demo/Matrix/bcsstk01.tri || die "failed testing"
 	./cholmod_l_demo < "${S}"/Demo/Matrix/bcsstk01.tri || die "failed testing"
@@ -80,7 +83,7 @@ multilib_src_test() {
 	./cholmod_simple < "${S}"/Demo/Matrix/bcsstk01.tri || die "failed testing"
 }
 
-multilib_src_install() {
+src_install() {
 	if use doc; then
 		pushd "${S}/Doc"
 		rm -rf *.pdf

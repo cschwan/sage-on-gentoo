@@ -133,8 +133,7 @@ RDEPEND="
 	jmol? ( sci-chemistry/sage-jmol-bin )
 "
 
-BDEPEND=">=dev-python/cython-0.29.24[${PYTHON_USEDEP}]
-	<dev-python/cython-3.0.0"
+BDEPEND=">=dev-python/cython-0.29.24[${PYTHON_USEDEP}]"
 
 PDEPEND="
 	doc? ( ~sci-mathematics/sage-doc-${PV} )
@@ -170,6 +169,10 @@ python_prepare_all() {
 		sage-git_src_prepare "${MY_PN}"
 	fi
 
+	if has_version ">=dev-python/cython-3.0.0"; then
+		PATCHES+=( "${FILESDIR}"/cython-3.patch )
+	fi
+
 	distutils-r1_python_prepare_all
 
 	# Turn on debugging capability if required
@@ -197,6 +200,9 @@ python_prepare_all() {
 
 python_configure_all() {
 	export SAGE_NUM_THREADS=$(makeopts_jobs)
+	if has_version ">=dev-python/cython-3.0.0"; then
+		export SAGE_DEBUG=no
+	fi
 }
 
 python_install() {

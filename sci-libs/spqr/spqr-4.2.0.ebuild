@@ -3,24 +3,24 @@
 
 EAPI=8
 
-inherit cmake-multilib toolchain-funcs
+inherit cmake toolchain-funcs
 
-Sparse_PV="7.0.0"
+Sparse_PV="7.2.0"
 Sparse_P="SuiteSparse-${Sparse_PV}"
 DESCRIPTION="Multithreaded multifrontal sparse QR factorization library"
 HOMEPAGE="https://people.engr.tamu.edu/davis/suitesparse.html"
 SRC_URI="https://github.com/DrTimothyAldenDavis/SuiteSparse/archive/refs/tags/v${Sparse_PV}.tar.gz -> ${Sparse_P}.gh.tar.gz"
 
 LICENSE="GPL-2+"
-SLOT="0/3"
+SLOT="0/4"
 KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~hppa ~ia64 ~mips ~ppc ~ppc64 ~sparc ~x86 ~amd64-linux ~x86-linux"
 IUSE="doc openmp test"
 RESTRICT="!test? ( test )"
 
 DEPEND=">=sci-libs/suitesparseconfig-${Sparse_PV}
-	>=sci-libs/amd-3.0.3
-	>=sci-libs/colamd-3.0.3
-	>=sci-libs/cholmod-4.0.3
+	>=sci-libs/amd-3.2.0
+	>=sci-libs/colamd-3.2.0
+	>=sci-libs/cholmod-4.2.0
 	virtual/blas"
 RDEPEND="${DEPEND}"
 BDEPEND="doc? ( virtual/latex-base )"
@@ -35,7 +35,7 @@ pkg_setup() {
 	[[ ${MERGE_TYPE} != binary ]] && use openmp && tc-check-openmp
 }
 
-multilib_src_configure() {
+src_configure() {
 	local mycmakeargs=(
 		-DNSTATIC=ON
 		-DNOPENMP=$(usex openmp OFF ON)
@@ -44,7 +44,10 @@ multilib_src_configure() {
 	cmake_src_configure
 }
 
-multilib_src_test() {
+src_test() {
+	# Because we are not using cmake_src_test,
+	# we have to manually go to BUILD_DIR
+	cd "${BUILD_DIR}"
 	# Run demo files
 	./qrsimple  < "${S}"/Matrix/ash219.mtx || die "failed testing"
 	./qrsimplec < "${S}"/Matrix/ash219.mtx || die "failed testing"
@@ -108,7 +111,7 @@ multilib_src_test() {
 	./qrdemoc < "${S}"/Matrix/lp_e226_transposed.mtx || die "failed testing"
 }
 
-multilib_src_install() {
+src_install() {
 	if use doc; then
 		pushd "${S}/Doc"
 		emake clean

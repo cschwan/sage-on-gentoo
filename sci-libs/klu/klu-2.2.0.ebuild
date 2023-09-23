@@ -3,9 +3,9 @@
 
 EAPI=8
 
-inherit cmake-multilib
+inherit cmake
 
-Sparse_PV="7.0.0"
+Sparse_PV="7.2.0"
 Sparse_P="SuiteSparse-${Sparse_PV}"
 DESCRIPTION="Sparse LU factorization for circuit simulation"
 HOMEPAGE="https://people.engr.tamu.edu/davis/suitesparse.html"
@@ -18,16 +18,16 @@ IUSE="doc test"
 RESTRICT="!test? ( test )"
 
 DEPEND=">=sci-libs/suitesparseconfig-7.0.0
-	>=sci-libs/amd-3.0.3
-	>=sci-libs/btf-2.0.3
-	>=sci-libs/colamd-3.0.3
-	>=sci-libs/cholmod-4.0.3"
+	>=sci-libs/amd-3.2.0
+	>=sci-libs/btf-2.2.0
+	>=sci-libs/colamd-2.2.0
+	>=sci-libs/cholmod-4.2.0"
 RDEPEND="${DEPEND}"
 BDEPEND="doc? ( virtual/latex-base )"
 
 S="${WORKDIR}/${Sparse_P}/${PN^^}"
 
-multilib_src_configure() {
+src_configure() {
 	local mycmakeargs=(
 		-DNSTATIC=ON
 		-DDEMO=$(usex test)
@@ -35,7 +35,10 @@ multilib_src_configure() {
 	cmake_src_configure
 }
 
-multilib_src_test() {
+src_test() {
+	# Because we are not using cmake_src_test,
+	# we have to manually go to BUILD_DIR
+	cd "${BUILD_DIR}"
 	# Run demo files
 	./klu_simple
 	./kludemo  < "${S}"/Matrix/1c.mtx || die "failed testing"
@@ -52,7 +55,7 @@ multilib_src_test() {
 	./kluldemo < "${S}"/Matrix/ctina.mtx || die "failed testing"
 }
 
-multilib_src_install() {
+src_install() {
 	if use doc; then
 		pushd "${S}/Doc"
 		emake clean

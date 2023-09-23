@@ -3,64 +3,56 @@
 
 EAPI=8
 
-inherit cmake-multilib toolchain-funcs
+inherit cmake
 
-Sparse_PV="7.0.0"
+Sparse_PV="7.2.0"
 Sparse_P="SuiteSparse-${Sparse_PV}"
-DESCRIPTION="Unsymmetric multifrontal sparse LU factorization library"
+DESCRIPTION="Library to order a sparse matrix prior to Cholesky factorization"
 HOMEPAGE="https://people.engr.tamu.edu/davis/suitesparse.html"
 SRC_URI="https://github.com/DrTimothyAldenDavis/SuiteSparse/archive/refs/tags/v${Sparse_PV}.tar.gz -> ${Sparse_P}.gh.tar.gz"
 
-LICENSE="GPL-2+"
-SLOT="0/6"
+LICENSE="BSD"
+SLOT="0/3"
 KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~hppa ~ia64 ~mips ~ppc ~ppc64 ~sparc ~x86 ~amd64-linux ~x86-linux"
-IUSE="doc openmp test"
+IUSE="doc test"
 RESTRICT="!test? ( test )"
 
-DEPEND=">=sci-libs/suitesparseconfig-${Sparse_PV}
-	>=sci-libs/amd-3.0.3
-	>=sci-libs/cholmod-4.0.3[openmp=]
-	virtual/blas"
+DEPEND=">=sci-libs/suitesparseconfig-${Sparse_PV}"
 RDEPEND="${DEPEND}"
 BDEPEND="doc? ( virtual/latex-base )"
 
 S="${WORKDIR}/${Sparse_P}/${PN^^}"
 
-pkg_pretend() {
-	[[ ${MERGE_TYPE} != binary ]] && use openmp && tc-check-openmp
-}
-
-pkg_setup() {
-	[[ ${MERGE_TYPE} != binary ]] && use openmp && tc-check-openmp
-}
-
-multilib_src_configure() {
-	# Fortran is only used to compile additional demo programs that can be tested.
+src_configure() {
 	local mycmakeargs=(
 		-DNSTATIC=ON
-		-DNOPENMP=$(usex openmp OFF ON)
-		-DNFORTRAN=ON
 		-DDEMO=$(usex test)
 	)
 	cmake_src_configure
 }
 
-multilib_src_test() {
+src_test() {
+	# Because we are not using cmake_src_test,
+	# we have to manually go to BUILD_DIR
+	cd "${BUILD_DIR}"
 	# Run demo files
 	local demofiles=(
-		umfpack_di_demo
-		umfpack_dl_demo
-		umfpack_zi_demo
-		umfpack_zl_demo
+		camd_demo
+		camd_l_demo
+		camd_demo2
+		camd_simple
 	)
 	for i in ${demofiles}; do
 		./"${i}" > "${i}.out"
-		diff --strip-trailing-cr "${S}/Demo/${i}.out" "${i}.out" || die "failed testing ${i}"
+		diff "${S}/Demo/${i}.out" "${i}.out" || die "failed testing ${i}"
 	done
+	einfo "All tests passed"
 }
-multilib_src_install() {
+
+src_install() {
 	if use doc; then
 		pushd "${S}/Doc"
+		emake clean
 		rm -rf *.pdf
 		emake
 		popd

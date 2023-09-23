@@ -5,6 +5,7 @@ EAPI=8
 
 PYTHON_COMPAT=( python3_{9..11} )
 DISTUTILS_USE_PEP517=setuptools
+DISTUTILS_EXT=1
 
 inherit distutils-r1
 
@@ -18,7 +19,6 @@ LICENSE="GPL-2+"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
 
-BDEPEND="dev-python/cython[${PYTHON_USEDEP}]
-	<dev-python/cython-3.0.0"
+BDEPEND="dev-python/cython[${PYTHON_USEDEP}]"
 
 S="${WORKDIR}/${P}_as_released"

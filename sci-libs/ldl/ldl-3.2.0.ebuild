@@ -3,61 +3,59 @@
 
 EAPI=8
 
-FORTRAN_NEEDED="fortran"
-inherit cmake-multilib fortran-2
+inherit cmake
 
-Sparse_PV="7.0.0"
+Sparse_PV="7.2.0"
 Sparse_P="SuiteSparse-${Sparse_PV}"
-DESCRIPTION="Library to order a sparse matrix prior to Cholesky factorization"
+DESCRIPTION="Simple but educational LDL^T matrix factorization algorithm"
 HOMEPAGE="https://people.engr.tamu.edu/davis/suitesparse.html"
 SRC_URI="https://github.com/DrTimothyAldenDavis/SuiteSparse/archive/refs/tags/v${Sparse_PV}.tar.gz -> ${Sparse_P}.gh.tar.gz"
 
-LICENSE="BSD"
+LICENSE="LGPL-2.1+"
 SLOT="0/3"
 KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~hppa ~ia64 ~mips ~ppc ~ppc64 ~sparc ~x86 ~amd64-linux ~x86-linux"
-IUSE="doc fortran test"
+IUSE="doc test"
 RESTRICT="!test? ( test )"
 
-DEPEND=">=sci-libs/suitesparseconfig-${Sparse_PV}"
+DEPEND=">=sci-libs/suitesparseconfig-${Sparse_PV}
+	>=sci-libs/amd-3.2.0"
 RDEPEND="${DEPEND}"
 BDEPEND="doc? ( virtual/latex-base )"
 
 S="${WORKDIR}/${Sparse_P}/${PN^^}"
 
-multilib_src_configure() {
+src_configure() {
 	local mycmakeargs=(
 		-DNSTATIC=ON
-		-DNFORTRAN=$(usex fortran OFF ON)
 		-DDEMO=$(usex test)
 	)
 	cmake_src_configure
 }
 
-multilib_src_test() {
+src_test() {
+	# Because we are not using cmake_src_test,
+	# we have to manually go to BUILD_DIR
+	cd "${BUILD_DIR}"
+	# Some programs assume that they can access the Matrix folder in ${S}
+	ln -s "${S}/Matrix"
 	# Run demo files
 	local demofiles=(
-		amd_demo
-		amd_l_demo
-		amd_demo2
-		amd_simple
+		ldlsimple
+		ldllsimple
+		ldlmain
+		ldllmain
+		ldlamd
+		ldllamd
 	)
-	if use fortran; then
-		demofiles+=(
-			amd_f77simple
-			amd_f77demo
-		)
-	fi
 	for i in ${demofiles}; do
 		./"${i}" > "${i}.out"
 		diff "${S}/Demo/${i}.out" "${i}.out" || die "failed testing ${i}"
 	done
-	einfo "All tests passed"
 }
 
-multilib_src_install() {
+src_install() {
 	if use doc; then
 		pushd "${S}/Doc"
-		emake clean
 		rm -rf *.pdf
 		emake
 		popd

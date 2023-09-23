@@ -5,6 +5,7 @@ EAPI=8
 
 PYTHON_COMPAT=( python3_{9..11} )
 DISTUTILS_USE_PEP517=setuptools
+DISTUTILS_EXT=1
 inherit distutils-r1 pypi
 
 DESCRIPTION="cython interface to primecount"
@@ -18,5 +19,4 @@ IUSE=""
 DEPEND=">=sci-mathematics/primecount-7.2
 	>=dev-python/cysignals-1.11.2[${PYTHON_USEDEP}]"
 RDEPEND="${DEPEND}"
-BDEPEND=">=dev-python/cython-0.29.25[${PYTHON_USEDEP}]
-	<dev-python/cython-3.0.0"
+BDEPEND=">=dev-python/cython-0.29.25[${PYTHON_USEDEP}]"

@@ -3,11 +3,11 @@
 
 EAPI=8
 
-inherit cmake-multilib
+inherit cmake
 
-Sparse_PV="7.0.0"
+Sparse_PV="7.2.0"
 Sparse_P="SuiteSparse-${Sparse_PV}"
-DESCRIPTION="Constrained Column approximate minimum degree ordering algorithm"
+DESCRIPTION="Column approximate minimum degree ordering algorithm"
 HOMEPAGE="https://people.engr.tamu.edu/davis/suitesparse.html"
 SRC_URI="https://github.com/DrTimothyAldenDavis/SuiteSparse/archive/refs/tags/v${Sparse_PV}.tar.gz -> ${Sparse_P}.gh.tar.gz"
 
@@ -17,12 +17,12 @@ KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~hppa ~ia64 ~mips ~ppc ~ppc64 ~sparc ~x86 ~a
 IUSE="test"
 RESTRICT="!test? ( test )"
 
-DEPEND=">=sci-libs/suitesparseconfig-7.0.0"
+DEPEND=">=sci-libs/suitesparseconfig-${Sparse_PV}"
 RDEPEND="${DEPEND}"
 
 S="${WORKDIR}/${Sparse_P}/${PN^^}"
 
-multilib_src_configure() {
+src_configure() {
 	local mycmakeargs=(
 		-DNSTATIC=ON
 		-DDEMO=$(usex test)
@@ -30,10 +30,13 @@ multilib_src_configure() {
 	cmake_src_configure
 }
 
-multilib_src_test() {
+src_test() {
+	# Because we are not using cmake_src_test,
+	# we have to manually go to BUILD_DIR
+	cd "${BUILD_DIR}"
 	# Run demo files
-	./ccolamd_example > ccolamd_example.out
-	diff "${S}"/Demo/ccolamd_example.out ccolamd_example.out || die "failed testing ccolamd_example"
-	./ccolamd_l_example > ccolamd_l_example.out
-	diff "${S}"/Demo/ccolamd_l_example.out ccolamd_l_example.out || die "failed testing ccolamd_l_example"
+	./colamd_example > colamd_example.out
+	diff "${S}"/Demo/colamd_example.out colamd_example.out || die "failed testing colamd_example"
+	./colamd_l_example > colamd_l_example.out
+	diff "${S}"/Demo/colamd_l_example.out colamd_l_example.out || die "failed testing colamd_l_example"
 }
