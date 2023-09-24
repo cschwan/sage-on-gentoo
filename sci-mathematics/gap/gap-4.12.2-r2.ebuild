@@ -27,9 +27,7 @@ DEPEND="dev-libs/gmp:=
 	readline? ( sys-libs/readline:= )"
 
 RDEPEND="${DEPEND}
-	emacs? ( >=app-editors/emacs-23.1:* )
-	!<sci-mathematics/gap-4.12.0
-	!sci-mathematics/gap-core"
+	emacs? ( >=app-editors/emacs-23.1:* )"
 PDEPEND="${MINIMUM_PKGS}"
 
 REQUIRED_USE="?? ( memcheck valgrind )"
