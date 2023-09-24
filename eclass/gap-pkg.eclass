@@ -5,8 +5,7 @@
 # @MAINTAINER:
 # François Bissey <frp.bissey@gmail.com>
 # @SUPPORTED_EAPIS: 7 8
-# @BLURB: help standardize the installation of gap package from
-# gap 4.12.0 and over
+# @BLURB: help standardize the installation of gap package
 
 case ${EAPI} in
 	7|8) ;;
