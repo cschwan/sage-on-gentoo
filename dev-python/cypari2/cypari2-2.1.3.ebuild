@@ -22,7 +22,6 @@ RDEPEND="${DEPEND}"
 BDEPEND=">=dev-python/cython-0.28[${PYTHON_USEDEP}]
 	<dev-python/cython-3.0.0"
 
-
 PATCHES=(
 	"${FILESDIR}"/0001-move-rebuild-out-of-build_ext-so-it-is-run-before-ev.patch
 )
