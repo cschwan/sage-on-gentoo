@@ -1,23 +1,31 @@
 # Copyright 1999-2023 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI=8
 
 inherit toolchain-funcs flag-o-matic multibuild
 
-DESCRIPTION="A Package for Analyzing Lattice Polytopes"
+DESCRIPTION="Package for Analyzing Lattice Polytopes (PALP)"
 HOMEPAGE="http://hep.itp.tuwien.ac.at/~kreuzer/CY/CYpalp.html"
 SRC_URI="http://hep.itp.tuwien.ac.at/~kreuzer/CY/palp/${P}.tar.gz"
-#SRC_URI="mirror://sagemath/${P}.tar.gz"
 
-LICENSE="GPL-2"
+LICENSE="GPL-3"
 SLOT="0"
 KEYWORDS="~amd64 ~x86 ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos"
 IUSE=""
 
-DEPEND=""
-RDEPEND="${DEPEND}"
+# The mori.x program writes code to a temporary file and then passes it
+# to /usr/bin/Singular to interpret. It also uses cat, grep, awk, and rm
+# in shell commands but those are presumed to be available on Gentoo.
+RDEPEND="sci-mathematics/singular"
 
+# SageMath has for ever shipped a custom installation of palp that
+# builds everything four times: once optimized for dimensions d <= 4,
+# once for d <= 5, once for d <= 6, and once for d <= 11 . The resulting
+# binaries are given a suffix corresponding to the dimension that they
+# were optimized for. For example, the upstream poly.x executable
+# optimized for d <= 4 is (and must be for SageMath to utilize it) named
+# poly-4d.x.
 MULTIBUILD_VARIANTS=( 4 5 6 11 )
 
 # this flag break the executable with certain versions of gcc
@@ -34,7 +42,8 @@ src_prepare(){
 }
 
 palp_compile(){
-	CPPFLAGS=-DPOLY_Dmax="${MULTIBUILD_VARIANT}" emake
+	DIMCPPFLAGS="-DPOLY_Dmax=${MULTIBUILD_VARIANT}"
+	CPPFLAGS="${CPPFLAGS} ${DIMCPPFLAGS}" emake
 }
 
 src_compile(){
