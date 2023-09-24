@@ -153,10 +153,7 @@ REQUIRED_USE="doc? ( jmol )
 
 PATCHES=(
 	"${FILESDIR}"/MPL-3.8.0.patch
-<<<<<<<< HEAD:sci-mathematics/sage/sage-10.1-r1.ebuild
-========
 	"${FILESDIR}"/sphinx-7.1-compat.patch
->>>>>>>> vbraun:sci-mathematics/sage/sage-10.1-r2.ebuild
 	"${FILESDIR}"/${PN}-9.2-env.patch
 	"${FILESDIR}"/sage_exec-9.3.patch
 	"${FILESDIR}"/${PN}-9.3-forcejavatmp.patch
