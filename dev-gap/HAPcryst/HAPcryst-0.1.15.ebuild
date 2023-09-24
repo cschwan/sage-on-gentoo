@@ -19,8 +19,7 @@ RDEPEND=">=sci-mathematics/gap-4.12.0
 	>=dev-gap/hap-1.47
 	>=dev-gap/polycyclic-2.16
 	>=dev-gap/aclib-1.3.2
-	>=dev-gap/cryst-4.1.25
-	>=dev-gap/polymaking-0.8.6"
+	>=dev-gap/cryst-4.1.25"
 
 DOCS="README CHANGES"
 
