@@ -146,5 +146,3 @@ sci-mathematics/sage_numerical_backends_coin
 >=dev-gap/toric-1.9.5-r1
 ~sci-libs/bliss-0.73 # dependency of digraphs
 =sci-libs/libsemigroups-2.3* # dependency of semigroups
-# packages needing more testing
-#~dev-gap/polymaking-0.8.6

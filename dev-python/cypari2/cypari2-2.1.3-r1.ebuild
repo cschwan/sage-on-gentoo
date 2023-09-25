@@ -22,7 +22,6 @@ DEPEND=">=sci-mathematics/pari-2.13:=[gmp,doc]
 RDEPEND="${DEPEND}"
 BDEPEND="dev-python/cython[${PYTHON_USEDEP}]"
 
-
 PATCHES=(
 	"${FILESDIR}"/0001-move-rebuild-out-of-build_ext-so-it-is-run-before-ev.patch
 )

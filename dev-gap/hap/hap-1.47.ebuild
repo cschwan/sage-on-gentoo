@@ -30,6 +30,5 @@ pkg_postinst() {
 	elog "Some optional functions, require the following"
 	elog "dependencies to be installed at runtime:"
 	elog ""
-	elog "sci-mathematics/polymake"
 	elog "media-gfx/graphviz"
 }
