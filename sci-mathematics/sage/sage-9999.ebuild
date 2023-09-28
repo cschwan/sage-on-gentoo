@@ -41,8 +41,8 @@ DEPEND="
 	>=dev-libs/ntl-11.4.3:=
 	>=dev-libs/ppl-1.1
 	~dev-lisp/ecl-21.2.1
-	>=dev-python/cypari2-2.1.3[${PYTHON_USEDEP}]
-	>=dev-python/cysignals-1.11.2[${PYTHON_USEDEP}]
+	>=dev-python/cypari2-2.1.3-r1[${PYTHON_USEDEP}]
+	>=dev-python/cysignals-1.11.2-r1[${PYTHON_USEDEP}]
 	>=dev-python/docutils-0.12[${PYTHON_USEDEP}]
 	>=dev-python/gmpy-2.1.0_beta5[${PYTHON_USEDEP}]
 	>=dev-python/ipykernel-4.6.0[${PYTHON_USEDEP}]
@@ -103,7 +103,7 @@ RDEPEND="
 	${DEPEND}
 	>=dev-lang/R-4.0.4
 	>=dev-python/cvxopt-1.2.6[glpk,${PYTHON_USEDEP}]
-	>=dev-python/fpylll-0.5.9[${PYTHON_USEDEP}]
+	>=dev-python/fpylll-0.5.9-r1[${PYTHON_USEDEP}]
 	>=dev-python/mpmath-1.2.1[${PYTHON_USEDEP}]
 	>=dev-python/networkx-2.6[${PYTHON_USEDEP}]
 	>=dev-python/pexpect-4.2.1[${PYTHON_USEDEP}]
@@ -133,7 +133,7 @@ RDEPEND="
 	jmol? ( sci-chemistry/sage-jmol-bin )
 "
 
-BDEPEND=">=dev-python/cython-0.29.24[${PYTHON_USEDEP}]"
+BDEPEND=">=dev-python/cython-3.0.0[${PYTHON_USEDEP}]"
 
 PDEPEND="
 	doc? ( ~sci-mathematics/sage-doc-${PV} )
@@ -168,10 +168,6 @@ python_prepare_all() {
 		sage-git_src_prepare "${MY_PN}"
 	fi
 
-	if has_version ">=dev-python/cython-3.0.0"; then
-		PATCHES+=( "${FILESDIR}"/cython-3.patch )
-	fi
-
 	distutils-r1_python_prepare_all
 
 	# Turn on debugging capability if required
@@ -199,9 +195,8 @@ python_prepare_all() {
 
 python_configure_all() {
 	export SAGE_NUM_THREADS=$(makeopts_jobs)
-	if has_version ">=dev-python/cython-3.0.0"; then
-		export SAGE_DEBUG=no
-	fi
+	# Needed for cython-3 for now
+	export SAGE_DEBUG=no
 }
 
 python_install() {
