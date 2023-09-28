@@ -32,10 +32,6 @@ DEPEND="~sci-mathematics/sage-${PV}[${PYTHON_USEDEP}]
 RDEPEND="${DEPEND}"
 BDEPEND="dev-python/cython[${PYTHON_USEDEP}]"
 
-PATCHES=(
-	"${FILESDIR}"/sm-meataxe-10.2-relative-import.patch
-)
-
 pkg_setup() {
 	# for cython 3
 	export SAGE_DEBUG=no
