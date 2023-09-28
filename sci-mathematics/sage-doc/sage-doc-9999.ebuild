@@ -83,10 +83,6 @@ src_unpack(){
 }
 
 src_prepare(){
-	if has_version ">=dev-python/cython-3.0.0"; then
-		PATCHES+=( "${FILESDIR}"/cython-3.patch )
-	fi
-
 	default
 
 	einfo "bootstrapping the documentation - be patient"
