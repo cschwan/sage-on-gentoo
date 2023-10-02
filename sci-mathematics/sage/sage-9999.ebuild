@@ -56,7 +56,7 @@ DEPEND="
 	dev-python/memory_allocator[${PYTHON_USEDEP}]
 	>=dev-python/numpy-1.16.1[${PYTHON_USEDEP}]
 	>=dev-python/pkgconfig-1.2.2[${PYTHON_USEDEP}]
-	~dev-python/pplpy-0.8.7:=[doc,${PYTHON_USEDEP}]
+	dev-python/pplpy[doc,${PYTHON_USEDEP}]
 	dev-python/primecountpy[${PYTHON_USEDEP}]
 	>=dev-python/psutil-4.4.0[${PYTHON_USEDEP}]
 	>=dev-python/six-1.11.0[${PYTHON_USEDEP}]
