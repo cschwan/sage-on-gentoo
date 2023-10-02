@@ -28,11 +28,12 @@ SLOT="0"
 RESTRICT="test mirror"
 
 # pplpy needs to be installed to get documentation folder right :(
-DEPEND="~dev-python/pplpy-0.8.7:=[doc,${PYTHON_USEDEP}]"
+DEPEND=""
 RDEPEND=""
+BDEPEND="dev-python/pplpy[doc,${PYTHON_USEDEP}]"
 
 PATCHES=(
-	"${FILESDIR}/${PN}-9.7.patch"
+	"${FILESDIR}/${PN}-10.2.patch"
 )
 
 python_prepare_all() {
