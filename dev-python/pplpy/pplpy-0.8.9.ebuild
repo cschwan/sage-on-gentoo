@@ -24,14 +24,6 @@ DEPEND=">=dev-python/gmpy-2.1.0[${PYTHON_USEDEP}]
 RDEPEND="${DEPEND}"
 BDEPEND="dev-python/cython[${PYTHON_USEDEP}]"
 
-src_prepare() {
-	if has_version ">=dev-python/cython-3.0.0"; then
-		PATCHES+=( "${FILESDIR}"/cython-3.patch )
-	fi
-
-	distutils-r1_python_prepare_all
-}
-
 python_compile() {
 	# automatic parallel building with python3.5+ is not safe
 	distutils-r1_python_compile -j 1
