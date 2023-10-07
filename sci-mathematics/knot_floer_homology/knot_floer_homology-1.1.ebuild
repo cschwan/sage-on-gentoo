@@ -3,7 +3,7 @@
 
 EAPI=8
 
-PYTHON_COMPAT=( python3_{9..11} )
+PYTHON_COMPAT=( python3_{10..12} )
 DISTUTILS_USE_PEP517=setuptools
 DISTUTILS_EXT=1
 
@@ -22,3 +22,7 @@ KEYWORDS="~amd64 ~x86"
 BDEPEND="dev-python/cython[${PYTHON_USEDEP}]"
 
 S="${WORKDIR}/${P}_as_released"
+
+python_test() {
+	"${EPYTHON}" -m knot_floer_homology.test
+}
