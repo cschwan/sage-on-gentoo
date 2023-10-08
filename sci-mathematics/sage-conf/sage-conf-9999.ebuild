@@ -28,11 +28,12 @@ SLOT="0"
 RESTRICT="test mirror"
 
 # pplpy needs to be installed to get documentation folder right :(
-DEPEND="~dev-python/pplpy-0.8.7:=[doc,${PYTHON_USEDEP}]"
+DEPEND=""
 RDEPEND=""
+BDEPEND="dev-python/pplpy[doc,${PYTHON_USEDEP}]"
 
 PATCHES=(
-	"${FILESDIR}/${PN}-9.7.patch"
+	"${FILESDIR}/${PN}-10.2.patch"
 )
 
 python_prepare_all() {
@@ -43,7 +44,7 @@ python_prepare_all() {
 	distutils-r1_python_prepare_all
 
 	# sage on gentoo environment variables
-	cp -f "${FILESDIR}"/${PN}.py-9.8 _sage_conf/_conf.py
+	cp -f "${FILESDIR}"/${PN}.py-10.2 _sage_conf/_conf.py
 	eprefixify _sage_conf/_conf.py
 	# set the documentation location to the externally provided sage-doc package
 	sed -i "s:@GENTOO_PORTAGE_PF@:sage-doc-${PV}:" _sage_conf/_conf.py
@@ -53,4 +54,7 @@ python_prepare_all() {
 	local pplpyver=$(best_version dev-python/pplpy)
 	# using pplpyver from character 11 to remove "dev-python/"
 	sed -i "s:@PPLY_DOC_VERS@:${pplpyver:11}:" _sage_conf/_conf.py
+	# Set sage version as stated in VERSION.txt
+	local sage_version=$(cat VERSION.txt)
+	sed -i "s:@SAGE_VERSION@:${sage_version}:" _sage_conf/_conf.py
 }
