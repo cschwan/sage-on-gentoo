@@ -21,10 +21,6 @@ DEPEND=">=sci-mathematics/pari-2.13.0:="
 RDEPEND="${DEPEND}"
 BDEPEND=">=dev-python/cython-0.29.24[${PYTHON_USEDEP}]"
 
-PATCHES=(
-	"${FILESDIR}"/${PN}-1.11.0-helper_loc.patch
-	)
-
 python_test(){
 	PATH="${BUILD_DIR}/scripts:${PATH}" "${EPYTHON}" -B "${S}"/rundoctests.py "${S}"/src/cysignals/*.pyx
 }
