@@ -19,7 +19,7 @@ IUSE=""
 
 DEPEND=">=sci-mathematics/pari-2.13.0:="
 RDEPEND="${DEPEND}"
-BDEPEND=">=dev-python/cython-0.29.24[${PYTHON_USEDEP}]"
+BDEPEND=">=dev-python/cython-3.0.0[${PYTHON_USEDEP}]"
 
 python_test(){
 	PATH="${BUILD_DIR}/scripts:${PATH}" "${EPYTHON}" -B "${S}"/rundoctests.py "${S}"/src/cysignals/*.pyx
