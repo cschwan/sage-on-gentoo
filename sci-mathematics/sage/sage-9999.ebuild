@@ -3,7 +3,7 @@
 
 EAPI=8
 
-PYTHON_COMPAT=( python3_{10..11} )
+PYTHON_COMPAT=( python3_{10..12} )
 PYTHON_REQ_USE="readline,sqlite"
 DISTUTILS_USE_PEP517=setuptools
 DISTUTILS_EXT=1
@@ -41,7 +41,7 @@ DEPEND="
 	>=dev-libs/ntl-11.4.3:=
 	>=dev-libs/ppl-1.1
 	~dev-lisp/ecl-21.2.1
-	>=dev-python/cypari2-2.1.3-r1[${PYTHON_USEDEP}]
+	>=dev-python/cypari2-2.1.4[${PYTHON_USEDEP}]
 	>=dev-python/cysignals-1.11.2-r1[${PYTHON_USEDEP}]
 	>=dev-python/docutils-0.12[${PYTHON_USEDEP}]
 	>=dev-python/gmpy-2.1.0_beta5[${PYTHON_USEDEP}]
@@ -79,8 +79,7 @@ DEPEND="
 	>=sci-mathematics/rw-0.7
 	~sci-mathematics/sage_setup-${PV}[${PYTHON_USEDEP}]
 	~sci-mathematics/sage-conf-${PV}[${PYTHON_USEDEP}]
-	>=sci-mathematics/singular-4.3.1_p3[readline]
-	<sci-mathematics/singular-4.3.2_p2
+	>=sci-mathematics/singular-4.3.2[readline]
 	>=sci-libs/brial-1.2.10
 	~sci-libs/givaro-4.1.1
 	>=sci-libs/gsl-2.3
@@ -103,7 +102,7 @@ RDEPEND="
 	${DEPEND}
 	>=dev-lang/R-4.0.4
 	>=dev-python/cvxopt-1.2.6[glpk,${PYTHON_USEDEP}]
-	>=dev-python/fpylll-0.5.9-r1[${PYTHON_USEDEP}]
+	>=dev-python/fpylll-0.6.0[${PYTHON_USEDEP}]
 	>=dev-python/mpmath-1.2.1[${PYTHON_USEDEP}]
 	>=dev-python/networkx-2.6[${PYTHON_USEDEP}]
 	>=dev-python/pexpect-4.2.1[${PYTHON_USEDEP}]
