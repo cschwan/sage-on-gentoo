@@ -10,7 +10,7 @@ inherit distutils-r1
 
 DESCRIPTION="A Python interface to the number theory library libpari"
 HOMEPAGE="https://github.com/sagemath/cypari2"
-SRC_URI="https://github.com/sagemath/${PN}/releases/download/${PV}/${P}.tar.gz"
+SRC_URI="https://github.com/sagemath/${PN}/releases/download/${PV}/${P}.tar.gz -> ${P}.gh.tar.gz"
 
 LICENSE="GPL-2+"
 SLOT="0"
