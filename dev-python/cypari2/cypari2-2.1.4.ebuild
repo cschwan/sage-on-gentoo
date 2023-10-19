@@ -3,14 +3,14 @@
 
 EAPI=8
 
-PYTHON_COMPAT=( python3_{9..11} )
-DISTUTILS_USE_PEP517=setuptools
-DISTUTILS_EXT=1
+PYTHON_COMPAT=( python3_{10..12} )
+DISTUTILS_USE_PEP517=standalone
 
-inherit distutils-r1 pypi
+inherit distutils-r1
 
 DESCRIPTION="A Python interface to the number theory library libpari"
 HOMEPAGE="https://github.com/sagemath/cypari2"
+SRC_URI="https://github.com/sagemath/${PN}/releases/download/${PV}/${P}.tar.gz"
 
 LICENSE="GPL-2+"
 SLOT="0"
@@ -20,19 +20,12 @@ IUSE=""
 DEPEND=">=sci-mathematics/pari-2.13:=[gmp,doc]
 	dev-python/cysignals[${PYTHON_USEDEP}]"
 RDEPEND="${DEPEND}"
-BDEPEND="dev-python/cython[${PYTHON_USEDEP}]"
+BDEPEND="dev-python/setuptools[${PYTHON_USEDEP}]
+	>=dev-python/cython-3.0.0[${PYTHON_USEDEP}]"
 
 PATCHES=(
 	"${FILESDIR}"/0001-move-rebuild-out-of-build_ext-so-it-is-run-before-ev.patch
 )
-
-src_prepare() {
-	if has_version ">=dev-python/cython-3.0.0"; then
-		PATCHES+=( "${FILESDIR}"/cython-3.patch )
-	fi
-
-	distutils-r1_python_prepare_all
-}
 
 python_test(){
 	cd "${S}"/tests
