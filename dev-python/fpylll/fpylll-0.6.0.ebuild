@@ -3,10 +3,8 @@
 
 EAPI=8
 
-PYTHON_COMPAT=( python3_{9..11} )
+PYTHON_COMPAT=( python3_{10..12} )
 DISTUTILS_USE_PEP517=setuptools
-DISTUTILS_EXT=1
-
 inherit distutils-r1 pypi
 
 DESCRIPTION="A Python (2 and 3) wrapper for fplll."
@@ -23,21 +21,13 @@ CDEPEND=">=sci-libs/fplll-5.4.4
 DEPEND="${CDEPEND}
 	test? ( dev-python/hypothesis[${PYTHON_USEDEP}] )"
 RDEPEND="${CDEPEND}"
-BDEPEND="dev-python/cython[${PYTHON_USEDEP}]"
+BDEPEND=">dev-python/cython-3.0.0[${PYTHON_USEDEP}]"
 
 PATCHES=(
 	"${FILESDIR}"/0001-Do-not-set-library-path.patch
 )
 
 distutils_enable_tests pytest
-
-src_prepare() {
-	if has_version ">=dev-python/cython-3.0.0"; then
-		PATCHES+=( "${FILESDIR}"/cython-3.patch )
-	fi
-
-	distutils-r1_python_prepare_all
-}
 
 src_test() {
 	PY_IGNORE_IMPORTMISMATCH=1 distutils-r1_src_test
