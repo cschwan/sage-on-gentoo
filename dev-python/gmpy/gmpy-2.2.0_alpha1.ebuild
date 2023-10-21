@@ -30,8 +30,8 @@ DEPEND="
 "
 RDEPEND="
 	${DEPEND}
+	dev-python/mpmath[${PYTHON_USEDEP}]
 "
-BDEPEND="dev-python/mpmath[${PYTHON_USEDEP}]"
 
 S="${WORKDIR}/gmpy-${MY_P}"
 
