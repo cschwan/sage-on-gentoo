@@ -5,7 +5,7 @@ EAPI=8
 
 inherit cmake
 
-Sparse_PV="7.2.0"
+Sparse_PV="7.2.2"
 Sparse_P="SuiteSparse-${Sparse_PV}"
 DESCRIPTION="Extended sparse matrix package"
 HOMEPAGE="https://people.engr.tamu.edu/davis/suitesparse.html"
