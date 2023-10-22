@@ -5,7 +5,7 @@ EAPI=8
 
 inherit cmake toolchain-funcs
 
-Sparse_PV="7.2.0"
+Sparse_PV="7.2.2"
 Sparse_P="SuiteSparse-${Sparse_PV}"
 DESCRIPTION="Unsymmetric multifrontal sparse LU factorization library"
 HOMEPAGE="https://people.engr.tamu.edu/davis/suitesparse.html"
@@ -32,13 +32,6 @@ pkg_pretend() {
 
 pkg_setup() {
 	[[ ${MERGE_TYPE} != binary ]] && use openmp && tc-check-openmp
-}
-
-src_prepare() {
-	# This header is supposed to be private *therefore* not shipped.
-	ln -s ../../AMD/Include/amd_internal.h Include/amd_internal.h || die "cannot link to amd internal header"
-
-	cmake_src_prepare
 }
 
 src_configure() {
