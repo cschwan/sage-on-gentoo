@@ -5,7 +5,7 @@ EAPI=8
 
 inherit cmake toolchain-funcs
 
-Sparse_PV="7.2.0"
+Sparse_PV="7.2.2"
 Sparse_P="SuiteSparse-${Sparse_PV}"
 DESCRIPTION="Sparse Cholesky factorization and update/downdate library"
 HOMEPAGE="https://people.engr.tamu.edu/davis/suitesparse.html"
@@ -47,8 +47,8 @@ pkg_setup() {
 }
 
 src_configure() {
-	# Not that "N" prefixed options are negative options
-	# so they need to be turned OFF if you want that option.
+	# Note that "N" prefixed options are negative options
+	# so, they need to be turned OFF if you want that option.
 	# Fortran is turned off as it is only used to compile (untested) demo programs.
 	local mycmakeargs=(
 		-DNSTATIC=ON
