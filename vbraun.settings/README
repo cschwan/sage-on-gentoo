@@ -1,0 +1,8 @@
+Warning! Do not use if you are not on the 'braun' branch of the sage-on-gentoo overlay.
+By default you should be on the master branch.
+The 'vbraun' branch is 
+ * work in progress not yet deemed ready for general use
+ * the sage* 9999 uses git snapshot of sage's release manager (Volker Braun).
+
+This is the git repo where PR are merged in between develop release. 
+Patches may be different from the master branch and at times broken because of PR that may end up unmerged.
