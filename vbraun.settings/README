@@ -6,3 +6,17 @@ The 'vbraun' branch is
 
 This is the git repo where PR are merged in between develop release. 
 Patches may be different from the master branch and at times broken because of PR that may end up unmerged.
+
+To minimize the difference between the master and vbraun branches, the git repo is now set
+by overriding the ebuilds using the env/package.env mechanism.
+
+Once on the vbraun branch put the files in place
+ln -s /var/db/repos/sage-on-gentoo/vbraun.settings/env.sagemath-vbraun \
+      /etc/portage/env/sagemath-vbraun
+
+ln -s /var/db/repos/sage-on-gentoo/vbraun.settings/package.env.sagemath-vbraun \
+      /etc/portage/package.env/sagemath-vbraun
+
+Do not forget to unlink these when returning to the master branch!
+
+This mechanism only affects the -9999 ebuilds and not the stable releases.
