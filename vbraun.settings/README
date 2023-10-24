@@ -1,11 +1,11 @@
-Warning! Do not use if you are not on the 'braun' branch of the sage-on-gentoo overlay.
+Warning! Do not use this if you are not on the 'vbraun' branch of the sage-on-gentoo overlay.
 By default you should be on the master branch.
 The 'vbraun' branch is 
  * work in progress not yet deemed ready for general use
- * the sage* 9999 uses git snapshot of sage's release manager (Volker Braun).
+ * providing git snapshot for sage*-9999 ebuilds from sage's release manager (Volker Braun) merge branch.
 
 This is the git repo where PR are merged in between develop release. 
-Patches may be different from the master branch and at times broken because of PR that may end up unmerged.
+Patches may be different from the master branch and at times broken because of PR(s) that may end up unmerged.
 
 To minimize the difference between the master and vbraun branches, the git repo is now set
 by overriding the ebuilds using the env/package.env mechanism.
@@ -17,6 +17,16 @@ ln -s /var/db/repos/sage-on-gentoo/vbraun.settings/env.sagemath-vbraun \
 ln -s /var/db/repos/sage-on-gentoo/vbraun.settings/package.env.sagemath-vbraun \
       /etc/portage/package.env/sagemath-vbraun
 
-Do not forget to unlink these when returning to the master branch!
+To switch to the 'vbraun' branch of the overlay do
+cd /var/db/repos/sage-on-gentoo/
+git checkout vbraun
+git pull
 
-This mechanism only affects the -9999 ebuilds and not the stable releases.
+And to return to the master branch
+cd /var/db/repos/sage-on-gentoo/
+git checkout master
+git pull
+
+Do not forget to unlink the 'sagemath-vbraun` env and package.env files when returning to the master branch!
+
+This mechanism only affects the -9999 ebuilds and not the sage releases.
