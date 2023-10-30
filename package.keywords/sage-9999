@@ -1,6 +1,6 @@
 dev-python/cvxopt
 =dev-python/cysignals-1.11*
-dev-python/memory_allocator
+dev-python/memory-allocator
 =dev-python/pplpy-0.8*
 dev-python/pyopengl
 =dev-python/cypari2-2.1*
