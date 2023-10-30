@@ -53,7 +53,7 @@ DEPEND="
 	~dev-python/jupyter-jsmol-2022.1.0[${PYTHON_USEDEP}]
 	dev-python/lrcalc[${PYTHON_USEDEP}]
 	>=dev-python/matplotlib-3.5.0[${PYTHON_USEDEP}]
-	dev-python/memory_allocator[${PYTHON_USEDEP}]
+	dev-python/memory-allocator[${PYTHON_USEDEP}]
 	>=dev-python/numpy-1.16.1[${PYTHON_USEDEP}]
 	>=dev-python/pkgconfig-1.2.2[${PYTHON_USEDEP}]
 	~dev-python/pplpy-0.8.7:=[doc,${PYTHON_USEDEP}]
