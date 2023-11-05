@@ -45,9 +45,9 @@ KEYWORDS=""
 
 sage-git_src_unpack() {
 	git-r3_src_unpack
-	
+
 	mkdir -p "${S}"
-	
+
 	default
 }
 
@@ -76,8 +76,8 @@ sage-git_src_prepare() {
 	pushd "${EGIT_CHECKOUT_DIR}"
 	einfo "Apply sdist patch if found"
 	# This is to apply any patch that will change the sdist
-	if [[ -e "${FILESDIR}/${my_pkg}-sdist.patch" ]]; then
-		eapply "${FILESDIR}/${my_pkg}-sdist.patch"
+	if [[ -e "${FILESDIR}/sage-sdist.patch" ]]; then
+		eapply "${FILESDIR}/sage-sdist.patch"
 	fi
 
 	einfo "generating setup.cfg and al. - be patient"
