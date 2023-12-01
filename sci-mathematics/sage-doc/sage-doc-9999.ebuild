@@ -47,7 +47,8 @@ BDEPEND="$(python_gen_any_dep '
 	~sci-mathematics/sage_docbuild-9999[${PYTHON_USEDEP}]
 	')
 	doc-pdf? ( app-text/texlive[extra,${L10N_USEDEP}] )"
-RDEPEND=""
+RDEPEND="dev-libs/mathjax"
+DEPEND="dev-libs/mathjax"
 
 PATCHES=(
 	"${FILESDIR}"/${PN}-9.5-neutering.patch
@@ -149,12 +150,6 @@ src_install(){
 	find build_doc -name .buildinfo -delete || die "failed to prune buildinfo files"
 	# prune the jupyter_execute folder created by jupyter-sphinx
 	rm -rf build_doc/html/en/reference/jupyter_execute
-
-	# Replace full "build" path to html index in pdf doc
-	if use doc-pdf ; then
-		sed -e "s:${WORKDIR}/build_doc:${ESYSROOT}/usr/share/doc/${P}:g" -i \
-			build_doc/pdf/en/reference/index.html
-	fi
 	popd
 
 	docompress -x /usr/share/doc/"${PF}"/common
