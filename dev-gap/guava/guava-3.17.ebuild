@@ -17,7 +17,7 @@ IUSE=""
 DEPEND=">=sci-mathematics/gap-4.12.2"
 RDEPEND="${DEPEND}"
 
-DOCS=( README.md {CHANGES,HISTORY,README}.${PN} )
+DOCS=( README.md CHANGES HISTORY )
 
 PATCHES=(
 	"${FILESDIR}"/${PN}-3.15-makefile.patch
