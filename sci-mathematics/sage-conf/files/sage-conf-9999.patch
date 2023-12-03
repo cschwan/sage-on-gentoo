@@ -1,0 +1,39 @@
+diff --git a/pyproject.toml b/pyproject.toml
+index d882f39..4d038c7 100644
+--- a/pyproject.toml
++++ b/pyproject.toml
+@@ -11,13 +11,9 @@ authors = [{name = "The Sage Developers", email = "sage-support@googlegroups.com
+ urls = {Homepage = "https://www.sagemath.org"}
+ dynamic = ["version"]
+ 
+-[project.scripts]
+-sage-config = "sage_conf:_main"
+-
+ [tool.setuptools]
+ packages = ["_sage_conf"]
+ py-modules = ["sage_conf"]
+-script-files = ["bin/sage-env-config"]
+ include-package-data = false
+ 
+ [tool.setuptools.dynamic]
+diff --git a/setup.py b/setup.py
+index 16686a8..bfb1cbd 100644
+--- a/setup.py
++++ b/setup.py
+@@ -108,7 +108,6 @@ class build_py(setuptools_build_py):
+ class build_scripts(distutils_build_scripts):
+ 
+     def run(self):
+-        self.distribution.scripts.append(os.path.join('bin', 'sage-env-config'))
+         if not self.distribution.entry_points:
+             self.entry_points = self.distribution.entry_points = dict()
+         distutils_build_scripts.run(self)
+@@ -123,7 +122,6 @@ class editable_wheel(setuptools_editable_wheel):
+ 
+ 
+ setup(
+-    cmdclass=dict(build_py=build_py,
+-                  build_scripts=build_scripts,
++    cmdclass=dict(build_scripts=build_scripts,
+                   editable_wheel=editable_wheel)
+ )
