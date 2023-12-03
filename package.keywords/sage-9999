@@ -1,36 +1,25 @@
 dev-python/cvxopt
-=dev-python/cysignals-1.11*
-dev-python/memory-allocator
+>=dev-python/cysignals-1.11.4
 =dev-python/pplpy-0.8*
-dev-python/pyopengl
 =dev-python/cypari2-2.1*
 >dev-python/furo-2023.8.19
 ~dev-python/jupyter-jsmol-2022.1.0
 dev-python/jupyter-sphinx
-dev-python/lrcalc
-dev-python/primecountpy
 >=dev-python/rpy-3.5.7
 dev-python/sphinx-copybutton
-~dev-python/sympy-1.11.1
 =dev-tex/sagetex-3*
 media-gfx/tachyon
 ~media-gfx/threejs-sage-extension-122
 sci-libs/dsdp
-~sci-libs/fplll-5.4.4
->=dev-python/fpylll-0.5.9
-=sci-mathematics/arb-2.22*
+>=sci-libs/fplll-5.4.5
+>=dev-python/fpylll-0.6.0
 sci-mathematics/cu2
 sci-mathematics/cubex
 sci-mathematics/dikcube
 >sci-mathematics/giac-1.9.0.0
-~sci-mathematics/gmp-ecm-7.0.5
-~sci-mathematics/lcalc-1.23
-~sci-mathematics/lrcalc-2.1
-~sci-mathematics/maxima-5.46.0::sage-on-gentoo
 sci-mathematics/mcube
 sci-mathematics/optimal
 sci-mathematics/palp
-=sci-mathematics/pari-2.15*
 ~sci-mathematics/sage-9999 **
 ~sci-mathematics/sage-conf-9999 **
 ~sci-mathematics/sage_setup-9999 **
@@ -50,7 +39,6 @@ sci-mathematics/ExportSageNB
 # sage optional binding
 #########################
 sci-libs/modular_decomposition
-sci-libs/bliss
 ~sci-mathematics/sagemath-bliss-9999 **
 dev-libs/igraph
 sci-mathematics/shared_meataxe
@@ -68,15 +56,6 @@ sci-mathematics/spherogram
 sci-mathematics/plink
 sci-mathematics/snappy
 sci-mathematics/FXrays
-# coinor-cbc
-sci-libs/coinor-cbc
-sci-libs/coinor-clp
-sci-libs/coinor-cgl
-sci-libs/coinor-dylp
-sci-libs/coinor-osi
-sci-libs/coinor-utils
-sci-libs/coinor-vol
-sci-mathematics/sage_numerical_backends_coin
 ##################################
 # GAP 4.12.2
 ##################################
