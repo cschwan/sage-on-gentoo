@@ -36,16 +36,17 @@ L10N_USEDEP="${L10N_USEDEP%?}"
 
 RESTRICT="mirror test"
 
-# cannot use $PV in python_gen_any_deps :(
-# This section to checked on release for sage/sage_docbuild versions
-BDEPEND="$(python_gen_any_dep '
-	dev-python/sphinx[${PYTHON_USEDEP}]
-	dev-python/furo[${PYTHON_USEDEP}]
-	dev-python/jupyter-sphinx[${PYTHON_USEDEP}]
-	dev-python/sphinx-copybutton[${PYTHON_USEDEP}]
-	~sci-mathematics/sage-9999[${PYTHON_USEDEP},jmol]
-	~sci-mathematics/sage_docbuild-9999[${PYTHON_USEDEP}]
-	')
+# There is a trick to use $PV in python_gen_any_deps
+# But it breaks checking with pkgcheck, reports of "missing check for ... "
+# may be safely ignored most of the time.
+BDEPEND="$(python_gen_any_dep "
+	dev-python/sphinx[\${PYTHON_USEDEP}]
+	dev-python/furo[\${PYTHON_USEDEP}]
+	dev-python/jupyter-sphinx[\${PYTHON_USEDEP}]
+	dev-python/sphinx-copybutton[\${PYTHON_USEDEP}]
+	~sci-mathematics/sage-${PV}[\${PYTHON_USEDEP},jmol]
+	~sci-mathematics/sage_docbuild-${PV}[\${PYTHON_USEDEP}]
+	")
 	doc-pdf? ( app-text/texlive[extra,${L10N_USEDEP}] )"
 RDEPEND="dev-libs/mathjax"
 DEPEND="dev-libs/mathjax"
