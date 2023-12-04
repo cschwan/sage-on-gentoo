@@ -43,8 +43,8 @@ BDEPEND="$(python_gen_any_dep '
 	dev-python/furo[${PYTHON_USEDEP}]
 	dev-python/jupyter-sphinx[${PYTHON_USEDEP}]
 	dev-python/sphinx-copybutton[${PYTHON_USEDEP}]
-	~sci-mathematics/sage-9999[${PYTHON_USEDEP},jmol]
-	~sci-mathematics/sage_docbuild-9999[${PYTHON_USEDEP}]
+	~sci-mathematics/sage-10.2[${PYTHON_USEDEP},jmol]
+	~sci-mathematics/sage_docbuild-10.2[${PYTHON_USEDEP}]
 	')
 	doc-pdf? ( app-text/texlive[extra,${L10N_USEDEP}] )"
 RDEPEND="dev-libs/mathjax"
