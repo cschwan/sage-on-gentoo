@@ -24,6 +24,10 @@ BDEPEND="
 	dev-python/build[${PYTHON_USEDEP}]
 "
 
+# Standard sage git repo definition. This can be overriden the usual way.
+EGIT_REPO_URI="https://github.com/sagemath/sage.git"
+EGIT_BRANCH=develop
+
 # Standard variables for ebuild using sage-git
 # @VARIABLE: EGIT_CHECKOUT_DIR
 # @REQUIRED
