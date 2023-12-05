@@ -10,15 +10,15 @@ DISTUTILS_EXT=1
 
 inherit desktop distutils-r1 multiprocessing toolchain-funcs
 
-MY_PN="sagemath-standard"
-MY_P="${MY_PN}-${PV}"
+SAGE_PKG="sagemath-standard"
+MY_P="${SAGE_PKG}-${PV}"
 
 if [[ ${PV} == 9999 ]]; then
 	inherit git-r3 sage-git
 	EGIT_REPO_URI="https://github.com/sagemath/sage.git"
 else
 	inherit pypi
-	SRC_URI="$(pypi_sdist_url --no-normalize "${MY_PN}")"
+	SRC_URI="$(pypi_sdist_url --no-normalize "${SAGE_PKG}")"
 	KEYWORDS="~amd64 ~amd64-linux ~ppc-macos ~x64-macos"
 	S="${WORKDIR}/${MY_P}"
 fi
@@ -67,7 +67,7 @@ DEPEND="
 	>=sci-mathematics/arb-2.19.0
 	sci-mathematics/cliquer
 	sci-mathematics/eclib:=[flint]
-	>=sci-mathematics/flint-2.7.1:=[ntl]
+	=sci-mathematics/flint-3.0*:=[ntl]
 	~sci-mathematics/gap-4.12.2
 	>=sci-mathematics/giac-1.9.0
 	>=sci-mathematics/glpk-5.0:0=[gmp]
@@ -163,10 +163,6 @@ pkg_setup() {
 }
 
 python_prepare_all() {
-	if [[ ${PV} == 9999 ]]; then
-		sage-git_src_prepare "${MY_PN}"
-	fi
-
 	distutils-r1_python_prepare_all
 
 	# Turn on debugging capability if required
