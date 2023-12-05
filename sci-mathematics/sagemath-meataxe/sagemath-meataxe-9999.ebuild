@@ -37,14 +37,6 @@ pkg_setup() {
 	export SAGE_DEBUG=no
 }
 
-python_prepare_all() {
-	if [[ ${PV} == 9999 ]]; then
-		sage-git_src_prepare
-	fi
-
-	distutils-r1_python_prepare_all
-}
-
 python_install() {
 	distutils-r1_python_install
 
