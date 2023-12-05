@@ -38,7 +38,9 @@ DEPEND="dev-libs/gmp:=
 	dev-libs/mpfr:=
 	ntl? ( dev-libs/ntl:= )
 	virtual/cblas"
-RDEPEND="${DEPEND}"
+# flint 3 includes arb and arb cannot use flint 3.
+RDEPEND="${DEPEND}
+	!sci-mathematics/arb"
 
 src_configure() {
 	local mycmakeargs=(
