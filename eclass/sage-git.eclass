@@ -9,7 +9,7 @@
 # @DESCRIPTION:
 # sagemath packages are developed from a common git tree.
 # It makes it hawkward when checking individual packages.
-# This eclass helps creating appropriate package sdist 
+# This eclass helps creating appropriate package sdist
 # from a sage git snapshot and then properly unpacking them in S.
 
 inherit git-r3 python-r1
@@ -23,6 +23,10 @@ BDEPEND="
 	sys-devel/autoconf
 	dev-python/build[${PYTHON_USEDEP}]
 "
+
+# Standard sage git repo definition. This can be overriden the usual way.
+EGIT_REPO_URI="https://github.com/sagemath/sage.git"
+EGIT_BRANCH=develop
 
 # Standard variables for ebuild using sage-git
 # @VARIABLE: EGIT_CHECKOUT_DIR
@@ -41,37 +45,28 @@ KEYWORDS=""
 # @USAGE:
 # @DESCRIPTION:
 # Standard unpacking of a sage git checkout and other associated
-# distribution files. Create S so that src_prepare phase can find it.
+# distribution files. Create a sdist from the git checkout for the
+# sagemath package defined by the variable ${SAGE_PKG} or ${PN} if
+# it is not defined. Proceed to unpack the sdist into ${S}
+# If the git checkout needs to be patched before producing a working
+# sdist, this can be done if there is a patch named:
+# sage-sdist.patch
+# in FILESDIR
 
 sage-git_src_unpack() {
 	git-r3_src_unpack
 
-	mkdir -p "${S}"
+	mkdir -p "${S}" || die "Cannot create S (${S})"
 
 	default
-}
 
-# @FUNCTION: sage-git_src_prepare
-# @USAGE: <optional sagemath package name>
-# @DESCRIPTION:
-# Create a sdist from the git checkout for the sagemath package
-# passed as an argument or ${PN} if none passed.
-# Proceed to unpack the sdist into ${S}
-# If the git checkout needs to be patched before producing a working
-# sdist, this can be done if there is a patch named:
-# pkg_name-sdist.patch
-# in FILESDIR
-
-sage-git_src_prepare() {
-	# If no value is passed, it default to ${PN}
-	if [[ -z ${1} ]]; then
-		my_pkg="${PN}"
-	else
-		my_pkg="${1}"
+	# If ${SAGE_PKG} does not exist, default to ${PN}
+	if [[ -z ${SAGE_PKG} ]]; then
+		SAGE_PKG="${PN}"
 	fi
 
 	# Checking the requested distribution exists
-	[[ -d "${EGIT_CHECKOUT_DIR}/pkgs/${my_pkg}" ]] || die "${my_pkg} is not a valid sagemath subpackage"
+	[[ -d "${EGIT_CHECKOUT_DIR}/pkgs/${SAGE_PKG}" ]] || die "${SAGE_PKG} is not a valid sagemath subpackage"
 
 	pushd "${EGIT_CHECKOUT_DIR}"
 	einfo "Apply sdist patch if found"
@@ -82,11 +77,11 @@ sage-git_src_prepare() {
 
 	einfo "generating setup.cfg and al. - be patient"
 	./bootstrap || die "boostrap failed"
-	einfo "creating a ${my_pkg} sdist"
+	einfo "creating a ${SAGE_PKG} sdist"
 	# calling python_setup to set PYTHON/EPYTHON
 	python_setup
 	${EPYTHON} -m build -n -x -s \
-		"pkgs/${my_pkg}" \
+		"pkgs/${SAGE_PKG}" \
 		--outdir "${WORKDIR}" || die "failed to create sdist"
 	popd
 
@@ -95,7 +90,7 @@ sage-git_src_prepare() {
 	# unpack
 	# Note that we catch the special case sage-conf/sage-conf_pypi here.
 	tar --strip-components=1 -C "${S}" \
-		-xvzf "${my_pkg%_pypi}"-*.tar.gz || die "failed to unpack sdist"
+		-xvzf "${SAGE_PKG%_pypi}"-*.tar.gz || die "failed to unpack sdist"
 	popd
 }
 

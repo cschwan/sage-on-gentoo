@@ -12,7 +12,6 @@ inherit distutils-r1
 
 if [[ ${PV} == 9999 ]]; then
 	inherit git-r3 sage-git
-	EGIT_REPO_URI="https://github.com/sagemath/sage.git"
 else
 	PYPI_NO_NORMALIZE=1
 	inherit pypi
@@ -35,14 +34,6 @@ BDEPEND="dev-python/cython[${PYTHON_USEDEP}]"
 pkg_setup() {
 	# for cython 3
 	export SAGE_DEBUG=no
-}
-
-python_prepare_all() {
-	if [[ ${PV} == 9999 ]]; then
-		sage-git_src_prepare
-	fi
-
-	distutils-r1_python_prepare_all
 }
 
 python_install() {

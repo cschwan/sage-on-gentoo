@@ -8,15 +8,14 @@ DISTUTILS_USE_PEP517=setuptools
 
 inherit distutils-r1
 
-MY_PN="sage-docbuild"
-MY_P="${MY_PN}-${PV}"
+SAGE_PKG="sage-docbuild"
+MY_P="${SAGE_PKG}-${PV}"
 
 if [[ ${PV} == 9999 ]]; then
 	inherit git-r3 sage-git
-	EGIT_REPO_URI="https://github.com/sagemath/sage.git"
 else
 	inherit pypi
-	SRC_URI="$(pypi_sdist_url --no-normalize "${MY_PN}")"
+	SRC_URI="$(pypi_sdist_url --no-normalize "${SAGE_PKG}")"
 	KEYWORDS="~amd64 ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos"
 	S="${WORKDIR}/${MY_P}"
 fi
@@ -40,11 +39,3 @@ PDEPEND="~sci-mathematics/sage-${PV}[${PYTHON_USEDEP}]"
 PATCHES=(
 	"${FILESDIR}"/sage-9.3-linguas.patch
 )
-
-python_prepare_all() {
-	if [[ ${PV} == 9999 ]]; then
-		sage-git_src_prepare "${MY_PN}"
-	fi
-
-	distutils-r1_python_prepare_all
-}
