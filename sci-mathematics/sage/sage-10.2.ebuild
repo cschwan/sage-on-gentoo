@@ -67,7 +67,7 @@ DEPEND="
 	>=sci-mathematics/arb-2.19.0
 	sci-mathematics/cliquer
 	sci-mathematics/eclib:=[flint]
-	>=sci-mathematics/flint-2.7.1:=[ntl]
+	=sci-mathematics/flint-2.9*:=[ntl]
 	~sci-mathematics/gap-4.12.2
 	>=sci-mathematics/giac-1.9.0
 	>=sci-mathematics/glpk-5.0:0=[gmp]
