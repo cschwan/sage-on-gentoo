@@ -25,8 +25,8 @@ SLOT="0"
 
 RESTRICT="test"
 
-DEPEND="~sci-mathematics/sage-environment-${PV}[${PYTHON_USEDEP}]
-	~sci-mathematics/sage-objects-${PV}[${PYTHON_USEDEP}]"
+DEPEND="~sci-mathematics/sagemath-environment-${PV}[${PYTHON_USEDEP}]
+	~sci-mathematics/sagemath-objects-${PV}[${PYTHON_USEDEP}]"
 RDEPEND="${DEPEND}
 	dev-python/ipython[${PYTHON_USEDEP}]
 	dev-python/ipywidgets[${PYTHON_USEDEP}]"
