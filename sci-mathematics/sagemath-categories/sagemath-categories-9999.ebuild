@@ -26,7 +26,11 @@ SLOT="0"
 
 RESTRICT="test"
 
-DEPEND=""
+DEPEND="~sci-mathematics/sage_setup-${PV}[${PYTHON_USEDEP}]
+	~sci-mathematics/sagemath-environment-${PV}[${PYTHON_USEDEP}]
+	~sci-mathematics/sagemath-objects-${PV}[${PYTHON_USEDEP}]
+	dev-python/gmpy[${PYTHON_USEDEP}]
+	dev-python/cysignals[${PYTHON_USEDEP}]"
 RDEPEND="${DEPEND}"
 BDEPEND="dev-python/cython[${PYTHON_USEDEP}]"
 
