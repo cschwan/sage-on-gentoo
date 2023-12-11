@@ -1,0 +1,23 @@
+diff --git a/sage/interfaces/jmoldata.py b/sage/interfaces/jmoldata.py
+index ea19dc9..db457e2 100644
+--- a/sage/interfaces/jmoldata.py
++++ b/sage/interfaces/jmoldata.py
+@@ -21,7 +21,7 @@ AUTHORS:
+ 
+ from sage.structure.sage_object import SageObject
+ 
+-from sage.env import JMOL_DIR
++from sage.env import JMOL_DIR, DOT_SAGE
+ from sage.misc.temporary_file import tmp_filename
+ from sage.cpython.string import bytes_to_str
+ 
+@@ -178,7 +178,8 @@ class JmolData(SageObject):
+             env = dict(os.environ)
+             env['LC_ALL'] = 'C'
+             env['LANG'] = 'C'
+-            subprocess.call(["java", "-Xmx512m", "-Djava.awt.headless=true",
++            java_temp_dir_arg = f"-Duser.home={DOT_SAGE}"
++            subprocess.call(["java", "-Xmx512m", java_temp_dir_arg, "-Djava.awt.headless=true",
+                              "-jar", jmolpath, "-iox", "-g", size_arg,
+                              "-J", launchscript, "-j", imagescript],
+                             stdout=jout, stderr=jout, env=env)

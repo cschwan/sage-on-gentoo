@@ -37,6 +37,7 @@ sci-mathematics/singular
 ##########################
 sci-mathematics/ExportSageNB
 ~sci-chemistry/sage-jmol-bin-14.29.52
+~sci-mathematics/sage-sws2rst-9999 **
 #########################
 # sage optional binding
 #########################
