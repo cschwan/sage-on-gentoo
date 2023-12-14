@@ -1,0 +1,13 @@
+diff --git a/sage/modular/arithgroup/farey.cpp b/sage/modular/arithgroup/farey.cpp
+index 5c912b4..2093916 100644
+--- a/sage/modular/arithgroup/farey.cpp
++++ b/sage/modular/arithgroup/farey.cpp
+@@ -29,7 +29,7 @@
+ #include <Python.h>
+ 
+ #include "farey.hpp"
+-#include "farey_symbol.h"
++#include "sage/modular/arithgroup/farey_symbol.h"
+ 
+ 
+ using namespace std;

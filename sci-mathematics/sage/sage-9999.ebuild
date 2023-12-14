@@ -100,6 +100,7 @@ DEPEND="
 RDEPEND="
 	${DEPEND}
 	>=dev-lang/R-4.0.4
+	~dev-python/conway-polynomials-0.8[${PYTHON_USEDEP}]
 	>=dev-python/cvxopt-1.2.6[glpk,${PYTHON_USEDEP}]
 	>=dev-python/fpylll-0.6.0[${PYTHON_USEDEP}]
 	>=dev-python/mpmath-1.2.1[${PYTHON_USEDEP}]
@@ -121,7 +122,6 @@ RDEPEND="
 	>=sci-mathematics/optimal-20040603
 	>=sci-mathematics/palp-2.1
 	~sci-mathematics/sage-data-combinatorial_designs-20140630
-	~sci-mathematics/sage-data-conway_polynomials-0.5
 	~sci-mathematics/sage-data-elliptic_curves-0.8
 	~sci-mathematics/sage-data-graphs-20210214
 	~sci-mathematics/sage-data-polytopes_db-20170220
@@ -154,6 +154,7 @@ PATCHES=(
 	"${FILESDIR}"/${PN}-10.3-forcejavatmp.patch
 	"${FILESDIR}"/${PN}-10.3-neutering.patch
 	"${FILESDIR}"/${PN}-9.8-build_ext.patch
+	"${FILESDIR}"/${PN}-10.3-farey.patch
 )
 
 pkg_setup() {
