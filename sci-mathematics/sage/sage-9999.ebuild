@@ -1,4 +1,4 @@
-# Copyright 1999-2023 Gentoo Authors
+	# Copyright 1999-2023 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=8
@@ -154,7 +154,6 @@ PATCHES=(
 	"${FILESDIR}"/${PN}-10.3-forcejavatmp.patch
 	"${FILESDIR}"/${PN}-10.3-neutering.patch
 	"${FILESDIR}"/${PN}-9.8-build_ext.patch
-	"${FILESDIR}"/${PN}-10.3-farey.patch
 )
 
 pkg_setup() {

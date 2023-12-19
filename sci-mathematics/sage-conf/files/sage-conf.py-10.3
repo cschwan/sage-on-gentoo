@@ -1,11 +1,12 @@
 r"""
 Sage variables definitions for Gentoo
 """
+VERSION      = "@SAGE_VERSION@"
+
 SAGE_SHARE   = "@GENTOO_PORTAGE_EPREFIX@/usr/share/sage"
 SAGE_DOC     = "@GENTOO_PORTAGE_EPREFIX@/usr/share/doc/@GENTOO_PORTAGE_PF@"
 
-GAP_LIB_DIR  = "@GENTOO_PORTAGE_EPREFIX@/usr/@libdir@/gap"
-GAP_SHARE_DIR= "@GENTOO_PORTAGE_EPREFIX@/usr/share/gap"
+GAP_ROOT_PATHS  = "@GENTOO_PORTAGE_EPREFIX@/usr/@libdir@/gap;@GENTOO_PORTAGE_EPREFIX@/usr/share/gap"
 THEBE_DIR    = "@GENTOO_PORTAGE_EPREFIX@/usr/share/thebe"
 JMOL_DIR     = "@GENTOO_PORTAGE_EPREFIX@/usr/share/sage-jmol-bin/lib"
 MATHJAX_DIR  = "@GENTOO_PORTAGE_EPREFIX@/usr/share/mathjax"
