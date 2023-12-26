@@ -1,0 +1,27 @@
+Title: sage-doc 10.3.beta4 and after
+Author: Francois Bissey <frp.bissey@gmail.com>
+Content-Type: text/plain
+Posted: 2023-12-27
+Revision: 2
+News-Item-Format: 2.0
+Display-If-Installed: sci-mathematics/sage-doc
+
+Starting with 10.3.beta4 building the pdf documentation with the useflag
+doc-pdf in sage-doc uses luatex and requires at least texlive 2023.
+texlive 2023 is not, at the time of writing, in the main tree but developped
+in the texlive overlay.
+If you want to generate sage's pdf documentation you will have to to use the
+overlay or a manual installation of texlive
+https://wiki.gentoo.org/wiki/TeX_Live_manual_installation
+
+For convenience, I have added two files in the package.keywords folder:
+* texlive-2023 which has a list of package to unmask from the texlive overlay
+and overlay setup instructions
+* texlive-2023.licanse some packages needed from the overlay have new licenses
+and this file details them and can be used in a package.license folder in 
+/etc/portage or be appended to a package.license file depending on what you
+are using.
+
+Note that if you do not want to build the pdf documentation, you do need to do
+anything. Building the default html documentation do not require anything out
+of the main Gentoo tree.
