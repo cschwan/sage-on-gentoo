@@ -47,7 +47,12 @@ BDEPEND="$(python_gen_any_dep "
 	~sci-mathematics/sage-${PV}[\${PYTHON_USEDEP},jmol]
 	~sci-mathematics/sage_docbuild-${PV}[\${PYTHON_USEDEP}]
 	")
-	doc-pdf? ( app-text/texlive[extra,${L10N_USEDEP}] )"
+	doc-pdf? (
+		app-text/texlive[extra,luatex,${L10N_USEDEP}]
+		app-text/texlive-core[xindy]
+		media-fonts/freefont
+	)
+"
 RDEPEND="dev-libs/mathjax"
 DEPEND="dev-libs/mathjax"
 
@@ -102,7 +107,6 @@ src_configure(){
 	export SAGE_DOC="${WORKDIR}"/build_doc
 	export SAGE_DOC_SRC="${S}"/src/doc
 	export SAGE_DOC_MATHJAX=yes
-	export VARTEXFONTS="${T}"/fonts
 	# try to fix random sphinx crash during the building of the documentation
 	export MPLCONFIGDIR="${T}"/matplotlib
 	# Avoid spurious message from the gtk backend by making sure it is never tried
@@ -119,6 +123,10 @@ src_compile(){
 
 	# Needs to be created beforehand or it gets created as a file with the content of _static/plot_directive.css
 	mkdir -p "${SAGE_DOC}"/html/en/reference/_static
+
+	# for some reason luatex check whether it can write there.
+	# Of course it should fail, but it triggers the sandbox.
+	addpredict /var/lib/texmf/m_t_x_t_e_s_t.tmp
 
 	emake doc-html
 	if use doc-pdf ; then
