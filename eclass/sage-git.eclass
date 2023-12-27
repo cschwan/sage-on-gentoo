@@ -24,11 +24,24 @@ BDEPEND="
 	dev-python/build[${PYTHON_USEDEP}]
 "
 
-# Standard sage git repo definition. This can be overriden the usual way.
+# Standard git-r3 variables for ebuild using sage-git
+
+# @VARIABLE: EGIT_REPO_URI
+# @REQUIRED
+# @DESCRIPTION:
+# This variable is from git-r3 eclass, we set to the default
+# git repo for sagemath. It can be overriden the usual git-r3
+# way, to test a PR branch for example.
 EGIT_REPO_URI="https://github.com/sagemath/sage.git"
+
+# @VARIABLE: EGIT_BRANCH
+# @REQUIRED
+# @DESCRIPTION:
+# This variable is from git-r3 eclass, we set to the default
+# develop git branch used for sagemath. It can be overriden
+# the usual git-r3 way, to test a PR branch for example.
 EGIT_BRANCH=develop
 
-# Standard variables for ebuild using sage-git
 # @VARIABLE: EGIT_CHECKOUT_DIR
 # @REQUIRED
 # @DESCRIPTION:
