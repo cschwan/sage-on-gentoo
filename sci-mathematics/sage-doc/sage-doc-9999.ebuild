@@ -103,6 +103,7 @@ src_configure(){
 	export SAGE_DOC="${WORKDIR}"/build_doc
 	export SAGE_DOC_SRC="${S}"/src/doc
 	export SAGE_DOC_MATHJAX=yes
+	export VARTEXFONTS="${T}"/fonts
 	export SAGE_NUM_THREADS=$(makeopts_jobs)
 	export SAGE_NUM_THREADS_PARALLEL=$(makeopts_jobs)
 	# try to fix random sphinx crash during the building of the documentation
