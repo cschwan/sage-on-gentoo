@@ -47,3 +47,4 @@ dev-texlive/texlive-publishers
 dev-texlive/texlive-xetex
 app-text/ttf2pk2
 app-text/dvipsk
+dev-libs/kpathsea

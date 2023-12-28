@@ -6,7 +6,7 @@ EAPI=8
 PYTHON_COMPAT=( python3_{10..12} )
 PYTHON_REQ_USE="readline,sqlite"
 
-inherit python-any-r1
+inherit multiprocessing python-any-r1
 
 if [[ ${PV} == 9999 ]]; then
 	inherit git-r3
@@ -67,10 +67,6 @@ DOCS=(
 	"${S}/src/doc/common"
 )
 
-# for some reason opened for write during inventory of reference/plotting(?) - no write happens.
-# This manifest as root
-addpredict "${ESYSROOT}/usr/share/sage/cremona/cremona_mini.db"
-
 # python_check_deps happilly processes $PV.
 python_check_deps() {
 	python_has_version -b "dev-python/sphinx[${PYTHON_USEDEP}]" &&
@@ -107,6 +103,9 @@ src_configure(){
 	export SAGE_DOC="${WORKDIR}"/build_doc
 	export SAGE_DOC_SRC="${S}"/src/doc
 	export SAGE_DOC_MATHJAX=yes
+	export VARTEXFONTS="${T}"/fonts
+	export SAGE_NUM_THREADS=$(makeopts_jobs)
+	export SAGE_NUM_THREADS_PARALLEL=$(makeopts_jobs)
 	# try to fix random sphinx crash during the building of the documentation
 	export MPLCONFIGDIR="${T}"/matplotlib
 	# Avoid spurious message from the gtk backend by making sure it is never tried
@@ -127,6 +126,9 @@ src_compile(){
 	# for some reason luatex check whether it can write there.
 	# Of course it should fail, but it triggers the sandbox.
 	addpredict /var/lib/texmf/m_t_x_t_e_s_t.tmp
+	# for some reason opened for write during inventory of reference/plotting(?) - no write happens.
+	# This manifest as root
+	addpredict "${ESYSROOT}/usr/share/sage/cremona/cremona_mini.db"
 
 	emake doc-html
 	if use doc-pdf ; then
