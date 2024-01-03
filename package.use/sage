@@ -7,6 +7,7 @@ dev-python/ipython          notebook
 dev-python/numpy            lapack
 dev-python/pplpy            doc
 media-libs/gd               jpeg png
+media-libs/libglvnd         X
 media-gfx/tachyon           png opengl
 sci-mathematics/flint       ntl
 sci-libs/cddlib             tools
