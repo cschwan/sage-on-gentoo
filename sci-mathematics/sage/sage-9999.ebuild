@@ -29,7 +29,7 @@ S="${WORKDIR}/${MY_P}"
 
 LICENSE="GPL-2"
 SLOT="0"
-IUSE="debug +doc jmol latex test X"
+IUSE="debug +doc +jmol latex test X"
 
 RESTRICT="mirror"
 
