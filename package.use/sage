@@ -2,7 +2,6 @@ dev-lang/python             readline sqlite
 dev-libs/boost              python
 dev-libs/boehm-gc           threads
 dev-python/cvxopt           glpk gsl
-dev-python/cython           -numpy
 dev-python/ipython          notebook
 dev-python/numpy            lapack
 dev-python/pplpy            doc
@@ -11,7 +10,6 @@ media-libs/libglvnd         X
 media-gfx/tachyon           png opengl
 sci-mathematics/flint       ntl
 sci-libs/cddlib             tools
-sci-libs/pynac              -giac
 sci-mathematics/eclib       flint
 sci-mathematics/glpk        gmp
 sci-mathematics/gmp-ecm     -openmp
@@ -28,6 +26,6 @@ sci-libs/bliss              -gmp
 x11-base/xorg-server        xvfb
 
 # sage doc pdf generation
-app-text/texlive extra
-app-text/texlive-core cjk xetex
+app-text/texlive extra luatex
+app-text/texlive-core cjk xetex xindy
 
