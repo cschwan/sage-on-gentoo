@@ -6,7 +6,7 @@ EAPI=8
 FORTRAN_NEEDED="fortran"
 inherit cmake fortran-2
 
-Sparse_PV="7.2.2"
+Sparse_PV="7.4.0"
 Sparse_P="SuiteSparse-${Sparse_PV}"
 DESCRIPTION="Library to order a sparse matrix prior to Cholesky factorization"
 HOMEPAGE="https://people.engr.tamu.edu/davis/suitesparse.html"
@@ -27,8 +27,8 @@ S="${WORKDIR}/${Sparse_P}/${PN^^}"
 src_configure() {
 	local mycmakeargs=(
 		-DNSTATIC=ON
-		-DNFORTRAN=$(usex fortran OFF ON)
-		-DDEMO=$(usex test)
+		-DSUITESPARSE_USE_FORTRAN=$(usex fortran ON OFF)
+		-DSUITESPARSE_DEMOS=$(usex test)
 	)
 	cmake_src_configure
 }
