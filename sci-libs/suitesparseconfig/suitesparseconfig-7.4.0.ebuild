@@ -32,12 +32,13 @@ pkg_setup() {
 }
 
 src_configure() {
-	# Fortran interface is hardly ever used
-	# Turning it off, until there is a use case.
+	# Make sure we always include the Fortran interface.
+	# It doesn't require a Fortran compiler to be present
+	# and simplifies the configuration for dependencies.
 	local mycmakeargs=(
 		-DNSTATIC=ON
-		-DSUITESPARSE_USE_FORTRAN=OFF
-		-DSUITESPARSE_USE_OPENMP=$(usex openmp OFF ON)
+		-DSUITESPARSE_USE_FORTRAN=ON
+		-DSUITESPARSE_USE_OPENMP=$(usex openmp ON OFF)
 	)
 	cmake_src_configure
 }
