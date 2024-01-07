@@ -2,7 +2,7 @@ dev-lang/python             readline sqlite
 dev-libs/boost              python
 dev-libs/boehm-gc           threads
 dev-python/cvxopt           glpk gsl
-dev-python/ipython          notebook
+dev-python/ipython          notebook nbconvert
 dev-python/numpy            lapack
 dev-python/pplpy            doc
 media-libs/gd               jpeg png
@@ -22,6 +22,11 @@ sys-devel/gcc               fortran
 # bliss seems to be broken with latest gmp at least in sage doctests
 sci-libs/bliss              -gmp
 
+# matplotlib requirements
+media-libs/harfbuzz icu
+dev-python/pillow webp
+virtual/imagemagick-tools tiff jpeg
+media-gfx/imagemagick tiff jpeg
 # matplotlib (testing)
 x11-base/xorg-server        xvfb
 
