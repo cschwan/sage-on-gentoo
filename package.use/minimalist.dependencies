@@ -1,0 +1,14 @@
+# minimal interfaces for ipython and matplotlib
+dev-python/ipython -wxwidgets -qt5 -smp nbconvert
+dev-python/matplotlib -gtk3 -qt5 -wxwidgets
+# symengine is not ready for flint3
+dev-python/sympy -opengl -symengine
+# minimize build dependency for maxima
+sci-mathematics/maxima -sbcl -gui
+# prefer threads as funny things may happen with openmp
+sci-libs/openblas -openmp pthread
+# matplotlib requirements
+media-libs/harfbuzz icu
+dev-python/pillow webp
+virtual/imagemagick-tools tiff jpeg
+media-gfx/imagemagick tiff jpeg
