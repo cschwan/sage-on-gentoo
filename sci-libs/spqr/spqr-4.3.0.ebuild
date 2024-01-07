@@ -5,7 +5,7 @@ EAPI=8
 
 inherit cmake toolchain-funcs
 
-Sparse_PV="7.2.2"
+Sparse_PV="7.4.0"
 Sparse_P="SuiteSparse-${Sparse_PV}"
 DESCRIPTION="Multithreaded multifrontal sparse QR factorization library"
 HOMEPAGE="https://people.engr.tamu.edu/davis/suitesparse.html"
@@ -18,9 +18,9 @@ IUSE="doc openmp test"
 RESTRICT="!test? ( test )"
 
 DEPEND=">=sci-libs/suitesparseconfig-${Sparse_PV}
-	>=sci-libs/amd-3.2.0
-	>=sci-libs/colamd-3.2.0
-	>=sci-libs/cholmod-4.2.0
+	>=sci-libs/amd-3.3.0
+	>=sci-libs/colamd-3.3.0
+	>=sci-libs/cholmod-5.1.0
 	virtual/blas"
 RDEPEND="${DEPEND}"
 BDEPEND="doc? ( virtual/latex-base )"
@@ -38,8 +38,8 @@ pkg_setup() {
 src_configure() {
 	local mycmakeargs=(
 		-DNSTATIC=ON
-		-DNOPENMP=$(usex openmp OFF ON)
-		-DDEMO=$(usex test)
+		-DSUITESPARSE_USE_OPENMP=$(usex openmp)
+		-DSUITESPARSE_DEMOS=$(usex test)
 	)
 	cmake_src_configure
 }
