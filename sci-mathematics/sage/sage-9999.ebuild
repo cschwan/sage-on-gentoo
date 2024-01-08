@@ -31,8 +31,6 @@ LICENSE="GPL-2"
 SLOT="0"
 IUSE="debug +doc +jmol latex test X"
 
-RESTRICT="mirror"
-
 DEPEND="
 	~dev-gap/gap-recommended-4.12.2
 	dev-libs/gmp:0=
@@ -143,7 +141,7 @@ PDEPEND="
 
 CHECKREQS_DISK_BUILD="8G"
 
-RESTRICT="!test? ( test )"
+RESTRICT="mirror !test? ( test )"
 
 REQUIRED_USE="doc? ( jmol )
 	test? ( jmol )"
