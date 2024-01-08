@@ -3,7 +3,7 @@
 
 EAPI=8
 
-inherit cmake-multilib
+inherit cmake
 
 Sparse_PV="7.3.1"
 Sparse_P="SuiteSparse-${Sparse_PV}"
@@ -20,7 +20,7 @@ RDEPEND="${DEPEND}"
 
 S="${WORKDIR}/${Sparse_P}/${PN^^}"
 
-multilib_src_configure() {
+src_configure() {
 	local mycmakeargs=(
 		-DNSTATIC=ON
 	)
