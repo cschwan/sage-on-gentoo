@@ -3,7 +3,7 @@
 
 EAPI=8
 
-inherit cmake-multilib
+inherit cmake
 
 Sparse_PV="7.4.0"
 Sparse_P="SuiteSparse-${Sparse_PV}"
@@ -22,7 +22,7 @@ RDEPEND="${DEPEND}"
 
 S="${WORKDIR}/${Sparse_P}/RBio"
 
-multilib_src_configure() {
+src_configure() {
 	local mycmakeargs=(
 		-DNSTATIC=ON
 		-DSUITESPARSE_DEMOS=$(usex test)
@@ -30,7 +30,10 @@ multilib_src_configure() {
 	cmake_src_configure
 }
 
-multilib_src_test() {
+src_test() {
+	# Because we are not using cmake_src_test,
+	# we have to manually go to BUILD_DIR
+	cd "${BUILD_DIR}"
 	# Run demo files
 	./RBdemo < "${S}"/RBio/private/west0479.rua || die "failed testing"
 }
