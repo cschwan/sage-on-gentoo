@@ -1,6 +1,6 @@
 # Kept for any experimental package not to be merged by users
 # suitesparse 7.4.0 is breaking things because headers are moved to usr/include/suitesparse
->=sci-libs/suitesparse_config-7.4.0
+>=sci-libs/suitesparseconfig-7.4.0
 >=sci-libs/amd-3.3.0
 >=sci-libs/camd-3.3.0
 >=sci-libs/colamd-3.3.0
