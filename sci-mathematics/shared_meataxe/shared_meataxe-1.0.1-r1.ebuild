@@ -11,8 +11,6 @@ LICENSE="GPL-2+"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
 
-RDEPEND="${DEPEND}"
-
 export MTXLIB="${T}/meataxe"
 
 src_compile() {
