@@ -5,7 +5,7 @@ EAPI=8
 
 inherit cmake
 
-Sparse_PV="7.3.1"
+Sparse_PV="7.4.0"
 Sparse_P="SuiteSparse-${Sparse_PV}"
 DESCRIPTION="Extended sparse matrix package"
 HOMEPAGE="https://people.engr.tamu.edu/davis/suitesparse.html"
@@ -13,7 +13,7 @@ SRC_URI="https://github.com/DrTimothyAldenDavis/SuiteSparse/archive/refs/tags/v$
 
 LICENSE="LGPL-2.1"
 SLOT="0/4"
-KEYWORDS="~amd64 ~arm ~arm64 ~hppa ~ppc ~ppc64 ~riscv ~sparc ~x86 ~amd64-linux ~x86-linux"
+KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~hppa ~ia64 ~mips ~ppc ~ppc64 ~riscv ~sparc ~x86 ~amd64-linux ~x86-linux"
 IUSE="test"
 RESTRICT="!test? ( test )"
 
@@ -25,7 +25,7 @@ S="${WORKDIR}/${Sparse_P}/CXSparse"
 src_configure() {
 	local mycmakeargs=(
 		-DNSTATIC=ON
-		-DDEMO=$(usex test)
+		-DSUITESPARSE_DEMOS=$(usex test)
 	)
 	cmake_src_configure
 }
@@ -35,7 +35,7 @@ src_test() {
 	# we have to manually go to BUILD_DIR
 	cd "${BUILD_DIR}"
 	# Programs assume that they can access the Matrix folder in ${S}
-	ln -s "${S}/Matrix" || die "cannot link to the Matrix folder"
+	ln -s "${S}/Matrix"
 	# Run demo files
 	./cs_idemo < Matrix/t2 || die "failed testing"
 	./cs_ldemo < Matrix/t2 || die "failed testing"

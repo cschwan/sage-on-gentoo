@@ -6,7 +6,7 @@ EAPI=8
 FORTRAN_NEEDED="fortran"
 inherit cmake fortran-2
 
-Sparse_PV="7.2.2"
+Sparse_PV="7.3.1"
 Sparse_P="SuiteSparse-${Sparse_PV}"
 DESCRIPTION="Library to order a sparse matrix prior to Cholesky factorization"
 HOMEPAGE="https://people.engr.tamu.edu/davis/suitesparse.html"
@@ -14,7 +14,7 @@ SRC_URI="https://github.com/DrTimothyAldenDavis/SuiteSparse/archive/refs/tags/v$
 
 LICENSE="BSD"
 SLOT="0/3"
-KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~hppa ~ia64 ~mips ~ppc ~ppc64 ~sparc ~x86 ~amd64-linux ~x86-linux"
+KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~hppa ~ia64 ~loong ~mips ~ppc ~ppc64 ~riscv ~s390 ~sparc ~x86 ~amd64-linux ~x86-linux"
 IUSE="doc fortran test"
 RESTRICT="!test? ( test )"
 
@@ -50,8 +50,8 @@ src_test() {
 			amd_f77demo
 		)
 	fi
-	for i in ${demofiles}; do
-		./"${i}" > "${i}.out"
+	for i in ${demofiles[@]}; do
+		./"${i}" > "${i}.out" || die "failed to run test ${i}"
 		diff "${S}/Demo/${i}.out" "${i}.out" || die "failed testing ${i}"
 	done
 	einfo "All tests passed"

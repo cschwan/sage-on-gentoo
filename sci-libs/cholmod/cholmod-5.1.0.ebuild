@@ -5,25 +5,25 @@ EAPI=8
 
 inherit cmake toolchain-funcs
 
-Sparse_PV="7.2.2"
+Sparse_PV="7.4.0"
 Sparse_P="SuiteSparse-${Sparse_PV}"
 DESCRIPTION="Sparse Cholesky factorization and update/downdate library"
 HOMEPAGE="https://people.engr.tamu.edu/davis/suitesparse.html"
 SRC_URI="https://github.com/DrTimothyAldenDavis/SuiteSparse/archive/refs/tags/v${Sparse_PV}.tar.gz -> ${Sparse_P}.gh.tar.gz"
 
 LICENSE="LGPL-2.1+ modify? ( GPL-2+ ) matrixops? ( GPL-2+ )"
-SLOT="0/4"
-KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~hppa ~ia64 ~mips ~ppc ~ppc64 ~sparc ~x86 ~amd64-linux ~x86-linux"
+SLOT="0/5"
+KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~hppa ~ia64 ~loong ~mips ~ppc ~ppc64 ~riscv ~s390 ~sparc ~x86 ~amd64-linux ~x86-linux"
 IUSE="+cholesky cuda doc openmp +matrixops +modify +partition +supernodal test"
 RESTRICT="!test? ( test )"
 
 DEPEND=">=sci-libs/suitesparseconfig-${Sparse_PV}
-	>=sci-libs/amd-3.2.0
-	>=sci-libs/colamd-3.2.0
+	>=sci-libs/amd-3.3.0
+	>=sci-libs/colamd-3.3.0
 	supernodal? ( virtual/lapack )
 	partition? (
-		>=sci-libs/camd-3.2.0
-		>=sci-libs/ccolamd-3.2.0
+		>=sci-libs/camd-3.3.0
+		>=sci-libs/ccolamd-3.3.0
 	)
 	cuda? (
 		dev-util/nvidia-cuda-toolkit
@@ -43,7 +43,7 @@ pkg_pretend() {
 }
 
 pkg_setup() {
-	[[ ${MERGE_TYPE} != binary ]] && use openmp && tc-check-openmp
+[[ ${MERGE_TYPE} != binary ]] && use openmp && tc-check-openmp
 }
 
 src_configure() {
@@ -52,15 +52,15 @@ src_configure() {
 	# Fortran is turned off as it is only used to compile (untested) demo programs.
 	local mycmakeargs=(
 		-DNSTATIC=ON
-		-DENABLE_CUDA=$(usex cuda)
-		-DNOPENMP=$(usex openmp OFF ON)
-		-DNFORTRAN=ON
-		-DNCHOLESKY=$(usex cholesky OFF ON)
-		-DNMATRIXOPS=$(usex matrixops OFF ON)
-		-DNMODIFY=$(usex modify OFF ON)
-		-DNPARTITION=$(usex partition OFF ON)
-		-DNSUPERNODAL=$(usex supernodal OFF ON)
-		-DDEMO=$(usex test)
+		-DCHOLMOD_USE_CUDA=$(usex cuda)
+		-DCHOLMOD_USE_OPENMP=$(usex openmp)
+		-DSUITESPARSE_HAS_FORTRAN=OFF
+		-DCHOLMOD_CHOLESKY=$(usex cholesky)
+		-DCHOLMOD_MATRIXOPS=$(usex matrixops)
+		-DCHOLMOD_MODIFY=$(usex modify)
+		-DCHOLMOD_PARTITION=$(usex partition)
+		-DCHOLMOD_SUPERNODAL=$(usex supernodal)
+		-DSUITESPARSE_DEMOS=$(usex test)
 	)
 	cmake_src_configure
 }
@@ -70,17 +70,17 @@ src_test() {
 	# we have to manually go to BUILD_DIR
 	cd "${BUILD_DIR}"
 	# Run demo files
-	./cholmod_demo   < "${S}"/Demo/Matrix/bcsstk01.tri || die "failed testing"
-	./cholmod_l_demo < "${S}"/Demo/Matrix/bcsstk01.tri || die "failed testing"
-	./cholmod_demo   < "${S}"/Demo/Matrix/lp_afiro.tri || die "failed testing"
-	./cholmod_l_demo < "${S}"/Demo/Matrix/lp_afiro.tri || die "failed testing"
-	./cholmod_demo   < "${S}"/Demo/Matrix/can___24.mtx || die "failed testing"
-	./cholmod_l_demo < "${S}"/Demo/Matrix/can___24.mtx || die "failed testing"
-	./cholmod_demo   < "${S}"/Demo/Matrix/c.tri || die "failed testing"
-	./cholmod_l_demo < "${S}"/Demo/Matrix/c.tri || die "failed testing"
-	./cholmod_simple < "${S}"/Demo/Matrix/c.tri || die "failed testing"
-	./cholmod_simple < "${S}"/Demo/Matrix/can___24.mtx || die "failed testing"
-	./cholmod_simple < "${S}"/Demo/Matrix/bcsstk01.tri || die "failed testing"
+	local type="di dl si sl"
+	local prog="demo simple"
+	local matrix_file="bcsstk01.tri lp_afiro.tri can___24.mtx c.tri"
+	for i in ${type}; do
+		for k in ${prog}; do
+			for j in ${matrix_file}; do
+				./cholmod_${i}_${k}   < "${S}/Demo/Matrix/${j}" \
+					|| die "failed testing cholmod_${i}_${k} with ${j}"
+			done
+		done
+	done
 }
 
 src_install() {

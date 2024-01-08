@@ -5,7 +5,7 @@ EAPI=8
 
 inherit cmake
 
-Sparse_PV="7.3.1"
+Sparse_PV="7.4.0"
 Sparse_P="SuiteSparse-${Sparse_PV}"
 DESCRIPTION="Column approximate minimum degree ordering algorithm"
 HOMEPAGE="https://people.engr.tamu.edu/davis/suitesparse.html"
@@ -25,7 +25,7 @@ S="${WORKDIR}/${Sparse_P}/${PN^^}"
 src_configure() {
 	local mycmakeargs=(
 		-DNSTATIC=ON
-		-DDEMO=$(usex test)
+		-DSUITESPARSE_DEMOS=$(usex test)
 	)
 	cmake_src_configure
 }
@@ -35,8 +35,8 @@ src_test() {
 	# we have to manually go to BUILD_DIR
 	cd "${BUILD_DIR}"
 	# Run demo files
-	./colamd_example > colamd_example.out || die "failed to run test colamd_example"
+	./colamd_example > colamd_example.out
 	diff "${S}"/Demo/colamd_example.out colamd_example.out || die "failed testing colamd_example"
-	./colamd_l_example > colamd_l_example.out || die "failed to run test colamd_l_example"
+	./colamd_l_example > colamd_l_example.out
 	diff "${S}"/Demo/colamd_l_example.out colamd_l_example.out || die "failed testing colamd_l_example"
 }

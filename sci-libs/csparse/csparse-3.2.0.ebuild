@@ -18,12 +18,12 @@ RDEPEND=">=sci-libs/suitesparseconfig-5.4.0[${MULTILIB_USEDEP}]"
 DEPEND="${RDEPEND}
 	virtual/pkgconfig"
 
-multilib_src_configure() {
+src_configure() {
 	ECONF_SOURCE="${S}" econf \
 		$(use_enable static-libs static)
 }
 
-multilib_src_install_all() {
+src_install() {
 	einstalldocs
 
 	# package provides .pc files

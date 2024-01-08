@@ -3,37 +3,43 @@
 
 EAPI=8
 
-inherit cmake
+inherit cmake toolchain-funcs
 
 Sparse_PV="7.3.1"
 Sparse_P="SuiteSparse-${Sparse_PV}"
-DESCRIPTION="a software package for SParse EXact algebra"
+DESCRIPTION="Unsymmetric multifrontal sparse LU factorization library"
 HOMEPAGE="https://people.engr.tamu.edu/davis/suitesparse.html"
 SRC_URI="https://github.com/DrTimothyAldenDavis/SuiteSparse/archive/refs/tags/v${Sparse_PV}.tar.gz -> ${Sparse_P}.gh.tar.gz"
 
-LICENSE="BSD"
-SLOT="0/2"
-KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~hppa ~ia64 ~mips ~ppc ~ppc64 ~sparc ~x86 ~amd64-linux ~x86-linux"
-IUSE="doc test"
+LICENSE="GPL-2+"
+SLOT="0/6"
+KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~hppa ~ia64 ~loong ~mips ~ppc ~ppc64 ~riscv ~s390 ~sparc ~x86 ~amd64-linux ~x86-linux"
+IUSE="doc openmp test"
 RESTRICT="!test? ( test )"
 
 DEPEND=">=sci-libs/suitesparseconfig-${Sparse_PV}
 	>=sci-libs/amd-3.2.1
-	>=sci-libs/colamd-3.2.1
-	dev-libs/gmp
-	dev-libs/mpfr"
+	>=sci-libs/cholmod-5.0.1[openmp=]
+	virtual/blas"
 RDEPEND="${DEPEND}"
 BDEPEND="doc? ( virtual/latex-base )"
 
-PATCHES=(
-	"${FILESDIR}/${PN}-2.0.0-demo_location.patch"
-	)
-
 S="${WORKDIR}/${Sparse_P}/${PN^^}"
 
+pkg_pretend() {
+	[[ ${MERGE_TYPE} != binary ]] && use openmp && tc-check-openmp
+}
+
+pkg_setup() {
+	[[ ${MERGE_TYPE} != binary ]] && use openmp && tc-check-openmp
+}
+
 src_configure() {
+	# Fortran is only used to compile additional demo programs that can be tested.
 	local mycmakeargs=(
 		-DNSTATIC=ON
+		-DNOPENMP=$(usex openmp OFF ON)
+		-DNFORTRAN=ON
 		-DDEMO=$(usex test)
 	)
 	cmake_src_configure
@@ -43,12 +49,9 @@ src_test() {
 	# Because we are not using cmake_src_test,
 	# we have to manually go to BUILD_DIR
 	cd "${BUILD_DIR}"
-	# Programs expect to find ExampleMats
-	ln -s "${S}/SPEX_Left_LU/ExampleMats"
-	# Run demo files
-	./example || die "failed testing"
-	./example2 || die "failed testing"
-	./spexlu_demo || die "failed testing"
+	# Run simple demo first
+	# Other demo files have issues making them unsuitable for testing
+	./umfpack_simple || die "failed testing umfpack_simple"
 }
 
 src_install() {
