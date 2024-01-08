@@ -3,7 +3,7 @@
 
 EAPI=8
 
-inherit cmake-multilib toolchain-funcs
+inherit cmake toolchain-funcs
 
 Sparse_PV="7.3.1"
 Sparse_P="SuiteSparse-${Sparse_PV}"
@@ -46,7 +46,7 @@ pkg_setup() {
 	[[ ${MERGE_TYPE} != binary ]] && use openmp && tc-check-openmp
 }
 
-multilib_src_configure() {
+src_configure() {
 	# Not that "N" prefixed options are negative options
 	# so they need to be turned OFF if you want that option.
 	# Fortran is turned off as it is only used to compile (untested) demo programs.
@@ -65,7 +65,10 @@ multilib_src_configure() {
 	cmake_src_configure
 }
 
-multilib_src_test() {
+src_test() {
+	# Because we are not using cmake_src_test,
+	# we have to manually go to BUILD_DIR
+	cd "${BUILD_DIR}"
 	# Run demo files
 	./cholmod_demo   < "${S}"/Demo/Matrix/bcsstk01.tri || die "failed testing"
 	./cholmod_l_demo < "${S}"/Demo/Matrix/bcsstk01.tri || die "failed testing"
@@ -80,7 +83,7 @@ multilib_src_test() {
 	./cholmod_simple < "${S}"/Demo/Matrix/bcsstk01.tri || die "failed testing"
 }
 
-multilib_src_install() {
+src_install() {
 	if use doc; then
 		pushd "${S}/Doc"
 		rm -rf *.pdf
