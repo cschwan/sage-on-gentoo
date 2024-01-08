@@ -15,7 +15,6 @@ HOMEPAGE="https://github.com/coin-or/CyLP"
 LICENSE="EPL-2.0"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
-IUSE=""
 
 DEPEND="dev-python/numpy[${PYTHON_USEDEP}]
 	dev-python/scipy[${PYTHON_USEDEP}]

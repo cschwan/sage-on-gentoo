@@ -3,7 +3,7 @@
 
 EAPI=8
 
-PYTHON_COMPAT=( python3_{9..11} )
+PYTHON_COMPAT=( python3_{10..12} )
 DISTUTILS_USE_PEP517=setuptools
 DISTUTILS_EXT=1
 
@@ -13,18 +13,15 @@ DESCRIPTION="Python interface to coinor-cbc"
 HOMEPAGE="https://github.com/coin-or/CyLP"
 EGIT_REPO_URI="https://github.com/coin-or/CyLP.git"
 EGIT_BRANCH=master
-#SRC_URI="mirror://pypi/${PN:0:1}/${PN}/${P}.tar.gz"
 
 LICENSE="EPL-2.0"
 SLOT="0"
-KEYWORDS=""
-IUSE=""
 
 DEPEND="dev-python/numpy[${PYTHON_USEDEP}]
 	dev-python/scipy[${PYTHON_USEDEP}]
 	=sci-libs/coinor-cbc-2.10*"
 RDEPEND="${DEPEND}"
-BDEPEND="<dev-python/cython-3.0.0[${PYTHON_USEDEP}]"
+BDEPEND=">dev-python/cython-3.0.0[${PYTHON_USEDEP}]"
 
 # unittest but doesn't seem to be able to find compiled modules.
 RESTRICT="test"
