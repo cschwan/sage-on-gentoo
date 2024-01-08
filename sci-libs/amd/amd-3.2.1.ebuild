@@ -4,7 +4,7 @@
 EAPI=8
 
 FORTRAN_NEEDED="fortran"
-inherit cmake-multilib fortran-2
+inherit cmake fortran-2
 
 Sparse_PV="7.3.1"
 Sparse_P="SuiteSparse-${Sparse_PV}"
@@ -24,7 +24,7 @@ BDEPEND="doc? ( virtual/latex-base )"
 
 S="${WORKDIR}/${Sparse_P}/${PN^^}"
 
-multilib_src_configure() {
+src_configure() {
 	local mycmakeargs=(
 		-DNSTATIC=ON
 		-DNFORTRAN=$(usex fortran OFF ON)
@@ -33,7 +33,10 @@ multilib_src_configure() {
 	cmake_src_configure
 }
 
-multilib_src_test() {
+src_test() {
+	# Because we are not using cmake_src_test,
+	# we have to manually go to BUILD_DIR
+	cd "${BUILD_DIR}"
 	# Run demo files
 	local demofiles=(
 		amd_demo
@@ -54,7 +57,7 @@ multilib_src_test() {
 	einfo "All tests passed"
 }
 
-multilib_src_install() {
+src_install() {
 	if use doc; then
 		pushd "${S}/Doc"
 		emake clean
