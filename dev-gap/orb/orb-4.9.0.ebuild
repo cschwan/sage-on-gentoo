@@ -12,7 +12,6 @@ SRC_URI="https://github.com/gap-packages/${PN}/releases/download/v${PV}/${P}.tar
 
 LICENSE="GPL-3+"
 KEYWORDS="~amd64 ~x86"
-IUSE=""
 
 DEPEND=">=sci-mathematics/gap-4.12.0:="
 RDEPEND="${DEPEND}"

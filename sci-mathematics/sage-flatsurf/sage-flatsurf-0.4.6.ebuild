@@ -18,7 +18,6 @@ KEYWORDS="~amd64"
 DEPEND=">=sci-mathematics/sage-9.7[${PYTHON_USEDEP}]
 	sci-mathematics/surface-dynamics[${PYTHON_USEDEP}]"
 RDEPEND="${DEPEND}"
-BDEPEND=""
 
 PATCHES=(
 	"${FILESDIR}"/152.patch

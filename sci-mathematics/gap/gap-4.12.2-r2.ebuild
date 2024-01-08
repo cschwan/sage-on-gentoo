@@ -13,7 +13,6 @@ LICENSE="GPL-2+"
 SLOT="0/8"
 KEYWORDS="~amd64 ~x86 ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos"
 IUSE="cpu_flags_x86_popcnt debug emacs memcheck readline valgrind"
-REQUIRED_USE="valgrind? ( memcheck )"
 
 MINIMUM_PKGS="
 	>=dev-gap/GAPDoc-1.6.6

@@ -13,7 +13,6 @@ SRC_URI="https://github.com/gap-packages/crystcat/archive/${GIT_TAG}.tar.gz -> $
 
 LICENSE="GPL-2+"
 KEYWORDS="~amd64 ~x86"
-IUSE=""
 
 RDEPEND=">=sci-mathematics/gap-4.12.0
 	>=dev-gap/cryst-4.1.25"

@@ -16,8 +16,6 @@ IUSE="test static-libs"
 RESTRICT="!test? ( test )"
 REQUIRED_USE="test? ( static-libs )"
 
-DEPEND=""
-
 src_configure() {
 	local mycmakeargs=(
 		-DQDLDL_BUILD_STATIC_LIB=$(usex static-libs)

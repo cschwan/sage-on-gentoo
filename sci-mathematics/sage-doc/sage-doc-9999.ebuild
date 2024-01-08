@@ -13,7 +13,6 @@ if [[ ${PV} == 9999 ]]; then
 	EGIT_REPO_URI="https://github.com/sagemath/sage.git"
 	EGIT_BRANCH=develop
 	EGIT_CHECKOUT_DIR="${WORKDIR}/${P}"
-	KEYWORDS=""
 else
 	SRC_URI="https://github.com/sagemath/sage/archive/${PV}.tar.gz -> ${P}.tar.gz"
 	KEYWORDS="~amd64 ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos"

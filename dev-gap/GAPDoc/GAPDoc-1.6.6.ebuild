@@ -12,9 +12,7 @@ SRC_URI="https://github.com/frankluebeck/${PN}/archive/relv${PV}.tar.gz -> ${P}.
 
 LICENSE="GPL-2+"
 KEYWORDS="~amd64 ~x86"
-IUSE=""
 
-DEPEND=""
 RDEPEND=">=sci-mathematics/gap-4.12.0"
 
 DOCS="CHANGES README.md"

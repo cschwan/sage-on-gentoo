@@ -15,7 +15,6 @@ SRC_URI="https://www.math.colostate.edu/~hulpke/${PN}/${PN}${PV}.tar.gz"
 LICENSE="GPL-3
 	Artistic-2"
 KEYWORDS="~amd64 ~x86"
-IUSE=""
 
 RDEPEND=">=sci-mathematics/gap-4.12.0"
 

@@ -12,7 +12,6 @@ SRC_URI="https://github.com/gap-packages/${PN}/archive/v${PV}.tar.gz -> ${P}.tar
 
 LICENSE="LGPL-2.1+"
 KEYWORDS="~amd64 ~x86"
-IUSE=""
 
 RDEPEND=">=sci-mathematics/gap-4.12.0
 	>=dev-gap/GAPDoc-1.6.6"

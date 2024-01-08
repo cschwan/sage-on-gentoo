@@ -27,7 +27,6 @@ HOMEPAGE="https://www.sagemath.org"
 
 LICENSE="GPL-2"
 SLOT="0"
-IUSE=""
 
 RESTRICT="mirror test"
 

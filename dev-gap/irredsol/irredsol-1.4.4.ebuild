@@ -12,7 +12,6 @@ SRC_URI="https://github.com/bh11/${PN}/releases/download/IRREDSOL-${PV}/${P}.tar
 
 LICENSE="BSD-2"
 KEYWORDS="~amd64 ~x86"
-IUSE=""
 
 RDEPEND=">=sci-mathematics/gap-4.12.0"
 

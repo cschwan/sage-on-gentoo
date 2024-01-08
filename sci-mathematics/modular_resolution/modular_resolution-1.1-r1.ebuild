@@ -19,7 +19,6 @@ IUSE="static-libs"
 
 DEPEND="sci-mathematics/shared_meataxe"
 RDEPEND="${DEPEND}"
-BDEPEND=""
 
 PATCHES=(
 	"${FILESDIR}"/${PN}-1.1-test.patch

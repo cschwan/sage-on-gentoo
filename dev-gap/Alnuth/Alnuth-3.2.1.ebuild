@@ -13,7 +13,6 @@ SRC_URI="https://github.com/gap-packages/alnuth/releases/download/v${PV}/${MY_P}
 
 LICENSE="GPL-2+"
 KEYWORDS="~amd64 ~x86"
-IUSE=""
 
 DOCS="CHANGES.md README.md"
 HTML_DOCS=htm/*

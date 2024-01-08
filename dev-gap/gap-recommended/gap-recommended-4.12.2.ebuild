@@ -9,7 +9,6 @@ HOMEPAGE="https://www.gap-system.org/"
 LICENSE="metapackage"
 SLOT="0"
 KEYWORDS="~amd64 ~x86 ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos"
-IUSE=""
 
 # Apart from the packages from the minimal set needed to start gap,
 # those are typically expected from a normal gap installation.

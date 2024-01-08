@@ -12,7 +12,6 @@ SRC_URI="https://github.com/semigroups/Semigroups/releases/download/v${PV}/${P}.
 
 LICENSE="GPL-3+"
 KEYWORDS="~amd64 ~x86"
-IUSE=""
 
 DEPEND=">=sci-mathematics/gap-4.12.0:=
 	>=sci-libs/libsemigroups-2.3.2:="

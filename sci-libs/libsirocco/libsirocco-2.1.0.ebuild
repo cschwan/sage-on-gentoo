@@ -14,7 +14,6 @@ KEYWORDS="~amd64 ~arm ~arm64 ~x86 ~amd64-linux ~x86-linux"
 DEPEND="dev-libs/gmp:=
 	dev-libs/mpfr:="
 RDEPEND="${DEPEND}"
-BDEPEND=""
 
 src_install() {
 	default
