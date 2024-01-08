@@ -14,7 +14,6 @@ LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64 ~x86 ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos"
 
-
 S="${WORKDIR}"/${MY_P}
 
 src_install() {
