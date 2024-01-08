@@ -5,7 +5,7 @@ EAPI=8
 
 inherit cmake
 
-Sparse_PV="7.2.2"
+Sparse_PV="7.4.0"
 Sparse_P="SuiteSparse-${Sparse_PV}"
 DESCRIPTION="Sparse LU factorization for circuit simulation"
 HOMEPAGE="https://people.engr.tamu.edu/davis/suitesparse.html"
@@ -17,11 +17,11 @@ KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~hppa ~ia64 ~mips ~ppc ~ppc64 ~sparc ~x86 ~a
 IUSE="doc test"
 RESTRICT="!test? ( test )"
 
-DEPEND=">=sci-libs/suitesparseconfig-7.0.0
-	>=sci-libs/amd-3.2.0
-	>=sci-libs/btf-2.2.0
-	>=sci-libs/colamd-2.2.0
-	>=sci-libs/cholmod-4.2.0"
+DEPEND=">=sci-libs/suitesparseconfig-${Sparse_PV}
+	>=sci-libs/amd-3.3.0
+	>=sci-libs/btf-2.3.0
+	>=sci-libs/colamd-3.3.0
+	>=sci-libs/cholmod-5.1.0"
 RDEPEND="${DEPEND}"
 BDEPEND="doc? ( virtual/latex-base )"
 
@@ -30,7 +30,7 @@ S="${WORKDIR}/${Sparse_P}/${PN^^}"
 src_configure() {
 	local mycmakeargs=(
 		-DNSTATIC=ON
-		-DDEMO=$(usex test)
+		-DSUITESPARSE_DEMOS=$(usex test)
 	)
 	cmake_src_configure
 }
@@ -40,19 +40,14 @@ src_test() {
 	# we have to manually go to BUILD_DIR
 	cd "${BUILD_DIR}"
 	# Run demo files
+	local dtype="demo ldemo"
+	local samples="1c.mtx arrowc.mtx arrow.mtx impcol_a.mtx w156.mtx ctina.mtx"
 	./klu_simple
-	./kludemo  < "${S}"/Matrix/1c.mtx || die "failed testing"
-	./kludemo  < "${S}"/Matrix/arrowc.mtx || die "failed testing"
-	./kludemo  < "${S}"/Matrix/arrow.mtx || die "failed testing"
-	./kludemo  < "${S}"/Matrix/impcol_a.mtx || die "failed testing"
-	./kludemo  < "${S}"/Matrix/w156.mtx || die "failed testing"
-	./kludemo  < "${S}"/Matrix/ctina.mtx || die "failed testing"
-	./kluldemo < "${S}"/Matrix/1c.mtx || die "failed testing"
-	./kluldemo < "${S}"/Matrix/arrowc.mtx || die "failed testing"
-	./kluldemo < "${S}"/Matrix/arrow.mtx || die "failed testing"
-	./kluldemo < "${S}"/Matrix/impcol_a.mtx || die "failed testing"
-	./kluldemo < "${S}"/Matrix/w156.mtx || die "failed testing"
-	./kluldemo < "${S}"/Matrix/ctina.mtx || die "failed testing"
+	for i in ${dtype}; do
+		for j in ${samples}; do
+			./klu${i} < "${S}/Matrix/${j}" || die "failed testing klu${i} with ${j}"
+		done
+	done
 }
 
 src_install() {
