@@ -14,7 +14,6 @@ SRC_URI="https://github.com/gap-packages/${PN}/releases/download/v${PV}/${MY_P}.
 LICENSE="MIT"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
-IUSE=""
 
 RDEPEND=">=sci-mathematics/gap-4.12.0"
 

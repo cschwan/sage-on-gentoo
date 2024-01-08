@@ -10,7 +10,6 @@ SRC_URI="https://github.com/${PN}/latte/releases/download/version_$(ver_rs 1-2 _
 SLOT="0"
 LICENSE="GPL-2"
 KEYWORDS="~amd64"
-IUSE=""
 
 DEPEND="
 	dev-libs/gmp:0=[cxx]

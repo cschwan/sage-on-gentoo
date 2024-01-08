@@ -12,7 +12,6 @@ SRC_URI="https://github.com/chsievers/${PN}/archive/v${PV}.tar.gz -> ${P}.tar.gz
 
 LICENSE="GPL-2+"
 KEYWORDS="~amd64 ~x86"
-IUSE=""
 
 RDEPEND=">=sci-mathematics/gap-4.12.0"
 

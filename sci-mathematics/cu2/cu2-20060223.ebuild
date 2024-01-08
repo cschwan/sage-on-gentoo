@@ -14,10 +14,8 @@ SRC_URI="mirror://sagemath/${MY_PN}.zip"
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64 ~x86 ~amd64-linux ~x86-linux ~x64-macos"
-IUSE=""
 
 DEPEND="app-arch/unzip"
-RDEPEND=""
 
 S="${WORKDIR}/${PN}"
 

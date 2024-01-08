@@ -17,7 +17,5 @@ LICENSE="GPL-3"
 SLOT="0"
 
 DEPEND="test? ( >=sci-mathematics/sage-10.1 )"
-RDEPEND=""
-BDEPEND=""
 
 RESTRICT="!test? ( test )"

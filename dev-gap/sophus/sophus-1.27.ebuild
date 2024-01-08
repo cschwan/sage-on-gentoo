@@ -12,7 +12,6 @@ SRC_URI="https://github.com/gap-packages/${PN}/releases/download/v${PV}/${P}.tar
 
 LICENSE="GPL-2+"
 KEYWORDS="~amd64 ~x86"
-IUSE=""
 
 RDEPEND=">=sci-mathematics/gap-4.12.0
 	>=dev-gap/autpgrp-1.11"

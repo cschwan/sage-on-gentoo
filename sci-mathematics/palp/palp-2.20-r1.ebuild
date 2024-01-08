@@ -12,7 +12,6 @@ SRC_URI="http://hep.itp.tuwien.ac.at/~kreuzer/CY/palp/${P}.tar.gz"
 LICENSE="GPL-3"
 SLOT="0"
 KEYWORDS="~amd64 ~x86 ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos"
-IUSE=""
 
 # The mori.x program writes code to a temporary file and then passes it
 # to /usr/bin/Singular to interpret. It also uses cat, grep, awk, and rm

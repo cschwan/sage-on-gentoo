@@ -12,7 +12,6 @@ SRC_URI="https://github.com/sagemath/threejs-sage/archive/r${PV}.tar.gz -> ${P}.
 LICENSE="MIT"
 SLOT="0"
 KEYWORDS="~amd64 ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos"
-IUSE=""
 
 DOCS=(
 	LICENSE

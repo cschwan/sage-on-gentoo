@@ -26,11 +26,9 @@ HOMEPAGE="https://www.sagemath.org"
 
 LICENSE="GPL-2"
 SLOT="0"
-IUSE=""
 
 RESTRICT="mirror test"
 
-DEPEND=""
 RDEPEND="
 	>=dev-python/sphinx-7.2.0[${PYTHON_USEDEP}]
 	dev-python/jupyter-sphinx[${PYTHON_USEDEP}]

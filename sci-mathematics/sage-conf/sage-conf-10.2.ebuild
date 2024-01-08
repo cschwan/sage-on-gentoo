@@ -28,8 +28,6 @@ SLOT="0"
 RESTRICT="test mirror"
 
 # pplpy needs to be installed to get documentation folder right :(
-DEPEND=""
-RDEPEND=""
 BDEPEND="dev-python/pplpy[doc,${PYTHON_USEDEP}]"
 
 PATCHES=(

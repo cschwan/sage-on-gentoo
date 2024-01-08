@@ -25,7 +25,6 @@ SLOT="0"
 
 RESTRICT="test"
 
-DEPEND=""
 RDEPEND="${DEPEND}"
 
 python_install() {
