@@ -28,7 +28,7 @@ DEPEND=">=sci-libs/suitesparseconfig-${Sparse_PV}
 RDEPEND="${DEPEND}"
 BDEPEND="doc? ( virtual/latex-base )"
 
-S="${WORKDIR}/${Sparse_P}/${PN^^}"
+S="${WORKDIR}/${Sparse_P}/ParU"
 
 pkg_pretend() {
 	[[ ${MERGE_TYPE} != binary ]] && use openmp && tc-check-openmp
