@@ -39,6 +39,7 @@ src_configure() {
 		-DNSTATIC=ON
 		-DSUITESPARSE_USE_FORTRAN=ON
 		-DSUITESPARSE_USE_OPENMP=$(usex openmp ON OFF)
+		-DSUITESPARSE_INCLUDEDIR_POSTFIX=""
 	)
 	cmake_src_configure
 }
