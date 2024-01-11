@@ -5,7 +5,7 @@ EAPI=8
 
 inherit cmake
 
-Sparse_PV="7.4.0"
+Sparse_PV="7.5.0"
 Sparse_P="SuiteSparse-${Sparse_PV}"
 DESCRIPTION="Simple but educational LDL^T matrix factorization algorithm"
 HOMEPAGE="https://people.engr.tamu.edu/davis/suitesparse.html"
@@ -18,7 +18,7 @@ IUSE="doc test"
 RESTRICT="!test? ( test )"
 
 DEPEND=">=sci-libs/suitesparseconfig-${Sparse_PV}
-	>=sci-libs/amd-3.3.0"
+	>=sci-libs/amd-3.3.1"
 RDEPEND="${DEPEND}"
 BDEPEND="doc? ( virtual/latex-base )"
 
@@ -28,6 +28,7 @@ src_configure() {
 	local mycmakeargs=(
 		-DNSTATIC=ON
 		-DSUITESPARSE_DEMOS=$(usex test)
+		-DSUITESPARSE_INCLUDEDIR_POSTFIX=""
 	)
 	cmake_src_configure
 }
