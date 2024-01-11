@@ -3,30 +3,45 @@
 
 EAPI=8
 
-inherit cmake
+inherit cmake toolchain-funcs
 
-Sparse_PV="7.4.0"
+Sparse_PV="7.5.0"
 Sparse_P="SuiteSparse-${Sparse_PV}"
-DESCRIPTION="Library to order a sparse matrix prior to Cholesky factorization"
+DESCRIPTION="Unsymmetric multifrontal sparse LU factorization library"
 HOMEPAGE="https://people.engr.tamu.edu/davis/suitesparse.html"
 SRC_URI="https://github.com/DrTimothyAldenDavis/SuiteSparse/archive/refs/tags/v${Sparse_PV}.tar.gz -> ${Sparse_P}.gh.tar.gz"
 
-LICENSE="BSD"
-SLOT="0/3"
+LICENSE="GPL-2+"
+SLOT="0/6"
 KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~hppa ~ia64 ~loong ~mips ~ppc ~ppc64 ~riscv ~s390 ~sparc ~x86 ~amd64-linux ~x86-linux"
-IUSE="doc test"
+IUSE="doc openmp test"
 RESTRICT="!test? ( test )"
 
-DEPEND=">=sci-libs/suitesparseconfig-${Sparse_PV}"
+DEPEND=">=sci-libs/suitesparseconfig-${Sparse_PV}
+	>=sci-libs/amd-3.3.1
+	>=sci-libs/cholmod-5.1.1[openmp=]
+	virtual/blas"
 RDEPEND="${DEPEND}"
 BDEPEND="doc? ( virtual/latex-base )"
 
 S="${WORKDIR}/${Sparse_P}/${PN^^}"
 
+pkg_pretend() {
+	[[ ${MERGE_TYPE} != binary ]] && use openmp && tc-check-openmp
+}
+
+pkg_setup() {
+	[[ ${MERGE_TYPE} != binary ]] && use openmp && tc-check-openmp
+}
+
 src_configure() {
+	# Fortran is only used to compile additional demo programs that can be tested.
 	local mycmakeargs=(
 		-DNSTATIC=ON
+		-DSUITESPARSE_USE_OPENMP=$(usex openmp)
+		-DSUITESPARSE_USE_FORTRAN=OFF
 		-DSUITESPARSE_DEMOS=$(usex test)
+		-DSUITESPARSE_INCLUDEDIR_POSTFIX=""
 	)
 	cmake_src_configure
 }
@@ -36,23 +51,13 @@ src_test() {
 	# we have to manually go to BUILD_DIR
 	cd "${BUILD_DIR}"
 	# Run demo files
-	local demofiles=(
-		camd_demo
-		camd_l_demo
-		camd_demo2
-		camd_simple
-	)
-	for i in ${demofiles}; do
-		./"${i}" > "${i}.out"
-		diff "${S}/Demo/${i}.out" "${i}.out" || die "failed testing ${i}"
-	done
-	einfo "All tests passed"
+	# Other demo files have issues making them unsuitable for testing
+	./umfpack_simple || die "failed testing umfpack_simple"
 }
 
 src_install() {
 	if use doc; then
 		pushd "${S}/Doc"
-		emake clean
 		rm -rf *.pdf
 		emake
 		popd

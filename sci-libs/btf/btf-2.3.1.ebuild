@@ -5,7 +5,7 @@ EAPI=8
 
 inherit cmake
 
-Sparse_PV="7.4.0"
+Sparse_PV="7.5.0"
 Sparse_P="SuiteSparse-${Sparse_PV}"
 DESCRIPTION="Algorithm for matrix permutation into block triangular form"
 HOMEPAGE="https://people.engr.tamu.edu/davis/suitesparse.html"
@@ -23,6 +23,7 @@ S="${WORKDIR}/${Sparse_P}/${PN^^}"
 src_configure() {
 	local mycmakeargs=(
 		-DNSTATIC=ON
+		-DSUITESPARSE_INCLUDEDIR_POSTFIX=""
 	)
 	cmake_src_configure
 }
