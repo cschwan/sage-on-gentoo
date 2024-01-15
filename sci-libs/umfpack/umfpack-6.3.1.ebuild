@@ -62,6 +62,7 @@ src_test() {
 src_install() {
 	if use doc; then
 		pushd "${S}/Doc" || die
+		emake clean
 		rm -rf *.pdf || die
 		emake
 		popd || die
