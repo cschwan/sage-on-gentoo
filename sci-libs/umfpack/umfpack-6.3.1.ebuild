@@ -36,6 +36,10 @@ pkg_setup() {
 
 src_configure() {
 	# Fortran is only used to compile additional demo programs that can be tested.
+	# Define SUITESPARSE_INCLUDEDIR_POSTFIX to "" otherwise it take
+	# the value suitesparse, and the include directory would be set to
+	# /usr/include/suitesparse
+	# This need to be set in all suitesparse ebuilds.
 	local mycmakeargs=(
 		-DNSTATIC=ON
 		-DSUITESPARSE_USE_OPENMP=$(usex openmp)

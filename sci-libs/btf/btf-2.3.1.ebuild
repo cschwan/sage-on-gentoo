@@ -21,6 +21,10 @@ RDEPEND="${DEPEND}"
 S="${WORKDIR}/${Sparse_P}/${PN^^}"
 
 src_configure() {
+	# Define SUITESPARSE_INCLUDEDIR_POSTFIX to "" otherwise it take
+	# the value suitesparse, and the include directory would be set to
+	# /usr/include/suitesparse
+	# This need to be set in all suitesparse ebuilds.
 	local mycmakeargs=(
 		-DNSTATIC=ON
 		-DSUITESPARSE_INCLUDEDIR_POSTFIX=""

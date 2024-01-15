@@ -50,6 +50,10 @@ src_configure() {
 	# Note that "N" prefixed options are negative options
 	# so, they need to be turned OFF if you want that option.
 	# Fortran is turned off as it is only used to compile (untested) demo programs.
+	# Define SUITESPARSE_INCLUDEDIR_POSTFIX to "" otherwise it take
+	# the value suitesparse, and the include directory would be set to
+	# /usr/include/suitesparse
+	# This need to be set in all suitesparse ebuilds.
 	local mycmakeargs=(
 		-DNSTATIC=ON
 		-DCHOLMOD_USE_CUDA=$(usex cuda)
