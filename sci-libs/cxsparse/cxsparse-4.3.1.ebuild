@@ -5,7 +5,7 @@ EAPI=8
 
 inherit cmake
 
-Sparse_PV="7.5.0"
+Sparse_PV="7.5.1"
 Sparse_P="SuiteSparse-${Sparse_PV}"
 DESCRIPTION="Extended sparse matrix package"
 HOMEPAGE="https://people.engr.tamu.edu/davis/suitesparse.html"
@@ -23,6 +23,10 @@ RDEPEND="${DEPEND}"
 S="${WORKDIR}/${Sparse_P}/CXSparse"
 
 src_configure() {
+	# Define SUITESPARSE_INCLUDEDIR_POSTFIX to "" otherwise it take
+	# the value suitesparse, and the include directory would be set to
+	# /usr/include/suitesparse
+	# This need to be set in all suitesparse ebuilds.
 	local mycmakeargs=(
 		-DNSTATIC=ON
 		-DSUITESPARSE_DEMOS=$(usex test)
@@ -34,7 +38,7 @@ src_configure() {
 src_test() {
 	# Because we are not using cmake_src_test,
 	# we have to manually go to BUILD_DIR
-	cd "${BUILD_DIR}"
+	cd "${BUILD_DIR}" || die
 	# Programs assume that they can access the Matrix folder in ${S}
 	ln -s "${S}/Matrix"
 	# Run demo files

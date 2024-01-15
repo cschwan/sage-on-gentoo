@@ -5,7 +5,7 @@ EAPI=8
 
 inherit cmake toolchain-funcs
 
-Sparse_PV="7.5.0"
+Sparse_PV="7.5.1"
 Sparse_P="SuiteSparse-${Sparse_PV}"
 DESCRIPTION="Multithreaded multifrontal sparse QR factorization library"
 HOMEPAGE="https://people.engr.tamu.edu/davis/suitesparse.html"
@@ -36,6 +36,10 @@ pkg_setup() {
 }
 
 src_configure() {
+	# Define SUITESPARSE_INCLUDEDIR_POSTFIX to "" otherwise it take
+	# the value suitesparse, and the include directory would be set to
+	# /usr/include/suitesparse
+	# This need to be set in all suitesparse ebuilds.
 	local mycmakeargs=(
 		-DNSTATIC=ON
 		-DSUITESPARSE_USE_OPENMP=$(usex openmp)
@@ -48,7 +52,7 @@ src_configure() {
 src_test() {
 	# Because we are not using cmake_src_test,
 	# we have to manually go to BUILD_DIR
-	cd "${BUILD_DIR}"
+	cd "${BUILD_DIR}" || die
 	# Run demo files
 	./qrsimple  < "${S}"/Matrix/ash219.mtx || die "failed testing"
 	./qrsimplec < "${S}"/Matrix/ash219.mtx || die "failed testing"
@@ -114,11 +118,11 @@ src_test() {
 
 src_install() {
 	if use doc; then
-		pushd "${S}/Doc"
+		pushd "${S}/Doc" || die
 		emake clean
-		rm -rf *.pdf
+		rm -rf *.pdf || die
 		emake
-		popd
+		popd || die
 		DOCS="${S}/Doc/*.pdf"
 	fi
 	cmake_src_install

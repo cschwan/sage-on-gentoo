@@ -5,7 +5,7 @@ EAPI=8
 
 inherit cmake
 
-Sparse_PV="7.5.0"
+Sparse_PV="7.5.1"
 Sparse_P="SuiteSparse-${Sparse_PV}"
 DESCRIPTION="Algorithm for matrix permutation into block triangular form"
 HOMEPAGE="https://people.engr.tamu.edu/davis/suitesparse.html"
@@ -21,6 +21,10 @@ RDEPEND="${DEPEND}"
 S="${WORKDIR}/${Sparse_P}/${PN^^}"
 
 src_configure() {
+	# Define SUITESPARSE_INCLUDEDIR_POSTFIX to "" otherwise it take
+	# the value suitesparse, and the include directory would be set to
+	# /usr/include/suitesparse
+	# This need to be set in all suitesparse ebuilds.
 	local mycmakeargs=(
 		-DNSTATIC=ON
 		-DSUITESPARSE_INCLUDEDIR_POSTFIX=""

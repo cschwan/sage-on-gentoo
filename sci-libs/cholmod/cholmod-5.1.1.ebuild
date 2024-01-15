@@ -5,7 +5,7 @@ EAPI=8
 
 inherit cmake toolchain-funcs
 
-Sparse_PV="7.5.0"
+Sparse_PV="7.5.1"
 Sparse_P="SuiteSparse-${Sparse_PV}"
 DESCRIPTION="Sparse Cholesky factorization and update/downdate library"
 HOMEPAGE="https://people.engr.tamu.edu/davis/suitesparse.html"
@@ -50,6 +50,10 @@ src_configure() {
 	# Note that "N" prefixed options are negative options
 	# so, they need to be turned OFF if you want that option.
 	# Fortran is turned off as it is only used to compile (untested) demo programs.
+	# Define SUITESPARSE_INCLUDEDIR_POSTFIX to "" otherwise it take
+	# the value suitesparse, and the include directory would be set to
+	# /usr/include/suitesparse
+	# This need to be set in all suitesparse ebuilds.
 	local mycmakeargs=(
 		-DNSTATIC=ON
 		-DCHOLMOD_USE_CUDA=$(usex cuda)
@@ -69,7 +73,7 @@ src_configure() {
 src_test() {
 	# Because we are not using cmake_src_test,
 	# we have to manually go to BUILD_DIR
-	cd "${BUILD_DIR}"
+	cd "${BUILD_DIR}" || die
 	# Run demo files
 	local type="di dl si sl"
 	local prog="demo simple"
@@ -86,10 +90,11 @@ src_test() {
 
 src_install() {
 	if use doc; then
-		pushd "${S}/Doc"
-		rm -rf *.pdf
+		pushd "${S}/Doc" || die
+		emake clean
+		rm -rf *.pdf || die
 		emake
-		popd
+		popd || die
 		DOCS="${S}/Doc/*.pdf"
 	fi
 	cmake_src_install

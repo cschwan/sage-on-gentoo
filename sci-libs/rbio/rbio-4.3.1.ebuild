@@ -5,7 +5,7 @@ EAPI=8
 
 inherit cmake
 
-Sparse_PV="7.5.0"
+Sparse_PV="7.5.1"
 Sparse_P="SuiteSparse-${Sparse_PV}"
 DESCRIPTION="Sparse matrices Rutherford/Boeing format tools"
 HOMEPAGE="https://people.engr.tamu.edu/davis/suitesparse.html"
@@ -13,7 +13,7 @@ SRC_URI="https://github.com/DrTimothyAldenDavis/SuiteSparse/archive/refs/tags/v$
 
 LICENSE="GPL-2+"
 SLOT="0/4"
-KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~hppa ~ia64 ~mips ~ppc ~ppc64 ~sparc ~x86 ~amd64-linux ~x86-linux"
+KEYWORDS="~amd64"
 IUSE="test"
 RESTRICT="!test? ( test )"
 
@@ -23,6 +23,10 @@ RDEPEND="${DEPEND}"
 S="${WORKDIR}/${Sparse_P}/RBio"
 
 src_configure() {
+	# Define SUITESPARSE_INCLUDEDIR_POSTFIX to "" otherwise it take
+	# the value suitesparse, and the include directory would be set to
+	# /usr/include/suitesparse
+	# This need to be set in all suitesparse ebuilds.
 	local mycmakeargs=(
 		-DNSTATIC=ON
 		-DSUITESPARSE_DEMOS=$(usex test)
@@ -34,7 +38,7 @@ src_configure() {
 src_test() {
 	# Because we are not using cmake_src_test,
 	# we have to manually go to BUILD_DIR
-	cd "${BUILD_DIR}"
+	cd "${BUILD_DIR}" || die
 	# Run demo files
 	./RBdemo < "${S}"/RBio/private/west0479.rua || die "failed testing"
 }
