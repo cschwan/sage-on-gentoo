@@ -38,7 +38,7 @@ src_configure() {
 src_test() {
 	# Because we are not using cmake_src_test,
 	# we have to manually go to BUILD_DIR
-	cd "${BUILD_DIR}"
+	cd "${BUILD_DIR}" || die
 	# Run demo files
 	./ccolamd_example > ccolamd_example.out
 	diff "${S}"/Demo/ccolamd_example.out ccolamd_example.out || die "failed testing ccolamd_example"

@@ -40,7 +40,7 @@ src_configure() {
 src_test() {
 	# Because we are not using cmake_src_test,
 	# we have to manually go to BUILD_DIR
-	cd "${BUILD_DIR}"
+	cd "${BUILD_DIR}" || die
 	# Some programs assume that they can access the Matrix folder in ${S}
 	ln -s "${S}/Matrix"
 	# Run demo files
@@ -60,10 +60,10 @@ src_test() {
 
 src_install() {
 	if use doc; then
-		pushd "${S}/Doc"
-		rm -rf *.pdf
+		pushd "${S}/Doc" || die
+		rm -rf *.pdf || die
 		emake
-		popd
+		popd || die
 		DOCS="${S}/Doc/*.pdf"
 	fi
 	cmake_src_install

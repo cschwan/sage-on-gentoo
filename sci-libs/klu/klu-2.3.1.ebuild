@@ -43,7 +43,7 @@ src_configure() {
 src_test() {
 	# Because we are not using cmake_src_test,
 	# we have to manually go to BUILD_DIR
-	cd "${BUILD_DIR}"
+	cd "${BUILD_DIR}" || die
 	# Run demo files
 	local dtype="demo ldemo"
 	local samples="1c.mtx arrowc.mtx arrow.mtx impcol_a.mtx w156.mtx ctina.mtx"
@@ -57,11 +57,11 @@ src_test() {
 
 src_install() {
 	if use doc; then
-		pushd "${S}/Doc"
+		pushd "${S}/Doc" || die
 		emake clean
-		rm -rf *.pdf
+		rm -rf *.pdf || die
 		emake
-		popd
+		popd || die
 		DOCS="${S}/Doc/*.pdf"
 	fi
 	cmake_src_install
