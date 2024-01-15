@@ -35,6 +35,10 @@ src_configure() {
 	# Make sure we always include the Fortran interface.
 	# It doesn't require a Fortran compiler to be present
 	# and simplifies the configuration for dependencies.
+	# Define SUITESPARSE_INCLUDEDIR_POSTFIX to "" otherwise it take
+	# the value suitesparse, and the include directory would be set to
+	# /usr/include/suitesparse
+	# This need to be set in all suitesparse ebuilds.
 	local mycmakeargs=(
 		-DNSTATIC=ON
 		-DSUITESPARSE_USE_FORTRAN=ON
