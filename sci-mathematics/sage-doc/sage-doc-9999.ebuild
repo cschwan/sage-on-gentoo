@@ -128,6 +128,9 @@ src_compile(){
 	# for some reason opened for write during inventory of reference/plotting(?) - no write happens.
 	# This manifest as root
 	addpredict "${ESYSROOT}/usr/share/sage/cremona/cremona_mini.db"
+	# For some reason java/jmol ignores HOME and uses portage's home as home directory
+	# Nothing seem to happen though
+	addpredict "${ESYSROOT}/var/lib/portage/home/.java"
 
 	emake doc-html
 	if use doc-pdf ; then
