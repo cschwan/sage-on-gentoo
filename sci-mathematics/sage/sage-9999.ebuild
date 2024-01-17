@@ -149,7 +149,6 @@ REQUIRED_USE="doc? ( jmol )
 PATCHES=(
 	"${FILESDIR}"/${PN}-9.2-env.patch
 	"${FILESDIR}"/sage_exec-9.3.patch
-	"${FILESDIR}"/${PN}-10.3-forcejavatmp.patch
 	"${FILESDIR}"/${PN}-10.3-neutering.patch
 	"${FILESDIR}"/${PN}-9.8-build_ext.patch
 )
