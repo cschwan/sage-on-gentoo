@@ -20,7 +20,7 @@ case ${EAPI} in
 esac
 
 BDEPEND="
-	sys-devel/autoconf
+	dev-build/autoconf
 	dev-python/build[${PYTHON_USEDEP}]
 "
 
