@@ -32,7 +32,6 @@ SLOT="0"
 IUSE="debug +doc jmol latex test X"
 
 DEPEND="
-	~dev-gap/gap-recommended-4.12.2
 	dev-libs/gmp:0=
 	>=dev-libs/mpc-1.1.0
 	>=dev-libs/mpfr-4.0.0
