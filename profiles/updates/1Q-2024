@@ -1,0 +1,6 @@
+move dev-gap/SmallGrp dev-gap/smallgrp
+move dev-gap/GAPDoc dev-gap/gapdoc
+move dev-gap/Alnuth dev-gap/alnuth
+move dev-gap/AutoDoc dev-gap/autodoc
+move dev-gap/HAPcryst dev-gap/hapcryst
+move dev-gap/MapClass dev-gap/mapclass
