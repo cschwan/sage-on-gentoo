@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE catmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
-<catmetadata>
-	<longdescription lang="en">
-		The dev-gap category contains packages for the gap system
-		at http://www.gap-system.org/Packages
-	</longdescription>
-</catmetadata>
