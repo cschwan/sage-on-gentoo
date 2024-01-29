@@ -5,7 +5,7 @@ EAPI=8
 
 inherit cmake
 
-Sparse_PV="7.5.1"
+Sparse_PV="7.6.0"
 Sparse_P="SuiteSparse-${Sparse_PV}"
 DESCRIPTION="Sparse matrices Rutherford/Boeing format tools"
 HOMEPAGE="https://people.engr.tamu.edu/davis/suitesparse.html"

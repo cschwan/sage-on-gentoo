@@ -5,29 +5,25 @@ EAPI=8
 
 inherit cmake
 
-Sparse_PV="7.5.1"
+Sparse_PV="7.6.0"
 Sparse_P="SuiteSparse-${Sparse_PV}"
-DESCRIPTION="a software package for SParse EXact algebra"
+DESCRIPTION="Sparse LU factorization for circuit simulation"
 HOMEPAGE="https://people.engr.tamu.edu/davis/suitesparse.html"
 SRC_URI="https://github.com/DrTimothyAldenDavis/SuiteSparse/archive/refs/tags/v${Sparse_PV}.tar.gz -> ${Sparse_P}.gh.tar.gz"
 
-LICENSE="BSD"
+LICENSE="LGPL-2.1+"
 SLOT="0/2"
-KEYWORDS="~amd64"
+KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~hppa ~ia64 ~mips ~ppc ~ppc64 ~riscv ~sparc ~x86 ~amd64-linux ~x86-linux"
 IUSE="doc test"
 RESTRICT="!test? ( test )"
 
 DEPEND=">=sci-libs/suitesparseconfig-${Sparse_PV}
 	>=sci-libs/amd-3.3.1
-	>=sci-libs/colamd-3.3.1
-	dev-libs/gmp
-	dev-libs/mpfr"
+	>=sci-libs/btf-2.3.1
+	>=sci-libs/colamd-3.3.2
+	>=sci-libs/cholmod-5.2.0"
 RDEPEND="${DEPEND}"
 BDEPEND="doc? ( virtual/latex-base )"
-
-PATCHES=(
-	"${FILESDIR}/${PN}-2.0.0-demo_location.patch"
-	)
 
 S="${WORKDIR}/${Sparse_P}/${PN^^}"
 
@@ -48,12 +44,15 @@ src_test() {
 	# Because we are not using cmake_src_test,
 	# we have to manually go to BUILD_DIR
 	cd "${BUILD_DIR}" || die
-	# Programs expect to find ExampleMats
-	ln -s "${S}/SPEX_Left_LU/ExampleMats"
 	# Run demo files
-	./example || die "failed testing"
-	./example2 || die "failed testing"
-	./spexlu_demo || die "failed testing"
+	local dtype="demo ldemo"
+	local samples="1c.mtx arrowc.mtx arrow.mtx impcol_a.mtx w156.mtx ctina.mtx"
+	./klu_simple
+	for i in ${dtype}; do
+		for j in ${samples}; do
+			./klu${i} < "${S}/Matrix/${j}" || die "failed testing klu${i} with ${j}"
+		done
+	done
 }
 
 src_install() {

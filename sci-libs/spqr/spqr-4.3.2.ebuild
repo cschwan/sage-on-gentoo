@@ -5,7 +5,7 @@ EAPI=8
 
 inherit cmake toolchain-funcs
 
-Sparse_PV="7.5.1"
+Sparse_PV="7.6.0"
 Sparse_P="SuiteSparse-${Sparse_PV}"
 DESCRIPTION="Multithreaded multifrontal sparse QR factorization library"
 HOMEPAGE="https://people.engr.tamu.edu/davis/suitesparse.html"
@@ -19,8 +19,8 @@ RESTRICT="!test? ( test )"
 
 DEPEND=">=sci-libs/suitesparseconfig-${Sparse_PV}
 	>=sci-libs/amd-3.3.1
-	>=sci-libs/colamd-3.3.1
-	>=sci-libs/cholmod-5.1.1
+	>=sci-libs/colamd-3.3.2
+	>=sci-libs/cholmod-5.2.0
 	virtual/blas"
 RDEPEND="${DEPEND}"
 BDEPEND="doc? ( virtual/latex-base )"
