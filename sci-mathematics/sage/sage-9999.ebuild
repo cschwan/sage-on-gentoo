@@ -97,7 +97,7 @@ DEPEND="
 RDEPEND="
 	${DEPEND}
 	>=dev-lang/R-4.0.4
-	~dev-python/conway-polynomials-0.8[${PYTHON_USEDEP}]
+	dev-python/conway-polynomials[${PYTHON_USEDEP}]
 	>=dev-python/cvxopt-1.2.6[glpk,${PYTHON_USEDEP}]
 	>=dev-python/fpylll-0.6.0[${PYTHON_USEDEP}]
 	>=dev-python/mpmath-1.2.1[${PYTHON_USEDEP}]
