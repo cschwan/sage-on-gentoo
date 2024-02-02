@@ -5,7 +5,7 @@ EAPI=8
 
 inherit cmake toolchain-funcs
 
-Sparse_PV="7.5.1"
+Sparse_PV="7.6.0"
 Sparse_P="SuiteSparse-${Sparse_PV}"
 DESCRIPTION="Sparse Cholesky factorization and update/downdate library"
 HOMEPAGE="https://people.engr.tamu.edu/davis/suitesparse.html"
@@ -19,11 +19,11 @@ RESTRICT="!test? ( test )"
 
 DEPEND=">=sci-libs/suitesparseconfig-${Sparse_PV}
 	>=sci-libs/amd-3.3.1
-	>=sci-libs/colamd-3.3.1
+	>=sci-libs/colamd-3.3.2
 	supernodal? ( virtual/lapack )
 	partition? (
 		>=sci-libs/camd-3.3.1
-		>=sci-libs/ccolamd-3.3.1
+		>=sci-libs/ccolamd-3.3.2
 	)
 	cuda? (
 		dev-util/nvidia-cuda-toolkit

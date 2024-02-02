@@ -43,6 +43,7 @@ BDEPEND="$(python_gen_any_dep "
 	dev-python/furo[\${PYTHON_USEDEP}]
 	dev-python/jupyter-sphinx[\${PYTHON_USEDEP}]
 	dev-python/sphinx-copybutton[\${PYTHON_USEDEP}]
+	dev-python/sphinx-inline-tabs[\${PYTHON_USEDEP}]
 	~sci-mathematics/sage-${PV}[\${PYTHON_USEDEP},jmol]
 	~sci-mathematics/sage_docbuild-${PV}[\${PYTHON_USEDEP}]
 	")
@@ -73,7 +74,8 @@ python_check_deps() {
 	python_has_version -b "~sci-mathematics/sage_docbuild-${PV}[${PYTHON_USEDEP}]" &&
 	python_has_version -b "dev-python/furo[${PYTHON_USEDEP}]" &&
 	python_has_version -b "dev-python/jupyter-sphinx[${PYTHON_USEDEP}]" &&
-	python_has_version -b "dev-python/sphinx-copybutton[${PYTHON_USEDEP}]"
+	python_has_version -b "dev-python/sphinx-copybutton[${PYTHON_USEDEP}]" &&
+	python_has_version -b "dev-python/sphinx-inline-tabs[${PYTHON_USEDEP}]"
 }
 
 src_unpack(){
