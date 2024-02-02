@@ -133,8 +133,8 @@ To unistall the main ebuilds of sage type::
 
 Additionally, we have some optional sagemath packages provided by the `sagemath-optional` set::
 
-     ln -s /var/db/repos/sage-on-gentoo/sets/sagemath-optional \
-           /etc/portage/tools/sets/sagemath-optional
+     ln -s /var/db/repos/sage-on-gentoo/tools/sets/sagemath-optional \
+           /etc/portage/sets/sagemath-optional
      emerge -va @sagemath-optional
 
 SAGE ON GENTOO PREFIX
