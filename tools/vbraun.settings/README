@@ -11,11 +11,16 @@ To minimize the difference between the master and vbraun branches, the git repo 
 by overriding the ebuilds using the env/package.env mechanism.
 
 Once on the vbraun branch put the files in place
-ln -s /var/db/repos/sage-on-gentoo/vbraun.settings/env.sagemath-vbraun \
+ln -s /var/db/repos/sage-on-gentoo/tools/vbraun.settings/env.sagemath-vbraun \
       /etc/portage/env/sagemath-vbraun
 
-ln -s /var/db/repos/sage-on-gentoo/vbraun.settings/package.env.sagemath-vbraun \
+ln -s /var/db/repos/sage-on-gentoo/tools/vbraun.settings/package.env.sagemath-vbraun \
       /etc/portage/package.env/sagemath-vbraun
+
+You cannot use the vbraun branch of the overlay if you installed the overlay with 
+`eselect repository enable sage-on-gentoo`, this method of installation use a Gentoo maintained mirror
+of the overlay that does not include the vbraun branch. 
+If you want to follow the vbraun branch, you need to follow the manual install method for the overlay.
 
 To switch to the 'vbraun' branch of the overlay do
 cd /var/db/repos/sage-on-gentoo/
