@@ -73,14 +73,14 @@ Before being able to install you may need to unmask the required ebuilds. If
 you are using Gentoo/unstable or Funtoo (i.e. you have a line like
 ``ACCEPT_KEYWORDS=~arch`` in your ``/etc/portage/make.conf``) you can skip this step::
 
-     sage-on-gentoo/package.keywords/sage
-     sage-on-gentoo/package.keywords/sage.prefix (for prefix users only)
+     sage-on-gentoo/tools/package.keywords/sage
+     sage-on-gentoo/tools/package.keywords/sage.prefix (for prefix users only)
 
 To use these files permanently, place symbolic link to the one of those files into your
 ``/etc/portage/package.accept_keywords/`` directory
 (prefix users should adjust with their prefix)::
 
-     ln -s /var/db/repos/sage-on-gentoo/package.keywords/sage \
+     ln -s /var/db/repos/sage-on-gentoo/tools/package.keywords/sage \
            /etc/portage/package.accept_keywords/sage
 
 Otherwise, simply copy it into the directory for a one-time fix.
@@ -93,17 +93,10 @@ ADD USE-FLAGS FOR EBUILDS
 Since Sage's ebuild requires its dependencies to be built with several USE-flags 
 we provide a standard package.use file as well::
 
-     ln -s /var/db/repos/sage-on-gentoo/package.use/sage \
+     ln -s /var/db/repos/sage-on-gentoo/tools/package.use/sage \
            /etc/portage/package.use/sage
 
-The following section is currently not fully applicable from sage 9.5 onward. I currently do not provide binary documentation but I am hoping to restore this service at some point in time.
-You should also consider linking in the same way the file ``99sage-doc-bin``.
-This file sets sane default options for installing html documentation from a binary
-tarball. Building the sage documentation from scratch is memory hungry and you
-shouldn't consider doing it with less than 6GB of free memory on your system.
-This is only available for stable realease of sage (sage-X.Y). User of the development
-version of sage (sage-9999 ebuild) need to build their own documentation from scratch
-if they need it.
+I currently do not provide binary documentation but I am hoping to restore this service at some point in time.
 
 NOTE: if you want sage to display plots while working from a terminal, you should 
 make sure that matplotlib is installed with at least one graphical backend such as
@@ -124,7 +117,7 @@ Starting with sage 9.5 which is split into several ebuilds, a set has been added
 convenience. To make the set available to portage::
 
      mkdir -p /etc/portage/sets
-     ln -s /var/db/repos/sage-on-gentoo/sets/sagemath \
+     ln -s /var/db/repos/sage-on-gentoo/tools/sets/sagemath \
            /etc/portage/sets/sagemath
 
 More informations on sets can be found at https://wiki.gentoo.org/wiki//etc/portage/sets
@@ -141,7 +134,7 @@ To unistall the main ebuilds of sage type::
 Additionally, we have some optional sagemath packages provided by the `sagemath-optional` set::
 
      ln -s /var/db/repos/sage-on-gentoo/sets/sagemath-optional \
-           /etc/portage/sets/sagemath-optional
+           /etc/portage/tools/sets/sagemath-optional
      emerge -va @sagemath-optional
 
 SAGE ON GENTOO PREFIX
