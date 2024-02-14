@@ -52,3 +52,5 @@ dev-tex/minted
 dev-tex/pgf
 dev-tex/tex4ht
 dev-tex/latex-beamer
+dev-tex/biber
+dev-tex/biblatex
