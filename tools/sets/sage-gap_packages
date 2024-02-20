@@ -1,5 +1,5 @@
-dev-gap/HAPcryst
-dev-gap/MapClass
+dev-gap/hapcryst
+dev-gap/mapclass
 dev-gap/aclib
 dev-gap/cohomolo
 dev-gap/corelg
@@ -29,5 +29,4 @@ dev-gap/images
 dev-gap/datastructures
 dev-gap/digraphs
 dev-gap/genss
-=sci-libs/libsemigroups-1.0* # dependency of semigroups
 dev-gap/semigroups
