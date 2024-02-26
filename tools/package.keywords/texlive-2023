@@ -54,3 +54,5 @@ dev-tex/tex4ht
 dev-tex/latex-beamer
 dev-tex/biber
 dev-tex/biblatex
+app-text/dvisvgm
+dev-tex/latexmk
