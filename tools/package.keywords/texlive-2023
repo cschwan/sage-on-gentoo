@@ -56,3 +56,6 @@ dev-tex/biber
 dev-tex/biblatex
 app-text/dvisvgm
 dev-tex/latexmk
+dev-tex/bibtexu
+dev-libs/ptexenc
+dev-tex/glossaries
