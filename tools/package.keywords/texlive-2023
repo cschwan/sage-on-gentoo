@@ -59,3 +59,4 @@ dev-tex/latexmk
 dev-tex/bibtexu
 dev-libs/ptexenc
 dev-tex/glossaries
+app-text/ps2pkm
