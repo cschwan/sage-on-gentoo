@@ -75,7 +75,7 @@ DEPEND="
 	>=sci-mathematics/rw-0.7
 	~sci-mathematics/sage_setup-${PV}[${PYTHON_USEDEP}]
 	~sci-mathematics/sage-conf-${PV}[${PYTHON_USEDEP}]
-	>=sci-mathematics/singular-4.3.2[readline]
+	>=sci-mathematics/singular-4.3.2_p15[readline]
 	>=sci-libs/brial-1.2.10
 	~sci-libs/givaro-4.1.1
 	>=sci-libs/gsl-2.3
@@ -146,6 +146,7 @@ REQUIRED_USE="doc? ( jmol )
 	test? ( jmol )"
 
 PATCHES=(
+	"${FILESDIR}"/singular-4.3.2_p15.patch
 	"${FILESDIR}"/${PN}-9.2-env.patch
 	"${FILESDIR}"/sage_exec-9.3.patch
 	"${FILESDIR}"/${PN}-10.3-neutering.patch
