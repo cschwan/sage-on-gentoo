@@ -16,7 +16,7 @@ LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64"
 
-DEPEND=">=sci-mathematics/sage-9.7[${PYTHON_USEDEP}]
+DEPEND=">=sci-mathematics/sagemath-standard-9.7[${PYTHON_USEDEP}]
 	dev-python/pplpy[${PYTHON_USEDEP}]"
 RDEPEND="${DEPEND}"
 BDEPEND="dev-python/cython[${PYTHON_USEDEP}]

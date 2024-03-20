@@ -18,7 +18,7 @@ LICENSE="GPL-2+"
 SLOT="0"
 KEYWORDS="~amd64"
 
-DEPEND=">=sci-mathematics/sage-9.3[meataxe,${PYTHON_USEDEP}]
+DEPEND=">=sci-mathematics/sagemath-standard-9.3[meataxe,${PYTHON_USEDEP}]
 	sci-mathematics/shared_meataxe
 	sci-mathematics/modular_resolution"
 RDEPEND="${DEPEND}

@@ -6,11 +6,11 @@ EAPI=8
 PYTHON_COMPAT=( python3_{10..12} )
 PYTHON_REQ_USE="readline,sqlite"
 
-inherit python-any-r1
+inherit multiprocessing python-any-r1
 
 if [[ ${PV} == 9999 ]]; then
 	inherit git-r3
-	EGIT_REPO_URI="https://github.com/vbraun/sage.git"
+	EGIT_REPO_URI="https://github.com/sagemath/sage.git"
 	EGIT_BRANCH=develop
 	EGIT_CHECKOUT_DIR="${WORKDIR}/${P}"
 else
@@ -35,17 +35,24 @@ L10N_USEDEP="${L10N_USEDEP%?}"
 
 RESTRICT="mirror test"
 
-# cannot use $PV in python_gen_any_deps :(
-# This section to checked on release for sage/sage_docbuild versions
-BDEPEND="$(python_gen_any_dep '
-	dev-python/sphinx[${PYTHON_USEDEP}]
-	dev-python/furo[${PYTHON_USEDEP}]
-	dev-python/jupyter-sphinx[${PYTHON_USEDEP}]
-	dev-python/sphinx-copybutton[${PYTHON_USEDEP}]
-	~sci-mathematics/sage-10.2[${PYTHON_USEDEP},jmol]
-	~sci-mathematics/sage_docbuild-10.2[${PYTHON_USEDEP}]
-	')
-	doc-pdf? ( app-text/texlive[extra,${L10N_USEDEP}] )"
+# There is a trick to use $PV in python_gen_any_deps
+# But it breaks checking with pkgcheck, reports of "missing check for ... "
+# may be safely ignored most of the time.
+BDEPEND="$(python_gen_any_dep "
+	dev-python/sphinx[\${PYTHON_USEDEP}]
+	dev-python/furo[\${PYTHON_USEDEP}]
+	dev-python/jupyter-sphinx[\${PYTHON_USEDEP}]
+	dev-python/sphinx-copybutton[\${PYTHON_USEDEP}]
+	dev-python/sphinx-inline-tabs[\${PYTHON_USEDEP}]
+	~sci-mathematics/sagemath-standard-${PV}[\${PYTHON_USEDEP},jmol]
+	~sci-mathematics/sage_docbuild-${PV}[\${PYTHON_USEDEP}]
+	")
+	doc-pdf? (
+		app-text/texlive[extra,luatex,${L10N_USEDEP}]
+		app-text/texlive-core[xindy]
+		media-fonts/freefont
+	)
+"
 RDEPEND="dev-libs/mathjax"
 DEPEND="dev-libs/mathjax"
 
@@ -60,18 +67,15 @@ DOCS=(
 	"${S}/src/doc/common"
 )
 
-# for some reason opened for write during inventory of reference/plotting(?) - no write happens.
-# This manifest as root
-addpredict "${ESYSROOT}/usr/share/sage/cremona/cremona_mini.db"
-
 # python_check_deps happilly processes $PV.
 python_check_deps() {
 	python_has_version -b "dev-python/sphinx[${PYTHON_USEDEP}]" &&
-	python_has_version -b "~sci-mathematics/sage-${PV}[${PYTHON_USEDEP},jmol]" &&
+	python_has_version -b "~sci-mathematics/sagemath-standard-${PV}[${PYTHON_USEDEP},jmol]" &&
 	python_has_version -b "~sci-mathematics/sage_docbuild-${PV}[${PYTHON_USEDEP}]" &&
 	python_has_version -b "dev-python/furo[${PYTHON_USEDEP}]" &&
 	python_has_version -b "dev-python/jupyter-sphinx[${PYTHON_USEDEP}]" &&
-	python_has_version -b "dev-python/sphinx-copybutton[${PYTHON_USEDEP}]"
+	python_has_version -b "dev-python/sphinx-copybutton[${PYTHON_USEDEP}]" &&
+	python_has_version -b "dev-python/sphinx-inline-tabs[${PYTHON_USEDEP}]"
 }
 
 src_unpack(){
@@ -101,6 +105,8 @@ src_configure(){
 	export SAGE_DOC_SRC="${S}"/src/doc
 	export SAGE_DOC_MATHJAX=yes
 	export VARTEXFONTS="${T}"/fonts
+	export SAGE_NUM_THREADS=$(makeopts_jobs)
+	export SAGE_NUM_THREADS_PARALLEL=$(makeopts_jobs)
 	# try to fix random sphinx crash during the building of the documentation
 	export MPLCONFIGDIR="${T}"/matplotlib
 	# Avoid spurious message from the gtk backend by making sure it is never tried
@@ -117,6 +123,16 @@ src_compile(){
 
 	# Needs to be created beforehand or it gets created as a file with the content of _static/plot_directive.css
 	mkdir -p "${SAGE_DOC}"/html/en/reference/_static
+
+	# for some reason luatex check whether it can write there.
+	# Of course it should fail, but it triggers the sandbox.
+	addpredict /var/lib/texmf/m_t_x_t_e_s_t.tmp
+	# for some reason opened for write during inventory of reference/plotting(?) - no write happens.
+	# This manifest as root
+	addpredict "${ESYSROOT}/usr/share/sage/cremona/cremona_mini.db"
+	# For some reason java/jmol ignores HOME and uses portage's home as home directory
+	# Nothing seem to happen though
+	addpredict "${ESYSROOT}/var/lib/portage/home/.java"
 
 	emake doc-html
 	if use doc-pdf ; then

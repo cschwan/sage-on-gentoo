@@ -12,14 +12,13 @@ inherit distutils-r1
 
 if [[ ${PV} == 9999 ]]; then
 	inherit git-r3 sage-git
-	EGIT_REPO_URI="https://github.com/sagemath/sage.git"
 else
 	PYPI_NO_NORMALIZE=1
 	inherit pypi
 	KEYWORDS="~amd64 ~amd64-linux ~ppc-macos ~x64-macos"
 fi
 
-DESCRIPTION="Matrices over small finite fields with meataxe in sage"
+DESCRIPTION="Graph (iso/auto)morphisms with bliss in sage"
 HOMEPAGE="https://www.sagemath.org"
 
 LICENSE="GPL-2+"
@@ -27,23 +26,10 @@ SLOT="0"
 
 RESTRICT="test"
 
-DEPEND="~sci-mathematics/sage-${PV}[${PYTHON_USEDEP}]
-	sci-mathematics/shared_meataxe"
+DEPEND="~sci-mathematics/sagemath-standard-${PV}[${PYTHON_USEDEP}]
+	~sci-libs/bliss-0.77"
 RDEPEND="${DEPEND}"
 BDEPEND="dev-python/cython[${PYTHON_USEDEP}]"
-
-pkg_setup() {
-	# for cython 3
-	export SAGE_DEBUG=no
-}
-
-python_prepare_all() {
-	if [[ ${PV} == 9999 ]]; then
-		sage-git_src_prepare
-	fi
-
-	distutils-r1_python_prepare_all
-}
 
 python_install() {
 	distutils-r1_python_install

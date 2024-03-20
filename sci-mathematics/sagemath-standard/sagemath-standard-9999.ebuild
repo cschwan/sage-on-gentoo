@@ -10,22 +10,17 @@ DISTUTILS_EXT=1
 
 inherit desktop distutils-r1 multiprocessing toolchain-funcs
 
-SAGE_PKG="sagemath-standard"
-MY_P="${SAGE_PKG}-${PV}"
-
 if [[ ${PV} == 9999 ]]; then
 	inherit git-r3 sage-git
 	EGIT_REPO_URI="https://github.com/sagemath/sage.git"
 else
+	PYPI_NO_NORMALIZE=1
 	inherit pypi
-	SRC_URI="$(pypi_sdist_url --no-normalize "${SAGE_PKG}")"
 	KEYWORDS="~amd64 ~amd64-linux ~ppc-macos ~x64-macos"
-	S="${WORKDIR}/${MY_P}"
 fi
 
 DESCRIPTION="Math software for abstract and numerical computations"
 HOMEPAGE="https://www.sagemath.org"
-S="${WORKDIR}/${MY_P}"
 
 LICENSE="GPL-2"
 SLOT="0"

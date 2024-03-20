@@ -10,26 +10,21 @@ DISTUTILS_EXT=1
 
 inherit desktop distutils-r1 multiprocessing toolchain-funcs
 
-MY_PN="sagemath-standard"
-MY_P="${MY_PN}-${PV}"
-
 if [[ ${PV} == 9999 ]]; then
 	inherit git-r3 sage-git
 	EGIT_REPO_URI="https://github.com/sagemath/sage.git"
 else
+	PYPI_NO_NORMALIZE=1
 	inherit pypi
-	SRC_URI="$(pypi_sdist_url --no-normalize "${MY_PN}")"
 	KEYWORDS="~amd64 ~amd64-linux ~ppc-macos ~x64-macos"
-	S="${WORKDIR}/${MY_P}"
 fi
 
 DESCRIPTION="Math software for abstract and numerical computations"
 HOMEPAGE="https://www.sagemath.org"
-S="${WORKDIR}/${MY_P}"
 
 LICENSE="GPL-2"
 SLOT="0"
-IUSE="debug +doc jmol latex test X"
+IUSE="debug +doc +jmol latex test X"
 
 DEPEND="
 	dev-libs/gmp:0=
@@ -61,10 +56,9 @@ DEPEND="
 	~media-gfx/threejs-sage-extension-122
 	media-libs/gd[jpeg,png]
 	media-libs/libpng:0=
-	>=sci-mathematics/arb-2.19.0
 	sci-mathematics/cliquer
 	sci-mathematics/eclib:=[flint]
-	=sci-mathematics/flint-2.9*:=[ntl]
+	=sci-mathematics/flint-3.0*:=[ntl]
 	~sci-mathematics/gap-4.12.2
 	>=sci-mathematics/giac-1.9.0
 	>=sci-mathematics/glpk-5.0:0=[gmp]
@@ -98,6 +92,7 @@ DEPEND="
 RDEPEND="
 	${DEPEND}
 	>=dev-lang/R-4.0.4
+	dev-python/conway-polynomials[${PYTHON_USEDEP}]
 	>=dev-python/cvxopt-1.2.6[glpk,${PYTHON_USEDEP}]
 	>=dev-python/fpylll-0.6.0[${PYTHON_USEDEP}]
 	>=dev-python/mpmath-1.2.1[${PYTHON_USEDEP}]
@@ -119,7 +114,6 @@ RDEPEND="
 	>=sci-mathematics/optimal-20040603
 	>=sci-mathematics/palp-2.1
 	~sci-mathematics/sage-data-combinatorial_designs-20140630
-	~sci-mathematics/sage-data-conway_polynomials-0.5
 	~sci-mathematics/sage-data-elliptic_curves-0.8
 	~sci-mathematics/sage-data-graphs-20210214
 	~sci-mathematics/sage-data-polytopes_db-20170220
@@ -147,12 +141,10 @@ REQUIRED_USE="doc? ( jmol )
 	test? ( jmol )"
 
 PATCHES=(
-	"${FILESDIR}"/scipy-1.12.patch
 	"${FILESDIR}"/singular-4.3.2_p15.patch
 	"${FILESDIR}"/${PN}-9.2-env.patch
 	"${FILESDIR}"/sage_exec-9.3.patch
-	"${FILESDIR}"/${PN}-9.3-forcejavatmp.patch
-	"${FILESDIR}"/${PN}-10.1-neutering.patch
+	"${FILESDIR}"/${PN}-10.3-neutering.patch
 	"${FILESDIR}"/${PN}-9.8-build_ext.patch
 )
 
@@ -162,10 +154,6 @@ pkg_setup() {
 }
 
 python_prepare_all() {
-	if [[ ${PV} == 9999 ]]; then
-		sage-git_src_prepare "${MY_PN}"
-	fi
-
 	distutils-r1_python_prepare_all
 
 	# Turn on debugging capability if required

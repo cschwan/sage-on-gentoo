@@ -4,11 +4,12 @@
 EAPI=8
 
 PYTHON_COMPAT=( python3_{10..12} )
+PYTHON_REQ_USE="readline,sqlite"
 DISTUTILS_USE_PEP517=setuptools
 
 inherit distutils-r1
 
-SAGE_PKG="sage-docbuild"
+SAGE_PKG="sage-sws2rst"
 MY_P="${SAGE_PKG}-${PV}"
 
 if [[ ${PV} == 9999 ]]; then
@@ -20,7 +21,7 @@ else
 	S="${WORKDIR}/${MY_P}"
 fi
 
-DESCRIPTION="Tool to help install sage and sage related packages"
+DESCRIPTION="SageNB worksheet converter"
 HOMEPAGE="https://www.sagemath.org"
 
 LICENSE="GPL-2"
@@ -28,12 +29,5 @@ SLOT="0"
 
 RESTRICT="mirror test"
 
-RDEPEND="
-	>=dev-python/sphinx-7.2.0[${PYTHON_USEDEP}]
-	dev-python/jupyter-sphinx[${PYTHON_USEDEP}]
-"
-PDEPEND="~sci-mathematics/sagemath-standard-${PV}[${PYTHON_USEDEP}]"
-
-PATCHES=(
-	"${FILESDIR}"/sage-9.3-linguas.patch
-)
+DEPEND="dev-python/beautifulsoup4[${PYTHON_USEDEP}]"
+RDEPEND="${DEPEND}"

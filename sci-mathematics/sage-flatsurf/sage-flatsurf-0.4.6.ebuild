@@ -15,7 +15,7 @@ LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64"
 
-DEPEND=">=sci-mathematics/sage-9.7[${PYTHON_USEDEP}]
+DEPEND=">=sci-mathematics/sagemath-standard-9.7[${PYTHON_USEDEP}]
 	sci-mathematics/surface-dynamics[${PYTHON_USEDEP}]"
 RDEPEND="${DEPEND}"
 

@@ -11,7 +11,7 @@ inherit distutils-r1 prefix
 
 if [[ ${PV} == 9999 ]]; then
 	inherit git-r3 sage-git
-	EGIT_REPO_URI="https://github.com/sagemath/sage.git"
+	SAGE_PKG="${PN}_pypi"
 else
 	PYPI_NO_NORMALIZE=1
 	inherit pypi
@@ -35,14 +35,10 @@ PATCHES=(
 )
 
 python_prepare_all() {
-	if [[ ${PV} == 9999 ]]; then
-		sage-git_src_prepare "${PN}_pypi"
-	fi
-
 	distutils-r1_python_prepare_all
 
 	# sage on gentoo environment variables
-	cp -f "${FILESDIR}"/${PN}.py-10.2 _sage_conf/_conf.py
+	cp -f "${FILESDIR}"/${PN}.py-10.3 _sage_conf/_conf.py
 	eprefixify _sage_conf/_conf.py
 	# set the documentation location to the externally provided sage-doc package
 	sed -i "s:@GENTOO_PORTAGE_PF@:sage-doc-${PV}:" _sage_conf/_conf.py
