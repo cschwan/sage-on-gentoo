@@ -1,7 +1,4 @@
 # sage-doc-10.3[doc-pdf] needs texlive 2023
-# as of 2023-12-27 you need to get it from the texlive overlay
-# eselect repository enable tex-overlay
-# emaint sync -r tex-overlay
 # use/link this keyword file for your convenience
 # there are also new licenses to approve
 app-text/texlive
