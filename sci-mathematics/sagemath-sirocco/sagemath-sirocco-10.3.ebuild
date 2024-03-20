@@ -26,7 +26,7 @@ SLOT="0"
 
 RESTRICT="test"
 
-DEPEND="~sci-mathematics/sage-${PV}[${PYTHON_USEDEP}]
+DEPEND="~sci-mathematics/sagemath-standard-${PV}[${PYTHON_USEDEP}]
 	sci-libs/libsirocco"
 RDEPEND="${DEPEND}"
 BDEPEND="dev-python/cython[${PYTHON_USEDEP}]"
