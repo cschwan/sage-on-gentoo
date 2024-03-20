@@ -16,6 +16,6 @@ IUSE="test"
 LICENSE="GPL-3"
 SLOT="0"
 
-DEPEND="test? ( >=sci-mathematics/sage-10.3 )"
+DEPEND="test? ( >=sci-mathematics/sagemath-standard-10.3 )"
 
 RESTRICT="!test? ( test )"
