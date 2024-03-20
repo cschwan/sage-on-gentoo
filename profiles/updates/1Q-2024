@@ -4,3 +4,4 @@ move dev-gap/Alnuth dev-gap/alnuth
 move dev-gap/AutoDoc dev-gap/autodoc
 move dev-gap/HAPcryst dev-gap/hapcryst
 move dev-gap/MapClass dev-gap/mapclass
+move sci-mathematics/sage sci-mathematics/sagemath-standard
