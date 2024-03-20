@@ -16,7 +16,7 @@ KEYWORDS="~amd64 ~x86 ~amd64-linux ~x86-linux ~x64-macos"
 
 DEPEND="app-text/texlive[extra]
 	dev-python/pyparsing[${PYTHON_USEDEP}]
-	sci-mathematics/sage[${PYTHON_USEDEP}]"
+	sci-mathematics/sagemath-standard[${PYTHON_USEDEP}]"
 RDEPEND="${DEPEND}
 	dev-tex/pgf"
 
