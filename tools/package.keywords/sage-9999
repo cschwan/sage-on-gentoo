@@ -1,7 +1,7 @@
 ~dev-python/conway-polynomials-0.8
 dev-python/cvxopt
 >=dev-python/cysignals-1.11.4
-=dev-python/pplpy-0.8*
+>=dev-python/pplpy-0.8.9
 =dev-python/cypari2-2.1*
 >dev-python/furo-2023.8.19
 ~dev-python/jupyter-jsmol-2022.1.0
