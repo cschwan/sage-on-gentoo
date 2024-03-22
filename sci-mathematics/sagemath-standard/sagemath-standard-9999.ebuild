@@ -59,7 +59,7 @@ DEPEND="
 	sci-mathematics/cliquer
 	sci-mathematics/eclib:=[flint]
 	=sci-mathematics/flint-3.0*:=[ntl]
-	~sci-mathematics/gap-4.12.2
+	>=sci-mathematics/gap-4.12.2
 	>=sci-mathematics/giac-1.9.0
 	>=sci-mathematics/glpk-5.0:0=[gmp]
 	~sci-mathematics/gmp-ecm-7.0.5[-openmp]
