@@ -58,7 +58,7 @@ DEPEND="dev-libs/mathjax"
 
 PATCHES=(
 	"${FILESDIR}"/${PN}-9.5-neutering.patch
-	"${FILESDIR}"/${PN}-10.2-makefile.patch
+	"${FILESDIR}"/${PN}-10.4-makefile.patch
 )
 
 HTML_DOCS="${WORKDIR}/build_doc/html/*"
