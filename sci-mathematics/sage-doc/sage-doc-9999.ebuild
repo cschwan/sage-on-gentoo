@@ -48,8 +48,8 @@ BDEPEND="$(python_gen_any_dep "
 	~sci-mathematics/sage_docbuild-${PV}[\${PYTHON_USEDEP}]
 	")
 	doc-pdf? (
-		app-text/texlive[extra,luatex,${L10N_USEDEP}]
-		app-text/texlive-core[xindy]
+		>=app-text/texlive-2023[extra,luatex,${L10N_USEDEP}]
+		>=app-text/texlive-core-2023[xindy]
 		media-fonts/freefont
 	)
 "
