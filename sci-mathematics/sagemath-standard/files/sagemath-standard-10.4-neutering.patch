@@ -1,0 +1,123 @@
+diff --git a/pyproject.toml b/pyproject.toml
+index acd0357..f3a30be 100644
+--- a/pyproject.toml
++++ b/pyproject.toml
+@@ -112,18 +112,12 @@ script-files = [
+     "bin/sage-massif",
+     "bin/sage-omega",
+     "bin/sage-valgrind",
+-    "bin/sage-venv-config",
+     "bin/sage-version.sh",
+     "bin/sage-cleaner",
+-    # Only makes sense in sage-the-distribution. TODO: Move to another installation script.
+-    "bin/sage-list-packages",
+     # Uncategorized scripts in alphabetical order
+     "bin/math-readline",
+-    "bin/sage-env",
+     # sage-env-config -- installed by sage_conf
+     # sage-env-config.in -- not to be installed
+-    "bin/sage-grep",
+-    "bin/sage-grepdoc",
+     "bin/sage-inline-fortran",
+     "bin/sage-ipynb2rst",
+     "bin/sage-ipython",
+diff --git a/sage/doctest/control.py b/sage/doctest/control.py
+index 602b527..1591eff 100644
+--- a/sage/doctest/control.py
++++ b/sage/doctest/control.py
+@@ -472,12 +472,6 @@ class DocTestController(SageObject):
+                 # that the package is actually installed).
+                 if 'optional' in options.optional:
+                     options.optional.discard('optional')
+-                    from sage.misc.package import list_packages
+-                    for pkg in list_packages('optional', local=True).values():
+-                        if pkg.name in options.hide:
+-                            continue
+-                        if pkg.is_installed() and pkg.installed_version == pkg.remote_version:
+-                            options.optional.add(pkg.name)
+ 
+                     from sage.features import package_systems
+                     options.optional.update(system.name
+diff --git a/sage/misc/all.py b/sage/misc/all.py
+index dfa47c8..4066185 100644
+--- a/sage/misc/all.py
++++ b/sage/misc/all.py
+@@ -37,12 +37,7 @@ lazy_import('sage.misc.banner', 'banner', deprecation=34259)
+ lazy_import('sage.misc.dev_tools', 'runsnake', deprecation=34259)
+ lazy_import('sage.misc.edit_module', 'set_edit_template', deprecation=34259)
+ lazy_import('sage.misc.profiler', 'Profiler', deprecation=34259)
+-lazy_import('sage.misc.dist', 'install_scripts', deprecation=34259)
+ lazy_import('sage.misc.trace', 'trace', deprecation=34259)
+-lazy_import('sage.misc.package', ('installed_packages', 'is_package_installed',
+-                                  'standard_packages', 'optional_packages',
+-                                  'experimental_packages', 'package_versions'),
+-            deprecation=34259)
+ lazy_import('sage.misc.benchmark', 'benchmark', deprecation=34259)
+ lazy_import('sage.repl.interpreter', 'logstr', deprecation=34259)
+ 
+diff --git a/sage/tests/cmdline.py b/sage/tests/cmdline.py
+index c35e716..90b3251 100644
+--- a/sage/tests/cmdline.py
++++ b/sage/tests/cmdline.py
+@@ -14,9 +14,7 @@ test.spyx
+ --advanced
+ -c
+ --cython
+---dev
+ --ecl
+---experimental
+ --fixdoctests
+ --gap
+ --gdb
+@@ -29,7 +27,6 @@ test.spyx
+ --maxima
+ --min
+ --mwrank
+---optional
+ --preparse
+ --python
+ --python3
+@@ -41,7 +38,6 @@ test.spyx
+ --sh
+ --singular
+ --sqlite3
+---standard
+ --startuptime
+ -t
+ -v
+@@ -580,35 +576,6 @@ def test_executable(args, input="", timeout=100.0, pydebug_ignore_warnings=False
+         sage: ret
+         0
+ 
+-    Check some things requiring an internet connection::
+-
+-        sage: # optional - internet
+-        sage: (out, err, ret) = test_executable(["sage", "--standard"])
+-        sage: out.find("cython") >= 0
+-        True
+-        sage: err
+-        ''
+-        sage: ret
+-        0
+-
+-        sage: # optional - internet
+-        sage: (out, err, ret) = test_executable(["sage", "--optional"])
+-        sage: out.find("database_cremona_ellcurve") >= 0
+-        True
+-        sage: err
+-        ''
+-        sage: ret
+-        0
+-
+-        sage: # optional - internet
+-        sage: (out, err, ret) = test_executable(["sage", "--experimental"])
+-        sage: out.find("valgrind") >= 0
+-        True
+-        sage: err
+-        ''
+-        sage: ret
+-        0
+-
+     Check an illegal command line option.  This outputs an error to stdout,
+     but we allow stderr in case this changes in the future::
+ 

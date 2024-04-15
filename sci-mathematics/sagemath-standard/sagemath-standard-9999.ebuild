@@ -141,10 +141,10 @@ REQUIRED_USE="doc? ( jmol )
 	test? ( jmol )"
 
 PATCHES=(
-	"${FILESDIR}"/singular-4.3.2_p15_noexpect.patch
+	"${FILESDIR}"/singular-4.4_compat.patch
 	"${FILESDIR}"/${PN}-9.2-env.patch
 	"${FILESDIR}"/sage_exec-9.3.patch
-	"${FILESDIR}"/${PN}-10.3-neutering.patch
+	"${FILESDIR}"/${PN}-10.4-neutering.patch
 )
 
 pkg_setup() {
