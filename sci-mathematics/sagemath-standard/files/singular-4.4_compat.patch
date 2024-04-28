@@ -1,5 +1,5 @@
 diff --git a/sage/interfaces/singular.py b/sage/interfaces/singular.py
-index dedbeba..4697b97 100644
+index dedbeba..59cd9a8 100644
 --- a/sage/interfaces/singular.py
 +++ b/sage/interfaces/singular.py
 @@ -1211,14 +1211,14 @@ class Singular(ExtraTabCompletion, Expect):
@@ -30,7 +30,7 @@ index dedbeba..4697b97 100644
 +            # this is our cue that singular uses `rp` instead of `ip`
 +            if singular_name_mapping['invlex'] == 'rp' and 'doctest' in str(get_display_manager()):
 +                s = re.sub('^(// .*block.* : ordering )rp$', '\\1ip',
-+                           s, 0, re.MULTILINE)
++                           s, 0, re.MULTILINE);
          return s
  
      def __copy__(self):
@@ -56,10 +56,10 @@ index dedbeba..4697b97 100644
              from sage.matrix.constructor import matrix
              from sage.rings.integer_ring import ZZ
 diff --git a/sage/libs/singular/decl.pxd b/sage/libs/singular/decl.pxd
-index 27ddad4..4a0e508 100644
+index e36216d..3affdb3 100644
 --- a/sage/libs/singular/decl.pxd
 +++ b/sage/libs/singular/decl.pxd
-@@ -49,6 +49,13 @@ cdef extern from "factory/factory.h":
+@@ -48,6 +48,13 @@ cdef extern from "factory/factory.h":
      cdef int SW_USE_NTL_SORT
  
  cdef extern from "singular/Singular/libsingular.h":
@@ -73,7 +73,7 @@ index 27ddad4..4a0e508 100644
  
      #
      # OPTIONS
-@@ -244,7 +251,7 @@ cdef extern from "singular/Singular/libsingular.h":
+@@ -243,7 +250,7 @@ cdef extern from "singular/Singular/libsingular.h":
          ringorder_s
          ringorder_lp
          ringorder_dp
@@ -82,7 +82,7 @@ index 27ddad4..4a0e508 100644
          ringorder_Dp
          ringorder_wp
          ringorder_Wp
-@@ -292,6 +299,10 @@ cdef extern from "singular/Singular/libsingular.h":
+@@ -291,6 +298,10 @@ cdef extern from "singular/Singular/libsingular.h":
          int row
          int col
  
@@ -93,7 +93,7 @@ index 27ddad4..4a0e508 100644
      # omalloc bins
  
      ctypedef struct omBin "omBin_s"
-@@ -922,6 +933,7 @@ cdef extern from "singular/Singular/libsingular.h":
+@@ -921,6 +932,7 @@ cdef extern from "singular/Singular/libsingular.h":
      cdef int MATRIX_CMD
      cdef int LIST_CMD
      cdef int INTVEC_CMD
@@ -102,10 +102,10 @@ index 27ddad4..4a0e508 100644
      cdef int RESOLUTION_CMD
      cdef int PACKAGE_CMD
 diff --git a/sage/libs/singular/function.pyx b/sage/libs/singular/function.pyx
-index 4d551b3..b7bcd8c 100644
+index 4a5ab6d..5c333e8 100644
 --- a/sage/libs/singular/function.pyx
 +++ b/sage/libs/singular/function.pyx
-@@ -99,7 +99,7 @@ from sage.rings.polynomial.multi_polynomial_sequence import PolynomialSequence_g
+@@ -98,7 +98,7 @@ from sage.rings.polynomial.multi_polynomial_sequence import PolynomialSequence_g
  from sage.libs.singular.decl cimport *
  from sage.libs.singular.option import opt_ctx
  from sage.libs.singular.polynomial cimport singular_vector_maximal_component
@@ -114,7 +114,7 @@ index 4d551b3..b7bcd8c 100644
  from sage.libs.singular.singular import error_messages
  
  from sage.interfaces.singular import get_docstring
-@@ -955,6 +955,8 @@ cdef class Converter(SageObject):
+@@ -954,6 +954,8 @@ cdef class Converter(SageObject):
              return si2sa(<number *>to_convert.data, self._singular_ring, self._sage_ring.base_ring())
          elif rtyp == INTVEC_CMD:
              return si2sa_intvec(<intvec *> to_convert.data)
@@ -123,7 +123,7 @@ index 4d551b3..b7bcd8c 100644
          elif rtyp == STRING_CMD:
              # TODO: Need to determine what kind of data can be returned by a
              # STRING_CMD--is it just ASCII strings or can it be an arbitrary
-@@ -1049,6 +1051,17 @@ cdef class LibraryCallHandler(BaseCallHandler):
+@@ -1048,6 +1050,17 @@ cdef class LibraryCallHandler(BaseCallHandler):
          """
          return False
  
@@ -141,7 +141,7 @@ index 4d551b3..b7bcd8c 100644
  
  cdef class KernelCallHandler(BaseCallHandler):
      """
-@@ -1126,8 +1139,9 @@ cdef class KernelCallHandler(BaseCallHandler):
+@@ -1125,8 +1138,9 @@ cdef class KernelCallHandler(BaseCallHandler):
  
          errorreported += 1
          error_messages.append(
@@ -153,7 +153,7 @@ index 4d551b3..b7bcd8c 100644
          return NULL
  
      cdef bint free_res(self) noexcept:
-@@ -1232,7 +1246,7 @@ cdef class SingularFunction(SageObject):
+@@ -1231,7 +1245,7 @@ cdef class SingularFunction(SageObject):
              Traceback (most recent call last):
              ...
              RuntimeError: error in Singular function call 'size':
@@ -162,7 +162,7 @@ index 4d551b3..b7bcd8c 100644
              sage: size('foobar', ring=P)
              6
  
-@@ -1635,17 +1649,17 @@ def singular_function(name):
+@@ -1634,17 +1648,17 @@ def singular_function(name):
          Traceback (most recent call last):
          ...
          RuntimeError: error in Singular function call 'factorize':
@@ -184,10 +184,10 @@ index 4d551b3..b7bcd8c 100644
      The Singular function ``list`` can be called with any number of
      arguments::
 diff --git a/sage/libs/singular/ring.pyx b/sage/libs/singular/ring.pyx
-index 73bd0a0..13a89be 100644
+index 0efff45..b329520 100644
 --- a/sage/libs/singular/ring.pyx
 +++ b/sage/libs/singular/ring.pyx
-@@ -17,7 +17,7 @@ AUTHORS:
+@@ -16,7 +16,7 @@ AUTHORS:
  #                  https://www.gnu.org/licenses/
  # ****************************************************************************
  
@@ -196,7 +196,7 @@ index 73bd0a0..13a89be 100644
  
  from sage.libs.gmp.types cimport __mpz_struct
  from sage.libs.gmp.mpz cimport mpz_init_set_ui
-@@ -25,7 +25,7 @@ from sage.libs.gmp.mpz cimport mpz_init_set_ui
+@@ -24,7 +24,7 @@ from sage.libs.gmp.mpz cimport mpz_init_set_ui
  from sage.libs.singular.decl cimport ring, currRing
  from sage.libs.singular.decl cimport rChangeCurrRing, rComplete, rDelete, idInit
  from sage.libs.singular.decl cimport omAlloc0, omStrDup, omAlloc
@@ -205,7 +205,7 @@ index 73bd0a0..13a89be 100644
  from sage.libs.singular.decl cimport prCopyR
  from sage.libs.singular.decl cimport n_unknown, n_algExt, n_transExt, n_Z, n_Zn,  n_Znm, n_Z2m
  from sage.libs.singular.decl cimport n_coeffType
-@@ -61,7 +61,7 @@ order_dict = {
+@@ -60,7 +60,7 @@ order_dict = {
      "dp": ringorder_dp,
      "Dp": ringorder_Dp,
      "lp": ringorder_lp,
@@ -214,7 +214,7 @@ index 73bd0a0..13a89be 100644
      "ds": ringorder_ds,
      "Ds": ringorder_Ds,
      "ls": ringorder_ls,
-@@ -72,6 +72,16 @@ order_dict = {
+@@ -71,6 +71,16 @@ order_dict = {
      "a":  ringorder_a,
  }
  
@@ -232,17 +232,16 @@ index 73bd0a0..13a89be 100644
  #############################################################################
  cdef ring *singular_ring_new(base_ring, n, names, term_order) except NULL:
 diff --git a/sage/libs/singular/singular.pxd b/sage/libs/singular/singular.pxd
-index bb7686d..03825b1 100644
+index 05f32b6..ca31d02 100644
 --- a/sage/libs/singular/singular.pxd
 +++ b/sage/libs/singular/singular.pxd
-@@ -1,5 +1,5 @@
- # sage_setup: distribution = sagemath-singular
+@@ -1,4 +1,4 @@
 -from sage.libs.singular.decl cimport ring, poly, number, intvec
 +from sage.libs.singular.decl cimport ring, poly, number, intvec, bigintmat
  from sage.libs.singular.function cimport Resolution
  
  from sage.rings.rational cimport Rational
-@@ -30,6 +30,7 @@ cdef object   si2sa_ZZmod(number *n, ring *_ring, object base)
+@@ -29,6 +29,7 @@ cdef object   si2sa_ZZmod(number *n, ring *_ring, object base)
  cdef object   si2sa_NF(number *n, ring *_ring, object base)
  
  cdef object si2sa_intvec(intvec *v)
@@ -251,10 +250,10 @@ index bb7686d..03825b1 100644
  # dispatches to all the above.
  cdef object si2sa(number *n, ring *_ring, object base)
 diff --git a/sage/libs/singular/singular.pyx b/sage/libs/singular/singular.pyx
-index 79aa1e1..357742b 100644
+index e256949..014effa 100644
 --- a/sage/libs/singular/singular.pyx
 +++ b/sage/libs/singular/singular.pyx
-@@ -1700,6 +1700,25 @@ cdef object si2sa_intvec(intvec *v):
+@@ -1699,6 +1699,25 @@ cdef object si2sa_intvec(intvec *v):
          l.append(v.get(r))
      return tuple(l)
  
@@ -281,10 +280,10 @@ index 79aa1e1..357742b 100644
  # Initialisation
  # ==============
 diff --git a/sage/rings/polynomial/multi_polynomial_libsingular.pyx b/sage/rings/polynomial/multi_polynomial_libsingular.pyx
-index c314072..b13500f 100644
+index 40fbc8c..d1f17f7 100644
 --- a/sage/rings/polynomial/multi_polynomial_libsingular.pyx
 +++ b/sage/rings/polynomial/multi_polynomial_libsingular.pyx
-@@ -1286,7 +1286,7 @@ cdef class MPolynomialRing_libsingular(MPolynomialRing_base):
+@@ -1285,7 +1285,7 @@ cdef class MPolynomialRing_libsingular(MPolynomialRing_base):
              polynomial ring, over a field, global ordering
              //   coefficients: ZZ/2[a]/(a^8+a^4+a^3+a^2+1)
              //   number of vars : 10
@@ -293,7 +292,7 @@ index c314072..b13500f 100644
              //                  : names    x0 x1 x2 x3 x4 x5 x6 x7 x8 x9
              //        block   2 : ordering C
  
-@@ -1295,7 +1295,7 @@ cdef class MPolynomialRing_libsingular(MPolynomialRing_base):
+@@ -1294,7 +1294,7 @@ cdef class MPolynomialRing_libsingular(MPolynomialRing_base):
              polynomial ring, over a field, global ordering
              //   coefficients: ZZ/127
              //   number of vars : 2
@@ -302,7 +301,7 @@ index c314072..b13500f 100644
              //                  : names    x0 x1
              //        block   2 : ordering C
  
-@@ -1304,7 +1304,7 @@ cdef class MPolynomialRing_libsingular(MPolynomialRing_base):
+@@ -1303,7 +1303,7 @@ cdef class MPolynomialRing_libsingular(MPolynomialRing_base):
              polynomial ring, over a field, global ordering
              //   coefficients: QQ
              //   number of vars : 2
@@ -312,10 +311,10 @@ index c314072..b13500f 100644
              //        block   2 : ordering C
  
 diff --git a/sage/rings/polynomial/term_order.py b/sage/rings/polynomial/term_order.py
-index b8cd7e3..567c3c0 100644
+index 4a3e78f..ce2faa2 100644
 --- a/sage/rings/polynomial/term_order.py
 +++ b/sage/rings/polynomial/term_order.py
-@@ -389,7 +389,7 @@ print_name_mapping = {
+@@ -388,7 +388,7 @@ print_name_mapping = {
  
  singular_name_mapping = {
      'lex'           : 'lp',
