@@ -1,31 +1,8 @@
-diff --git a/pyproject.toml b/pyproject.toml
-index acd0357..f3a30be 100644
---- a/pyproject.toml
-+++ b/pyproject.toml
-@@ -112,18 +112,12 @@ script-files = [
-     "bin/sage-massif",
-     "bin/sage-omega",
-     "bin/sage-valgrind",
--    "bin/sage-venv-config",
-     "bin/sage-version.sh",
-     "bin/sage-cleaner",
--    # Only makes sense in sage-the-distribution. TODO: Move to another installation script.
--    "bin/sage-list-packages",
-     # Uncategorized scripts in alphabetical order
-     "bin/math-readline",
--    "bin/sage-env",
-     # sage-env-config -- installed by sage_conf
-     # sage-env-config.in -- not to be installed
--    "bin/sage-grep",
--    "bin/sage-grepdoc",
-     "bin/sage-inline-fortran",
-     "bin/sage-ipynb2rst",
-     "bin/sage-ipython",
 diff --git a/sage/doctest/control.py b/sage/doctest/control.py
-index 602b527..1591eff 100644
+index e463580..21bff7a 100644
 --- a/sage/doctest/control.py
 +++ b/sage/doctest/control.py
-@@ -472,12 +472,6 @@ class DocTestController(SageObject):
+@@ -471,12 +471,6 @@ class DocTestController(SageObject):
                  # that the package is actually installed).
                  if 'optional' in options.optional:
                      options.optional.discard('optional')
@@ -39,27 +16,23 @@ index 602b527..1591eff 100644
                      from sage.features import package_systems
                      options.optional.update(system.name
 diff --git a/sage/misc/all.py b/sage/misc/all.py
-index dfa47c8..4066185 100644
+index 585db5a..4045c31 100644
 --- a/sage/misc/all.py
 +++ b/sage/misc/all.py
-@@ -37,12 +37,7 @@ lazy_import('sage.misc.banner', 'banner', deprecation=34259)
- lazy_import('sage.misc.dev_tools', 'runsnake', deprecation=34259)
+@@ -132,8 +132,5 @@ lazy_import('sage.misc.dev_tools', 'runsnake', deprecation=34259)
  lazy_import('sage.misc.edit_module', 'set_edit_template', deprecation=34259)
  lazy_import('sage.misc.profiler', 'Profiler', deprecation=34259)
--lazy_import('sage.misc.dist', 'install_scripts', deprecation=34259)
  lazy_import('sage.misc.trace', 'trace', deprecation=34259)
 -lazy_import('sage.misc.package', ('installed_packages', 'is_package_installed',
--                                  'standard_packages', 'optional_packages',
--                                  'experimental_packages', 'package_versions'),
+-                                  'package_versions'),
 -            deprecation=34259)
  lazy_import('sage.misc.benchmark', 'benchmark', deprecation=34259)
  lazy_import('sage.repl.interpreter', 'logstr', deprecation=34259)
- 
 diff --git a/sage/tests/cmdline.py b/sage/tests/cmdline.py
-index c35e716..90b3251 100644
+index 523cbef..8d1d7fe 100644
 --- a/sage/tests/cmdline.py
 +++ b/sage/tests/cmdline.py
-@@ -14,9 +14,7 @@ test.spyx
+@@ -13,9 +13,7 @@ test.spyx
  --advanced
  -c
  --cython
@@ -69,7 +42,7 @@ index c35e716..90b3251 100644
  --fixdoctests
  --gap
  --gdb
-@@ -29,7 +27,6 @@ test.spyx
+@@ -28,7 +26,6 @@ test.spyx
  --maxima
  --min
  --mwrank
@@ -77,7 +50,7 @@ index c35e716..90b3251 100644
  --preparse
  --python
  --python3
-@@ -41,7 +38,6 @@ test.spyx
+@@ -40,7 +37,6 @@ test.spyx
  --sh
  --singular
  --sqlite3
@@ -85,7 +58,7 @@ index c35e716..90b3251 100644
  --startuptime
  -t
  -v
-@@ -580,35 +576,6 @@ def test_executable(args, input="", timeout=100.0, pydebug_ignore_warnings=False
+@@ -579,35 +575,6 @@ def test_executable(args, input="", timeout=100.0, pydebug_ignore_warnings=False
          sage: ret
          0
  
@@ -121,3 +94,22 @@ index c35e716..90b3251 100644
      Check an illegal command line option.  This outputs an error to stdout,
      but we allow stderr in case this changes in the future::
  
+diff --git a/setup.cfg b/setup.cfg
+index e904a16..3c6e234 100644
+--- a/setup.cfg
++++ b/setup.cfg
+@@ -70,14 +70,9 @@ scripts =
+ 	bin/sage-massif
+ 	bin/sage-omega
+ 	bin/sage-valgrind
+-	bin/sage-venv-config
+ 	bin/sage-version.sh
+ 	bin/sage-cleaner
+-	bin/sage-list-packages
+ 	bin/math-readline
+-	bin/sage-env
+-	bin/sage-grep
+-	bin/sage-grepdoc
+ 	bin/sage-inline-fortran
+ 	bin/sage-ipynb2rst
+ 	bin/sage-ipython
