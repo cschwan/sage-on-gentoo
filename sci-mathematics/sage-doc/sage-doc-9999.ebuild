@@ -57,7 +57,6 @@ RDEPEND="dev-libs/mathjax"
 DEPEND="dev-libs/mathjax"
 
 PATCHES=(
-	"${FILESDIR}"/${PN}-9.5-neutering.patch
 	"${FILESDIR}"/${PN}-10.4-makefile.patch
 )
 
