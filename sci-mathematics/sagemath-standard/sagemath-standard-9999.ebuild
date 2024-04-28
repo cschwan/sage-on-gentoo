@@ -153,6 +153,9 @@ pkg_setup() {
 
 python_prepare_all() {
 	distutils-r1_python_prepare_all
+	
+	# use installed copy, not the vendored one.
+	rm -rf sage_setup
 
 	# Turn on debugging capability if required
 	if use debug ; then
