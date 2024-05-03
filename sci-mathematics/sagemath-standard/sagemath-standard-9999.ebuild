@@ -141,10 +141,9 @@ REQUIRED_USE="doc? ( jmol )
 	test? ( jmol )"
 
 PATCHES=(
-	"${FILESDIR}"/singular-4.4_compat.patch
 	"${FILESDIR}"/${PN}-9.2-env.patch
 	"${FILESDIR}"/sage_exec-9.3.patch
-	"${FILESDIR}"/${PN}-10.3-neutering.patch
+	"${FILESDIR}"/${PN}-10.4-neutering.patch
 )
 
 pkg_setup() {
@@ -154,6 +153,9 @@ pkg_setup() {
 
 python_prepare_all() {
 	distutils-r1_python_prepare_all
+	
+	# use installed copy, not the vendored one.
+	rm -rf sage_setup
 
 	# Turn on debugging capability if required
 	if use debug ; then
