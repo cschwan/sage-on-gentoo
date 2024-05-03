@@ -11,7 +11,7 @@ MY_P=${MY_PN}-${PV}
 MY_SP=${MY_PM}-${PV}
 DESCRIPTION="Jmol is a java molecular viever for 3-D chemical structures."
 HOMEPAGE="https://jmol.sourceforge.net/"
-SRC_URI="mirror://sourceforge/jmol/Jmol/${MY_P}-binary.tar.gz"
+SRC_URI="https://downloads.sourceforge.net/jmol/Jmol/${MY_P}-binary.tar.gz"
 
 LICENSE="LGPL-2.1"
 SLOT="0"
