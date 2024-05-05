@@ -103,7 +103,7 @@ sage-git_src_unpack() {
 	# unpack
 	# Note that we catch the special case sage-conf/sage-conf_pypi here.
 	tar --strip-components=1 -C "${S}" \
-		-xvzf "${SAGE_PKG%_pypi}"-*.tar.gz || die "failed to unpack sdist"
+		-xvzf *.tar.gz || die "failed to unpack sdist"
 	popd
 }
 
