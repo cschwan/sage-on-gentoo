@@ -72,7 +72,7 @@ DEPEND="
 	~sci-mathematics/sage-conf-${PV}[${PYTHON_USEDEP}]
 	>=sci-mathematics/singular-4.3.2_p15[readline]
 	>=sci-libs/brial-1.2.10
-	~sci-libs/givaro-4.1.1
+	>=sci-libs/givaro-4.1.1
 	>=sci-libs/gsl-2.3
 	>=sci-libs/iml-1.0.4
 	sci-libs/libbraiding
