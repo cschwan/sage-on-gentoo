@@ -1,0 +1,118 @@
+diff --git a/sage/doctest/control.py b/sage/doctest/control.py
+index 130aa3e..95123b1 100644
+--- a/sage/doctest/control.py
++++ b/sage/doctest/control.py
+@@ -471,15 +471,6 @@ class DocTestController(SageObject):
+                 # that the package is actually installed).
+                 if 'optional' in options.optional:
+                     options.optional.discard('optional')
+-                    from sage.misc.package import list_packages
+-                    for pkg in list_packages('optional', local=True).values():
+-                        if pkg.name in options.hide:
+-                            continue
+-                        # Skip features for which we have a more specific runtime feature test.
+-                        if pkg.name in ['bliss', 'coxeter3', 'mcqd', 'meataxe', 'sirocco', 'tdlib']:
+-                            continue
+-                        if pkg.is_installed() and pkg.installed_version == pkg.remote_version:
+-                            options.optional.add(pkg.name)
+ 
+                     from sage.features import package_systems
+                     options.optional.update(system.name
+diff --git a/sage/misc/all.py b/sage/misc/all.py
+index 585db5a..4045c31 100644
+--- a/sage/misc/all.py
++++ b/sage/misc/all.py
+@@ -132,8 +132,5 @@ lazy_import('sage.misc.dev_tools', 'runsnake', deprecation=34259)
+ lazy_import('sage.misc.edit_module', 'set_edit_template', deprecation=34259)
+ lazy_import('sage.misc.profiler', 'Profiler', deprecation=34259)
+ lazy_import('sage.misc.trace', 'trace', deprecation=34259)
+-lazy_import('sage.misc.package', ('installed_packages', 'is_package_installed',
+-                                  'package_versions'),
+-            deprecation=34259)
+ lazy_import('sage.misc.benchmark', 'benchmark', deprecation=34259)
+ lazy_import('sage.repl.interpreter', 'logstr', deprecation=34259)
+diff --git a/sage/tests/cmdline.py b/sage/tests/cmdline.py
+index 523cbef..8d1d7fe 100644
+--- a/sage/tests/cmdline.py
++++ b/sage/tests/cmdline.py
+@@ -13,9 +13,7 @@ test.spyx
+ --advanced
+ -c
+ --cython
+---dev
+ --ecl
+---experimental
+ --fixdoctests
+ --gap
+ --gdb
+@@ -28,7 +26,6 @@ test.spyx
+ --maxima
+ --min
+ --mwrank
+---optional
+ --preparse
+ --python
+ --python3
+@@ -40,7 +37,6 @@ test.spyx
+ --sh
+ --singular
+ --sqlite3
+---standard
+ --startuptime
+ -t
+ -v
+@@ -579,35 +575,6 @@ def test_executable(args, input="", timeout=100.0, pydebug_ignore_warnings=False
+         sage: ret
+         0
+ 
+-    Check some things requiring an internet connection::
+-
+-        sage: # optional - internet
+-        sage: (out, err, ret) = test_executable(["sage", "--standard"])
+-        sage: out.find("cython") >= 0
+-        True
+-        sage: err
+-        ''
+-        sage: ret
+-        0
+-
+-        sage: # optional - internet
+-        sage: (out, err, ret) = test_executable(["sage", "--optional"])
+-        sage: out.find("database_cremona_ellcurve") >= 0
+-        True
+-        sage: err
+-        ''
+-        sage: ret
+-        0
+-
+-        sage: # optional - internet
+-        sage: (out, err, ret) = test_executable(["sage", "--experimental"])
+-        sage: out.find("valgrind") >= 0
+-        True
+-        sage: err
+-        ''
+-        sage: ret
+-        0
+-
+     Check an illegal command line option.  This outputs an error to stdout,
+     but we allow stderr in case this changes in the future::
+ 
+diff --git a/setup.cfg b/setup.cfg
+index 34a8930..5104698 100644
+--- a/setup.cfg
++++ b/setup.cfg
+@@ -70,14 +70,9 @@ scripts =
+ 	bin/sage-massif
+ 	bin/sage-omega
+ 	bin/sage-valgrind
+-	bin/sage-venv-config
+ 	bin/sage-version.sh
+ 	bin/sage-cleaner
+-	bin/sage-list-packages
+ 	bin/math-readline
+-	bin/sage-env
+-	bin/sage-grep
+-	bin/sage-grepdoc
+ 	bin/sage-inline-fortran
+ 	bin/sage-ipynb2rst
+ 	bin/sage-ipython

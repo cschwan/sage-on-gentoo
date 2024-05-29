@@ -143,7 +143,7 @@ REQUIRED_USE="doc? ( jmol )
 PATCHES=(
 	"${FILESDIR}"/${PN}-9.2-env.patch
 	"${FILESDIR}"/sage_exec-9.3.patch
-	"${FILESDIR}"/${PN}-10.4-neutering.patch
+	"${FILESDIR}"/${PN}-10.4b-neutering.patch
 )
 
 pkg_setup() {
@@ -153,7 +153,7 @@ pkg_setup() {
 
 python_prepare_all() {
 	distutils-r1_python_prepare_all
-	
+
 	# use installed copy, not the vendored one.
 	rm -rf sage_setup
 

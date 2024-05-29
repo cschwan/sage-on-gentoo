@@ -1,26 +1,426 @@
 diff --git a/src/MANIFEST.in b/src/MANIFEST.in
-index 89d9d8e368..e01f5cadcf 100644
+index a4613448097..f6231401294 100644
 --- a/src/MANIFEST.in
 +++ b/src/MANIFEST.in
-@@ -14,6 +15,13 @@ prune doc
- global-exclude *.c
- global-exclude *.cpp
+@@ -56,7 +56,7 @@ exclude sage/graphs/mcqd.p*
+ exclude sage/libs/meataxe.p*
+ exclude sage/libs/sirocco.p*
+ exclude sage/matrix/matrix_gfpn_dense.p*
+-exclude sage/graphs/graph_decomposition/tdlib.p*
++exclude sage/graphs/graph_decompositions/tdlib.p*
  
+ # Exclude all__*.py files belonging to distributions related to optional packages
+ global-exclude all__sagemath_bliss.py
+diff --git a/src/sage/all__sagemath_bliss.py b/src/sage/all__sagemath_bliss.py
+index e69de29bb2d..00e01e7dfe7 100644
+--- a/src/sage/all__sagemath_bliss.py
++++ b/src/sage/all__sagemath_bliss.py
+@@ -0,0 +1 @@
++# sage_setup: distribution = sagemath-bliss
+diff --git a/src/sage/all__sagemath_coxeter3.py b/src/sage/all__sagemath_coxeter3.py
+index e69de29bb2d..61138b7bc1a 100644
+--- a/src/sage/all__sagemath_coxeter3.py
++++ b/src/sage/all__sagemath_coxeter3.py
+@@ -0,0 +1 @@
++# sage_setup: distribution = sagemath-coxeter3
+diff --git a/src/sage/all__sagemath_mcqd.py b/src/sage/all__sagemath_mcqd.py
+index e69de29bb2d..9d46f0ff6ba 100644
+--- a/src/sage/all__sagemath_mcqd.py
++++ b/src/sage/all__sagemath_mcqd.py
+@@ -0,0 +1 @@
++# sage_setup: distribution = sagemath-mcqd
+diff --git a/src/sage/all__sagemath_meataxe.py b/src/sage/all__sagemath_meataxe.py
+index e69de29bb2d..fd1e327ee2f 100644
+--- a/src/sage/all__sagemath_meataxe.py
++++ b/src/sage/all__sagemath_meataxe.py
+@@ -0,0 +1 @@
++# sage_setup: distribution = sagemath-meataxe
+diff --git a/src/sage/all__sagemath_sirocco.py b/src/sage/all__sagemath_sirocco.py
+index e69de29bb2d..44db2511e89 100644
+--- a/src/sage/all__sagemath_sirocco.py
++++ b/src/sage/all__sagemath_sirocco.py
+@@ -0,0 +1 @@
++# sage_setup: distribution = sagemath-sirocco
+diff --git a/src/sage/all__sagemath_tdlib.py b/src/sage/all__sagemath_tdlib.py
+index e69de29bb2d..e26612c8409 100644
+--- a/src/sage/all__sagemath_tdlib.py
++++ b/src/sage/all__sagemath_tdlib.py
+@@ -0,0 +1 @@
++# sage_setup: distribution = sagemath-tdlib
+diff --git a/src/sage/doctest/control.py b/src/sage/doctest/control.py
+index ba78f9bc2a6..130aa3e57b0 100644
+--- a/src/sage/doctest/control.py
++++ b/src/sage/doctest/control.py
+@@ -475,6 +475,9 @@ class DocTestController(SageObject):
+                     for pkg in list_packages('optional', local=True).values():
+                         if pkg.name in options.hide:
+                             continue
++                        # Skip features for which we have a more specific runtime feature test.
++                        if pkg.name in ['bliss', 'coxeter3', 'mcqd', 'meataxe', 'sirocco', 'tdlib']:
++                            continue
+                         if pkg.is_installed() and pkg.installed_version == pkg.remote_version:
+                             options.optional.add(pkg.name)
+ 
+@@ -1447,7 +1450,7 @@ class DocTestController(SageObject):
+             sage: with open(filename, 'w') as f:
+             ....:     f.write(test_hide)
+             ....:     f.close()
+-            729
++            714
+             sage: DF = DocTestDefaults(hide='buckygen,all')
+             sage: DC = DocTestController(DF, [filename])
+             sage: DC.run()
+@@ -1670,7 +1673,7 @@ Traceback (most recent call last):
+  ...
+ FeatureNotPresentError: buckygen is not available.
+ ...
+-{prompt}: next(graphs.fullerenes(20))   # optional buckygen
++{prompt}: next(graphs.fullerenes(20))   # optional - buckygen
+ Graph on 20 vertices
+ 
+ {prompt}: len(list(graphs.fusenes(2)))
+@@ -1678,14 +1681,14 @@ Traceback (most recent call last):
+  ...
+ FeatureNotPresentError: benzene is not available.
+ ...
+-{prompt}: len(list(graphs.fusenes(2)))  # optional benzene
++{prompt}: len(list(graphs.fusenes(2)))  # optional - benzene
+ 1
+ {prompt}: from sage.matrix.matrix_space import get_matrix_class
+ {prompt}: get_matrix_class(GF(25,'x'), 4, 4, False, 'meataxe')
+ Failed lazy import:
+-sage.matrix.matrix_gfpn_dense is not available.
++meataxe is not available.
+ ...
+-{prompt}: get_matrix_class(GF(25,'x'), 4, 4, False, 'meataxe') # optional meataxe
++{prompt}: get_matrix_class(GF(25,'x'), 4, 4, False, 'meataxe')  # optional - meataxe
+ <class 'sage.matrix.matrix_gfpn_dense.Matrix_gfpn_dense'>
+ {quotmark}
+ """.format(quotmark='"""', prompt='sage')  # using prompt to hide these lines from _test_enough_doctests
+diff --git a/src/sage/features/bliss.py b/src/sage/features/bliss.py
+index 37fc4d7f8c3..aca9ac7e50c 100644
+--- a/src/sage/features/bliss.py
++++ b/src/sage/features/bliss.py
+@@ -75,10 +75,8 @@ class Bliss(JoinFeature):
+             sage: Bliss()
+             Feature('bliss')
+         """
+-        # Currently part of sagemath_standard, conditionally built.
+-        # Will be changed to spkg='sagemath_bliss' later
+         JoinFeature.__init__(self, "bliss",
+-                             [PythonModule("sage.graphs.bliss", spkg="bliss",
++                             [PythonModule("sage.graphs.bliss", spkg="sagemath_bliss",
+                                            url="http://www.tcs.hut.fi/Software/bliss/")])
+ 
+ 
+diff --git a/src/sage/features/coxeter3.py b/src/sage/features/coxeter3.py
+new file mode 100644
+index 00000000000..97e153b18a3
+--- /dev/null
++++ b/src/sage/features/coxeter3.py
+@@ -0,0 +1,45 @@
++# sage_setup: distribution = sagemath-environment
++r"""
++Features for testing the presence of ``coxeter3``
++"""
++
++# *****************************************************************************
++#       Copyright (C) 2016      Julian Rüth
++#                     2018      Jeroen Demeyer
++#                     2021-2024 Matthias Koeppe
 +#
-+# .m4 files used at bootstrap time should not be included in the sdist
++#  Distributed under the terms of the GNU General Public License (GPL)
++#  as published by the Free Software Foundation; either version 2 of
++#  the License, or (at your option) any later version.
++#                  https://www.gnu.org/licenses/
++# *****************************************************************************
++
++from . import PythonModule
++from .join_feature import JoinFeature
++
++
++class Coxeter3(JoinFeature):
++    r"""
++    A :class:`~sage.features.Feature` which describes whether the :mod:`sage.libs.coxeter3`
++    module is available in this installation of Sage.
++
++    EXAMPLES::
++
++        sage: from sage.features.coxeter3 import Coxeter3
++        sage: Coxeter3().require()  # optional - coxeter3
++    """
++    def __init__(self):
++        r"""
++        TESTS::
++
++            sage: from sage.features.coxeter3 import Coxeter3
++            sage: Coxeter3()
++            Feature('coxeter3')
++        """
++        JoinFeature.__init__(self, "coxeter3",
++                             [PythonModule("sage.libs.coxeter3.coxeter",
++                                           spkg="sagemath_coxeter3")])
++
++
++def all_features():
++    return [Coxeter3()]
+diff --git a/src/sage/features/mcqd.py b/src/sage/features/mcqd.py
+index 036e8fc727b..6682e75b24f 100644
+--- a/src/sage/features/mcqd.py
++++ b/src/sage/features/mcqd.py
+@@ -35,10 +35,9 @@ class Mcqd(JoinFeature):
+             sage: isinstance(Mcqd(), Mcqd)
+             True
+         """
+-        # Currently part of sagemath_standard, conditionally built.
+-        # Will be changed to spkg='sagemath_mcqd' later
+         JoinFeature.__init__(self, 'mcqd',
+-                             [PythonModule('sage.graphs.mcqd', spkg='mcqd')])
++                             [PythonModule('sage.graphs.mcqd',
++                                           spkg='sagemath_mcqd')])
+ 
+ 
+ def all_features():
+diff --git a/src/sage/features/meataxe.py b/src/sage/features/meataxe.py
+index cc2a69cfeff..9f346fd1a59 100644
+--- a/src/sage/features/meataxe.py
++++ b/src/sage/features/meataxe.py
+@@ -36,10 +36,9 @@ class Meataxe(JoinFeature):
+             sage: isinstance(Meataxe(), Meataxe)
+             True
+         """
+-        # Currently part of sagemath_standard, conditionally built.
+-        # Will be changed to spkg='sagemath_meataxe' later
+         JoinFeature.__init__(self, 'meataxe',
+-                             [PythonModule('sage.matrix.matrix_gfpn_dense', spkg='meataxe')])
++                             [PythonModule('sage.matrix.matrix_gfpn_dense',
++                                           spkg='sagemath_meataxe')])
+ 
+ 
+ def all_features():
+diff --git a/src/sage/features/sirocco.py b/src/sage/features/sirocco.py
+new file mode 100644
+index 00000000000..676f187299f
+--- /dev/null
++++ b/src/sage/features/sirocco.py
+@@ -0,0 +1,45 @@
++# sage_setup: distribution = sagemath-environment
++r"""
++Features for testing the presence of ``sirocco``
++"""
++
++# *****************************************************************************
++#       Copyright (C) 2016      Julian Rüth
++#                     2018      Jeroen Demeyer
++#                     2021-2024 Matthias Koeppe
 +#
-+global-exclude *.m4
++#  Distributed under the terms of the GNU General Public License (GPL)
++#  as published by the Free Software Foundation; either version 2 of
++#  the License, or (at your option) any later version.
++#                  https://www.gnu.org/licenses/
++# *****************************************************************************
++
++from . import PythonModule
++from .join_feature import JoinFeature
 +
 +
++class Sirocco(JoinFeature):
++    r"""
++    A :class:`~sage.features.Feature` which describes whether the :mod:`sage.libs.sirocco`
++    module is available in this installation of Sage.
 +
- #
- # List of C and C++ files that are actual source files,
- # NOT generated by Cython. The same list appears in SAGE_ROOT/.gitignore
-@@ -66,6 +74,7 @@ global-exclude *.py[co]
- global-exclude *.bak
- global-exclude *.so
- global-exclude *~
-+exclude .gitignore
- prune .tox
- prune build
- prune dist
++    EXAMPLES::
++
++        sage: from sage.features.sirocco import Sirocco
++        sage: Sirocco().require()  # optional - sirocco
++    """
++    def __init__(self):
++        r"""
++        TESTS::
++
++            sage: from sage.features.sirocco import Sirocco
++            sage: Sirocco()
++            Feature('sirocco')
++        """
++        JoinFeature.__init__(self, "sirocco",
++                             [PythonModule("sage.libs.sirocco",
++                                           spkg="sagemath_sirocco")])
++
++
++def all_features():
++    return [Sirocco()]
+diff --git a/src/sage/features/tdlib.py b/src/sage/features/tdlib.py
+index 128c056a49c..d2762853400 100644
+--- a/src/sage/features/tdlib.py
++++ b/src/sage/features/tdlib.py
+@@ -28,10 +28,9 @@ class Tdlib(JoinFeature):
+             sage: isinstance(Tdlib(), Tdlib)
+             True
+         """
+-        # Currently part of sagemath_standard, conditionally built.
+-        # Will be changed to spkg='sagemath_tdlib' later
+         JoinFeature.__init__(self, 'tdlib',
+-                             [PythonModule('sage.graphs.graph_decompositions.tdlib', spkg='tdlib')])
++                             [PythonModule('sage.graphs.graph_decompositions.tdlib',
++                                           spkg='sagemath_tdlib')])
+ 
+ 
+ def all_features():
+diff --git a/src/sage/graphs/all__sagemath_bliss.py b/src/sage/graphs/all__sagemath_bliss.py
+index e69de29bb2d..00e01e7dfe7 100644
+--- a/src/sage/graphs/all__sagemath_bliss.py
++++ b/src/sage/graphs/all__sagemath_bliss.py
+@@ -0,0 +1 @@
++# sage_setup: distribution = sagemath-bliss
+diff --git a/src/sage/graphs/all__sagemath_mcqd.py b/src/sage/graphs/all__sagemath_mcqd.py
+index e69de29bb2d..9d46f0ff6ba 100644
+--- a/src/sage/graphs/all__sagemath_mcqd.py
++++ b/src/sage/graphs/all__sagemath_mcqd.py
+@@ -0,0 +1 @@
++# sage_setup: distribution = sagemath-mcqd
+diff --git a/src/sage/graphs/all__sagemath_tdlib.py b/src/sage/graphs/all__sagemath_tdlib.py
+index e69de29bb2d..e26612c8409 100644
+--- a/src/sage/graphs/all__sagemath_tdlib.py
++++ b/src/sage/graphs/all__sagemath_tdlib.py
+@@ -0,0 +1 @@
++# sage_setup: distribution = sagemath-tdlib
+diff --git a/src/sage/graphs/graph.py b/src/sage/graphs/graph.py
+index c313e563ec5..d8326612b00 100644
+--- a/src/sage/graphs/graph.py
++++ b/src/sage/graphs/graph.py
+@@ -426,9 +426,9 @@ from sage.graphs.views import EdgesView
+ from sage.parallel.decorate import parallel
+ 
+ from sage.misc.lazy_import import lazy_import, LazyImport
+-from sage.features import PythonModule
++from sage.features.mcqd import Mcqd
+ lazy_import('sage.graphs.mcqd', ['mcqd'],
+-            feature=PythonModule('sage.graphs.mcqd', spkg='mcqd'))
++            feature=Mcqd())
+ 
+ 
+ class Graph(GenericGraph):
+diff --git a/src/sage/graphs/graph_decompositions/all__sagemath_tdlib.py b/src/sage/graphs/graph_decompositions/all__sagemath_tdlib.py
+index e69de29bb2d..e26612c8409 100644
+--- a/src/sage/graphs/graph_decompositions/all__sagemath_tdlib.py
++++ b/src/sage/graphs/graph_decompositions/all__sagemath_tdlib.py
+@@ -0,0 +1 @@
++# sage_setup: distribution = sagemath-tdlib
+diff --git a/src/sage/graphs/graph_decompositions/tree_decomposition.pyx b/src/sage/graphs/graph_decompositions/tree_decomposition.pyx
+index f97fa2779fe..740b07fc40b 100644
+--- a/src/sage/graphs/graph_decompositions/tree_decomposition.pyx
++++ b/src/sage/graphs/graph_decompositions/tree_decomposition.pyx
+@@ -455,7 +455,7 @@ def treewidth(g, k=None, kmin=None, certificate=False, algorithm=None, nice=Fals
+       tree-decomposition itself.
+ 
+     - ``algorithm`` -- whether to use ``"sage"`` or ``"tdlib"`` (requires the
+-      installation of the 'tdlib' package). The default behaviour is to use
++      installation of the :ref:`spkg_sagemath_tdlib` package). The default behaviour is to use
+       'tdlib' if it is available, and Sage's own algorithm when it is not.
+ 
+     - ``nice`` -- boolean (default: ``False``); whether or not to return the
+@@ -671,8 +671,8 @@ def treewidth(g, k=None, kmin=None, certificate=False, algorithm=None, nice=Fals
+     if algorithm == 'tdlib':
+         if not tdlib_found:
+             from sage.features import FeatureNotPresentError
+-            raise FeatureNotPresentError(PythonModule('sage.graphs.graph_decompositions.tdlib',
+-                                                      spkg='tdlib'))
++            from sage.features.tdlib import Tdlib
++            raise FeatureNotPresentError(Tdlib())
+ 
+         tree_decomp = tdlib.treedecomposition_exact(g, -1 if k is None else k)
+         width = tdlib.get_width(tree_decomp)
+diff --git a/src/sage/libs/all__sagemath_coxeter3.py b/src/sage/libs/all__sagemath_coxeter3.py
+index e69de29bb2d..61138b7bc1a 100644
+--- a/src/sage/libs/all__sagemath_coxeter3.py
++++ b/src/sage/libs/all__sagemath_coxeter3.py
+@@ -0,0 +1 @@
++# sage_setup: distribution = sagemath-coxeter3
+diff --git a/src/sage/libs/all__sagemath_meataxe.py b/src/sage/libs/all__sagemath_meataxe.py
+index e69de29bb2d..fd1e327ee2f 100644
+--- a/src/sage/libs/all__sagemath_meataxe.py
++++ b/src/sage/libs/all__sagemath_meataxe.py
+@@ -0,0 +1 @@
++# sage_setup: distribution = sagemath-meataxe
+diff --git a/src/sage/libs/all__sagemath_sirocco.py b/src/sage/libs/all__sagemath_sirocco.py
+index e69de29bb2d..44db2511e89 100644
+--- a/src/sage/libs/all__sagemath_sirocco.py
++++ b/src/sage/libs/all__sagemath_sirocco.py
+@@ -0,0 +1 @@
++# sage_setup: distribution = sagemath-sirocco
+diff --git a/src/sage/matrix/all__sagemath_meataxe.py b/src/sage/matrix/all__sagemath_meataxe.py
+index e69de29bb2d..fd1e327ee2f 100644
+--- a/src/sage/matrix/all__sagemath_meataxe.py
++++ b/src/sage/matrix/all__sagemath_meataxe.py
+@@ -0,0 +1 @@
++# sage_setup: distribution = sagemath-meataxe
+diff --git a/src/sage/matrix/matrix_space.py b/src/sage/matrix/matrix_space.py
+index 8b9c9b1725a..91d0df8a2c1 100644
+--- a/src/sage/matrix/matrix_space.py
++++ b/src/sage/matrix/matrix_space.py
+@@ -55,9 +55,9 @@ from sage.categories.fields import Fields
+ from sage.categories.enumerated_sets import EnumeratedSets
+ 
+ from sage.misc.lazy_import import lazy_import
+-from sage.features import PythonModule
++from sage.features.meataxe import Meataxe
+ lazy_import('sage.matrix.matrix_gfpn_dense', ['Matrix_gfpn_dense'],
+-            feature=PythonModule('sage.matrix.matrix_gfpn_dense', spkg='meataxe'))
++            feature=Meataxe())
+ lazy_import('sage.groups.matrix_gps.matrix_group', ['MatrixGroup_base'])
+ 
+ _Rings = Rings()
+diff --git a/src/sage_setup/command/sage_build_py.py b/src/sage_setup/command/sage_build_py.py
+new file mode 100644
+index 00000000000..9ec936815c6
+--- /dev/null
++++ b/src/sage_setup/command/sage_build_py.py
+@@ -0,0 +1,12 @@
++from setuptools.command.build_py import build_py
++
++
++class sage_build_py(build_py):
++
++    def find_package_modules(self, package, package_dir):
++        r"""
++        Do not expand packages to modules.
++
++        Our :func:`sage_setup.find.find_python_sources` already lists all modules.
++        """
++        return []
+diff --git a/src/setup.cfg.m4 b/src/setup.cfg.m4
+index c06001fd105..76aa08f8833 100644
+--- a/src/setup.cfg.m4
++++ b/src/setup.cfg.m4
+@@ -129,4 +129,10 @@ sage =
+     ext_data/threejs/*
+ 
+ [options.extras_require]
+-R = SPKG_INSTALL_REQUIRES_rpy2
++R        = SPKG_INSTALL_REQUIRES_rpy2
++bliss    = SPKG_INSTALL_REQUIRES_sagemath_bliss
++coxeter3 = SPKG_INSTALL_REQUIRES_sagemath_coxeter3
++mcqd     = SPKG_INSTALL_REQUIRES_sagemath_mcqd
++meataxe  = SPKG_INSTALL_REQUIRES_sagemath_meataxe
++sirocco  = SPKG_INSTALL_REQUIRES_sagemath_sirocco
++tdlib    = SPKG_INSTALL_REQUIRES_sagemath_tdlib
+diff --git a/src/setup.py b/src/setup.py
+index 495344aaa94..dfa2e59b2e1 100755
+--- a/src/setup.py
++++ b/src/setup.py
+@@ -76,14 +76,10 @@ else:
+ 
+     log.info("Discovering Python/Cython source code...")
+ 
+-    # Exclude a few files if the corresponding distribution is not loaded
+     optional_packages = ['mcqd', 'bliss', 'tdlib',
+                          'coxeter3', 'sirocco', 'meataxe']
+-    not_installed_packages = [package for package in optional_packages
+-                              if not is_package_installed_and_updated(package)]
+-
+     distributions_to_exclude = [f"sagemath-{pkg}"
+-                                for pkg in not_installed_packages]
++                                for pkg in optional_packages]
+     files_to_exclude = filter_cython_sources(SAGE_SRC, distributions_to_exclude)
+ 
+     log.debug(f"files_to_exclude = {files_to_exclude}")
