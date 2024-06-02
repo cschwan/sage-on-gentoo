@@ -9,7 +9,7 @@ PYPI_NO_NORMALIZE=NO
 
 inherit distutils-r1 pypi
 
-DESCRIPTION=""
+DESCRIPTION="Yoshitake Matsumoto, Database of Matroids"
 KEYWORDS="~amd64 ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos"
 HOMEPAGE="https://pypi.org/project/matroid-database/"
 IUSE="test"
