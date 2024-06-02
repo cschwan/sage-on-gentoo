@@ -50,7 +50,9 @@ sci-mathematics/shared_meataxe
 sci-libs/libsirocco
 ~sci-mathematics/sagemath-sirocco-9999 **
 # optional packages
-~sci-mathematics/database_knotinfo-2024.2.1
+sci-mathematics/database_knotinfo
+sci-mathematics/matroid-database
+sci-mathematics/database_cubic_hecke
 sci-mathematics/surface-dynamics
 sci-mathematics/sage-flatsurf
 # "downstream" snappy packages
