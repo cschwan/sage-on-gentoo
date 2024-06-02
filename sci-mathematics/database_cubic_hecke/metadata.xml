@@ -6,6 +6,6 @@
 	<name>Francois Bissey</name>
 </maintainer>
 <upstream>
-	<remote-id type="pypi">database-knotinfo</remote-id>
+	<remote-id type="pypi">database_cubic_hecke</remote-id>
 </upstream>
 </pkgmetadata>
