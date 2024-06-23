@@ -50,6 +50,8 @@ sci-mathematics/shared_meataxe
 ~sci-mathematics/sagemath-meataxe-9999 **
 sci-libs/libsirocco
 ~sci-mathematics/sagemath-sirocco-9999 **
+sci-libs/treedec
+~sci-mathematics/sagemath-tdlib-9999 **
 # optional packages
 sci-mathematics/database_knotinfo
 sci-mathematics/matroid-database
