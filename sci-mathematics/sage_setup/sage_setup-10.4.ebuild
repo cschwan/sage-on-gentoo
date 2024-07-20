@@ -9,15 +9,11 @@ DISTUTILS_USE_PEP517=setuptools
 
 inherit distutils-r1
 
-SAGE_PKG="sage-setup"
-MY_P="${SAGE_PKG}-${PV}"
-
 if [[ ${PV} == 9999 ]]; then
 	inherit git-r3 sage-git
 else
 	inherit pypi
 	KEYWORDS="~amd64 ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos"
-	S="${WORKDIR}/${MY_P}"
 fi
 
 DESCRIPTION="Tool to help install sage and sage related packages"
