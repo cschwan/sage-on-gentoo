@@ -11,6 +11,7 @@ inherit distutils-r1
 
 if [[ ${PV} == 9999 ]]; then
 	inherit git-r3 sage-git
+	SAGE_PKG="sage-setup"
 else
 	inherit pypi
 	KEYWORDS="~amd64 ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos"
