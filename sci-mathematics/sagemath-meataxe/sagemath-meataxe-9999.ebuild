@@ -13,7 +13,6 @@ inherit distutils-r1
 if [[ ${PV} == 9999 ]]; then
 	inherit git-r3 sage-git
 else
-	PYPI_NO_NORMALIZE=1
 	inherit pypi
 	KEYWORDS="~amd64 ~amd64-linux ~ppc-macos ~x64-macos"
 fi
