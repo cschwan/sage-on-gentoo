@@ -15,7 +15,7 @@ else
 	KEYWORDS="~amd64 ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos"
 fi
 
-DESCRIPTION="Tool to build doc for sage and sage related packages"
+DESCRIPTION="Tool to help install sage and sage related packages"
 HOMEPAGE="https://www.sagemath.org"
 
 LICENSE="GPL-2"
