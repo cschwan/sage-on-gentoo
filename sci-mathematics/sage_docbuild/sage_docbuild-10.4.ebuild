@@ -4,7 +4,6 @@
 EAPI=8
 
 PYTHON_COMPAT=( python3_{10..12} )
-PYTHON_REQ_USE="readline,sqlite"
 DISTUTILS_USE_PEP517=setuptools
 
 inherit distutils-r1
@@ -24,15 +23,12 @@ SLOT="0"
 
 RESTRICT="mirror test"
 
-DEPEND="
-	>=dev-python/pkgconfig-1.2.2[${PYTHON_USEDEP}]
-"
 RDEPEND="
-	${DEPEND}
-	>=dev-python/cython-3.0.0[${PYTHON_USEDEP}]
-	dev-python/jinja[${PYTHON_USEDEP}]
+	>=dev-python/sphinx-7.2.0[${PYTHON_USEDEP}]
+	dev-python/jupyter-sphinx[${PYTHON_USEDEP}]
 "
+PDEPEND="~sci-mathematics/sagemath-standard-${PV}[${PYTHON_USEDEP}]"
 
 PATCHES=(
-	"${FILESDIR}"/${PN}-9.6-verbosity.patch
+	"${FILESDIR}"/sage-9.3-linguas.patch
 )
