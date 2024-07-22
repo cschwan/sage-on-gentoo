@@ -57,7 +57,7 @@ DEPEND="
 	media-libs/libpng:0=
 	sci-mathematics/cliquer
 	sci-mathematics/eclib:=[flint]
-	sci-mathematics/flint:=[ntl]
+	>=sci-mathematics/flint-3.1.3:=[ntl]
 	>=sci-mathematics/gap-4.12.2
 	>=sci-mathematics/giac-1.9.0
 	>=sci-mathematics/glpk-5.0:0=[gmp]
@@ -140,6 +140,7 @@ REQUIRED_USE="doc? ( jmol )
 	test? ( jmol )"
 
 PATCHES=(
+	"${FILESDIR}"/numpy-2.0.patch
 	"${FILESDIR}"/${PN}-10.4-env.patch
 	"${FILESDIR}"/sage_exec-9.3.patch
 	"${FILESDIR}"/${PN}-10.4b-neutering.patch
