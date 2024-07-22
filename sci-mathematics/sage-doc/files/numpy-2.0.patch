@@ -1,0 +1,52 @@
+diff --git a/src/doc/en/faq/faq-usage.rst b/src/doc/en/faq/faq-usage.rst
+index 53f225fd729..d03881c36a2 100644
+--- a/src/doc/en/faq/faq-usage.rst
++++ b/src/doc/en/faq/faq-usage.rst
+@@ -324,7 +324,7 @@ ints. For example::
+     sage: RealNumber = float; Integer = int
+     sage: from scipy import stats
+     sage: stats.ttest_ind([1,2,3,4,5], [2,3,4,5,.6])
+-    Ttest...Result(statistic=0.0767529..., pvalue=0.940704...)
++    Ttest...Result(statistic=...0.0767529..., pvalue=...0.940704...)
+     sage: stats.uniform(0,15).ppf([0.5,0.7])
+     array([  7.5,  10.5])
+ 
+diff --git a/src/doc/en/prep/Quickstarts/Statistics-and-Distributions.rst b/src/doc/en/prep/Quickstarts/Statistics-and-Distributions.rst
+index b5eb3d842a2..958a378f945 100644
+--- a/src/doc/en/prep/Quickstarts/Statistics-and-Distributions.rst
++++ b/src/doc/en/prep/Quickstarts/Statistics-and-Distributions.rst
+@@ -24,6 +24,8 @@ NumPy provides, for example, functions to compute the arithmetic mean and
+ the standard deviation::
+ 
+     sage: import numpy as np
++    sage: if int(np.version.short_version[0]) > 1:
++    ....:     np.set_printoptions(legacy="1.25")
+     sage: np.mean([1, 2, 3, 5])
+     2.75
+ 
+diff --git a/src/doc/en/thematic_tutorials/numerical_sage/numpy.rst b/src/doc/en/thematic_tutorials/numerical_sage/numpy.rst
+index dbc2de71d42..925e5312882 100644
+--- a/src/doc/en/thematic_tutorials/numerical_sage/numpy.rst
++++ b/src/doc/en/thematic_tutorials/numerical_sage/numpy.rst
+@@ -7,6 +7,8 @@ import it.
+ ::
+ 
+     sage: import numpy
++    sage: if int(numpy.version.short_version[0]) > 1:
++    ....:     numpy.set_printoptions(legacy="1.25")  # to ensure numpy 2.0 compatibility
+ 
+ The basic object of computation in NumPy is an array. It is simple to
+ create an array.
+diff --git a/src/doc/it/faq/faq-usage.rst b/src/doc/it/faq/faq-usage.rst
+index 37bef7b13c1..5d3183769f7 100644
+--- a/src/doc/it/faq/faq-usage.rst
++++ b/src/doc/it/faq/faq-usage.rst
+@@ -305,7 +305,7 @@ anziché Integer di Sage. Ad esempio::
+     sage: RealNumber = float; Integer = int
+     sage: from scipy import stats
+     sage: stats.ttest_ind([1,2,3,4,5], [2,3,4,5,.6])
+-    Ttest...Result(statistic=0.0767529..., pvalue=0.940704...)
++    Ttest...Result(statistic=...0.0767529..., pvalue=...0.940704...)
+     sage: stats.uniform(0,15).ppf([0.5,0.7])
+     array([  7.5,  10.5])
+ 

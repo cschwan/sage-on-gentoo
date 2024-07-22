@@ -57,7 +57,7 @@ DEPEND="
 	media-libs/libpng:0=
 	sci-mathematics/cliquer
 	sci-mathematics/eclib:=[flint]
-	sci-mathematics/flint:=[ntl]
+	>=sci-mathematics/flint-3.1.3:=[ntl]
 	>=sci-mathematics/gap-4.12.2
 	>=sci-mathematics/giac-1.9.0
 	>=sci-mathematics/glpk-5.0:0=[gmp]
