@@ -57,6 +57,7 @@ RDEPEND="dev-libs/mathjax"
 DEPEND="dev-libs/mathjax"
 
 PATCHES=(
+	"${FILESDIR}"/numpy-2.0.patch
 	"${FILESDIR}"/${PN}-10.4-makefile.patch
 )
 
