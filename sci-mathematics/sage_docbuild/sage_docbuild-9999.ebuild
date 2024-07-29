@@ -31,5 +31,6 @@ RDEPEND="
 PDEPEND="~sci-mathematics/sagemath-standard-${PV}[${PYTHON_USEDEP}]"
 
 PATCHES=(
+	"${FILESDIR}"/sphinx-8.patch
 	"${FILESDIR}"/sage-9.3-linguas.patch
 )
