@@ -1,5 +1,5 @@
 diff --git a/sage_docbuild/ext/sage_autodoc.py b/sage_docbuild/ext/sage_autodoc.py
-index d60d5ef..e66b6a1 100644
+index d60d5ef..96883b7 100644
 --- a/sage_docbuild/ext/sage_autodoc.py
 +++ b/sage_docbuild/ext/sage_autodoc.py
 @@ -47,7 +47,6 @@ from docutils.statemachine import StringList
@@ -10,12 +10,13 @@ index d60d5ef..e66b6a1 100644
  from sphinx.ext.autodoc.importer import get_class_members, import_module, import_object
  from sphinx.ext.autodoc.mock import ismock, mock, undecorate
  from sphinx.locale import _, __
-@@ -338,7 +337,7 @@ class ObjectMember:
+@@ -336,9 +335,6 @@ class ObjectMember:
+         self.class_ = class_
+ 
      def __getitem__(self, index: int) -> Any:
-         warnings.warn('The tuple interface of ObjectMember is deprecated. '
-                       'Use (obj.__name__, obj.object) instead.',
+-        warnings.warn('The tuple interface of ObjectMember is deprecated. '
+-                      'Use (obj.__name__, obj.object) instead.',
 -                      RemovedInSphinx80Warning, stacklevel=2)
-+                      stacklevel=2)
          return (self.__name__, self.object)[index]
  
  
