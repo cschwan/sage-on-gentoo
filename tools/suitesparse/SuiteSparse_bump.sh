@@ -27,8 +27,8 @@ Sparse_PKG=(
 mkdir -p sparse_tmp
 pushd sparse_tmp
 # downloading and unfolding new suitesparse to get the various packages new version numbers
-wget "https://github.com/drtimothyaldendavis/suitesparse/archive/refs/tags/v${sparse_pv}.tar.gz"
-tar xvfz "v${sparse_pv}.tar.gz"
+wget "https://github.com/drtimothyaldendavis/suitesparse/archive/refs/tags/v${Sparse_PV}.tar.gz"
+tar xvfz "v${Sparse_PV}.tar.gz"
 # save this path for later use when working out the versions
 sparse_dir=`pwd`
 popd
