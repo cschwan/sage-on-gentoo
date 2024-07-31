@@ -27,8 +27,8 @@ Sparse_PKG=(
 mkdir -p sparse_tmp
 pushd sparse_tmp
 # downloading and unfolding new suitesparse to get the various packages new version numbers
-# wget "https://github.com/DrTimothyAldenDavis/SuiteSparse/archive/refs/tags/v${Sparse_PV}.tar.gz"
-# tar xvfz "v${Sparse_PV}.tar.gz"
+wget "https://github.com/drtimothyaldendavis/suitesparse/archive/refs/tags/v${sparse_pv}.tar.gz"
+tar xvfz "v${sparse_pv}.tar.gz"
 # save this path for later use when working out the versions
 sparse_dir=`pwd`
 popd
@@ -90,3 +90,11 @@ for pkg in "${Sparse_PKG[@]}"; do
         fi
         popd
 done
+
+# clean up 
+if [ -d sparse_tmp ]; then
+        rm -rf sparse_tmp
+else
+        echo "could not find sparse_tmp to clean. Where I am?"
+        pwd
+fi
