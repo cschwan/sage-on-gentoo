@@ -42,7 +42,7 @@ pushd "${Overlay_base}/sci-libs/" #into overlay
 suitesparseconfig_old_v=$(find suitesparseconfig -name \*.ebuild | sed -e "s:suitesparseconfig/suitesparseconfig-::" -e "s:-r[0:9]::" -e "s:.ebuild::")
 echo "suitesparseconfig from ${suitesparseconfig_old_v} to ${Sparse_PV}"
 pushd suitesparseconfig # into suitesparseconfig
-if [ -z DRYRUN ]; then
+if [ ! -n "$DRYRUN" ]; then
         git mv suitesparseconfig-${suitesparseconfig_old_v}.ebuild suitesparseconfig-${Sparse_PV}.ebuild
         ebuild suitesparseconfig-${Sparse_PV}.ebuild manifest
 else
@@ -78,14 +78,14 @@ for pkg in "${Sparse_PKG[@]}"; do
         pkg_new_v="${pkg_new_v:1}"
         echo "${pkg} from ${pkg_old_v} to ${pkg_new_v}"
         pushd "${pkg_name}" # into pkg_name
-        if [ -z DRYRUN ]; then
+        if [ ! -n "$DRYRUN" ]; then
                 git mv "${pkg_name}-${pkg_old_v}.ebuild" "${pkg_name}-${pkg_new_v}.ebuild"
-                sed -e "s:Sparse_PV=\"[0-9].[0-9].[0-9]\":Sparse_PV=\"${Sparse_PV}\":" -i "${pkg_name}-${pkg_old_v}.ebuild"
+                sed -e "s:Sparse_PV=\"[0-9].[0-9].[0-9]\":Sparse_PV=\"${Sparse_PV}\":" -i "${pkg_name}-${pkg_new_v}.ebuild"
                 ebuild "${pkg_name}-${pkg_new_v}.ebuild" manifest
         else
                 echo "the following would be executed"
                 echo "git mv \"${pkg_name}-${pkg_old_v}.ebuild\" \"${pkg_name}-${pkg_new_v}.ebuild\""
-                echo "sed -e \"s:Sparse_PV=\"[0-9].[0-9].[0-9]\":Sparse_PV=\"${Sparse_PV}\":\" -i \"${pkg_name}-${pkg_old_v}.ebuild\""
+                echo "sed -e \"s:Sparse_PV=\"[0-9].[0-9].[0-9]\":Sparse_PV=\"${Sparse_PV}\":\" -i \"${pkg_name}-${pkg_new_v}.ebuild\""
                 echo "ebuild \"${pkg_name}-${pkg_new_v}.ebuild\" manifest"
         fi
         popd # out of pkg_name
