@@ -5,17 +5,15 @@ EAPI=8
 
 inherit cmake
 
-Sparse_PV="7.6.0"
+Sparse_PV="7.7.0"
 Sparse_P="SuiteSparse-${Sparse_PV}"
-DESCRIPTION="Constrained Column approximate minimum degree ordering algorithm"
+DESCRIPTION="Algorithm for matrix permutation into block triangular form"
 HOMEPAGE="https://people.engr.tamu.edu/davis/suitesparse.html"
 SRC_URI="https://github.com/DrTimothyAldenDavis/SuiteSparse/archive/refs/tags/v${Sparse_PV}.tar.gz -> ${Sparse_P}.gh.tar.gz"
 
-LICENSE="BSD"
-SLOT="0/3"
-KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~hppa ~ia64 ~loong ~mips ~ppc ~ppc64 ~riscv ~s390 ~sparc ~x86 ~amd64-linux ~x86-linux"
-IUSE="test"
-RESTRICT="!test? ( test )"
+LICENSE="LGPL-2.1"
+SLOT="0/2"
+KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~hppa ~ia64 ~mips ~ppc ~ppc64 ~riscv ~sparc ~x86 ~amd64-linux ~x86-linux"
 
 DEPEND=">=sci-libs/suitesparseconfig-${Sparse_PV}"
 RDEPEND="${DEPEND}"
@@ -29,19 +27,7 @@ src_configure() {
 	# This need to be set in all suitesparse ebuilds.
 	local mycmakeargs=(
 		-DNSTATIC=ON
-		-DSUITESPARSE_DEMOS=$(usex test)
 		-DSUITESPARSE_INCLUDEDIR_POSTFIX=""
 	)
 	cmake_src_configure
-}
-
-src_test() {
-	# Because we are not using cmake_src_test,
-	# we have to manually go to BUILD_DIR
-	cd "${BUILD_DIR}" || die
-	# Run demo files
-	./ccolamd_example > ccolamd_example.out
-	diff "${S}"/Demo/ccolamd_example.out ccolamd_example.out || die "failed testing ccolamd_example"
-	./ccolamd_l_example > ccolamd_l_example.out
-	diff "${S}"/Demo/ccolamd_l_example.out ccolamd_l_example.out || die "failed testing ccolamd_l_example"
 }

@@ -81,11 +81,13 @@ for pkg in "${Sparse_PKG[@]}"; do
         if [ ! -n "$DRYRUN" ]; then
                 git mv "${pkg_name}-${pkg_old_v}.ebuild" "${pkg_name}-${pkg_new_v}.ebuild"
                 sed -e "s:Sparse_PV=\"[0-9].[0-9].[0-9]\":Sparse_PV=\"${Sparse_PV}\":" -i "${pkg_name}-${pkg_new_v}.ebuild"
+                git add "${pkg_name}-${pkg_new_v}.ebuild"
                 ebuild "${pkg_name}-${pkg_new_v}.ebuild" manifest
         else
                 echo "the following would be executed"
                 echo "git mv \"${pkg_name}-${pkg_old_v}.ebuild\" \"${pkg_name}-${pkg_new_v}.ebuild\""
                 echo "sed -e \"s:Sparse_PV=\"[0-9].[0-9].[0-9]\":Sparse_PV=\"${Sparse_PV}\":\" -i \"${pkg_name}-${pkg_new_v}.ebuild\""
+                echo "git add \"${pkg_name}-${pkg_new_v}.ebuild\""
                 echo "ebuild \"${pkg_name}-${pkg_new_v}.ebuild\" manifest"
         fi
         popd # out of pkg_name
