@@ -12,7 +12,7 @@ HOMEPAGE="https://people.engr.tamu.edu/davis/suitesparse.html"
 SRC_URI="https://github.com/DrTimothyAldenDavis/SuiteSparse/archive/refs/tags/v${Sparse_PV}.tar.gz -> ${Sparse_P}.gh.tar.gz"
 
 LICENSE="BSD"
-SLOT="0/2"
+SLOT="0/3"
 KEYWORDS="~amd64"
 IUSE="doc test"
 RESTRICT="!test? ( test )"
@@ -24,10 +24,6 @@ DEPEND=">=sci-libs/suitesparseconfig-${Sparse_PV}
 	dev-libs/mpfr"
 RDEPEND="${DEPEND}"
 BDEPEND="doc? ( virtual/latex-base )"
-
-PATCHES=(
-	"${FILESDIR}/${PN}-2.0.0-demo_location.patch"
-	)
 
 S="${WORKDIR}/${Sparse_P}/${PN^^}"
 
@@ -48,12 +44,16 @@ src_test() {
 	# Because we are not using cmake_src_test,
 	# we have to manually go to BUILD_DIR
 	cd "${BUILD_DIR}" || die
-	# Programs expect to find ExampleMats
-	ln -s "${S}/SPEX_Left_LU/ExampleMats"
 	# Run demo files
-	./example || die "failed testing"
-	./example2 || die "failed testing"
-	./spexlu_demo || die "failed testing"
+	./spex_demo_lu_simple1
+	./spex_demo_lu_simple2          "${S}"/ExampleMats/10teams.mat.txt   "${S}"/ExampleMats/10teams.rhs.txt
+	./spex_demo_lu_extended       f "${S}"/ExampleMats/10teams.mat.txt   "${S}"/ExampleMats/10teams.rhs.txt
+	./spex_demo_lu_doub           f "${S}"/ExampleMats/10teams.mat.txt   "${S}"/ExampleMats/10teams.rhs.txt
+	./spex_demo_backslash         f "${S}"/ExampleMats/10teams.mat.txt   "${S}"/ExampleMats/10teams.rhs.txt
+	./spex_demo_cholesky_simple   f "${S}"/ExampleMats/494_bus.mat.txt   "${S}"/ExampleMats/494_bus.rhs.txt
+	./spex_demo_cholesky_extended f "${S}"/ExampleMats/494_bus.mat.txt   "${S}"/ExampleMats/494_bus.rhs.txt
+	./spex_demo_threaded          f "${S}"/ExampleMats/10teams.mat.txt   "${S}"/ExampleMats/10teams.rhs.txt
+	./spex_demo_backslash         f "${S}"/ExampleMats/Trefethen_500.mat.txt "${S}"/ExampleMats/Trefethen_500.rhs.txt
 }
 
 src_install() {
