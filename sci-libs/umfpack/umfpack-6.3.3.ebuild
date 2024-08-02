@@ -11,6 +11,7 @@ DESCRIPTION="Unsymmetric multifrontal sparse LU factorization library"
 HOMEPAGE="https://people.engr.tamu.edu/davis/suitesparse.html"
 SRC_URI="https://github.com/DrTimothyAldenDavis/SuiteSparse/archive/refs/tags/v${Sparse_PV}.tar.gz -> ${Sparse_P}.gh.tar.gz"
 
+S="${WORKDIR}/${Sparse_P}/${PN^^}"
 LICENSE="GPL-2+"
 SLOT="0/6"
 KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~hppa ~ia64 ~loong ~mips ~ppc ~ppc64 ~riscv ~s390 ~sparc ~x86 ~amd64-linux ~x86-linux"
@@ -23,8 +24,6 @@ DEPEND=">=sci-libs/suitesparseconfig-${Sparse_PV}
 	virtual/blas"
 RDEPEND="${DEPEND}"
 BDEPEND="doc? ( virtual/latex-base )"
-
-S="${WORKDIR}/${Sparse_P}/${PN^^}"
 
 pkg_pretend() {
 	[[ ${MERGE_TYPE} != binary ]] && use openmp && tc-check-openmp

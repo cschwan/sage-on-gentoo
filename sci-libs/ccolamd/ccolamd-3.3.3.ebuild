@@ -11,6 +11,7 @@ DESCRIPTION="Constrained Column approximate minimum degree ordering algorithm"
 HOMEPAGE="https://people.engr.tamu.edu/davis/suitesparse.html"
 SRC_URI="https://github.com/DrTimothyAldenDavis/SuiteSparse/archive/refs/tags/v${Sparse_PV}.tar.gz -> ${Sparse_P}.gh.tar.gz"
 
+S="${WORKDIR}/${Sparse_P}/${PN^^}"
 LICENSE="BSD"
 SLOT="0/3"
 KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~hppa ~ia64 ~loong ~mips ~ppc ~ppc64 ~riscv ~s390 ~sparc ~x86 ~amd64-linux ~x86-linux"
@@ -19,8 +20,6 @@ RESTRICT="!test? ( test )"
 
 DEPEND=">=sci-libs/suitesparseconfig-${Sparse_PV}"
 RDEPEND="${DEPEND}"
-
-S="${WORKDIR}/${Sparse_P}/${PN^^}"
 
 src_configure() {
 	# Define SUITESPARSE_INCLUDEDIR_POSTFIX to "" otherwise it take

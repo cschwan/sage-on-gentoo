@@ -11,6 +11,7 @@ DESCRIPTION="a software package for SParse EXact algebra"
 HOMEPAGE="https://people.engr.tamu.edu/davis/suitesparse.html"
 SRC_URI="https://github.com/DrTimothyAldenDavis/SuiteSparse/archive/refs/tags/v${Sparse_PV}.tar.gz -> ${Sparse_P}.gh.tar.gz"
 
+S="${WORKDIR}/${Sparse_P}/${PN^^}"
 LICENSE="BSD"
 SLOT="0/3"
 KEYWORDS="~amd64"
@@ -24,8 +25,6 @@ DEPEND=">=sci-libs/suitesparseconfig-${Sparse_PV}
 	dev-libs/mpfr"
 RDEPEND="${DEPEND}"
 BDEPEND="doc? ( virtual/latex-base )"
-
-S="${WORKDIR}/${Sparse_P}/${PN^^}"
 
 src_configure() {
 	# Define SUITESPARSE_INCLUDEDIR_POSTFIX to "" otherwise it take
