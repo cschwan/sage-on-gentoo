@@ -11,6 +11,7 @@ Parent_P="${Parent_PN}-${Parent_PV}"
 DESCRIPTION="p_group_cohomology helper library"
 HOMEPAGE="https://users.fmi.uni-jena.de/cohomology/"
 SRC_URI="https://github.com/sagemath/${Parent_PN}/releases/download/v${Parent_PV}/${Parent_P}.tar.xz"
+S="${WORKDIR}/${Parent_P}/${P}"
 
 LICENSE="GPL-2+"
 SLOT="0"
@@ -24,8 +25,6 @@ PATCHES=(
 	"${FILESDIR}"/${PN}-1.1-test.patch
 	"${FILESDIR}"/${PN}-1.1-dbinstall.patch
 )
-
-S="${WORKDIR}/${Parent_P}/${P}"
 
 src_prepare(){
 	default

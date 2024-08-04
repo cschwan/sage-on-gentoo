@@ -13,14 +13,13 @@ MY_P="elliptic_curves-${PV}"
 DESCRIPTION="Sage's elliptic curves databases"
 HOMEPAGE="https://www.sagemath.org"
 SRC_URI="mirror://sageupstream/elliptic_curves/${MY_P}.tar.bz2"
+S="${WORKDIR}"/${MY_P}
 
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64 ~x86 ~amd64-linux ~x86-linux ~x64-macos"
 
 DEPEND="${PYTHON_DEPS}"
-
-S="${WORKDIR}"/${MY_P}
 
 src_prepare(){
 	# copy a slightly modified spkg-install. We used to have it in the tarball

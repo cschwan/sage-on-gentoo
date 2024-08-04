@@ -8,6 +8,7 @@ inherit toolchain-funcs
 DESCRIPTION="A Computer algebra package for Lie group computations"
 HOMEPAGE="http://www-math.univ-poitiers.fr/~maavl/LiE/"
 SRC_URI="http://www-math.univ-poitiers.fr/~maavl/LiE/conLiE.tar.gz -> ${P}.tar.gz"
+S="${WORKDIR}/LiE"
 #### Remove the following line when moving this ebuild to the main tree!
 LICENSE="LGPL-2.1"
 ##### See https://packages.debian.org/changelogs/pool/main/l/lie/lie_2.2.2+dfsg-1/lie.copyright
@@ -22,7 +23,6 @@ DEPEND="
 RDEPEND="sys-libs/readline:=
 	sys-libs/ncurses"
 
-S="${WORKDIR}/LiE"
 DOCS=( "README" )
 
 PATCHES=(

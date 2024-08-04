@@ -11,6 +11,7 @@ DESCRIPTION="Dik T. Winter's rubik's cube solver and related tools"
 HOMEPAGE="https://www.sagemath.org"
 SRC_URI="mirror://sageupstream/rubiks/${MY_P}.tar.bz2"
 
+S="${WORKDIR}"/${MY_P}/dik
 LICENSE="MIT"
 SLOT="0"
 KEYWORDS="~amd64 ~x86 ~amd64-linux ~x86-linux ~x64-macos"
@@ -19,8 +20,6 @@ PATCHES=(
 	"${FILESDIR}"/${PN}-20070912_p10-fix-missing-includes.patch
 	"${FILESDIR}"/${PN}-20070912_p10-fix-LDFLAGS.patch
 	)
-
-S="${WORKDIR}"/${MY_P}/dik
 
 src_compile() {
 	append-cflags -DLARGE_MEM -DVERBOSE
