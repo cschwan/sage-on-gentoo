@@ -9,12 +9,11 @@ DISTUTILS_USE_PEP517=setuptools
 inherit distutils-r1 pypi
 
 DESCRIPTION="data for the representations of the Cubic Hecke Algebra"
-KEYWORDS="~amd64 ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos"
 HOMEPAGE="https://pypi.org/project/database_cubic_hecke/"
-IUSE="test"
-
 LICENSE="GPL-3"
 SLOT="0"
+KEYWORDS="~amd64 ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos"
+IUSE="test"
 
 DEPEND="test? ( >=sci-mathematics/sagemath-standard-10.3 )"
 

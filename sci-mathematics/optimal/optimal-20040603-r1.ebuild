@@ -10,11 +10,10 @@ HOMEPAGE="https://www.permutationpuzzles.org/rubik/"
 #SRC_URI="https://www.permutationpuzzles.org/rubik/software/${PN}.tar.gz -> ${P}.tar.gz"
 SRC_URI="mirror://sagemath/${P}.tar.gz"
 
+S="${WORKDIR}/${PN}"
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64 ~x86 ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos"
-
-S="${WORKDIR}/${PN}"
 
 src_compile() {
 	$(tc-getCC) ${CFLAGS} -c optimal.c -o optimal.o

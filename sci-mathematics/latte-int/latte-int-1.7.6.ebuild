@@ -6,9 +6,8 @@ EAPI=8
 DESCRIPTION="latte-int(egrale) consists of tools for lattice point enumeration"
 HOMEPAGE="https://github.com/latte-int/latte"
 SRC_URI="https://github.com/${PN}/latte/releases/download/version_$(ver_rs 1-2 _)/${P}.tar.gz"
-
-SLOT="0"
 LICENSE="GPL-2"
+SLOT="0"
 KEYWORDS="~amd64"
 
 DEPEND="

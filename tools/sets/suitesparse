@@ -1,0 +1,14 @@
+sci-libs/amd
+sci-libs/btf
+sci-libs/camd
+sci-libs/ccolamd
+sci-libs/cholmod
+sci-libs/colamd
+sci-libs/cxsparse
+sci-libs/klu
+sci-libs/ldl
+sci-libs/rbio
+sci-libs/spex
+sci-libs/spqr
+sci-libs/suitesparseconfig
+sci-libs/umfpack

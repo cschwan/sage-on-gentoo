@@ -12,11 +12,10 @@ MY_PV="${PV}b1"
 DESCRIPTION="Custom build of Three.js for SageMath"
 HOMEPAGE="https://github.com/sagemath/threejs-sage"
 SRC_URI="$(pypi_sdist_url --no-normalize "${PN}" "${MY_PV}")"
+S="${WORKDIR}/${PN}-${MY_PV}"
 
 LICENSE="MIT"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
 
 RDEPEND="${DEPEND}"
-
-S="${WORKDIR}/${PN}-${MY_PV}"

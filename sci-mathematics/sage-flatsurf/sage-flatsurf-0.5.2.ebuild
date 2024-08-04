@@ -3,7 +3,7 @@
 
 EAPI=8
 
-PYTHON_COMPAT=( python3_{9..11} )
+PYTHON_COMPAT=( python3_{10..12} )
 DISTUTILS_USE_PEP517=setuptools
 
 inherit distutils-r1 pypi
@@ -15,13 +15,9 @@ LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64"
 
-DEPEND=">=sci-mathematics/sagemath-standard-9.7[${PYTHON_USEDEP}]
+DEPEND=">=sci-mathematics/sagemath-standard-10.4[${PYTHON_USEDEP}]"
+RDEPEND="${DEPEND}
 	sci-mathematics/surface-dynamics[${PYTHON_USEDEP}]"
-RDEPEND="${DEPEND}"
-
-PATCHES=(
-	"${FILESDIR}"/152.patch
-	)
 
 python_test(){
 	sage -t --long flatsurf || die "test failed"

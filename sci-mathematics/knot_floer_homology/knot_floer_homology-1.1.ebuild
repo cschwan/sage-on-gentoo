@@ -14,14 +14,13 @@ HOMEPAGE="https://github.com/3-manifolds/knot_floer_homology
 	https://pypi.org/project/knot-floer-homology/"
 # Not using pypi. Ship with cythonized files without the sources.
 SRC_URI="https://github.com/3-manifolds/${PN}/archive/refs/tags/${PV}_as_released.tar.gz -> ${P}.gh.tar.gz"
+S="${WORKDIR}/${P}_as_released"
 
 LICENSE="GPL-2+"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
 
 BDEPEND="dev-python/cython[${PYTHON_USEDEP}]"
-
-S="${WORKDIR}/${P}_as_released"
 
 python_test() {
 	"${EPYTHON}" -m knot_floer_homology.test

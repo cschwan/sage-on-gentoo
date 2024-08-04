@@ -10,12 +10,11 @@ PYPI_NO_NORMALIZE=NO
 inherit distutils-r1 pypi
 
 DESCRIPTION="Yoshitake Matsumoto, Database of Matroids"
-KEYWORDS="~amd64 ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos"
 HOMEPAGE="https://pypi.org/project/matroid-database/"
-IUSE="test"
-
 LICENSE="GPL-3"
 SLOT="0"
+KEYWORDS="~amd64 ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos"
+IUSE="test"
 
 DEPEND="test? ( >=sci-mathematics/sagemath-standard-10.3 )"
 

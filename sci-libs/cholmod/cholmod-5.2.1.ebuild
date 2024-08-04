@@ -5,12 +5,13 @@ EAPI=8
 
 inherit cmake toolchain-funcs
 
-Sparse_PV="7.6.0"
+Sparse_PV="7.7.0"
 Sparse_P="SuiteSparse-${Sparse_PV}"
 DESCRIPTION="Sparse Cholesky factorization and update/downdate library"
 HOMEPAGE="https://people.engr.tamu.edu/davis/suitesparse.html"
 SRC_URI="https://github.com/DrTimothyAldenDavis/SuiteSparse/archive/refs/tags/v${Sparse_PV}.tar.gz -> ${Sparse_P}.gh.tar.gz"
 
+S="${WORKDIR}/${Sparse_P}/${PN^^}"
 LICENSE="LGPL-2.1+ modify? ( GPL-2+ ) matrixops? ( GPL-2+ )"
 SLOT="0/5"
 KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~hppa ~ia64 ~loong ~mips ~ppc ~ppc64 ~riscv ~s390 ~sparc ~x86 ~amd64-linux ~x86-linux"
@@ -35,8 +36,6 @@ BDEPEND="doc? ( virtual/latex-base )"
 REQUIRED_USE="supernodal? ( cholesky )
 	modify? ( cholesky )
 	test? ( cholesky matrixops supernodal )"
-
-S="${WORKDIR}/${Sparse_P}/${PN^^}"
 
 pkg_pretend() {
 	[[ ${MERGE_TYPE} != binary ]] && use openmp && tc-check-openmp
