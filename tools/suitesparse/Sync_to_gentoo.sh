@@ -29,6 +29,5 @@ for pkg in "${Sparse_ebuild[@]}"; do
         rsync -rv --exclude=Manifest --exclude=metadata.xml "${sog_overlay}/sci-libs/${pkg}/" "${gentoo_dest}/sci-libs/${pkg}/"
         pushd "${gentoo_dest}/sci-libs/${pkg}/"
         ebuild *.ebuild manifest
-        pkgcheck scan
         popd
 done
