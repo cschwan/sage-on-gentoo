@@ -3,9 +3,11 @@
 
 EAPI=8
 
-PYTHON_COMPAT=( python3_{9..11} )
+PYTHON_COMPAT=( python3_{10..12} )
 DISTUTILS_USE_PEP517=setuptools
+DISTUTILS_EXT=1
 
+PYPI_NO_NORMALIZE=1
 inherit distutils-r1 pypi
 
 DESCRIPTION="This sagemath package adds various functionality"
@@ -19,9 +21,14 @@ KEYWORDS="~amd64"
 DEPEND=">=sci-mathematics/sagemath-standard-9.7[${PYTHON_USEDEP}]
 	dev-python/pplpy[${PYTHON_USEDEP}]"
 RDEPEND="${DEPEND}"
-BDEPEND="dev-python/cython[${PYTHON_USEDEP}]
-	<dev-python/cython-3.0.0"
+BDEPEND="dev-python/cython[${PYTHON_USEDEP}]"
 
-PATCHES=(
-	"${FILESDIR}"/${PN}-0.4.7-sage9.7compat.patch
-	)
+distutils_enable_tests pytest
+
+# some tests are currently broken, possibly at the framework level
+RESTRICT="test"
+
+python_test() {
+	rm -rf surface_dynamics || die
+	epytest
+}
