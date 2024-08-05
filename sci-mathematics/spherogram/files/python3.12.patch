@@ -1,0 +1,27 @@
+From 572c71ed2dda4d9b657ce1dbcb5c96da0ffef6e5 Mon Sep 17 00:00:00 2001
+From: Nathan Dunfield <nathan@dunfield.info>
+Date: Mon, 14 Aug 2023 10:05:06 -0500
+Subject: [PATCH] Python 3.12 compat: replace pkg_resource module with
+ duck-typing
+
+---
+ spherogram_src/links/orthogonal.py | 3 +--
+ 1 file changed, 1 insertion(+), 2 deletions(-)
+
+diff --git a/spherogram_src/links/orthogonal.py b/spherogram_src/links/orthogonal.py
+index cf8ab3c..7590c98 100644
+--- a/spherogram_src/links/orthogonal.py
++++ b/spherogram_src/links/orthogonal.py
+@@ -25,11 +25,10 @@
+ from .links import Strand
+ from ..graphs import CyclicList, Digraph
+ from collections import namedtuple, Counter
+-from pkg_resources import parse_version
+ 
+ try:
+     import plink
+-    assert parse_version(plink.__version__) > parse_version('2.0.1')
++    assert hasattr(plink, 'LinkDisplay')
+ except (ImportError, AssertionError):
+     plink = None
+ # ---------------------------------------------------

@@ -3,9 +3,10 @@
 
 EAPI=8
 
-PYTHON_COMPAT=( python3_{9..11} )
+PYTHON_COMPAT=( python3_{11..12} )
 PYTHON_REQ_USE="tk"
 DISTUTILS_USE_PEP517=setuptools
+DISTUTILS_EXT=1
 
 inherit distutils-r1
 
@@ -14,6 +15,7 @@ HOMEPAGE="https://github.com/3-manifolds/SnapPy
 	https://pypi.org/project/snappy/"
 # Not using pypi. Ship with cythonized files without the sources.
 SRC_URI="https://github.com/3-manifolds/SnapPy/archive/refs/tags/${PV}_as_released.tar.gz -> ${P}.gh.tar.gz"
+S="${WORKDIR}/SnapPy-${PV}_as_released"
 
 LICENSE="GPL-2+ BSD"
 SLOT="0"
@@ -29,16 +31,13 @@ RDEPEND="${DEPEND}
 	sci-mathematics/snappy-manifolds[${PYTHON_USEDEP}]
 	sci-mathematics/FXrays[${PYTHON_USEDEP}]
 	!!dev-python/python-snappy"
-BDEPEND="dev-python/cython[${PYTHON_USEDEP}]
-	<dev-python/cython-3.0.0"
+BDEPEND="dev-python/cython[${PYTHON_USEDEP}]"
 
 PATCHES=(
-	"${FILESDIR}/setuptools-65.1.patch"
-	)
+	"${FILESDIR}"/cython-3-linkage.patch
+)
 
 distutils_enable_tests setup.py
-
-S="${WORKDIR}/SnapPy-${PV}_as_released"
 
 src_prepare(){
 	default

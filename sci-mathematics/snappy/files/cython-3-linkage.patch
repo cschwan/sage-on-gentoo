@@ -1,0 +1,85 @@
+From 7185c745d9d2d1d80207524e95a4449bbc120646 Mon Sep 17 00:00:00 2001
+From: Matthias Goerner <1239022+unhyperbolic@users.noreply.github.com>
+Date: Tue, 18 Jul 2023 20:36:42 -0700
+Subject: [PATCH] Another attempt at dealing with cython 3.0.0.
+
+---
+ kernel/headers/SnapPea.h | 5 ++++-
+ kernel/headers/kernel.h  | 4 ++++
+ setup.py                 | 6 ++++++
+ 3 files changed, 14 insertions(+), 1 deletion(-)
+
+diff --git a/kernel/headers/SnapPea.h b/kernel/headers/SnapPea.h
+index c97cb7fa8..30434d865 100644
+--- a/kernel/headers/SnapPea.h
++++ b/kernel/headers/SnapPea.h
+@@ -497,10 +497,11 @@ typedef struct NormalSurfaceList            NormalSurfaceList;
+ #define CONST
+ /* #define CONST const */
+ 
+-
++#ifdef FORCE_C_LINKAGE
+ #ifdef __cplusplus
+ extern "C" {
+ #endif
++#endif
+ 
+ /************************************************************************/
+ 
+@@ -2731,9 +2732,11 @@ extern Real volume(Triangulation *manifold, int *precision);
+ 
+ #include "end_namespace.h"
+ 
++#ifdef FORCE_C_LINKAGE
+ #ifdef __cplusplus
+ }
+ #endif
++#endif
+ 
+ #endif
+ /* Local Variables:                      */
+diff --git a/kernel/headers/kernel.h b/kernel/headers/kernel.h
+index 7b97fd785..4d01e3f31 100644
+--- a/kernel/headers/kernel.h
++++ b/kernel/headers/kernel.h
+@@ -11,9 +11,11 @@
+ 
+ #include "SnapPea.h"
+ 
++#ifdef FORCE_C_LINKAGE
+ #ifdef __cplusplus
+ extern "C" {
+ #endif
++#endif
+ 
+ #include <string.h>
+ #include <math.h>
+@@ -30,9 +32,11 @@ extern "C" {
+ #include "kernel_prototypes.h"
+ #include "tables.h"
+ 
++#ifdef FORCE_C_LINKAGE
+ #ifdef __cplusplus
+ }
+ #endif
++#endif
+ 
+ #endif
+ /* Local Variables:                      */
+diff --git a/setup.py b/setup.py
+index 29752976f..e60b7c19f 100644
+--- a/setup.py
++++ b/setup.py
+@@ -396,6 +396,12 @@ def add(self, source_file, dependency_mod_time=0.0):
+     elif platform.machine() == 'x86_64':
+         hp_extra_compile_args = ['-mfpmath=sse', '-msse2', '-mieee-fp']
+ 
++if have_cython:
++    if [int(x) for x in cython_version.split('.')[:2]] < [3, 0]:
++        if sys.platform == 'win32':
++            hp_extra_compile_args.append('/DFORCE_C_LINKAGE')
++        else:
++            hp_extra_compile_args.append('-DFORCE_C_LINKAGE')
+ 
+ # SnapPyHP depends implicitly on the source for the main kernel, so we
+ # we delete certain object files to force distutils to rebuild them.

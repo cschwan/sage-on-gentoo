@@ -3,8 +3,9 @@
 
 EAPI=8
 
-PYTHON_COMPAT=( python3_{9..11} )
+PYTHON_COMPAT=( python3_{11..12} )
 DISTUTILS_USE_PEP517=setuptools
+DISTUTILS_EXT=1
 
 inherit distutils-r1
 
@@ -13,12 +14,14 @@ HOMEPAGE="https://github.com/3-manifolds/FXrays
 	https://pypi.org/project/FXrays/"
 # Not using pypi. Ship with cythonized files without the sources.
 SRC_URI="https://github.com/3-manifolds/${PN}/archive/refs/tags/${PV}_as_released.tar.gz -> ${P}.gh.tar.gz"
+S="${WORKDIR}/${P}_as_released"
 
 LICENSE="GPL-2+"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
 
-BDEPEND="dev-python/cython[${PYTHON_USEDEP}]
-	<dev-python/cython-3.0.0"
+BDEPEND="dev-python/cython[${PYTHON_USEDEP}]"
 
-S="${WORKDIR}/${P}_as_released"
+PATCHES=(
+	"${FILESDIR}"/cython-3.0.patch
+)

@@ -1,0 +1,27 @@
+From 2f614ea11d2db8835531caf0a365c2c92e1fd338 Mon Sep 17 00:00:00 2001
+From: Marc Culler <culler@users.noreply.github.com>
+Date: Sun, 13 Aug 2023 17:23:14 -0500
+Subject: [PATCH] Add except clause to function pointer declarations for Cython
+ 3.0
+
+---
+ cython_src/FXraysmodule.pyx | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/cython_src/FXraysmodule.pyx b/cython_src/FXraysmodule.pyx
+index 3dfabb0..2a94f9a 100644
+--- a/cython_src/FXraysmodule.pyx
++++ b/cython_src/FXraysmodule.pyx
+@@ -31,10 +31,10 @@ cdef extern from "FXrays.h":
+     void FXrays_destroy_filter_list(filter_list_t *filterlist)
+     
+     void* FXrays_find_vertices(matrix_t *matrix, filter_list_t *filter_list, int print_progress, 
+-                    void *(*output_func)(vertex_stack_t *stack, int dimension))
++                    void *(*output_func)(vertex_stack_t *stack, int dimension) except *)
+     
+     void *FXrays_find_vertices_mod_p(matrix_t *matrix, filter_list_t *filter_list, int print_progress, 
+-                          void *(*output_func)(vertex_stack_t *stack, int dimension))
++                          void *(*output_func)(vertex_stack_t *stack, int dimension) except *)
+ 
+ 
+ cdef extern from "Python.h":
