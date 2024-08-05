@@ -113,7 +113,7 @@ RDEPEND="
 	>=sci-mathematics/optimal-20040603
 	>=sci-mathematics/palp-2.1
 	~sci-mathematics/sage-data-combinatorial_designs-20140630
-	~sci-mathematics/sage-data-elliptic_curves-0.8
+	sci-mathematics/sage-data-elliptic_curves
 	~sci-mathematics/sage-data-graphs-20210214
 	~sci-mathematics/sage-data-polytopes_db-20170220
 	>=sci-mathematics/sympow-1.018.1
