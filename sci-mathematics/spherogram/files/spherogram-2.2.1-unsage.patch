@@ -1,0 +1,76 @@
+diff --git a/setup.py b/setup.py
+index afc23ff..4b4c94e 100644
+--- a/setup.py
++++ b/setup.py
+@@ -28,38 +28,39 @@ if sys.platform == 'win32':
+ 
+ # The planarity extension
+ 
+-try:
+-    import sage.libs
+-    ext_modules = []
+-except ImportError:
+-    planarity_dir = 'planarity_src/c/'
+-    planarity_ui_sources = glob(planarity_dir + 'planarity*.c')
+-    planarity_sources = [file for file in glob('planarity_src/c/*.c')
+-                         if file not in planarity_ui_sources]
+-
+-    if sys.platform.startswith('win'):
+-        extra_compile_args = [
+-            '-D_CRT_SECURE_NO_WARNINGS',
+-            r'-IC:\Program Files (x86)\Windows Kits\10\Include\10.0.17134.0\ucrt',
+-            r'-IC:\Program Files (x86)\Windows Kits\10\Include\10.0.17134.0\shared'
+-        ]
+-        extra_link_args = [
+-            r'/LIBPATH:C:\Program Files (x86)\Windows Kits\10\Lib\10.0.17134.0\um\x64',
+-            r'/LIBPATH:C:\Program Files (x86)\Windows Kits\10\Lib\10.0.17134.0\ucrt\x64',
+-        ]
+-    else:
+-        extra_compile_args = []
+-        extra_link_args = []
+-
+-    Planarity = Extension(
+-        name = 'spherogram.planarity',
+-        sources = ['planarity_src/planarity.c'] + planarity_sources,
+-        include_dirs = [planarity_dir],
+-        extra_compile_args = extra_compile_args,
+-        extra_link_args = extra_link_args
+-        )
+-
+-    ext_modules = [Planarity]
++# try:
++#     import sage.libs
++#     ext_modules = []
++# except ImportError:
++#     planarity_dir = 'planarity_src/c/'
++#     planarity_ui_sources = glob(planarity_dir + 'planarity*.c')
++#     planarity_sources = [file for file in glob('planarity_src/c/*.c')
++#                          if file not in planarity_ui_sources]
++# 
++#     if sys.platform.startswith('win'):
++#         extra_compile_args = [
++#             '-D_CRT_SECURE_NO_WARNINGS',
++#             r'-IC:\Program Files (x86)\Windows Kits\10\Include\10.0.17134.0\ucrt',
++#             r'-IC:\Program Files (x86)\Windows Kits\10\Include\10.0.17134.0\shared'
++#         ]
++#         extra_link_args = [
++#             r'/LIBPATH:C:\Program Files (x86)\Windows Kits\10\Lib\10.0.17134.0\um\x64',
++#             r'/LIBPATH:C:\Program Files (x86)\Windows Kits\10\Lib\10.0.17134.0\ucrt\x64',
++#         ]
++#     else:
++#         extra_compile_args = []
++#         extra_link_args = []
++# 
++#     Planarity = Extension(
++#         name = 'spherogram.planarity',
++#         sources = ['planarity_src/planarity.c'] + planarity_sources,
++#         include_dirs = [planarity_dir],
++#         extra_compile_args = extra_compile_args,
++#         extra_link_args = extra_link_args
++#         )
++# 
++#     ext_modules = [Planarity]
++ext_modules = []
+ 
+ # A real clean
+ 

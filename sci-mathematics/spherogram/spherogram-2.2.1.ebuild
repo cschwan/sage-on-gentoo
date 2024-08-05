@@ -3,8 +3,9 @@
 
 EAPI=8
 
-PYTHON_COMPAT=( python3_{9..11} )
+PYTHON_COMPAT=( python3_{11..12} )
 DISTUTILS_USE_PEP517=setuptools
+DISTUTILS_EXT=1
 
 inherit distutils-r1
 
@@ -13,6 +14,7 @@ HOMEPAGE="https://github.com/3-manifolds/Spherogram
 	https://pypi.org/project/spherogram/"
 # Not using pypi. Ship with cythonized files without the sources.
 SRC_URI="https://github.com/3-manifolds/Spherogram/archive/refs/tags/${PV}_as_released.tar.gz -> ${P}.gh.tar.gz"
+S="${WORKDIR}/Spherogram-${PV}_as_released"
 
 LICENSE="GPL-2+"
 SLOT="0"
@@ -26,15 +28,15 @@ RDEPEND="${DEPEND}
 	>=sci-mathematics/knot_floer_homology-1.1[${PYTHON_USEDEP}]"
 # uses sage as a proxy for planarity install detection
 BDEPEND="dev-python/cython[${PYTHON_USEDEP}]
-	<dev-python/cython-3.0.0
 	test? ( sci-mathematics/snappy-manifolds[${PYTHON_USEDEP}]
 		sci-mathematics/knot_floer_homology[${PYTHON_USEDEP}] )"
 
 RESTRICT="!test? ( test )"
 
-PATCHES=( "${FILESDIR}"/${PN}-1.8.3-unsage.patch )
-
-S="${WORKDIR}/Spherogram-${PV}_as_released"
+PATCHES=(
+	"${FILESDIR}"/${PN}-2.2.1-unsage.patch
+	"${FILESDIR}"/python3.12.patch
+)
 
 python_test(){
 	"${EPYTHON}" -m spherogram.test || die "test failed with ${EPYTHON}"
