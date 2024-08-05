@@ -141,7 +141,7 @@ REQUIRED_USE="doc? ( jmol )
 
 PATCHES=(
 	"${FILESDIR}"/sympy-1.13.1.patch
-	"${FILESDIR}"/gap-4.13.1.patch
+	"${FILESDIR}"/gap-4.13.1_b.patch
 	"${FILESDIR}"/${PN}-10.4-env.patch
 	"${FILESDIR}"/sage_exec-9.3.patch
 	"${FILESDIR}"/${PN}-10.4b-neutering.patch
