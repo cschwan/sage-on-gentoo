@@ -5,44 +5,64 @@ EAPI=8
 
 inherit cmake toolchain-funcs
 
-Sparse_PV="7.7.0"
+Sparse_PV="7.8.0"
 Sparse_P="SuiteSparse-${Sparse_PV}"
-DESCRIPTION="Unsymmetric multifrontal sparse LU factorization library"
+DESCRIPTION="Sparse Cholesky factorization and update/downdate library"
 HOMEPAGE="https://people.engr.tamu.edu/davis/suitesparse.html"
 SRC_URI="https://github.com/DrTimothyAldenDavis/SuiteSparse/archive/refs/tags/v${Sparse_PV}.tar.gz -> ${Sparse_P}.gh.tar.gz"
 
 S="${WORKDIR}/${Sparse_P}/${PN^^}"
-LICENSE="GPL-2+"
-SLOT="0/6"
+LICENSE="LGPL-2.1+ modify? ( GPL-2+ ) matrixops? ( GPL-2+ )"
+SLOT="0/5"
 KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~hppa ~ia64 ~loong ~mips ~ppc ~ppc64 ~riscv ~s390 ~sparc ~x86 ~amd64-linux ~x86-linux"
-IUSE="doc openmp test"
+IUSE="+cholesky cuda doc openmp +matrixops +modify +partition +supernodal test"
 RESTRICT="!test? ( test )"
 
 DEPEND=">=sci-libs/suitesparseconfig-${Sparse_PV}
 	>=sci-libs/amd-3.3.1
-	>=sci-libs/cholmod-5.2.0[openmp=]
-	virtual/blas"
+	>=sci-libs/colamd-3.3.2
+	supernodal? ( virtual/lapack )
+	partition? (
+		>=sci-libs/camd-3.3.1
+		>=sci-libs/ccolamd-3.3.2
+	)
+	cuda? (
+		dev-util/nvidia-cuda-toolkit
+		x11-drivers/nvidia-drivers
+	)"
 RDEPEND="${DEPEND}"
 BDEPEND="doc? ( virtual/latex-base )"
+
+REQUIRED_USE="supernodal? ( cholesky )
+	modify? ( cholesky )
+	test? ( cholesky matrixops supernodal )"
 
 pkg_pretend() {
 	[[ ${MERGE_TYPE} != binary ]] && use openmp && tc-check-openmp
 }
 
 pkg_setup() {
-	[[ ${MERGE_TYPE} != binary ]] && use openmp && tc-check-openmp
+[[ ${MERGE_TYPE} != binary ]] && use openmp && tc-check-openmp
 }
 
 src_configure() {
-	# Fortran is only used to compile additional demo programs that can be tested.
+	# Note that "N" prefixed options are negative options
+	# so, they need to be turned OFF if you want that option.
+	# Fortran is turned off as it is only used to compile (untested) demo programs.
 	# Define SUITESPARSE_INCLUDEDIR_POSTFIX to "" otherwise it take
 	# the value suitesparse, and the include directory would be set to
 	# /usr/include/suitesparse
 	# This need to be set in all suitesparse ebuilds.
 	local mycmakeargs=(
 		-DNSTATIC=ON
-		-DSUITESPARSE_USE_OPENMP=$(usex openmp)
-		-DSUITESPARSE_USE_FORTRAN=OFF
+		-DCHOLMOD_USE_CUDA=$(usex cuda)
+		-DCHOLMOD_USE_OPENMP=$(usex openmp)
+		-DSUITESPARSE_HAS_FORTRAN=OFF
+		-DCHOLMOD_CHOLESKY=$(usex cholesky)
+		-DCHOLMOD_MATRIXOPS=$(usex matrixops)
+		-DCHOLMOD_MODIFY=$(usex modify)
+		-DCHOLMOD_PARTITION=$(usex partition)
+		-DCHOLMOD_SUPERNODAL=$(usex supernodal)
 		-DSUITESPARSE_DEMOS=$(usex test)
 		-DSUITESPARSE_INCLUDEDIR_POSTFIX=""
 	)
@@ -54,8 +74,17 @@ src_test() {
 	# we have to manually go to BUILD_DIR
 	cd "${BUILD_DIR}" || die
 	# Run demo files
-	# Other demo files have issues making them unsuitable for testing
-	./umfpack_simple || die "failed testing umfpack_simple"
+	local type="di dl si sl"
+	local prog="demo simple"
+	local matrix_file="bcsstk01.tri lp_afiro.tri can___24.mtx c.tri"
+	for i in ${type}; do
+		for k in ${prog}; do
+			for j in ${matrix_file}; do
+				./cholmod_${i}_${k}   < "${S}/Demo/Matrix/${j}" \
+					|| die "failed testing cholmod_${i}_${k} with ${j}"
+			done
+		done
+	done
 }
 
 src_install() {

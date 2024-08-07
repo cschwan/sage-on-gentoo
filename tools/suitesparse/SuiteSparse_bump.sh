@@ -3,6 +3,11 @@
 # - new version of SuiteSparse
 # - path to the overlay containing suitesparse ebuilds
 
+if [ $# -ne 2 ]; then
+	echo "You need 2 arguments, Suitesparse new version number and a path to the overlay/repo"
+	exit 1
+fi
+
 Sparse_PV=$1
 Overlay_base=$2
 
@@ -79,13 +84,21 @@ for pkg in "${Sparse_PKG[@]}"; do
         echo "${pkg} from ${pkg_old_v} to ${pkg_new_v}"
         pushd "${pkg_name}" # into pkg_name
         if [ ! -n "$DRYRUN" ]; then
-                git mv "${pkg_name}-${pkg_old_v}.ebuild" "${pkg_name}-${pkg_new_v}.ebuild"
+                if [ ! -f "${pkg_name}-${pkg_new_v}.ebuild" ]; then
+                        git mv "${pkg_name}-${pkg_old_v}.ebuild" "${pkg_name}-${pkg_new_v}.ebuild"
+                else
+                        echo "No version change for ${pkg_name}"
+                fi
                 sed -e "s:Sparse_PV=\"[0-9].[0-9].[0-9]\":Sparse_PV=\"${Sparse_PV}\":" -i "${pkg_name}-${pkg_new_v}.ebuild"
                 git add "${pkg_name}-${pkg_new_v}.ebuild"
                 ebuild "${pkg_name}-${pkg_new_v}.ebuild" manifest
         else
                 echo "the following would be executed"
-                echo "git mv \"${pkg_name}-${pkg_old_v}.ebuild\" \"${pkg_name}-${pkg_new_v}.ebuild\""
+                if [ ! -f "${pkg_name}-${pkg_new_v}.ebuild" ]; then
+                        echo "git mv \"${pkg_name}-${pkg_old_v}.ebuild\" \"${pkg_name}-${pkg_new_v}.ebuild\""
+                else
+                        echo "No version change for ${pkg_name}"
+                fi
                 echo "sed -e \"s:Sparse_PV=\"[0-9].[0-9].[0-9]\":Sparse_PV=\"${Sparse_PV}\":\" -i \"${pkg_name}-${pkg_new_v}.ebuild\""
                 echo "git add \"${pkg_name}-${pkg_new_v}.ebuild\""
                 echo "ebuild \"${pkg_name}-${pkg_new_v}.ebuild\" manifest"
