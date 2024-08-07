@@ -3,36 +3,46 @@
 
 EAPI=8
 
-inherit cmake
+inherit cmake toolchain-funcs
 
-Sparse_PV="7.7.0"
+Sparse_PV="7.8.0"
 Sparse_P="SuiteSparse-${Sparse_PV}"
-DESCRIPTION="a software package for SParse EXact algebra"
+DESCRIPTION="Unsymmetric multifrontal sparse LU factorization library"
 HOMEPAGE="https://people.engr.tamu.edu/davis/suitesparse.html"
 SRC_URI="https://github.com/DrTimothyAldenDavis/SuiteSparse/archive/refs/tags/v${Sparse_PV}.tar.gz -> ${Sparse_P}.gh.tar.gz"
 
 S="${WORKDIR}/${Sparse_P}/${PN^^}"
-LICENSE="BSD"
-SLOT="0/3"
-KEYWORDS="~amd64"
-IUSE="doc test"
+LICENSE="GPL-2+"
+SLOT="0/6"
+KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~hppa ~ia64 ~loong ~mips ~ppc ~ppc64 ~riscv ~s390 ~sparc ~x86 ~amd64-linux ~x86-linux"
+IUSE="doc openmp test"
 RESTRICT="!test? ( test )"
 
 DEPEND=">=sci-libs/suitesparseconfig-${Sparse_PV}
 	>=sci-libs/amd-3.3.1
-	>=sci-libs/colamd-3.3.2
-	dev-libs/gmp
-	dev-libs/mpfr"
+	>=sci-libs/cholmod-5.2.0[openmp=]
+	virtual/blas"
 RDEPEND="${DEPEND}"
 BDEPEND="doc? ( virtual/latex-base )"
 
+pkg_pretend() {
+	[[ ${MERGE_TYPE} != binary ]] && use openmp && tc-check-openmp
+}
+
+pkg_setup() {
+	[[ ${MERGE_TYPE} != binary ]] && use openmp && tc-check-openmp
+}
+
 src_configure() {
+	# Fortran is only used to compile additional demo programs that can be tested.
 	# Define SUITESPARSE_INCLUDEDIR_POSTFIX to "" otherwise it take
 	# the value suitesparse, and the include directory would be set to
 	# /usr/include/suitesparse
 	# This need to be set in all suitesparse ebuilds.
 	local mycmakeargs=(
 		-DNSTATIC=ON
+		-DSUITESPARSE_USE_OPENMP=$(usex openmp)
+		-DSUITESPARSE_USE_FORTRAN=OFF
 		-DSUITESPARSE_DEMOS=$(usex test)
 		-DSUITESPARSE_INCLUDEDIR_POSTFIX=""
 	)
@@ -44,15 +54,8 @@ src_test() {
 	# we have to manually go to BUILD_DIR
 	cd "${BUILD_DIR}" || die
 	# Run demo files
-	./spex_demo_lu_simple1
-	./spex_demo_lu_simple2          "${S}"/ExampleMats/10teams.mat.txt   "${S}"/ExampleMats/10teams.rhs.txt
-	./spex_demo_lu_extended       f "${S}"/ExampleMats/10teams.mat.txt   "${S}"/ExampleMats/10teams.rhs.txt
-	./spex_demo_lu_doub           f "${S}"/ExampleMats/10teams.mat.txt   "${S}"/ExampleMats/10teams.rhs.txt
-	./spex_demo_backslash         f "${S}"/ExampleMats/10teams.mat.txt   "${S}"/ExampleMats/10teams.rhs.txt
-	./spex_demo_cholesky_simple   f "${S}"/ExampleMats/494_bus.mat.txt   "${S}"/ExampleMats/494_bus.rhs.txt
-	./spex_demo_cholesky_extended f "${S}"/ExampleMats/494_bus.mat.txt   "${S}"/ExampleMats/494_bus.rhs.txt
-	./spex_demo_threaded          f "${S}"/ExampleMats/10teams.mat.txt   "${S}"/ExampleMats/10teams.rhs.txt
-	./spex_demo_backslash         f "${S}"/ExampleMats/Trefethen_500.mat.txt "${S}"/ExampleMats/Trefethen_500.rhs.txt
+	# Other demo files have issues making them unsuitable for testing
+	./umfpack_simple || die "failed testing umfpack_simple"
 }
 
 src_install() {

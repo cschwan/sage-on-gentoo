@@ -5,7 +5,7 @@ EAPI=8
 
 inherit cmake
 
-Sparse_PV="7.7.0"
+Sparse_PV="7.8.0"
 Sparse_P="SuiteSparse-${Sparse_PV}"
 DESCRIPTION="Simple but educational LDL^T matrix factorization algorithm"
 HOMEPAGE="https://people.engr.tamu.edu/davis/suitesparse.html"

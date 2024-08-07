@@ -5,9 +5,9 @@ EAPI=8
 
 inherit cmake
 
-Sparse_PV="7.7.0"
+Sparse_PV="7.8.0"
 Sparse_P="SuiteSparse-${Sparse_PV}"
-DESCRIPTION="Column approximate minimum degree ordering algorithm"
+DESCRIPTION="Constrained Column approximate minimum degree ordering algorithm"
 HOMEPAGE="https://people.engr.tamu.edu/davis/suitesparse.html"
 SRC_URI="https://github.com/DrTimothyAldenDavis/SuiteSparse/archive/refs/tags/v${Sparse_PV}.tar.gz -> ${Sparse_P}.gh.tar.gz"
 
@@ -39,8 +39,8 @@ src_test() {
 	# we have to manually go to BUILD_DIR
 	cd "${BUILD_DIR}" || die
 	# Run demo files
-	./colamd_example > colamd_example.out
-	diff "${S}"/Demo/colamd_example.out colamd_example.out || die "failed testing colamd_example"
-	./colamd_l_example > colamd_l_example.out
-	diff "${S}"/Demo/colamd_l_example.out colamd_l_example.out || die "failed testing colamd_l_example"
+	./ccolamd_example > ccolamd_example.out
+	diff "${S}"/Demo/ccolamd_example.out ccolamd_example.out || die "failed testing ccolamd_example"
+	./ccolamd_l_example > ccolamd_l_example.out
+	diff "${S}"/Demo/ccolamd_l_example.out ccolamd_l_example.out || die "failed testing ccolamd_l_example"
 }
