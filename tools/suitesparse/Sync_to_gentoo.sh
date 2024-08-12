@@ -36,12 +36,10 @@ for pkg in "${Sparse_ebuild[@]}"; do
         # checking if pkg is in the gentoo tree. do not add if not.
         if [ -d "${gentoo_dest}/sci-libs/${pkg}/" ]; then
                 rsync -rv --exclude=Manifest --exclude=metadata.xml "${sog_overlay}/sci-libs/${pkg}/" "${gentoo_dest}/sci-libs/${pkg}/"
-                # update the manifest
-                pushd "${gentoo_dest}/sci-libs/${pkg}/"
-                ebuild *.ebuild manifest
-                popd
         else
+                echo "################################################################################################"
                 echo "sci-libs/${pkg} doesn't exist in the main tree, It needs to be added separately as a new ebuild."
+                echo "################################################################################################"
         fi
 done
 
