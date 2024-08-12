@@ -12,7 +12,7 @@ HOMEPAGE="https://github.com/sagemath/sagetex https://pypi.org/project/sagetex/"
 
 LICENSE="GPL-2+"
 SLOT="0"
-KEYWORDS="~amd64 ~x86 ~amd64-linux ~x86-linux ~x64-macos"
+KEYWORDS="~amd64 ~amd64-linux ~x64-macos"
 
 DEPEND="app-text/texlive[extra]
 	dev-python/pyparsing[${PYTHON_USEDEP}]
