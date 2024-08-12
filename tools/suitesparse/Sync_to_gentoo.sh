@@ -14,20 +14,25 @@ sog_overlay=$1
 gentoo_dest=$2
 
 # List of suitesparse ebuild
+# The order is determined by dependency on previous packages
+# suitesparseconfig first.
+# packages that only depend on suitesparseconfig
+# packages that depend on the previous ones, smaller number of dependency first then alphabetically
+# This order should be respected for commiting as dependencies can be commited first
 Sparse_ebuild=(
+        suitesparseconfig
         amd
         btf
         camd
         ccolamd
-        cholmod
         colamd
         cxsparse
-        klu
-        ldl
         rbio
+        ldl
         spex
+        cholmod
+        klu
         spqr
-        suitesparseconfig
         umfpack
 )
 
