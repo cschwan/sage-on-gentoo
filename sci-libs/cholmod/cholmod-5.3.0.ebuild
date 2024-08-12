@@ -42,7 +42,7 @@ pkg_pretend() {
 }
 
 pkg_setup() {
-[[ ${MERGE_TYPE} != binary ]] && use openmp && tc-check-openmp
+	[[ ${MERGE_TYPE} != binary ]] && use openmp && tc-check-openmp
 }
 
 src_configure() {
