@@ -1,0 +1,815 @@
+diff --git a/sage/matroids/basis_exchange_matroid.pxd b/sage/matroids/basis_exchange_matroid.pxd
+index dc4b4ae..7b93b24 100644
+--- a/sage/matroids/basis_exchange_matroid.pxd
++++ b/sage/matroids/basis_exchange_matroid.pxd
+@@ -46,19 +46,19 @@ cdef class BasisExchangeMatroid(Matroid):
+     cpdef _move_current_basis(self, X, Y)
+ 
+     cpdef frozenset _max_independent(self, frozenset F)
+-    cpdef int _rank(self, frozenset F)
++    cpdef int _rank(self, frozenset F) noexcept
+     cpdef frozenset _circuit(self, frozenset F)
+     cpdef frozenset _fundamental_circuit(self, frozenset B, e)
+     cpdef frozenset _closure(self, frozenset F)
+ 
+     cpdef frozenset _max_coindependent(self, frozenset F)
+-    cpdef int _corank(self, frozenset F)
++    cpdef int _corank(self, frozenset F) noexcept
+     cpdef frozenset _cocircuit(self, frozenset F)
+     cpdef frozenset _fundamental_cocircuit(self, frozenset B, e)
+     cpdef frozenset _coclosure(self, frozenset F)
+ 
+     cpdef frozenset _augment(self, frozenset X, frozenset Y)
+-    cpdef bint _is_independent(self, frozenset F)
++    cpdef bint _is_independent(self, frozenset F) noexcept
+ 
+     cpdef list whitney_numbers2(self)
+     cdef  _whitney_numbers2_rec(self, object f_vec, bitset_t* flats, bitset_t* todo, long elt, long rnk)
+@@ -90,6 +90,6 @@ cdef class BasisExchangeMatroid(Matroid):
+     cpdef _is_isomorphism(self, other, morphism)
+     cdef bint __is_isomorphism(self, BasisExchangeMatroid other, morphism) noexcept
+ 
+-    cpdef bint is_valid(self)
++    cpdef bint is_valid(self) noexcept
+ 
+ cdef bint nxksrd(bitset_s *b, long n, long k, bint succ) noexcept
+diff --git a/sage/matroids/basis_exchange_matroid.pyx b/sage/matroids/basis_exchange_matroid.pyx
+index a3c4c89..9512ed3 100644
+--- a/sage/matroids/basis_exchange_matroid.pyx
++++ b/sage/matroids/basis_exchange_matroid.pyx
+@@ -652,7 +652,7 @@ cdef class BasisExchangeMatroid(Matroid):
+         self.__max_independent(self._output, self._input)
+         return self.__unpack(self._output)
+ 
+-    cpdef int _rank(self, frozenset F):
++    cpdef int _rank(self, frozenset F) noexcept:
+         """
+         Compute the rank of a subset of the groundset.
+ 
+@@ -796,7 +796,7 @@ cdef class BasisExchangeMatroid(Matroid):
+         self.__max_coindependent(self._output, self._input)
+         return self.__unpack(self._output)
+ 
+-    cpdef int _corank(self, frozenset F):
++    cpdef int _corank(self, frozenset F) noexcept:
+         """
+         Return the corank of a set.
+ 
+@@ -940,7 +940,7 @@ cdef class BasisExchangeMatroid(Matroid):
+         self.__augment(self._output, self._input, self._input2)
+         return self.__unpack(self._output)
+ 
+-    cpdef bint _is_independent(self, frozenset F):
++    cpdef bint _is_independent(self, frozenset F) noexcept:
+         """
+         Test if input is independent.
+ 
+@@ -2231,7 +2231,7 @@ cdef class BasisExchangeMatroid(Matroid):
+ 
+         return self._characteristic_setsystem()._isomorphism(other._characteristic_setsystem(), PS, PO) is not None
+ 
+-    cpdef bint is_valid(self):
++    cpdef bint is_valid(self) noexcept:
+         r"""
+         Test if the data obey the matroid axioms.
+ 
+diff --git a/sage/matroids/basis_matroid.pxd b/sage/matroids/basis_matroid.pxd
+index 5789ad9..0d0450d 100644
+--- a/sage/matroids/basis_matroid.pxd
++++ b/sage/matroids/basis_matroid.pxd
+@@ -15,7 +15,7 @@ cdef class BasisMatroid(BasisExchangeMatroid):
+ 
+     cdef reset_current_basis(self)
+ 
+-    cpdef bint _is_basis(self, frozenset X)
++    cpdef bint _is_basis(self, frozenset X) noexcept
+ 
+     cpdef bases_count(self)
+     cpdef SetSystem bases(self)
+diff --git a/sage/matroids/basis_matroid.pyx b/sage/matroids/basis_matroid.pyx
+index f9710ea..24997ff 100644
+--- a/sage/matroids/basis_matroid.pyx
++++ b/sage/matroids/basis_matroid.pyx
+@@ -298,7 +298,7 @@ cdef class BasisMatroid(BasisExchangeMatroid):
+ 
+     # a function that is very efficient for this class
+ 
+-    cpdef bint _is_basis(self, frozenset X):
++    cpdef bint _is_basis(self, frozenset X) noexcept:
+         """
+         Test if input is a basis.
+ 
+diff --git a/sage/matroids/circuit_closures_matroid.pxd b/sage/matroids/circuit_closures_matroid.pxd
+index 878443d..885445e 100644
+--- a/sage/matroids/circuit_closures_matroid.pxd
++++ b/sage/matroids/circuit_closures_matroid.pxd
+@@ -5,9 +5,9 @@ cdef class CircuitClosuresMatroid(Matroid):
+     cdef dict _circuit_closures  # _CC
+     cdef int _matroid_rank  # _R
+     cpdef frozenset groundset(self)
+-    cpdef int _rank(self, frozenset X)
++    cpdef int _rank(self, frozenset X) noexcept
+     cpdef full_rank(self)
+-    cpdef bint _is_independent(self, frozenset F)
++    cpdef bint _is_independent(self, frozenset F) noexcept
+     cpdef frozenset _max_independent(self, frozenset F)
+     cpdef frozenset _circuit(self, frozenset F)
+     cpdef dict circuit_closures(self)
+diff --git a/sage/matroids/circuit_closures_matroid.pyx b/sage/matroids/circuit_closures_matroid.pyx
+index 7dd29ee..e33fa38 100644
+--- a/sage/matroids/circuit_closures_matroid.pyx
++++ b/sage/matroids/circuit_closures_matroid.pyx
+@@ -179,7 +179,7 @@ cdef class CircuitClosuresMatroid(Matroid):
+         """
+         return frozenset(self._groundset)
+ 
+-    cpdef int _rank(self, frozenset X):
++    cpdef int _rank(self, frozenset X) noexcept:
+         """
+         Return the rank of a set ``X``.
+ 
+@@ -221,7 +221,7 @@ cdef class CircuitClosuresMatroid(Matroid):
+         """
+         return self._matroid_rank
+ 
+-    cpdef bint _is_independent(self, frozenset F):
++    cpdef bint _is_independent(self, frozenset F) noexcept:
+         """
+         Test if input is independent.
+ 
+diff --git a/sage/matroids/circuits_matroid.pxd b/sage/matroids/circuits_matroid.pxd
+index f7b938a..19fd8ef 100644
+--- a/sage/matroids/circuits_matroid.pxd
++++ b/sage/matroids/circuits_matroid.pxd
+@@ -9,9 +9,9 @@ cdef class CircuitsMatroid(Matroid):
+     cdef list _sorted_C_lens
+     cdef bint _nsc_defined
+     cpdef frozenset groundset(self)
+-    cpdef int _rank(self, frozenset X)
++    cpdef int _rank(self, frozenset X) noexcept
+     cpdef full_rank(self)
+-    cpdef bint _is_independent(self, frozenset X)
++    cpdef bint _is_independent(self, frozenset X) noexcept
+     cpdef frozenset _max_independent(self, frozenset X)
+     cpdef frozenset _circuit(self, frozenset X)
+     cpdef frozenset _closure(self, frozenset X)
+@@ -27,11 +27,11 @@ cdef class CircuitsMatroid(Matroid):
+ 
+     # properties
+     cpdef girth(self)
+-    cpdef bint is_paving(self)
++    cpdef bint is_paving(self) noexcept
+ 
+     # isomorphism and relabeling
+     cpdef _is_isomorphic(self, other, certificate=*)
+     cpdef relabel(self, mapping)
+ 
+     # verification
+-    cpdef bint is_valid(self)
++    cpdef bint is_valid(self) noexcept
+diff --git a/sage/matroids/circuits_matroid.pyx b/sage/matroids/circuits_matroid.pyx
+index ae3be51..4f12263 100644
+--- a/sage/matroids/circuits_matroid.pyx
++++ b/sage/matroids/circuits_matroid.pyx
+@@ -100,7 +100,7 @@ cdef class CircuitsMatroid(Matroid):
+         """
+         return self._groundset
+ 
+-    cpdef int _rank(self, frozenset X):
++    cpdef int _rank(self, frozenset X) noexcept:
+         """
+         Return the rank of a set ``X``.
+ 
+@@ -140,7 +140,7 @@ cdef class CircuitsMatroid(Matroid):
+         """
+         return self._matroid_rank
+ 
+-    cpdef bint _is_independent(self, frozenset X):
++    cpdef bint _is_independent(self, frozenset X) noexcept:
+         """
+         Test if input is independent.
+ 
+@@ -850,7 +850,7 @@ cdef class CircuitsMatroid(Matroid):
+         from sage.rings.infinity import infinity
+         return min(self._k_C, default=infinity)
+ 
+-    cpdef bint is_paving(self):
++    cpdef bint is_paving(self) noexcept:
+         """
+         Return if ``self`` is paving.
+ 
+@@ -869,7 +869,7 @@ cdef class CircuitsMatroid(Matroid):
+ 
+     # verification
+ 
+-    cpdef bint is_valid(self):
++    cpdef bint is_valid(self) noexcept:
+         r"""
+         Test if ``self`` obeys the matroid axioms.
+ 
+diff --git a/sage/matroids/flats_matroid.pxd b/sage/matroids/flats_matroid.pxd
+index 956e30f..0b7d4b9 100644
+--- a/sage/matroids/flats_matroid.pxd
++++ b/sage/matroids/flats_matroid.pxd
+@@ -8,9 +8,9 @@ cdef class FlatsMatroid(Matroid):
+     cdef object _L  # lattice of flats
+     cpdef frozenset groundset(self)
+ 
+-    cpdef int _rank(self, frozenset X)
++    cpdef int _rank(self, frozenset X) noexcept
+     cpdef frozenset _closure(self, frozenset X)
+-    cpdef bint _is_closed(self, frozenset X)
++    cpdef bint _is_closed(self, frozenset X) noexcept
+ 
+     cpdef full_rank(self)
+ 
+@@ -24,4 +24,4 @@ cdef class FlatsMatroid(Matroid):
+     cpdef relabel(self, mapping)
+ 
+     # verification
+-    cpdef bint is_valid(self)
++    cpdef bint is_valid(self) noexcept
+diff --git a/sage/matroids/flats_matroid.pyx b/sage/matroids/flats_matroid.pyx
+index 9c6a3c7..c268649 100644
+--- a/sage/matroids/flats_matroid.pyx
++++ b/sage/matroids/flats_matroid.pyx
+@@ -114,7 +114,7 @@ cdef class FlatsMatroid(Matroid):
+         """
+         return self._groundset
+ 
+-    cpdef int _rank(self, frozenset X):
++    cpdef int _rank(self, frozenset X) noexcept:
+         """
+         Return the rank of a set ``X``.
+ 
+@@ -191,7 +191,7 @@ cdef class FlatsMatroid(Matroid):
+                 if f >= X:
+                     return f
+ 
+-    cpdef bint _is_closed(self, frozenset X):
++    cpdef bint _is_closed(self, frozenset X) noexcept:
+         """
+         Test if input is a closed set.
+ 
+@@ -539,7 +539,7 @@ cdef class FlatsMatroid(Matroid):
+ 
+     # verification
+ 
+-    cpdef bint is_valid(self):
++    cpdef bint is_valid(self) noexcept:
+         r"""
+         Test if ``self`` obeys the matroid axioms.
+ 
+diff --git a/sage/matroids/graphic_matroid.pxd b/sage/matroids/graphic_matroid.pxd
+index 8ec8dd9..f023e46 100644
+--- a/sage/matroids/graphic_matroid.pxd
++++ b/sage/matroids/graphic_matroid.pxd
+@@ -7,23 +7,23 @@ cdef class GraphicMatroid(Matroid):
+     cdef dict _vertex_map
+     cdef dict _groundset_edge_map
+     cpdef frozenset groundset(self)
+-    cpdef int _rank(self, frozenset X)
++    cpdef int _rank(self, frozenset X) noexcept
+     cpdef _vertex_stars(self)
+     cpdef _minor(self, contractions, deletions)
+     cpdef _has_minor(self, N, bint certificate=*)
+-    cpdef int _corank(self, frozenset X)
+-    cpdef bint _is_circuit(self, frozenset X)
++    cpdef int _corank(self, frozenset X) noexcept
++    cpdef bint _is_circuit(self, frozenset X) noexcept
+     cpdef frozenset _closure(self, frozenset X)
+     cpdef frozenset _max_independent(self, frozenset X)
+     cpdef frozenset _max_coindependent(self, frozenset X)
+     cpdef frozenset _circuit(self, frozenset X)
+     cpdef frozenset _coclosure(self, frozenset X)
+-    cpdef bint _is_closed(self, frozenset X)
++    cpdef bint _is_closed(self, frozenset X) noexcept
+     cpdef _is_isomorphic(self, other, certificate=*)
+     cpdef _isomorphism(self, other)
+-    cpdef bint is_valid(self)
+-    cpdef bint is_graphic(self)
+-    cpdef bint is_regular(self)
++    cpdef bint is_valid(self) noexcept
++    cpdef bint is_graphic(self) noexcept
++    cpdef bint is_regular(self) noexcept
+     cpdef graph(self)
+     cpdef vertex_map(self)
+     cpdef list groundset_to_edges(self, X)
+diff --git a/sage/matroids/graphic_matroid.pyx b/sage/matroids/graphic_matroid.pyx
+index a01cef1..5c23080 100644
+--- a/sage/matroids/graphic_matroid.pyx
++++ b/sage/matroids/graphic_matroid.pyx
+@@ -238,7 +238,7 @@ cdef class GraphicMatroid(Matroid):
+         """
+         return self._groundset
+ 
+-    cpdef int _rank(self, frozenset X):
++    cpdef int _rank(self, frozenset X) noexcept:
+         """
+         Return the rank of a set ``X``.
+ 
+@@ -625,7 +625,7 @@ cdef class GraphicMatroid(Matroid):
+                 N = N.regular_matroid()
+             return M._has_minor(N, certificate=certificate)
+ 
+-    cpdef int _corank(self, frozenset X):
++    cpdef int _corank(self, frozenset X) noexcept:
+         """
+         Return the corank of the set `X` in the matroid.
+ 
+@@ -653,7 +653,7 @@ cdef class GraphicMatroid(Matroid):
+             DS_vertices.union(u, v)
+         return len(X) - (DS_vertices.number_of_subsets() - Integer(1))
+ 
+-    cpdef bint _is_circuit(self, frozenset X):
++    cpdef bint _is_circuit(self, frozenset X) noexcept:
+         """
+         Test if input is a circuit.
+ 
+@@ -918,7 +918,7 @@ cdef class GraphicMatroid(Matroid):
+             g.add_edge(e)
+         return frozenset(XX)
+ 
+-    cpdef bint _is_closed(self, frozenset X):
++    cpdef bint _is_closed(self, frozenset X) noexcept:
+         """
+         Test if input is a closed set.
+ 
+@@ -1093,7 +1093,7 @@ cdef class GraphicMatroid(Matroid):
+         """
+         return self.is_isomorphic(other, certificate=True)[1]
+ 
+-    cpdef bint is_valid(self):
++    cpdef bint is_valid(self) noexcept:
+         """
+         Test if the data obey the matroid axioms.
+ 
+@@ -1110,7 +1110,7 @@ cdef class GraphicMatroid(Matroid):
+         """
+         return True
+ 
+-    cpdef bint is_graphic(self):
++    cpdef bint is_graphic(self) noexcept:
+         r"""
+         Return if ``self`` is graphic.
+ 
+@@ -1124,7 +1124,7 @@ cdef class GraphicMatroid(Matroid):
+         """
+         return True
+ 
+-    cpdef bint is_regular(self):
++    cpdef bint is_regular(self) noexcept:
+         r"""
+         Return if ``self`` is regular.
+ 
+diff --git a/sage/matroids/linear_matroid.pxd b/sage/matroids/linear_matroid.pxd
+index 085a68b..b5a1f20 100644
+--- a/sage/matroids/linear_matroid.pxd
++++ b/sage/matroids/linear_matroid.pxd
+@@ -62,7 +62,7 @@ cdef class LinearMatroid(BasisExchangeMatroid):
+     cpdef _is_3connected_shifting(self, certificate=*)
+     cpdef _is_4connected_shifting(self, certificate=*)
+ 
+-    cpdef bint is_valid(self)
++    cpdef bint is_valid(self) noexcept
+ 
+ cdef class BinaryMatroid(LinearMatroid):
+     cdef tuple _b_invariant, _b_partition
+@@ -91,8 +91,8 @@ cdef class BinaryMatroid(LinearMatroid):
+     cpdef _fast_isom_test(self, other)
+     cpdef relabel(self, mapping)
+ 
+-    cpdef bint is_graphic(self)
+-    cpdef bint is_valid(self)
++    cpdef bint is_graphic(self) noexcept
++    cpdef bint is_valid(self) noexcept
+ 
+ 
+ cdef class TernaryMatroid(LinearMatroid):
+@@ -122,7 +122,7 @@ cdef class TernaryMatroid(LinearMatroid):
+     cpdef _fast_isom_test(self, other)
+     cpdef relabel(self, mapping)
+ 
+-    cpdef bint is_valid(self)
++    cpdef bint is_valid(self) noexcept
+ 
+ cdef class QuaternaryMatroid(LinearMatroid):
+     cdef object _x_zero, _x_one
+@@ -149,7 +149,7 @@ cdef class QuaternaryMatroid(LinearMatroid):
+     cpdef _fast_isom_test(self, other)
+     cpdef relabel(self, mapping)
+ 
+-    cpdef bint is_valid(self)
++    cpdef bint is_valid(self) noexcept
+ 
+ cdef class RegularMatroid(LinearMatroid):
+     cdef _bases_count, _r_invariant
+@@ -172,6 +172,6 @@ cdef class RegularMatroid(LinearMatroid):
+     cpdef has_line_minor(self, k, hyperlines=*, certificate=*)
+     cpdef _linear_extension_chains(self, F, fundamentals=*)
+ 
+-    cpdef bint is_regular(self)
+-    cpdef bint is_graphic(self)
+-    cpdef bint is_valid(self)
++    cpdef bint is_regular(self) noexcept
++    cpdef bint is_graphic(self) noexcept
++    cpdef bint is_valid(self) noexcept
+diff --git a/sage/matroids/linear_matroid.pyx b/sage/matroids/linear_matroid.pyx
+index 0310b8c..9b49aae 100644
+--- a/sage/matroids/linear_matroid.pyx
++++ b/sage/matroids/linear_matroid.pyx
+@@ -2614,7 +2614,7 @@ cdef class LinearMatroid(BasisExchangeMatroid):
+         cochains = self.linear_coextension_cochains(F, cosimple=cosimple, fundamentals=fundamentals)
+         return self._linear_coextensions(element, cochains)
+ 
+-    cpdef bint is_valid(self):
++    cpdef bint is_valid(self) noexcept:
+         r"""
+         Test if the data represent an actual matroid.
+ 
+@@ -3793,7 +3793,7 @@ cdef class BinaryMatroid(LinearMatroid):
+                              keep_initial_representation=False)
+ 
+     # graphicness test
+-    cpdef bint is_graphic(self):
++    cpdef bint is_graphic(self) noexcept:
+         """
+         Test if the binary matroid is graphic.
+ 
+@@ -3862,7 +3862,7 @@ cdef class BinaryMatroid(LinearMatroid):
+         # now self is graphic iff there is a binary vector x so that M*x = 0 and x_0 = 1, so:
+         return BinaryMatroid(m).corank(frozenset([0])) > 0
+ 
+-    cpdef bint is_valid(self):
++    cpdef bint is_valid(self) noexcept:
+         r"""
+         Test if the data obey the matroid axioms.
+ 
+@@ -4724,7 +4724,7 @@ cdef class TernaryMatroid(LinearMatroid):
+                              basis=bas,
+                              keep_initial_representation=False)
+ 
+-    cpdef bint is_valid(self):
++    cpdef bint is_valid(self) noexcept:
+         r"""
+         Test if the data obey the matroid axioms.
+ 
+@@ -5488,7 +5488,7 @@ cdef class QuaternaryMatroid(LinearMatroid):
+                              basis=bas,
+                              keep_initial_representation=False)
+ 
+-    cpdef bint is_valid(self):
++    cpdef bint is_valid(self) noexcept:
+         r"""
+         Test if the data obey the matroid axioms.
+ 
+@@ -6239,7 +6239,7 @@ cdef class RegularMatroid(LinearMatroid):
+             fundamentals = set([1])
+         return LinearMatroid._linear_extension_chains(self, F, fundamentals)
+ 
+-    cpdef bint is_graphic(self):
++    cpdef bint is_graphic(self) noexcept:
+         """
+         Test if the regular matroid is graphic.
+ 
+@@ -6270,7 +6270,7 @@ cdef class RegularMatroid(LinearMatroid):
+         """
+         return BinaryMatroid(reduced_matrix=self._reduced_representation()).is_graphic()
+ 
+-    cpdef bint is_valid(self):
++    cpdef bint is_valid(self) noexcept:
+         r"""
+         Test if the data obey the matroid axioms.
+ 
+@@ -6299,7 +6299,7 @@ cdef class RegularMatroid(LinearMatroid):
+ 
+     # representation
+ 
+-    cpdef bint is_regular(self):
++    cpdef bint is_regular(self) noexcept:
+         r"""
+         Return if ``self`` is regular.
+ 
+diff --git a/sage/matroids/matroid.pxd b/sage/matroids/matroid.pxd
+index ca197f6..772f3e1 100644
+--- a/sage/matroids/matroid.pxd
++++ b/sage/matroids/matroid.pxd
+@@ -9,28 +9,28 @@ cdef class Matroid(SageObject):
+ 
+     # virtual methods
+     cpdef frozenset groundset(self)
+-    cpdef int _rank(self, frozenset X)
++    cpdef int _rank(self, frozenset X) noexcept
+ 
+     # internal methods, assuming verified input
+     cpdef frozenset _max_independent(self, frozenset X)
+     cpdef frozenset _circuit(self, frozenset X)
+     cpdef frozenset _fundamental_circuit(self, frozenset B, e)
+     cpdef frozenset _closure(self, frozenset X)
+-    cpdef int _corank(self, frozenset X)
++    cpdef int _corank(self, frozenset X) noexcept
+     cpdef frozenset _max_coindependent(self, frozenset X)
+     cpdef frozenset _cocircuit(self, frozenset X)
+     cpdef frozenset _fundamental_cocircuit(self, frozenset B, e)
+     cpdef frozenset _coclosure(self, frozenset X)
+     cpdef frozenset _augment(self, frozenset X, frozenset Y)
+ 
+-    cpdef bint _is_independent(self, frozenset X)
+-    cpdef bint _is_basis(self, frozenset X)
+-    cpdef bint _is_circuit(self, frozenset X)
+-    cpdef bint _is_closed(self, frozenset X)
+-    cpdef bint _is_coindependent(self, frozenset X)
+-    cpdef bint _is_cobasis(self, frozenset X)
+-    cpdef bint _is_cocircuit(self, frozenset X)
+-    cpdef bint _is_coclosed(self, frozenset X)
++    cpdef bint _is_independent(self, frozenset X) noexcept
++    cpdef bint _is_basis(self, frozenset X) noexcept
++    cpdef bint _is_circuit(self, frozenset X) noexcept
++    cpdef bint _is_closed(self, frozenset X) noexcept
++    cpdef bint _is_coindependent(self, frozenset X) noexcept
++    cpdef bint _is_cobasis(self, frozenset X) noexcept
++    cpdef bint _is_cocircuit(self, frozenset X) noexcept
++    cpdef bint _is_coclosed(self, frozenset X) noexcept
+ 
+     cpdef _minor(self, contractions, deletions)
+     cpdef _has_minor(self, N, bint certificate=*)
+@@ -105,7 +105,7 @@ cdef class Matroid(SageObject):
+     cpdef is_coclosed(self, X)
+ 
+     # verification
+-    cpdef bint is_valid(self)
++    cpdef bint is_valid(self) noexcept
+ 
+     # enumeration
+     cpdef SetSystem circuits(self, k=*)
+@@ -184,8 +184,8 @@ cdef class Matroid(SageObject):
+     cpdef _is_3connected_CE(self, certificate=*)
+     cpdef _is_3connected_BC(self, certificate=*)
+     cpdef _is_3connected_BC_recursion(self, basis, fund_cocircuits)
+-    cpdef bint is_paving(self)
+-    cpdef bint is_sparse_paving(self)
++    cpdef bint is_paving(self) noexcept
++    cpdef bint is_sparse_paving(self) noexcept
+     cpdef girth(self)
+ 
+     # representability
+@@ -195,8 +195,8 @@ cdef class Matroid(SageObject):
+     cpdef _local_ternary_matroid(self, basis=*)
+     cpdef ternary_matroid(self, randomized_tests=*, verify=*)
+     cpdef is_ternary(self, randomized_tests=*)
+-    cpdef bint is_regular(self)
+-    cpdef bint is_graphic(self)
++    cpdef bint is_regular(self) noexcept
++    cpdef bint is_graphic(self) noexcept
+ 
+     # matroid k-closed
+     cpdef is_k_closed(self, int k)
+diff --git a/sage/matroids/matroid.pyx b/sage/matroids/matroid.pyx
+index bfcf7d3..1ac8803 100644
+--- a/sage/matroids/matroid.pyx
++++ b/sage/matroids/matroid.pyx
+@@ -492,7 +492,7 @@ cdef class Matroid(SageObject):
+         """
+         raise NotImplementedError("subclasses need to implement this")
+ 
+-    cpdef int _rank(self, frozenset X):
++    cpdef int _rank(self, frozenset X) noexcept:
+         r"""
+         Return the rank of a set ``X``.
+ 
+@@ -732,7 +732,7 @@ cdef class Matroid(SageObject):
+                 XX.pop()
+         return frozenset(XX)
+ 
+-    cpdef int _corank(self, frozenset X):
++    cpdef int _corank(self, frozenset X) noexcept:
+         """
+         Return the corank of a set.
+ 
+@@ -904,7 +904,7 @@ cdef class Matroid(SageObject):
+ 
+     # override the following methods for even better efficiency
+ 
+-    cpdef bint _is_independent(self, frozenset X):
++    cpdef bint _is_independent(self, frozenset X) noexcept:
+         """
+         Test if input is independent.
+ 
+@@ -925,7 +925,7 @@ cdef class Matroid(SageObject):
+         """
+         return len(X) == self._rank(X)
+ 
+-    cpdef bint _is_basis(self, frozenset X):
++    cpdef bint _is_basis(self, frozenset X) noexcept:
+         """
+         Test if input is a basis.
+ 
+@@ -958,7 +958,7 @@ cdef class Matroid(SageObject):
+         """
+         return self._is_independent(X)
+ 
+-    cpdef bint _is_circuit(self, frozenset X):
++    cpdef bint _is_circuit(self, frozenset X) noexcept:
+         """
+         Test if input is a circuit.
+ 
+@@ -990,7 +990,7 @@ cdef class Matroid(SageObject):
+             Z.add(x)
+         return True
+ 
+-    cpdef bint _is_closed(self, frozenset X):
++    cpdef bint _is_closed(self, frozenset X) noexcept:
+         """
+         Test if input is a closed set.
+ 
+@@ -1019,7 +1019,7 @@ cdef class Matroid(SageObject):
+             XX.discard(y)
+         return True
+ 
+-    cpdef bint _is_coindependent(self, frozenset X):
++    cpdef bint _is_coindependent(self, frozenset X) noexcept:
+         """
+         Test if input is coindependent.
+ 
+@@ -1040,7 +1040,7 @@ cdef class Matroid(SageObject):
+         """
+         return self._corank(X) == len(X)
+ 
+-    cpdef bint _is_cobasis(self, frozenset X):
++    cpdef bint _is_cobasis(self, frozenset X) noexcept:
+         """
+         Test if input is a cobasis.
+ 
+@@ -1068,7 +1068,7 @@ cdef class Matroid(SageObject):
+         """
+         return self._is_basis(self.groundset().difference(X))
+ 
+-    cpdef bint _is_cocircuit(self, frozenset X):
++    cpdef bint _is_cocircuit(self, frozenset X) noexcept:
+         """
+         Test if input is a cocircuit.
+ 
+@@ -1100,7 +1100,7 @@ cdef class Matroid(SageObject):
+             Z.add(x)
+         return True
+ 
+-    cpdef bint _is_coclosed(self, frozenset X):
++    cpdef bint _is_coclosed(self, frozenset X) noexcept:
+         """
+         Test if input is a coclosed set.
+ 
+@@ -2305,7 +2305,7 @@ cdef class Matroid(SageObject):
+ 
+     # verification
+ 
+-    cpdef bint is_valid(self):
++    cpdef bint is_valid(self) noexcept:
+         r"""
+         Test if the data obey the matroid axioms.
+ 
+@@ -6187,7 +6187,7 @@ cdef class Matroid(SageObject):
+                 return False
+         return True
+ 
+-    cpdef bint is_paving(self):
++    cpdef bint is_paving(self) noexcept:
+         """
+         Return if ``self`` is paving.
+ 
+@@ -6210,7 +6210,7 @@ cdef class Matroid(SageObject):
+                     return False
+         return True
+ 
+-    cpdef bint is_sparse_paving(self):
++    cpdef bint is_sparse_paving(self) noexcept:
+         """
+         Return if ``self`` is sparse-paving.
+ 
+@@ -6577,7 +6577,7 @@ cdef class Matroid(SageObject):
+         """
+         return self.ternary_matroid(randomized_tests=randomized_tests, verify=True) is not None
+ 
+-    cpdef bint is_graphic(self):
++    cpdef bint is_graphic(self) noexcept:
+         r"""
+         Return if ``self`` is graphic.
+ 
+@@ -6611,7 +6611,7 @@ cdef class Matroid(SageObject):
+                 return False
+         return True
+ 
+-    cpdef bint is_regular(self):
++    cpdef bint is_regular(self) noexcept:
+         r"""
+         Return if ``self`` is regular.
+ 
+diff --git a/sage/matroids/union_matroid.pxd b/sage/matroids/union_matroid.pxd
+index 518ca54..d097f0e 100644
+--- a/sage/matroids/union_matroid.pxd
++++ b/sage/matroids/union_matroid.pxd
+@@ -5,16 +5,16 @@ cdef class MatroidUnion(Matroid):
+     cdef list matroids
+     cdef frozenset _groundset
+     cpdef frozenset groundset(self)
+-    cpdef int _rank(self, frozenset X)
++    cpdef int _rank(self, frozenset X) noexcept
+ 
+ cdef class MatroidSum(Matroid):
+     cdef list summands
+     cdef frozenset _groundset
+     cpdef frozenset groundset(self)
+-    cpdef int _rank(self, frozenset X)
++    cpdef int _rank(self, frozenset X) noexcept
+ 
+ cdef class PartitionMatroid(Matroid):
+     cdef dict p
+     cdef frozenset _groundset
+     cpdef frozenset groundset(self)
+-    cpdef int _rank(self, frozenset X)
++    cpdef int _rank(self, frozenset X) noexcept
+diff --git a/sage/matroids/union_matroid.pyx b/sage/matroids/union_matroid.pyx
+index ef40d0f..cf31346 100644
+--- a/sage/matroids/union_matroid.pyx
++++ b/sage/matroids/union_matroid.pyx
+@@ -66,7 +66,7 @@ cdef class MatroidUnion(Matroid):
+         """
+         return self._groundset
+ 
+-    cpdef int _rank(self, frozenset X):
++    cpdef int _rank(self, frozenset X) noexcept:
+         r"""
+         Return the rank of a set ``X``.
+ 
+@@ -195,7 +195,7 @@ cdef class MatroidSum(Matroid):
+         """
+         return self._groundset
+ 
+-    cpdef int _rank(self, frozenset X):
++    cpdef int _rank(self, frozenset X) noexcept:
+         r"""
+         Return the rank of a set ``X``.
+ 
+@@ -290,7 +290,7 @@ cdef class PartitionMatroid(Matroid):
+         """
+         return self._groundset
+ 
+-    cpdef int _rank(self, frozenset X):
++    cpdef int _rank(self, frozenset X) noexcept:
+         r"""
+         Return the rank of a set ``X``.
+ 
+diff --git a/sage/sets/disjoint_set.pxd b/sage/sets/disjoint_set.pxd
+index 3c83519..6448df3 100644
+--- a/sage/sets/disjoint_set.pxd
++++ b/sage/sets/disjoint_set.pxd
+@@ -19,8 +19,8 @@ cdef class DisjointSet_class(SageObject):
+     cpdef number_of_subsets(self)
+ 
+ cdef class DisjointSet_of_integers(DisjointSet_class):
+-    cpdef int find(self, int i)
+-    cpdef void union(self, int i, int j)
++    cpdef int find(self, int i) noexcept
++    cpdef void union(self, int i, int j) noexcept
+     cpdef root_to_elements_dict(self)
+     cpdef element_to_root_dict(self)
+     cpdef to_digraph(self)
+@@ -29,7 +29,7 @@ cdef class DisjointSet_of_hashables(DisjointSet_class):
+     cdef list _int_to_el
+     cdef dict _el_to_int
+     cpdef find(self, e)
+-    cpdef void union(self, e, f)
++    cpdef void union(self, e, f) noexcept
+     cpdef root_to_elements_dict(self)
+     cpdef element_to_root_dict(self)
+     cpdef to_digraph(self)
+diff --git a/sage/sets/disjoint_set.pyx b/sage/sets/disjoint_set.pyx
+index 1c2d93f..6e2900c 100644
+--- a/sage/sets/disjoint_set.pyx
++++ b/sage/sets/disjoint_set.pyx
+@@ -448,7 +448,7 @@ cdef class DisjointSet_of_integers(DisjointSet_class):
+         for i, parent in enumerate(l):
+             self.union(parent, i)
+ 
+-    cpdef int find(self, int i):
++    cpdef int find(self, int i) noexcept:
+         r"""
+         Return the representative of the set that ``i`` currently belongs to.
+ 
+@@ -492,7 +492,7 @@ cdef class DisjointSet_of_integers(DisjointSet_class):
+             raise ValueError('i must be between 0 and %s (%s given)' % (card - 1, i))
+         return OP_find(self._nodes, i)
+ 
+-    cpdef void union(self, int i, int j):
++    cpdef void union(self, int i, int j) noexcept:
+         r"""
+         Combine the set of ``i`` and the set of ``j`` into one.
+ 
+@@ -797,7 +797,7 @@ cdef class DisjointSet_of_hashables(DisjointSet_class):
+         cdef int r = <int> OP_find(self._nodes, i)
+         return self._int_to_el[r]
+ 
+-    cpdef void union(self, e, f):
++    cpdef void union(self, e, f) noexcept:
+         r"""
+         Combine the set of ``e`` and the set of ``f`` into one.
+ 
