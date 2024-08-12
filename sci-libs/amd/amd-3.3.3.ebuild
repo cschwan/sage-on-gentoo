@@ -40,7 +40,7 @@ src_configure() {
 src_test() {
 	# Because we are not using cmake_src_test,
 	# we have to manually go to BUILD_DIR
-	cd "${BUILD_DIR}" || die || die
+	cd "${BUILD_DIR}" || die
 	# Run demo files
 	local demofiles=(
 		amd_demo
