@@ -12,6 +12,7 @@ MY_SP=${MY_PM}-${PV}
 DESCRIPTION="Jmol is a java molecular viever for 3-D chemical structures."
 HOMEPAGE="https://jmol.sourceforge.net/"
 SRC_URI="https://downloads.sourceforge.net/jmol/Jmol/${MY_P}-binary.tar.gz"
+S="${WORKDIR}"/${MY_SP}
 
 LICENSE="LGPL-2.1"
 SLOT="0"
@@ -23,8 +24,6 @@ RDEPEND=">=virtual/jre-1.7"
 DOCS="*.txt"
 
 QA_PREBUILT="*"
-
-S="${WORKDIR}"/${MY_SP}
 
 src_prepare(){
 	default
