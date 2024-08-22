@@ -1,7 +1,7 @@
 diff --git a/src/sage_docbuild/ext/sage_autodoc.py b/src/sage_docbuild/ext/sage_autodoc.py
 index d60d5efbf44..d8e88af9f95 100644
---- a/src/sage_docbuild/ext/sage_autodoc.py
-+++ b/src/sage_docbuild/ext/sage_autodoc.py
+--- a/sage_docbuild/ext/sage_autodoc.py
++++ b/sage_docbuild/ext/sage_autodoc.py
 @@ -12,7 +12,7 @@ The original header of :mod:`sphinx.ext.autodoc`:
      for those who like elaborate docstrings.
  
