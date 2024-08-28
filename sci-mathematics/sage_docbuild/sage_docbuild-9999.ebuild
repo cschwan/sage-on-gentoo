@@ -25,12 +25,11 @@ SLOT="0"
 RESTRICT="mirror test"
 
 RDEPEND="
-	>=dev-python/sphinx-7.2.0[${PYTHON_USEDEP}]
+	>=dev-python/sphinx-7.4.7[${PYTHON_USEDEP}]
 	dev-python/jupyter-sphinx[${PYTHON_USEDEP}]
 "
 PDEPEND="~sci-mathematics/sagemath-standard-${PV}[${PYTHON_USEDEP}]"
 
 PATCHES=(
-	"${FILESDIR}"/sphinx8.patch
 	"${FILESDIR}"/sage-9.3-linguas.patch
 )
