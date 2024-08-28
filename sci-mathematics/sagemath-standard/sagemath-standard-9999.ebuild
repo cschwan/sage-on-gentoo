@@ -140,8 +140,6 @@ REQUIRED_USE="doc? ( jmol )
 	test? ( jmol )"
 
 PATCHES=(
-	"${FILESDIR}"/cython-3.0.11.patch
-	"${FILESDIR}"/sympy-1.13.1.patch
 	"${FILESDIR}"/mpmath-1.4.patch
 	"${FILESDIR}"/gap-4.13.1_b.patch
 	"${FILESDIR}"/${PN}-10.4-env.patch
