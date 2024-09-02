@@ -13,6 +13,10 @@
 # patch preparation process, as sage upstream PR patch are not directly
 # applicable to produced sdist. This is because sdists have one less
 # level depth compared to the git tree.
+# Note that pkgcheck will complain that SRC_URI is unstable, which is
+# a correct statement. PR added using this mechanism should be relatively "stable".
+# Another limitation is that some PR with a long history may include incompatible
+# commits In that case, using this eclass is not possible.
 
 case ${EAPI} in
 	7|8) ;;
@@ -50,17 +54,24 @@ SRC_URI+=$(get_pr_uri)
 # To be called src_prepare
 
 sage-git-patch_patch() {
+	# We need to filter the content of the PR.
+	# we only care about content inside "src".
+	# Furthermore the doc folder is not included in sdist and needs to be filtered out.
+	# but it is the only thing we need when dealing with sage-doc.
 	if [ "${PN}" == "sage-doc" ]; then
-		tree="doc"
+		# for sgae-doc we only care about src/doc
+		tree="src/doc"
 	else
-		tree="sage"
+		# for sdist we only care about src/sage
+		tree="src/sage"
 	fi
 	for patch in "${GIT_PRS[@]}"; do
-		# remove non-source files with patchutils
-		filterdiff -i '*/src/${tree}/*' "${DISTDIR}/sagemath_PR${patch}.patch" > \
+		# remove  files with patchutils
+		filterdiff -i '*/${tree}/*' "${DISTDIR}/sagemath_PR${patch}.patch" > \
 			"${DISTDIR}/${patch}_proc.patch" \
 			|| die "patch for PR ${patch} not found"
-		# apply with eapply
+		# apply with eapply and -p2 as we have the extra "src" folder inside
+		# PR patches.
 		eapply -p2 "${DISTDIR}/${patch}_proc.patch"
 	done
 }
