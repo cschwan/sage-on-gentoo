@@ -7,8 +7,13 @@ PYTHON_COMPAT=( python3_{10..12} )
 PYTHON_REQ_USE="readline,sqlite"
 DISTUTILS_USE_PEP517=setuptools
 DISTUTILS_EXT=1
+GIT_PRS=(
+	38250
+	36641
+	38500
+)
 
-inherit desktop distutils-r1 multiprocessing toolchain-funcs
+inherit desktop distutils-r1 multiprocessing sage-git-patch toolchain-funcs
 
 if [[ ${PV} == 9999 ]]; then
 	inherit git-r3 sage-git
@@ -16,6 +21,7 @@ if [[ ${PV} == 9999 ]]; then
 else
 	inherit pypi
 	KEYWORDS="~amd64 ~amd64-linux ~ppc-macos ~x64-macos"
+	SRC_URI="$(pypi_sdist_url) $(get_pr_uri)"
 fi
 
 DESCRIPTION="Math software for abstract and numerical computations"
@@ -140,8 +146,6 @@ REQUIRED_USE="doc? ( jmol )
 	test? ( jmol )"
 
 PATCHES=(
-	"${FILESDIR}"/numpy-2.0.patch
-	"${FILESDIR}"/sympy-1.13.1.patch
 	"${FILESDIR}"/gap-4.13.1.patch
 	"${FILESDIR}"/${PN}-10.4-env.patch
 	"${FILESDIR}"/sage_exec-9.3.patch
@@ -155,6 +159,8 @@ pkg_setup() {
 
 python_prepare_all() {
 	distutils-r1_python_prepare_all
+
+	sage-git-patch_patch
 
 	# use installed copy, not the vendored one.
 	rm -rf sage_setup

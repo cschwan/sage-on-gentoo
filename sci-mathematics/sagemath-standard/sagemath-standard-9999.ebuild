@@ -7,8 +7,11 @@ PYTHON_COMPAT=( python3_{10..12} )
 PYTHON_REQ_USE="readline,sqlite"
 DISTUTILS_USE_PEP517=setuptools
 DISTUTILS_EXT=1
+GIT_PRS=(
+	38113
+)
 
-inherit desktop distutils-r1 multiprocessing toolchain-funcs
+inherit desktop distutils-r1 multiprocessing sage-git-patch toolchain-funcs
 
 if [[ ${PV} == 9999 ]]; then
 	inherit git-r3 sage-git
@@ -140,7 +143,6 @@ REQUIRED_USE="doc? ( jmol )
 	test? ( jmol )"
 
 PATCHES=(
-	"${FILESDIR}"/mpmath-1.4.patch
 	"${FILESDIR}"/gap-4.13.1_b.patch
 	"${FILESDIR}"/${PN}-10.4-env.patch
 	"${FILESDIR}"/sage_exec-9.3.patch
@@ -155,6 +157,7 @@ pkg_setup() {
 python_prepare_all() {
 	distutils-r1_python_prepare_all
 
+	sage-git-patch_patch
 	# Files to delete for mpmath 1.4 support
 	rm -f \
 		sage/libs/mpmath/ext_libmp.pyx \
