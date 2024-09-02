@@ -71,15 +71,15 @@ DOCS=(
 )
 
 # python_check_deps happilly processes $PV.
-# python_check_deps() {
-# 	python_has_version -b "dev-python/sphinx[${PYTHON_USEDEP}]" &&
-# 	python_has_version -b "~sci-mathematics/sagemath-standard-${PV}[${PYTHON_USEDEP},jmol]" &&
-# 	python_has_version -b "~sci-mathematics/sage_docbuild-${PV}[${PYTHON_USEDEP}]" &&
-# 	python_has_version -b "dev-python/furo[${PYTHON_USEDEP}]" &&
-# 	python_has_version -b "dev-python/jupyter-sphinx[${PYTHON_USEDEP}]" &&
-# 	python_has_version -b "dev-python/sphinx-copybutton[${PYTHON_USEDEP}]" &&
-# 	python_has_version -b "dev-python/sphinx-inline-tabs[${PYTHON_USEDEP}]"
-# }
+python_check_deps() {
+	python_has_version -b "dev-python/sphinx[${PYTHON_USEDEP}]" &&
+	python_has_version -b "~sci-mathematics/sagemath-standard-${PV}[${PYTHON_USEDEP},jmol]" &&
+	python_has_version -b "~sci-mathematics/sage_docbuild-${PV}[${PYTHON_USEDEP}]" &&
+	python_has_version -b "dev-python/furo[${PYTHON_USEDEP}]" &&
+	python_has_version -b "dev-python/jupyter-sphinx[${PYTHON_USEDEP}]" &&
+	python_has_version -b "dev-python/sphinx-copybutton[${PYTHON_USEDEP}]" &&
+	python_has_version -b "dev-python/sphinx-inline-tabs[${PYTHON_USEDEP}]"
+}
 
 src_unpack(){
 	if [[ ${PV} == 9999 ]]; then
