@@ -24,7 +24,10 @@ DEPEND=">=sci-libs/suitesparseconfig-${Sparse_PV}
 	>=sci-libs/cholmod-5.2.0
 	virtual/blas"
 RDEPEND="${DEPEND}"
-BDEPEND="doc? ( virtual/latex-base )"
+BDEPEND="doc? (
+	virtual/latex-base
+	dev-texlive/texlive-plaingeneric
+)"
 
 pkg_pretend() {
 	[[ ${MERGE_TYPE} != binary ]] && use openmp && tc-check-openmp
