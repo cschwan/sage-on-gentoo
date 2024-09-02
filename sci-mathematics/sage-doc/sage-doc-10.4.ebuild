@@ -5,8 +5,11 @@ EAPI=8
 
 PYTHON_COMPAT=( python3_{10..12} )
 PYTHON_REQ_USE="readline,sqlite"
+GIT_PRS=(
+	38250
+)
 
-inherit multiprocessing python-any-r1
+inherit multiprocessing python-any-r1 sage-git-patch
 
 if [[ ${PV} == 9999 ]]; then
 	inherit git-r3
@@ -14,7 +17,8 @@ if [[ ${PV} == 9999 ]]; then
 	EGIT_BRANCH=develop
 	EGIT_CHECKOUT_DIR="${WORKDIR}/${P}"
 else
-	SRC_URI="https://github.com/sagemath/sage/archive/${PV}.tar.gz -> ${P}.tar.gz"
+	SRC_URI="https://github.com/sagemath/sage/archive/${PV}.tar.gz -> ${P}.tar.gz
+		$(get_pr_uri)"
 	KEYWORDS="~amd64 ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos"
 	S="${WORKDIR}/sage-${PV}"
 fi
@@ -57,7 +61,6 @@ RDEPEND="dev-libs/mathjax"
 DEPEND="dev-libs/mathjax"
 
 PATCHES=(
-	"${FILESDIR}"/numpy-2.0.patch
 	"${FILESDIR}"/${PN}-10.4-makefile.patch
 )
 
@@ -68,15 +71,15 @@ DOCS=(
 )
 
 # python_check_deps happilly processes $PV.
-python_check_deps() {
-	python_has_version -b "dev-python/sphinx[${PYTHON_USEDEP}]" &&
-	python_has_version -b "~sci-mathematics/sagemath-standard-${PV}[${PYTHON_USEDEP},jmol]" &&
-	python_has_version -b "~sci-mathematics/sage_docbuild-${PV}[${PYTHON_USEDEP}]" &&
-	python_has_version -b "dev-python/furo[${PYTHON_USEDEP}]" &&
-	python_has_version -b "dev-python/jupyter-sphinx[${PYTHON_USEDEP}]" &&
-	python_has_version -b "dev-python/sphinx-copybutton[${PYTHON_USEDEP}]" &&
-	python_has_version -b "dev-python/sphinx-inline-tabs[${PYTHON_USEDEP}]"
-}
+# python_check_deps() {
+# 	python_has_version -b "dev-python/sphinx[${PYTHON_USEDEP}]" &&
+# 	python_has_version -b "~sci-mathematics/sagemath-standard-${PV}[${PYTHON_USEDEP},jmol]" &&
+# 	python_has_version -b "~sci-mathematics/sage_docbuild-${PV}[${PYTHON_USEDEP}]" &&
+# 	python_has_version -b "dev-python/furo[${PYTHON_USEDEP}]" &&
+# 	python_has_version -b "dev-python/jupyter-sphinx[${PYTHON_USEDEP}]" &&
+# 	python_has_version -b "dev-python/sphinx-copybutton[${PYTHON_USEDEP}]" &&
+# 	python_has_version -b "dev-python/sphinx-inline-tabs[${PYTHON_USEDEP}]"
+# }
 
 src_unpack(){
 	if [[ ${PV} == 9999 ]]; then
@@ -88,6 +91,8 @@ src_unpack(){
 
 src_prepare(){
 	default
+
+	sage-git-patch_patch
 
 	einfo "bootstrapping the documentation - be patient"
 	SAGE_ROOT="${S}" PATH="${S}/build/bin:${PATH}" src/doc/bootstrap || die "cannot bootstrap the documentation"
