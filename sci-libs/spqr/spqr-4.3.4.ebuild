@@ -14,7 +14,7 @@ SRC_URI="https://github.com/DrTimothyAldenDavis/SuiteSparse/archive/refs/tags/v$
 S="${WORKDIR}/${Sparse_P}/${PN^^}"
 LICENSE="GPL-2+"
 SLOT="0/4"
-KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~hppa ~ia64 ~loong ~mips ~ppc ~ppc64 ~riscv ~sparc ~x86 ~amd64-linux ~x86-linux"
+KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~hppa ~loong ~mips ~ppc ~ppc64 ~riscv ~sparc ~x86 ~amd64-linux ~x86-linux"
 IUSE="doc openmp test"
 RESTRICT="!test? ( test )"
 
@@ -24,7 +24,10 @@ DEPEND=">=sci-libs/suitesparseconfig-${Sparse_PV}
 	>=sci-libs/cholmod-5.2.0
 	virtual/blas"
 RDEPEND="${DEPEND}"
-BDEPEND="doc? ( virtual/latex-base )"
+BDEPEND="doc? (
+	virtual/latex-base
+	dev-texlive/texlive-plaingeneric
+)"
 
 pkg_pretend() {
 	[[ ${MERGE_TYPE} != binary ]] && use openmp && tc-check-openmp

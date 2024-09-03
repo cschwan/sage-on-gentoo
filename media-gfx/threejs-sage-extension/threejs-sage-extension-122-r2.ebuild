@@ -8,6 +8,7 @@ MY_P="${MY_PN}-r${PV}"
 DESCRIPTION="JavaScript 3D library"
 HOMEPAGE="https://github.com/sagemath/threejs-sage"
 SRC_URI="https://github.com/sagemath/threejs-sage/archive/r${PV}.tar.gz -> ${P}.tar.gz"
+S="${WORKDIR}/threejs-sage-r${PV}"
 
 LICENSE="MIT"
 SLOT="0"
@@ -17,8 +18,6 @@ DOCS=(
 	LICENSE
 	README.md
 )
-
-S="${WORKDIR}/threejs-sage-r${PV}"
 
 src_install(){
 	default

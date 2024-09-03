@@ -5,8 +5,11 @@ EAPI=8
 
 PYTHON_COMPAT=( python3_{10..12} )
 PYTHON_REQ_USE="readline,sqlite"
+GIT_PRS=(
+	38250
+)
 
-inherit multiprocessing python-any-r1
+inherit multiprocessing python-any-r1 sage-git-patch
 
 if [[ ${PV} == 9999 ]]; then
 	inherit git-r3
@@ -14,7 +17,8 @@ if [[ ${PV} == 9999 ]]; then
 	EGIT_BRANCH=develop
 	EGIT_CHECKOUT_DIR="${WORKDIR}/${P}"
 else
-	SRC_URI="https://github.com/sagemath/sage/archive/${PV}.tar.gz -> ${P}.tar.gz"
+	SRC_URI="https://github.com/sagemath/sage/archive/${PV}.tar.gz -> ${P}.tar.gz
+		$(get_pr_uri)"
 	KEYWORDS="~amd64 ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos"
 	S="${WORKDIR}/sage-${PV}"
 fi
@@ -57,7 +61,6 @@ RDEPEND="dev-libs/mathjax"
 DEPEND="dev-libs/mathjax"
 
 PATCHES=(
-	"${FILESDIR}"/numpy-2.0.patch
 	"${FILESDIR}"/${PN}-10.4-makefile.patch
 )
 
@@ -88,6 +91,8 @@ src_unpack(){
 
 src_prepare(){
 	default
+
+	sage-git-patch_patch
 
 	einfo "bootstrapping the documentation - be patient"
 	SAGE_ROOT="${S}" PATH="${S}/build/bin:${PATH}" src/doc/bootstrap || die "cannot bootstrap the documentation"

@@ -1,2 +1,0 @@
-move sci-libs/libbrial sci-libs/brial
-move dev-python/pybrial dev-python/sage-brial

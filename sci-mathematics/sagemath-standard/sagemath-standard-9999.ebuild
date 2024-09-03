@@ -7,8 +7,11 @@ PYTHON_COMPAT=( python3_{10..12} )
 PYTHON_REQ_USE="readline,sqlite"
 DISTUTILS_USE_PEP517=setuptools
 DISTUTILS_EXT=1
+GIT_PRS=(
+	38113
+)
 
-inherit desktop distutils-r1 multiprocessing toolchain-funcs
+inherit desktop distutils-r1 multiprocessing sage-git-patch toolchain-funcs
 
 if [[ ${PV} == 9999 ]]; then
 	inherit git-r3 sage-git
@@ -58,7 +61,7 @@ DEPEND="
 	sci-mathematics/cliquer
 	sci-mathematics/eclib:=[flint]
 	>=sci-mathematics/flint-3.1.3:=[ntl]
-	>=sci-mathematics/gap-4.12.2
+	>=sci-mathematics/gap-4.13.1
 	>=sci-mathematics/giac-1.9.0
 	>=sci-mathematics/glpk-5.0:0=[gmp]
 	~sci-mathematics/gmp-ecm-7.0.5[-openmp]
@@ -140,7 +143,6 @@ REQUIRED_USE="doc? ( jmol )
 	test? ( jmol )"
 
 PATCHES=(
-	"${FILESDIR}"/sympy-1.13.1.patch
 	"${FILESDIR}"/gap-4.13.1_b.patch
 	"${FILESDIR}"/${PN}-10.4-env.patch
 	"${FILESDIR}"/sage_exec-9.3.patch
@@ -155,6 +157,14 @@ pkg_setup() {
 python_prepare_all() {
 	distutils-r1_python_prepare_all
 
+	sage-git-patch_patch
+	# Files to delete for mpmath 1.4 support
+	rm -f \
+		sage/libs/mpmath/ext_libmp.pyx \
+		sage/libs/mpmath/ext_impl.pxd \
+		sage/libs/mpmath/ext_impl.pyx \
+		sage/libs/mpmath/ext_main.pxd \
+		sage/libs/mpmath/ext_main.pyx
 	# use installed copy, not the vendored one.
 	rm -rf sage_setup
 
