@@ -7,9 +7,10 @@ PYTHON_COMPAT=( python3_{10..12} )
 PYTHON_REQ_USE="readline,sqlite"
 DISTUTILS_USE_PEP517=setuptools
 DISTUTILS_EXT=1
-GIT_PRS=(
-	38113
-)
+# 38113 mpmath 1.4 support
+# GIT_PRS=(
+# 	38113
+# )
 
 inherit desktop distutils-r1 multiprocessing sage-git-patch toolchain-funcs
 
@@ -97,7 +98,7 @@ RDEPEND="
 	dev-python/conway-polynomials[${PYTHON_USEDEP}]
 	>=dev-python/cvxopt-1.2.6[glpk,${PYTHON_USEDEP}]
 	>=dev-python/fpylll-0.6.0[${PYTHON_USEDEP}]
-	>=dev-python/mpmath-1.2.1[${PYTHON_USEDEP}]
+	<dev-python/mpmath-1.4.0_alpha1[${PYTHON_USEDEP}]
 	>=dev-python/networkx-2.6[${PYTHON_USEDEP}]
 	>=dev-python/pexpect-4.2.1[${PYTHON_USEDEP}]
 	>=dev-python/rpy-3.5.7[${PYTHON_USEDEP}]
@@ -157,14 +158,6 @@ pkg_setup() {
 python_prepare_all() {
 	distutils-r1_python_prepare_all
 
-	sage-git-patch_patch
-	# Files to delete for mpmath 1.4 support
-	rm -f \
-		sage/libs/mpmath/ext_libmp.pyx \
-		sage/libs/mpmath/ext_impl.pxd \
-		sage/libs/mpmath/ext_impl.pyx \
-		sage/libs/mpmath/ext_main.pxd \
-		sage/libs/mpmath/ext_main.pyx
 	# use installed copy, not the vendored one.
 	rm -rf sage_setup
 
