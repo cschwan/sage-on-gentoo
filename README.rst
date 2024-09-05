@@ -107,7 +107,7 @@ INSTALL SAGE
 
 Type::
 
-     emerge -va sage
+     emerge -va sagemath-standard
 
 to install sage; please note that this will pull in a lot of dependencies. If
 you can not proceed with this step (because of circular dependencies, missing
