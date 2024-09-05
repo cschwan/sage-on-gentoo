@@ -158,14 +158,6 @@ pkg_setup() {
 python_prepare_all() {
 	distutils-r1_python_prepare_all
 
-	sage-git-patch_patch
-	# Files to delete for mpmath 1.4 support
-	rm -f \
-		sage/libs/mpmath/ext_libmp.pyx \
-		sage/libs/mpmath/ext_impl.pxd \
-		sage/libs/mpmath/ext_impl.pyx \
-		sage/libs/mpmath/ext_main.pxd \
-		sage/libs/mpmath/ext_main.pyx
 	# use installed copy, not the vendored one.
 	rm -rf sage_setup
 
