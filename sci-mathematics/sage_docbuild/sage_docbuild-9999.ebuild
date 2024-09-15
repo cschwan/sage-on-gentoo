@@ -32,5 +32,4 @@ PDEPEND="~sci-mathematics/sagemath-standard-${PV}[${PYTHON_USEDEP}]"
 
 PATCHES=(
 	"${FILESDIR}"/sage-9.3-linguas.patch
-        "${FILESDIR}"/sphinx8-act2.patch
 )
