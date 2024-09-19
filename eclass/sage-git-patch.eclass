@@ -65,9 +65,10 @@ sage-git-patch_patch() {
 		# for sdist we only care about src/sage
 		tree="src/sage"
 	fi
+	echo "Processing for ${tree}"
 	for patch in "${GIT_PRS[@]}"; do
 		# remove  files with patchutils
-		filterdiff -i '*/${tree}/*' "${DISTDIR}/sagemath_PR${patch}.patch" > \
+		filterdiff -i "*/${tree}/*" "${DISTDIR}/sagemath_PR${patch}.patch" > \
 			"${T}/${patch}_proc.patch" \
 			|| die "patch for PR ${patch} not found"
 		# apply with eapply and -p2 as we have the extra "src" folder inside
