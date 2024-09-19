@@ -58,12 +58,17 @@ sage-git-patch_patch() {
 	# we only care about content inside "src".
 	# Furthermore the doc folder is not included in sdist and needs to be filtered out.
 	# but it is the only thing we need when dealing with sage-doc.
+	# The patch level is also not the same between sdist and sage-doc.
 	if [ "${PN}" == "sage-doc" ]; then
-		# for sgae-doc we only care about src/doc
+		# for sage-doc we only care about src/doc
 		tree="src/doc"
+		# src is part of S in sage-doc
+		plevel="-p1"
 	else
 		# for sdist we only care about src/sage
 		tree="src/sage"
+		# src is not part sage sdists we need to patch at the p2 level
+		plevel="-p2"
 	fi
 	echo "Processing for ${tree}"
 	for patch in "${GIT_PRS[@]}"; do
@@ -71,8 +76,6 @@ sage-git-patch_patch() {
 		filterdiff -i "*/${tree}/*" "${DISTDIR}/sagemath_PR${patch}.patch" > \
 			"${T}/${patch}_proc.patch" \
 			|| die "patch for PR ${patch} not found"
-		# apply with eapply and -p2 as we have the extra "src" folder inside
-		# PR patches.
-		eapply -p2 "${T}/${patch}_proc.patch"
+		eapply "${plevel}" "${T}/${patch}_proc.patch"
 	done
 }
