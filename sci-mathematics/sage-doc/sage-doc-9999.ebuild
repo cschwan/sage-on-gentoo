@@ -85,6 +85,13 @@ src_unpack(){
 	default
 }
 
+pkg_setup() {
+	if has media-gfx/graphviz; then
+		has dev-tex/dot2tex || \
+			die "if you have graphviz installed, dot2tex also needs to be installed to build the documentation"
+	fi
+}
+
 src_prepare(){
 	default
 
