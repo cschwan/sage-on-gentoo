@@ -77,19 +77,19 @@ python_check_deps() {
 	python_has_version -b "dev-python/sphinx-inline-tabs[${PYTHON_USEDEP}]"
 }
 
+pkg_setup() {
+	if has_version media-gfx/graphviz ; then
+		has dev-tex/dot2tex || die \
+			"You have graphviz installed. In that case you also need to install dot2tex to build the documentation."
+	fi
+}
+
 src_unpack(){
 	if [[ ${PV} == 9999 ]]; then
 		git-r3_src_unpack
 	fi
 
 	default
-}
-
-pkg_pretend() {
-	if has media-gfx/graphviz; then
-		has dev-tex/dot2tex || \
-			die "if you have graphviz installed, dot2tex also needs to be installed to build the documentation"
-	fi
 }
 
 src_prepare(){
