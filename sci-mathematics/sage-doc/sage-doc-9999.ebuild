@@ -79,7 +79,7 @@ python_check_deps() {
 
 pkg_setup() {
 	if has_version media-gfx/graphviz ; then
-		has dev-tex/dot2tex || die \
+		has_version dev-tex/dot2tex || die \
 			"You have graphviz installed. In that case you also need to install dot2tex to build the documentation."
 	fi
 }
@@ -90,13 +90,6 @@ src_unpack(){
 	fi
 
 	default
-}
-
-pkg_setup() {
-	if has media-gfx/graphviz; then
-		has dev-tex/dot2tex || \
-			die "if you have graphviz installed, dot2tex also needs to be installed to build the documentation"
-	fi
 }
 
 src_prepare(){
