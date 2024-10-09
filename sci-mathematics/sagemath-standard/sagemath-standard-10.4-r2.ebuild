@@ -11,6 +11,7 @@ GIT_PRS=(
 	38250
 	36641
 	38500
+	38683
 )
 
 inherit desktop distutils-r1 multiprocessing sage-git-patch toolchain-funcs
