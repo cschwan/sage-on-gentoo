@@ -22,7 +22,7 @@ PATCHES=(
 	)
 
 src_compile() {
-	append-cflags -DLARGE_MEM -DVERBOSE
+	append-cflags -DLARGE_MEM -DVERBOSE -Wno-error=implicit-function-declaration -Wno-error=implicit-int
 
 	emake CC="$(tc-getCC)" CFLAGS="${CFLAGS}" LDFLAGS="${LDFLAGS}" all
 }
