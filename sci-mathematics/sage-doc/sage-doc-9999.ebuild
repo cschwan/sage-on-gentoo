@@ -88,11 +88,6 @@ src_unpack(){
 src_prepare(){
 	default
 
-	if has_version media-gfx/graphviz ; then
-		has_version dev-tex/dot2tex || die \
-			"You have graphviz installed. In that case you also need to install dot2tex to build the documentation."
-	fi
-
 	einfo "bootstrapping the documentation - be patient"
 	SAGE_ROOT="${S}" PATH="${S}/build/bin:${PATH}" src/doc/bootstrap || die "cannot bootstrap the documentation"
 
