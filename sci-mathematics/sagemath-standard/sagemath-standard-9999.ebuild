@@ -140,7 +140,6 @@ REQUIRED_USE="doc? ( jmol )
 	test? ( jmol )"
 
 PATCHES=(
-	"${FILESDIR}"/gap-4.13.1_b.patch
 	"${FILESDIR}"/mpmath.patch
 	"${FILESDIR}"/${PN}-10.4-env.patch
 	"${FILESDIR}"/sage_exec-9.3.patch
