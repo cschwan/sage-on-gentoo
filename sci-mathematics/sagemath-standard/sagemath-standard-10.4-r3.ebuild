@@ -101,7 +101,7 @@ RDEPEND="
 	dev-python/conway-polynomials[${PYTHON_USEDEP}]
 	>=dev-python/cvxopt-1.2.6[glpk,${PYTHON_USEDEP}]
 	>=dev-python/fpylll-0.6.0[${PYTHON_USEDEP}]
-	<dev-python/mpmath-1.4.0_alpha1[${PYTHON_USEDEP}]
+	>=dev-python/mpmath-1.4.0_alpha2[${PYTHON_USEDEP}]
 	>=dev-python/networkx-2.6[${PYTHON_USEDEP}]
 	>=dev-python/pexpect-4.2.1[${PYTHON_USEDEP}]
 	>=dev-python/rpy-3.5.7[${PYTHON_USEDEP}]
@@ -147,6 +147,7 @@ REQUIRED_USE="doc? ( jmol )
 	test? ( jmol )"
 
 PATCHES=(
+	"${FILESDIR}"/mpmath_for10.4.patch
 	"${FILESDIR}"/gap-4.13.1.patch
 	"${FILESDIR}"/${PN}-10.4-env.patch
 	"${FILESDIR}"/sage_exec-9.3.patch
@@ -162,6 +163,14 @@ python_prepare_all() {
 	distutils-r1_python_prepare_all
 
 	sage-git-patch_patch
+
+	# delete mpmath files. This saves a lot of patch space
+	rm -r \
+		sage/libs/mpmath/ext_impl.pxd \
+		sage/libs/mpmath/ext_impl.pyx \
+		sage/libs/mpmath/ext_libmp.pyx \
+		sage/libs/mpmath/ext_main.pxd \
+		sage/libs/mpmath/ext_main.pyx
 
 	# use installed copy, not the vendored one.
 	rm -rf sage_setup
