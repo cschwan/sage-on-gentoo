@@ -73,7 +73,8 @@ sage-git-patch_patch() {
 	echo "Processing for ${tree}"
 	for patch in "${GIT_PRS[@]}"; do
 		# remove  files with patchutils
-		filterdiff -i "*/${tree}/*" "${DISTDIR}/sagemath_PR${patch}.patch" > \
+		# do not include a final "/" in the pattern to catch things like sage_docbuild or sage_setup.
+		filterdiff -i "*/${tree}*" "${DISTDIR}/sagemath_PR${patch}.patch" > \
 			"${T}/${patch}_proc.patch" \
 			|| die "patch for PR ${patch} not found"
 		eapply "${plevel}" "${T}/${patch}_proc.patch"
