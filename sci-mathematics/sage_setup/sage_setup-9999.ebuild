@@ -31,7 +31,7 @@ DEPEND="
 RDEPEND="
 	${DEPEND}
 	>=dev-python/cython-3.0.0[${PYTHON_USEDEP}]
-	dev-python/jinja[${PYTHON_USEDEP}]
+	dev-python/jinja2[${PYTHON_USEDEP}]
 "
 
 PATCHES=(
