@@ -42,7 +42,7 @@ DEPEND="
 	>=dev-python/cypari2-2.1.4[${PYTHON_USEDEP}]
 	>=dev-python/cysignals-1.11.2-r1[${PYTHON_USEDEP}]
 	>=dev-python/docutils-0.12[${PYTHON_USEDEP}]
-	>=dev-python/gmpy-2.1.0_beta5[${PYTHON_USEDEP}]
+	>=dev-python/gmpy2-2.1.0_beta5[${PYTHON_USEDEP}]
 	>=dev-python/ipykernel-4.6.0[${PYTHON_USEDEP}]
 	>=dev-python/ipython-7.0.0[notebook,${PYTHON_USEDEP}]
 	dev-python/ipywidgets[${PYTHON_USEDEP}]
