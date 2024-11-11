@@ -39,7 +39,7 @@ DEPEND="
 	>=dev-python/ipykernel-4.6.0[${PYTHON_USEDEP}]
 	>=dev-python/ipython-7.0.0[notebook,${PYTHON_USEDEP}]
 	dev-python/ipywidgets[${PYTHON_USEDEP}]
-	>=dev-python/jinja-2.8[${PYTHON_USEDEP}]
+	>=dev-python/jinja2-2.8[${PYTHON_USEDEP}]
 	dev-python/jupyter-core[${PYTHON_USEDEP}]
 	~dev-python/jupyter-jsmol-2022.1.0[${PYTHON_USEDEP}]
 	dev-python/lrcalc[${PYTHON_USEDEP}]
