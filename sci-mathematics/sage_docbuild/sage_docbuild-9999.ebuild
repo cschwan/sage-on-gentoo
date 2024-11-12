@@ -5,8 +5,11 @@ EAPI=8
 
 PYTHON_COMPAT=( python3_{10..12} )
 DISTUTILS_USE_PEP517=setuptools
+GIT_PRS=(
+	38957
+)
 
-inherit distutils-r1
+inherit distutils-r1 sage-git-patch
 
 if [[ ${PV} == 9999 ]]; then
 	inherit git-r3 sage-git
@@ -33,3 +36,9 @@ PDEPEND="~sci-mathematics/sagemath-standard-${PV}[${PYTHON_USEDEP}]"
 PATCHES=(
 	"${FILESDIR}"/sage-9.3-linguas.patch
 )
+
+python_prepare_all() {
+	distutils-r1_python_prepare_all
+
+	sage-git-patch_patch
+}
