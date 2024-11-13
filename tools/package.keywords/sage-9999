@@ -6,7 +6,7 @@ dev-python/cvxopt
 >dev-python/furo-2023.8.19
 ~dev-python/jupyter-jsmol-2022.1.0
 dev-python/jupyter-sphinx
->=dev-python/rpy-3.5.7
+>=dev-python/rpy2-3.5.7
 >=dev-python/scikit-build-core-0.9.6
 dev-python/sphinx-copybutton
 dev-python/sphinx-inline-tabs
