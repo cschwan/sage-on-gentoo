@@ -8,6 +8,7 @@ DISTUTILS_USE_PEP517=setuptools
 GIT_PRS=(
 	38549
 	38619
+	38957
 )
 
 inherit distutils-r1 sage-git-patch
