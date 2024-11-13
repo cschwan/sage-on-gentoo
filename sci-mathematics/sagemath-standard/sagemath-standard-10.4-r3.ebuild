@@ -104,7 +104,7 @@ RDEPEND="
 	>=dev-python/mpmath-1.4.0_alpha2[${PYTHON_USEDEP}]
 	>=dev-python/networkx-2.6[${PYTHON_USEDEP}]
 	>=dev-python/pexpect-4.2.1[${PYTHON_USEDEP}]
-	>=dev-python/rpy-3.5.7[${PYTHON_USEDEP}]
+	>=dev-python/rpy2-3.5.7[${PYTHON_USEDEP}]
 	>=dev-python/scipy-1.1.0[${PYTHON_USEDEP}]
 	dev-python/sympy[${PYTHON_USEDEP}]
 	media-gfx/tachyon[png]
