@@ -7,6 +7,9 @@ PYTHON_COMPAT=( python3_{10..12} )
 PYTHON_REQ_USE="readline,sqlite"
 DISTUTILS_USE_PEP517=setuptools
 DISTUTILS_EXT=1
+GIT_PRS=(
+	38962
+)
 
 inherit desktop distutils-r1 multiprocessing sage-git-patch toolchain-funcs
 
@@ -56,7 +59,7 @@ DEPEND="
 	media-libs/gd[jpeg,png]
 	media-libs/libpng:0=
 	sci-mathematics/cliquer
-	sci-mathematics/eclib:=[flint]
+	>=sci-mathematics/eclib-20241112:=[flint]
 	>=sci-mathematics/flint-3.1.3:=[ntl]
 	>=sci-mathematics/gap-4.13.1
 	>=sci-mathematics/giac-1.9.0
@@ -153,6 +156,8 @@ pkg_setup() {
 
 python_prepare_all() {
 	distutils-r1_python_prepare_all
+
+	sage-git-patch_patch
 
 	# delete mpmath files. This saves a lot of patch space
 	rm -r \
