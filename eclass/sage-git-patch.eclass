@@ -45,6 +45,11 @@ get_pr_uri() {
 	echo "${GIT_PR_URI}"
 }
 
+# Note that the following line is not helpful when used in conjunction with
+# pypi eclass. The pypi eclass define SRC_URI with an equal sign. It does not
+# append to existing value. In that case the ebuild should include a line
+# SRC_URI="$(pypi_sdist_url) $(get_pr_uri)"
+# after pypi is inherited.
 SRC_URI+=$(get_pr_uri)
 
 # @FUNCTION: sage-git-patch_patch
