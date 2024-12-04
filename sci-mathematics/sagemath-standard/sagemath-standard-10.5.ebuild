@@ -19,6 +19,7 @@ if [[ ${PV} == 9999 ]]; then
 else
 	inherit pypi
 	KEYWORDS="~amd64 ~amd64-linux ~ppc-macos ~x64-macos"
+	SRC_URI="$(pypi_sdist_url) $(get_pr_uri)"
 fi
 
 DESCRIPTION="Math software for abstract and numerical computations"
