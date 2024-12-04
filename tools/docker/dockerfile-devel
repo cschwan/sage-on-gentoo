@@ -16,9 +16,9 @@ RUN mkdir -p /etc/portage/package.mask
 RUN echo "dev-lang/rust-bin" > /etc/portage/package.mask/rust-bin.masked
 
 # continue with image build ...
-# set python 3.11
-RUN echo 'PYTHON_TARGETS="python3_11"' >> /etc/portage/make.conf
-RUN echo 'PYTHON_SINGLE_TARGET="python3_11"' >> /etc/portage/make.conf
+# set python 3.12
+RUN echo 'PYTHON_TARGETS="python3.12"' >> /etc/portage/make.conf
+RUN echo 'PYTHON_SINGLE_TARGET="python3.12"' >> /etc/portage/make.conf
 # add license for givaro(?)
 RUN echo 'ACCEPT_LICENSE="CeCILL-B"' >> /etc/portage/make.conf
 # disable portage features not working in containers
