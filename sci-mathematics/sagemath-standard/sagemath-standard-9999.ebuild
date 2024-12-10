@@ -77,7 +77,7 @@ DEPEND="
 	>=sci-libs/givaro-4.1.1
 	>=sci-libs/gsl-2.3
 	>=sci-libs/iml-1.0.4
-	sci-libs/libbraiding
+	>=sci-libs/libbraiding-1.3
 	>=sci-libs/libhomfly-1.0.1
 	>=sci-libs/linbox-1.6.3
 	sci-libs/m4ri

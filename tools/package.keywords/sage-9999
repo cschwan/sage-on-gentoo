@@ -16,6 +16,7 @@ media-gfx/tachyon
 sci-libs/dsdp
 >=sci-libs/fplll-5.4.5
 >=dev-python/fpylll-0.6.0
+=sci-libs/libbraiding-1.3*
 sci-mathematics/cu2
 sci-mathematics/cubex
 sci-mathematics/dikcube
