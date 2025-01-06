@@ -3,7 +3,7 @@
 
 EAPI=8
 
-PYTHON_COMPAT=( python3_{10..12} )
+PYTHON_COMPAT=( python3_{10..13} )
 DISTUTILS_USE_PEP517=setuptools
 DISTUTILS_EXT=1
 
@@ -16,7 +16,7 @@ LICENSE="EPL-2.0"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
 
-DEPEND="dev-python/numpy[${PYTHON_USEDEP}]
+DEPEND="<dev-python/numpy-2.0.0[${PYTHON_USEDEP}]
 	dev-python/scipy[${PYTHON_USEDEP}]
 	=sci-libs/coinor-cbc-2.10*"
 RDEPEND="${DEPEND}"
