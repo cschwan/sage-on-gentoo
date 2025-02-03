@@ -35,7 +35,7 @@ DEPEND="
 	>=dev-libs/ntl-11.4.3:=
 	>=dev-libs/ppl-1.1
 	>=dev-lisp/ecl-21.2.1
-	>=dev-python/cypari2-2.1.4[${PYTHON_USEDEP}]
+	>=dev-python/cypari2-2.2.1[${PYTHON_USEDEP}]
 	>=dev-python/cysignals-1.11.2-r1[${PYTHON_USEDEP}]
 	>=dev-python/docutils-0.12[${PYTHON_USEDEP}]
 	>=dev-python/gmpy2-2.1.0_beta5[${PYTHON_USEDEP}]
@@ -66,7 +66,7 @@ DEPEND="
 	>=sci-mathematics/glpk-5.0:0=[gmp]
 	sci-mathematics/gmp-ecm[-openmp]
 	=sci-mathematics/lcalc-2.0*
-	>=sci-mathematics/pari-2.15.2
+	>=sci-mathematics/pari-2.17.1
 	<sci-mathematics/pari-2.16.0
 	=sci-mathematics/planarity-3.0*
 	>=sci-mathematics/rw-0.7
