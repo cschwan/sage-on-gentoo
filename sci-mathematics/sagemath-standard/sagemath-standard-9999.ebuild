@@ -7,9 +7,8 @@ PYTHON_COMPAT=( python3_{10..12} )
 PYTHON_REQ_USE="readline,sqlite"
 DISTUTILS_USE_PEP517=setuptools
 DISTUTILS_EXT=1
-GIT_PRS=(
-	38962
-)
+#GIT_PRS=(
+#)
 
 inherit desktop distutils-r1 multiprocessing sage-git-patch toolchain-funcs
 
@@ -142,7 +141,7 @@ REQUIRED_USE="doc? ( jmol )
 	test? ( jmol )"
 
 PATCHES=(
-	"${FILESDIR}"/mpmath.patch
+	"${FILESDIR}"/mpmath-10.6.patch
 	"${FILESDIR}"/${PN}-10.4-env.patch
 	"${FILESDIR}"/sage_exec-9.3.patch
 	"${FILESDIR}"/${PN}-10.4b-neutering.patch
