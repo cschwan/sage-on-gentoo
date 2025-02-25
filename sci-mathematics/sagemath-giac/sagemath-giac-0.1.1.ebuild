@@ -26,7 +26,7 @@ SLOT="0"
 
 #RESTRICT="test"
 
-DEPEND="~sci-mathematics/sagemath-standard-${PV}[${PYTHON_USEDEP}]
+DEPEND=">=sci-mathematics/sagemath-standard-10.5[${PYTHON_USEDEP}]
 	sci-mathematics/giac"
 RDEPEND="${DEPEND}"
 BDEPEND="dev-python/cython[${PYTHON_USEDEP}]"
