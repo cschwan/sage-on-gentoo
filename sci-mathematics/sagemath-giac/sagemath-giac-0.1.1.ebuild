@@ -24,6 +24,8 @@ HOMEPAGE="https://www.sagemath.org"
 LICENSE="GPL-2+"
 SLOT="0"
 
+#RESTRICT="test"
+
 DEPEND="~sci-mathematics/sagemath-standard-${PV}[${PYTHON_USEDEP}]
 	sci-mathematics/giac"
 RDEPEND="${DEPEND}"
