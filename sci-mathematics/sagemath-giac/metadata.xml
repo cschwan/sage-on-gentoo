@@ -6,6 +6,6 @@
 		<name>Francois Bissey</name>
 	</maintainer>
 	<upstream>
-		<remote-id type="pypi">sagemath-giac</remote-id>
+		<remote-id type="github">sagemath/sagemath-giac</remote-id>
 	</upstream>
 </pkgmetadata>
