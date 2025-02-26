@@ -1,8 +1,8 @@
 diff --git a/sage/env.py b/sage/env.py
-index 060eb22..1e6b1bf 100644
+index 310f24f..789fffd 100644
 --- a/sage/env.py
 +++ b/sage/env.py
-@@ -259,8 +259,9 @@ SINGULAR_BIN = var("SINGULAR_BIN") or "Singular"
+@@ -258,8 +258,9 @@ SINGULAR_BIN = var("SINGULAR_BIN") or "Singular"
  OPENMP_CFLAGS = var("OPENMP_CFLAGS", "")
  OPENMP_CXXFLAGS = var("OPENMP_CXXFLAGS", "")
  
@@ -14,8 +14,21 @@ index 060eb22..1e6b1bf 100644
  
  # misc
  SAGE_BANNER = var("SAGE_BANNER", "")
+diff --git a/sage/functions/exp_integral.py b/sage/functions/exp_integral.py
+index e074c43..09d2bbd 100644
+--- a/sage/functions/exp_integral.py
++++ b/sage/functions/exp_integral.py
+@@ -993,7 +993,7 @@ class Function_cos_integral(BuiltinFunction):
+             sage: N(cos_integral(10^-10), digits=30)                                    # needs sage.symbolic
+             -22.4486352650389239795759024568
+             sage: cos_integral(ComplexField(100)(I))                                    # needs sage.symbolic
+-            0.83786694098020824089467857943 + 1.5707963267948966192313216916*I
++            0.83786694098020824089467857944 + 1.5707963267948966192313216916*I
+         """
+         return _mpmath_utils_call(_mpmath_ci, z, parent=parent)
+ 
 diff --git a/sage/libs/mpmath/utils.pyx b/sage/libs/mpmath/utils.pyx
-index 47061a6..b555a29 100644
+index 47061a6..73d2913 100644
 --- a/sage/libs/mpmath/utils.pyx
 +++ b/sage/libs/mpmath/utils.pyx
 @@ -1,9 +1,9 @@
@@ -201,6 +214,15 @@ index 47061a6..b555a29 100644
  
  
  def mpmath_to_sage(x, prec):
+@@ -306,7 +168,7 @@ def sage_to_mpmath(x, prec):
+         sage: print(a.sage_to_mpmath(1+pi, 53))
+         4.14159265358979
+         sage: a.sage_to_mpmath(infinity, 53)
+-        mpf('+inf')
++        mpf('inf')
+         sage: a.sage_to_mpmath(-infinity, 53)
+         mpf('-inf')
+         sage: a.sage_to_mpmath(NaN, 53)
 @@ -416,7 +278,7 @@ def call(func, *args, **kwargs):
      Check that :issue:`11885` is fixed::
  
@@ -211,7 +233,7 @@ index 47061a6..b555a29 100644
      Check that :issue:`14984` is fixed::
  
 diff --git a/sage/rings/real_mpfr.pyx b/sage/rings/real_mpfr.pyx
-index 1a6acd9..db2bda7 100644
+index 6692021..5f7bed1 100644
 --- a/sage/rings/real_mpfr.pyx
 +++ b/sage/rings/real_mpfr.pyx
 @@ -150,8 +150,6 @@ from sage.structure.richcmp cimport rich_to_bool_sgn
