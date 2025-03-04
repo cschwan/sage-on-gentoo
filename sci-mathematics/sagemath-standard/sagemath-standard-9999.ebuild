@@ -58,10 +58,9 @@ DEPEND="
 	media-libs/gd[jpeg,png]
 	media-libs/libpng:0=
 	sci-mathematics/cliquer
-	>=sci-mathematics/eclib-20241112:=[flint]
+	>=sci-mathematics/eclib-20250122:=[flint]
 	>=sci-mathematics/flint-3.1.3:=[ntl]
 	>=sci-mathematics/gap-4.13.1
-	>=sci-mathematics/giac-1.9.0
 	>=sci-mathematics/glpk-5.0:0=[gmp]
 	sci-mathematics/gmp-ecm[-openmp]
 	=sci-mathematics/lcalc-2.0*
