@@ -3,13 +3,12 @@
 
 EAPI=8
 
-PYTHON_COMPAT=( python3_{10..12} )
+PYTHON_COMPAT=( python3_{10..13} )
 PYTHON_REQ_USE="readline,sqlite"
 DISTUTILS_USE_PEP517=setuptools
 DISTUTILS_EXT=1
-GIT_PRS=(
-	38962
-)
+#GIT_PRS=(
+#)
 
 inherit desktop distutils-r1 multiprocessing sage-git-patch toolchain-funcs
 
@@ -35,7 +34,7 @@ DEPEND="
 	>=dev-libs/ntl-11.4.3:=
 	>=dev-libs/ppl-1.1
 	>=dev-lisp/ecl-21.2.1
-	>=dev-python/cypari2-2.1.4[${PYTHON_USEDEP}]
+	>=dev-python/cypari2-2.2.1[${PYTHON_USEDEP}]
 	>=dev-python/cysignals-1.11.2-r1[${PYTHON_USEDEP}]
 	>=dev-python/docutils-0.12[${PYTHON_USEDEP}]
 	>=dev-python/gmpy2-2.1.0_beta5[${PYTHON_USEDEP}]
@@ -59,15 +58,13 @@ DEPEND="
 	media-libs/gd[jpeg,png]
 	media-libs/libpng:0=
 	sci-mathematics/cliquer
-	>=sci-mathematics/eclib-20241112:=[flint]
+	>=sci-mathematics/eclib-20250122:=[flint]
 	>=sci-mathematics/flint-3.1.3:=[ntl]
 	>=sci-mathematics/gap-4.13.1
-	>=sci-mathematics/giac-1.9.0
 	>=sci-mathematics/glpk-5.0:0=[gmp]
 	sci-mathematics/gmp-ecm[-openmp]
 	=sci-mathematics/lcalc-2.0*
-	>=sci-mathematics/pari-2.15.2
-	<sci-mathematics/pari-2.16.0
+	>=sci-mathematics/pari-2.17.1
 	=sci-mathematics/planarity-3.0*
 	>=sci-mathematics/rw-0.7
 	~sci-mathematics/sage_setup-${PV}[${PYTHON_USEDEP}]
@@ -143,7 +140,7 @@ REQUIRED_USE="doc? ( jmol )
 	test? ( jmol )"
 
 PATCHES=(
-	"${FILESDIR}"/mpmath.patch
+	"${FILESDIR}"/mpmath-10.6.patch
 	"${FILESDIR}"/${PN}-10.4-env.patch
 	"${FILESDIR}"/sage_exec-9.3.patch
 	"${FILESDIR}"/${PN}-10.4b-neutering.patch
