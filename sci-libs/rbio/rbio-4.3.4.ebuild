@@ -7,21 +7,19 @@ inherit cmake
 
 Sparse_PV="7.10.2"
 Sparse_P="SuiteSparse-${Sparse_PV}"
-DESCRIPTION="Simple but educational LDL^T matrix factorization algorithm"
+DESCRIPTION="Sparse matrices Rutherford/Boeing format tools"
 HOMEPAGE="https://people.engr.tamu.edu/davis/suitesparse.html"
 SRC_URI="https://github.com/DrTimothyAldenDavis/SuiteSparse/archive/refs/tags/v${Sparse_PV}.tar.gz -> ${Sparse_P}.gh.tar.gz"
 
-S="${WORKDIR}/${Sparse_P}/${PN^^}"
-LICENSE="LGPL-2.1+"
-SLOT="0/3"
-KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~hppa ~mips ~ppc ~ppc64 ~riscv ~sparc ~x86 ~amd64-linux ~x86-linux"
-IUSE="doc test"
+S="${WORKDIR}/${Sparse_P}/RBio"
+LICENSE="GPL-2+"
+SLOT="0/4"
+KEYWORDS="~amd64"
+IUSE="test"
 RESTRICT="!test? ( test )"
 
-DEPEND=">=sci-libs/suitesparseconfig-${Sparse_PV}
-	>=sci-libs/amd-3.3.1"
+DEPEND=">=sci-libs/suitesparseconfig-${Sparse_PV}"
 RDEPEND="${DEPEND}"
-BDEPEND="doc? ( virtual/latex-base )"
 
 src_configure() {
 	# Define SUITESPARSE_INCLUDEDIR_POSTFIX to "" otherwise it take
@@ -40,31 +38,6 @@ src_test() {
 	# Because we are not using cmake_src_test,
 	# we have to manually go to BUILD_DIR
 	cd "${BUILD_DIR}" || die
-	# Some programs assume that they can access the Matrix folder in ${S}
-	ln -s "${S}/Matrix"
 	# Run demo files
-	local demofiles=(
-		ldlsimple
-		ldllsimple
-		ldlmain
-		ldllmain
-		ldlamd
-		ldllamd
-	)
-	for i in ${demofiles}; do
-		./"${i}" > "${i}.out"
-		diff "${S}/Demo/${i}.out" "${i}.out" || die "failed testing ${i}"
-	done
-}
-
-src_install() {
-	if use doc; then
-		pushd "${S}/Doc" || die
-		emake clean
-		rm -rf *.pdf || die
-		emake
-		popd || die
-		DOCS="${S}/Doc/*.pdf"
-	fi
-	cmake_src_install
+	./RBdemo < "${S}"/RBio/private/west0479.rua || die "failed testing"
 }
