@@ -5,7 +5,7 @@ EAPI=8
 
 inherit cmake
 
-Sparse_PV="7.8.0"
+Sparse_PV="7.10.2"
 Sparse_P="SuiteSparse-${Sparse_PV}"
 DESCRIPTION="Library to order a sparse matrix prior to Cholesky factorization"
 HOMEPAGE="https://people.engr.tamu.edu/davis/suitesparse.html"
