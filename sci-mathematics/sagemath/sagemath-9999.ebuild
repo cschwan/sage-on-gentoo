@@ -68,8 +68,6 @@ DEPEND="
 	>=sci-mathematics/pari-2.17.1
 	=sci-mathematics/planarity-3.0*
 	>=sci-mathematics/rw-0.7
-	~sci-mathematics/sage_setup-${PV}[${PYTHON_USEDEP}]
-	~sci-mathematics/sage-conf-${PV}[${PYTHON_USEDEP}]
 	>=sci-mathematics/singular-4.3.2_p15[readline]
 	>=sci-libs/brial-1.2.10
 	>=sci-libs/givaro-4.1.1
