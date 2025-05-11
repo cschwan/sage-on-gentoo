@@ -37,7 +37,7 @@ PATCHES=(
 	"${FILESDIR}"/cython-3-linkage.patch
 )
 
-distutils_enable_tests setup.py
+distutils_enable_tests unittest
 
 src_prepare(){
 	default

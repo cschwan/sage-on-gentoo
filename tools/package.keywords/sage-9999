@@ -32,6 +32,8 @@ sci-mathematics/palp
 ~sci-mathematics/sage_setup-9999 **
 ~sci-mathematics/sage_docbuild-9999 **
 ~sci-mathematics/sage-doc-9999 **
+~sci-mathematics/sagemath-9999 **
+~sci-mathematics/sagemath-doc-9999 **
 ~sci-mathematics/sage-data-combinatorial_designs-20140630
 sci-mathematics/sage-data-elliptic_curves
 ~sci-mathematics/sage-data-graphs-20210214
