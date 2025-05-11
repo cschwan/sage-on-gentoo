@@ -18,4 +18,4 @@ KEYWORDS="~amd64 ~x86"
 
 BDEPEND="dev-python/sphinx[${PYTHON_USEDEP}]"
 
-distutils_enable_tests setup.py
+distutils_enable_tests unittest

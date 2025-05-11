@@ -17,4 +17,4 @@ LICENSE="GPL-2+"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
 
-distutils_enable_tests setup.py
+distutils_enable_tests unittest
