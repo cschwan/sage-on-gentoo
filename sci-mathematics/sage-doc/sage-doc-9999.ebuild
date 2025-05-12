@@ -26,7 +26,7 @@ LICENSE="GPL-2"
 SLOT="0"
 IUSE="doc-pdf"
 L10N_USEDEP="l10n_en,"
-LANGS="ca de es fr hu it ja pt ru tr"
+LANGS="ca de es fr hu it ja pt ru tr zh"
 for X in ${LANGS} ; do
 	IUSE="${IUSE} l10n_${X}"
 	L10N_USEDEP="${L10N_USEDEP}l10n_${X}?,"
