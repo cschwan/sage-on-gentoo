@@ -21,7 +21,7 @@ else
 fi
 
 DESCRIPTION="Support using Giac in sagemath"
-HOMEPAGE="https://www.sagemath.org"
+HOMEPAGE="https://github.com/sagemath/sagemath-giac"
 
 LICENSE="GPL-2+"
 SLOT="0"
