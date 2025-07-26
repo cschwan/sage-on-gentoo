@@ -31,5 +31,5 @@ RDEPEND="
 PDEPEND="~sci-mathematics/sagemath-standard-${PV}[${PYTHON_USEDEP}]"
 
 PATCHES=(
-	"${FILESDIR}"/sage-9.3-linguas.patch
+	"${FILESDIR}"/sage-10.7-linguas.patch
 )
