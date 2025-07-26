@@ -15,7 +15,7 @@ index 91035a0..28b7652 100644
              # Skip non-language directories
              continue
 +        if DESIRED_LANGUAGES:
-+	    if not (lang.name in DESIRED_LANGUAGES):
++            if not (lang.name in DESIRED_LANGUAGES):
 +                # skip languages that are not desired.
 +                continue
          for document in lang.iterdir():
