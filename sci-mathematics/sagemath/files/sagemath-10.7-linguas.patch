@@ -1,0 +1,23 @@
+diff --git a/src/sage_docbuild/builders.py b/src/sage_docbuild/builders.py
+index 91035a0..28b7652 100644
+--- a/src/sage_docbuild/builders.py
++++ b/src/sage_docbuild/builders.py
+@@ -1161,10 +1161,18 @@ def get_all_documents(source: Path) -> list[Path]:
+         True
+     """
+     documents = []
++    # Get requested languages from the environment if any
++    # getenv default to ' ' to get an empty list if LANGUAGES is not provided
++    DESIRED_LANGUAGES = list(set((os.getenv('LANGUAGES', ' ')).split()))
++
+     for lang in [path for path in source.iterdir() if path.is_dir()]:
+         if not re.match('^[a-z][a-z]$', lang.name):
+             # Skip non-language directories
+             continue
++        if DESIRED_LANGUAGES:
++            if not (lang.name in DESIRED_LANGUAGES):
++                # skip languages that are not desired.
++                continue
+         for document in lang.iterdir():
+             if (document.name not in build_options.OMIT
+                     and document.is_dir()):
