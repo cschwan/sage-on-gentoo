@@ -144,12 +144,12 @@ REQUIRED_USE="doc? ( jmol )
 	test? ( jmol )"
 
 PATCHES=(
-	"${FILESDIR}"/mpmath-10.6.patch
+	"${FILESDIR}"/mpmath-10.7.patch
 	"${FILESDIR}"/${PN}-10.4-env.patch
 	"${FILESDIR}"/sage_exec-9.3.patch
-	"${FILESDIR}"/${PN}-10.4b-neutering.patch
+	"${FILESDIR}"/${PN}-10.7-neutering.patch
 	"${FILESDIR}"/${PN}-9.6-verbosity.patch
-	"${FILESDIR}"/${PN}-9.3-linguas.patch
+	"${FILESDIR}"/${PN}-10.7-linguas.patch
 )
 
 pkg_setup() {

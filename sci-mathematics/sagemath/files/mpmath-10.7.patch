@@ -1,5 +1,5 @@
 diff --git a/src/sage/env.py b/src/sage/env.py
-index 74f0c07e14d..f07661f5b3a 100644
+index c83b8b98b7a..d711eae6b42 100644
 --- a/src/sage/env.py
 +++ b/src/sage/env.py
 @@ -258,8 +258,9 @@ SINGULAR_BIN = var("SINGULAR_BIN") or "Singular"
@@ -28,7 +28,7 @@ index e074c430808..09d2bbda71b 100644
          return _mpmath_utils_call(_mpmath_ci, z, parent=parent)
  
 diff --git a/src/sage/libs/mpmath/meson.build b/src/sage/libs/mpmath/meson.build
-index a197516f9f1..477b70e9aa3 100644
+index a197516f9f1..a7ef073de61 100644
 --- a/src/sage/libs/mpmath/meson.build
 +++ b/src/sage/libs/mpmath/meson.build
 @@ -1,16 +1,11 @@
@@ -60,7 +60,7 @@ index a197516f9f1..477b70e9aa3 100644
  endforeach
  
 diff --git a/src/sage/libs/mpmath/utils.pyx b/src/sage/libs/mpmath/utils.pyx
-index 47061a6bfa4..73d29132ea1 100644
+index 1acf14ea540..fd4a29c7d15 100644
 --- a/src/sage/libs/mpmath/utils.pyx
 +++ b/src/sage/libs/mpmath/utils.pyx
 @@ -1,9 +1,9 @@
@@ -222,22 +222,21 @@ index 47061a6bfa4..73d29132ea1 100644
  
  cdef mpfr_from_mpfval(mpfr_t res, tuple x):
      """
-@@ -162,12 +24,12 @@ cdef mpfr_from_mpfval(mpfr_t res, tuple x):
+@@ -162,11 +24,11 @@ cdef mpfr_from_mpfval(mpfr_t res, tuple x):
      data tuple.
      """
      cdef int sign
 -    cdef Integer man
-+    cdef gmpy2.mpz man
      cdef long exp
-     cdef long bc
-     sign, man, exp, bc = x
++    cdef gmpy2.mpz man
+     sign, man, exp, _ = x
      if man:
 -        mpfr_set_z(res, man.value, MPFR_RNDZ)
 +        mpfr_set_z(res, man.z, MPFR_RNDZ)
          if sign:
              mpfr_neg(res, res, MPFR_RNDZ)
          mpfr_mul_2si(res, res, exp, MPFR_RNDZ)
-@@ -211,7 +73,7 @@ cdef mpfr_to_mpfval(mpfr_t value):
+@@ -210,7 +72,7 @@ cdef mpfr_to_mpfval(mpfr_t value):
          mpz_tdiv_q_2exp(man.value, man.value, trailing)
          exp += trailing
      bc = mpz_sizeinbase(man.value, 2)
@@ -246,7 +245,7 @@ index 47061a6bfa4..73d29132ea1 100644
  
  
  def mpmath_to_sage(x, prec):
-@@ -306,7 +168,7 @@ def sage_to_mpmath(x, prec):
+@@ -305,7 +167,7 @@ def sage_to_mpmath(x, prec):
          sage: print(a.sage_to_mpmath(1+pi, 53))
          4.14159265358979
          sage: a.sage_to_mpmath(infinity, 53)
@@ -255,7 +254,7 @@ index 47061a6bfa4..73d29132ea1 100644
          sage: a.sage_to_mpmath(-infinity, 53)
          mpf('-inf')
          sage: a.sage_to_mpmath(NaN, 53)
-@@ -416,7 +278,7 @@ def call(func, *args, **kwargs):
+@@ -414,7 +276,7 @@ def call(func, *args, **kwargs):
      Check that :issue:`11885` is fixed::
  
          sage: a.call(a.ei, 1.0r, parent=float)
@@ -278,7 +277,7 @@ index 9fc1bedea8f..1c915ebb3d2 100644
  from sage.rings.rational cimport Rational
  from sage.rings.real_double cimport RealDoubleElement
 diff --git a/src/sage/structure/coerce.pyx b/src/sage/structure/coerce.pyx
-index ddd0ccd1b29..8b6f3dea3da 100644
+index a2fbaac2042..5e9c2383299 100644
 --- a/src/sage/structure/coerce.pyx
 +++ b/src/sage/structure/coerce.pyx
 @@ -144,6 +144,13 @@ cpdef py_scalar_parent(py_type):

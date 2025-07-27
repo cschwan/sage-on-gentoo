@@ -1,8 +1,8 @@
 diff --git a/src/sage/doctest/control.py b/src/sage/doctest/control.py
-index 130aa3e..95123b1 100644
+index 441e256..9b0195a 100644
 --- a/src/sage/doctest/control.py
 +++ b/src/sage/doctest/control.py
-@@ -471,15 +471,6 @@ class DocTestController(SageObject):
+@@ -494,15 +494,6 @@ class DocTestController(SageObject):
                  # that the package is actually installed).
                  if 'optional' in options.optional:
                      options.optional.discard('optional')
@@ -19,10 +19,10 @@ index 130aa3e..95123b1 100644
                      from sage.features import package_systems
                      options.optional.update(system.name
 diff --git a/src/sage/misc/all.py b/src/sage/misc/all.py
-index 585db5a..4045c31 100644
+index 3cf3d37..588e21b 100644
 --- a/src/sage/misc/all.py
 +++ b/src/sage/misc/all.py
-@@ -132,8 +132,5 @@ lazy_import('sage.misc.dev_tools', 'runsnake', deprecation=34259)
+@@ -128,8 +128,5 @@ lazy_import('sage.misc.banner', 'banner', deprecation=34259)
  lazy_import('sage.misc.edit_module', 'set_edit_template', deprecation=34259)
  lazy_import('sage.misc.profiler', 'Profiler', deprecation=34259)
  lazy_import('sage.misc.trace', 'trace', deprecation=34259)
@@ -32,7 +32,7 @@ index 585db5a..4045c31 100644
  lazy_import('sage.misc.benchmark', 'benchmark', deprecation=34259)
  lazy_import('sage.repl.interpreter', 'logstr', deprecation=34259)
 diff --git a/src/sage/tests/cmdline.py b/src/sage/tests/cmdline.py
-index 523cbef..8d1d7fe 100644
+index 21a524a..e8090c8 100644
 --- a/src/sage/tests/cmdline.py
 +++ b/src/sage/tests/cmdline.py
 @@ -13,9 +13,7 @@ test.spyx
@@ -61,39 +61,47 @@ index 523cbef..8d1d7fe 100644
  --startuptime
  -t
  -v
-@@ -579,35 +575,6 @@ def test_executable(args, input="", timeout=100.0, pydebug_ignore_warnings=False
-         sage: ret
-         0
+@@ -513,6 +509,7 @@ Some programs of which we check functionality using only ``--version``::
+     0
  
--    Check some things requiring an internet connection::
+     sage: # optional - r
++
+     sage: (out, err, ret) = check_executable(["sage", "--R", "--version"])
+     sage: out.find("R version ") >= 0
+     True
+@@ -529,35 +526,6 @@ Some programs of which we check functionality using only ``--version``::
+     sage: ret
+     0
+ 
+-Check some things requiring an internet connection::
 -
--        sage: # optional - internet
--        sage: (out, err, ret) = test_executable(["sage", "--standard"])
--        sage: out.find("cython") >= 0
--        True
--        sage: err
--        ''
--        sage: ret
--        0
+-    sage: # optional - internet
+-    sage: (out, err, ret) = check_executable(["sage", "--standard"])
+-    sage: out.find("cython") >= 0
+-    True
+-    sage: err
+-    ''
+-    sage: ret
+-    0
 -
--        sage: # optional - internet
--        sage: (out, err, ret) = test_executable(["sage", "--optional"])
--        sage: out.find("database_cremona_ellcurve") >= 0
--        True
--        sage: err
--        ''
--        sage: ret
--        0
+-    sage: # optional - internet
+-    sage: (out, err, ret) = check_executable(["sage", "--optional"])
+-    sage: out.find("database_cremona_ellcurve") >= 0
+-    True
+-    sage: err
+-    ''
+-    sage: ret
+-    0
 -
--        sage: # optional - internet
--        sage: (out, err, ret) = test_executable(["sage", "--experimental"])
--        sage: out.find("valgrind") >= 0
--        True
--        sage: err
--        ''
--        sage: ret
--        0
+-    sage: # optional - internet
+-    sage: (out, err, ret) = check_executable(["sage", "--experimental"])
+-    sage: out.find("valgrind") >= 0
+-    True
+-    sage: err
+-    ''
+-    sage: ret
+-    0
 -
-     Check an illegal command line option.  This outputs an error to stdout,
-     but we allow stderr in case this changes in the future::
+ Check an illegal command line option.  This outputs an error to stdout,
+ but we allow stderr in case this changes in the future::
  
