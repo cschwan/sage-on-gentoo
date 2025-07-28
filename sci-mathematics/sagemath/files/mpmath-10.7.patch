@@ -28,7 +28,7 @@ index e074c430808..09d2bbda71b 100644
          return _mpmath_utils_call(_mpmath_ci, z, parent=parent)
  
 diff --git a/src/sage/libs/mpmath/meson.build b/src/sage/libs/mpmath/meson.build
-index a197516f9f1..a7ef073de61 100644
+index a197516f9f1..feb3708524a 100644
 --- a/src/sage/libs/mpmath/meson.build
 +++ b/src/sage/libs/mpmath/meson.build
 @@ -1,16 +1,11 @@
@@ -48,13 +48,11 @@ index a197516f9f1..a7ef073de61 100644
    'utils' : files('utils.pyx'),
  }
  
-@@ -20,8 +15,8 @@ foreach name, pyx : extension_data
-     sources: pyx,
+@@ -21,7 +16,7 @@ foreach name, pyx : extension_data
      subdir: 'sage/libs/mpmath',
      install: true,
--    include_directories: [inc_cpython, inc_ext, inc_rings],
+     include_directories: [inc_cpython, inc_ext, inc_rings],
 -    dependencies: [py_dep, cysignals, gmp, mpfr],
-+    include_directories: [inc_cpython, inc_ext, inc_gmpy2, inc_rings],
 +    dependencies: [py_dep, cysignals, gmp, gmpy2, mpfr],
    )
  endforeach
