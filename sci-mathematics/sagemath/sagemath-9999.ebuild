@@ -66,7 +66,7 @@ DEPEND="
 	sci-mathematics/gmp-ecm[-openmp]
 	=sci-mathematics/lcalc-2.0*
 	>=sci-mathematics/pari-2.17.1
-	=sci-mathematics/planarity-3.0*
+	>=sci-mathematics/planarity-3.0.2.0
 	>=sci-mathematics/rw-0.7
 	>=sci-mathematics/singular-4.3.2_p15[readline]
 	>=sci-libs/brial-1.2.10
