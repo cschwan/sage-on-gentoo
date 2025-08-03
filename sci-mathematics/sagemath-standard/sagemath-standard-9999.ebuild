@@ -65,7 +65,7 @@ DEPEND="
 	sci-mathematics/gmp-ecm[-openmp]
 	=sci-mathematics/lcalc-2.0*
 	>=sci-mathematics/pari-2.17.1
-	=sci-mathematics/planarity-3.0*
+	>=sci-mathematics/planarity-3.0.2.0
 	>=sci-mathematics/rw-0.7
 	~sci-mathematics/sage_setup-${PV}[${PYTHON_USEDEP}]
 	~sci-mathematics/sage-conf-${PV}[${PYTHON_USEDEP}]
