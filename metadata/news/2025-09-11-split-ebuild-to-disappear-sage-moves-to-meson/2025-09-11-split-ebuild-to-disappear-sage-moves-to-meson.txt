@@ -1,0 +1,24 @@
+Title: ssage split ebuilds will go away in sage 10.8 when sage moves to meson
+Author: Francois Bissey <frp.bissey@gmail.com>
+Content-Type: text/plain
+Posted: 2025-09-11
+Revision: 1
+News-Item-Format: 2.0
+Display-If-Installed: sci-mathematics/sagemath-standard
+
+sage 10.8 is switching to meson as its building system.
+This build system does not currently support the modularisation that happened in
+the last few years, with the exception of sagemath-giac.
+Whe sage-10.8 is released, the best way to migrate will be to unistall sage and
+any optional sagemath-* packages first before installing the new sagemath
+package.
+If you have used the sets, you can achieve that with
+emerge -C @sagemath @sagemath-optional
+emerge sagemath
+
+As of sage-10.8.beta2, the switch has been completed, so users of 
+*-9999 ebuilds which pulls those betas should switch to the already available
+sagemath ebuild.
+Note that the building of the documentation is currently not working and shoud
+be turned off.
+
