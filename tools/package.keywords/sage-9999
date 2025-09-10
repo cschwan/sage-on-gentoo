@@ -27,11 +27,6 @@ sci-mathematics/eclib
 sci-mathematics/mcube
 sci-mathematics/optimal
 sci-mathematics/palp
-~sci-mathematics/sagemath-standard-9999 **
-~sci-mathematics/sage-conf-9999 **
-~sci-mathematics/sage_setup-9999 **
-~sci-mathematics/sage_docbuild-9999 **
-~sci-mathematics/sage-doc-9999 **
 ~sci-mathematics/sagemath-9999 **
 ~sci-mathematics/sagemath-doc-9999 **
 ~sci-mathematics/sage-data-combinatorial_designs-20140630
@@ -44,19 +39,14 @@ sci-mathematics/singular
 ##########################
 sci-mathematics/ExportSageNB
 ~sci-chemistry/sage-jmol-bin-14.29.52
-~sci-mathematics/sage-sws2rst-9999 **
 #########################
 # sage optional binding
 #########################
 sci-libs/modular_decomposition
-~sci-mathematics/sagemath-bliss-9999 **
 dev-libs/igraph
 sci-mathematics/shared_meataxe
-~sci-mathematics/sagemath-meataxe-9999 **
 sci-libs/libsirocco
-~sci-mathematics/sagemath-sirocco-9999 **
 sci-libs/treedec
-~sci-mathematics/sagemath-tdlib-9999 **
 sci-mathematics/sagemath-giac
 # optional packages
 sci-mathematics/database_knotinfo
@@ -64,7 +54,6 @@ sci-mathematics/matroid-database
 sci-mathematics/database_cubic_hecke
 sci-mathematics/surface-dynamics
 sci-mathematics/sage-flatsurf
-~sci-mathematics/sage-sws2rst-9999 **
 # "downstream" snappy packages
 sci-mathematics/snappy-manifolds
 sci-mathematics/knot_floer_homology
