@@ -181,7 +181,7 @@ python_prepare_all() {
 	# using pplpyver from character 11 to remove "dev-python/"
 	sed -i "s:@PPLY_DOC_VERS@:${pplpyver:11}:" "${sage_conf_file}"
 	# Set sage version as stated in VERSION.txt
-	local sage_version=$(cat src/VERSION.txt)
+	local sage_version=$(cat VERSION.txt)
 	sed -i "s:@SAGE_VERSION@:${sage_version}:" "${sage_conf_file}"
 
 	# Turn on debugging capability if required
