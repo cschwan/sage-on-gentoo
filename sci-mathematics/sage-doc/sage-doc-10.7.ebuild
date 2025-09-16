@@ -38,7 +38,9 @@ RESTRICT="mirror test"
 # There is a trick to use $PV in python_gen_any_deps
 # But it breaks checking with pkgcheck, reports of "missing check for ... "
 # may be safely ignored most of the time.
-BDEPEND="$(python_gen_any_dep "
+BDEPEND="
+	$(python_gen_any_dep "
+	<dev-python/docutils-0.22[\${PYTHON_USEDEP}]
 	dev-python/sphinx[\${PYTHON_USEDEP}]
 	dev-python/furo[\${PYTHON_USEDEP}]
 	dev-python/jupyter-sphinx[\${PYTHON_USEDEP}]
@@ -68,6 +70,7 @@ DOCS=(
 
 # python_check_deps happilly processes $PV.
 python_check_deps() {
+	python_has_version -b "dev-python/docutils[${PYTHON_USEDEP}]" &&
 	python_has_version -b "dev-python/sphinx[${PYTHON_USEDEP}]" &&
 	python_has_version -b "~sci-mathematics/sagemath-standard-${PV}[${PYTHON_USEDEP},jmol]" &&
 	python_has_version -b "~sci-mathematics/sage_docbuild-${PV}[${PYTHON_USEDEP}]" &&
