@@ -1,8 +1,8 @@
 diff --git a/src/sage/env.py b/src/sage/env.py
-index c83b8b98b7a..d711eae6b42 100644
+index 2e41399d871..ca13b74da49 100644
 --- a/src/sage/env.py
 +++ b/src/sage/env.py
-@@ -258,8 +258,9 @@ SINGULAR_BIN = var("SINGULAR_BIN") or "Singular"
+@@ -260,8 +260,9 @@ SINGULAR_BIN = var("SINGULAR_BIN") or "Singular"
  OPENMP_CFLAGS = var("OPENMP_CFLAGS", "")
  OPENMP_CXXFLAGS = var("OPENMP_CXXFLAGS", "")
  
@@ -28,16 +28,20 @@ index e074c430808..09d2bbda71b 100644
          return _mpmath_utils_call(_mpmath_ci, z, parent=parent)
  
 diff --git a/src/sage/libs/mpmath/meson.build b/src/sage/libs/mpmath/meson.build
-index a197516f9f1..feb3708524a 100644
+index a49cfaa64df..99de8530686 100644
 --- a/src/sage/libs/mpmath/meson.build
 +++ b/src/sage/libs/mpmath/meson.build
-@@ -1,16 +1,11 @@
+@@ -1,20 +1,12 @@
  py.install_sources(
    '__init__.py',
    'all.py',
 -  'ext_impl.pxd',
+-  'ext_impl.pyx',
+-  'ext_libmp.pyx',
 -  'ext_main.pxd',
+-  'ext_main.pyx',
    'utils.pxd',
+   'utils.pyx',
    subdir: 'sage/libs/mpmath',
  )
  
@@ -48,7 +52,7 @@ index a197516f9f1..feb3708524a 100644
    'utils' : files('utils.pyx'),
  }
  
-@@ -21,7 +16,7 @@ foreach name, pyx : extension_data
+@@ -25,7 +17,7 @@ foreach name, pyx : extension_data
      subdir: 'sage/libs/mpmath',
      install: true,
      include_directories: [inc_cpython, inc_ext, inc_rings],
@@ -262,7 +266,7 @@ index 1acf14ea540..fd4a29c7d15 100644
      Check that :issue:`14984` is fixed::
  
 diff --git a/src/sage/rings/real_mpfr.pyx b/src/sage/rings/real_mpfr.pyx
-index 9fc1bedea8f..1c915ebb3d2 100644
+index 10ff6b8baae..931ece0dd92 100644
 --- a/src/sage/rings/real_mpfr.pyx
 +++ b/src/sage/rings/real_mpfr.pyx
 @@ -150,8 +150,6 @@ from sage.structure.richcmp cimport rich_to_bool_sgn
@@ -374,7 +378,7 @@ index a2fbaac2042..5e9c2383299 100644
  
  cdef class CoercionModel:
 diff --git a/src/sage/tests/books/computational-mathematics-with-sagemath/integration_doctest.py b/src/sage/tests/books/computational-mathematics-with-sagemath/integration_doctest.py
-index f8b5ca511b2..30959f2919f 100644
+index bf2701868ad..0603d419848 100644
 --- a/src/sage/tests/books/computational-mathematics-with-sagemath/integration_doctest.py
 +++ b/src/sage/tests/books/computational-mathematics-with-sagemath/integration_doctest.py
 @@ -151,7 +151,7 @@ Sage example in ./integration.tex, line 846::
