@@ -170,7 +170,7 @@ python_prepare_all() {
 
 	# sage on gentoo environment variables
 	sage_conf_file="pkgs/sage-conf/_sage_conf/_conf.py.in"
-	cp -f "${FILESDIR}"/sage-conf.py-10.3 "${sage_conf_file}"
+	cp -f "${FILESDIR}"/sage-conf.py-10.8 "${sage_conf_file}"
 	eprefixify "${sage_conf_file}"
 	# set the documentation location to the externally provided sage-doc package
 	sed -i "s:@GENTOO_PORTAGE_PF@:sagemath-doc-${PV}:" "${sage_conf_file}"
@@ -180,9 +180,6 @@ python_prepare_all() {
 	local pplpyver=$(best_version dev-python/pplpy)
 	# using pplpyver from character 11 to remove "dev-python/"
 	sed -i "s:@PPLY_DOC_VERS@:${pplpyver:11}:" "${sage_conf_file}"
-	# Set sage version as stated in VERSION.txt
-	local sage_version=$(cat VERSION.txt)
-	sed -i "s:@SAGE_VERSION@:${sage_version}:" "${sage_conf_file}"
 
 	# Turn on debugging capability if required
 	if use debug ; then
