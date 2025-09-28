@@ -6,12 +6,11 @@ EAPI=8
 PYTHON_COMPAT=( python3_{10..13} )
 PYTHON_REQ_USE="readline,sqlite"
 
-inherit multiprocessing python-any-r1
+inherit multiprocessing python-any-r1 prefix
 
 if [[ ${PV} == 9999 ]]; then
 	inherit git-r3
 	EGIT_REPO_URI="https://github.com/sagemath/sage.git"
-	EGIT_BRANCH=develop
 	EGIT_CHECKOUT_DIR="${WORKDIR}/${P}"
 else
 	SRC_URI="https://github.com/sagemath/sage/archive/${PV}.tar.gz -> ${P}.tar.gz"
@@ -55,14 +54,14 @@ BDEPEND="$(python_gen_any_dep "
 RDEPEND="dev-libs/mathjax"
 DEPEND="dev-libs/mathjax"
 
-PATCHES=(
-	"${FILESDIR}"/${PN}-10.4-makefile.patch
-)
-
 HTML_DOCS="${WORKDIR}/build_doc/html/*"
 DOCS=(
 	"${WORKDIR}/build_doc/index.html"
 	"${S}/src/doc/common"
+)
+
+PATCHES=(
+	"${FILESDIR}/40904.patch"
 )
 
 # python_check_deps happilly processes $PV.
@@ -89,12 +88,18 @@ src_prepare(){
 	einfo "bootstrapping the documentation - be patient"
 	SAGE_ROOT="${S}" PATH="${S}/build/bin:${PATH}" src/doc/bootstrap || die "cannot bootstrap the documentation"
 
-	# remove all the sources outside of src/doc to avoid interferences
-	for object in src/* ; do
-		if [ $object != "src/doc" ] ; then
-			rm -rf $object || die "failed to remove $object"
-		fi
-	done
+	# sage on gentoo environment variables
+	sage_conf_file="pkgs/sage-conf/_sage_conf/_conf.py.in"
+	cp -f "${FILESDIR}"/sage-conf.py-10.8 "${sage_conf_file}"
+	eprefixify "${sage_conf_file}"
+	# set the documentation location to the externally provided sage-doc package
+	sed -i "s:@GENTOO_PORTAGE_PF@:sagemath-doc-${PV}:" "${sage_conf_file}"
+	# set lib/lib64 - only useful for GAP_LIB_DIR for now
+	sed -i "s:@libdir@:$(get_libdir):g" "${sage_conf_file}"
+	# Fix finding pplpy documentation with intersphinx
+	local pplpyver=$(best_version dev-python/pplpy)
+	# using pplpyver from character 11 to remove "dev-python/"
+	sed -i "s:@PPLY_DOC_VERS@:${pplpyver:11}:" "${sage_conf_file}"
 }
 
 src_configure(){
@@ -113,11 +118,11 @@ src_configure(){
 		use l10n_$lang && mylang+="$lang "
 	done
 	export LANGUAGES="${mylang}"
+
+	meson setup "${WORKDIR}/build_doc"
 }
 
 src_compile(){
-	cd src/doc
-
 	# Needs to be created beforehand or it gets created as a file with the content of _static/plot_directive.css
 	mkdir -p "${SAGE_DOC}"/html/en/reference/_static
 
@@ -131,11 +136,7 @@ src_compile(){
 	# Nothing seem to happen though
 	addpredict "${ESYSROOT}/var/lib/portage/home/.java"
 
-	emake doc-html
-	if use doc-pdf ; then
-		DOCS+=( "${SAGE_DOC}/pdf" )
-		emake doc-pdf
-	fi
+	meson compile -C "${WORKDIR}/build_doc" doc-html
 }
 
 src_install(){
