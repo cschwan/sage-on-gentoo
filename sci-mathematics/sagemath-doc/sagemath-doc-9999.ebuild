@@ -6,7 +6,7 @@ EAPI=8
 PYTHON_COMPAT=( python3_{10..13} )
 PYTHON_REQ_USE="readline,sqlite"
 
-inherit multiprocessing python-any-r1 prefix
+inherit multiprocessing python-any-r1
 
 if [[ ${PV} == 9999 ]]; then
 	inherit git-r3
@@ -62,6 +62,8 @@ DOCS=(
 
 PATCHES=(
 	"${FILESDIR}/40904.patch"
+	"${FILESDIR}/${PN}-10.8-warnings.patch"
+	"${FILESDIR}/${PN}-10.7-linguas.patch"
 )
 
 # python_check_deps happilly processes $PV.
@@ -88,18 +90,11 @@ src_prepare(){
 	einfo "bootstrapping the documentation - be patient"
 	SAGE_ROOT="${S}" PATH="${S}/build/bin:${PATH}" src/doc/bootstrap || die "cannot bootstrap the documentation"
 
-	# sage on gentoo environment variables
+	# sage on gentoo environment variables - steal from already installed file.
+	sage_init_path=$(sage -c "print(f'{sage.__file__}')")
+	sage_config_path="${sage_init_path%__init__.py}config.py"
 	sage_conf_file="pkgs/sage-conf/_sage_conf/_conf.py.in"
-	cp -f "${FILESDIR}"/sage-conf.py-10.8 "${sage_conf_file}"
-	eprefixify "${sage_conf_file}"
-	# set the documentation location to the externally provided sage-doc package
-	sed -i "s:@GENTOO_PORTAGE_PF@:sagemath-doc-${PV}:" "${sage_conf_file}"
-	# set lib/lib64 - only useful for GAP_LIB_DIR for now
-	sed -i "s:@libdir@:$(get_libdir):g" "${sage_conf_file}"
-	# Fix finding pplpy documentation with intersphinx
-	local pplpyver=$(best_version dev-python/pplpy)
-	# using pplpyver from character 11 to remove "dev-python/"
-	sed -i "s:@PPLY_DOC_VERS@:${pplpyver:11}:" "${sage_conf_file}"
+	cp -f "${sage_config_path}" "${sage_conf_file}"
 }
 
 src_configure(){
