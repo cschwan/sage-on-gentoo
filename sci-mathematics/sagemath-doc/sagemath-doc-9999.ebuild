@@ -136,7 +136,7 @@ src_install(){
 	# Prepare the documentation for installation
 	####################################
 
-	pushd "${WORKDIR}/src/doc"
+	pushd "${WORKDIR}/build_doc/src/doc"
 	# Prune _static folders
 	cp -r html/en/_static html/ || die "failed to copy _static folder"
 	for sdir in `find html -name _static` ; do
