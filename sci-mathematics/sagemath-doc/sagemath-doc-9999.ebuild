@@ -54,9 +54,9 @@ BDEPEND="$(python_gen_any_dep "
 RDEPEND="dev-libs/mathjax"
 DEPEND="dev-libs/mathjax"
 
-HTML_DOCS="${WORKDIR}/build_doc/html/*"
+HTML_DOCS="${WORKDIR}/build_doc/src/doc/html/*"
 DOCS=(
-	"${WORKDIR}/build_doc/index.html"
+	"${WORKDIR}/build_doc/src/doc/index.html"
 	"${S}/src/doc/common"
 )
 
@@ -118,19 +118,6 @@ src_configure(){
 }
 
 src_compile(){
-	# Needs to be created beforehand or it gets created as a file with the content of _static/plot_directive.css
-	mkdir -p "${SAGE_DOC}"/html/en/reference/_static
-
-	# for some reason luatex check whether it can write there.
-	# Of course it should fail, but it triggers the sandbox.
-	addpredict /var/lib/texmf/m_t_x_t_e_s_t.tmp
-	# for some reason opened for write during inventory of reference/plotting(?) - no write happens.
-	# This manifest as root
-	addpredict "${ESYSROOT}/usr/share/sage/cremona/cremona_mini.db"
-	# For some reason java/jmol ignores HOME and uses portage's home as home directory
-	# Nothing seem to happen though
-	addpredict "${ESYSROOT}/var/lib/portage/home/.java"
-
 	meson compile -C "${WORKDIR}/build_doc" doc-html
 }
 
@@ -139,25 +126,25 @@ src_install(){
 	# Prepare the documentation for installation
 	####################################
 
-	pushd "${WORKDIR}"
+	pushd "${WORKDIR}/src/doc"
 	# Prune _static folders
-	cp -r build_doc/html/en/_static build_doc/html/ || die "failed to copy _static folder"
-	for sdir in `find build_doc -name _static` ; do
-		if [ $sdir != "build_doc/html/_static" ] ; then
+	cp -r html/en/_static html/ || die "failed to copy _static folder"
+	for sdir in `find html -name _static` ; do
+		if [ $sdir != "html/_static" ] ; then
 			rm -rf $sdir || die "failed to remove $sdir"
-			ln -rst ${sdir%_static} build_doc/html/_static
+			ln -rst ${sdir%_static} html/_static
 		fi
 	done
 	# Linking to local copy of mathjax folders rather than copying them
 	for sobject in $(ls "${ESYSROOT}"/usr/share/mathjax/) ; do
-		rm -rf build_doc/html/_static/${sobject} \
+		rm -rf html/_static/${sobject} \
 			|| die "failed to remove mathjax object $sobject"
-		ln -st build_doc/html/_static/ ../../../../mathjax/$sobject
+		ln -st html/_static/ ../../../../mathjax/$sobject
 	done
 	# prune .buildinfo files, those are internal to sphinx and are not used after building.
-	find build_doc -name .buildinfo -delete || die "failed to prune buildinfo files"
+	find . -name .buildinfo -delete || die "failed to prune buildinfo files"
 	# prune the jupyter_execute folder created by jupyter-sphinx
-	rm -rf build_doc/html/en/reference/jupyter_execute
+	rm -rf html/en/reference/jupyter_execute
 	popd
 
 	docompress -x /usr/share/doc/"${PF}"/common
