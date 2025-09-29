@@ -118,6 +118,16 @@ src_configure(){
 }
 
 src_compile(){
+	# for some reason luatex check whether it can write there.
+	# Of course it should fail, but it triggers the sandbox.
+	addpredict /var/lib/texmf/m_t_x_t_e_s_t.tmp
+	# for some reason opened for write during inventory of reference/plotting(?) - no write happens.
+	# This manifest as root
+	addpredict "${ESYSROOT}/usr/share/sage/cremona/cremona_mini.db"
+	# For some reason java/jmol ignores HOME and uses portage's home as home directory
+	# Nothing seem to happen though
+	addpredict "${ESYSROOT}/var/lib/portage/home/.java"
+
 	meson compile -C "${WORKDIR}/build_doc" doc-html
 }
 
