@@ -61,7 +61,6 @@ DOCS=(
 )
 
 PATCHES=(
-	"${FILESDIR}/40904.patch"
 	"${FILESDIR}/${PN}-10.8-warnings.patch"
 	"${FILESDIR}/${PN}-10.7-linguas.patch"
 )
