@@ -145,6 +145,7 @@ REQUIRED_USE="doc? ( jmol )
 
 PATCHES=(
 	"${FILESDIR}"/mpmath-10.8.patch
+	"${FILESDIR}"/${PN}-10.8-config.py.in.patch
 	"${FILESDIR}"/${PN}-10.4-env.patch
 	"${FILESDIR}"/sage_exec-9.3.patch
 	"${FILESDIR}"/${PN}-10.7-neutering.patch
@@ -169,8 +170,11 @@ python_prepare_all() {
 		src/sage/libs/mpmath/ext_main.pyx
 
 	# sage on gentoo environment variables
-	sage_conf_file="pkgs/sage-conf/_sage_conf/_conf.py.in"
-	cp -f "${FILESDIR}"/sage-conf.py-10.8 "${sage_conf_file}"
+	sage_conf_file="src/sage/config.py.in"
+	# Finding sage's version string and setting it in sage_conf_file
+	sage_version_string=( $(head -n 1 VERSION.txt) )
+	sed -i "s:@PACKAGE_VERSION@:${sage_version_string[0]}:" "${sage_conf_file}"
+	# replace prefix
 	eprefixify "${sage_conf_file}"
 	# set the documentation location to the externally provided sage-doc package
 	sed -i "s:@GENTOO_PORTAGE_PF@:sagemath-doc-${PV}:" "${sage_conf_file}"
