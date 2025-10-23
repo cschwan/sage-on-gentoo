@@ -1,0 +1,74 @@
+diff --git a/src/sage/config.py.in b/src/sage/config.py.in
+index d7ae0db56d4..5b069b7fbbb 100644
+--- a/src/sage/config.py.in
++++ b/src/sage/config.py.in
+@@ -1,4 +1,4 @@
+-# @configure_input@
++#
+ from pathlib import Path
+ 
+ import sage
+@@ -15,10 +15,10 @@ SAGE_ROOT = "@SAGE_ROOT@"
+ # The semicolon-separated list of GAP root paths. This is the list of
+ # locations that are searched for GAP packages. This is passed directly
+ # to GAP via the -l flag.
+-GAP_ROOT_PATHS = "@GAP_ROOT_PATHS@".replace("${prefix}", SAGE_LOCAL)
++GAP_ROOT_PATHS = "@GENTOO_PORTAGE_EPREFIX@/usr/@libdir@/gap;@GENTOO_PORTAGE_EPREFIX@/usr/share/gap"
+ 
+ # The path to the standalone maxima executable.
+-MAXIMA = "@SAGE_MAXIMA@".replace("${prefix}", SAGE_LOCAL)
++MAXIMA = "maxima -l ecl"
+ 
+ # Set this to the empty string if your ECL can load maxima without
+ # further prodding.
+@@ -40,15 +40,15 @@ SAGE_NAUTY_BINS_PREFIX = "@SAGE_NAUTY_BINS_PREFIX@"
+ SAGE_ECMBIN = "@SAGE_ECMBIN@"
+ 
+ # Names or paths of the 4ti2 executables
+-FOURTITWO_HILBERT = "@FOURTITWO_HILBERT@"
+-FOURTITWO_MARKOV = "@FOURTITWO_MARKOV@"
+-FOURTITWO_GRAVER = "@FOURTITWO_GRAVER@"
+-FOURTITWO_ZSOLVE = "@FOURTITWO_ZSOLVE@"
+-FOURTITWO_QSOLVE = "@FOURTITWO_QSOLVE@"
+-FOURTITWO_RAYS = "@FOURTITWO_RAYS@"
+-FOURTITWO_PPI = "@FOURTITWO_PPI@"
+-FOURTITWO_CIRCUITS = "@FOURTITWO_CIRCUITS@"
+-FOURTITWO_GROEBNER = "@FOURTITWO_GROEBNER@"
++FOURTITWO_HILBERT = "hilbert"
++FOURTITWO_MARKOV = "markov"
++FOURTITWO_GRAVER = "graver"
++FOURTITWO_ZSOLVE = "zsolve"
++FOURTITWO_QSOLVE = "qsolve"
++FOURTITWO_RAYS = "rays"
++FOURTITWO_PPI = "ppi"
++FOURTITWO_CIRCUITS = "circuits"
++FOURTITWO_GROEBNER = "groebner"
+ 
+ # Colon-separated list of pkg-config modules to search for cblas functionality.
+ # We hard-code it here as cblas because configure (build/pkgs/openblas/spkg-configure.m4)
+@@ -60,7 +60,7 @@ SAGE_ARCHFLAGS = "@SAGE_ARCHFLAGS@"
+ SAGE_PKG_CONFIG_PATH = "@SAGE_PKG_CONFIG_PATH@".replace("$SAGE_LOCAL", SAGE_LOCAL)
+ 
+ # Used in sage.repl.ipython_kernel.install
+-MATHJAX_DIR = "@SAGE_MATHJAX_DIR@".replace("${prefix}", SAGE_LOCAL)
++MATHJAX_DIR = "@GENTOO_PORTAGE_EPREFIX@/usr/share/mathjax"
+ THREEJS_DIR = SAGE_LOCAL + "/share/threejs-sage"
+ 
+ # OpenMP flags, if available.
+@@ -73,6 +73,16 @@ SAGE_SPKG_WHEELS = (
+     "@SAGE_VENV@".replace("${SAGE_LOCAL}", SAGE_LOCAL) + "/var/lib/sage/wheels"
+ )
+ 
++# Some Gentoo definitions
++SAGE_SHARE   = "@GENTOO_PORTAGE_EPREFIX@/usr/share/sage"
++SAGE_DOC     = "@GENTOO_PORTAGE_EPREFIX@/usr/share/doc/@GENTOO_PORTAGE_PF@"
++
++JMOL_DIR     = "@GENTOO_PORTAGE_EPREFIX@/usr/share/sage-jmol-bin/lib"
++MTXLIB       = "@GENTOO_PORTAGE_EPREFIX@/usr/share/meataxe"
++PPLPY_DOCS   = "@GENTOO_PORTAGE_EPREFIX@/usr/share/doc/@PPLY_DOC_VERS@/html"
++
++LIE_INFO_DIR = "@GENTOO_PORTAGE_EPREFIX@/usr/share/lie"
++
+ 
+ def is_editable_install() -> bool:
+     """
