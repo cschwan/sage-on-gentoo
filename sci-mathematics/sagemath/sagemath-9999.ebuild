@@ -228,7 +228,7 @@ python_install() {
 	python_optimize "${D}/$(python_get_sitedir)/sage/ext_data/nbconvert"
 
 	# install test script
-	python_doscript "${S}"/src/bin/sage-runtest
+	python_doscript "${S}"/src/sage/bin/sage-runtest
 }
 
 python_install_all() {
