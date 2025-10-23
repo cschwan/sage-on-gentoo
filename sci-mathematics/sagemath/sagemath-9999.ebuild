@@ -226,6 +226,11 @@ python_install() {
 
 	# Optimize lone postprocess.py script
 	python_optimize "${D}/$(python_get_sitedir)/sage/ext_data/nbconvert"
+
+	# install test script
+	if use test ; then
+		python_doscript src/bin/sage-runtest
+	fi
 }
 
 python_install_all() {
@@ -257,11 +262,6 @@ python_install_all() {
 		/usr/share/jupyter/kernels/sagemath/logo-64x64.png
 	dosym ../../../../.."${PYTHON_SITEDIR#${ESYSROOT}}"/sage/ext_data/notebook-ipython/logo.svg \
 		/usr/share/jupyter/kernels/sagemath/logo.svg
-}
-
-python_test() {
-	SAGE_DOC_SRC="${S}/doc" \
-		sage -tp $(makeopts_jobs) --installed --long --baseline-stats-path "${FILESDIR}"/${PN}-9.6-testfailures.json || die
 }
 
 pkg_preinst() {
