@@ -26,7 +26,10 @@ HOMEPAGE="https://github.com/sagemath/sagemath-giac"
 LICENSE="GPL-2+"
 SLOT="0"
 
-DEPEND=">=sci-mathematics/sagemath-standard-10.5[${PYTHON_USEDEP}]
+DEPEND="|| (
+		>=sci-mathematics/sagemath-standard-10.5[${PYTHON_USEDEP}]
+		>=sci-mathematics/sagemath-10.7[${PYTHON_USEDEP}]
+	)
 	sci-mathematics/giac"
 RDEPEND="${DEPEND}"
 BDEPEND="dev-python/cython[${PYTHON_USEDEP}]"
