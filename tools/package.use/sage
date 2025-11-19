@@ -15,7 +15,7 @@ sci-mathematics/gmp-ecm     -openmp
 sci-mathematics/maxima      ecl
 sci-mathematics/lcalc       pari
 sci-mathematics/pari        data gmp doc threads
-sys-libs/zlib               minizip
+virtual/zlib                minizip
 sys-devel/gcc               fortran
 
 # bliss seems to be broken with latest gmp at least in sage doctests
