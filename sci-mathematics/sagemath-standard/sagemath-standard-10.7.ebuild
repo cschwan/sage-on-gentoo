@@ -82,7 +82,7 @@ DEPEND="
 	>=sci-libs/mpfi-1.5.2
 	>=sci-libs/symmetrica-2.0-r3
 	>=sys-libs/readline-6.2
-	sys-libs/zlib
+	virtual/zlib
 	virtual/cblas
 
 	test? ( ~sci-mathematics/sage_docbuild-${PV}[${PYTHON_USEDEP}] )
