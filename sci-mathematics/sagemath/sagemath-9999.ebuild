@@ -81,7 +81,7 @@ DEPEND="
 	>=sci-libs/mpfi-1.5.2
 	>=sci-libs/symmetrica-2.0-r3
 	>=sys-libs/readline-6.2
-	sys-libs/zlib
+	virtual/zlib
 	virtual/cblas
 
 	test? ( ~sci-mathematics/sage_docbuild-${PV}[${PYTHON_USEDEP}] )
@@ -226,6 +226,9 @@ python_install() {
 
 	# Optimize lone postprocess.py script
 	python_optimize "${D}/$(python_get_sitedir)/sage/ext_data/nbconvert"
+
+	# install test script
+	python_doscript "${S}"/src/bin/sage-runtests
 }
 
 python_install_all() {
@@ -257,11 +260,6 @@ python_install_all() {
 		/usr/share/jupyter/kernels/sagemath/logo-64x64.png
 	dosym ../../../../.."${PYTHON_SITEDIR#${ESYSROOT}}"/sage/ext_data/notebook-ipython/logo.svg \
 		/usr/share/jupyter/kernels/sagemath/logo.svg
-}
-
-python_test() {
-	SAGE_DOC_SRC="${S}/doc" \
-		sage -tp $(makeopts_jobs) --installed --long --baseline-stats-path "${FILESDIR}"/${PN}-9.6-testfailures.json || die
 }
 
 pkg_preinst() {
