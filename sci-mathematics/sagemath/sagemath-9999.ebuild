@@ -64,7 +64,7 @@ DEPEND="
 	>=sci-mathematics/gap-4.13.1
 	>=sci-mathematics/glpk-5.0:0=[gmp]
 	sci-mathematics/gmp-ecm[-openmp]
-	sci-mathematics/lcalc
+	>=sci-mathematics/lcalc-2.1.0
 	>=sci-mathematics/pari-2.17.1
 	>=sci-mathematics/planarity-3.0.2.0
 	>=sci-mathematics/rw-0.7
@@ -75,7 +75,7 @@ DEPEND="
 	>=sci-libs/iml-1.0.4
 	>=sci-libs/libbraiding-1.3
 	>=sci-libs/libhomfly-1.0.1
-	>=sci-libs/linbox-1.6.3
+	>=sci-libs/linbox-1.7.1
 	sci-libs/m4ri
 	sci-libs/m4rie
 	>=sci-libs/mpfi-1.5.2
