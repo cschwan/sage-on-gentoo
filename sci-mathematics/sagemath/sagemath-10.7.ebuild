@@ -25,7 +25,7 @@ HOMEPAGE="https://www.sagemath.org"
 
 LICENSE="GPL-2"
 SLOT="0"
-IUSE="debug +doc +jmol latex test X"
+IUSE="debug +jmol latex test X"
 
 DEPEND="
 	dev-libs/gmp:0=
@@ -129,7 +129,6 @@ BDEPEND=">=dev-python/cython-3.0.0[${PYTHON_USEDEP}]
 	dev-python/pplpy[doc,${PYTHON_USEDEP}]"
 
 PDEPEND="
-	doc? ( ~sci-mathematics/sagemath-doc-${PV} )
 	latex? (
 		~dev-tex/sagetex-3.6.1
 		|| ( app-text/dvipng[truetype] media-gfx/imagemagick[png] )
@@ -140,8 +139,7 @@ CHECKREQS_DISK_BUILD="8G"
 
 RESTRICT="mirror !test? ( test )"
 
-REQUIRED_USE="doc? ( jmol )
-	test? ( jmol )"
+REQUIRED_USE="test? ( jmol )"
 
 PATCHES=(
 	"${FILESDIR}"/mpmath-10.7.patch
@@ -303,12 +301,6 @@ pkg_postinst() {
 	einfo "such as version mismatches and numerical noise. Since Sage is"
 	einfo "changing constantly we do not maintain an up-to-date list of known"
 	einfo "failures."
-
-	if ! use doc ; then
-		ewarn "You haven't requested the documentation."
-		ewarn "The html version of the sage manual won't be available in the sage notebook."
-		ewarn "It can still be installed by building sage-doc separately."
-	fi
 
 	einfo ""
 	einfo "IF YOU EXPERIENCE PROBLEMS and wish to report them please use the"
