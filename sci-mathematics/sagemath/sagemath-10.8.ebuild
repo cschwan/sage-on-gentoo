@@ -25,7 +25,7 @@ HOMEPAGE="https://www.sagemath.org"
 
 LICENSE="GPL-2"
 SLOT="0"
-IUSE="debug +jmol latex test X"
+IUSE="debug +doc +jmol latex test X"
 
 DEPEND="
 	dev-libs/gmp:0=
@@ -129,6 +129,7 @@ BDEPEND=">=dev-python/cython-3.0.0[${PYTHON_USEDEP}]
 	dev-python/pplpy[doc,${PYTHON_USEDEP}]"
 
 PDEPEND="
+	doc? ( ~sci-mathematics/sagemath-doc-${PV} )
 	latex? (
 		~dev-tex/sagetex-3.6.1
 		|| ( app-text/dvipng[truetype] media-gfx/imagemagick[png] )
@@ -139,10 +140,12 @@ CHECKREQS_DISK_BUILD="8G"
 
 RESTRICT="mirror !test? ( test )"
 
-REQUIRED_USE="test? ( jmol )"
+REQUIRED_USE="doc? ( jmol )
+	test? ( jmol )"
 
 PATCHES=(
-	"${FILESDIR}"/mpmath-10.7.patch
+	"${FILESDIR}"/mpmath-10.8.patch
+	"${FILESDIR}"/${PN}-10.8-config.py.in.patch
 	"${FILESDIR}"/${PN}-10.4-env.patch
 	"${FILESDIR}"/sage_exec-9.3.patch
 	"${FILESDIR}"/${PN}-10.7-neutering.patch
@@ -167,8 +170,11 @@ python_prepare_all() {
 		src/sage/libs/mpmath/ext_main.pyx
 
 	# sage on gentoo environment variables
-	sage_conf_file="pkgs/sage-conf/_sage_conf/_conf.py.in"
-	cp -f "${FILESDIR}"/sage-conf.py-10.3 "${sage_conf_file}"
+	sage_conf_file="src/sage/config.py.in"
+	# Finding sage's version string and setting it in sage_conf_file
+	sage_version_string=( $(head -n 1 VERSION.txt) )
+	sed -i "s:@PACKAGE_VERSION@:${sage_version_string[0]}:" "${sage_conf_file}"
+	# replace prefix
 	eprefixify "${sage_conf_file}"
 	# set the documentation location to the externally provided sage-doc package
 	sed -i "s:@GENTOO_PORTAGE_PF@:sagemath-doc-${PV}:" "${sage_conf_file}"
@@ -178,9 +184,6 @@ python_prepare_all() {
 	local pplpyver=$(best_version dev-python/pplpy)
 	# using pplpyver from character 11 to remove "dev-python/"
 	sed -i "s:@PPLY_DOC_VERS@:${pplpyver:11}:" "${sage_conf_file}"
-	# Set sage version as stated in VERSION.txt
-	local sage_version=$(cat src/VERSION.txt)
-	sed -i "s:@SAGE_VERSION@:${sage_version}:" "${sage_conf_file}"
 
 	# Turn on debugging capability if required
 	if use debug ; then
@@ -223,6 +226,9 @@ python_install() {
 
 	# Optimize lone postprocess.py script
 	python_optimize "${D}/$(python_get_sitedir)/sage/ext_data/nbconvert"
+
+	# install test script
+	python_doscript "${S}"/src/bin/sage-runtests
 }
 
 python_install_all() {
@@ -254,11 +260,6 @@ python_install_all() {
 		/usr/share/jupyter/kernels/sagemath/logo-64x64.png
 	dosym ../../../../.."${PYTHON_SITEDIR#${ESYSROOT}}"/sage/ext_data/notebook-ipython/logo.svg \
 		/usr/share/jupyter/kernels/sagemath/logo.svg
-}
-
-python_test() {
-	SAGE_DOC_SRC="${S}/doc" \
-		sage -tp $(makeopts_jobs) --installed --long --baseline-stats-path "${FILESDIR}"/${PN}-9.6-testfailures.json || die
 }
 
 pkg_preinst() {
@@ -301,6 +302,12 @@ pkg_postinst() {
 	einfo "such as version mismatches and numerical noise. Since Sage is"
 	einfo "changing constantly we do not maintain an up-to-date list of known"
 	einfo "failures."
+
+	if ! use doc ; then
+		ewarn "You haven't requested the documentation."
+		ewarn "The html version of the sage manual won't be available in the sage notebook."
+		ewarn "It can still be installed by building sage-doc separately."
+	fi
 
 	einfo ""
 	einfo "IF YOU EXPERIENCE PROBLEMS and wish to report them please use the"
