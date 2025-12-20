@@ -107,35 +107,11 @@ INSTALL SAGE
 
 Type::
 
-     emerge -va sagemath-standard
+     emerge -va sagemath
 
 to install sage; please note that this will pull in a lot of dependencies. If
 you can not proceed with this step (because of circular dependencies, missing
 USE-flags, and so on) please report this behavior.
-
-Starting with sage 9.5 which is split into several ebuilds, a set has been added for
-convenience. To make the set available to portage::
-
-     mkdir -p /etc/portage/sets
-     ln -s /var/db/repos/sage-on-gentoo/tools/sets/sagemath \
-           /etc/portage/sets/sagemath
-
-More informations on sets can be found at https://wiki.gentoo.org/wiki//etc/portage/sets
-While ``emerge -va sage`` will still emerge the necessary ebuilds, using the set make
-sure all the relevant ebuilds are always rebuilt or removed in sync. To use the set to
-install sage type::
-
-     emerge -va @sagemath
-
-To unistall the main ebuilds of sage type::
-
-     emerge -C @sagemath
-
-Additionally, we have some optional sagemath packages provided by the `sagemath-optional` set::
-
-     ln -s /var/db/repos/sage-on-gentoo/tools/sets/sagemath-optional \
-           /etc/portage/sets/sagemath-optional
-     emerge -va @sagemath-optional
 
 SAGE ON GENTOO PREFIX
 =====================
