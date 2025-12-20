@@ -1,0 +1,42 @@
+Title: sage 10.8 is out - split ebuilds removed
+Author: Francois Bissey <frp.bissey@gmail.com>
+Content-Type: text/plain
+Posted: 2025-12-20
+Revision: 1
+News-Item-Format: 2.0
+Display-If-Installed: sci-mathematics/sagemath-standard
+
+sage 10.8 has fully switched to meson as its building system.
+This build system does not currently support the modularisation that happened
+in the last few years, with the exception of sagemath-giac.
+The best way to migrate will be to unistall sage and any optional sagemath-* 
+packages first before installing the new sagemath package.
+If you have used the sets, you can achieve that with
+emerge -C @sagemath @sagemath-optional
+emerge sagemath
+
+The sets will not be useful going forward but will be kept around until the
+release of sage following 10.8 to help with any migration.
+
+For people without the sets the following packages are to be removed if
+installed:
+sci-mathematics/sage_setup
+sci-mathematics/sagemath-standard
+sci-mathematics/sage_docbuild
+sci-mathematics/sage-doc
+sci-mathematics/sage-conf
+sci-mathematics/sagemath-bliss
+sci-mathematics/sagemath-meataxe
+sci-mathematics/sagemath-sirocco
+sci-mathematics/sagemath-tdlib
+
+Followed by 
+emerge sagemath
+
+to install sage-10.8. The new documentation package is called 
+sagemath-doc for consistency and will be automatically pulled if you have
+the doc useflag enabled (default).
+
+Note that the building of the pdf documentation is currently not working 
+and not made available.
+
