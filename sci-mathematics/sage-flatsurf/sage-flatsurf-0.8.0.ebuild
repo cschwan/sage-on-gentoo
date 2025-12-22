@@ -3,8 +3,8 @@
 
 EAPI=8
 
-PYTHON_COMPAT=( python3_{10..12} )
-DISTUTILS_USE_PEP517=setuptools
+PYTHON_COMPAT=( python3_{10..13} )
+DISTUTILS_USE_PEP517=hatchling
 
 inherit distutils-r1 pypi
 
@@ -15,10 +15,12 @@ LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64"
 
-DEPEND=">=sci-mathematics/sagemath-standard-10.4[${PYTHON_USEDEP}]"
+DEPEND=">=sci-mathematics/sagemath-10.8[${PYTHON_USEDEP}]"
 RDEPEND="${DEPEND}
 	sci-mathematics/surface-dynamics[${PYTHON_USEDEP}]"
 
+RESTRICT="test"
+
 python_test(){
-	sage -t --long flatsurf || die "test failed"
+	sage-runtests flatsurf || die "test failed"
 }

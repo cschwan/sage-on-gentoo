@@ -5,17 +5,16 @@ EAPI=8
 
 PYTHON_COMPAT=( python3_{10..13} )
 DISTUTILS_USE_PEP517=setuptools
-PYPI_NO_NORMALIZE=NO
 
 inherit distutils-r1 pypi
 
-DESCRIPTION="Yoshitake Matsumoto, Database of Matroids"
-HOMEPAGE="https://pypi.org/project/matroid-database/"
+DESCRIPTION="Content of the KnotInfo & LinkInfo databases as lists of dictionaries"
+HOMEPAGE="https://pypi.org/project/database-knotinfo/"
 LICENSE="GPL-3"
 SLOT="0"
 KEYWORDS="~amd64 ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos"
 IUSE="test"
 
-DEPEND="test? ( >=sci-mathematics/sagemath-standard-10.3 )"
+DEPEND="test? ( >=sci-mathematics/sagemathX-10.8 )"
 
 RESTRICT="!test? ( test )"
