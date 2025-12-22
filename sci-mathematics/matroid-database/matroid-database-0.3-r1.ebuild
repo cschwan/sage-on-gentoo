@@ -16,6 +16,6 @@ SLOT="0"
 KEYWORDS="~amd64 ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos"
 IUSE="test"
 
-DEPEND="test? ( >=sci-mathematics/sagemath-standard-10.3 )"
+DEPEND="test? ( >=sci-mathematics/sagemath-10.8 )"
 
 RESTRICT="!test? ( test )"
