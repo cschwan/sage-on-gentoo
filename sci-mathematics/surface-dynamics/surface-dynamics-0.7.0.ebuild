@@ -3,11 +3,10 @@
 
 EAPI=8
 
-PYTHON_COMPAT=( python3_{10..12} )
+PYTHON_COMPAT=( python3_{12..13} )
 DISTUTILS_USE_PEP517=setuptools
 DISTUTILS_EXT=1
 
-PYPI_NO_NORMALIZE=1
 inherit distutils-r1 pypi
 
 DESCRIPTION="This sagemath package adds various functionality"
@@ -18,7 +17,7 @@ LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64"
 
-DEPEND=">=sci-mathematics/sagemath-standard-9.7[${PYTHON_USEDEP}]
+DEPEND=">=sci-mathematics/sagemath-10.8[${PYTHON_USEDEP}]
 	dev-python/pplpy[${PYTHON_USEDEP}]"
 RDEPEND="${DEPEND}"
 BDEPEND="dev-python/cython[${PYTHON_USEDEP}]"
