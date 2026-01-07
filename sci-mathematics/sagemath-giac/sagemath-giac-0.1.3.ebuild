@@ -34,4 +34,6 @@ DEPEND="|| (
 RDEPEND="${DEPEND}"
 BDEPEND="dev-python/cython[${PYTHON_USEDEP}]"
 
+PATCHES=( "${FILESDIR}/cython-3.2.patch" )
+
 distutils_enable_tests pytest
