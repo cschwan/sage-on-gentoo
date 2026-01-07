@@ -1,0 +1,29 @@
+From d4e69655d0af31acbf11a8dba2d05139e69b3000 Mon Sep 17 00:00:00 2001
+From: Antonio Rojas <arojas@archlinux.org>
+Date: Sun, 9 Nov 2025 00:44:43 +0100
+Subject: [PATCH] Fix __setitem__ with cython 3.2
+
+In cython 3.2 '1' is not accepted as a bool.
+
+Fixes https://github.com/sagemath/sagemath-giac/issues/5
+---
+ src/sagemath_giac/giac.pyx | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/src/sagemath_giac/giac.pyx b/src/sagemath_giac/giac.pyx
+index 55ae2bf..3064541 100644
+--- a/src/sagemath_giac/giac.pyx
++++ b/src/sagemath_giac/giac.pyx
+@@ -1011,10 +1011,10 @@ cdef class Pygen(GiacMethods_base):
+         cdef gen v
+         sig_on()
+         cdef gen g = gen(<string>encstring23('GIACPY_TMP_NAME050268070969290100291003'),context_ptr)
+-        GIAC_sto((<Pygen>self).gptr[0],g,1,context_ptr)
++        GIAC_sto((<Pygen>self).gptr[0],g,True,context_ptr)
+         g = gen(<string>encstring23('GIACPY_TMP_NAME050268070969290100291003[%s]' % str(key)), context_ptr)
+         v=(<Pygen>(Pygen(value).eval())).gptr[0]
+-        GIAC_sto(v, g, 1, context_ptr)
++        GIAC_sto(v, g, True, context_ptr)
+         Pygen('purge(GIACPY_TMP_NAME050268070969290100291003):;').eval()
+         sig_off()
+         return
