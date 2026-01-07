@@ -144,8 +144,8 @@ REQUIRED_USE="doc? ( jmol )
 	test? ( jmol )"
 
 PATCHES=(
-	"${FILESDIR}"/mpmath-10.8.patch
-	"${FILESDIR}"/${PN}-10.8-config.py.in.patch
+	"${FILESDIR}"/mpmath-10.9.patch
+	"${FILESDIR}"/${PN}-10.9-config.py.in.patch
 	"${FILESDIR}"/${PN}-10.4-env.patch
 	"${FILESDIR}"/sage_exec-9.3.patch
 	"${FILESDIR}"/${PN}-10.7-neutering.patch
