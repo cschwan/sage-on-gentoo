@@ -17,7 +17,7 @@ if [[ ${PV} == 9999 ]]; then
 	EGIT_REPO_URI="https://github.com/sagemath/sage.git"
 else
 	inherit pypi
-	KEYWORDS="~amd64 ~amd64-linux ~ppc-macos ~x64-macos"
+	KEYWORDS="~amd64 ~x64-macos"
 fi
 
 DESCRIPTION="Math software for abstract and numerical computations"
