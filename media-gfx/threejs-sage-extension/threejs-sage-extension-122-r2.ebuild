@@ -12,7 +12,7 @@ S="${WORKDIR}/threejs-sage-r${PV}"
 
 LICENSE="MIT"
 SLOT="0"
-KEYWORDS="~amd64 ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos"
+KEYWORDS="~amd64"
 
 DOCS=(
 	LICENSE
