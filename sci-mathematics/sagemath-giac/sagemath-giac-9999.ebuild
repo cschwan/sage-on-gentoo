@@ -15,7 +15,7 @@ if [[ ${PV} == 9999 ]]; then
 	inherit git-r3
 	EGIT_REPO_URI="https://github.com/sagemath/sagemath-giac.git"
 else
-	KEYWORDS="~amd64 ~amd64-linux ~ppc-macos ~x64-macos"
+	KEYWORDS="~amd64 ~x64-macos"
 	SRC_URI="https://github.com/sagemath/${PN}/releases/download/${PV}/${MY_PN}-${PV}.tar.gz"
 	S="${WORKDIR}/${MY_PN}-${PV}"
 fi

@@ -13,7 +13,7 @@ S="${WORKDIR}"/${MY_P}
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~x86 ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos"
+KEYWORDS="~amd64 ~x86 ~x64-macos"
 
 src_install() {
 	insinto /usr/share/sage/reflexive_polytopes

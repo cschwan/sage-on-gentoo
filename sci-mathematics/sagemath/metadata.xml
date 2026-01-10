@@ -12,5 +12,6 @@
 	</use>
 	<upstream>
 		<remote-id type="github">sagemath/sage</remote-id>
+		<remote-id type="pypi">sagemath</remote-id>
 	</upstream>
 </pkgmetadata>

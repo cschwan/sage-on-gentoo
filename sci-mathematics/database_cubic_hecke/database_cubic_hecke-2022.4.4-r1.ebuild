@@ -12,7 +12,7 @@ DESCRIPTION="data for the representations of the Cubic Hecke Algebra"
 HOMEPAGE="https://pypi.org/project/database_cubic_hecke/"
 LICENSE="GPL-3"
 SLOT="0"
-KEYWORDS="~amd64 ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos"
+KEYWORDS="~amd64 ~x64-macos"
 IUSE="test"
 
 DEPEND="test? ( >=sci-mathematics/sagemath-10.8 )"

@@ -3,7 +3,7 @@
 
 EAPI=8
 
-PYTHON_COMPAT=( python3_{10..13} )
+PYTHON_COMPAT=( python3_{12..13} )
 PYTHON_REQ_USE="readline,sqlite"
 DISTUTILS_USE_PEP517=meson-python
 DISTUTILS_EXT=1
@@ -17,7 +17,7 @@ if [[ ${PV} == 9999 ]]; then
 	EGIT_REPO_URI="https://github.com/sagemath/sage.git"
 else
 	inherit pypi
-	KEYWORDS="~amd64 ~amd64-linux ~ppc-macos ~x64-macos"
+	KEYWORDS="~amd64 ~x64-macos"
 fi
 
 DESCRIPTION="Math software for abstract and numerical computations"
@@ -83,8 +83,6 @@ DEPEND="
 	>=sys-libs/readline-6.2
 	virtual/zlib
 	virtual/cblas
-
-	test? ( ~sci-mathematics/sage_docbuild-${PV}[${PYTHON_USEDEP}] )
 "
 
 RDEPEND="
@@ -176,7 +174,7 @@ python_prepare_all() {
 	sed -i "s:@PACKAGE_VERSION@:${sage_version_string[0]}:" "${sage_conf_file}"
 	# replace prefix
 	eprefixify "${sage_conf_file}"
-	# set the documentation location to the externally provided sage-doc package
+	# set the documentation location to the externally provided sagemath-doc package
 	sed -i "s:@GENTOO_PORTAGE_PF@:sagemath-doc-${PV}:" "${sage_conf_file}"
 	# set lib/lib64 - only useful for GAP_LIB_DIR for now
 	sed -i "s:@libdir@:$(get_libdir):g" "${sage_conf_file}"
@@ -306,7 +304,7 @@ pkg_postinst() {
 	if ! use doc ; then
 		ewarn "You haven't requested the documentation."
 		ewarn "The html version of the sage manual won't be available in the sage notebook."
-		ewarn "It can still be installed by building sage-doc separately."
+		ewarn "It can still be installed by building sagemath-doc separately."
 	fi
 
 	einfo ""

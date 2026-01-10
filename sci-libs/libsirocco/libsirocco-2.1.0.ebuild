@@ -9,7 +9,7 @@ SRC_URI="https://github.com/miguelmarco/SIROCCO2/releases/download/${PV}/${P}.ta
 
 LICENSE="GPL-3"
 SLOT="0"
-KEYWORDS="~amd64 ~arm ~arm64 ~x86 ~amd64-linux ~x86-linux"
+KEYWORDS="~amd64 ~arm ~arm64 ~x86"
 
 DEPEND="dev-libs/gmp:=
 	dev-libs/mpfr:="
