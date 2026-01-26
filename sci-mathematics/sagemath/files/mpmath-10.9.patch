@@ -377,10 +377,10 @@ index a2fbaac2042..5e9c2383299 100644
  
  
  cdef class CoercionModel:
-diff --git a/src/sage/tests/books/computational-mathematics-with-sagemath/integration_doctest.py b/src/sage/tests/books/computational-mathematics-with-sagemath/integration_doctest.py
+diff --git a/src/sage/tests/books/computational_mathematics_with_sagemath/integration_doctest.py b/src/sage/tests/books/computational_mathematics_with_sagemath/integration_doctest.py
 index bf2701868ad..0603d419848 100644
---- a/src/sage/tests/books/computational-mathematics-with-sagemath/integration_doctest.py
-+++ b/src/sage/tests/books/computational-mathematics-with-sagemath/integration_doctest.py
+--- a/src/sage/tests/books/computational_mathematics_with_sagemath/integration_doctest.py
++++ b/src/sage/tests/books/computational_mathematics_with_sagemath/integration_doctest.py
 @@ -151,7 +151,7 @@ Sage example in ./integration.tex, line 846::
      sage: mpmath.quad(f, [0, 1])
      Traceback (most recent call last):
