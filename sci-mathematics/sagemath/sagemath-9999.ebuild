@@ -142,7 +142,6 @@ REQUIRED_USE="doc? ( jmol )
 	test? ( jmol )"
 
 PATCHES=(
-	"${FILESDIR}"/mpmath-10.9.patch
 	"${FILESDIR}"/${PN}-10.9-config.py.in.patch
 	"${FILESDIR}"/${PN}-10.4-env.patch
 	"${FILESDIR}"/sage_exec-9.3.patch
@@ -158,14 +157,6 @@ pkg_setup() {
 
 python_prepare_all() {
 	distutils-r1_python_prepare_all
-
-	# delete mpmath files. This saves a lot of patch space
-	rm -r \
-		src/sage/libs/mpmath/ext_impl.pxd \
-		src/sage/libs/mpmath/ext_impl.pyx \
-		src/sage/libs/mpmath/ext_libmp.pyx \
-		src/sage/libs/mpmath/ext_main.pxd \
-		src/sage/libs/mpmath/ext_main.pyx
 
 	# sage on gentoo environment variables
 	sage_conf_file="src/sage/config.py.in"
