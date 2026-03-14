@@ -216,8 +216,7 @@ python_install() {
 	# Optimize lone postprocess.py script
 	python_optimize "${D}/$(python_get_sitedir)/sage/ext_data/nbconvert"
 
-	# install test script
-	python_doscript "${S}"/src/bin/sage
+	# install python scripts
 	python_doscript "${S}"/src/bin/sage-runtests
 	python_doscript "${S}"/src/bin/sage-cleaner
 	python_doscript "${S}"/src/bin/sage-ipython
@@ -229,6 +228,9 @@ python_install() {
 
 python_install_all() {
 	distutils-r1_python_install_all
+
+	# install sage script
+	doexe "${S}"/src/bin/sage
 
 	# install license - uncompressed as it can be read.
 	docompress -x /usr/share/doc/"${PF}"
