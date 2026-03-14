@@ -218,6 +218,7 @@ python_install() {
 
 	# install python scripts
 	python_doscript "${S}"/src/bin/sage-runtests
+	python_doscript "${S}"/src/bin/sage-eval
 	python_doscript "${S}"/src/bin/sage-cleaner
 	python_doscript "${S}"/src/bin/sage-ipython
 	python_doscript "${S}"/src/bin/sage-notebook
