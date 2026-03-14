@@ -230,6 +230,7 @@ python_install_all() {
 	distutils-r1_python_install_all
 
 	# install sage script
+	exeinto /usr/bin
 	doexe "${S}"/src/bin/sage
 
 	# install license - uncompressed as it can be read.
