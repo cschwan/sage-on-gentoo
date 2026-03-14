@@ -217,7 +217,14 @@ python_install() {
 	python_optimize "${D}/$(python_get_sitedir)/sage/ext_data/nbconvert"
 
 	# install test script
+	python_doscript "${S}"/src/bin/sage
 	python_doscript "${S}"/src/bin/sage-runtests
+	python_doscript "${S}"/src/bin/sage-cleaner
+	python_doscript "${S}"/src/bin/sage-ipython
+	python_doscript "${S}"/src/bin/sage-notebook
+	python_doscript "${S}"/src/bin/sage-run
+	python_doscript "${S}"/src/bin/sage-run-cython
+	python_doscript "${S}"/src/bin/sage-startuptime.py
 }
 
 python_install_all() {
