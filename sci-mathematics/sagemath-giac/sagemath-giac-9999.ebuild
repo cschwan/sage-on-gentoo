@@ -3,7 +3,7 @@
 
 EAPI=8
 
-PYTHON_COMPAT=( python3_{10..13} )
+PYTHON_COMPAT=( python3_{11..14} )
 PYTHON_REQ_USE="readline,sqlite"
 DISTUTILS_EXT=1
 DISTUTILS_USE_PEP517=meson-python
@@ -26,7 +26,7 @@ HOMEPAGE="https://github.com/sagemath/sagemath-giac"
 LICENSE="GPL-2+"
 SLOT="0"
 
-DEPEND=">=sci-mathematics/sagemath-10.7[${PYTHON_USEDEP}]
+DEPEND=">=sci-mathematics/sagemath-10.8[${PYTHON_USEDEP}]
 	sci-mathematics/giac"
 RDEPEND="${DEPEND}"
 BDEPEND="dev-python/cython[${PYTHON_USEDEP}]"
