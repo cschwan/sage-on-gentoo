@@ -199,6 +199,8 @@ python_configure_all() {
 	export SAGE_NUM_THREADS=$(makeopts_jobs)
 	# Needed for cython-3 for now
 	export SAGE_DEBUG=no
+
+	export DISTUTILS_ARGS="-Dbuild-docs=false"
 }
 
 python_install() {
