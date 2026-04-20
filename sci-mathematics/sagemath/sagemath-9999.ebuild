@@ -3,7 +3,7 @@
 
 EAPI=8
 
-PYTHON_COMPAT=( python3_{12..13} )
+PYTHON_COMPAT=( python3_{12..14} )
 PYTHON_REQ_USE="readline,sqlite"
 DISTUTILS_USE_PEP517=meson-python
 DISTUTILS_EXT=1
@@ -87,15 +87,13 @@ DEPEND="
 
 RDEPEND="
 	${DEPEND}
-	>=dev-lang/R-4.0.4
 	dev-python/conway-polynomials[${PYTHON_USEDEP}]
 	>=dev-python/cvxopt-1.2.6[glpk,${PYTHON_USEDEP}]
-	>=dev-python/fpylll-0.6.0[${PYTHON_USEDEP}]
-	>=dev-python/mpmath-1.4.0_alpha2[${PYTHON_USEDEP}]
-	>=dev-python/networkx-2.6[${PYTHON_USEDEP}]
+	>=dev-python/fpylll-0.6.4[${PYTHON_USEDEP}]
+	>=dev-python/mpmath-1.4.0[${PYTHON_USEDEP}]
+	>=dev-python/networkx-3.6[${PYTHON_USEDEP}]
 	>=dev-python/pexpect-4.2.1[${PYTHON_USEDEP}]
-	>=dev-python/rpy2-3.5.7[${PYTHON_USEDEP}]
-	>=dev-python/scipy-1.1.0[${PYTHON_USEDEP}]
+	>=dev-python/scipy-1.16.0[${PYTHON_USEDEP}]
 	dev-python/sympy[${PYTHON_USEDEP}]
 	media-gfx/tachyon[png]
 	>=sci-libs/cddlib-094m[tools]
