@@ -86,14 +86,10 @@ src_unpack(){
 src_prepare(){
 	default
 
-	einfo "bootstrapping the documentation - be patient"
-	SAGE_ROOT="${S}" PATH="${S}/build/bin:${PATH}" src/doc/bootstrap || die "cannot bootstrap the documentation"
-
 	# sage on gentoo environment variables - steal from already installed file.
 	sage_init_path=$(sage -c "print(f'{sage.__file__}')")
 	sage_config_path="${sage_init_path%__init__.py}config.py"
-	sage_conf_file="pkgs/sage-conf/_sage_conf/_conf.py.in"
-	cp -f "${sage_config_path}" "${sage_conf_file}"
+	cp -f "${sage_config_path}" src/sage/config.py.in
 }
 
 src_configure(){

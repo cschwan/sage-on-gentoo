@@ -145,7 +145,7 @@ PATCHES=(
 	"${FILESDIR}"/${PN}-10.9-config.py.in.patch
 	"${FILESDIR}"/${PN}-10.4-env.patch
 	"${FILESDIR}"/sage_exec-9.3.patch
-	"${FILESDIR}"/${PN}-10.7-neutering.patch
+	"${FILESDIR}"/${PN}-10.9-neutering.patch
 	"${FILESDIR}"/${PN}-9.6-verbosity.patch
 	"${FILESDIR}"/${PN}-10.7-linguas.patch
 )
