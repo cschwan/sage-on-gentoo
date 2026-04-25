@@ -16,9 +16,9 @@ RUN mkdir -p /etc/portage/package.mask
 RUN echo "dev-lang/rust-bin" > /etc/portage/package.mask/rust-bin.masked
 
 # continue with image build ...
-# set python 3.12
-RUN echo 'PYTHON_TARGETS="python3.12"' >> /etc/portage/make.conf
-RUN echo 'PYTHON_SINGLE_TARGET="python3.12"' >> /etc/portage/make.conf
+# set python 3.13
+RUN echo 'PYTHON_TARGETS="python3.13"' >> /etc/portage/make.conf
+RUN echo 'PYTHON_SINGLE_TARGET="python3.13"' >> /etc/portage/make.conf
 # add license for givaro(?)
 RUN echo 'ACCEPT_LICENSE="CeCILL-B"' >> /etc/portage/make.conf
 # disable portage features not working in containers
@@ -34,13 +34,7 @@ RUN mkdir -p /etc/portage/package.use
 RUN ln -s /var/db/repos/sage-on-gentoo/tools/package.use/sage /etc/portage/package.use/sage
 # set additional "sane" useflags also aiming to minimize some dependencies
 RUN ln -s /var/db/repos/sage-on-gentoo/tools/package.use/minimalist.dependencies /etc/portage/package.use/minimalist
-# install the sets
-RUN mkdir -p /etc/portage/sets
-RUN ln -s /var/db/repos/sage-on-gentoo/tools/sets/sagemath /etc/portage/sets/sagemath
-RUN ln -s /var/db/repos/sage-on-gentoo/tools/sets/sagemath-optional /etc/portage/sets/sagemath-optional
 # install sage
-RUN emerge -vg @sagemath
+RUN emerge -vg sagemath sagemath-doc
 # install sage testing a PR
-# RUN EGIT_OVERRIDE_REPO_SAGEMATH_SAGE="https://github.com/mkoeppe/sage.git" EGIT_OVERRIDE_BRANCH_SAGEMATH_SAGE="voidlinux_devcontainer" emerge -vg @sagemath
-# install optional packages
-# RUN emerge -v @sagemath-optional
+# RUN EGIT_OVERRIDE_REPO_SAGEMATH_SAGE="https://github.com/mkoeppe/sage.git" EGIT_OVERRIDE_BRANCH_SAGEMATH_SAGE="voidlinux_devcontainer" emerge -vg sagemath sagemath-doc
