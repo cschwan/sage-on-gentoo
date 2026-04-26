@@ -5,7 +5,7 @@ EAPI=8
 
 inherit cmake
 
-Sparse_PV="7.10.2"
+Sparse_PV="7.12.2"
 Sparse_P="SuiteSparse-${Sparse_PV}"
 DESCRIPTION="Simple but educational LDL^T matrix factorization algorithm"
 HOMEPAGE="https://people.engr.tamu.edu/davis/suitesparse.html"
@@ -44,16 +44,17 @@ src_test() {
 	ln -s "${S}/Matrix"
 	# Run demo files
 	local demofiles=(
-		ldlsimple
 		ldllsimple
 		ldlmain
 		ldllmain
 		ldlamd
 		ldllamd
 	)
+	# not running ldlsimple until it does not "test" suitesparse version as well.
 	for i in ${demofiles}; do
+		einfo "testing ${i}"
 		./"${i}" > "${i}.out"
-		diff "${S}/Demo/${i}.out" "${i}.out" || die "failed testing ${i}"
+		diff "${S}/Demo/${i}.out" "${i}.out" || die
 	done
 }
 

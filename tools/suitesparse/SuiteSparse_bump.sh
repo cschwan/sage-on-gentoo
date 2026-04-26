@@ -89,7 +89,7 @@ for pkg in "${Sparse_PKG[@]}"; do
                 else
                         echo "No version change for ${pkg_name}"
                 fi
-                sed -e "s:Sparse_PV=\"[0-9].[0-9].[0-9]\":Sparse_PV=\"${Sparse_PV}\":" -i "${pkg_name}-${pkg_new_v}.ebuild"
+                sed -e "s:^Sparse_PV=.*$:Sparse_PV=\"${Sparse_PV}\":" -i "${pkg_name}-${pkg_new_v}.ebuild"
                 git add "${pkg_name}-${pkg_new_v}.ebuild"
                 ebuild "${pkg_name}-${pkg_new_v}.ebuild" manifest
         else
