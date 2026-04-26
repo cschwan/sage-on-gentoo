@@ -5,7 +5,7 @@ EAPI=8
 
 inherit cmake
 
-Sparse_PV="7.10.2"
+Sparse_PV="7.12.2"
 Sparse_P="SuiteSparse-${Sparse_PV}"
 DESCRIPTION="Sparse LU factorization for circuit simulation"
 HOMEPAGE="https://people.engr.tamu.edu/davis/suitesparse.html"
