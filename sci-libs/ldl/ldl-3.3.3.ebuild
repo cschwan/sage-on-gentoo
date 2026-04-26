@@ -44,16 +44,17 @@ src_test() {
 	ln -s "${S}/Matrix"
 	# Run demo files
 	local demofiles=(
-		ldlsimple
 		ldllsimple
 		ldlmain
 		ldllmain
 		ldlamd
 		ldllamd
 	)
+	# not running ldlsimple until it does not "test" suitesparse version as well.
 	for i in ${demofiles}; do
+		einfo "testing ${i}"
 		./"${i}" > "${i}.out"
-		diff "${S}/Demo/${i}.out" "${i}.out" || die "failed testing ${i}"
+		diff "${S}/Demo/${i}.out" "${i}.out" || die
 	done
 }
 
