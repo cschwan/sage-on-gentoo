@@ -1,0 +1,34 @@
+diff --git a/src/sage/doctest/control.py b/src/sage/doctest/control.py
+index 4124c7c6b48..0453260c09a 100644
+--- a/src/sage/doctest/control.py
++++ b/src/sage/doctest/control.py
+@@ -507,15 +507,6 @@ class DocTestController(SageObject):
+                 # that the package is actually installed).
+                 if 'optional' in options.optional:
+                     options.optional.discard('optional')
+-                    from sage.misc.package import list_packages
+-                    for pkg in list_packages('optional', local=True).values():
+-                        if pkg.name in options.hide:
+-                            continue
+-                        # Skip features for which we have a more specific runtime feature test.
+-                        if pkg.name in ['bliss', 'coxeter3', 'mcqd', 'meataxe', 'sirocco', 'tdlib']:
+-                            continue
+-                        if pkg.is_installed() and pkg.installed_version == pkg.remote_version:
+-                            options.optional.add(pkg.name)
+ 
+                     from sage.features import package_systems
+                     options.optional.update(system.name
+diff --git a/src/sage/misc/all.py b/src/sage/misc/all.py
+index 4102073d48d..00b6a12b559 100644
+--- a/src/sage/misc/all.py
++++ b/src/sage/misc/all.py
+@@ -158,8 +158,5 @@ lazy_import('sage.misc.banner', 'banner', deprecation=34259)
+ lazy_import('sage.misc.edit_module', 'set_edit_template', deprecation=34259)
+ lazy_import('sage.misc.profiler', 'Profiler', deprecation=34259)
+ lazy_import('sage.misc.trace', 'trace', deprecation=34259)
+-lazy_import('sage.misc.package', ('installed_packages', 'is_package_installed',
+-                                  'package_versions'),
+-            deprecation=34259)
+ lazy_import('sage.misc.benchmark', 'benchmark', deprecation=34259)
+ lazy_import('sage.repl.interpreter', 'logstr', deprecation=34259)
+ 
