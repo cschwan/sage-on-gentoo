@@ -140,7 +140,7 @@ REQUIRED_USE="doc? ( jmol )
 	test? ( jmol )"
 
 PATCHES=(
-	"${FILESDIR}"/${PN}-10.9-config.py.in.patch
+	"${FILESDIR}"/${PN}-10.10-config.py.in.patch
 	"${FILESDIR}"/${PN}-10.4-env.patch
 	"${FILESDIR}"/sage_exec-9.3.patch
 	"${FILESDIR}"/${PN}-10.9-neutering.patch
@@ -295,7 +295,7 @@ pkg_postinst() {
 	einfo ""
 	einfo "To test a Sage installation with 4 parallel processes run the following command:"
 	einfo ""
-	einfo "  sage -tp 4 --installed"
+	einfo "  sage -tp 4 --all"
 	einfo ""
 	einfo "Note that testing Sage may take more than an hour depending on your"
 	einfo "processor(s). You _will_ see failures but many of them are harmless"
