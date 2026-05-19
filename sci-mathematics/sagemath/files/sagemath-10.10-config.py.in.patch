@@ -1,5 +1,5 @@
 diff --git a/src/sage/config.py.in b/src/sage/config.py.in
-index b5758b68c98..3027b6ea150 100644
+index dff729336ed..6005840c409 100644
 --- a/src/sage/config.py.in
 +++ b/src/sage/config.py.in
 @@ -11,7 +11,7 @@ VERSION = "@PACKAGE_VERSION@"
@@ -11,7 +11,7 @@ index b5758b68c98..3027b6ea150 100644
  
  # Set this to the empty string if your ECL can load maxima without
  # further prodding.
-@@ -33,28 +33,38 @@ SAGE_NAUTY_BINS_PREFIX = "@SAGE_NAUTY_BINS_PREFIX@"
+@@ -33,22 +33,22 @@ SAGE_NAUTY_BINS_PREFIX = "@SAGE_NAUTY_BINS_PREFIX@"
  SAGE_ECMBIN = "@SAGE_ECMBIN@"
  
  # Names or paths of the 4ti2 executables
@@ -44,19 +44,18 @@ index b5758b68c98..3027b6ea150 100644
  THREEJS_DIR = SAGE_LOCAL + "/share/threejs-sage"
  
  # OpenMP flags, if available.
- OPENMP_CFLAGS = "@OPENMP_CFLAGS@"
- OPENMP_CXXFLAGS = "@OPENMP_CXXFLAGS@"
+@@ -68,6 +68,14 @@ rankwidth_enabled = @RANKWIDTH_ENABLED@
+ sirocco_enabled = @SIROCCO_ENABLED@
+ tdlib_enabled = @TDLIB_ENABLED@
  
 +# Some Gentoo definitions
 +SAGE_SHARE   = "@GENTOO_PORTAGE_EPREFIX@/usr/share/sage"
 +SAGE_DOC     = "@GENTOO_PORTAGE_EPREFIX@/usr/share/doc/@GENTOO_PORTAGE_PF@"
-+
 +JMOL_DIR     = "@GENTOO_PORTAGE_EPREFIX@/usr/share/sage-jmol-bin/lib"
 +MTXLIB       = "@GENTOO_PORTAGE_EPREFIX@/usr/share/meataxe"
 +PPLPY_DOCS   = "@GENTOO_PORTAGE_EPREFIX@/usr/share/doc/@PPLY_DOC_VERS@/html"
-+
 +LIE_INFO_DIR = "@GENTOO_PORTAGE_EPREFIX@/usr/share/lie"
 +
- 
  def is_editable_install() -> bool:
      """
+     Check whether this is an editable install of Sage.
