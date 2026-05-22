@@ -147,6 +147,7 @@ PATCHES=(
 	"${FILESDIR}"/${PN}-10.10-neutering.patch
 	"${FILESDIR}"/${PN}-9.6-verbosity.patch
 	"${FILESDIR}"/${PN}-10.7-linguas.patch
+	"${FILESDIR}"/${PN}-10.10-sageinspect.patch
 )
 
 pkg_setup() {
