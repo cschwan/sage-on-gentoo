@@ -1,0 +1,48 @@
+diff --git a/src/bin/sage b/src/bin/sage
+index a95e4580f86..fb4660808d3 100755
+--- a/src/bin/sage
++++ b/src/bin/sage
+@@ -87,7 +87,7 @@ sage_version() {
+     if [ -f "${SELF}-version.sh" ]; then
+         . "${SELF}-version.sh"
+     else
+-        . "$SAGE_ROOT/src/bin/sage-version.sh"
++        . "@GENTOO_PORTAGE_EPREFIX@/etc/sage-version"
+     fi
+ 
+     if [ "$1" = "-v" ]; then
+@@ -292,6 +292,34 @@ if [ -z "$DOT_SAGE" ]; then
+     export DOT_SAGE="$HOME/.sage"
+ fi
+ 
++#####################################################################
++# setup variables usually established by sage-env/sage-env-config.
++#####################################################################
++if [ "$SAGE_STARTUP_FILE" = "" ]; then
++        export SAGE_STARTUP_FILE="${DOT_SAGE}/init.sage"
++fi
++
++if [ -z "$SAGE_RC_FILE" ]; then
++        export SAGE_RC_FILE="$DOT_SAGE/sagerc"
++fi
++
++if [ -r "$SAGE_RC_FILE" ]; then
++        source "$SAGE_RC_FILE"
++        if [ $? -ne 0 ]; then
++                echo >&2 "Error sourcing $SAGE_RC_FILE"
++                exit 1
++        fi
++fi
++
++export SAGE_DEBUG="yes"
++
++# Allow SAGE_BROWSER to override BROWSER (Trac #22449)
++if [ -n "$SAGE_BROWSER" ]; then
++        export BROWSER="$SAGE_BROWSER"
++fi
++#####################################################################
++# End of sage-env block
++#####################################################################
+ 
+ #####################################################################
+ # Helper functions

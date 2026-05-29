@@ -143,7 +143,7 @@ REQUIRED_USE="doc? ( jmol )
 PATCHES=(
 	"${FILESDIR}"/${PN}-10.10-config.py.in.patch
 	"${FILESDIR}"/${PN}-10.4-env.patch
-	"${FILESDIR}"/sage_exec-9.3.patch
+	"${FILESDIR}"/${PN}-sage-10.10.patch
 	"${FILESDIR}"/${PN}-10.10-neutering.patch
 	"${FILESDIR}"/${PN}-9.6-verbosity.patch
 	"${FILESDIR}"/${PN}-10.7-linguas.patch
@@ -165,6 +165,7 @@ python_prepare_all() {
 	sed -i "s:@PACKAGE_VERSION@:${sage_version_string[0]}:" "${sage_conf_file}"
 	# replace prefix
 	eprefixify "${sage_conf_file}"
+	eprefixify "${S}/src/bin/sage"
 	# set the documentation location to the externally provided sagemath-doc package
 	sed -i "s:@GENTOO_PORTAGE_PF@:sagemath-doc-${PV}:" "${sage_conf_file}"
 	# set lib/lib64 - only useful for GAP_LIB_DIR for now
@@ -224,6 +225,7 @@ python_install() {
 	python_doscript "${S}"/src/bin/sage-cleaner
 	python_doscript "${S}"/src/bin/sage-ipython
 	python_doscript "${S}"/src/bin/sage-notebook
+	python_doscript "${S}"/src/bin/sage-preparse
 	python_doscript "${S}"/src/bin/sage-run
 	python_doscript "${S}"/src/bin/sage-run-cython
 	python_doscript "${S}"/src/bin/sage-startuptime.py
