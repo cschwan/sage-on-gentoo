@@ -161,8 +161,11 @@ python_prepare_all() {
 	# Finding sage's version string and setting it in sage_conf_file
 	sage_version_string=( $(head -n 1 VERSION.txt) )
 	sed -i "s:@PACKAGE_VERSION@:${sage_version_string[0]}:" "${sage_conf_file}"
+	# fix location of sage-version.sh in sage
+	sed -i "s:\$SAGE_ROOT/src/bin/sage-version.sh:@GENTOO_PORTAGE_EPREFIX@/etc/sage-version:" src/bin/sage
 	# replace prefix
 	eprefixify "${sage_conf_file}"
+	eprefixify src/bin/sage
 	# set the documentation location to the externally provided sagemath-doc package
 	sed -i "s:@GENTOO_PORTAGE_PF@:sagemath-doc-${PV}:" "${sage_conf_file}"
 	# set lib/lib64 - only useful for GAP_LIB_DIR for now
@@ -222,6 +225,7 @@ python_install() {
 	python_doscript "${S}"/src/bin/sage-cleaner
 	python_doscript "${S}"/src/bin/sage-ipython
 	python_doscript "${S}"/src/bin/sage-notebook
+	python_doscript "${S}"/src/bin/sage-preparse
 	python_doscript "${S}"/src/bin/sage-run
 	python_doscript "${S}"/src/bin/sage-run-cython
 	python_doscript "${S}"/src/bin/sage-startuptime.py
@@ -233,6 +237,10 @@ python_install_all() {
 	# install sage script
 	exeinto /usr/bin
 	doexe "${S}"/src/bin/sage
+
+	# install sage-version
+	insinto etc
+	newins "${S}"/src/bin/sage-version.sh sage-version
 
 	# install license - uncompressed as it can be read.
 	docompress -x /usr/share/doc/"${PF}"
