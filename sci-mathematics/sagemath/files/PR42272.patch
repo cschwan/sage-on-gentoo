@@ -1,0 +1,22 @@
+From 17d863648e1e176f9f276da9da063ed3f6a14fb1 Mon Sep 17 00:00:00 2001
+From: Vincent Macri <vincent.macri@ucalgary.ca>
+Date: Fri, 29 May 2026 17:45:03 -0600
+Subject: [PATCH] Fix syntax error
+
+---
+ src/sage/matrix/matrix_gfpn_dense.pyx | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/src/sage/matrix/matrix_gfpn_dense.pyx b/src/sage/matrix/matrix_gfpn_dense.pyx
+index 5068b61f25d..f298b20f28e 100644
+--- a/src/sage/matrix/matrix_gfpn_dense.pyx
++++ b/src/sage/matrix/matrix_gfpn_dense.pyx
+@@ -1358,7 +1358,7 @@ cdef class Matrix_gfpn_dense(Matrix_dense):
+             True
+         """
+         "multiply two meataxe matrices by the school book algorithm"
+-        if self.Data == NULL or right.Data == NULL
++        if self.Data == NULL or right.Data == NULL:
+             raise ValueError("The matrices must not be empty")
+         check_matrix_multiplication_sizes(self, right)
+         sig_on()
