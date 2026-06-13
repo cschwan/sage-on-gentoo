@@ -10,7 +10,7 @@ DISTUTILS_EXT=1
 #GIT_PRS=(
 #)
 
-inherit desktop distutils-r1 multiprocessing prefix toolchain-funcs
+inherit desktop distutils-r1 flag-o-matic multiprocessing prefix toolchain-funcs
 
 if [[ ${PV} == 9999 ]]; then
 	inherit git-r3
@@ -147,13 +147,15 @@ PATCHES=(
 	"${FILESDIR}"/${PN}-10.10-neutering.patch
 	"${FILESDIR}"/${PN}-9.6-verbosity.patch
 	"${FILESDIR}"/${PN}-10.7-linguas.patch
-	"${FILESDIR}"/${PN}-10.10-sageinspect.patch
-	"${FILESDIR}"/PR42272.patch
+	"${FILESDIR}"/${PN}-10.10-cython_embed.patch
 )
 
 pkg_setup() {
 	# needed since Ticket #14460
 	tc-export CC
+
+	append-cflags -ffile-prefix-map=$(pwd)=.
+	append-cxxflags -ffile-prefix-map=$(pwd)=.
 }
 
 python_prepare_all() {

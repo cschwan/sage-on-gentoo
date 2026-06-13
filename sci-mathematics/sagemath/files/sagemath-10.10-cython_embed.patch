@@ -1,0 +1,25 @@
+diff --git a/src/sage/misc/cython.py b/src/sage/misc/cython.py
+index 6d30189ae89..ea5dc32163e 100644
+--- a/src/sage/misc/cython.py
++++ b/src/sage/misc/cython.py
+@@ -362,6 +362,7 @@ def cython(filename, verbose=0, compile_message=False,
+     Cython.Compiler.Options.annotate = annotate
+     Cython.Compiler.Options.embed_pos_in_docstring = True
+     Cython.Compiler.Options.pre_import = "sage.all" if sage_namespace else None
++    Cython.Compiler.Options.source_root = os.environ['MESON_SOURCE_ROOT']
+ 
+     extra_compile_args = ['-w']  # no warnings
+     extra_link_args = []
+diff --git a/src/sage_setup/command/sage_build_cython.py b/src/sage_setup/command/sage_build_cython.py
+index 2e04bd80f87..4a83b8859c1 100644
+--- a/src/sage_setup/command/sage_build_cython.py
++++ b/src/sage_setup/command/sage_build_cython.py
+@@ -42,7 +42,7 @@ if ntl_prefix:
+ # always appear in exception tracebacks (by default, this is a runtime
+ # setting in Cython which causes some overhead every time an exception
+ # is raised).
+-extra_compile_args = ["-fno-strict-aliasing", "-DCYTHON_CLINE_IN_TRACEBACK=1"]
++extra_compile_args = ["-fno-strict-aliasing", "-DCYTHON_CLINE_IN_TRACEBACK=1", "-ffile-prefix-map=$(pwd)=."]
+ extra_link_args = [ ]
+ 
+ DEVEL = False
