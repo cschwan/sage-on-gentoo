@@ -1,5 +1,5 @@
 diff --git a/src/sage/config.py.in b/src/sage/config.py.in
-index dff729336ed..6005840c409 100644
+index 76f6e342a16..d1ff346cba6 100644
 --- a/src/sage/config.py.in
 +++ b/src/sage/config.py.in
 @@ -11,7 +11,7 @@ VERSION = "@PACKAGE_VERSION@"
@@ -11,44 +11,12 @@ index dff729336ed..6005840c409 100644
  
  # Set this to the empty string if your ECL can load maxima without
  # further prodding.
-@@ -33,22 +33,22 @@ SAGE_NAUTY_BINS_PREFIX = "@SAGE_NAUTY_BINS_PREFIX@"
- SAGE_ECMBIN = "@SAGE_ECMBIN@"
- 
- # Names or paths of the 4ti2 executables
--FOURTITWO_HILBERT = "@FOURTITWO_HILBERT@"
--FOURTITWO_MARKOV = "@FOURTITWO_MARKOV@"
--FOURTITWO_GRAVER = "@FOURTITWO_GRAVER@"
--FOURTITWO_ZSOLVE = "@FOURTITWO_ZSOLVE@"
--FOURTITWO_QSOLVE = "@FOURTITWO_QSOLVE@"
--FOURTITWO_RAYS = "@FOURTITWO_RAYS@"
--FOURTITWO_PPI = "@FOURTITWO_PPI@"
--FOURTITWO_CIRCUITS = "@FOURTITWO_CIRCUITS@"
--FOURTITWO_GROEBNER = "@FOURTITWO_GROEBNER@"
-+FOURTITWO_HILBERT = "hilbert"
-+FOURTITWO_MARKOV = "markov"
-+FOURTITWO_GRAVER = "graver"
-+FOURTITWO_ZSOLVE = "zsolve"
-+FOURTITWO_QSOLVE = "qsolve"
-+FOURTITWO_RAYS = "rays"
-+FOURTITWO_PPI = "ppi"
-+FOURTITWO_CIRCUITS = "circuits"
-+FOURTITWO_GROEBNER = "groebner"
- 
- # for sage_setup.setenv
- SAGE_ARCHFLAGS = "@SAGE_ARCHFLAGS@"
- SAGE_PKG_CONFIG_PATH = "@SAGE_PKG_CONFIG_PATH@".replace("$SAGE_LOCAL", SAGE_LOCAL)
- 
- # Used in sage.repl.ipython_kernel.install
--MATHJAX_DIR = "@SAGE_MATHJAX_DIR@".replace("${prefix}", SAGE_LOCAL)
-+MATHJAX_DIR = "@GENTOO_PORTAGE_EPREFIX@/usr/share/mathjax"
- THREEJS_DIR = SAGE_LOCAL + "/share/threejs-sage"
- 
- # OpenMP flags, if available.
-@@ -68,6 +68,14 @@ rankwidth_enabled = @RANKWIDTH_ENABLED@
+@@ -57,6 +57,15 @@ rankwidth_enabled = @RANKWIDTH_ENABLED@
  sirocco_enabled = @SIROCCO_ENABLED@
  tdlib_enabled = @TDLIB_ENABLED@
  
 +# Some Gentoo definitions
++MATHJAX_DIR  = "@GENTOO_PORTAGE_EPREFIX@/usr/share/mathjax"
 +SAGE_SHARE   = "@GENTOO_PORTAGE_EPREFIX@/usr/share/sage"
 +SAGE_DOC     = "@GENTOO_PORTAGE_EPREFIX@/usr/share/doc/@GENTOO_PORTAGE_PF@"
 +JMOL_DIR     = "@GENTOO_PORTAGE_EPREFIX@/usr/share/sage-jmol-bin/lib"
