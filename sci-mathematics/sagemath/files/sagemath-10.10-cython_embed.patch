@@ -1,12 +1,15 @@
 diff --git a/src/sage/misc/cython.py b/src/sage/misc/cython.py
-index 6d30189ae89..ea5dc32163e 100644
+index 6d30189ae89..74dd8a45e7e 100644
 --- a/src/sage/misc/cython.py
 +++ b/src/sage/misc/cython.py
-@@ -362,6 +362,7 @@ def cython(filename, verbose=0, compile_message=False,
+@@ -362,6 +362,10 @@ def cython(filename, verbose=0, compile_message=False,
      Cython.Compiler.Options.annotate = annotate
      Cython.Compiler.Options.embed_pos_in_docstring = True
      Cython.Compiler.Options.pre_import = "sage.all" if sage_namespace else None
-+    Cython.Compiler.Options.source_root = os.environ['MESON_SOURCE_ROOT']
++    try:
++        Cython.Compiler.Options.source_root = os.environ['MESON_SOURCE_ROOT']
++    except KeyError:
++        pass
  
      extra_compile_args = ['-w']  # no warnings
      extra_link_args = []
