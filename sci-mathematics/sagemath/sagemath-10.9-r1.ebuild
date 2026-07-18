@@ -146,6 +146,7 @@ PATCHES=(
 	"${FILESDIR}"/${PN}-10.9-neutering.patch
 	"${FILESDIR}"/${PN}-9.6-verbosity.patch
 	"${FILESDIR}"/${PN}-10.7-linguas.patch
+	"${FILESDIR}"/planarity5-compat.patch
 )
 
 pkg_setup() {
