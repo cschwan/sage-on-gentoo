@@ -68,7 +68,7 @@ DEPEND="
 	>=sci-mathematics/lcalc-2.1.0
 	>=sci-mathematics/pari-2.17.1
 	>=sci-mathematics/planarity-3.0.2.0
-	>=sci-mathematics/rw-0.7
+	>=sci-mathematics/rw-0.9
 	>=sci-mathematics/singular-4.3.2_p15[readline]
 	>=sci-libs/brial-1.2.10
 	>=sci-libs/givaro-4.1.1
@@ -102,7 +102,7 @@ RDEPEND="
 	>=sci-mathematics/cubex-20060128
 	>=sci-mathematics/dikcube-20070912
 	>=sci-mathematics/ExportSageNB-3.3[${PYTHON_USEDEP}]
-	~sci-mathematics/gfan-0.6.2
+	>=sci-mathematics/gfan-0.6.2
 	>=sci-mathematics/maxima-5.46.0[ecl]
 	>=sci-mathematics/mcube-20051209
 	>=sci-mathematics/nauty-2.6.1
