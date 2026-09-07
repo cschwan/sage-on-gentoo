@@ -1,0 +1,363 @@
+From 5db8c7c6bbdba9dc33bda7135c4d51ced5cf6a8a Mon Sep 17 00:00:00 2001
+From: Antonio Rojas <arojas@archlinux.org>
+Date: Sun, 30 Aug 2026 10:45:56 +0200
+Subject: [PATCH 1/6] Use a custom name for C++ list type in braiding.pyx
+
+As it is already done in all other instances [1][2]
+
+Works around Cython 3.3 bug https://github.com/cython/cython/issues/7939
+
+[1] https://github.com/sagemath/sage/blob/10.10.beta9/src/sage/rings/function_field/riemann_roch.pyx#L22
+[2] https://github.com/sagemath/sage/blob/10.10.beta9/src/sage/graphs/graph_decompositions/modular_decomposition.pxd#L2
+---
+ src/sage/libs/braiding.pyx | 62 +++++++++++++++++++-------------------
+ 1 file changed, 31 insertions(+), 31 deletions(-)
+
+diff --git a/src/sage/libs/braiding.pyx b/src/sage/libs/braiding.pyx
+index beb6ad174e4..d678320d12f 100644
+--- a/src/sage/libs/braiding.pyx
++++ b/src/sage/libs/braiding.pyx
+@@ -26,26 +26,26 @@ permutation braids.
+ 
+ from cysignals.signals cimport sig_on, sig_off
+ 
+-from libcpp.list cimport list
++from libcpp.list cimport list as cpplist
+ 
+ 
+ cdef extern from "braiding.h" namespace "Braiding":
+-    list[list[int]] ConjugatingBraid(int n, list[int] word, list[int] word2)
+-    list[list[int]] LeftNormalForm(int n, list[int] word)
+-    list[list[int]] RightNormalForm(int n, list[int] word)
+-    list[list[int]] GreatestCommonDivisor(int n, list[int] word1, list[int] word2)
+-    list[list[int]] LeastCommonMultiple(int n, list[int] word1, list[int] word2)
+-    list[list[list[int]]] CentralizerGenerators(int n, list[int] word)
+-    list[list[list[int]]] SuperSummitSet(int n, list[int] word)
+-    list[list[list[list[int]]]] UltraSummitSet(int n, list[int] word)
+-    int thurstontype(int n, list[int] word)
+-    int Rigidity_ext(int n, list[int] word)
+-    list[list[list[list[int]]]] SlidingCircuits(int n, list[int] word)
+-    list[list[list[int]]] SendToSSS(int n, list[int] word)
+-    list[list[list[int]]] SendToUSS(int n, list[int] word)
+-    list[list[list[int]]] SendToSC(int n, list[int] word)
+-    list[list[list[int]]] Trajectory(int n, list[int] word)
+-    list[list[list[list[int]]]] CyclicSlidings(int n, list[int] word)
++    cpplist[cpplist[int]] ConjugatingBraid(int n, cpplist[int] word, cpplist[int] word2)
++    cpplist[cpplist[int]] LeftNormalForm(int n, cpplist[int] word)
++    cpplist[cpplist[int]] RightNormalForm(int n, cpplist[int] word)
++    cpplist[cpplist[int]] GreatestCommonDivisor(int n, cpplist[int] word1, cpplist[int] word2)
++    cpplist[cpplist[int]] LeastCommonMultiple(int n, cpplist[int] word1, cpplist[int] word2)
++    cpplist[cpplist[cpplist[int]]] CentralizerGenerators(int n, cpplist[int] word)
++    cpplist[cpplist[cpplist[int]]] SuperSummitSet(int n, cpplist[int] word)
++    cpplist[cpplist[cpplist[cpplist[int]]]] UltraSummitSet(int n, cpplist[int] word)
++    int thurstontype(int n, cpplist[int] word)
++    int Rigidity_ext(int n, cpplist[int] word)
++    cpplist[cpplist[cpplist[cpplist[int]]]] SlidingCircuits(int n, cpplist[int] word)
++    cpplist[cpplist[cpplist[int]]] SendToSSS(int n, cpplist[int] word)
++    cpplist[cpplist[cpplist[int]]] SendToUSS(int n, cpplist[int] word)
++    cpplist[cpplist[cpplist[int]]] SendToSC(int n, cpplist[int] word)
++    cpplist[cpplist[cpplist[int]]] Trajectory(int n, cpplist[int] word)
++    cpplist[cpplist[cpplist[cpplist[int]]]] CyclicSlidings(int n, cpplist[int] word)
+ 
+ 
+ def conjugatingbraid(braid1, braid2):
+@@ -77,7 +77,7 @@ def conjugatingbraid(braid1, braid2):
+     l1 = braid1.Tietze()
+     l2 = braid2.Tietze()
+     sig_on()
+-    cdef list[list[int]] rop = ConjugatingBraid(nstrands, l1, l2)
++    cdef cpplist[cpplist[int]] rop = ConjugatingBraid(nstrands, l1, l2)
+     sig_off()
+     return rop
+ 
+@@ -108,7 +108,7 @@ def leftnormalform(braid):
+     nstrands = braid.parent().strands()
+     l1 = braid.Tietze()
+     sig_on()
+-    cdef list[list[int]] rop = LeftNormalForm(nstrands, l1)
++    cdef cpplist[cpplist[int]] rop = LeftNormalForm(nstrands, l1)
+     sig_off()
+     return rop
+ 
+@@ -139,7 +139,7 @@ def rightnormalform(braid):
+     nstrands = braid.parent().strands()
+     l1 = braid.Tietze()
+     sig_on()
+-    cdef list[list[int]] rop = RightNormalForm(nstrands, l1)
++    cdef cpplist[cpplist[int]] rop = RightNormalForm(nstrands, l1)
+     sig_off()
+     return rop
+ 
+@@ -169,7 +169,7 @@ def greatestcommondivisor(braid1, braid2):
+     l1 = braid1.Tietze()
+     l2 = braid2.Tietze()
+     sig_on()
+-    cdef list[list[int]] rop = GreatestCommonDivisor(nstrands, l1, l2)
++    cdef cpplist[cpplist[int]] rop = GreatestCommonDivisor(nstrands, l1, l2)
+     sig_off()
+     return rop
+ 
+@@ -199,7 +199,7 @@ def leastcommonmultiple(braid1, braid2):
+     l1 = braid1.Tietze()
+     l2 = braid2.Tietze()
+     sig_on()
+-    cdef list[list[int]] rop = LeastCommonMultiple(nstrands, l1, l2)
++    cdef cpplist[cpplist[int]] rop = LeastCommonMultiple(nstrands, l1, l2)
+     sig_off()
+     return rop
+ 
+@@ -236,7 +236,7 @@ def centralizer(braid):
+         return [[[0], [i + 1, nstrands - i - 1]] for i in range(nstrands//2 - 1)] + [[[0], [nstrands//2]]]
+     l = braid.Tietze()
+     sig_on()
+-    cdef list[list[list[int]]] rop = CentralizerGenerators(nstrands, l)
++    cdef cpplist[cpplist[cpplist[int]]] rop = CentralizerGenerators(nstrands, l)
+     sig_off()
+     return rop
+ 
+@@ -263,7 +263,7 @@ def supersummitset(braid):
+     nstrands = braid.parent().strands()
+     b = braid.Tietze()
+     sig_on()
+-    cdef list[list[list[int]]] rop = SuperSummitSet(nstrands, b)
++    cdef cpplist[cpplist[cpplist[int]]] rop = SuperSummitSet(nstrands, b)
+     sig_off()
+     return rop
+ 
+@@ -293,7 +293,7 @@ def ultrasummitset(braid):
+     nstrands = braid.parent().strands()
+     b = braid.Tietze()
+     sig_on()
+-    cdef list[list[list[list[int]]]] rop = UltraSummitSet(nstrands, b)
++    cdef cpplist[cpplist[cpplist[cpplist[int]]]] rop = UltraSummitSet(nstrands, b)
+     sig_off()
+     return rop
+ 
+@@ -395,7 +395,7 @@ def sliding_circuits(braid):
+     nstrands = braid.parent().strands()
+     b = braid.Tietze()
+     sig_on()
+-    cdef list[list[list[list[int]]]] rop = SlidingCircuits(nstrands, b)
++    cdef cpplist[cpplist[cpplist[cpplist[int]]]] rop = SlidingCircuits(nstrands, b)
+     sig_off()
+     return rop
+ 
+@@ -426,7 +426,7 @@ def send_to_sss(braid):
+     nstrands = braid.parent().strands()
+     b = braid.Tietze()
+     sig_on()
+-    cdef list[list[list[int]]] rop = SendToSSS(nstrands, b)
++    cdef cpplist[cpplist[cpplist[int]]] rop = SendToSSS(nstrands, b)
+     sig_off()
+     return rop
+ 
+@@ -457,7 +457,7 @@ def send_to_uss(braid):
+     nstrands = braid.parent().strands()
+     b = braid.Tietze()
+     sig_on()
+-    cdef list[list[list[int]]] rop = SendToUSS(nstrands, b)
++    cdef cpplist[cpplist[cpplist[int]]] rop = SendToUSS(nstrands, b)
+     sig_off()
+     return rop
+ 
+@@ -489,7 +489,7 @@ def send_to_sc(braid):
+     nstrands = braid.parent().strands()
+     b = braid.Tietze()
+     sig_on()
+-    cdef list[list[list[int]]] rop = SendToSC(nstrands, b)
++    cdef cpplist[cpplist[cpplist[int]]] rop = SendToSC(nstrands, b)
+     sig_off()
+     return rop
+ 
+@@ -523,7 +523,7 @@ def trajectory(braid):
+     nstrands = braid.parent().strands()
+     b = braid.Tietze()
+     sig_on()
+-    cdef list[list[list[int]]] rop = Trajectory(nstrands, b)
++    cdef cpplist[cpplist[cpplist[int]]] rop = Trajectory(nstrands, b)
+     sig_off()
+     return rop
+ 
+@@ -558,6 +558,6 @@ def cyclic_slidings(braid):
+     nstrands = braid.parent().strands()
+     b = braid.Tietze()
+     sig_on()
+-    cdef list[list[list[list[int]]]] rop = CyclicSlidings(nstrands, b)
++    cdef cpplist[cpplist[cpplist[cpplist[int]]]] rop = CyclicSlidings(nstrands, b)
+     sig_off()
+     return rop
+
+From 4dc8455c8db17027fd8d6878b6c498170f46d4ff Mon Sep 17 00:00:00 2001
+From: Antonio Rojas <arojas@archlinux.org>
+Date: Sun, 30 Aug 2026 10:49:51 +0200
+Subject: [PATCH 2/6] Explicitly cast to tuple in set_system.pyx
+
+Cython 3.3 no longer implicitly converts lists to tuples
+---
+ src/sage/matroids/set_system.pyx | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/src/sage/matroids/set_system.pyx b/src/sage/matroids/set_system.pyx
+index 28ed604b0a7..ac51cea1059 100644
+--- a/src/sage/matroids/set_system.pyx
++++ b/src/sage/matroids/set_system.pyx
+@@ -222,7 +222,7 @@ cdef class SetSystem:
+                 E.append(mapping[self._E[i]])
+             else:
+                 E.append(self._E[i])
+-        self._groundset = E
++        self._groundset = tuple(E)
+         self._idx = {}
+         for i in range(self._groundset_size):
+             self._idx[self._groundset[i]] = i
+
+From 0fb37ded8c2485c424ae80cd4f750a520f0ebb20 Mon Sep 17 00:00:00 2001
+From: Antonio Rojas <arojas@archlinux.org>
+Date: Sun, 30 Aug 2026 10:57:00 +0200
+Subject: [PATCH 3/6] Fix cython_metaclass crashes with Cython 3.3
+
+Cython 3.3 moved Cython function initialization to a later stage init_after_shared_utility [1]
+
+Make sure that this has been run before calling metaclass methods to prevent crashes
+
+[1] https://github.com/cython/cython/commit/eee7a607684485e2feb0177da4ea621daf9f1d5c
+---
+ src/sage/cpython/cython_metaclass.h | 10 ++++++++++
+ 1 file changed, 10 insertions(+)
+
+diff --git a/src/sage/cpython/cython_metaclass.h b/src/sage/cpython/cython_metaclass.h
+index c3df3c27d5e..4d1414d910f 100644
+--- a/src/sage/cpython/cython_metaclass.h
++++ b/src/sage/cpython/cython_metaclass.h
+@@ -33,6 +33,10 @@ static CYTHON_INLINE PyObject* PyMethodDescr_CallSelf(PyMethodDescrObject* desc,
+     return meth->ml_meth(self, NULL);
+ }
+ 
++#if defined(CYTHON_HEX_VERSION) && CYTHON_HEX_VERSION >= 0x03030000
++static int __Pyx_InitAfterSharedUtility(void);
++#endif
++
+ /*
+  * This function calls PyType_Ready(t) and then calls
+  * t.__getmetaclass__(None) (if that method exists) which should
+@@ -45,6 +49,12 @@ static CYTHON_INLINE int Sage_PyType_Ready(PyTypeObject* t)
+     if (r < 0)
+         return r;
+ 
++#if defined(CYTHON_HEX_VERSION) && CYTHON_HEX_VERSION >= 0x03030000
++    // Ensure Cython function types are initialized before calling metaclass methods.
++    if (__Pyx_InitAfterSharedUtility() < 0)
++        return -1;
++#endif
++
+     // Cython 3 sets Py_TPFLAGS_HEAPTYPE before calling PyType_Ready,
+     // and resets just after the call. We need to reset it earlier,
+     // since otherwise the call to metaclass.__init__ below may have
+
+From 0e3f5d3dc9c615dd4fc21189c41f419d94776559 Mon Sep 17 00:00:00 2001
+From: Antonio Rojas <arojas@archlinux.org>
+Date: Sun, 30 Aug 2026 14:11:11 +0200
+Subject: [PATCH 5/6] Drop OverflowError test
+
+After Cython's __getitem__ implementation rewrite in https://github.com/cython/cython/commit/63a35d40f26930b16c1ed24ea157d926e6ee9707 this gives an IndexError instead
+---
+ src/sage/data_structures/list_of_pairs.pyx | 4 ----
+ 1 file changed, 4 deletions(-)
+
+diff --git a/src/sage/data_structures/list_of_pairs.pyx b/src/sage/data_structures/list_of_pairs.pyx
+index 258320353a0..b9edff5c86f 100644
+--- a/src/sage/data_structures/list_of_pairs.pyx
++++ b/src/sage/data_structures/list_of_pairs.pyx
+@@ -67,10 +67,6 @@ cdef class ListOfPairs:
+             Traceback (most recent call last):
+             ...
+             IndexError
+-            sage: l[-1]
+-            Traceback (most recent call last):
+-            ...
+-            OverflowError: can't convert negative value to size_t
+         """
+         cdef pair_s* pair = self.get(index)
+         return (smallInteger(pair.first), smallInteger(pair.second))
+
+From 04b3333f4f9a3143efe11332dc448b5b112f2e6d Mon Sep 17 00:00:00 2001
+From: Samuel Chen <119898205+sacchen@users.noreply.github.com>
+Date: Tue, 1 Sep 2026 22:55:49 -0700
+Subject: [PATCH 6/6] sage.ext.stdsage: pass an empty tuple to tp_new
+
+PY_NEW() called tp_new(t, NULL, NULL), but tp_new requires a tuple for
+the positional arguments. Cython's __cinit__ wrapper reads the tuple's
+size whenever __cinit__ takes arguments, so PY_NEW() on such a class
+segfaults with Cython 3.2 and 3.3 alike. Cython 3.3 additionally routes
+tp_new through a vectorcall adapter that reads the size unconditionally,
+so classes with a no-argument __cinit__ can fault as well, depending on
+inlining and optimization level.
+
+The call now passes (). Cython compiles this to the module's cached
+empty tuple, so it is a single load, not an allocation. PY_SET_TP_NEW()
+is unchanged.
+
+The new doctest compiles a base extension type and a derived one with
+__cinit__(self, *args) and constructs both through PY_NEW(). Against
+the unpatched header it segfaults with Cython 3.2.9 and 3.3.0 at every
+optimization level; with the patch both return ().
+
+Refs: https://github.com/passagemath/passagemath/pull/2762
+
+Co-Authored-By: Claude Opus 5 <noreply@anthropic.com>
+Co-Authored-By: Claude Fable 5.1 <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_01NJQDfzmiW166qBedkq5z1v
+---
+ src/sage/ext/stdsage.pxd | 38 +++++++++++++++++++++++++++++++++++++-
+ 1 file changed, 37 insertions(+), 1 deletion(-)
+
+diff --git a/src/sage/ext/stdsage.pxd b/src/sage/ext/stdsage.pxd
+index b1d322cbf2f..1be82887c0a 100644
+--- a/src/sage/ext/stdsage.pxd
++++ b/src/sage/ext/stdsage.pxd
+@@ -18,8 +18,44 @@ cdef inline PY_NEW(type t):
+     Return ``t.__new__(t)``.  This works even for types like
+     :class:`Integer` where we change ``tp_new`` at runtime (Cython
+     optimizations assume that ``tp_new`` doesn't change).
++
++    TESTS:
++
++    ``tp_new`` must be called with a real (empty) argument tuple, not with
++    ``NULL``.  Cython's ``__cinit__`` wrapper reads the tuple's size whenever
++    ``__cinit__`` takes arguments, and Cython 3.3 also reads it in the
++    vectorcall adapter it installs as ``tp_new``; either way a ``NULL``
++    argument tuple segfaults.  Check both a base extension type and a
++    derived one, which reaches the base ``tp_new`` through the inheritance
++    chain::
++
++        sage: # needs sage.misc.cython
++        sage: cython(
++        ....: '''
++        ....: from sage.ext.stdsage cimport PY_NEW
++        ....:
++        ....: cdef class Base:
++        ....:     cdef public tuple stored
++        ....:     def __cinit__(self, *args):
++        ....:         self.stored = args
++        ....:
++        ....: cdef class Derived(Base):
++        ....:     pass
++        ....:
++        ....: def new_base():
++        ....:     return PY_NEW(Base)
++        ....:
++        ....: def new_derived():
++        ....:     return PY_NEW(Derived)
++        ....: ''')
++        sage: new_base().stored
++        ()
++        sage: new_derived().stored
++        ()
+     """
+-    return (<PyTypeObject*>t).tp_new(t, <PyObject*>NULL, <PyObject*>NULL)
++    # tp_new requires a tuple for positional arguments.  In particular,
++    # Cython 3.3's vectorcall wrapper reads its size unconditionally.
++    return (<PyTypeObject*>t).tp_new(t, <PyObject*>(), <PyObject*>NULL)
+ 
+ 
+ cdef inline void PY_SET_TP_NEW(type dst, type src) noexcept:
