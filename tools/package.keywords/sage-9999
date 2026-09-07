@@ -1,3 +1,4 @@
+>=dev-lisp/ecl-26.5.5
 ~dev-python/conway-polynomials-0.8
 dev-python/cvxopt
 >=dev-python/cypari2-2.2.1
