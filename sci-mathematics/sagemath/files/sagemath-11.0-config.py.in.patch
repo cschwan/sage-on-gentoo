@@ -1,0 +1,29 @@
+diff --git a/src/sage/config.py.in b/src/sage/config.py.in
+index 60ebede7ac5..d2f835020e3 100644
+--- a/src/sage/config.py.in
++++ b/src/sage/config.py.in
+@@ -7,7 +7,7 @@ MESON_BUILD_ROOT = r"@MESON_BUILD_ROOT@"
+ VERSION = "@PACKAGE_VERSION@"
+ 
+ # The path to the standalone maxima executable.
+-MAXIMA = "@SAGE_MAXIMA@"
++MAXIMA = "maxima -l ecl"
+ 
+ # Set this to the empty string if your ECL can load maxima without
+ # further prodding.
+@@ -53,6 +53,15 @@ rankwidth_enabled = @RANKWIDTH_ENABLED@
+ sirocco_enabled = @SIROCCO_ENABLED@
+ tdlib_enabled = @TDLIB_ENABLED@
+ 
++# Some Gentoo definitions
++MATHJAX_DIR  = "@GENTOO_PORTAGE_EPREFIX@/usr/share/mathjax"
++SAGE_SHARE   = "@GENTOO_PORTAGE_EPREFIX@/usr/share/sage"
++SAGE_DOC     = "@GENTOO_PORTAGE_EPREFIX@/usr/share/doc/@GENTOO_PORTAGE_PF@"
++JMOL_DIR     = "@GENTOO_PORTAGE_EPREFIX@/usr/share/sage-jmol-bin/lib"
++MTXLIB       = "@GENTOO_PORTAGE_EPREFIX@/usr/share/meataxe"
++PPLPY_DOCS   = "@GENTOO_PORTAGE_EPREFIX@/usr/share/doc/@PPLY_DOC_VERS@/html"
++LIE_INFO_DIR = "@GENTOO_PORTAGE_EPREFIX@/usr/share/lie"
++
+ 
+ def get_include_dirs():
+     from sage.misc.superseded import deprecation
