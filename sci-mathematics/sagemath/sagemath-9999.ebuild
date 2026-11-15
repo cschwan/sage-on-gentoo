@@ -141,7 +141,7 @@ REQUIRED_USE="doc? ( jmol )
 
 PATCHES=(
 	"${FILESDIR}"/${PN}-11.0-config.py.in.patch
-	"${FILESDIR}"/${PN}-10.4-env.patch
+	"${FILESDIR}"/${PN}-10.11-env.patch
 	"${FILESDIR}"/${PN}-sage-10.10.patch
 	"${FILESDIR}"/${PN}-10.10-neutering.patch
 	"${FILESDIR}"/${PN}-9.6-verbosity.patch
