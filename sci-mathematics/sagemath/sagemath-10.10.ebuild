@@ -62,7 +62,7 @@ DEPEND="
 	>=sci-mathematics/eclib-20250122:=[flint]
 	>=sci-mathematics/flint-3.1.3:=[ntl]
 	>=sci-mathematics/gap-4.13.1
-	>=sci-mathematics/glpk-5.0:0=[gmp]
+	>=sci-mathematics/glpk-5.0:0=
 	sci-mathematics/gmp-ecm[-openmp]
 	sci-mathematics/highs
 	>=sci-mathematics/lcalc-2.1.0
