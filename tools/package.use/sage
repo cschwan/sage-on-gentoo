@@ -9,7 +9,6 @@ media-libs/libglvnd         X
 media-gfx/tachyon           png opengl
 sci-mathematics/flint       ntl
 sci-libs/cddlib             tools
-sci-mathematics/eclib       flint
 sci-mathematics/gmp-ecm     -openmp
 sci-mathematics/maxima      ecl
 sci-mathematics/lcalc       pari
