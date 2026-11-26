@@ -13,6 +13,9 @@ dev-python/primecountpy
 dev-python/rpy2-rinterface
 dev-python/rpy2-robjects
 >=dev-python/scikit-build-core-0.9.6
+dev-python/pybtex
+dev-python/pybtex-docutils
+dev-python/latexcodec
 dev-python/sphinx-copybutton
 dev-python/sphinx-inline-tabs
 dev-python/sphinxcontrib-bibtex
