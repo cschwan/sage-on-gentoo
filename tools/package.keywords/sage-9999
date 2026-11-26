@@ -15,6 +15,7 @@ dev-python/rpy2-robjects
 >=dev-python/scikit-build-core-0.9.6
 dev-python/sphinx-copybutton
 dev-python/sphinx-inline-tabs
+dev-python/sphinxcontrib-bibtex
 =dev-tex/sagetex-3*
 media-gfx/tachyon
 ~media-gfx/threejs-sage-extension-122
