@@ -43,6 +43,7 @@ BDEPEND="$(python_gen_any_dep "
 	dev-python/jupyter-sphinx[\${PYTHON_USEDEP}]
 	dev-python/sphinx-copybutton[\${PYTHON_USEDEP}]
 	dev-python/sphinx-inline-tabs[\${PYTHON_USEDEP}]
+	dev-python/sphinxcontrib-bibtex[\${PYTHON_USEDEP}]
 	~sci-mathematics/sagemath-${PV}[\${PYTHON_USEDEP},jmol]
 	")
 	doc-pdf? (
